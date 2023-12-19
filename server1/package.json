@@ -1,0 +1,60 @@
+{
+  "name": "site8-server1",
+  "version": "0.1.0",
+  "description": "api service1 for the site8 application",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "npm run build:local && npx cross-env NODE_PATH=./dist node -r dotenv/config .",
+    "build": "npx tsc",
+    "build:local": "npm run build",
+    "build:docker": "npm run build && cp .env.docker dist/.env",
+    "build:dev": "npm run build && cp .env.dev dist/.env",
+    "build:sit": "npm run build && cp .env.dev dist/.env",
+    "build:test": "npm run build && cp .env.test dist/.env",
+    "build:plqa": "npm run build && cp .env.test dist/.env",
+    "build:uat": "npm run build && cp .env.uat dist/.env",
+    "build:pluat": "npm run build && cp .env.uat dist/.env",
+    "build:preview": "npm run build && cp .env.preview dist/.env",
+    "build:production": "npm run build && cp .env.production dist/.env",
+    "lint": "npx eslint src/**/*",
+    "lint:fix": "npx eslint --fix src/**/*",
+    "format:fix": "npx prettier --write src/**/*",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker": "docker build -t site8-service .",
+    "docker-full": "npm run build:docker && npm run docker && npm run docker-run",
+    "docker-run": "docker run -p 9015:8080 --name site8-service --network site8-net --rm site8-service",
+    "prepare": "npx husky install",
+    "pre-commit": "npx lint-staged",
+    "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "lint-staged": {
+    "*.+(ts|tsx)": [
+      "npx eslint --fix",
+      "npx prettier --write"
+    ]
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-prom-bundle": "^6.0.0",
+    "http-proxy-middleware": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  }
+}
