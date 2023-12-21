@@ -1,5 +1,5 @@
 const Content = () => {
-  return <main></main>;
+  return <main>Content</main>;
 };
 
 export default Content;

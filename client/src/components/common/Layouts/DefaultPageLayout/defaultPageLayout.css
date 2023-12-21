@@ -1,0 +1,11 @@
+.contentWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

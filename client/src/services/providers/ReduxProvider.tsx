@@ -1,7 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-
-import { store } from "../data/store.ts";
+import { store } from "../state/store";
 
 interface IProps {
   children: React.ReactNode;
