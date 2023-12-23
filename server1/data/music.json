@@ -1,0 +1,127 @@
+{
+   "metadata":{
+      "id":2,
+      "data_type":"music",
+      "title":"Music"
+   },
+   "items":[
+      {
+         "id":1,
+         "name":"Cosimo and the Hot Coals - Blues dell'Emigrante (Live from Villa Bossi)",
+         "description":"",
+         "channel": "youtube",
+         "tags":[],
+         "url":"https://www.youtube.com/embed/OIp97UMmqgQ?si=JAHPbqMqybV_7wbo"
+      }, 
+      {
+         "id":2,
+         "name":"St. James Infirmary - Cosimo and the Hot Coals (Live from Villa Bossi)",
+         "description":"",
+         "channel": "youtube",
+         "tags":[],
+          "url":"https://www.youtube.com/embed/QFPMWKTiSkI?si=gFFdo9xNKtXGBxsq"
+      },
+      {
+         "id":3,
+         "name":"Sail North - Bones (Official Lyric Video)",
+         "description":"",
+         "channel": "youtube",
+         "tags":[],
+         "url":"https://www.youtube.com/embed/9YR2CzCj0w4?si=kLo4QOqVHgLzX1uL"
+      },  
+      {
+         "id":4,
+         "name":"Sail North - Tale of The Shadow (Official Lyric Video)",
+         "description":"",
+         "channel": "youtube",
+         "tags":[],
+         "url":"https://www.youtube.com/embed/TvtcwsouILY?si=2kyALCjobWwn7J3X"
+      }, 
+      {
+         "id":5,
+         "name":"Auld Lang Syne ~ Guy Lombardo ~ 1947 Version",
+         "description":"",
+         "channel": "youtube",
+         "tags":[],
+         "url":"https://www.youtube.com/embed/adwni-Jt8qQ?si=P2m1nmwHaNYQCtkr"
+      }, 
+      {
+         "id":6,
+         "name":"JÖRMUNGANDR (VolfgangTwins) Heavy Viking Music",
+         "description":"",
+         "channel": "youtube",
+         "tags":[],
+         "url":"https://www.youtube.com/embed/IIHFxeN4BW4?si=pfIEfaf4jXl0emuW"
+      }, 
+      {
+         "id":7,
+         "name":"PALLADIO - Asturia Quartet",
+         "description":"",         
+         "channel": "youtube",
+         "tags":[],
+         "url":"https://www.youtube.com/embed/oTf5qi2J6PM?si=l3rmz8Ntp2EnGdsb"
+      },
+      {
+         "id":8,
+         "name":"Zorba the Greek",
+         "description":"The Dance of the Zorba",         
+         "channel": "youtube",
+         "tags":["movies", "Anthony Quinn", "Greek", "ethnic"],
+         "url":"https://www.youtube.com/embed/BS0w3Wkric8?si=puz0D4gzASTX0w89"
+      },
+      {
+         "id":9,
+         "name":"Zorba Emmetron",
+         "description":"The Dance of the Zorba",         
+         "channel": "youtube",
+         "tags":["Greek", "ethnic"],
+         "url":"https://www.youtube.com/embed/LYG5l9SQLp8?si=-PhkiZWvGoavRPU7"
+      },
+      {
+         "id":10,
+         "name":"Lee Marvin Wandering Star 1969 HD",
+         "description":"Wandering Star",         
+         "channel": "youtube",
+         "tags":["movies", "Lee Marvin"],
+         "url":"https://www.youtube.com/embed/-jYk5u9vKfA?si=ccYUCfLgnxQ7lLao"
+      },
+      {
+         "id":11,
+         "name":"Harve Presnell They call the Wind Maria remastered",
+         "description":"They call the Wind Maria",         
+         "channel": "youtube",
+         "tags":["movies", "Harve Presnell"],
+         "url":"https://www.youtube.com/embed/ByqYEzugleE?si=sR0XUX0K8vfucXwa"
+      },
+      {
+         "id":11,
+         "name":"Vivaldi Four Seasons: Winter",
+         "description":"They call the Wind Maria",         
+         "channel": "youtube",
+         "tags":["Vivaldi", "Constantini"],
+         "url":"https://www.youtube.com/embed/JUPo5SG5GCg?si=vZsWPFetmcZG06Jf"
+      }
+
+   ],
+   "channels": [{
+      "id":1,
+      "channel": "youtube",
+      "title":"Constantini Music",
+      "url": "https://www.youtube.com/channel/UCfqS4jwdgdLf6oQZh7ipQlw",
+      "tags":["Claudio Constantini", "Constantini"]
+   },
+   {
+      "id":2,
+      "channel": "youtube",
+      "title":"Constantini Piano",
+      "url": "https://www.youtube.com/@constantinipiano",
+      "tags":["Claudio Constantini", "Constantini", "piano"]
+   }
+
+
+]
+   
+
+   
+}
+

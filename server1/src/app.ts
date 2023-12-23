@@ -14,7 +14,23 @@ app.use(express.urlencoded({ limit: '1000mb', extended: false }));
 // });
 
 app.get('/api', (req: Request, res: Response) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
   const fileName = 'restaurants.json';
+  const options = {
+    root: path.join(__dirname, '../data'),
+  };
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Sent:', fileName);
+    }
+  });
+});
+
+app.get('/api/music', (req: Request, res: Response) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
+  const fileName = 'music.json';
   const options = {
     root: path.join(__dirname, '../data'),
   };

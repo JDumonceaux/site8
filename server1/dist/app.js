@@ -16,7 +16,23 @@ app.use(express_1.default.urlencoded({ limit: '1000mb', extended: false }));
 //   res.send('Welcome to Express & TypeScript Server');
 // });
 app.get('/api', function (req, res) {
+    res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
     var fileName = 'restaurants.json';
+    var options = {
+        root: path.join(__dirname, '../data'),
+    };
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('Sent:', fileName);
+        }
+    });
+});
+app.get('/api/music', function (req, res) {
+    res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
+    var fileName = 'music.json';
     var options = {
         root: path.join(__dirname, '../data'),
     };

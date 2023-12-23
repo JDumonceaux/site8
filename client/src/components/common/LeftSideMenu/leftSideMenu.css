@@ -1,0 +1,13 @@
+nav {
+  width: 250px;
+}
+nav ul {
+  padding: 16px 8px 16px 8px;
+}
+nav a {
+  display: block;
+}
+nav .active {
+  color: #fff;
+  background-color: #be3455;
+}
