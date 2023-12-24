@@ -12,6 +12,7 @@ const DefaultPageLayout = () => {
       <div className="content">
         <LeftSideMenu />
         <main>
+          eeeee
           <Outlet />
         </main>
       </div>

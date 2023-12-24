@@ -45,6 +45,11 @@ export default function LeftSideMenu() {
             <li>
               <CustomNavLink to="/react/css">CSS</CustomNavLink>
             </li>
+            <li>
+              <CustomNavLink to="/react/intl">
+                Internationalization
+              </CustomNavLink>
+            </li>
           </ul>
         </li>
         <li>
