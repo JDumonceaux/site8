@@ -1,0 +1,15 @@
+.ball {
+  transform-style: preserve-3d;
+  margin-top: 30px;
+  transform: translateX(calc(50% - 5em)) translateY(3em);
+}
+.ball .item {
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  background: lightblue;
+  position: relative;
+  left: -0.5em;
+  bottom: 1em;
+  background-image: radial-gradient(circle at top, lightblue, 50%, #000);
+}

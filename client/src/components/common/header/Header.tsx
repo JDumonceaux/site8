@@ -1,7 +1,10 @@
 import "./header.css";
+import { APP_NAME } from "../../../utils/constants";
 
-const Header = () => {
-  return <header>Header</header>;
-};
-
-export default Header;
+export function Header() {
+  return (
+    <header className="main-header">
+      <div className="app-name">{APP_NAME}</div>
+    </header>
+  );
+}

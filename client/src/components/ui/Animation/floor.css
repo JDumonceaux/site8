@@ -1,0 +1,15 @@
+.stage {
+  position: relative;
+  transform-style: preserve-3d;
+}
+.floor {
+  width: 600px;
+  height: 200px;
+  background-image: repeating-conic-gradient(
+    from 45deg,
+    #111 0deg 90deg,
+    var(--palette-main-color) 90deg 180deg
+  );
+  background-size: 1em 1em;
+  transform: translateX(20%) rotateX(90deg);
+}

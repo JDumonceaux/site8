@@ -1,8 +1,15 @@
+import ChangeLanguage from "../../../components/examples/ChangeLanguage/ChangeLanguage";
+
 import "./footer.css";
 
-const Footer = () => {
+export function Footer() {
   const thisYear = new Date().getFullYear();
-  return <footer>Copyright &copy; {thisYear} </footer>;
-};
-
-export default Footer;
+  return (
+    <footer className="main-footer">
+      <div className="copyright">Copyright &copy; {thisYear}</div>
+      <div>
+        <ChangeLanguage />
+      </div>
+    </footer>
+  );
+}

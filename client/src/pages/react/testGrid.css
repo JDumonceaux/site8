@@ -1,0 +1,29 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 2px;
+}
+.table thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+.table tr {
+  display: table-row;
+}
+.table th {
+  display: table-cell;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  text-align: left;
+  padding-right: 10px;
+  color: #fff;
+  background-color: #6c7ae0;
+}
+.table td {
+  display: table-cell;
+  color: gray;
+}
+.scroll {
+  max-height: 200px;
+}

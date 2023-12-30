@@ -1,13 +1,32 @@
-nav {
+.left-side-menu {
   width: 250px;
+  background-color: var(--palette-grey-10);
 }
-nav ul {
-  padding: 16px 8px 16px 8px;
+.left-side-menu li {
+  padding: 0.5rem 0;
 }
-nav a {
+.left-side-menu a {
   display: block;
 }
-nav .active {
-  color: #fff;
-  background-color: #be3455;
+.left-side-menu li {
+  list-style-type: none;
+  padding: 5px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  position: relative;
+}
+.left-side-menu .active {
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #dcdcdc;
+}
+.left-side-menu .active::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 100%;
+  background-color: var(--main-color-d3);
+  position: absolute;
+  top: 0;
+  left: 0;
 }

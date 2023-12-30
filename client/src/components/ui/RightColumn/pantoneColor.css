@@ -1,0 +1,23 @@
+.pantone-color {
+  width: 100%;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.1rem;
+  color: var(--palette-grey-100, #000);
+  padding: 16px 0;
+}
+.pantone-color .color-swatch {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+.pantone-color .col-left {
+  background-color: var(--main-background-color);
+  border-radius: 50%;
+  min-width: 20px;
+  min-height: 20px;
+}
+.pantone-color .col-right {
+  font-weight: bold;
+  color: var(--main-background-color);
+  padding-left: 0.5rem;
+}

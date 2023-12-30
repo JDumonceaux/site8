@@ -1,11 +1,14 @@
-.contentWrapper {
+.default-page-layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-.content {
+.default-page-layout .layout {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+}
+.default-page-layout .right-col {
+  flex-grow: 1;
 }

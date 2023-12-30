@@ -1,6 +1,13 @@
-footer {
+.main-footer {
   margin-top: auto;
   min-height: 20px;
+  background-color: var(--main-background-color, #000);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.copyright {
   color: #fff;
-  background-color: #be3455;
+  font-size: 0.8rem;
+  padding-left: 16px;
 }

@@ -1,0 +1,15 @@
+.two-column {
+  width: 100%;
+  padding: 16px;
+}
+.two-column .content {
+  display: flex;
+  flex-direction: row;
+}
+.two-column .col-left {
+  flex: 1;
+}
+.two-column .col-right {
+  width: 250px;
+  padding: 16px;
+}
