@@ -1,14 +1,17 @@
-.default-page-layout {
+.content-wrapper {
+  display: flex;
   min-height: 100vh;
+  width: 100%;
+}
+.left-content {
+  width: 300px;
+  /* transition: transform 0.15s; */
+}
+.main-content {
   display: flex;
   flex-direction: column;
+  flex: 1 auto;
 }
-.default-page-layout .layout {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.default-page-layout .right-col {
+.main {
   flex-grow: 1;
 }

@@ -3,6 +3,7 @@ export interface IMusicItem {
   url: string;
   name?: string;
   description?: string;
+  section?: string;
   display?: string;
   tags?: string[];
 }

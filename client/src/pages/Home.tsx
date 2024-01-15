@@ -7,45 +7,45 @@ import PageTitle from "../components/common/PageTitle/PageTitle";
 import { PantoneColor } from "../components/ui/RightColumn/PantoneColor";
 import Ball from "../components/ui/Animation/Ball";
 import Floor from "../components/ui/Animation/Floor";
+import Text3D from "../components/ui/Animation/Text3D";
 
-function Home() {
+export default function Home() {
   useEffect(() => {
     document.title = `${APP_NAME} - Home`;
   }, []);
 
   return (
-    <div className="home">
-      <TwoColumn
-        pageTitle={<PageTitle title={APP_NAME} />}
-        left={
-          <main className="main">
-            <p>
-              It is a proven fact that there are 525,600 developers working
-              every minute of every hour of every day to make programming
-              easier. They're busy breaking code, adding bugs, making things
-              more complicated - all in the pursuit of job security. Therefore,
-              your knowledge of programming will never be complete: there's
-              always something to learn, explore, or revisit.
-            </p>
-            <p className="italic">
-              "The journey is never ending. There's always gonna be growth,
-              improvement, adversity; you just gotta take it all in and do
-              what's right, continue to grow, continue to live in the moment."
-              -- Antonio Brown
-            </p>
-            <Ball />
-            <Floor />
-          </main>
-        }
-        right={
-          <div className="right-column">
-            <img src="./face.png" alt="" />
-            <PantoneColor />
+    <TwoColumn
+      pageTitle={<PageTitle title={APP_NAME} />}
+      left={
+        <section className="section">
+          <p>
+            Welcome. The is the skeleton of a site to give you some ideas.
+            Hopefully, I'll be able to expand on all these topics in 2024.
+          </p>
+          <p>There are many excellent tutorials on building React web site.</p>
+          <p>
+            My goal is to bring everything together: to give you the whole
+            picture.
+          </p>
+          <Ball />
+          <Floor />
+          <Text3D />
+        </section>
+      }
+      right={
+        <aside className="right-column">
+          <div>
+            <img
+              src="./images/face.png"
+              alt="Original AI generated art"
+              title="Original AI generated art"
+            />
+            <div className="image-text">Original art by JRD</div>
           </div>
-        }
-      />
-    </div>
+          <PantoneColor />
+        </aside>
+      }
+    />
   );
 }
-
-export default Home;

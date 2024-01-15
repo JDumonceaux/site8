@@ -10,13 +10,13 @@
   align-items: center;
   padding: 8px 0;
 }
-.pantone-color .col-left {
+.color-swatch .left1 {
   background-color: var(--main-background-color);
   border-radius: 50%;
   min-width: 20px;
   min-height: 20px;
 }
-.pantone-color .col-right {
+.color-swatch .right1 {
   font-weight: bold;
   color: var(--main-background-color);
   padding-left: 0.5rem;

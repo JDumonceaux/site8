@@ -2,11 +2,13 @@ import ChangeLanguage from "../../../components/examples/ChangeLanguage/ChangeLa
 
 import "./footer.css";
 
-export function Footer() {
+export default function Footer() {
   const thisYear = new Date().getFullYear();
   return (
-    <footer className="main-footer">
-      <div className="copyright">Copyright &copy; {thisYear}</div>
+    <footer className="main-footer" role="contentinfo">
+      <div className="copyright" aria-label="Copyright Information">
+        Copyright &copy; {thisYear}
+      </div>
       <div>
         <ChangeLanguage />
       </div>

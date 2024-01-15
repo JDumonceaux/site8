@@ -8,6 +8,7 @@ function BlogList() {
         pageTitle={<PageTitle title="Blog" />}
         left={
           <main className="main">
+            {/* <LoadingWrapper isLoading={loading} error={error}></LoadingWrapper> */}
             <div></div>
           </main>
         }

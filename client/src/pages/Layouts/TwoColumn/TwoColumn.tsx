@@ -9,13 +9,13 @@ interface IProps {
 
 function TwoColumn({ pageTitle, left, right }: IProps) {
   return (
-    <div className="two-column">
+    <main className="main" role="main">
       {pageTitle}
       <div className="content">
         <div className="col-left">{left}</div>
         <div className="col-right">{right}</div>
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -1,0 +1,8 @@
+.text3D {
+  transform-style: preserve-3d;
+  font-size: 2rem;
+  text-shadow: 4px rgb(242, 32, 8);
+  color: blue;
+  transform-origin: left;
+  transform: translateY(-300px) perspective(15em) rotateY(60deg);
+}

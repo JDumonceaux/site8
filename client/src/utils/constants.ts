@@ -1,4 +1,4 @@
-export const APP_NAME = "React Undone";
+export const APP_NAME = "React Notes";
 
 export enum SortOrder {
   ASC = "asc",
@@ -25,7 +25,10 @@ export enum FileType {
 export const API_ROOT = `http://localhost:3005/api`;
 
 export enum ServiceUrl {
+  ENDPOINT_ART = `${API_ROOT}/art`,
   ENDPOINT_MUSIC = `${API_ROOT}/music`,
+  ENDPOINT_PAGE = `${API_ROOT}/page`,
   ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
+  ENDPOINT_RESOURCES = `${API_ROOT}/resources`,
   ENDPOINT_TESTGRID = `${API_ROOT}/testgrid`,
 }

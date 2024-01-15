@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
 
 import { ReduxProvider } from "./services/providers/ReduxProvider.tsx";
 import { RouterProvider } from "./services/providers/RouterProvider.tsx";
@@ -12,5 +13,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ReduxProvider>
       <RouterProvider />
     </ReduxProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
+reportWebVitals(console.log);

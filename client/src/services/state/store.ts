@@ -1,9 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter/counterSlice";
+import counterReducer from "./examples/counterSlice";
+import resourcesReducer from "./resourcesSlice";
+import artReducer from "./artSlice";
+import musicReducer from "./musicSlice";
+import photosReducer from "./photosSlice";
+import formExample1Slice from "./examples/formExample1Slice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    resources: resourcesReducer,
+    art: artReducer,
+    music: musicReducer,
+    photos: photosReducer,
+    form: formExample1Slice,
   },
 });
 

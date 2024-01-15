@@ -1,24 +1,25 @@
-import { Footer } from "../../../components/common/Footer/Footer";
-import { Header } from "../../../components/common/Header/Header";
-import { LeftSideMenu } from "../../../components/common/LeftSideMenu/LeftSideMenu";
+import Footer from "../../../components/common/Footer/Footer";
+import Header from "../../../components/common/Header/Header";
+import MainMenu from "../../../components/common/AccordionMenu/MainMenu";
+import ErrorBoundary from "../../../components/common/ErrorBoundary";
 import "./defaultPageLayout.css";
 import { Outlet } from "react-router-dom";
 
-function DefaultPageLayout() {
+export default function DefaultPageLayout() {
   return (
-    <div className="default-page-layout">
-      <Header />
-      <div className="layout">
-        <div className="left-col">
-          <LeftSideMenu />
-        </div>
-        <div className="right-col">
-          <Outlet />
+    <ErrorBoundary fallback="Error">
+      <div className="default-page-layout">
+        <Header />
+        <div className="content-wrapper">
+          <div className="left-content">
+            <MainMenu />
+          </div>
+          <div className="main-content">
+            <Outlet />
+            <Footer />
+          </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </ErrorBoundary>
   );
 }
-
-export default DefaultPageLayout;

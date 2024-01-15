@@ -1,13 +1,1 @@
-.home .main {
-  padding: 16px;
-  perspective: 20em;
-  perspective-origin: 50% calc(50% -2em);
-}
-.home .main p {
-  line-height: 1.2rem;
-}
-.home .main .italic {
-  font-family: "Roboto", sans-serif;
-  font-style: italic;
-  line-height: 1.2rem;
-}
+

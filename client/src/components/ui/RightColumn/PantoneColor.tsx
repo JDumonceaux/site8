@@ -8,8 +8,8 @@ export function PantoneColor() {
         2023 Pantone&#174; Color of the Year
       </a>
       <div className="color-swatch">
-        <div className="col-left"></div>
-        <div className="col-right">Viva Magenta</div>
+        <div className="left1"></div>
+        <div className="right1">Viva Magenta</div>
       </div>
     </div>
   );

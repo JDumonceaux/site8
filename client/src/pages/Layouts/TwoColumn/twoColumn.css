@@ -1,15 +1,31 @@
-.two-column {
+.main {
   width: 100%;
-  padding: 16px;
+  padding: 0 16px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-.two-column .content {
+.main .content {
   display: flex;
   flex-direction: row;
 }
-.two-column .col-left {
-  flex: 1;
+.main .col-left {
+  min-width: 700px;
+  width: 700px;
+  padding-right: 16px;
 }
-.two-column .col-right {
-  width: 250px;
-  padding: 16px;
+.main .col-right {
+  /* flex-grow: 1; */
+  width: 300px;
+}
+.main p {
+  line-height: 1.3rem;
+}
+.main .italic {
+  font-family: "Roboto", sans-serif;
+  font-style: italic;
+  line-height: 1.2rem;
+}
+.main .image-text {
+  font-size: 0.75rem;
+  text-align: right;
 }

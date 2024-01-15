@@ -1,5 +1,4 @@
 :root {
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -11,9 +10,12 @@
   --main-color-d3: #751c31;
 
   --palette-main-color: #be3455;
+  --palette-menu-color: #d8d8d8;
+
   --palette-grey-10: #d8d8d8;
   --palette-grey-50: #888888;
   --palette-grey-100: #585858;
+  --palette-grey-dark: #4b4b4b;
 }
 
 html,
@@ -46,12 +48,42 @@ a:active {
 hr {
   border: 1px solid #585858;
 }
-p {
-  margin: 1rem 0 2rem;
-}
+
 ol,
 ul {
   margin-block-start: 1em;
   margin-block-end: 1em;
   padding-inline-start: 20px;
+}
+em {
+  font-weight: 700;
+  color: var(--palette-main-color);
+}
+
+h1 {
+  font-family: "Roboto Slab", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #000;
+}
+h2 {
+  font-family: "Roboto Slab", serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #585858;
+}
+p {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.3em;
+  margin-bottom: 1rem;
+  color: #383838;
+}
+.image-banner-1 {
+  color: #fff;
+  background: #585858;
+  padding: 12px 16px 6px 16px;
+  text-align: center;
+  margin-top: 2px;
 }

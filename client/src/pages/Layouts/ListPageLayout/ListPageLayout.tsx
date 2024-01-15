@@ -1,6 +1,6 @@
 import { Footer } from "../../../components/common/Footer/Footer";
 import { Header } from "../../../components/common/Header/Header";
-import { LeftSideMenu } from "../../../components/common/LeftSideMenu/LeftSideMenu";
+import { LeftSideMenu } from "../../../components/common/AccordionMenu/AccordionMenu";
 import "./listPageLayout.css";
 import { Outlet } from "react-router-dom";
 
