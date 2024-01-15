@@ -1,0 +1,36 @@
+{
+   "metadata":{
+      "id":4,
+      "data_type":"photos",
+      "title":"Photos"
+   },
+   "items":[
+      {
+         "id":1,
+         "name":"Bar Harbor, Maine",
+         "channel": "flickr",
+         "tags":[],
+         "albums": [1],  
+         "url":"https://live.staticflickr.com/4469/37245519766_bb0655755c_z.jpg"
+      }, 
+      {
+         "id":2,
+         "name":"Corning Museum of Glass, 2017",
+         "channel": "flickr",
+         "tags":[],
+         "albums": [2],  
+         "url":"https://live.staticflickr.com/4509/36747509463_7134e6d233_z.jpg"
+      }
+   ],
+   "sets": [      
+      {
+         "id" : 1,
+         "name" : "Bar Harbor, Maine" 
+      },
+      {
+         "id" : 2,
+         "name" : "Corning Museum of Glass, 2017" 
+      }
+   ]         
+}
+

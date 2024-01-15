@@ -1,0 +1,78 @@
+{
+   "metadata":{
+      "id":4,
+      "data_type":"photos",
+      "title":"Photos"
+   },
+   "items":[
+      {
+         "id":1,
+         "name":"The Scream",
+         "artist": "Edvard Munch",
+         "year": 1893,
+         "style": "Proto-Expressionism",
+         "medium": "Oil, tempera, pastel and crayon on cardboard",
+         "dimensions": "91 cm × 73.5 cm (36 in × 28.9 in)",
+         "copies": "There are four versions: 2 painted, 2 pastel.  Plus, about 45 prints were made.",
+         "description" : "One evening I was walking along a path, the city was on one side and the fjord below. I felt tired and ill. I stopped and looked out over the fjord – the sun was setting, and the clouds turning blood red. I sensed a scream passing through nature; it seemed to me that I heard the scream. I painted this picture, painted the clouds as actual blood. The color shrieked. This became The Scream. - diary Edvard Munch 22 January 1892",
+         "image-url":"https://www.edvardmunch.org/images/paintings/the-scream.jpg",
+         "official-url": "https://www.edvardmunch.org/images/paintings/the-scream.jpg",
+         "wikipedia-url": "https://en.wikipedia.org/wiki/The_Scream",
+"versions": [
+{
+   "id": 1,
+   "name": "The National Gallery",
+   "address": "Oslo, Norway", 
+   "description": "1893, oil, tempera and pastel on cardboard. The first version publicly displayed, and perhaps the most recognizable, it is located at the National Gallery in Oslo, Norway.",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Scream_by_Edvard_Munch%2C_1893_-_Nasjonalgalleriet.png/290px-The_Scream_by_Edvard_Munch%2C_1893_-_Nasjonalgalleriet.png",
+   "height": 180,
+   "width": 135
+}, 
+{
+   "id": 2,
+   "name": "Munch Museum",
+   "address": "Oslo, Norway", 
+   "description": "1893, pastel on cardboard. As possibly the earliest execution of The Scream, this appears to be the version in which Munch mapped out the essentials of the composition.",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Skrik_1893.jpg/270px-Skrik_1893.jpg",
+   "height": 180,
+   "width": 135
+}, 
+{
+   "id": 3,
+   "name": "Various locations",
+   "description": "1895, lithograph print. About 45 prints were made before the printer re-used the lithograph stone. A few were hand-coloured by Munch.",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/%22The_scream%22._Wellcome_L0011212.jpg/251px-%22The_scream%22._Wellcome_L0011212.jpg",
+   "height": 180,
+   "width": 135
+}, 
+{
+   "id": 4,
+   "name": "Leon Black - Private Collection",
+   "description": "1895, pastel on cardboard. It was sold for nearly US$120 million at Sotheby's in 2012, and is in the private collection of Leon Black.",
+   "url": "hhttps://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/The_Scream_Pastel.jpg/270px-The_Scream_Pastel.jpg",
+   "height": 180,
+   "width": 135
+}, 
+{
+   "id": 5,
+   "name": "Munch Museum",
+   "address": "Oslo, Norway", 
+   "description": "1910, tempera on cardboard. This version was stolen from the Munch Museum in 2004, but recovered in 2006.",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg/285px-Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg",
+   "height": 180,
+   "width": 135
+}
+
+
+
+
+
+], 
+"tags":[]
+
+      }    
+   ]
+
+       
+}
+

@@ -5,8 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var Logger_1 = require("./utils/Logger");
-var fs_1 = require("fs");
 var port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3005; // default port to listen
 var path = require('path');
 var app = (0, express_1.default)();
@@ -21,19 +19,7 @@ function getFile(req, res, fileName) {
         root: path.join(__dirname, '../data'),
         timeout: 3000,
     };
-    Logger_1.Logger.info("getFile -> ".concat(tFileName));
     res.sendFile(tFileName, options);
-}
-function getFilteredResources(req, res, id) {
-    res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
-    var tFileName = 'resources.json';
-    var options = {
-        root: path.join(__dirname, '../data'),
-        timeout: 3000,
-    };
-    Logger_1.Logger.info("getFilteredFile -> ".concat(tFileName));
-    var data = (0, fs_1.readFileSync)('./config.json');
-    res.json(data);
 }
 app.get('/api/cool', function (req, res) {
     getFile(req, res, 'cool.json');
@@ -55,9 +41,6 @@ app.get('/api/:filename', function (req, res) {
 });
 app.get('/api/page/:id', function (req, res) {
     getFile(req, res, "page".concat(req.params.id, ".txt"));
-});
-app.get('/api/resources/:id', function (req, res) {
-    getFilteredResources(req, res, req.params.id);
 });
 app.listen(port, function () {
     console.log("site8 Service is listening on port ".concat(port, "."));
