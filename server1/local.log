@@ -1,186 +1,190 @@
-{"level":"info","message":"getFile -> music.json"}
-{"level":"info","message":"getFile -> music.json"}
-{"level":"info","message":"getFile -> music.json"}
-{"level":"info","message":"getFile -> music.json"}
-{"level":"info","message":"getFile -> music.json"}
-{"level":"info","message":"getFile -> music.json"}
-{"level":"info","message":"getFile -> music.json"}
-{"level":"info","message":"getFile -> music.json","timestamp":"2024/01/06 21:32:01"}
-{"level":"info","message":"getFile -> music.json","timestamp":"2024/01/06 21:32:02"}
-{"level":"info","message":"getFile -> music.json","timestamp":"2024/01/06 21:32:02"}
-[2024/01/06 21:33:43] info: getFile -> music.json
-[2024/01/06 21:33:43] info: getFile -> music.json
-[2024/01/06 21:33:43] info: getFile -> music.json
-[2024/01/10 18:05:02] info: getFile -> music.json
-[2024/01/10 18:05:02] info: getFile -> music.json
-[2024/01/10 18:05:02] info: getFile -> music.json
-[2024/01/10 18:11:42] info: getFile -> music.json
-[2024/01/10 18:11:42] info: getFile -> music.json
-[2024/01/10 18:11:42] info: getFile -> music.json
-[2024/01/10 18:16:10] info: getFile -> music.json
-[2024/01/10 18:19:34] info: getFile -> music.json
-[2024/01/10 18:19:34] info: getFile -> music.json
-[2024/01/10 18:19:34] info: getFile -> music.json
-[2024/01/10 18:45:24] info: getFile -> music.json
-[2024/01/10 18:45:24] info: getFile -> music.json
-[2024/01/10 18:45:24] info: getFile -> music.json
-[2024/01/10 18:59:25] info: getFile -> music.json
-[2024/01/10 19:00:30] info: getFile -> music.json
-[2024/01/10 19:00:52] info: getFile -> music.json
-[2024/01/10 19:01:01] info: getFile -> music.json
-[2024/01/10 19:01:12] info: getFile -> music.json
-[2024/01/10 19:01:12] info: getFile -> music.json
-[2024/01/10 19:01:12] info: getFile -> music.json
-[2024/01/10 19:01:45] info: getFile -> music.json
-[2024/01/10 19:01:53] info: getFile -> music.json
-[2024/01/10 19:01:53] info: getFile -> music.json
-[2024/01/10 19:01:53] info: getFile -> music.json
-[2024/01/10 19:02:39] info: getFile -> music.json
-[2024/01/10 20:56:52] info: getFile -> page0.txt
-[2024/01/10 20:56:52] info: getFile -> page0.txt
-[2024/01/10 20:57:10] info: getFile -> music.json
-[2024/01/10 20:57:10] info: getFile -> music.json
-[2024/01/10 20:57:10] info: getFile -> music.json
-[2024/01/10 20:57:16] info: getFile -> music.json
-[2024/01/10 20:57:17] info: getFile -> music.json
-[2024/01/10 20:57:17] info: getFile -> music.json
-[2024/01/10 21:02:43] info: getFile -> music.json
-[2024/01/10 21:07:32] info: getFile -> music.json
-[2024/01/10 21:20:09] info: getFile -> music.json
-[2024/01/10 21:20:09] info: getFile -> music.json
-[2024/01/10 21:21:29] info: getFile -> music.json
-[2024/01/10 21:23:44] info: getFile -> music.json
-[2024/01/10 21:23:49] info: getFile -> music.json
-[2024/01/10 21:24:21] info: getFile -> music.json
-[2024/01/10 21:24:21] info: getFile -> music.json
-[2024/01/10 21:24:21] info: getFile -> music.json
-[2024/01/10 21:24:43] info: getFile -> music.json
-[2024/01/10 21:24:43] info: getFile -> music.json
-[2024/01/10 21:24:45] info: getFile -> music.json
-[2024/01/10 21:24:45] info: getFile -> music.json
-[2024/01/10 21:24:45] info: getFile -> music.json
-[2024/01/10 21:24:56] info: getFile -> music.json
-[2024/01/10 21:24:56] info: getFile -> music.json
-[2024/01/10 21:24:56] info: getFile -> music.json
-[2024/01/10 21:25:15] info: getFile -> music.json
-[2024/01/10 21:25:18] info: getFile -> music.json
-[2024/01/10 21:25:18] info: getFile -> music.json
-[2024/01/10 21:25:18] info: getFile -> music.json
-[2024/01/10 21:28:39] info: getFile -> music.json
-[2024/01/10 21:28:39] info: getFile -> music.json
-[2024/01/10 21:28:39] info: getFile -> music.json
-[2024/01/10 21:30:18] info: getFile -> music.json
-[2024/01/10 21:30:21] info: getFile -> music.json
-[2024/01/10 21:30:21] info: getFile -> music.json
-[2024/01/10 21:30:42] info: getFile -> music.json
-[2024/01/10 21:30:50] info: getFile -> music.json
-[2024/01/10 21:30:51] info: getFile -> music.json
-[2024/01/10 21:30:51] info: getFile -> music.json
-[2024/01/10 21:35:37] info: getFile -> music.json
-[2024/01/10 21:37:25] info: getFile -> music.json
-[2024/01/10 21:37:25] info: getFile -> music.json
-[2024/01/10 21:37:25] info: getFile -> music.json
-[2024/01/10 21:37:41] info: getFile -> music.json
-[2024/01/10 21:37:43] info: getFile -> music.json
-[2024/01/10 21:37:43] info: getFile -> music.json
-[2024/01/10 21:37:43] info: getFile -> music.json
-[2024/01/10 21:38:06] info: getFile -> music.json
-[2024/01/10 21:38:28] info: getFile -> music.json
-[2024/01/10 21:38:28] info: getFile -> music.json
-[2024/01/10 21:38:28] info: getFile -> music.json
-[2024/01/10 21:38:31] info: getFile -> music.json
-[2024/01/10 21:38:31] info: getFile -> music.json
-[2024/01/10 21:38:31] info: getFile -> music.json
-[2024/01/10 21:38:31] info: getFile -> music.json
-[2024/01/10 21:38:31] info: getFile -> music.json
-[2024/01/10 21:38:31] info: getFile -> music.json
-[2024/01/10 21:38:51] info: getFile -> music.json
-[2024/01/10 21:38:51] info: getFile -> music.json
-[2024/01/10 21:38:51] info: getFile -> music.json
-[2024/01/10 21:42:27] info: getFile -> music.json
-[2024/01/10 21:42:27] info: getFile -> music.json
-[2024/01/10 21:42:42] info: getFile -> music.json
-[2024/01/10 21:42:42] info: getFile -> music.json
-[2024/01/10 21:43:06] info: getFile -> music.json
-[2024/01/10 21:43:06] info: getFile -> music.json
-[2024/01/10 21:44:43] info: getFile -> music.json
-[2024/01/10 21:45:21] info: getFile -> music.json
-[2024/01/10 21:45:56] info: getFile -> music.json
-[2024/01/10 21:46:21] info: getFile -> music.json
-[2024/01/10 21:46:49] info: getFile -> music.json
-[2024/01/10 21:46:52] info: getFile -> music.json
-[2024/01/10 21:46:52] info: getFile -> music.json
-[2024/01/10 21:47:34] info: getFile -> music.json
-[2024/01/10 21:47:34] info: getFile -> music.json
-[2024/01/10 21:48:48] info: getFile -> music.json
-[2024/01/10 21:51:47] info: getFile -> music.json
-[2024/01/10 22:26:29] info: getFile -> music.json
-[2024/01/10 22:26:29] info: getFile -> music.json
-[2024/01/10 22:27:10] info: getFile -> music.json
-[2024/01/10 22:27:10] info: getFile -> music.json
-[2024/01/10 22:27:22] info: getFile -> music.json
-[2024/01/10 22:27:22] info: getFile -> music.json
-[2024/01/10 22:27:54] info: getFile -> music.json
-[2024/01/10 22:27:54] info: getFile -> music.json
-[2024/01/10 22:28:50] info: getFile -> music.json
-[2024/01/10 22:28:51] info: getFile -> music.json
-[2024/01/10 22:29:44] info: getFile -> music.json
-[2024/01/10 22:29:44] info: getFile -> music.json
-[2024/01/10 22:30:30] info: getFile -> music.json
-[2024/01/10 22:31:19] info: getFile -> music.json
-[2024/01/10 22:31:23] info: getFile -> music.json
-[2024/01/10 22:31:23] info: getFile -> music.json
-[2024/01/10 22:35:04] info: getFile -> music.json
-[2024/01/10 22:35:14] info: getFile -> music.json
-[2024/01/10 22:35:14] info: getFile -> music.json
-[2024/01/10 22:35:52] info: getFile -> music.json
-[2024/01/10 22:36:31] info: getFile -> music.json
-[2024/01/10 22:36:39] info: getFile -> music.json
-[2024/01/10 22:36:39] info: getFile -> music.json
-[2024/01/10 22:37:11] info: getFile -> music.json
-[2024/01/10 22:37:13] info: getFile -> music.json
-[2024/01/10 22:37:13] info: getFile -> music.json
-[2024/01/10 22:37:58] info: getFile -> music.json
-[2024/01/10 22:37:58] info: getFile -> music.json
-[2024/01/10 22:38:01] info: getFile -> music.json
-[2024/01/10 22:38:01] info: getFile -> music.json
-[2024/01/10 22:38:32] info: getFile -> music.json
-[2024/01/10 22:39:52] info: getFile -> music.json
-[2024/01/10 22:39:52] info: getFile -> music.json
-[2024/01/10 22:40:53] info: getFile -> music.json
-[2024/01/10 22:42:30] info: getFile -> music.json
-[2024/01/10 22:44:11] info: getFile -> music.json
-[2024/01/10 22:44:40] info: getFile -> music.json
-[2024/01/10 22:44:55] info: getFile -> music.json
-[2024/01/10 22:45:03] info: getFile -> music.json
-[2024/01/10 22:45:03] info: getFile -> music.json
-[2024/01/10 22:48:27] info: getFile -> music.json
-[2024/01/10 22:48:27] info: getFile -> music.json
-[2024/01/10 22:49:51] info: getFile -> music.json
-[2024/01/10 22:49:55] info: getFile -> music.json
-[2024/01/10 22:49:55] info: getFile -> music.json
-[2024/01/10 22:50:07] info: getFile -> music.json
-[2024/01/10 22:50:11] info: getFile -> music.json
-[2024/01/10 22:50:11] info: getFile -> music.json
-[2024/01/10 22:50:32] info: getFile -> music.json
-[2024/01/10 22:50:36] info: getFile -> music.json
-[2024/01/10 22:50:36] info: getFile -> music.json
-[2024/01/10 22:51:54] info: getFile -> music.json
-[2024/01/10 22:52:00] info: getFile -> music.json
-[2024/01/10 22:52:18] info: getFile -> music.json
-[2024/01/10 22:52:58] info: getFile -> music.json
-[2024/01/10 22:53:02] info: getFile -> music.json
-[2024/01/10 22:53:02] info: getFile -> music.json
-[2024/01/10 22:53:26] info: getFile -> music.json
-[2024/01/10 22:54:00] info: getFile -> music.json
-[2024/01/10 22:54:00] info: getFile -> music.json
-[2024/01/10 23:01:29] info: getFile -> music.json
-[2024/01/10 23:01:29] info: getFile -> music.json
-[2024/01/10 23:01:43] info: getFile -> music.json
-[2024/01/10 23:02:45] info: getFile -> music.json
-[2024/01/10 23:04:48] info: getFile -> music.json
-[2024/01/10 23:15:12] info: getFile -> testgrid.json
-[2024/01/10 23:15:12] info: getFile -> testgrid.json
-[2024/01/10 23:18:00] info: getFile -> music.json
-[2024/01/10 23:18:00] info: getFile -> music.json
-[2024/01/13 23:32:57] info: getFilteredFile -> resources.json
+[2024/01/15 22:51:23] debug: step0
+[2024/01/15 22:51:23] info: getFilteredResources -> resources.json
+[2024/01/15 22:56:11] debug: step0
+[2024/01/15 22:56:11] info: getFilteredResources -> resources.json
+[2024/01/15 23:02:35] debug: step0
+[2024/01/15 23:02:35] info: getFilteredResources -> resources.json
+[2024/01/15 23:02:41] debug: step0
+[2024/01/15 23:02:41] info: getFilteredResources -> resources.json
+[2024/01/15 23:02:50] debug: step0
+[2024/01/15 23:02:50] info: getFilteredResources -> resources.json
+[2024/01/15 23:03:29] debug: step0
+[2024/01/15 23:03:29] info: getFilteredResources -> resources.json
+[2024/01/15 23:03:30] debug: step0
+[2024/01/15 23:03:30] info: getFilteredResources -> resources.json
+[2024/01/15 23:04:59] debug: step0
+[2024/01/15 23:04:59] info: getFilteredResources -> resources.json
+[2024/01/15 23:08:06] debug: step1
+[2024/01/15 23:08:06] info: getFilteredResources -> resources.json
+[2024/01/15 23:08:10] debug: step1
+[2024/01/15 23:08:10] info: getFilteredResources -> resources.json
+[2024/01/15 23:08:44] debug: step0
+[2024/01/15 23:08:44] info: getFilteredResources -> resources.json
+[2024/01/15 23:09:14] debug: step0
+[2024/01/15 23:09:14] info: getFilteredResources -> resources.json
+[2024/01/15 23:09:36] debug: step0
+[2024/01/15 23:09:36] info: getFilteredResources -> resources.json
+[2024/01/16 16:24:01] debug: step0
+[2024/01/16 16:24:01] info: getFilteredResources -> resources.json
+[2024/01/16 16:24:01] debug: step1
+[2024/01/16 16:24:01] debug: step2
+[2024/01/16 16:24:01] debug: step3
+[2024/01/16 16:24:01] debug: step4
+[2024/01/16 16:24:01] debug: resources -> undefined
+[2024/01/16 16:24:02] debug: step0
+[2024/01/16 16:24:02] info: getFilteredResources -> resources.json
+[2024/01/16 16:24:03] debug: step1
+[2024/01/16 16:24:03] debug: step2
+[2024/01/16 16:24:03] debug: step3
+[2024/01/16 16:24:03] debug: step4
+[2024/01/16 16:24:03] debug: resources -> undefined
+[2024/01/16 16:38:35] debug: step0
+[2024/01/16 16:38:35] info: getFilteredResources -> resources.json
+[2024/01/16 16:38:35] debug: step1
+[2024/01/16 16:38:35] debug: step2
+[2024/01/16 16:38:35] debug: step4
+[2024/01/16 16:38:35] debug: resources -> [object Object]
+[2024/01/16 16:38:35] debug: step45
+[2024/01/16 16:38:39] debug: step0
+[2024/01/16 16:38:39] info: getFilteredResources -> resources.json
+[2024/01/16 16:38:39] debug: step1
+[2024/01/16 16:38:39] debug: step2
+[2024/01/16 16:38:39] debug: step4
+[2024/01/16 16:38:39] debug: resources -> [object Object]
+[2024/01/16 16:38:39] debug: step45
+[2024/01/16 16:42:15] debug: step0
+[2024/01/16 16:42:15] info: getFilteredResources -> resources.json
+[2024/01/16 16:42:15] debug: step1
+[2024/01/16 16:42:15] debug: step2
+[2024/01/16 16:42:15] debug: step4
+[2024/01/16 16:42:15] debug: resources -> [object Object]
+[2024/01/16 16:42:15] debug: step45
+[2024/01/16 16:44:19] debug: step0
+[2024/01/16 16:44:19] info: getFilteredResources -> resources.json
+[2024/01/16 16:44:19] debug: step1
+[2024/01/16 16:44:19] debug: step2
+[2024/01/16 16:44:19] debug: step4
+[2024/01/16 16:44:19] debug: resources -> [object Object]
+[2024/01/16 16:44:19] debug: step45
+[2024/01/16 16:48:41] info: getFilteredResources -> resources.json
+[2024/01/16 16:48:53] info: getFilteredResources -> resources.json
+[2024/01/16 16:48:54] info: getFilteredResources -> resources.json
+[2024/01/16 16:49:48] info: getFilteredResources -> resources.json
+[2024/01/16 16:49:49] info: getFilteredResources -> resources.json
+[2024/01/16 16:50:00] info: getFilteredResources -> resources.json
+[2024/01/16 18:01:46] info: getFilteredResources -> resources.json
+[2024/01/16 18:01:46] info: getFilteredResources -> resources.json
+[2024/01/16 18:05:50] info: getFilteredResources -> resources.json
+[2024/01/16 18:05:50] info: getFilteredResources -> resources.json
+[2024/01/16 18:07:16] info: getFilteredResources -> resources.json
+[2024/01/16 18:07:16] info: getFilteredResources -> resources.json
+[2024/01/16 18:07:27] info: getFilteredResources -> resources.json
+[2024/01/16 18:07:27] info: getFilteredResources -> resources.json
+[2024/01/16 18:07:46] info: getFilteredResources -> resources.json
+[2024/01/16 18:07:46] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:08] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:08] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:31] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:31] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:32] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:32] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:51] info: getFilteredResources -> resources.json
+[2024/01/16 18:08:51] info: getFilteredResources -> resources.json
+[2024/01/16 18:09:34] info: getFilteredResources -> resources.json
+[2024/01/16 18:09:34] info: getFilteredResources -> resources.json
+[2024/01/16 18:11:02] info: getFilteredResources -> resources.json
+[2024/01/16 18:11:02] info: getFilteredResources -> resources.json
+[2024/01/16 18:11:22] info: getFilteredResources -> resources.json
+[2024/01/16 18:11:22] info: getFilteredResources -> resources.json
+[2024/01/16 18:13:30] info: getFilteredResources -> resources.json
+[2024/01/16 18:13:30] info: getFilteredResources -> resources.json
+[2024/01/16 18:24:05] info: getFilteredResources -> resources.json
+[2024/01/16 18:24:05] info: getFilteredResources -> resources.json
+[2024/01/16 21:20:55] info: getFilteredResources -> resources.json
+[2024/01/16 21:20:55] info: getFilteredResources -> resources.json
+[2024/01/16 21:29:31] info: getFilteredResources -> resources.json
+[2024/01/16 21:30:09] info: getFilteredResources -> resources.json
+[2024/01/17 11:12:35] info: getFilteredResources -> resources.json
+[2024/01/17 11:12:35] info: getFilteredResources -> resources.json
+[2024/01/17 12:11:56] info: getFile -> music.json
+[2024/01/17 12:11:56] info: getFile -> music.json
+[2024/01/17 13:18:36] info: getFile -> music.json
+[2024/01/17 13:18:36] info: getFile -> music.json
+[2024/01/18 12:20:11] info: getFile -> page51.txt
+[2024/01/18 12:20:11] info: getFile -> page51.txt
+[2024/01/18 14:17:50] info: getFile -> music.json
+[2024/01/18 14:17:50] info: getFile -> music.json
+[2024/01/18 14:17:54] info: getFile -> photos.json
+[2024/01/18 14:17:54] info: getFile -> photos.json
+[2024/01/18 14:18:02] info: getFile -> photos.json
+[2024/01/18 14:18:02] info: getFile -> photos.json
+[2024/01/18 14:18:10] info: getFile -> photos.json
+[2024/01/18 14:18:10] info: getFile -> photos.json
+[2024/01/18 14:18:11] info: getFilteredResources -> resources.json
+[2024/01/18 14:18:11] info: getFilteredResources -> resources.json
+[2024/01/18 14:18:24] info: getFilteredResources -> resources.json
+[2024/01/18 14:18:24] info: getFilteredResources -> resources.json
+[2024/01/18 14:18:30] info: getFile -> photos.json
+[2024/01/18 14:18:30] info: getFile -> photos.json
+[2024/01/18 14:18:31] info: getFile -> photos.json
+[2024/01/18 14:18:31] info: getFile -> photos.json
+[2024/01/18 14:18:31] info: getFile -> music.json
+[2024/01/18 14:18:31] info: getFile -> music.json
+[2024/01/18 14:23:39] info: getFile -> photos.json
+[2024/01/18 14:23:39] info: getFile -> photos.json
+[2024/01/18 19:09:20] info: getFile -> photos.json
+[2024/01/18 19:09:20] info: getFile -> photos.json
+[2024/01/18 20:16:14] info: getFile -> music.json
+[2024/01/18 20:16:15] info: getFile -> music.json
+[2024/01/18 20:16:19] info: getFilteredResources -> resources.json
+[2024/01/18 20:16:19] info: getFilteredResources -> resources.json
+[2024/01/18 22:29:43] info: getFile -> page1001.txt
+[2024/01/18 22:29:43] info: getFile -> page1001.txt
+[2024/01/18 22:35:34] info: getFile -> page1001.txt
+[2024/01/18 22:35:34] info: getFile -> page1001.txt
+[2024/01/18 22:38:39] info: getFile -> page1001.txt
+[2024/01/18 22:38:39] info: getPageMeta -> pages.json
+[2024/01/18 22:38:39] info: getFile -> page1001.txt
+[2024/01/18 22:38:39] info: getPageMeta -> pages.json
+[2024/01/18 22:40:11] info: getFile -> page1001.txt
+[2024/01/18 22:40:11] info: getPageMeta -> pages.json
+[2024/01/18 22:44:52] info: getFile -> page1001.txt
+[2024/01/18 22:44:52] info: getPageMeta -> pages.json
+[2024/01/18 22:44:52] info: getPageMeta -> pages.json
+[2024/01/18 22:44:52] info: getFile -> page1001.txt
+[2024/01/18 22:47:33] info: getFile -> page1001.txt
+[2024/01/18 22:47:33] info: getPageMeta -> pages.json
+[2024/01/18 22:47:33] info: getPageMeta -> pages.json
+[2024/01/18 22:47:33] info: getFile -> page1001.txt
+[2024/01/18 22:50:12] info: getFile -> page1001.txt
+[2024/01/18 22:50:12] info: getPageMeta -> pages.json
+[2024/01/18 22:50:12] info: getPageMeta -> pages.json
+[2024/01/18 22:50:12] info: getFile -> page1001.txt
+[2024/01/18 22:50:50] info: getFile -> page1001.txt
+[2024/01/18 22:50:50] info: getPageMeta -> pages.json
+[2024/01/18 22:50:50] info: getPageMeta -> pages.json
+[2024/01/18 22:50:50] info: getFile -> page1001.txt
+[2024/01/18 22:53:50] info: getFile -> page1001.txt
+[2024/01/18 22:53:50] info: getPageMeta -> pages.json
+[2024/01/18 22:53:50] info: getPageMeta -> pages.json
+[2024/01/18 22:53:50] info: getFile -> page1001.txt
+[2024/01/18 22:56:06] info: getFile -> page1001.txt
+[2024/01/18 22:56:06] info: getPageMeta -> pages.json
+[2024/01/18 22:56:06] info: getFile -> page1001.txt
+[2024/01/18 22:56:06] info: getPageMeta -> pages.json
+[2024/01/19 11:08:15] info: getFile -> page1001.txt
+[2024/01/19 11:08:15] info: getPageMeta -> pages.json
+[2024/01/19 11:08:15] info: getPageMeta -> pages.json
+[2024/01/19 11:08:15] info: getFile -> page1001.txt
+[2024/01/19 11:17:28] info: getFile -> page1001.txt
+[2024/01/19 11:17:28] info: getPageMeta -> pages.json
+[2024/01/19 11:17:28] info: getFile -> page1001.txt
+[2024/01/19 11:17:28] info: getPageMeta -> pages.json
+[2024/01/19 11:17:34] info: getFile -> page1001.txt
+[2024/01/19 11:17:34] info: getPageMeta -> pages.json
+[2024/01/19 11:17:34] info: getFile -> page1001.txt
+[2024/01/19 11:17:34] info: getPageMeta -> pages.json
+[2024/01/19 11:17:36] info: getFile -> page1001.txt
+[2024/01/19 11:17:36] info: getPageMeta -> pages.json
+[2024/01/19 11:17:36] info: getFile -> page1001.txt
+[2024/01/19 11:17:36] info: getPageMeta -> pages.json

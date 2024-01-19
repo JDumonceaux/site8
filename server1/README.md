@@ -1,3 +1,3 @@
-# site8 Service
+# Service
 
 # search for starter and replace with your app name

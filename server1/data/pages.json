@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "id": 100,
+    "data_type": "pages"
+  },
+  "items": [
+    {
+      "id": 1001,
+      "short_title": "Skeuomorphism",
+      "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+      "fileName": "page1001.txt",
+      "reading_time": "24 s",
+      "reading_level": "8th grade"
+    },
+    {
+      "id": 1002,
+      "short_title": "Flat Design",
+      "long_title": "Embracing Simplicity: The Art and Impact of Flat Design",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+      "fileName": "page1002.txt"
+    }
+  ]
+}

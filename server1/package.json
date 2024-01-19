@@ -1,8 +1,8 @@
 {
-  "name": "site8-server1",
+  "name": "server1",
   "version": "0.1.0",
-  "description": "api service1 for the site8 application",
-  "main": "dist/app.js",
+  "description": "api service for the application",
+  "main": "dist/server.js",
   "scripts": {
     "start": "npm run build:local && npx cross-env NODE_PATH=./dist node -r dotenv/config .",
     "build": "npx tsc",
