@@ -1,3 +1,4 @@
-export * from "./Footer/Footer";
-export * from "./Header/Header";
-export * from "./AccordionMenu/AccordionMenu";
+export * from './footer/Footer';
+export * from './header/Header';
+export * from './MainMenu/MainMenu';
+export * from './PageTitle/PageTitle';

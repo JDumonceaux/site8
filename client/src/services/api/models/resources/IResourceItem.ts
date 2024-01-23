@@ -5,4 +5,5 @@ export interface IResourceItem {
   url: string;
   tags?: string[];
   rank?: number;
+  set?: number[];
 }

@@ -1,17 +1,28 @@
-import ChangeLanguage from "../../../components/examples/ChangeLanguage/ChangeLanguage";
+import ChangeLanguage from '../../../components/examples/ChangeLanguage/ChangeLanguage';
+import styled from 'styled-components';
 
-import "./footer.css";
+const StyledFooter = styled.footer`
+  min-height: 20px;
+  background-color: var(--main-background-color, #000);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+const StyledCopyright = styled.div`
+  color: var(--palette-grey-10, #fff);
+  font-size: 0.8rem;
+  padding-left: 16px;
+`;
 
-export default function Footer() {
+export function Footer() {
   const thisYear = new Date().getFullYear();
   return (
-    <footer className="main-footer" role="contentinfo">
-      <div className="copyright" aria-label="Copyright Information">
+    <StyledFooter role='contentinfo' className='footer'>
+      <StyledCopyright aria-label='Copyright Information'>
         Copyright &copy; {thisYear}
-      </div>
-      <div>
-        <ChangeLanguage />
-      </div>
-    </footer>
+      </StyledCopyright>
+      <ChangeLanguage />
+    </StyledFooter>
   );
 }

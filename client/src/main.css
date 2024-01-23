@@ -20,9 +20,8 @@
 
 html,
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  overflow-y: auto;
 }
 
 a:link {
@@ -61,24 +60,30 @@ em {
 }
 
 h1 {
-  font-family: "Roboto Slab", serif;
+  font-family: 'Roboto Slab', serif;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #000;
+  text-wrap: balance;
 }
 h2 {
-  font-family: "Roboto Slab", serif;
+  font-family: 'Roboto Slab', serif;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #585858;
 }
 p {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.3em;
   margin-bottom: 1rem;
   color: #383838;
+  text-wrap: pretty;
+}
+img {
+  display: block;
+  max-width: 100%;
 }
 .image-banner-1 {
   color: #fff;
@@ -87,3 +92,14 @@ p {
   text-align: center;
   margin-top: 2px;
 }
+
+<h2>Defining Corporate Memphis</h2>
+<p>Corporate Memphis is a design style recognized for its simplified, geometric human figures and objects, often accompanied by bright, contrasting colors. These illustrations are less about realism and more about conveying ideas and emotions in a straightforward, accessible manner. The style is known for its playful yet professional tone, making it a go-to choice for tech companies and startups aiming to appear approachable and innovative.</p>
+
+<p>Origins The term &quot;Corporate Memphis&quot; is a nod to the Memphis Group, an Italian design and architecture group active in the 1980s. The Memphis Group was known for its postmodern approach, characterized by bold colors, geometric shapes, and asymmetrical compositions. However, Corporate Memphis diverges by integrating a corporate-friendly aesthetic, aiming for a more sanitized, universally appealing look. This style gained momentum in the early 2010s, with tech giants and startups adopting it for its friendly and modern appeal.</p>
+
+<p>Key Principles 1. Simplicity and Abstraction: The hallmark of Corporate Memphis is its reduction of complex ideas into simple, abstract forms. This minimalism makes the style easily digestible and universally understandable. 2. Vibrant Color Palettes: Contrasting and bright colors are used to catch the eye and evoke positivity. The palette often includes blues, pinks, yellows, and greens, providing a sense of playfulness. 3. Flat Design: Eschewing depth and shadow, Corporate Memphis favors a flat, two-dimensional look. This aligns with modern digital interfaces, emphasizing clarity and readability. 4. Generic Human Figures: Characters in Corporate Memphis are often featureless or have minimal facial features. This universality allows for broader identification and inclusivity. 5. Dynamic Composition: Despite its simplicity, the style often features energetic compositions, with characters in action-oriented poses, symbolizing dynamism and innovation. Impact The widespread adoption of Corporate Memphis design has led to a significant impact on corporate and digital aesthetics. Its presence is felt across various mediums, from website illustrations to marketing materials. The style's approachability has helped companies appear more user-friendly and relatable, breaking down the corporate barrier.</p>
+
+<p>However, this ubiquity has also led to critiques. Some argue that Corporate Memphis has become a visual clich&eacute;, oversaturating digital spaces with a homogenized aesthetic. There's a growing call for more authentic and diverse visual representations in corporate communication.</p>
+
+<p>Conclusion Corporate Memphis design represents a convergence of simplicity, approachability, and modernity in the digital age. While its prevalence speaks to its effectiveness in engaging audiences, the ongoing dialogue around its overuse and the need for diversity in design reflects the ever-changing nature of artistic expression and corporate identity. As the world of design continues to evolve, so too will the styles that define our visual landscape.</p>

@@ -1,10 +1,10 @@
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPhotos } from "../state/photosSlice";
-import { AppDispatch, RootState } from "../state/store";
-import { IPhotos } from "../api/models/photos/IPhotos";
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPhotos } from '../state/photosSlice';
+import { AppDispatch, RootState } from '../state/store';
+import { IPhotos } from '../api/models/photos/IPhotos';
 
-export const usePhotos = () => {
+const usePhotos = () => {
   const dispatch = useDispatch<AppDispatch>();
   const photosData: IPhotos | null = useSelector(
     (state: RootState) => state.photos.photosData

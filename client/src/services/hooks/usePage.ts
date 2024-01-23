@@ -1,28 +1,41 @@
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchResources } from "../state/resourcesSlice";
-import { AppDispatch, RootState } from "../state/store";
-import { IResources } from "../api/models/resources/IResources";
+import { useCallback, useState } from 'react';
+import { IPage } from '../api/models/page/IPage';
+import axios from 'axios';
+import { ServiceUrl } from '../../utils';
 
-export const useResources = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const resourcesData: IResources | null = useSelector(
-    (state: RootState) => state.resources.resourcesData
-  );
-  const loading = useSelector((state: RootState) => state.resources.loading);
-  const error = useSelector((state: RootState) => state.resources.error);
+const usePage = () => {
+  const [data, setData] = useState<IPage | undefined>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | undefined>(undefined);
 
-  const dispatchFetchResources = useCallback(
-    () => dispatch(fetchResources()),
-    [dispatch]
-  );
+  const dispatchFetchPage = useCallback((id: number) => {
+    setIsLoading(true);
+    setError(undefined);
+    // responseType: default Json.  Options: arraybuffer, document, blob, text, or stream
+    axios
+      .get<IPage>(`${ServiceUrl.ENDPOINT_PAGE}/${id}`)
+      .then(function (response) {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response.status == 404) {
+          setError('Record not found');
+        } else {
+          setError('Unknown error');
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
 
   return {
-    data: resourcesData,
-    loading,
+    data: data,
+    loading: isLoading,
     error,
-    fetchData: dispatchFetchResources,
+    fetchData: dispatchFetchPage,
   };
 };
 
-export default useResources;
+export default usePage;

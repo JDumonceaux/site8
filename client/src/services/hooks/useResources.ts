@@ -1,10 +1,10 @@
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchResources } from "../state/resourcesSlice";
-import { AppDispatch, RootState } from "../state/store";
-import { IResources } from "../api/models/resources/IResources";
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchResources } from '../state/resourcesSlice';
+import { AppDispatch, RootState } from '../state/store';
+import { IResources } from '../api/models/resources/IResources';
 
-export const useResources = () => {
+const useResources = () => {
   const dispatch = useDispatch<AppDispatch>();
   const resourcesData: IResources | null = useSelector(
     (state: RootState) => state.resources.resourcesData

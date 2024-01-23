@@ -1,10 +1,10 @@
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchMusic } from "../state/musicSlice";
-import { AppDispatch, RootState } from "../state/store";
-import { IMusic } from "../api/models/music/IMusic";
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMusic } from '../state/musicSlice';
+import { AppDispatch, RootState } from '../state/store';
+import { IMusic } from '../api/models/music/IMusic';
 
-export const useMusic = () => {
+const useMusic = () => {
   const dispatch = useDispatch<AppDispatch>();
   const musicData: IMusic | null = useSelector(
     (state: RootState) => state.music.musicData

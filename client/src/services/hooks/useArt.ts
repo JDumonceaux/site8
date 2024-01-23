@@ -1,10 +1,10 @@
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchArt } from "../state/artSlice";
-import { AppDispatch, RootState } from "../state/store";
-import { IArt } from "../api/models/art/IArt";
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchArt } from 'services/state/artSlice';
+import { AppDispatch, RootState } from 'services/state/store';
+import { IArt } from 'services/api/models/art/IArt';
 
-export const useArt = () => {
+const useArt = () => {
   const dispatch = useDispatch<AppDispatch>();
   const artData: IArt | null = useSelector(
     (state: RootState) => state.art.artData

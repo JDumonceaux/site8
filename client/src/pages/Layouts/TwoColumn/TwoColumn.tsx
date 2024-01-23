@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
-import "./twoColumn.css";
+import { ReactNode } from 'react';
+import './twoColumn.css';
+import MainMenu from '../../../components/common/MainMenu/MainMenu';
 
 interface IProps {
   pageTitle: ReactNode;
@@ -9,13 +10,16 @@ interface IProps {
 
 function TwoColumn({ pageTitle, left, right }: IProps) {
   return (
-    <main className="main" role="main">
-      {pageTitle}
-      <div className="content">
-        <div className="col-left">{left}</div>
-        <div className="col-right">{right}</div>
-      </div>
-    </main>
+    <>
+      <main className='main-content' role='main'>
+        {pageTitle}
+        {left}
+      </main>
+      <section className='left-sidebar'>
+        <MainMenu />
+      </section>
+      <aside className='right-sidebar'>{right}</aside>
+    </>
   );
 }
 

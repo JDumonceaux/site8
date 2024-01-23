@@ -1,27 +1,20 @@
 .main {
-  width: 100%;
   padding: 0 16px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.main .content {
-  display: flex;
-  flex-direction: row;
+.main > .content {
+  display: grid;
+  grid-template-columns: auto 350px;
 }
-.main .col-left {
-  min-width: 700px;
-  width: 700px;
-  padding-right: 16px;
-}
-.main .col-right {
-  /* flex-grow: 1; */
-  width: 300px;
+.main > div:first-child {
+  min-width: 850px;
 }
 .main p {
   line-height: 1.3rem;
 }
 .main .italic {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: italic;
   line-height: 1.2rem;
 }

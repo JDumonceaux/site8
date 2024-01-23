@@ -1,4 +1,4 @@
-export const useAppSetup = () => {
+const useAppSetup = () => {
   //   useEffect(() => {
   //     fetchUserDetails();
   //   }, [fetchUserDetails]);
