@@ -1,20 +1,49 @@
 import express, { Request, Response } from 'express';
+import compression from 'compression';
 import { Logger } from './utils/Logger';
-import { readFileSync } from 'fs';
-import { IResources } from './models/resources/IResources';
-import { IPages } from 'models/resources/IPages';
+import { pagesRouter, resourcesRouter } from './routes';
 
-const port = process.env.PORT ?? 3005; // default port to listen
-const path = require('path');
 const app = express();
 
 app.set('x-powered-by', false);
 app.set('etag', false);
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: false }));
+app.use(compression());
+
+// Add headers before the routes are defined
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
+  // Request methods you wish to allow
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+  );
+  // Request headers you wish to allow
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type',
+  );
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  //res.setHeader('Access-Control-Allow-Credentials', true);
+  // Pass to next layer of middleware
+  next();
+});
+
+const port = 3005;
+const path = require('path');
+
+app.use('/api/page', pagesRouter);
+app.use('/api/resources', resourcesRouter);
+
+app.get('/api/:filename', (req: Request, res: Response) => {
+  getFile(req, res, `${req.params.filename}.json`);
+});
 
 function getFile(req: Request, res: Response, fileName: string) {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
   const tFileName = fileName;
   const options = {
     root: path.join(__dirname, '../data'),
@@ -24,80 +53,6 @@ function getFile(req: Request, res: Response, fileName: string) {
   res.sendFile(tFileName, options);
 }
 
-function getFilteredResources(req: Request, res: Response, id: string) {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
-  const tFileName = 'resources.json';
-  Logger.info(`getFilteredResources -> ${tFileName}`);
-
-  const data = readFileSync(
-    path.resolve(__dirname, `../data/${tFileName}`),
-    'utf8',
-  );
-  try {
-    const jsonData = JSON.parse(data) as IResources;
-    const searchId = parseInt(id);
-    const ret = jsonData.items.filter((x) => x.set?.includes(searchId));
-    res.json({ ...jsonData.metadata, items: ret });
-  } catch (error) {
-    Logger.debug(`getFilteredResources -> ${error}`);
-  }
-}
-
-function getPageMeta(req: Request, res: Response, id: string) {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
-  const tFileName = 'pages.json';
-  Logger.info(`getPageMeta -> ${tFileName}`);
-
-  const data = readFileSync(
-    path.resolve(__dirname, `../data/${tFileName}`),
-    'utf8',
-  );
-  try {
-    const jsonData = JSON.parse(data) as IPages;
-    const searchId = parseInt(id);
-    const ret = jsonData.items.filter((x) => x.id === searchId);
-    res.json({ ...jsonData.metadata, items: ret });
-  } catch (error) {
-    Logger.debug(`getPageMeta -> ${error}`);
-  }
-}
-
-app.get('/api/cool', (req: Request, res: Response) => {
-  getFile(req, res, 'cool.json');
-});
-
-app.get('/api/music', (req: Request, res: Response) => {
-  getFile(req, res, 'music.json');
-});
-
-app.get('/api/photos', (req: Request, res: Response) => {
-  getFile(req, res, 'photos.json');
-});
-
-app.get('/api/restaurants', (req: Request, res: Response) => {
-  getFile(req, res, 'restaurants.json');
-});
-
-app.get('/api/testgrid', (req: Request, res: Response) => {
-  getFile(req, res, 'testgrid.json');
-});
-
-app.get('/api/:filename', (req: Request, res: Response) => {
-  getFile(req, res, `${req.params.filename}.json`);
-});
-
-app.get('/api/page/content/:id', (req: Request, res: Response) => {
-  getFile(req, res, `page${req.params.id}.txt`);
-});
-
-app.get('/api/page/:id', (req: Request, res: Response) => {
-  getPageMeta(req, res, req.params.id);
-});
-
-app.get('/api/resources/:id', (req: Request, res: Response) => {
-  getFilteredResources(req, res, req.params.id);
-});
-
 app.listen(port, () => {
-  console.log(`Service is listening on port ${port}.`);
+  Logger.info(`Service is listening on port ${port}.`);
 });

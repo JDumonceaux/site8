@@ -286,6 +286,14 @@
       "description": "Ana does some incredible CSS effects - usually with math functions.",
       "url": "https://codepen.io/thebabydino",
       "tags": ["CSS"]
+    },
+
+    {
+      "id": 37,
+      "name": "How rethinking design could reduce the need for road salt",
+      "description": "An interesting article on altering the landscape so that melting snow doesn't cross sidewalks or pool in high-traffic areas - reducing the need to salt these areas.",
+      "url": "https://www.mprnews.org/story/2024/01/31/how-rethinking-design-could-reduce-the-need-for-road-salt",
+      "tags": ["Environment"]
     }
   ]
 }

@@ -1,9 +1,9 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { ITestGrid } from "../../services/api/models/testgrid/ITestGrid";
-import { ServiceUrl } from "../../utils/constants";
-import "./testGrid.css";
-import PageTitle from "../../components/common/PageTitle/PageTitle";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { ITestGrid } from '../../services/api/models/testgrid/ITestGrid';
+import { ServiceUrl } from '../../utils/constants';
+import './testGrid.css';
+import PageTitle from '../../components/common/PageTitle/PageTitle';
 
 function TestGrid() {
   const [data, setData] = useState<ITestGrid>();
@@ -26,12 +26,12 @@ function TestGrid() {
   }, []);
 
   return (
-    <div className="test-grid">
-      <PageTitle title="Test Grid" />
-      <div className="layout">
-        <main className="main">
+    <div className='test-grid'>
+      <PageTitle title='Test Grid' />
+      <div className='layout'>
+        <main className='main'>
           <section>
-            <table className="table">
+            <table className='table'>
               <thead>
                 <tr>
                   <th>Area</th>
@@ -43,8 +43,8 @@ function TestGrid() {
                 </tr>
               </thead>
             </table>
-            <div className="scroll">
-              <table className="table">
+            <div className='scroll'>
+              <table className='table'>
                 <tbody>
                   {data?.items?.map((item) => {
                     return (

@@ -2,18 +2,20 @@ import { APP_NAME } from '../../utils/constants';
 
 import { useEffect } from 'react';
 import PageTitle from '../../components/common/PageTitle/PageTitle';
+import SEO from '../../components/common/SEO/SEO';
 
 export default function Yachts() {
-  const pageTitle = 'Yachts';
+  const title = 'Yachts';
 
   useEffect(() => {
-    document.title = `${APP_NAME} - ${pageTitle}`;
+    document.title = `${APP_NAME} - ${title}`;
   }, []);
 
   return (
     <>
+      <SEO title={title} />
       <main className='main-content'>
-        <PageTitle title={pageTitle} />
+        <PageTitle title={title} />
         <section className='section'>
           <p>
             The design of this yacht is called <em>Nature</em>.

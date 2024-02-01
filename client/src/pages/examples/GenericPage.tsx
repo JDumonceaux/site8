@@ -1,23 +1,18 @@
-import { APP_NAME, ServiceUrl } from '../../utils';
+import { ServiceUrl } from '../../utils';
 
 import { useEffect, useState } from 'react';
 import { IPage } from '../../services/api/models/page/IPage';
-import Loading from '../../components/common/Loading';
+import Loading from '../../components/common/Loading/Loading';
 import axios from 'axios';
 
 interface IProps {
   id: number;
-  pageTitle: string;
 }
 
-export default function GenericPage({ id, pageTitle }: IProps) {
+export default function GenericPage({ id }: IProps) {
   const [data, setData] = useState<IPage | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${pageTitle}`;
-  }, [pageTitle]);
 
   useEffect(() => {
     setIsLoading(true);

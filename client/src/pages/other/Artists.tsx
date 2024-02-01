@@ -1,31 +1,23 @@
-import { APP_NAME } from "../../utils/constants";
-
-import { useEffect } from "react";
-import PageTitle from "../../components/common/PageTitle/PageTitle";
-import TwoColumn from "../Layouts/TwoColumn/TwoColumn";
-
-import "./artList.css";
+import PageTitle from '../../components/common/PageTitle/PageTitle';
+import SEO from '../../components/common/SEO/SEO';
 
 export default function Artists() {
-  useEffect(() => {
-    document.title = `${APP_NAME} - Artists`;
-  }, []);
+  const title = 'Art';
 
   return (
-    <div className="art-list" data-testid="Artists.root">
-      <TwoColumn
-        pageTitle={<PageTitle title="ArtList" />}
-        left={
-          <main className="main">
-            <img
-              src="https://www.edvardmunch.org/images/paintings/the-scream.jpg"
-              title="The Scream"
-              alt="The Scream"
-            />
-          </main>
-        }
-        right={<div className="right-column"></div>}
-      />
-    </div>
+    <>
+      <SEO title={title} />
+      <main className='main-content'>
+        <PageTitle title={title} />
+        <section className='section'>
+          <img
+            src='https://www.edvardmunch.org/images/paintings/the-scream.jpg'
+            title='The Scream'
+            alt='The Scream'
+          />
+        </section>
+      </main>
+      <aside className='right-sidebar'></aside>
+    </>
   );
 }

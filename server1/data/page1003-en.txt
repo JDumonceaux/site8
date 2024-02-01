@@ -1,0 +1,68 @@
+      <h2>Defining Corporate Memphis</h2>
+      <p>
+        Corporate Memphis is a design style recognized for its simplified,
+        geometric human figures and objects, often accompanied by bright,
+        contrasting colors. These illustrations are less about realism and more
+        about conveying ideas and emotions in a straightforward, accessible
+        manner. The style is known for its playful yet professional tone, making
+        it a go-to choice for tech companies and startups aiming to appear
+        approachable and innovative.
+      </p>
+
+      <h2>Origins</h2>
+      <p>
+        The term &quot;Corporate Memphis&quot; is a nod to the Memphis Group, an
+        Italian design and architecture group active in the 1980s. The Memphis
+        Group was known for its postmodern approach, characterized by bold
+        colors, geometric shapes, and asymmetrical compositions. However,
+        Corporate Memphis diverges by integrating a corporate-friendly
+        aesthetic, aiming for a more sanitized, universally appealing look. This
+        style gained momentum in the early 2010s, with tech giants and startups
+        adopting it for its friendly and modern appeal.
+      </p>
+
+      <h2>Key Principles</h2>      
+        <h3>Simplicity and Abstraction:</h3>
+        <p>The hallmark of Corporate Memphis is its reduction of complex ideas into
+        simple, abstract forms. This minimalism makes the style easily
+        digestible and universally understandable.</p>
+        <h3>Vibrant Color Palettes:</h3>
+        <p>Contrasting and bright colors catch the eye and evoke
+        positivity. The palette often includes blues, pinks, yellows, and
+        greens, providing a sense of playfulness.</p>
+        <h3>Flat Design:</h3>
+        <p>Eschewing depth and shadow, Corporate Memphis favors a flat,
+        two-dimensional look: aligning with modern digital interfaces,
+        emphasizing clarity and readability.</p>
+        <h3>Generic Human Figures:</h3>
+        <p>Characters in Corporate Memphis are often featureless or have minimal
+        facial features. This universality allows for broader identification and
+        inclusivity.</p>
+        <h3>Dynamic Composition:</h3>
+        <p>Despite its simplicity, the style often features energetic compositions,
+        with characters in action-oriented poses, symbolizing dynamism and
+        innovation.</p>
+    <h2>Impact</h2>
+        <p>The widespread adoption of Corporate Memphis design
+        has significantly impacted corporate and digital aesthetics. Its
+        presence influences various mediums, from website illustrations to
+        marketing materials. The style's approachability has helped companies
+        appear more user-friendly and relatable, breaking down the barrier 
+        between the customer and the corporation.
+      </p>
+      <h2>Criticism</h2>
+      <p>
+        However, this ubiquity has also led to critiques. Some argue that
+        Corporate Memphis has become a visual clich&eacute;, oversaturating
+        digital spaces with a homogenized aesthetic. There's a growing call for
+        more authentic and diverse visual representations in corporate
+        communication.
+      </p>
+      <h2>Conclusion</h2>
+      <p>
+        Conclusion Corporate Memphis design represents a convergence of
+        simplicity, approachability, and modernity in the digital age. 
+        It seems inevitable that its clip-art approach will disappear as 
+        AI and other tools make it fast and easy for users of all skill levels 
+        to create more attractive and unique illustrations and content.
+      </p>

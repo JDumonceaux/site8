@@ -5,7 +5,7 @@ export default function MainMenu() {
   return (
     <div className='main-menu'>
       {/* OTHER STUFF */}
-      <AccordionMenu id={1} path='/other' title='My Favorite Stuff'>
+      <AccordionMenu id={1} path='/other' title='Me Stuff'>
         <CustomNavLink to='/other/art'>Art</CustomNavLink>
         <CustomNavLink to='/other/artists/kelly-boesch'>
           Kelly Boesch

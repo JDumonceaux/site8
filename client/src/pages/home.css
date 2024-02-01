@@ -1,0 +1,33 @@
+.home-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.home-layout .content-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-top: 40px;
+}
+.home-layout .main-content {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: calc(100vh - 80px);
+  background-color: darkkhaki;
+  padding: 16px;
+  font-size: 1.1rem;
+}
+.home-layout .section {
+  flex-grow: 1;
+}
+.home-layout .home-menu {
+  padding: 16px;
+}
+.home-layout .quote-section {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.home-layout .quote-section p {
+  margin: 0;
+}

@@ -1,0 +1,12 @@
+.home-layout {
+  max-width: 1920px;
+  margin-inline: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.home-layout > .main-content {
+  margin-top: 50px;
+}
+.home-layout > .main-menu {
+  margin-top: 50px;
+}

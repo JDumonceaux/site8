@@ -10,19 +10,12 @@
     "resolveJsonModule": true,
     "jsx": "react",
     "sourceMap": true,
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "outDir": "./dist",
     "paths": {
       "*": ["*", "src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
-
-

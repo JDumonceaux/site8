@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { APP_NAME } from '../../../utils/constants';
 import styled from 'styled-components';
+import { MenuIcon } from './MenuIcon';
 
 const StyledHeader = styled.header`
   background-color: var(--main-background-color, #000);
@@ -8,6 +10,10 @@ const StyledHeader = styled.header`
   justify-content: flex-start;
   align-items: center;
   min-height: 40px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 5px 20px -10px #000;
 `;
 const StyledSkipLink = styled.a`
   position: absolute;
@@ -25,14 +31,29 @@ const StyledSkipLink = styled.a`
 const AppName = styled.div`
   color: var(--palette-grey-10, #fff);
   font-size: 1.1rem;
-  padding-left: 16px;
+`;
+const StyledLinkDiv = styled.div`
+  a:hover {
+    text-decoration-color: #5f1a2a;
+  }
+  a {
+    display: block;
+  }
+  div {
+    padding: 3px 16px;
+  }
 `;
 
 export function Header() {
   return (
     <StyledHeader className='header'>
       <StyledSkipLink href='#main'>Skip to main content</StyledSkipLink>
-      <AppName>{APP_NAME}</AppName>
+      <MenuIcon />
+      <StyledLinkDiv>
+        <Link to='/'>
+          <AppName>{APP_NAME}</AppName>
+        </Link>
+      </StyledLinkDiv>
     </StyledHeader>
   );
 }

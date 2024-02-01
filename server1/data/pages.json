@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "id": 100,
+    "id": 1000,
     "data_type": "pages"
   },
   "items": [
@@ -11,18 +11,173 @@
       "edit_date": "01/18/2024",
       "resources": true,
       "parent": "Design Styles",
-      "fileName": "page1001.txt",
-      "reading_time": "24 s",
-      "reading_level": "8th grade"
+      "reading_time": "",
+      "readability_score": ""
     },
     {
       "id": 1002,
       "short_title": "Flat Design",
-      "long_title": "Embracing Simplicity: The Art and Impact of Flat Design",
+      "long_title": "Flat Design: The Art of Simplicity",
       "edit_date": "01/18/2024",
       "resources": true,
       "parent": "Design Styles",
-      "fileName": "page1002.txt"
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1003,
+      "short_title": "Corporate Memphis Design",
+      "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+      "reading_time": "1 min 37 sec",
+      "readability_score": "22"
+    },
+    {
+      "id": 1004,
+      "short_title": "Glassmorphism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1005,
+      "short_title": "Minimalism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1006,
+      "short_title": "Neumorphism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1007,
+      "short_title": "Retrofuturism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1008,
+      "short_title": "Swiss Style",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Design Styles",
+
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 900,
+      "short_title": "CSS",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "CSS",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 901,
+      "short_title": "Internationalization",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "CSS",
+      "reading_time": "",
+      "readability_score": ""
+    },
+
+    {
+      "id": 2001,
+      "short_title": "Chrome Extensions",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "React",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 2002,
+      "short_title": "Git",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "React",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 2003,
+      "short_title": "Visual Studio Code",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "React",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 2004,
+      "short_title": "Visual Studio Code: Extensions",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "React",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 3001,
+      "short_title": "At Last - Pleasantville",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Me",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 3002,
+      "short_title": "Gallos",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Art",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 3003,
+      "short_title": "Shoes on the Danube Bank",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parent": "Art",
+      "reading_time": "",
+      "readability_score": ""
     }
   ]
 }

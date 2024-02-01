@@ -19,6 +19,7 @@ export function AccordionMenu({
   // Only works with data routers.
   const matches = useMatches();
 
+  // useLayoutEffect blocks the browser from repainting
   useLayoutEffect(() => {
     const isMatch = matches.some((match) => match.pathname === path);
     setExpanded(isMatch);
@@ -58,11 +59,7 @@ export function AccordionMenu({
             height='24'
             className='accordion-section-icon'
           >
-            {/* {isSectionExpanded(id) ? ( */}
             <path d='M7 10l5 5 5-5z' />
-            {/* // ) : (
-            //   <path d='M7 10l5 5 5-5z' fill='none' />
-            // )} */}
           </svg>
         </button>
         {expanded && (

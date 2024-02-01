@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { FixedSizeList as List, ListChildComponentProps } from "react-window";
-import PageTitle from "../../components/common/PageTitle/PageTitle";
-import TwoColumn from "../Layouts/TwoColumn/TwoColumn";
-import useMusic from "../../services/hooks/useMusic";
-import { APP_NAME } from "../../utils/constants";
-import "./musicList.css";
-import LoadingWrapper from "../../components/common/LoadingWrapper";
+import { useEffect } from 'react';
+import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
+import PageTitle from '../../components/common/PageTitle/PageTitle';
+import useMusic from '../../services/hooks/useMusic';
+import LoadingWrapper from '../../components/common/Loading/LoadingWrapper';
 
-import { IMusicItem } from "../../services/api/models/music/IMusicItem";
-import memoize from "memoize-one";
+import { IMusicItem } from '../../services/api/models/music/IMusicItem';
+import memoize from 'memoize-one';
+import SEO from '../../components/common/SEO/SEO';
+
+import './musicList.css';
 
 function ItemRenderer({ data, index, style }: ListChildComponentProps) {
   const item = data.items[index] as IMusicItem;
@@ -19,20 +19,16 @@ function ItemRenderer({ data, index, style }: ListChildComponentProps) {
         width={560}
         height={200}
         src={item.url}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        title='YouTube video player'
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
       ></iframe>
     </div>
   );
 }
 
 export default function MusicList() {
-  const pageTitle = "YouTube Videos";
+  const title = 'YouTube Videos';
   const { data, loading, error, fetchData } = useMusic();
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${pageTitle}`;
-  }, []);
 
   useEffect(() => {
     fetchData();
@@ -46,10 +42,11 @@ export default function MusicList() {
   const itemData = data?.items ? createItemData(data?.items) : undefined;
 
   return (
-    <TwoColumn
-      pageTitle={<PageTitle title={pageTitle} />}
-      left={
-        <section className="section">
+    <>
+      <SEO title={title} />
+      <main className='main-content'>
+        <PageTitle title={title} />
+        <section className='section'>
           <p>These are some of my favorite YouTube videos.</p>
           <LoadingWrapper isLoading={loading} error={error}>
             <List
@@ -58,7 +55,7 @@ export default function MusicList() {
               itemSize={220}
               itemData={itemData}
               overscanCount={15}
-              width="100%"
+              width='100%'
             >
               {ItemRenderer}
             </List>
@@ -77,12 +74,8 @@ export default function MusicList() {
               ))} */}
           </LoadingWrapper>
         </section>
-      }
-      right={
-        <aside className="right-column">
-          <br />
-        </aside>
-      }
-    />
+      </main>
+      <aside className='right-sidebar'></aside>
+    </>
   );
 }

@@ -1,20 +1,15 @@
 import { useEffect } from 'react';
-
 import { APP_NAME } from '../../utils/constants';
-
 import PageTitle from '../../components/common/PageTitle/PageTitle';
-import TwoColumn from '../Layouts/TwoColumn/TwoColumn';
-
-import LoadingWrapper from '../../components/common/LoadingWrapper';
 import useResources from '../../services/hooks/useResources';
-import Resources from '../../components/common/Resources';
+import SEO from '../../components/common/SEO/SEO';
 
 export default function ResourcesList() {
-  const pageTitle = 'Resources';
+  const title = 'Resources';
   const { data, loading, error, fetchData } = useResources();
 
   useEffect(() => {
-    document.title = `${APP_NAME} - ${pageTitle}`;
+    document.title = `${APP_NAME} - ${title}`;
   }, []);
 
   useEffect(() => {
@@ -22,17 +17,18 @@ export default function ResourcesList() {
   }, [fetchData]);
 
   return (
-    <TwoColumn
-      pageTitle={<PageTitle title={pageTitle} />}
-      left={
+    <>
+      <SEO title={title} />
+      <main className='main-content'>
+        <PageTitle title={title} />
         <section className='section'>
           <p>These are some of my favorite resources.</p>
-          <LoadingWrapper isLoading={loading} error={error}>
+          {/* <LoadingWrapper isLoading={loading} error={error}>
             <Resources data={data} />
-          </LoadingWrapper>
+          </LoadingWrapper> */}
         </section>
-      }
-      right={<div className='right-column'></div>}
-    />
+      </main>
+      <aside className='right-sidebar'></aside>
+    </>
   );
 }

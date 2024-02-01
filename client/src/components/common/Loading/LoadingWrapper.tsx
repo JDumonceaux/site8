@@ -1,17 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import Loading from "./Loading";
+import Loading from './Loading';
 
-interface IProps {
+type IProps = {
   children: ReactNode;
   isLoading?: boolean;
-  error: string | null;
-}
+  error: string | undefined | null;
+};
 
 export default function LoadingWrapper({ children, isLoading, error }: IProps) {
   if (isLoading) return <Loading />;
 
   if (error) return <div>{error}</div>;
 
-  return <div className="loading-wrapper">{children}</div>;
+  return <div className='loading-wrapper'>{children}</div>;
 }
