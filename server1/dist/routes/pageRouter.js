@@ -18,8 +18,8 @@ exports.pageRouter = void 0;
 var express_1 = __importDefault(require("express"));
 var Logger_1 = require("utils/Logger");
 var promises_1 = require("fs/promises");
+var getFilePath_1 = require("utils/getFilePath");
 exports.pageRouter = express_1.default.Router();
-var path = require('path');
 exports.pageRouter.get('/:id', function (req, res) {
     getAllData(req.params.id).then(function (_a) {
         var r0 = _a[0], r1 = _a[1];
@@ -27,8 +27,8 @@ exports.pageRouter.get('/:id', function (req, res) {
     });
 });
 function getAllData(id) {
-    var promise1 = getMetaData(id, getFilePath('pages.json'));
-    var promise2 = (0, promises_1.readFile)(getFilePath('page' + id + '-en.txt'), {
+    var promise1 = getMetaData(id, (0, getFilePath_1.getFilePath)('pages.json'));
+    var promise2 = (0, promises_1.readFile)((0, getFilePath_1.getFilePath)('page' + id + '-en.txt'), {
         encoding: 'utf8',
     });
     return Promise.all([promise1, promise2]);
@@ -52,8 +52,5 @@ function getPage(id, data) {
     catch (error) {
         Logger_1.Logger.debug("getPage -> ".concat(error));
     }
-}
-function getFilePath(fileName) {
-    return path.resolve(__dirname, "../../data/".concat(fileName));
 }
 //# sourceMappingURL=pageRouter.js.map

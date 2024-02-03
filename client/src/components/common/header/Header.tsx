@@ -46,7 +46,7 @@ const StyledLinkDiv = styled.div`
 
 export function Header() {
   return (
-    <StyledHeader className='header'>
+    <StyledHeader className='header' data-testid='header'>
       <StyledSkipLink href='#main'>Skip to main content</StyledSkipLink>
       <MenuIcon />
       <StyledLinkDiv>

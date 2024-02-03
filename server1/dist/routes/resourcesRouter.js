@@ -18,15 +18,14 @@ exports.resourcesRouter = void 0;
 var express_1 = __importDefault(require("express"));
 var Logger_1 = require("utils/Logger");
 var fs_1 = require("fs");
+var getFilePath_1 = require("utils/getFilePath");
 exports.resourcesRouter = express_1.default.Router();
-var path = require('path');
 exports.resourcesRouter.get('/:id', function (req, res) {
     res.json(getFilteredResources(req.params.id));
 });
 function getFilteredResources(id) {
-    var tFileName = 'resources.json';
-    Logger_1.Logger.info("getFilteredResources -> ".concat(tFileName));
-    var data = (0, fs_1.readFileSync)(path.resolve(__dirname, "../data/".concat(tFileName)), 'utf8');
+    Logger_1.Logger.info("getFilteredResources ->");
+    var data = (0, fs_1.readFileSync)((0, getFilePath_1.getFilePath)('resources.json'), 'utf8');
     try {
         var jsonData = JSON.parse(data);
         var searchId_1 = parseInt(id);

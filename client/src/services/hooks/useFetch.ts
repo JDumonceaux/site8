@@ -11,21 +11,24 @@ const useFetch = <T>(url: string) => {
     setLoading(true);
 
     const fetchDataAsync = async () => {
-      try {
-        const response = await axios.get<T>(url, {
+      await axios
+        .get<T>(url, {
           cancelToken: source.token,
+        })
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((error) => {
+          if (axios.isCancel(error)) {
+            console.log('Request canceled', error.message);
+          } else {
+            console.log('error', error);
+            setError('Error');
+          }
+        })
+        .finally(() => {
+          setLoading(false);
         });
-        setData(response.data);
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log('Request canceled', error.message);
-        } else {
-          console.log('error', error);
-          setError('Error');
-        }
-      } finally {
-        setLoading(false);
-      }
     };
 
     fetchDataAsync();
