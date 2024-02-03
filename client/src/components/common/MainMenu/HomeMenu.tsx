@@ -78,7 +78,7 @@ const menuItems = [
         label: 'Visual Studio Code',
       },
       {
-        id: 2001,
+        id: 2004,
         to: '/ide/vsc/extensions',
         label: 'Visual Studio Code: Extensions',
       },
@@ -94,7 +94,9 @@ export default function HomeMenu() {
           <nav>
             <div className='title'>{item.parent}</div>
             {item.items.map((x) => (
-              <CustomNavLink to={x.to}>{x.label}</CustomNavLink>
+              <CustomNavLink to={x.to} key={x.label}>
+                {x.label}
+              </CustomNavLink>
             ))}
           </nav>
         ))}

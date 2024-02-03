@@ -7,6 +7,7 @@ var express_1 = __importDefault(require("express"));
 var compression_1 = __importDefault(require("compression"));
 var Logger_1 = require("./utils/Logger");
 var routes_1 = require("./routes");
+var pagesRouter_1 = require("routes/pagesRouter");
 var app = (0, express_1.default)();
 app.set('x-powered-by', false);
 app.set('etag', false);
@@ -29,7 +30,8 @@ app.use(function (req, res, next) {
 });
 var port = 3005;
 var path = require('path');
-app.use('/api/page', routes_1.pagesRouter);
+app.use('/api/page', routes_1.pageRouter);
+app.use('/api/pages', pagesRouter_1.pagesRouter);
 app.use('/api/resources', routes_1.resourcesRouter);
 app.get('/api/:filename', function (req, res) {
     getFile(req, res, "".concat(req.params.filename, ".json"));

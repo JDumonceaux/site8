@@ -2,22 +2,18 @@ import express, { Request, Response } from 'express';
 import { Logger } from 'utils/Logger';
 import { readFileSync } from 'fs';
 import { IResources } from 'models/resources/IResources';
+import { getFilePath } from 'utils/getFilePath';
 
 export const resourcesRouter = express.Router();
-const path = require('path');
 
 resourcesRouter.get('/:id', (req: Request, res: Response) => {
   res.json(getFilteredResources(req.params.id));
 });
 
 function getFilteredResources(id: string) {
-  const tFileName = 'resources.json';
-  Logger.info(`getFilteredResources -> ${tFileName}`);
+  Logger.info(`getFilteredResources ->`);
 
-  const data = readFileSync(
-    path.resolve(__dirname, `../data/${tFileName}`),
-    'utf8',
-  );
+  const data = readFileSync(getFilePath('resources.json'), 'utf8');
   try {
     const jsonData = JSON.parse(data) as IResources;
     const searchId = parseInt(id);

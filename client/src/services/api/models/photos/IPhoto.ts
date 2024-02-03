@@ -1,4 +1,4 @@
-export interface IPhotoItem {
+export interface IPhoto {
   id: number;
   url: string;
   name?: string;

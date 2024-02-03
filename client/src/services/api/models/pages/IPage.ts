@@ -1,4 +1,4 @@
-export interface IPagesItem {
+export interface IPage {
   id: number;
   short_title: string;
   long_title?: string;
@@ -6,4 +6,5 @@ export interface IPagesItem {
   resources?: boolean;
   parent?: string;
   fileName?: string;
+  text: string;
 }

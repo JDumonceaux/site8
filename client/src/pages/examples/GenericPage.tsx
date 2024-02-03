@@ -1,7 +1,7 @@
 import { ServiceUrl } from '../../utils';
 
 import { useEffect, useState } from 'react';
-import { IPage } from '../../services/api/models/page/IPage';
+import { IPage } from '../../services/api/models/pages/IPage';
 import Loading from '../../components/common/Loading/Loading';
 import axios from 'axios';
 

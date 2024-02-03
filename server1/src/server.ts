@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import compression from 'compression';
 import { Logger } from './utils/Logger';
-import { pagesRouter, resourcesRouter } from './routes';
+import { pageRouter, resourcesRouter } from './routes';
+import { pagesRouter } from 'routes/pagesRouter';
 
 const app = express();
 
@@ -36,7 +37,8 @@ app.use(function (req, res, next) {
 const port = 3005;
 const path = require('path');
 
-app.use('/api/page', pagesRouter);
+app.use('/api/page', pageRouter);
+app.use('/api/pages', pagesRouter);
 app.use('/api/resources', resourcesRouter);
 
 app.get('/api/:filename', (req: Request, res: Response) => {

@@ -1,4 +1,4 @@
-import { IResourceItem } from "./IResourceItem";
+import { IResource } from './IResource';
 
 export interface IResources {
   metadata: {
@@ -6,5 +6,5 @@ export interface IResources {
     data_type: string;
     title: string;
   };
-  items: IResourceItem[];
+  items: IResource[];
 }

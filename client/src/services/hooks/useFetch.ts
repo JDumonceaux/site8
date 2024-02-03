@@ -20,6 +20,7 @@ const useFetch = <T>(url: string) => {
         if (axios.isCancel(error)) {
           console.log('Request canceled', error.message);
         } else {
+          console.log('error', error);
           setError('Error');
         }
       } finally {

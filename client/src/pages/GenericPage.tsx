@@ -1,4 +1,4 @@
-import { IPage } from 'services/api/models/page/IPage';
+import { IPage } from 'services/api/models/pages/IPage';
 
 import Resources from '../components/common/Resources';
 import SEO from '../components/common/SEO/SEO';
@@ -17,7 +17,7 @@ export default function GenericPage({ id, pageTitle }: GenericPageProps) {
     `${ServiceUrl.ENDPOINT_PAGE}/${id}`
   );
 
-  const title = data?.item?.long_title || pageTitle;
+  const title = data?.long_title || pageTitle;
 
   return (
     <>

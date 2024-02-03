@@ -136,6 +136,12 @@ export default function MainMenu() {
           Corporate Memphis
         </CustomNavLink>
         <CustomNavLink to='/styles/flat-design'>Flat Design</CustomNavLink>
+        <CustomNavLink to='/styles/fluent1-design'>
+          Fluent 1 Design
+        </CustomNavLink>
+        <CustomNavLink to='/styles/fluent2-design'>
+          Fluent 2 Design
+        </CustomNavLink>
         <CustomNavLink to='/styles/glassmorphism'>Glassmorphism</CustomNavLink>
         <CustomNavLink to='/styles/minimalism'>Minimalism</CustomNavLink>
         <CustomNavLink to='/styles/neumorphism'>Neumorphism</CustomNavLink>

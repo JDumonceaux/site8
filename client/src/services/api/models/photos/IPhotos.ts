@@ -1,5 +1,5 @@
-import { IPhotoItem } from "./IPhotoItem";
-import { IPhotoSet } from "./IPhotoSet";
+import { IPhoto } from './IPhoto';
+import { IPhotoSet } from './IPhotoSet';
 
 export interface IPhotos {
   metadata: {
@@ -7,6 +7,6 @@ export interface IPhotos {
     data_type: string;
     title: string;
   };
-  items: IPhotoItem[];
+  items: IPhoto[];
   sets: IPhotoSet[];
 }

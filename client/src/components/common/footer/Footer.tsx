@@ -9,7 +9,7 @@ const StyledFooter = styled.footer`
   align-items: center;
   height: 40px;
 `;
-const StyledCopyRight = styled.div`
+const StyledCopyright = styled.div`
   color: var(--palette-grey-10, #fff);
   font-size: 0.8rem;
   padding-left: 16px;
@@ -19,9 +19,9 @@ export function Footer() {
   const thisYear = new Date().getFullYear();
   return (
     <StyledFooter role='contentinfo' className='footer'>
-      <StyledCopyRight aria-label='Copyright Information'>
+      <StyledCopyright aria-label='Copyright Information'>
         Copyright &copy; {thisYear}
-      </StyledCopyRight>
+      </StyledCopyright>
       {/* <ChangeLanguage /> */}
     </StyledFooter>
   );
