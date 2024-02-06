@@ -1,17 +1,17 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ICase } from "../../hooks/examples/ICase";
+import { ICase } from '../../hooks/examples/ICase';
 
 export interface IFormExample1State {
   caseNumber: string;
 }
 
 const initialState: IFormExample1State = {
-  caseNumber: "",
+  caseNumber: '',
 };
 
 const formExample1Slice = createSlice({
-  name: "formExample1",
+  name: 'formExample1',
   initialState,
   reducers: {
     update(state, action: PayloadAction<ICase>) {
@@ -21,7 +21,7 @@ const formExample1Slice = createSlice({
       state = {
         caseNumber: action.payload,
       };
-      console.log("updateCaseNumber", state);
+      console.log('updateCaseNumber', state);
     },
   },
 });

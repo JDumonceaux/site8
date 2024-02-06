@@ -21,7 +21,7 @@
   background-color: #dcdcdc;
 }
 .left-side-menu .active::before {
-  content: "";
+  content: '';
   display: block;
   width: 4px;
   height: 100%;

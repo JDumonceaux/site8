@@ -1,5 +1,5 @@
-import LineItem from "./LineItem";
-import { IItem } from "./IItem";
+import { IItem } from './IItem';
+import LineItem from './LineItem';
 
 type Props = {
   items: IItem[];

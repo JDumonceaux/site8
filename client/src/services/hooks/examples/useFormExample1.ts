@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../state/store";
-import { update } from "../../state/examples/formExample1Slice";
-import { useCallback } from "react";
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { update } from '../../state/examples/formExample1Slice';
+import { AppDispatch, RootState } from '../../state/store';
 
 export const useFormExample1 = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -10,13 +11,13 @@ export const useFormExample1 = () => {
   const dispatchUpdate = useCallback(
     (fieldName: string, value: string) => {
       const x = { ...data, [fieldName]: value };
-      console.log("X", x);
+      console.log('X', x);
       dispatch(update(x));
     },
-    [data, dispatch]
+    [data, dispatch],
   );
 
-  console.log("data", data);
+  console.log('data', data);
 
   return {
     data,

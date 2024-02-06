@@ -1,5 +1,5 @@
-import { FaPlus } from "react-icons/fa";
-import { useRef } from "react";
+import { useRef } from 'react';
+import { FaPlus } from 'react-icons/fa';
 
 type Props = {
   newItem: IItem;

@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-export interface ITextLabelProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface ITextLabelProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const StyledLabel = styled.div`
   color: black;

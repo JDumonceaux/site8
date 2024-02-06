@@ -1,9 +1,9 @@
 export interface IMusicItem {
-  id: number;
-  url: string;
-  name?: string;
-  description?: string;
-  section?: string;
-  display?: string;
-  tags?: string[];
+  readonly id: number;
+  readonly url: string;
+  readonly name?: string;
+  readonly description?: string;
+  readonly section?: string;
+  readonly display?: string;
+  readonly tags?: string[];
 }

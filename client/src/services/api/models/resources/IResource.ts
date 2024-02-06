@@ -1,9 +1,9 @@
 export interface IResource {
-  id: number;
-  name?: string;
-  description?: string;
-  url: string;
-  tags?: string[];
-  rank?: number;
-  set?: number[];
+  readonly id: number;
+  readonly name?: string;
+  readonly description?: string;
+  readonly url: string;
+  readonly tags?: string[];
+  readonly rank?: number;
+  readonly set?: number[];
 }

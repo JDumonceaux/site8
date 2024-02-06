@@ -1,6 +1,7 @@
-import { ReactNode } from "react";
-import { Provider } from "react-redux";
-import { store } from "../state/store";
+import { ReactNode } from 'react';
+import { Provider } from 'react-redux';
+
+import { store } from '../state/store';
 
 interface IProps {
   children: ReactNode;

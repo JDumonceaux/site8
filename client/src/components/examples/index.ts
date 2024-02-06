@@ -1,1 +1,1 @@
-export * from "./ChangeLanguage/ChangeLanguage";
+export * from './ChangeLanguage/ChangeLanguage';

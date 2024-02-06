@@ -1,5 +1,5 @@
 // internal
-export const ROUTE_ROOT = "/";
+export const ROUTE_ROOT = '/';
 
 // Route /react
 export const ROUTE_REACT = `${ROUTE_ROOT}react`;

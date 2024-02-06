@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState } from 'react';
 
-import { initialItems } from "./data";
+import { initialItems } from './data';
 
 export default function Demo() {
   const [count, setCount] = useState(0);
@@ -9,7 +9,7 @@ export default function Demo() {
   // Searching 29M items takes time.  This avoids reloads
   const selectedItem = useMemo(
     () => items.find((item) => item.id === count),
-    [count, items]
+    [count, items],
   );
 
   return (

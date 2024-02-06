@@ -1,5 +1,5 @@
-import { IItem } from "./IItem";
-import ItemList from "./ItemList";
+import { IItem } from './IItem';
+import ItemList from './ItemList';
 
 type Props = {
   items?: IItem[];
@@ -11,13 +11,9 @@ const List = ({ items, handleCheck, handleDelete }: Props) => {
   return (
     <main>
       {items?.length ? (
-        <ItemList
-          items={items}
-          handleCheck={handleCheck}
-          handleDelete={handleDelete}
-        />
+        <ItemList items={items} handleCheck={handleCheck} handleDelete={handleDelete} />
       ) : (
-        <p style={{ marginTop: "2rem" }}>Your list is empty.</p>
+        <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
       )}
     </main>
   );

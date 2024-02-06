@@ -1,10 +1,7 @@
-import { IArtItem } from "./IArtItem";
+import { IMetadata } from '../IMetadata';
+import { IArtItem } from './IArtItem';
 
 export interface IArt {
-  metadata: {
-    id: number;
-    data_type: string;
-    title: string;
-  };
-  items: IArtItem[];
+  readonly metadata: IMetadata;
+  readonly items: IArtItem[];
 }

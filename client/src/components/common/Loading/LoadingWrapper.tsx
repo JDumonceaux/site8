@@ -13,5 +13,5 @@ export default function LoadingWrapper({ children, isLoading, error }: IProps) {
 
   if (error) return <div>{error}</div>;
 
-  return <div className='loading-wrapper'>{children}</div>;
+  return <div className="loading-wrapper">{children}</div>;
 }

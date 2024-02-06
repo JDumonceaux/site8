@@ -1,14 +1,15 @@
-import { useState } from "react";
-import { IItem } from "./IItem";
-import List from "./List";
+import './groceryList.css';
 
-import "./groceryList.css";
+import { useState } from 'react';
+
+import { IItem } from './IItem';
+import List from './List';
 
 const GroceryList = () => {
   const [items, setItems] = useState<IItem[] | undefined>([
-    { id: 1, checked: true, item: "Item 1" },
-    { id: 2, checked: true, item: "Item 2" },
-    { id: 3, checked: false, item: "Item 3" },
+    { id: 1, checked: true, item: 'Item 1' },
+    { id: 2, checked: true, item: 'Item 2' },
+    { id: 3, checked: false, item: 'Item 3' },
   ]);
   // JSON.parse(localStorage.getItem("shoppinglist"))
   // const [newItem, setNewItem] = useState("");
@@ -17,7 +18,7 @@ const GroceryList = () => {
 
   const setAndSaveItems = (newItems: IItem[] | undefined) => {
     setItems(newItems);
-    localStorage.setItem("shoppinglist", JSON.stringify(newItems));
+    localStorage.setItem('shoppinglist', JSON.stringify(newItems));
   };
 
   // const addItem = (item: IItem) => {
@@ -29,7 +30,7 @@ const GroceryList = () => {
 
   const handleCheck = (id: number) => {
     const listItems = items?.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
+      item.id === id ? { ...item, checked: !item.checked } : item,
     );
     setAndSaveItems(listItems);
   };

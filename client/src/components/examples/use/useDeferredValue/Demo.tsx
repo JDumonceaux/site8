@@ -1,7 +1,7 @@
-import { useDeferredValue, useState } from "react";
+import { useDeferredValue, useState } from 'react';
 
 export default function Demo() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   // param to usedDeferredValue must be a primitive
   const deferredQuery = useDeferredValue(query);
 

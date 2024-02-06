@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+import './musicList.css';
+
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import PageTitle from 'components/common/PageTitle/PageTitle';
+import SEO from 'components/common/SEO/SEO';
+import memoize from 'memoize-one';
+import { useDeferredValue, useEffect } from 'react';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
-import PageTitle from '../../components/common/PageTitle/PageTitle';
-import useMusic from '../../services/hooks/useMusic';
-import LoadingWrapper from '../../components/common/Loading/LoadingWrapper';
 
 import { IMusicItem } from '../../services/api/models/music/IMusicItem';
-import memoize from 'memoize-one';
-import SEO from '../../components/common/SEO/SEO';
-
-import './musicList.css';
+import useMusic from '../../services/hooks/useMusic';
 
 function ItemRenderer({ data, index, style }: ListChildComponentProps) {
   const item = data.items[index] as IMusicItem;
@@ -19,8 +19,8 @@ function ItemRenderer({ data, index, style }: ListChildComponentProps) {
         width={560}
         height={200}
         src={item.url}
-        title='YouTube video player'
-        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       ></iframe>
     </div>
   );
@@ -29,6 +29,8 @@ function ItemRenderer({ data, index, style }: ListChildComponentProps) {
 export default function MusicList() {
   const title = 'YouTube Videos';
   const { data, loading, error, fetchData } = useMusic();
+
+  const deferredData = useDeferredValue(data);
 
   useEffect(() => {
     fetchData();
@@ -39,14 +41,14 @@ export default function MusicList() {
     items,
   }));
 
-  const itemData = data?.items ? createItemData(data?.items) : undefined;
+  const itemData = deferredData?.items ? createItemData(deferredData?.items) : undefined;
 
   return (
     <>
       <SEO title={title} />
-      <main className='main-content'>
+      <main className="main-content">
         <PageTitle title={title} />
-        <section className='section'>
+        <section className="section">
           <p>These are some of my favorite YouTube videos.</p>
           <LoadingWrapper isLoading={loading} error={error}>
             <List
@@ -55,7 +57,7 @@ export default function MusicList() {
               itemSize={220}
               itemData={itemData}
               overscanCount={15}
-              width='100%'
+              width="100%"
             >
               {ItemRenderer}
             </List>
@@ -75,7 +77,7 @@ export default function MusicList() {
           </LoadingWrapper>
         </section>
       </main>
-      <aside className='right-sidebar'></aside>
+      <aside className="right-sidebar"></aside>
     </>
   );
 }

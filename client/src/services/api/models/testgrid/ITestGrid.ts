@@ -1,10 +1,7 @@
-import { ITestGridItem } from "./ITestGridItem";
+import { IMetadata } from '../IMetadata';
+import { ITestGridItem } from './ITestGridItem';
 
 export interface ITestGrid {
-  metadata: {
-    id: number;
-    data_type: string;
-    title: string;
-  };
-  items: ITestGridItem[];
+  readonly metadata: IMetadata;
+  readonly items: ITestGridItem[];
 }

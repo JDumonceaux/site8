@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { APP_NAME } from '../../../utils/constants';
 import styled from 'styled-components';
+
+import { APP_NAME } from '../../../utils/constants';
 import { MenuIcon } from './MenuIcon';
 
 const StyledHeader = styled.header`
@@ -46,11 +47,11 @@ const StyledLinkDiv = styled.div`
 
 export function Header() {
   return (
-    <StyledHeader className='header' data-testid='header'>
-      <StyledSkipLink href='#main'>Skip to main content</StyledSkipLink>
+    <StyledHeader className="header" data-testid="header">
+      <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
       <MenuIcon />
       <StyledLinkDiv>
-        <Link to='/'>
+        <Link to="/">
           <AppName>{APP_NAME}</AppName>
         </Link>
       </StyledLinkDiv>

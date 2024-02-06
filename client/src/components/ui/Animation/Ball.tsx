@@ -1,4 +1,4 @@
-import "./ball.css";
+import './ball.css';
 
 export default function Ball() {
   return (

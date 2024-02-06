@@ -1,16 +1,17 @@
-import ErrorBoundary from '../../../components/common/ErrorBoundary';
 import './HomeLayout.css';
-import { Outlet } from 'react-router-dom';
+
+import ErrorBoundary from 'components/common/ErrorBoundary';
+import { Footer } from 'components/common/Footer';
+import { Header } from 'components/common/Header';
 import { Suspense } from 'react';
-import { Footer } from '../../../components/common/Footer';
-import { Header } from '../../../components/common/Header';
+import { Outlet } from 'react-router-dom';
 
 export default function HomeLayout() {
   return (
-    <ErrorBoundary fallback='Error'>
-      <div className='home-layout'>
+    <ErrorBoundary fallback="Error">
+      <div className="home-layout">
         <Header />
-        <Suspense fallback='Loading ...'>
+        <Suspense fallback="Loading ...">
           <Outlet />
         </Suspense>
         <Footer />

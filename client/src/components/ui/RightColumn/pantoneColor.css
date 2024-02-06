@@ -1,6 +1,6 @@
 .pantone-color {
   width: 100%;
-  font-family: "Shadows Into Light", cursive;
+  font-family: 'Shadows Into Light', cursive;
   font-size: 1.1rem;
   color: var(--palette-grey-100, #000);
   padding: 16px 0;

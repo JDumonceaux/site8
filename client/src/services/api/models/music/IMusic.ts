@@ -1,10 +1,7 @@
-import { IMusicItem } from "./IMusicItem";
+import { IMetadata } from '../IMetadata';
+import { IMusicItem } from './IMusicItem';
 
 export interface IMusic {
-  metadata: {
-    id: number;
-    data_type: string;
-    title: string;
-  };
-  items: IMusicItem[];
+  readonly metadata: IMetadata;
+  readonly items: IMusicItem[];
 }

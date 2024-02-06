@@ -1,18 +1,18 @@
-import ErrorBoundary from '../../../components/common/ErrorBoundary';
 import './MainLayout.css';
-import { Outlet } from 'react-router-dom';
-import MainMenu from '../../../components/common/MainMenu/MainMenu';
-import { Suspense } from 'react';
 
-import { Footer } from '../../../components/common/Footer';
-import { Header } from '../../../components/common/Header';
+import ErrorBoundary from 'components/common/ErrorBoundary';
+import { Footer } from 'components/common/Footer';
+import { Header } from 'components/common/Header';
+import MainMenu from 'components/common/MainMenu/MainMenu';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 
 export default function MainLayout() {
   return (
-    <ErrorBoundary fallback='Error'>
-      <div className='main-layout'>
+    <ErrorBoundary fallback="Error">
+      <div className="main-layout">
         <Header />
-        <Suspense fallback='Loading ...'>
+        <Suspense fallback="Loading ...">
           <Outlet />
         </Suspense>
         <MainMenu />

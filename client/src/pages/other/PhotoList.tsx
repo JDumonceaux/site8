@@ -1,14 +1,17 @@
-import { useEffect } from 'react';
-import { APP_NAME } from '../../utils/constants';
-import PageTitle from '../../components/common/PageTitle/PageTitle';
-import LoadingWrapper from '../../components/common/Loading/LoadingWrapper';
-import usePhotos from '../../services/hooks/usePhotos';
 import './photoList.css';
-import SEO from '../../components/common/SEO/SEO';
+
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import PageTitle from 'components/common/PageTitle/PageTitle';
+import SEO from 'components/common/SEO/SEO';
+import { useDeferredValue, useEffect } from 'react';
+
+import usePhotos from '../../services/hooks/usePhotos';
+import { APP_NAME } from '../../utils/constants';
 
 export default function PhotoList() {
   const title = 'Photos';
   const { data, loading, error, fetchData } = usePhotos();
+  const deferredData = useDeferredValue(data);
 
   useEffect(() => {
     document.title = `${APP_NAME} - ${title}`;
@@ -21,24 +24,16 @@ export default function PhotoList() {
   return (
     <>
       <SEO title={title} />
-      <main className='main-content'>
+      <main className="main-content">
         <PageTitle title={title} />
-        <section className='section'>
+        <section className="section">
           <LoadingWrapper isLoading={loading} error={error}>
             <ul>
-              {data?.items?.map((item) => {
+              {deferredData?.items?.map((item) => {
                 return (
                   <li key={item.id}>
-                    <a
-                      href={item.url}
-                      data-fancybox
-                      data-caption={item.description}
-                    >
-                      <img
-                        src={item.url}
-                        alt={item.description}
-                        loading='lazy'
-                      />
+                    <a href={item.url} data-fancybox data-caption={item.description}>
+                      <img src={item.url} alt={item.description} loading="lazy" />
                     </a>
                   </li>
                 );
@@ -47,7 +42,7 @@ export default function PhotoList() {
           </LoadingWrapper>
         </section>
       </main>
-      <aside className='right-sidebar'></aside>
+      <aside className="right-sidebar"></aside>
     </>
   );
 }

@@ -1,11 +1,12 @@
-import { IPage } from 'services/api/models/pages/IPage';
+import { useDeferredValue } from 'react';
 
-import Resources from '../components/common/Resources';
-import SEO from '../components/common/SEO/SEO';
-import useFetch from '../services/hooks/useFetch';
-import { ServiceUrl } from '../utils';
 import LoadingWrapper from '../components/common/Loading/LoadingWrapper';
 import PageTitle from '../components/common/PageTitle/PageTitle';
+import Resources from '../components/common/Resources';
+import SEO from '../components/common/SEO/SEO';
+import { IPage } from '../services/api/models/pages/IPage';
+import useFetch from '../services/hooks/useFetch';
+import { ServiceUrl } from '../utils';
 
 type GenericPageProps = {
   id: number;
@@ -13,29 +14,30 @@ type GenericPageProps = {
 };
 
 export default function GenericPage({ id, pageTitle }: GenericPageProps) {
-  const { data, loading, error } = useFetch<IPage>(
-    `${ServiceUrl.ENDPOINT_PAGE}/${id}`
-  );
+  const { data, loading, error } = useFetch<IPage>(`${ServiceUrl.ENDPOINT_PAGE}/${id}`);
 
-  const title = data?.long_title || pageTitle;
+  const deferredData = useDeferredValue(data);
+
+  const title = deferredData?.long_title || pageTitle;
 
   return (
     <>
       <SEO title={title} />
-      <main className='main-content'>
+      <main className="main-content">
         <LoadingWrapper error={error} isLoading={loading}>
           <PageTitle title={title} />
-          <section className='section'>
+          <time>Fill In</time>
+          <section className="section">
             <div
               dangerouslySetInnerHTML={{
-                __html: data?.text ? data.text : '',
+                __html: deferredData?.text ? deferredData.text : '',
               }}
             />
           </section>
         </LoadingWrapper>
         <Resources id={id} />
       </main>
-      <aside className='right-sidebar'></aside>
+      <aside className="right-sidebar"></aside>
     </>
   );
 }

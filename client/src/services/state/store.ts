@@ -1,10 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./examples/counterSlice";
-import resourcesReducer from "./resourcesSlice";
-import artReducer from "./artSlice";
-import musicReducer from "./musicSlice";
-import photosReducer from "./photosSlice";
-import formExample1Slice from "./examples/formExample1Slice";
+import { configureStore } from '@reduxjs/toolkit';
+
+import artReducer from './artSlice';
+import counterReducer from './examples/counterSlice';
+import formExample1Slice from './examples/formExample1Slice';
+import musicReducer from './musicSlice';
+import photosReducer from './photosSlice';
+import resourcesReducer from './resourcesSlice';
 
 export const store = configureStore({
   reducer: {

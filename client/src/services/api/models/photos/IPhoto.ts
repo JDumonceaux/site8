@@ -1,9 +1,9 @@
 export interface IPhoto {
-  id: number;
-  url: string;
-  name?: string;
-  description?: string;
-  channel?: string;
-  albums?: number[];
-  tags?: string[];
+  readonly id: number;
+  readonly url: string;
+  readonly name?: string;
+  readonly description?: string;
+  readonly channel?: string;
+  readonly albums?: number[];
+  readonly tags?: string[];
 }

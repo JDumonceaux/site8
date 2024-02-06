@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 interface SearchProps {
   onChange: (text: string) => void;
 }
 
 const Search = React.memo(function Search({ onChange }: SearchProps) {
-  console.log("Search rendered!");
+  console.log('Search rendered!');
 
   return (
     <input

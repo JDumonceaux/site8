@@ -46,7 +46,7 @@ select {
 } */
 /* assign button hover state */
 button,
-[role="button"] {
+[role='button'] {
   cursor: pointer;
   background-color: transparent;
   -webkit-tap-highlight-color: transparent;
@@ -77,19 +77,19 @@ ul {
   list-style: none;
 } */
 /* reset text input style */
-[type="date"],
-[type="datetime"],
-[type="datetime-local"],
-[type="email"],
-[type="month"],
-[type="number"],
-[type="password"],
-[type="search"],
-[type="tel"],
-[type="text"],
-[type="time"],
-[type="url"],
-[type="week"],
+[type='date'],
+[type='datetime'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='time'],
+[type='url'],
+[type='week'],
 textarea,
 select {
   -webkit-appearance: none;
@@ -112,8 +112,8 @@ textarea {
   overflow: auto;
 }
 /* reset checkbox and radio style */
-[type="checkbox"],
-[type="radio"] {
+[type='checkbox'],
+[type='radio'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

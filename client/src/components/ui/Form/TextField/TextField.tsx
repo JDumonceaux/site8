@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import TextInput, { ITextInputProps } from "./TextInput";
-import HelperText, { IHelperTextProps } from "./HelperText";
-import TextLabel, { ITextLabelProps } from "./TextLabel";
+import HelperText, { IHelperTextProps } from './HelperText';
+import TextInput, { ITextInputProps } from './TextInput';
+import TextLabel, { ITextLabelProps } from './TextLabel';
 
 export interface IProps {
   LabelProps?: ITextLabelProps;

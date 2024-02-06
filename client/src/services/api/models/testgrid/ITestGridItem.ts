@@ -1,9 +1,9 @@
 export interface ITestGridItem {
-  id: number;
-  area: string;
-  subarea?: string;
-  value?: string;
-  result?: string;
-  comment?: string;
-  help?: string;
+  readonly id: number;
+  readonly area: string;
+  readonly subarea?: string;
+  readonly value?: string;
+  readonly result?: string;
+  readonly comment?: string;
+  readonly help?: string;
 }

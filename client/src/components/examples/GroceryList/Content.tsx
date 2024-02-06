@@ -1,4 +1,4 @@
-import GroceryList from "./GroceryList";
+import GroceryList from './GroceryList';
 
 function Content() {
   return <GroceryList />;

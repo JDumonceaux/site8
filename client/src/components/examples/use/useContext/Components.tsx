@@ -1,4 +1,4 @@
-import { useUserContext } from "./context";
+import { useUserContext } from './context';
 
 export function Sidebar() {
   const user = useUserContext();

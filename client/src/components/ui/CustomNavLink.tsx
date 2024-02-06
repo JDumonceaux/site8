@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const CustomNavLink = ({
@@ -13,7 +14,7 @@ const CustomNavLink = ({
     <NavLink
       to={to}
       className={({ isActive }) => (isActive ? 'active' : '')}
-      aria-current='page'
+      aria-current="page"
       aria-label={ariaLabel ? ariaLabel : children?.toString()}
     >
       {children}

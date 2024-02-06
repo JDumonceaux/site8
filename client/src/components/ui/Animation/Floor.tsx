@@ -1,4 +1,4 @@
-import "./floor.css";
+import './floor.css';
 export default function Floor() {
   return (
     <div className="stage">

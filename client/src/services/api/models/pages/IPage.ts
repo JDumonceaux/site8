@@ -1,10 +1,12 @@
 export interface IPage {
-  id: number;
-  short_title: string;
-  long_title?: string;
-  edit_date?: Date;
-  resources?: boolean;
-  parent?: string;
-  fileName?: string;
-  text: string;
+  readonly id: number;
+  readonly short_title: string;
+  readonly long_title?: string;
+  readonly edit_date?: Date;
+  readonly resources?: boolean;
+  readonly parent?: string;
+  readonly fileName?: string;
+  readonly text: string;
+  readonly reading_time?: string;
+  readonly readability_score?: string;
 }

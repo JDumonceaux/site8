@@ -1,4 +1,4 @@
-import { useTransition } from "react";
+import { useTransition } from 'react';
 
 interface TabButtonProps {
   onClick: () => void;

@@ -4,7 +4,7 @@ type ResourcesProps = {
 
 export default function Resources({ id }: ResourcesProps) {
   return (
-    <div className='loading-wrapper'>
+    <div className="loading-wrapper">
       {/* {data?.items?.map((item) => (
         <div className='card' key={item.id}>
           <h3>

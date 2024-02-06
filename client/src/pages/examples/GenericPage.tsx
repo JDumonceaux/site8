@@ -1,9 +1,9 @@
-import { ServiceUrl } from '../../utils';
-
-import { useEffect, useState } from 'react';
-import { IPage } from '../../services/api/models/pages/IPage';
-import Loading from '../../components/common/Loading/Loading';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+import Loading from '../../components/common/Loading/Loading';
+import { IPage } from '../../services/api/models/pages/IPage';
+import { ServiceUrl } from '../../utils';
 
 interface IProps {
   id: number;
@@ -39,8 +39,8 @@ export default function GenericPage({ id }: IProps) {
   }, [id]);
 
   return (
-    <div className='generic-page' data-testid='GenericPage.root'>
-      <main className='main'>
+    <div className="generic-page" data-testid="GenericPage.root">
+      <main className="main">
         {isLoading ? (
           <Loading />
         ) : error ? (
@@ -54,8 +54,8 @@ export default function GenericPage({ id }: IProps) {
         )}
       </main>
 
-      <div className='right-column'>
-        <img src='./face.png' alt='' />
+      <div className="right-column">
+        <img src="./face.png" alt="" />
       </div>
     </div>
   );

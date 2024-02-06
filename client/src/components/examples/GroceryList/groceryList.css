@@ -10,8 +10,8 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -64,7 +64,7 @@ ul {
 }
 
 ul li::before {
-  content: "\200B";
+  content: '\200B';
 }
 
 .item {
@@ -80,7 +80,7 @@ ul li::before {
   margin: 0;
 }
 
-.item input[type="checkbox"] {
+.item input[type='checkbox'] {
   text-align: center;
   width: 2.5rem;
   width: 48px;
@@ -92,7 +92,7 @@ ul li::before {
   margin-right: 0.5rem;
 }
 
-.item input[type="checkbox"]:focus + label {
+.item input[type='checkbox']:focus + label {
   text-decoration: underline;
 }
 
@@ -130,7 +130,7 @@ ul li::before {
   left: -99999px;
 }
 
-.addForm input[type="text"] {
+.addForm input[type='text'] {
   flex-grow: 1;
   max-width: calc(100% - 50px);
   min-height: 48px;
@@ -173,7 +173,7 @@ button:hover {
   left: -99999px;
 }
 
-.searchForm input[type="text"] {
+.searchForm input[type='text'] {
   flex-grow: 1;
   max-width: 100%;
   min-height: 48px;

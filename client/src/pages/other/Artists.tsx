@@ -1,5 +1,5 @@
-import PageTitle from '../../components/common/PageTitle/PageTitle';
-import SEO from '../../components/common/SEO/SEO';
+import PageTitle from 'components/common/PageTitle/PageTitle';
+import SEO from 'components/common/SEO/SEO';
 
 export default function Artists() {
   const title = 'Art';
@@ -7,17 +7,17 @@ export default function Artists() {
   return (
     <>
       <SEO title={title} />
-      <main className='main-content'>
+      <main className="main-content">
         <PageTitle title={title} />
-        <section className='section'>
+        <section className="section">
           <img
-            src='https://www.edvardmunch.org/images/paintings/the-scream.jpg'
-            title='The Scream'
-            alt='The Scream'
+            src="https://www.edvardmunch.org/images/paintings/the-scream.jpg"
+            title="The Scream"
+            alt="The Scream"
           />
         </section>
       </main>
-      <aside className='right-sidebar'></aside>
+      <aside className="right-sidebar"></aside>
     </>
   );
 }

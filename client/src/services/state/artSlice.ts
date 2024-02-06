@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ServiceUrl } from "../../utils";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-import { IArt } from "../api/models/art/IArt";
+import { ServiceUrl } from '../../utils';
+import { IArt } from '../api/models/art/IArt';
 
 interface ArtState {
   artData: IArt | null;
@@ -16,15 +16,15 @@ const initialState: ArtState = {
   error: null,
 };
 
-export const fetchArt = createAsyncThunk("art/fetchArt", async () => {
+export const fetchArt = createAsyncThunk('art/fetchArt', async () => {
   const response = await axios.get<IArt>(ServiceUrl.ENDPOINT_ART, {
-    responseType: "json",
+    responseType: 'json',
   });
   return response.data;
 });
 
 const artSlice = createSlice({
-  name: "art",
+  name: 'art',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -39,7 +39,7 @@ const artSlice = createSlice({
       })
       .addCase(fetchArt.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || "An error occurred";
+        state.error = action.error.message || 'An error occurred';
       });
   },
 });

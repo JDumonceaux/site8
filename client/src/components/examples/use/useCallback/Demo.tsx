@@ -1,10 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
-import { shuffle } from "./shuffle";
+import Search from './Search';
+import { shuffle } from './shuffle';
 
-import Search from "./Search";
-
-const allUsers = ["john", "alex", "george", "simon", "james"];
+const allUsers = ['john', 'alex', 'george', 'simon', 'james'];
 
 export default function Demo() {
   const [users, setUsers] = useState(allUsers);
@@ -16,7 +15,7 @@ export default function Demo() {
       const filteredUsers = allUsers.filter((user) => user.includes(text));
       setUsers(filteredUsers);
     },
-    [users]
+    [users],
   );
 
   return (

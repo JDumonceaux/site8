@@ -18,8 +18,8 @@ const StyledCopyright = styled.div`
 export function Footer() {
   const thisYear = new Date().getFullYear();
   return (
-    <StyledFooter role='contentinfo' className='footer' data-testid='footer'>
-      <StyledCopyright aria-label='Copyright Information'>
+    <StyledFooter role="contentinfo" className="footer" data-testid="footer">
+      <StyledCopyright aria-label="Copyright Information">
         Copyright &copy; {thisYear}
       </StyledCopyright>
       {/* <ChangeLanguage /> */}

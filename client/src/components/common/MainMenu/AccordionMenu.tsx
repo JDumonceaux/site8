@@ -1,5 +1,6 @@
-import { useLayoutEffect, useState } from 'react';
 import './accordionMenu.css';
+
+import { useLayoutEffect, useState } from 'react';
 import { useMatches } from 'react-router-dom';
 
 type AccordionMenuProps = {
@@ -9,12 +10,7 @@ type AccordionMenuProps = {
   children: React.ReactNode;
 };
 
-export function AccordionMenu({
-  id,
-  title,
-  path = '',
-  children,
-}: AccordionMenuProps) {
+export function AccordionMenu({ id, title, path = '', children }: AccordionMenuProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
   // Only works with data routers.
   const matches = useMatches();
@@ -37,36 +33,33 @@ export function AccordionMenu({
   };
 
   return (
-    <div className='accordion-menu'>
+    <div className="accordion-menu">
       <div
         key={id}
         className={`accordion-section ${expanded ? 'expanded' : 'collapsed'}`}
       >
         <button
-          type='button'
+          type="button"
           onClick={() => toggleSection()}
           onKeyDown={(e) => handleKeyPress(e)}
           aria-controls={`accordion-content-${id}`}
           aria-expanded={expanded}
-          className='accordion-section-header'
+          className="accordion-section-header"
         >
-          <span className='accordion-section-title'>{title}</span>
+          <span className="accordion-section-title">{title}</span>
           <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='currentColor'
-            viewBox='0 0 24 24'
-            width='24'
-            height='24'
-            className='accordion-section-icon'
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            className="accordion-section-icon"
           >
-            <path d='M7 10l5 5 5-5z' />
+            <path d="M7 10l5 5 5-5z" />
           </svg>
         </button>
         {expanded && (
-          <div
-            id={`accordion-content-${id}`}
-            className='accordion-section-content'
-          >
+          <div id={`accordion-content-${id}`} className="accordion-section-content">
             {children}
           </div>
         )}

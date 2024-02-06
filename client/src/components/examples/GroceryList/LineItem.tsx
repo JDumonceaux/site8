@@ -1,5 +1,6 @@
-import { FaTrashAlt } from "react-icons/fa";
-import { IItem } from "./IItem";
+import { FaTrashAlt } from 'react-icons/fa';
+
+import { IItem } from './IItem';
 
 type Props = {
   item?: IItem;
@@ -16,7 +17,7 @@ const LineItem = ({ item, handleCheck, handleDelete }: Props) => {
         checked={item.checked}
       />
       <label
-        style={item.checked ? { textDecoration: "line-through" } : undefined}
+        style={item.checked ? { textDecoration: 'line-through' } : undefined}
         onDoubleClick={() => handleCheck(item.id)}
       >
         {item.item}

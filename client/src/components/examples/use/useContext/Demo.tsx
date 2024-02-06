@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { DashboardContext } from "./context";
-import Dashboard from "./Dashboard";
+import { DashboardContext } from './context';
+import Dashboard from './Dashboard';
 
 export interface IUser {
   isSubscribed: boolean;
@@ -11,7 +11,7 @@ export interface IUser {
 export default function Demo() {
   const [user] = useState<IUser>({
     isSubscribed: true,
-    name: "You",
+    name: 'You',
   });
 
   return (

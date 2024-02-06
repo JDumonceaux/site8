@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { httpErrorHandler } from 'utils/errorHandler';
 
 const useFetch = <T>(url: string) => {
   const [data, setData] = useState<T | undefined>(undefined);
@@ -7,8 +8,10 @@ const useFetch = <T>(url: string) => {
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    const source = axios.CancelToken.source(); // Create a cancel token
     setLoading(true);
+    setData(undefined);
+    setError(undefined);
+    const source = axios.CancelToken.source(); // Create a cancel token
 
     const fetchDataAsync = async () => {
       await axios
@@ -16,14 +19,14 @@ const useFetch = <T>(url: string) => {
           cancelToken: source.token,
         })
         .then((response) => {
-          setData(response.data);
+          response.data && setData(response.data);
         })
         .catch((error) => {
           if (axios.isCancel(error)) {
             console.log('Request canceled', error.message);
           } else {
             console.log('error', error);
-            setError('Error');
+            setError(httpErrorHandler(error));
           }
         })
         .finally(() => {

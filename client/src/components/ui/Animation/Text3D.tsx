@@ -1,4 +1,4 @@
-import "./text3D.css";
+import './text3D.css';
 
 export default function Text3D() {
   return (

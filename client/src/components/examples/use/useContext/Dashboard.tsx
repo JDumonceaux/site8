@@ -1,4 +1,4 @@
-import { Profile, Sidebar } from "./Components";
+import { Profile, Sidebar } from './Components';
 
 export default function Dashboard() {
   return (

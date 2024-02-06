@@ -1,10 +1,11 @@
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import "./changeLanguage.css";
+import './changeLanguage.css';
+
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const languages = [
-  { code: "en", lang: "English" },
-  { code: "fr", lang: "French" },
+  { code: 'en', lang: 'English' },
+  { code: 'fr', lang: 'French' },
 ];
 
 function ChangeLanguage() {
@@ -23,7 +24,7 @@ function ChangeLanguage() {
       {languages.map((lng) => {
         return (
           <button
-            className={lng.code === i18n.language ? "selected" : ""}
+            className={lng.code === i18n.language ? 'selected' : ''}
             key={lng.code}
             onClick={() => changeLanguage(lng.code)}
           >

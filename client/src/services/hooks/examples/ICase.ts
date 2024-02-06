@@ -1,8 +1,8 @@
 export interface ICase {
   caseNumber: string;
-  caseStatus: string;
+  caseStatus?: string;
   dateTimeOpened?: Date;
-  delayReason: string;
+  delayReason?: string;
   deliveryDate?: string;
   deliveryWindowEnd?: Date;
   deliveryWindowStart?: Date;

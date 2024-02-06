@@ -1,4 +1,4 @@
-import CustomNavLink from "../components/ui/CustomNavLink";
+import CustomNavLink from 'components/ui/CustomNavLink';
 
 function Sitemap() {
   return (
@@ -6,8 +6,7 @@ function Sitemap() {
       <h1>Sitemap</h1>
       <div></div>
       <div>
-        This is not an actual sitemap - this is aspirational - what I'm working
-        towards.
+        This is not an actual sitemap - this is aspirational - what I'm working towards.
       </div>
 
       <ul>

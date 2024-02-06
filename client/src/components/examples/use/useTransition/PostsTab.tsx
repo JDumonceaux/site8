@@ -1,6 +1,6 @@
 const PostsTab = () => {
   // Log once. The actual slowdown is inside SlowPost.
-  console.log("[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />");
+  console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
 
   const items = [];
   for (let i = 0; i < 2500; i++) {

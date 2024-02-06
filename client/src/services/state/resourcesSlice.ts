@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ServiceUrl } from "../../utils";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-import { IResources } from "../api/models/resources/IResources";
+import { ServiceUrl } from '../../utils';
+import { IResources } from '../api/models/resources/IResources';
 
 interface ResourcesState {
   resourcesData: IResources | null;
@@ -16,21 +16,15 @@ const initialState: ResourcesState = {
   error: null,
 };
 
-export const fetchResources = createAsyncThunk(
-  "resources/fetchResources",
-  async () => {
-    const response = await axios.get<IResources>(
-      `${ServiceUrl.ENDPOINT_RESOURCES}/1`,
-      {
-        responseType: "json",
-      }
-    );
-    return response.data;
-  }
-);
+export const fetchResources = createAsyncThunk('resources/fetchResources', async () => {
+  const response = await axios.get<IResources>(`${ServiceUrl.ENDPOINT_RESOURCES}/1`, {
+    responseType: 'json',
+  });
+  return response.data;
+});
 
 const resourcesSlice = createSlice({
-  name: "resources",
+  name: 'resources',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -45,7 +39,7 @@ const resourcesSlice = createSlice({
       })
       .addCase(fetchResources.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || "An error occurred";
+        state.error = action.error.message || 'An error occurred';
       });
   },
 });

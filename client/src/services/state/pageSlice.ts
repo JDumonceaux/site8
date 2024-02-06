@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ServiceUrl } from '../../utils';
 import axios from 'axios';
 
+import { ServiceUrl } from '../../utils';
 import { IPage } from '../api/models/pages/IPage';
 
 interface PageState {
