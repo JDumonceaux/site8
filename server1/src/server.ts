@@ -21,15 +21,9 @@ app.use(function (_req, res, next) {
   // Website you wish to allow to connect
   res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
   // Request methods you wish to allow
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   // Request headers you wish to allow
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type',
-  );
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
   //res.setHeader('Access-Control-Allow-Credentials', true);
@@ -53,10 +47,10 @@ function getFile(_req: Request, res: Response, fileName: string) {
     root: path.join(__dirname, '../data'),
     timeout: 3000,
   };
-   Logger.info(`getFile -> ${tFileName}`);
+  Logger.info(`getFile -> ${tFileName}`);
   res.sendFile(tFileName, options);
 }
 
 app.listen(port, () => {
-   Logger.info(`Service is listening on port ${port}.`);
+  Logger.info(`Service is listening on port ${port}.`);
 });

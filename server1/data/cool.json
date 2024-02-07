@@ -1,74 +1,62 @@
 {
-   "metadata":{
-      "id":2,
-      "data_type":"music",
-      "title":"Music"
-   },
-   "items":[
-      {
-         "id":1,
-         "name":"Place de Cordeliers, Lyon, France in 1895 - Restored Footage",
-         "description":"",
-         "channel": "youtube",
-         "tags":["history"],
-         "url":"https://www.youtube.com/embed/F6XCPV8e6BU?si=XM1BNW1GQxIuUlkb"
-      }, 
-      {
-         "id":2,
-         "name":"Kelly Boesch",
-         "description":"",
-         "artist": "Kelly Boesch",
-         "channel": "x-tiktok",
-         "tags":["history"],
-         "url":"https://x.com/kellyeld/status/1738465382565032109?s=20"
-      }, 
-      {
-         "id":2,
-         "name":"Kelly Boesch",
-         "description":"",
-         "artist": "Kelly Boesch",
-         "channel": "x-tiktok",
-         "tags":["history"],
-         "url":"https://x.com/kellyeld/status/1738485769713676488?s=20"
-      },
-      {
-         "id":3,
-         "name":"Kelly Boesch",
-         "description":"",
-         "artist": "Kelly Boesch",
-         "channel": "tiktok",
-         "tags":["AI"],
-         "url":"https://www.tiktok.com/@kelly_boesch_ai_art/video/7315208908514151723?is_from_webapp=1&sender_device=pc&web_id=7317875344432956959"
-      }, 
-      {
-         "id":4,
-         "name":"Kelly Boesch",
-         "description":"Moments in Love - The Art of Noise",
-         "artist": "Kelly Boesch",
-         "channel": "tiktok",
-         "tags":["AI"],
-         "url":"https://www.tiktok.com/@kelly_boesch_ai_art/video/7315440851906202922?is_from_webapp=1&sender_device=pc&web_id=7317875344432956959"
-      }
-    
-
-      
-
-
-      
-
-   ],
-   "channels": [{
-      "id":1,
+  "metadata": {
+    "id": 2,
+    "data_type": "music",
+    "title": "Music"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "Place de Cordeliers, Lyon, France in 1895 - Restored Footage",
+      "description": "",
       "channel": "youtube",
-      "title":"History Colored",
+      "tags": ["history"],
+      "url": "https://www.youtube.com/embed/F6XCPV8e6BU?si=XM1BNW1GQxIuUlkb"
+    },
+    {
+      "id": 2,
+      "name": "Kelly Boesch",
+      "description": "",
+      "artist": "Kelly Boesch",
+      "channel": "x-tiktok",
+      "tags": ["history"],
+      "url": "https://x.com/kellyeld/status/1738465382565032109?s=20"
+    },
+    {
+      "id": 2,
+      "name": "Kelly Boesch",
+      "description": "",
+      "artist": "Kelly Boesch",
+      "channel": "x-tiktok",
+      "tags": ["history"],
+      "url": "https://x.com/kellyeld/status/1738485769713676488?s=20"
+    },
+    {
+      "id": 3,
+      "name": "Kelly Boesch",
+      "description": "",
+      "artist": "Kelly Boesch",
+      "channel": "tiktok",
+      "tags": ["AI"],
+      "url": "https://www.tiktok.com/@kelly_boesch_ai_art/video/7315208908514151723?is_from_webapp=1&sender_device=pc&web_id=7317875344432956959"
+    },
+    {
+      "id": 4,
+      "name": "Kelly Boesch",
+      "description": "Moments in Love - The Art of Noise",
+      "artist": "Kelly Boesch",
+      "channel": "tiktok",
+      "tags": ["AI"],
+      "url": "https://www.tiktok.com/@kelly_boesch_ai_art/video/7315440851906202922?is_from_webapp=1&sender_device=pc&web_id=7317875344432956959"
+    }
+  ],
+  "channels": [
+    {
+      "id": 1,
+      "channel": "youtube",
+      "title": "History Colored",
       "url": "https://www.youtube.com/@HistoryColored",
-      "tags":["history", "colorized"]
-   }
-
-
-]
-   
-
-   
+      "tags": ["history", "colorized"]
+    }
+  ]
 }
-

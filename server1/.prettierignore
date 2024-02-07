@@ -1,0 +1,3 @@
+.prettierrc.cjs
+.vscode/*
+tsconfig.json

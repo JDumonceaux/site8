@@ -6,7 +6,6 @@ import { IPages } from '../models/resources/IPages.js';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Logger } from '../utils/Logger.js';
 
-
 export const pageRouter = express.Router();
 
 pageRouter.get('/:id', (req: Request, res: Response) => {
@@ -17,7 +16,7 @@ pageRouter.get('/:id', (req: Request, res: Response) => {
 
 pageRouter.patch('/is', (req: Request, res: Response) => {
   const data = req.body;
-  
+
   updateData(req.params.id, data, getFilePath('pages.json')).then(() => {
     res.json({ ...data });
   });
@@ -27,7 +26,7 @@ pageRouter.post('/', (req: Request, res: Response) => {
   const data = req.body;
   appendData(data, getFilePath('pages.json')).then(() => {
     res.json({ ...data });
-  });   
+  });
 });
 
 function getAllData(id: string) {
@@ -53,7 +52,7 @@ function getPage(id: string, data: string) {
     const jsonData = JSON.parse(data) as IPages;
     const searchId = parseInt(id);
     const item = jsonData.items.find((x) => x.id === searchId);
-    return { ...jsonData.metadata, item: item};
+    return { ...jsonData.metadata, item: item };
   } catch (error) {
     Logger.debug(`getPage -> ${error}`);
   }
@@ -62,15 +61,15 @@ function getPage(id: string, data: string) {
 
 function appendData(data: IPage, filePath: string) {
   const lastId = getLastId(filePath);
- const nextId = lastId ? lastId + 1 : + 1;
- 
+  const nextId = lastId ? lastId + 1 : +1;
+
   return readFile(filePath, {
     encoding: 'utf8',
   })
     .then((results) => {
       const jsonData = JSON.parse(results) as IPages;
       const ret = { ...jsonData, items: [...jsonData.items, { ...data, id: nextId }] };
-      
+
       writeFile(filePath, JSON.stringify(ret, null, 2), {
         encoding: 'utf8',
       });
@@ -85,10 +84,10 @@ function updateData(id: string, data: IPage, filePath: string) {
     .then((results) => {
       const jsonData = JSON.parse(results) as IPages;
       const searchId = parseInt(id);
-  
-      const filteredItems = jsonData.items.filter((x) => x.id !== searchId);    
+
+      const filteredItems = jsonData.items.filter((x) => x.id !== searchId);
       const ret = { ...jsonData, items: [...filteredItems, data] };
-      
+
       writeFile(filePath, JSON.stringify(ret, null, 2), {
         encoding: 'utf8',
       });
@@ -97,21 +96,21 @@ function updateData(id: string, data: IPage, filePath: string) {
 }
 
 function getLastId(filePath: string): number | undefined {
-   readFile(filePath, {
+  readFile(filePath, {
     encoding: 'utf8',
   })
     .then((results) => {
       const jsonData = JSON.parse(results) as IPages;
-     
-      const maxItem = jsonData.items.reduce(function(a, b) {
+
+      const maxItem = jsonData.items.reduce(function (a, b) {
         if (+a.id > +b.id) {
-            return a;
+          return a;
         } else {
-            return b;
+          return b;
         }
-        });
-      return maxItem ? maxItem.id : undefined;   
+      });
+      return maxItem ? maxItem.id : undefined;
     })
     .catch((_err) => {});
-return undefined;
+  return undefined;
 }

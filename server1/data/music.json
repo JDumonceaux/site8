@@ -66,12 +66,7 @@
       "name": "Zorba the Greek",
       "description": "The Dance of the Zorba",
       "channel": "youtube",
-      "tags": [
-        "movies",
-        "Anthony Quinn",
-        "Greek",
-        "ethnic"
-      ],
+      "tags": ["movies", "Anthony Quinn", "Greek", "ethnic"],
       "url": "https://www.youtube.com/embed/BS0w3Wkric8?si=puz0D4gzASTX0w89"
     },
     {
@@ -79,10 +74,7 @@
       "name": "Zorba Emmetron",
       "description": "The Dance of the Zorba",
       "channel": "youtube",
-      "tags": [
-        "Greek",
-        "ethnic"
-      ],
+      "tags": ["Greek", "ethnic"],
       "url": "https://www.youtube.com/embed/LYG5l9SQLp8?si=-PhkiZWvGoavRPU7"
     },
     {
@@ -91,10 +83,7 @@
       "description": "Wandering Star",
       "channel": "youtube",
       "section": "Movies",
-      "tags": [
-        "Movies",
-        "Lee Marvin"
-      ],
+      "tags": ["Movies", "Lee Marvin"],
       "url": "https://www.youtube.com/embed/-jYk5u9vKfA?si=ccYUCfLgnxQ7lLao"
     },
     {
@@ -103,10 +92,7 @@
       "description": "They call the Wind Maria",
       "channel": "youtube",
       "section": "Movies",
-      "tags": [
-        "movies",
-        "Harve Presnell"
-      ],
+      "tags": ["movies", "Harve Presnell"],
       "url": "https://www.youtube.com/embed/ByqYEzugleE?si=sR0XUX0K8vfucXwa"
     },
     {
@@ -115,10 +101,7 @@
       "description": "Four Seasons - Winter",
       "channel": "youtube",
       "artist": "Claudio Constantini",
-      "tags": [
-        "Vivaldi",
-        "Constantini"
-      ],
+      "tags": ["Vivaldi", "Constantini"],
       "url": "https://www.youtube.com/embed/JUPo5SG5GCg?si=vZsWPFetmcZG06Jf"
     },
     {
@@ -127,10 +110,7 @@
       "description": "The Nutcracker",
       "channel": "youtube",
       "artist": "Claudio Constantini",
-      "tags": [
-        "Tchaikovsky",
-        "Constantini"
-      ],
+      "tags": ["Tchaikovsky", "Constantini"],
       "url": "https://www.youtube.com/embed/hYADTPwa9lk?si=66dOeV25dwRegPrp"
     },
     {
@@ -139,9 +119,7 @@
       "description": "La Foule",
       "channel": "youtube",
       "artist": "Claudio Constantini",
-      "tags": [
-        "Constantini"
-      ],
+      "tags": ["Constantini"],
       "url": "https://www.youtube.com/embed/GUppXhIataY?si=0syUxna6NeGjmDSn"
     },
     {
@@ -150,9 +128,7 @@
       "description": "Autumn Leaves",
       "channel": "youtube",
       "artist": "Claudio Constantini",
-      "tags": [
-        "Constantini"
-      ],
+      "tags": ["Constantini"],
       "url": "https://www.youtube.com/embed/XliHqe4dhIY?si=y0wi2L_cN40l3UDa"
     },
     {
@@ -161,10 +137,7 @@
       "description": "Passacaglia",
       "channel": "youtube",
       "artist": "Halvorsen",
-      "tags": [
-        "Handel",
-        "Halvorsen"
-      ],
+      "tags": ["Handel", "Halvorsen"],
       "url": "https://www.youtube.com/embed/GAIZxaToV2A?si=Z2P51A85fr3a6M44"
     },
     {
@@ -173,10 +146,7 @@
       "description": "The Sound Of Silence",
       "channel": "youtube",
       "artist": "Disturbed",
-      "tags": [
-        "Simon & Garfunkel",
-        "Disturbed"
-      ],
+      "tags": ["Simon & Garfunkel", "Disturbed"],
       "url": "https://www.youtube.com/embed/u9Dg-g7t2l4?si=drUAeZFhRIpq7Xp5"
     },
     {
@@ -194,9 +164,7 @@
       "description": "Art Restoration",
       "channel": "youtube",
       "artist": "Baumgartner Restoration",
-      "tags": [
-        "Art Restoration"
-      ],
+      "tags": ["Art Restoration"],
       "url": "https://www.youtube.com/embed/v1Mjc4zNfY4?si=jPyMdodMf6zU1b2Q"
     },
     {
@@ -205,9 +173,7 @@
       "description": "The Museum of Modern Art",
       "channel": "youtube",
       "artist": "The Museum of Modern Art",
-      "tags": [
-        "Art Restoration"
-      ],
+      "tags": ["Art Restoration"],
       "url": "https://www.youtube.com/embed/1O88Vc-cC4I?si=SWiN0Bc_TB0lr2Gd"
     },
     {
@@ -216,10 +182,7 @@
       "description": "Dominick The Donkey",
       "channel": "youtube",
       "artist": "Lou Monte",
-      "tags": [
-        "Christmas",
-        "Lou Monte"
-      ],
+      "tags": ["Christmas", "Lou Monte"],
       "url": "https://www.youtube.com/embed/Ca5wXojemRM?si=wJWYqbFiLy63d1c7"
     },
     {
@@ -228,9 +191,7 @@
       "description": "The Ballad of Bilbo Baggins",
       "channel": "youtube",
       "artist": "Leonard Nimoy",
-      "tags": [
-        "Leonard Nimoy"
-      ],
+      "tags": ["Leonard Nimoy"],
       "url": "https://www.youtube.com/embed/BC35cQKHwzg?si=qEvK2Pyc7WKWJC25"
     },
     {
@@ -239,10 +200,7 @@
       "description": "That's Amore",
       "channel": "youtube",
       "artist": "Dean Martin",
-      "tags": [
-        "Dean Martin",
-        "Italian"
-      ],
+      "tags": ["Dean Martin", "Italian"],
       "url": "https://www.youtube.com/embed/OnFlx2Lnr9Q?si=9Lr5vZAZHscjuAC8"
     },
     {
@@ -252,9 +210,7 @@
       "channel": "youtube",
       "artist": "Muppets",
       "section": "Muppets",
-      "tags": [
-        "Muppets"
-      ],
+      "tags": ["Muppets"],
       "url": "https://www.youtube.com/embed/zb47CstE7R4?si=3pN4qEGZB9t4p-SX"
     },
     {
@@ -263,9 +219,7 @@
       "description": "Rainbow Connection",
       "channel": "youtube",
       "artist": "Muppets",
-      "tags": [
-        "Muppets"
-      ],
+      "tags": ["Muppets"],
       "url": "https://www.youtube.com/embed/WS3Lkc6Gzlk?si=3C2ZK1hd0TLGNb_h"
     },
     {
@@ -275,9 +229,7 @@
       "channel": "youtube",
       "artist": "The Seekers",
       "section": "The Seekers",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/wZf41UudAbI?si=YnvXIFsPAFeAspE3"
     },
     {
@@ -287,9 +239,7 @@
       "channel": "youtube",
       "artist": "The Seekers",
       "section": "The Seekers",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/wsIbfYEizLk?si=PwewzPcAwih1Dq0m"
     },
     {
@@ -299,9 +249,7 @@
       "channel": "youtube",
       "artist": "The Seekers",
       "section": "The Seekers",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/VRg9NkIdjVs?si=KiNokk4NW9J9KjS-"
     },
     {
@@ -310,9 +258,7 @@
       "description": "The Girl from Ipanema",
       "channel": "youtube",
       "artist": "Astrud Gilberto",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/c5QfXjsoNe4?si=PPEEVMSGaKy1lzer"
     },
     {
@@ -321,9 +267,7 @@
       "description": "Take Five",
       "channel": "youtube",
       "artist": "Dave Brubeck",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/vmDDOFXSgAs?si=aA06r2Qt7cAjSIIE"
     },
     {
@@ -332,9 +276,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/KQ76-WiFTlo?si=KB4_Y-6cG3POoq84"
     },
     {
@@ -343,9 +285,7 @@
       "description": "Those Were The Days",
       "channel": "youtube",
       "artist": "Mary Hopkin",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/y3KEhWTnWvE?si=OyYlZPKNpvtmH1Mg"
     },
     {
@@ -354,9 +294,7 @@
       "description": "In the Year 2525",
       "channel": "youtube",
       "artist": "Zager & Evans",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/zKQfxi8V5FA?si=PdqrrmSMLuADbdgE"
     },
     {
@@ -365,9 +303,7 @@
       "description": "Love Story (Where do I begin)",
       "channel": "youtube",
       "artist": "Shirley Bassey",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/tdVFApo0EXg?si=F2eoueHwJufS-r1X"
     },
     {
@@ -376,9 +312,7 @@
       "description": "La Vie En Rose",
       "channel": "youtube",
       "artist": "Edith Piaf",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/kFzViYkZAz4?si=ZZ-cnyalc0upCMiU"
     },
     {
@@ -387,9 +321,7 @@
       "description": "Je Ne Regrette Rien",
       "channel": "youtube",
       "artist": "Edith Piaf",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/KoYHWgj1Gcs?si=CTE7r6M6ogZNoerE"
     },
     {
@@ -398,9 +330,7 @@
       "description": "Bang Bang",
       "channel": "youtube",
       "artist": "Ariana Grande",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/0HDdjwpPM3Y?si=Kqz957abvZ26Clyd"
     },
     {
@@ -409,9 +339,7 @@
       "description": "Bang-Bang (My Baby Shot Me Down)",
       "channel": "youtube",
       "artist": "Nancy Sinatra",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/7FNse1n7pSs?si=Epvc7GrQWhu_oyjS"
     },
     {
@@ -420,9 +348,7 @@
       "description": "These Boots Are Made For Walkin'",
       "channel": "youtube",
       "artist": "Nancy Sinatra",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/GM1kzbAgo_E?si=0aHnAsW2oULzJ8O7"
     },
     {
@@ -431,9 +357,7 @@
       "description": "Bang-Bang (My Baby Shot Me Down)",
       "channel": "youtube",
       "artist": "Dalida",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/WUVJY4N9bbI?si=LZlL8KrZdNe8dm1H"
     },
     {
@@ -442,9 +366,7 @@
       "description": "Love Potion Number 9",
       "channel": "youtube",
       "artist": "The Searchers",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/7rXhXLsNJL8?si=cvNeo5h6O7TvnrjI"
     },
     {
@@ -453,9 +375,7 @@
       "description": "Bang-Bang (My Baby Shot Me Down)",
       "channel": "youtube",
       "artist": "Dalida",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/WUVJY4N9bbI?si=LZlL8KrZdNe8dm1H"
     },
     {
@@ -465,9 +385,7 @@
       "channel": "youtube",
       "artist": "Ceol",
       "rating": 0,
-      "tags": [
-        "Irish"
-      ],
+      "tags": ["Irish"],
       "url": "https://www.youtube.com/embed/oqyCeC6oMHU?si=A-BQNeIC04ZwB0-m"
     },
     {
@@ -477,9 +395,7 @@
       "channel": "youtube",
       "artist": "Ceol",
       "rating:": 1,
-      "tags": [
-        "Irish"
-      ],
+      "tags": ["Irish"],
       "url": "https://www.youtube.com/embed/KAGWiIioscQ?si=Gf2PAWSEFYHhpl9I"
     },
     {
@@ -489,9 +405,7 @@
       "channel": "youtube",
       "artist": "The Dead South",
       "ranking": 0,
-      "tags": [
-        "Banjo"
-      ],
+      "tags": ["Banjo"],
       "url": "https://www.youtube.com/embed/1MevYCdn5S8?si=c2j0l2j7BTF33wcS"
     },
     {
@@ -500,9 +414,7 @@
       "description": "Pour Some Sugar On Me",
       "channel": "youtube",
       "artist": "Postmodern Jukebox",
-      "tags": [
-        "Postmodern Jukebox"
-      ],
+      "tags": ["Postmodern Jukebox"],
       "url": "https://www.youtube.com/embed/ilClbWTYgfw?si=thudG4IrbozjUVa-"
     },
     {
@@ -511,9 +423,7 @@
       "description": "Creep",
       "channel": "youtube",
       "artist": "Postmodern Jukebox",
-      "tags": [
-        "Postmodern Jukebox"
-      ],
+      "tags": ["Postmodern Jukebox"],
       "url": "https://www.youtube.com/embed/m3lF2qEA2cw?si=wrSzpEAFDuFNnjPa"
     },
     {
@@ -522,9 +432,7 @@
       "description": "Festival of Lights 2023 Lyon, France",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        "2023"
-      ],
+      "tags": ["2023"],
       "url": "https://www.youtube.com/embed/sGBTVngHvug?si=6dxiaiYCQ2k8G5MF"
     },
     {
@@ -533,9 +441,7 @@
       "description": "Festival of Lights 2023 Lyon, France",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        "2023"
-      ],
+      "tags": ["2023"],
       "url": "https://www.youtube.com/embed/M3Ne0YIyZ44?si=CKCGSKFUTRvS8gMn"
     },
     {
@@ -544,9 +450,7 @@
       "description": "Festival of Lights 2023 Lyon, France",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        "2023"
-      ],
+      "tags": ["2023"],
       "url": "https://www.youtube.com/embed/r_dXy5EDgBE?si=GOAYkY0iDcTjXV4p"
     },
     {
@@ -556,12 +460,7 @@
       "channel": "youtube",
       "artist": "",
       "time": "4:12",
-      "tags": [
-        "Edinburgh",
-        "2023",
-        "Hogmanay",
-        "Bagpipes"
-      ],
+      "tags": ["Edinburgh", "2023", "Hogmanay", "Bagpipes"],
       "url": "https://www.youtube.com/embed/FHHBLEcObvM?si=BpteQeFNG59R-ToK"
     },
     {
@@ -570,9 +469,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/GIGYLBVjYZA?si=i9TPS3z5Y-kje-9O"
     },
     {
@@ -581,9 +478,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/yfSLuEj99d0?si=wS1-pndgDeQqsMq6"
     },
     {
@@ -592,9 +487,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/wzT1kO_-xbQ?si=Iq5aixqikJTWcMGl"
     },
     {
@@ -603,9 +496,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/GFhLYnzGSno?si=5UpWUOr3ikUZRmAh"
     },
     {
@@ -614,9 +505,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        "https://www.youtube.com/embed/JdrbLvFJkB4?si=-LHvUovqP6-z1e_H"
-      ],
+      "tags": ["https://www.youtube.com/embed/JdrbLvFJkB4?si=-LHvUovqP6-z1e_H"],
       "url": ""
     },
     {
@@ -625,9 +514,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/tTq6Tofmo7E?si=l8zIoU8ikh3VLVDZ"
     },
     {
@@ -636,9 +523,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/uq7noaMwLfg?si=KO7cDtuOki83hoO5"
     },
     {
@@ -647,9 +532,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/1VM2eLhvsSM?si=fSJRP17HLm2a_NWA"
     },
     {
@@ -658,9 +541,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/lm6IU6V-dE8?si=874c845kOeamlLJF"
     },
     {
@@ -669,10 +550,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "Eurythmics",
-      "tags": [
-        "Eurythmics",
-        "Annie Lennox"
-      ],
+      "tags": ["Eurythmics", "Annie Lennox"],
       "url": "https://www.youtube.com/embed/qeMFqkcPYcg?si=xF7-B2rQIYxpuUyp"
     },
     {
@@ -681,9 +559,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "Annie Lennox",
-      "tags": [
-        "Annie Lennox"
-      ],
+      "tags": ["Annie Lennox"],
       "url": "https://www.youtube.com/embed/y25stK5ymlA?si=b46ONxbcaRuRcRsI"
     },
     {
@@ -692,9 +568,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "Annie Lennox",
-      "tags": [
-        "Annie Lennox"
-      ],
+      "tags": ["Annie Lennox"],
       "url": "https://www.youtube.com/embed/NSkboTTTmpg?si=qHb18kXNJpP5wJiv"
     },
     {
@@ -703,9 +577,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "Annie Lennox",
-      "tags": [
-        "Annie Lennox"
-      ],
+      "tags": ["Annie Lennox"],
       "url": "https://www.youtube.com/embed/HG7I4oniOyA?si=qDAGCi5K1DyRHGjJ"
     },
     {
@@ -714,9 +586,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "Annie Lennox",
-      "tags": [
-        "Annie Lennox"
-      ],
+      "tags": ["Annie Lennox"],
       "url": "https://www.youtube.com/embed/VZqPoriYXho?si=suDE7Rq_i45vJsQi"
     },
     {
@@ -725,9 +595,7 @@
       "description": "Masquerade",
       "channel": "youtube",
       "artist": "Andrew Lloyd Webber",
-      "tags": [
-        "Andrew Lloyd Webber"
-      ],
+      "tags": ["Andrew Lloyd Webber"],
       "url": "https://www.youtube.com/embed/mON5dbdm63M?si=mcq3sMpY36_rtXex"
     },
     {
@@ -736,10 +604,7 @@
       "description": "The Fifth Element",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        "Movies",
-        "The Fifth Element"
-      ],
+      "tags": ["Movies", "The Fifth Element"],
       "url": "https://www.youtube.com/embed/a7Dh5QoXv2c?si=fL75BFLcHLsoSTCJ"
     },
     {
@@ -748,10 +613,7 @@
       "description": "Dueling Banjos",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        "Movies",
-        "Deliverance"
-      ],
+      "tags": ["Movies", "Deliverance"],
       "url": "https://www.youtube.com/embed/NFutge4xn3w?si=oFNTjD8T8VUqOM3w"
     },
     {
@@ -760,9 +622,7 @@
       "description": "Windmills of Your Mind",
       "channel": "youtube",
       "artist": "Dusty Springfield",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/qKV9bK-CBXo?si=iU6HjaxeYoH3OGde"
     },
     {
@@ -771,10 +631,7 @@
       "description": "The Knights of Ni",
       "channel": "youtube",
       "artist": "Monty Python",
-      "tags": [
-        "Movies",
-        "Monty Python"
-      ],
+      "tags": ["Movies", "Monty Python"],
       "url": "https://www.youtube.com/embed/RZvsGdJP3ng?si=lneb_H3MammAYQDZ"
     },
     {
@@ -783,10 +640,7 @@
       "description": "Not Dead Yet",
       "channel": "youtube",
       "artist": "Monty Python",
-      "tags": [
-        "Movies",
-        "Monty Python"
-      ],
+      "tags": ["Movies", "Monty Python"],
       "url": "https://www.youtube.com/embed/Jdf5EXo6I68?si=xX-y0mUVBMrK0zxd"
     },
     {
@@ -813,9 +667,7 @@
       "description": "Scarborough Fair",
       "channel": "youtube",
       "artist": "Joshua Messick",
-      "tags": [
-        "Joshua Messick"
-      ],
+      "tags": ["Joshua Messick"],
       "url": "https://www.youtube.com/embed/PMPFaKpF1SM?si=eWHkaEoU6yCXplJs"
     },
     {
@@ -833,9 +685,7 @@
       "description": "Jubilee Stomp",
       "channel": "youtube",
       "artist": "Tuba Skinny",
-      "tags": [
-        "New Orleans"
-      ],
+      "tags": ["New Orleans"],
       "url": "https://www.youtube.com/embed/jft3BVoxqjo?si=koKGtj0zWivBLfEB"
     },
     {
@@ -853,9 +703,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "Pays D’en Haut",
-      "tags": [
-        "Cajun"
-      ],
+      "tags": ["Cajun"],
       "url": "https://www.youtube.com/embed/AFUl28YWVV4?si=N8MV5cIfvWK1NdAH"
     },
     {
@@ -945,9 +793,7 @@
       "description": "",
       "channel": "youtube",
       "artist": "",
-      "tags": [
-        "Drones"
-      ],
+      "tags": ["Drones"],
       "url": "https://www.youtube.com/embed/1O6OzbFu2ho?si=XKkdGexOrQvmOyIk"
     },
     {
@@ -974,9 +820,7 @@
       "description": "Cabaret",
       "channel": "youtube",
       "artist": "Liza Minelli",
-      "tags": [
-        "Movies"
-      ],
+      "tags": ["Movies"],
       "url": "https://www.youtube.com/embed/5QS1l1mSDSo?si=aLUD3ECSMkNy-T2A"
     },
     {
@@ -985,9 +829,7 @@
       "description": "Music Box Dance Scene",
       "channel": "youtube",
       "artist": "Chitty Chitty Bang Bang",
-      "tags": [
-        "Movies"
-      ],
+      "tags": ["Movies"],
       "url": "https://www.youtube.com/embed/L_l2ii_25tc?si=G8JORp9TitD0KOUQ"
     },
     {
@@ -996,10 +838,7 @@
       "description": "Nessun Dorma",
       "channel": "youtube",
       "artist": "Jonas Kaufmann",
-      "tags": [
-        "Opera",
-        "Puccni"
-      ],
+      "tags": ["Opera", "Puccni"],
       "url": "https://www.youtube.com/embed/-SpKFkjlO8Y?si=sD8WCY67dTAJXmws"
     },
     {
@@ -1062,7 +901,7 @@
       "name": "Disney Electrical Sky Parade - World Premiere - Disneyland Paris",
       "description": "Disney Electrical Sky Parade",
       "channel": "youtube",
-      "date" : "2024-01-08",
+      "date": "2024-01-08",
       "artist": "Disney",
       "tags": ["Disneyland Paris"],
       "url": "https://www.youtube.com/embed/_72-XE3wV4w?si=yHBvXO_84TUjh3Xg"
@@ -1216,10 +1055,7 @@
       "description": "French Taunting",
       "channel": "youtube",
       "artist": "Monty Python",
-      "tags": [
-        "Movies",
-        "Monty Python"
-      ],
+      "tags": ["Movies", "Monty Python"],
       "url": "https://www.youtube.com/embed/M9DCAFUerzs?si=fMOip6jxp5zHVLP0"
     },
     {
@@ -1228,10 +1064,7 @@
       "description": "Always Look On The Bright Side Of Life",
       "channel": "youtube",
       "artist": "Eric Idle",
-      "tags": [
-        "Movies",
-        "Monty Python"
-      ],
+      "tags": ["Movies", "Monty Python"],
       "url": "https://www.youtube.com/embed/SJUhlRoBL8M?si=3jWebzG9xgbVs3pe"
     },
     {
@@ -1240,9 +1073,7 @@
       "description": "If I were a rich man",
       "channel": "youtube",
       "artist": "Topol",
-      "tags": [
-        "Movies"
-      ],
+      "tags": ["Movies"],
       "url": "https://www.youtube.com/embed/RBHZFYpQ6nc?si=GB0cdCGvn8T4I37R",
       "ranking": 0
     },
@@ -1252,10 +1083,7 @@
       "description": "Do You Hear the People Sing",
       "channel": "youtube",
       "artist": "Ensemble",
-      "tags": [
-        "Les Misérables",
-        "Musical"
-      ],
+      "tags": ["Les Misérables", "Musical"],
       "url": "https://www.youtube.com/embed/1q82twrdr0U?si=KbRX2skrOfCqa26p",
       "ranking": 1
     },
@@ -1265,10 +1093,7 @@
       "description": "Bring Him Home",
       "channel": "youtube",
       "artist": "Colm Wilkinson",
-      "tags": [
-        "Les Misérables",
-        "Musical"
-      ],
+      "tags": ["Les Misérables", "Musical"],
       "url": "https://www.youtube.com/embed/qsYnhVITf9E?si=Njoi_S6efJxvdy2c",
       "ranking": 1
     },
@@ -1278,9 +1103,7 @@
       "description": "16 Tons",
       "channel": "youtube",
       "artist": "The Platters",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.youtube.com/embed/fjevsnCRQ_A?si=4ApUQc3TKuP7Zc4b"
     },
     {
@@ -1290,9 +1113,7 @@
       "channel": "youtube",
       "artist": "Colm McGuinness",
       "section": "Irish Songs",
-      "tags": [
-        "Irish"
-      ],
+      "tags": ["Irish"],
       "url": "https://www.youtube.com/embed/PSxpL_UG8I4?si=5xmJ10nqnQMP1Zzt",
       "ranking": 1
     },
@@ -1303,9 +1124,7 @@
       "channel": "youtube",
       "artist": "Colm McGuinness",
       "section": "Irish Songs",
-      "tags": [
-        "Irish"
-      ],
+      "tags": ["Irish"],
       "url": "https://www.youtube.com/embed/HFPStJrp9CI?si=FDgI_wki6e7pvoCW",
       "ranking": 1
     },
@@ -1316,10 +1135,7 @@
       "channel": "youtube",
       "artist": "Colm McGuinness",
       "section": "Irish Songs",
-      "tags": [
-        "Irish",
-        "Favorites"
-      ],
+      "tags": ["Irish", "Favorites"],
       "url": "https://www.youtube.com/embed/PW0nMGCuwNQ?si=cCcLM2KN9I4NLPAN",
       "ranking": 0
     },
@@ -1330,10 +1146,7 @@
       "channel": "youtube",
       "artist": "Colm McGuinness",
       "section": "Irish Songs",
-      "tags": [
-        "Irish",
-        "Favorites"
-      ],
+      "tags": ["Irish", "Favorites"],
       "url": "https://www.youtube.com/embed/1-9-o0rntTs?si=exK4-_BTPODUlwBs",
       "ranking": 0
     },
@@ -1343,9 +1156,7 @@
       "description": "",
       "channel": "tiktok",
       "artist": "Sail North",
-      "tags": [
-        ""
-      ],
+      "tags": [""],
       "url": "https://www.tiktok.com/@sailnorthmusic/video/7314686546685300011?is_from_webapp=1&sender_device=pc&web_id=7312218900903544351"
     }
   ],
@@ -1355,75 +1166,56 @@
       "channel": "youtube",
       "title": "Constantini Music",
       "url": "https://www.youtube.com/channel/UCfqS4jwdgdLf6oQZh7ipQlw",
-      "tags": [
-        "Claudio Constantini",
-        "Constantini"
-      ]
+      "tags": ["Claudio Constantini", "Constantini"]
     },
     {
       "id": 2,
       "channel": "youtube",
       "title": "Constantini Piano",
       "url": "https://www.youtube.com/@constantinipiano",
-      "tags": [
-        "Claudio Constantini",
-        "Constantini",
-        "piano"
-      ]
+      "tags": ["Claudio Constantini", "Constantini", "piano"]
     },
     {
       "id": 3,
       "title": "Annie Lennox",
       "channel": "youtube",
       "url": "https://www.youtube.com/channel/UC1TecRIR-of2J6aBnEI_S_w",
-      "tags": [
-        "Annie Lennox"
-      ]
+      "tags": ["Annie Lennox"]
     },
     {
       "id": 4,
       "title": "Postmodern Jukebox",
       "channel": "youtube",
       "url": "https://www.youtube.com/@postmodernjukebox",
-      "tags": [
-        "Postmodern Jukebox"
-      ]
+      "tags": ["Postmodern Jukebox"]
     },
     {
       "id": 5,
       "title": "Michael Bublé",
       "channel": "youtube",
       "url": "https://www.youtube.com/@michaelbuble",
-      "tags": [
-        "Michael Bublé"
-      ]
+      "tags": ["Michael Bublé"]
     },
     {
       "id": 6,
       "title": "",
       "channel": "youtube",
       "url": "",
-      "tags": [
-        ""
-      ]
+      "tags": [""]
     },
     {
       "id": 3,
       "title": "",
       "channel": "youtube",
       "url": "",
-      "tags": [
-        ""
-      ]
+      "tags": [""]
     },
     {
       "id": 7,
       "title": "",
       "channel": "youtube",
       "url": "",
-      "tags": [
-        ""
-      ]
+      "tags": [""]
     }
   ]
 }
