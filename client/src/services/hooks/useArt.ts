@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IArt } from 'services/api/models/art/IArt';
-import { fetchArt } from 'services/state/artSlice';
-import { AppDispatch, RootState } from 'services/state/store';
+import { IArt } from '../../services/api/models/art/IArt';
+import { fetchArt } from '../../services/state/artSlice';
+import { AppDispatch, RootState } from '../../services/state/store';
 
 const useArt = () => {
   const dispatch = useDispatch<AppDispatch>();

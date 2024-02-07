@@ -1,9 +1,8 @@
 import express, { Request, Response } from 'express';
-import { getFilePath } from 'utils/getFilePath';
+import { getFilePath } from '../utils/getFilePath.js';
 
 export const pagesRouter = express.Router();
-const path = require('path');
 
-pagesRouter.get('/', (req: Request, res: Response) => {
+pagesRouter.get('/', (_req: Request, res: Response) => {
   res.sendFile(getFilePath('pages.json'));
 });

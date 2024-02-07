@@ -1,2 +1,3 @@
-export * from './pageRouter';
-export * from './resourcesRouter';
+export * from './pageRouter.js';
+export * from './pagesRouter.js';
+export * from './resourcesRouter.js';

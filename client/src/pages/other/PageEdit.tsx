@@ -1,8 +1,11 @@
-import PageTitle from 'components/common/PageTitle/PageTitle';
-import SEO from 'components/common/SEO/SEO';
-import TextInput from 'components/ui/TextInput/TextInput';
+import PageTitle from '../../components/common/PageTitle/PageTitle';
+import SEO from '../../components/common/SEO/SEO';
+import TextInput from '../../components/ui/TextInput/TextInput';
 import { useState } from 'react';
 import { z } from 'zod';
+import usePost from '../../services/hooks/usePost';
+import { IPage } from '../../services/api/models/pages/IPage';
+import { ServiceUrl } from '../../utils';
 
 const pageSchema = z.object({
   id: z.number(),
@@ -20,9 +23,9 @@ type PageFormValues = z.infer<typeof pageSchema>;
 
 export default function PageEdit() {
   //const id = 0;
-  // const { data, loading, error } = useFetch<IPage>(
-  //   `${ServiceUrl.ENDPOINT_PAGE}/${id}`
-  // );
+  const { data, loading, error, postData } = usePost<IPage>(
+    `${ServiceUrl.ENDPOINT_PAGE}`,
+  );
 
   const title = 'Page Edit';
 
@@ -41,6 +44,8 @@ export default function PageEdit() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Handle form submission here
+    const { edit_date, parent, ...rest } = formValues;
+    postData(rest);
   };
 
   const handleChange = (

@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { Environment } from './Environment';
+import { Environment } from './Environment.js';
 
 //eslint-disable-next-line
 const transports: any[] = [new winston.transports.Console()];
@@ -25,7 +25,7 @@ export const Logger = winston.createLogger({
 });
 
 //eslint-disable-next-line
-Logger.on('error', (error: any) => {
+Logger.on('error', (_error: any) => {
   console.info('Logger caught an unhandled error');
 });
 

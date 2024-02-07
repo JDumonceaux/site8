@@ -1,6 +1,6 @@
 import './home.css';
 
-import SEO from 'components/common/SEO/SEO';
+import SEO from '../components/common/SEO/SEO';
 
 export default function Login() {
   const title = 'Login';

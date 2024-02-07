@@ -14,7 +14,7 @@ export default function Home() {
           <section className="section">
             <p>Welcome!</p>
             <p>
-              The is the skeleton of a site to give you some ideas. Hopefully, I'll be
+              The is the skeleton of a site to give you some ideas. Hopefully, I&#39;ll be
               able to expand on all these topics in 2024.
             </p>
             <p>There are many excellent tutorials on building React web site.</p>
@@ -22,7 +22,7 @@ export default function Home() {
           </section>
           <section className="quote-section">
             <p>“Three may keep a secret, if two of them are dead.”</p>
-            <p>― Benjamin Franklin, Poor Richard's Almanack</p>
+            <p>― Benjamin Franklin, Poor Richard&#39;s Almanack</p>
           </section>
         </main>
         <HomeMenu />

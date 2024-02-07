@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { FaPlus } from 'react-icons/fa';
 
+import { IItem } from './IItem';
+
 type Props = {
   newItem: IItem;
   setNewItem: (id: string) => void;

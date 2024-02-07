@@ -1,4 +1,4 @@
-import { IResource } from './IResource';
+import { IResource } from './IResource.js';
 
 export interface IResources {
   metadata: {

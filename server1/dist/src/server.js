@@ -4,7 +4,6 @@ import { Logger } from './utils/Logger.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { resourcesRouter } from './routes/resourcesRouter.js';
-import path from 'path';
 const app = express();
 app.set('x-powered-by', false);
 app.set('etag', false);
@@ -26,6 +25,7 @@ app.use(function (_req, res, next) {
     next();
 });
 const port = 3005;
+const path = require('path');
 app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesRouter);
 app.use('/api/resources', resourcesRouter);

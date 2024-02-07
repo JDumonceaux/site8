@@ -21,8 +21,8 @@ export default function Yachts() {
             The design of this yacht is called <em>Nature</em>.
           </p>
           <p>
-            I'd do just about anything to own this beautiful beast... Is anyone feeling
-            generous?
+            I&#39;d do just about anything to own this beautiful beast... Is anyone
+            feeling generous?
           </p>
           <p>
             I love the Japanese influence, low profile, clean lines, and brooding color.
