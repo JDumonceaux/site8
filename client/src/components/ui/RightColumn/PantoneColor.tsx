@@ -1,6 +1,6 @@
 import './pantoneColor.css';
 
-export function PantoneColor() {
+export function PantoneColor(): JSX.Element {
   return (
     <div className="pantone-color">
       This page is inspired by the{' '}

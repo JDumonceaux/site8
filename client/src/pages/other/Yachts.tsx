@@ -1,10 +1,9 @@
-import PageTitle from 'components/common/PageTitle/PageTitle';
-import SEO from 'components/common/SEO/SEO';
 import { useEffect } from 'react';
 
+import { PageTitle, SEO } from '../../components/common';
 import { APP_NAME } from '../../utils/constants';
 
-export default function Yachts() {
+export default function Yachts(): JSX.Element {
   const title = 'Yachts';
 
   useEffect(() => {
@@ -46,11 +45,11 @@ export default function Yachts() {
           </p>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img src="/images/yachts/sinot-nature-1.jpg.webp" />
+            <img src="/images/yachts/sinot-nature-1.jpg.webp" alt="" />
           </div>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img src="/images/yachts/sinot-nature-2.jpg.webp" />
+            <img src="/images/yachts/sinot-nature-2.jpg.webp" alt="" />
           </div>
           <div>
             <div className="image-banner-1">
@@ -64,7 +63,7 @@ export default function Yachts() {
           </div>
           <div>
             <div className="image-banner-1">Nature Design - Expansive Decks</div>
-            <img src="/images/yachts/sinot-nature-3.png" />
+            <img src="/images/yachts/sinot-nature-3.png" alt="" />
           </div>
           <div>
             <div className="image-banner-1">Nature Design - Guest Bedroom</div>
@@ -77,11 +76,11 @@ export default function Yachts() {
 
           <div>
             <div className="image-banner-1">Beach Design</div>
-            <img src="/images/yachts/sinot-beach.png" />
+            <img src="/images/yachts/sinot-beach.png" alt="" />
           </div>
           <div>
-            <div className="image-banner-1">Aqua Design - Owner's Suite</div>
-            <img src="/images/yachts/sinot-aqua-owners-suite.png" />
+            <div className="image-banner-1">Aqua Design - Owner&#39s Suite</div>
+            <img src="/images/yachts/sinot-aqua-owners-suite.png" alt="" />
           </div>
         </section>
       </main>
@@ -99,6 +98,7 @@ export default function Yachts() {
                 width: '100%',
                 height: '100%',
               }}
+              title="Youtube: Art of Life Design"
               // frameborder={{0}}
               allow="autoplay; fullscreen; picture-in-picture"
               //allowfullscreen
@@ -119,6 +119,7 @@ export default function Yachts() {
                 width: '100%',
                 height: '100%',
               }}
+              title="Youtube: Nature Design"
               // frameborder={{0}}
               allow="autoplay; fullscreen; picture-in-picture"
               //allowfullscreen
@@ -139,6 +140,7 @@ export default function Yachts() {
                 width: '100%',
                 height: '100%',
               }}
+              title="Youtube: Zen Design"
               // frameborder={{0}}
               allow="autoplay; fullscreen; picture-in-picture"
               //allowfullscreen

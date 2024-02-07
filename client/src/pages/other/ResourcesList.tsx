@@ -1,11 +1,10 @@
-import PageTitle from 'components/common/PageTitle/PageTitle';
-import SEO from 'components/common/SEO/SEO';
 import { useDeferredValue, useEffect } from 'react';
 
+import { PageTitle, SEO } from '../../components/common';
 import useResources from '../../services/hooks/useResources';
 import { APP_NAME } from '../../utils/constants';
 
-export default function ResourcesList() {
+export default function ResourcesList(): JSX.Element {
   const title = 'Resources';
   const { data, loading, error, fetchData } = useResources();
   const deferredData = useDeferredValue(data);

@@ -86,7 +86,7 @@ const menuItems = [
   },
 ];
 
-export default function HomeMenu() {
+export function HomeMenu(): JSX.Element {
   return (
     <div className="home-menu">
       <div className="grid-container">

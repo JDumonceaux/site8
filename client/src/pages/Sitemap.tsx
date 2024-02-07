@@ -1,6 +1,6 @@
-import CustomNavLink from 'components/ui/CustomNavLink';
+import CustomNavLink from '../components/ui/CustomNavLink';
 
-function Sitemap() {
+export default function Sitemap(): JSX.Element {
   return (
     <div>
       <h1>Sitemap</h1>
@@ -92,5 +92,3 @@ Music
     </div>
   );
 }
-
-export default Sitemap;

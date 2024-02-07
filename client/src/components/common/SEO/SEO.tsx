@@ -8,7 +8,7 @@ type SEOProps = {
 };
 
 // TODO: Polish up - handle missing items, keywords
-export default function SEO({ title, description, name, type }: SEOProps) {
+export function SEO({ title, description, name, type }: SEOProps): JSX.Element {
   return (
     <Helmet>
       {/* Standard metadata tags */}

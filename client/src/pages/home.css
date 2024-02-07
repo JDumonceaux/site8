@@ -25,9 +25,25 @@
   padding: 16px;
 }
 .home-layout .quote-section {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-style: italic;
 }
 .home-layout .quote-section p {
   margin: 0;
+}
+.section {
+  perspective: 100px;
+}
+.home-box1 {
+  animation-duration: 2s;
+  animation-name: slidein;
+  width: 360px;
+}
+@keyframes slidein {
+  from {
+    margin-bottom: 90%;
+  }
+  to {
+    margin-left: 0%;
+  }
 }

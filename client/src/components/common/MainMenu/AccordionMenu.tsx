@@ -10,7 +10,12 @@ type AccordionMenuProps = {
   children: React.ReactNode;
 };
 
-export function AccordionMenu({ id, title, path = '', children }: AccordionMenuProps) {
+export function AccordionMenu({
+  id,
+  title,
+  path = '',
+  children,
+}: AccordionMenuProps): JSX.Element {
   const [expanded, setExpanded] = useState<boolean>(false);
   // Only works with data routers.
   const matches = useMatches();

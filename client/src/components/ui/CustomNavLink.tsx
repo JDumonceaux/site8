@@ -9,7 +9,7 @@ const CustomNavLink = ({
   to: string;
   ariaLabel?: string;
   children: React.ReactNode;
-}) => {
+}): JSX.Element => {
   return (
     <NavLink
       to={to}

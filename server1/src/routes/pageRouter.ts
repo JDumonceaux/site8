@@ -30,11 +30,16 @@ pageRouter.post('/', (req: Request, res: Response) => {
 });
 
 function getAllData(id: string) {
-  const promise1 = getMetaData(id, getFilePath('pages.json'));
-  const promise2 = readFile(getFilePath('page' + id + '-en.txt'), {
-    encoding: 'utf8',
-  });
-  return Promise.all([promise1, promise2]);
+  const tempId = parseInt(id);
+  // Validate the id
+  if (!isNaN(tempId) && tempId > 0) {
+    const promise1 = getMetaData(tempId.toString(), getFilePath('pages.json'));
+    const promise2 = readFile(getFilePath('page' + tempId + '-en.txt'), {
+      encoding: 'utf8',
+    });
+    return Promise.all([promise1, promise2]);
+  }
+  return Promise.all([Promise.resolve(undefined), Promise.resolve(undefined)]);
 }
 
 function getMetaData(id: string, filePath: string) {

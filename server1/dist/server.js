@@ -1,4 +1,5 @@
 import express from 'express';
+import RateLimit from 'express-rate-limit';
 import compression from 'compression';
 import { Logger } from './utils/Logger.js';
 import { pageRouter } from './routes/pageRouter.js';
@@ -26,6 +27,16 @@ app.use(function (_req, res, next) {
     next();
 });
 const port = 3005;
+// Set up rate limiter: maximum of 100 requests per 15 minutes
+const limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per windowMs
+    limit: 100,
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
+});
+// apply rate limiter to all requests
+app.use(limiter);
 app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesRouter);
 app.use('/api/resources', resourcesRouter);

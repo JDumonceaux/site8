@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { increment } from '../../../services/state/examples/counterSlice';
 import { AppDispatch, RootState } from '../../../services/state/store';
 
-const Counter = () => {
+export const Counter = (): JSX.Element => {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -17,5 +17,3 @@ const Counter = () => {
     </div>
   );
 };
-
-export default Counter;

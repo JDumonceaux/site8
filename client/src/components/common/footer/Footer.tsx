@@ -15,7 +15,7 @@ const StyledCopyright = styled.div`
   padding-left: 16px;
 `;
 
-export function Footer() {
+export function Footer(): JSX.Element {
   const thisYear = new Date().getFullYear();
   return (
     <StyledFooter role="contentinfo" className="footer" data-testid="footer">

@@ -1,10 +1,10 @@
-import PageTitle from '../../components/common/PageTitle/PageTitle';
-import SEO from '../../components/common/SEO/SEO';
-import TextInput from '../../components/ui/TextInput/TextInput';
 import { useState } from 'react';
 import { z } from 'zod';
-import usePost from '../../services/hooks/usePost';
+
+import { PageTitle, SEO } from '../../components/common';
+import { TextInput } from '../../components/ui/TextInput';
 import { IPage } from '../../services/api/models/pages/IPage';
+import usePost from '../../services/hooks/usePost';
 import { ServiceUrl } from '../../utils';
 
 const pageSchema = z.object({
@@ -21,7 +21,7 @@ const pageSchema = z.object({
 
 type PageFormValues = z.infer<typeof pageSchema>;
 
-export default function PageEdit() {
+export default function PageEdit(): JSX.Element {
   //const id = 0;
   const { data, loading, error, postData } = usePost<IPage>(
     `${ServiceUrl.ENDPOINT_PAGE}`,

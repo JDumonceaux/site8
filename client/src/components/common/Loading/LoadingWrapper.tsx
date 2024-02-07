@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import Loading from './Loading';
+import { Loading } from './Loading';
 
 type IProps = {
   children: ReactNode;
@@ -8,7 +8,7 @@ type IProps = {
   error: string | undefined | null;
 };
 
-export default function LoadingWrapper({ children, isLoading, error }: IProps) {
+export function LoadingWrapper({ children, isLoading, error }: IProps): JSX.Element {
   if (isLoading) return <Loading />;
 
   if (error) return <div>{error}</div>;

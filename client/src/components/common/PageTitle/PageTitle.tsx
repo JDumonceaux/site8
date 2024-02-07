@@ -1,6 +1,6 @@
 import './pageTitle.css';
 
-export default function PageTitle({ title }: { title: string }) {
+export function PageTitle({ title }: { title: string }): JSX.Element {
   return (
     <div className="page-title" data-testid="PageTitle.root">
       <h1>{title}</h1>

@@ -1,13 +1,13 @@
 import './testGrid.css';
 
 import axios from 'axios';
-import PageTitle from 'components/common/PageTitle/PageTitle';
 import { useEffect, useState } from 'react';
 
+import { PageTitle } from '../../components/common';
 import { ITestGrid } from '../../services/api/models/testgrid/ITestGrid';
 import { ServiceUrl } from '../../utils/constants';
 
-function TestGrid() {
+export default function TestGrid(): JSX.Element {
   const [data, setData] = useState<ITestGrid>();
 
   const fetchData = async () => {
@@ -67,5 +67,3 @@ function TestGrid() {
     </div>
   );
 }
-
-export default TestGrid;

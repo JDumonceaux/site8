@@ -1,9 +1,9 @@
 import './home.css';
 
-import HomeMenu from '../components/common/MainMenu/HomeMenu';
-import SEO from '../components/common/SEO/SEO';
+import { SEO } from '../components/common';
+import { HomeMenu } from '../components/common/MainMenu/HomeMenu';
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const title = 'Home';
 
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         <main className="main-content">
           <section className="section">
             <p>Welcome!</p>
-            <p>
+            <p className="home-box1">
               The is the skeleton of a site to give you some ideas. Hopefully, I&#39;ll be
               able to expand on all these topics in 2024.
             </p>

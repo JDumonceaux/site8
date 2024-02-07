@@ -6,10 +6,9 @@ import {
   RouterProvider as Router,
 } from 'react-router-dom';
 
+import { HomeLayout, MainLayout } from '../../pages';
 import GenericPage from '../../pages/GenericPage';
 import Home from '../../pages/Home';
-import HomeLayout from '../../pages/Layouts/HomeLayout/HomeLayout';
-import MainLayout from '../../pages/Layouts/MainLayout/MainLayout';
 import Login from '../../pages/Login';
 import TestGrid from '../../pages/react/TestGrid';
 import ProtectedRoute from './ProtectedRoute';

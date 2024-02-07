@@ -1,14 +1,12 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import PageTitle from 'components/common/PageTitle/PageTitle';
-import SEO from 'components/common/SEO/SEO';
 import { useDeferredValue } from 'react';
 import { Link } from 'react-router-dom';
 
+import { LoadingWrapper, PageTitle, SEO } from '../../components/common';
 import { IPages } from '../../services/api/models/pages/IPages';
 import useFetch from '../../services/hooks/useFetch';
 import { ServiceUrl } from '../../utils';
 
-export default function PagesList() {
+export default function PagesList(): JSX.Element {
   const { data, loading, error } = useFetch<IPages>(`${ServiceUrl.ENDPOINT_PAGES}`);
   const deferredData = useDeferredValue(data);
 

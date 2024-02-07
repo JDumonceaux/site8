@@ -1,9 +1,7 @@
 import { useDeferredValue } from 'react';
 
-import LoadingWrapper from '../components/common/Loading/LoadingWrapper';
-import PageTitle from '../components/common/PageTitle/PageTitle';
-import Resources from '../components/common/Resources';
-import SEO from '../components/common/SEO/SEO';
+import { LoadingWrapper, PageTitle, SEO } from '../components/common';
+import { Resources } from '../components/common/Resources';
 import { IPage } from '../services/api/models/pages/IPage';
 import useFetch from '../services/hooks/useFetch';
 import { ServiceUrl } from '../utils';
@@ -13,7 +11,7 @@ type GenericPageProps = {
   pageTitle: string;
 };
 
-export default function GenericPage({ id, pageTitle }: GenericPageProps) {
+export default function GenericPage({ id, pageTitle }: GenericPageProps): JSX.Element {
   const { data, loading, error } = useFetch<IPage>(`${ServiceUrl.ENDPOINT_PAGE}/${id}`);
 
   const deferredData = useDeferredValue(data);

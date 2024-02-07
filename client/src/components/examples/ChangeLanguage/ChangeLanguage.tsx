@@ -8,7 +8,7 @@ const languages = [
   { code: 'fr', lang: 'French' },
 ];
 
-function ChangeLanguage() {
+export function ChangeLanguage(): JSX.Element {
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -35,5 +35,3 @@ function ChangeLanguage() {
     </div>
   );
 }
-
-export default ChangeLanguage;

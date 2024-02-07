@@ -1,7 +1,6 @@
-import PageTitle from 'components/common/PageTitle/PageTitle';
-import SEO from 'components/common/SEO/SEO';
+import { PageTitle, SEO } from '../../components/common';
 
-export default function Artists() {
+export default function Artists(): JSX.Element {
   const title = 'Art';
 
   return (

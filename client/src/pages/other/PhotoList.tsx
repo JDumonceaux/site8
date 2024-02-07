@@ -1,14 +1,12 @@
 import './photoList.css';
 
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import PageTitle from 'components/common/PageTitle/PageTitle';
-import SEO from 'components/common/SEO/SEO';
 import { useDeferredValue, useEffect } from 'react';
 
+import { LoadingWrapper, PageTitle, SEO } from '../../components/common';
 import usePhotos from '../../services/hooks/usePhotos';
 import { APP_NAME } from '../../utils/constants';
 
-export default function PhotoList() {
+export default function PhotoList(): JSX.Element {
   const title = 'Photos';
   const { data, loading, error, fetchData } = usePhotos();
   const deferredData = useDeferredValue(data);

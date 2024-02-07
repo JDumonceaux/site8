@@ -21,11 +21,16 @@ pageRouter.post('/', (req, res) => {
     });
 });
 function getAllData(id) {
-    const promise1 = getMetaData(id, getFilePath('pages.json'));
-    const promise2 = readFile(getFilePath('page' + id + '-en.txt'), {
-        encoding: 'utf8',
-    });
-    return Promise.all([promise1, promise2]);
+    const tempId = parseInt(id);
+    // Validate the id
+    if (!isNaN(tempId) && tempId > 0) {
+        const promise1 = getMetaData(tempId.toString(), getFilePath('pages.json'));
+        const promise2 = readFile(getFilePath('page' + tempId + '-en.txt'), {
+            encoding: 'utf8',
+        });
+        return Promise.all([promise1, promise2]);
+    }
+    return Promise.all([Promise.resolve(undefined), Promise.resolve(undefined)]);
 }
 function getMetaData(id, filePath) {
     return readFile(filePath, {
@@ -56,7 +61,10 @@ function appendData(data, filePath) {
     })
         .then((results) => {
         const jsonData = JSON.parse(results);
-        const ret = { ...jsonData, items: [...jsonData.items, { ...data, id: nextId }] };
+        const ret = {
+            ...jsonData,
+            items: [...jsonData.items, { ...data, id: nextId }],
+        };
         writeFile(filePath, JSON.stringify(ret, null, 2), {
             encoding: 'utf8',
         });

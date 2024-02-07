@@ -8,12 +8,12 @@ type TextInputProps = {
   showCounter?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
 
-export default function TextInput({
+export function TextInput({
   id,
   label,
   showCounter = false,
   ...rest
-}: TextInputProps) {
+}: TextInputProps): JSX.Element {
   return (
     <div className="text-input">
       <label className="label" htmlFor={id}>

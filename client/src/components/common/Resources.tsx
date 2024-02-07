@@ -2,7 +2,7 @@ type ResourcesProps = {
   id: number;
 };
 
-export default function Resources({ id }: ResourcesProps) {
+export function Resources({ id }: ResourcesProps): JSX.Element {
   return (
     <div className="loading-wrapper">
       {/* {data?.items?.map((item) => (

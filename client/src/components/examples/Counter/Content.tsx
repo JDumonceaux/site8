@@ -1,7 +1,5 @@
-import Counter from './Counter';
+import { Counter } from './Counter';
 
-function Content() {
+export function Content(): JSX.Element {
   return <Counter />;
 }
-
-export default Content;

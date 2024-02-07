@@ -1,12 +1,10 @@
 import './musicList.css';
 
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import PageTitle from 'components/common/PageTitle/PageTitle';
-import SEO from 'components/common/SEO/SEO';
 import memoize from 'memoize-one';
 import { useDeferredValue, useEffect } from 'react';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
 
+import { LoadingWrapper, PageTitle, SEO } from '../../components/common';
 import { IMusicItem } from '../../services/api/models/music/IMusicItem';
 import useMusic from '../../services/hooks/useMusic';
 
@@ -26,7 +24,7 @@ function ItemRenderer({ data, index, style }: ListChildComponentProps) {
   );
 }
 
-export default function MusicList() {
+export default function MusicList(): JSX.Element {
   const title = 'YouTube Videos';
   const { data, loading, error, fetchData } = useMusic();
 

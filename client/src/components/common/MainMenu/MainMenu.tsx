@@ -1,7 +1,7 @@
 import CustomNavLink from '../../ui/CustomNavLink';
 import { AccordionMenu } from './AccordionMenu';
 
-export default function MainMenu() {
+export function MainMenu(): JSX.Element {
   return (
     <div className="main-menu">
       {/* OTHER STUFF */}
