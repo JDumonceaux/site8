@@ -68,7 +68,10 @@ function appendData(data: IPage, filePath: string) {
   })
     .then((results) => {
       const jsonData = JSON.parse(results) as IPages;
-      const ret = { ...jsonData, items: [...jsonData.items, { ...data, id: nextId }] };
+      const ret = {
+        ...jsonData,
+        items: [...jsonData.items, { ...data, id: nextId }],
+      };
 
       writeFile(filePath, JSON.stringify(ret, null, 2), {
         encoding: 'utf8',
