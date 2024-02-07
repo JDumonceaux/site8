@@ -92,7 +92,9 @@ export default function HomeMenu() {
       <div className="grid-container">
         {menuItems.map((item) => (
           <nav>
-            <div className="title">{item.parent}</div>
+            <div className="title" key={item.parent}>
+              {item.parent}
+            </div>
             {item.items.map((x) => (
               <CustomNavLink to={x.to} key={x.label}>
                 {x.label}
