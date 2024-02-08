@@ -20,6 +20,7 @@ export default function Home(): JSX.Element {
             <p>There are many excellent tutorials on building React web site.</p>
             <p>My goal is to bring everything together: to give you the whole picture.</p>
           </section>
+          <section></section>
           <section className="quote-section">
             <p>“Three may keep a secret, if two of them are dead.”</p>
             <p>― Benjamin Franklin, Poor Richard&#39;s Almanack</p>
