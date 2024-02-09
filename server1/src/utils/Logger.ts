@@ -1,3 +1,7 @@
+/**
+ * Logger utility for handling application logs.
+ * @module Logger
+ */
 import winston from 'winston';
 import { Environment } from './Environment.js';
 
@@ -17,6 +21,10 @@ if (Environment.isLocal()) {
   );
 }
 
+/**
+ * The logger instance.
+ * @type {winston.Logger}
+ */
 export const Logger = winston.createLogger({
   level: Environment.isProduction() ? 'info' : 'debug',
   format: winstonFormat,

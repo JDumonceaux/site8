@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import { APP_NAME } from '../../../utils/constants';
 import { MenuIcon } from './MenuIcon';
@@ -47,7 +47,9 @@ const StyledLinkDiv = styled.div`
 
 export function Header(): JSX.Element {
   return (
-    <StyledHeader className="header" data-testid="header">
+    <StyledHeader
+      className="header"
+      data-testid="header">
       <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
       <MenuIcon />
       <StyledLinkDiv>

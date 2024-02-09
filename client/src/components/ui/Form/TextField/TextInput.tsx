@@ -1,7 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
-export interface ITextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface ITextInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const StyledDiv = styled.div`
   color: black;

@@ -8,8 +8,14 @@ import { z } from 'zod';
 
 const pageSchema = z.object({
   id: z.number(),
-  short_title: z.string({ required_error: 'Short Title is required.' }).min(1).trim(),
-  long_title: z.string({ required_error: 'Long Title is required.' }).min(1).trim(),
+  short_title: z
+    .string({ required_error: 'Short Title is required.' })
+    .min(1)
+    .trim(),
+  long_title: z
+    .string({ required_error: 'Long Title is required.' })
+    .min(1)
+    .trim(),
   edit_date: z.string().trim().optional(),
   resources: z.boolean(),
   text: z.string({ required_error: 'Text is required.' }).min(1).trim(),
@@ -21,10 +27,7 @@ const pageSchema = z.object({
 type PageFormValues = z.infer<typeof pageSchema>;
 
 export default function PageEdit(): JSX.Element {
-  //const id = 0;
-  const { data, loading, error, postData } = usePost<IPage>(
-    `${ServiceUrl.ENDPOINT_PAGE}`,
-  );
+  const { postData } = usePost<IPage>(`${ServiceUrl.ENDPOINT_PAGE}`);
 
   const title = 'Page Edit';
 
@@ -43,6 +46,7 @@ export default function PageEdit(): JSX.Element {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Handle form submission here
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { edit_date, parent, ...rest } = formValues;
     postData(rest);
   };

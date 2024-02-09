@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 const StyledFooter = styled.footer`
   min-height: 20px;
@@ -18,7 +18,10 @@ const StyledCopyright = styled.div`
 export function Footer(): JSX.Element {
   const thisYear = new Date().getFullYear();
   return (
-    <StyledFooter role="contentinfo" className="footer" data-testid="footer">
+    <StyledFooter
+      role="contentinfo"
+      className="footer"
+      data-testid="footer">
       <StyledCopyright aria-label="Copyright Information">
         Copyright &copy; {thisYear}
       </StyledCopyright>

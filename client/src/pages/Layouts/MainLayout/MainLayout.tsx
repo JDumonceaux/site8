@@ -1,4 +1,4 @@
-import './MainLayout.css';
+import './mainLayout.css';
 
 import { Footer, Header, MainMenu } from 'components/common';
 import ErrorBoundary from 'components/common/ErrorBoundary';

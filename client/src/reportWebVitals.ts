@@ -1,4 +1,4 @@
-import { ReportCallback } from 'web-vitals';
+import type { ReportCallback } from 'web-vitals/dist/modules/types';
 
 const reportWebVitals = (onPerfEntry?: ReportCallback) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {

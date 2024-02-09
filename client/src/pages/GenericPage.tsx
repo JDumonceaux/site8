@@ -10,8 +10,13 @@ type GenericPageProps = {
   pageTitle: string;
 };
 
-export default function GenericPage({ id, pageTitle }: GenericPageProps): JSX.Element {
-  const { data, loading, error } = useFetch<IPage>(`${ServiceUrl.ENDPOINT_PAGE}/${id}`);
+export default function GenericPage({
+  id,
+  pageTitle,
+}: GenericPageProps): JSX.Element {
+  const { data, loading, error } = useFetch<IPage>(
+    `${ServiceUrl.ENDPOINT_PAGE}/${id}`,
+  );
 
   const deferredData = useDeferredValue(data);
 
@@ -21,7 +26,9 @@ export default function GenericPage({ id, pageTitle }: GenericPageProps): JSX.El
     <>
       <SEO title={title} />
       <main className="main-content">
-        <LoadingWrapper error={error} isLoading={loading}>
+        <LoadingWrapper
+          error={error}
+          isLoading={loading}>
           <PageTitle title={title} />
           <time>Fill In</time>
           <section className="section">

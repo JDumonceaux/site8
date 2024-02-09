@@ -25,7 +25,7 @@ export const useDependencyDebugger = (inputs: any) => {
     compareInputs(inputKeysArray, oldInputs, inputs);
 
     oldInputsRef.current = inputs;
-  }, inputValuesArray); // eslint-disable-line react-hooks/exhaustive-deps
+  }, inputValuesArray);
 };
 
 // usage example, will log old/new values when one of the passed params changes

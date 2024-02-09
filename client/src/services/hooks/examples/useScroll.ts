@@ -14,6 +14,7 @@ function useScroll({ threshold = 450, isWindow = false, smooth = true } = {}) {
   }, [smooth]);
 
   const goBottom = useCallback(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const element =
       ref.current instanceof Window ? document.documentElement : ref.current;
     // ref.current.scrollTo({

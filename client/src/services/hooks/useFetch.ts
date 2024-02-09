@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { isCancel } from 'axios';
 import { useEffect, useState } from 'react';
 import { httpErrorHandler } from '../../utils/errorHandler';
 
@@ -11,6 +11,7 @@ const useFetch = <T>(url: string) => {
     setLoading(true);
     setData(undefined);
     setError(undefined);
+    // eslint-disable-next-line import/no-named-as-default-member
     const source = axios.CancelToken.source(); // Create a cancel token
 
     const fetchDataAsync = async () => {
@@ -22,7 +23,7 @@ const useFetch = <T>(url: string) => {
           response.data && setData(response.data);
         })
         .catch((error) => {
-          if (axios.isCancel(error)) {
+          if (isCancel(error)) {
             console.log('Request canceled', error.message);
           } else {
             console.log('error', error);

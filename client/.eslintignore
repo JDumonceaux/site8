@@ -1,6 +1,5 @@
-node_modules
-.DS_Store
-dist
-dist-ssr
-*.local
-node_modules/*
+node_modules/
+dist/
+.prettierrc.js
+.eslintrc.js
+env.d.ts

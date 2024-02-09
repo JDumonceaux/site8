@@ -6,8 +6,8 @@ export default function Sitemap(): JSX.Element {
       <h1>Sitemap</h1>
       <div></div>
       <div>
-        This is not an actual sitemap - this is aspirational - what I&#39;m working
-        towards.
+        This is not an actual sitemap - this is aspirational - what I&#39;m
+        working towards.
       </div>
 
       <ul>
