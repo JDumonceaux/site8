@@ -14,8 +14,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // Allow absolute imports from the `src` directory
+    "baseUrl": "src"
   },
+  // Allow absolute imports from the `src` directory
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

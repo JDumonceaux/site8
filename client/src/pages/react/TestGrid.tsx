@@ -1,11 +1,10 @@
 import './testGrid.css';
 
 import axios from 'axios';
+import { PageTitle } from 'components/common';
 import { useEffect, useState } from 'react';
-
-import { PageTitle } from '../../components/common';
-import { ITestGrid } from '../../services/api/models/testgrid/ITestGrid';
-import { ServiceUrl } from '../../utils/constants';
+import { ITestGrid } from 'services/api/models/testgrid/ITestGrid';
+import { ServiceUrl } from 'utils/constants';
 
 export default function TestGrid(): JSX.Element {
   const [data, setData] = useState<ITestGrid>();

@@ -1,10 +1,9 @@
 import './MainLayout.css';
 
+import { Footer, Header, MainMenu } from 'components/common';
+import ErrorBoundary from 'components/common/ErrorBoundary';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-
-import { Footer, Header, MainMenu } from '../../../components/common';
-import ErrorBoundary from '../../../components/common/ErrorBoundary';
 
 export function MainLayout(): JSX.Element {
   return (

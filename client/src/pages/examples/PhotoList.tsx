@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-import { IPhotos } from '../../services/api/models/photos/IPhotos';
-import { ServiceUrl } from '../../utils';
+import { IPhotos } from 'services/api/models/photos/IPhotos';
+import { ServiceUrl } from 'utils';
 
 function PhotoList() {
   const [data, setData] = useState<IPhotos>();

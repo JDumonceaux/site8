@@ -1,7 +1,6 @@
 import axios from 'axios';
-
-import { IMusic } from '../../services/api/models/music/IMusic';
-import { ServiceUrl } from '../../utils/constants';
+import { IMusic } from 'services/api/models/music/IMusic';
+import { ServiceUrl } from 'utils/constants';
 
 // Use:  const data = useLoaderData() as IMusic;
 

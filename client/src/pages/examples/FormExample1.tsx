@@ -2,9 +2,8 @@ import './formExample1.css';
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { increment } from '../../services/state/examples/counterSlice';
-import { AppDispatch, RootState } from '../../services/state/store';
+import { increment } from 'services/state/examples/counterSlice';
+import { AppDispatch, RootState } from 'services/state/store';
 
 function FormExample1() {
   const count = useSelector((state: RootState) => state.counter.value);

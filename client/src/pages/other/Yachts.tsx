@@ -1,7 +1,6 @@
+import { PageTitle, SEO } from 'components/common';
 import { useEffect } from 'react';
-
-import { PageTitle, SEO } from '../../components/common';
-import { APP_NAME } from '../../utils/constants';
+import { APP_NAME } from 'utils/constants';
 
 export default function Yachts(): JSX.Element {
   const title = 'Yachts';

@@ -1,6 +1,6 @@
 import './home.css';
 
-import { SEO } from '../components/common';
+import { SEO } from 'components/common';
 
 export default function Login(): JSX.Element {
   const title = 'Login';

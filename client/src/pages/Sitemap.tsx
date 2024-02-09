@@ -1,4 +1,4 @@
-import CustomNavLink from '../components/ui/CustomNavLink';
+import CustomNavLink from 'components/ui/CustomNavLink';
 
 export default function Sitemap(): JSX.Element {
   return (

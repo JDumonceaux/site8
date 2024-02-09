@@ -1,9 +1,8 @@
 import axios from 'axios';
+import { Loading } from 'components/common/Loading/Loading';
 import { useEffect, useState } from 'react';
-
-import Loading from '../../components/common/Loading/Loading';
-import { IPage } from '../../services/api/models/pages/IPage';
-import { ServiceUrl } from '../../utils';
+import { IPage } from 'services/api/models/pages/IPage';
+import { ServiceUrl } from 'utils';
 
 interface IProps {
   id: number;

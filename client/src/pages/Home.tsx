@@ -1,7 +1,7 @@
 import './home.css';
 
-import { SEO } from '../components/common';
-import { HomeMenu } from '../components/common/MainMenu/HomeMenu';
+import { SEO } from 'components/common';
+import { HomeMenu } from 'components/common/MainMenu/HomeMenu';
 
 export default function Home(): JSX.Element {
   const title = 'Home';

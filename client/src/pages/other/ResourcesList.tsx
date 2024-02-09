@@ -1,8 +1,7 @@
+import { PageTitle, SEO } from 'components/common';
 import { useDeferredValue, useEffect } from 'react';
-
-import { PageTitle, SEO } from '../../components/common';
-import useResources from '../../services/hooks/useResources';
-import { APP_NAME } from '../../utils/constants';
+import useResources from 'services/hooks/useResources';
+import { APP_NAME } from 'utils/constants';
 
 export default function ResourcesList(): JSX.Element {
   const title = 'Resources';

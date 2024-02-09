@@ -1,11 +1,10 @@
+import { PageTitle, SEO } from 'components/common';
+import { TextInput } from 'components/ui/TextInput';
 import { useState } from 'react';
+import { IPage } from 'services/api/models/pages/IPage';
+import usePost from 'services/hooks/usePost';
+import { ServiceUrl } from 'utils';
 import { z } from 'zod';
-
-import { PageTitle, SEO } from '../../components/common';
-import { TextInput } from '../../components/ui/TextInput';
-import { IPage } from '../../services/api/models/pages/IPage';
-import usePost from '../../services/hooks/usePost';
-import { ServiceUrl } from '../../utils';
 
 const pageSchema = z.object({
   id: z.number(),

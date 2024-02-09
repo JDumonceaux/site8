@@ -1,12 +1,11 @@
 import './musicList.css';
 
+import { LoadingWrapper, PageTitle, SEO } from 'components/common';
 import memoize from 'memoize-one';
 import { useDeferredValue, useEffect } from 'react';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
-
-import { LoadingWrapper, PageTitle, SEO } from '../../components/common';
-import { IMusicItem } from '../../services/api/models/music/IMusicItem';
-import useMusic from '../../services/hooks/useMusic';
+import { IMusicItem } from 'services/api/models/music/IMusicItem';
+import useMusic from 'services/hooks/useMusic';
 
 function ItemRenderer({ data, index, style }: ListChildComponentProps) {
   const item = data.items[index] as IMusicItem;

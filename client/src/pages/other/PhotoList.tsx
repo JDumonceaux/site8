@@ -1,10 +1,9 @@
 import './photoList.css';
 
+import { LoadingWrapper, PageTitle, SEO } from 'components/common';
 import { useDeferredValue, useEffect } from 'react';
-
-import { LoadingWrapper, PageTitle, SEO } from '../../components/common';
-import usePhotos from '../../services/hooks/usePhotos';
-import { APP_NAME } from '../../utils/constants';
+import usePhotos from 'services/hooks/usePhotos';
+import { APP_NAME } from 'utils/constants';
 
 export default function PhotoList(): JSX.Element {
   const title = 'Photos';
