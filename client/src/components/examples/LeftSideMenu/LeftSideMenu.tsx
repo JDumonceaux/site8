@@ -8,18 +8,24 @@ export function LeftSideMenu() {
       <nav aria-label="Home Navigation">
         <ul>
           <li>
-            <CustomNavLink to="/" ariaLabel="Home">
+            <CustomNavLink
+              to="/"
+              ariaLabel="Home">
               Home
             </CustomNavLink>
           </li>
         </ul>
       </nav>
 
-      <nav role="navigation" aria-labelledby="reactmenu">
+      <nav
+        role="navigation"
+        aria-labelledby="reactmenu">
         <div id="reactmenu">React</div>
         <ul>
           <li>
-            <CustomNavLink to="/react" ariaLabel="Learning React">
+            <CustomNavLink
+              to="/react"
+              ariaLabel="Learning React">
               Learning React
             </CustomNavLink>
           </li>

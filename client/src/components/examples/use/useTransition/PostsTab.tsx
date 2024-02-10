@@ -4,7 +4,12 @@ const PostsTab = () => {
 
   const items = [];
   for (let i = 0; i < 2500; i++) {
-    items.push(<SlowPost key={i} index={i} />);
+    items.push(
+      <SlowPost
+        key={i}
+        index={i}
+      />,
+    );
   }
   return <ul className="items">{items}</ul>;
 };

@@ -17,10 +17,12 @@ export default function GenericPage({ id }: IProps) {
     setIsLoading(true);
     setError(undefined);
     // responseType: default Json.  Options: arraybuffer, document, blob, text, or stream
+    // eslint-disable-next-line promise/catch-or-return
     axios
       .get<IPage>(`${ServiceUrl.ENDPOINT_PAGE}/${id}`, {
         responseType: 'text',
       })
+      // eslint-disable-next-line promise/always-return
       .then(function (response) {
         setData(response.data);
       })
@@ -38,7 +40,9 @@ export default function GenericPage({ id }: IProps) {
   }, [id]);
 
   return (
-    <div className="generic-page" data-testid="GenericPage.root">
+    <div
+      className="generic-page"
+      data-testid="GenericPage.root">
       <main className="main">
         {isLoading ? (
           <Loading />
@@ -54,7 +58,10 @@ export default function GenericPage({ id }: IProps) {
       </main>
 
       <div className="right-column">
-        <img src="./face.png" alt="" />
+        <img
+          src="./face.png"
+          alt=""
+        />
       </div>
     </div>
   );

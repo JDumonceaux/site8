@@ -10,6 +10,7 @@ function PhotoList() {
     try {
       await axios.get<IPhotos>(ServiceUrl.ENDPOINT_PHOTOS).then((response) => {
         console.log(response.data);
+        // eslint-disable-next-line promise/always-return
         setData(response?.data);
       });
     } catch (e) {
@@ -28,8 +29,15 @@ function PhotoList() {
           {data?.items?.map((item) => {
             return (
               <li key={item.id}>
-                <a href={item.url} data-fancybox data-caption={item.description}>
-                  <img src={item.url} alt={item.description} loading="lazy" />
+                <a
+                  href={item.url}
+                  data-fancybox
+                  data-caption={item.description}>
+                  <img
+                    src={item.url}
+                    alt={item.description}
+                    loading="lazy"
+                  />
                 </a>
               </li>
             );

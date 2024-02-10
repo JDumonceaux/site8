@@ -8,7 +8,11 @@ type IProps = {
   error: string | undefined | null;
 };
 
-export function LoadingWrapper({ children, isLoading, error }: IProps): JSX.Element {
+export function LoadingWrapper({
+  children,
+  isLoading,
+  error,
+}: IProps): JSX.Element {
   if (isLoading) return <Loading />;
 
   if (error) return <div>{error}</div>;

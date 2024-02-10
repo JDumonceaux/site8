@@ -26,8 +26,7 @@ export function ChangeLanguage(): JSX.Element {
           <button
             className={lng.code === i18n.language ? 'selected' : ''}
             key={lng.code}
-            onClick={() => changeLanguage(lng.code)}
-          >
+            onClick={() => changeLanguage(lng.code)}>
             {lng.lang}
           </button>
         );

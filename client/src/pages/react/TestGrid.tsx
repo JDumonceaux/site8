@@ -11,10 +11,13 @@ export default function TestGrid(): JSX.Element {
 
   const fetchData = async () => {
     try {
-      await axios.get<ITestGrid>(ServiceUrl.ENDPOINT_TESTGRID).then((response) => {
-        console.log(response.data);
-        setData(response?.data);
-      });
+      await axios
+        .get<ITestGrid>(ServiceUrl.ENDPOINT_TESTGRID)
+        .then((response) => {
+          console.log(response.data);
+          // eslint-disable-next-line promise/always-return
+          setData(response?.data);
+        });
     } catch (e) {
       console.log(e);
     }

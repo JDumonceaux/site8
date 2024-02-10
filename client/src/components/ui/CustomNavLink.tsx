@@ -15,8 +15,7 @@ const CustomNavLink = ({
       to={to}
       className={({ isActive }) => (isActive ? 'active' : '')}
       aria-current="page"
-      aria-label={ariaLabel ? ariaLabel : children?.toString()}
-    >
+      aria-label={ariaLabel ? ariaLabel : children?.toString()}>
       {children}
     </NavLink>
   );

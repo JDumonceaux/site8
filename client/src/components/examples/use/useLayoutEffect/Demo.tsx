@@ -34,7 +34,10 @@ const Demo = () => {
     <div className="tutorial-shorts">
       <p>userId: {userId}</p>
       <p>Admin: {isAdmin}</p>
-      <button title="Change User" onClick={handleChange} />
+      <button
+        title="Change User"
+        onClick={handleChange}
+      />
     </div>
   );
 };

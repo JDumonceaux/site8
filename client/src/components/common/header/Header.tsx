@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
-
 import { APP_NAME } from '../../../utils/constants';
 import { MenuIcon } from './MenuIcon';
 

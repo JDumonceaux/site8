@@ -1,11 +1,14 @@
 import { useLayoutEffect, useState } from 'react';
 
 const preferDarkSchema =
-  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  window.matchMedia &&
+  window.matchMedia('(prefers-color-scheme: dark)').matches;
 const defaultTheme = preferDarkSchema ? 'dark' : 'light';
 
 function useTheme() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || defaultTheme);
+  const [theme, setTheme] = useState(
+    localStorage.getItem('theme') || defaultTheme,
+  );
 
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

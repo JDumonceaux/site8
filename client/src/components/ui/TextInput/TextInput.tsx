@@ -16,10 +16,18 @@ export function TextInput({
 }: TextInputProps): JSX.Element {
   return (
     <div className="text-input">
-      <label className="label" htmlFor={id}>
+      <label
+        className="label"
+        htmlFor={id}>
         {label}
       </label>
-      <input className="input" type="text" id={id} name={id} {...rest} />
+      <input
+        className="input"
+        type="text"
+        id={id}
+        name={id}
+        {...rest}
+      />
       <div className="help">
         <div>
           <ul>

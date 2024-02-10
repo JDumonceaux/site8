@@ -94,7 +94,9 @@ export function HomeMenu(): JSX.Element {
           <nav key={item.parent}>
             <div className="title">{item.parent}</div>
             {item.items.map((x) => (
-              <CustomNavLink to={x.to} key={x.label}>
+              <CustomNavLink
+                to={x.to}
+                key={x.label}>
                 {x.label}
               </CustomNavLink>
             ))}
@@ -104,31 +106,44 @@ export function HomeMenu(): JSX.Element {
         {/* IDE */}
         <nav>
           <div className="title">IDE Setup</div>
-          <CustomNavLink to="/ide/chrome" ariaLabel="Chrome">
+          <CustomNavLink
+            to="/ide/chrome"
+            ariaLabel="Chrome">
             Chrome
           </CustomNavLink>
-          <CustomNavLink to="/ide/vsc" ariaLabel="Visual Studio Code">
+          <CustomNavLink
+            to="/ide/vsc"
+            ariaLabel="Visual Studio Code">
             Visual Studio Code
           </CustomNavLink>
           <CustomNavLink
             to="/ide/vsc/extensions"
-            ariaLabel="Visual Studio Code - Extensions"
-          >
+            ariaLabel="Visual Studio Code - Extensions">
             Extensions
           </CustomNavLink>
-          <CustomNavLink to="/ide/vsc/help" ariaLabel="Visual Studio Code - Help">
+          <CustomNavLink
+            to="/ide/vsc/help"
+            ariaLabel="Visual Studio Code - Help">
             Help
           </CustomNavLink>
-          <CustomNavLink to="/ide/npm" ariaLabel="NPM">
+          <CustomNavLink
+            to="/ide/npm"
+            ariaLabel="NPM">
             NPM
           </CustomNavLink>
-          <CustomNavLink to="/ide/git" ariaLabel="Git">
+          <CustomNavLink
+            to="/ide/git"
+            ariaLabel="Git">
             Git
           </CustomNavLink>
-          <CustomNavLink to="/ide/github" ariaLabel="Git Hub">
+          <CustomNavLink
+            to="/ide/github"
+            ariaLabel="Git Hub">
             Git Hub
           </CustomNavLink>
-          <CustomNavLink to="/ide/aws/commit" ariaLabel="AWS Commit">
+          <CustomNavLink
+            to="/ide/aws/commit"
+            ariaLabel="AWS Commit">
             AWS Commit
           </CustomNavLink>
         </nav>
@@ -143,32 +158,40 @@ export function HomeMenu(): JSX.Element {
         {/* PROGRAMMING */}
         <nav>
           <div className="title">Programming Principals</div>
-          <CustomNavLink to="/programming/clean-code" ariaLabel="clean code">
+          <CustomNavLink
+            to="/programming/clean-code"
+            ariaLabel="clean code">
             Clean Code
           </CustomNavLink>
-          <CustomNavLink to="/programming/solid" ariaLabel="solid">
+          <CustomNavLink
+            to="/programming/solid"
+            ariaLabel="solid">
             SOLID
           </CustomNavLink>
-          <CustomNavLink to="/programming/dry" ariaLabel="dry">
+          <CustomNavLink
+            to="/programming/dry"
+            ariaLabel="dry">
             DRY
           </CustomNavLink>
-          <CustomNavLink to="/programming/kiss" ariaLabel="kiss">
+          <CustomNavLink
+            to="/programming/kiss"
+            ariaLabel="kiss">
             KISS
           </CustomNavLink>
-          <CustomNavLink to="/programming/design-patterns" ariaLabel="Design Patterns">
+          <CustomNavLink
+            to="/programming/design-patterns"
+            ariaLabel="Design Patterns">
             Design Patterns
           </CustomNavLink>
           <CustomNavLink
             to="/programming/design-patterns/single-responsibility-model"
-            ariaLabel="single responsibility model"
-          >
+            ariaLabel="single responsibility model">
             Single Responsibility Model
           </CustomNavLink>
 
           <CustomNavLink
             to="/programming/dynamic-programming-questions"
-            ariaLabel="Dynamic Programming Questions"
-          >
+            ariaLabel="Dynamic Programming Questions">
             Dynamic Programming Questions
           </CustomNavLink>
         </nav>
@@ -181,14 +204,22 @@ export function HomeMenu(): JSX.Element {
         {/* DESIGN  */}
         <nav>
           <div className="title">Design</div>
-          <CustomNavLink to="/design/css" ariaLabel="CSS Overview">
+          <CustomNavLink
+            to="/design/css"
+            ariaLabel="CSS Overview">
             CSS Overview
           </CustomNavLink>
-          <CustomNavLink to="/design/responsive-design" ariaLabel="Responsive Design">
+          <CustomNavLink
+            to="/design/responsive-design"
+            ariaLabel="Responsive Design">
             Responsive Design
           </CustomNavLink>
-          <CustomNavLink to="/design/material-design">Material Design</CustomNavLink>
-          <CustomNavLink to="/design/print-design" ariaLabel="Print Design">
+          <CustomNavLink to="/design/material-design">
+            Material Design
+          </CustomNavLink>
+          <CustomNavLink
+            to="/design/print-design"
+            ariaLabel="Print Design">
             Print Design
           </CustomNavLink>
           <CustomNavLink to="/design/font-pairing">Font Pairing</CustomNavLink>
@@ -198,24 +229,38 @@ export function HomeMenu(): JSX.Element {
           <CustomNavLink to="/design/kinetic-typography">
             Kinetic Typography
           </CustomNavLink>
-          <CustomNavLink to="/design/microinteractions">Microinteractions</CustomNavLink>
-          <CustomNavLink to="/design/css/new" ariaLabel="CSS New Features">
+          <CustomNavLink to="/design/microinteractions">
+            Microinteractions
+          </CustomNavLink>
+          <CustomNavLink
+            to="/design/css/new"
+            ariaLabel="CSS New Features">
             CSS New Features
           </CustomNavLink>
-          <CustomNavLink to="/design/css/references" ariaLabel="CSS References">
+          <CustomNavLink
+            to="/design/css/references"
+            ariaLabel="CSS References">
             CSS References
           </CustomNavLink>
         </nav>
         {/* STYLES  */}
         <nav>
           <div className="title">Design Styles</div>
-          <CustomNavLink to="/styles/corporate-memphis">Corporate Memphis</CustomNavLink>
+          <CustomNavLink to="/styles/corporate-memphis">
+            Corporate Memphis
+          </CustomNavLink>
           <CustomNavLink to="/styles/flat-design">Flat Design</CustomNavLink>
-          <CustomNavLink to="/styles/glassmorphism">Glassmorphism</CustomNavLink>
+          <CustomNavLink to="/styles/glassmorphism">
+            Glassmorphism
+          </CustomNavLink>
           <CustomNavLink to="/styles/minimalism">Minimalism</CustomNavLink>
           <CustomNavLink to="/styles/neumorphism">Neumorphism</CustomNavLink>
-          <CustomNavLink to="/styles/retrofuturism">Retrofuturism</CustomNavLink>
-          <CustomNavLink to="/styles/skeuomorphism">Skeuomorphism</CustomNavLink>
+          <CustomNavLink to="/styles/retrofuturism">
+            Retrofuturism
+          </CustomNavLink>
+          <CustomNavLink to="/styles/skeuomorphism">
+            Skeuomorphism
+          </CustomNavLink>
           <CustomNavLink to="/styles/swiss-style">Swiss Style</CustomNavLink>
         </nav>
       </div>

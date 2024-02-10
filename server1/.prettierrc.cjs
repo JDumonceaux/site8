@@ -8,5 +8,4 @@ module.exports = {
   bracketSpacing: true,
   bracketSameLine: true,
   singleAttributePerLine: true,
-  
-}
+};
