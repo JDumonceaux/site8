@@ -1,11 +1,11 @@
-import { PageTitle, SEO } from '../../components/common';
+import { PageTitle, Seo } from '../../components/common';
 
 export default function Artists(): JSX.Element {
   const title = 'Art';
 
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">

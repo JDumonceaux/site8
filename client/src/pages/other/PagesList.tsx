@@ -1,4 +1,4 @@
-import { LoadingWrapper, PageTitle, SEO } from 'components/common';
+import { LoadingWrapper, PageTitle, Seo } from 'components/common';
 import { useDeferredValue } from 'react';
 import { Link } from 'react-router-dom';
 import { IPages } from 'services/api/models/pages/IPages';
@@ -6,7 +6,9 @@ import useFetch from 'services/hooks/useFetch';
 import { ServiceUrl } from 'utils';
 
 export default function PagesList(): JSX.Element {
-  const { data, loading, error } = useFetch<IPages>(`${ServiceUrl.ENDPOINT_PAGES}`);
+  const { data, loading, error } = useFetch<IPages>(
+    `${ServiceUrl.ENDPOINT_PAGES}`,
+  );
   const deferredData = useDeferredValue(data);
 
   const sortedData = deferredData?.items.toSorted((a, b) =>
@@ -17,9 +19,11 @@ export default function PagesList(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="main-content">
-        <LoadingWrapper error={error} isLoading={loading}>
+        <LoadingWrapper
+          error={error}
+          isLoading={loading}>
           <PageTitle title={title} />
           <section className="section">
             <table>

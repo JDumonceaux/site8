@@ -10,7 +10,10 @@
     "start": "npm run build && node dist/server.js",
     "build": "tsc",
     "precommit": "pretty-quick --staged",
-    "prepare": "cd .. && husky install server1/.husky"
+    "prepare": "cd .. && husky install server1/.husky",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
+    "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" "
   },
   "dependencies": {
     "compression": "^1.7.4",
@@ -19,13 +22,23 @@
     "winston": "^3.11.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.1",
+    "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
-    "@types/jest": "^29.5.12",
     "@types/compression": "^1.7.5",
-    "@types/express": "^4.17.13",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-simple-import-sort": "^11.0.0",
+    "eslint-plugin-sonarjs": "^0.23.0",
     "husky": "^9.0.10",
-    "prettier": "3.2.5",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.2.5",
     "pretty-quick": "^4.0.0",
     "typescript": "^5.3.3"
   },

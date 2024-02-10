@@ -1,4 +1,4 @@
-import { LoadingWrapper, PageTitle, SEO } from 'components/common';
+import { LoadingWrapper, PageTitle, Seo } from 'components/common';
 import { Resources } from 'components/common/Resources';
 import { useDeferredValue, useEffect } from 'react';
 import useResources from 'services/hooks/useResources';
@@ -19,7 +19,7 @@ export default function ResourcesList(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">

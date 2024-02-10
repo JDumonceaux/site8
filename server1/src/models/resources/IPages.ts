@@ -1,4 +1,4 @@
-import { IPage } from './IPage.js';
+import { IPage } from './IPage';
 
 export interface IPages {
   metadata: {

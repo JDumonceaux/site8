@@ -8,6 +8,8 @@ import { Logger } from '../utils/Logger.js';
 
 export const pageRouter = express.Router();
 
+const FILE_NAME = 'pages.json';
+
 pageRouter.get('/:id', (req: Request, res: Response) => {
   getAllData(req.params.id).then(([r0, r1]) => {
     res.json({ ...r0, text: r1 });
@@ -17,14 +19,14 @@ pageRouter.get('/:id', (req: Request, res: Response) => {
 pageRouter.patch('/is', (req: Request, res: Response) => {
   const data = req.body;
 
-  updateData(req.params.id, data, getFilePath('pages.json')).then(() => {
+  updateData(req.params.id, data, getFilePath(FILE_NAME)).then(() => {
     res.json({ ...data });
   });
 });
 
 pageRouter.post('/', (req: Request, res: Response) => {
   const data = req.body;
-  appendData(data, getFilePath('pages.json')).then(() => {
+  appendData(data, getFilePath(FILE_NAME)).then(() => {
     res.json({ ...data });
   });
 });
@@ -33,7 +35,7 @@ function getAllData(id: string) {
   const tempId = parseInt(id);
   // Validate the id
   if (!isNaN(tempId) && tempId > 0) {
-    const promise1 = getMetaData(tempId.toString(), getFilePath('pages.json'));
+    const promise1 = getMetaData(tempId.toString(), getFilePath(FILE_NAME));
     const promise2 = readFile(getFilePath('page' + tempId + '-en.txt'), {
       encoding: 'utf8',
     });
@@ -45,11 +47,9 @@ function getAllData(id: string) {
 function getMetaData(id: string, filePath: string) {
   return readFile(filePath, {
     encoding: 'utf8',
-  })
-    .then((results) => {
-      return getPage(id, results);
-    })
-    .catch((_err) => {});
+  }).then((results) => {
+    return getPage(id, results);
+  });
 }
 
 function getPage(id: string, data: string) {
@@ -70,55 +70,49 @@ function appendData(data: IPage, filePath: string) {
 
   return readFile(filePath, {
     encoding: 'utf8',
-  })
-    .then((results) => {
-      const jsonData = JSON.parse(results) as IPages;
-      const ret = {
-        ...jsonData,
-        items: [...jsonData.items, { ...data, id: nextId }],
-      };
+  }).then((results) => {
+    const jsonData = JSON.parse(results) as IPages;
+    const ret = {
+      ...jsonData,
+      items: [...jsonData.items, { ...data, id: nextId }],
+    };
 
-      writeFile(filePath, JSON.stringify(ret, null, 2), {
-        encoding: 'utf8',
-      });
-    })
-    .catch((_err) => {});
+    writeFile(filePath, JSON.stringify(ret, null, 2), {
+      encoding: 'utf8',
+    });
+  });
 }
 
 function updateData(id: string, data: IPage, filePath: string) {
   return readFile(filePath, {
     encoding: 'utf8',
-  })
-    .then((results) => {
-      const jsonData = JSON.parse(results) as IPages;
-      const searchId = parseInt(id);
+  }).then((results) => {
+    const jsonData = JSON.parse(results) as IPages;
+    const searchId = parseInt(id);
 
-      const filteredItems = jsonData.items.filter((x) => x.id !== searchId);
-      const ret = { ...jsonData, items: [...filteredItems, data] };
+    const filteredItems = jsonData.items.filter((x) => x.id !== searchId);
+    const ret = { ...jsonData, items: [...filteredItems, data] };
 
-      writeFile(filePath, JSON.stringify(ret, null, 2), {
-        encoding: 'utf8',
-      });
-    })
-    .catch((_err) => {});
+    writeFile(filePath, JSON.stringify(ret, null, 2), {
+      encoding: 'utf8',
+    });
+  });
 }
 
 function getLastId(filePath: string): number | undefined {
   readFile(filePath, {
     encoding: 'utf8',
-  })
-    .then((results) => {
-      const jsonData = JSON.parse(results) as IPages;
+  }).then((results) => {
+    const jsonData = JSON.parse(results) as IPages;
 
-      const maxItem = jsonData.items.reduce(function (a, b) {
-        if (+a.id > +b.id) {
-          return a;
-        } else {
-          return b;
-        }
-      });
-      return maxItem ? maxItem.id : undefined;
-    })
-    .catch((_err) => {});
+    const maxItem = jsonData.items.reduce(function (a, b) {
+      if (+a.id > +b.id) {
+        return a;
+      } else {
+        return b;
+      }
+    });
+    return maxItem ? maxItem.id : undefined;
+  });
   return undefined;
 }

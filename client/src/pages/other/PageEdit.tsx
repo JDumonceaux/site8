@@ -1,4 +1,4 @@
-import { PageTitle, SEO } from 'components/common';
+import { PageTitle, Seo } from 'components/common';
 import { TextInput } from 'components/ui/TextInput';
 import { useState } from 'react';
 import { IPage } from 'services/api/models/pages/IPage';
@@ -63,7 +63,7 @@ export default function PageEdit(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="main-content">
         {/* <LoadingWrapper error={error} isLoading={loading}> */}
         <PageTitle title={title} />

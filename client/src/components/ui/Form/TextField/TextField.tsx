@@ -1,5 +1,3 @@
-import React from 'react';
-
 import HelperText, { IHelperTextProps } from './HelperText';
 import TextInput, { ITextInputProps } from './TextInput';
 import TextLabel, { ITextLabelProps } from './TextLabel';

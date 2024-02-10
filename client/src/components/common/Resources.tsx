@@ -1,8 +1,8 @@
 import { IResources } from 'services/api/models/resources/IResources';
 
 type ResourcesProps = {
-  id: number;
-  data: IResources;
+  id?: number;
+  data?: IResources | null;
 };
 
 export function Resources({ id, data }: ResourcesProps): JSX.Element {

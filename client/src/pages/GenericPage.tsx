@@ -1,9 +1,10 @@
-import { LoadingWrapper, PageTitle, SEO } from 'components/common';
+import { ServiceUrl } from 'utils';
+
+import { Seo, LoadingWrapper, PageTitle } from 'components/common';
 import { Resources } from 'components/common/Resources';
 import { useDeferredValue } from 'react';
 import { IPage } from 'services/api/models/pages/IPage';
 import useFetch from 'services/hooks/useFetch';
-import { ServiceUrl } from 'utils';
 
 type GenericPageProps = {
   id: number;
@@ -24,7 +25,7 @@ export default function GenericPage({
 
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="main-content">
         <LoadingWrapper
           error={error}

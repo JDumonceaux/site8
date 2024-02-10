@@ -7,10 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:import/recommended',
-    'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
-    // Handle JSX transform in React 17+
-    'plugin:react/jsx-runtime',
     // Add SonarJS rules
     'plugin:sonarjs/recommended',
     // This disables the formatting rules in ESLint that Prettier is going to be responsible for handling.
@@ -39,14 +36,8 @@ module.exports = {
     'react/jsx-pascal-case': [1],
     //  JSX not allowed in files in Typescript files
     'react/jsx-filename-extension': 'off',
-    // Accessibility rules
-    'jsx-a11y/anchor-is-valid': [
-      'error',
-      {
-        components: ['Link'],
-        specialLink: ['hrefLeft', 'hrefRight'],
-        aspects: ['invalidHref', 'preferButton'],
-      },
-    ],
+
+    // Unable to resolve path to module
+    'import/no-unresolved': [0],
   },
 };

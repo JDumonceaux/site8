@@ -1,6 +1,8 @@
-import { PageTitle, SEO } from 'components/common';
+import { PageTitle, Seo } from 'components/common';
 import { useEffect } from 'react';
 import { APP_NAME } from 'utils/constants';
+
+const boxStyle = '56.25% 0 0 0';
 
 export default function Yachts(): JSX.Element {
   const title = 'Yachts';
@@ -11,7 +13,7 @@ export default function Yachts(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">
@@ -19,18 +21,24 @@ export default function Yachts(): JSX.Element {
             The design of this yacht is called <em>Nature</em>.
           </p>
           <p>
-            I&#39;d do just about anything to own this beautiful beast... Is anyone
-            feeling generous?
+            I&#39;d do just about anything to own this beautiful beast... Is
+            anyone feeling generous?
           </p>
           <p>
-            I love the Japanese influence, low profile, clean lines, and brooding color.
-            The bow panels on either side slide back to expose the floor-to-ceiling
-            windows of the upper observation lounge. Large doors fold down from the sides
-            - becoming decks from which you can dangle your feet in warm waters.
+            I love the Japanese influence, low profile, clean lines, and
+            brooding color. The bow panels on either side slide back to expose
+            the floor-to-ceiling windows of the upper observation lounge. Large
+            doors fold down from the sides - becoming decks from which you can
+            dangle your feet in warm waters.
           </p>
-          <p>Imagine slipping through tropical waters with a fine drink in your hand.</p>
           <p>
-            <a href="https://sinot.com/nature/">Sinot Yacht Architecture and Design</a>{' '}
+            Imagine slipping through tropical waters with a fine drink in your
+            hand.
+          </p>
+          <p>
+            <a href="https://sinot.com/nature/">
+              Sinot Yacht Architecture and Design
+            </a>{' '}
             has a range of other beautiful designs:{' '}
             <a href="https://sinot.com/aware/">Aware</a>,{' '}
             <a href="https://sinot.com/beach/">Beach</a>,{' '}
@@ -39,16 +47,22 @@ export default function Yachts(): JSX.Element {
             <a href="https://sinot.com/the-art-of-life/">The Art of Life</a>,{' '}
             <a href="https://sinot.com/nature/">Nature</a>,{' '}
             <a href="https://sinot.com/zen/">Zen</a>, and{' '}
-            <a href="https://sinot.com/balance/">Balance</a>. All equally beautiful and
-            innovative.
+            <a href="https://sinot.com/balance/">Balance</a>. All equally
+            beautiful and innovative.
           </p>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img src="/images/yachts/sinot-nature-1.jpg.webp" alt="" />
+            <img
+              src="/images/yachts/sinot-nature-1.jpg.webp"
+              alt=""
+            />
           </div>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img src="/images/yachts/sinot-nature-2.jpg.webp" alt="" />
+            <img
+              src="/images/yachts/sinot-nature-2.jpg.webp"
+              alt=""
+            />
           </div>
           <div>
             <div className="image-banner-1">
@@ -61,8 +75,13 @@ export default function Yachts(): JSX.Element {
             />
           </div>
           <div>
-            <div className="image-banner-1">Nature Design - Expansive Decks</div>
-            <img src="/images/yachts/sinot-nature-3.png" alt="" />
+            <div className="image-banner-1">
+              Nature Design - Expansive Decks
+            </div>
+            <img
+              src="/images/yachts/sinot-nature-3.png"
+              alt=""
+            />
           </div>
           <div>
             <div className="image-banner-1">Nature Design - Guest Bedroom</div>
@@ -75,11 +94,17 @@ export default function Yachts(): JSX.Element {
 
           <div>
             <div className="image-banner-1">Beach Design</div>
-            <img src="/images/yachts/sinot-beach.png" alt="" />
+            <img
+              src="/images/yachts/sinot-beach.png"
+              alt=""
+            />
           </div>
           <div>
             <div className="image-banner-1">Aqua Design - Owner&#39s Suite</div>
-            <img src="/images/yachts/sinot-aqua-owners-suite.png" alt="" />
+            <img
+              src="/images/yachts/sinot-aqua-owners-suite.png"
+              alt=""
+            />
           </div>
         </section>
       </main>
@@ -87,7 +112,7 @@ export default function Yachts(): JSX.Element {
         {/* Art of Life */}
         <div>
           <div className="image-banner-1">Art of Life Design</div>
-          <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+          <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
             <iframe
               src="https://player.vimeo.com/video/290705961?h=9cfff6a399"
               style={{
@@ -108,7 +133,7 @@ export default function Yachts(): JSX.Element {
         {/* Nature */}
         <div>
           <div className="image-banner-1">Nature Design</div>
-          <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+          <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
             <iframe
               src="https://player.vimeo.com/video/235907283?h=35a2fec5db"
               style={{
@@ -129,7 +154,7 @@ export default function Yachts(): JSX.Element {
         {/* Zen */}
         <div>
           <div className="image-banner-1">Zen Design</div>
-          <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+          <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
             <iframe
               src="https://player.vimeo.com/video/184474900?h=bef5fe895d"
               style={{

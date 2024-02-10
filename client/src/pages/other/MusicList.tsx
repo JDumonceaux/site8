@@ -1,6 +1,6 @@
 import './musicList.css';
 
-import { LoadingWrapper, PageTitle, SEO } from 'components/common';
+import { LoadingWrapper, PageTitle, Seo } from 'components/common';
 import memoize from 'memoize-one';
 import { useDeferredValue, useEffect } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -46,7 +46,7 @@ export default function MusicList(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Seo title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">
