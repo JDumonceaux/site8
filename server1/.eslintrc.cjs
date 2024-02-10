@@ -14,7 +14,7 @@ module.exports = {
     // Make sure it's always the last config, so it gets the chance to override other configs.
     'eslint-config-prettier',
   ],
-  plugins: ['sonarjs'],
+  plugins: ['sonarjs', 'promise'],
   settings: {
     react: {
       // Tells eslint-plugin-react to automatically detect the version of React to use.
@@ -39,5 +39,18 @@ module.exports = {
 
     // Unable to resolve path to module
     'import/no-unresolved': [0],
+    // Promise rules
+    'promise/always-return': 'error',
+    'promise/no-return-wrap': 'error',
+    'promise/param-names': 'error',
+    'promise/catch-or-return': 'error',
+    'promise/no-native': 'off',
+    'promise/no-nesting': 'warn',
+    'promise/no-promise-in-callback': 'warn',
+    'promise/no-callback-in-promise': 'warn',
+    'promise/avoid-new': 'warn',
+    'promise/no-new-statics': 'error',
+    'promise/no-return-in-finally': 'warn',
+    'promise/valid-params': 'warn',
   },
 };

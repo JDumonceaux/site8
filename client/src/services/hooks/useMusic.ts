@@ -7,16 +7,19 @@ import { AppDispatch, RootState } from '../state/store';
 
 const useMusic = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const musicData: IMusic | null = useSelector(
-    (state: RootState) => state.music.musicData,
-  );
-  const loading = useSelector((state: RootState) => state.music.loading);
-  const error = useSelector((state: RootState) => state.music.error);
+  const selector = (state: RootState) => state.music;
 
-  const dispatchFetchMusic = useCallback(() => dispatch(fetchMusic()), [dispatch]);
+  const data: IMusic | null = useSelector(selector).musicData;
+  const loading = useSelector(selector).loading;
+  const error = useSelector(selector).error;
+
+  const dispatchFetchMusic = useCallback(
+    () => dispatch(fetchMusic()),
+    [dispatch],
+  );
 
   return {
-    data: musicData,
+    data,
     loading,
     error,
     fetchData: dispatchFetchMusic,

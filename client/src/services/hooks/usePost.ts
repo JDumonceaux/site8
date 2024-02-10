@@ -15,6 +15,7 @@ const usePost = <T>(url: string) => {
     await axios
       .post(url, data)
       .then((response) => {
+        // eslint-disable-next-line promise/always-return
         response.data && setData(response.data);
       })
       .catch((error) => {

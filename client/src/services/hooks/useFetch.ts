@@ -20,6 +20,7 @@ const useFetch = <T>(url: string) => {
           cancelToken: source.token,
         })
         .then((response) => {
+          // eslint-disable-next-line promise/always-return
           response.data && setData(response.data);
         })
         .catch((error) => {

@@ -6,14 +6,16 @@ import { AppDispatch, RootState } from '../../services/state/store';
 
 const useArt = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const artData: IArt | null = useSelector((state: RootState) => state.art.artData);
-  const loading = useSelector((state: RootState) => state.art.loading);
-  const error = useSelector((state: RootState) => state.art.error);
+  const selector = (state: RootState) => state.art;
+
+  const data: IArt | null = useSelector(selector).artData;
+  const loading = useSelector(selector).loading;
+  const error = useSelector(selector).error;
 
   const dispatchFetchArt = useCallback(() => dispatch(fetchArt()), [dispatch]);
 
   return {
-    data: artData,
+    data,
     loading,
     error,
     fetchData: dispatchFetchArt,

@@ -9,6 +9,8 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
+    // React Redux
+    'plugin:react-redux/recommended',
     // Handle JSX transform in React 17+
     'plugin:react/jsx-runtime',
     // Add SonarJS rules
@@ -17,7 +19,7 @@ module.exports = {
     // Make sure it's always the last config, so it gets the chance to override other configs.
     'eslint-config-prettier',
   ],
-  plugins: ['sonarjs'],
+  plugins: ['sonarjs', 'react-redux', 'immutable', 'promise'],
   settings: {
     react: {
       // Tells eslint-plugin-react to automatically detect the version of React to use.
@@ -39,6 +41,9 @@ module.exports = {
     'react/jsx-pascal-case': [1],
     //  JSX not allowed in files in Typescript files
     'react/jsx-filename-extension': 'off',
+    // 'immutable/no-let': 2,
+    //'immutable/no-this': 2,
+    //"immutable/no-mutation": 2
     // Accessibility rules
     'jsx-a11y/anchor-is-valid': [
       'error',
@@ -48,5 +53,18 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton'],
       },
     ],
+    // Promise rules
+    'promise/always-return': 'error',
+    'promise/no-return-wrap': 'error',
+    'promise/param-names': 'error',
+    'promise/catch-or-return': 'error',
+    'promise/no-native': 'off',
+    'promise/no-nesting': 'warn',
+    'promise/no-promise-in-callback': 'warn',
+    'promise/no-callback-in-promise': 'warn',
+    'promise/avoid-new': 'warn',
+    'promise/no-new-statics': 'error',
+    'promise/no-return-in-finally': 'warn',
+    'promise/valid-params': 'warn',
   },
 };

@@ -7,16 +7,19 @@ import { AppDispatch, RootState } from '../state/store';
 
 const usePhotos = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const photosData: IPhotos | null = useSelector(
-    (state: RootState) => state.photos.photosData,
-  );
-  const loading = useSelector((state: RootState) => state.photos.loading);
-  const error = useSelector((state: RootState) => state.photos.error);
 
-  const dispatchFetchPhotos = useCallback(() => dispatch(fetchPhotos()), [dispatch]);
+  const selector = (state: RootState) => state.photos;
+  const data: IPhotos | null = useSelector(selector).photosData;
+  const loading = useSelector(selector).loading;
+  const error = useSelector(selector).error;
+
+  const dispatchFetchPhotos = useCallback(
+    () => dispatch(fetchPhotos()),
+    [dispatch],
+  );
 
   return {
-    data: photosData,
+    data,
     loading,
     error,
     fetchData: dispatchFetchPhotos,

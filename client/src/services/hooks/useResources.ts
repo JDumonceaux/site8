@@ -7,11 +7,11 @@ import { AppDispatch, RootState } from '../state/store';
 
 const useResources = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const resourcesData: IResources | null = useSelector(
-    (state: RootState) => state.resources.resourcesData,
-  );
-  const loading = useSelector((state: RootState) => state.resources.loading);
-  const error = useSelector((state: RootState) => state.resources.error);
+  const selector = (state: RootState) => state.resources;
+
+  const data: IResources | null = useSelector(selector).resourcesData;
+  const loading = useSelector(selector).loading;
+  const error = useSelector(selector).error;
 
   const dispatchFetchResources = useCallback(
     () => dispatch(fetchResources()),
@@ -19,7 +19,7 @@ const useResources = () => {
   );
 
   return {
-    data: resourcesData,
+    data,
     loading,
     error,
     fetchData: dispatchFetchResources,

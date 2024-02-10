@@ -11,6 +11,7 @@ export const pageRouter = express.Router();
 const FILE_NAME = 'pages.json';
 
 pageRouter.get('/:id', (req: Request, res: Response) => {
+  // eslint-disable-next-line promise/catch-or-return, promise/always-return
   getAllData(req.params.id).then(([r0, r1]) => {
     res.json({ ...r0, text: r1 });
   });
@@ -19,6 +20,7 @@ pageRouter.get('/:id', (req: Request, res: Response) => {
 pageRouter.patch('/is', (req: Request, res: Response) => {
   const data = req.body;
 
+  // eslint-disable-next-line promise/catch-or-return, promise/always-return
   updateData(req.params.id, data, getFilePath(FILE_NAME)).then(() => {
     res.json({ ...data });
   });
@@ -26,6 +28,7 @@ pageRouter.patch('/is', (req: Request, res: Response) => {
 
 pageRouter.post('/', (req: Request, res: Response) => {
   const data = req.body;
+  // eslint-disable-next-line promise/catch-or-return, promise/always-return
   appendData(data, getFilePath(FILE_NAME)).then(() => {
     res.json({ ...data });
   });
@@ -80,6 +83,7 @@ function appendData(data: IPage, filePath: string) {
     writeFile(filePath, JSON.stringify(ret, null, 2), {
       encoding: 'utf8',
     });
+    return null;
   });
 }
 
@@ -96,10 +100,12 @@ function updateData(id: string, data: IPage, filePath: string) {
     writeFile(filePath, JSON.stringify(ret, null, 2), {
       encoding: 'utf8',
     });
+    return null;
   });
 }
 
 function getLastId(filePath: string): number | undefined {
+  // eslint-disable-next-line promise/catch-or-return
   readFile(filePath, {
     encoding: 'utf8',
   }).then((results) => {
