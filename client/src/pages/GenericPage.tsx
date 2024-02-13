@@ -15,7 +15,7 @@ export default function GenericPage({
   id,
   pageTitle,
 }: GenericPageProps): JSX.Element {
-  const { data, loading, error } = useFetch<IPage>(
+  const { data, isLoading, error } = useFetch<IPage>(
     `${ServiceUrl.ENDPOINT_PAGE}/${id}`,
   );
 
@@ -29,7 +29,7 @@ export default function GenericPage({
       <main className="main-content">
         <LoadingWrapper
           error={error}
-          isLoading={loading}>
+          isLoading={isLoading}>
           <PageTitle title={title} />
           <time>Fill In</time>
           <section className="section">

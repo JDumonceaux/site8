@@ -17,7 +17,7 @@
   padding-bottom: 18px;
   text-align: left;
   padding-right: 10px;
-  color: #fff;
+  color: var(--palette-white, #fff);
   background-color: #6c7ae0;
 }
 .table td {

@@ -12,11 +12,12 @@
 .home-layout .main-content {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 360px;
   height: calc(100vh - 80px);
   background-color: darkkhaki;
   padding: 16px;
   font-size: 1.1rem;
+  padding-left: 12px;
 }
 .home-layout .section {
   flex-grow: 1;
@@ -37,7 +38,7 @@
 .home-box1 {
   animation-duration: 2s;
   animation-name: slidein;
-  width: 360px;
+  width: 320px;
 }
 @keyframes slidein {
   from {

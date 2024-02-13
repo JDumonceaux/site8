@@ -4,11 +4,11 @@ import { httpErrorHandler } from '../../utils/errorHandler';
 
 const useFetch = <T>(url: string) => {
   const [data, setData] = useState<T | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     setData(undefined);
     setError(undefined);
     // eslint-disable-next-line import/no-named-as-default-member
@@ -32,7 +32,7 @@ const useFetch = <T>(url: string) => {
           }
         })
         .finally(() => {
-          setLoading(false);
+          setIsLoading(false);
         });
     };
 
@@ -46,7 +46,7 @@ const useFetch = <T>(url: string) => {
 
   return {
     data,
-    loading,
+    isLoading,
     error,
   };
 };

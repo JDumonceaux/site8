@@ -4,7 +4,7 @@
   justify-content: center;
 }
 .hamburger-control__title {
-  color: #fff;
+  color: var(--palette-white, #fff);
   font-size: 0.7rem;
   font-weight: 400;
   justify-content: center;
@@ -19,14 +19,14 @@
 .hamburger-control__title::before {
   content: '';
   display: block;
-  border-top: 1px solid #fff;
+  border-top: 1px solid var(--palette-white, #fff);
   border-style: double;
   margin-bottom: 1px;
 }
 .hamburger-control__title::after {
   content: '';
   display: block;
-  border-top: 1px solid #fff;
+  border-top: 1px solid var(--palette-white, #fff);
   border-style: double;
   margin-top: 1px;
 }

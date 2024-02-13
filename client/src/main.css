@@ -16,6 +16,11 @@
   --palette-grey-50: #888888;
   --palette-grey-100: #585858;
   --palette-grey-dark: #4b4b4b;
+
+  --palette-white: #f5f5fa;
+  --palette-black: #1f1f29;
+
+  var( --palette-black, #000);
 }
 
 html,

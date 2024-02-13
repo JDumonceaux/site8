@@ -2,6 +2,7 @@ import './home.css';
 
 import { Seo } from 'components/common';
 import { HomeMenu } from 'components/common/MainMenu/HomeMenu';
+import { MatrixBG } from 'components/ui/Animation/MatrixBG';
 
 export default function Home(): JSX.Element {
   const title = 'Home';
@@ -25,7 +26,9 @@ export default function Home(): JSX.Element {
               picture.
             </p>
           </section>
-          <section></section>
+          <section>
+            <MatrixBG />
+          </section>
           <section className="quote-section">
             <p>“Three may keep a secret, if two of them are dead.”</p>
             <p>― Benjamin Franklin, Poor Richard&#39;s Almanack</p>

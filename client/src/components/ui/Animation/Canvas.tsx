@@ -13,7 +13,7 @@ const Canvas = ({ ...rest }: CanvasProps) => {
     frameCount: number | undefined,
   ) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = '#000000';
+    ctx.fillStyle = '#000';
     ctx.beginPath();
     ctx.arc(
       50,

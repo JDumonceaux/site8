@@ -13,7 +13,7 @@
 }
 
 .adorned-input:hover {
-  border-color: #ffffff;
+  border-color: var(--palette-white, #fff);
 }
 
 .adorned-input:focus {

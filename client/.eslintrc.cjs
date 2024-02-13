@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     node: true,
+    'jest/globals': true,
   },
   extends: [
     // By extending from a plugin config, we can get recommended rules without having to add them manually.
@@ -19,7 +20,7 @@ module.exports = {
     // Make sure it's always the last config, so it gets the chance to override other configs.
     'eslint-config-prettier',
   ],
-  plugins: ['sonarjs', 'react-redux', 'immutable', 'promise'],
+  plugins: ['sonarjs', 'react-redux', 'immutable', 'promise', 'jest'],
   settings: {
     react: {
       // Tells eslint-plugin-react to automatically detect the version of React to use.
@@ -66,5 +67,37 @@ module.exports = {
     'promise/no-new-statics': 'error',
     'promise/no-return-in-finally': 'warn',
     'promise/valid-params': 'warn',
+    // Jest rules
+    'jest/no-disabled-tests': 'warn',
+    'jest/no-focused-tests': 'error',
+    'jest/no-identical-title': 'error',
+    'jest/prefer-to-have-length': 'warn',
+    'jest/valid-expect': 'error',
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-unused-vars': 0,
+        '@typescript-eslint/no-unused-vars': 2,
+        'no-restricted-imports': ['error', { paths: ['prop-types'] }],
+      },
+    },
+    {
+      files: ['*.js', '*.jsx'],
+      rules: {
+        'no-unused-vars': 2,
+        '@typescript-eslint/no-unused-vars': 0,
+      },
+    },
+    {
+      files: ['*.test.*'],
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+      rules: {
+        'max-lines': 0,
+        'jest/prefer-expect-assertions': 'off',
+      },
+    },
+  ],
 };

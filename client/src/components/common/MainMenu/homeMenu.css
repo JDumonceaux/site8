@@ -6,7 +6,6 @@
   column-gap: 16px;
 }
 .home-menu .grid-container nav {
-  min-width: 250px;
   break-inside: avoid;
   margin-bottom: 18px;
 }
@@ -22,16 +21,16 @@
 .home-menu a {
   font-size: 0.8rem;
   display: block;
-  color: #000;
+  color: var(--palette-black, #000);
   display: block;
   text-decoration: none;
   padding: 3px 0px;
 }
 .home-menu a:link {
-  color: #000;
+  color: var(--palette-black, #000);
 }
 .home-menu a:visited {
-  color: #000;
+  color: var(--palette-black, #000);
 }
 .home-menu a:hover,
 .home-menu a:active,

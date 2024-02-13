@@ -11,7 +11,7 @@
 .left-side-menu li {
   list-style-type: none;
   padding: 5px;
-  background-color: #fff;
+  background-color: var(--palette-white, #fff);
   margin-bottom: 5px;
   position: relative;
 }

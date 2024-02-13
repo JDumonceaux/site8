@@ -37,7 +37,7 @@
 }
 .accordion-menu a {
   display: block;
-  color: #000;
+  color: var(--palette-black, #000);
   border-bottom: 1px solid var(--palette-grey-dark);
   display: block;
   text-decoration: none;
@@ -45,5 +45,5 @@
 }
 .accordion-menu a:visited,
 .accordion-menu a:focus {
-  color: #000;
+  color: var(--palette-black, #000);
 }

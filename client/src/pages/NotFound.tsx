@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
   );
 `;
 const StyledH1 = styled.h1`
-  color: #000;
+  color: var(--palette-black, #000);
   text-align: center;
   padding-top: 10vh;
   font-size: clamp(12px, 3vw, 36px);

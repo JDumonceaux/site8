@@ -7,7 +7,7 @@
   }
   .input {
     color: #212121;
-    background-color: #fff;
+    background-color: var(--palette-white, #fff);
     font-size: 1rem;
     letter-spacing: 0.5px;
     line-height: 20px;

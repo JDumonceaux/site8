@@ -7,5 +7,5 @@ module.exports = {
   endOfLine: 'auto',
   bracketSpacing: true,
   bracketSameLine: true,
-  singleAttributePerLine: true,
+  singleAttributePerLine: false,
 };
