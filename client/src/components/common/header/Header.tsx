@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { APP_NAME } from '../../../utils/constants';
+import { APP_NAME } from 'utils/constants';
 import { MenuIcon } from './MenuIcon';
 
 const StyledHeader = styled.header`
@@ -14,6 +14,7 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   box-shadow: 0 5px 20px -10px #000;
+  margin-bottom: 2px;
 `;
 const StyledSkipLink = styled.a`
   position: absolute;
@@ -46,9 +47,7 @@ const StyledLinkDiv = styled.div`
 
 export function Header(): JSX.Element {
   return (
-    <StyledHeader
-      className="header"
-      data-testid="header">
+    <StyledHeader className="header" data-testid="header">
       <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
       <MenuIcon />
       <StyledLinkDiv>

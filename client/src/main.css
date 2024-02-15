@@ -20,7 +20,9 @@
   --palette-white: #f5f5fa;
   --palette-black: #1f1f29;
 
-  var( --palette-black, #000);
+  --palette-label: rgb(102, 102, 102);
+  --palette-text-error: #751c31;
+}
 }
 
 html,

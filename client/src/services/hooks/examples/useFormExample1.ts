@@ -11,7 +11,6 @@ export const useFormExample1 = () => {
   const dispatchUpdate = useCallback(
     (fieldName: string, value: string) => {
       const x = { ...data, [fieldName]: value };
-      console.log('X', x);
       dispatch(update(x));
     },
     [data, dispatch],

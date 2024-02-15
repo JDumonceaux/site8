@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { IPage } from './models/pages/IPage';
+import { ServiceUrl } from 'utils';
 
 const baseUrl = 'http://localhost:3001/api';
 
@@ -15,7 +16,7 @@ function createRequestOptions<T>(method: string, data: T) {
 
 async function createPage(page: IPage) {
   const options = createRequestOptions('POST', page);
-  return await axios.post(`${baseUrl}/pages`, options);
+  return await axios.post(`${ServiceUrl.ENDPOINT_PAGE}`, options);
 }
 
 async function updatePage(page: IPage) {

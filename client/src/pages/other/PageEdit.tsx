@@ -1,65 +1,38 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { PageTitle, Seo } from 'components/common';
+import { Button } from 'components/ui/Button';
+import { Checkbox } from 'components/ui/Checkbox';
+import { TextArea } from 'components/ui/TextArea';
 import { TextInput } from 'components/ui/TextInput';
-import { useState } from 'react';
-import { IPage } from 'services/api/models/pages/IPage';
-import usePost from 'services/hooks/usePost';
-import { ServiceUrl } from 'utils';
-import { z } from 'zod';
+import { TwoColumn } from 'components/ui/TwoColumn';
+import usePageEdit from 'services/hooks/usePageEdit';
 
-const pageSchema = z.object({
-  id: z.number(),
-  short_title: z
-    .string({ required_error: 'Short Title is required.' })
-    .min(1)
-    .trim(),
-  long_title: z
-    .string({ required_error: 'Long Title is required.' })
-    .min(1)
-    .trim(),
-  edit_date: z.string().trim().optional(),
-  resources: z.boolean(),
-  text: z.string({ required_error: 'Text is required.' }).min(1).trim(),
-  parent: z.string().trim().optional(),
-  reading_time: z.string().trim().optional(),
-  readability_score: z.string().trim().optional(),
-});
-
-type PageFormValues = z.infer<typeof pageSchema>;
+import { LoadingOverlay } from 'components/common/LoadingOverlay';
+import { Modal } from 'components/common/Modal';
 
 export default function PageEdit(): JSX.Element {
-  const { postData } = usePost<IPage>(`${ServiceUrl.ENDPOINT_PAGE}`);
+  // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const {
+    formValues,
+    handleCancel,
+    handleChange,
+    handleSubmit,
+    // isProcessing,
+    // updateError,
+  } = usePageEdit();
+  const params = useParams();
+  // const { id } = params.id;
 
   const title = 'Page Edit';
 
-  const [formValues, setFormValues] = useState<PageFormValues>({
-    id: 0,
-    short_title: '',
-    long_title: '',
-    edit_date: '',
-    resources: false,
-    parent: '',
-    text: '',
-    reading_time: '',
-    readability_score: '',
-  });
+  useEffect(() => {
+    //   setShowErrorOverlay(updateError !== false);
+    setIsOpen(true);
+  }, []);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Handle form submission here
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { edit_date, parent, ...rest } = formValues;
-    postData(rest);
-  };
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
+  const isProcessing2 = true;
 
   return (
     <>
@@ -74,24 +47,36 @@ export default function PageEdit(): JSX.Element {
               id="short_title"
               value={formValues.short_title}
               onChange={handleChange}
+              showCounter
+              maxLength={30}
+              helpText="Required"
+              errorText="Please enter a short title"
+              isValid={false}
+              required={true}
             />
             <TextInput
               label="Long Title"
               id="long_title"
               value={formValues.long_title}
               onChange={handleChange}
+              showCounter
+              maxLength={250}
+              helpText="Required"
+              required={true}
             />
             <TextInput
               label="Edit Date"
               id="edit_date"
               value={formValues.edit_date}
               onChange={handleChange}
+              showCounter
+              maxLength={10}
+              helpText="Required"
+              required={true}
             />
-            <label htmlFor="resources">Resources</label>
-            <input
-              type="checkbox"
+            <Checkbox
+              label="Resources"
               id="resources"
-              name="resources"
               checked={formValues.resources}
               onChange={handleChange}
             />
@@ -100,32 +85,53 @@ export default function PageEdit(): JSX.Element {
               id="parent"
               value={formValues.parent}
               onChange={handleChange}
+              showCounter
             />
             <TextInput
               label="Reading Time"
               id="reading_time"
               value={formValues.reading_time}
               onChange={handleChange}
+              showCounter
             />
             <TextInput
               label="Readability Score"
               id="readability_score"
               value={formValues.readability_score}
               onChange={handleChange}
+              showCounter
             />
-            <label htmlFor="text">Text</label>
-            <textarea
+            <TextArea
+              label="Text"
               id="text"
-              name="text"
               value={formValues.text}
               onChange={handleChange}
+              showCounter
+              required={true}
             />
-
-            <button type="submit">Submit</button>
+            <TwoColumn includeGap>
+              <Button id="cancel" onClick={handleCancel} variant="secondary">
+                Cancel
+              </Button>
+              <Button id="submit" type="submit">
+                Submit
+              </Button>
+            </TwoColumn>
           </form>
         </section>
         {/* </LoadingWrapper> */}
       </main>
+
+      <Modal
+        onClose={() => setIsOpen(false)}
+        open={isOpen}
+        locked={false}
+        title="Save">
+        <p>
+          I'm a modal window, I don't use portals but use the dialog element
+          from the platform.
+        </p>
+      </Modal>
     </>
   );
 }

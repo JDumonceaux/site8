@@ -10,8 +10,6 @@ export default function Demo() {
 
   const handleSearch = useCallback(
     (text: string) => {
-      console.log(users[0]);
-
       const filteredUsers = allUsers.filter((user) => user.includes(text));
       setUsers(filteredUsers);
     },

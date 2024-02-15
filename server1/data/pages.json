@@ -51,7 +51,6 @@
       "edit_date": "01/18/2024",
       "resources": true,
       "parent": "Design Styles",
-
       "reading_time": "",
       "readability_score": ""
     },
@@ -62,7 +61,6 @@
       "edit_date": "01/18/2024",
       "resources": true,
       "parent": "Design Styles",
-
       "reading_time": "",
       "readability_score": ""
     },
@@ -73,7 +71,6 @@
       "edit_date": "01/18/2024",
       "resources": true,
       "parent": "Design Styles",
-
       "reading_time": "",
       "readability_score": ""
     },
@@ -84,7 +81,6 @@
       "edit_date": "01/18/2024",
       "resources": true,
       "parent": "Design Styles",
-
       "reading_time": "",
       "readability_score": ""
     },
@@ -108,7 +104,6 @@
       "reading_time": "",
       "readability_score": ""
     },
-
     {
       "id": 2001,
       "short_title": "Chrome Extensions",
@@ -176,6 +171,168 @@
       "edit_date": "01/18/2024",
       "resources": true,
       "parent": "Art",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "Test Entry",
+      "long_title": "Test Entry",
+      "resources": false,
+      "text": "Teststts",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "Test Entry",
+      "long_title": "Test Entry",
+      "resources": false,
+      "text": "Teststts",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "Test Entry",
+      "long_title": "Test Entry",
+      "resources": false,
+      "text": "Teststts",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "ee",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "",
+      "long_title": "",
+      "resources": false,
+      "text": "",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "test",
+      "long_title": "Test",
+      "resources": false,
+      "text": "ttttt",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "test",
+      "long_title": "Test",
+      "resources": false,
+      "text": "ttttt",
+      "reading_time": "",
+      "readability_score": ""
+    },
+    {
+      "id": 1,
+      "short_title": "Test",
+      "long_title": "Test",
+      "resources": false,
+      "text": "test",
       "reading_time": "",
       "readability_score": ""
     }

@@ -5,8 +5,6 @@ interface SearchProps {
 }
 
 const Search = React.memo(function Search({ onChange }: SearchProps) {
-  console.log('Search rendered!');
-
   return (
     <input
       type="text"
