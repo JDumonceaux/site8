@@ -19,6 +19,7 @@ export default function PageEdit(): JSX.Element {
     handleCancel,
     handleChange,
     handleSubmit,
+    setFieldValue,
     // isProcessing,
     // updateError,
   } = usePageEdit();
@@ -28,9 +29,8 @@ export default function PageEdit(): JSX.Element {
   const title = 'Page Edit';
 
   useEffect(() => {
-    //   setShowErrorOverlay(updateError !== false);
-    //setIsOpen(true);
-  }, []);
+    setFieldValue('id', params.id);
+  }, [params.id, setFieldValue]);
 
   return (
     <>
@@ -40,6 +40,12 @@ export default function PageEdit(): JSX.Element {
         <PageTitle title={title} />
         <section className="section">
           <form onSubmit={handleSubmit}>
+            <TextInput
+              label="ID"
+              id="id"
+              value={formValues.id}
+              readOnly={true}
+            />
             <TextInput
               label="Short Title"
               id="short_title"
@@ -78,12 +84,12 @@ export default function PageEdit(): JSX.Element {
               isValid={isValid('edit_date')}
               // required={true}
             />
-            <Checkbox
+            {/* <Checkbox
               label="Resources"
               id="resources"
               checked={formValues.resources}
               onChange={handleChange}
-            />
+            /> */}
             <TextInput
               label="Parent"
               id="parent"

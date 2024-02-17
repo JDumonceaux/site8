@@ -18,24 +18,31 @@ type TextInputProps = {
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
 
 const StyledInput = styled.input<{ $isValid: boolean }>`
+  position: relative;
   color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
-  background-color: var(--palette-white, #fff);
   font-size: 1rem;
   letter-spacing: 0.5px;
   line-height: 20px;
-  height: 36px;
   align-items: center;
-  padding-block-end: 12px;
-  padding-block-start: 12px;
-  padding-inline-end: 12px;
-  padding-inline-start: 12px;
-  padding: 0 12px;
+  padding-block-end: 6px;
+  padding-block-start: 6px;
+  padding-inline-end: 6px;
+  padding-inline-start: 6px;
+`;
+
+const StyledDivWrapper = styled.div<{ $isValid: boolean }>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+  background-color: var(--palette-white, #fff);
+  padding: 0 6px;
   border-width: 1px;
   border-style: solid;
   border-color: ${(props) =>
     props.$isValid ? 'rgba(0, 0, 0, 0.23)' : '#ff0000'};
   border-radius: 4px;
-
   &:hover {
     border-color: #63544f;
   }
@@ -47,6 +54,29 @@ const StyledInput = styled.input<{ $isValid: boolean }>`
 
 const StyledWrapper = styled.div`
   margin-bottom: 18px;
+`;
+
+const StyledButton = styled.button`
+  position: absolute;
+  z-index: 1;
+  right: 6px;
+  border: none;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+
+  &:after {
+    content: 'X';
+    display: inline-block;
+    line-height: 18px;
+    font-size: 0.6rem;
+    height: 80%;
+    width: 80%;
+    transform: translateY(-10%);
+    border-radius: 50%;
+    color: white;
+    background-color: #a9a9a9;
+  }
 `;
 
 export function TextInput({
@@ -70,16 +100,20 @@ export function TextInput({
       <TextLabel htmlFor={id} isValid={isValid} errorText={errorTextShort}>
         {label}
       </TextLabel>
-      <StyledInput
-        type="text"
-        id={id}
-        name={id}
-        value={value}
-        aria-required={isRequired}
-        aria-invalid={!isValid}
-        $isValid={isValid}
-        {...rest}
-      />
+      <StyledDivWrapper $isValid={isValid}>
+        <StyledInput
+          type="text"
+          id={id}
+          name={id}
+          value={value}
+          maxLength={maxLength}
+          aria-required={isRequired}
+          aria-invalid={!isValid}
+          $isValid={isValid}
+          {...rest}
+        />
+        <StyledButton type="reset" />
+      </StyledDivWrapper>
       <TextHelp
         showCounter={showCounter}
         characterCount={characterCount}

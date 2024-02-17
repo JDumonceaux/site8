@@ -10,30 +10,35 @@ const REQUIRED_FIELD = 'Required Field';
 const pageSchema = z.object({
   id: z.number(),
   short_title: z
-    .string({ required_error: 'Short Title is required.' })
+    .string({
+      required_error: 'Short Title is required.',
+      invalid_type_error: 'Title must be a string',
+    })
     .min(1, REQUIRED_FIELD)
     .max(30, 'Max length exceeded: 30')
     .trim(),
   long_title: z
-    .string({ required_error: 'Long Title is required.' })
+    .string({
+      required_error: 'Long Title is required.',
+      invalid_type_error: 'Title must be a string',
+    })
     .min(1, REQUIRED_FIELD)
     .max(250)
     .trim(),
   edit_date: z.string().max(10).trim().optional(),
   resources: z.boolean(),
+  parent: z.string().trim().optional(),
+  reading_time: z.string().trim().optional(),
+  readability_score: z.string().trim().optional(),
   text: z
     .string({ required_error: 'Text is required.' })
     .min(1, REQUIRED_FIELD)
     .trim(),
-  parent: z.string().trim().optional(),
-  reading_time: z.string().trim().optional(),
-  readability_score: z.string().trim().optional(),
 });
 
 const usePageEdit = () => {
   type PageFormValues = z.infer<typeof pageSchema>;
   type keys = keyof PageFormValues;
-
   const defaultFormValues: PageFormValues = useMemo(
     () => ({
       id: 0,
@@ -48,9 +53,9 @@ const usePageEdit = () => {
     }),
     [],
   );
-
   const [formValues, setFormValues] =
     useState<PageFormValues>(defaultFormValues);
+
   const { postData } = usePost<IPage>(`${ServiceUrl.ENDPOINT_PAGE}`);
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   // const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -95,6 +100,16 @@ const usePageEdit = () => {
     [formValues, validateForm],
   );
 
+  const setFieldValue = useCallback(
+    (fieldName: keys, value: string | boolean | number | undefined) => {
+      setFormValues((prev) => ({
+        ...prev,
+        [fieldName]: value,
+      }));
+    },
+    [],
+  );
+
   const getFieldErrors = useCallback(
     (fieldName: keys) => {
       return errors && errors[fieldName]?._errors;
@@ -120,11 +135,19 @@ const usePageEdit = () => {
       getFieldErrors,
       isValid,
       setFormValues,
+      setFieldValue,
       handleCancel,
       handleChange,
       handleSubmit,
     }),
-    [formValues, getFieldErrors, isValid, handleCancel, handleSubmit],
+    [
+      formValues,
+      getFieldErrors,
+      isValid,
+      setFieldValue,
+      handleCancel,
+      handleSubmit,
+    ],
   );
 };
 
