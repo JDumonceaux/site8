@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { PageTitle, Seo } from 'components/common';
-import { Button } from 'components/ui/Button';
-import { Checkbox } from 'components/ui/Checkbox';
-import { TextArea } from 'components/ui/TextArea';
-import { TextInput } from 'components/ui/TextInput';
+import { Button } from 'components/ui/Form/Button';
+import { Checkbox } from 'components/ui/Form/Checkbox';
+import { TextArea } from 'components/ui/Form/TextArea';
+import { TextInput } from 'components/ui/Form/TextInput';
 import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'services/hooks/usePageEdit';
-
-import { LoadingOverlay } from 'components/common/LoadingOverlay';
-import { Modal } from 'components/common/Modal';
+import { ModalProcessing } from 'components/common/ModalProcessing';
 
 export default function PageEdit(): JSX.Element {
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const {
     formValues,
+    getFieldErrors,
+    isValid,
     handleCancel,
     handleChange,
     handleSubmit,
@@ -29,10 +29,8 @@ export default function PageEdit(): JSX.Element {
 
   useEffect(() => {
     //   setShowErrorOverlay(updateError !== false);
-    setIsOpen(true);
+    //setIsOpen(true);
   }, []);
-
-  const isProcessing2 = true;
 
   return (
     <>
@@ -50,9 +48,10 @@ export default function PageEdit(): JSX.Element {
               showCounter
               maxLength={30}
               helpText="Required"
-              errorText="Please enter a short title"
-              isValid={false}
-              required={true}
+              errorText={getFieldErrors('short_title')}
+              errorTextShort="Please enter a short title"
+              isValid={isValid('short_title')}
+              // required={true}
             />
             <TextInput
               label="Long Title"
@@ -62,7 +61,10 @@ export default function PageEdit(): JSX.Element {
               showCounter
               maxLength={250}
               helpText="Required"
-              required={true}
+              errorText={getFieldErrors('long_title')}
+              errorTextShort="Please enter a title"
+              isValid={isValid('long_title')}
+              // required={true}
             />
             <TextInput
               label="Edit Date"
@@ -71,8 +73,10 @@ export default function PageEdit(): JSX.Element {
               onChange={handleChange}
               showCounter
               maxLength={10}
-              helpText="Required"
-              required={true}
+              errorText={getFieldErrors('edit_date')}
+              errorTextShort="Please enter a date"
+              isValid={isValid('edit_date')}
+              // required={true}
             />
             <Checkbox
               label="Resources"
@@ -86,6 +90,9 @@ export default function PageEdit(): JSX.Element {
               value={formValues.parent}
               onChange={handleChange}
               showCounter
+              errorText={getFieldErrors('parent')}
+              errorTextShort="Please enter a parent"
+              isValid={isValid('parent')}
             />
             <TextInput
               label="Reading Time"
@@ -93,6 +100,8 @@ export default function PageEdit(): JSX.Element {
               value={formValues.reading_time}
               onChange={handleChange}
               showCounter
+              errorText={getFieldErrors('reading_time')}
+              isValid={isValid('reading_time')}
             />
             <TextInput
               label="Readability Score"
@@ -100,6 +109,8 @@ export default function PageEdit(): JSX.Element {
               value={formValues.readability_score}
               onChange={handleChange}
               showCounter
+              errorText={getFieldErrors('readability_score')}
+              isValid={isValid('readability_score')}
             />
             <TextArea
               label="Text"
@@ -107,7 +118,10 @@ export default function PageEdit(): JSX.Element {
               value={formValues.text}
               onChange={handleChange}
               showCounter
-              required={true}
+              // required={true}
+              errorText={getFieldErrors('text')}
+              isValid={isValid('text')}
+              rows={10}
             />
             <TwoColumn includeGap>
               <Button id="cancel" onClick={handleCancel} variant="secondary">
@@ -121,17 +135,7 @@ export default function PageEdit(): JSX.Element {
         </section>
         {/* </LoadingWrapper> */}
       </main>
-
-      <Modal
-        onClose={() => setIsOpen(false)}
-        open={isOpen}
-        locked={false}
-        title="Save">
-        <p>
-          I'm a modal window, I don't use portals but use the dialog element
-          from the platform.
-        </p>
-      </Modal>
+      <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import {
   DialogHTMLAttributes,
+  MutableRefObject,
   useCallback,
   useEffect,
   useMemo,
@@ -8,14 +9,14 @@ import {
 import { styled } from 'styled-components';
 
 import styles from './Modal.module.css';
-import { Button } from 'components/ui/Button';
 
 type ModalProps = {
-  readonly open: boolean;
+  readonly isOpen: boolean;
   readonly title?: string;
-  readonly locked?: boolean;
+  readonly isLocked?: boolean;
   readonly onClose: () => void;
   readonly children: React.ReactNode;
+  readonly requiresUserAction?: boolean;
 } & DialogHTMLAttributes<HTMLDialogElement>;
 
 const StyledTitleBar = styled.div`
@@ -38,14 +39,15 @@ const StyledTitleBar = styled.div`
 
 // https://dev.to/link2twenty/react-using-native-dialogs-to-make-a-modal-popup-4b25
 // https://www.youtube.com/watch?v=ywtkJkxJsdg
-
-// eslint-disable-next-line react/prop-types
+// If the dialog is a confirmation window communicating an important message
+// that requires a confirmation or other user response, set role = "alertdialog"
 export function Modal({
-  open,
+  isOpen,
   title,
-  locked,
+  isLocked,
   onClose,
   children,
+  requiresUserAction = false,
   ...rest
 }: ModalProps): JSX.Element {
   const modalRef = useRef(null);
@@ -53,49 +55,53 @@ export function Modal({
   // work out which classes should be applied to the dialog element
   const dialogClasses = useMemo(() => {
     const _arr = [styles['modal']];
-    if (!open) _arr.push(styles['modal--closing']);
+    if (!isOpen) _arr.push(styles['modal--closing']);
 
     return _arr.join(' ');
-  }, [open]);
+  }, [isOpen]);
 
   // Eventlistener: trigger onclose when cancel detected
-  const onCancel = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (!locked) onClose();
-    },
-    [locked, onClose],
-  );
+  const onCancel = useCallback(() => {
+    //e.preventDefault();
+    if (!isLocked) onClose();
+  }, [isLocked, onClose]);
 
   // Eventlistener: trigger onclose when click outside
   const onClick = useCallback(
-    ({ target }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ({ target }: any) => {
       const { current: el } = modalRef;
-      if (target === el && !locked) onClose();
+      if (target === el && !isLocked) onClose();
     },
-    [locked, onClose],
+    [isLocked, onClose],
   );
 
   // Eventlistener: trigger close click on anim end
   const onAnimEnd = useCallback(() => {
-    const { current: el } = modalRef;
-    if (!open) el.close();
-  }, [open]);
+    const { current: el }: MutableRefObject<null> = modalRef;
+    if (!isOpen && el !== null) {
+      (el as HTMLDialogElement).close();
+    }
+  }, [isOpen]);
 
-  // when open changes run open/close command
+  // when isOpen changes run open/close command
   useEffect(() => {
     const { current: el } = modalRef;
     // Show modal
-    if (open) el.showModal();
+    if (isOpen && el !== null) {
+      (el as HTMLDialogElement).showModal();
+    }
     // Show non-modal
-    // if (open) el.showModal();
-  }, [open]);
+    // if (isOpen) el.showModal();
+  }, [isOpen]);
 
   // The tabindex attribute must not be used on the <dialog>
-  // it is recommended to add autofocus to the
+  // it is recommended to add autoFocus to the
   // close button inside the dialog, or the dialog itself
   // if the user is expected to click / activate it to dismiss.
+  // ?? AutoFocus ??
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
     <dialog
       ref={modalRef}
       className={dialogClasses}
@@ -103,21 +109,25 @@ export function Modal({
       onCancel={onCancel}
       onClick={onClick}
       onAnimationEnd={onAnimEnd}
+      aria-modal="true"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-desc"
+      role={requiresUserAction ? 'alertdialog' : 'dialog'}
       {...rest}
       data-testid="dialog">
       <StyledTitleBar>
-        {title}
+        <label id="dialog-title">{title}</label>
         <button
           id="button"
           onClick={onClose}
           aria-label="close"
-          data-close-modal
-          autoFocus>
+          data-close-modal>
           X
         </button>
       </StyledTitleBar>
-
-      <div className={styles['modal--div']}>{children}</div>
+      <div className={styles['modal--div']} id="dialog-desc">
+        {children}
+      </div>
     </dialog>
   );
 }

@@ -8,7 +8,11 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:import/recommended',
+    // React Hooks
+    'plugin:react-hooks/recommended',
+    // Accessibility rules
     'plugin:jsx-a11y/recommended',
+    // TypeScript rules
     'plugin:@typescript-eslint/recommended',
     // React Redux
     'plugin:react-redux/recommended',

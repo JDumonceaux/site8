@@ -1,10 +1,10 @@
+import { TextHelp } from '../TextHelp';
 import { TextLabel } from '../TextLabel';
 import { styled } from 'styled-components';
 
-import { InputHTMLAttributes } from 'react';
-import { TextHelp } from '../TextHelp';
+import { TextareaHTMLAttributes } from 'react';
 
-type TextInputProps = {
+type TextAreaProps = {
   id: string;
   label: string;
   showCounter?: boolean;
@@ -13,10 +13,11 @@ type TextInputProps = {
   isValid?: boolean;
   isRequired?: boolean;
   helpText?: React.ReactNode | string[] | string;
-  errorText?: string;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
+  errorTextShort?: string;
+  errorText?: React.ReactNode | string[] | string;
+} & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'id' | 'name' | 'type'>;
 
-const StyledInput = styled.input<{ $isValid: boolean }>`
+const StyledTextArea = styled.textarea<{ $isValid: boolean }>`
   color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
   background-color: var(--palette-white, #fff);
   font-size: 1rem;
@@ -44,7 +45,7 @@ const StyledInput = styled.input<{ $isValid: boolean }>`
   }
 `;
 
-export function TextInput({
+export function TextArea({
   id,
   label,
   showCounter = false,
@@ -53,19 +54,19 @@ export function TextInput({
   isRequired = false,
   helpText,
   errorText,
+  errorTextShort,
   value,
   ...rest
-}: TextInputProps): JSX.Element {
+}: TextAreaProps): JSX.Element {
   const characterCount =
     typeof value === 'string' || value instanceof String ? value.length : 0;
 
   return (
-    <div className="text-input">
-      <TextLabel htmlFor={id} isValid={isValid} errorText={errorText}>
+    <div className="text-area">
+      <TextLabel htmlFor={id} isValid={isValid} errorText={errorTextShort}>
         {label}
       </TextLabel>
-      <StyledInput
-        type="text"
+      <StyledTextArea
         id={id}
         name={id}
         value={value}
@@ -78,7 +79,7 @@ export function TextInput({
         showCounter={showCounter}
         characterCount={characterCount}
         maxLength={maxLength}>
-        {helpText}
+        {isValid ? helpText : errorText}
       </TextHelp>
     </div>
   );

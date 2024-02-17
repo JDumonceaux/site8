@@ -2,11 +2,12 @@ import React, { LabelHTMLAttributes, useCallback } from 'react';
 import { styled } from 'styled-components';
 
 type TextHelpProps = {
-  readonly children?: React.ReactNode | string | string[];
   readonly isValid?: boolean;
   readonly showCounter?: boolean;
   readonly characterCount?: number;
   readonly maxLength?: number;
+  readonly helpText?: React.ReactNode | string | string[];
+  readonly errorText?: React.ReactNode | string[] | string;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 const StyledDivWrapper = styled.div`
@@ -15,15 +16,21 @@ const StyledDivWrapper = styled.div`
   align-items: flex-start;
   flex-direction: row;
   justify-content: space-between;
-  margin: 4px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+`;
+
+const StyledErrorDiv = styled.div<{ $isValid: boolean }>`
+  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
 `;
 
 export function TextHelp({
-  children,
+  isValid = true,
   showCounter = false,
   characterCount,
   maxLength,
-  ...rest
+  helpText,
+  errorText,
 }: TextHelpProps): JSX.Element {
   const getHelperText = useCallback(
     (msg: React.ReactNode | string[] | string | undefined) => {
@@ -66,7 +73,9 @@ export function TextHelp({
 
   return (
     <StyledDivWrapper>
-      <div>{getHelperText(children)}</div>
+      <StyledErrorDiv $isValid={isValid}>
+        {getHelperText(isValid ? helpText : errorText)}
+      </StyledErrorDiv>
       {getCounterText(characterCount, maxLength, showCounter)}
     </StyledDivWrapper>
   );

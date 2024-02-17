@@ -12,6 +12,7 @@ const StyledLabel = styled.label<{ $isValid: boolean }>`
   letter-spacing: 0.25px;
   line-height: 18px;
   font-weight: 400;
+  display: block;
   margin-bottom: 4px;
   & span: {
     padding-left: 6px;

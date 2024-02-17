@@ -5,7 +5,10 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.Array"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    // Needed to import React  without `import * as React from 'react'`
+    "esModuleInterop": true,
+    // Needed to import React  without `import * as React from 'react'`
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
@@ -20,7 +23,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": false,
-    "allowSyntheticDefaultImports": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowUnusedLabels": false,
