@@ -40,9 +40,7 @@ export default function GenericPage({ id }: IProps) {
   }, [id]);
 
   return (
-    <div
-      className="generic-page"
-      data-testid="GenericPage.root">
+    <div className="generic-page" data-testid="generic-page">
       <main className="main">
         {isLoading ? (
           <Loading />
@@ -58,10 +56,7 @@ export default function GenericPage({ id }: IProps) {
       </main>
 
       <div className="right-column">
-        <img
-          src="./face.png"
-          alt=""
-        />
+        <img src="./face.png" alt="" />
       </div>
     </div>
   );

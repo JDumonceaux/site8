@@ -2,6 +2,7 @@ import './mainLayout.css';
 
 import { Footer, Header, MainMenu } from 'components/common';
 import ErrorBoundary from 'components/common/ErrorBoundary';
+import { Snackbar } from 'components/common/Snackbar';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ export function MainLayout(): JSX.Element {
         <Suspense fallback="Loading ...">
           <Outlet />
         </Suspense>
+        <Snackbar />
         <MainMenu />
         <Footer />
       </div>

@@ -17,7 +17,7 @@ export function LoadingOverlay({
   return (
     <dialog
       id="modal"
-      data-testid={'LoadingOverlay.root'}
+      data-testid="loading-overlay"
       open={open}
       onClose={onClose}
       aria-labelledby="scroll-dialog-title"

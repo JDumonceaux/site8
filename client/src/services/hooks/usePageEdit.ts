@@ -4,6 +4,7 @@ import { ServiceUrl } from 'utils';
 import { z } from 'zod';
 import usePost from './usePost';
 import { safeParse } from 'utils/zodHelper';
+import useSnackbar from './useSnackbar';
 
 const REQUIRED_FIELD = 'Required Field';
 
@@ -56,6 +57,8 @@ const usePageEdit = () => {
   const [formValues, setFormValues] =
     useState<PageFormValues>(defaultFormValues);
 
+  const { setSimpleSnackbarMessage } = useSnackbar();
+
   const { postData } = usePost<IPage>(`${ServiceUrl.ENDPOINT_PAGE}`);
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   // const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -96,8 +99,9 @@ const usePageEdit = () => {
         // postData(rest);
         //  setIsProcessing(false);
       }
+      setSimpleSnackbarMessage('Saved');
     },
-    [formValues, validateForm],
+    [formValues, setSimpleSnackbarMessage, validateForm],
   );
 
   const setFieldValue = useCallback(

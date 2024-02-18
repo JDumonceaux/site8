@@ -1,124 +1,73 @@
 import express, { Request, Response } from 'express';
 
-import { readFile, writeFile } from 'fs/promises';
-import { IPage } from '../models/resources/IPage.js';
-import { IPages } from '../models/resources/IPages.js';
-import { getFilePath } from '../utils/getFilePath.js';
-import { Logger } from '../utils/Logger.js';
+import { PagesService } from 'services/PagesService.js';
+import { PageService } from 'services/PageService.js';
 
 export const pageRouter = express.Router();
 
-const FILE_NAME = 'pages.json';
-
+// Get item
 pageRouter.get('/:id', (req: Request, res: Response) => {
+  const id = req.params.id;
+  const tempId = parseInt(id);
+  if (isNaN(tempId) || tempId === 0) {
+    return null;
+  }
   // eslint-disable-next-line promise/catch-or-return, promise/always-return
-  getAllData(req.params.id).then(([r0, r1]) => {
+  getAllData(tempId).then(([r0, r1]) => {
     res.json({ ...r0, text: r1 });
   });
 });
 
-pageRouter.patch('/is', (req: Request, res: Response) => {
+// Update Item
+pageRouter.patch('/', (req: Request, res: Response) => {
+  const service = new PagesService();
+  const service2 = new PageService();
   const data = req.body;
-
-  // eslint-disable-next-line promise/catch-or-return, promise/always-return
-  updateData(req.params.id, data, getFilePath(FILE_NAME)).then(() => {
-    res.json({ ...data });
+  const promise1 = service.updateItem(data);
+  const promise2 = service2.updateItem(data);
+  Promise.all([promise1, promise2]).then(() => {
+    res.json({ results: 'Success' });
   });
 });
 
-pageRouter.post('/', (req: Request, res: Response) => {
-  const data = req.body;
-  // eslint-disable-next-line promise/catch-or-return, promise/always-return
-  appendData(data, getFilePath(FILE_NAME)).then(() => {
-    res.json({ ...data });
-  });
-});
-
-function getAllData(id: string) {
+// Delete Item
+pageRouter.delete('/:id', (req: Request, res: Response) => {
+  const id = req.params.id;
   const tempId = parseInt(id);
-  // Validate the id
-  if (!isNaN(tempId) && tempId > 0) {
-    const promise1 = getMetaData(tempId.toString(), getFilePath(FILE_NAME));
-    const promise2 = readFile(getFilePath('page' + tempId + '-en.txt'), {
-      encoding: 'utf8',
-    });
-    return Promise.all([promise1, promise2]);
-  }
-  return Promise.all([Promise.resolve(undefined), Promise.resolve(undefined)]);
-}
-
-function getMetaData(id: string, filePath: string) {
-  return readFile(filePath, {
-    encoding: 'utf8',
-  }).then((results) => {
-    return getPage(id, results);
-  });
-}
-
-function getPage(id: string, data: string) {
-  try {
-    const jsonData = JSON.parse(data) as IPages;
-    const searchId = parseInt(id);
-    const item = jsonData.items.find((x) => x.id === searchId);
-    return { ...jsonData.metadata, item: item };
-  } catch (error) {
-    Logger.debug(`getPage -> ${error}`);
-  }
-  return undefined;
-}
-
-function appendData(data: IPage, filePath: string) {
-  const lastId = getLastId(filePath);
-  const nextId = lastId ? lastId + 1 : +1;
-
-  return readFile(filePath, {
-    encoding: 'utf8',
-  }).then((results) => {
-    const jsonData = JSON.parse(results) as IPages;
-    const ret = {
-      ...jsonData,
-      items: [...jsonData.items, { ...data, id: nextId }],
-    };
-
-    writeFile(filePath, JSON.stringify(ret, null, 2), {
-      encoding: 'utf8',
-    });
+  if (isNaN(tempId) || tempId === 0) {
     return null;
+  }
+  const service = new PagesService();
+  const service2 = new PageService();
+  // eslint-disable-next-line promise/catch-or-return, promise/always-return
+  const promise1 = service.deleteItem(tempId);
+  const promise2 = service2.deleteItem(tempId);
+  Promise.all([promise1, promise2]).then(() => {
+    res.json({ results: 'Success' });
   });
-}
+});
 
-function updateData(id: string, data: IPage, filePath: string) {
-  return readFile(filePath, {
-    encoding: 'utf8',
-  }).then((results) => {
-    const jsonData = JSON.parse(results) as IPages;
-    const searchId = parseInt(id);
-
-    const filteredItems = jsonData.items.filter((x) => x.id !== searchId);
-    const ret = { ...jsonData, items: [...filteredItems, data] };
-
-    writeFile(filePath, JSON.stringify(ret, null, 2), {
-      encoding: 'utf8',
-    });
-    return null;
+// Add new item
+pageRouter.post('/', async (req: Request, res: Response) => {
+  const service = new PagesService();
+  const service2 = new PageService();
+  const data = req.body;
+  // // eslint-disable-next-line promise/catch-or-return, promise/always-return
+  const nextId = await service.getLastId().then((data) => {
+    return data || 1;
   });
-}
 
-function getLastId(filePath: string): number | undefined {
-  // eslint-disable-next-line promise/catch-or-return
-  readFile(filePath, {
-    encoding: 'utf8',
-  }).then((results) => {
-    const jsonData = JSON.parse(results) as IPages;
-
-    const maxItem = jsonData.items.reduce(function (a, b) {
-      if (+a.id > +b.id) {
-        return a;
-      } else {
-        return b;
-      }
-    });
-    return maxItem ? maxItem.id : undefined;
+  const promise1 = service.addItem(nextId, data);
+  const promise2 = service2.addItem(nextId, data);
+  Promise.all([promise1, promise2]).then(() => {
+    res.json({ results: 'Success' });
   });
-  return undefined;
+});
+
+function getAllData(id: number) {
+  const service = new PagesService();
+  const service2 = new PageService();
+  const promise1 = service.getMetaData(id);
+  const promise2 = service2.getItem(id);
+  return Promise.all([promise1, promise2]);
 }
