@@ -6,5 +6,5 @@ export interface IPage {
   resources?: boolean;
   parent?: string;
   fileName?: string;
-  content?: string;
+  text?: string;
 }

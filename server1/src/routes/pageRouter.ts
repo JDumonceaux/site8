@@ -1,73 +1,88 @@
 import express, { Request, Response } from 'express';
-
-import { PagesService } from 'services/PagesService.js';
-import { PageService } from 'services/PageService.js';
+import { PagesService } from '../services/PagesService.js';
+import { PageService } from '../services/PageService.js';
+import { IPage } from '../models/IPage.js';
+import { Errors } from '../utils/Constants.js';
+import { Logger } from '../utils/Logger.js';
+import { PPService } from '../services/PPService.js';
 
 export const pageRouter = express.Router();
 
 // Get item
-pageRouter.get('/:id', (req: Request, res: Response) => {
-  const id = req.params.id;
-  const tempId = parseInt(id);
-  if (isNaN(tempId) || tempId === 0) {
-    return null;
+pageRouter.get('/:id', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: get ->`);
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id === 0) {
+    return res.status(400).json({ error: 'Invalid ID' });
   }
-  // eslint-disable-next-line promise/catch-or-return, promise/always-return
-  getAllData(tempId).then(([r0, r1]) => {
-    res.json({ ...r0, text: r1 });
-  });
+
+  try {
+    const item = await new PPService().getAllData(id);
+    res.json(item);
+  } catch (error) {
+    Logger.error(`pageRouter: get -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
 });
 
 // Update Item
-pageRouter.patch('/', (req: Request, res: Response) => {
+pageRouter.patch('/', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: patch ->`);
   const service = new PagesService();
   const service2 = new PageService();
-  const data = req.body;
-  const promise1 = service.updateItem(data);
-  const promise2 = service2.updateItem(data);
-  Promise.all([promise1, promise2]).then(() => {
+  const data: IPage = req.body;
+
+  try {
+    await Promise.all([service.updateItem(data), service2.updateItem(data)]);
     res.json({ results: 'Success' });
-  });
+  } catch (error) {
+    Logger.error(`pageRouter: patch -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
 });
 
 // Delete Item
-pageRouter.delete('/:id', (req: Request, res: Response) => {
-  const id = req.params.id;
-  const tempId = parseInt(id);
-  if (isNaN(tempId) || tempId === 0) {
-    return null;
-  }
+pageRouter.delete('/:id', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: delete ->`);
   const service = new PagesService();
   const service2 = new PageService();
-  // eslint-disable-next-line promise/catch-or-return, promise/always-return
-  const promise1 = service.deleteItem(tempId);
-  const promise2 = service2.deleteItem(tempId);
-  Promise.all([promise1, promise2]).then(() => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id === 0) {
+    return res.status(400).json({ error: 'Invalid ID' });
+  }
+
+  try {
+    await Promise.all([service.deleteItem(id), service2.deleteItem(id)]);
     res.json({ results: 'Success' });
-  });
+  } catch (error) {
+    Logger.error(`pageRouter: delete -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
 });
 
 // Add new item
 pageRouter.post('/', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: post ->`);
   const service = new PagesService();
   const service2 = new PageService();
-  const data = req.body;
-  // // eslint-disable-next-line promise/catch-or-return, promise/always-return
-  const nextId = await service.getLastId().then((data) => {
-    return data || 1;
-  });
+  const data: IPage = req.body;
 
-  const promise1 = service.addItem(nextId, data);
-  const promise2 = service2.addItem(nextId, data);
-  Promise.all([promise1, promise2]).then(() => {
-    res.json({ results: 'Success' });
-  });
+  try {
+    const x = await service.getLastId();
+    Logger.info('lastId', x);
+    if (!x) {
+      res.status(500).json({ error: 'Last Id not found.' });
+    } else {
+      const nextId = x + 1;
+      const results = await Promise.allSettled([
+        service.addItem({ ...data, id: nextId }),
+        service2.addItem({ ...data, id: nextId }),
+      ]);
+      Logger.info('results', results);
+      res.json({ results: 'Success' });
+    }
+  } catch (error) {
+    Logger.error(`pageRouter: post -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
 });
-
-function getAllData(id: number) {
-  const service = new PagesService();
-  const service2 = new PageService();
-  const promise1 = service.getMetaData(id);
-  const promise2 = service2.getItem(id);
-  return Promise.all([promise1, promise2]);
-}

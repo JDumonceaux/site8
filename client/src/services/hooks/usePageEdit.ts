@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { IPage } from 'services/api/models/pages/IPage';
 import { ServiceUrl } from 'utils';
 import { z } from 'zod';
-import usePost from './usePost';
+import usePost from './useAxiosHelper';
 import { safeParse } from 'utils/zodHelper';
 import useSnackbar from './useSnackbar';
 
@@ -26,7 +26,7 @@ const pageSchema = z.object({
     .min(1, REQUIRED_FIELD)
     .max(250)
     .trim(),
-  edit_date: z.string().max(10).trim().optional(),
+  edit_date: z.date().optional(),
   resources: z.boolean(),
   parent: z.string().trim().optional(),
   reading_time: z.string().trim().optional(),
@@ -45,7 +45,7 @@ const usePageEdit = () => {
       id: 0,
       short_title: '',
       long_title: '',
-      edit_date: '',
+      edit_date: new Date(),
       resources: false,
       text: '',
       parent: '',
@@ -59,17 +59,20 @@ const usePageEdit = () => {
 
   const { setSimpleSnackbarMessage } = useSnackbar();
 
-  const { postData } = usePost<IPage>(`${ServiceUrl.ENDPOINT_PAGE}`);
+  const { patchData, postData } = usePost<IPage>();
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
-  // const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
   // const [updateError, setUpdateError] = useState<boolean>(false);
 
   const [errors, setErrors] =
     useState<z.ZodFormattedError<PageFormValues> | null>(null);
 
+  console.log('result3', formValues);
+
   const validateForm = useCallback(() => {
     const result = safeParse<PageFormValues>(pageSchema, formValues);
     setErrors(result.errorFormatted);
+    console.log('result', result);
     return result.success;
   }, [formValues]);
 
@@ -91,17 +94,21 @@ const usePageEdit = () => {
     (event: React.FormEvent) => {
       event.preventDefault();
       // Handle form submission here
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      //setIsProcessing(true);
-
+      setIsProcessing(true);
       if (validateForm()) {
-        const { edit_date, parent, ...rest } = formValues;
-        // postData(rest);
-        //  setIsProcessing(false);
+        if (formValues.id > 0) {
+          patchData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
+        } else {
+          postData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
+        }
+
+        setIsProcessing(false);
+      } else {
+        alert('Form is not valid');
       }
       setSimpleSnackbarMessage('Saved');
     },
-    [formValues, setSimpleSnackbarMessage, validateForm],
+    [formValues, patchData, postData, setSimpleSnackbarMessage, validateForm],
   );
 
   const setFieldValue = useCallback(
@@ -128,14 +135,11 @@ const usePageEdit = () => {
     [getFieldErrors],
   );
 
-  // setIsProcessing(true);
-
   return useMemo(
     () => ({
       pageSchema,
       formValues,
-      // isProcessing,
-      // updateError,
+      isProcessing,
       getFieldErrors,
       isValid,
       setFormValues,
@@ -145,6 +149,7 @@ const usePageEdit = () => {
       handleSubmit,
     }),
     [
+      isProcessing,
       formValues,
       getFieldErrors,
       isValid,

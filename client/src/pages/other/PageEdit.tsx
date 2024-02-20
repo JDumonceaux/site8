@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { PageTitle, Seo } from 'components/common';
 import { Button } from 'components/ui/Form/Button';
-import { Checkbox } from 'components/ui/Form/Checkbox';
+
 import { TextArea } from 'components/ui/Form/TextArea';
 import { TextInput } from 'components/ui/Form/TextInput';
 import { TwoColumn } from 'components/ui/TwoColumn';
@@ -10,26 +10,30 @@ import usePageEdit from 'services/hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 
 export default function PageEdit(): JSX.Element {
+  const title = 'Page Edit';
+
+  const params = useParams();
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const {
     formValues,
+    isProcessing,
     getFieldErrors,
     isValid,
     handleCancel,
     handleChange,
     handleSubmit,
     setFieldValue,
-    // isProcessing,
-    // updateError,
   } = usePageEdit();
-  const params = useParams();
-  // const { id } = params.id;
-
-  const title = 'Page Edit';
 
   useEffect(() => {
-    setFieldValue('id', params.id);
+    const tempId = params.id;
+    if (tempId) {
+      const id = parseInt(tempId);
+      if (!isNaN(id) || id > 0) {
+        setFieldValue('id', id);
+      }
+    }
   }, [params.id, setFieldValue]);
 
   return (
@@ -40,12 +44,6 @@ export default function PageEdit(): JSX.Element {
         <PageTitle title={title} />
         <section className="section">
           <form onSubmit={handleSubmit}>
-            <TextInput
-              label="ID"
-              id="id"
-              value={formValues.id}
-              readOnly={true}
-            />
             <TextInput
               label="Short Title"
               id="short_title"
@@ -75,7 +73,7 @@ export default function PageEdit(): JSX.Element {
             <TextInput
               label="Edit Date"
               id="edit_date"
-              value={formValues.edit_date}
+              value={formValues.edit_date?.toLocaleString()}
               onChange={handleChange}
               showCounter
               maxLength={10}
@@ -134,7 +132,7 @@ export default function PageEdit(): JSX.Element {
                 Cancel
               </Button>
               <Button id="submit" type="submit">
-                Submit
+                {isProcessing ? 'Processing' : 'Submit'}
               </Button>
             </TwoColumn>
           </form>

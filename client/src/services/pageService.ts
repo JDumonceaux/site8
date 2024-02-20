@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IPage } from './models/pages/IPage';
+import { IPage } from './api/models/pages/IPage';
 import { ServiceUrl } from 'utils';
 
 const baseUrl = 'http://localhost:3001/api';

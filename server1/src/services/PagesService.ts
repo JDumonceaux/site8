@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { IPage } from '../models/IPage.js';
 import { IPages } from '../models/IPages.js';
 import { Logger } from '../utils/Logger.js';
-import { getFilePath } from 'utils/getFilePath.js';
+import { getFilePath } from '../utils/getFilePath.js';
 
 export class PagesService {
   fileName = 'pages.json';
@@ -13,87 +13,103 @@ export class PagesService {
   }
 
   // Get the summary for a page
-  public async getMetaData(id: number) {
+  public async getMetaData(id: number): Promise<IPage | undefined> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as IPages;
-      const item = jsonData.items.find((x) => x.id === id);
-      return { ...jsonData.metadata, item: item };
+      const item: IPage | undefined = jsonData.items.find((x) => x.id === id);
+      return item;
     } catch (error) {
-      Logger.debug(`getMetaData -> ${error}`);
+      Logger.error(`getMetaData -> ${error}`);
       return undefined;
     }
   }
 
-  // Get the last id
+  // Get the last id. We'll increase this by one to add the next record
   public async getLastId(): Promise<number | undefined> {
+    Logger.info(`getLastId -> `);
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const jsonData = JSON.parse(results) as IPages;
-
-      const maxItem = jsonData.items.reduce((a, b) => (+a.id > +b.id ? a : b));
-      return maxItem ? maxItem.id : undefined;
+      const data = JSON.parse(results) as IPages;
+      // Check to make sure items isn't undefined
+      if (data.items) {
+        // Check to make sure it is iterable
+        const itr = typeof data.items[Symbol.iterator] === 'function';
+        if (!itr) {
+          Logger.error(`getLastId -> Error: items is not iterable`);
+          return undefined;
+        }
+        const maxItem = data.items.reduce((a, b) => (+a.id > +b.id ? a : b));
+        return maxItem ? maxItem.id : undefined;
+      } else {
+        Logger.error(`getLastId -> Error: items missing from file`);
+        return undefined;
+      }
     } catch (error) {
-      Logger.debug(`getLastId -> ${error}`);
+      Logger.error(`getLastId -> Error: ${error}`);
       return undefined;
     }
   }
 
   // Add an item
-  public async addItem(id: number, data: IPage) {
+  public async addItem(data: IPage): Promise<boolean> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as IPages;
       const ret = {
         ...jsonData,
-        items: [...jsonData.items, { ...data, id: id }],
+        items: [...jsonData.items, { ...data, id: data.id }],
       };
-
-      const retSorted = ret.items.sort((a, b) => a.id - b.id);
-
+      const retSorted: IPages = {
+        ...ret,
+        items: ret.items.sort((a, b) => a.id - b.id),
+      };
+      // JSON - null = replacer.  2 = tab space
       await writeFile(this.filePath, JSON.stringify(retSorted, null, 2), {
         encoding: 'utf8',
       });
-      return null;
+      return Promise.resolve(true);
     } catch (error) {
-      Logger.debug(`addItem -> ${error}`);
-      return null;
+      Logger.error(`addItem -> ${error}`);
+      return Promise.resolve(false);
     }
   }
 
   // Update an item
-  public async updateItem(data: IPage) {
+  public async updateItem(data: IPage): Promise<boolean> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as IPages;
       const ret = jsonData.items.filter((x) => x.id !== data.id);
       await writeFile(
         this.filePath,
+        // JSON - null = replacer.  2 = tab space
         JSON.stringify({ ...ret, data }, null, 2),
         {
           encoding: 'utf8',
         },
       );
-      return null;
+      return Promise.resolve(true);
     } catch (error) {
-      Logger.debug(`updateItem -> ${error}`);
-      return null;
+      Logger.error(`updateItem -> ${error}`);
+      return Promise.resolve(false);
     }
   }
 
   // Delete an item
-  public async deleteItem(id: number) {
+  public async deleteItem(id: number): Promise<boolean> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as IPages;
       const ret = jsonData.items.filter((x) => x.id !== id);
+      // JSON - null = replacer.  2 = tab space
       await writeFile(this.filePath, JSON.stringify(ret, null, 2), {
         encoding: 'utf8',
       });
-      return null;
+      return Promise.resolve(true);
     } catch (error) {
-      Logger.debug(`deleteItem -> ${error}`);
-      return null;
+      Logger.error(`deleteItem -> ${error}`);
+      return Promise.resolve(false);
     }
   }
 }
