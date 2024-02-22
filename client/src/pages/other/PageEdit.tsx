@@ -93,14 +93,14 @@ export default function PageEdit(): JSX.Element {
             />
             <TextInput
               label="Edit Date"
-              id="edit_date"
-              value={formValues.edit_date?.toLocaleString()}
+              id="edit_date_display"
+              value={formValues.edit_date_display}
               onChange={handleChange}
               showCounter
               maxLength={10}
-              errorText={getFieldErrors('edit_date')}
+              errorText={getFieldErrors('edit_date_display')}
               errorTextShort="Please enter a date"
-              isValid={isValid('edit_date')}
+              isValid={isValid('edit_date_display')}
               // required={true}
             />
             {/* <Checkbox

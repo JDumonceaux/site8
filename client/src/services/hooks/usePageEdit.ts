@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { IPage } from 'services/api/models/pages/IPage';
-import { ServiceUrl } from 'utils';
+import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 import useSnackbar from './useSnackbar';
 import { useAxiosHelper } from './useAxiosHelper';
-
-const REQUIRED_FIELD = 'Required Field';
+import { format } from 'date-fns';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -27,7 +26,8 @@ const pageSchema = z.object({
     .min(1, REQUIRED_FIELD)
     .max(250)
     .trim(),
-  edit_date: z.date().optional(),
+  edit_date: z.coerce.date().optional(),
+  edit_date_display: z.string().optional(),
   resources: z.boolean(),
   parent: z.string().trim().optional(),
   reading_time: z.string().trim().optional(),
@@ -47,7 +47,7 @@ const usePageEdit = () => {
       id: 0,
       short_title: '',
       long_title: '',
-      edit_date: new Date(),
+      edit_date_display: format(new Date(), DF_LONG),
       resources: false,
       text: '',
       parent: '',
@@ -84,7 +84,9 @@ const usePageEdit = () => {
         id: data.id,
         short_title: data.short_title || '',
         long_title: data.long_title || '',
-        edit_date: data.edit_date || new Date(),
+        edit_date_display:
+          (data.edit_date && format(data.edit_date, DF_LONG)) ||
+          format(new Date(), DF_LONG),
         resources: data.resources || false,
         text: data.text || '',
         parent: data.parent || '',

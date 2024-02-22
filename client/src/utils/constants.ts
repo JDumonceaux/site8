@@ -34,3 +34,7 @@ export enum ServiceUrl {
   ENDPOINT_RESOURCES = `${API_ROOT}/resources`,
   ENDPOINT_TESTGRID = `${API_ROOT}/testgrid`,
 }
+
+export const REQUIRED_FIELD = 'Required Field';
+
+export const DF_LONG = 'M/d/yyyy h:mm a';
