@@ -1,13 +1,14 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { IPage } from 'services/api/models/pages/IPage';
 import { ServiceUrl } from 'utils';
 import { z } from 'zod';
-import usePost from './useAxiosHelper';
 import { safeParse } from 'utils/zodHelper';
 import useSnackbar from './useSnackbar';
+import { useAxiosHelper } from './useAxiosHelper';
 
 const REQUIRED_FIELD = 'Required Field';
 
+// Define Zod Shape
 const pageSchema = z.object({
   id: z.number(),
   short_title: z
@@ -40,6 +41,7 @@ const pageSchema = z.object({
 const usePageEdit = () => {
   type PageFormValues = z.infer<typeof pageSchema>;
   type keys = keyof PageFormValues;
+  // Return default form values
   const defaultFormValues: PageFormValues = useMemo(
     () => ({
       id: 0,
@@ -54,31 +56,60 @@ const usePageEdit = () => {
     }),
     [],
   );
+
   const [formValues, setFormValues] =
     useState<PageFormValues>(defaultFormValues);
-
+  const [resetFormValues, setResetFormValues] = useState<
+    PageFormValues | undefined
+  >(undefined);
+  // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
+  // const [updateError, setUpdateError] = useState<boolean>(false);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const { setSimpleSnackbarMessage } = useSnackbar();
 
-  const { patchData, postData } = usePost<IPage>();
-  // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  // const [updateError, setUpdateError] = useState<boolean>(false);
+  const { data, fetchData, patchData, postData } = useAxiosHelper<IPage>();
 
   const [errors, setErrors] =
     useState<z.ZodFormattedError<PageFormValues> | null>(null);
 
-  console.log('result3', formValues);
+  useEffect(() => {
+    if (formValues.id && formValues.id > 0) {
+      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${formValues.id}`);
+    }
+  });
+
+  useEffect(() => {
+    if (data) {
+      const item: PageFormValues = {
+        id: data.id,
+        short_title: data.short_title || '',
+        long_title: data.long_title || '',
+        edit_date: data.edit_date || new Date(),
+        resources: data.resources || false,
+        text: data.text || '',
+        parent: data.parent || '',
+        reading_time: data.reading_time || '',
+        readability_score: data.readability_score || '',
+      };
+      setResetFormValues(item);
+      setFormValues(item);
+    }
+  }, [data]);
 
   const validateForm = useCallback(() => {
     const result = safeParse<PageFormValues>(pageSchema, formValues);
     setErrors(result.errorFormatted);
-    console.log('result', result);
+
     return result.success;
   }, [formValues]);
 
   const handleCancel = useCallback(() => {
     setFormValues(defaultFormValues);
   }, [defaultFormValues]);
+
+  const handleReset = useCallback(() => {
+    setFormValues(resetFormValues || defaultFormValues);
+  }, [defaultFormValues, resetFormValues]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -95,13 +126,17 @@ const usePageEdit = () => {
       event.preventDefault();
       // Handle form submission here
       setIsProcessing(true);
+      console.log('p2');
       if (validateForm()) {
+        console.log('p3');
         if (formValues.id > 0) {
+          console.log('p4');
           patchData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
         } else {
+          console.log('p5');
           postData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
         }
-
+        console.log('p6');
         setIsProcessing(false);
       } else {
         alert('Form is not valid');
@@ -119,6 +154,18 @@ const usePageEdit = () => {
       }));
     },
     [],
+  );
+
+  const setId = useCallback(
+    (value: string | undefined) => {
+      if (value) {
+        const id = parseInt(value);
+        if (!isNaN(id) || id > 0) {
+          setFieldValue('id', id);
+        }
+      }
+    },
+    [setFieldValue],
   );
 
   const getFieldErrors = useCallback(
@@ -144,18 +191,23 @@ const usePageEdit = () => {
       isValid,
       setFormValues,
       setFieldValue,
+      setId,
       handleCancel,
+      handleClear: handleCancel,
       handleChange,
       handleSubmit,
+      handleReset,
     }),
     [
-      isProcessing,
       formValues,
+      isProcessing,
       getFieldErrors,
       isValid,
       setFieldValue,
+      setId,
       handleCancel,
       handleSubmit,
+      handleReset,
     ],
   );
 };

@@ -2,20 +2,25 @@ import { styled } from 'styled-components';
 
 type TwoColumnProps = {
   readonly children: React.ReactNode;
-  readonly gap?: string;
   readonly includeGap?: boolean;
+  readonly includeMargin?: boolean;
 };
-
-const StyledDiv = styled.div<{ $gap: string }>`
-  display: flex;
-  justify-content: space-between;
-  gap: ${(props) => props.$gap};
-`;
 
 export function TwoColumn({
   children,
-  gap,
   includeGap = false,
+  includeMargin = false,
 }: TwoColumnProps): JSX.Element {
-  return <StyledDiv $gap={'6px'}>{children}</StyledDiv>;
+  return (
+    <StyledDiv $includeGap={includeGap} $margin={includeMargin}>
+      {children}
+    </StyledDiv>
+  );
 }
+
+const StyledDiv = styled.div<{ $includeGap: boolean; $margin: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  gap: ${(props) => (props.$includeGap ? '12px' : '0')};
+  margin-bottom: ${(props) => (props.$margin ? '12px' : '0')};
+`;

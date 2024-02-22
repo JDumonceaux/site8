@@ -1,5 +1,3 @@
-import './home.css';
-
 import { Seo } from 'components/common';
 
 export default function Login(): JSX.Element {

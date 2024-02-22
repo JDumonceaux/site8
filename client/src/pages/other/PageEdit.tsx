@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { PageTitle, Seo } from 'components/common';
 import { Button } from 'components/ui/Form/Button';
 
@@ -8,6 +8,7 @@ import { TextInput } from 'components/ui/Form/TextInput';
 import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'services/hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
+import { ClearAll } from 'components/ui/Form/ClearAll';
 
 export default function PageEdit(): JSX.Element {
   const title = 'Page Edit';
@@ -20,9 +21,11 @@ export default function PageEdit(): JSX.Element {
     isProcessing,
     getFieldErrors,
     isValid,
+    handleClear,
     handleCancel,
     handleChange,
     handleSubmit,
+    handleReset,
     setFieldValue,
   } = usePageEdit();
 
@@ -44,6 +47,10 @@ export default function PageEdit(): JSX.Element {
         <PageTitle title={title} />
         <section className="section">
           <form onSubmit={handleSubmit}>
+            <ClearAll onClear={handleClear}>
+              <NavLink to="/admin/pages">List</NavLink>
+              <button onClick={handleReset}>Reset</button>
+            </ClearAll>
             <TextInput
               label="Short Title"
               id="short_title"
@@ -55,7 +62,9 @@ export default function PageEdit(): JSX.Element {
               errorText={getFieldErrors('short_title')}
               errorTextShort="Please enter a short title"
               isValid={isValid('short_title')}
+
               // required={true}
+              //ref={focusElement}
             />
             <TextInput
               label="Long Title"
@@ -69,6 +78,18 @@ export default function PageEdit(): JSX.Element {
               errorTextShort="Please enter a title"
               isValid={isValid('long_title')}
               // required={true}
+            />
+
+            <TextArea
+              label="Text"
+              id="text"
+              value={formValues.text}
+              onChange={handleChange}
+              showCounter
+              // required={true}
+              errorText={getFieldErrors('text')}
+              isValid={isValid('text')}
+              rows={10}
             />
             <TextInput
               label="Edit Date"
@@ -116,18 +137,7 @@ export default function PageEdit(): JSX.Element {
               errorText={getFieldErrors('readability_score')}
               isValid={isValid('readability_score')}
             />
-            <TextArea
-              label="Text"
-              id="text"
-              value={formValues.text}
-              onChange={handleChange}
-              showCounter
-              // required={true}
-              errorText={getFieldErrors('text')}
-              isValid={isValid('text')}
-              rows={10}
-            />
-            <TwoColumn includeGap>
+            <TwoColumn includeGap includeMargin>
               <Button id="cancel" onClick={handleCancel} variant="secondary">
                 Cancel
               </Button>

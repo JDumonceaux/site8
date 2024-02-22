@@ -4,13 +4,37 @@ import { httpErrorHandler } from '../../utils/errorHandler';
 
 const REQUEST_CANCELLED = 'Request canceled';
 
-const usePost = <T>() => {
+export const useAxiosHelper = <T>() => {
   const [data, setData] = useState<T | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
+  // eslint-disable-next-line import/no-named-as-default-member
+  const source = axios.CancelToken.source(); // Create a cancel token
+
+  const fetchDataAsync = async (url: string) => {
+    await axios
+      .get<T>(url, {
+        cancelToken: source.token,
+      })
+      .then((response) => {
+        // eslint-disable-next-line promise/always-return
+        response.data && setData(response.data);
+      })
+      .catch((error) => {
+        if (isCancel(error)) {
+          console.log('Request canceled', error.message);
+        } else {
+          console.log('error', error);
+          setError(httpErrorHandler(error));
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const patchDataAsync = async (url: string, data: T) => {
-    setLoading(true);
+    setIsLoading(true);
     setData(undefined);
     setError(undefined);
 
@@ -29,12 +53,12 @@ const usePost = <T>() => {
         }
       })
       .finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
   };
 
   const postDataAsync = async (url: string, data: T) => {
-    setLoading(true);
+    setIsLoading(true);
     setData(undefined);
     setError(undefined);
 
@@ -53,12 +77,12 @@ const usePost = <T>() => {
         }
       })
       .finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
   };
 
   const deleteDataAsync = async (url: string) => {
-    setLoading(true);
+    setIsLoading(true);
     setData(undefined);
     setError(undefined);
 
@@ -77,18 +101,17 @@ const usePost = <T>() => {
         }
       })
       .finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
   };
 
   return {
     data,
-    loading,
+    isLoading,
     error,
+    fetchData: fetchDataAsync,
     deleteData: deleteDataAsync,
     postData: postDataAsync,
     patchData: patchDataAsync,
   };
 };
-
-export default usePost;

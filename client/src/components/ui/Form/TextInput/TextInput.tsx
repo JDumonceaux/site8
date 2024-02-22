@@ -12,18 +12,67 @@ type TextInputProps = {
   readonly maxLength?: number;
   readonly isValid?: boolean;
   readonly isRequired?: boolean;
+
   readonly helpText?: React.ReactNode | string[] | string;
   readonly errorTextShort?: string;
   readonly errorText?: React.ReactNode | string[] | string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
 
+export function TextInput({
+  id,
+  label,
+  showCounter = false,
+  maxLength,
+  isValid = true,
+  isRequired = false,
+
+  helpText,
+  errorText,
+  errorTextShort,
+  value,
+  ...rest
+}: TextInputProps): JSX.Element {
+  const characterCount =
+    typeof value === 'string' || value instanceof String ? value.length : 0;
+
+  return (
+    <StyledWrapper>
+      <TextLabel htmlFor={id} isValid={isValid} errorText={errorTextShort}>
+        {label}
+      </TextLabel>
+      <StyledDivWrapper $isValid={isValid}>
+        <StyledInput
+          type="text"
+          id={id}
+          name={id}
+          value={value}
+          maxLength={maxLength}
+          aria-required={isRequired}
+          aria-invalid={!isValid}
+          $isValid={isValid}
+          {...rest}
+        />
+        <StyledButton type="reset" />
+      </StyledDivWrapper>
+      <TextHelp
+        showCounter={showCounter}
+        characterCount={characterCount}
+        maxLength={maxLength}
+        helpText={helpText}
+        errorText={errorText}
+        isValid={isValid}
+      />
+    </StyledWrapper>
+  );
+}
+
 const StyledInput = styled.input<{ $isValid: boolean }>`
   position: relative;
   color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+  background-color: inherit;
   font-size: 1rem;
   letter-spacing: 0.5px;
   line-height: 20px;
-  align-items: center;
   padding-block-end: 6px;
   padding-block-start: 6px;
   padding-inline-end: 6px;
@@ -36,7 +85,7 @@ const StyledDivWrapper = styled.div<{ $isValid: boolean }>`
   align-items: center;
   z-index: 2;
   color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
-  background-color: var(--palette-white, #fff);
+  background-color: #ffffff;
   padding: 0 6px;
   border-width: 1px;
   border-style: solid;
@@ -78,50 +127,3 @@ const StyledButton = styled.button`
     background-color: #a9a9a9;
   }
 `;
-
-export function TextInput({
-  id,
-  label,
-  showCounter = false,
-  maxLength,
-  isValid = true,
-  isRequired = false,
-  helpText,
-  errorText,
-  errorTextShort,
-  value,
-  ...rest
-}: TextInputProps): JSX.Element {
-  const characterCount =
-    typeof value === 'string' || value instanceof String ? value.length : 0;
-
-  return (
-    <StyledWrapper>
-      <TextLabel htmlFor={id} isValid={isValid} errorText={errorTextShort}>
-        {label}
-      </TextLabel>
-      <StyledDivWrapper $isValid={isValid}>
-        <StyledInput
-          type="text"
-          id={id}
-          name={id}
-          value={value}
-          maxLength={maxLength}
-          aria-required={isRequired}
-          aria-invalid={!isValid}
-          $isValid={isValid}
-          {...rest}
-        />
-        <StyledButton type="reset" />
-      </StyledDivWrapper>
-      <TextHelp
-        showCounter={showCounter}
-        characterCount={characterCount}
-        maxLength={maxLength}
-        helpText={helpText}
-        errorText={errorText}
-        isValid={isValid}
-      />
-    </StyledWrapper>
-  );
-}

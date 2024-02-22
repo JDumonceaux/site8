@@ -24,7 +24,7 @@ export function AccordionMenu({
   useLayoutEffect(() => {
     const isMatch = matches.some((match) => match.pathname === path);
     setExpanded(isMatch);
-  }, []);
+  }, [matches, path]);
 
   const toggleSection = () => {
     setExpanded((prev) => !prev);

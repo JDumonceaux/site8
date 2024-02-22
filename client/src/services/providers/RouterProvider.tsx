@@ -6,27 +6,27 @@ import {
   RouterProvider as Router,
 } from 'react-router-dom';
 
-import { HomeLayout, MainLayout } from '../../pages';
-import GenericPage from '../../pages/GenericPage';
-import Home from '../../pages/Home';
-import Login from '../../pages/Login';
-import TestGrid from '../../pages/react/TestGrid';
+import { HomeLayout, MainLayout } from 'pages';
+import GenericPage from 'pages/GenericPage';
+import Home from 'pages/Home';
+import Login from 'pages/Login';
+import TestGrid from 'pages/react/TestGrid';
 import ProtectedRoute from './ProtectedRoute';
 
-const NotFound = lazy(() => import('../../pages/NotFound'));
-const Sitemap = lazy(() => import('../../pages/Sitemap'));
+const NotFound = lazy(() => import('pages/NotFound'));
+const Sitemap = lazy(() => import('pages/Sitemap'));
 
-const Artists = lazy(() => import('../../pages/other/Artists'));
-const ArtList = lazy(() => import('../../pages/other/ArtList'));
-const MusicList = lazy(() => import('../../pages/other/MusicList'));
-const PhotoList = lazy(() => import('../../pages/other/PhotoList'));
-const ResourcesList = lazy(() => import('../../pages/other/ResourcesList'));
-const Yachts = lazy(() => import('../../pages/other/Yachts'));
-const PagesList = lazy(() => import('../../pages/other/PagesList'));
-const PageEdit = lazy(() => import('../../pages/other/PageEdit'));
+const Artists = lazy(() => import('pages/other/Artists'));
+const ArtList = lazy(() => import('pages/other/ArtList'));
+const MusicList = lazy(() => import('pages/other/MusicList'));
+const PhotoList = lazy(() => import('pages/other/PhotoList'));
+const ResourcesList = lazy(() => import('pages/other/ResourcesList'));
+const Yachts = lazy(() => import('pages/other/Yachts'));
+const PagesList = lazy(() => import('pages/other/PagesList'));
+const PageEdit = lazy(() => import('pages/other/PageEdit'));
 
-const FormExample1 = lazy(() => import('../../pages/examples/FormExample1'));
-const FormExample2 = lazy(() => import('../../pages/examples/FormExample2'));
+const FormExample1 = lazy(() => import('pages/examples/FormExample1'));
+const FormExample2 = lazy(() => import('pages/examples/FormExample2'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(

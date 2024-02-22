@@ -12,6 +12,7 @@ const StyledHeader = styled.header`
   min-height: 40px;
   width: 100%;
   position: fixed;
+  z-index: 100;
   top: 0;
   box-shadow: 0 5px 20px -10px #000;
   margin-bottom: 2px;

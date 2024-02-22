@@ -2,7 +2,7 @@ import { ServiceUrl } from 'utils';
 
 import { Seo, LoadingWrapper, PageTitle } from 'components/common';
 import { Resources } from 'components/common/Resources';
-import { useDeferredValue } from 'react';
+import { Suspense, useDeferredValue } from 'react';
 import { IPage } from 'services/api/models/pages/IPage';
 import useFetch from 'services/hooks/useFetch';
 
@@ -27,17 +27,17 @@ export default function GenericPage({
     <>
       <Seo title={title} />
       <main className="main-content">
-        <LoadingWrapper
-          error={error}
-          isLoading={isLoading}>
+        <LoadingWrapper error={error} isLoading={isLoading}>
           <PageTitle title={title} />
           <time>Fill In</time>
           <section className="section">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: deferredData?.text ? deferredData.text : '',
-              }}
-            />
+            <Suspense fallback="Loading results ...">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: deferredData?.text ? deferredData.text : '',
+                }}
+              />
+            </Suspense>
           </section>
         </LoadingWrapper>
         <Resources id={id} />

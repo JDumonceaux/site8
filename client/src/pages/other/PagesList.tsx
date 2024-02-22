@@ -6,7 +6,8 @@ import useFetch from 'services/hooks/useFetch';
 import { ServiceUrl } from 'utils';
 
 export default function PagesList(): JSX.Element {
-  const { data, loading, error } = useFetch<IPages>(
+  const title = 'Pages';
+  const { data, isLoading, error } = useFetch<IPages>(
     `${ServiceUrl.ENDPOINT_PAGES}`,
   );
   const deferredData = useDeferredValue(data);
@@ -15,15 +16,11 @@ export default function PagesList(): JSX.Element {
     a.short_title.localeCompare(b.short_title),
   );
 
-  const title = 'Pages';
-
   return (
     <>
       <Seo title={title} />
       <main className="main-content">
-        <LoadingWrapper
-          error={error}
-          isLoading={loading}>
+        <LoadingWrapper error={error} isLoading={isLoading}>
           <PageTitle title={title} />
           <section className="section">
             <table>
