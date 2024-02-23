@@ -17,9 +17,9 @@ export default function Home(): JSX.Element {
 
 const StyledMain = styled.main`
   background-color: #000;
-  background-position: center;
   background-size: contain;
   overflow: hidden;
+  // This doesn't work with two monitors
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 `;

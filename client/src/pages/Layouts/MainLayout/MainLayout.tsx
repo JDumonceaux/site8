@@ -6,7 +6,7 @@ import { Snackbar } from 'components/common/Snackbar';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-export function MainLayout(): JSX.Element {
+export default function MainLayout(): JSX.Element {
   return (
     <ErrorBoundary fallback="Error">
       <Header />

@@ -6,7 +6,7 @@ export function HomeScreen4(): JSX.Element {
   return (
     <StyledSection>
       {myArr.map((item, index) => (
-        <WhiteDiv key={item} $left={400 + index * 10} />
+        <WhiteDiv key={item} $index={index} />
       ))}
       <GrayDiv $left={610} />
       <LargePinkCircle />
@@ -22,16 +22,15 @@ export function HomeScreen4(): JSX.Element {
   );
 }
 
-const StyledSection = styled.section`
-  width: 100%;
-`;
+const StyledSection = styled.section``;
 
-const WhiteDiv = styled.div<{ $left: number }>`
+const WhiteDiv = styled.div<{ $index: number }>`
+  --space: ${(props) => props.$index * 12 + 'px'};
   position: fixed;
-  top: 350px;
-  left: ${(props) => (props.$left ? props.$left : '0')}px;
+  top: calc(50dvh - 60px);
+  left: calc(50dvw - 150px - var(--space));
   width: 5px;
-  height: 60px;
+  height: 50px;
   background-color: #fff;
 `;
 const GrayDiv = styled.div<{ $left: number }>`
@@ -43,15 +42,24 @@ const GrayDiv = styled.div<{ $left: number }>`
   background-color: #a9a9a9;
   z-index: 1;
 `;
+const lpcAnimation = keyframes`
+ 0% { transform: translateX(-800px);}
+ 100% { transform: translateX(-50%); }
+`;
+
 const LargePinkCircle = styled.div`
   position: fixed;
-  top: 430px;
-  left: 350px;
+  top: 50dvh;
+  left: 50dvw;
+  transform: translateX(-50%);
   height: 240px;
   width: 480px;
   border-radius: 0 0 240px 240px;
   background-color: #b48484;
   z-index: 0;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.9, 1.2);
+  animation-name: ${lpcAnimation};
 `;
 
 const breatheAnimation = keyframes`
@@ -59,7 +67,6 @@ const breatheAnimation = keyframes`
 //  30% { height: 400px; width: 400px; opacity: 1 }
 //  40% { height: 405px; width: 405px; opacity: 0.3; }
  100% { height: 100px; width: 100px; opacity: 0.6; }
-
 `;
 const SDiv = styled.div`
   position: fixed;

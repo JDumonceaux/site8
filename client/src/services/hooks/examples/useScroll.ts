@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 function useScroll({ threshold = 450, isWindow = false, smooth = true } = {}) {
@@ -17,10 +18,11 @@ function useScroll({ threshold = 450, isWindow = false, smooth = true } = {}) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const element =
       ref.current instanceof Window ? document.documentElement : ref.current;
-    // ref.current.scrollTo({
-    //   top: element.scrollHeight,
-    //   behavior: smooth ? 'smooth' : 'auto',
-    // });
+    ref.current &&
+      ref.current.scrollTo({
+        top: element ? element.scrollHeight : 0,
+        behavior: smooth ? 'smooth' : 'auto',
+      });
   }, [smooth]);
 
   const handleScroll = useCallback(() => {
@@ -46,6 +48,7 @@ function useScroll({ threshold = 450, isWindow = false, smooth = true } = {}) {
         window.removeEventListener('scroll', handleScroll);
       };
     }
+    return () => {};
   }, [isWindow, handleScroll]);
 
   return { isAtBottom, handleScroll, goTop, goBottom, ref };

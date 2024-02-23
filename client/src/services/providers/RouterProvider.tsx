@@ -6,12 +6,13 @@ import {
   RouterProvider as Router,
 } from 'react-router-dom';
 
-import { HomeLayout, MainLayout } from 'pages';
 import GenericPage from 'pages/GenericPage';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import TestGrid from 'pages/react/TestGrid';
 import ProtectedRoute from './ProtectedRoute';
+import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
+import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
 
 const NotFound = lazy(() => import('pages/NotFound'));
 const Sitemap = lazy(() => import('pages/Sitemap'));
