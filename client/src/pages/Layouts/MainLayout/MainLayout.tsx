@@ -4,21 +4,22 @@ import ErrorBoundary from 'components/common/ErrorBoundary';
 import { Snackbar } from 'components/common/Snackbar';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Footer1 } from 'components/common/Footer/Footer1';
-import { Header1 } from 'components/common/Header/Header1';
+
 import { MainMenu } from 'components/common/MainMenu';
+import { Header } from 'components/ui/Header/Header';
+import { Footer } from 'components/ui/Footer/Footer';
 
 export default function MainLayout(): JSX.Element {
   return (
     <ErrorBoundary fallback="Error">
-      <Header1 />
+      <Header />
       <LayoutDiv>
         <Suspense fallback="Loading ...">
           <Outlet />
         </Suspense>
         <Snackbar />
         <MainMenu />
-        <Footer1 />
+        <Footer />
       </LayoutDiv>
     </ErrorBoundary>
   );

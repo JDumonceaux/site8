@@ -46,7 +46,7 @@ const StyledLinkDiv = styled.div`
   }
 `;
 
-export function Header1(): JSX.Element {
+export function Header(): JSX.Element {
   return (
     <StyledHeader className="header" data-testid="header">
       <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>

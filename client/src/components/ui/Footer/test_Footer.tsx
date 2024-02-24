@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import { Footer1 } from './Footer1';
+import { Footer } from './Footer';
 
 describe('Footer component', () => {
   it('renders the copyright information', () => {
-    const { getByTestId, getByLabelText } = render(<Footer1 />);
+    const { getByTestId, getByLabelText } = render(<Footer />);
     const copyrightElement = getByLabelText('Copyright Information');
     expect(copyrightElement).toBeInTheDocument();
     expect(copyrightElement).toHaveTextContent('Copyright ©');
@@ -24,7 +24,7 @@ describe('Footer component', () => {
   });
 
   it('does not render the ChangeLanguage component', () => {
-    const { queryByTestId } = render(<Footer1 />);
+    const { queryByTestId } = render(<Footer />);
     const changeLanguageComponent = queryByTestId('change-language');
     expect(changeLanguageComponent).toBeNull();
   });
