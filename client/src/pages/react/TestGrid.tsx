@@ -1,7 +1,8 @@
+import { PageTitle } from 'components/common/PageTitle';
 import './testGrid.css';
 
 import axios from 'axios';
-import { PageTitle } from 'components/common';
+
 import { useEffect, useState } from 'react';
 import { ITestGrid } from 'services/api/models/testgrid/ITestGrid';
 import { ServiceUrl } from 'utils/constants';

@@ -1,4 +1,4 @@
-import { Seo } from 'components/common';
+import { Seo } from 'components/common/SEO';
 import { styled, keyframes } from 'styled-components';
 
 const StyledMain = styled.main``;

@@ -1,5 +1,5 @@
-import { Seo } from 'components/common';
 import { HomeMenu } from 'components/common/MainMenu/HomeMenu';
+import { Seo } from 'components/common/SEO';
 import { MatrixBG } from 'components/ui/Animation/MatrixBG';
 import { styled } from 'styled-components';
 
