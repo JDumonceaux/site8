@@ -1,6 +1,8 @@
+import { LoadingWrapper } from 'components/common/Loading';
+import { PageTitle } from 'components/common/PageTitle';
+import { Seo } from 'components/common/SEO';
 import './photoList.css';
 
-import { LoadingWrapper, PageTitle, Seo } from 'components/common';
 import { useDeferredValue, useEffect } from 'react';
 import usePhotos from 'services/hooks/usePhotos';
 import { APP_NAME } from 'utils/constants';
@@ -24,9 +26,7 @@ export default function PhotoList(): JSX.Element {
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">
-          <LoadingWrapper
-            isLoading={loading}
-            error={error}>
+          <LoadingWrapper isLoading={loading} error={error}>
             <ul>
               {deferredData?.items?.map((item) => {
                 return (

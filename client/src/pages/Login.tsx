@@ -1,4 +1,4 @@
-import { Seo } from 'components/common';
+import { Seo } from 'components/common/SEO';
 
 export default function Login(): JSX.Element {
   const title = 'Login';

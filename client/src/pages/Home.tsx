@@ -1,4 +1,4 @@
-import { Seo } from 'components/common';
+import { Seo } from 'components/common/SEO';
 import { HomeScreen4 } from 'components/ui/HomeScreen/HomeScreen4';
 import { styled } from 'styled-components';
 

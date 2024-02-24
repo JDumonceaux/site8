@@ -1,10 +1,12 @@
 import { ServiceUrl } from 'utils';
 
-import { Seo, LoadingWrapper, PageTitle } from 'components/common';
 import { Resources } from 'components/common/Resources';
 import { Suspense, useDeferredValue } from 'react';
 import { IPage } from 'services/api/models/pages/IPage';
 import useFetch from 'services/hooks/useFetch';
+import { PageTitle } from 'components/common/PageTitle';
+import { LoadingWrapper } from 'components/common/Loading';
+import { Seo } from 'components/common/SEO';
 
 type GenericPageProps = {
   id: number;

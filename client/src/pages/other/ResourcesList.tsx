@@ -1,5 +1,7 @@
-import { LoadingWrapper, PageTitle, Seo } from 'components/common';
+import { LoadingWrapper } from 'components/common/Loading';
+import { PageTitle } from 'components/common/PageTitle';
 import { Resources } from 'components/common/Resources';
+import { Seo } from 'components/common/SEO';
 import { useDeferredValue, useEffect } from 'react';
 import useResources from 'services/hooks/useResources';
 import { APP_NAME } from 'utils/constants';
@@ -25,9 +27,7 @@ export default function ResourcesList(): JSX.Element {
         <section className="section">
           <p>These are some of my favorite resources.</p>
 
-          <LoadingWrapper
-            isLoading={loading}
-            error={error}>
+          <LoadingWrapper isLoading={loading} error={error}>
             <Resources data={deferredData} />
           </LoadingWrapper>
         </section>

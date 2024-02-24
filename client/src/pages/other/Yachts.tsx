@@ -1,4 +1,5 @@
-import { PageTitle, Seo } from 'components/common';
+import { PageTitle } from 'components/common/PageTitle';
+import { Seo } from 'components/common/SEO';
 import { useEffect } from 'react';
 import { APP_NAME } from 'utils/constants';
 
@@ -52,17 +53,11 @@ export default function Yachts(): JSX.Element {
           </p>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img
-              src="/images/yachts/sinot-nature-1.jpg.webp"
-              alt=""
-            />
+            <img src="/images/yachts/sinot-nature-1.jpg.webp" alt="" />
           </div>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img
-              src="/images/yachts/sinot-nature-2.jpg.webp"
-              alt=""
-            />
+            <img src="/images/yachts/sinot-nature-2.jpg.webp" alt="" />
           </div>
           <div>
             <div className="image-banner-1">
@@ -78,10 +73,7 @@ export default function Yachts(): JSX.Element {
             <div className="image-banner-1">
               Nature Design - Expansive Decks
             </div>
-            <img
-              src="/images/yachts/sinot-nature-3.png"
-              alt=""
-            />
+            <img src="/images/yachts/sinot-nature-3.png" alt="" />
           </div>
           <div>
             <div className="image-banner-1">Nature Design - Guest Bedroom</div>
@@ -94,17 +86,11 @@ export default function Yachts(): JSX.Element {
 
           <div>
             <div className="image-banner-1">Beach Design</div>
-            <img
-              src="/images/yachts/sinot-beach.png"
-              alt=""
-            />
+            <img src="/images/yachts/sinot-beach.png" alt="" />
           </div>
           <div>
             <div className="image-banner-1">Aqua Design - Owner&#39s Suite</div>
-            <img
-              src="/images/yachts/sinot-aqua-owners-suite.png"
-              alt=""
-            />
+            <img src="/images/yachts/sinot-aqua-owners-suite.png" alt="" />
           </div>
         </section>
       </main>

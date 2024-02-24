@@ -1,5 +1,6 @@
-import { Footer, Header } from 'components/common';
 import ErrorBoundary from 'components/common/ErrorBoundary';
+import { Footer } from 'components/common/Footer';
+import { Header } from 'components/common/Header';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 

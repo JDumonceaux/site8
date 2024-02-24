@@ -1,6 +1,8 @@
+import { LoadingWrapper } from 'components/common/Loading';
+import { PageTitle } from 'components/common/PageTitle';
+import { Seo } from 'components/common/SEO';
 import './musicList.css';
 
-import { LoadingWrapper, PageTitle, Seo } from 'components/common';
 import memoize from 'memoize-one';
 import { useDeferredValue, useEffect } from 'react';
 import { FixedSizeList as List } from 'react-window';
@@ -11,9 +13,7 @@ import useMusic from 'services/hooks/useMusic';
 function ItemRenderer({ data, index, style }: ListChildComponentProps) {
   const item = data.items[index] as IMusicItem;
   return (
-    <div
-      style={style}
-      key={index}>
+    <div style={style} key={index}>
       <div>{item.description}</div>
       <iframe
         width={560}
@@ -51,9 +51,7 @@ export default function MusicList(): JSX.Element {
         <PageTitle title={title} />
         <section className="section">
           <p>These are some of my favorite YouTube videos.</p>
-          <LoadingWrapper
-            isLoading={loading}
-            error={error}>
+          <LoadingWrapper isLoading={loading} error={error}>
             <List
               height={600}
               itemCount={data?.items?.length ? data?.items?.length : 0}

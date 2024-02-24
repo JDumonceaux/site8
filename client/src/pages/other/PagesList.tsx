@@ -1,4 +1,6 @@
-import { LoadingWrapper, PageTitle, Seo } from 'components/common';
+import { LoadingWrapper } from 'components/common/Loading';
+import { PageTitle } from 'components/common/PageTitle';
+import { Seo } from 'components/common/SEO';
 import { useDeferredValue } from 'react';
 import { Link } from 'react-router-dom';
 import { IPages } from 'services/api/models/pages/IPages';

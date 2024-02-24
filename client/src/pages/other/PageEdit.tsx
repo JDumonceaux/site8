@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { PageTitle, Seo } from 'components/common';
+
 import { Button } from 'components/ui/Form/Button';
 
 import { TextArea } from 'components/ui/Form/TextArea';
@@ -9,6 +9,8 @@ import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'services/hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { ClearAll } from 'components/ui/Form/ClearAll';
+import { Seo } from 'components/common/SEO';
+import { PageTitle } from 'components/common/PageTitle';
 
 export default function PageEdit(): JSX.Element {
   const title = 'Page Edit';

@@ -1,10 +1,12 @@
 import { styled } from 'styled-components';
 
-import { Footer, Header, MainMenu } from 'components/common';
 import ErrorBoundary from 'components/common/ErrorBoundary';
 import { Snackbar } from 'components/common/Snackbar';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import { Header } from 'components/common/Header';
+import { MainMenu } from 'components/common/MainMenu';
+import { Footer } from 'components/common/Footer';
 
 export default function MainLayout(): JSX.Element {
   return (
