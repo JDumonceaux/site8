@@ -15,13 +15,10 @@ const StyledCopyright = styled.div`
   padding-left: 16px;
 `;
 
-export function Footer(): JSX.Element {
+export function Footer1(): JSX.Element {
   const thisYear = new Date().getFullYear();
   return (
-    <StyledFooter
-      role="contentinfo"
-      className="footer"
-      data-testid="footer">
+    <StyledFooter role="contentinfo" className="footer" data-testid="footer">
       <StyledCopyright aria-label="Copyright Information">
         Copyright &copy; {thisYear}
       </StyledCopyright>
