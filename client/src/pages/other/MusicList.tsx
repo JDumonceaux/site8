@@ -1,6 +1,6 @@
 import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 import './musicList.css';
 
 import memoize from 'memoize-one';
@@ -46,7 +46,7 @@ export default function MusicList(): JSX.Element {
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">

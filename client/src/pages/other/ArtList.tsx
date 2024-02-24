@@ -1,12 +1,12 @@
 import { PageTitle } from 'components/common/PageTitle';
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 
 export default function ArtList(): JSX.Element {
   const title = 'Art';
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">

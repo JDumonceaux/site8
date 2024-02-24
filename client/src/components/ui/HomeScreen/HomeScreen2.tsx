@@ -1,4 +1,4 @@
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 import { styled, keyframes } from 'styled-components';
 
 const StyledMain = styled.main``;
@@ -74,7 +74,7 @@ export function HomeScreen2(): JSX.Element {
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <StyledMain>
         <StyledSection>
           <R1C1 />

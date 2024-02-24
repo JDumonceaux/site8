@@ -1,4 +1,4 @@
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 import { HomeScreen4 } from 'components/ui/HomeScreen/HomeScreen4';
 import { styled } from 'styled-components';
 
@@ -7,7 +7,7 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <StyledMain>
         <HomeScreen4 />
       </StyledMain>

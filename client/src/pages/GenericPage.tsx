@@ -6,7 +6,7 @@ import { IPage } from 'services/api/models/pages/IPage';
 import useFetch from 'services/hooks/useFetch';
 import { PageTitle } from 'components/common/PageTitle';
 import { LoadingWrapper } from 'components/common/Loading';
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 
 type GenericPageProps = {
   id: number;
@@ -27,7 +27,7 @@ export default function GenericPage({
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <main className="main-content">
         <LoadingWrapper error={error} isLoading={isLoading}>
           <PageTitle title={title} />

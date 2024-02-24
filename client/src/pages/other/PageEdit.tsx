@@ -9,7 +9,7 @@ import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'services/hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { ClearAll } from 'components/ui/Form/ClearAll';
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 import { PageTitle } from 'components/common/PageTitle';
 
 export default function PageEdit(): JSX.Element {
@@ -43,7 +43,7 @@ export default function PageEdit(): JSX.Element {
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <main className="main-content">
         {/* <LoadingWrapper error={error} isLoading={loading}> */}
         <PageTitle title={title} />

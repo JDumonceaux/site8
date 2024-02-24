@@ -1,5 +1,5 @@
 import { PageTitle } from 'components/common/PageTitle';
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 import { useEffect } from 'react';
 import { APP_NAME } from 'utils/constants';
 
@@ -14,7 +14,7 @@ export default function Yachts(): JSX.Element {
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">

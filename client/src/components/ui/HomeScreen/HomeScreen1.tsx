@@ -1,5 +1,5 @@
 import { HomeMenu } from 'components/common/MainMenu/HomeMenu';
-import { Seo } from 'components/common/SEO';
+import { SEO } from 'components/common/SEO';
 import { MatrixBG } from 'components/ui/Animation/MatrixBG';
 import { styled } from 'styled-components';
 
@@ -35,7 +35,7 @@ export function HomeScreen1(): JSX.Element {
 
   return (
     <>
-      <Seo title={title} />
+      <SEO title={title} />
       <StyledWrapper>
         <StyledMain>
           <StyledSection>
