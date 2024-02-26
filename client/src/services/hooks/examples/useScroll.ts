@@ -1,7 +1,11 @@
 /* eslint-disable sonarjs/cognitive-complexity */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-function useScroll({ threshold = 450, isWindow = false, smooth = true } = {}) {
+const useScroll = ({
+  threshold = 450,
+  isWindow = false,
+  smooth = true,
+} = {}) => {
   const [isAtBottom, setIsAtBottom] = useState(false);
   const ref = useRef(isWindow ? window : null);
 
@@ -27,6 +31,7 @@ function useScroll({ threshold = 450, isWindow = false, smooth = true } = {}) {
 
   const handleScroll = useCallback(() => {
     if (ref.current) {
+      // eslint-disable-next-line immutable/no-let
       let isAtBottom = false;
       if (ref.current instanceof Window) {
         const currentScrollTop = window.innerHeight + window.scrollY;
@@ -52,6 +57,6 @@ function useScroll({ threshold = 450, isWindow = false, smooth = true } = {}) {
   }, [isWindow, handleScroll]);
 
   return { isAtBottom, handleScroll, goTop, goBottom, ref };
-}
+};
 
 export default useScroll;

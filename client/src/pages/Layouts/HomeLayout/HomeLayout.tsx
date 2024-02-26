@@ -1,18 +1,15 @@
 import ErrorBoundary from 'components/common/ErrorBoundary';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { styled } from 'styled-components';
 
-export default function HomeLayout(): JSX.Element {
-  return (
-    <ErrorBoundary fallback="Error">
-      <LayoutDiv>
-        <Suspense fallback="Loading ...">
-          <Outlet />
-        </Suspense>
-      </LayoutDiv>
-    </ErrorBoundary>
-  );
-}
+export const HomeLayout = (): JSX.Element => (
+  <ErrorBoundary fallback="Error">
+    <div>
+      <Suspense fallback="Loading ...">
+        <Outlet />
+      </Suspense>
+    </div>
+  </ErrorBoundary>
+);
 
-const LayoutDiv = styled.div``;
+export default HomeLayout;

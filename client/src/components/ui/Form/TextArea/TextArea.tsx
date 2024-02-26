@@ -5,19 +5,19 @@ import { styled } from 'styled-components';
 import { TextareaHTMLAttributes } from 'react';
 
 type TextAreaProps = {
-  id: string;
-  label: string;
-  showCounter?: boolean;
-  characterCount?: number;
-  maxLength?: number;
-  isValid?: boolean;
-  isRequired?: boolean;
-  helpText?: React.ReactNode | string[] | string;
-  errorTextShort?: string;
-  errorText?: React.ReactNode | string[] | string;
+  readonly id: string;
+  readonly label: string;
+  readonly showCounter?: boolean;
+  readonly characterCount?: number;
+  readonly maxLength?: number;
+  readonly isValid?: boolean;
+  readonly isRequired?: boolean;
+  readonly helpText?: React.ReactNode | string[] | string;
+  readonly errorTextShort?: string;
+  readonly errorText?: React.ReactNode | string[] | string;
 } & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'id' | 'name' | 'type'>;
 
-export function TextArea({
+export const TextArea = ({
   id,
   label,
   showCounter = false,
@@ -29,33 +29,33 @@ export function TextArea({
   errorTextShort,
   value,
   ...rest
-}: TextAreaProps): JSX.Element {
+}: TextAreaProps): JSX.Element => {
   const characterCount =
     typeof value === 'string' || value instanceof String ? value.length : 0;
 
   return (
     <div className="text-area">
-      <TextLabel htmlFor={id} isValid={isValid} errorText={errorTextShort}>
+      <TextLabel errorText={errorTextShort} htmlFor={id} isValid={isValid}>
         {label}
       </TextLabel>
       <StyledTextArea
+        $isValid={isValid}
+        aria-invalid={!isValid}
+        aria-required={isRequired}
         id={id}
         name={id}
         value={value}
-        aria-required={isRequired}
-        aria-invalid={!isValid}
-        $isValid={isValid}
         {...rest}
       />
       <TextHelp
-        showCounter={showCounter}
         characterCount={characterCount}
-        maxLength={maxLength}>
+        maxLength={maxLength}
+        showCounter={showCounter}>
         {isValid ? helpText : errorText}
       </TextHelp>
     </div>
   );
-}
+};
 
 const StyledTextArea = styled.textarea<{ $isValid: boolean }>`
   color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};

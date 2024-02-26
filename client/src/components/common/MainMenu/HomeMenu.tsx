@@ -94,9 +94,7 @@ export function HomeMenu(): JSX.Element {
           <nav key={item.parent}>
             <div className="title">{item.parent}</div>
             {item.items.map((x) => (
-              <CustomNavLink
-                to={x.to}
-                key={x.label}>
+              <CustomNavLink to={x.to} key={x.label}>
                 {x.label}
               </CustomNavLink>
             ))}
@@ -106,14 +104,10 @@ export function HomeMenu(): JSX.Element {
         {/* IDE */}
         <nav>
           <div className="title">IDE Setup</div>
-          <CustomNavLink
-            to="/ide/chrome"
-            ariaLabel="Chrome">
+          <CustomNavLink to="/ide/chrome" ariaLabel="Chrome">
             Chrome
           </CustomNavLink>
-          <CustomNavLink
-            to="/ide/vsc"
-            ariaLabel="Visual Studio Code">
+          <CustomNavLink to="/ide/vsc" ariaLabel="Visual Studio Code">
             Visual Studio Code
           </CustomNavLink>
           <CustomNavLink
@@ -126,24 +120,16 @@ export function HomeMenu(): JSX.Element {
             ariaLabel="Visual Studio Code - Help">
             Help
           </CustomNavLink>
-          <CustomNavLink
-            to="/ide/npm"
-            ariaLabel="NPM">
+          <CustomNavLink to="/ide/npm" ariaLabel="NPM">
             NPM
           </CustomNavLink>
-          <CustomNavLink
-            to="/ide/git"
-            ariaLabel="Git">
+          <CustomNavLink to="/ide/git" ariaLabel="Git">
             Git
           </CustomNavLink>
-          <CustomNavLink
-            to="/ide/github"
-            ariaLabel="Git Hub">
+          <CustomNavLink to="/ide/github" ariaLabel="Git Hub">
             Git Hub
           </CustomNavLink>
-          <CustomNavLink
-            to="/ide/aws/commit"
-            ariaLabel="AWS Commit">
+          <CustomNavLink to="/ide/aws/commit" ariaLabel="AWS Commit">
             AWS Commit
           </CustomNavLink>
         </nav>
@@ -158,24 +144,16 @@ export function HomeMenu(): JSX.Element {
         {/* PROGRAMMING */}
         <nav>
           <div className="title">Programming Principals</div>
-          <CustomNavLink
-            to="/programming/clean-code"
-            ariaLabel="clean code">
+          <CustomNavLink to="/programming/clean-code" ariaLabel="clean code">
             Clean Code
           </CustomNavLink>
-          <CustomNavLink
-            to="/programming/solid"
-            ariaLabel="solid">
+          <CustomNavLink to="/programming/solid" ariaLabel="solid">
             SOLID
           </CustomNavLink>
-          <CustomNavLink
-            to="/programming/dry"
-            ariaLabel="dry">
+          <CustomNavLink to="/programming/dry" ariaLabel="dry">
             DRY
           </CustomNavLink>
-          <CustomNavLink
-            to="/programming/kiss"
-            ariaLabel="kiss">
+          <CustomNavLink to="/programming/kiss" ariaLabel="kiss">
             KISS
           </CustomNavLink>
           <CustomNavLink
@@ -198,15 +176,13 @@ export function HomeMenu(): JSX.Element {
         {/* PERFORMANCE */}
         <nav>
           <div className="title">Performance</div>
-          <CustomNavLink to="/performance">SEO</CustomNavLink>
+          <CustomNavLink to="/performance">Meta</CustomNavLink>
           <CustomNavLink to="/images">Webp</CustomNavLink>
         </nav>
         {/* DESIGN  */}
         <nav>
           <div className="title">Design</div>
-          <CustomNavLink
-            to="/design/css"
-            ariaLabel="CSS Overview">
+          <CustomNavLink to="/design/css" ariaLabel="CSS Overview">
             CSS Overview
           </CustomNavLink>
           <CustomNavLink
@@ -217,9 +193,7 @@ export function HomeMenu(): JSX.Element {
           <CustomNavLink to="/design/material-design">
             Material Design
           </CustomNavLink>
-          <CustomNavLink
-            to="/design/print-design"
-            ariaLabel="Print Design">
+          <CustomNavLink to="/design/print-design" ariaLabel="Print Design">
             Print Design
           </CustomNavLink>
           <CustomNavLink to="/design/font-pairing">Font Pairing</CustomNavLink>
@@ -232,14 +206,10 @@ export function HomeMenu(): JSX.Element {
           <CustomNavLink to="/design/microinteractions">
             Microinteractions
           </CustomNavLink>
-          <CustomNavLink
-            to="/design/css/new"
-            ariaLabel="CSS New Features">
+          <CustomNavLink to="/design/css/new" ariaLabel="CSS New Features">
             CSS New Features
           </CustomNavLink>
-          <CustomNavLink
-            to="/design/css/references"
-            ariaLabel="CSS References">
+          <CustomNavLink to="/design/css/references" ariaLabel="CSS References">
             CSS References
           </CustomNavLink>
         </nav>

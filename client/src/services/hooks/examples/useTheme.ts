@@ -5,7 +5,7 @@ const preferDarkSchema =
   window.matchMedia('(prefers-color-scheme: dark)').matches;
 const defaultTheme = preferDarkSchema ? 'dark' : 'light';
 
-function useTheme() {
+const useTheme = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem('theme') || defaultTheme,
   );
@@ -16,6 +16,6 @@ function useTheme() {
   }, [theme]);
 
   return { theme, setTheme };
-}
+};
 
 export default useTheme;

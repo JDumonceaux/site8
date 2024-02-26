@@ -9,10 +9,10 @@ import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'services/hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { ClearAll } from 'components/ui/Form/ClearAll';
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 import { PageTitle } from 'components/common/PageTitle';
 
-export default function PageEdit(): JSX.Element {
+export const PageEdit = (): JSX.Element => {
   const title = 'Page Edit';
 
   const params = useParams();
@@ -43,66 +43,68 @@ export default function PageEdit(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Meta title={title} />
       <main className="main-content">
         {/* <LoadingWrapper error={error} isLoading={loading}> */}
         <PageTitle title={title} />
         <section className="section">
-          <form onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit}>
             <ClearAll onClear={handleClear}>
               <NavLink to="/admin/pages">List</NavLink>
-              <button onClick={handleReset}>Reset</button>
+              <button onClick={handleReset} type="reset">
+                Reset
+              </button>
             </ClearAll>
             <TextInput
-              label="Short Title"
-              id="short_title"
-              value={formValues.short_title}
-              onChange={handleChange}
-              showCounter
-              maxLength={30}
-              helpText="Required"
               errorText={getFieldErrors('short_title')}
               errorTextShort="Please enter a short title"
+              helpText="Required"
+              id="short_title"
               isValid={isValid('short_title')}
-
+              label="Short Title"
+              maxLength={30}
+              onChange={handleChange}
+              showCounter
+              value={formValues.short_title}
               // required={true}
               //ref={focusElement}
             />
             <TextInput
-              label="Long Title"
-              id="long_title"
-              value={formValues.long_title}
-              onChange={handleChange}
-              showCounter
-              maxLength={250}
-              helpText="Required"
               errorText={getFieldErrors('long_title')}
               errorTextShort="Please enter a title"
+              helpText="Required"
+              id="long_title"
               isValid={isValid('long_title')}
+              label="Long Title"
+              maxLength={250}
+              onChange={handleChange}
+              showCounter
+              value={formValues.long_title}
               // required={true}
             />
 
             <TextArea
-              label="Text"
-              id="text"
-              value={formValues.text}
-              onChange={handleChange}
-              showCounter
-              // required={true}
               errorText={getFieldErrors('text')}
+              id="text"
               isValid={isValid('text')}
+              label="Text"
+              onChange={handleChange}
               rows={10}
+              showCounter
+              value={formValues.text}
+              // required={true}
             />
             <TextInput
-              label="Edit Date"
-              id="edit_date_display"
-              value={formValues.edit_date_display}
-              onChange={handleChange}
-              showCounter
-              maxLength={10}
               errorText={getFieldErrors('edit_date_display')}
               errorTextShort="Please enter a date"
+              id="edit_date_display"
               isValid={isValid('edit_date_display')}
+              label="Edit Date"
+              maxLength={10}
+              onChange={handleChange}
+              showCounter
+              value={formValues.edit_date_display}
+
               // required={true}
             />
             {/* <Checkbox
@@ -112,32 +114,32 @@ export default function PageEdit(): JSX.Element {
               onChange={handleChange}
             /> */}
             <TextInput
-              label="Parent"
-              id="parent"
-              value={formValues.parent}
-              onChange={handleChange}
-              showCounter
               errorText={getFieldErrors('parent')}
               errorTextShort="Please enter a parent"
+              id="parent"
               isValid={isValid('parent')}
-            />
-            <TextInput
-              label="Reading Time"
-              id="reading_time"
-              value={formValues.reading_time}
+              label="Parent"
               onChange={handleChange}
               showCounter
+              value={formValues.parent}
+            />
+            <TextInput
               errorText={getFieldErrors('reading_time')}
+              id="reading_time"
               isValid={isValid('reading_time')}
-            />
-            <TextInput
-              label="Readability Score"
-              id="readability_score"
-              value={formValues.readability_score}
+              label="Reading Time"
               onChange={handleChange}
               showCounter
+              value={formValues.reading_time}
+            />
+            <TextInput
               errorText={getFieldErrors('readability_score')}
+              id="readability_score"
               isValid={isValid('readability_score')}
+              label="Readability Score"
+              onChange={handleChange}
+              showCounter
+              value={formValues.readability_score}
             />
             <TwoColumn includeGap includeMargin>
               <Button id="cancel" onClick={handleCancel} variant="secondary">
@@ -154,4 +156,6 @@ export default function PageEdit(): JSX.Element {
       <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
-}
+};
+
+export default PageEdit;

@@ -4,18 +4,18 @@ import { useLayoutEffect, useState } from 'react';
 import { useMatches } from 'react-router-dom';
 
 type AccordionMenuProps = {
-  id: number;
-  title: string;
-  path?: string;
-  children: React.ReactNode;
+  readonly id: number;
+  readonly title: string;
+  readonly path?: string;
+  readonly children: React.ReactNode;
 };
 
-export function AccordionMenu({
+export const AccordionMenu = ({
   id,
   title,
   path = '',
   children,
-}: AccordionMenuProps): JSX.Element {
+}: AccordionMenuProps): JSX.Element => {
   const [expanded, setExpanded] = useState<boolean>(false);
   // Only works with data routers.
   const matches = useMatches();
@@ -40,34 +40,34 @@ export function AccordionMenu({
   return (
     <div className="accordion-menu">
       <div
-        key={id}
-        className={`accordion-section ${expanded ? 'expanded' : 'collapsed'}`}>
+        className={`accordion-section ${expanded ? 'expanded' : 'collapsed'}`}
+        key={id}>
         <button
-          type="button"
-          onClick={() => toggleSection()}
-          onKeyDown={(e) => handleKeyPress(e)}
           aria-controls={`accordion-content-${id}`}
           aria-expanded={expanded}
-          className="accordion-section-header">
+          className="accordion-section-header"
+          onClick={() => toggleSection()}
+          onKeyDown={(e) => handleKeyPress(e)}
+          type="button">
           <span className="accordion-section-title">{title}</span>
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            className="accordion-section-icon"
             fill="currentColor"
+            height="24"
             viewBox="0 0 24 24"
             width="24"
-            height="24"
-            className="accordion-section-icon">
+            xmlns="http://www.w3.org/2000/svg">
             <path d="M7 10l5 5 5-5z" />
           </svg>
         </button>
-        {expanded && (
+        {expanded ? (
           <div
-            id={`accordion-content-${id}`}
-            className="accordion-section-content">
+            className="accordion-section-content"
+            id={`accordion-content-${id}`}>
             {children}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
-}
+};

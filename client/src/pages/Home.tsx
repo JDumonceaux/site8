@@ -1,19 +1,21 @@
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 import { HomeScreen4 } from 'components/ui/HomeScreen/HomeScreen4';
 import { styled } from 'styled-components';
 
-export default function Home(): JSX.Element {
+export const Home = (): JSX.Element => {
   const title = 'Home';
 
   return (
     <>
-      <SEO title={title} />
+      <Meta title={title} />
       <StyledMain>
         <HomeScreen4 />
       </StyledMain>
     </>
   );
-}
+};
+
+export default Home;
 
 const StyledMain = styled.main`
   background-color: #000;

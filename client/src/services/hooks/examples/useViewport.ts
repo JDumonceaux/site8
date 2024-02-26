@@ -10,7 +10,7 @@ const getDevice = (width: number) => {
   else return DESKTOP;
 };
 
-export function useViewport() {
+export const useViewport = () => {
   const [viewport, setViewport] = useState({
     width: window.innerWidth,
     device: getDevice(window.innerWidth),
@@ -29,4 +29,4 @@ export function useViewport() {
   }, []);
 
   return { viewport };
-}
+};

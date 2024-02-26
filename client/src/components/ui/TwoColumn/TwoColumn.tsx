@@ -6,17 +6,15 @@ type TwoColumnProps = {
   readonly includeMargin?: boolean;
 };
 
-export function TwoColumn({
+export const TwoColumn = ({
   children,
   includeGap = false,
   includeMargin = false,
-}: TwoColumnProps): JSX.Element {
-  return (
-    <StyledDiv $includeGap={includeGap} $margin={includeMargin}>
-      {children}
-    </StyledDiv>
-  );
-}
+}: TwoColumnProps): JSX.Element => (
+  <StyledDiv $includeGap={includeGap} $margin={includeMargin}>
+    {children}
+  </StyledDiv>
+);
 
 const StyledDiv = styled.div<{ $includeGap: boolean; $margin: boolean }>`
   display: flex;

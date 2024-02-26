@@ -4,30 +4,28 @@ import { ServiceUrl } from 'utils';
 
 const baseUrl = 'http://localhost:3001/api';
 
-function createRequestOptions<T>(method: string, data: T) {
-  return {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  };
-}
+const createRequestOptions = <T>(method: string, data: T) => ({
+  method,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+});
 
-async function createPage(page: IPage) {
+const createPage = async (page: IPage) => {
   const options = createRequestOptions('POST', page);
   return await axios.post(`${ServiceUrl.ENDPOINT_PAGE}`, options);
-}
+};
 
-async function updatePage(page: IPage) {
+const updatePage = async (page: IPage) => {
   const options = createRequestOptions('PUT', page);
   return await axios.put(`${baseUrl}/pages`, options);
-}
+};
 
-async function deletePage(id: number) {
+const deletePage = async (id: number) => {
   const options = createRequestOptions('DELETE', id);
   return await axios.delete(`${baseUrl}/pages`, options);
-}
+};
 export default {
   createPage,
   updatePage,

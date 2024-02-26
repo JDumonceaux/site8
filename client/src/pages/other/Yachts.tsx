@@ -1,11 +1,11 @@
 import { PageTitle } from 'components/common/PageTitle';
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 import { useEffect } from 'react';
 import { APP_NAME } from 'utils/constants';
 
 const boxStyle = '56.25% 0 0 0';
 
-export default function Yachts(): JSX.Element {
+export const Yachts = (): JSX.Element => {
   const title = 'Yachts';
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function Yachts(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Meta title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">
@@ -53,19 +53,19 @@ export default function Yachts(): JSX.Element {
           </p>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img src="/images/yachts/sinot-nature-1.jpg.webp" alt="" />
+            <img alt="" src="/images/yachts/sinot-nature-1.jpg.webp" />
           </div>
           <div>
             <div className="image-banner-1">Nature Design</div>
-            <img src="/images/yachts/sinot-nature-2.jpg.webp" alt="" />
+            <img alt="" src="/images/yachts/sinot-nature-2.jpg.webp" />
           </div>
           <div>
             <div className="image-banner-1">
               Nature Design - Observation Lounge with floor to ceiling windows
             </div>
             <img
-              src="/images/yachts/sinot-nature-5.png"
               alt="Nature - Observation Lounge"
+              src="/images/yachts/sinot-nature-5.png"
               title="Nature - Observation Lounge"
             />
           </div>
@@ -73,24 +73,24 @@ export default function Yachts(): JSX.Element {
             <div className="image-banner-1">
               Nature Design - Expansive Decks
             </div>
-            <img src="/images/yachts/sinot-nature-3.png" alt="" />
+            <img alt="" src="/images/yachts/sinot-nature-3.png" />
           </div>
           <div>
             <div className="image-banner-1">Nature Design - Guest Bedroom</div>
             <img
-              src="/images/yachts/sinot-nature-4.png"
               alt="Nature - Guest Bedroom"
+              src="/images/yachts/sinot-nature-4.png"
               title="Nature - Guest Bedroom"
             />
           </div>
 
           <div>
             <div className="image-banner-1">Beach Design</div>
-            <img src="/images/yachts/sinot-beach.png" alt="" />
+            <img alt="" src="/images/yachts/sinot-beach.png" />
           </div>
           <div>
             <div className="image-banner-1">Aqua Design - Owner&#39s Suite</div>
-            <img src="/images/yachts/sinot-aqua-owners-suite.png" alt="" />
+            <img alt="" src="/images/yachts/sinot-aqua-owners-suite.png" />
           </div>
         </section>
       </main>
@@ -100,6 +100,7 @@ export default function Yachts(): JSX.Element {
           <div className="image-banner-1">Art of Life Design</div>
           <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
             <iframe
+              allow="autoplay; fullscreen; picture-in-picture"
               src="https://player.vimeo.com/video/290705961?h=9cfff6a399"
               style={{
                 position: 'absolute',
@@ -110,17 +111,17 @@ export default function Yachts(): JSX.Element {
               }}
               title="Youtube: Art of Life Design"
               // frameborder={{0}}
-              allow="autoplay; fullscreen; picture-in-picture"
               //allowfullscreen
-            ></iframe>
+            />
           </div>
-          <script src="https://player.vimeo.com/api/player.js"></script>
+          <script src="https://player.vimeo.com/api/player.js" />
         </div>
         {/* Nature */}
         <div>
           <div className="image-banner-1">Nature Design</div>
           <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
             <iframe
+              allow="autoplay; fullscreen; picture-in-picture"
               src="https://player.vimeo.com/video/235907283?h=35a2fec5db"
               style={{
                 position: 'absolute',
@@ -131,17 +132,17 @@ export default function Yachts(): JSX.Element {
               }}
               title="Youtube: Nature Design"
               // frameborder={{0}}
-              allow="autoplay; fullscreen; picture-in-picture"
               //allowfullscreen
-            ></iframe>
+            />
           </div>
-          <script src="https://player.vimeo.com/api/player.js"></script>
+          <script src="https://player.vimeo.com/api/player.js" />
         </div>
         {/* Zen */}
         <div>
           <div className="image-banner-1">Zen Design</div>
           <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
             <iframe
+              allow="autoplay; fullscreen; picture-in-picture"
               src="https://player.vimeo.com/video/184474900?h=bef5fe895d"
               style={{
                 position: 'absolute',
@@ -152,13 +153,14 @@ export default function Yachts(): JSX.Element {
               }}
               title="Youtube: Zen Design"
               // frameborder={{0}}
-              allow="autoplay; fullscreen; picture-in-picture"
               //allowfullscreen
-            ></iframe>
+            />
           </div>
-          <script src="https://player.vimeo.com/api/player.js"></script>
+          <script src="https://player.vimeo.com/api/player.js" />
         </div>
       </aside>
     </>
   );
-}
+};
+
+export default Yachts;

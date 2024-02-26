@@ -10,28 +10,14 @@ type TextHelpProps = {
   readonly errorText?: React.ReactNode | string[] | string;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
-const StyledDivWrapper = styled.div`
-  font-size: 0.75rem;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 4px;
-  margin-bottom: 6px;
-`;
-
-const StyledErrorDiv = styled.div<{ $isValid: boolean }>`
-  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
-`;
-
-export function TextHelp({
+export const TextHelp = ({
   isValid = true,
   showCounter = false,
   characterCount,
   maxLength,
   helpText,
   errorText,
-}: TextHelpProps): JSX.Element {
+}: TextHelpProps): JSX.Element => {
   const getHelperText = useCallback(
     (msg: React.ReactNode | string[] | string | undefined) => {
       if (!msg) return null;
@@ -42,9 +28,9 @@ export function TextHelp({
         return (
           <div>
             <ul>
-              {msg.map(function (item, index) {
-                return <li key={index}>{item}</li>;
-              })}
+              {msg.map((item, index) => (
+                <li key={`item-${index}`}>{item}</li>
+              ))}
             </ul>
           </div>
         );
@@ -79,4 +65,17 @@ export function TextHelp({
       {getCounterText(characterCount, maxLength, showCounter)}
     </StyledDivWrapper>
   );
-}
+};
+
+const StyledDivWrapper = styled.div`
+  font-size: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 4px;
+  margin-bottom: 6px;
+`;
+const StyledErrorDiv = styled.div<{ $isValid: boolean }>`
+  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+`;

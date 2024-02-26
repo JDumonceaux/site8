@@ -1,13 +1,13 @@
 import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 import { useDeferredValue } from 'react';
 import { Link } from 'react-router-dom';
 import { IPages } from 'services/api/models/pages/IPages';
 import useFetch from 'services/hooks/useFetch';
 import { ServiceUrl } from 'utils';
 
-export default function PagesList(): JSX.Element {
+export const PagesList = (): JSX.Element => {
   const title = 'Pages';
   const { data, isLoading, error } = useFetch<IPages>(
     `${ServiceUrl.ENDPOINT_PAGES}`,
@@ -20,7 +20,7 @@ export default function PagesList(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Meta title={title} />
       <main className="main-content">
         <LoadingWrapper error={error} isLoading={isLoading}>
           <PageTitle title={title} />
@@ -50,4 +50,6 @@ export default function PagesList(): JSX.Element {
       </main>
     </>
   );
-}
+};
+
+export default PagesList;

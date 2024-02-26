@@ -1,1 +1,1 @@
-
+export * from './Footer';

@@ -1,13 +1,12 @@
 import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
-import { SEO } from 'components/common/SEO';
-import './photoList.css';
+import { Meta } from 'components/common/Meta';
 
 import { useDeferredValue, useEffect } from 'react';
 import usePhotos from 'services/hooks/usePhotos';
 import { APP_NAME } from 'utils/constants';
 
-export default function PhotoList(): JSX.Element {
+export const PhotoList = (): JSX.Element => {
   const title = 'Photos';
   const { data, loading, error, fetchData } = usePhotos();
   const deferredData = useDeferredValue(data);
@@ -22,23 +21,23 @@ export default function PhotoList(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
-      <main className="main-content">
+      <Meta title={title} />
+      <main>
         <PageTitle title={title} />
-        <section className="section">
-          <LoadingWrapper isLoading={loading} error={error}>
+        <section>
+          <LoadingWrapper error={error} isLoading={loading}>
             <ul>
               {deferredData?.items?.map((item) => {
                 return (
                   <li key={item.id}>
                     <a
-                      href={item.url}
+                      data-caption={item.description}
                       data-fancybox
-                      data-caption={item.description}>
+                      href={item.url}>
                       <img
-                        src={item.url}
                         alt={item.description}
                         loading="lazy"
+                        src={item.url}
                       />
                     </a>
                   </li>
@@ -48,7 +47,9 @@ export default function PhotoList(): JSX.Element {
           </LoadingWrapper>
         </section>
       </main>
-      <aside className="right-sidebar"></aside>
+      <aside className="right-sidebar" />
     </>
   );
-}
+};
+
+export default PhotoList;

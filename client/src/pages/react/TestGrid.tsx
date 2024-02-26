@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { ITestGrid } from 'services/api/models/testgrid/ITestGrid';
 import { ServiceUrl } from 'utils/constants';
 
-export default function TestGrid(): JSX.Element {
+export const TestGrid = (): JSX.Element => {
   const [data, setData] = useState<ITestGrid>();
 
   const fetchData = async () => {
@@ -69,4 +69,6 @@ export default function TestGrid(): JSX.Element {
       </div>
     </div>
   );
-}
+};
+
+export default TestGrid;

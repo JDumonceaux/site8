@@ -1,8 +1,8 @@
 import React, { Component, ErrorInfo } from 'react';
 
 interface Props {
-  fallback: React.ReactNode;
-  children: React.ReactNode;
+  readonly fallback: React.ReactNode;
+  readonly children: React.ReactNode;
 }
 
 interface State {
@@ -10,8 +10,8 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+  constructor({ fallback, children }: Props) {
+    super({ fallback, children });
     this.state = { hasError: false };
   }
 
@@ -21,11 +21,14 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   render() {
-    if (this.state.hasError) {
-      return this.props.fallback;
+    const { fallback, children } = this.props;
+    const { hasError } = this.state;
+
+    if (hasError) {
+      return fallback;
     }
 
-    return this.props.children;
+    return children;
   }
 }
 

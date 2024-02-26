@@ -3,29 +3,29 @@ import { DialogHTMLAttributes } from 'react';
 type LoadingOverlayProps = {
   readonly title: string;
   readonly text?: string;
-  bottomArea?: React.ReactNode;
+  readonly bottomArea?: React.ReactNode;
 } & DialogHTMLAttributes<HTMLDialogElement>;
 
-export function LoadingOverlay({
-  title,
-  text,
-  open,
-  onClose,
+export const LoadingOverlay = ({
   bottomArea,
+  onClose,
+  open,
+  text,
+  title,
   ...rest
-}: LoadingOverlayProps): JSX.Element {
+}: LoadingOverlayProps): JSX.Element => {
   return (
     <dialog
-      id="modal"
-      data-testid="loading-overlay"
-      open={open}
-      onClose={onClose}
       aria-labelledby="scroll-dialog-title"
+      data-testid="loading-overlay"
+      id="modal"
+      onClose={onClose}
+      open={open}
       {...rest}>
-      <button>Close</button>
+      <button type="button">Close</button>
       <h1>{title}</h1>
       <p>{text}</p>
       {bottomArea ? <div>{bottomArea}</div> : null}
     </dialog>
   );
-}
+};

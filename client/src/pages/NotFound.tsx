@@ -1,5 +1,13 @@
 import { styled } from 'styled-components';
 
+export const NotFound = (): JSX.Element => (
+  <StyledDiv>
+    <StyledH1>Oops! Page Not Found</StyledH1>
+  </StyledDiv>
+);
+
+export default NotFound;
+
 // https://www.joshwcomeau.com/gradient-generator/
 const StyledDiv = styled.div`
   min-height: 100vh;
@@ -25,11 +33,3 @@ const StyledH1 = styled.h1`
   padding-top: 10vh;
   font-size: clamp(12px, 3vw, 36px);
 `;
-
-export default function NotFound(): JSX.Element {
-  return (
-    <StyledDiv>
-      <StyledH1>Oops! Page Not Found</StyledH1>
-    </StyledDiv>
-  );
-}

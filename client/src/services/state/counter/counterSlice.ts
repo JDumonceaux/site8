@@ -40,6 +40,7 @@ const counterSlice = createSlice({
 export const incrementAsync = createAsyncThunk(
   'counter/incrementAsync',
   async (amount: number) => {
+    // eslint-disable-next-line promise/avoid-new
     await new Promise((resolve) => setTimeout(resolve, 1000));
     return amount;
   },

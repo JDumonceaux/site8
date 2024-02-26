@@ -8,7 +8,7 @@ const languages = [
   { code: 'fr', lang: 'French' },
 ];
 
-export function ChangeLanguage(): JSX.Element {
+export const ChangeLanguage = (): JSX.Element => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -26,11 +26,12 @@ export function ChangeLanguage(): JSX.Element {
           <button
             className={lng.code === i18n.language ? 'selected' : ''}
             key={lng.code}
-            onClick={() => changeLanguage(lng.code)}>
+            onClick={() => changeLanguage(lng.code)}
+            type="button">
             {lng.lang}
           </button>
         );
       })}
     </div>
   );
-}
+};

@@ -3,31 +3,23 @@ import './checkbox.css';
 import { InputHTMLAttributes } from 'react';
 
 type CheckboxProps = {
-  id: string;
-  label: string;
-  showCounter?: boolean;
+  readonly id: string;
+  readonly label: string;
+  readonly showCounter?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
 
-export function Checkbox({
+export const Checkbox = ({
   id,
   label,
   showCounter = false,
   ...rest
-}: CheckboxProps): JSX.Element {
+}: CheckboxProps): JSX.Element => {
   return (
     <div className="checkbox">
-      <label
-        className="label"
-        htmlFor={id}>
+      <label className="label" htmlFor={id}>
         {label}
       </label>
-      <input
-        className="input"
-        type="checkbox"
-        id={id}
-        name={id}
-        {...rest}
-      />
+      <input className="input" id={id} name={id} type="checkbox" {...rest} />
       <div className="help">
         <div>
           <ul>
@@ -38,4 +30,4 @@ export function Checkbox({
       </div>
     </div>
   );
-}
+};

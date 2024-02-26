@@ -12,59 +12,57 @@ type TextInputProps = {
   readonly maxLength?: number;
   readonly isValid?: boolean;
   readonly isRequired?: boolean;
-
   readonly helpText?: React.ReactNode | string[] | string;
   readonly errorTextShort?: string;
   readonly errorText?: React.ReactNode | string[] | string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
 
-export function TextInput({
+export const TextInput = ({
   id,
   label,
   showCounter = false,
   maxLength,
   isValid = true,
   isRequired = false,
-
   helpText,
   errorText,
   errorTextShort,
   value,
   ...rest
-}: TextInputProps): JSX.Element {
+}: TextInputProps): JSX.Element => {
   const characterCount =
     typeof value === 'string' || value instanceof String ? value.length : 0;
 
   return (
     <StyledWrapper>
-      <TextLabel htmlFor={id} isValid={isValid} errorText={errorTextShort}>
+      <TextLabel errorText={errorTextShort} htmlFor={id} isValid={isValid}>
         {label}
       </TextLabel>
       <StyledDivWrapper $isValid={isValid}>
         <StyledInput
-          type="text"
-          id={id}
-          name={id}
-          value={value}
-          maxLength={maxLength}
-          aria-required={isRequired}
-          aria-invalid={!isValid}
           $isValid={isValid}
+          aria-invalid={!isValid}
+          aria-required={isRequired}
+          id={id}
+          maxLength={maxLength}
+          name={id}
+          type="text"
+          value={value}
           {...rest}
         />
         <StyledButton type="reset" />
       </StyledDivWrapper>
       <TextHelp
-        showCounter={showCounter}
         characterCount={characterCount}
-        maxLength={maxLength}
-        helpText={helpText}
         errorText={errorText}
+        helpText={helpText}
         isValid={isValid}
+        maxLength={maxLength}
+        showCounter={showCounter}
       />
     </StyledWrapper>
   );
-}
+};
 
 const StyledInput = styled.input<{ $isValid: boolean }>`
   position: relative;
@@ -78,7 +76,6 @@ const StyledInput = styled.input<{ $isValid: boolean }>`
   padding-inline-end: 6px;
   padding-inline-start: 6px;
 `;
-
 const StyledDivWrapper = styled.div<{ $isValid: boolean }>`
   position: relative;
   display: flex;
@@ -100,11 +97,9 @@ const StyledDivWrapper = styled.div<{ $isValid: boolean }>`
     border-width: 2px;
   }
 `;
-
 const StyledWrapper = styled.div`
   margin-bottom: 18px;
 `;
-
 const StyledButton = styled.button`
   position: absolute;
   z-index: 1;
@@ -113,7 +108,6 @@ const StyledButton = styled.button`
   cursor: pointer;
   height: 24px;
   width: 24px;
-
   &:after {
     content: 'X';
     display: inline-block;

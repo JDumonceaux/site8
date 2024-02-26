@@ -2,21 +2,21 @@ import { DialogHTMLAttributes } from 'react';
 import { Modal } from '../Modal';
 
 type ModalProcessingProps = {
-  isOpen: boolean;
-  onClose: () => void;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
 } & DialogHTMLAttributes<HTMLDialogElement>;
 
-export function ModalProcessing({
+export const ModalProcessing = ({
   isOpen,
   title = 'Save',
   onClose,
   ...rest
-}: ModalProcessingProps): JSX.Element {
+}: ModalProcessingProps): JSX.Element => {
   return (
     <Modal
+      isLocked={false}
       isOpen={isOpen}
       onClose={onClose}
-      isLocked={false}
       title={title}
       {...rest}>
       <p>
@@ -25,4 +25,4 @@ export function ModalProcessing({
       </p>
     </Modal>
   );
-}
+};

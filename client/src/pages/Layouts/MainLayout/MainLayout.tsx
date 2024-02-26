@@ -9,21 +9,21 @@ import { MainMenu } from 'components/common/MainMenu';
 import { Header } from 'components/ui/Header/Header';
 import { Footer } from 'components/ui/Footer/Footer';
 
-export default function MainLayout(): JSX.Element {
-  return (
-    <ErrorBoundary fallback="Error">
-      <Header />
-      <LayoutDiv>
-        <Suspense fallback="Loading ...">
-          <Outlet />
-        </Suspense>
-        <Snackbar />
-        <MainMenu />
-        <Footer />
-      </LayoutDiv>
-    </ErrorBoundary>
-  );
-}
+export const MainLayout = (): JSX.Element => (
+  <ErrorBoundary fallback="Error">
+    <Header />
+    <LayoutDiv>
+      <Suspense fallback="Loading ...">
+        <Outlet />
+      </Suspense>
+      <Snackbar />
+      <MainMenu />
+      <Footer />
+    </LayoutDiv>
+  </ErrorBoundary>
+);
+
+export default MainLayout;
 
 const LayoutDiv = styled.div`
   max-width: 1920px;

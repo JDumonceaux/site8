@@ -1,41 +1,14 @@
 import { HomeMenu } from 'components/common/MainMenu/HomeMenu';
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 import { MatrixBG } from 'components/ui/Animation/MatrixBG';
 import { styled } from 'styled-components';
 
-const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  margin-top: 40px;
-`;
-const StyledMain = styled.main`
-  display: flex;
-  flex-direction: column;
-  width: 360px;
-  height: calc(100vh - 80px);
-  background-color: darkkhaki;
-  padding: 16px;
-  font-size: 1.1rem;
-  padding-left: 12px;
-`;
-const StyledSection = styled.section`
-  flex-grow: 1;
-`;
-const StyledAside = styled.aside`
-  font-size: 0.85rem;
-  font-style: italic;
-  & p {
-    margin: 0;
-  }
-`;
-
-export function HomeScreen1(): JSX.Element {
+export const HomeScreen1 = (): JSX.Element => {
   const title = 'Home';
 
   return (
     <>
-      <SEO title={title} />
+      <Meta title={title} />
       <StyledWrapper>
         <StyledMain>
           <StyledSection>
@@ -64,4 +37,31 @@ export function HomeScreen1(): JSX.Element {
       </StyledWrapper>
     </>
   );
-}
+};
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-top: 40px;
+`;
+const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  height: calc(100vh - 80px);
+  background-color: darkkhaki;
+  padding: 16px;
+  font-size: 1.1rem;
+  padding-left: 12px;
+`;
+const StyledSection = styled.section`
+  flex-grow: 1;
+`;
+const StyledAside = styled.aside`
+  font-size: 0.85rem;
+  font-style: italic;
+  & p {
+    margin: 0;
+  }
+`;

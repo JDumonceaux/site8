@@ -1,18 +1,16 @@
 import { IResources } from 'services/api/models/resources/IResources';
 
 type ResourcesProps = {
-  id?: number;
-  data?: IResources | null;
+  readonly id?: number;
+  readonly data?: IResources | null;
 };
 
-export function Resources({ id, data }: ResourcesProps): JSX.Element {
+export const Resources = ({ id, data }: ResourcesProps): JSX.Element => {
   return (
     <div className="loading-wrapper">
       <div>{id}</div>
       {data?.items?.map((item) => (
-        <div
-          className="card"
-          key={item.id}>
+        <div className="card" key={item.id}>
           <h3>
             <a href="${item.url}">{item.name}</a>
           </h3>
@@ -21,4 +19,4 @@ export function Resources({ id, data }: ResourcesProps): JSX.Element {
       ))}
     </div>
   );
-}
+};

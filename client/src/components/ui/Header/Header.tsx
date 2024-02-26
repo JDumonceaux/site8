@@ -3,6 +3,20 @@ import { styled } from 'styled-components';
 import { APP_NAME } from 'utils/constants';
 import { MenuIcon } from './MenuIcon';
 
+export const Header = (): JSX.Element => {
+  return (
+    <StyledHeader className="header" data-testid="header">
+      <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
+      <MenuIcon />
+      <StyledLinkDiv>
+        <Link to="/">
+          <AppName>{APP_NAME}</AppName>
+        </Link>
+      </StyledLinkDiv>
+    </StyledHeader>
+  );
+};
+
 const StyledHeader = styled.header`
   background-color: var(--main-background-color, #000);
   display: flex;
@@ -45,17 +59,3 @@ const StyledLinkDiv = styled.div`
     padding: 3px 16px;
   }
 `;
-
-export function Header(): JSX.Element {
-  return (
-    <StyledHeader className="header" data-testid="header">
-      <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
-      <MenuIcon />
-      <StyledLinkDiv>
-        <Link to="/">
-          <AppName>{APP_NAME}</AppName>
-        </Link>
-      </StyledLinkDiv>
-    </StyledHeader>
-  );
-}

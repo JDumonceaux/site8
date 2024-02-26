@@ -1,17 +1,17 @@
 import React from 'react';
 
 interface SearchProps {
-  onChange: (text: string) => void;
+  readonly onChange: (text: string) => void;
 }
 
-const Search = React.memo(function Search({ onChange }: SearchProps) {
-  return (
-    <input
-      type="text"
-      placeholder="Search users..."
-      onChange={(e) => onChange(e.target.value)}
-    />
-  );
-});
+const Search = React.memo(({ onChange }: SearchProps) => (
+  <input
+    onChange={(e) => onChange(e.target.value)}
+    placeholder="Search users..."
+    type="text"
+  />
+));
+
+Search.displayName = 'Search';
 
 export default Search;

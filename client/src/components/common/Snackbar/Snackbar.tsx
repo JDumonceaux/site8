@@ -9,7 +9,7 @@ const StyledDialog = styled.dialog`
   inset-inline-start: unset;
 `;
 
-export function Snackbar(): JSX.Element {
+export const Snackbar = (): JSX.Element => {
   const { snackbarData, closeSnackbar } = useSnackbar();
 
   const handleOnClose = useCallback(() => {
@@ -18,10 +18,10 @@ export function Snackbar(): JSX.Element {
 
   return (
     <StyledDialog
-      open={snackbarData?.isOpen}
       data-testid="snackbar"
-      onClose={handleOnClose}>
+      onClose={handleOnClose}
+      open={snackbarData?.isOpen}>
       {snackbarData?.contents}
     </StyledDialog>
   );
-}
+};

@@ -6,17 +6,17 @@ import { IPage } from 'services/api/models/pages/IPage';
 import useFetch from 'services/hooks/useFetch';
 import { PageTitle } from 'components/common/PageTitle';
 import { LoadingWrapper } from 'components/common/Loading';
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 
 type GenericPageProps = {
-  id: number;
-  pageTitle: string;
+  readonly id: number;
+  readonly pageTitle: string;
 };
 
-export default function GenericPage({
+export const GenericPage = ({
   id,
   pageTitle,
-}: GenericPageProps): JSX.Element {
+}: GenericPageProps): JSX.Element => {
   const { data, isLoading, error } = useFetch<IPage>(
     `${ServiceUrl.ENDPOINT_PAGE}/${id}`,
   );
@@ -27,7 +27,7 @@ export default function GenericPage({
 
   return (
     <>
-      <SEO title={title} />
+      <Meta title={title} />
       <main className="main-content">
         <LoadingWrapper error={error} isLoading={isLoading}>
           <PageTitle title={title} />
@@ -35,6 +35,7 @@ export default function GenericPage({
           <section className="section">
             <Suspense fallback="Loading results ...">
               <div
+                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: deferredData?.text ? deferredData.text : '',
                 }}
@@ -44,7 +45,9 @@ export default function GenericPage({
         </LoadingWrapper>
         <Resources id={id} />
       </main>
-      <aside className="right-sidebar"></aside>
+      <aside className="right-sidebar" />
     </>
   );
-}
+};
+
+export default GenericPage;

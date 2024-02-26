@@ -15,7 +15,7 @@ module.exports = {
     // Make sure it's always the last config, so it gets the chance to override other configs.
     'eslint-config-prettier',
   ],
-  plugins: ['sonarjs', 'promise'],
+  plugins: ['sonarjs', 'promise', 'prefer-arrow-functions'],
   settings: {
     react: {
       // Tells eslint-plugin-react to automatically detect the version of React to use.
@@ -53,5 +53,15 @@ module.exports = {
     'promise/no-new-statics': 'error',
     'promise/no-return-in-finally': 'warn',
     'promise/valid-params': 'warn',
+    'prefer-arrow-functions/prefer-arrow-functions': [
+      'warn',
+      {
+        allowNamedFunctions: false,
+        classPropertiesAllowed: false,
+        disallowPrototype: false,
+        returnStyle: 'unchanged',
+        singleReturnOnly: false,
+      },
+    ],
   },
 };

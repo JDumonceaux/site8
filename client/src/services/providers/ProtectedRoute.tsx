@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-export default function ProtectedRoute() {
+export const ProtectedRoute = () => {
   const user = 1;
 
   const navigate = useNavigate();
@@ -13,4 +13,6 @@ export default function ProtectedRoute() {
   }, [navigate, user]);
 
   return <Outlet />;
-}
+};
+
+export default ProtectedRoute;

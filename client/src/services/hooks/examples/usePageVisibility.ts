@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react';
 
-function usePageVisibility() {
+const usePageVisibility = () => {
   const [isPageVisible, setIsPageVisible] = useState(!document.hidden);
 
   useLayoutEffect(() => {
@@ -14,6 +14,6 @@ function usePageVisibility() {
   }, []);
 
   return { isPageVisible };
-}
+};
 
 export default usePageVisibility;

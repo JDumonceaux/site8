@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isAxiosError } from 'axios';
 
-export function httpErrorHandler(
+export const httpErrorHandler = (
   error: {
     response: any;
     request: any;
@@ -9,7 +9,7 @@ export function httpErrorHandler(
     code: string;
     message: any;
   } | null,
-) {
+) => {
   if (error === null) throw new Error('Unrecoverable error!! Error is null!');
   if (isAxiosError(error)) {
     //here we have a type guard check, error inside this if will be treated as AxiosError
@@ -35,4 +35,4 @@ export function httpErrorHandler(
   }
   //Something happened in setting up the request and triggered an Error
   return 'Unknown error occurred..';
-}
+};

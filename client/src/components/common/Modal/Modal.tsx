@@ -41,7 +41,7 @@ const StyledTitleBar = styled.div`
 // https://www.youtube.com/watch?v=ywtkJkxJsdg
 // If the dialog is a confirmation window communicating an important message
 // that requires a confirmation or other user response, set role = "alertdialog"
-export function Modal({
+export const Modal = ({
   isOpen,
   title,
   isLocked,
@@ -49,7 +49,7 @@ export function Modal({
   children,
   requiresUserAction = false,
   ...rest
-}: ModalProps): JSX.Element {
+}: ModalProps): JSX.Element => {
   const modalRef = useRef(null);
 
   // work out which classes should be applied to the dialog element
@@ -103,25 +103,26 @@ export function Modal({
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
     <dialog
-      ref={modalRef}
+      aria-describedby="dialog-desc"
+      aria-labelledby="dialog-title"
+      aria-modal="true"
       className={dialogClasses}
-      onClose={onClose}
+      onAnimationEnd={onAnimEnd}
       onCancel={onCancel}
       onClick={onClick}
-      onAnimationEnd={onAnimEnd}
-      aria-modal="true"
-      aria-labelledby="dialog-title"
-      aria-describedby="dialog-desc"
+      onClose={onClose}
+      ref={modalRef}
       role={requiresUserAction ? 'alertdialog' : 'dialog'}
       {...rest}
       data-testid="dialog">
       <StyledTitleBar>
         <label id="dialog-title">{title}</label>
         <button
+          aria-label="close"
+          data-close-modal
           id="button"
           onClick={onClose}
-          aria-label="close"
-          data-close-modal>
+          type="button">
           X
         </button>
       </StyledTitleBar>
@@ -130,4 +131,4 @@ export function Modal({
       </div>
     </dialog>
   );
-}
+};

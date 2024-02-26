@@ -1,5 +1,27 @@
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 import { styled, keyframes } from 'styled-components';
+
+export const HomeScreen2 = (): JSX.Element => {
+  const title = 'Home';
+
+  return (
+    <>
+      <Meta title={title} />
+      <StyledMain>
+        <StyledSection>
+          <R1C1 />
+          <R1C2 />
+          <R1C3 />
+          <R1C4 />
+          <R1C5 />
+          <R1C6 />
+          <R1C7 />
+          <R1C8 />
+        </StyledSection>
+      </StyledMain>
+    </>
+  );
+};
 
 const StyledMain = styled.main``;
 const StyledSection = styled.section`
@@ -68,25 +90,3 @@ const R1C8 = styled(SDiv)`
   left: 700px;
   background-color: #ffc300;
 `;
-
-export function HomeScreen2(): JSX.Element {
-  const title = 'Home';
-
-  return (
-    <>
-      <SEO title={title} />
-      <StyledMain>
-        <StyledSection>
-          <R1C1 />
-          <R1C2 />
-          <R1C3 />
-          <R1C4 />
-          <R1C5 />
-          <R1C6 />
-          <R1C7 />
-          <R1C8 />
-        </StyledSection>
-      </StyledMain>
-    </>
-  );
-}

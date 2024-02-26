@@ -1,16 +1,18 @@
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 
-export default function Login(): JSX.Element {
+export const Login = (): JSX.Element => {
   const title = 'Login';
 
   return (
     <>
-      <SEO title={title} />
-      <div className="content-wrapper">
-        <main className="main-content">
-          <section className="section">Login</section>
+      <Meta title={title} />
+      <div>
+        <main>
+          <section>Login</section>
         </main>
       </div>
     </>
   );
-}
+};
+
+export default Login;

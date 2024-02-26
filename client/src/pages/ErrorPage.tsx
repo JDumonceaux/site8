@@ -1,3 +1,1 @@
-export default function ErrorPage(): JSX.Element {
-  return <h1>Error Page</h1>;
-}
+export const ErrorPage = (): JSX.Element => <h1>Error Page</h1>;

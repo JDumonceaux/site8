@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from '../state/store';
 
 interface IProps {
-  children: ReactNode;
+  readonly children: ReactNode;
 }
 
 export const ReduxProvider = ({ children }: IProps) => {

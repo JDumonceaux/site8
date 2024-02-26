@@ -1,31 +1,16 @@
 import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
-import { SEO } from 'components/common/SEO';
+import { Meta } from 'components/common/Meta';
 import './musicList.css';
 
 import memoize from 'memoize-one';
 import { useDeferredValue, useEffect } from 'react';
 import { FixedSizeList as List } from 'react-window';
-import type { ListChildComponentProps } from 'react-window';
 import { IMusicItem } from 'services/api/models/music/IMusicItem';
 import useMusic from 'services/hooks/useMusic';
+import { ItemRenderer } from './ItemRenderer';
 
-function ItemRenderer({ data, index, style }: ListChildComponentProps) {
-  const item = data.items[index] as IMusicItem;
-  return (
-    <div style={style} key={index}>
-      <div>{item.description}</div>
-      <iframe
-        width={560}
-        height={200}
-        src={item.url}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-    </div>
-  );
-}
-
-export default function MusicList(): JSX.Element {
+export const MusicList = (): JSX.Element => {
   const title = 'YouTube Videos';
   const { data, loading, error, fetchData } = useMusic();
 
@@ -46,17 +31,17 @@ export default function MusicList(): JSX.Element {
 
   return (
     <>
-      <SEO title={title} />
+      <Meta title={title} />
       <main className="main-content">
         <PageTitle title={title} />
         <section className="section">
           <p>These are some of my favorite YouTube videos.</p>
-          <LoadingWrapper isLoading={loading} error={error}>
+          <LoadingWrapper error={error} isLoading={loading}>
             <List
               height={600}
               itemCount={data?.items?.length ? data?.items?.length : 0}
-              itemSize={220}
               itemData={itemData}
+              itemSize={220}
               overscanCount={15}
               width="100%">
               {ItemRenderer}
@@ -77,7 +62,9 @@ export default function MusicList(): JSX.Element {
           </LoadingWrapper>
         </section>
       </main>
-      <aside className="right-sidebar"></aside>
+      <aside className="right-sidebar" />
     </>
   );
-}
+};
+
+export default MusicList;

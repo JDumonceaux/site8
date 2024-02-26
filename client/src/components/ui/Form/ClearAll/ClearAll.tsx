@@ -2,11 +2,11 @@ import { MouseEventHandler } from 'react';
 import { styled } from 'styled-components';
 
 type ClearAllProps = {
-  children?: React.ReactNode;
-  onClear: () => void;
+  readonly children?: React.ReactNode;
+  readonly onClear: () => void;
 };
 
-export function ClearAll({ children, onClear }: ClearAllProps): JSX.Element {
+export const ClearAll = ({ children, onClear }: ClearAllProps): JSX.Element => {
   const handleClear: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -16,13 +16,14 @@ export function ClearAll({ children, onClear }: ClearAllProps): JSX.Element {
   return (
     <StyledDivWrapper>
       {children}
-      <button onClick={handleClear}>Clear All</button>
+      <button onClick={handleClear} type="reset">
+        Clear All
+      </button>
     </StyledDivWrapper>
   );
-}
+};
 
 const StyledDivWrapper = styled.div`
-  font-size: 0.75rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -30,9 +31,11 @@ const StyledDivWrapper = styled.div`
   width: 100%;
   border-bottom: 1px solid #888;
   margin-bottom: 6px;
+  font-size: 0.75rem;
   & button {
     padding-bottom: 4px;
-  &:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
