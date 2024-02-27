@@ -11,10 +11,18 @@ export const HomeScreen4 = (): JSX.Element => {
   return (
     <StyledSection>
       <Title>React Notes</Title>
+
+      <StyledVideo autoPlay id="video-bg" loop muted playsInline>
+        <source
+          src="/images/background/tactus-waves-hero.mp4"
+          type="video/mp4"
+        />
+      </StyledVideo>
+
       {myArr20.map((item, index) => (
         <WhiteLine $index={index} key={item} />
       ))}
-      <GenLine
+      <GenLineAnim
         $color="#808080"
         $height={350}
         $left={-120}
@@ -22,7 +30,7 @@ export const HomeScreen4 = (): JSX.Element => {
         $width={8}
         $z={2}
       />
-      <GenLine
+      <GenLineAnim
         $boxShadow
         $color="#303030"
         $height={400}
@@ -49,12 +57,67 @@ export const HomeScreen4 = (): JSX.Element => {
         $width={15}
         $z={3}
       />
+
       <GenLine
         $color="#fff"
         $height={150}
         $left={0}
         $top={-150}
         $width={240}
+        $z={3}
+      />
+      <GenLine
+        $boxShadow
+        $color="#9d6060"
+        $height={400}
+        $left={11}
+        $top={-270}
+        $width={4}
+        $z={3}
+      />
+      <GenLine
+        $boxShadow
+        $color="#9d6060"
+        $height={400}
+        $left={20}
+        $top={-270}
+        $width={6}
+        $z={3}
+      />
+      <DiagLine
+        $boxShadow
+        $color="#808080"
+        $height={100}
+        $left={75}
+        $top={-90}
+        $width={8}
+        $z={3}
+      />
+      <DiagLine
+        $boxShadow
+        $color="#808080"
+        $height={100}
+        $left={75}
+        $top={-110}
+        $width={8}
+        $z={3}
+      />
+      <DiagLine
+        $boxShadow
+        $color="#808080"
+        $height={100}
+        $left={75}
+        $top={-130}
+        $width={8}
+        $z={3}
+      />
+      <DiagLine
+        $boxShadow
+        $color="#808080"
+        $height={100}
+        $left={75}
+        $top={-150}
+        $width={8}
         $z={3}
       />
       <LargePinkCircle />
@@ -67,6 +130,14 @@ export const HomeScreen4 = (): JSX.Element => {
         }
         return <GrayDots $left={x} $top={y} key={item} />;
       })}
+      {myArr36.map((item) => {
+        x += 1;
+        if (x > 5) {
+          x = 0;
+          y += 1;
+        }
+        return <PinkDots $left={x} $top={y} key={item} />;
+      })}
     </StyledSection>
   );
 };
@@ -74,15 +145,32 @@ export const HomeScreen4 = (): JSX.Element => {
 const CENTER_TOP = '40dvh';
 const CENTER_LEFT = '75dvw';
 
-const StyledSection = styled.section``;
+const StyledSection = styled.section`
+  perspective: 100px;
+`;
+const lpcAnimation3 = keyframes`
+ 0% { transform: translateY(800px);}
+ 100% { transform: translateY(0%); }
+`;
 const Title = styled.div`
-  background: url('/images/bowler.jpg') no-repeat;
+  background: url('/images/background/title.jpg') no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   font-size: 8rem;
+  //mix-blend-mode: difference;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.9, 1.2);
+  animation-name: ${lpcAnimation3};
 `;
-
+const lpcFadeIn = keyframes`
+ 0% { opacity: 0;}
+ 100% { opacity: 1; }
+`;
+const StyledVideo = styled.video`
+  animation-duration: 5s;
+  animation-name: ${lpcFadeIn};
+`;
 const WhiteLine = styled.div<{ $index: number }>`
   --space: ${(props) => props.$index * 12 + 'px'};
   position: fixed;
@@ -149,9 +237,18 @@ const GenLine = styled.div<{
   z-index: ${(props) => props.$z};
   box-shadow: ${(props) =>
     props.$boxShadow ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none'};
+`;
+const GenLineAnim = styled(GenLine)`
   animation-duration: 1.5s;
   animation-timing-function: cubic-bezier(0.17, 0.67, 0.9, 1);
   animation-name: ${lpcAnimation2};
+`;
+
+const DiagLine = styled(GenLine)`
+  transform: rotate(-45deg);
+  -webkit-box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.5);
 `;
 
 const GrayDots = styled.div<{ $left: number; $top: number }>`
@@ -165,6 +262,21 @@ const GrayDots = styled.div<{ $left: number; $top: number }>`
   border-radius: 50%;
   background-color: #808080;
   z-index: 2;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+`;
+const PinkDots = styled.div<{ $left: number; $top: number }>`
+  --top: ${(props) => props.$top * 10 + 'px'};
+  --left: ${(props) => props.$left * 10 + 'px'};
+  position: fixed;
+  top: calc(${CENTER_TOP} + var(--top) + 20px);
+  left: calc(${CENTER_LEFT} + var(--left) + 80px);
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: #9d6060;
+  z-index: 4;
   -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
