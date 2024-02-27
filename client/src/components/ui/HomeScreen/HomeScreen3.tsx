@@ -20,6 +20,7 @@ export const HomeScreen3 = () => {
 
   useEffect(() => {
     const semiCircles: React.ReactNode[] = [];
+    // eslint-disable-next-line immutable/no-let
     let i = 0;
 
     while (i * 150 < window.innerWidth) {
