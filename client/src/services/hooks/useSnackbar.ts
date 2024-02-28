@@ -2,24 +2,24 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../state/store';
-import { ISnackbar } from 'services/api/models/snackbar/ISnackbar';
+import { Snackbar } from 'services/models/Snackbar';
 import { save } from '../state/snackbarSlice';
 
 const useSnackbar = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.snackbar;
-  const data: ISnackbar | null = useSelector(selector).snackbarData;
+  const data: Snackbar | null = useSelector(selector).snackbarData;
 
   const updateSnackbarDispatch = useCallback(
-    (data: ISnackbar) => {
+    (data: Snackbar) => {
       dispatch(save(data));
     },
     [dispatch],
   );
 
   const setSimpleSnackbarMessage = useCallback(
-    (contents: ISnackbar['contents']) => {
+    (contents: Snackbar['contents']) => {
       updateSnackbarDispatch({
         isOpen: true,
         openDurationMs: 5000,
@@ -30,7 +30,7 @@ const useSnackbar = () => {
   );
 
   const setSimpleSnackbarMessageNoCloseX = useCallback(
-    (contents: ISnackbar['contents']) => {
+    (contents: Snackbar['contents']) => {
       updateSnackbarDispatch({
         showCloseButton: false,
         isOpen: true,

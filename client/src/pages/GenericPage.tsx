@@ -1,8 +1,8 @@
 import { ServiceUrl } from 'utils';
 
-import { Resources } from 'components/common/Resources';
+import { ResourceIList } from 'components/common/ResourceIList';
 import { Suspense, useDeferredValue } from 'react';
-import { IPage } from 'services/api/models/pages/IPage';
+import { Page } from 'services/models/Page';
 import useFetch from 'services/hooks/useFetch';
 import { PageTitle } from 'components/common/PageTitle';
 import { LoadingWrapper } from 'components/common/Loading';
@@ -17,7 +17,7 @@ export const GenericPage = ({
   id,
   pageTitle,
 }: GenericPageProps): JSX.Element => {
-  const { data, isLoading, error } = useFetch<IPage>(
+  const { data, isLoading, error } = useFetch<Page>(
     `${ServiceUrl.ENDPOINT_PAGE}/${id}`,
   );
 
@@ -43,7 +43,7 @@ export const GenericPage = ({
             </Suspense>
           </section>
         </LoadingWrapper>
-        <Resources id={id} />
+        <ResourceIList id={id} />
       </main>
       <aside className="right-sidebar" />
     </>

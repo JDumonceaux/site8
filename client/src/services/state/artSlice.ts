@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { IArt } from '../api/models/art/IArt';
+import { Art } from '../models/Art';
 
 interface ArtState {
-  artData: IArt | null;
+  artData: Art | null;
   loading: boolean;
   error: string | null;
 }
@@ -17,7 +17,7 @@ const initialState: ArtState = {
 };
 
 export const fetchArt = createAsyncThunk('art/fetchArt', async () => {
-  const response = await axios.get<IArt>(ServiceUrl.ENDPOINT_ART, {
+  const response = await axios.get<Art>(ServiceUrl.ENDPOINT_ART, {
     responseType: 'json',
   });
   return response.data;
@@ -39,7 +39,7 @@ const artSlice = createSlice({
       })
       .addCase(fetchArt.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred';
+        state.error = action.error.message ?? 'An error occurred';
       });
   },
 });

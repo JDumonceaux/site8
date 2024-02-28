@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import artReducer from './artSlice';
 import counterReducer from './examples/counterSlice';
+import menuReducer from './menuSlice';
 import musicReducer from './musicSlice';
 import photosReducer from './photosSlice';
 import resourcesReducer from './resourcesSlice';
@@ -9,11 +10,12 @@ import snackbarReducer from './snackbarSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    resources: resourcesReducer,
     art: artReducer,
+    counter: counterReducer,
+    menu: menuReducer,
     music: musicReducer,
     photos: photosReducer,
+    resources: resourcesReducer,
     snackbar: snackbarReducer,
   },
 });

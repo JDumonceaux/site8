@@ -1,6 +1,7 @@
-import './homeMenu.css';
+import { styled } from 'styled-components';
 
 import CustomNavLink from '../../ui/CustomNavLink';
+import useMenu from 'services/hooks/useMenu';
 
 const menuItems = [
   {
@@ -86,154 +87,52 @@ const menuItems = [
   },
 ];
 
-export function HomeMenu(): JSX.Element {
+export const HomeMenu = (): JSX.Element => {
+  const { data } = useMenu();
+
+  console.log('data', data);
+
   return (
-    <div className="home-menu">
-      <div className="grid-container">
+    <StyledNav>
+      <StyledGrid>
         {menuItems.map((item) => (
-          <nav key={item.parent}>
-            <div className="title">{item.parent}</div>
+          <StyledMenuSection key={item.parent}>
+            <StyledMenuTitle>{item.parent}</StyledMenuTitle>
             {item.items.map((x) => (
-              <CustomNavLink to={x.to} key={x.label}>
+              <CustomNavLink key={x.label} to={x.to}>
                 {x.label}
               </CustomNavLink>
             ))}
-          </nav>
+          </StyledMenuSection>
         ))}
-
-        {/* IDE */}
-        <nav>
-          <div className="title">IDE Setup</div>
-          <CustomNavLink to="/ide/chrome" ariaLabel="Chrome">
-            Chrome
-          </CustomNavLink>
-          <CustomNavLink to="/ide/vsc" ariaLabel="Visual Studio Code">
-            Visual Studio Code
-          </CustomNavLink>
-          <CustomNavLink
-            to="/ide/vsc/extensions"
-            ariaLabel="Visual Studio Code - Extensions">
-            Extensions
-          </CustomNavLink>
-          <CustomNavLink
-            to="/ide/vsc/help"
-            ariaLabel="Visual Studio Code - Help">
-            Help
-          </CustomNavLink>
-          <CustomNavLink to="/ide/npm" ariaLabel="NPM">
-            NPM
-          </CustomNavLink>
-          <CustomNavLink to="/ide/git" ariaLabel="Git">
-            Git
-          </CustomNavLink>
-          <CustomNavLink to="/ide/github" ariaLabel="Git Hub">
-            Git Hub
-          </CustomNavLink>
-          <CustomNavLink to="/ide/aws/commit" ariaLabel="AWS Commit">
-            AWS Commit
-          </CustomNavLink>
-        </nav>
-        {/* REACT */}
-        <nav>
-          <div className="title">React</div>
-          <CustomNavLink to="/sd/scrum">Scrum</CustomNavLink>
-          <CustomNavLink to="/react/internationalization">
-            Internationalization
-          </CustomNavLink>
-        </nav>
-        {/* PROGRAMMING */}
-        <nav>
-          <div className="title">Programming Principals</div>
-          <CustomNavLink to="/programming/clean-code" ariaLabel="clean code">
-            Clean Code
-          </CustomNavLink>
-          <CustomNavLink to="/programming/solid" ariaLabel="solid">
-            SOLID
-          </CustomNavLink>
-          <CustomNavLink to="/programming/dry" ariaLabel="dry">
-            DRY
-          </CustomNavLink>
-          <CustomNavLink to="/programming/kiss" ariaLabel="kiss">
-            KISS
-          </CustomNavLink>
-          <CustomNavLink
-            to="/programming/design-patterns"
-            ariaLabel="Design Patterns">
-            Design Patterns
-          </CustomNavLink>
-          <CustomNavLink
-            to="/programming/design-patterns/single-responsibility-model"
-            ariaLabel="single responsibility model">
-            Single Responsibility Model
-          </CustomNavLink>
-
-          <CustomNavLink
-            to="/programming/dynamic-programming-questions"
-            ariaLabel="Dynamic Programming Questions">
-            Dynamic Programming Questions
-          </CustomNavLink>
-        </nav>
-        {/* PERFORMANCE */}
-        <nav>
-          <div className="title">Performance</div>
-          <CustomNavLink to="/performance">Meta</CustomNavLink>
-          <CustomNavLink to="/images">Webp</CustomNavLink>
-        </nav>
-        {/* DESIGN  */}
-        <nav>
-          <div className="title">Design</div>
-          <CustomNavLink to="/design/css" ariaLabel="CSS Overview">
-            CSS Overview
-          </CustomNavLink>
-          <CustomNavLink
-            to="/design/responsive-design"
-            ariaLabel="Responsive Design">
-            Responsive Design
-          </CustomNavLink>
-          <CustomNavLink to="/design/material-design">
-            Material Design
-          </CustomNavLink>
-          <CustomNavLink to="/design/print-design" ariaLabel="Print Design">
-            Print Design
-          </CustomNavLink>
-          <CustomNavLink to="/design/font-pairing">Font Pairing</CustomNavLink>
-          <CustomNavLink to="/design/parallax-scrolling">
-            Parallax Scrolling
-          </CustomNavLink>
-          <CustomNavLink to="/design/kinetic-typography">
-            Kinetic Typography
-          </CustomNavLink>
-          <CustomNavLink to="/design/microinteractions">
-            Microinteractions
-          </CustomNavLink>
-          <CustomNavLink to="/design/css/new" ariaLabel="CSS New Features">
-            CSS New Features
-          </CustomNavLink>
-          <CustomNavLink to="/design/css/references" ariaLabel="CSS References">
-            CSS References
-          </CustomNavLink>
-        </nav>
-        {/* STYLES  */}
-        <nav>
-          <div className="title">Design Styles</div>
-          <CustomNavLink to="/styles/corporate-memphis">
-            Corporate Memphis
-          </CustomNavLink>
-          <CustomNavLink to="/styles/flat-design">Flat Design</CustomNavLink>
-          <CustomNavLink to="/styles/glassmorphism">
-            Glassmorphism
-          </CustomNavLink>
-          <CustomNavLink to="/styles/minimalism">Minimalism</CustomNavLink>
-          <CustomNavLink to="/styles/neumorphism">Neumorphism</CustomNavLink>
-          <CustomNavLink to="/styles/retrofuturism">
-            Retrofuturism
-          </CustomNavLink>
-          <CustomNavLink to="/styles/skeuomorphism">
-            Skeuomorphism
-          </CustomNavLink>
-          <CustomNavLink to="/styles/swiss-style">Swiss Style</CustomNavLink>
-        </nav>
-      </div>
-    </div>
+      </StyledGrid>
+    </StyledNav>
   );
-}
+};
+
+const StyledNav = styled.nav`
+  color: #fff;
+`;
+const StyledGrid = styled.div`
+  column-count: 4;
+  column-gap: 16px;
+`;
+const StyledMenuSection = styled.div`
+  break-inside: avoid;
+  margin-bottom: 18px;
+  & a {
+    color: white;
+    font-size: 0.8rem;
+    display: block;
+    display: block;
+    text-decoration: none;
+    padding: 3px 0px;
+  }
+`;
+const StyledMenuTitle = styled.div`
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  margin-bottom: 6px;
+`;

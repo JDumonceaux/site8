@@ -9,7 +9,7 @@ import {
 import GenericPage from 'pages/GenericPage';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
-import TestGrid from 'pages/react/TestGrid';
+import TestGrid from 'pages/TestGrid';
 import ProtectedRoute from './ProtectedRoute';
 import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
 import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
@@ -17,14 +17,14 @@ import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
 const NotFound = lazy(() => import('pages/NotFound'));
 const Sitemap = lazy(() => import('pages/Sitemap'));
 
-const Artists = lazy(() => import('pages/other/Artists'));
-const ArtList = lazy(() => import('pages/other/ArtList'));
-const MusicList = lazy(() => import('pages/other/MusicList'));
-const PhotoList = lazy(() => import('pages/other/PhotoList'));
-const ResourcesList = lazy(() => import('pages/other/ResourcesList'));
-const Yachts = lazy(() => import('pages/other/Yachts'));
-const PagesList = lazy(() => import('pages/other/PagesList'));
-const PageEdit = lazy(() => import('pages/other/PageEdit'));
+const Artists = lazy(() => import('pages/Artists'));
+const ArtList = lazy(() => import('pages/ArtList'));
+const MusicList = lazy(() => import('pages/MusicList'));
+const PhotoList = lazy(() => import('pages/PhotoList'));
+const ResourcesList = lazy(() => import('pages/ResourcesList'));
+const Yachts = lazy(() => import('pages/Yachts'));
+const PagesList = lazy(() => import('pages/PagesList'));
+const PageEdit = lazy(() => import('pages/PageEdit'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
+
+import useMenu from './useMenu';
+
 const useAppSetup = () => {
-  //   useEffect(() => {
-  //     fetchUserDetails();
-  //   }, [fetchUserDetails]);
+  const { fetchData: fetchMenu } = useMenu();
+
+  useEffect(() => {
+    fetchMenu();
+  }, [fetchMenu]);
 };
 
 export default useAppSetup;

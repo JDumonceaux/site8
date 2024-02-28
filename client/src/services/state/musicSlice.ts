@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { IMusic } from '../api/models/music/IMusic';
+import { Music } from '../models/Music';
 
 interface MusicState {
-  musicData: IMusic | null;
+  musicData: Music | null;
   loading: boolean;
   error: string | null;
 }
@@ -17,7 +17,7 @@ const initialState: MusicState = {
 };
 
 export const fetchMusic = createAsyncThunk('music/fetchMusic', async () => {
-  const response = await axios.get<IMusic>(ServiceUrl.ENDPOINT_MUSIC, {
+  const response = await axios.get<Music>(ServiceUrl.ENDPOINT_MUSIC, {
     responseType: 'json',
   });
   return response.data;
@@ -39,7 +39,7 @@ const musicSlice = createSlice({
       })
       .addCase(fetchMusic.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred';
+        state.error = action.error.message ?? 'An error occurred';
       });
   },
 });

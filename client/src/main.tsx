@@ -1,4 +1,4 @@
-import './i18';
+import './utils/i18';
 import './main.css';
 import './reset.css';
 
@@ -6,7 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './utils/reportWebVitals';
 import { ReduxProvider } from './services/providers/ReduxProvider';
 import { RouterProvider } from './services/providers/RouterProvider';
 

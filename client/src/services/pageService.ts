@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IPage } from './api/models/pages/IPage';
+import { Page } from './models/Page';
 import { ServiceUrl } from 'utils';
 
 const baseUrl = 'http://localhost:3001/api';
@@ -12,12 +12,12 @@ const createRequestOptions = <T>(method: string, data: T) => ({
   body: JSON.stringify(data),
 });
 
-const createPage = async (page: IPage) => {
+const createPage = async (page: Page) => {
   const options = createRequestOptions('POST', page);
   return await axios.post(`${ServiceUrl.ENDPOINT_PAGE}`, options);
 };
 
-const updatePage = async (page: IPage) => {
+const updatePage = async (page: Page) => {
   const options = createRequestOptions('PUT', page);
   return await axios.put(`${baseUrl}/pages`, options);
 };
@@ -26,6 +26,7 @@ const deletePage = async (id: number) => {
   const options = createRequestOptions('DELETE', id);
   return await axios.delete(`${baseUrl}/pages`, options);
 };
+
 export default {
   createPage,
   updatePage,

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { IPage } from 'services/api/models/pages/IPage';
+import { Page } from 'services/models/Page';
 import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
@@ -67,7 +67,7 @@ const usePageEdit = () => {
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const { setSimpleSnackbarMessage } = useSnackbar();
 
-  const { data, fetchData, patchData, postData } = useAxiosHelper<IPage>();
+  const { data, fetchData, patchData, postData } = useAxiosHelper<Page>();
 
   const [errors, setErrors] =
     useState<z.ZodFormattedError<PageFormValues> | null>(null);
@@ -82,16 +82,16 @@ const usePageEdit = () => {
     if (data) {
       const item: PageFormValues = {
         id: data.id,
-        short_title: data.short_title || '',
-        long_title: data.long_title || '',
+        short_title: data.short_title ?? '',
+        long_title: data.long_title ?? '',
         edit_date_display:
-          (data.edit_date && format(data.edit_date, DF_LONG)) ||
+          (data.edit_date && format(data.edit_date, DF_LONG)) ??
           format(new Date(), DF_LONG),
-        resources: data.resources || false,
-        text: data.text || '',
-        parent: data.parent || '',
-        reading_time: data.reading_time || '',
-        readability_score: data.readability_score || '',
+        resources: data.resources ?? false,
+        text: data.text ?? '',
+        parent: data.parent ?? '',
+        reading_time: data.reading_time ?? '',
+        readability_score: data.readability_score ?? '',
       };
       setResetFormValues(item);
       setFormValues(item);

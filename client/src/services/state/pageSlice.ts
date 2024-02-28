@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { IPage } from '../api/models/pages/IPage';
+import { Page } from '../models/Page';
 
 interface PageState {
-  PageData: IPage | null;
+  PageData: Page | null;
   loading: boolean;
   error: string | null;
 }
@@ -17,7 +17,7 @@ const initialState: PageState = {
 };
 
 export const fetchPage = createAsyncThunk('page/fetchPage', async () => {
-  const response = await axios.get<IPage>(ServiceUrl.ENDPOINT_PAGE, {
+  const response = await axios.get<Page>(ServiceUrl.ENDPOINT_PAGE, {
     responseType: 'json',
   });
   return response.data;
@@ -39,11 +39,9 @@ const PageSlice = createSlice({
       })
       .addCase(fetchPage.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred';
+        state.error = action.error.message ?? 'An error occurred';
       });
   },
 });
-
-//export const {} = PageSlice.actions;
 
 export default PageSlice.reducer;

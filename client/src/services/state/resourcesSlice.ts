@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { IResources } from '../api/models/resources/IResources';
+import { Resources } from '../models/Resources';
 
 interface ResourcesState {
-  resourcesData: IResources | null;
+  resourcesData: Resources | null;
   loading: boolean;
   error: string | null;
 }
@@ -19,7 +19,7 @@ const initialState: ResourcesState = {
 export const fetchResources = createAsyncThunk(
   'resources/fetchResources',
   async () => {
-    const response = await axios.get<IResources>(
+    const response = await axios.get<Resources>(
       `${ServiceUrl.ENDPOINT_RESOURCES}/1`,
       {
         responseType: 'json',
@@ -45,11 +45,9 @@ const resourcesSlice = createSlice({
       })
       .addCase(fetchResources.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'An error occurred';
+        state.error = action.error.message ?? 'An error occurred';
       });
   },
 });
-
-//export const {} = resourcesSlice.actions;
 
 export default resourcesSlice.reducer;

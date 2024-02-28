@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IMusic } from '../api/models/music/IMusic';
+import { Music } from '../models/Music';
 import { fetchMusic } from '../state/musicSlice';
 import { AppDispatch, RootState } from '../state/store';
 
@@ -9,7 +9,7 @@ const useMusic = () => {
   const dispatch = useDispatch<AppDispatch>();
   const selector = (state: RootState) => state.music;
 
-  const data: IMusic | null = useSelector(selector).musicData;
+  const data: Music | null = useSelector(selector).musicData;
   const loading = useSelector(selector).loading;
   const error = useSelector(selector).error;
 

@@ -20,8 +20,4 @@ export default Home;
 const StyledMain = styled.main`
   background-color: #000;
   background-size: contain;
-  overflow: hidden;
-  // This doesn't work with two monitors
-  height: 100vh;
-  width: 100%;
 `;

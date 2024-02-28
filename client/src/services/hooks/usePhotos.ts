@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IPhotos } from '../api/models/photos/IPhotos';
+import { Photos } from '../models/Photos';
 import { fetchPhotos } from '../state/photosSlice';
 import { AppDispatch, RootState } from '../state/store';
 
@@ -9,7 +9,7 @@ const usePhotos = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.photos;
-  const data: IPhotos | null = useSelector(selector).photosData;
+  const data: Photos | null = useSelector(selector).photosData;
   const loading = useSelector(selector).loading;
   const error = useSelector(selector).error;
 

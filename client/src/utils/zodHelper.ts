@@ -29,21 +29,3 @@ export const safeParse = <T>(
 
   return result;
 };
-
-// describe('Test', () => {
-//   it('should validate is required', () => {
-//     const schema = z.object({ total: z.number() });
-//     const result = safeParse(schema, {});
-
-//     expect(result.data).toBeUndefined();
-//     expect(result.error?.errors).toEqual([
-//       {
-//         code: 'invalid_type',
-//         expected: 'number',
-//         message: 'Required',
-//         path: ['total'],
-//         received: 'undefined',
-//       },
-//     ]);
-//   });
-// });

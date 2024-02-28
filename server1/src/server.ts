@@ -7,6 +7,7 @@ import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { resourcesRouter } from './routes/resourcesRouter.js';
 import path from 'path';
+import { menuRouter } from 'routes/menuRouter.js';
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: false }));
 app.use(compression());
 
 // Add headers before the routes are defined
-app.use(function (_req, res, next) {
+app.use((_req, res, next) => {
   // Website you wish to allow to connect
   res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
   // Request methods you wish to allow
@@ -54,6 +55,7 @@ const port = 3005;
 // // apply rate limiter to all requests
 // app.use(limiter);
 
+app.use('/api/menu', menuRouter);
 app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesRouter);
 app.use('/api/resources', resourcesRouter);
@@ -62,7 +64,7 @@ app.get('/api/:filename', (req: Request, res: Response) => {
   getFile(req, res, `${req.params.filename}.json`);
 });
 
-function getFile(_req: Request, res: Response, fileName: string) {
+const getFile = (_req: Request, res: Response, fileName: string) => {
   const tFileName = fileName;
   const options = {
     root: path.join(__dirname, '../data'),
@@ -70,7 +72,7 @@ function getFile(_req: Request, res: Response, fileName: string) {
   };
   Logger.info(`getFile -> ${tFileName}`);
   res.sendFile(tFileName, options);
-}
+};
 
 app.listen(port, () => {
   Logger.info(`Service is listening on port ${port}.`);
