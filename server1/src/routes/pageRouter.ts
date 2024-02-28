@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { PagesService } from '../services/PagesService.js';
 import { PageService } from '../services/PageService.js';
-import { IPage } from '../models/IPage.js';
+import { IPage } from '../types/Page.js';
 import { Errors } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { PPService } from '../services/PPService.js';

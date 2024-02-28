@@ -1,10 +1,10 @@
 import { Logger } from '../utils/Logger.js';
-import { IPage } from '../models/IPage.js';
+import { Page } from '../types/Page.js';
 import { PagesService } from './PagesService.js';
 import { PageService } from './PageService.js';
 
 export class PPService {
-  public async getAllData(id: number): Promise<IPage | undefined> {
+  public async getAllData(id: number): Promise<Page | undefined> {
     Logger.info(`pageRouter: getAllData ->`);
     const service = new PagesService();
     const service2 = new PageService();

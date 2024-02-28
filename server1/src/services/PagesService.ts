@@ -1,8 +1,9 @@
 import { readFile, writeFile } from 'fs/promises';
-import { IPage } from '../models/IPage.js';
-import { IPages } from '../models/IPages.js';
+
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
+import { Page } from 'types/Page.js';
+import { Pages } from 'types/Pages.js';
 
 export class PagesService {
   fileName = 'pages.json';
@@ -12,12 +13,23 @@ export class PagesService {
     this.filePath = getFilePath(this.fileName);
   }
 
-  // Get the summary for a page
-  public async getMetaData(id: number): Promise<IPage | undefined> {
+  // Get all data
+  public async getItems(): Promise<Pages | undefined> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const jsonData = JSON.parse(results) as IPages;
-      const item: IPage | undefined = jsonData.items.find((x) => x.id === id);
+      return JSON.parse(results) as Pages;
+    } catch (error) {
+      Logger.error(`getItems -> ${error}`);
+      return undefined;
+    }
+  }
+
+  // Get the summary for a page
+  public async getMetaData(id: number): Promise<Page | undefined> {
+    try {
+      const results = await readFile(this.filePath, { encoding: 'utf8' });
+      const jsonData = JSON.parse(results) as Pages;
+      const item: Page | undefined = jsonData.items.find((x) => x.id === id);
       return item;
     } catch (error) {
       Logger.error(`getMetaData -> ${error}`);
@@ -30,7 +42,7 @@ export class PagesService {
     Logger.info(`getLastId -> `);
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const data = JSON.parse(results) as IPages;
+      const data = JSON.parse(results) as Pages;
       // Check to make sure items isn't undefined
       if (data.items) {
         // Check to make sure it is iterable
@@ -52,17 +64,17 @@ export class PagesService {
   }
 
   // Add an item
-  public async addItem(data: IPage): Promise<boolean> {
+  public async addItem(data: Page): Promise<boolean> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const jsonData = JSON.parse(results) as IPages;
+      const jsonData = JSON.parse(results) as Pages;
       const ret = {
         ...jsonData,
         items: [...jsonData.items, { ...data, id: data.id }],
       };
-      const retSorted: IPages = {
+      const retSorted: Pages = {
         ...ret,
-        items: ret.items.sort((a, b) => a.id - b.id),
+        items: ret.items.toSorted((a, b) => a.id - b.id),
       };
       // JSON - null = replacer.  2 = tab space
       await writeFile(this.filePath, JSON.stringify(retSorted, null, 2), {
@@ -76,10 +88,10 @@ export class PagesService {
   }
 
   // Update an item
-  public async updateItem(data: IPage): Promise<boolean> {
+  public async updateItem(data: Page): Promise<boolean> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const jsonData = JSON.parse(results) as IPages;
+      const jsonData = JSON.parse(results) as Pages;
       const ret = jsonData.items.filter((x) => x.id !== data.id);
       await writeFile(
         this.filePath,
@@ -100,7 +112,7 @@ export class PagesService {
   public async deleteItem(id: number): Promise<boolean> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const jsonData = JSON.parse(results) as IPages;
+      const jsonData = JSON.parse(results) as Pages;
       const ret = jsonData.items.filter((x) => x.id !== id);
       // JSON - null = replacer.  2 = tab space
       await writeFile(this.filePath, JSON.stringify(ret, null, 2), {

@@ -1,4 +1,10 @@
 {
+  "menu": {
+    "items": [
+      { "id": 0, "seq": 1, "sort": "name", "name": "CSS" },
+      { "id": 1, "seq": 2, "sort": "name", "name": "Design Styles" }
+    ]
+  },
   "items": [
     {
       "id": 900,

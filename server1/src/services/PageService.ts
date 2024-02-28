@@ -2,7 +2,7 @@ import { readFile, writeFile, unlink } from 'fs/promises';
 import { existsSync } from 'fs';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Logger } from '../utils/Logger.js';
-import { IPage } from '../models/IPage.js';
+import { Page } from '../types/Page.js';
 
 export class PageService {
   public async getItem(id: number): Promise<string> {
@@ -16,7 +16,7 @@ export class PageService {
     }
   }
 
-  public async addItem(data: IPage): Promise<void> {
+  public async addItem(data: Page): Promise<void> {
     Logger.info(`PageService: addItem -> `);
     if (data.text === undefined || data.text.trim().length === 0) {
       return Promise.reject(new Error('addItem -> Text is required'));
@@ -34,7 +34,7 @@ export class PageService {
     }
   }
 
-  public async updateItem(data: IPage): Promise<void> {
+  public async updateItem(data: Page): Promise<void> {
     Logger.info(`PageService: updateItem -> `);
     const fileName = `page${data.id.toString()}-en.txt`;
     const filePath = getFilePath(fileName);

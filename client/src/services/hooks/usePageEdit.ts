@@ -110,7 +110,7 @@ const usePageEdit = () => {
   }, [defaultFormValues]);
 
   const handleReset = useCallback(() => {
-    setFormValues(resetFormValues || defaultFormValues);
+    setFormValues(resetFormValues ?? defaultFormValues);
   }, [defaultFormValues, resetFormValues]);
 
   const handleChange = (

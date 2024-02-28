@@ -1,4 +1,4 @@
-export interface IResource {
+export interface Resource {
   id: number;
   url: string;
   name?: string;
