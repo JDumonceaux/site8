@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { PagesService } from '../services/PagesService.js';
 import { PageService } from '../services/PageService.js';
-import { IPage } from '../types/Page.js';
+import { Page } from '../types/Page.js';
 import { Errors } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { PPService } from '../services/PPService.js';
@@ -30,7 +30,7 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: patch ->`);
   const service = new PagesService();
   const service2 = new PageService();
-  const data: IPage = req.body;
+  const data: Page = req.body;
 
   try {
     await Promise.all([service.updateItem(data), service2.updateItem(data)]);
@@ -65,7 +65,7 @@ pageRouter.post('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: post ->`);
   const service = new PagesService();
   const service2 = new PageService();
-  const data: IPage = req.body;
+  const data: Page = req.body;
 
   try {
     const x = await service.getLastId();

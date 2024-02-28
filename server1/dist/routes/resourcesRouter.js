@@ -6,7 +6,7 @@ export const resourcesRouter = express.Router();
 resourcesRouter.get('/:id', (req, res) => {
     res.json(getFilteredResources(req.params.id));
 });
-function getFilteredResources(id) {
+const getFilteredResources = (id) => {
     Logger.info(`getFilteredResources ->`);
     const data = readFileSync(getFilePath('resources.json'), 'utf8');
     try {
@@ -19,4 +19,4 @@ function getFilteredResources(id) {
         Logger.debug(`getFilteredResources -> ${error}`);
     }
     return undefined;
-}
+};

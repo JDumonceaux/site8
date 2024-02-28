@@ -3,11 +3,11 @@ import express, { Request, Response } from 'express';
 import compression from 'compression';
 
 import { Logger } from './utils/Logger.js';
+import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { resourcesRouter } from './routes/resourcesRouter.js';
 import path from 'path';
-import { menuRouter } from 'routes/menuRouter.js';
 
 const app = express();
 

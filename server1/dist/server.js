@@ -2,6 +2,7 @@ import express from 'express';
 // import RateLimit from 'express-rate-limit';
 import compression from 'compression';
 import { Logger } from './utils/Logger.js';
+import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { resourcesRouter } from './routes/resourcesRouter.js';
