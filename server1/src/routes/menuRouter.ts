@@ -1,10 +1,17 @@
 import express, { Request, Response } from 'express';
-import { getFilePath } from '../utils/getFilePath.js';
+
 import { Logger } from '../utils/Logger.js';
+import { MenuService } from '../services/MenuService.js';
 
 export const menuRouter = express.Router();
 
-menuRouter.get('/', (_req: Request, res: Response) => {
-  Logger.info(`menuRouter: get ->`);
-  res.sendFile(getFilePath('pages.json'));
+menuRouter.get('/', async (_req: Request, res: Response) => {
+  try {
+    const service = new MenuService();
+    const menus = await service.getMenus();
+    res.json(menus);
+  } catch (error) {
+    Logger.error(`menuRouter: get -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });

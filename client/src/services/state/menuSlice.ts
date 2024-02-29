@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { Menu } from '../models/Menu';
+import { Menus } from '../models/Menus';
 
 interface MenuState {
-  MenuData: Menu | null;
+  MenuData: Menus | null;
   loading: boolean;
   error: string | null;
 }
@@ -17,7 +17,7 @@ const initialState: MenuState = {
 };
 
 export const fetchMenu = createAsyncThunk('Menu/fetchMenu', async () => {
-  const response = await axios.get<Menu>(ServiceUrl.ENDPOINT_MENU, {
+  const response = await axios.get<Menus>(ServiceUrl.ENDPOINT_MENU, {
     responseType: 'json',
   });
   return response.data;

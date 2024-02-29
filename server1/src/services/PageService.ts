@@ -2,7 +2,7 @@ import { readFile, writeFile, unlink } from 'fs/promises';
 import { existsSync } from 'fs';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Logger } from '../utils/Logger.js';
-import { Page } from '../types/Page.js';
+import { Page } from '../models/Page.js';
 
 export class PageService {
   public async getItem(id: number): Promise<string> {

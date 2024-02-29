@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { Logger } from '../utils/Logger.js';
 import { readFileSync } from 'fs';
-import { Resources } from '../types/Resources.js';
+import { Resources } from '../models/Resources.js';
 import { getFilePath } from '../utils/getFilePath.js';
 
 export const resourcesRouter = express.Router();

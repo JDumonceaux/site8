@@ -2,8 +2,8 @@ import { readFile, writeFile } from 'fs/promises';
 
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-import { Page } from 'types/Page.js';
-import { Pages } from 'types/Pages.js';
+import { Page } from 'models/Page.js';
+import { Pages } from 'models/Pages.js';
 
 export class PagesService {
   fileName = 'pages.json';
@@ -29,8 +29,7 @@ export class PagesService {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as Pages;
-      const item: Page | undefined = jsonData.items.find((x) => x.id === id);
-      return item;
+      return jsonData.items.find((x) => x.id === id);
     } catch (error) {
       Logger.error(`getMetaData -> ${error}`);
       return undefined;
