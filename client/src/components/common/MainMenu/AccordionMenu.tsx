@@ -1,4 +1,4 @@
-import './accordionMenu.css';
+import { styled } from 'styled-components';
 
 import { useLayoutEffect, useState } from 'react';
 import { useMatches } from 'react-router-dom';
@@ -38,36 +38,77 @@ export const AccordionMenu = ({
   };
 
   return (
-    <div className="accordion-menu">
-      <div
-        className={`accordion-section ${expanded ? 'expanded' : 'collapsed'}`}
-        key={id}>
-        <button
+    <StyledWrapper>
+      <StyledSection key={id}>
+        <StyledButton
           aria-controls={`accordion-content-${id}`}
           aria-expanded={expanded}
-          className="accordion-section-header"
           onClick={() => toggleSection()}
           onKeyDown={(e) => handleKeyPress(e)}
           type="button">
-          <span className="accordion-section-title">{title}</span>
-          <svg
-            className="accordion-section-icon"
+          <StyledTitle>{title}</StyledTitle>
+          <StyledSvg
+            $isExpanded={expanded}
             fill="currentColor"
             height="24"
             viewBox="0 0 24 24"
             width="24"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M7 10l5 5 5-5z" />
-          </svg>
-        </button>
+          </StyledSvg>
+        </StyledButton>
         {expanded ? (
-          <div
-            className="accordion-section-content"
-            id={`accordion-content-${id}`}>
-            {children}
-          </div>
+          <StyledItem id={`accordion-content-${id}`}>{children}</StyledItem>
         ) : null}
-      </div>
-    </div>
+      </StyledSection>
+    </StyledWrapper>
   );
 };
+
+const StyledSvg = styled.svg<{ $isExpanded: boolean }>`
+  transition: transform 0.2s ease-in-out;
+  ${(props) => props.$isExpanded && 'transform: rotate(180deg);'};
+`;
+const StyledWrapper = styled.div`
+  width: 300px;
+  background-color: #4a4747;
+`;
+const StyledSection = styled.div`
+  margin-bottom: 2px;
+`;
+const StyledTitle = styled.span`
+  display: inline-block;
+  margin-right: 8px;
+`;
+const StyledButton = styled.button`
+  background-color: #f0f0f0;
+  font-weight: 500;
+  width: 100%;
+  letter-spacing: 0.25px;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow:
+    0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+`;
+const StyledItem = styled.div`
+  padding: 8px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  a {
+    display: block;
+    color: var(--palette-black, #000);
+    border-bottom: 1px solid var(--palette-grey-dark);
+    display: block;
+    text-decoration: none;
+    padding: 6px 12px 6px 32px;
+  }
+  a:visited,
+  a:focus {
+    color: var(--palette-black, #000);
+  }
+`;

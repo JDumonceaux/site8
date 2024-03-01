@@ -19,7 +19,7 @@ export class PagesService {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       return JSON.parse(results) as Pages;
     } catch (error) {
-      Logger.error(`getItems -> ${error}`);
+      Logger.error(`PagesService: getItems -> ${error}`);
       return undefined;
     }
   }
@@ -31,7 +31,7 @@ export class PagesService {
       const jsonData = JSON.parse(results) as Pages;
       return jsonData.items.find((x) => x.id === id);
     } catch (error) {
-      Logger.error(`getMetaData -> ${error}`);
+      Logger.error(`PagesService: getMetaData -> ${error}`);
       return undefined;
     }
   }
@@ -47,17 +47,21 @@ export class PagesService {
         // Check to make sure it is iterable
         const itr = typeof data.items[Symbol.iterator] === 'function';
         if (!itr) {
-          Logger.error(`getLastId -> Error: items is not iterable`);
+          Logger.error(
+            `PagesService: getLastId -> Error: items is not iterable`,
+          );
           return undefined;
         }
         const maxItem = data.items.reduce((a, b) => (+a.id > +b.id ? a : b));
         return maxItem ? maxItem.id : undefined;
       } else {
-        Logger.error(`getLastId -> Error: items missing from file`);
+        Logger.error(
+          `PagesService: getLastId -> Error: items missing from file`,
+        );
         return undefined;
       }
     } catch (error) {
-      Logger.error(`getLastId -> Error: ${error}`);
+      Logger.error(`PagesService: getLastId -> Error: ${error}`);
       return undefined;
     }
   }
@@ -81,7 +85,7 @@ export class PagesService {
       });
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`addItem -> ${error}`);
+      Logger.error(`PagesService: addItem -> ${error}`);
       return Promise.resolve(false);
     }
   }
@@ -102,7 +106,7 @@ export class PagesService {
       );
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`updateItem -> ${error}`);
+      Logger.error(`PagesService: updateItem -> ${error}`);
       return Promise.resolve(false);
     }
   }
@@ -119,7 +123,7 @@ export class PagesService {
       });
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`deleteItem -> ${error}`);
+      Logger.error(`PagesService: deleteItem -> ${error}`);
       return Promise.resolve(false);
     }
   }

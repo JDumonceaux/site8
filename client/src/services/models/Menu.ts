@@ -6,4 +6,5 @@ export type Menu = {
   readonly sort: string;
   readonly name: string;
   items: PageSummary[];
+  readonly url: string;
 };

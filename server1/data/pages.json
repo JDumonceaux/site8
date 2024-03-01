@@ -1,7 +1,13 @@
 {
   "menus": [
-    { "id": 0, "seq": 1, "sort": "name", "name": "CSS" },
-    { "id": 1, "seq": 2, "sort": "name", "name": "Design Styles" }
+    { "id": 1, "seq": 1, "sort": "name", "name": "CSS", "url": "css" },
+    {
+      "id": 2,
+      "seq": 2,
+      "sort": "name",
+      "name": "Design Styles",
+      "url": "design"
+    }
   ],
   "items": [
     {
@@ -10,7 +16,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 1,
       "reading_time": "",
       "readability_score": ""
     },
@@ -20,7 +26,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -30,9 +36,11 @@
       "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "skeuomorphism",
+      "seq": 0
     },
     {
       "id": 1002,
@@ -40,9 +48,11 @@
       "long_title": "Flat Design: The Art of Simplicity",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "flat-design",
+      "seq": 0
     },
     {
       "id": 1003,
@@ -50,9 +60,11 @@
       "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "1 min 37 sec",
-      "readability_score": "22"
+      "readability_score": "22",
+      "url": "corporate-memphis-design",
+      "seq": 0
     },
     {
       "id": 1004,
@@ -60,9 +72,11 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "glassmorphism",
+      "seq": 0
     },
     {
       "id": 1005,
@@ -70,9 +84,11 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "minimalism",
+      "seq": 0
     },
     {
       "id": 1006,
@@ -80,9 +96,11 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "neumorphism",
+      "seq": 0
     },
     {
       "id": 1007,
@@ -90,9 +108,11 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "retrofuturism",
+      "seq": 0
     },
     {
       "id": 1008,
@@ -100,9 +120,11 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 2,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "swiss-style",
+      "seq": 0
     },
     {
       "id": 2001,
@@ -110,7 +132,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -120,7 +142,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -130,7 +152,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -140,7 +162,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -150,7 +172,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -160,7 +182,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -170,7 +192,7 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -181,7 +203,7 @@
       "edit_date": "2024-02-19T03:24:32.930Z",
       "resources": false,
       "text": "tesetststet",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -192,7 +214,7 @@
       "edit_date": "2024-02-19T03:26:55.970Z",
       "resources": false,
       "text": "Test 3010",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -203,7 +225,7 @@
       "edit_date": "2024-02-19T03:26:55.970Z",
       "resources": false,
       "text": "Test 3014",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -214,7 +236,7 @@
       "edit_date": "2024-02-19T03:26:55.970Z",
       "resources": false,
       "text": "Test 3015",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -225,7 +247,7 @@
       "edit_date": "2024-02-19T03:26:55.970Z",
       "resources": false,
       "text": "Test 3016",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -236,7 +258,7 @@
       "edit_date": "2024-02-20T02:24:40.932Z",
       "resources": false,
       "text": "eee",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -247,7 +269,7 @@
       "edit_date": "2024-02-20T02:24:40.932Z",
       "resources": false,
       "text": "eee",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     },
@@ -258,7 +280,7 @@
       "edit_date": "2024-02-20T03:34:37.659Z",
       "resources": false,
       "text": "testest",
-      "parent": 0,
+      "parentId": 0,
       "reading_time": "",
       "readability_score": ""
     }

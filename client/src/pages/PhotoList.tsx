@@ -5,15 +5,12 @@ import { Meta } from 'components/common/Meta';
 import { useDeferredValue, useEffect } from 'react';
 import usePhotos from 'services/hooks/usePhotos';
 import { APP_NAME } from 'utils/constants';
+import { styled } from 'styled-components';
 
 export const PhotoList = (): JSX.Element => {
-  const title = 'Photos';
+  const title = `${APP_NAME} - photos`;
   const { data, loading, error, fetchData } = usePhotos();
   const deferredData = useDeferredValue(data);
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   useEffect(() => {
     fetchData();
@@ -22,9 +19,9 @@ export const PhotoList = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <main>
+      <StyledMain>
         <PageTitle title={title} />
-        <section>
+        <StyledSection>
           <LoadingWrapper error={error} isLoading={loading}>
             <ul>
               {deferredData?.items?.map((item) => {
@@ -45,11 +42,18 @@ export const PhotoList = (): JSX.Element => {
               })}
             </ul>
           </LoadingWrapper>
-        </section>
-      </main>
-      <aside className="right-sidebar" />
+        </StyledSection>
+      </StyledMain>
     </>
   );
 };
 
 export default PhotoList;
+
+const StyledMain = styled.main`
+  background-color: #000;
+  background-size: contain;
+  min-height: 100vh;
+  min-height: 100dvh;
+`;
+const StyledSection = styled.section``;

@@ -15,7 +15,7 @@ export const PagesList = (): JSX.Element => {
   const deferredData = useDeferredValue(data);
 
   const sortedData = deferredData?.items.toSorted((a, b) =>
-    a.short_title.localeCompare(b.short_title),
+    a.name.localeCompare(b.name),
   );
 
   return (
@@ -39,7 +39,7 @@ export const PagesList = (): JSX.Element => {
                     <td>
                       <Link to={`/admin/page/edit/${item.id}`}>{item.id}</Link>
                     </td>
-                    <td>{item.short_title}</td>
+                    <td>{item.name}</td>
                     <td>{item.text}</td>
                   </tr>
                 ))}

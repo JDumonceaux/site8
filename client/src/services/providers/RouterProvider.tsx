@@ -13,6 +13,8 @@ import TestGrid from 'pages/TestGrid';
 import ProtectedRoute from './ProtectedRoute';
 import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
 import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
+import PhotoLayout from 'pages/Layouts/PhotoLayout/PhotoLayout';
+import { ErrorPage } from 'pages/ErrorPage';
 
 const NotFound = lazy(() => import('pages/NotFound'));
 const Sitemap = lazy(() => import('pages/Sitemap'));
@@ -28,7 +30,7 @@ const PageEdit = lazy(() => import('pages/PageEdit'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route errorElement={<ErrorPage />} path="/">
       <Route element={<HomeLayout />} path="login">
         <Route element={<Login />} index />
       </Route>
@@ -119,7 +121,7 @@ const router = createBrowserRouter(
         </Route>
 
         {/* DESIGN */}
-        <Route element={<MainLayout />} path="design">
+        <Route element={<MainLayout />} path="style">
           <Route
             element={<GenericPage id={900} pageTitle="CSS Overview" />}
             path="css"
@@ -211,9 +213,6 @@ const router = createBrowserRouter(
             path="shoes-on-the-danube-bank"
           />
 
-          <Route path="photography">
-            <Route element={<PhotoList />} index />
-          </Route>
           <Route path="resources">
             <Route element={<ResourcesList />} index />
           </Route>
@@ -243,10 +242,10 @@ const router = createBrowserRouter(
         </Route>
 
         {/* STYLES */}
-        <Route element={<MainLayout />} path="styles">
+        <Route element={<MainLayout />} path="design">
           <Route
             element={<GenericPage id={1003} pageTitle="Corporate Memphis" />}
-            path="corporate-memphis"
+            path="corporate-memphis-design"
           />
           <Route
             element={<GenericPage id={1002} pageTitle="Flat Design" />}
@@ -276,6 +275,10 @@ const router = createBrowserRouter(
             element={<GenericPage id={1008} pageTitle="Swiss Style" />}
             path="swiss-style"
           />
+        </Route>
+        {/* Photos */}
+        <Route element={<PhotoLayout />} path="photos">
+          <Route element={<PhotoList />} index />
         </Route>
       </Route>
     </Route>,

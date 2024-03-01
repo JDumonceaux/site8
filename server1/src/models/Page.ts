@@ -7,4 +7,8 @@ export interface Page {
   readonly parentId?: number;
   readonly fileName?: string;
   readonly text?: string;
+  readonly reading_time?: string;
+  readonly readability_score?: string;
+  readonly url?: string;
+  readonly seq?: number;
 }

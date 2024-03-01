@@ -6,16 +6,16 @@ const CustomNavLink = ({
   ariaLabel,
   children,
 }: {
-  to: string;
-  ariaLabel?: string;
-  children: React.ReactNode;
+  readonly to: string;
+  readonly ariaLabel?: string;
+  readonly children: React.ReactNode;
 }): JSX.Element => {
   return (
     <NavLink
-      to={to}
-      className={({ isActive }) => (isActive ? 'active' : '')}
       aria-current="page"
-      aria-label={ariaLabel ? ariaLabel : children?.toString()}>
+      aria-label={ariaLabel ? ariaLabel : children?.toString()}
+      className={({ isActive }) => (isActive ? 'active' : '')}
+      to={to}>
       {children}
     </NavLink>
   );
