@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 
 import { Logger } from '../utils/Logger.js';
-import { PhotosService } from 'services/PhotosService.js';
+import { PhotosService } from '../services/PhotosService.js';
 
 export const photosRouter = express.Router();
 
