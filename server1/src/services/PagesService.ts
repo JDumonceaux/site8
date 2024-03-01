@@ -2,12 +2,12 @@ import { readFile, writeFile } from 'fs/promises';
 
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-import { Page } from 'models/Page.js';
-import { Pages } from 'models/Pages.js';
+import { Page } from 'types/Page.js';
+import { Pages } from 'types/Pages.js';
 
 export class PagesService {
-  fileName = 'pages.json';
-  filePath = '';
+  private fileName = 'pages.json';
+  private filePath = '';
 
   constructor() {
     this.filePath = getFilePath(this.fileName);

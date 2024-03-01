@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../state/store';
-import { Snackbar } from 'services/models/Snackbar';
+import { Snackbar } from 'services/types/Snackbar';
 import { save } from '../state/snackbarSlice';
 
 const useSnackbar = () => {

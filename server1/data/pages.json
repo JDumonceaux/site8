@@ -1,4 +1,7 @@
 {
+  "metadata": {
+    "title": "Pages"
+  },
   "menus": [
     { "id": 1, "seq": 1, "sort": "name", "name": "CSS", "url": "css" },
     {
@@ -7,6 +10,13 @@
       "sort": "name",
       "name": "Design Styles",
       "url": "design"
+    },
+    {
+      "id": 3,
+      "seq": 3,
+      "sort": "name",
+      "name": "Art",
+      "url": "art"
     }
   ],
   "items": [
@@ -18,7 +28,9 @@
       "resources": true,
       "parentId": 1,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "css",
+      "seq": 0
     },
     {
       "id": 901,
@@ -28,7 +40,9 @@
       "resources": true,
       "parentId": 0,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "internationalization",
+      "seq": 0
     },
     {
       "id": 1001,
@@ -134,7 +148,9 @@
       "resources": true,
       "parentId": 0,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "chrome-extensions",
+      "seq": 0
     },
     {
       "id": 2002,
@@ -144,7 +160,9 @@
       "resources": true,
       "parentId": 0,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "git",
+      "seq": 0
     },
     {
       "id": 2003,
@@ -154,7 +172,9 @@
       "resources": true,
       "parentId": 0,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "visual-studio-code",
+      "seq": 0
     },
     {
       "id": 2004,
@@ -164,7 +184,9 @@
       "resources": true,
       "parentId": 0,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "visual-studio-code-extensions",
+      "seq": 0
     },
     {
       "id": 3001,
@@ -172,9 +194,11 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parentId": 0,
+      "parentId": 3,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "at-last-pleasantville",
+      "seq": 0
     },
     {
       "id": 3002,
@@ -182,9 +206,11 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parentId": 0,
+      "parentId": 3,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "gallos",
+      "seq": 0
     },
     {
       "id": 3003,
@@ -192,97 +218,47 @@
       "long_title": "",
       "edit_date": "01/18/2024",
       "resources": true,
-      "parentId": 0,
+      "parentId": 3,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "shoes-on-the-danube-bank",
+      "seq": 0
     },
     {
-      "id": 3004,
-      "name": "testst",
-      "long_title": "test",
-      "edit_date": "2024-02-19T03:24:32.930Z",
-      "resources": false,
-      "text": "tesetststet",
-      "parentId": 0,
+      "id": 5001,
+      "name": "Lazels Puzzles",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "puzzles-lazel",
+      "seq": 0
     },
     {
-      "id": 3005,
-      "name": "ttt",
-      "long_title": "ttt",
-      "edit_date": "2024-02-19T03:26:55.970Z",
-      "resources": false,
-      "text": "Test 3010",
-      "parentId": 0,
+      "id": 5002,
+      "name": "Puzzle Lab",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "puzzles-the-puzzle-lab",
+      "seq": 0
     },
     {
-      "id": 3006,
-      "name": "ttt",
-      "long_title": "ttt",
-      "edit_date": "2024-02-19T03:26:55.970Z",
-      "resources": false,
-      "text": "Test 3014",
-      "parentId": 0,
+      "id": 15000,
+      "name": "Yatchs",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
       "reading_time": "",
-      "readability_score": ""
-    },
-    {
-      "id": 3007,
-      "name": "ttt",
-      "long_title": "ttt",
-      "edit_date": "2024-02-19T03:26:55.970Z",
-      "resources": false,
-      "text": "Test 3015",
-      "parentId": 0,
-      "reading_time": "",
-      "readability_score": ""
-    },
-    {
-      "id": 3008,
-      "name": "ttt",
-      "long_title": "ttt",
-      "edit_date": "2024-02-19T03:26:55.970Z",
-      "resources": false,
-      "text": "Test 3016",
-      "parentId": 0,
-      "reading_time": "",
-      "readability_score": ""
-    },
-    {
-      "id": 3009,
-      "name": "ee",
-      "long_title": "eee",
-      "edit_date": "2024-02-20T02:24:40.932Z",
-      "resources": false,
-      "text": "eee",
-      "parentId": 0,
-      "reading_time": "",
-      "readability_score": ""
-    },
-    {
-      "id": 3010,
-      "name": "ee",
-      "long_title": "eee",
-      "edit_date": "2024-02-20T02:24:40.932Z",
-      "resources": false,
-      "text": "eee",
-      "parentId": 0,
-      "reading_time": "",
-      "readability_score": ""
-    },
-    {
-      "id": 3011,
-      "name": "eeeee",
-      "long_title": "Test",
-      "edit_date": "2024-02-20T03:34:37.659Z",
-      "resources": false,
-      "text": "testest",
-      "parentId": 0,
-      "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "url": "yatchs",
+      "seq": 0
     }
   ]
 }

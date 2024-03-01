@@ -3,7 +3,7 @@ import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
 import { useDeferredValue } from 'react';
 import { Link } from 'react-router-dom';
-import { Pages } from 'services/models/Pages';
+import { Pages } from 'services/types/Pages';
 import useFetch from 'services/hooks/useFetch';
 import { ServiceUrl } from 'utils';
 

@@ -6,7 +6,7 @@ import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
-import { resourcesRouter } from './routes/resourcesRouter.js';
+import { bookmarksRouter } from './routes/bookmarksRouter.js';
 import path from 'path';
 const app = express();
 app.set('x-powered-by', false);
@@ -46,7 +46,7 @@ app.use('/api/menu', menuRouter);
 app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesRouter);
 app.use('/api/photos', photosRouter);
-app.use('/api/resources', resourcesRouter);
+app.use('/api/resources', bookmarksRouter);
 app.get('/api/:filename', (req, res) => {
     getFile(req, res, `${req.params.filename}.json`);
 });

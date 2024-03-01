@@ -1,5 +1,5 @@
 import type { ListChildComponentProps } from 'react-window';
-import { MusicItem } from 'services/models/MusicItem';
+import { MusicItem } from 'services/types/MusicItem';
 
 export const ItemRenderer = ({
   data,

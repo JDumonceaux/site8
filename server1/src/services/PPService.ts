@@ -1,5 +1,5 @@
 import { Logger } from '../utils/Logger.js';
-import { Page } from '../models/Page.js';
+import { Page } from '../types/Page.js';
 import { PagesService } from './PagesService.js';
 import { PageService } from './PageService.js';
 

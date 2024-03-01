@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { Music } from '../models/Music';
+import { Music } from '../types/Music';
 
 interface MusicState {
   musicData: Music | null;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Page } from './models/Page';
+import { Page } from './types/Page';
 import { ServiceUrl } from 'utils';
 
 const baseUrl = 'http://localhost:3001/api';

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { Art } from '../models/Art';
+import { Art } from '../types/Art';
 
 interface ArtState {
   artData: Art | null;

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Photos } from '../models/Photos';
+import { Photos } from '../types/Photos';
 import { fetchPhotos } from '../state/photosSlice';
 import { AppDispatch, RootState } from '../state/store';
 

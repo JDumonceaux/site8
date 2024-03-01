@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Art } from '../models/Art';
+import { Art } from '../types/Art';
 import { fetchArt } from '../../services/state/artSlice';
 import { AppDispatch, RootState } from '../../services/state/store';
 

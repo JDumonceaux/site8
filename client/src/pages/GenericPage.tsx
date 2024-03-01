@@ -1,8 +1,8 @@
 import { ServiceUrl } from 'utils';
 
-import { ResourceIList } from 'components/common/ResourceIList';
+import { BookmarkList } from 'components/common/BookmarkList';
 import { Suspense, useDeferredValue } from 'react';
-import { Page } from 'services/models/Page';
+import { Page } from 'services/types/Page';
 import useFetch from 'services/hooks/useFetch';
 import { PageTitle } from 'components/common/PageTitle';
 import { LoadingWrapper } from 'components/common/Loading';
@@ -43,7 +43,7 @@ export const GenericPage = ({
             </Suspense>
           </section>
         </LoadingWrapper>
-        <ResourceIList id={id} />
+        <BookmarkList id={id} />
       </main>
       <aside className="right-sidebar" />
     </>

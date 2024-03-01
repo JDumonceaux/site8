@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Snackbar } from 'services/models/Snackbar';
+import { Snackbar } from 'services/types/Snackbar';
 
 interface SnackbarState {
   snackbarData: Snackbar | null;

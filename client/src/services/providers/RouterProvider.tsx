@@ -22,8 +22,8 @@ const Sitemap = lazy(() => import('pages/Sitemap'));
 const Artists = lazy(() => import('pages/Artists'));
 const ArtList = lazy(() => import('pages/ArtList'));
 const MusicList = lazy(() => import('pages/MusicList'));
-const PhotoList = lazy(() => import('pages/PhotoList'));
-const ResourcesList = lazy(() => import('pages/ResourcesList'));
+const PhotoPage = lazy(() => import('pages/PhotoPage'));
+const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
 const Yachts = lazy(() => import('pages/Yachts'));
 const PagesList = lazy(() => import('pages/PagesList'));
 const PageEdit = lazy(() => import('pages/PageEdit'));
@@ -196,43 +196,14 @@ const router = createBrowserRouter(
             <Route element={<Artists />} path="kelly-boesh" />
             <Route element={<Artists />} path="shag" />
           </Route>
-          <Route
-            element={
-              <GenericPage id={3001} pageTitle="At Last - Pleasantville" />
-            }
-            path="at-last"
-          />
-          <Route
-            element={<GenericPage id={3002} pageTitle="Gallos" />}
-            path="gallos"
-          />
-          <Route
-            element={
-              <GenericPage id={3003} pageTitle="Shoes on the Danube Bank" />
-            }
-            path="shoes-on-the-danube-bank"
-          />
 
           <Route path="resources">
-            <Route element={<ResourcesList />} index />
-          </Route>
-          <Route path="yachts">
-            <Route element={<Yachts />} index />
+            <Route element={<BookmarkPage />} index />
           </Route>
           <Route path="videos">
             <Route element={<MusicList />} index />
             <Route element={<MusicList />} path="you-tube" />
           </Route>
-          <Route
-            element={<GenericPage id={5001} pageTitle="Puzzles - Lazel" />}
-            path="puzzles"
-          />
-          <Route
-            element={
-              <GenericPage id={5002} pageTitle="Puzzles - The Puzzle Lab" />
-            }
-            path="puzzles2"
-          />
         </Route>
         {/* ADMIN */}
         <Route element={<MainLayout />} path="admin">
@@ -278,7 +249,39 @@ const router = createBrowserRouter(
         </Route>
         {/* Photos */}
         <Route element={<PhotoLayout />} path="photos">
-          <Route element={<PhotoList />} index />
+          <Route element={<PhotoPage />} index />
+        </Route>
+        {/* Art */}
+        <Route element={<MainLayout />} path="art">
+          <Route
+            element={
+              <GenericPage id={3001} pageTitle="At Last - Pleasantville" />
+            }
+            path="at-last"
+          />
+          <Route
+            element={<GenericPage id={3002} pageTitle="Gallos" />}
+            path="gallos"
+          />
+          <Route
+            element={
+              <GenericPage id={3003} pageTitle="Shoes on the Danube Bank" />
+            }
+            path="shoes-on-the-danube-bank"
+          />
+
+          <Route element={<Yachts />} path="yachts" />
+
+          <Route
+            element={<GenericPage id={5001} pageTitle="Puzzles - Lazel" />}
+            path="puzzles-lazel"
+          />
+          <Route
+            element={
+              <GenericPage id={5002} pageTitle="Puzzles - The Puzzle Lab" />
+            }
+            path="puzzles-the-puzzle-lab"
+          />
         </Route>
       </Route>
     </Route>,

@@ -32,7 +32,7 @@ export enum ServiceUrl {
   ENDPOINT_PAGES = `${API_ROOT}/pages`,
   ENDPOINT_PAGE_CONTENT = `${API_ROOT}/page/content`,
   ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
-  ENDPOINT_RESOURCES = `${API_ROOT}/resources`,
+  ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
   ENDPOINT_TESTGRID = `${API_ROOT}/testgrid`,
 }
 

@@ -3,5 +3,5 @@ export * from './Layouts/HomeLayout/HomeLayout';
 export * from './Layouts/MainLayout/MainLayout';
 export * from './ArtList';
 export * from './MusicList';
-export * from './PhotoList';
+export * from './PhotoPage';
 export * from './Sitemap';

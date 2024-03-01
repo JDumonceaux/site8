@@ -56,16 +56,16 @@ export const PageEdit = (): JSX.Element => {
               </button>
             </ClearAll>
             <TextInput
-              errorText={getFieldErrors('short_title')}
+              errorText={getFieldErrors('name')}
               errorTextShort="Please enter a short title"
               helpText="Required"
-              id="short_title"
-              isValid={isValid('short_title')}
+              id="name"
+              isValid={isValid('name')}
               label="Short Title"
               maxLength={30}
               onChange={handleChange}
               showCounter
-              value={formValues.short_title}
+              value={formValues.name}
               // required={true}
               //ref={focusElement}
             />

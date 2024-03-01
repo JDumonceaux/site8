@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Page } from 'services/models/Page';
+import { Page } from 'services/types/Page';
 import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
@@ -10,7 +10,7 @@ import { format } from 'date-fns';
 // Define Zod Shape
 const pageSchema = z.object({
   id: z.number(),
-  short_title: z
+  name: z
     .string({
       required_error: 'Short Title is required.',
       invalid_type_error: 'Title must be a string',
@@ -45,7 +45,7 @@ const usePageEdit = () => {
   const defaultFormValues: PageFormValues = useMemo(
     () => ({
       id: 0,
-      short_title: '',
+      name: '',
       long_title: '',
       edit_date_display: format(new Date(), DF_LONG),
       resources: false,
@@ -82,7 +82,7 @@ const usePageEdit = () => {
     if (data) {
       const item: PageFormValues = {
         id: data.id,
-        short_title: data.short_title ?? '',
+        name: data.name ?? '',
         long_title: data.long_title ?? '',
         edit_date_display:
           (data.edit_date && format(data.edit_date, DF_LONG)) ??

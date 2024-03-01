@@ -6,7 +6,7 @@ import './musicList.css';
 import memoize from 'memoize-one';
 import { useDeferredValue, useEffect } from 'react';
 import { FixedSizeList as List } from 'react-window';
-import { MusicItem } from 'services/models/MusicItem';
+import { MusicItem } from 'services/types/MusicItem';
 import useMusic from 'services/hooks/useMusic';
 import { ItemRenderer } from './ItemRenderer';
 

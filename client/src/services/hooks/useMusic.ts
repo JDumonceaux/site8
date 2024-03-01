@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Music } from '../models/Music';
+import { Music } from '../types/Music';
 import { fetchMusic } from '../state/musicSlice';
 import { AppDispatch, RootState } from '../state/store';
 
