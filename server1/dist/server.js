@@ -5,6 +5,7 @@ import { Logger } from './utils/Logger.js';
 import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
+import { photosRouter } from 'routes/photosRouter.js';
 import { resourcesRouter } from './routes/resourcesRouter.js';
 import path from 'path';
 const app = express();
@@ -44,6 +45,7 @@ const port = 3005;
 app.use('/api/menu', menuRouter);
 app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesRouter);
+app.use('/api/photos', photosRouter);
 app.use('/api/resources', resourcesRouter);
 app.get('/api/:filename', (req, res) => {
     getFile(req, res, `${req.params.filename}.json`);
