@@ -7,8 +7,7 @@ export const menuRouter = express.Router();
 
 menuRouter.get('/', async (_req: Request, res: Response) => {
   try {
-    const service = new MenuService();
-    const menus = await service.getMenus();
+    const menus = await new MenuService().getMenus();
     res.json(menus);
   } catch (error) {
     Logger.error(`menuRouter: get -> Error: ${error}`);

@@ -3,12 +3,12 @@ import express, { Request, Response } from 'express';
 import compression from 'compression';
 
 import { Logger } from './utils/Logger.js';
+import { fileRouter } from 'routes/fileRouter.js';
 import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { bookmarksRouter } from './routes/bookmarksRouter.js';
-import path from 'path';
 
 const app = express();
 
@@ -56,25 +56,15 @@ const port = 3005;
 // // apply rate limiter to all requests
 // app.use(limiter);
 
+app.use('/api/file', fileRouter);
 app.use('/api/menu', menuRouter);
 app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesRouter);
 app.use('/api/photos', photosRouter);
 app.use('/api/bookmarks', bookmarksRouter);
-
-app.get('/api/:filename', (req: Request, res: Response) => {
-  getFile(req, res, `${req.params.filename}.json`);
+app.use('*', (_req: Request, res: Response) => {
+  res.status(404).send('API Not Found');
 });
-
-const getFile = (_req: Request, res: Response, fileName: string) => {
-  const tFileName = fileName;
-  const options = {
-    root: path.join(__dirname, '../data'),
-    timeout: 3000,
-  };
-  Logger.info(`getFile -> ${tFileName}`);
-  res.sendFile(tFileName, options);
-};
 
 app.listen(port, () => {
   Logger.info(`Service is listening on port ${port}.`);

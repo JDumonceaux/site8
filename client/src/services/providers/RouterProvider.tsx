@@ -269,9 +269,7 @@ const router = createBrowserRouter(
             }
             path="shoes-on-the-danube-bank"
           />
-
           <Route element={<Yachts />} path="yachts" />
-
           <Route
             element={<GenericPage id={5001} pageTitle="Puzzles - Lazel" />}
             path="puzzles-lazel"

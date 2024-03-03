@@ -11,7 +11,7 @@ photosRouter.get('/', async (_req: Request, res: Response) => {
     const data = await service.getItems();
     res.json(data);
   } catch (error) {
-    Logger.error(`photosouter: get -> Error: ${error}`);
+    Logger.error(`photosRouter: get -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
