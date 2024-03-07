@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 import compression from 'compression';
 
 import { Logger } from './utils/Logger.js';
-import { fileRouter } from 'routes/fileRouter.js';
+import { fileRouter } from './routes/fileRouter.js';
 import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
