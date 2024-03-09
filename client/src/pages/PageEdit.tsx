@@ -45,7 +45,7 @@ export const PageEdit = (): JSX.Element => {
     <>
       <Meta title={title} />
       <main className="main-content">
-        {/* <LoadingWrapper error={error} isLoading={loading}> */}
+        {/* <LoadingWrapper error={error} isLoading={isLoading}> */}
         <PageTitle title={title} />
         <section className="section">
           <form noValidate onSubmit={handleSubmit}>
@@ -56,15 +56,19 @@ export const PageEdit = (): JSX.Element => {
               </button>
             </ClearAll>
             <TextInput
+              autoCapitalize="off"
+              enterKeyHint="next"
               errorText={getFieldErrors('name')}
               errorTextShort="Please enter a short title"
               helpText="Required"
               id="name"
+              inputMode="text"
               isValid={isValid('name')}
               label="Short Title"
               maxLength={30}
               onChange={handleChange}
               showCounter
+              spellCheck={true}
               value={formValues.name}
               // required={true}
               //ref={focusElement}
@@ -79,6 +83,7 @@ export const PageEdit = (): JSX.Element => {
               maxLength={250}
               onChange={handleChange}
               showCounter
+              spellCheck={true}
               value={formValues.long_title}
               // required={true}
             />
@@ -91,6 +96,7 @@ export const PageEdit = (): JSX.Element => {
               onChange={handleChange}
               rows={10}
               showCounter
+              spellCheck={true}
               value={formValues.text}
               // required={true}
             />
@@ -103,6 +109,7 @@ export const PageEdit = (): JSX.Element => {
               maxLength={10}
               onChange={handleChange}
               showCounter
+              spellCheck={false}
               value={formValues.edit_date_display}
 
               // required={true}

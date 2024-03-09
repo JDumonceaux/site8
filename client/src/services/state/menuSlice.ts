@@ -6,13 +6,13 @@ import { Menus } from '../types/Menus';
 
 interface MenuState {
   MenuData: Menus | null;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
 }
 
 const initialState: MenuState = {
   MenuData: null,
-  loading: false,
+  isLoading: false,
   error: null,
 };
 
@@ -30,15 +30,15 @@ const MenuSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchMenu.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(fetchMenu.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.MenuData = action.payload;
       })
       .addCase(fetchMenu.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.error.message || 'An error occurred';
       });
   },

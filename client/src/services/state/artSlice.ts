@@ -6,13 +6,13 @@ import { Art } from '../types/Art';
 
 interface ArtState {
   artData: Art | null;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
 }
 
 const initialState: ArtState = {
   artData: null,
-  loading: false,
+  isLoading: false,
   error: null,
 };
 
@@ -30,15 +30,15 @@ const artSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchArt.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(fetchArt.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.artData = action.payload;
       })
       .addCase(fetchArt.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.error.message ?? 'An error occurred';
       });
   },

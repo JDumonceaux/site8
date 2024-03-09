@@ -247,17 +247,19 @@ const router = createBrowserRouter(
             path="swiss-style"
           />
         </Route>
-        {/* Photos */}
-        <Route element={<PhotoLayout />} path="photos">
-          <Route element={<PhotoPage />} index />
+        {/* General */}
+        <Route element={<PhotoLayout />} path="general">
+          <Route element={<BookmarkPage />} path="bookmarks" />
+          <Route element={<PhotoPage />} path="photos" />
         </Route>
+
         {/* Art */}
         <Route element={<MainLayout />} path="art">
           <Route
             element={
               <GenericPage id={3001} pageTitle="At Last - Pleasantville" />
             }
-            path="at-last"
+            path="at-last-pleasantville"
           />
           <Route
             element={<GenericPage id={3002} pageTitle="Gallos" />}

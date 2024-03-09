@@ -49,38 +49,32 @@
       "id": 8,
       "name": "Visual Studio Code: Updates",
       "url": "https://code.visualstudio.com/updates",
-      "tags": ["Visual Studio Code"],
-      "rank": 1
+      "tags": ["Visual Studio Code"]
     },
     {
       "id": 9,
       "name": "Visual Studio Code: Blog",
       "url": "https://code.visualstudio.com/blogs",
-      "tags": ["Visual Studio Code"],
-      "rank": 1
+      "tags": ["Visual Studio Code"]
     },
     {
       "id": 10,
       "name": "Visual Studio Code",
       "url": "https://code.visualstudio.com",
-      "tags": ["Visual Studio Code"],
-      "rank": 0
+      "tags": ["Visual Studio Code"]
     },
     {
       "id": 11,
       "name": "Redux Toolkit",
       "description": "Official site",
       "url": "https://redux-toolkit.js.org/",
-      "tags": ["Redux Toolkit"],
-      "rank": 0
+      "tags": ["Redux Toolkit"]
     },
     {
       "id": 12,
       "name": "Medium.com",
       "description": "General",
-      "url": "https://medium.com/",
-      "tags": [""],
-      "rank": 0
+      "url": "https://medium.com/"
     },
     {
       "id": 13,
@@ -108,8 +102,7 @@
       "name": "claude",
       "description": "Research",
       "url": "https://claude.ai/",
-      "tags": ["AI"],
-      "set": [1]
+      "tags": ["AI"]
     },
     {
       "id": 17,
@@ -117,7 +110,7 @@
       "description": "Art generation. 5 free daily credits or paid",
       "url": "https://starryai.com/",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 18,
@@ -125,7 +118,7 @@
       "description": "Art generation.",
       "url": "https://www.craiyon.com/",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 19,
@@ -133,7 +126,7 @@
       "description": "Art generation.",
       "url": "https://www.artbreeder.com/",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 20,
@@ -141,7 +134,7 @@
       "description": "Art generation.",
       "url": "https://creator.nightcafe.studio/",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 21,
@@ -149,7 +142,7 @@
       "description": "AI automation agent for Chrome",
       "url": "https://harpa.ai/",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 22,
@@ -157,7 +150,7 @@
       "description": "Content creator quick publishing platform",
       "url": "https://repurpose.io/",
       "tags": [""],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 23,
@@ -165,7 +158,7 @@
       "description": "Video Marketing",
       "url": "https://syllaby.io/",
       "tags": [""],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 24,
@@ -173,7 +166,7 @@
       "description": "Video Marketing",
       "url": "https://www.heygen.com/",
       "tags": [""],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 25,
@@ -188,7 +181,7 @@
       "description": "AI Photo Editing",
       "url": "https://picsart.com/",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 27,
@@ -196,7 +189,7 @@
       "description": "Images, vectors, etc.",
       "url": "https://www.freepik.com/",
       "tags": [""],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 28,
@@ -204,7 +197,7 @@
       "description": "",
       "url": "https://deepai.org/",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 29,
@@ -226,7 +219,7 @@
       "description": "Paid.  ",
       "url": "https://openai.com/dall-e-3",
       "tags": [""],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 32,
@@ -234,7 +227,7 @@
       "description": "Uses Dalle3? Edge browser only?",
       "url": "https://www.bing.com/images/create",
       "tags": ["AI"],
-      "set": [1]
+      "page": [1]
     },
     {
       "id": 33,
@@ -292,6 +285,13 @@
       "description": "An interesting article on altering the landscape so that melting snow doesn't cross sidewalks or pool in high-traffic areas - reducing the need to salt these areas.",
       "url": "https://www.mprnews.org/story/2024/01/31/how-rethinking-design-could-reduce-the-need-for-road-salt",
       "tags": ["Environment"]
+    },
+    {
+      "id": 38,
+      "name": "Tutorials Dojo - AWS Certified Solutions Architect - Associate Practice Exams",
+      "description": "Sample Exams for AWS Certified Solutions Architect - Associate",
+      "url": "https://tutorialsdojo.com/",
+      "tags": ["Exam Prep", "AWS"]
     }
   ]
 }

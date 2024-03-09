@@ -5,7 +5,7 @@ import counterReducer from './examples/counterSlice';
 import menuReducer from './menuSlice';
 import musicReducer from './musicSlice';
 import photosReducer from './photosSlice';
-import resourcesReducer from './bookmarksSlice';
+
 import snackbarReducer from './snackbarSlice';
 
 export const store = configureStore({
@@ -15,7 +15,6 @@ export const store = configureStore({
     menu: menuReducer,
     music: musicReducer,
     photos: photosReducer,
-    resources: resourcesReducer,
     snackbar: snackbarReducer,
   },
 });

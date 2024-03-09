@@ -63,5 +63,12 @@ module.exports = {
         singleReturnOnly: false,
       },
     ],
+    // S6544: Fix for Sonarlint issue: https://github.com/SonarSource/SonarJS/issues/3938
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false,
+      },
+    ],
   },
 };

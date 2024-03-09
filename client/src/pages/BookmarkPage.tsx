@@ -1,23 +1,19 @@
 import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
-import { BookmarkList } from 'components/common/BookmarkList';
 import { Meta } from 'components/common/Meta';
 import { useDeferredValue, useEffect } from 'react';
-import useBookmarks from 'services/hooks/useBookmarks';
-import { APP_NAME } from 'utils/constants';
 
+import { APP_NAME } from 'utils/constants';
+import useBookmarks from 'services/hooks/useBookmarks';
+import { BookmarkTags } from 'components/common/BookmarksTags';
 export const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
-  const { data, error, loading, fetchData } = useBookmarks();
+  const { data, error, isLoading } = useBookmarks();
   const deferredData = useDeferredValue(data);
 
   useEffect(() => {
     document.title = `${APP_NAME} - ${title}`;
   }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   return (
     <>
@@ -27,8 +23,8 @@ export const BookmarkPage = (): JSX.Element => {
         <section className="section">
           <p>These are some of my favorite resources.</p>
 
-          <LoadingWrapper error={error} isLoading={loading}>
-            <BookmarkList data={deferredData} />
+          <LoadingWrapper error={error} isLoading={isLoading}>
+            <BookmarkTags data={deferredData} />
           </LoadingWrapper>
         </section>
       </main>

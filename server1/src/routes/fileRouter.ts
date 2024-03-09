@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 
 import { Logger } from '../utils/Logger.js';
-import { FileService } from 'services/FileService.js';
+import { FileService } from '../services/FileService.js';
 
 export const fileRouter = express.Router();
 
+// This could be reworked: https://zellwk.com/blog/async-await-express/
+// https://zellwk.com/blog/express-errors/
 fileRouter.get('/:filename', async (req: Request, res: Response) => {
   try {
     const data = await new FileService(`${req.params.filename}.json`).getFile();

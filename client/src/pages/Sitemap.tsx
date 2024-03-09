@@ -74,20 +74,6 @@ export const Sitemap = (): JSX.Element => (
         <CustomNavLink to="/">Blog</CustomNavLink>
       </li>
     </ul>
-
-    {/* Home
-React
-Learning React
-Visual Studio Code
-GIT - Installing
-HTML
-CSS
-Internationalization
-Art
-Books
-Music
-
-      </ul> */}
   </div>
 );
 

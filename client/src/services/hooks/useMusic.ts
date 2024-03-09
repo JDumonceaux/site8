@@ -10,7 +10,7 @@ const useMusic = () => {
   const selector = (state: RootState) => state.music;
 
   const data: Music | null = useSelector(selector).musicData;
-  const loading = useSelector(selector).loading;
+  const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
   const dispatchFetchMusic = useCallback(
@@ -20,7 +20,7 @@ const useMusic = () => {
 
   return {
     data,
-    loading,
+    isLoading,
     error,
     fetchData: dispatchFetchMusic,
   };

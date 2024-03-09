@@ -6,13 +6,13 @@ import { Music } from '../types/Music';
 
 interface MusicState {
   musicData: Music | null;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
 }
 
 const initialState: MusicState = {
   musicData: null,
-  loading: false,
+  isLoading: false,
   error: null,
 };
 
@@ -30,15 +30,15 @@ const musicSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchMusic.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(fetchMusic.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.musicData = action.payload;
       })
       .addCase(fetchMusic.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.error.message ?? 'An error occurred';
       });
   },

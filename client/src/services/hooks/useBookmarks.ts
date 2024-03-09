@@ -1,28 +1,16 @@
-import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { Bookmarks } from '../types/Bookmarks';
-import { AppDispatch, RootState } from '../state/store';
-import { fetchBookmarks } from 'services/state/bookmarksSlice';
+import useFetch from './useFetch';
+import { BookmarksTags } from 'services/types';
+import { ServiceUrl } from 'utils';
 
 const useBookmarks = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const selector = (state: RootState) => state.resources;
-
-  const data: Bookmarks | null = useSelector(selector).bookmarksData;
-  const loading = useSelector(selector).loading;
-  const error = useSelector(selector).error;
-
-  const dispatchFetchBookmarks = useCallback(
-    () => dispatch(fetchBookmarks()),
-    [dispatch],
+  const { data, isLoading, error } = useFetch<BookmarksTags>(
+    `${ServiceUrl.ENDPOINT_BOOKMARKS}/tags`,
   );
 
   return {
     data,
-    loading,
+    isLoading,
     error,
-    fetchData: dispatchFetchBookmarks,
   };
 };
 

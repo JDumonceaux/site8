@@ -10,7 +10,7 @@ const usePhotos = () => {
 
   const selector = (state: RootState) => state.photos;
   const data: Photos | null = useSelector(selector).photosData;
-  const loading = useSelector(selector).loading;
+  const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
   const dispatchFetchPhotos = useCallback(
@@ -20,7 +20,7 @@ const usePhotos = () => {
 
   return {
     data,
-    loading,
+    isLoading,
     error,
     fetchData: dispatchFetchPhotos,
   };

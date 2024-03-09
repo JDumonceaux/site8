@@ -3,5 +3,5 @@ import { Metadata } from './Metadata';
 
 export type BookmarksTags = {
   readonly metadata: Metadata;
-  readonly items: BookmarksTag[];
+  readonly items?: BookmarksTag[];
 };

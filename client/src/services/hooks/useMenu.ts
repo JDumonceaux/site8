@@ -10,7 +10,7 @@ const useMenu = () => {
 
   const selector = (state: RootState) => state.menu;
   const data: Menus | null = useSelector(selector).MenuData;
-  const loading = useSelector(selector).loading;
+  const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
   const dispatchFetchMenu = useCallback(
@@ -20,7 +20,7 @@ const useMenu = () => {
 
   return {
     data,
-    loading,
+    isLoading,
     error,
     fetchData: dispatchFetchMenu,
   };

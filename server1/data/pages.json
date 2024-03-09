@@ -17,6 +17,13 @@
       "sort": "name",
       "name": "Art",
       "url": "art"
+    },
+    {
+      "id": 4,
+      "seq": 4,
+      "sort": "name",
+      "name": "General",
+      "url": "general"
     }
   ],
   "items": [
@@ -258,6 +265,30 @@
       "reading_time": "",
       "readability_score": "",
       "url": "yachts",
+      "seq": 0
+    },
+    {
+      "id": 15001,
+      "name": "Bookmarks",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 4,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "bookmarks",
+      "seq": 0
+    },
+    {
+      "id": 15001,
+      "name": "Photos",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 4,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "photos",
       "seq": 0
     }
   ]

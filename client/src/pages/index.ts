@@ -5,3 +5,4 @@ export * from './ArtList';
 export * from './MusicList';
 export * from './PhotoPage';
 export * from './Sitemap';
+export * from './BookmarkPage';

@@ -12,7 +12,7 @@ import { ItemRenderer } from './ItemRenderer';
 
 export const MusicList = (): JSX.Element => {
   const title = 'YouTube Videos';
-  const { data, loading, error, fetchData } = useMusic();
+  const { data, isLoading, error, fetchData } = useMusic();
 
   const deferredData = useDeferredValue(data);
 
@@ -36,7 +36,7 @@ export const MusicList = (): JSX.Element => {
         <PageTitle title={title} />
         <section className="section">
           <p>These are some of my favorite YouTube videos.</p>
-          <LoadingWrapper error={error} isLoading={loading}>
+          <LoadingWrapper error={error} isLoading={isLoading}>
             <List
               height={600}
               itemCount={data?.items?.length ? data?.items?.length : 0}

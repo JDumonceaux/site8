@@ -9,7 +9,7 @@ import { styled } from 'styled-components';
 
 export const PhotoPage = (): JSX.Element => {
   const title = `${APP_NAME} - photos`;
-  const { data, loading, error, fetchData } = usePhotos();
+  const { data, isLoading, error, fetchData } = usePhotos();
   const deferredData = useDeferredValue(data);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const PhotoPage = (): JSX.Element => {
       <StyledMain>
         <PageTitle title={title} />
         <StyledSection>
-          <LoadingWrapper error={error} isLoading={loading}>
+          <LoadingWrapper error={error} isLoading={isLoading}>
             <ul>
               {deferredData?.items?.map((item) => {
                 return (

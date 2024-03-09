@@ -25,6 +25,7 @@ export const useDependencyDebugger = (inputs: any) => {
     compareInputs(inputKeysArray, oldInputs, inputs);
 
     oldInputsRef.current = inputs;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, inputValuesArray);
 };
 

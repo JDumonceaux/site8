@@ -6,13 +6,13 @@ import { Page } from '../types/Page';
 
 interface PageState {
   PageData: Page | null;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
 }
 
 const initialState: PageState = {
   PageData: null,
-  loading: false,
+  isLoading: false,
   error: null,
 };
 
@@ -30,15 +30,15 @@ const PageSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPage.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(fetchPage.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.PageData = action.payload;
       })
       .addCase(fetchPage.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.error.message ?? 'An error occurred';
       });
   },

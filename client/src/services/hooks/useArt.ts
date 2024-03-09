@@ -9,14 +9,14 @@ const useArt = () => {
   const selector = (state: RootState) => state.art;
 
   const data: Art | null = useSelector(selector).artData;
-  const loading = useSelector(selector).loading;
+  const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
   const dispatchFetchArt = useCallback(() => dispatch(fetchArt()), [dispatch]);
 
   return {
     data,
-    loading,
+    isLoading,
     error,
     fetchData: dispatchFetchArt,
   };

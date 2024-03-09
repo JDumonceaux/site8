@@ -5,5 +5,5 @@ export type Bookmark = {
   readonly description?: string;
   readonly tags?: string[];
   readonly rank?: number;
-  readonly set?: number[];
+  readonly page?: number[];
 };
