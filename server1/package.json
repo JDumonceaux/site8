@@ -30,7 +30,7 @@
     "@types/compression": "^1.7.5",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.0.2",
     "aws-cdk": "^2.131.0",
     "aws-cdk-lib": "^2.131.0",
