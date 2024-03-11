@@ -16,7 +16,7 @@
     "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" "
   },
   "dependencies": {
-    "aws-amplify": "^6.0.18",
+    "aws-amplify": "^6.0.19",
     "compression": "^1.7.4",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
