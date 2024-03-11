@@ -16,15 +16,12 @@
     "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" "
   },
   "dependencies": {
-    "aws-amplify": "^6.0.18",
     "compression": "^1.7.4",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
     "winston": "^3.12.0"
   },
   "devDependencies": {
-    "@aws-amplify/backend": "^0.12.1",
-    "@aws-amplify/backend-cli": "^0.11.1",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@types/compression": "^1.7.5",
@@ -32,9 +29,6 @@
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
-    "aws-cdk": "^2.131.0",
-    "aws-cdk-lib": "^2.131.0",
-    "constructs": "^10.3.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",

@@ -11,8 +11,8 @@ export const BookmarkTags = ({ data }: BookmarksTagsProps): JSX.Element => {
       <table className="table">
         <thead>
           <tr>
-            <th>Area</th>
-            <th>Subarea</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
