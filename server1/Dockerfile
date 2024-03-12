@@ -14,4 +14,4 @@ EXPOSE 8080
 
 ENV NODE_PATH /usr/src/app
 
-CMD [ "node", "-r", "dotenv/config", "app.js" ]
+CMD [ "node", "-r", "dotenv/config", "server.js" ]
