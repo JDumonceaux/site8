@@ -1,0 +1,297 @@
+{
+  "metadata": {
+    "title": "Bookmarks"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "The Rick and Morty API",
+      "url": "https://rickandmortyapi.com/",
+      "tags": ["API Testing"]
+    },
+    {
+      "id": 2,
+      "name": "Final Space API",
+      "url": "https://finalspaceapi.com/",
+      "tags": ["API Testing"]
+    },
+    {
+      "id": 3,
+      "name": "Redux Dev Tools",
+      "url": "https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd",
+      "tags": ["Chrome", "Redux"]
+    },
+    {
+      "id": 4,
+      "name": "VSC - Ligatures",
+      "url": "https://worldofzero.com/posts/enable-font-ligatures-vscode/",
+      "tags": ["Visual Studio Code"]
+    },
+    {
+      "id": 5,
+      "name": "Guard Clauses: Replace Nested Conditional with Guard Clauses",
+      "url": "https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html",
+      "tags": ["Refactoring"]
+    },
+    {
+      "id": 6,
+      "name": "Refactoring.com",
+      "url": "https://refactoring.com/catalog/",
+      "tags": ["Refactoring"]
+    },
+    {
+      "id": 7,
+      "name": "VSC Vertical Rules: Do You Know About Rulers in Visual Studio Code?",
+      "url": "https://levelup.gitconnected.com/do-you-know-about-rulers-in-visual-studio-code-f754b221a135",
+      "tags": ["Visual Studio Code"]
+    },
+    {
+      "id": 8,
+      "name": "Visual Studio Code: Updates",
+      "url": "https://code.visualstudio.com/updates",
+      "tags": ["Visual Studio Code"]
+    },
+    {
+      "id": 9,
+      "name": "Visual Studio Code: Blog",
+      "url": "https://code.visualstudio.com/blogs",
+      "tags": ["Visual Studio Code"]
+    },
+    {
+      "id": 10,
+      "name": "Visual Studio Code",
+      "url": "https://code.visualstudio.com",
+      "tags": ["Visual Studio Code"]
+    },
+    {
+      "id": 11,
+      "name": "Redux Toolkit",
+      "description": "Official site",
+      "url": "https://redux-toolkit.js.org/",
+      "tags": ["Redux Toolkit"]
+    },
+    {
+      "id": 12,
+      "name": "Medium.com",
+      "description": "General",
+      "url": "https://medium.com/"
+    },
+    {
+      "id": 13,
+      "name": "Understanding Redux Slices in React with TypeScript: Building a Weather App",
+      "description": "A nice explaination of a simple slice with an external API request",
+      "url": "https://medium.com/@msgold/understanding-redux-slices-in-react-with-typescript-building-a-weather-app-c3f519c88944",
+      "tags": ["Redux Toolkit", "Demo"]
+    },
+    {
+      "id": 14,
+      "name": "perplexity ai",
+      "description": "",
+      "url": "https://www.perplexity.ai/",
+      "tags": ["AI"]
+    },
+    {
+      "id": 15,
+      "name": "bard",
+      "description": "",
+      "url": "https://bard.google.com/chat",
+      "tags": ["AI"]
+    },
+    {
+      "id": 16,
+      "name": "claude",
+      "description": "Research",
+      "url": "https://claude.ai/",
+      "tags": ["AI"]
+    },
+    {
+      "id": 17,
+      "name": "starryai",
+      "description": "Art generation. 5 free daily credits or paid",
+      "url": "https://starryai.com/",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 18,
+      "name": "craiyon",
+      "description": "Art generation.",
+      "url": "https://www.craiyon.com/",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 19,
+      "name": "artbreeder",
+      "description": "Art generation.",
+      "url": "https://www.artbreeder.com/",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 20,
+      "name": "nightcafe",
+      "description": "Art generation.",
+      "url": "https://creator.nightcafe.studio/",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 21,
+      "name": "harpa",
+      "description": "AI automation agent for Chrome",
+      "url": "https://harpa.ai/",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 22,
+      "name": "repurpose",
+      "description": "Content creator quick publishing platform",
+      "url": "https://repurpose.io/",
+      "tags": [""],
+      "page": [1]
+    },
+    {
+      "id": 23,
+      "name": "syllaby.io",
+      "description": "Video Marketing",
+      "url": "https://syllaby.io/",
+      "tags": [""],
+      "page": [1]
+    },
+    {
+      "id": 24,
+      "name": "heygen",
+      "description": "Video Marketing",
+      "url": "https://www.heygen.com/",
+      "tags": [""],
+      "page": [1]
+    },
+    {
+      "id": 25,
+      "name": "illusiondiffusion",
+      "description": "AI Photo Editing",
+      "url": "https://illusiondiffusion.net/",
+      "tags": ["AI"]
+    },
+    {
+      "id": 26,
+      "name": "picsart",
+      "description": "AI Photo Editing",
+      "url": "https://picsart.com/",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 27,
+      "name": "freepik",
+      "description": "Images, vectors, etc.",
+      "url": "https://www.freepik.com/",
+      "tags": [""],
+      "page": [1]
+    },
+    {
+      "id": 28,
+      "name": "deepai",
+      "description": "",
+      "url": "https://deepai.org/",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 29,
+      "name": "playgroundai",
+      "description": "Image Editing",
+      "url": "https://playgroundai.com/",
+      "tags": ["AI"]
+    },
+    {
+      "id": 30,
+      "name": "Canva",
+      "description": "Generic Image Store",
+      "url": "https://www.canva.com/",
+      "tags": [""]
+    },
+    {
+      "id": 31,
+      "name": "Dalle3",
+      "description": "Paid.  ",
+      "url": "https://openai.com/dall-e-3",
+      "tags": [""],
+      "page": [1]
+    },
+    {
+      "id": 32,
+      "name": "Bing Image Creator",
+      "description": "Uses Dalle3? Edge browser only?",
+      "url": "https://www.bing.com/images/create",
+      "tags": ["AI"],
+      "page": [1]
+    },
+    {
+      "id": 33,
+      "name": "Bing Chat",
+      "description": "Edge browser only",
+      "url": "https://www.bing.com/",
+      "tags": ["AI", "Chat"]
+    },
+    {
+      "id": 34,
+      "name": "Patterns (React)",
+      "description": "React Patterns",
+      "url": "https://www.patterns.dev/react/",
+      "tags": ["React", "Patterns"]
+    },
+    {
+      "id": 35,
+      "name": "Patterns (Javascript)",
+      "description": "Javascript Patterns",
+      "url": "https://www.patterns.dev/vanilla/",
+      "tags": ["Javascript", "Patterns"]
+    },
+    {
+      "id": 33,
+      "name": "Bing Chat ",
+      "description": "Edge browser only",
+      "url": "https://www.bing.com/",
+      "tags": ["AI", "Chat"]
+    },
+    {
+      "id": 34,
+      "name": "Bored API",
+      "description": "Public API that returns random activities",
+      "url": "https://www.boredapi.com/",
+      "tags": ["API Testing"]
+    },
+    {
+      "id": 35,
+      "name": "JSON Placeholder",
+      "description": "Public fake API",
+      "url": "https://jsonplaceholder.typicode.com/",
+      "tags": ["API Testing"]
+    },
+    {
+      "id": 36,
+      "name": "Ana Tudor on CodePen",
+      "description": "Ana does some incredible CSS effects - usually with math functions.",
+      "url": "https://codepen.io/thebabydino",
+      "tags": ["CSS"]
+    },
+
+    {
+      "id": 37,
+      "name": "How rethinking design could reduce the need for road salt",
+      "description": "An interesting article on altering the landscape so that melting snow doesn't cross sidewalks or pool in high-traffic areas - reducing the need to salt these areas.",
+      "url": "https://www.mprnews.org/story/2024/01/31/how-rethinking-design-could-reduce-the-need-for-road-salt",
+      "tags": ["Environment"]
+    },
+    {
+      "id": 38,
+      "name": "Tutorials Dojo - AWS Certified Solutions Architect - Associate Practice Exams",
+      "description": "Sample Exams for AWS Certified Solutions Architect - Associate",
+      "url": "https://tutorialsdojo.com/",
+      "tags": ["Exam Prep", "AWS"]
+    }
+  ]
+}

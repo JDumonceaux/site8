@@ -22,6 +22,7 @@ Resources:
             RestApiId:
               Ref: Site8
       Layers:
+      - arn:aws:lambda:us-west-2:325370416320:layer:site8a-node-modules:1
       - Fn::GetAtt:
         - AwsSamAutoDependencyLayerNestedStack
         - Outputs.Menus06145a21DepLayer
@@ -87,6 +88,7 @@ Resources:
             RestApiId:
               Ref: Site8
       Layers:
+      - arn:aws:lambda:us-west-2:325370416320:layer:site8a-node-modules:1
       - Fn::GetAtt:
         - AwsSamAutoDependencyLayerNestedStack
         - Outputs.Bookmarks7a69d6b2DepLayer

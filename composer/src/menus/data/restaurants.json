@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "title": "restaurants"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "Bouillon Julien",
+      "description": "",
+      "tags": ["Paris", "Restaurant", "Art Deco", "Bucket List"],
+      "images": [
+        {
+          "url": "",
+          "description": "",
+          "alt": ""
+        }
+      ],
+      "urls": [
+        {
+          "role": "main",
+          "url": "https://www.bouillon-julien.com/",
+          "description": "",
+          "alt": ""
+        },
+        {
+          "role": "menu",
+          "url": "https://www.bouillon-julien.com/menu",
+          "description": "",
+          "alt": ""
+        }
+      ]
+    }
+  ]
+}

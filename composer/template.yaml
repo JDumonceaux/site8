@@ -19,6 +19,8 @@ Resources:
             Path: /api/menus
             Method: GET
             RestApiId: !Ref Site8
+      Layers:
+        - arn:aws:lambda:us-west-2:325370416320:layer:site8a-node-modules:1
   MenusLogGroup:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain
@@ -72,6 +74,8 @@ Resources:
             Path: /api/bookmarks
             Method: GET
             RestApiId: !Ref Site8
+      Layers:
+        - arn:aws:lambda:us-west-2:325370416320:layer:site8a-node-modules:1
   BookmarksLogGroup:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain

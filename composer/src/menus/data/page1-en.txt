@@ -1,0 +1,4 @@
+<h2>What is React?</h2>
+<p>React is a front-end JavaScript library framework for building user interfaces based on UI components.</p>
+<h3>What does that mean?</h3>
+<p>It means that we are building Single Page Applications (SPA’s) that run within the browser. It is not involved in any of the backend (i.e. Service) layers: for that we generally use NodeJS.</p>
