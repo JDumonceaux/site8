@@ -16,7 +16,8 @@ app.set('x-powered-by', false);
 app.set('etag', false);
 
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: false }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+//app.use(cors());
 app.use(compression());
 
 // Add headers before the routes are defined
@@ -56,8 +57,8 @@ const port = 3005;
 // // apply rate limiter to all requests
 // app.use(limiter);
 
-app.use('/api/file', fileRouter);
-app.use('/api/menu', menuRouter);
+app.use('/api/files', fileRouter);
+app.use('/api/menus', menuRouter);
 app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesRouter);
 app.use('/api/photos', photosRouter);

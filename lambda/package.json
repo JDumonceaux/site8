@@ -1,0 +1,23 @@
+{
+  "name": "lambda",
+  "version": "0.1.0",
+  "description": "api service for the application",
+  "type": "module",
+  "engines": {
+    "node": ">= 20.11 < 21"
+  },
+  "scripts": {
+    "start": "npm run build && node dist/server.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "serverless-http": "^3.2.0",
+    "winston": "^3.12.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true
+}

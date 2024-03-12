@@ -26,7 +26,7 @@ export const API_ROOT = `http://localhost:3005/api`;
 
 export enum ServiceUrl {
   ENDPOINT_ART = `${API_ROOT}/art`,
-  ENDPOINT_MENU = `${API_ROOT}/menu`,
+  ENDPOINT_MENUS = `${API_ROOT}/menus`,
   ENDPOINT_MUSIC = `${API_ROOT}/music`,
   ENDPOINT_PAGE = `${API_ROOT}/page`,
   ENDPOINT_PAGES = `${API_ROOT}/pages`,

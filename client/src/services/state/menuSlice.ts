@@ -17,7 +17,7 @@ const initialState: MenuState = {
 };
 
 export const fetchMenu = createAsyncThunk('Menu/fetchMenu', async () => {
-  const response = await axios.get<Menus>(ServiceUrl.ENDPOINT_MENU, {
+  const response = await axios.get<Menus>(ServiceUrl.ENDPOINT_MENUS, {
     responseType: 'json',
   });
   return response.data;

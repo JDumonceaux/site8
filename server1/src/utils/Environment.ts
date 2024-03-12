@@ -1,5 +1,5 @@
 export class Environment {
-  static getNodeEnv = (): string => {
+  static readonly getNodeEnv = (): string => {
     let nodeEnv = process.env.NODE_ENV;
 
     if (!nodeEnv) {
@@ -9,19 +9,19 @@ export class Environment {
     return nodeEnv;
   };
 
-  static getApplicationName = (): string => {
-    return process.env.APPLICATION_NAME || '';
+  static readonly getApplicationName = (): string => {
+    return process.env.APPLICATION_NAME ?? '';
   };
 
-  static isLocal = (): boolean => {
+  static readonly isLocal = (): boolean => {
     return Environment.getNodeEnv() === 'local';
   };
 
-  static isProduction = (): boolean => {
+  static readonly isProduction = (): boolean => {
     return Environment.getNodeEnv() === 'production';
   };
 
-  static isLowerEnvironment = () => {
+  static readonly isLowerEnvironment = () => {
     return !this.isProduction();
   };
 }
