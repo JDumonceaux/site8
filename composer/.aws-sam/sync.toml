@@ -4,4 +4,6 @@
 dependency_layer = true
 latest_infra_sync_time = "2024-03-12T19:44:41.911243"
 
-[resource_sync_states]
+[resource_sync_states."AutoDependencyLayerParentSyncFlow:Menus"]
+hash = "f70447720ca27b4227f748dcc8cf9c73f642eeb8497122030eea7d5ece029370"
+sync_time = "2024-03-12T22:58:06.869275"
