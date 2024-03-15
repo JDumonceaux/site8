@@ -6,34 +6,32 @@ import {
   RouterProvider as Router,
 } from 'react-router-dom';
 
-import GenericPage from 'pages/GenericPage';
-import Home from 'pages/Home';
-import Login from 'pages/Login';
-import TestGrid from 'pages/TestGrid';
 import ProtectedRoute from './ProtectedRoute';
 import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
 import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
-import PhotoLayout from 'pages/Layouts/PhotoLayout/PhotoLayout';
 import { ErrorPage } from 'pages/ErrorPage';
 
+const GenericPage = lazy(() => import('pages/GenericPage'));
+const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
 const Sitemap = lazy(() => import('pages/Sitemap'));
 
 const Artists = lazy(() => import('pages/Artists'));
 const ArtList = lazy(() => import('pages/ArtList'));
+const AuthPage = lazy(() => import('pages/AuthPage'));
 const MusicList = lazy(() => import('pages/MusicList'));
 const PhotoPage = lazy(() => import('pages/PhotoPage'));
 const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
 const Yachts = lazy(() => import('pages/Yachts'));
-const PagesList = lazy(() => import('pages/PagesList'));
 const PageEdit = lazy(() => import('pages/PageEdit'));
+const PagesList = lazy(() => import('pages/PagesList'));
+const GraphGLPage = lazy(() => import('pages/GraphGLPage'));
+const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
+const TestGrid = lazy(() => import('pages/TestGrid'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<ErrorPage />} path="/">
-      <Route element={<HomeLayout />} path="login">
-        <Route element={<Login />} index />
-      </Route>
       <Route element={<NotFound />} path="*" />
       <Route element={<Sitemap />} path="sitemap" />
       <Route element={<ProtectedRoute />}>
@@ -251,6 +249,11 @@ const router = createBrowserRouter(
         <Route element={<PhotoLayout />} path="general">
           <Route element={<BookmarkPage />} path="bookmarks" />
           <Route element={<PhotoPage />} path="photos" />
+        </Route>
+        {/* Example */}
+        <Route path="example">
+          <Route element={<AuthPage />} path="auth" />
+          <Route element={<GraphGLPage />} path="graphgl" />
         </Route>
 
         {/* Art */}
