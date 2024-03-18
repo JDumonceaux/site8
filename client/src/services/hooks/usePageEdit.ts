@@ -6,6 +6,7 @@ import { safeParse } from 'utils/zodHelper';
 import useSnackbar from './useSnackbar';
 import { useAxiosHelper } from './useAxiosHelper';
 import { format } from 'date-fns';
+import { useForm } from './useForm';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -39,10 +40,10 @@ const pageSchema = z.object({
 });
 
 const usePageEdit = () => {
-  type PageFormValues = z.infer<typeof pageSchema>;
-  type keys = keyof PageFormValues;
+  type FormValues = z.infer<typeof pageSchema>;
+  type keys = keyof FormValues;
   // Return default form values
-  const defaultFormValues: PageFormValues = useMemo(
+  const defaultFormValues: FormValues = useMemo(
     () => ({
       id: 0,
       name: '',
@@ -57,10 +58,11 @@ const usePageEdit = () => {
     [],
   );
 
-  const [formValues, setFormValues] =
-    useState<PageFormValues>(defaultFormValues);
+  const { formValues, setFormValues, setFieldValue, errors, setErrors } =
+    useForm<FormValues>(defaultFormValues);
+
   const [resetFormValues, setResetFormValues] = useState<
-    PageFormValues | undefined
+    FormValues | undefined
   >(undefined);
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   // const [updateError, setUpdateError] = useState<boolean>(false);
@@ -68,9 +70,6 @@ const usePageEdit = () => {
   const { setSimpleSnackbarMessage } = useSnackbar();
 
   const { data, fetchData, patchData, postData } = useAxiosHelper<Page>();
-
-  const [errors, setErrors] =
-    useState<z.ZodFormattedError<PageFormValues> | null>(null);
 
   useEffect(() => {
     if (formValues.id && formValues.id > 0) {
@@ -80,7 +79,7 @@ const usePageEdit = () => {
 
   useEffect(() => {
     if (data) {
-      const item: PageFormValues = {
+      const item: FormValues = {
         id: data.id,
         name: data.name ?? '',
         long_title: data.long_title ?? '',
@@ -96,32 +95,33 @@ const usePageEdit = () => {
       setResetFormValues(item);
       setFormValues(item);
     }
-  }, [data]);
+  }, [data, setFormValues]);
 
   const validateForm = useCallback(() => {
-    const result = safeParse<PageFormValues>(pageSchema, formValues);
+    const result = safeParse<FormValues>(pageSchema, formValues);
     setErrors(result.errorFormatted);
 
     return result.success;
-  }, [formValues]);
+  }, [formValues, setErrors]);
 
   const handleCancel = useCallback(() => {
     setFormValues(defaultFormValues);
-  }, [defaultFormValues]);
+  }, [defaultFormValues, setFormValues]);
 
   const handleReset = useCallback(() => {
     setFormValues(resetFormValues ?? defaultFormValues);
-  }, [defaultFormValues, resetFormValues]);
+  }, [defaultFormValues, resetFormValues, setFormValues]);
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = event.target;
+      setFormValues((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    },
+    [setFormValues],
+  );
 
   const handleSubmit = useCallback(
     (event: React.FormEvent) => {
@@ -147,17 +147,6 @@ const usePageEdit = () => {
     },
     [formValues, patchData, postData, setSimpleSnackbarMessage, validateForm],
   );
-
-  const setFieldValue = useCallback(
-    (fieldName: keys, value: string | boolean | number | undefined) => {
-      setFormValues((prev) => ({
-        ...prev,
-        [fieldName]: value,
-      }));
-    },
-    [],
-  );
-
   const setId = useCallback(
     (value: string | undefined) => {
       if (value) {
@@ -205,9 +194,11 @@ const usePageEdit = () => {
       isProcessing,
       getFieldErrors,
       isValid,
+      setFormValues,
       setFieldValue,
       setId,
       handleCancel,
+      handleChange,
       handleSubmit,
       handleReset,
     ],

@@ -1,5 +1,18 @@
 import { styled } from 'styled-components';
 
+export const Footer = (): JSX.Element => {
+  const thisYear = new Date().getFullYear();
+  return (
+    <StyledFooter className="footer" data-testid="footer" role="contentinfo">
+      <StyledCopyright aria-label="Copyright Information">
+        Copyright &copy; {thisYear}
+      </StyledCopyright>
+    </StyledFooter>
+  );
+};
+
+export default Footer;
+
 const StyledFooter = styled.footer`
   min-height: 20px;
   background-color: var(--main-background-color, #000);
@@ -14,15 +27,3 @@ const StyledCopyright = styled.div`
   font-size: 0.8rem;
   padding-left: 16px;
 `;
-
-export function Footer(): JSX.Element {
-  const thisYear = new Date().getFullYear();
-  return (
-    <StyledFooter role="contentinfo" className="footer" data-testid="footer">
-      <StyledCopyright aria-label="Copyright Information">
-        Copyright &copy; {thisYear}
-      </StyledCopyright>
-      {/* <ChangeLanguage /> */}
-    </StyledFooter>
-  );
-}

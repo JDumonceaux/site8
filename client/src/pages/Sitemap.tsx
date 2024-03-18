@@ -1,4 +1,4 @@
-import CustomNavLink from 'components/ui/CustomNavLink';
+import CustomNavLink from 'components/common/CustomNavLink/CustomNavLink';
 
 export const Sitemap = (): JSX.Element => (
   <div>

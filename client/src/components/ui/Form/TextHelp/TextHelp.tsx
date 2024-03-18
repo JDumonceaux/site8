@@ -26,13 +26,11 @@ export const TextHelp = ({
 
       if (msg.length > 1) {
         return (
-          <div>
-            <ul>
-              {msg.map((item, index) => (
-                <li key={`item-${index}`}>{item}</li>
-              ))}
-            </ul>
-          </div>
+          <ul>
+            {msg.map((item, index) => (
+              <li key={`item-${index}`}>{item}</li>
+            ))}
+          </ul>
         );
       } else {
         return <div>{msg[0]}</div>;
@@ -75,6 +73,10 @@ const StyledDivWrapper = styled.div`
   justify-content: space-between;
   margin-top: 4px;
   margin-bottom: 6px;
+  ul {
+    margin-block-start: 0;
+    padding-inline-start: 15px;
+  }
 `;
 const StyledErrorDiv = styled.div<{ $isValid: boolean }>`
   color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};

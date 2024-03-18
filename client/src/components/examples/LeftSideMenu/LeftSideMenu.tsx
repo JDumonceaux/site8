@@ -1,6 +1,6 @@
 import './leftSideMenu.css';
 
-import CustomNavLink from '../../ui/CustomNavLink';
+import CustomNavLink from '../../common/CustomNavLink/CustomNavLink';
 
 export const LeftSideMenu = (): JSX.Element => {
   return (

@@ -6,9 +6,14 @@ import {
   getCurrentUser,
   AuthUser,
 } from 'aws-amplify/auth';
+import {
+  Authenticator,
+  WithAuthenticatorProps,
+  withAuthenticator,
+} from '@aws-amplify/ui-react';
 
-const AuthPage = () => {
-  const [user, setUser] = useState<AuthUser | null>(null);
+const AuthPage = ({ signOut, user }: WithAuthenticatorProps) => {
+  const [user1, setUser1] = useState<AuthUser | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<unknown>(null);
   const [customState, setCustomState] = useState<string | null>(null);
@@ -36,7 +41,7 @@ const AuthPage = () => {
   const getUser = async (): Promise<void> => {
     try {
       const currentUser = await getCurrentUser();
-      setUser(currentUser);
+      setUser1(currentUser);
     } catch (error) {
       console.error(error);
       console.log('Not signed in');
@@ -45,21 +50,12 @@ const AuthPage = () => {
 
   return (
     <div className="App">
+      <h1>Hello {user?.username}</h1>
       <button
         // eslint-disable-next-line sonarjs/no-duplicate-string
         onClick={() => signInWithRedirect({ customState: 'shopping-cart' })}
         type="button">
         Open Hosted UI
-      </button>
-      <button
-        onClick={() =>
-          signInWithRedirect({
-            provider: 'Facebook',
-            customState: 'shopping-cart',
-          })
-        }
-        type="button">
-        Open Facebook
       </button>
       <button
         onClick={() =>
@@ -81,23 +77,16 @@ const AuthPage = () => {
         type="button">
         Open Amazon
       </button>
-      <button
-        onClick={() =>
-          signInWithRedirect({
-            provider: 'Apple',
-            customState: 'shopping-cart',
-          })
-        }
-        type="button">
-        Open Apple
-      </button>
       <button onClick={() => signOut()} type="button">
         Sign Out
       </button>
       <div>{user?.username}</div>
       <div>{customState}</div>
+      <div>
+        <Authenticator />
+      </div>
     </div>
   );
 };
 
-export default AuthPage;
+export default withAuthenticator(AuthPage);

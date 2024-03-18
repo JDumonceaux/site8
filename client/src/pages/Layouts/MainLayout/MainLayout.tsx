@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
 
 import ErrorBoundary from 'components/common/ErrorBoundary';
-import { Snackbar } from 'components/common/Snackbar';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { MainMenu } from 'components/common/MainMenu';
-import { Header } from 'components/ui/Header/Header';
-import { Footer } from 'components/ui/Footer/Footer';
 import AppSetup from 'components/common/AppSetup/AppSetup';
+import Header from 'components/common/Header';
+const Snackbar = lazy(() => import('components/common/Snackbar'));
+const Footer = lazy(() => import('components/common/Footer'));
 
 export const MainLayout = (): JSX.Element => (
   <ErrorBoundary fallback="Error">
@@ -18,9 +18,14 @@ export const MainLayout = (): JSX.Element => (
       <Suspense fallback="Loading ...">
         <Outlet />
       </Suspense>
-      <Snackbar />
+      <Suspense fallback="Loading ...">
+        <Snackbar />
+      </Suspense>
+
       <MainMenu />
-      <Footer />
+      <Suspense fallback="Loading ...">
+        <Footer />
+      </Suspense>
     </LayoutDiv>
   </ErrorBoundary>
 );

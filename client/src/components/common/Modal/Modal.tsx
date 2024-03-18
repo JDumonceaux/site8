@@ -19,24 +19,6 @@ type ModalProps = {
   readonly requiresUserAction?: boolean;
 } & DialogHTMLAttributes<HTMLDialogElement>;
 
-const StyledTitleBar = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  background-color: var(--main-background-color, #000);
-  color: var(--palette-grey-10, #fff);
-  box-shadow: 0 5px 20px -10px #000;
-  margin-bottom: 2px;
-  & > button {
-    position: absolute;
-    right: 0;
-    width: 30px;
-    height: 30px;
-  }
-`;
-
 // https://dev.to/link2twenty/react-using-native-dialogs-to-make-a-modal-popup-4b25
 // https://www.youtube.com/watch?v=ywtkJkxJsdg
 // If the dialog is a confirmation window communicating an important message
@@ -132,3 +114,21 @@ export const Modal = ({
     </dialog>
   );
 };
+
+const StyledTitleBar = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  background-color: var(--main-background-color, #000);
+  color: var(--palette-grey-10, #fff);
+  box-shadow: 0 5px 20px -10px #000;
+  margin-bottom: 2px;
+  & > button {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+  }
+`;

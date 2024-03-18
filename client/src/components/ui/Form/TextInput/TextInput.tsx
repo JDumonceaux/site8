@@ -1,21 +1,26 @@
+import { HTMLInputTypeAttribute, InputHTMLAttributes, useState } from 'react';
+import { TextHelp } from '../TextHelp';
+import { EndAdornment } from '../EndAdornment/EndAdornment';
 import { TextLabel } from '../TextLabel';
 import { styled } from 'styled-components';
 
-import { InputHTMLAttributes } from 'react';
-import { TextHelp } from '../TextHelp';
-
 type TextInputProps = {
+  readonly type?: HTMLInputTypeAttribute | undefined;
   readonly id: string;
   readonly label: string;
   readonly showCounter?: boolean;
   readonly characterCount?: number;
   readonly maxLength?: number;
   readonly isValid?: boolean;
-  readonly isRequired?: boolean;
+  readonly required?: boolean;
   readonly helpText?: React.ReactNode | string[] | string;
   readonly errorTextShort?: string;
   readonly errorText?: React.ReactNode | string[] | string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
+
+// "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden"
+// "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit"
+// "tel" | "text" | "time" | "url" | "week"
 
 export const TextInput = ({
   id,
@@ -23,15 +28,24 @@ export const TextInput = ({
   showCounter = false,
   maxLength,
   isValid = true,
-  isRequired = false,
+  required = false,
   helpText,
   errorText,
   errorTextShort,
   value,
+  type = 'text',
   ...rest
 }: TextInputProps): JSX.Element => {
   const characterCount =
     typeof value === 'string' || value instanceof String ? value.length : 0;
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [currentType, setCurrentType] = useState(type);
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+    setCurrentType(showPassword ? 'password' : 'text');
+  };
 
   return (
     <StyledWrapper>
@@ -42,15 +56,18 @@ export const TextInput = ({
         <StyledInput
           $isValid={isValid}
           aria-invalid={!isValid}
-          aria-required={isRequired}
+          aria-required={required}
           id={id}
           maxLength={maxLength}
           name={id}
-          type="text"
+          required={required}
+          type={currentType}
           value={value}
           {...rest}
         />
-        <StyledButton type="reset" />
+        {type === 'password' ? (
+          <EndAdornment onClick={handleTogglePassword} />
+        ) : null}
       </StyledDivWrapper>
       <TextHelp
         characterCount={characterCount}
@@ -75,6 +92,9 @@ const StyledInput = styled.input<{ $isValid: boolean }>`
   padding-block-start: 6px;
   padding-inline-end: 6px;
   padding-inline-start: 6px;
+  &::placeholder {
+    font-size: 0.8rem;
+  }
 `;
 const StyledDivWrapper = styled.div<{ $isValid: boolean }>`
   position: relative;
@@ -99,25 +119,4 @@ const StyledDivWrapper = styled.div<{ $isValid: boolean }>`
 `;
 const StyledWrapper = styled.div`
   margin-bottom: 18px;
-`;
-const StyledButton = styled.button`
-  position: absolute;
-  z-index: 1;
-  right: 6px;
-  border: none;
-  cursor: pointer;
-  height: 24px;
-  width: 24px;
-  &:after {
-    content: 'X';
-    display: inline-block;
-    line-height: 18px;
-    font-size: 0.6rem;
-    height: 80%;
-    width: 80%;
-    transform: translateY(-10%);
-    border-radius: 50%;
-    color: white;
-    background-color: #a9a9a9;
-  }
 `;

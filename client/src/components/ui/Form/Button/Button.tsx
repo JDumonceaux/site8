@@ -1,6 +1,22 @@
+import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-import { ButtonHTMLAttributes } from 'react';
+type ButtonProps = {
+  readonly id: string;
+  readonly children: React.ReactNode;
+  readonly variant?: 'primary' | 'secondary';
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'>;
+
+export const Button = ({
+  id,
+  children,
+  variant = 'primary',
+  ...rest
+}: ButtonProps): JSX.Element => (
+  <StyledButton $variant={variant} id={id} name={id} {...rest}>
+    {children}
+  </StyledButton>
+);
 
 const StyledButton = styled.button<{
   $variant: 'primary' | 'secondary' | undefined;
@@ -31,22 +47,3 @@ const StyledButton = styled.button<{
     background-color: #24671f;
   }
 `;
-
-type ButtonProps = {
-  id: string;
-  children: React.ReactNode;
-  variant?: 'primary' | 'secondary';
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'>;
-
-export function Button({
-  id,
-  children,
-  variant = 'primary',
-  ...rest
-}: ButtonProps): JSX.Element {
-  return (
-    <StyledButton id={id} name={id} $variant={variant} {...rest}>
-      {children}
-    </StyledButton>
-  );
-}

@@ -25,3 +25,4 @@ export const Snackbar = (): JSX.Element => {
     </StyledDialog>
   );
 };
+export default Snackbar;

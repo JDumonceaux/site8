@@ -17,6 +17,8 @@ export const Header = (): JSX.Element => {
   );
 };
 
+export default Header;
+
 const StyledHeader = styled.header`
   background-color: var(--main-background-color, #000);
   display: flex;

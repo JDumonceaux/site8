@@ -9,6 +9,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import reportWebVitals from './utils/reportWebVitals';
 import { ReduxProvider } from './services/providers/ReduxProvider';
 import { RouterProvider } from './services/providers/RouterProvider';
+import { Amplify } from 'aws-amplify';
+import config from './amplifyconfiguration.json';
+Amplify.configure(config);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

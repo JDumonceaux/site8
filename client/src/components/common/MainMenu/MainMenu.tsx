@@ -1,5 +1,5 @@
 import useMenu from 'services/hooks/useMenu';
-import CustomNavLink from '../../ui/CustomNavLink';
+import CustomNavLink from '../CustomNavLink/CustomNavLink';
 import { AccordionMenu } from './AccordionMenu';
 
 export const MainMenu = (): JSX.Element => {
