@@ -64,7 +64,7 @@
     "pretty-quick": "^4.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.1.4",
-    "vite-tsconfig-paths": "^4.3.1"
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "pre-commit": "lint",
   "license": "UNLICENSED",
