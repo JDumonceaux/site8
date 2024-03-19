@@ -28,6 +28,7 @@ export const TextHelp = ({
         return (
           <ul>
             {msg.map((item, index) => (
+              // eslint-disable-next-line react/no-array-index-key
               <li key={`item-${index}`}>{item}</li>
             ))}
           </ul>

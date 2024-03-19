@@ -98,7 +98,7 @@ const SignupPage = () => {
       <Meta title={title} />
       <StyledMain>
         <StyledGrid>
-          <div>
+          <StyledLeft>
             <StyledH1>Sign Up</StyledH1>
             <form noValidate onSubmit={handleSubmit}>
               <TextInput
@@ -147,10 +147,10 @@ const SignupPage = () => {
                 Cancel
               </LinkButton>
             </form>
-          </div>
-          <div>
+          </StyledLeft>
+          <StyledRight>
             <img alt="" src="/images/face.png" />
-          </div>
+          </StyledRight>
         </StyledGrid>
       </StyledMain>
     </>
@@ -166,18 +166,35 @@ const StyledMain = styled.main`
 const StyledGrid = styled.div`
   display: flex;
   justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
   max-width: 940px;
   margin: 0 auto;
   margin-top: 20px;
-  > div:first-child {
-    width: 360px;
+  container: parent;
+  container-type: inline-size;
+`;
+const StyledLeft = styled.div`
+  @container parent (inline-size > 430px) {
+    width: 50%;
     min-width: 360px;
     padding: 0 16px;
   }
-  > div:nth-child(2) {
+  width: 100%;
+  max-width: 430px;
+  padding: 0 20px;
+`;
+const StyledRight = styled.div`
+  @container parent (inline-size > 430px) {
     margin: 0 auto;
+    width: 50%;
     padding: 0 40px;
+    max-width: unset;
   }
+  margin-left: auto;
+  width: 100%;
+  max-width: 100px;
+  padding: 0 20px 20px 20px;
 `;
 const StyledH1 = styled.h1`
   font-size: 1.2rem;
