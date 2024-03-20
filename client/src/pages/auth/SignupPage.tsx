@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 import useAuth from 'services/hooks/useAuth';
 import { useForm } from 'services/hooks/useForm';
+import { PasswordField } from 'components/ui/Form/PasswordField';
+import { useNavigate } from 'react-router-dom';
 
 // Define Zod Shape
 const schema = z.object({
@@ -31,7 +33,7 @@ const schema = z.object({
 const SignupPage = () => {
   const title = 'Sign-Up';
 
-  const { signUpUser, isLoading } = useAuth();
+  const { signUpUser, isLoading, error, nextStep, socialSignIn } = useAuth();
 
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
@@ -45,10 +47,10 @@ const SignupPage = () => {
   const { formValues, setFormValues, errors, setErrors } =
     useForm<FormValues>(defaultFormValues);
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const isValid = (fieldName: keys) => {
-    return getFieldErrors(fieldName) ? false : true;
+  const hasError = (fieldName: keys) => {
+    return !getFieldErrors(fieldName);
   };
 
   const validateForm = useCallback(() => {
@@ -71,12 +73,16 @@ const SignupPage = () => {
         try {
           await signUpUser(formValues.emailAddress, formValues.password);
           // Handle successful sign-up
+          if (nextStep && nextStep === 'CONFIRM_SIGN_UP') {
+            navigate('/confirm');
+          }
+          console.log('nextStep', nextStep);
         } catch (error) {
           // Handle sign-up error
         }
       }
     },
-    [validateForm, signUpUser, formValues],
+    [validateForm, signUpUser, formValues, navigate, nextStep],
   );
 
   const handleChange = (
@@ -89,6 +95,15 @@ const SignupPage = () => {
     }));
   };
 
+  const getStandardTextInputAttributes = (fieldName: keys) => {
+    return {
+      id: fieldName,
+      errorText: getFieldErrors(fieldName),
+      hasError: hasError(fieldName),
+      value: formValues[fieldName],
+    };
+  };
+
   useEffect(() => {
     document.title = `${APP_NAME} - ${title}`;
   }, []);
@@ -98,45 +113,49 @@ const SignupPage = () => {
       <Meta title={title} />
       <StyledMain>
         <StyledGrid>
-          <StyledLeft>
+          <StyledLeft aria-hidden="true">
+            <img alt="" src="/images/face.png" />
+          </StyledLeft>
+          <StyledRight>
             <StyledH1>Sign Up</StyledH1>
-            <form noValidate onSubmit={handleSubmit}>
+            {error ? (
+              <StyledDivError id="error">
+                Oops! There was an error: {error}
+              </StyledDivError>
+            ) : null}
+            <form
+              aria-errormessage={error ? 'error' : undefined}
+              aria-invalid={error ? 'true' : 'false'}
+              noValidate
+              onSubmit={handleSubmit}>
               <TextInput
                 autoComplete="on"
-                errorText={getFieldErrors('emailAddress')}
                 errorTextShort="Please enter an email address"
                 helpText="Required"
-                id="emailAddress"
                 inputMode="email"
-                isValid={isValid('emailAddress')}
                 label="Email Address"
                 onChange={handleChange}
                 placeholder="Enter Email Address"
                 required
                 spellCheck="false"
                 type="email"
-                value={formValues['emailAddress']}
+                {...getStandardTextInputAttributes('emailAddress')}
               />
-              <TextInput
-                errorText={getFieldErrors('password')}
+              <PasswordField
                 errorTextShort="Please enter a password"
                 helpText={[
                   'Required',
                   'Must be at least 8 characters',
                   'Max length: 30',
                 ]}
-                id="password"
-                inputMode="text"
-                isValid={isValid('password')}
                 label="Password"
                 maxLength={30}
                 onChange={handleChange}
                 placeholder="Enter Password"
                 required
                 showCounter
-                spellCheck="false"
                 type="password"
-                value={formValues['password']}
+                {...getStandardTextInputAttributes('password')}
               />
               <Button2 id="login" type="submit">
                 {isLoading ? 'Processing' : 'Submit'}
@@ -146,10 +165,29 @@ const SignupPage = () => {
               <LinkButton id="cancel" to="/">
                 Cancel
               </LinkButton>
+
+              <Button2
+                id="googgle"
+                onClick={() =>
+                  socialSignIn({
+                    provider: 'Google',
+                    customState: 'shopping-cart',
+                  })
+                }>
+                Open Google
+              </Button2>
+              <Button2
+                id="amazon"
+                onClick={() =>
+                  socialSignIn({
+                    provider: 'Amazon',
+                    customState: 'shopping-cart',
+                  })
+                }
+                type="button">
+                Open Amazon
+              </Button2>
             </form>
-          </StyledLeft>
-          <StyledRight>
-            <img alt="" src="/images/face.png" />
           </StyledRight>
         </StyledGrid>
       </StyledMain>
@@ -163,18 +201,26 @@ const StyledMain = styled.main`
   background-color: #fff;
   background-size: contain;
 `;
+const StyledDivError = styled.div`
+  border: 1px solid var(--palette-error);
+  color: var(--palette-error);
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+`;
+
 const StyledGrid = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   max-width: 940px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 60px;
   container: parent;
   container-type: inline-size;
 `;
-const StyledLeft = styled.div`
+const StyledRight = styled.div`
   @container parent (inline-size > 430px) {
     width: 50%;
     min-width: 360px;
@@ -183,8 +229,9 @@ const StyledLeft = styled.div`
   width: 100%;
   max-width: 430px;
   padding: 0 20px;
+  margin: 0 auto;
 `;
-const StyledRight = styled.div`
+const StyledLeft = styled.div`
   @container parent (inline-size > 430px) {
     margin: 0 auto;
     width: 50%;

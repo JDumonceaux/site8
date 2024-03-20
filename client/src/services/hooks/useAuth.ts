@@ -1,9 +1,16 @@
-import { confirmSignUp, signUp } from 'aws-amplify/auth';
+import {
+  confirmSignUp,
+  signUp,
+  signInWithRedirect,
+  AuthError,
+  resendSignUpCode,
+} from 'aws-amplify/auth';
 import { useState } from 'react';
 
 const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [nextStep, setNextStep] = useState<string | undefined>(undefined);
 
   const signUpUser = async (eMailAddress: string, password: string) => {
     try {
@@ -23,9 +30,12 @@ const useAuth = () => {
         //   autoSignIn: true, // or SignInOptions e.g { authFlowType: "USER_SRP_AUTH" }
         // },
       });
-      console.log(nextStep);
-    } catch (error: unknown) {
-      setError(error as string);
+      setNextStep(nextStep.signUpStep);
+      console.log('p', nextStep);
+    } catch (error) {
+      const err = error as AuthError;
+      console.log('3', err.message);
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -37,7 +47,7 @@ const useAuth = () => {
       setIsLoading(true);
       const { nextStep } = await confirmSignUp({
         username: eMailAddress,
-        authenticationCode: code,
+        confirmationCode: code,
       });
       console.log(nextStep);
     } catch (error: unknown) {
@@ -56,22 +66,51 @@ const useAuth = () => {
       });
       // this should always throw an error of some kind, but if for some reason this succeeds then the user probably exists.
       return false;
-    } catch (err: AuthValidationErrorCode) {
-      switch (err.code) {
-        case 'UserNotFoundException':
-          return true;
-        case 'NotAuthorizedException':
-          return false;
-        case 'AliasExistsException':
-          // Email alias already exists
-          return false;
-        case 'CodeMismatchException':
-          return false;
-        case 'ExpiredCodeException':
-          return false;
-        default:
-          return false;
-      }
+    } catch (err: unknown) {
+      // switch (err.code) {
+      //   case 'UserNotFoundException':
+      //     return true;
+      //   case 'NotAuthorizedException':
+      //     return false;
+      //   case 'AliasExistsException':
+      //     // Email alias already exists
+      //     return false;
+      //   case 'CodeMismatchException':
+      //     return false;
+      //   case 'ExpiredCodeException':
+      //     return false;
+      //   default:
+      //     return false;
+      // }
+    }
+    return false;
+  };
+
+  const socialSignIn = async (
+    input?: AuthSignInWithRedirectInput | undefined,
+  ) => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      await signInWithRedirect(input);
+      console.log(nextStep);
+    } catch (error: unknown) {
+      setError(error as string);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resendCode = async (username: string) => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      await resendSignUpCode({ username });
+      console.log(nextStep);
+    } catch (error: unknown) {
+      setError(error as string);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -88,7 +127,11 @@ const useAuth = () => {
     signUpUser: signUpUser,
     confirmUser: confirmUser,
     usernameAvailable,
+    socialSignIn,
+    resendCode,
     isLoading,
+    error,
+    nextStep,
   };
 };
 

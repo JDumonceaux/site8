@@ -166,7 +166,7 @@ const usePageEdit = () => {
     [errors],
   );
 
-  const isValid = useCallback(
+  const hasError = useCallback(
     (fieldName: keys) => {
       return getFieldErrors(fieldName) ? false : true;
     },
@@ -179,7 +179,7 @@ const usePageEdit = () => {
       formValues,
       isProcessing,
       getFieldErrors,
-      isValid,
+      hasError,
       setFormValues,
       setFieldValue,
       setId,
@@ -193,7 +193,7 @@ const usePageEdit = () => {
       formValues,
       isProcessing,
       getFieldErrors,
-      isValid,
+      hasError,
       setFormValues,
       setFieldValue,
       setId,

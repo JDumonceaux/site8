@@ -22,7 +22,7 @@ export const PageEdit = (): JSX.Element => {
     formValues,
     isProcessing,
     getFieldErrors,
-    isValid,
+    hasError,
     handleClear,
     handleCancel,
     handleChange,
@@ -63,7 +63,7 @@ export const PageEdit = (): JSX.Element => {
               helpText="Required"
               id="name"
               inputMode="text"
-              isValid={isValid('name')}
+              hasError={hasError('name')}
               label="Short Title"
               maxLength={30}
               onChange={handleChange}
@@ -78,7 +78,7 @@ export const PageEdit = (): JSX.Element => {
               errorTextShort="Please enter a title"
               helpText="Required"
               id="long_title"
-              isValid={isValid('long_title')}
+              hasError={hasError('long_title')}
               label="Long Title"
               maxLength={250}
               onChange={handleChange}
@@ -91,7 +91,7 @@ export const PageEdit = (): JSX.Element => {
             <TextArea
               errorText={getFieldErrors('text')}
               id="text"
-              isValid={isValid('text')}
+              hasError={hasError('text')}
               label="Text"
               onChange={handleChange}
               rows={10}
@@ -104,7 +104,7 @@ export const PageEdit = (): JSX.Element => {
               errorText={getFieldErrors('edit_date_display')}
               errorTextShort="Please enter a date"
               id="edit_date_display"
-              isValid={isValid('edit_date_display')}
+              hasError={hasError('edit_date_display')}
               label="Edit Date"
               maxLength={10}
               onChange={handleChange}
@@ -124,7 +124,7 @@ export const PageEdit = (): JSX.Element => {
               errorText={getFieldErrors('parent')}
               errorTextShort="Please enter a parent"
               id="parent"
-              isValid={isValid('parent')}
+              hasError={hasError('parent')}
               label="Parent"
               onChange={handleChange}
               showCounter
@@ -133,7 +133,7 @@ export const PageEdit = (): JSX.Element => {
             <TextInput
               errorText={getFieldErrors('reading_time')}
               id="reading_time"
-              isValid={isValid('reading_time')}
+              hasError={hasError('reading_time')}
               label="Reading Time"
               onChange={handleChange}
               showCounter
@@ -142,7 +142,7 @@ export const PageEdit = (): JSX.Element => {
             <TextInput
               errorText={getFieldErrors('readability_score')}
               id="readability_score"
-              isValid={isValid('readability_score')}
+              hasError={hasError('readability_score')}
               label="Readability Score"
               onChange={handleChange}
               showCounter

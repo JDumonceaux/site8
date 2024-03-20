@@ -2,7 +2,7 @@ import React, { LabelHTMLAttributes, useCallback } from 'react';
 import { styled } from 'styled-components';
 
 type TextHelpProps = {
-  readonly isValid?: boolean;
+  readonly hasError?: boolean;
   readonly showCounter?: boolean;
   readonly characterCount?: number;
   readonly maxLength?: number;
@@ -11,7 +11,7 @@ type TextHelpProps = {
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 export const TextHelp = ({
-  isValid = true,
+  hasError = true,
   showCounter = false,
   characterCount,
   maxLength,
@@ -58,8 +58,8 @@ export const TextHelp = ({
 
   return (
     <StyledDivWrapper>
-      <StyledErrorDiv $isValid={isValid}>
-        {getHelperText(isValid ? helpText : errorText)}
+      <StyledErrorDiv $hasError={hasError}>
+        {getHelperText(hasError ? helpText : errorText)}
       </StyledErrorDiv>
       {getCounterText(characterCount, maxLength, showCounter)}
     </StyledDivWrapper>
@@ -79,6 +79,6 @@ const StyledDivWrapper = styled.div`
     padding-inline-start: 15px;
   }
 `;
-const StyledErrorDiv = styled.div<{ $isValid: boolean }>`
-  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+const StyledErrorDiv = styled.div<{ $hasError: boolean }>`
+  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
 `;

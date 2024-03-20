@@ -10,7 +10,7 @@ type TextAreaProps = {
   readonly showCounter?: boolean;
   readonly characterCount?: number;
   readonly maxLength?: number;
-  readonly isValid?: boolean;
+  readonly hasError?: boolean;
   readonly isRequired?: boolean;
   readonly helpText?: React.ReactNode | string[] | string;
   readonly errorTextShort?: string;
@@ -22,7 +22,7 @@ export const TextArea = ({
   label,
   showCounter = false,
   maxLength,
-  isValid = true,
+  hasError = true,
   isRequired = false,
   helpText,
   errorText,
@@ -35,12 +35,12 @@ export const TextArea = ({
 
   return (
     <div className="text-area">
-      <TextLabel errorText={errorTextShort} htmlFor={id} isValid={isValid}>
+      <TextLabel errorText={errorTextShort} hasError={hasError} htmlFor={id}>
         {label}
       </TextLabel>
       <StyledTextArea
-        $isValid={isValid}
-        aria-invalid={!isValid}
+        $hasError={hasError}
+        aria-invalid={!hasError}
         aria-required={isRequired}
         id={id}
         name={id}
@@ -51,14 +51,14 @@ export const TextArea = ({
         characterCount={characterCount}
         maxLength={maxLength}
         showCounter={showCounter}>
-        {isValid ? helpText : errorText}
+        {hasError ? helpText : errorText}
       </TextHelp>
     </div>
   );
 };
 
-const StyledTextArea = styled.textarea<{ $isValid: boolean }>`
-  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+const StyledTextArea = styled.textarea<{ $hasError: boolean }>`
+  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
   background-color: var(--palette-white, #fff);
   font-size: 1rem;
   letter-spacing: 0.5px;
@@ -71,7 +71,7 @@ const StyledTextArea = styled.textarea<{ $isValid: boolean }>`
   border-width: 1px;
   border-style: solid;
   border-color: ${(props) =>
-    props.$isValid ? 'rgba(0, 0, 0, 0.23)' : '#ff0000'};
+    props.$hasError ? 'rgba(0, 0, 0, 0.23)' : '#ff0000'};
   border-radius: 4px;
 
   &:hover {

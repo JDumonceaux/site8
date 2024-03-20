@@ -1,22 +1,21 @@
-import { HTMLInputTypeAttribute, InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes } from 'react';
 import { TextHelp } from '../TextHelp';
-import { EndAdornment } from '../EndAdornment/EndAdornment';
 import { TextLabel } from '../TextLabel';
 import { styled } from 'styled-components';
 
-type TextInputProps = {
-  readonly type?: HTMLInputTypeAttribute | undefined;
+export type TextInputProps = {
   readonly id: string;
   readonly label: string;
   readonly showCounter?: boolean;
   readonly characterCount?: number;
   readonly maxLength?: number;
-  readonly isValid?: boolean;
+  readonly hasError?: boolean;
   readonly required?: boolean;
   readonly helpText?: React.ReactNode | string[] | string;
   readonly errorTextShort?: string;
   readonly errorText?: React.ReactNode | string[] | string;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'type'>;
+  readonly outerEndComponent?: React.ReactNode;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name'>;
 
 // "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden"
 // "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit"
@@ -27,53 +26,44 @@ export const TextInput = ({
   label,
   showCounter = false,
   maxLength,
-  isValid = true,
+  hasError = true,
   required = false,
   helpText,
   errorText,
   errorTextShort,
   value,
+  outerEndComponent,
   type = 'text',
   ...rest
 }: TextInputProps): JSX.Element => {
   const characterCount =
     typeof value === 'string' || value instanceof String ? value.length : 0;
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [currentType, setCurrentType] = useState(type);
-
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-    setCurrentType(showPassword ? 'password' : 'text');
-  };
-
   return (
     <StyledWrapper>
-      <TextLabel errorText={errorTextShort} htmlFor={id} isValid={isValid}>
+      <TextLabel errorText={errorTextShort} hasError={hasError} htmlFor={id}>
         {label}
       </TextLabel>
-      <StyledDivWrapper $isValid={isValid}>
+      <StyledDivWrapper $hasError={hasError}>
         <StyledInput
-          $isValid={isValid}
-          aria-invalid={!isValid}
+          $hasError={hasError}
+          aria-invalid={!hasError}
           aria-required={required}
           id={id}
           maxLength={maxLength}
           name={id}
           required={required}
-          type={currentType}
+          type={type}
           value={value}
           {...rest}
         />
-        {type === 'password' ? (
-          <EndAdornment onClick={handleTogglePassword} />
-        ) : null}
+        {outerEndComponent}
       </StyledDivWrapper>
       <TextHelp
         characterCount={characterCount}
         errorText={errorText}
+        hasError={hasError}
         helpText={helpText}
-        isValid={isValid}
         maxLength={maxLength}
         showCounter={showCounter}
       />
@@ -81,9 +71,11 @@ export const TextInput = ({
   );
 };
 
-const StyledInput = styled.input<{ $isValid: boolean }>`
+TextInput.displayName = 'TextInput';
+
+const StyledInput = styled.input<{ $hasError: boolean }>`
   position: relative;
-  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
   background-color: inherit;
   font-size: 1rem;
   letter-spacing: 0.5px;
@@ -96,24 +88,24 @@ const StyledInput = styled.input<{ $isValid: boolean }>`
     font-size: 0.8rem;
   }
 `;
-const StyledDivWrapper = styled.div<{ $isValid: boolean }>`
+const StyledDivWrapper = styled.div<{ $hasError: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
   z-index: 2;
-  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
   background-color: #ffffff;
   padding: 0 6px;
   border-width: 1px;
   border-style: solid;
   border-color: ${(props) =>
-    props.$isValid ? 'rgba(0, 0, 0, 0.23)' : '#ff0000'};
+    props.$hasError ? 'rgba(0, 0, 0, 0.23)' : '#ff0000'};
   border-radius: 4px;
   &:hover {
     border-color: #63544f;
   }
   &:focus {
-    border-color: ${(props) => (props.$isValid ? '#6db144;' : '#ff0000')};
+    border-color: ${(props) => (props.$hasError ? '#6db144;' : '#ff0000')};
     border-width: 2px;
   }
 `;

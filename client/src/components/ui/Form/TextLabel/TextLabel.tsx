@@ -2,28 +2,30 @@ import { LabelHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
 type TextLabelProps = {
-  readonly isValid?: boolean;
+  readonly hasError?: boolean;
   readonly errorText?: string;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 export const TextLabel = ({
   id,
   children,
-  isValid = true,
+  hasError = true,
   errorText,
   ...rest
 }: TextLabelProps): JSX.Element => {
   // Add error messages and correction suggestions directly into the <label> tag
   return (
-    <StyledLabel $isValid={isValid} htmlFor={id} {...rest}>
+    <StyledLabel $hasError={hasError} htmlFor={id} {...rest}>
       {children}
-      {!isValid ? <StyledSpan>- {errorText}</StyledSpan> : null}
+      {!hasError ? <StyledSpan>- {errorText}</StyledSpan> : null}
     </StyledLabel>
   );
 };
 
-const StyledLabel = styled.label<{ $isValid: boolean }>`
-  color: ${(props) => (props.$isValid ? '#212121' : '#ff0000')};
+TextLabel.displayName = 'TextLabel';
+
+const StyledLabel = styled.label<{ $hasError: boolean }>`
+  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
   font-size: 0.9rem;
   letter-spacing: 0.25px;
   line-height: 18px;

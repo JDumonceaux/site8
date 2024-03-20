@@ -18,7 +18,7 @@ const Sitemap = lazy(() => import('pages/Sitemap'));
 
 const Artists = lazy(() => import('pages/Artists'));
 const ArtList = lazy(() => import('pages/ArtList'));
-const AuthPage = lazy(() => import('pages/auth/AuthPage'));
+
 const MusicList = lazy(() => import('pages/MusicList'));
 const PhotoPage = lazy(() => import('pages/PhotoPage'));
 const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
@@ -29,7 +29,7 @@ const GraphGLPage = lazy(() => import('pages/GraphGLPage'));
 const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
 const TestGrid = lazy(() => import('pages/TestGrid'));
 const SigninPage = lazy(() => import('pages/auth/SigninPage'));
-const ValidatePage = lazy(() => import('pages/auth/ValidatePage'));
+const ConfirmEmailPage = lazy(() => import('pages/auth/ConfirmEmailPage'));
 const SignupPage = lazy(() => import('pages/auth/SignupPage'));
 
 const router = createBrowserRouter(
@@ -255,7 +255,6 @@ const router = createBrowserRouter(
         </Route>
         {/* Example */}
         <Route path="example">
-          <Route element={<AuthPage />} path="auth" />
           <Route element={<GraphGLPage />} path="graphgl" />
         </Route>
 
@@ -293,7 +292,7 @@ const router = createBrowserRouter(
         {/* Auth */}
         <Route element={<SigninPage />} path="signin" />
         <Route element={<SignupPage />} path="signup" />
-        <Route element={<ValidatePage />} path="validate" />
+        <Route element={<ConfirmEmailPage />} path="confirm" />
       </Route>
     </Route>,
   ),
