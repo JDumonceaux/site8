@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
+import AuthLayout from 'pages/Layouts/AuthLayout/AuthLayout';
 import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
 import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
 import { ErrorPage } from 'pages/ErrorPage';
@@ -28,9 +29,18 @@ const PagesList = lazy(() => import('pages/PagesList'));
 const GraphGLPage = lazy(() => import('pages/GraphGLPage'));
 const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
 const TestGrid = lazy(() => import('pages/TestGrid'));
+// Site Pages
+const TermsOfUsePage = lazy(() => import('pages/site/TermsOfUsePage'));
+const CookiesUsePage = lazy(() => import('pages/site/CookiesUsePage'));
+const PrivacyPolicyPage = lazy(() => import('pages/site/PrivacyPolicyPage'));
+// Auth Pages
 const SigninPage = lazy(() => import('pages/auth/SigninPage'));
-const ConfirmEmailPage = lazy(() => import('pages/auth/ConfirmEmailPage'));
+const SignoutPage = lazy(() => import('pages/auth/SignoutPage'));
 const SignupPage = lazy(() => import('pages/auth/SignupPage'));
+const ConfirmEmailPage = lazy(() => import('pages/auth/ConfirmEmailPage'));
+const ForgotPasswordPage = lazy(() => import('pages/auth/ForgotPasswordPage'));
+const ChangePasswordPage = lazy(() => import('pages/auth/ChangePasswordPage'));
+const DeleteAccountPage = lazy(() => import('pages/auth/DeleteAccountPage'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -290,9 +300,23 @@ const router = createBrowserRouter(
         </Route>
 
         {/* Auth */}
-        <Route element={<SigninPage />} path="signin" />
-        <Route element={<SignupPage />} path="signup" />
-        <Route element={<ConfirmEmailPage />} path="confirm" />
+        <Route element={<AuthLayout />}>
+          <Route element={<SigninPage />} path="signin" />
+          <Route element={<SignupPage />} path="signup" />
+          <Route element={<SignoutPage />} path="signout" />
+          <Route element={<ConfirmEmailPage />} path="confirm" />
+          <Route path="password">
+            <Route element={<ForgotPasswordPage />} path="forgot" />
+            <Route element={<ChangePasswordPage />} path="change" />
+          </Route>
+          <Route path="account">
+            <Route element={<DeleteAccountPage />} path="delete" />
+          </Route>
+
+          <Route element={<TermsOfUsePage />} path="terms-of-use" />
+          <Route element={<CookiesUsePage />} path="cookies" />
+          <Route element={<PrivacyPolicyPage />} path="privacy-policy" />
+        </Route>
       </Route>
     </Route>,
   ),

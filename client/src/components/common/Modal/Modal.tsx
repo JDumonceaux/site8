@@ -121,7 +121,7 @@ const StyledTitleBar = styled.div`
   justify-content: center;
   align-items: center;
   height: 30px;
-  background-color: var(--main-background-color, #000);
+  background-color: var(--palette-main-color, #000);
   color: var(--palette-grey-10, #fff);
   box-shadow: 0 5px 20px -10px #000;
   margin-bottom: 2px;

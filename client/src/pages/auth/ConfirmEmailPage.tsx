@@ -1,30 +1,28 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { styled } from 'styled-components';
 import useAuth from 'services/hooks/useAuth';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 
-import { APP_NAME, REQUIRED_FIELD } from 'utils';
+import { APP_NAME } from 'utils';
 import { Meta } from 'components';
-import { Button2, LinkButton, TextInput } from 'components/ui/Form';
+import { Button2, TextInput } from 'components/ui/Form';
 
 import { useForm } from 'services/hooks/useForm';
+
+import { styled } from 'styled-components';
+import { AuthContainer } from './AuthContainer';
+import { authCode } from './ZodStrings';
 
 // Define Zod Shape
 const pageSchema = z.object({
   emailAddress: z.string().trim(),
-  authenticationCode: z
-    .string({
-      required_error: 'Code is required.',
-    })
-    .min(1, REQUIRED_FIELD)
-    .max(20, 'Max length exceeded: 30')
-    .trim(),
+  authenticationCode: authCode,
 });
 
-const ConfirmEmailPage = () => {
+export const ConfirmEmailPage = (): JSX.Element => {
   const title = 'Confirmation';
-  const { confirmUser, isLoading, error, resendCode } = useAuth();
+  const { authConfirmSignUp, authResendConfirmationCode, isLoading, error } =
+    useAuth();
   type FormValues = z.infer<typeof pageSchema>;
   const defaultFormValues: FormValues = useMemo(
     () => ({
@@ -61,17 +59,22 @@ const ConfirmEmailPage = () => {
       event.preventDefault();
       if (validateForm()) {
         try {
-          await confirmUser(
+          await authConfirmSignUp(
             formValues.emailAddress,
             formValues.authenticationCode,
           );
           // Handle successful sign-up
         } catch (error) {
-          // Handle sign-up error
+          console.log('Error: ', error);
         }
       }
     },
-    [validateForm, confirmUser, formValues],
+    [
+      validateForm,
+      authConfirmSignUp,
+      formValues.emailAddress,
+      formValues.authenticationCode,
+    ],
   );
 
   const handleChange = (
@@ -86,11 +89,11 @@ const ConfirmEmailPage = () => {
 
   const handleResend = useCallback(async () => {
     try {
-      await resendCode(formValues.emailAddress);
+      await authResendConfirmationCode(formValues.emailAddress);
     } catch (error) {
-      // Handle sign-up error
+      console.log('Error: ', error);
     }
-  }, [resendCode, formValues.emailAddress]);
+  }, [authResendConfirmationCode, formValues.emailAddress]);
 
   const getStandardTextInputAttributes = (fieldName: keys) => {
     return {
@@ -108,103 +111,56 @@ const ConfirmEmailPage = () => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
-        <StyledGrid>
-          <StyledLeft aria-hidden="true">
-            <img alt="" src="/images/bowler.jpg" />
-          </StyledLeft>
-          <StyledRight>
-            <StyledH1>Confirm Email</StyledH1>
-            {error ? <div>Error: {error}</div> : null}
-            <form noValidate onSubmit={handleSubmit}>
-              <TextInput
-                autoComplete="on"
-                errorTextShort="Please enter an email address"
-                helpText="Required"
-                inputMode="email"
-                label="Email Address"
-                onChange={handleChange}
-                placeholder="Enter Email Address"
-                required
-                spellCheck="false"
-                type="email"
-                {...getStandardTextInputAttributes('emailAddress')}
-              />
-              <TextInput
-                errorTextShort="Please enter an authentication code"
-                helpText={[
-                  'Required',
-                  'Check your email for the authentication code.',
-                ]}
-                inputMode="text"
-                label="Authentication Code"
-                onChange={handleChange}
-                placeholder="Enter Authentication Code"
-                showCounter
-                spellCheck="false"
-                {...getStandardTextInputAttributes('authenticationCode')}
-              />
-              <Button2 id="login" type="submit">
-                {isLoading ? 'Processing' : 'Submit'}
-              </Button2>
-              <br />
-              <br />
-              <LinkButton id="cancel" to="/">
-                Cancel
-              </LinkButton>
-
-              <Button2 id="resend" onClick={handleResend} type="button">
-                Resend Sign Up Code
-              </Button2>
-            </form>
-          </StyledRight>
-        </StyledGrid>
-      </StyledMain>
+      <AuthContainer
+        error={error}
+        leftImage={<img alt="" src="/images/bowler.jpg" />}
+        title="Confirm Email">
+        <StyledForm noValidate onSubmit={handleSubmit}>
+          <TextInput
+            autoComplete="on"
+            errorTextShort="Please enter an email address"
+            inputMode="email"
+            label="Email Address"
+            onChange={handleChange}
+            placeholder="Enter Email Address"
+            required
+            spellCheck="false"
+            type="email"
+            {...getStandardTextInputAttributes('emailAddress')}
+          />
+          <TextInput
+            errorTextShort="Please enter an authentication code"
+            helpText={['Check your email for the authentication code.']}
+            inputMode="text"
+            label="Authentication Code"
+            maxLength={6}
+            onChange={handleChange}
+            placeholder="Enter Authentication Code"
+            showCounter
+            spellCheck="false"
+            {...getStandardTextInputAttributes('authenticationCode')}
+          />
+          <Button2 id="login" type="submit">
+            {isLoading ? 'Processing' : 'Submit'}
+          </Button2>
+          <StyledBottomMsg>
+            <button onClick={handleResend} type="button">
+              Resend Code
+            </button>
+          </StyledBottomMsg>
+        </StyledForm>
+      </AuthContainer>
     </>
   );
 };
 
 export default ConfirmEmailPage;
 
-const StyledMain = styled.main`
-  background-color: #fff;
-  background-size: contain;
+const StyledForm = styled.form`
+  padding: 20px 0;
 `;
-const StyledGrid = styled.div`
+const StyledBottomMsg = styled.div`
+  padding: 20px 0;
   display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 940px;
-  margin: 0 auto;
-  margin-top: 60px;
-  container: parent;
-  container-type: inline-size;
-`;
-const StyledRight = styled.div`
-  @container parent (inline-size > 430px) {
-    width: 50%;
-    min-width: 360px;
-    padding: 0 16px;
-  }
-  width: 100%;
-  max-width: 430px;
-  padding: 0 20px;
-  margin: 0 auto;
-`;
-const StyledLeft = styled.div`
-  @container parent (inline-size > 430px) {
-    margin: 0 auto;
-    width: 50%;
-    padding: 0 40px;
-    max-width: unset;
-  }
-  margin-left: auto;
-  width: 100%;
-  max-width: 100px;
-  padding: 0 20px 20px 20px;
-`;
-const StyledH1 = styled.h1`
-  font-size: 1.2rem;
-  font-weight: 700;
+  justify-content: space-between;
 `;

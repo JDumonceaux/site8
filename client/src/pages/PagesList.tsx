@@ -37,7 +37,7 @@ export const PagesList = (): JSX.Element => {
                 {sortedData?.map((item) => (
                   <tr key={item.id}>
                     <td>
-                      <Link to={`/admin/page/edit/${item.id}`}>{item.id}</Link>
+                      <StyledLink to={`/admin/page/edit/${item.id}`}>{item.id}</Link>
                     </td>
                     <td>{item.name}</td>
                     <td>{item.text}</td>

@@ -15,7 +15,7 @@ export default Footer;
 
 const StyledFooter = styled.footer`
   min-height: 20px;
-  background-color: var(--main-background-color, #000);
+  background-color: var(--palette-main-color, #000);
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;

@@ -1,7 +1,17 @@
-export const IconVisibilityOff = () => {
+type IconProps = {
+  readonly ariaHidden?: boolean;
+  readonly focusable?: boolean;
+};
+
+export const IconVisibilityOff = ({
+  ariaHidden = false,
+  focusable = true,
+}: IconProps) => {
   return (
     <svg
+      aria-hidden={ariaHidden}
       fill="none"
+      focusable={focusable}
       height="24"
       viewBox="0 0 24 24"
       width="24"

@@ -25,14 +25,14 @@ const ColorDiv = styled.div`
   align-items: center;
   padding: 8px 0;
   & :nth-child(1) {
-    background-color: var(--main-background-color);
+    background-color: var(--palette-main-color);
     border-radius: 50%;
     min-width: 20px;
     min-height: 20px;
   }
   & :nth-child(2) {
     font-weight: bold;
-    color: var(--main-background-color);
+    color: var(--palette-main-color);
     padding-left: 0.5rem;
   }
 `;

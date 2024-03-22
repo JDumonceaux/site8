@@ -1,44 +1,37 @@
-import { Meta } from 'components/common/Meta';
-
-import { APP_NAME } from 'utils/constants';
-import { useCallback, useEffect, useMemo } from 'react';
-
+import { useCallback, useEffect } from 'react';
+import { Meta } from 'components';
 import { Button2, TextInput } from 'components/ui/Form';
 
-import useAuth from 'services/hooks/useAuth';
+import { APP_NAME } from 'utils';
 import { z } from 'zod';
-import { useForm } from 'services/hooks/useForm';
 import { safeParse } from 'utils/zodHelper';
-import { PasswordField } from 'components/ui/Form/PasswordField';
-
+import useAuth from 'services/hooks/useAuth';
+import { useForm } from 'services/hooks/useForm';
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
-
-import { emailAddress, password } from './ZodStrings';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 
 // Define Zod Shape
 const schema = z.object({
-  emailAddress: emailAddress,
-  password: password,
+  deleteCode: z.literal('delete'),
 });
 
-export const SigninPage = (): JSX.Element => {
-  const title = 'Sign-In';
+export const DeleteAccountPage = (): JSX.Element => {
+  const title = 'Delete Account';
 
-  const { authSignIn, isLoading, error } = useAuth();
+  const { authDeleteUser, isLoading, error } = useAuth();
 
-  type FormValues = z.infer<typeof schema>;
+  type FormValues = {
+    deleteCode?: string;
+  };
   type keys = keyof FormValues;
-  const defaultFormValues: FormValues = useMemo(
-    () => ({
-      emailAddress: '',
-      password: '',
-    }),
-    [],
-  );
-  const { formValues, setFormValues, errors, setErrors } =
-    useForm<FormValues>(defaultFormValues);
+  const { formValues, setFormValues, errors, setErrors } = useForm<FormValues>({
+    deleteCode: '',
+  });
+
+  const hasError = (fieldName: keys) => {
+    return !getFieldErrors(fieldName);
+  };
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
@@ -46,18 +39,25 @@ export const SigninPage = (): JSX.Element => {
     return result.success;
   }, [formValues, setErrors]);
 
+  const getFieldErrors = useCallback(
+    (fieldName: keys) => {
+      return errors && errors[fieldName]?._errors;
+    },
+    [errors],
+  );
+
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {
       event.preventDefault();
       if (validateForm()) {
         try {
-          await authSignIn(formValues.emailAddress, formValues.password);
+          await authDeleteUser();
         } catch (error) {
           // Handle sign-up error
         }
       }
     },
-    [validateForm, authSignIn, formValues],
+    [validateForm, authDeleteUser],
   );
 
   const handleChange = (
@@ -69,17 +69,6 @@ export const SigninPage = (): JSX.Element => {
       [name]: value,
     }));
   };
-
-  const hasError = (fieldName: keys) => {
-    return !getFieldErrors(fieldName);
-  };
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
 
   const getStandardTextInputAttributes = (fieldName: keys) => {
     return {
@@ -100,54 +89,49 @@ export const SigninPage = (): JSX.Element => {
       <AuthContainer
         error={error}
         leftImage={<img alt="" src="/images/face.png" />}
-        title="Sign In">
+        title="Delete Account">
         <StyledForm
+          noValidate
           // aria-errormessage={error ? 'error' : undefined}
           // aria-invalid={error ? 'true' : 'false'}
-          noValidate
+          // noValidate
           onSubmit={handleSubmit}>
+          <div>
+            Are you sure you want to delete your account? You will lose access
+            and all data.
+          </div>
           <TextInput
-            autoComplete="on"
-            errorTextShort="Please enter an email address"
-            inputMode="email"
-            label="Email Address"
+            autoComplete="off"
+            errorTextShort="Required"
+            inputMode="text"
+            label="Please enter 'delete' to confirm"
             onChange={handleChange}
-            placeholder="Enter Email Address"
+            placeholder="delete"
             required
             spellCheck="false"
-            type="email"
-            {...getStandardTextInputAttributes('emailAddress')}
+            type="text"
+            {...getStandardTextInputAttributes('deleteCode')}
           />
-          <PasswordField
-            errorTextShort="Please enter a password"
-            label="Password"
-            maxLength={60}
-            onChange={handleChange}
-            placeholder="Enter Password"
-            required
-            type="password"
-            {...getStandardTextInputAttributes('password')}
-          />
+
           <Button2 id="login" type="submit" variant="secondary">
-            {isLoading ? 'Processing' : 'Submit'}
+            {isLoading ? 'Processing' : 'Delete Account'}
           </Button2>
         </StyledForm>
+
         <StyledBottomMsg>
-          <StyledLink to="/signup">Sign up</StyledLink>
-          <StyledLink to="/password/forgot">Forgot Password?</StyledLink>
+          <StyledLink to="/">Cancel</StyledLink>
         </StyledBottomMsg>
       </AuthContainer>
     </>
   );
 };
 
-export default SigninPage;
+export default DeleteAccountPage;
 
 const StyledForm = styled.form`
   padding: 20px 0;
 `;
 const StyledBottomMsg = styled.div`
   padding: 20px 0;
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
 `;

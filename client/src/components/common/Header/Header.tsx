@@ -3,11 +3,15 @@ import { styled } from 'styled-components';
 import { APP_NAME } from 'utils/constants';
 import { MenuIcon } from './MenuIcon';
 
-export const Header = (): JSX.Element => {
+type HeaderProps = {
+  readonly includeMenu?: boolean;
+};
+
+export const Header = ({ includeMenu = true }: HeaderProps): JSX.Element => {
   return (
     <StyledHeader className="header" data-testid="header">
       <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
-      <MenuIcon />
+      {includeMenu ? <MenuIcon /> : null}
       <StyledLinkDiv>
         <Link to="/">
           <AppName>{APP_NAME}</AppName>
@@ -20,7 +24,7 @@ export const Header = (): JSX.Element => {
 export default Header;
 
 const StyledHeader = styled.header`
-  background-color: var(--main-background-color, #000);
+  background-color: var(--palette-main-color, #000);
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;

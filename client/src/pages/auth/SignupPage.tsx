@@ -1,39 +1,33 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { Meta } from 'components';
-import { Button2, LinkButton, TextInput } from 'components/ui/Form';
-import { styled } from 'styled-components';
-import { APP_NAME, REQUIRED_FIELD } from 'utils';
+import { Button2, TextInput } from 'components/ui/Form';
+
+import { APP_NAME } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
-import useAuth from 'services/hooks/useAuth';
+import useAuth, { SocialProvider } from 'services/hooks/useAuth';
 import { useForm } from 'services/hooks/useForm';
 import { PasswordField } from 'components/ui/Form/PasswordField';
-import { useNavigate } from 'react-router-dom';
+
+import { Facebook } from 'components/ui/Form/Icon/icons/Facebook';
+import { Amazon } from 'components/ui/Form/Icon/icons/Amazon';
+import { Google } from 'components/ui/Form/Icon/icons/Google';
+import { Divider } from 'components/ui/Form/Divider/Divider';
+import { styled } from 'styled-components';
+import { AuthContainer } from './AuthContainer';
+import { StyledLink } from 'components/ui/Form/StyledLink';
+import { emailAddress, password } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({
-  password: z
-    .string({
-      required_error: 'Password is required.',
-      invalid_type_error: 'Password must be a string',
-    })
-    .min(8, REQUIRED_FIELD)
-    .max(30, 'Max length exceeded: 30')
-    .trim(),
-  emailAddress: z
-    .string({
-      required_error: 'eMail Address is required.',
-      invalid_type_error: 'eMail Address must be a string',
-    })
-    .min(1, REQUIRED_FIELD)
-    .max(250)
-    .trim(),
+  password: password,
+  emailAddress: emailAddress,
 });
 
-const SignupPage = () => {
+export const SignupPage = (): JSX.Element => {
   const title = 'Sign-Up';
 
-  const { signUpUser, isLoading, error, nextStep, socialSignIn } = useAuth();
+  const { authSignUp, authSignInWithRedirect, isLoading, error } = useAuth();
 
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
@@ -46,8 +40,6 @@ const SignupPage = () => {
   );
   const { formValues, setFormValues, errors, setErrors } =
     useForm<FormValues>(defaultFormValues);
-
-  const navigate = useNavigate();
 
   const hasError = (fieldName: keys) => {
     return !getFieldErrors(fieldName);
@@ -71,18 +63,13 @@ const SignupPage = () => {
       event.preventDefault();
       if (validateForm()) {
         try {
-          await signUpUser(formValues.emailAddress, formValues.password);
-          // Handle successful sign-up
-          if (nextStep && nextStep === 'CONFIRM_SIGN_UP') {
-            navigate('/confirm');
-          }
-          console.log('nextStep', nextStep);
+          await authSignUp(formValues.emailAddress, formValues.password);
         } catch (error) {
           // Handle sign-up error
         }
       }
     },
-    [validateForm, signUpUser, formValues, navigate, nextStep],
+    [validateForm, authSignUp, formValues],
   );
 
   const handleChange = (
@@ -93,6 +80,10 @@ const SignupPage = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleClick = (provider: SocialProvider) => {
+    authSignInWithRedirect(provider);
   };
 
   const getStandardTextInputAttributes = (fieldName: keys) => {
@@ -111,139 +102,104 @@ const SignupPage = () => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
-        <StyledGrid>
-          <StyledLeft aria-hidden="true">
-            <img alt="" src="/images/face.png" />
-          </StyledLeft>
-          <StyledRight>
-            <StyledH1>Sign Up</StyledH1>
-            {error ? (
-              <StyledDivError id="error">
-                Oops! There was an error: {error}
-              </StyledDivError>
-            ) : null}
-            <form
-              aria-errormessage={error ? 'error' : undefined}
-              aria-invalid={error ? 'true' : 'false'}
-              noValidate
-              onSubmit={handleSubmit}>
-              <TextInput
-                autoComplete="on"
-                errorTextShort="Please enter an email address"
-                helpText="Required"
-                inputMode="email"
-                label="Email Address"
-                onChange={handleChange}
-                placeholder="Enter Email Address"
-                required
-                spellCheck="false"
-                type="email"
-                {...getStandardTextInputAttributes('emailAddress')}
-              />
-              <PasswordField
-                errorTextShort="Please enter a password"
-                helpText={[
-                  'Required',
-                  'Must be at least 8 characters',
-                  'Max length: 30',
-                ]}
-                label="Password"
-                maxLength={30}
-                onChange={handleChange}
-                placeholder="Enter Password"
-                required
-                showCounter
-                type="password"
-                {...getStandardTextInputAttributes('password')}
-              />
-              <Button2 id="login" type="submit">
-                {isLoading ? 'Processing' : 'Submit'}
-              </Button2>
-              <br />
-              <br />
-              <LinkButton id="cancel" to="/">
-                Cancel
-              </LinkButton>
-
-              <Button2
-                id="googgle"
-                onClick={() =>
-                  socialSignIn({
-                    provider: 'Google',
-                    customState: 'shopping-cart',
-                  })
-                }>
-                Open Google
-              </Button2>
-              <Button2
-                id="amazon"
-                onClick={() =>
-                  socialSignIn({
-                    provider: 'Amazon',
-                    customState: 'shopping-cart',
-                  })
-                }
-                type="button">
-                Open Amazon
-              </Button2>
-            </form>
-          </StyledRight>
-        </StyledGrid>
-      </StyledMain>
+      <AuthContainer
+        error={error}
+        leftImage={<img alt="" src="/images/face.png" />}
+        title="Sign Up">
+        <Button2
+          icon={<Amazon ariaHidden focusable={false} />}
+          id="login"
+          marginBottom="15px"
+          onClick={() => handleClick(SocialProvider.AMAZON)}
+          type="button">
+          Sign up with Amazon
+        </Button2>
+        <Button2
+          icon={<Facebook ariaHidden focusable={false} />}
+          id="login"
+          marginBottom="15px"
+          onClick={() => handleClick(SocialProvider.FACEBOOK)}
+          type="button">
+          Sign up with Facebook
+        </Button2>
+        <Button2
+          icon={<Google ariaHidden focusable={false} />}
+          id="login"
+          marginBottom="15px"
+          onClick={() => handleClick(SocialProvider.GOOGLE)}
+          type="button">
+          Sign up with Google
+        </Button2>
+        <Divider>or</Divider>
+        <StyledForm
+          noValidate
+          // aria-errormessage={error ? 'error' : undefined}
+          // aria-invalid={error ? 'true' : 'false'}
+          // noValidate
+          onSubmit={handleSubmit}>
+          <TextInput
+            autoComplete="on"
+            errorTextShort="Please enter an email address"
+            inputMode="email"
+            label="Email Address"
+            onChange={handleChange}
+            placeholder="Enter your email"
+            required
+            spellCheck="false"
+            type="email"
+            {...getStandardTextInputAttributes('emailAddress')}
+          />
+          <PasswordField
+            errorTextShort="Please enter a password"
+            helpText={['8 characters minimum']}
+            label="Password"
+            maxLength={60}
+            onChange={handleChange}
+            placeholder="Enter your password"
+            required
+            showCounter
+            type="password"
+            {...getStandardTextInputAttributes('password')}
+          />
+          <InstDiv>
+            You will be sent a validation code via email to confirm your
+            account.
+          </InstDiv>
+          <Button2 id="login" type="submit" variant="secondary">
+            {isLoading ? 'Processing' : 'Submit'}
+          </Button2>
+        </StyledForm>
+        <TermsDiv>
+          By clicking &quot;Submit&quot; you are agreeing to the{' '}
+          <StyledLink to="/terms-of-use">Terms of Use</StyledLink>,{' '}
+          <StyledLink to="/privacy-policy">Privacy Policy</StyledLink>, and{' '}
+          <StyledLink to="/cookie-use">Cookie Use Policy</StyledLink> of this
+          site.
+        </TermsDiv>
+        <StyledBottomMsg>
+          Already have an account? <StyledLink to="/signin">Sign in</StyledLink>
+        </StyledBottomMsg>
+      </AuthContainer>
     </>
   );
 };
 
 export default SignupPage;
 
-const StyledMain = styled.main`
-  background-color: #fff;
-  background-size: contain;
+const StyledForm = styled.form`
+  padding: 20px 0;
 `;
-const StyledDivError = styled.div`
-  border: 1px solid var(--palette-error);
-  color: var(--palette-error);
-  padding: 12px 16px;
+const StyledBottomMsg = styled.div`
+  padding: 20px 0;
+  text-align: center;
+`;
+const TermsDiv = styled.div`
+  padding: 16px 0;
+  font-size: 0.7rem;
+`;
+const InstDiv = styled.div`
+  padding: 16px 0;
   font-size: 0.9rem;
-  margin-bottom: 20px;
-`;
-
-const StyledGrid = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 940px;
-  margin: 0 auto;
-  margin-top: 60px;
-  container: parent;
-  container-type: inline-size;
-`;
-const StyledRight = styled.div`
-  @container parent (inline-size > 430px) {
-    width: 50%;
-    min-width: 360px;
-    padding: 0 16px;
-  }
-  width: 100%;
-  max-width: 430px;
-  padding: 0 20px;
-  margin: 0 auto;
-`;
-const StyledLeft = styled.div`
-  @container parent (inline-size > 430px) {
-    margin: 0 auto;
-    width: 50%;
-    padding: 0 40px;
-    max-width: unset;
-  }
-  margin-left: auto;
-  width: 100%;
-  max-width: 100px;
-  padding: 0 20px 20px 20px;
-`;
-const StyledH1 = styled.h1`
-  font-size: 1.2rem;
-  font-weight: 700;
+  text-wrap: pretty;
+  text-align: center;
 `;

@@ -9,11 +9,9 @@ import useAuth from 'services/hooks/useAuth';
 import { z } from 'zod';
 import { useForm } from 'services/hooks/useForm';
 import { safeParse } from 'utils/zodHelper';
-import { PasswordField } from 'components/ui/Form/PasswordField';
 
-import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
-
+import { styled } from 'styled-components';
 import { emailAddress, password } from './ZodStrings';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 
@@ -23,10 +21,10 @@ const schema = z.object({
   password: password,
 });
 
-export const SigninPage = (): JSX.Element => {
-  const title = 'Sign-In';
+export const ForgotPasswordPage = (): JSX.Element => {
+  const title = 'Forgot Password';
 
-  const { authSignIn, isLoading, error } = useAuth();
+  const { authResetPassword, isLoading, error } = useAuth();
 
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
@@ -51,13 +49,13 @@ export const SigninPage = (): JSX.Element => {
       event.preventDefault();
       if (validateForm()) {
         try {
-          await authSignIn(formValues.emailAddress, formValues.password);
+          await authResetPassword(formValues.emailAddress);
         } catch (error) {
           // Handle sign-up error
         }
       }
     },
-    [validateForm, authSignIn, formValues],
+    [validateForm, authResetPassword, formValues.emailAddress],
   );
 
   const handleChange = (
@@ -100,7 +98,7 @@ export const SigninPage = (): JSX.Element => {
       <AuthContainer
         error={error}
         leftImage={<img alt="" src="/images/face.png" />}
-        title="Sign In">
+        title="Forgot Password">
         <StyledForm
           // aria-errormessage={error ? 'error' : undefined}
           // aria-invalid={error ? 'true' : 'false'}
@@ -118,33 +116,33 @@ export const SigninPage = (): JSX.Element => {
             type="email"
             {...getStandardTextInputAttributes('emailAddress')}
           />
-          <PasswordField
-            errorTextShort="Please enter a password"
-            label="Password"
-            maxLength={60}
-            onChange={handleChange}
-            placeholder="Enter Password"
-            required
-            type="password"
-            {...getStandardTextInputAttributes('password')}
-          />
-          <Button2 id="login" type="submit" variant="secondary">
-            {isLoading ? 'Processing' : 'Submit'}
+          <InstDiv>
+            You will be sent a validation code via email to confirm your
+            account.
+          </InstDiv>
+          <Button2 id="login" type="submit">
+            {isLoading ? 'Processing' : 'Request Password Change'}
           </Button2>
         </StyledForm>
         <StyledBottomMsg>
+          <StyledLink to="/signin">Sign in</StyledLink>
           <StyledLink to="/signup">Sign up</StyledLink>
-          <StyledLink to="/password/forgot">Forgot Password?</StyledLink>
         </StyledBottomMsg>
       </AuthContainer>
     </>
   );
 };
 
-export default SigninPage;
+export default ForgotPasswordPage;
 
 const StyledForm = styled.form`
   padding: 20px 0;
+`;
+const InstDiv = styled.div`
+  padding: 16px 0;
+  font-size: 0.9rem;
+  text-wrap: pretty;
+  text-align: center;
 `;
 const StyledBottomMsg = styled.div`
   padding: 20px 0;
