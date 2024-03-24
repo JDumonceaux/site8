@@ -22,7 +22,8 @@ export const password: z.ZodString = z
 export const authCode: z.ZodString = z
   .string({
     required_error: 'Code is required.',
+    invalid_type_error: 'Code must be a number',
   })
-  .min(1, REQUIRED_FIELD)
-  .max(30, 'Max length exceeded: 30')
+  .min(6, REQUIRED_FIELD)
+  .max(6)
   .trim();

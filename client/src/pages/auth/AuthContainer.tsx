@@ -4,7 +4,7 @@ type AuthContainerProps = {
   readonly children: React.ReactNode;
   readonly leftImage: React.ReactNode;
   readonly title: string;
-  readonly error: string | null;
+  readonly error: { code: string; message: string } | null;
 };
 
 export const AuthContainer = ({
@@ -21,7 +21,8 @@ export const AuthContainer = ({
           <StyledH1>{title}</StyledH1>
           {error ? (
             <StyledDivError id="error">
-              Oops! There was an error: {error}
+              <div>Oops! There was an error:</div>
+              <div>{error.message}</div>
             </StyledDivError>
           ) : null}
           {children}

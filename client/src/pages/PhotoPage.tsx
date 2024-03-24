@@ -4,11 +4,9 @@ import { Meta } from 'components/common/Meta';
 
 import { useDeferredValue, useEffect } from 'react';
 import usePhotos from 'services/hooks/usePhotos';
-import { APP_NAME } from 'utils/constants';
 import { styled } from 'styled-components';
 
 export const PhotoPage = (): JSX.Element => {
-  const title = `${APP_NAME} - photos`;
   const { data, isLoading, error, fetchData } = usePhotos();
   const deferredData = useDeferredValue(data);
 
@@ -18,9 +16,9 @@ export const PhotoPage = (): JSX.Element => {
 
   return (
     <>
-      <Meta title={title} />
+      <Meta title="Photos" />
       <StyledMain>
-        <PageTitle title={title} />
+        <PageTitle title="Photos" />
         <StyledSection>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <ul>

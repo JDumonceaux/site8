@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { TestItem } from 'services/types/TestItem';
 import { ServiceUrl } from 'utils/constants';
 
-export const TestGrid = (): JSX.Element => {
+export const TestGridPage = (): JSX.Element => {
   const [data, setData] = useState<TestItem>();
 
   const fetchData = async () => {
@@ -71,4 +71,4 @@ export const TestGrid = (): JSX.Element => {
   );
 };
 
-export default TestGrid;
+export default TestGridPage;

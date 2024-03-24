@@ -1,12 +1,16 @@
+import { Meta } from 'components';
 import { styled } from 'styled-components';
 
-export const NotFound = (): JSX.Element => (
-  <StyledDiv>
-    <StyledH1>Oops! Page Not Found</StyledH1>
-  </StyledDiv>
+export const NotFoundPage = (): JSX.Element => (
+  <>
+    <Meta title="Page not found" />
+    <StyledDiv>
+      <StyledH1>Oops! Page Not Found</StyledH1>
+    </StyledDiv>
+  </>
 );
 
-export default NotFound;
+export default NotFoundPage;
 
 // https://www.joshwcomeau.com/gradient-generator/
 const StyledDiv = styled.div`

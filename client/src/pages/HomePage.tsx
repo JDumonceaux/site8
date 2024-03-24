@@ -3,7 +3,7 @@ import { HomeScreen4 } from 'components/ui/HomeScreen/HomeScreen4';
 import { styled } from 'styled-components';
 import { APP_NAME } from 'utils';
 
-export const Home = (): JSX.Element => {
+export const HomePage = (): JSX.Element => {
   const title = `${APP_NAME} - Home`;
 
   return (
@@ -16,7 +16,7 @@ export const Home = (): JSX.Element => {
   );
 };
 
-export default Home;
+export default HomePage;
 
 const StyledMain = styled.main`
   background-color: #000;

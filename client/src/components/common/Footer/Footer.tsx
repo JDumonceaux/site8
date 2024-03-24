@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const Footer = (): JSX.Element => {
   const thisYear = new Date().getFullYear();
   return (
-    <StyledFooter className="footer" data-testid="footer" role="contentinfo">
+    <StyledFooter data-testid="footer" role="contentinfo">
       <StyledCopyright aria-label="Copyright Information">
         Copyright &copy; {thisYear}
       </StyledCopyright>

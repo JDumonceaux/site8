@@ -1,7 +1,5 @@
 import { Meta } from 'components/common/Meta';
-
-import { APP_NAME } from 'utils/constants';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { Button2, TextInput } from 'components/ui/Form';
 
@@ -89,10 +87,6 @@ export const SigninPage = (): JSX.Element => {
       value: formValues[fieldName],
     };
   };
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

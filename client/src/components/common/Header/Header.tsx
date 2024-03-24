@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { APP_NAME } from 'utils/constants';
 import { MenuIcon } from './MenuIcon';
+import Avatar from '../Avatar';
 
 type HeaderProps = {
   readonly includeMenu?: boolean;
@@ -9,7 +10,8 @@ type HeaderProps = {
 
 export const Header = ({ includeMenu = true }: HeaderProps): JSX.Element => {
   return (
-    <StyledHeader className="header" data-testid="header">
+    <StyledHeader data-testid="header">
+      <div>
       <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
       {includeMenu ? <MenuIcon /> : null}
       <StyledLinkDiv>
@@ -17,6 +19,8 @@ export const Header = ({ includeMenu = true }: HeaderProps): JSX.Element => {
           <AppName>{APP_NAME}</AppName>
         </Link>
       </StyledLinkDiv>
+      </div>
+      <Avatar />
     </StyledHeader>
   );
 };
@@ -27,7 +31,7 @@ const StyledHeader = styled.header`
   background-color: var(--palette-main-color, #000);
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   min-height: 40px;
   width: 100%;

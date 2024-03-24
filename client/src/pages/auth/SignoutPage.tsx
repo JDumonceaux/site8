@@ -1,9 +1,6 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { Meta } from 'components';
 import { Button2 } from 'components/ui/Form';
-
-import { APP_NAME } from 'utils';
-
 import useAuth from 'services/hooks/useAuth';
 
 import { styled } from 'styled-components';
@@ -26,10 +23,6 @@ export const SignOutpPage = (): JSX.Element => {
     },
     [authSignOut],
   );
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

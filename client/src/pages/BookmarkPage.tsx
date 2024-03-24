@@ -1,19 +1,13 @@
 import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
-import { useDeferredValue, useEffect } from 'react';
-
-import { APP_NAME } from 'utils/constants';
+import { useDeferredValue } from 'react';
 import useBookmarks from 'services/hooks/useBookmarks';
 import { BookmarkTags } from 'components/common/BookmarksTags';
 export const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
   const { data, error, isLoading } = useBookmarks();
   const deferredData = useDeferredValue(data);
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

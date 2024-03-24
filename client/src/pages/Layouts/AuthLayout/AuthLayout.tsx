@@ -1,13 +1,15 @@
+'use client';
+
+import { ErrorBoundary } from 'react-error-boundary';
 import { styled } from 'styled-components';
 
-import ErrorBoundary from 'components/common/ErrorBoundary';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from 'components/common/Header';
 
 export const AuthLayout = (): JSX.Element => (
-  <ErrorBoundary fallback="Error">
+  <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <Header includeMenu={false} />
     <LayoutDiv>
       <Suspense fallback="Loading ...">

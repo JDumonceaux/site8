@@ -23,7 +23,7 @@ export const GenericPage = ({
 
   const deferredData = useDeferredValue(data);
 
-  const title = deferredData?.long_title || pageTitle;
+  const title = deferredData?.long_title ?? pageTitle;
 
   return (
     <>

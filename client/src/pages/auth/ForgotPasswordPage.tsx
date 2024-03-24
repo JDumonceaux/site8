@@ -1,8 +1,5 @@
+import { useCallback, useMemo } from 'react';
 import { Meta } from 'components/common/Meta';
-
-import { APP_NAME } from 'utils/constants';
-import { useCallback, useEffect, useMemo } from 'react';
-
 import { Button2, TextInput } from 'components/ui/Form';
 
 import useAuth from 'services/hooks/useAuth';
@@ -87,10 +84,6 @@ export const ForgotPasswordPage = (): JSX.Element => {
       value: formValues[fieldName],
     };
   };
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

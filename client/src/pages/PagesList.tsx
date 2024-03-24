@@ -2,13 +2,13 @@ import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
 import { useDeferredValue } from 'react';
-import { Link } from 'react-router-dom';
 import { Pages } from 'services/types/Pages';
 import useFetch from 'services/hooks/useFetch';
 import { ServiceUrl } from 'utils';
+import { StyledLink } from 'components/ui/Form/StyledLink';
+import { styled } from 'styled-components';
 
 export const PagesList = (): JSX.Element => {
-  const title = 'Pages';
   const { data, isLoading, error } = useFetch<Pages>(
     `${ServiceUrl.ENDPOINT_PAGES}`,
   );
@@ -20,10 +20,10 @@ export const PagesList = (): JSX.Element => {
 
   return (
     <>
-      <Meta title={title} />
-      <main className="main-content">
+      <Meta title="Pages" />
+      <StyledMain>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          <PageTitle title={title} />
+          <PageTitle title="Pages" />
           <section className="section">
             <table>
               <thead>
@@ -37,7 +37,9 @@ export const PagesList = (): JSX.Element => {
                 {sortedData?.map((item) => (
                   <tr key={item.id}>
                     <td>
-                      <StyledLink to={`/admin/page/edit/${item.id}`}>{item.id}</Link>
+                      <StyledLink to={`/admin/page/edit/${item.id}`}>
+                        {item.id}
+                      </StyledLink>
                     </td>
                     <td>{item.name}</td>
                     <td>{item.text}</td>
@@ -47,9 +49,14 @@ export const PagesList = (): JSX.Element => {
             </table>
           </section>
         </LoadingWrapper>
-      </main>
+      </StyledMain>
     </>
   );
 };
 
 export default PagesList;
+
+const StyledMain = styled.main`
+  background-color: #fff;
+  background-size: contain;
+`;

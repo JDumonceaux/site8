@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Meta } from 'components';
 import { Button2, TextInput } from 'components/ui/Form';
-
-import { APP_NAME } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 import useAuth, { SocialProvider } from 'services/hooks/useAuth';
@@ -94,10 +92,6 @@ export const SignupPage = (): JSX.Element => {
       value: formValues[fieldName],
     };
   };
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

@@ -12,10 +12,11 @@ import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
 import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
 import { ErrorPage } from 'pages/ErrorPage';
 
+const CheatPage = lazy(() => import('pages/CheatPage'));
 const GenericPage = lazy(() => import('pages/GenericPage'));
-const Home = lazy(() => import('pages/Home'));
+const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFound'));
-const Sitemap = lazy(() => import('pages/Sitemap'));
+const Sitemap = lazy(() => import('pages/SitemapPage'));
 
 const Artists = lazy(() => import('pages/Artists'));
 const ArtList = lazy(() => import('pages/ArtList'));
@@ -23,12 +24,12 @@ const ArtList = lazy(() => import('pages/ArtList'));
 const MusicList = lazy(() => import('pages/MusicList'));
 const PhotoPage = lazy(() => import('pages/PhotoPage'));
 const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
-const Yachts = lazy(() => import('pages/Yachts'));
+const Yachts = lazy(() => import('pages/YachtsPage'));
 const PageEdit = lazy(() => import('pages/PageEdit'));
 const PagesList = lazy(() => import('pages/PagesList'));
 const GraphGLPage = lazy(() => import('pages/GraphGLPage'));
 const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
-const TestGrid = lazy(() => import('pages/TestGrid'));
+const TestGrid = lazy(() => import('pages/TestGridPage'));
 // Site Pages
 const TermsOfUsePage = lazy(() => import('pages/site/TermsOfUsePage'));
 const CookiesUsePage = lazy(() => import('pages/site/CookiesUsePage'));
@@ -297,6 +298,10 @@ const router = createBrowserRouter(
             }
             path="puzzles-the-puzzle-lab"
           />
+        </Route>
+
+        <Route element={<MainLayout />}>
+          <Route element={<CheatPage />} path="cheatsheet/html/:id/:title" />
         </Route>
 
         {/* Auth */}

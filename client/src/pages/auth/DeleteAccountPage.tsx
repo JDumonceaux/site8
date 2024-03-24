@@ -1,8 +1,7 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { Meta } from 'components';
 import { Button2, TextInput } from 'components/ui/Form';
 
-import { APP_NAME } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 import useAuth from 'services/hooks/useAuth';
@@ -78,10 +77,6 @@ export const DeleteAccountPage = (): JSX.Element => {
       value: formValues[fieldName],
     };
   };
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

@@ -17,7 +17,13 @@ import {
   forgetDevice,
   fetchDevices,
   deleteUser,
+  getCurrentUser,
+  fetchAuthSession,
+  JWT,
+  fetchUserAttributes,
+  FetchUserAttributesOutput,
 } from 'aws-amplify/auth';
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,11 +34,19 @@ export const enum SocialProvider {
   GOOGLE = 'Google',
 }
 
+// In Amplify the localStorage is the default storage mechanism.
+// It saves the tokens in the browser's localStorage.
+// This local storage will persist across browser sessions and tabs.
+// You can change to cookie storage, browser session storage, or custom storage
+// if desired.
+
 // autoSignIn
 // confirmResetPassword
 // deleteUser
+// fetchAuthSession
 // fetchDevices
 // forgetDevice
+// getCurrentUser
 // rememberDevice
 // resendSignUpCode
 // resetPassword
@@ -45,11 +59,9 @@ export const enum SocialProvider {
 // confirmSignIn
 // confirmSignUp
 // confirmUserAttribute
-
 // deleteUserAttributes
 // fetchMFAPreference
 // fetchUserAttributes
-// getCurrentUser
 // sendUserAttributeVerification
 // setUpTOTP
 // signInWithCustomAuth
@@ -63,14 +75,27 @@ export const enum SocialProvider {
 
 const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{ code: string; message: string } | null>(
+    null,
+  );
+  const [accessToken, setAccessToken] = useState<JWT | undefined>(undefined);
+  const [idToken, setIdToken] = useState<JWT | undefined>(undefined);
+  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState<string | undefined>('');
+  const [signInDetails, setSignInDetails] = useState<unknown | undefined>(
+    undefined,
+  );
   const navigate = useNavigate();
 
   const handleError = (error: unknown): void => {
-    const err = error as AuthError | null;
-    if (err) {
-      // Handle the error here
-      setError(err.message);
+    if (error instanceof AuthError) {
+      setError({ code: error.name, message: error.message });
+    } else {
+      setError({
+        code: '',
+        message: error instanceof Error ? error.message : 'Unknown Error',
+      });
     }
   };
 
@@ -140,6 +165,7 @@ const useAuth = () => {
   };
 
   const handleSignUpStep = (step: SignUpOutput['nextStep']) => {
+    console.log('step.signUpStep', step.signUpStep);
     switch (step.signUpStep) {
       case 'DONE':
         // The user has been successfully signed up
@@ -157,6 +183,13 @@ const useAuth = () => {
         }
         break;
       }
+      case 'CONFIRM_SIGN_UP':
+        // Validation code is sent to the user's email during sign-up
+        //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
+        navigate('/confirm');
+        break;
+      default:
+        break;
     }
   };
 
@@ -226,6 +259,38 @@ const useAuth = () => {
     }
   };
 
+  const authFetchAuthSession = async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
+      setAccessToken(accessToken);
+      setIdToken(idToken);
+    } catch (error: unknown) {
+      handleError(error);
+    } finally {
+      setIsLoading(false);
+    }
+    return undefined;
+  };
+
+  const authRefreshAuthSession = async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const { tokens } = await fetchAuthSession({
+        forceRefresh: true,
+      });
+      setAccessToken(tokens?.accessToken);
+      setIdToken(tokens?.idToken);
+    } catch (error: unknown) {
+      handleError(error);
+    } finally {
+      setIsLoading(false);
+    }
+    return undefined;
+  };
+
   const authFetchDevices = async () => {
     try {
       setError(null);
@@ -244,6 +309,50 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await forgetDevice();
+    } catch (error: unknown) {
+      handleError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGetCurrentUser = (
+    username: string,
+    userId: string,
+    signInDetails: unknown,
+  ): void => {
+    console.log('return');
+    console.log('username', username);
+    console.log('userId', userId);
+    setUsername(username);
+    setUserId(userId);
+    setSignInDetails(signInDetails);
+    console.log('22222', signInDetails);
+  };
+
+  const authGetCurrentUser = async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const { username, userId, signInDetails } = await getCurrentUser();
+      handleGetCurrentUser(username, userId, signInDetails);
+    } catch (error: unknown) {
+      handleError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleFetchUserAttributes = (data: FetchUserAttributesOutput): void => {
+    setEmail(data.email);
+  };
+
+  const authFetchUserAttributes = async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const data = await fetchUserAttributes();
+      handleFetchUserAttributes(data);
     } catch (error: unknown) {
       handleError(error);
     } finally {
@@ -420,42 +529,19 @@ const useAuth = () => {
     }
   };
 
-  //   const usernameAvailable = async (username: string) => {
-  //     // adapted from @herri16's solution: https://github.com/aws-amplify/amplify-js/issues/1067#issuecomment-436492775
-  //     try {
-  //       await confirmSignUp({
-  //         username: username,
-  //         confirmationCode: '000000',
-  //       });
-  //       // this should always throw an error of some kind, but if for some reason this succeeds then the user probably exists.
-  //       return false;
-  //     } catch (err: unknown) {
-  //       // switch (err.code) {
-  //       //   case 'UserNotFoundException':
-  //       //     return true;
-  //       //   case 'NotAuthorizedException':
-  //       //     return false;
-  //       //   case 'AliasExistsException':
-  //       //     // Email alias already exists
-  //       //     return false;
-  //       //   case 'CodeMismatchException':
-  //       //     return false;
-  //       //   case 'ExpiredCodeException':
-  //       //     return false;
-  //       //   default:
-  //       //     return false;
-  //       // }
-  //     }
-  //     return false;
-  //   };
+  const initial = email ? email.substring(0, 1).toUpperCase() : undefined;
 
   return {
     authAutoSignIn,
     authConfirmResetPassword,
     authConfirmSignUp,
     authDeleteUser,
+    authFetchAuthSession,
+    authFetchUserAttributes,
+    authRefreshAuthSession,
     authFetchDevices,
     authForgetDevice,
+    authGetCurrentUser,
     authRememberDevice,
     authResendConfirmationCode,
     authResetPassword,
@@ -464,10 +550,16 @@ const useAuth = () => {
     authSignOut,
     authSignUp,
     authUpdatePassword,
-
     currentAuthenticatedUser,
     isLoading,
     error,
+    accessToken,
+    idToken,
+    username,
+    userId,
+    signInDetails,
+    email,
+    initial,
   };
 };
 

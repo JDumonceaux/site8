@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback } from 'react';
 import useAuth from 'services/hooks/useAuth';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 
-import { APP_NAME } from 'utils';
 import { Meta } from 'components';
 import { Button2, TextInput } from 'components/ui/Form';
 
@@ -23,17 +22,12 @@ export const ConfirmEmailPage = (): JSX.Element => {
   const title = 'Confirmation';
   const { authConfirmSignUp, authResendConfirmationCode, isLoading, error } =
     useAuth();
-  type FormValues = z.infer<typeof pageSchema>;
-  const defaultFormValues: FormValues = useMemo(
-    () => ({
-      emailAddress: '',
-      authenticationCode: '',
-    }),
-    [],
-  );
+  type FormValues = { emailAddress: string; authenticationCode: string };
 
-  const { formValues, setFormValues, errors, setErrors } =
-    useForm<FormValues>(defaultFormValues);
+  const { formValues, setFormValues, errors, setErrors } = useForm<FormValues>({
+    emailAddress: '',
+    authenticationCode: '',
+  });
 
   type keys = keyof FormValues;
 
@@ -103,10 +97,6 @@ export const ConfirmEmailPage = (): JSX.Element => {
       value: formValues[fieldName],
     };
   };
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

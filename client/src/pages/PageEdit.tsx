@@ -11,10 +11,9 @@ import { ModalProcessing } from 'components/common/ModalProcessing';
 import { ClearAll } from 'components/ui/Form/ClearAll';
 import { Meta } from 'components/common/Meta';
 import { PageTitle } from 'components/common/PageTitle';
+import { styled } from 'styled-components';
 
 export const PageEdit = (): JSX.Element => {
-  const title = 'Page Edit';
-
   const params = useParams();
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -43,10 +42,10 @@ export const PageEdit = (): JSX.Element => {
 
   return (
     <>
-      <Meta title={title} />
-      <main className="main-content">
+      <Meta title="Page Edit" />
+      <StyledMain>
         {/* <LoadingWrapper error={error} isLoading={isLoading}> */}
-        <PageTitle title={title} />
+        <PageTitle title="Page Edit" />
         <section className="section">
           <form noValidate onSubmit={handleSubmit}>
             <ClearAll onClear={handleClear}>
@@ -60,10 +59,10 @@ export const PageEdit = (): JSX.Element => {
               enterKeyHint="next"
               errorText={getFieldErrors('name')}
               errorTextShort="Please enter a short title"
+              hasError={hasError('name')}
               helpText="Required"
               id="name"
               inputMode="text"
-              hasError={hasError('name')}
               label="Short Title"
               maxLength={30}
               onChange={handleChange}
@@ -76,9 +75,9 @@ export const PageEdit = (): JSX.Element => {
             <TextInput
               errorText={getFieldErrors('long_title')}
               errorTextShort="Please enter a title"
+              hasError={hasError('long_title')}
               helpText="Required"
               id="long_title"
-              hasError={hasError('long_title')}
               label="Long Title"
               maxLength={250}
               onChange={handleChange}
@@ -90,8 +89,8 @@ export const PageEdit = (): JSX.Element => {
 
             <TextArea
               errorText={getFieldErrors('text')}
-              id="text"
               hasError={hasError('text')}
+              id="text"
               label="Text"
               onChange={handleChange}
               rows={10}
@@ -103,8 +102,8 @@ export const PageEdit = (): JSX.Element => {
             <TextInput
               errorText={getFieldErrors('edit_date_display')}
               errorTextShort="Please enter a date"
-              id="edit_date_display"
               hasError={hasError('edit_date_display')}
+              id="edit_date_display"
               label="Edit Date"
               maxLength={10}
               onChange={handleChange}
@@ -123,8 +122,8 @@ export const PageEdit = (): JSX.Element => {
             <TextInput
               errorText={getFieldErrors('parent')}
               errorTextShort="Please enter a parent"
-              id="parent"
               hasError={hasError('parent')}
+              id="parent"
               label="Parent"
               onChange={handleChange}
               showCounter
@@ -132,8 +131,8 @@ export const PageEdit = (): JSX.Element => {
             />
             <TextInput
               errorText={getFieldErrors('reading_time')}
-              id="reading_time"
               hasError={hasError('reading_time')}
+              id="reading_time"
               label="Reading Time"
               onChange={handleChange}
               showCounter
@@ -141,8 +140,8 @@ export const PageEdit = (): JSX.Element => {
             />
             <TextInput
               errorText={getFieldErrors('readability_score')}
-              id="readability_score"
               hasError={hasError('readability_score')}
+              id="readability_score"
               label="Readability Score"
               onChange={handleChange}
               showCounter
@@ -159,10 +158,15 @@ export const PageEdit = (): JSX.Element => {
           </form>
         </section>
         {/* </LoadingWrapper> */}
-      </main>
+      </StyledMain>
       <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 };
 
 export default PageEdit;
+
+const StyledMain = styled.main`
+  background-color: #fff;
+  background-size: contain;
+`;

@@ -1,22 +1,15 @@
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
-import { useEffect } from 'react';
-import { APP_NAME } from 'utils/constants';
+import { styled } from 'styled-components';
 
 const boxStyle = '56.25% 0 0 0';
 
-export const Yachts = (): JSX.Element => {
-  const title = 'Yachts';
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
-
+export const YachtsPage = (): JSX.Element => {
   return (
     <>
-      <Meta title={title} />
-      <main className="main-content">
-        <PageTitle title={title} />
+      <Meta title="Yatchs" />
+      <StyledMain>
+        <PageTitle title="Yatchs" />
         <section className="section">
           <p>
             The design of this yacht is called <em>Nature</em>.
@@ -93,74 +86,80 @@ export const Yachts = (): JSX.Element => {
             <img alt="" src="/images/yachts/sinot-aqua-owners-suite.png" />
           </div>
         </section>
-      </main>
-      <aside className="right-sidebar">
-        {/* Art of Life */}
-        <div>
-          <div className="image-banner-1">Art of Life Design</div>
-          <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
-            <iframe
-              allow="autoplay; fullscreen; picture-in-picture"
-              src="https://player.vimeo.com/video/290705961?h=9cfff6a399"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
-              title="Youtube: Art of Life Design"
-              // frameborder={{0}}
-              //allowfullscreen
-            />
+
+        <aside className="right-sidebar">
+          {/* Art of Life */}
+          <div>
+            <div className="image-banner-1">Art of Life Design</div>
+            <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
+              <iframe
+                allow="autoplay; fullscreen; picture-in-picture"
+                src="https://player.vimeo.com/video/290705961?h=9cfff6a399"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+                title="Youtube: Art of Life Design"
+                // frameborder={{0}}
+                //allowfullscreen
+              />
+            </div>
+            <script src="https://player.vimeo.com/api/player.js" />
           </div>
-          <script src="https://player.vimeo.com/api/player.js" />
-        </div>
-        {/* Nature */}
-        <div>
-          <div className="image-banner-1">Nature Design</div>
-          <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
-            <iframe
-              allow="autoplay; fullscreen; picture-in-picture"
-              src="https://player.vimeo.com/video/235907283?h=35a2fec5db"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
-              title="Youtube: Nature Design"
-              // frameborder={{0}}
-              //allowfullscreen
-            />
+          {/* Nature */}
+          <div>
+            <div className="image-banner-1">Nature Design</div>
+            <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
+              <iframe
+                allow="autoplay; fullscreen; picture-in-picture"
+                src="https://player.vimeo.com/video/235907283?h=35a2fec5db"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+                title="Youtube: Nature Design"
+                // frameborder={{0}}
+                //allowfullscreen
+              />
+            </div>
+            <script src="https://player.vimeo.com/api/player.js" />
           </div>
-          <script src="https://player.vimeo.com/api/player.js" />
-        </div>
-        {/* Zen */}
-        <div>
-          <div className="image-banner-1">Zen Design</div>
-          <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
-            <iframe
-              allow="autoplay; fullscreen; picture-in-picture"
-              src="https://player.vimeo.com/video/184474900?h=bef5fe895d"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
-              title="Youtube: Zen Design"
-              // frameborder={{0}}
-              //allowfullscreen
-            />
+          {/* Zen */}
+          <div>
+            <div className="image-banner-1">Zen Design</div>
+            <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
+              <iframe
+                allow="autoplay; fullscreen; picture-in-picture"
+                src="https://player.vimeo.com/video/184474900?h=bef5fe895d"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+                title="Youtube: Zen Design"
+                // frameborder={{0}}
+                //allowfullscreen
+              />
+            </div>
+            <script src="https://player.vimeo.com/api/player.js" />
           </div>
-          <script src="https://player.vimeo.com/api/player.js" />
-        </div>
-      </aside>
+        </aside>
+      </StyledMain>
     </>
   );
 };
 
-export default Yachts;
+export default YachtsPage;
+
+const StyledMain = styled.main`
+  background-color: #fff;
+  background-size: contain;
+`;

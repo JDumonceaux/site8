@@ -1,4 +1,3 @@
-export * from './ErrorBoundary';
 export * from './Loading';
 export * from './MainMenu';
 export * from './PageTitle';
