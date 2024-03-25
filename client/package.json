@@ -40,7 +40,7 @@
     "@types/amplify": "^1.1.28",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.30",
-    "@types/react": "^18.2.67",
+    "@types/react": "^18.2.69",
     "@types/react-dom": "^18.2.22",
     "@types/react-window": "^1.8.8",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
