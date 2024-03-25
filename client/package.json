@@ -65,7 +65,7 @@
     "prettier": "^3.2.5",
     "pretty-quick": "^4.0.0",
     "typescript": "^5.4.3",
-    "vite": "^5.1.6",
+    "vite": "^5.2.6",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "pre-commit": "lint",
