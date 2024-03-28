@@ -54,6 +54,7 @@ export const RenderCode = ({ children }: RenderCodeProps) => {
 
   return (
     <>
+      this code
       <StyledHeader>
         <div>JavaScript</div>
         <div>

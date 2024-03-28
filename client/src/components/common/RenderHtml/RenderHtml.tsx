@@ -1,27 +1,41 @@
 'use client';
 import DOMPurify from 'dompurify';
-import parse, { domToReact } from 'html-react-parser';
-import { PageTitle } from '../PageTitle';
+import parse, { Element, domToReact } from 'html-react-parser';
 import RenderCode from '../RenderCode';
+import type { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
 
 type RenderHtmlProps = {
   readonly text: string | undefined;
 };
 
-const options = {
-  replace: ({ attribs, children }) => {
-    if (!attribs) {
+// HTMLReactParser options
+const options: HTMLReactParserOptions = {
+  replace: (domNode: DOMNode) => {
+    if (!domNode) {
       return;
     }
-
-    if (attribs.id === 'main') {
-      return <PageTitle title={domToReact(children, options)} />;
-    }
-
-    if (attribs.class === 'prettify') {
-      return <RenderCode>{domToReact(children, options)}</RenderCode>;
+    if (
+      domNode instanceof Element &&
+      domNode.tagName &&
+      domNode.tagName === 'pre'
+    ) {
+      return (
+        <RenderCode>
+          {domToReact(domNode.children as DOMNode[], options)}
+        </RenderCode>
+      );
+    } else {
+      return;
     }
   },
+  // replace: ({ attribs, children }) => {
+  //   if (!attribs) {
+  //     return;
+  //   }
+
+  //   if (attribs.class === 'prettify') {
+  //     return <RenderCode>{domToReact(children, options)}</RenderCode>;
+  //   }
 };
 
 export const RenderHtml = ({ text }: RenderHtmlProps) => {
@@ -29,11 +43,13 @@ export const RenderHtml = ({ text }: RenderHtmlProps) => {
     if (!text) {
       return null;
     }
+
+    // Clean the HTML string
     const cleanHtmlString = DOMPurify.sanitize(text, {
       USE_PROFILES: { html: true },
     });
-    const html = parse(cleanHtmlString, options);
-    return html;
+    // Parse the HTML string
+    return parse(cleanHtmlString, options);
   };
 
   return <>{htmlFrom(text)}</>;
