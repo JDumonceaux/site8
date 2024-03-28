@@ -44,7 +44,6 @@ const StyledMenu = styled.div`
   }
 `;
 const StyledIcon = styled.div`
-  display: inline-block;
   font-size: 0.8em;
   width: 2em;
   height: 2em;
