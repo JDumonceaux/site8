@@ -35,6 +35,6 @@ const LayoutDiv = styled.div`
   min-height: 100vh;
   min-height: 100dvh;
   margin-top: 50px;
-  background-color: #000;
-  color: #fff;
+  color: var(--palette-text);
+  background-color: var(--palette-background);
 `;

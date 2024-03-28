@@ -1,19 +1,20 @@
 import { Meta } from 'components/common/Meta';
 import { useCallback, useMemo } from 'react';
 
-import { Button2, TextInput } from 'components/ui/Form';
+import { Button2 } from 'components/ui/Form';
 
 import useAuth from 'services/hooks/useAuth';
 import { z } from 'zod';
 import { useForm } from 'services/hooks/useForm';
 import { safeParse } from 'utils/zodHelper';
-import { PasswordField } from 'components/ui/Form/PasswordField';
 
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
 
 import { emailAddress, password } from './ZodStrings';
 import { StyledLink } from 'components/ui/Form/StyledLink';
+import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
+import { PasswordField } from 'components/ui/Form/Input/PasswordField';
 
 // Define Zod Shape
 const schema = z.object({
@@ -100,11 +101,12 @@ export const SigninPage = (): JSX.Element => {
           // aria-invalid={error ? 'true' : 'false'}
           noValidate
           onSubmit={handleSubmit}>
-          <TextInput
-            autoComplete="on"
+          <EmailField
+            autoComplete="email"
             errorTextShort="Please enter an email address"
             inputMode="email"
             label="Email Address"
+            multiple={false}
             onChange={handleChange}
             placeholder="Enter Email Address"
             required
@@ -113,7 +115,9 @@ export const SigninPage = (): JSX.Element => {
             {...getStandardTextInputAttributes('emailAddress')}
           />
           <PasswordField
+            autoComplete="current-password"
             errorTextShort="Please enter a password"
+            inputMode="text"
             label="Password"
             maxLength={60}
             onChange={handleChange}

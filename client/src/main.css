@@ -6,10 +6,23 @@
 
   --speed: 500ms;
 
+  --palette-text: #1f1f29;
+  --palette-background: #f2f3f4;
   --palette-main-color: #be3455;
 
-  --main-color-d3: #751c31;
+  --spacing-2: 12px;
 
+  --palette-dark-background: #181818;
+  --palette-dark-text: #f2f3f4;
+  --palette-var: #0ab4b4;
+  --palette-samp: #a8a8a8;
+  --palette-kbd: #888888;
+
+  --palette-border-color: #383838;
+  --palette-error: #751c31;
+  --palette-code: #a8a8a8;
+
+  --main-color-d3: #751c31;
   --palette-menu-color: #d8d8d8;
 
   --palette-grey-10: #d8d8d8;
@@ -21,8 +34,6 @@
   --palette-black: #1f1f29;
 
   --palette-label: rgb(102, 102, 102);
-  --palette-text-error: #751c31;
-  --palette-error: #751c31;
 }
 
 html,

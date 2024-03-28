@@ -1,9 +1,48 @@
 import { useState, useCallback } from 'react';
+
+import { ShowPasswordButton } from './ShowPasswordButton';
 import { TextInput } from '../TextInput';
 import { TextInputProps } from '../TextInput/TextInput';
-import { ShowPasswordButton } from './ShowPasswordButton';
 
 type PasswordFieldType = 'password' | 'text';
+
+// Attributes that are not valid or recommended for email fields
+type InvalidAttributes =
+  | 'accept'
+  | 'alt'
+  | 'autocapitalize'
+  | 'capture'
+  | 'dirname'
+  | 'formAction'
+  | 'formEncType'
+  | 'formMethod'
+  | 'formNoValidate'
+  | 'formTarget'
+  | 'height'
+  | 'list'
+  | 'max'
+  | 'min'
+  | 'multiple'
+  | 'src'
+  | 'value'
+  | 'width';
+
+// Valid attributes for password fields
+// autoComplete
+// disabled
+// form
+// id
+// maxlength
+// minlength
+// multiple
+// name
+// pattern
+// placeholder
+// readonly
+// required
+// size
+// type
+// value
 
 type PasswordFieldProps = {
   readonly type?: PasswordFieldType;
@@ -17,7 +56,16 @@ type PasswordFieldProps = {
   readonly showPasswordButtonLabel?: string;
   // "Forwarded ref for access to show password button DOM element",
   readonly showPasswordButtonRef?: React.Ref<HTMLButtonElement>;
-} & TextInputProps;
+  // Set Autocomplete
+  readonly autoComplete?:
+    | 'current-password'
+    | 'new-password'
+    | 'one-time-code'
+    | 'off'
+    | string;
+} & Omit<TextInputProps, InvalidAttributes | 'autoComplete' | 'type'>;
+
+// Note: autocapitalize is not a valid prop for password, url, email fields
 
 export const PasswordField = ({
   autoComplete = 'current-password',
@@ -27,7 +75,7 @@ export const PasswordField = ({
   showPasswordButtonLabel,
   showPasswordButtonRef,
   hasError,
-  type,
+  type = 'password',
   ...rest
 }: PasswordFieldProps): JSX.Element => {
   const [localType, setLocalType] = useState<PasswordFieldType>(type);

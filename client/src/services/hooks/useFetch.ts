@@ -2,7 +2,7 @@ import axios, { isCancel } from 'axios';
 import { useEffect, useState } from 'react';
 import { httpErrorHandler } from '../../utils/errorHandler';
 
-const useFetch = <T>(url: string) => {
+const useFetch = <T>(url: string | undefined) => {
   const [data, setData] = useState<T | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -15,6 +15,10 @@ const useFetch = <T>(url: string) => {
     const source = axios.CancelToken.source(); // Create a cancel token
 
     const fetchDataAsync = async () => {
+      if (!url) {
+        setIsLoading(false);
+        return;
+      }
       await axios
         .get<T>(url, {
           cancelToken: source.token,

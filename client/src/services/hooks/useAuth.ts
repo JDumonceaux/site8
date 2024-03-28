@@ -321,13 +321,9 @@ const useAuth = () => {
     userId: string,
     signInDetails: unknown,
   ): void => {
-    console.log('return');
-    console.log('username', username);
-    console.log('userId', userId);
     setUsername(username);
     setUserId(userId);
     setSignInDetails(signInDetails);
-    console.log('22222', signInDetails);
   };
 
   const authGetCurrentUser = async () => {
@@ -458,8 +454,9 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       // Signout of all devices
-      const result = await signOut({ global: true });
-      console.log('Result: ', result);
+      setAccessToken(undefined);
+      setIdToken(undefined);
+      await signOut({ global: true });
     } catch (error: unknown) {
       handleError(error);
     } finally {
@@ -530,6 +527,7 @@ const useAuth = () => {
   };
 
   const initial = email ? email.substring(0, 1).toUpperCase() : undefined;
+  const authorized = accessToken;
 
   return {
     authAutoSignIn,
@@ -560,6 +558,7 @@ const useAuth = () => {
     signInDetails,
     email,
     initial,
+    authorized,
   };
 };
 

@@ -1,7 +1,8 @@
 import { InputHTMLAttributes } from 'react';
-import { TextHelp } from '../TextHelp';
-import { TextLabel } from '../TextLabel';
+
 import { styled } from 'styled-components';
+import { TextLabel } from '../TextLabel';
+import { TextHelp } from '../TextHelp';
 
 export type TextInputProps = {
   readonly id: string;

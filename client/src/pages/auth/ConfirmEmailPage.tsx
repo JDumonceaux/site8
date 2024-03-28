@@ -4,13 +4,15 @@ import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 
 import { Meta } from 'components';
-import { Button2, TextInput } from 'components/ui/Form';
+import { Button2 } from 'components/ui/Form';
 
 import { useForm } from 'services/hooks/useForm';
 
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
 import { authCode } from './ZodStrings';
+import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
+import { TextInput } from 'components/ui/Form/Input/TextInput';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -106,11 +108,12 @@ export const ConfirmEmailPage = (): JSX.Element => {
         leftImage={<img alt="" src="/images/bowler.jpg" />}
         title="Confirm Email">
         <StyledForm noValidate onSubmit={handleSubmit}>
-          <TextInput
-            autoComplete="on"
+          <EmailField
+            autoComplete="email"
             errorTextShort="Please enter an email address"
             inputMode="email"
             label="Email Address"
+            multiple={false}
             onChange={handleChange}
             placeholder="Enter Email Address"
             required
@@ -119,9 +122,10 @@ export const ConfirmEmailPage = (): JSX.Element => {
             {...getStandardTextInputAttributes('emailAddress')}
           />
           <TextInput
+            autoComplete="one-time-code"
             errorTextShort="Please enter an authentication code"
             helpText={['Check your email for the authentication code.']}
-            inputMode="text"
+            inputMode="numeric"
             label="Authentication Code"
             maxLength={6}
             onChange={handleChange}

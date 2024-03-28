@@ -12,7 +12,6 @@ import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
 import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
 import { ErrorPage } from 'pages/ErrorPage';
 
-const CheatPage = lazy(() => import('pages/CheatPage'));
 const GenericPage = lazy(() => import('pages/GenericPage'));
 const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFound'));
@@ -56,29 +55,29 @@ const router = createBrowserRouter(
         {/* REACT */}
         <Route element={<MainLayout />} path="react">
           <Route
-            element={<GenericPage id={1001} pageTitle="Generic Page" />}
+            element={<GenericPage id={1001} title="Generic Page" />}
             path="1001"
           />
           <Route path="tutorial">
             <Route
-              element={<GenericPage id={1} pageTitle="React Tutorial" />}
+              element={<GenericPage id={1} title="React Tutorial" />}
               path="1"
             />
             <Route
-              element={<GenericPage id={2} pageTitle="Creating A Project" />}
+              element={<GenericPage id={2} title="Creating A Project" />}
               path="2"
             />
             <Route
-              element={<GenericPage id={3} pageTitle="Creating A Project" />}
+              element={<GenericPage id={3} title="Creating A Project" />}
               path="3"
             />
             <Route
-              element={<GenericPage id={4} pageTitle="Creating A Project" />}
+              element={<GenericPage id={4} title="Creating A Project" />}
               path="4"
             />
           </Route>
           <Route
-            element={<GenericPage id={901} pageTitle="Internationalization" />}
+            element={<GenericPage id={901} title="Internationalization" />}
             path="internationalization"
           />
         </Route>
@@ -86,92 +85,81 @@ const router = createBrowserRouter(
         {/* IDE */}
         <Route element={<MainLayout />} path="ide">
           <Route
-            element={<GenericPage id={2001} pageTitle="Chrome Extensions" />}
+            element={<GenericPage id={2001} title="Chrome Extensions" />}
             path="chrome-extensions"
           />
+          <Route element={<GenericPage id={2002} title="GIT" />} path="git" />
           <Route
-            element={<GenericPage id={2002} pageTitle="GIT" />}
-            path="git"
-          />
-          <Route
-            element={<GenericPage id={2003} pageTitle="Visual Studio Code" />}
+            element={<GenericPage id={2003} title="Visual Studio Code" />}
             path="vsc"
           />
           <Route
             element={
-              <GenericPage
-                id={2004}
-                pageTitle="Visual Studio Code: Extensions"
-              />
+              <GenericPage id={2004} title="Visual Studio Code: Extensions" />
             }
             path="vsc/extensions"
           />
           <Route
-            element={
-              <GenericPage id={54} pageTitle="Visual Studio Code: Help" />
-            }
+            element={<GenericPage id={54} title="Visual Studio Code: Help" />}
             path="vsc/help"
           />
-          <Route element={<GenericPage id={55} pageTitle="NPM" />} path="npm" />
-          <Route element={<GenericPage id={56} pageTitle="Git" />} path="git" />
+          <Route element={<GenericPage id={55} title="NPM" />} path="npm" />
+          <Route element={<GenericPage id={56} title="Git" />} path="git" />
           <Route
-            element={<GenericPage id={57} pageTitle="GitHub" />}
+            element={<GenericPage id={57} title="GitHub" />}
             path="github"
           />
           <Route
-            element={<GenericPage id={58} pageTitle="AWS Commit" />}
+            element={<GenericPage id={58} title="AWS Commit" />}
             path="aws/commit"
           />
         </Route>
 
         {/* WEB */}
         <Route element={<MainLayout />} path="web">
-          <Route
-            element={<GenericPage id={0} pageTitle="HTML" />}
-            path="html"
-          />
+          <Route element={<GenericPage id={0} title="HTML" />} path="html" />
         </Route>
 
         {/* DESIGN */}
         <Route element={<MainLayout />} path="style">
           <Route
-            element={<GenericPage id={900} pageTitle="CSS Overview" />}
+            element={<GenericPage id={900} title="CSS Overview" />}
             path="css"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Responsive Design" />}
+            element={<GenericPage id={0} title="Responsive Design" />}
             path="responsive-design"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Material Design" />}
+            element={<GenericPage id={0} title="Material Design" />}
             path="material-design"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Print Design" />}
+            element={<GenericPage id={0} title="Print Design" />}
             path="print-design"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Font Pairing" />}
+            element={<GenericPage id={0} title="Font Pairing" />}
             path="font-pairing"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Parallax Scrolling" />}
+            element={<GenericPage id={0} title="Parallax Scrolling" />}
             path="parallax-scrolling"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Kinetic Typography" />}
+            element={<GenericPage id={0} title="Kinetic Typography" />}
             path="kinetic-typography"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Microinteractions" />}
+            element={<GenericPage id={0} title="Microinteractions" />}
             path="microinteractions"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="CSS New Features" />}
+            element={<GenericPage id={0} title="CSS New Features" />}
             path="css/new"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="CSS References" />}
+            element={<GenericPage id={0} title="CSS References" />}
             path="css/references"
           />
         </Route>
@@ -184,19 +172,16 @@ const router = createBrowserRouter(
         {/* Programming */}
         <Route element={<MainLayout />} path="programming">
           <Route
-            element={<GenericPage id={0} pageTitle="Programming" />}
+            element={<GenericPage id={0} title="Programming" />}
             path="font-pairing"
           />
+          <Route element={<GenericPage id={0} title="SOLID" />} path="solid" />
           <Route
-            element={<GenericPage id={0} pageTitle="SOLID" />}
-            path="solid"
-          />
-          <Route
-            element={<GenericPage id={0} pageTitle="Design Patterns" />}
+            element={<GenericPage id={0} title="Design Patterns" />}
             path="design-patterns"
           />
           <Route
-            element={<GenericPage id={0} pageTitle="Programming Challenges" />}
+            element={<GenericPage id={0} title="Programming Challenges" />}
             path="programming-challenges"
           />
         </Route>
@@ -227,35 +212,35 @@ const router = createBrowserRouter(
         {/* STYLES */}
         <Route element={<MainLayout />} path="design">
           <Route
-            element={<GenericPage id={1003} pageTitle="Corporate Memphis" />}
+            element={<GenericPage id={1003} title="Corporate Memphis" />}
             path="corporate-memphis-design"
           />
           <Route
-            element={<GenericPage id={1002} pageTitle="Flat Design" />}
+            element={<GenericPage id={1002} title="Flat Design" />}
             path="flat-design"
           />
           <Route
-            element={<GenericPage id={1004} pageTitle="Glassmorphism" />}
+            element={<GenericPage id={1004} title="Glassmorphism" />}
             path="glassmorphism"
           />
           <Route
-            element={<GenericPage id={1005} pageTitle="Minimalism" />}
+            element={<GenericPage id={1005} title="Minimalism" />}
             path="minimalism"
           />
           <Route
-            element={<GenericPage id={1006} pageTitle="Neumorphism" />}
+            element={<GenericPage id={1006} title="Neumorphism" />}
             path="neumorphism"
           />
           <Route
-            element={<GenericPage id={1007} pageTitle="Retrofuturism" />}
+            element={<GenericPage id={1007} title="Retrofuturism" />}
             path="retrofuturism"
           />
           <Route
-            element={<GenericPage id={1001} pageTitle="Skeuomorphism" />}
+            element={<GenericPage id={1001} title="Skeuomorphism" />}
             path="skeuomorphism"
           />
           <Route
-            element={<GenericPage id={1008} pageTitle="Swiss Style" />}
+            element={<GenericPage id={1008} title="Swiss Style" />}
             path="swiss-style"
           />
         </Route>
@@ -272,36 +257,33 @@ const router = createBrowserRouter(
         {/* Art */}
         <Route element={<MainLayout />} path="art">
           <Route
-            element={
-              <GenericPage id={3001} pageTitle="At Last - Pleasantville" />
-            }
+            element={<GenericPage id={3001} title="At Last - Pleasantville" />}
             path="at-last-pleasantville"
           />
           <Route
-            element={<GenericPage id={3002} pageTitle="Gallos" />}
+            element={<GenericPage id={3002} title="Gallos" />}
             path="gallos"
           />
           <Route
-            element={
-              <GenericPage id={3003} pageTitle="Shoes on the Danube Bank" />
-            }
+            element={<GenericPage id={3003} title="Shoes on the Danube Bank" />}
             path="shoes-on-the-danube-bank"
           />
           <Route element={<Yachts />} path="yachts" />
           <Route
-            element={<GenericPage id={5001} pageTitle="Puzzles - Lazel" />}
+            element={<GenericPage id={5001} title="Puzzles - Lazel" />}
             path="puzzles-lazel"
           />
           <Route
-            element={
-              <GenericPage id={5002} pageTitle="Puzzles - The Puzzle Lab" />
-            }
+            element={<GenericPage id={5002} title="Puzzles - The Puzzle Lab" />}
             path="puzzles-the-puzzle-lab"
           />
         </Route>
 
         <Route element={<MainLayout />}>
-          <Route element={<CheatPage />} path="cheatsheet/html/:id/:title" />
+          <Route
+            element={<GenericPage id={0} />}
+            path="cheatsheet/html/:id/:subject"
+          />
         </Route>
 
         {/* Auth */}
@@ -315,7 +297,7 @@ const router = createBrowserRouter(
             <Route element={<ChangePasswordPage />} path="change" />
           </Route>
           <Route path="account">
-            <Route element={<DeleteAccountPage />} path="delete" />
+            <Route element={<DeleteAccountPage />} path="account/delete" />
           </Route>
 
           <Route element={<TermsOfUsePage />} path="terms-of-use" />

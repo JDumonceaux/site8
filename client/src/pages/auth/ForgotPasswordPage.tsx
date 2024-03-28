@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Meta } from 'components/common/Meta';
-import { Button2, TextInput } from 'components/ui/Form';
+import { Button2 } from 'components/ui/Form';
 
 import useAuth from 'services/hooks/useAuth';
 import { z } from 'zod';
@@ -11,6 +11,7 @@ import { AuthContainer } from './AuthContainer';
 import { styled } from 'styled-components';
 import { emailAddress, password } from './ZodStrings';
 import { StyledLink } from 'components/ui/Form/StyledLink';
+import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
 
 // Define Zod Shape
 const schema = z.object({
@@ -97,11 +98,12 @@ export const ForgotPasswordPage = (): JSX.Element => {
           // aria-invalid={error ? 'true' : 'false'}
           noValidate
           onSubmit={handleSubmit}>
-          <TextInput
-            autoComplete="on"
+          <EmailField
+            autoComplete="email"
             errorTextShort="Please enter an email address"
             inputMode="email"
             label="Email Address"
+            multiple={false}
             onChange={handleChange}
             placeholder="Enter Email Address"
             required

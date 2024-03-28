@@ -1,0 +1,45 @@
+<pre class="prettify">
+<div>const <var>num</var> = [1, 2, 3, 4];</div>
+<div>let <var>num</var> = [1, 2, 3, 4];</div>
+<div>const <var>num</var> = new Array();</div>
+<div>const <var>num</var> = new Array(4);</div>
+
+<div>Note: These functions do not mutate the object.  You should use these vs. mutable versions.</div>
+<div><div><var>num</var>.at(1);</div><div><samp>// 2</samp></div></div>
+<div><div><var>num</var>[1];</div><div><samp>// Element at position 1: 2</samp></div></div>
+<div><div><var>num</var>.includes(2);</div><div><samp>// Includes?: true</samp></div></div>
+
+<h2>New: 2023</h2>
+<div><div><var>num</var>.toReversed();</div><div><samp>// [4, 3, 2, 1]</samp></div></div>
+<div><div><var>num</var>.toSorted((a, b) => a - b);</div><div><samp>// [1, 2, 10, 21]</samp></div></div>
+<div><div><var>num</var>.toSpliced(1, 0, "Feb");</div><div><samp>// [1, 2, "Feb", 3, 4]</samp></div></div>
+
+<div>Note: These functions mutate the object.  i.e. it changes the original variable.  If possible, use a 
+version that does not mutate the original object.</div>
+<div><div><var>num</var>.push(5);</div><div><samp>// Add 5 to the end of the array: [1, 2, 3, 4, 5]</samp></div></div>
+<div><div><var>num</var>.pop();</div><div><samp>// Remove the last element: [1, 2, 3]</samp></div></div>
+<div><div><var>num</var>.fill(1);</div><div><samp>// Fill every element: [1, 1, 1, 1]</samp></div></div>
+<div><div><var>num</var>.shift(1);</div><div><samp>// Remove the first element: [2, 3, 4]</samp></div></div>
+<div><div><var>num</var>.unshift(1);</div><div><samp>// Add element to start: [5, 1, 2, 3, 4]</samp></div></div>
+<div><div><var>num</var>.reverse();</div><div><samp>// Sort in reverse: [4, 3, 2, 1]</samp></div></div>
+<div><div><var>num</var>.toString();</div><div><samp>// Convert to string: "1 2 3 4"</samp></div></div>
+<div><div><var>num</var>.join(", ");</div><div><samp>// To string: "1, 2, 3, 4"</samp></div></div>
+<div><div><var>num</var>.slice(2, 0, "x", "y");</div><div><samp>// Insert: [1, 2, 'x', 'y', 3, 4]</samp></div></div>
+
+<h2>Sort</h2>
+<div><div><var>num</var>.sort();</div><div><samp>// Sort alphabetically: [4, 2, 1, 3]</samp></div></div>
+<div><div><var>num</var>.sort((a, b) => a - b);</div><div><samp>// numeric sort</samp></div></div>
+<div><div><var>num</var>.sort((a, b) => b - a);</div><div><samp>// numeric sort dec</samp></div></div>
+<div><div><var>num</var>.sort((a, b) => .5 - Math.random());</div><div><samp>// random sort</samp></div></div>
+
+<h2>Modification</h2>
+<div><div><var>num</var>.map(x => x*2);</div><div><samp>// [2, 4, 6, 9]</samp></div></div>
+<div><div><var>num</var>.filter((x) => x > 2);</div><div><samp>// Returns array: [3, 4]</samp></div></div>
+<div><div><var>num</var>.find((x) => x > 2);</div><div><samp>// Returns first item: 3</samp></div></div>
+<div><div><var>num</var>.every((x) => x > 0);</div><div><samp>// Returns true</samp></div></div>
+<div><div><var>num</var>.findIndex((x) => x === 2);</div><div><samp>// 1 </samp></div></div>
+<div><div><var>num</var>.reduce((a, b) => a + b, 0);</div><div><samp>// 10 </samp></div></div>
+</pre>
+
+<h2>References</h2>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Mozilla - Array</a>

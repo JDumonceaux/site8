@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useId } from 'react';
 import { Meta } from 'components';
 import { Button2 } from 'components/ui/Form';
 
@@ -27,6 +27,7 @@ const schema = z
 
 export const ChangePasswordPage = (): JSX.Element => {
   const title = 'Change Password';
+  const compId = useId();
 
   const { authUpdatePassword, isLoading, error } = useAuth();
 
@@ -81,7 +82,7 @@ export const ChangePasswordPage = (): JSX.Element => {
 
   const getStandardTextInputAttributes = (fieldName: keys) => {
     return {
-      id: fieldName,
+      id: `${fieldName}-${compId}`,
       errorText: getFieldErrors(fieldName),
       hasError: hasError(fieldName),
       value: formValues[fieldName],
@@ -102,7 +103,9 @@ export const ChangePasswordPage = (): JSX.Element => {
           // noValidate
           onSubmit={handleSubmit}>
           <PasswordField
+            autoComplete="current-password"
             errorTextShort="Please enter a password"
+            inputMode="text"
             label="Current Password"
             maxLength={60}
             onChange={handleChange}
@@ -113,8 +116,10 @@ export const ChangePasswordPage = (): JSX.Element => {
             {...getStandardTextInputAttributes('password')}
           />
           <PasswordField
+            autoComplete="new-password"
             errorTextShort="Please enter a password"
             helpText={['8 characters minimum']}
+            inputMode="text"
             label="New Password"
             maxLength={60}
             onChange={handleChange}
@@ -125,8 +130,10 @@ export const ChangePasswordPage = (): JSX.Element => {
             {...getStandardTextInputAttributes('newPassword')}
           />
           <PasswordField
+            autoComplete="new-password"
             errorTextShort="Please enter a password"
             helpText={['8 characters minimum']}
+            inputMode="text"
             label="Confirm Password"
             maxLength={60}
             onChange={handleChange}

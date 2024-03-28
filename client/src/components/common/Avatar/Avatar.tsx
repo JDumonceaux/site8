@@ -7,23 +7,37 @@ import useAuth from 'services/hooks/useAuth';
 import { styled } from 'styled-components';
 
 export const Avatar = (): JSX.Element => {
-  const { authFetchUserAttributes, initial } = useAuth();
+  const { authFetchUserAttributes, authFetchAuthSession, initial, authorized } =
+    useAuth();
 
   useEffect(() => {
-    authFetchUserAttributes();
+    authFetchAuthSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (authorized) {
+      authFetchUserAttributes();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authorized]);
+
   return (
     <StyledDiv data-testid="avatar">
-      {initial ? <StyledIcon>{initial}</StyledIcon> : null}
-      <StyledMenu>
+      {authorized ? (
+        <>
+          {initial ? <StyledIcon>{initial}</StyledIcon> : null}
+          <StyledMenu>
+            <Link to="/signout">Sign Out</Link>
+            <MenuContent>
+              <Link to="/password/change">Change Password</Link>
+              <Link to="/account/delete">Delete Account</Link>
+            </MenuContent>
+          </StyledMenu>
+        </>
+      ) : (
         <StyledLink to="/signin">Sign In</StyledLink>
-        <MenuContent>
-          <Link to="/password/change">Change Password</Link>
-          <Link to="/signout">Sign Out</Link>
-        </MenuContent>
-      </StyledMenu>
+      )}
     </StyledDiv>
   );
 };

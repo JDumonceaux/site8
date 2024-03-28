@@ -16,9 +16,7 @@ ornamentation. However, it wasn't until the mid-2010s that flat
 design gained mainstream popularity, largely due to the redesigns of
 major tech companies like Microsoft's Windows 8 and Apple's iOS 7.
 </p>
-
 <h2>Key Principles</h2>
-
 <ul>
 <li>
 <b>Simplicity:</b> 
@@ -28,7 +26,6 @@ elements. This simplicity enhances user understanding and promotes a
 clean aesthetic.
 </p>
 </li>
-
 <li>
 <b>Typography:</b> 
 <p>

@@ -24,6 +24,13 @@
       "sort": "name",
       "name": "General",
       "url": "general"
+    },
+    {
+      "id": 5,
+      "seq": 5,
+      "sort": "name",
+      "name": "Cheat Sheets",
+      "url": "cheatsheet/html"
     }
   ],
   "items": [
@@ -253,6 +260,72 @@
       "reading_time": "",
       "readability_score": "",
       "url": "puzzles-the-puzzle-lab",
+      "seq": 0
+    },
+    {
+      "id": 6000,
+      "name": "Input Element",
+      "long_title": "",
+      "edit_date": "03/24/2024",
+      "parentId": 5,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "input-element",
+      "seq": 0
+    },
+    {
+      "id": 6001,
+      "name": "Data Types",
+      "long_title": "",
+      "edit_date": "03/24/2024",
+      "parentId": 5,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "data-types",
+      "seq": 0
+    },
+    {
+      "id": 6002,
+      "name": "String Functions",
+      "long_title": "",
+      "edit_date": "03/24/2024",
+      "parentId": 5,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "string-functions",
+      "seq": 0
+    },
+    {
+      "id": 6003,
+      "name": "Global Functions",
+      "long_title": "",
+      "edit_date": "03/24/2024",
+      "parentId": 5,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "global-functions",
+      "seq": 0
+    },
+    {
+      "id": 6004,
+      "name": "Math Functions",
+      "long_title": "",
+      "edit_date": "03/24/2024",
+      "parentId": 5,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "math-functions",
+      "seq": 0
+    },
+    {
+      "id": 6005,
+      "name": "Javascript Array",
+      "long_title": "",
+      "edit_date": "03/24/2024",
+      "parentId": 5,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "javascript-array",
       "seq": 0
     },
     {

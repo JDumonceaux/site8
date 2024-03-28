@@ -1,20 +1,21 @@
 import { useCallback, useMemo } from 'react';
 import { Meta } from 'components';
-import { Button2, TextInput } from 'components/ui/Form';
+import { Button2 } from 'components/ui/Form';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 import useAuth, { SocialProvider } from 'services/hooks/useAuth';
 import { useForm } from 'services/hooks/useForm';
-import { PasswordField } from 'components/ui/Form/PasswordField';
 
-import { Facebook } from 'components/ui/Form/Icon/icons/Facebook';
-import { Amazon } from 'components/ui/Form/Icon/icons/Amazon';
-import { Google } from 'components/ui/Form/Icon/icons/Google';
+import { Facebook } from 'components/ui/Icons/Facebook';
+import { Amazon } from 'components/ui/Icons/Amazon';
+import { Google } from 'components/ui/Icons/Google';
 import { Divider } from 'components/ui/Form/Divider/Divider';
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 import { emailAddress, password } from './ZodStrings';
+import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
+import { PasswordField } from 'components/ui/Form/Input/PasswordField';
 
 // Define Zod Shape
 const schema = z.object({
@@ -131,11 +132,12 @@ export const SignupPage = (): JSX.Element => {
           // aria-invalid={error ? 'true' : 'false'}
           // noValidate
           onSubmit={handleSubmit}>
-          <TextInput
-            autoComplete="on"
+          <EmailField
+            autoComplete="email"
             errorTextShort="Please enter an email address"
             inputMode="email"
             label="Email Address"
+            multiple={false}
             onChange={handleChange}
             placeholder="Enter your email"
             required
@@ -144,8 +146,10 @@ export const SignupPage = (): JSX.Element => {
             {...getStandardTextInputAttributes('emailAddress')}
           />
           <PasswordField
+            autoComplete="new-password"
             errorTextShort="Please enter a password"
             helpText={['8 characters minimum']}
+            inputMode="text"
             label="Password"
             maxLength={60}
             onChange={handleChange}
