@@ -13,6 +13,12 @@ export class PagesService {
     this.filePath = getFilePath(this.fileName);
   }
 
+  private getTrimmedPage(obj: Page) {
+    return Object.fromEntries(
+      Object.entries(obj).filter(([_, v]) => v != null),
+    );
+  }
+
   // Get all data
   public async getItems(): Promise<Pages | undefined> {
     try {
@@ -79,16 +85,25 @@ export class PagesService {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as Pages;
-      const ret = {
-        ...jsonData,
-        items: [...jsonData.items, { ...data, id: data.id }],
-      };
-      const retSorted: Pages = {
-        ...ret,
-        items: ret.items.toSorted((a, b) => a.id - b.id),
-      };
+      // const ret = {
+      //   ...jsonData,
+      //   items: [...jsonData.items, { ...data, id: data.id }],
+      // };
+      // const retSorted: Pages = {
+      //   ...ret,
+      //   items: ret.items.toSorted((a, b) => a.id - b.id),
+      // };
       // JSON - null = replacer.  2 = tab space
-      await writeFile(this.filePath, JSON.stringify(retSorted, null, 2), {
+
+      const trimmedData = this.getTrimmedPage(data);
+
+      const updatedFile = {
+        metadata: jsonData.metadata,
+        menus: jsonData.menus,
+        items: [...jsonData.items, { ...trimmedData, id: data.id }],
+      };
+
+      await writeFile(this.filePath, JSON.stringify(updatedFile, null, 2), {
         encoding: 'utf8',
       });
       return Promise.resolve(true);
@@ -104,10 +119,13 @@ export class PagesService {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as Pages;
       const ret = jsonData.items.filter((x) => x.id !== data.id);
+
+      const trimmedData = this.getTrimmedPage(data);
+
       await writeFile(
         this.filePath,
         // JSON - null = replacer.  2 = tab space
-        JSON.stringify({ ...ret, data }, null, 2),
+        JSON.stringify({ ...ret, ...trimmedData }, null, 2),
         {
           encoding: 'utf8',
         },

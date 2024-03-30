@@ -25,9 +25,7 @@ export const SubjectMenu = ({ id }: SubjectMenuProps): JSX.Element => {
                 {item.name}
               </StyledMenuTitle>
               {item?.items?.map((x) => (
-                <StyledMenuItem
-                  key={x.name}
-                  to={`/${item.url}/${x.id}/${x.url}`}>
+                <StyledMenuItem key={x.name} to={`/${item.url}/${x.url}`}>
                   {x.name}
                 </StyledMenuItem>
               ))}

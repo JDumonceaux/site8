@@ -81,9 +81,6 @@ export class PageService {
     if (data.text === undefined || data.text.trim().length === 0) {
       return Promise.reject(new Error('addItem -> Text is required'));
     }
-    if (data.long_title === undefined || data.long_title.trim().length === 0) {
-      return Promise.reject(new Error('addItem -> Long Title is required'));
-    }
     try {
       const filePath = getFilePath(`page${data.id.toString()}-en.txt`);
       Logger.info(`PageService: writeFile -> ${filePath}`);

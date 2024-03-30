@@ -7,9 +7,16 @@ export const HomeScreen5 = (): JSX.Element => {
     <>
       <StyledSection>
         <Title>React Notes</Title>
-        <LinkButton id="css" to="/css">
-          CSS
-        </LinkButton>
+        <LinkButton to="/css">CSS</LinkButton>
+        <LinkButton to="/design">Design</LinkButton>
+        <LinkButton to="/artists">Artist</LinkButton>
+        <LinkButton to="/art">Art</LinkButton>
+        <LinkButton to="/general">General</LinkButton>
+        <LinkButton to="/cheatsheet">Cheat Sheets</LinkButton>
+        <LinkButton to="/react">React</LinkButton>
+        <LinkButton to="/react-project">React Project</LinkButton>
+        <LinkButton to="/code-solutions">Code Solutions</LinkButton>
+        <LinkButton to="/patterns">Patterns</LinkButton>
       </StyledSection>
       <StyledSection>
         <HomeMenu />

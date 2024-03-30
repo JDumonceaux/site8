@@ -30,6 +30,7 @@ export class MenuService {
             url: x.url ?? '',
             seq: x.seq ?? 0,
           }));
+          // Sort Items
           const sortedMapMenuItems: PageSummary[] =
             item.sort === 'seq'
               ? mapMenuItems.toSorted((a, b) => a.seq - b.seq)
