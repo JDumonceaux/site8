@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import CustomNavLink from '../CustomNavLink/CustomNavLink';
+import CustomNavLink from 'components/common/CustomNavLink/CustomNavLink';
 import useMenu from 'services/hooks/useMenu';
 
 export const HomeMenu = (): JSX.Element => {

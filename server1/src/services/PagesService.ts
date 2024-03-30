@@ -25,11 +25,19 @@ export class PagesService {
   }
 
   // Get the summary for a page
-  public async getMetaData(id: number): Promise<Page | undefined> {
+  public async getMetaData(id: string): Promise<Page | undefined> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
+
       const jsonData = JSON.parse(results) as Pages;
-      return jsonData.items.find((x) => x.id === id);
+      const tempId = parseInt(id, 10);
+      let ret: Page | undefined = undefined;
+      if (isNaN(tempId) && tempId > 0) {
+        ret = jsonData.items.find((x) => x.id === tempId);
+      } else {
+        ret = jsonData.items.find((x) => x.url === id);
+      }
+      return ret;
     } catch (error) {
       Logger.error(`PagesService: getMetaData -> ${error}`);
       return undefined;

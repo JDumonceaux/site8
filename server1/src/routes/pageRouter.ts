@@ -4,20 +4,19 @@ import { PageService } from '../services/PageService.js';
 import { Page } from '../types/Page.js';
 import { Errors } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
-import { PPService } from '../services/PPService.js';
 
 export const pageRouter = express.Router();
 
 // Get item
 pageRouter.get('/:id', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: get ->`);
-  const id = parseInt(req.params.id);
-  if (isNaN(id) || id === 0) {
-    return res.status(400).json({ error: 'Invalid ID' });
-  }
 
   try {
-    const item = await new PPService().getAllData(id);
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({ error: 'Invalid ID' });
+    }
+    const item = await new PageService().getAllData(id);
     res.json(item);
   } catch (error) {
     Logger.error(`pageRouter: get -> Error: ${error}`);
@@ -44,6 +43,7 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
 // Delete Item
 pageRouter.delete('/:id', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: delete ->`);
+
   const service = new PagesService();
   const service2 = new PageService();
   const id = parseInt(req.params.id);

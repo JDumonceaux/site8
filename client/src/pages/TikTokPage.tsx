@@ -6,27 +6,21 @@ import useFetch from 'services/hooks/useFetch';
 import { PageTitle } from 'components/common/PageTitle';
 import { LoadingWrapper } from 'components/common/Loading';
 import { Meta } from 'components/common/Meta';
-import { useParams } from 'react-router-dom';
 
-import RenderHtml from 'components/common/RenderHtml';
 import StyledMain from 'components/common/StyledMain';
 import { SubjectMenu } from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
 import { styled } from 'styled-components';
+import TikTokItem from 'components/common/TikTokItem';
 
-type GenericPageProps = {
-  readonly id?: string | number;
+type TikTokPageProps = {
   readonly title?: string;
 };
 
-const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
-  const routeParams = useParams<{
-    id: string;
-  }>();
-
-  const tempId = id ? id : routeParams.id;
-
+const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
+  const tempId = 4000;
+  //   id && id > 0 ? id : routeParams.id ? parseInt(routeParams.id, 10) : 0;
   const { data, isLoading, error } = useFetch<Page>(
-    `${ServiceUrl.ENDPOINT_PAGE}/${tempId}`,
+    tempId && tempId > 0 ? `${ServiceUrl.ENDPOINT_PAGE}/${tempId}` : undefined,
   );
 
   const deferredData = useDeferredValue(data);
@@ -44,7 +38,7 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
             <PageTitle title={pageTitle} />
             <StyledSection>
               <Suspense fallback="Loading results ...">
-                <RenderHtml text={deferredData?.text} />
+                <TikTokItem />
               </Suspense>
             </StyledSection>
           </LoadingWrapper>
@@ -55,7 +49,7 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
   );
 };
 
-export default GenericPage;
+export default TikTokPage;
 
 const StyledSection = styled.section`
   pre {

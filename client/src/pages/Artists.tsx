@@ -1,7 +1,7 @@
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
 
-export const Artists = (): JSX.Element => {
+const Artists = (): JSX.Element => {
   const title = 'Art';
 
   return (

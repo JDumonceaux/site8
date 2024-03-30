@@ -14,18 +14,19 @@ import { ErrorPage } from 'pages/ErrorPage';
 
 const GenericPage = lazy(() => import('pages/GenericPage'));
 const Home = lazy(() => import('pages/HomePage'));
-const NotFound = lazy(() => import('pages/NotFound'));
+const NotFound = lazy(() => import('pages/NotFoundPage'));
 const Sitemap = lazy(() => import('pages/SitemapPage'));
 
 const Artists = lazy(() => import('pages/Artists'));
 const ArtList = lazy(() => import('pages/ArtList'));
+const TikTokPage = lazy(() => import('pages/TikTokPage'));
 
 const MusicList = lazy(() => import('pages/MusicList'));
 const PhotoPage = lazy(() => import('pages/PhotoPage'));
 const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
-const Yachts = lazy(() => import('pages/YachtsPage'));
-const PageEdit = lazy(() => import('pages/PageEdit'));
-const PagesList = lazy(() => import('pages/PagesList'));
+const YachtsPage = lazy(() => import('pages/YachtsPage'));
+const PageEditPage = lazy(() => import('pages/PageEditPage'));
+const PagesPage = lazy(() => import('pages/PagesPage'));
 const GraphGLPage = lazy(() => import('pages/GraphGLPage'));
 const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
 const TestGrid = lazy(() => import('pages/TestGridPage'));
@@ -53,11 +54,8 @@ const router = createBrowserRouter(
         </Route>
 
         {/* REACT */}
-        <Route element={<MainLayout />} path="react">
-          <Route
-            element={<GenericPage id={1001} title="Generic Page" />}
-            path="1001"
-          />
+        {/* <Route element={<MainLayout />} path="react3">
+          <Route element={<GenericPage title="Generic Page" />} />
           <Route path="tutorial">
             <Route
               element={<GenericPage id={1} title="React Tutorial" />}
@@ -80,7 +78,7 @@ const router = createBrowserRouter(
             element={<GenericPage id={901} title="Internationalization" />}
             path="internationalization"
           />
-        </Route>
+        </Route> */}
 
         {/* IDE */}
         <Route element={<MainLayout />} path="ide">
@@ -202,14 +200,18 @@ const router = createBrowserRouter(
             <Route element={<MusicList />} path="you-tube" />
           </Route>
         </Route>
-        {/* ADMIN */}
-        <Route element={<MainLayout />} path="admin">
-          <Route element={<PagesList />} path="pages" />
-          <Route element={<PageEdit />} path="page/edit" />
-          <Route element={<PageEdit />} path="page/edit/:id" />
+
+        {/* Example */}
+        <Route path="example">
+          <Route element={<GraphGLPage />} path="graphgl" />
         </Route>
 
-        {/* STYLES */}
+        {/* 1 - CSS */}
+        <Route element={<MainLayout />} path="css">
+          <Route element={<GenericPage />} path="css" />
+        </Route>
+
+        {/* 2 - Design  */}
         <Route element={<MainLayout />} path="design">
           <Route
             element={<GenericPage id={1003} title="Corporate Memphis" />}
@@ -244,17 +246,42 @@ const router = createBrowserRouter(
             path="swiss-style"
           />
         </Route>
-        {/* General */}
+
+        {/* 3 - Artist */}
+        <Route element={<MainLayout />}>
+          <Route element={<TikTokPage />} path="artists/:id" />
+          <Route element={<TikTokPage />} path="artists" />
+        </Route>
+
+        {/* 4 - General */}
         <Route element={<PhotoLayout />} path="general">
           <Route element={<BookmarkPage />} path="bookmarks" />
           <Route element={<PhotoPage />} path="photos" />
         </Route>
-        {/* Example */}
-        <Route path="example">
-          <Route element={<GraphGLPage />} path="graphgl" />
+
+        {/* 5 - Cheat Sheets */}
+        <Route element={<MainLayout />}>
+          <Route
+            element={<GenericPage id={0} />}
+            path="cheatsheets/:id/:subject"
+          />
+          <Route element={<GenericPage />} path="cheatsheets/:id" />
+          <Route element={<GenericPage />} path="cheatsheets" />
         </Route>
 
-        {/* Art */}
+        {/* 6 - React */}
+        <Route element={<MainLayout />}>
+          <Route element={<GenericPage />} path="react/:id" />
+          <Route element={<GenericPage />} path="react" />
+        </Route>
+
+        {/* 7 - React Project */}
+
+        {/* 8 - Code Solutions */}
+
+        {/* 9 - Patterns */}
+
+        {/* 10 - Art */}
         <Route element={<MainLayout />} path="art">
           <Route
             element={<GenericPage id={3001} title="At Last - Pleasantville" />}
@@ -268,7 +295,7 @@ const router = createBrowserRouter(
             element={<GenericPage id={3003} title="Shoes on the Danube Bank" />}
             path="shoes-on-the-danube-bank"
           />
-          <Route element={<Yachts />} path="yachts" />
+          <Route element={<YachtsPage />} path="yachts" />
           <Route
             element={<GenericPage id={5001} title="Puzzles - Lazel" />}
             path="puzzles-lazel"
@@ -279,11 +306,11 @@ const router = createBrowserRouter(
           />
         </Route>
 
-        <Route element={<MainLayout />}>
-          <Route
-            element={<GenericPage id={0} />}
-            path="cheatsheet/html/:id/:subject"
-          />
+        {/* ADMIN */}
+        <Route element={<MainLayout />} path="admin">
+          <Route element={<PagesPage />} path="pages" />
+          <Route element={<PageEditPage />} path="page/edit" />
+          <Route element={<PageEditPage />} path="page/edit/:id" />
         </Route>
 
         {/* Auth */}

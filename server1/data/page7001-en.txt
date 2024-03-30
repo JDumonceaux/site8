@@ -1,0 +1,80 @@
+<h2>Functional Components</h2>
+<div>As of 2024, Functional Components are the preferred way to define React components</div>
+<pre><code>
+const <var>MyComponent</var> = () => {
+    render() {
+        return <h1>Hello, World</h1>;
+    }
+}
+// Example with properties
+const <var>MyComponent</var> = ({ name }: { name: string }) => {
+    render() {
+        return <h1>Hello, {name}</h1>;
+    }
+}
+// I prefer to also define the return (i.e. JSX.Element).  
+// Some may consider this excess, but it has caught issues for me.
+const <var>MyComponent</var> = ({ name }: { name: string }) : JSX.Element => {
+    render() {
+        return <h1>Hello, {name}</h1>;
+    }
+}
+</code></pre>
+
+<h2>Export Default</h2>
+<div>Since this is an annoymous function, we're unable to export it as a default.</div>
+<pre><code>
+// This is not allowed //
+export default const <var>MyComponent</var> = () => {
+    render() {
+        return <h1>Hello, World</h1>;
+    }
+}
+
+// To export a default, we do it as two lines
+const <var>MyComponent</var> = () => {
+    render() {
+        return <h1>Hello, World</h1>;
+    }
+}
+
+export default MyComponent;
+</code></pre>
+
+<p><a href="https://dpericich.medium.com/why-cant-you-export-arrow-function-components-as-default-exports-in-react-5afcb364f1e8">Why Can’t You Export Arrow Function Components as Default Exports in React?</a> by Daniel Pericich</p>
+
+
+
+<h2>Class Components</h2>
+<div>Originally, React used Class components.  These are no longer recommended.</div>
+<pre><code>
+class <var>Greeting</var> extends <var>Component</var> {
+    render() {
+        return (<h1>Hello, World</h1>);
+    }
+}
+</code></pre>
+
+<p><a href="https://react.dev/reference/react/Component">react.dev - component</a></p>
+<p><a href="https://react.dev/reference/react/Component#alternatives">react.dev - migration</a></p>
+
+<h2>Simple Function</h2>
+<div>This can be converted to a function</div>
+<pre><code>
+function <var>Greeting</var>() {
+    return <h1>Hello, World</h1>;
+}
+// with a parameter
+function <var>Greeting</var>({ name }: { name: string }) {
+    return <h1>Hello, {name}</h1>;
+}
+// multi-line
+function <var>Greeting</var>({ name }: { name: string }) {
+    return (
+        <>
+            <h1>Hello, {name}</h1>
+            <p>This is the IRS</p>
+        </>
+    ); 
+}
+</code></pre>

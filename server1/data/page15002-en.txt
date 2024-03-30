@@ -1,0 +1,1 @@
+This pattern hides the complexity of a larger system behind a simpler interface. 

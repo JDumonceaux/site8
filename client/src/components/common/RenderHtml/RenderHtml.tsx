@@ -1,5 +1,5 @@
 'use client';
-import DOMPurify from 'dompurify';
+//import DOMPurify from 'dompurify';
 import parse, { Element, domToReact } from 'html-react-parser';
 import RenderCode from '../RenderCode';
 import type { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
@@ -44,12 +44,14 @@ export const RenderHtml = ({ text }: RenderHtmlProps) => {
       return null;
     }
 
-    // Clean the HTML string
-    const cleanHtmlString = DOMPurify.sanitize(text, {
-      USE_PROFILES: { html: true },
-    });
+    // Note: This is too aggressive for the purpose and will strip out all HTML tags
+    // Clean the HTML string - return only HMTL
+    // const cleanHtmlString = DOMPurify.sanitize(text, {
+    //   USE_PROFILES: { html: true },
+    // });
+
     // Parse the HTML string
-    return parse(cleanHtmlString, options);
+    return parse(text, options);
   };
 
   return <>{htmlFrom(text)}</>;

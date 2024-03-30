@@ -6,7 +6,7 @@ import { useDeferredValue, useEffect } from 'react';
 import usePhotos from 'services/hooks/usePhotos';
 import { styled } from 'styled-components';
 
-export const PhotoPage = (): JSX.Element => {
+const PhotoPage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = usePhotos();
   const deferredData = useDeferredValue(data);
 

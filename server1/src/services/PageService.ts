@@ -3,8 +3,16 @@ import { existsSync } from 'fs';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Logger } from '../utils/Logger.js';
 import { Page } from '../types/Page.js';
+import { Pages } from 'types/Pages.js';
 
 export class PageService {
+  private fileName = 'pages.json';
+  private filePath = '';
+
+  constructor() {
+    this.filePath = getFilePath(this.fileName);
+  }
+
   public async getItem(id: number): Promise<string> {
     Logger.info(`PageService: getItem -> `);
     try {
@@ -14,6 +22,58 @@ export class PageService {
       Logger.error(`PageService: getItem --> Error: ${error}`);
       throw new Error(`getItem -> Failed to read file: ${error}`);
     }
+  }
+
+  // Get the summary for a page
+  public async getMetaData(id: string): Promise<Page | undefined> {
+    Logger.info(`PagesService: getMetaData -> `);
+
+    try {
+      const results = await readFile(this.filePath, { encoding: 'utf8' });
+
+      const jsonData = JSON.parse(results) as Pages;
+      const tempId = parseInt(id, 10);
+      let ret: Page | undefined = undefined;
+      Logger.info(`PagesService: getMetaData -> ${tempId}`);
+      if (Number.isInteger(tempId) && tempId > 0) {
+        Logger.info(`PagesService: getMetaData -> x.id`);
+        ret = jsonData.items.find((x) => x.id === tempId);
+      } else {
+        Logger.info(`PagesService: getMetaData -> x.url`);
+        ret = jsonData.items.find((x) => x.url === id);
+      }
+      return ret;
+    } catch (error) {
+      Logger.error(`PagesService: getMetaData -> ${error}`);
+      return undefined;
+    }
+  }
+
+  public async getAllData(id: string): Promise<Page | undefined> {
+    Logger.info(`pageRouter: getAllData ->`);
+
+    try {
+      const pageSummary = await this.getMetaData(id);
+      if (!pageSummary) {
+        Logger.error(`pageRouter: getAllData -> Page not found: ${id}`);
+        return undefined;
+      }
+
+      Logger.info(`pageRouter: getFile -> ${pageSummary.file}`);
+      if (pageSummary?.file) {
+        Logger.info(`pageRouter: getFile -> ${pageSummary.file}`);
+        const text = await this.getItem(pageSummary.id);
+        if (pageSummary) {
+          return { ...pageSummary, text };
+        }
+      } else {
+        return { ...pageSummary };
+      }
+    } catch (error) {
+      Logger.error(`pageRouter: getAllData -> Error: ${error}`);
+      throw new Error('Failed to get all data');
+    }
+    return undefined;
   }
 
   public async addItem(data: Page): Promise<void> {

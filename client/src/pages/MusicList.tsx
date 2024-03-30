@@ -10,7 +10,7 @@ import { MusicItem } from 'services/types/MusicItem';
 import useMusic from 'services/hooks/useMusic';
 import { ItemRenderer } from './ItemRenderer';
 
-export const MusicList = (): JSX.Element => {
+const MusicList = (): JSX.Element => {
   const title = 'YouTube Videos';
   const { data, isLoading, error, fetchData } = useMusic();
 

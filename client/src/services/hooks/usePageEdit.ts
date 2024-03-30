@@ -21,16 +21,23 @@ const pageSchema = z.object({
     .trim(),
   long_title: z
     .string({
-      required_error: 'Long Title is required.',
       invalid_type_error: 'Title must be a string',
     })
-    .min(1, REQUIRED_FIELD)
     .max(250)
+    .trim()
+    .optional(),
+  url: z
+    .string({
+      required_error: 'URL is required.',
+      invalid_type_error: 'URL must be a string',
+    })
+    .min(1, REQUIRED_FIELD)
+    .max(30, 'Max length exceeded: 30')
     .trim(),
   edit_date: z.coerce.date().optional(),
   edit_date_display: z.string().optional(),
   resources: z.boolean(),
-  parent: z.string().trim().optional(),
+  parentId: z.coerce.number().optional(),
   reading_time: z.string().trim().optional(),
   readability_score: z.string().trim().optional(),
   text: z
@@ -39,7 +46,7 @@ const pageSchema = z.object({
     .trim(),
 });
 
-const usePageEdit = () => {
+const usePageEdit = (id: string | undefined) => {
   type FormValues = z.infer<typeof pageSchema>;
   type keys = keyof FormValues;
   // Return default form values
@@ -47,11 +54,12 @@ const usePageEdit = () => {
     () => ({
       id: 0,
       name: '',
+      url: '',
       long_title: '',
       edit_date_display: format(new Date(), DF_LONG),
       resources: false,
       text: '',
-      parent: '',
+      parentId: 0,
       reading_time: '',
       readability_score: '',
     }),
@@ -72,10 +80,16 @@ const usePageEdit = () => {
   const { data, fetchData, patchData, postData } = useAxiosHelper<Page>();
 
   useEffect(() => {
-    if (formValues.id && formValues.id > 0) {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${formValues.id}`);
+    setFormValues(defaultFormValues);
+    if (!id) {
+      return;
     }
-  });
+    const tempId = parseInt(id ?? '');
+    if (!isNaN(tempId) && tempId > 0) {
+      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${tempId}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   useEffect(() => {
     if (data) {
@@ -88,7 +102,8 @@ const usePageEdit = () => {
           format(new Date(), DF_LONG),
         resources: data.resources ?? false,
         text: data.text ?? '',
-        parent: data.parent ?? '',
+        parentId: data.parentId ?? 0,
+        url: data.url ?? '',
         reading_time: data.reading_time ?? '',
         readability_score: data.readability_score ?? '',
       };
@@ -168,9 +183,21 @@ const usePageEdit = () => {
 
   const hasError = useCallback(
     (fieldName: keys) => {
-      return getFieldErrors(fieldName) ? false : true;
+      return !getFieldErrors(fieldName);
     },
     [getFieldErrors],
+  );
+
+  const getStandardTextInputAttributes = useCallback(
+    (fieldName: keys) => {
+      return {
+        id: fieldName,
+        errorText: getFieldErrors(fieldName),
+        hasError: hasError(fieldName),
+        value: formValues[fieldName],
+      };
+    },
+    [getFieldErrors, hasError, formValues],
   );
 
   return useMemo(
@@ -179,6 +206,7 @@ const usePageEdit = () => {
       formValues,
       isProcessing,
       getFieldErrors,
+      getStandardTextInputAttributes,
       hasError,
       setFormValues,
       setFieldValue,
@@ -193,6 +221,7 @@ const usePageEdit = () => {
       formValues,
       isProcessing,
       getFieldErrors,
+      getStandardTextInputAttributes,
       hasError,
       setFormValues,
       setFieldValue,

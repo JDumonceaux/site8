@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 
 import useMenu from 'services/hooks/useMenu';
-import CustomNavLink from 'components/common/CustomNavLink/CustomNavLink';
 import { LoadingWrapper } from 'components/common/Loading';
+import { NavLink } from 'react-router-dom';
 
 type SubjectMenuProps = {
   readonly id?: number;
@@ -16,43 +16,110 @@ export const SubjectMenu = ({ id }: SubjectMenuProps): JSX.Element => {
 
   return (
     <StyledNav>
-      <LoadingWrapper error={error} isLoading={isLoading}>
-        {filteredData?.map((item) => (
-          <StyledMenuSection key={item.id}>
-            <StyledMenuTitle>{item.name}</StyledMenuTitle>
-            {item?.items?.map((x) => (
-              <CustomNavLink key={x.name} to={`/${item.url}/${x.id}/${x.url}`}>
-                {x.name}
-              </CustomNavLink>
-            ))}
-          </StyledMenuSection>
-        ))}
-      </LoadingWrapper>
+      <StyledHeader>CODEPEN</StyledHeader>
+      <StyledContent>
+        <LoadingWrapper error={error} isLoading={isLoading}>
+          {filteredData?.map((item) => (
+            <StyledMenuSection key={item.id}>
+              <StyledMenuTitle key={item.name} to={`/${item.url}`}>
+                {item.name}
+              </StyledMenuTitle>
+              {item?.items?.map((x) => (
+                <StyledMenuItem
+                  key={x.name}
+                  to={`/${item.url}/${x.id}/${x.url}`}>
+                  {x.name}
+                </StyledMenuItem>
+              ))}
+            </StyledMenuSection>
+          ))}
+        </LoadingWrapper>
+        <LoadingWrapper error={error} isLoading={isLoading}>
+          {data?.items?.map((item) => (
+            <StyledMenuTitle key={item.name} to={`/${item.url}`}>
+              {item.name}
+            </StyledMenuTitle>
+          ))}
+        </LoadingWrapper>
+      </StyledContent>
+      <StyledFooter>FOOTER</StyledFooter>
     </StyledNav>
   );
 };
 
-const StyledNav = styled.nav`
-  color: var(--palette-text);
-  background-color: var(--palette-background);
-`;
 const StyledMenuSection = styled.div`
+  color: var(--navbar-text);
   break-inside: avoid;
-  a {
-    font-size: 0.8rem;
-    display: block;
-    display: block;
-    text-decoration: none;
-    padding: 3px 0px;
-  }
-  a:hover {
-    text-decoration: underline;
+}`;
+const StyledMenuTitle = styled(NavLink)`
+  color: var(--navbar-text);
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  &.active {
+    background: var(--navbar-dark-secondary);
   }
 `;
-const StyledMenuTitle = styled.div`
-  font-weight: 700;
+const StyledMenuItem = styled(NavLink)`
+  color: var(--navbar-text);
   font-size: 0.8rem;
-  text-transform: uppercase;
-  padding-bottom: 3px;
-  margin-bottom: 6px;
+  display: inline-block;
+  width: 100%;
+  padding: 6px 12px 6px 24px;
+  &.active {
+    background: var(--navbar-dark-3);
+  }
+`;
+const StyledNav = styled.nav`
+  color: var(--navbar-text);
+  background: var(--navbar-dark-primary);
+  // position: absolute;
+  // left: 1vw;
+  // top: 1vw;
+  height: calc(100% - 2vw);
+  // border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+`;
+const StyledHeader = styled.div`
+  position: relative;
+  opacity: 0;
+  pointer-events: none;
+  left: 16px;
+  width: calc(var(--navbar-width) - 16px);
+  min-height: 80px;
+  background: var(--navbar-dark-primary);
+  border-radius: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  transition:
+    opacity 0.1s,
+    width 0.2s;
+`;
+const StyledContent = styled.div`
+  margin: -16px 0;
+  padding: 16px 0;
+  position: relative;
+  flex: 1;
+  width: var(--navbar-width);
+  background: var(--navbar-dark-primary);
+  box-shadow: 0 0 0 16px var(--navbar-dark-primary);
+  overflow-x: hidden;
+  transition: width 0.2s;
+`;
+const StyledFooter = styled.div`
+  position: relative;
+  width: var(--navbar-width);
+  height: 54px;
+  background: var(--navbar-dark-secondary);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  transition:
+    width 0.2s,
+    height 0.2s;
 `;

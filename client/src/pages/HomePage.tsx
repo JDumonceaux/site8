@@ -1,16 +1,16 @@
 import { Meta } from 'components/common/Meta';
-import { HomeScreen4 } from 'components/ui/HomeScreen/HomeScreen4';
+import { HomeScreen5 } from 'components/ui/HomeScreen/HomeScreen5';
 import { styled } from 'styled-components';
 import { APP_NAME } from 'utils';
 
-export const HomePage = (): JSX.Element => {
+const HomePage = (): JSX.Element => {
   const title = `${APP_NAME} - Home`;
 
   return (
     <>
       <Meta title={title} />
       <StyledMain>
-        <HomeScreen4 />
+        <HomeScreen5 />
       </StyledMain>
     </>
   );

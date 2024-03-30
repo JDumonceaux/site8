@@ -1,19 +1,15 @@
 import { styled, keyframes } from 'styled-components';
-import { PinkGraphic } from './PinkGraphic';
 import { HomeMenu } from 'components/common/Menu/MainMenu/HomeMenu';
+import { LinkButton } from '../Form';
 
-export const HomeScreen4 = (): JSX.Element => {
+export const HomeScreen5 = (): JSX.Element => {
   return (
     <>
       <StyledSection>
         <Title>React Notes</Title>
-        <PinkGraphic />
-        <StyledVideo autoPlay id="video-bg" loop muted playsInline>
-          <source
-            src="/images/background/tactus-waves-hero.mp4"
-            type="video/mp4"
-          />
-        </StyledVideo>
+        <LinkButton id="css" to="/css">
+          CSS
+        </LinkButton>
       </StyledSection>
       <StyledSection>
         <HomeMenu />
@@ -41,12 +37,4 @@ const Title = styled.div`
   animation-duration: 1.5s;
   animation-timing-function: cubic-bezier(0.17, 0.67, 0.9, 1.2);
   animation-name: ${lpcAnimation3};
-`;
-const lpcFadeIn = keyframes`
-//  0% { opacity: 0;}
-//  100% { opacity: 1; }
-`;
-const StyledVideo = styled.video`
-  animation-duration: 5s;
-  animation-name: ${lpcFadeIn};
 `;

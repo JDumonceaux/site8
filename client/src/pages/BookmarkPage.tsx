@@ -4,7 +4,8 @@ import { Meta } from 'components/common/Meta';
 import { useDeferredValue } from 'react';
 import useBookmarks from 'services/hooks/useBookmarks';
 import { BookmarkTags } from 'components/common/BookmarksTags';
-export const BookmarkPage = (): JSX.Element => {
+
+const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
   const { data, error, isLoading } = useBookmarks();
   const deferredData = useDeferredValue(data);

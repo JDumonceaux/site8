@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { TestItem } from 'services/types/TestItem';
 import { ServiceUrl } from 'utils/constants';
 
-export const TestGridPage = (): JSX.Element => {
+const TestGridPage = (): JSX.Element => {
   const [data, setData] = useState<TestItem>();
 
   const fetchData = async () => {

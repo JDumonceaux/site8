@@ -8,15 +8,15 @@ import { ServiceUrl } from 'utils';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 import { styled } from 'styled-components';
 
-export const PagesList = (): JSX.Element => {
+const PagesPage = (): JSX.Element => {
   const { data, isLoading, error } = useFetch<Pages>(
     `${ServiceUrl.ENDPOINT_PAGES}`,
   );
   const deferredData = useDeferredValue(data);
 
-  const sortedData = deferredData?.items.toSorted((a, b) =>
-    a.name.localeCompare(b.name),
-  );
+  const sortedData = deferredData?.items
+    ? deferredData?.items.toSorted((a, b) => a.name.localeCompare(b.name))
+    : undefined;
 
   return (
     <>
@@ -54,7 +54,7 @@ export const PagesList = (): JSX.Element => {
   );
 };
 
-export default PagesList;
+export default PagesPage;
 
 const StyledMain = styled.main`
   background-color: #fff;

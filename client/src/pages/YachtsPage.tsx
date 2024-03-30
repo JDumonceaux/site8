@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 const boxStyle = '56.25% 0 0 0';
 
-export const YachtsPage = (): JSX.Element => {
+const YachtsPage = (): JSX.Element => {
   return (
     <>
       <Meta title="Yatchs" />

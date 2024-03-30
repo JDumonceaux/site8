@@ -1,6 +1,6 @@
 import CustomNavLink from 'components/common/CustomNavLink/CustomNavLink';
 
-export const SitemapPage = (): JSX.Element => (
+const SitemapPage = (): JSX.Element => (
   <div>
     <h1>Sitemap</h1>
     <div />

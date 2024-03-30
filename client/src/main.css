@@ -11,12 +11,22 @@
   --palette-main-color: #be3455;
 
   --spacing-2: 12px;
+  --spacing-3: 12px;
 
   --palette-dark-background: #181818;
   --palette-dark-text: #f2f3f4;
   --palette-var: #0ab4b4;
   --palette-samp: #a8a8a8;
   --palette-kbd: #888888;
+
+  --navbar-width: 256px;
+  --navbar-width-min: 80px;
+  --navbar-text: #f2f3f4;
+  --navbar-dark-primary: #18283b;
+  --navbar-dark-secondary: #465262;
+  --navbar-dark-3: #747e89;
+  --navbar-light-primary: #f5f6fa;
+  --navbar-light-secondary: #8392a5;
 
   --palette-border-color: #383838;
   --palette-error: #751c31;
