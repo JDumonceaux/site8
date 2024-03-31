@@ -32,12 +32,13 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
   const deferredData = useDeferredValue(data);
 
   const pageTitle = deferredData?.long_title ?? title;
+
   return (
     <>
       <Meta title={pageTitle} />
       <StyledMain>
         <StyledMain.Menu>
-          <SubjectMenu id={5} />
+          <SubjectMenu />
         </StyledMain.Menu>
         <StyledMain.Article>
           <LoadingWrapper error={error} isLoading={isLoading}>

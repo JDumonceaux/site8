@@ -2,17 +2,21 @@ import { styled } from 'styled-components';
 
 import useMenu from 'services/hooks/useMenu';
 import { LoadingWrapper } from 'components/common/Loading';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Menu } from 'services/types';
 
-type SubjectMenuProps = {
-  readonly id?: number;
-};
-
-export const SubjectMenu = ({ id }: SubjectMenuProps): JSX.Element => {
+export const SubjectMenu = (): JSX.Element => {
   const { data, isLoading, error } = useMenu();
+  const location = useLocation();
+  const { pathname } = location;
+  const tempPathName =
+    pathname.split('/').length > 1 ? pathname.split('/')[1] : undefined;
 
-  const filteredData =
-    id && id > 0 ? data?.items?.filter((item) => item.id === id) : data?.items;
+  const filteredData: Menu[] | undefined = data?.items
+    ? tempPathName
+      ? data.items.filter((item) => item.url === tempPathName)
+      : data.items
+    : undefined;
 
   return (
     <StyledNav>

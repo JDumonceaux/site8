@@ -49,16 +49,19 @@ const router = createBrowserRouter(
 
         {/* 1 - CSS */}
         <Route element={<MainLayout />} path="css">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
         {/* 2 - Design  */}
         <Route element={<MainLayout />} path="design">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
         {/* 3 - Artist */}
         <Route element={<MainLayout />} path="artists">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
           <Route element={<TikTokPage />} path="tiktock" />
         </Route>
@@ -71,37 +74,44 @@ const router = createBrowserRouter(
 
         {/* 5 - Cheat Sheets */}
         <Route element={<MainLayout />} path="cheatsheet">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
         {/* 6 - React */}
         <Route element={<MainLayout />} path="react">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
         {/* 7 - React Project */}
         <Route element={<MainLayout />} path="react/project">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
         {/* 8 - Code Solutions */}
         <Route element={<MainLayout />} path="code/solutions">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
         {/* 9 - Patterns */}
         <Route element={<MainLayout />} path="patterns">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
         {/* 10 - Art */}
         <Route element={<MainLayout />} path="art">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
           <Route element={<YachtsPage />} path="yachts" />
         </Route>
 
         {/* 11 = IDE */}
         <Route element={<MainLayout />} path="ide">
+          <Route element={<GenericPage />} index />
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
