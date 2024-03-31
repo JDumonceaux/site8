@@ -9,6 +9,7 @@
   --palette-text: #1f1f29;
   --palette-background: #f2f3f4;
   --palette-main-color: #be3455;
+  --palette-error: #751c31;
 
   --spacing-2: 12px;
   --spacing-3: 12px;
@@ -28,6 +29,9 @@
   --navbar-light-primary: #f5f6fa;
   --navbar-light-secondary: #8392a5;
 
+  --snackbar-background: #465262;
+  --snackbar-color: #f2f3f4;
+
   --palette-border-color: #383838;
   --palette-error: #751c31;
   --palette-code: #a8a8a8;
@@ -36,7 +40,6 @@
   --palette-menu-color: #d8d8d8;
 
   --palette-grey-10: #d8d8d8;
-  --palette-grey-50: #888888;
   --palette-grey-100: #585858;
   --palette-grey-dark: #4b4b4b;
 

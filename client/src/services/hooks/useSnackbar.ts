@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../state/store';
@@ -11,6 +11,15 @@ const useSnackbar = () => {
   const selector = (state: RootState) => state.snackbar;
   const data: Snackbar | null = useSelector(selector).snackbarData;
 
+  const initialState: Snackbar = useMemo(
+    () => ({
+      isOpen: false,
+      openDurationMs: 0,
+      contents: null,
+    }),
+    [],
+  );
+
   const updateSnackbarDispatch = useCallback(
     (data: Snackbar) => {
       dispatch(save(data));
@@ -18,40 +27,40 @@ const useSnackbar = () => {
     [dispatch],
   );
 
-  const setSimpleSnackbarMessage = useCallback(
+  const updateSnackbar = useCallback(
+    (data: Snackbar) => {
+      if (data.isOpen && data.openDurationMs) {
+        setTimeout(() => {
+          updateSnackbarDispatch(initialState);
+        }, data.openDurationMs);
+      }
+
+      updateSnackbarDispatch(data);
+    },
+    [updateSnackbarDispatch, initialState],
+  );
+
+  const setSnackbarMessage = useCallback(
     (contents: Snackbar['contents']) => {
-      updateSnackbarDispatch({
+      updateSnackbar({
         isOpen: true,
         openDurationMs: 5000,
         contents,
       });
     },
-    [updateSnackbarDispatch],
+    [updateSnackbar],
   );
 
-  const setSimpleSnackbarMessageNoCloseX = useCallback(
-    (contents: Snackbar['contents']) => {
-      updateSnackbarDispatch({
-        showCloseButton: false,
-        isOpen: true,
-        openDurationMs: 5000,
-        contents,
-      });
-    },
-    [updateSnackbarDispatch],
-  );
-
-  const closeSnackbar = useCallback(() => {
+  const closeSnackbar = () => {
     updateSnackbarDispatch({
       isOpen: false,
       contents: null,
     });
-  }, [updateSnackbarDispatch]);
+  };
 
   return {
     snackbarData: data,
-    setSimpleSnackbarMessage,
-    setSimpleSnackbarMessageNoCloseX,
+    setSnackbarMessage,
     closeSnackbar,
   };
 };

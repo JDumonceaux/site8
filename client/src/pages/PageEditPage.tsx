@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
 
 import { Button } from 'components/ui/Form/Button';
@@ -12,6 +12,7 @@ import { PageTitle } from 'components/common/PageTitle';
 import { styled } from 'styled-components';
 import { TextInput } from 'components/ui/Form/Input';
 import { TextArea } from 'components/ui/Form/Input/TextArea';
+import useSnackbar from 'services/hooks/useSnackbar';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
@@ -28,6 +29,11 @@ const PageEditPage = (): JSX.Element => {
     handleSubmit,
     handleReset,
   } = usePageEdit(params.id);
+  const { setSnackbarMessage } = useSnackbar();
+
+  useEffect(() => {
+    setSnackbarMessage('Saved');
+  }, [setSnackbarMessage]);
 
   return (
     <>

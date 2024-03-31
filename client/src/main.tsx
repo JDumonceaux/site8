@@ -1,6 +1,6 @@
 import './utils/i18';
-import './main.css';
-import './reset.css';
+import './styles/main.css';
+import './styles/reset.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

@@ -3,8 +3,6 @@ import express from "express";
 
 const app = express();
 
-console.log(`Start`);
-
 app.get("/", (req, res) => {
   res.json({ message: "Bookmarks" });
 });

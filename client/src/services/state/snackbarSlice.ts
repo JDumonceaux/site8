@@ -14,7 +14,7 @@ const snackbarSlice = createSlice({
   initialState,
   reducers: {
     save: (state, action) => {
-      state.snackbarData = action.payload.data;
+      state.snackbarData = action.payload;
     },
   },
 });

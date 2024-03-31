@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom';
 import AppSetup from 'components/common/AppSetup/AppSetup';
 import Header from 'components/common/Header';
 import { ErrorBoundary } from 'react-error-boundary';
+import Snackbar from 'components/common/Snackbar';
 
 export const MainLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
@@ -15,10 +16,9 @@ export const MainLayout = (): JSX.Element => (
       <Suspense fallback="Loading ...">
         <Outlet />
       </Suspense>
-      {/* <Suspense fallback="Loading ...">
-        <Snackbar />
-      </Suspense>
 
+      <Snackbar />
+      {/*
       <MainMenu />
       <Suspense fallback="Loading ...">
         <Footer />

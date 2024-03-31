@@ -31,8 +31,6 @@ app.use((_req, res, next) => {
   next();
 });
 
-console.log(`Start`);
-
 app.use("/api/menus", menuRouter);
 
 app.get("/", (req, res) => {

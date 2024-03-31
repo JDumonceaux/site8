@@ -75,7 +75,7 @@ const usePageEdit = (id: string | undefined) => {
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   // const [updateError, setUpdateError] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const { setSimpleSnackbarMessage } = useSnackbar();
+  const { setSnackbarMessage } = useSnackbar();
 
   const { data, fetchData, patchData, postData } = useAxiosHelper<Page>();
 
@@ -143,24 +143,21 @@ const usePageEdit = (id: string | undefined) => {
       event.preventDefault();
       // Handle form submission here
       setIsProcessing(true);
-      console.log('p2');
+
       if (validateForm()) {
-        console.log('p3');
         if (formValues.id > 0) {
-          console.log('p4');
           patchData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
         } else {
-          console.log('p5');
           postData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
         }
-        console.log('p6');
+
         setIsProcessing(false);
       } else {
         alert('Form is not valid');
       }
-      setSimpleSnackbarMessage('Saved');
+      setSnackbarMessage('Saved');
     },
-    [formValues, patchData, postData, setSimpleSnackbarMessage, validateForm],
+    [formValues, patchData, postData, setSnackbarMessage, validateForm],
   );
   const setId = useCallback(
     (value: string | undefined) => {
