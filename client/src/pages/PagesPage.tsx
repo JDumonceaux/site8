@@ -7,6 +7,7 @@ import useFetch from 'services/hooks/useFetch';
 import { ServiceUrl } from 'utils';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 import { styled } from 'styled-components';
+import StyledMain from 'components/common/StyledMain';
 
 const PagesPage = (): JSX.Element => {
   const { data, isLoading, error } = useFetch<Pages>(
@@ -24,7 +25,7 @@ const PagesPage = (): JSX.Element => {
       <StyledMain>
         <LoadingWrapper error={error} isLoading={isLoading}>
           <PageTitle title="Pages" />
-          <section className="section">
+          <section>
             <table>
               <thead>
                 <tr>
@@ -55,8 +56,3 @@ const PagesPage = (): JSX.Element => {
 };
 
 export default PagesPage;
-
-const StyledMain = styled.main`
-  background-color: #fff;
-  background-size: contain;
-`;

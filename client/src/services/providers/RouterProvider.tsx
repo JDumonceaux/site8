@@ -67,7 +67,7 @@ const router = createBrowserRouter(
         </Route>
 
         {/* 4 - General */}
-        <Route element={<PhotoLayout />} path="general">
+        <Route element={<PhotoLayout />} path="other">
           <Route element={<BookmarkPage />} path="bookmarks" />
           <Route element={<PhotoPage />} path="photos" />
         </Route>

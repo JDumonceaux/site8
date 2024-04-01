@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import CustomNavLink from 'components/common/CustomNavLink/CustomNavLink';
+import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
 import useMenu from 'services/hooks/useMenu';
 
 export const HomeMenu = (): JSX.Element => {
@@ -13,9 +13,9 @@ export const HomeMenu = (): JSX.Element => {
           <StyledMenuSection key={item.id}>
             <StyledMenuTitle>{item.name}</StyledMenuTitle>
             {item?.items?.map((x) => (
-              <CustomNavLink key={x.name} to={`/${item.url}/${x.url}`}>
+              <StyledNavLink key={x.name} to={`/${item.url}/${x.url}`}>
                 {x.name}
-              </CustomNavLink>
+              </StyledNavLink>
             ))}
           </StyledMenuSection>
         ))}

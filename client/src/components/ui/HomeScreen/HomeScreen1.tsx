@@ -1,4 +1,4 @@
-import { HomeMenu } from 'components/common/MainMenu/HomeMenu';
+import { HomeMenu } from 'components/common/Menu/MainMenu/HomeMenu';
 import { Meta } from 'components/common/Meta';
 import { MatrixBG } from 'components/ui/Animation/MatrixBG';
 import { styled } from 'styled-components';

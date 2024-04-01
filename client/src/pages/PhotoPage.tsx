@@ -4,7 +4,7 @@ import { Meta } from 'components/common/Meta';
 
 import { useDeferredValue, useEffect } from 'react';
 import usePhotos from 'services/hooks/usePhotos';
-import { styled } from 'styled-components';
+import StyledMain from 'components/common/StyledMain';
 
 const PhotoPage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = usePhotos();
@@ -19,7 +19,7 @@ const PhotoPage = (): JSX.Element => {
       <Meta title="Photos" />
       <StyledMain>
         <PageTitle title="Photos" />
-        <StyledSection>
+        <StyledMain.Article>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <ul>
               {deferredData?.items?.map((item) => {
@@ -40,18 +40,10 @@ const PhotoPage = (): JSX.Element => {
               })}
             </ul>
           </LoadingWrapper>
-        </StyledSection>
+        </StyledMain.Article>
       </StyledMain>
     </>
   );
 };
 
 export default PhotoPage;
-
-const StyledMain = styled.main`
-  background-color: #000;
-  background-size: contain;
-  min-height: 100vh;
-  min-height: 100dvh;
-`;
-const StyledSection = styled.section``;

@@ -9,6 +9,7 @@ import { FixedSizeList as List } from 'react-window';
 import { MusicItem } from 'services/types/MusicItem';
 import useMusic from 'services/hooks/useMusic';
 import { ItemRenderer } from './ItemRenderer';
+import StyledMain from 'components/common/StyledMain';
 
 const MusicList = (): JSX.Element => {
   const title = 'YouTube Videos';
@@ -32,9 +33,9 @@ const MusicList = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <main className="main-content">
+      <StyledMain>
         <PageTitle title={title} />
-        <section className="section">
+        <section>
           <p>These are some of my favorite YouTube videos.</p>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <List
@@ -61,8 +62,7 @@ const MusicList = (): JSX.Element => {
               ))} */}
           </LoadingWrapper>
         </section>
-      </main>
-      <aside className="right-sidebar" />
+      </StyledMain>
     </>
   );
 };

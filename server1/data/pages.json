@@ -3,59 +3,59 @@
     "title": "Pages"
   },
   "menus": [
-    { "id": 1, "seq": 1, "sort": "name", "name": "CSS", "url": "css" },
+    { "id": 1, "seq": 3, "sort": "name", "name": "CSS", "url": "css" },
     {
       "id": 2,
-      "seq": 2,
+      "seq": 4,
       "sort": "name",
       "name": "Design Styles",
       "url": "design"
     },
     {
       "id": 3,
-      "seq": 3,
+      "seq": 11,
       "sort": "name",
       "name": "Artist",
       "url": "artist"
     },
     {
       "id": 4,
-      "seq": 4,
+      "seq": 12,
       "sort": "name",
-      "name": "General",
-      "url": "general"
+      "name": "Other",
+      "url": "other"
     },
     {
       "id": 5,
-      "seq": 5,
+      "seq": 1,
       "sort": "name",
       "name": "Cheat Sheets",
       "url": "cheatsheet"
     },
     {
       "id": 6,
-      "seq": 6,
+      "seq": 7,
       "sort": "name",
       "name": "React",
       "url": "react"
     },
     {
       "id": 7,
-      "seq": 7,
+      "seq": 8,
       "sort": "name",
       "name": "React Project",
       "url": "react/project"
     },
     {
       "id": 8,
-      "seq": 8,
+      "seq": 2,
       "sort": "name",
       "name": "Code Solutions",
       "url": "code/solutions"
     },
     {
       "id": 9,
-      "seq": 9,
+      "seq": 6,
       "sort": "name",
       "name": "Patterns",
       "url": "patterns"
@@ -69,7 +69,7 @@
     },
     {
       "id": 11,
-      "seq": 11,
+      "seq": 5,
       "sort": "name",
       "name": "IDE",
       "url": "ide"

@@ -1,16 +1,16 @@
 import './leftSideMenu.css';
 
-import CustomNavLink from '../../common/CustomNavLink/CustomNavLink';
+import StyledNavLink from '../../common/StyledNavLink/StyledNavLink';
 
 export const LeftSideMenu = (): JSX.Element => {
   return (
-    <div className="left-side-menu">
+    <>
       <nav aria-label="Home Navigation">
         <ul>
           <li>
-            <CustomNavLink ariaLabel="Home" to="/">
+            <StyledNavLink ariaLabel="Home" to="/">
               Home
-            </CustomNavLink>
+            </StyledNavLink>
           </li>
         </ul>
       </nav>
@@ -19,12 +19,12 @@ export const LeftSideMenu = (): JSX.Element => {
         <div id="reactmenu">React</div>
         <ul>
           <li>
-            <CustomNavLink ariaLabel="Learning React" to="/react">
+            <StyledNavLink ariaLabel="Learning React" to="/react">
               Learning React
-            </CustomNavLink>
+            </StyledNavLink>
           </li>
         </ul>
       </nav>
-    </div>
+    </>
   );
 };

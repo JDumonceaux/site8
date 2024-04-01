@@ -34,7 +34,7 @@ export const TextArea = ({
     typeof value === 'string' || value instanceof String ? value.length : 0;
 
   return (
-    <div className="text-area">
+    <StyledWrapper>
       <TextLabel errorText={errorTextShort} hasError={hasError} htmlFor={id}>
         {label}
       </TextLabel>
@@ -53,7 +53,7 @@ export const TextArea = ({
         showCounter={showCounter}>
         {hasError ? helpText : errorText}
       </TextHelp>
-    </div>
+    </StyledWrapper>
   );
 };
 
@@ -81,4 +81,7 @@ const StyledTextArea = styled.textarea<{ $hasError: boolean }>`
     border-color: #6db144;
     border-width: 2px;
   }
+`;
+const StyledWrapper = styled.div`
+  margin-bottom: 18px;
 `;

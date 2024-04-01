@@ -1,6 +1,7 @@
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
 import { styled } from 'styled-components';
+import StyledMain from 'components/common/StyledMain';
 
 const boxStyle = '56.25% 0 0 0';
 
@@ -10,7 +11,7 @@ const YachtsPage = (): JSX.Element => {
       <Meta title="Yatchs" />
       <StyledMain>
         <PageTitle title="Yatchs" />
-        <section className="section">
+        <section>
           <p>
             The design of this yacht is called <em>Nature</em>.
           </p>
@@ -45,17 +46,17 @@ const YachtsPage = (): JSX.Element => {
             beautiful and innovative.
           </p>
           <div>
-            <div className="image-banner-1">Nature Design</div>
+            <StyledTitle>Nature Design</StyledTitle>
             <img alt="" src="/images/yachts/sinot-nature-1.jpg.webp" />
           </div>
           <div>
-            <div className="image-banner-1">Nature Design</div>
+            <StyledTitle>Nature Design</StyledTitle>
             <img alt="" src="/images/yachts/sinot-nature-2.jpg.webp" />
           </div>
           <div>
-            <div className="image-banner-1">
+            <StyledTitle>
               Nature Design - Observation Lounge with floor to ceiling windows
-            </div>
+            </StyledTitle>
             <img
               alt="Nature - Observation Lounge"
               src="/images/yachts/sinot-nature-5.png"
@@ -63,13 +64,11 @@ const YachtsPage = (): JSX.Element => {
             />
           </div>
           <div>
-            <div className="image-banner-1">
-              Nature Design - Expansive Decks
-            </div>
+            <StyledTitle>Nature Design - Expansive Decks</StyledTitle>
             <img alt="" src="/images/yachts/sinot-nature-3.png" />
           </div>
           <div>
-            <div className="image-banner-1">Nature Design - Guest Bedroom</div>
+            <StyledTitle>Nature Design - Guest Bedroom</StyledTitle>
             <img
               alt="Nature - Guest Bedroom"
               src="/images/yachts/sinot-nature-4.png"
@@ -78,19 +77,19 @@ const YachtsPage = (): JSX.Element => {
           </div>
 
           <div>
-            <div className="image-banner-1">Beach Design</div>
+            <StyledTitle>Beach Design</StyledTitle>
             <img alt="" src="/images/yachts/sinot-beach.png" />
           </div>
           <div>
-            <div className="image-banner-1">Aqua Design - Owner&#39s Suite</div>
+            <StyledTitle>Aqua Design - Owner&#39s Suite</StyledTitle>
             <img alt="" src="/images/yachts/sinot-aqua-owners-suite.png" />
           </div>
         </section>
 
-        <aside className="right-sidebar">
+        <StyledMain.Aside>
           {/* Art of Life */}
           <div>
-            <div className="image-banner-1">Art of Life Design</div>
+            <StyledTitle>Art of Life Design</StyledTitle>
             <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
               <iframe
                 allow="autoplay; fullscreen; picture-in-picture"
@@ -111,7 +110,7 @@ const YachtsPage = (): JSX.Element => {
           </div>
           {/* Nature */}
           <div>
-            <div className="image-banner-1">Nature Design</div>
+            <StyledTitle>Nature Design</StyledTitle>
             <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
               <iframe
                 allow="autoplay; fullscreen; picture-in-picture"
@@ -132,7 +131,7 @@ const YachtsPage = (): JSX.Element => {
           </div>
           {/* Zen */}
           <div>
-            <div className="image-banner-1">Zen Design</div>
+            <StyledTitle>Zen Design</StyledTitle>
             <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
               <iframe
                 allow="autoplay; fullscreen; picture-in-picture"
@@ -151,7 +150,7 @@ const YachtsPage = (): JSX.Element => {
             </div>
             <script src="https://player.vimeo.com/api/player.js" />
           </div>
-        </aside>
+        </StyledMain.Aside>
       </StyledMain>
     </>
   );
@@ -159,7 +158,10 @@ const YachtsPage = (): JSX.Element => {
 
 export default YachtsPage;
 
-const StyledMain = styled.main`
-  background-color: #fff;
-  background-size: contain;
+const StyledTitle = styled.div`
+  color: #fff;
+  background: #585858;
+  padding: 12px 16px 6px 16px;
+  text-align: center;
+  margin-top: 2px;
 `;

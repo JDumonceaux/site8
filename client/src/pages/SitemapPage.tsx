@@ -1,4 +1,4 @@
-import CustomNavLink from 'components/common/CustomNavLink/CustomNavLink';
+import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
 
 const SitemapPage = (): JSX.Element => (
   <div>
@@ -11,7 +11,7 @@ const SitemapPage = (): JSX.Element => (
 
     <ul>
       <li>
-        <CustomNavLink to="/">Home</CustomNavLink>
+        <StyledNavLink to="/">Home</StyledNavLink>
       </li>
     </ul>
   </div>

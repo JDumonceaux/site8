@@ -1,6 +1,6 @@
 import { Meta } from 'components/common/Meta';
+import StyledMain from 'components/common/StyledMain';
 import { HomeScreen5 } from 'components/ui/HomeScreen/HomeScreen5';
-import { styled } from 'styled-components';
 import { APP_NAME } from 'utils';
 
 const HomePage = (): JSX.Element => {
@@ -17,8 +17,3 @@ const HomePage = (): JSX.Element => {
 };
 
 export default HomePage;
-
-const StyledMain = styled.main`
-  background-color: #000;
-  background-size: contain;
-`;

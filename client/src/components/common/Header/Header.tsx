@@ -8,17 +8,17 @@ type HeaderProps = {
   readonly includeMenu?: boolean;
 };
 
-export const Header = ({ includeMenu = true }: HeaderProps): JSX.Element => {
+export const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
   return (
     <StyledHeader data-testid="header">
       <div>
-      <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
-      {includeMenu ? <MenuIcon /> : null}
-      <StyledLinkDiv>
-        <Link to="/">
-          <AppName>{APP_NAME}</AppName>
-        </Link>
-      </StyledLinkDiv>
+        <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
+        {includeMenu ? <MenuIcon /> : null}
+        <StyledLinkDiv>
+          <Link to="/">
+            <AppName>{APP_NAME}</AppName>
+          </Link>
+        </StyledLinkDiv>
       </div>
       <Avatar />
     </StyledHeader>

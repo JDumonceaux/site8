@@ -1,21 +1,29 @@
-import { styled } from 'styled-components';
-
 import useMenu from 'services/hooks/useMenu';
 import { LoadingWrapper } from 'components/common/Loading';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Menu } from 'services/types';
+import { styled } from 'styled-components';
+import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
 
-export const SubjectMenu = (): JSX.Element => {
+const SubjectMenu = (): JSX.Element => {
   const { data, isLoading, error } = useMenu();
   const location = useLocation();
   const { pathname } = location;
   const tempPathName =
     pathname.split('/').length > 1 ? pathname.split('/')[1] : undefined;
 
-  const filteredData: Menu[] | undefined = data?.items
+  const menus = data?.items;
+
+  const filteredData: Menu | undefined = menus
     ? tempPathName
-      ? data.items.filter((item) => item.url === tempPathName)
-      : data.items
+      ? menus.find((x) => x.url === tempPathName)
+      : menus[0]
+    : undefined;
+
+  const filtereMenus: Menu[] | undefined = menus
+    ? tempPathName
+      ? menus.filter((x) => x.id !== filteredData?.id)
+      : menus
     : undefined;
 
   return (
@@ -23,38 +31,50 @@ export const SubjectMenu = (): JSX.Element => {
       <StyledHeader>CODEPEN</StyledHeader>
       <StyledContent>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          {filteredData?.map((item) => (
-            <StyledMenuSection key={item.id}>
-              <StyledMenuTitle key={item.name} to={`/${item.url}`}>
-                {item.name}
+          {filteredData ? (
+            <StyledMenuSection key={filteredData.id}>
+              <StyledMenuTitle
+                key={filteredData.name}
+                to={`/${filteredData.url}`}>
+                {filteredData.name}
               </StyledMenuTitle>
-              {item?.items?.map((x) => (
-                <StyledMenuItem key={x.name} to={`/${item.url}/${x.url}`}>
+              {filteredData?.items?.map((x) => (
+                <StyledMenuItem
+                  key={x.name}
+                  to={`/${filteredData.url}/${x.url}`}>
                   {x.name}
                 </StyledMenuItem>
               ))}
             </StyledMenuSection>
-          ))}
+          ) : null}
         </LoadingWrapper>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          {data?.items?.map((item) => (
+          {filtereMenus?.map((item) => (
             <StyledMenuTitle key={item.name} to={`/${item.url}`}>
               {item.name}
             </StyledMenuTitle>
           ))}
         </LoadingWrapper>
       </StyledContent>
-      <StyledFooter>FOOTER</StyledFooter>
+      {/* <StyledFooter>FOOTER</StyledFooter> */}
     </StyledNav>
   );
 };
+
+export default SubjectMenu;
 
 const StyledMenuSection = styled.div`
   color: var(--navbar-text);
   break-inside: avoid;
 }`;
-const StyledMenuTitle = styled(NavLink)`
+const StyledMenuLink = styled(StyledNavLink)`
   color: var(--navbar-text);
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: var(--navbar-text);
+  }
   display: inline-block;
   width: 100%;
   padding: 12px;
@@ -62,11 +82,14 @@ const StyledMenuTitle = styled(NavLink)`
     background: var(--navbar-dark-secondary);
   }
 `;
-const StyledMenuItem = styled(NavLink)`
-  color: var(--navbar-text);
+const StyledMenuTitle = styled(StyledMenuLink)`
+  padding: 12px;
+  &.active {
+    background: var(--navbar-dark-secondary);
+  }
+`;
+const StyledMenuItem = styled(StyledMenuLink)`
   font-size: 0.8rem;
-  display: inline-block;
-  width: 100%;
   padding: 6px 12px 6px 24px;
   &.active {
     background: var(--navbar-dark-3);
@@ -112,16 +135,16 @@ const StyledContent = styled.div`
   overflow-x: hidden;
   transition: width 0.2s;
 `;
-const StyledFooter = styled.div`
-  position: relative;
-  width: var(--navbar-width);
-  height: 54px;
-  background: var(--navbar-dark-secondary);
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-  transition:
-    width 0.2s,
-    height 0.2s;
-`;
+// const StyledFooter = styled.div`
+//   position: relative;
+//   width: var(--navbar-width);
+//   height: 54px;
+//   background: var(--navbar-dark-secondary);
+//   border-radius: 16px;
+//   display: flex;
+//   flex-direction: column;
+//   z-index: 2;
+//   transition:
+//     width 0.2s,
+//     height 0.2s;
+// `;

@@ -4,6 +4,7 @@ import { Meta } from 'components/common/Meta';
 import { useDeferredValue } from 'react';
 import useBookmarks from 'services/hooks/useBookmarks';
 import { BookmarkTags } from 'components/common/BookmarksTags';
+import StyledMain from 'components/common/StyledMain';
 
 const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
@@ -13,17 +14,16 @@ const BookmarkPage = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <main className="main-content">
+      <StyledMain>
         <PageTitle title={title} />
-        <section className="section">
+        <section>
           <p>These are some of my favorite resources.</p>
 
           <LoadingWrapper error={error} isLoading={isLoading}>
             <BookmarkTags data={deferredData} />
           </LoadingWrapper>
         </section>
-      </main>
-      <aside className="right-sidebar" />
+      </StyledMain>
     </>
   );
 };

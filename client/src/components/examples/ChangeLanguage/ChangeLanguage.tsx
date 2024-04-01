@@ -20,7 +20,7 @@ export const ChangeLanguage = (): JSX.Element => {
   };
 
   return (
-    <div className="btn-container">
+    <>
       {languages.map((lng) => {
         return (
           <button
@@ -32,6 +32,6 @@ export const ChangeLanguage = (): JSX.Element => {
           </button>
         );
       })}
-    </div>
+    </>
   );
 };

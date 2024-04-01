@@ -47,6 +47,7 @@ const pageSchema = z.object({
 });
 
 const usePageEdit = (id: string | undefined) => {
+  const { setSnackbarMessage } = useSnackbar();
   type FormValues = z.infer<typeof pageSchema>;
   type keys = keyof FormValues;
   // Return default form values
@@ -75,9 +76,9 @@ const usePageEdit = (id: string | undefined) => {
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   // const [updateError, setUpdateError] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const { setSnackbarMessage } = useSnackbar();
 
-  const { data, fetchData, patchData, postData } = useAxiosHelper<Page>();
+  const { data, isLoading, error, fetchData, patchData, postData } =
+    useAxiosHelper<Page>();
 
   useEffect(() => {
     setFormValues(defaultFormValues);
@@ -143,7 +144,7 @@ const usePageEdit = (id: string | undefined) => {
       event.preventDefault();
       // Handle form submission here
       setIsProcessing(true);
-
+      setSnackbarMessage('Saving...');
       if (validateForm()) {
         if (formValues.id > 0) {
           patchData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
@@ -153,12 +154,13 @@ const usePageEdit = (id: string | undefined) => {
 
         setIsProcessing(false);
       } else {
-        alert('Form is not valid');
+        setSnackbarMessage('Form is not valid');
       }
       setSnackbarMessage('Saved');
     },
     [formValues, patchData, postData, setSnackbarMessage, validateForm],
   );
+
   const setId = useCallback(
     (value: string | undefined) => {
       if (value) {
@@ -213,6 +215,8 @@ const usePageEdit = (id: string | undefined) => {
       handleChange,
       handleSubmit,
       handleReset,
+      isLoading,
+      error,
     }),
     [
       formValues,
@@ -227,6 +231,8 @@ const usePageEdit = (id: string | undefined) => {
       handleChange,
       handleSubmit,
       handleReset,
+      isLoading,
+      error,
     ],
   );
 };

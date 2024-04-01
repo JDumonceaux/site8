@@ -1,5 +1,6 @@
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
+import StyledMain from 'components/common/StyledMain';
 
 const ArtList = (): JSX.Element => {
   const title = 'Art';
@@ -7,9 +8,9 @@ const ArtList = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <main className="main-content">
+      <StyledMain>
         <PageTitle title={title} />
-        <section className="section">
+        <section>
           <div>
             <img
               alt="The Scream"
@@ -20,7 +21,7 @@ const ArtList = (): JSX.Element => {
             <div>Edvard Munch - The Scream (1893)</div>
           </div>
         </section>
-        <section className="section">
+        <section>
           <div>
             <img
               alt="The Starry Night"
@@ -31,7 +32,7 @@ const ArtList = (): JSX.Element => {
             <div />
           </div>
         </section>
-        <section className="section">
+        <section>
           <div>
             <img
               alt="Starry Night over the Rhone"
@@ -42,7 +43,7 @@ const ArtList = (): JSX.Element => {
             <div />
           </div>
         </section>
-        <section className="section">
+        <section>
           <div>
             <img
               alt="Starry Night over the Rhone"
@@ -53,8 +54,7 @@ const ArtList = (): JSX.Element => {
             <div />
           </div>
         </section>
-      </main>
-      <aside className="right-sidebar" />
+      </StyledMain>
     </>
   );
 };

@@ -7,9 +7,5 @@ export const PageTitle = ({ title }: PageTitleProps): JSX.Element | null => {
     return null;
   }
 
-  return (
-    <div className="page-title" data-testid="page-title">
-      <h1>{title}</h1>
-    </div>
-  );
+  return <h1 data-testid="page-title">{title}</h1>;
 };

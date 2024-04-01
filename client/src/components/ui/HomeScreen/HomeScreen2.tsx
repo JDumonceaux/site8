@@ -1,4 +1,5 @@
 import { Meta } from 'components/common/Meta';
+import StyledMain from 'components/common/StyledMain';
 import { styled, keyframes } from 'styled-components';
 
 export const HomeScreen2 = (): JSX.Element => {
@@ -8,7 +9,7 @@ export const HomeScreen2 = (): JSX.Element => {
     <>
       <Meta title={title} />
       <StyledMain>
-        <StyledSection>
+        <section>
           <R1C1 />
           <R1C2 />
           <R1C3 />
@@ -17,16 +18,11 @@ export const HomeScreen2 = (): JSX.Element => {
           <R1C6 />
           <R1C7 />
           <R1C8 />
-        </StyledSection>
+        </section>
       </StyledMain>
     </>
   );
 };
-
-const StyledMain = styled.main``;
-const StyledSection = styled.section`
-  width: 100%;
-`;
 
 const breatheAnimation = keyframes`
  0% { height: 25px; width: 25px; }

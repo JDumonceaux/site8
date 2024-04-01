@@ -1,3 +1,4 @@
+import StyledMain from 'components/common/StyledMain';
 import { styled } from 'styled-components';
 
 type AuthContainerProps = {
@@ -32,10 +33,6 @@ export const AuthContainer = ({
   );
 };
 
-const StyledMain = styled.main`
-  background-color: #fff;
-  background-size: contain;
-`;
 const StyledDivError = styled.div`
   border: 1px solid var(--palette-error);
   color: var(--palette-error);

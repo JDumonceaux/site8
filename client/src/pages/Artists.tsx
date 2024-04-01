@@ -1,5 +1,6 @@
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
+import StyledMain from 'components/common/StyledMain';
 
 const Artists = (): JSX.Element => {
   const title = 'Art';
@@ -7,17 +8,16 @@ const Artists = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <main className="main-content">
+      <StyledMain>
         <PageTitle title={title} />
-        <section className="section">
+        <section>
           <img
             alt="The Scream"
             src="https://www.edvardmunch.org/images/paintings/the-scream.jpg"
             title="The Scream"
           />
         </section>
-      </main>
-      <aside className="right-sidebar" />
+      </StyledMain>
     </>
   );
 };

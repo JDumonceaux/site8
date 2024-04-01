@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 
 import RenderHtml from 'components/common/RenderHtml';
 import StyledMain from 'components/common/StyledMain';
-import { SubjectMenu } from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
+import SubjectMenu from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
 import { styled } from 'styled-components';
 
 type GenericPageProps = {
