@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.1.6",
-    "@reduxjs/toolkit": "^2.2.2",
+    "@reduxjs/toolkit": "^2.2.3",
     "aws-amplify": "^6.0.23",
     "axios": "^1.6.8",
     "date-fns": "^3.6.0",
