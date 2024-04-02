@@ -12,6 +12,7 @@ const StyledArticle = ({ children }: Props): JSX.Element => {
 
 export default StyledArticle;
 
-const StyledElement = styled.div`
+const StyledElement = styled.article`
   flex: 1 1 auto;
+  padding: 18px;
 `;

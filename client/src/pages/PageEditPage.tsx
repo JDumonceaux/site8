@@ -37,7 +37,7 @@ const PageEditPage = (): JSX.Element => {
       <Meta title="Page Edit" />
       <StyledMain>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          <StyledMain.Article>
+          <StyledMain.Section>
             <PageTitle title="Page Edit" />
             <form noValidate onSubmit={handleSubmit}>
               <ClearAll onClear={handleClear}>
@@ -165,7 +165,7 @@ const PageEditPage = (): JSX.Element => {
                 </Button>
               </TwoColumn>
             </form>
-          </StyledMain.Article>
+          </StyledMain.Section>
         </LoadingWrapper>
       </StyledMain>
       <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
