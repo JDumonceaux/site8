@@ -80,6 +80,50 @@ export class PagesService {
     }
   }
 
+  // Get the next available id
+  public async getNextId(): Promise<number | undefined> {
+    Logger.info(`getNextId -> `);
+    try {
+      const item = await this.getItems();
+      return this.findFreeId(item?.items ?? undefined);
+    } catch (error) {
+      Logger.error(`PagesService: getLastId -> Error: ${error}`);
+      return undefined;
+    }
+  }
+
+  // Get Next Id
+  public findFreeId(items: Page[] | undefined): number | undefined {
+    try {
+      // Check to make sure items isn't undefined
+      if (items) {
+        const sortedArray = items.toSorted((a, b) => a.id - b.id);
+
+        // Start with the first id in the sorted array
+        let nextId = sortedArray[0].id;
+        // Iterate through the array to find the missing id
+        for (let i = 0; i < sortedArray.length; i++) {
+          // Check if the current object's id is not equal to the nextId
+          if (sortedArray[i].id !== nextId) {
+            return nextId; // Found the gap
+          }
+          nextId++; // Move to the next expected id
+        }
+
+        // If no gaps were found, the next free id is one greater than the last object's id
+        return nextId;
+      } else {
+        Logger.error(
+          `PagesService: findFreeIdd -> Error: items missing from file`,
+        );
+        return undefined;
+      }
+    } catch (error) {
+      Logger.error(`PagesService: findFreeId -> Error: ${error}`);
+      return undefined;
+    }
+  }
+
   // Add an item
   public async addItem(data: Page): Promise<boolean> {
     try {

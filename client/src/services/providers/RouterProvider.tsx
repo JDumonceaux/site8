@@ -115,6 +115,12 @@ const router = createBrowserRouter(
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
+        {/* 12 = Javascript */}
+        <Route element={<MainLayout />} path="javascript">
+          <Route element={<GenericPage />} index />
+          <Route element={<GenericPage />} path=":id" />
+        </Route>
+
         {/* ADMIN */}
         <Route element={<MainLayout />} path="admin">
           <Route element={<PagesPage />} path="pages" />

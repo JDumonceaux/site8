@@ -68,12 +68,11 @@ pageRouter.post('/', async (req: Request, res: Response) => {
   const data: Page = req.body;
 
   try {
-    const x = await service.getLastId();
-    Logger.info('lastId', x);
-    if (!x) {
-      res.status(500).json({ error: 'Last Id not found.' });
+    const nextId = await service.getNextId();
+    Logger.info('nextId', nextId);
+    if (!nextId) {
+      res.status(500).json({ error: 'Next Id not found.' });
     } else {
-      const nextId = x + 1;
       const results = await Promise.allSettled([
         service.addItem({ ...data, id: nextId }),
         service2.addItem({ ...data, id: nextId }),
