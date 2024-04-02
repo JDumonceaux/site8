@@ -450,21 +450,19 @@
       "id": 15002,
       "name": "Design Patterns - Facade",
       "edit_date_display": "3/30/2024 2:24 PM",
-      "text": "This pattern hides the complexity of a larger system behind a simpler interface.",
       "parentId": 6,
       "url": "design-patterns-facade"
     },
     {
       "id": 902,
       "name": "Javascript 2024",
-      "url": "javascript-2024",
       "long_title": "",
-      "edit_date_display": "4/1/2024 7:18 PM",
-      "resources": false,
-      "text": "The next version of JavaScript (aka ES2024) is expected around June 2024.  One of the features that I'm excited about is the introduction of Temporal.\n\n<h2>Temporal</h2> \nAn ongoing criticism of JavaScript is it's implementation and support for dates and times: it is been inconsistent and a bit lacking in features.  As a result, several third party packages have been developed to fill the space: moment, date-fns, etc.  Temporal aims at bringing this functionality to JavaScript as native features.\n",
+      "edit_date_display": "4/1/2024 11:11 PM",
       "parentId": 12,
+      "url": "javascript-2024",
       "reading_time": "",
-      "readability_score": ""
+      "readability_score": "",
+      "file": true
     }
   ]
 }

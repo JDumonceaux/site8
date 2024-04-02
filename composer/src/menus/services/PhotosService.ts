@@ -1,6 +1,6 @@
 import { Logger } from '../utils/Logger.js';
 import { readFile } from 'fs/promises';
-import { Photos } from '../types/Photos.js';
+import { Photos } from 'types/Photos.js';
 import { getFilePath } from '../utils/getFilePath.js';
 
 export class PhotosService {

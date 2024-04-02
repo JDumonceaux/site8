@@ -1,8 +1,8 @@
 import { Logger } from '../utils/Logger.js';
-import { Menus } from '../types/Menus.js';
-import { Menu } from '../types/Menu.js';
+import { Menus } from 'types/Menus.js';
+import { Menu } from 'types/Menu.js';
 import { PagesService } from './PagesService.js';
-import { PageSummary } from '../types/PageSummary.js';
+import { PageSummary } from 'types/PageSummary.js';
 
 export class MenuService {
   public async getMenus(): Promise<Menus | undefined> {
