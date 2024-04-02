@@ -3,7 +3,7 @@ import { Page } from 'services/types/Page';
 import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
-import useSnackbar from './useSnackbar';
+
 import { useAxiosHelper } from './useAxiosHelper';
 import { format } from 'date-fns';
 import { useForm } from './useForm';
@@ -47,7 +47,6 @@ const pageSchema = z.object({
 });
 
 const usePageEdit = (id: string | undefined) => {
-  const { setSnackbarMessage } = useSnackbar();
   type FormValues = z.infer<typeof pageSchema>;
   type keys = keyof FormValues;
   // Return default form values
@@ -139,27 +138,22 @@ const usePageEdit = (id: string | undefined) => {
     [setFormValues],
   );
 
-  const handleSubmit = useCallback(
-    (event: React.FormEvent) => {
-      event.preventDefault();
-      // Handle form submission here
-      setIsProcessing(true);
-      setSnackbarMessage('Saving...');
-      if (validateForm()) {
-        if (formValues.id > 0) {
-          patchData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
-        } else {
-          postData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
-        }
+  const submitForm = useCallback((): boolean => {
+    // Handle form submission here
+    setIsProcessing(true);
 
-        setIsProcessing(false);
+    if (validateForm()) {
+      if (formValues.id > 0) {
+        patchData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
       } else {
-        setSnackbarMessage('Form is not valid');
+        postData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
       }
-      setSnackbarMessage('Saved');
-    },
-    [formValues, patchData, postData, setSnackbarMessage, validateForm],
-  );
+
+      setIsProcessing(false);
+      return true;
+    }
+    return false;
+  }, [formValues, patchData, postData, validateForm]);
 
   const setId = useCallback(
     (value: string | undefined) => {
@@ -213,7 +207,7 @@ const usePageEdit = (id: string | undefined) => {
       handleCancel,
       handleClear: handleCancel,
       handleChange,
-      handleSubmit,
+      submitForm,
       handleReset,
       isLoading,
       error,
@@ -229,7 +223,7 @@ const usePageEdit = (id: string | undefined) => {
       setId,
       handleCancel,
       handleChange,
-      handleSubmit,
+      submitForm,
       handleReset,
       isLoading,
       error,

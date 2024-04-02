@@ -2,3 +2,42 @@ The next version of JavaScript (aka ES2024) is expected around June 2024.  One o
 
 <h2>Temporal</h2> 
 An ongoing criticism of JavaScript is it's implementation and support for dates and times: it is been inconsistent and a bit lacking in features.  As a result, several third party packages have been developed to fill the space: moment, date-fns, etc.  Temporal aims at bringing this functionality to JavaScript as native features.
+
+<pre><code>
+Temporal.Now.Instant();   // returns datatime object
+Temporal.Now.timeZoneId();  // returns current TimeZone
+Temporal.Now.plainDateISO();
+Temporal.Now.plainTimeISO();
+
+Temporal.Instant();
+
+Temporal.ZonedDateTime();
+
+Temporal.PlainDateTime();
+
+Temporal.PlainDate();       // returns just a date - no time
+Temporal.PlainDate(2024, 7, 26);
+Temporal.PlainDate.from("2024-07-26");
+
+Temporal.PlainTime();      // returns time
+Temporal.PlainTime(20, 24, 0);
+Temporal.PlainTime.from("20:24:00");
+
+Temporal.PlainMonthDay();
+Temporal.PlainYearMonth();
+
+Temporal.Duration();
+
+Temporal.TimeZone();
+
+Temporal.Calendar();
+
+today.add({ days: 7 });
+today.subtract ({ days: 7 });
+
+myEvent.until().days;    // days until myEvent
+myEvent.since().hours;  // hours in the past
+
+</code></pre>
+
+<p><a href="https://tc39.es/proposal-temporal/docs/">Temporal Proposal</a></p>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
 
 import { Button } from 'components/ui/Form/Button';
@@ -13,6 +13,7 @@ import { TextInput } from 'components/ui/Form/Input';
 import { TextArea } from 'components/ui/Form/Input/TextArea';
 import { LoadingWrapper } from 'components';
 import StyledMain from 'components/common/StyledMain';
+import useSnackbar from 'services/hooks/useSnackbar';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
@@ -24,13 +25,30 @@ const PageEditPage = (): JSX.Element => {
     isLoading,
     error,
     getFieldErrors,
-    hasError,
-    handleClear,
     handleCancel,
     handleChange,
-    handleSubmit,
+    handleClear,
     handleReset,
+    hasError,
+    submitForm,
   } = usePageEdit(params.id);
+  const { setSnackbarMessage } = useSnackbar();
+
+  const handleSubmit = useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
+
+      setSnackbarMessage('Saving...');
+
+      const result = submitForm();
+      if (result) {
+        setSnackbarMessage('Saved');
+      } else {
+        setSnackbarMessage(`Error saving ${error}`);
+      }
+    },
+    [submitForm, error, setSnackbarMessage],
+  );
 
   return (
     <>
