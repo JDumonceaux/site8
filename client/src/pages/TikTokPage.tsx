@@ -8,9 +8,10 @@ import { LoadingWrapper } from 'components/common/Loading';
 import { Meta } from 'components/common/Meta';
 
 import StyledMain from 'components/common/StyledMain';
-import { SubjectMenu } from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
+
 import { styled } from 'styled-components';
 import TikTokItem from 'components/common/TikTokItem';
+import SubjectMenu from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
 
 type TikTokPageProps = {
   readonly title?: string;
@@ -31,7 +32,7 @@ const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
       <Meta title={pageTitle} />
       <StyledMain>
         <StyledMain.Menu>
-          <SubjectMenu id={5} />
+          <SubjectMenu />
         </StyledMain.Menu>
         <StyledMain.Article>
           <LoadingWrapper error={error} isLoading={isLoading}>
