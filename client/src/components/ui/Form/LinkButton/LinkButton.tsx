@@ -1,20 +1,19 @@
 import { ButtonHTMLAttributes } from 'react';
-import { Link } from 'react-router-dom';
 import { Button2 } from '../Button2';
+import { StyledLink } from '../StyledLink';
 
 type LinkButtonProps = {
-  readonly id?: string;
   readonly children: React.ReactNode;
-  readonly variant?: 'primary' | 'secondary';
-  readonly to: string;
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'>;
+  readonly to?: string;
+  readonly href?: string;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const LinkButton = ({
   to,
-  id = 'button',
+  href,
   ...rest
 }: LinkButtonProps): JSX.Element => (
-  <Link to={to}>
-    <Button2 id={id} {...rest} />
-  </Link>
+  <StyledLink href={href} to={to}>
+    <Button2 id="button" {...rest} />
+  </StyledLink>
 );

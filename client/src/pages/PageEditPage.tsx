@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { Button } from 'components/ui/Form/Button';
 
@@ -8,12 +8,13 @@ import usePageEdit from 'services/hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { ClearAll } from 'components/ui/Form/ClearAll';
 import { Meta } from 'components/common/Meta';
-import { PageTitle } from 'components/common/PageTitle';
 import { TextInput } from 'components/ui/Form/Input';
 import { TextArea } from 'components/ui/Form/Input/TextArea';
 import { LoadingWrapper } from 'components';
 import StyledMain from 'components/common/StyledMain';
 import useSnackbar from 'services/hooks/useSnackbar';
+import { StyledLink } from 'components/ui/Form/StyledLink';
+import { StyledPlainButton } from 'components/ui/Form/StyledPlainButton/StyledPlainButton';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
@@ -53,18 +54,25 @@ const PageEditPage = (): JSX.Element => {
   return (
     <>
       <Meta title="Page Edit" />
-      <StyledMain>
-        <LoadingWrapper error={error} isLoading={isLoading}>
+
+      <LoadingWrapper error={error} isLoading={isLoading}>
+        <StyledMain>
           <StyledMain.Section>
-            <PageTitle title="Page Edit" />
+            <ClearAll onClear={handleClear} title="Page Edit">
+              <StyledLink data-testid="nav-new" to="/admin/page/edit">
+                New
+              </StyledLink>
+              <StyledLink data-testid="nav-list" to="/admin/pages">
+                List
+              </StyledLink>
+              <StyledPlainButton
+                data-testid="button-reset"
+                onClick={handleReset}
+                type="reset">
+                Reset
+              </StyledPlainButton>
+            </ClearAll>
             <form noValidate onSubmit={handleSubmit}>
-              <ClearAll onClear={handleClear}>
-                <Link to="/admin/page/edit">New</Link>
-                <NavLink to="/admin/pages">List</NavLink>
-                <button onClick={handleReset} type="reset">
-                  Reset
-                </button>
-              </ClearAll>
               <TextInput
                 autoCapitalize="off"
                 enterKeyHint="next"
@@ -184,8 +192,8 @@ const PageEditPage = (): JSX.Element => {
               </TwoColumn>
             </form>
           </StyledMain.Section>
-        </LoadingWrapper>
-      </StyledMain>
+        </StyledMain>
+      </LoadingWrapper>
       <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );

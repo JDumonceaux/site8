@@ -1,12 +1,19 @@
-import { MouseEventHandler } from 'react';
+import { PageTitle } from 'components/common';
+import React, { MouseEventHandler } from 'react';
 import { styled } from 'styled-components';
+import { StyledPlainButton } from '../StyledPlainButton/StyledPlainButton';
 
 type ClearAllProps = {
+  readonly title?: React.ReactNode;
   readonly children?: React.ReactNode;
   readonly onClear: () => void;
 };
 
-export const ClearAll = ({ children, onClear }: ClearAllProps): JSX.Element => {
+export const ClearAll = ({
+  title,
+  children,
+  onClear,
+}: ClearAllProps): JSX.Element => {
   const handleClear: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -15,10 +22,18 @@ export const ClearAll = ({ children, onClear }: ClearAllProps): JSX.Element => {
 
   return (
     <StyledDivWrapper>
-      {children}
-      <button onClick={handleClear} type="reset">
-        Clear All
-      </button>
+      <div>
+        <PageTitle title={title} />
+      </div>
+      <div>
+        {children}
+        <StyledPlainButton
+          data-testid="button-clear"
+          onClick={handleClear}
+          type="reset">
+          Clear All
+        </StyledPlainButton>
+      </div>
     </StyledDivWrapper>
   );
 };
@@ -26,16 +41,16 @@ export const ClearAll = ({ children, onClear }: ClearAllProps): JSX.Element => {
 const StyledDivWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: baseline;
+  row-gap: 12px;
   width: 100%;
   border-bottom: 1px solid #888;
-  margin-bottom: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 18px;
   font-size: 0.75rem;
-  & button {
-    padding-bottom: 4px;
-    &:hover {
-      text-decoration: underline;
-    }
+  button,
+  a {
+    margin-left: 12px;
   }
 `;

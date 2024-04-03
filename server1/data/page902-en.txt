@@ -32,11 +32,11 @@ Temporal.TimeZone();
 
 Temporal.Calendar();
 
-today.add({ days: 7 });
-today.subtract ({ days: 7 });
+<var>today</var>.add({ days: 7 });
+<var>today</var>.subtract ({ days: 7 });
 
-myEvent.until().days;    // days until myEvent
-myEvent.since().hours;  // hours in the past
+<var>myEvent</var>.until().days;    // days until myEvent
+<var>myEvent</var>.since().hours;  // hours in the past
 
 </code></pre>
 

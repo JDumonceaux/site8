@@ -1,0 +1,1 @@
+export { StyledPlainButton } from './StyledPlainButton';
