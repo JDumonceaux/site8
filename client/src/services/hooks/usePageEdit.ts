@@ -7,6 +7,7 @@ import { safeParse } from 'utils/zodHelper';
 import { useAxiosHelper } from './useAxiosHelper';
 import { format } from 'date-fns';
 import { useForm } from './useForm';
+import { getDateTime } from 'utils/dateUtils';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -34,8 +35,8 @@ const pageSchema = z.object({
     .min(1, REQUIRED_FIELD)
     .max(30, 'Max length exceeded: 30')
     .trim(),
-  edit_date: z.coerce.date().optional(),
-  edit_date_display: z.string().optional(),
+  create_date: z.string().optional(),
+  edit_date: z.string().optional(),
   resources: z.boolean(),
   parentId: z.coerce.number().optional(),
   reading_time: z.string().trim().optional(),
@@ -56,7 +57,8 @@ const usePageEdit = (id: string | undefined) => {
       name: '',
       url: '',
       long_title: '',
-      edit_date_display: format(new Date(), DF_LONG),
+      edit_date: format(new Date(), DF_LONG),
+      create_date: format(new Date(), DF_LONG),
       resources: false,
       text: '',
       parentId: 0,
@@ -72,45 +74,58 @@ const usePageEdit = (id: string | undefined) => {
   const [resetFormValues, setResetFormValues] = useState<
     FormValues | undefined
   >(undefined);
-  // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
-  // const [updateError, setUpdateError] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   const { data, isLoading, error, fetchData, patchData, postData } =
     useAxiosHelper<Page>();
+
+  const updateFormValues = useCallback(
+    (items: Page | undefined) => {
+      if (items) {
+        const item: FormValues = {
+          id: items.id,
+          name: items.name ?? '',
+          long_title: items.long_title ?? '',
+          edit_date:
+            (items.edit_date && format(items.edit_date, DF_LONG)) ??
+            format(new Date(), DF_LONG),
+          create_date:
+            (items.create_date && format(items.create_date, DF_LONG)) ??
+            format(new Date(), DF_LONG),
+          resources: items.resources ?? false,
+          text: items.text ?? '',
+          parentId: items.parentId ?? 0,
+          url: items.url ?? '',
+          reading_time: items.reading_time ?? '',
+          readability_score: items.readability_score ?? '',
+        };
+        setResetFormValues(item);
+        setFormValues(item);
+      }
+    },
+    [setFormValues],
+  );
 
   useEffect(() => {
     setFormValues(defaultFormValues);
     if (!id) {
       return;
     }
+  }, [defaultFormValues, id, setFormValues]);
+
+  useEffect(() => {
     const tempId = parseInt(id ?? '');
     if (!isNaN(tempId) && tempId > 0) {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${tempId}`);
+      fetchData({ url: `${ServiceUrl.ENDPOINT_PAGE}/${tempId}` });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  console.log('data', data);
+
   useEffect(() => {
-    if (data) {
-      const item: FormValues = {
-        id: data.id,
-        name: data.name ?? '',
-        long_title: data.long_title ?? '',
-        edit_date_display:
-          (data.edit_date && format(data.edit_date, DF_LONG)) ??
-          format(new Date(), DF_LONG),
-        resources: data.resources ?? false,
-        text: data.text ?? '',
-        parentId: data.parentId ?? 0,
-        url: data.url ?? '',
-        reading_time: data.reading_time ?? '',
-        readability_score: data.readability_score ?? '',
-      };
-      setResetFormValues(item);
-      setFormValues(item);
-    }
-  }, [data, setFormValues]);
+    updateFormValues(data);
+  }, [data, updateFormValues]);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(pageSchema, formValues);
@@ -138,22 +153,49 @@ const usePageEdit = (id: string | undefined) => {
     [setFormValues],
   );
 
+  const saveItem = useCallback(
+    async (items: FormValues) => {
+      const { create_date, edit_date, ...rest } = items;
+      const revisedData = {
+        ...rest,
+        edit_date: getDateTime(edit_date) ?? new Date(),
+        create_date: getDateTime(create_date) ?? new Date(),
+      };
+
+      const promises = [];
+      if (revisedData.id > 0) {
+        promises.push(
+          patchData({
+            url: `${ServiceUrl.ENDPOINT_PAGE}`,
+            data: revisedData,
+          }),
+        );
+      } else {
+        promises.push(
+          postData({
+            url: `${ServiceUrl.ENDPOINT_PAGE}`,
+            data: revisedData,
+          }),
+        );
+      }
+      await Promise.all(promises);
+      updateFormValues(data);
+      return true;
+    },
+    [data, patchData, postData, updateFormValues],
+  );
+
   const submitForm = useCallback((): boolean => {
     // Handle form submission here
     setIsProcessing(true);
 
     if (validateForm()) {
-      if (formValues.id > 0) {
-        patchData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
-      } else {
-        postData(`${ServiceUrl.ENDPOINT_PAGE}`, formValues);
-      }
-
+      saveItem(formValues);
       setIsProcessing(false);
       return true;
     }
     return false;
-  }, [formValues, patchData, postData, validateForm]);
+  }, [formValues, saveItem, validateForm]);
 
   const setId = useCallback(
     (value: string | undefined) => {

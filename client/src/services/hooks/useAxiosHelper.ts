@@ -1,6 +1,7 @@
 import axios, { isCancel } from 'axios';
 import { useState } from 'react';
 import { httpErrorHandler } from '../../utils/errorHandler';
+import { AcceptHeader } from 'utils';
 
 const REQUEST_CANCELLED = 'Request canceled';
 
@@ -11,10 +12,17 @@ export const useAxiosHelper = <T>() => {
   // eslint-disable-next-line import/no-named-as-default-member
   const source = axios.CancelToken.source(); // Create a cancel token
 
-  const fetchDataAsync = async (url: string) => {
+  const fetchDataAsync = async ({
+    url,
+    accept = AcceptHeader.JSON,
+  }: {
+    url: string;
+    accept?: AcceptHeader;
+  }) => {
     await axios
       .get<T>(url, {
         cancelToken: source.token,
+        headers: { Accept: accept },
       })
       .then((response) => {
         // eslint-disable-next-line promise/always-return
@@ -33,13 +41,23 @@ export const useAxiosHelper = <T>() => {
       });
   };
 
-  const patchDataAsync = async (url: string, data: T) => {
+  const patchDataAsync = async ({
+    url,
+    data,
+    accept = AcceptHeader.JSON,
+  }: {
+    url: string;
+    data: T;
+    accept?: AcceptHeader;
+  }) => {
     setIsLoading(true);
     setData(undefined);
     setError(undefined);
 
     await axios
-      .patch(url, data)
+      .patch<T>(url, data, {
+        headers: { Accept: accept, Prefer: `return=representation` },
+      })
       .then((response) => {
         // eslint-disable-next-line promise/always-return
         response.data && setData(response.data);
@@ -57,13 +75,23 @@ export const useAxiosHelper = <T>() => {
       });
   };
 
-  const postDataAsync = async (url: string, data: T) => {
+  const postDataAsync = async ({
+    url,
+    data,
+    accept = AcceptHeader.JSON,
+  }: {
+    url: string;
+    data: T;
+    accept?: AcceptHeader;
+  }) => {
     setIsLoading(true);
     setData(undefined);
     setError(undefined);
 
     await axios
-      .post(url, data)
+      .post<T>(url, data, {
+        headers: { Accept: accept, Prefer: `return=representation` },
+      })
       .then((response) => {
         // eslint-disable-next-line promise/always-return
         response.data && setData(response.data);

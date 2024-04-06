@@ -22,7 +22,7 @@
       "seq": 31,
       "sort": "name",
       "name": "Artist",
-      "url": "artist"
+      "url": "artists"
     },
     {
       "id": 4,
@@ -86,6 +86,13 @@
       "sort": "name",
       "name": "Javascript",
       "url": "javascript"
+    },
+    {
+      "id": 13,
+      "seq": 13,
+      "sort": "name",
+      "name": "Security",
+      "url": "security"
     }
   ],
   "items": [
@@ -177,19 +184,6 @@
       "reading_time": "",
       "readability_score": "",
       "url": "minimalism",
-      "file": true,
-      "seq": 0
-    },
-    {
-      "id": 1006,
-      "name": "Neumorphism",
-      "long_title": "",
-      "edit_date": "01/18/2024",
-      "resources": true,
-      "parentId": 2,
-      "reading_time": "",
-      "readability_score": "",
-      "url": "neumorphism",
       "file": true,
       "seq": 0
     },
@@ -381,18 +375,6 @@
       "seq": 0
     },
     {
-      "id": 6003,
-      "name": "Global Functions",
-      "long_title": "",
-      "edit_date": "03/24/2024",
-      "parentId": 5,
-      "file": true,
-      "reading_time": "",
-      "readability_score": "",
-      "url": "global-functions",
-      "seq": 0
-    },
-    {
       "id": 6004,
       "name": "Math Functions",
       "long_title": "",
@@ -449,7 +431,7 @@
     {
       "id": 15002,
       "name": "Design Patterns - Facade",
-      "edit_date_display": "3/30/2024 2:24 PM",
+      "edit_date": "3/30/2024 2:24 PM",
       "parentId": 6,
       "url": "design-patterns-facade"
     },
@@ -457,12 +439,87 @@
       "id": 902,
       "name": "Javascript 2024",
       "long_title": "",
-      "edit_date_display": "4/2/2024 2:23 PM",
+      "edit_date": "4/2/2024 2:23 PM",
       "resources": false,
       "parentId": 12,
       "url": "javascript-2024",
       "reading_time": "",
       "readability_score": "",
+      "file": true
+    },
+    {
+      "id": 1006,
+      "name": "Neumorphism",
+      "long_title": "",
+      "edit_date": "1/18/2024 12:00 AM",
+      "resources": true,
+      "parentId": 2,
+      "url": "neumorphism",
+      "reading_time": "",
+      "readability_score": "",
+      "file": true
+    },
+    {
+      "name": "HTTP Headers",
+      "url": "http-headers",
+      "long_title": "",
+      "edit_date": "4/4/2024 12:45 PM",
+      "resources": false,
+      "parentId": "5",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 903,
+      "file": true
+    },
+    {
+      "name": "te",
+      "url": "tet",
+      "long_title": "",
+      "resources": false,
+      "parentId": "10",
+      "reading_time": "",
+      "readability_score": "",
+      "edit_date": "1909-10-15T16:28:00.000Z",
+      "create_date": "1909-10-15T16:28:00.000Z",
+      "id": 904,
+      "file": true
+    },
+    {
+      "name": "test",
+      "url": "test",
+      "long_title": "",
+      "resources": false,
+      "parentId": "2",
+      "reading_time": "",
+      "readability_score": "",
+      "edit_date": "1909-10-15T16:29:00.000Z",
+      "create_date": "1909-10-15T16:29:00.000Z",
+      "id": 905,
+      "file": true
+    },
+    {
+      "name": "te",
+      "url": "tet",
+      "long_title": "",
+      "resources": false,
+      "parentId": "10",
+      "reading_time": "",
+      "readability_score": "",
+      "edit_date": "1909-10-15T16:49:00.000Z",
+      "create_date": "1909-10-15T16:49:00.000Z",
+      "id": 906,
+      "file": true
+    },
+    {
+      "id": 6003,
+      "name": "Global Functions",
+      "long_title": "",
+      "resources": false,
+      "parentId": 5,
+      "url": "global-functions",
+      "reading_time": "",
+      "readability_score": "",
+      "edit_date": "1910-06-16T18:00:00.000Z",
       "file": true
     }
   ]

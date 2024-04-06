@@ -1,15 +1,15 @@
-import { Logger } from '../utils/Logger.js';
-import { Menus } from 'types/Menus.js';
-import { Menu } from 'types/Menu.js';
-import { PagesService } from './PagesService.js';
-import { PageSummary } from 'types/PageSummary.js';
+import { Logger } from "../utils/Logger.js";
+import { Menus } from "types/Menus.js";
+import { Menu } from "types/Menu.js";
+import { PagesService } from "./PagesService.js";
+import { PageSummary } from "types/PageSummary.js";
 
 export class MenuService {
   public async getMenus(): Promise<Menus | undefined> {
     Logger.info(`MenuService: getMenus -> `);
     try {
       const service = new PagesService();
-      // Get all the data from pages.json
+      // Get all the data from pagesIndex.json
       const data = await service.getItems();
 
       if (!data || !data.menus) {
@@ -27,12 +27,12 @@ export class MenuService {
           const mapMenuItems: PageSummary[] = pages.map((x) => ({
             id: x.id,
             name: x.name,
-            url: x.url ?? '',
+            url: x.url ?? "",
             seq: x.seq ?? 0,
           }));
           // Sort Items
           const sortedMapMenuItems: PageSummary[] =
-            item.sort === 'seq'
+            item.sort === "seq"
               ? mapMenuItems.toSorted((a, b) => a.seq - b.seq)
               : mapMenuItems.toSorted((a, b) => a.name.localeCompare(b.name));
 

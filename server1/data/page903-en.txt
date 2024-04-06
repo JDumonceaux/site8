@@ -1,0 +1,37 @@
+References:
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">Mozilla</a>
+
+Note: The traditional standard of prefixing custom properties with a "x-" prefix has been deprecated as of June 2012.  <a href="https://datatracker.ietf.org/doc/html/rfc6648">RFC 6648  Deprecating the "X-" Prefix and Similar Constructs in Application Protocols</a> 
+
+
+Standard field names: <a href="https://www.iana.org/assignments/http-fields/http-fields.xhtml">IANA: Hypertext Transfer Protocol (HTTP) Field Name Registry</a>
+
+
+<h2>Prefer</h2>
+The prefer header can be used (if implemented) to communicate the client's preferences to the server.
+
+One area might be a put or patch action.  Should the server return: a) the new record, b) just the updated values, c) a brief messages, or d) simply a http response code?
+
+<pre><code>
+Prefer: return=representation  // return the entire record
+Prefer: return=minimal  // return only the update field
+</code></pre>
+
+<h2>Common HTTP Responses</h2>
+200 - OK
+204 - No content
+301 - Moved permanently
+307 - Temporary redirect
+308 - Permanent redirect
+400 - Bad Request (missing parameters)
+401 - Unauthorized
+403 - Forbidden
+404 - Not found
+405 - Method not allowed
+418 - I'm a teapot
+500 - Internal Server Error
+501 - Not implemented
+502 - Bad gateway
+
+
+

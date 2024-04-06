@@ -7,7 +7,7 @@ import { Logger } from './utils/Logger.js';
 import { fileRouter } from './routes/fileRouter.js';
 import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
-import { pagesRouter } from './routes/pagesRouter.js';
+import { pagesIndexRouter } from './routes/pagesIndexRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { bookmarksRouter } from './routes/bookmarksRouter.js';
 
@@ -61,7 +61,7 @@ const port = 3005;
 app.use('/api/files', fileRouter);
 app.use('/api/menus', menuRouter);
 app.use('/api/page', pageRouter);
-app.use('/api/pages', pagesRouter);
+app.use('/api/pages', pagesIndexRouter);
 app.use('/api/photos', photosRouter);
 app.use('/api/bookmarks', bookmarksRouter);
 app.use('*', (_req: Request, res: Response) => {

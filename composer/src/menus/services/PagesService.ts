@@ -6,7 +6,7 @@ import { Page } from "../types/Page.js";
 import { Pages } from "../types/Pages.js";
 
 export class PagesService {
-  private fileName = "pages.json";
+  private fileName = "pagesIndex.json";
   private filePath = "";
 
   constructor() {

@@ -12,6 +12,9 @@ export enum AcceptHeader {
   CSV = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   PDF = 'application/pdf',
   ZIP = 'application/zip',
+  JSON = 'application/json',
+  TEXT = 'text/plain',
+  ANY = 'application/json, text/plain, */*',
 }
 
 export enum FileType {

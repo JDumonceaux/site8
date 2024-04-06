@@ -3,6 +3,7 @@ export type Page = {
   readonly name: string;
   readonly long_title?: string;
   readonly edit_date?: Date;
+  readonly create_date?: Date;
   readonly resources?: boolean;
   readonly parentId?: number;
   readonly fileName?: string;

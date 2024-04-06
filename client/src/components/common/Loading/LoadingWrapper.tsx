@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 
 type IProps = {
   readonly children: ReactNode;
+  readonly loadingText?: ReactNode;
   readonly isLoading?: boolean;
   readonly error: string | undefined | null;
 };
@@ -15,9 +16,15 @@ type IProps = {
 export const LoadingWrapper = ({
   children,
   isLoading,
+  loadingText,
   error,
 }: IProps): JSX.Element => {
-  if (isLoading) return <StyledLoadingDiv>Loading...</StyledLoadingDiv>;
+  if (isLoading)
+    return (
+      <StyledLoadingDiv>
+        {loadingText ? loadingText : `Loading...`}
+      </StyledLoadingDiv>
+    );
 
   if (error) return <StyledErrorDiv>{error}</StyledErrorDiv>;
 

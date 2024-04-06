@@ -3,7 +3,7 @@
 import { styled } from 'styled-components';
 
 type Props = {
-  readonly children: React.ReactNode;
+  readonly children?: React.ReactNode;
 };
 
 const StyledAside = ({ children }: Props): JSX.Element => {

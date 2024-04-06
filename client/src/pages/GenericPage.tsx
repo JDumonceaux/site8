@@ -31,7 +31,7 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
 
   const deferredData = useDeferredValue(data);
 
-  const pageTitle = deferredData?.long_title ?? title;
+  const pageTitle = deferredData?.name ?? title;
 
   return (
     <>
@@ -50,7 +50,7 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
             </StyledSection>
           </LoadingWrapper>
         </StyledMain.Article>
-        <StyledMain.Aside>Aside</StyledMain.Aside>
+        <StyledMain.Aside />
       </StyledMain>
     </>
   );

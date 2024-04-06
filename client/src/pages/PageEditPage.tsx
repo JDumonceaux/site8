@@ -6,11 +6,10 @@ import { Button } from 'components/ui/Form/Button';
 import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'services/hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
-import { ClearAll } from 'components/ui/Form/ClearAll';
 import { Meta } from 'components/common/Meta';
 import { TextInput } from 'components/ui/Form/Input';
 import { TextArea } from 'components/ui/Form/Input/TextArea';
-import { LoadingWrapper } from 'components';
+import { LoadingWrapper, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain';
 import useSnackbar from 'services/hooks/useSnackbar';
 import { StyledLink } from 'components/ui/Form/StyledLink';
@@ -28,7 +27,7 @@ const PageEditPage = (): JSX.Element => {
     getFieldErrors,
     handleCancel,
     handleChange,
-    handleClear,
+    handleClear: onClear,
     handleReset,
     hasError,
     submitForm,
@@ -36,12 +35,12 @@ const PageEditPage = (): JSX.Element => {
   const { setSnackbarMessage } = useSnackbar();
 
   const handleSubmit = useCallback(
-    (event: React.FormEvent) => {
-      event.preventDefault();
-
+    (e: React.FormEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
       setSnackbarMessage('Saving...');
-
       const result = submitForm();
+      console.log('Result', result);
       if (result) {
         setSnackbarMessage('Saved');
       } else {
@@ -51,14 +50,22 @@ const PageEditPage = (): JSX.Element => {
     [submitForm, error, setSnackbarMessage],
   );
 
+  const handleClear = useCallback(
+    (e: React.FormEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      onClear();
+    },
+    [onClear],
+  );
+
   return (
     <>
       <Meta title="Page Edit" />
-
-      <LoadingWrapper error={error} isLoading={isLoading}>
-        <StyledMain>
+      <StyledMain>
+        <LoadingWrapper error={error} isLoading={isLoading}>
           <StyledMain.Section>
-            <ClearAll onClear={handleClear} title="Page Edit">
+            <PageTitle title="Page Edit">
               <StyledLink data-testid="nav-new" to="/admin/page/edit">
                 New
               </StyledLink>
@@ -71,7 +78,13 @@ const PageEditPage = (): JSX.Element => {
                 type="reset">
                 Reset
               </StyledPlainButton>
-            </ClearAll>
+              <StyledPlainButton
+                data-testid="button-clear"
+                onClick={handleClear}
+                type="reset">
+                Clear All
+              </StyledPlainButton>
+            </PageTitle>
             <form noValidate onSubmit={handleSubmit}>
               <TextInput
                 autoCapitalize="off"
@@ -104,6 +117,33 @@ const PageEditPage = (): JSX.Element => {
                 value={formValues.url}
                 //ref={focusElement}
               />
+              <TextInput
+                errorText={getFieldErrors('parentId')}
+                errorTextShort="Please enter a parent"
+                hasError={hasError('parentId')}
+                id="parentId"
+                label="Parent"
+                list="parentIds"
+                onChange={handleChange}
+                type="text"
+                value={formValues.parentId}
+              />
+              <datalist id="parentIds">
+                <option value="10">Art</option>
+                <option value="3">Artists</option>
+                <option value="5">Cheat Sheets</option>
+                <option value="8">Code Solutions</option>
+                <option value="1">CSS</option>
+                <option value="2">Design Styles</option>
+                <option value="4">General</option>
+                <option value="11">IDE</option>
+                <option value="12">JavaScript</option>
+                <option value="6">React Programming</option>
+                <option value="7">React Project</option>
+                <option value="9">Patterns</option>
+                <option value="13">Security</option>
+              </datalist>
+
               <TextArea
                 errorText={getFieldErrors('text')}
                 hasError={hasError('text')}
@@ -128,42 +168,19 @@ const PageEditPage = (): JSX.Element => {
                 // required={true}
               />
               <TextInput
-                errorText={getFieldErrors('edit_date_display')}
+                errorText={getFieldErrors('edit_date')}
                 errorTextShort="Please enter a date"
-                hasError={hasError('edit_date_display')}
-                id="edit_date_display"
+                hasError={hasError('edit_date')}
+                id="edit_date"
                 label="Edit Date"
                 maxLength={10}
                 onChange={handleChange}
                 showCounter
                 spellCheck={false}
-                value={formValues.edit_date_display}
+                value={formValues.edit_date}
 
                 // required={true}
               />
-
-              <TextInput
-                errorText={getFieldErrors('parentId')}
-                errorTextShort="Please enter a parent"
-                hasError={hasError('parentId')}
-                id="parentId"
-                label="Parent"
-                list="parentIds"
-                onChange={handleChange}
-                showCounter
-                type="text"
-                value={formValues.parentId}
-              />
-              <datalist id="parentIds">
-                <option value="1">CSS</option>
-                <option value="2">Design Styles</option>
-                <option value="3">Artists</option>
-                <option value="4">General</option>
-                <option value="5">Cheat Sheets</option>
-                <option value="6">React Programming</option>
-                <option value="7">React Project</option>
-                <option value="8">Unknown</option>
-              </datalist>
               <TextInput
                 errorText={getFieldErrors('reading_time')}
                 hasError={hasError('reading_time')}
@@ -192,8 +209,8 @@ const PageEditPage = (): JSX.Element => {
               </TwoColumn>
             </form>
           </StyledMain.Section>
-        </StyledMain>
-      </LoadingWrapper>
+        </LoadingWrapper>
+      </StyledMain>
       <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );

@@ -1,15 +1,15 @@
 import { Logger } from '../utils/Logger.js';
 import { Menus } from '../types/Menus.js';
 import { Menu } from '../types/Menu.js';
-import { PagesService } from './PagesService.js';
+import { PagesIndexService } from './PagesIndexService.js';
 import { PageSummary } from '../types/PageSummary.js';
 
 export class MenuService {
   public async getMenus(): Promise<Menus | undefined> {
     Logger.info(`MenuService: getMenus -> `);
     try {
-      const service = new PagesService();
-      // Get all the data from pages.json
+      const service = new PagesIndexService();
+      // Get all the data from pagesIndex.json
       const data = await service.getItems();
 
       if (!data || !data.menus) {
