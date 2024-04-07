@@ -28,8 +28,6 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
     `${ServiceUrl.ENDPOINT_PAGE}/${tempId}`,
   );
 
-  console.log('GenericPage', data);
-
   const deferredData = useDeferredValue(data);
 
   const pageTitle = deferredData?.name ?? title;

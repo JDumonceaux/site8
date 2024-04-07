@@ -17,6 +17,10 @@ export enum AcceptHeader {
   ANY = 'application/json, text/plain, */*',
 }
 
+export enum PreferHeader {
+  REPRESENTATION = 'return=representation',
+}
+
 export enum FileType {
   EXCEL = 'xlsx',
   PDF = 'pdf',

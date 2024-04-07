@@ -15,8 +15,6 @@ const PagesPage = (): JSX.Element => {
 
   const deferredData = useDeferredValue(data);
 
-  console.log('Data', data);
-
   return (
     <>
       <Meta title="Pages" />

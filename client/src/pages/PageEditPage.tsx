@@ -39,7 +39,6 @@ const PageEditPage = (): JSX.Element => {
       e.stopPropagation();
       e.preventDefault();
       setSnackbarMessage('Saving...');
-      console.log('saving.....');
       const result = submitForm();
       console.log('Result', result);
       if (result) {
@@ -64,28 +63,28 @@ const PageEditPage = (): JSX.Element => {
     <>
       <Meta title="Page Edit" />
       <StyledMain>
-        <LoadingWrapper error={error} isLoading={isLoading}>
-          <StyledMain.Section>
-            <PageTitle title="Page Edit">
-              <StyledLink data-testid="nav-new" to="/admin/page/edit">
-                New
-              </StyledLink>
-              <StyledLink data-testid="nav-list" to="/admin/pages">
-                List
-              </StyledLink>
-              <StyledPlainButton
-                data-testid="button-reset"
-                onClick={handleReset}
-                type="reset">
-                Reset
-              </StyledPlainButton>
-              <StyledPlainButton
-                data-testid="button-clear"
-                onClick={handleClear}
-                type="reset">
-                Clear All
-              </StyledPlainButton>
-            </PageTitle>
+        <StyledMain.Section>
+          <PageTitle title="Page Edit">
+            <StyledLink data-testid="nav-new" to="/admin/page/edit">
+              New
+            </StyledLink>
+            <StyledLink data-testid="nav-list" to="/admin/pages">
+              List
+            </StyledLink>
+            <StyledPlainButton
+              data-testid="button-reset"
+              onClick={handleReset}
+              type="reset">
+              Reset
+            </StyledPlainButton>
+            <StyledPlainButton
+              data-testid="button-clear"
+              onClick={handleClear}
+              type="reset">
+              Clear All
+            </StyledPlainButton>
+          </PageTitle>
+          <LoadingWrapper error={error} isLoading={isLoading}>
             <form noValidate onSubmit={handleSubmit}>
               <TextInput
                 autoCapitalize="off"
@@ -209,8 +208,8 @@ const PageEditPage = (): JSX.Element => {
                 </Button>
               </TwoColumn>
             </form>
-          </StyledMain.Section>
-        </LoadingWrapper>
+          </LoadingWrapper>
+        </StyledMain.Section>
       </StyledMain>
       <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>

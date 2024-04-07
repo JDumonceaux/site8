@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios, { isCancel } from 'axios';
 import { httpErrorHandler } from 'utils/errorHandler';
+import { AcceptHeader, PreferHeader } from 'utils';
 
 export const useAxios = <T>(url?: string) => {
   const [data, setData] = useState<T | null>(null);
@@ -18,6 +19,7 @@ export const useAxios = <T>(url?: string) => {
       const response = await axios.get<T>(url, {
         signal: controller,
         responseType: 'json',
+        headers: { Accept: AcceptHeader.JSON },
       });
       return response.data;
     } catch (error) {
@@ -40,7 +42,10 @@ export const useAxios = <T>(url?: string) => {
     try {
       const response = await axios.post<T>(url, data, {
         responseType: 'json',
-        headers: { Prefer: `return=representation` },
+        headers: {
+          Prefer: PreferHeader.REPRESENTATION,
+          Accept: AcceptHeader.JSON,
+        },
       });
       return response.data;
     } catch (error) {
@@ -63,7 +68,10 @@ export const useAxios = <T>(url?: string) => {
     try {
       const response = await axios.patch<T>(url, data, {
         responseType: 'json',
-        headers: { Prefer: `return=representation` },
+        headers: {
+          Prefer: PreferHeader.REPRESENTATION,
+          Accept: AcceptHeader.JSON,
+        },
       });
       return response.data;
     } catch (error) {
@@ -110,25 +118,21 @@ export const useAxios = <T>(url?: string) => {
 
   const fetchData = async (url: string) => {
     const result = await fetchDataAsync(url);
-    console.log('fetchData', result);
     setData(result);
   };
 
   const patchData = async (url: string, data: T) => {
     const result = await patchDataAsync(url, data);
-    console.log('patchData', result);
     setData(result);
   };
 
   const postData = async (url: string, data: T) => {
     const result = await postDataAsync(url, data);
-    console.log('postData', result);
     setData(result);
   };
 
   const deleteData = async (url: string) => {
     const result = await deleteDataAsync(url);
-    console.log('deleteData', result);
     setData(result);
   };
 

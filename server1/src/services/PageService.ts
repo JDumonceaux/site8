@@ -50,6 +50,7 @@ export class PageService {
     return ret;
   }
 
+  // Get all data for a page
   public async getAllData(id: string): Promise<Page | undefined> {
     Logger.info(`PageService getAllData ->`);
 

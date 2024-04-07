@@ -16,7 +16,6 @@ const TestGridPage = (): JSX.Element => {
       await axios
         .get<TestItem>(ServiceUrl.ENDPOINT_TESTGRID)
         .then((response) => {
-          console.log(response.data);
           // eslint-disable-next-line promise/always-return
           setData(response?.data);
         });

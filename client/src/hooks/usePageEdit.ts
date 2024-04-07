@@ -121,8 +121,6 @@ const usePageEdit = (id: string | undefined) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  console.log('data', data);
-
   useEffect(() => {
     updateFormValues(data);
   }, [data, updateFormValues]);
@@ -155,7 +153,6 @@ const usePageEdit = (id: string | undefined) => {
 
   const saveItem = useCallback(
     async (items: FormValues) => {
-      console.log('saving s...');
       const { create_date, edit_date, ...rest } = items;
       const revisedData = {
         ...rest,
@@ -164,15 +161,10 @@ const usePageEdit = (id: string | undefined) => {
       };
 
       if (revisedData.id > 0) {
-        console.log('push...');
-        const x = await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
-        console.log('X1', x);
+        await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
       } else {
-        console.log('post..');
-        const x = await postData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
-        console.log('X2', x);
+        await postData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
       }
-
       return true;
     },
     [patchData, postData],

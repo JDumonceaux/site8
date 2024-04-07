@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { PagesIndexService } from '../services/PagesIndexService.js';
 import { PageService } from '../services/PageService.js';
 import { Page } from '../types/Page.js';
-import { Errors } from '../utils/Constants.js';
+import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 
 export const pageRouter = express.Router();
@@ -14,7 +14,7 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     if (!id) {
-      return res.status(400).json({ error: 'Invalid ID' });
+      return res.status(400).json({ error: Responses.INVALID_ID });
     }
     const item = await new PageService().getAllData(id);
     res.json(item);
@@ -38,12 +38,12 @@ pageRouter.delete('/:id', async (req: Request, res: Response) => {
   const pageService = new PageService();
   const id = parseInt(req.params.id);
   if (isNaN(id) || id === 0) {
-    return res.status(400).json({ error: 'Invalid ID' });
+    return res.status(400).json({ error: Responses.INVALID_ID });
   }
 
   try {
     await Promise.all([service.deleteItem(id), pageService.deleteItem(id)]);
-    res.json({ results: 'Success' });
+    res.status(204).json({ results: Responses.SUCCESS });
   } catch (error) {
     Logger.error(`pageRouter: delete -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
@@ -53,8 +53,8 @@ pageRouter.delete('/:id', async (req: Request, res: Response) => {
 // Add new item
 pageRouter.post('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: post ->`);
-  const Prefer = req.headers['Prefer'];
-  const returnRepresentation = Prefer === 'return=representation';
+  const Prefer = req.get('Prefer');
+  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
   const service = new PagesIndexService();
   const pageService = new PageService();
   const data: Page = req.body;
@@ -71,8 +71,11 @@ pageRouter.post('/', async (req: Request, res: Response) => {
 
       // Return the new item
       if (returnRepresentation) {
-        const result = await service.getMetaData(nextId);
-        res.json(result);
+        const result = await pageService.getAllData(nextId.toString());
+        // 201 Created
+        res.status(201).json(result);
+      } else {
+        res.status(201).json({ results: Responses.SUCCESS });
       }
     }
   } catch (error) {
@@ -84,8 +87,8 @@ pageRouter.post('/', async (req: Request, res: Response) => {
 // Update Item
 pageRouter.patch('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: patch ->`);
-  const Prefer = req.headers['Prefer'];
-  const returnRepresentation = Prefer === 'return=representation';
+  const Prefer = req.get('Prefer');
+  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
   const service = new PagesIndexService();
   const pageService = new PageService();
   const data: Page = req.body;
@@ -93,11 +96,14 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
   try {
     await service.updateItem(data, true);
     await pageService.updateItem(data.id, data.text);
-
     // Return the new item
     if (returnRepresentation) {
-      const result = await service.getMetaData(data.id);
-      res.json(result);
+      const result = await pageService.getAllData(data.id.toString());
+      res.status(200).json(result);
+    } else {
+      // 200 OK
+      // 204 No Content
+      res.status(200).json({ results: 'Success' });
     }
   } catch (error) {
     Logger.error(`pageRouter: patch -> Error: ${error}`);
