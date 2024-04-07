@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
-import useAuth from 'services/hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 
 import { Meta } from 'components';
 import { Button2 } from 'components/ui/Form';
 
-import { useForm } from 'services/hooks/useForm';
+import { useForm } from 'hooks/useForm';
 
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';

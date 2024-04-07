@@ -3,8 +3,8 @@ import { Meta } from 'components';
 import { Button2 } from 'components/ui/Form';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
-import useAuth, { SocialProvider } from 'services/hooks/useAuth';
-import { useForm } from 'services/hooks/useForm';
+import useAuth, { SocialProvider } from 'hooks/useAuth';
+import { useForm } from 'hooks/useForm';
 
 import { Facebook } from 'components/ui/Icons/Facebook';
 import { Amazon } from 'components/ui/Icons/Amazon';

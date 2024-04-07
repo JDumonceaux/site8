@@ -3,7 +3,7 @@
 import { StyledLink } from 'components/ui/Form/StyledLink';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useAuth from 'services/hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 import { styled } from 'styled-components';
 
 export const Avatar = (): JSX.Element => {

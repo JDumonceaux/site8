@@ -26,7 +26,13 @@ export const LoadingWrapper = ({
       </StyledLoadingDiv>
     );
 
-  if (error) return <StyledErrorDiv>{error}</StyledErrorDiv>;
+  if (error)
+    return (
+      <>
+        <StyledErrorDiv>{error}</StyledErrorDiv>
+        {children}
+      </>
+    );
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;

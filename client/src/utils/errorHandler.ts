@@ -2,13 +2,16 @@
 import { isAxiosError } from 'axios';
 
 export const httpErrorHandler = (
-  error: {
-    response: any;
-    request: any;
-    config: any;
-    code: string;
-    message: any;
-  } | null,
+  error:
+    | {
+        response: any;
+        request: any;
+        config: any;
+        code: string;
+        message: any;
+      }
+    | null
+    | unknown,
 ) => {
   if (error === null) throw new Error('Unrecoverable error!! Error is null!');
   if (isAxiosError(error)) {

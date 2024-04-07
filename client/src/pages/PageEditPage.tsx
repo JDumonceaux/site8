@@ -4,14 +4,14 @@ import { useParams } from 'react-router-dom';
 import { Button } from 'components/ui/Form/Button';
 
 import { TwoColumn } from 'components/ui/TwoColumn';
-import usePageEdit from 'services/hooks/usePageEdit';
+import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { Meta } from 'components/common/Meta';
 import { TextInput } from 'components/ui/Form/Input';
 import { TextArea } from 'components/ui/Form/Input/TextArea';
 import { LoadingWrapper, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain';
-import useSnackbar from 'services/hooks/useSnackbar';
+import useSnackbar from 'hooks/useSnackbar';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 import { StyledPlainButton } from 'components/ui/Form/StyledPlainButton/StyledPlainButton';
 
@@ -39,6 +39,7 @@ const PageEditPage = (): JSX.Element => {
       e.stopPropagation();
       e.preventDefault();
       setSnackbarMessage('Saving...');
+      console.log('saving.....');
       const result = submitForm();
       console.log('Result', result);
       if (result) {

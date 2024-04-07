@@ -2,9 +2,9 @@ import { useCallback, useMemo } from 'react';
 import { Meta } from 'components/common/Meta';
 import { Button2 } from 'components/ui/Form';
 
-import useAuth from 'services/hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 import { z } from 'zod';
-import { useForm } from 'services/hooks/useForm';
+import { useForm } from 'hooks/useForm';
 import { safeParse } from 'utils/zodHelper';
 
 import { AuthContainer } from './AuthContainer';

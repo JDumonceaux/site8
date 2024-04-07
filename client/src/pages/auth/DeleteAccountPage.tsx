@@ -4,8 +4,8 @@ import { Button2 } from 'components/ui/Form';
 
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
-import useAuth from 'services/hooks/useAuth';
-import { useForm } from 'services/hooks/useForm';
+import useAuth from 'hooks/useAuth';
+import { useForm } from 'hooks/useForm';
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
 import { StyledLink } from 'components/ui/Form/StyledLink';

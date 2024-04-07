@@ -1,4 +1,4 @@
-import useMenu from 'services/hooks/useMenu';
+import useMenu from 'hooks/useMenu';
 import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
 import { AccordionMenu } from './AccordionMenu';
 

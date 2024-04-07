@@ -2,16 +2,15 @@
 import { Suspense, useDeferredValue } from 'react';
 import { ServiceUrl } from 'utils';
 import { Page } from 'services/types/Page';
-import useFetch from 'services/hooks/useFetch';
 import { PageTitle } from 'components/common/PageTitle';
 import { LoadingWrapper } from 'components/common/Loading';
 import { Meta } from 'components/common/Meta';
 import { useParams } from 'react-router-dom';
-
 import RenderHtml from 'components/common/RenderHtml';
 import StyledMain from 'components/common/StyledMain';
 import SubjectMenu from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
 import { styled } from 'styled-components';
+import { useAxios } from 'hooks/Axios';
 
 type GenericPageProps = {
   readonly id?: string | number;
@@ -25,9 +24,11 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
 
   const tempId = id ? id : routeParams.id;
 
-  const { data, isLoading, error } = useFetch<Page>(
+  const { data, isLoading, error } = useAxios<Page>(
     `${ServiceUrl.ENDPOINT_PAGE}/${tempId}`,
   );
+
+  console.log('GenericPage', data);
 
   const deferredData = useDeferredValue(data);
 

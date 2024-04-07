@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { Meta } from 'components';
 import { Button2 } from 'components/ui/Form';
-import useAuth from 'services/hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';

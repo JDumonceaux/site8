@@ -1,7 +1,7 @@
 import { IconButton } from 'components/ui/Form/IconButton';
 import CloseIcon from 'components/ui/Icons/CloseIcon';
 import { useCallback } from 'react';
-import useSnackbar from 'services/hooks/useSnackbar';
+import useSnackbar from 'hooks/useSnackbar';
 import { SnackbarVariant } from 'services/types';
 import { styled } from 'styled-components';
 

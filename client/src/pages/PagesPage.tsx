@@ -4,7 +4,7 @@ import { Meta } from 'components/common/Meta';
 import React, { useDeferredValue, useEffect } from 'react';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 import StyledMain from 'components/common/StyledMain';
-import useMenu from 'services/hooks/useMenu';
+import useMenu from 'hooks/useMenu';
 
 const PagesPage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useMenu();

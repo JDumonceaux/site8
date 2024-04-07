@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
-import useMenu from 'services/hooks/useMenu';
+import useMenu from 'hooks/useMenu';
 
 export const HomeMenu = (): JSX.Element => {
   const { data } = useMenu();

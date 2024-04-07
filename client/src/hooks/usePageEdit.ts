@@ -4,10 +4,10 @@ import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 
-import { useAxiosHelper } from './useAxiosHelper';
 import { format } from 'date-fns';
 import { useForm } from './useForm';
 import { getDateTime } from 'utils/dateUtils';
+import { useAxios } from './Axios/useAxios';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -77,10 +77,10 @@ const usePageEdit = (id: string | undefined) => {
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   const { data, isLoading, error, fetchData, patchData, postData } =
-    useAxiosHelper<Page>();
+    useAxios<Page>();
 
   const updateFormValues = useCallback(
-    (items: Page | undefined) => {
+    (items: Page | undefined | null) => {
       if (items) {
         const item: FormValues = {
           id: items.id,
@@ -116,7 +116,7 @@ const usePageEdit = (id: string | undefined) => {
   useEffect(() => {
     const tempId = parseInt(id ?? '');
     if (!isNaN(tempId) && tempId > 0) {
-      fetchData({ url: `${ServiceUrl.ENDPOINT_PAGE}/${tempId}` });
+      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${tempId}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -155,6 +155,7 @@ const usePageEdit = (id: string | undefined) => {
 
   const saveItem = useCallback(
     async (items: FormValues) => {
+      console.log('saving s...');
       const { create_date, edit_date, ...rest } = items;
       const revisedData = {
         ...rest,
@@ -162,27 +163,19 @@ const usePageEdit = (id: string | undefined) => {
         create_date: getDateTime(create_date) ?? new Date(),
       };
 
-      const promises = [];
       if (revisedData.id > 0) {
-        promises.push(
-          patchData({
-            url: `${ServiceUrl.ENDPOINT_PAGE}`,
-            data: revisedData,
-          }),
-        );
+        console.log('push...');
+        const x = await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
+        console.log('X1', x);
       } else {
-        promises.push(
-          postData({
-            url: `${ServiceUrl.ENDPOINT_PAGE}`,
-            data: revisedData,
-          }),
-        );
+        console.log('post..');
+        const x = await postData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
+        console.log('X2', x);
       }
-      await Promise.all(promises);
-      updateFormValues(data);
+
       return true;
     },
-    [data, patchData, postData, updateFormValues],
+    [patchData, postData],
   );
 
   const submitForm = useCallback((): boolean => {

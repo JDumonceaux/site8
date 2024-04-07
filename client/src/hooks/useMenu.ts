@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Menus } from '../types/Menus';
-import { fetchMenu } from '../state/menuSlice';
-import { AppDispatch, RootState } from '../state/store';
+import { Menus } from '../services/types/Menus';
+import { fetchMenu } from '../services/state/menuSlice';
+import { AppDispatch, RootState } from '../services/state/store';
 
 const useMenu = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -1,4 +1,4 @@
-import useMenu from 'services/hooks/useMenu';
+import useMenu from 'hooks/useMenu';
 import { LoadingWrapper } from 'components/common/Loading';
 import { useLocation } from 'react-router-dom';
 import { Menu } from 'services/types';

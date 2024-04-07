@@ -16,9 +16,12 @@ const initialState: MenuState = {
   error: null,
 };
 
+const controller = new AbortController();
+
 export const fetchMenu = createAsyncThunk('menu/fetchMenu', async () => {
   const response = await axios.get<Menus>(ServiceUrl.ENDPOINT_MENUS, {
     responseType: 'json',
+    signal: controller.signal,
   });
   return response.data;
 });

@@ -2,7 +2,6 @@
 import { Suspense, useDeferredValue } from 'react';
 import { ServiceUrl } from 'utils';
 import { Page } from 'services/types/Page';
-import useFetch from 'services/hooks/useFetch';
 import { PageTitle } from 'components/common/PageTitle';
 import { LoadingWrapper } from 'components/common/Loading';
 import { Meta } from 'components/common/Meta';
@@ -12,6 +11,7 @@ import StyledMain from 'components/common/StyledMain';
 import { styled } from 'styled-components';
 import TikTokItem from 'components/common/TikTokItem';
 import SubjectMenu from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
+import { useAxios } from 'hooks/Axios';
 
 type TikTokPageProps = {
   readonly title?: string;
@@ -20,7 +20,7 @@ type TikTokPageProps = {
 const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
   const tempId = 4000;
   //   id && id > 0 ? id : routeParams.id ? parseInt(routeParams.id, 10) : 0;
-  const { data, isLoading, error } = useFetch<Page>(
+  const { data, isLoading, error } = useAxios<Page>(
     tempId && tempId > 0 ? `${ServiceUrl.ENDPOINT_PAGE}/${tempId}` : undefined,
   );
 

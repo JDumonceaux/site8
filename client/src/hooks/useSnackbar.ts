@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppDispatch, RootState } from '../state/store';
+import { AppDispatch, RootState } from '../services/state/store';
 import { Snackbar } from 'services/types/Snackbar';
-import { save } from '../state/snackbarSlice';
+import { save } from '../services/state/snackbarSlice';
 
 const useSnackbar = () => {
   const dispatch = useDispatch<AppDispatch>();
