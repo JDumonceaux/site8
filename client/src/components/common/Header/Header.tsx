@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { APP_NAME } from 'utils/constants';
 import { MenuIcon } from './MenuIcon';
 import Avatar from '../Avatar';
+import StyledLink from '../Link/StyledLink/StyledLink';
 
 type HeaderProps = {
   readonly includeMenu?: boolean;
@@ -15,9 +15,9 @@ export const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
         <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
         {includeMenu ? <MenuIcon /> : null}
         <StyledLinkDiv>
-          <Link to="/">
+          <StyledLink to="/">
             <AppName>{APP_NAME}</AppName>
-          </Link>
+          </StyledLink>
         </StyledLinkDiv>
       </div>
       <Avatar />

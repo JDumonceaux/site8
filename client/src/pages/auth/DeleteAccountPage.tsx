@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Meta } from 'components';
-import { Button2 } from 'components/ui/Form';
+import { Button2 } from 'components/form';
 
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
@@ -9,7 +9,7 @@ import { useForm } from 'hooks/useForm';
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
 import { StyledLink } from 'components/ui/Form/StyledLink';
-import { TextInput } from 'components/ui/Form/Input';
+import { TextInput } from 'components/form/input';
 
 // Define Zod Shape
 const schema = z.object({

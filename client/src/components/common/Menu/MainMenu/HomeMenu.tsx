@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
-import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
 import useMenu from 'hooks/useMenu';
+import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 
 export const HomeMenu = (): JSX.Element => {
   const { data } = useMenu();
@@ -13,7 +13,10 @@ export const HomeMenu = (): JSX.Element => {
           <StyledMenuSection key={item.id}>
             <StyledMenuTitle>{item.name}</StyledMenuTitle>
             {item?.items?.map((x) => (
-              <StyledNavLink key={x.name} to={`/${item.url}/${x.url}`}>
+              <StyledNavLink
+                key={x.name}
+                to={`/${item.url}/${x.url}`}
+                variant="dark">
                 {x.name}
               </StyledNavLink>
             ))}
@@ -25,7 +28,8 @@ export const HomeMenu = (): JSX.Element => {
 };
 
 const StyledNav = styled.nav`
-  color: #fff;
+  color: var(--palette-text-dark);
+  background-color: var(--palette-background);
 `;
 const StyledGrid = styled.div`
   column-count: 4;
@@ -34,17 +38,6 @@ const StyledGrid = styled.div`
 const StyledMenuSection = styled.div`
   break-inside: avoid;
   margin-bottom: 18px;
-  a {
-    color: white;
-    font-size: 0.8rem;
-    display: block;
-    display: block;
-    text-decoration: none;
-    padding: 3px 0px;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
 `;
 const StyledMenuTitle = styled.div`
   font-weight: 700;

@@ -1,7 +1,7 @@
 'use client';
 
-import { IconButton } from 'components/ui/Form/IconButton';
-import { Copy } from 'components/ui/Icons/Copy';
+import { Copy } from 'components/Icons/Copy';
+import { IconButton } from 'components/form/IconButton/IconButton';
 import React, { useRef } from 'react';
 import { styled } from 'styled-components';
 
@@ -57,11 +57,9 @@ export const RenderCode = ({ children }: RenderCodeProps) => {
       <StyledHeader>
         <div>JavaScript</div>
         <div>
-          <IconButton
-            icon={<Copy ariaHidden focusable={false} />}
-            id="copy"
-            onClick={handleCopy}
-          />
+          <IconButton aria-label="Copy" id="copy" onClick={handleCopy}>
+            <Copy ariaHidden focusable={false} />
+          </IconButton>
         </div>
       </StyledHeader>
       <StyledElement>

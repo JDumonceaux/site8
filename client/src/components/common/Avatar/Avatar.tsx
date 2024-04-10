@@ -1,10 +1,9 @@
 'use client';
 
-import { StyledLink } from 'components/ui/Form/StyledLink';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 import { styled } from 'styled-components';
+import StyledLink from '../Link/StyledLink/StyledLink';
 
 export const Avatar = (): JSX.Element => {
   const { authFetchUserAttributes, authFetchAuthSession, initial, authorized } =
@@ -28,10 +27,10 @@ export const Avatar = (): JSX.Element => {
         <>
           {initial ? <StyledIcon>{initial}</StyledIcon> : null}
           <StyledMenu>
-            <Link to="/signout">Sign Out</Link>
+            <StyledLink to="/signout">Sign Out</StyledLink>
             <MenuContent>
-              <Link to="/password/change">Change Password</Link>
-              <Link to="/account/delete">Delete Account</Link>
+              <StyledLink to="/password/change">Change Password</StyledLink>
+              <StyledLink to="/account/delete">Delete Account</StyledLink>
             </MenuContent>
           </StyledMenu>
         </>

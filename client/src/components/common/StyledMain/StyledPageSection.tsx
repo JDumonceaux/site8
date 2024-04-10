@@ -14,4 +14,5 @@ export default StyledPageSection;
 
 const StyledElement = styled.section`
   height: 100vh;
+  padding: 20px 18px;
 `;

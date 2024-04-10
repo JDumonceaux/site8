@@ -1,24 +1,27 @@
 import React from 'react';
-import { NavLink as BaseNavLink } from 'react-router-dom';
-import type { NavLinkProps as BaseNavLinkProps } from 'react-router-dom';
+import { Link as BaseLink } from 'react-router-dom';
+import type { LinkProps as BaseLinkProps } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-type StyledNavLinkProps = {
+type StyledLinkProps = {
   readonly to: string;
   readonly ariaLabel?: string;
   readonly className?: string;
   readonly children: React.ReactNode;
-} & BaseNavLinkProps &
+  readonly variant?: 'light' | 'dark';
+} & BaseLinkProps &
   React.RefAttributes<HTMLAnchorElement>;
 
-const StyledNavLink = ({
+const StyledLink = ({
   to,
   ariaLabel,
   className,
+  variant = 'light',
   children,
-}: StyledNavLinkProps): JSX.Element => {
+}: StyledLinkProps): JSX.Element => {
   return (
     <StyledElement
+      $variant={variant}
       aria-current="page"
       aria-label={ariaLabel ? ariaLabel : children?.toString()}
       className={className}
@@ -28,14 +31,18 @@ const StyledNavLink = ({
   );
 };
 
-export default StyledNavLink;
+export default StyledLink;
 
 // Note: Pseudo classes must be in the following order: link, visited, hover, active
-const StyledElement = styled(BaseNavLink)`
+const StyledElement = styled(BaseLink)<{ $variant?: 'light' | 'dark' }>`
   &:link,
   &:visited,
   &:hover,
   &:active {
-    color: var(--palette-text);
+    color: ${(props) =>
+      props.$variant === 'light'
+        ? `var(--palette-text)`
+        : `var(--palette-text-dark)`};
   }
+  display: block;
 `;

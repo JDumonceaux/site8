@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Meta } from 'components';
-import { Button2 } from 'components/ui/Form';
+import { Button2 } from 'components/form';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 import useAuth, { SocialProvider } from 'hooks/useAuth';

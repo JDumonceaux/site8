@@ -1,19 +1,18 @@
-import { StyledLink } from 'components/ui/Form/StyledLink';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
 type LinkButtonProps = {
   readonly children: React.ReactNode;
-  readonly to?: string;
-  readonly href?: string;
+  readonly to: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const LinkButton = ({
   to,
-  href,
+
   ...rest
 }: LinkButtonProps): JSX.Element => (
-  <StyledLink href={href} to={to}>
+  <StyledLink to={to}>
     <StyledElement id="button" {...rest} />
   </StyledLink>
 );

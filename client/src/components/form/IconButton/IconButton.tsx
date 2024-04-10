@@ -2,9 +2,9 @@ import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
 export type IconButtonProps = {
-  readonly children: React.ReactNode;
   readonly onClick: () => void;
   readonly 'aria-label': string;
+  readonly children: React.ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-label'>;
 
 export const IconButton = ({

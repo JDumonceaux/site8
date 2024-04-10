@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 
 import { Meta } from 'components';
-import { Button2 } from 'components/ui/Form';
+import { Button2 } from 'components/form';
 
 import { useForm } from 'hooks/useForm';
 

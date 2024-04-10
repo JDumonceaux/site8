@@ -3,7 +3,7 @@ import { LoadingWrapper } from 'components/common/Loading';
 import { useLocation } from 'react-router-dom';
 import { Menu } from 'services/types';
 import { styled } from 'styled-components';
-import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
+import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 
 const SubjectMenu = (): JSX.Element => {
   const { data, isLoading, error } = useMenu();

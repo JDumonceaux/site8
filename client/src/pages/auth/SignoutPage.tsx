@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { Meta } from 'components';
-import { Button2 } from 'components/ui/Form';
+import { Button2 } from 'components/form';
 import useAuth from 'hooks/useAuth';
 
 import { styled } from 'styled-components';

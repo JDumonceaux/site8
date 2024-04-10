@@ -1,7 +1,7 @@
 import { Meta } from 'components/common/Meta';
 import { useCallback, useMemo } from 'react';
 
-import { Button2 } from 'components/ui/Form';
+import { Button2 } from 'components/form';
 
 import useAuth from 'hooks/useAuth';
 import { z } from 'zod';

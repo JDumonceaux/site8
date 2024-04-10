@@ -14,14 +14,10 @@ export const HomeScreen5 = (): JSX.Element => {
         <Button3 to="/design">Design Styles</Button3>
         <Button4 to="/cheatsheet">Cheat Sheets</Button4>
         <Button5 to="/javascript">JavaScript</Button5>
-        {/* <LinkButton to="/design">Design</LinkButton>
-        <LinkButton to="/artists">Artist</LinkButton>
-        <LinkButton to="/art">Art</LinkButton>
-        <LinkButton to="/general">General</LinkButton>
-        
-        <LinkButton to="/react-project">React Project</LinkButton>
-        <LinkButton to="/code-solutions">Code Solutions</LinkButton>
-        <LinkButton to="/patterns">Patterns</LinkButton> */}
+        <Button6 to="/javascript">JavaScript2</Button6>
+        <Button7 to="/javascript">JavaScript3</Button7>
+        <Button8 to="/javascript">JavaScript4</Button8>
+        <Button9 to="/javascript">JavaScript5</Button9>
         <CircleWrapper>
           <Circle />
         </CircleWrapper>
@@ -52,54 +48,14 @@ const Y_MIDDLE = '50dvh';
 const X_MIDDLE = '50dvw';
 const CENTER_TOP = '25dvh';
 
-const lpcAnimation1 = keyframes`
-  0% {
-    top: ${Y_MIDDLE};
-    left: calc(${X_MIDDLE} - 100px);
-  }
-  100% {
-    top: ${CENTER_TOP};
-    left: calc(${X_MIDDLE} - 100px);
-  }
-`;
-const lpcAnimation2 = keyframes`
-  0% {
-    top: ${Y_MIDDLE};
-    left: calc(${X_MIDDLE} - 100px);
-  }
-  100% {
-    top: calc(${CENTER_TOP} + 50px);
-    left: calc(${X_MIDDLE} - 300px);
-  }
-`;
-const lpcAnimation3 = keyframes`
+const lpcAnimation = (topOffset: string, leftOffset: string) => keyframes`
   0% {
     top: ${Y_MIDDLE};
     left: calc(${X_MIDDLE} - 75px);
   }
   100% {
-    top: calc(${CENTER_TOP} + 50px);
-    left: calc(${X_MIDDLE} + 75px);
-  }
-`;
-const lpcAnimation4 = keyframes`
-  0% {
-    top: ${Y_MIDDLE};
-    left: calc(${X_MIDDLE} - 75px);
-  }
-  100% {
-    top: calc(${CENTER_TOP} + 100px);
-    left: calc(${X_MIDDLE} - 300px);
-  }
-`;
-const lpcAnimation5 = keyframes`
-  0% {
-    top: ${Y_MIDDLE};
-    left: calc(${X_MIDDLE} - 75px);
-  }
-  100% {
-    top: calc(${CENTER_TOP} + 100px);
-    left: calc(${X_MIDDLE} + 150px);
+    top: calc(${CENTER_TOP} ${topOffset});
+    left: calc(${X_MIDDLE} ${leftOffset});
   }
 `;
 const Button = styled(LinkButton)`
@@ -110,19 +66,31 @@ const Button = styled(LinkButton)`
   animation-fill-mode: forwards;
 `;
 const Button1 = styled(Button)`
-  animation-name: ${lpcAnimation1};
+  animation-name: ${lpcAnimation('- 0px', '- 100px')};
 `;
 const Button2 = styled(Button)`
-  animation-name: ${lpcAnimation2};
+  animation-name: ${lpcAnimation('+ 70px', '- 300px')};
 `;
 const Button3 = styled(Button)`
-  animation-name: ${lpcAnimation3};
+  animation-name: ${lpcAnimation('+ 70px', '+ 100px')};
 `;
 const Button4 = styled(Button)`
-  animation-name: ${lpcAnimation4};
+  animation-name: ${lpcAnimation('+ 140px', '- 350px')};
 `;
 const Button5 = styled(Button)`
-  animation-name: ${lpcAnimation5};
+  animation-name: ${lpcAnimation('+ 140px', '+ 150px')};
+`;
+const Button6 = styled(Button)`
+  animation-name: ${lpcAnimation('+ 210px', '- 350px')};
+`;
+const Button7 = styled(Button)`
+  animation-name: ${lpcAnimation('+ 210px', '+ 150px')};
+`;
+const Button8 = styled(Button)`
+  animation-name: ${lpcAnimation('+ 280px', '+ 100px')};
+`;
+const Button9 = styled(Button)`
+  animation-name: ${lpcAnimation('+ 280px', '- 300px')};
 `;
 
 const CIRCLE_DIAM = '200px';
@@ -141,9 +109,10 @@ const lpcAnimation40 = keyframes`
   }
 `;
 const Circle = styled.div`
-  width: 30px;
-  height: 30px;
-  background: cyan;
+  width: 20px;
+  height: 20px;
+  background: var(--palette-main-color);
+  opacity: 0.75;
   border-radius: 50%;
   position: absolute;
   top: 0;

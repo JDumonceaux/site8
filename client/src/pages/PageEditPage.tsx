@@ -7,7 +7,7 @@ import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { Meta } from 'components/common/Meta';
-import { TextInput } from 'components/ui/Form/Input';
+import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/ui/Form/Input/TextArea';
 import { LoadingWrapper, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain';
