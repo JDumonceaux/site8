@@ -1,0 +1,5 @@
+<h2>useState - functional format</h2>
+<pre><code>
+// Correct - functional form
+setCounter ( (prev) => prev + 1);
+</code></pre>

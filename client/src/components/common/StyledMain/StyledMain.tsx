@@ -5,6 +5,8 @@ import StyledMenu from './StyledMenu';
 import StyledArticle from './StyledArticle';
 import StyledAside from './StyledAside';
 import StyledSection from './StyledSection';
+import StyledFullWidth from './StyledFullWidth';
+import StyledPageSection from './StyledPageSection';
 
 type Props = {
   readonly children: React.ReactNode;
@@ -18,6 +20,8 @@ StyledMain.Menu = StyledMenu;
 StyledMain.Article = StyledArticle;
 StyledMain.Aside = StyledAside;
 StyledMain.Section = StyledSection;
+StyledMain.FullWidth = StyledFullWidth;
+StyledMain.PageSection = StyledPageSection;
 
 export default StyledMain;
 

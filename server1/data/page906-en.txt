@@ -1,0 +1,23 @@
+Unit	Description	
+
+vw	Relative to 1% of the width of the viewport*	
+vh	Relative to 1% of the height of the viewport*	
+dvw Dynamic viewport width - viewport after any resizing has occurred due to changes in the browser UI
+lvw  Large viewport width
+svw Small viewport width
+dvh
+lvh
+svh
+
+%	Relative to the parent element
+
+rem	Relative to font-size of the root element	
+em	Relative to the font-size of the element (2em means 2 times the size of the current font)	
+
+ex	Relative to the x-height of the current font (rarely used)	
+ch	Relative to the width of the "0" (zero)	
+
+vmin	Relative to 1% of viewport's* smaller dimension	 
+vmax	Relative to 1% of viewport's* larger dimension	
+
+

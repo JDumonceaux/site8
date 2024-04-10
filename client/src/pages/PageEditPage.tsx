@@ -24,6 +24,7 @@ const PageEditPage = (): JSX.Element => {
     isProcessing,
     isLoading,
     error,
+    isSaved,
     getFieldErrors,
     handleCancel,
     handleChange,
@@ -59,12 +60,22 @@ const PageEditPage = (): JSX.Element => {
     [onClear],
   );
 
+  const title = formValues.id ? `Edit Page ${formValues.id}` : 'New Page';
+
   return (
     <>
-      <Meta title="Page Edit" />
+      <Meta title={title} />
       <StyledMain>
         <StyledMain.Section>
-          <PageTitle title="Page Edit">
+          <PageTitle title={title}>
+            {!isSaved ? (
+              <StyledPlainButton
+                data-testid="button-save"
+                onClick={handleSubmit}
+                type="submit">
+                Save
+              </StyledPlainButton>
+            ) : null}
             <StyledLink data-testid="nav-new" to="/admin/page/edit">
               New
             </StyledLink>
@@ -151,7 +162,6 @@ const PageEditPage = (): JSX.Element => {
                 label="Text"
                 onChange={handleChange}
                 rows={30}
-                showCounter
                 spellCheck={true}
                 value={formValues.text}
                 // required={true}
@@ -175,10 +185,8 @@ const PageEditPage = (): JSX.Element => {
                 label="Edit Date"
                 maxLength={10}
                 onChange={handleChange}
-                showCounter
                 spellCheck={false}
                 value={formValues.edit_date}
-
                 // required={true}
               />
               <TextInput
@@ -187,7 +195,6 @@ const PageEditPage = (): JSX.Element => {
                 id="reading_time"
                 label="Reading Time"
                 onChange={handleChange}
-                showCounter
                 value={formValues.reading_time}
               />
               <TextInput
@@ -196,7 +203,6 @@ const PageEditPage = (): JSX.Element => {
                 id="readability_score"
                 label="Readability Score"
                 onChange={handleChange}
-                showCounter
                 value={formValues.readability_score}
               />
               <TwoColumn includeGap includeMargin>

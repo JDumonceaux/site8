@@ -517,8 +517,7 @@ const useAuth = () => {
     try {
       setError(null);
       setIsLoading(true);
-      const result = await currentAuthenticatedUser();
-      console.log('Result: ', result);
+      await currentAuthenticatedUser();
     } catch (error: unknown) {
       handleError(error);
     } finally {

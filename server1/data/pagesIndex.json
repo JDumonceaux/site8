@@ -46,11 +46,18 @@
       "url": "react"
     },
     {
-      "id": 7,
+      "id": 6,
+      "seq": 8,
+      "sort": "name",
+      "name": "React",
+      "url": "react"
+    },
+    {
+      "id": 14,
       "seq": 9,
       "sort": "name",
-      "name": "React Project",
-      "url": "react/project"
+      "name": "0 React - Setup",
+      "url": "react/setup"
     },
     {
       "id": 8,
@@ -480,7 +487,44 @@
       "url": "global-functions",
       "reading_time": "",
       "readability_score": "",
-      "edit_date": "1911-01-21T18:00:00.000Z",
+      "edit_date": "1918-02-19T18:00:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Code Review",
+      "url": "code-review",
+      "long_title": "",
+      "resources": false,
+      "parentId": "6",
+      "reading_time": "",
+      "readability_score": "",
+      "edit_date": "1910-02-14T18:30:00.000Z",
+      "create_date": "1910-02-14T18:30:00.000Z",
+      "id": 905,
+      "file": true
+    },
+    {
+      "id": 904,
+      "name": "Best Practices",
+      "long_title": "",
+      "resources": false,
+      "parentId": "6",
+      "url": "best-practices",
+      "reading_time": "",
+      "readability_score": "",
+      "edit_date": "1908-04-24T18:15:00.000Z",
+      "file": true
+    },
+    {
+      "id": 906,
+      "name": "Units",
+      "long_title": "",
+      "resources": false,
+      "parentId": "1",
+      "url": "css-units",
+      "reading_time": "",
+      "readability_score": "",
+      "edit_date": "1908-04-24T16:11:00.000Z",
       "file": true
     }
   ]

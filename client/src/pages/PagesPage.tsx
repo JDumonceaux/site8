@@ -1,17 +1,17 @@
 import { LoadingWrapper } from 'components/common/Loading';
 import { PageTitle } from 'components/common/PageTitle';
 import { Meta } from 'components/common/Meta';
-import React, { useDeferredValue, useEffect } from 'react';
+import React, { useDeferredValue } from 'react';
 import { StyledLink } from 'components/ui/Form/StyledLink';
 import StyledMain from 'components/common/StyledMain';
-import useMenu from 'hooks/useMenu';
+import { useAxios } from 'hooks/Axios';
+import { ServiceUrl } from 'utils';
+import { Menus } from 'services/types';
 
 const PagesPage = (): JSX.Element => {
-  const { data, isLoading, error, fetchData } = useMenu();
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const { data, isLoading, error } = useAxios<Menus>(
+    `${ServiceUrl.ENDPOINT_MENUS}`,
+  );
 
   const deferredData = useDeferredValue(data);
 
@@ -21,7 +21,12 @@ const PagesPage = (): JSX.Element => {
       <StyledMain>
         <LoadingWrapper error={error} isLoading={isLoading}>
           <StyledMain.Section>
-            <PageTitle title="Pages" />
+            <PageTitle title="Pages">
+              {' '}
+              <StyledLink data-testid="nav-new" to="/admin/page/edit">
+                New
+              </StyledLink>
+            </PageTitle>
             <table>
               <thead>
                 <tr>

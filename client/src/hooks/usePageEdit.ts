@@ -68,6 +68,8 @@ const usePageEdit = (id: string | undefined) => {
     [],
   );
 
+  const [isSaved, setIsSaved] = useState<boolean>(true);
+
   const { formValues, setFormValues, setFieldValue, errors, setErrors } =
     useForm<FormValues>(defaultFormValues);
 
@@ -147,6 +149,7 @@ const usePageEdit = (id: string | undefined) => {
         ...prev,
         [name]: value,
       }));
+      setIsSaved(false);
     },
     [setFormValues],
   );
@@ -177,6 +180,7 @@ const usePageEdit = (id: string | undefined) => {
     if (validateForm()) {
       saveItem(formValues);
       setIsProcessing(false);
+      setIsSaved(true);
       return true;
     }
     return false;
@@ -238,6 +242,7 @@ const usePageEdit = (id: string | undefined) => {
       handleReset,
       isLoading,
       error,
+      isSaved,
     }),
     [
       formValues,
@@ -254,6 +259,7 @@ const usePageEdit = (id: string | undefined) => {
       handleReset,
       isLoading,
       error,
+      isSaved,
     ],
   );
 };

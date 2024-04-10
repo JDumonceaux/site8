@@ -1,31 +1,21 @@
+import { StyledLink } from 'components/ui/Form/StyledLink';
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-export type Button2Props = {
-  readonly id: string;
+type LinkButtonProps = {
   readonly children: React.ReactNode;
-  readonly icon?: React.ReactNode;
-  readonly marginBottom?: string;
-  readonly variant?: 'primary' | 'secondary';
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'>;
+  readonly to?: string;
+  readonly href?: string;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button2 = ({
-  id,
-  children,
-  icon,
-  marginBottom,
-  variant = 'primary',
+export const LinkButton = ({
+  to,
+  href,
   ...rest
-}: Button2Props): JSX.Element => (
-  <StyledElement
-    $margin={marginBottom}
-    $variant={variant}
-    id={id}
-    name={id}
-    {...rest}>
-    {icon}
-    {children}
-  </StyledElement>
+}: LinkButtonProps): JSX.Element => (
+  <StyledLink href={href} to={to}>
+    <StyledElement id="button" {...rest} />
+  </StyledLink>
 );
 
 const StyledElement = styled.button<{
@@ -39,7 +29,7 @@ const StyledElement = styled.button<{
   margin-bottom: ${(props) => (props.$margin ? props.$margin : undefined)};
   background-color: #ffffff;
   color: #424242;
-  width: 100%;
+  width: 200px;
   min-height: 36px;
   padding: 6px 16px;
   font-size: 0.875rem;

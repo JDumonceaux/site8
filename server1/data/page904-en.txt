@@ -1,0 +1,37 @@
+<h2>useState - Functional Form</h2>
+<p>React updates state when it feels like it - not necessarily right away.  Therefore, using the "current" value is often a wrong solution.  Instead, you should use the <em>functional form</em> of updating the state.</p>
+<pre><code>
+const [ <var>counter</var>, <var>setCounter</var> ] = useState(0);
+// Wrong - previous updates may not be reflected in the value of <var>counter</var>.
+setCounter( counter + 1 );   
+// Correct - functional form
+setCounter ( (prev) => prev + 1);
+</code></pre>
+
+
+<h2>useState - Asynchronous Updates</h2>
+<p>This is a variation of the example above.</p>
+<pre><code>
+const [ <var>counter</var>, <var>setCounter</var> ] = useState(0);
+// Wrong 
+setCounter( counter + 1 );
+setCounter( counter + 1 );
+setCounter( counter + 1 );   
+// Correct - functional form
+setCounter ( (prev) => prev + 1);
+setCounter ( (prev) => prev + 1);
+setCounter ( (prev) => prev + 1);
+</code></pre>
+
+<h2>useState - Immutability</h2>
+<p>Some mutations do not cause re-renders.</p>
+<pre><code>
+const [ <var>person</var>, <var>setPerson</var> ] = useState({name: string, age: number});
+// Wrong
+person.age = 31
+setPerson( person );   
+// Correct 
+setPerson ( (prev) => { ... prev, age: 31} );
+</code></pre>
+
+
