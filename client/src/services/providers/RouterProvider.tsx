@@ -122,6 +122,30 @@ const router = createBrowserRouter(
           <Route element={<GenericPage />} path=":id" />
         </Route>
 
+        {/* 13 = Security */}
+        <Route element={<MainLayout />} path="security">
+          <Route element={<GenericPage />} index />
+          <Route element={<GenericPage />} path=":id" />
+        </Route>
+
+        {/* 14 = AWS */}
+        <Route element={<MainLayout />} path="aws">
+          <Route element={<GenericPage />} index />
+          <Route element={<GenericPage />} path=":id" />
+        </Route>
+
+        {/* 15 = Maintenance */}
+        <Route element={<MainLayout />} path="maintenance">
+          <Route element={<GenericPage />} index />
+          <Route element={<GenericPage />} path=":id" />
+        </Route>
+
+        {/* 16 = Me Stuff */}
+        <Route element={<MainLayout />} path="stuff">
+          <Route element={<GenericPage />} index />
+          <Route element={<GenericPage />} path=":id" />
+        </Route>
+
         {/* ADMIN */}
         <Route element={<MainLayout />} path="admin">
           <Route element={<PagesPage />} path="pages" />
