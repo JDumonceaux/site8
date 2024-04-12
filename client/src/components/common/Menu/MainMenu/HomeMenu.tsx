@@ -8,41 +8,43 @@ export const HomeMenu = (): JSX.Element => {
 
   return (
     <StyledNav>
-      <StyledGrid>
-        {data?.items?.map((item) => (
-          <StyledMenuSection key={item.id}>
-            <StyledMenuTitle>{item.name}</StyledMenuTitle>
-            {item?.items?.map((x) => (
+      {data?.items?.map((item) => (
+        <StyledMenuSection key={item.id}>
+          <StyledMenuTitle key={item.id}>{item.name}</StyledMenuTitle>
+          {item?.items?.map((x) => (
+            <StyledMenuItem key={x.name}>
               <StyledNavLink
                 key={x.name}
                 to={`/${item.url}/${x.url}`}
                 variant="dark">
                 {x.name}
               </StyledNavLink>
-            ))}
-          </StyledMenuSection>
-        ))}
-      </StyledGrid>
+            </StyledMenuItem>
+          ))}
+        </StyledMenuSection>
+      ))}
     </StyledNav>
   );
 };
 
 const StyledNav = styled.nav`
   color: var(--palette-text-dark);
-  background-color: var(--palette-background);
-`;
-const StyledGrid = styled.div`
   column-count: 4;
-  column-gap: 16px;
+  column-width: 200px;
+  column-gap: 20px;
+  column-rule-width: thin;
 `;
-const StyledMenuSection = styled.div`
-  break-inside: avoid;
-  margin-bottom: 18px;
+const StyledMenuItem = styled.div`
+  font-size: 0.8rem;
+  padding: 6px 0;
 `;
 const StyledMenuTitle = styled.div`
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  padding-bottom: 3px;
   margin-bottom: 6px;
+`;
+const StyledMenuSection = styled.div`
+  margin-bottom: 18px;
+  break-inside: avoid;
 `;

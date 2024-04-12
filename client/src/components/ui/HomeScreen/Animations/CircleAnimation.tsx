@@ -11,20 +11,17 @@ const CIRCLE_DIAM = '200px';
 const CIRCLE_RADI = '100px';
 const Y_MIDDLE = '50dvh';
 const X_MIDDLE = '50dvw';
-const lpcAnimation = keyframes`
+const kfRotate = keyframes`
   0%{
     transform:rotate(0deg)
               translate(-100px)
               rotate(0deg);
-     opacity: 0;
   }
   100%{
     transform:rotate(360deg)
               translate(-100px)
               rotate(-360deg);
-    opacity: 1;
   }
-
 `;
 const CircleWrapper = styled.div`
   width: ${CIRCLE_DIAM};
@@ -51,5 +48,5 @@ const CircleElement = styled.div`
   overflow: hidden;
   margin: auto;
   animation: circle 6s linear infinite;
-  animation-name: ${lpcAnimation};
+  animation-name: ${kfRotate};
 `;
