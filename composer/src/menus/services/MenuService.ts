@@ -1,11 +1,11 @@
 import { Logger } from "../utils/Logger.js";
-import { Menus } from "types/Menus.js";
+import { Pages } from "types/Pages.js";
 import { Menu } from "types/Menu.js";
 import { PagesService } from "./PagesService.js";
 import { PageSummary } from "types/PageSummary.js";
 
 export class MenuService {
-  public async getMenus(): Promise<Menus | undefined> {
+  public async getMenus(): Promise<Pages | undefined> {
     Logger.info(`MenuService: getMenus -> `);
     try {
       const service = new PagesService();
@@ -18,7 +18,7 @@ export class MenuService {
 
       // Sort the menus by seq
       const sortedMenu: Menu[] = data.menus.toSorted((a, b) => a.seq - b.seq);
-      const ret: Menus = {
+      const ret: Pages = {
         metadata: data.metadata,
         items: sortedMenu.map((item) => {
           const pages = data.items.filter((x) => x.parentId === item.id);

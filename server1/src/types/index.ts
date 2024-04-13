@@ -3,7 +3,7 @@ export * from './Bookmarks.js';
 export * from './BookmarksTag.js';
 export * from './BookmarksTags.js';
 export * from './Menu.js';
-export * from './Menus.js';
+export * from './Pages.js';
 export * from './Metadata.js';
 export * from './Page.js';
 export * from './Pages.js';

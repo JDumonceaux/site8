@@ -34,7 +34,7 @@ app.use((_req, res, next) => {
 app.use("/api/menus", menuRouter);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Menus" });
+  res.json({ message: "Pages" });
 });
 
 export const handler = serverless(app);

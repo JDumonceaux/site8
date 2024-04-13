@@ -1,11 +1,11 @@
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  Menus:
+  Pages:
     Type: AWS::Serverless::Function
     Properties:
       Description: !Sub
         - Stack ${AWS::StackName} Function ${ResourceName}
-        - ResourceName: Menus
+        - ResourceName: Pages
       CodeUri: src/menus
       Handler: index.handler
       Runtime: nodejs20.x
@@ -25,7 +25,7 @@ Resources:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain
     Properties:
-      LogGroupName: !Sub /aws/lambda/${Menus}
+      LogGroupName: !Sub /aws/lambda/${Pages}
   Site8:
     Type: AWS::Serverless::Api
     Properties:
@@ -34,7 +34,7 @@ Resources:
         - ResourceName: Site8
       StageName: Prod
       DefinitionBody:
-        openapi: '3.0'
+        openapi: "3.0"
         info: {}
         paths:
           /api/menus:
@@ -42,7 +42,7 @@ Resources:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Menus.Arn}/invocations
+                uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Pages.Arn}/invocations
               responses: {}
           /api/bookmarks:
             get:

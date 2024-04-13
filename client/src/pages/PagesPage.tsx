@@ -6,10 +6,10 @@ import { StyledLink } from 'components/ui/Form/StyledLink';
 import StyledMain from 'components/common/StyledMain';
 import { useAxios } from 'hooks/Axios';
 import { ServiceUrl } from 'utils';
-import { Menus } from 'services/types';
+import { Pages } from 'services/types';
 
 const PagesPage = (): JSX.Element => {
-  const { data, isLoading, error } = useAxios<Menus>(
+  const { data, isLoading, error } = useAxios<Pages>(
     `${ServiceUrl.ENDPOINT_MENUS}`,
   );
 

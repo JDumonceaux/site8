@@ -13,14 +13,8 @@ export class PagesIndexService {
     this.filePath = getFilePath(this.fileName);
   }
 
-  private getTrimmedPage(obj: Page) {
-    return Object.fromEntries(
-      Object.entries(obj).filter(([_, v]) => v != null && v !== ''),
-    );
-  }
-
   // Get all data
-  public async getItems(): Promise<Pages | undefined> {
+  private async getItems(): Promise<Pages | undefined> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       return JSON.parse(results) as Pages;
@@ -46,9 +40,9 @@ export class PagesIndexService {
 
       let ret: Page | undefined = undefined;
       if (tempId > 0) {
-        ret = jsonData.items.find((x) => x.id === tempId);
+        ret = jsonData?.pages?.find((x) => x.id === tempId);
       } else {
-        ret = jsonData.items.find((x) => x.url === id);
+        ret = jsonData?.pages?.find((x) => x.url === id);
       }
       return ret;
     } catch (error) {
@@ -63,21 +57,21 @@ export class PagesIndexService {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const data = JSON.parse(results) as Pages;
-      // Check to make sure items isn't undefined
-      if (data.items) {
+      // Check to make sure pages isn't undefined
+      if (data.pages) {
         // Check to make sure it is iterable
-        const itr = typeof data.items[Symbol.iterator] === 'function';
+        const itr = typeof data.pages[Symbol.iterator] === 'function';
         if (!itr) {
           Logger.error(
-            `PagesIndexService: getLastId -> Error: items is not iterable`,
+            `PagesIndexService: getLastId -> Error: pages is not iterable`,
           );
           return undefined;
         }
-        const maxItem = data.items.reduce((a, b) => (+a.id > +b.id ? a : b));
+        const maxItem = data.pages.reduce((a, b) => (+a.id > +b.id ? a : b));
         return maxItem ? maxItem.id : undefined;
       } else {
         Logger.error(
-          `PagesIndexService: getLastId -> Error: items missing from file`,
+          `PagesIndexService: getLastId -> Error: pages missing from file`,
         );
         return undefined;
       }
@@ -92,7 +86,7 @@ export class PagesIndexService {
     Logger.info(`getNextId -> `);
     try {
       const item = await this.getItems();
-      return this.findFreeId(item?.items ?? undefined);
+      return this.findFreeId(item?.pages ?? undefined);
     } catch (error) {
       Logger.error(`PagesIndexService: getLastId -> Error: ${error}`);
       return undefined;
@@ -100,11 +94,11 @@ export class PagesIndexService {
   }
 
   // Get Next Id
-  public findFreeId(items: Page[] | undefined): number | undefined {
+  public findFreeId(pages: Page[] | undefined): number | undefined {
     try {
-      // Check to make sure items isn't undefined
-      if (items) {
-        const sortedArray = items.toSorted((a, b) => a.id - b.id);
+      // Check to make sure pages isn't undefined
+      if (pages) {
+        const sortedArray = pages.toSorted((a, b) => a.id - b.id);
 
         // Start with the first id in the sorted array
         let nextId = sortedArray[0].id;
@@ -121,7 +115,7 @@ export class PagesIndexService {
         return nextId;
       } else {
         Logger.error(
-          `PagesIndexService: findFreeIdd -> Error: items missing from file`,
+          `PagesIndexService: findFreeIdd -> Error: pages missing from file`,
         );
         return undefined;
       }
@@ -150,11 +144,12 @@ export class PagesIndexService {
     const jsonData = JSON.parse(results) as Pages;
 
     const { id, text, ...rest } = data;
+    const retPages = jsonData.pages ?? [];
 
     const updatedFile: Pages = {
       metadata: jsonData.metadata,
       menus: jsonData.menus,
-      items: [...jsonData.items, { ...rest, id: data.id, file: file }],
+      pages: [...retPages, { ...rest, id: data.id, file: file }],
     };
 
     return this.writeNewFile(updatedFile);
@@ -167,15 +162,16 @@ export class PagesIndexService {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as Pages;
       // Remove the current item from the data
-      const ret = jsonData.items.filter((x) => x.id !== data.id);
+      const ret = jsonData.pages?.filter((x) => x.id !== data.id);
 
       // We don't want to update the text field and create_date so we'll remove them
       const { text, create_date, ...rest } = data;
+      const retPages = ret ?? [];
 
       const updatedFile: Pages = {
         metadata: jsonData.metadata,
         menus: jsonData.menus,
-        items: [...ret, { ...rest, file: file }],
+        pages: [...retPages, { ...rest, file: file }],
       };
 
       await this.writeNewFile(updatedFile);
@@ -191,12 +187,12 @@ export class PagesIndexService {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       const jsonData = JSON.parse(results) as Pages;
-      const ret = jsonData.items.filter((x) => x.id !== id);
+      const ret = jsonData?.pages?.filter((x) => x.id !== id);
 
       const updatedFile: Pages = {
         metadata: jsonData.metadata,
         menus: jsonData.menus,
-        items: { ...ret },
+        pages: ret ? { ...ret } : [],
       };
       await this.writeNewFile(updatedFile);
       return Promise.resolve(true);

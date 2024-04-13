@@ -43,9 +43,9 @@ export class PageService {
     const tempId = parseInt(id, 10);
     let ret: Page | undefined = undefined;
     if (Number.isInteger(tempId) && tempId > 0) {
-      ret = jsonData.items.find((x) => x.id === tempId);
+      ret = jsonData.pages?.find((x) => x.id === tempId);
     } else {
-      ret = jsonData.items.find((x) => x.url === id);
+      ret = jsonData.pages?.find((x) => x.url === id);
     }
     return ret;
   }

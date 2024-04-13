@@ -5,7 +5,7 @@ export * from './Bookmarks';
 export * from './BookmarksTag';
 export * from './BookmarksTags';
 export * from './Menu';
-export * from './Menus';
+export * from './Pages';
 export * from './Metadata';
 export * from './Music';
 export * from './MusicItem';

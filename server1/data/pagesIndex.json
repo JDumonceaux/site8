@@ -4,26 +4,87 @@
   },
   "menus": [
     {
-      "id": 1,
-      "seq": 3,
+      "id": 100,
       "sort": "name",
-      "name": "CSS",
-      "url": "css"
+      "name": "Programming",
+      "url": "programming",
+      "items": [
+        {
+          "id": 1,
+          "seq": 3,
+          "sort": "name",
+          "name": "CSS",
+          "url": "css"
+        },
+        {
+          "id": 2,
+          "seq": 4,
+          "sort": "name",
+          "name": "Design Styles",
+          "url": "design"
+        },
+        {
+          "id": 5,
+          "seq": 1,
+          "sort": "name",
+          "name": "Cheat Sheets",
+          "url": "cheatsheet"
+        }
+      ]
     },
     {
-      "id": 2,
-      "seq": 4,
+      "id": 200,
       "sort": "name",
-      "name": "Design Styles",
-      "url": "design"
+      "name": "React",
+      "url": "react",
+      "items": [
+        {
+          "id": 6,
+          "seq": 8,
+          "sort": "name",
+          "name": "React",
+          "url": "react"
+        }
+      ]
     },
     {
-      "id": 3,
-      "seq": 31,
+      "id": 300,
       "sort": "name",
-      "name": "Artist",
-      "url": "artists"
+      "name": "Fun Stuff",
+      "url": "fun-stuff",
+      "items": [
+        {
+          "id": 3,
+          "seq": 31,
+          "sort": "name",
+          "name": "Artist",
+          "url": "artists"
+        },
+        {
+          "id": 10,
+          "seq": 30,
+          "sort": "name",
+          "name": "Art",
+          "url": "art"
+        }
+      ]
     },
+    {
+      "id": 400,
+      "sort": "name",
+      "name": "AWS",
+      "url": "aws",
+      "items": [
+        {
+          "id": 14,
+          "seq": 14,
+          "sort": "name",
+          "name": "AWS",
+          "url": "aws"
+        }
+      ]
+    },
+
     {
       "id": 4,
       "seq": 33,
@@ -31,27 +92,7 @@
       "name": "Other",
       "url": "other"
     },
-    {
-      "id": 5,
-      "seq": 1,
-      "sort": "name",
-      "name": "Cheat Sheets",
-      "url": "cheatsheet"
-    },
-    {
-      "id": 6,
-      "seq": 8,
-      "sort": "name",
-      "name": "React",
-      "url": "react"
-    },
-    {
-      "id": 6,
-      "seq": 8,
-      "sort": "name",
-      "name": "React",
-      "url": "react"
-    },
+
     {
       "id": 14,
       "seq": 9,
@@ -73,13 +114,7 @@
       "name": "Patterns",
       "url": "patterns"
     },
-    {
-      "id": 10,
-      "seq": 30,
-      "sort": "name",
-      "name": "Art",
-      "url": "art"
-    },
+
     {
       "id": 11,
       "seq": 5,
@@ -101,13 +136,7 @@
       "name": "Security",
       "url": "security"
     },
-    {
-      "id": 14,
-      "seq": 14,
-      "sort": "name",
-      "name": "AWS",
-      "url": "aws"
-    },
+
     {
       "id": 15,
       "seq": 15,
@@ -123,7 +152,7 @@
       "url": "stuff"
     }
   ],
-  "items": [
+  "pages": [
     {
       "id": 900,
       "name": "CSS",

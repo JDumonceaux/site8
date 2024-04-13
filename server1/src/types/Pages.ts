@@ -4,6 +4,6 @@ import { Page } from './Page.js';
 
 export type Pages = {
   readonly metadata: Metadata;
-  readonly menus: Menu[];
-  readonly items: Page[];
+  readonly menus?: Menu[];
+  readonly pages?: Page[];
 };

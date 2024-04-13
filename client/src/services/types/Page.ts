@@ -4,10 +4,9 @@ export type Page = {
   readonly long_title?: string;
   readonly edit_date?: Date;
   readonly create_date?: Date;
-  readonly resources?: boolean;
-  readonly parentId?: number;
-  readonly fileName?: string;
-  readonly text: string;
+  readonly parentId: number;
+  readonly file?: boolean;
+  readonly text?: string;
   readonly reading_time?: string;
   readonly readability_score?: string;
   readonly url?: string;

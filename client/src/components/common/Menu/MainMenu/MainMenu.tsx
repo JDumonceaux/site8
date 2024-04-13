@@ -1,6 +1,6 @@
 import useMenu from 'hooks/useMenu';
-import StyledNavLink from 'components/common/StyledNavLink/StyledNavLink';
 import { AccordionMenu } from './AccordionMenu';
+import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 
 export const MainMenu = (): JSX.Element => {
   const { data } = useMenu();
