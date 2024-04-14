@@ -25,35 +25,23 @@ export class MenuService {
     }
   }
 
-  private getRestructuredMenu(
-    menus?: Menu[] | undefined,
-    pages?: Page[],
-  ): Menu[] | undefined {
+  private getModifiedMenu(level?: Menu[], level2?: Menu[] | Page[]) {
     try {
-      if (!menus) {
+      if (!level) {
         return undefined;
       }
 
-      const restructuredMenu = menus.map((menu) => {
-        const items = menu.items?.map((item) => {
-          const filteredPages = pages?.filter(
-            (page) => page.parentId === item.id,
-          );
+      return level
+        ?.map((item) => {
+          const filteredItems = level2?.filter((x) => x.parentId === item.id);
           return {
             ...item,
-            pages: filteredPages,
+            childCount: filteredItems?.length,
           };
-        });
-
-        return {
-          ...menu,
-          items,
-        };
-      });
-
-      return restructuredMenu;
+        })
+        ?.toSorted();
     } catch (error) {
-      Logger.error(`MenuService: getRestructuredMenu -> ${error}`);
+      Logger.error(`MenuService: getModifiedMenu -> ${error}`);
       return undefined;
     }
   }
@@ -64,45 +52,19 @@ export class MenuService {
       // Get all the data from pagesIndex.json
       const data: Pages | undefined = await this.getItems();
 
-      if (!data || !data.menus) {
+      if (!data || !data.level1) {
         return undefined;
       }
 
-      // Restructure the menus
-      const restructuredMenus = this.getRestructuredMenu(
-        data.menus,
-        data.pages,
-      );
+      const x = this.getModifiedMenu(data.level1, data.level2);
+      console.log('x', x);
 
-      return { metadata: data.metadata, menus: restructuredMenus };
-
-      // Sort the menus by seq
-      // const sortedMenu: Menu[] = data.menus.toSorted((a, b) => a.seq - b.seq);
-      // const ret: Pages = {
-      //   metadata: data.metadata,
-      //   items: sortedMenu.map((item) => {
-      //     const pages = data.items.filter((x) => x.parentId === item.id);
-
-      //     // Convert the pages to PageSummary
-      //     const mapMenuItems: PageSummary[] = pages.map((x) => ({
-      //       id: x.id,
-      //       name: x.name,
-      //       url: x.url ?? '',
-      //       seq: x.seq ?? 0,
-      //     }));
-      //     // Sort Items
-      //     const sortedMapMenuItems: PageSummary[] =
-      //       item.sort === 'seq'
-      //         ? mapMenuItems.toSorted((a, b) => a.seq - b.seq)
-      //         : mapMenuItems.toSorted((a, b) => a.name.localeCompare(b.name));
-
-      //     return {
-      //       ...item,
-      //       pages: sortedMapMenuItems,
-      //     };
-      //   }),
-      // };
-      // return ret;
+      return {
+        metadata: data.metadata,
+        level1: this.getModifiedMenu(data.level1, data.level2),
+        level2: this.getModifiedMenu(data.level2, data.pages),
+        pages: data.pages?.toSorted(),
+      };
     } catch (error) {
       Logger.error(`MenuService: getMenus --> Error: ${error}`);
       throw error;

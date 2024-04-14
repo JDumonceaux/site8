@@ -4,6 +4,6 @@ import { Page } from './Page';
 
 export type Pages = {
   readonly metadata: Metadata;
-  readonly menu?: Menu[];
+  readonly menus?: Menu[];
   readonly pages?: Page[];
 };

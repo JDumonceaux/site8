@@ -147,8 +147,7 @@ export class PagesIndexService {
     const retPages = jsonData.pages ?? [];
 
     const updatedFile: Pages = {
-      metadata: jsonData.metadata,
-      menus: jsonData.menus,
+      ...jsonData,
       pages: [...retPages, { ...rest, id: data.id, file: file }],
     };
 
@@ -169,8 +168,7 @@ export class PagesIndexService {
       const retPages = ret ?? [];
 
       const updatedFile: Pages = {
-        metadata: jsonData.metadata,
-        menus: jsonData.menus,
+        ...jsonData,
         pages: [...retPages, { ...rest, file: file }],
       };
 
@@ -190,8 +188,7 @@ export class PagesIndexService {
       const ret = jsonData?.pages?.filter((x) => x.id !== id);
 
       const updatedFile: Pages = {
-        metadata: jsonData.metadata,
-        menus: jsonData.menus,
+        ...jsonData,
         pages: ret ? { ...ret } : [],
       };
       await this.writeNewFile(updatedFile);

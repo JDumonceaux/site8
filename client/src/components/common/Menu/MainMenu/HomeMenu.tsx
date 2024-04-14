@@ -8,21 +8,23 @@ export const HomeMenu = (): JSX.Element => {
 
   return (
     <StyledNav>
-      {data?.items?.map((item) => (
-        <StyledMenuSection key={item.id}>
-          <StyledMenuTitle key={item.id}>{item.name}</StyledMenuTitle>
-          {item?.items?.map((x) => (
-            <StyledMenuItem key={x.name}>
-              <StyledNavLink
-                key={x.name}
-                to={`/${item.url}/${x.url}`}
-                variant="dark">
-                {x.name}
-              </StyledNavLink>
-            </StyledMenuItem>
-          ))}
-        </StyledMenuSection>
-      ))}
+      {data?.menus?.map((item) =>
+        item?.items?.map((x) => (
+          <StyledMenuSection key={x.id}>
+            <StyledMenuTitle key={x.id}>{x.name}</StyledMenuTitle>
+            {item?.items?.map((x) => (
+              <StyledMenuItem key={x.name}>
+                <StyledNavLink
+                  key={x.name}
+                  to={`/${item.url}/${x.url}`}
+                  variant="dark">
+                  {x.name}
+                </StyledNavLink>
+              </StyledMenuItem>
+            ))}
+          </StyledMenuSection>
+        )),
+      )}
     </StyledNav>
   );
 };

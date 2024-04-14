@@ -2,156 +2,101 @@
   "metadata": {
     "title": "Pages"
   },
-  "menus": [
-    {
-      "id": 100,
-      "sort": "name",
-      "name": "Programming",
-      "url": "programming",
-      "items": [
-        {
-          "id": 1,
-          "seq": 3,
-          "sort": "name",
-          "name": "CSS",
-          "url": "css"
-        },
-        {
-          "id": 2,
-          "seq": 4,
-          "sort": "name",
-          "name": "Design Styles",
-          "url": "design"
-        },
-        {
-          "id": 5,
-          "seq": 1,
-          "sort": "name",
-          "name": "Cheat Sheets",
-          "url": "cheatsheet"
-        }
-      ]
-    },
-    {
-      "id": 200,
-      "sort": "name",
-      "name": "React",
-      "url": "react",
-      "items": [
-        {
-          "id": 6,
-          "seq": 8,
-          "sort": "name",
-          "name": "React",
-          "url": "react"
-        }
-      ]
-    },
-    {
-      "id": 300,
-      "sort": "name",
-      "name": "Fun Stuff",
-      "url": "fun-stuff",
-      "items": [
-        {
-          "id": 3,
-          "seq": 31,
-          "sort": "name",
-          "name": "Artist",
-          "url": "artists"
-        },
-        {
-          "id": 10,
-          "seq": 30,
-          "sort": "name",
-          "name": "Art",
-          "url": "art"
-        }
-      ]
-    },
-    {
-      "id": 400,
-      "sort": "name",
-      "name": "AWS",
-      "url": "aws",
-      "items": [
-        {
-          "id": 14,
-          "seq": 14,
-          "sort": "name",
-          "name": "AWS",
-          "url": "aws"
-        }
-      ]
-    },
+  "level1": [
+    { "id": 100, "name": "Programming", "url": "programming" },
+    { "id": 200, "name": "React", "url": "react" },
+    { "id": 300, "name": "AWS", "url": "aws" },
+    { "id": 400, "name": "Fun Stuff", "url": "fun" },
+    { "id": 500, "name": "Web", "url": "web" }
+  ],
 
+  "level2": [
     {
-      "id": 4,
-      "seq": 33,
-      "sort": "name",
-      "name": "Other",
-      "url": "other"
+      "id": 1,
+      "parentId": 100,
+      "name": "CSS",
+      "url": "css"
     },
-
     {
-      "id": 14,
-      "seq": 9,
-      "sort": "name",
-      "name": "0 React - Setup",
-      "url": "react/setup"
+      "id": 1,
+      "parentId": 100,
+      "name": "Javascript",
+      "url": "javascript"
+    },
+    {
+      "id": 2,
+      "parentId": 500,
+      "name": "Design Styles",
+      "url": "design"
+    },
+    {
+      "id": 5,
+      "parentId": 100,
+      "name": "Cheat Sheets",
+      "url": "cheatsheet"
     },
     {
       "id": 8,
-      "seq": 2,
-      "sort": "name",
+      "parentId": 100,
       "name": "Code Solutions",
       "url": "code/solutions"
     },
     {
       "id": 9,
-      "seq": 7,
-      "sort": "name",
+      "parentId": 100,
       "name": "Patterns",
       "url": "patterns"
     },
-
-    {
-      "id": 11,
-      "seq": 5,
-      "sort": "name",
-      "name": "IDE",
-      "url": "ide"
-    },
-    {
-      "id": 12,
-      "seq": 6,
-      "sort": "name",
-      "name": "Javascript",
-      "url": "javascript"
-    },
     {
       "id": 13,
-      "seq": 13,
-      "sort": "name",
+      "parentId": 500,
       "name": "Security",
       "url": "security"
     },
-
     {
       "id": 15,
-      "seq": 15,
-      "sort": "name",
+      "parentId": 500,
       "name": "Maintenance",
       "url": "maintenance"
     },
     {
+      "id": 11,
+      "parentId": 500,
+      "name": "IDE",
+      "url": "ide"
+    },
+    {
+      "id": 14,
+      "parentId": 300,
+      "name": "AWS",
+      "url": "aws"
+    },
+    {
       "id": 16,
-      "seq": 16,
-      "sort": "name",
-      "name": "Me Stuff",
-      "url": "stuff"
+      "parentId": 400,
+      "name": "Art",
+      "url": "art"
+    },
+    {
+      "id": 3,
+      "parentId": 400,
+      "name": "Artist",
+      "url": "artists"
+    },
+    {
+      "id": 17,
+      "parentId": 400,
+      "name": "Yachts",
+      "url": "yachts"
+    },
+    {
+      "id": 6,
+      "parentId": 200,
+      "name": "React",
+      "url": "react"
     }
   ],
+
   "pages": [
     {
       "id": 900,
