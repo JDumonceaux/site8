@@ -1,11 +1,7 @@
-import { PageSummary } from './PageSummary';
-
 export type Menu = {
   readonly id: number;
-  readonly sort: string;
-  readonly seq: number;
   readonly name: string;
   readonly url: string;
-  items?: Menu[];
-  pages?: PageSummary[];
+  readonly parentId?: number;
+  readonly childCount?: number;
 };

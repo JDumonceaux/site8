@@ -4,15 +4,15 @@ import useMenu from 'hooks/useMenu';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 
 export const HomeMenu = (): JSX.Element => {
-  const { data } = useMenu();
+  const { data, getLevel, getLevel2 } = useMenu();
 
   return (
     <StyledNav>
-      {data?.menus?.map((item) =>
-        item?.items?.map((x) => (
+      {data?.level1?.map((item) =>
+        getLevel(item.id)?.map((x) => (
           <StyledMenuSection key={x.id}>
             <StyledMenuTitle key={x.id}>{x.name}</StyledMenuTitle>
-            {item?.items?.map((x) => (
+            {getLevel2(x.id)?.map((x) => (
               <StyledMenuItem key={x.name}>
                 <StyledNavLink
                   key={x.name}

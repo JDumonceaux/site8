@@ -56,9 +56,6 @@ export class MenuService {
         return undefined;
       }
 
-      const x = this.getModifiedMenu(data.level1, data.level2);
-      console.log('x', x);
-
       return {
         metadata: data.metadata,
         level1: this.getModifiedMenu(data.level1, data.level2),

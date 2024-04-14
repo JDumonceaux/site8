@@ -18,10 +18,28 @@ const useMenu = () => {
     [dispatch],
   );
 
+  const getLevel = useCallback(
+    (id: number) => {
+      if (!data || !data.level2) return undefined;
+      return data.level2.filter((x) => x.parentId === id);
+    },
+    [data],
+  );
+
+  const getLevel2 = useCallback(
+    (id: number) => {
+      if (!data || !data.pages) return undefined;
+      return data.pages.filter((x) => x.parentId === id);
+    },
+    [data],
+  );
+
   return {
     data,
     isLoading,
     error,
+    getLevel,
+    getLevel2,
     fetchData: dispatchFetchMenu,
   };
 };
