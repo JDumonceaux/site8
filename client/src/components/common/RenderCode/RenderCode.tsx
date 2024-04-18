@@ -45,7 +45,7 @@ export const RenderCode = ({ children }: RenderCodeProps) => {
   };
 
   const handleCopy = () => {
-    const node = ref && ref.current ? (ref.current as HTMLElement) : null;
+    const node = ref?.current ? (ref.current as HTMLElement) : null;
     const text = node ? node.innerText : undefined;
     if (text) {
       copyToClipboard(text);
@@ -81,7 +81,7 @@ const StyledHeader = styled.div`
 const StyledElement = styled.pre`
   background-color: var(--palette-dark-background);
   color: var(--palette-dark-text);
-  padding: var(--spacing-2);
+  padding: 12px;
   var {
     color: var(--palette-var);
   },

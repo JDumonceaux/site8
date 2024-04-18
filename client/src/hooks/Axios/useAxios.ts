@@ -4,13 +4,13 @@ import { httpErrorHandler } from 'utils/errorHandler';
 import { AcceptHeader, PreferHeader } from 'utils';
 
 export const useAxios = <T>(url?: string) => {
-  const [data, setData] = useState<T | null>(null);
+  const [data, setData] = useState<T | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
   // Private function to fetch data
   const fetchDataAsync = async (url: string) => {
-    setData(null);
+    setData(undefined);
     setIsLoading(true);
     setError(undefined);
 
@@ -21,7 +21,8 @@ export const useAxios = <T>(url?: string) => {
         responseType: 'json',
         headers: { Accept: AcceptHeader.JSON },
       });
-      return response.data;
+      const res = await response.data;
+      setData(res);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -31,11 +32,11 @@ export const useAxios = <T>(url?: string) => {
     } finally {
       setIsLoading(false);
     }
-    return null;
+    return undefined;
   };
 
   const postDataAsync = async (url: string, data: T) => {
-    setData(null);
+    setData(undefined);
     setIsLoading(true);
     setError(undefined);
 
@@ -47,7 +48,8 @@ export const useAxios = <T>(url?: string) => {
           Accept: AcceptHeader.JSON,
         },
       });
-      return response.data;
+      const res = await response.data;
+      setData(res);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -57,11 +59,11 @@ export const useAxios = <T>(url?: string) => {
     } finally {
       setIsLoading(false);
     }
-    return null;
+    return undefined;
   };
 
   const patchDataAsync = async (url: string, data: T) => {
-    setData(null);
+    setData(undefined);
     setIsLoading(true);
     setError(undefined);
 
@@ -73,7 +75,8 @@ export const useAxios = <T>(url?: string) => {
           Accept: AcceptHeader.JSON,
         },
       });
-      return response.data;
+      const res = await response.data;
+      setData(res);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -83,19 +86,20 @@ export const useAxios = <T>(url?: string) => {
     } finally {
       setIsLoading(false);
     }
-    return null;
+    return undefined;
   };
 
   const deleteDataAsync = async (url: string) => {
     setIsLoading(true);
-    setData(null);
+    setData(undefined);
     setError(undefined);
 
     try {
       const response = await axios.delete<T>(url, {
         responseType: 'json',
       });
-      return response.data;
+      const res = await response.data;
+      setData(res);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -105,44 +109,24 @@ export const useAxios = <T>(url?: string) => {
     } finally {
       setIsLoading(false);
     }
-    return null;
+    return undefined;
   };
 
   useEffect(() => {
     if (!url || url.length === 0) {
       return;
     }
-    fetchData(url);
+    fetchDataAsync(url);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
-
-  const fetchData = async (url: string) => {
-    const result = await fetchDataAsync(url);
-    setData(result);
-  };
-
-  const patchData = async (url: string, data: T) => {
-    const result = await patchDataAsync(url, data);
-    setData(result);
-  };
-
-  const postData = async (url: string, data: T) => {
-    const result = await postDataAsync(url, data);
-    setData(result);
-  };
-
-  const deleteData = async (url: string) => {
-    const result = await deleteDataAsync(url);
-    setData(result);
-  };
 
   return {
     data,
     isLoading,
     error,
-    fetchData,
-    postData,
-    patchData,
-    deleteData,
+    fetchDat: fetchDataAsync,
+    postData: postDataAsync,
+    patchData: patchDataAsync,
+    deleteData: deleteDataAsync,
   };
 };

@@ -1,19 +1,18 @@
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-import { Button } from 'components/ui/Form/Button';
-
 import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { Meta } from 'components/common/Meta';
 import { TextInput } from 'components/form/input';
-import { TextArea } from 'components/ui/Form/Input/TextArea';
+
 import { LoadingWrapper, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain';
 import useSnackbar from 'hooks/useSnackbar';
-import { StyledLink } from 'components/ui/Form/StyledLink';
-import { StyledPlainButton } from 'components/ui/Form/StyledPlainButton/StyledPlainButton';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { StyledPlainButton } from 'components/common/Link/StyledPlainButton';
+import { TextArea } from 'components/form/input/TextArea';
+import { Button } from 'components/form/Button';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
@@ -68,32 +67,46 @@ const PageEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            {!isSaved ? (
-              <StyledPlainButton
-                data-testid="button-save"
-                onClick={handleSubmit}
-                type="submit">
-                Save
-              </StyledPlainButton>
-            ) : null}
-            <StyledLink data-testid="nav-new" to="/admin/page/edit">
-              New
-            </StyledLink>
-            <StyledLink data-testid="nav-list" to="/admin/pages">
-              List
-            </StyledLink>
-            <StyledPlainButton
-              data-testid="button-reset"
-              onClick={handleReset}
-              type="reset">
-              Reset
-            </StyledPlainButton>
-            <StyledPlainButton
-              data-testid="button-clear"
-              onClick={handleClear}
-              type="reset">
-              Clear All
-            </StyledPlainButton>
+            <menu>
+              {!isSaved ? (
+                <li>
+                  <StyledPlainButton
+                    data-testid="button-save"
+                    onClick={handleSubmit}
+                    type="submit">
+                    Save
+                  </StyledPlainButton>
+                </li>
+              ) : null}
+              <li>
+                {' '}
+                <StyledLink data-testid="nav-new" to="/admin/page/edit">
+                  New
+                </StyledLink>
+              </li>
+              <li>
+                {' '}
+                <StyledLink data-testid="nav-list" to="/admin/pages">
+                  List
+                </StyledLink>
+              </li>
+              <li>
+                <StyledPlainButton
+                  data-testid="button-reset"
+                  onClick={handleReset}
+                  type="reset">
+                  Reset
+                </StyledPlainButton>
+              </li>
+              <li>
+                <StyledPlainButton
+                  data-testid="button-clear"
+                  onClick={handleClear}
+                  type="reset">
+                  Clear All
+                </StyledPlainButton>
+              </li>
+            </menu>
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <form noValidate onSubmit={handleSubmit}>

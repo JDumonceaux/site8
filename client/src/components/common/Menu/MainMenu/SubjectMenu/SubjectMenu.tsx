@@ -1,60 +1,54 @@
 import useMenu from 'hooks/useMenu';
 import { LoadingWrapper } from 'components/common/Loading';
 import { useLocation } from 'react-router-dom';
-import { Menu } from 'services/types';
 import { styled } from 'styled-components';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
+import { getURLPath } from 'utils/helpers';
+import { useEffect } from 'react';
 
 const SubjectMenu = (): JSX.Element => {
-  const { data, isLoading, error } = useMenu();
+  const { getLevel3, getRemaining, fetchData, isLoading, error } = useMenu();
   const location = useLocation();
   const { pathname } = location;
-  const tempPathName =
-    pathname.split('/').length > 1 ? pathname.split('/')[1] : undefined;
+  const tempPathName1 = getURLPath(pathname, 1);
+  const tempPathName2 = getURLPath(pathname, 2);
 
-  const menus = data?.items;
+  useEffect(() => {
+    fetchData;
+  }, []);
 
-  const filteredData: Menu | undefined = menus
-    ? tempPathName
-      ? menus.find((x) => x.url === tempPathName)
-      : menus[0]
-    : undefined;
+  const currentMenu = getLevel3(tempPathName1, tempPathName2);
 
-  const filtereMenus: Menu[] | undefined = menus
-    ? tempPathName
-      ? menus.filter((x) => x.id !== filteredData?.id)
-      : menus
-    : undefined;
+  console.log('currentMenu', currentMenu);
 
   return (
     <StyledNav>
-      <StyledHeader>CODEPEN</StyledHeader>
       <StyledContent>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          {filteredData ? (
-            <StyledMenuSection key={filteredData.id}>
+          {currentMenu ? (
+            <StyledMenuSection key={currentMenu.menu2?.id}>
               <StyledMenuTitle
-                key={filteredData.name}
-                to={`/${filteredData.url}`}>
-                {filteredData.name}
+                key={currentMenu.menu2?.name}
+                to={`/${currentMenu.menu2?.url}`}>
+                {currentMenu.menu2?.name}
               </StyledMenuTitle>
-              {filteredData?.items?.map((x) => (
+              {currentMenu?.menu3?.map((x) => (
                 <StyledMenuItem
                   key={x.name}
-                  to={`/${filteredData.url}/${x.url}`}>
+                  to={`/${currentMenu.menu1?.url}/${currentMenu.menu2?.url}/${x.url}`}>
                   {x.name}
                 </StyledMenuItem>
               ))}
             </StyledMenuSection>
           ) : null}
         </LoadingWrapper>
-        <LoadingWrapper error={error} isLoading={isLoading}>
+        {/* <LoadingWrapper error={error} isLoading={isLoading}>
           {filtereMenus?.map((item) => (
             <StyledMenuTitle key={item.name} to={`/${item.url}`}>
               {item.name}
             </StyledMenuTitle>
           ))}
-        </LoadingWrapper>
+        </LoadingWrapper> */}
       </StyledContent>
       {/* <StyledFooter>FOOTER</StyledFooter> */}
     </StyledNav>
@@ -108,22 +102,22 @@ const StyledNav = styled.nav`
   overflow: hidden;
   user-select: none;
 `;
-const StyledHeader = styled.div`
-  position: relative;
-  opacity: 0;
-  pointer-events: none;
-  left: 16px;
-  width: calc(var(--navbar-width) - 16px);
-  min-height: 80px;
-  background: var(--navbar-dark-primary);
-  border-radius: 16px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  transition:
-    opacity 0.1s,
-    width 0.2s;
-`;
+// const StyledHeader = styled.div`
+//   position: relative;
+//   opacity: 0;
+//   pointer-events: none;
+//   left: 16px;
+//   width: calc(var(--navbar-width) - 16px);
+//   min-height: 80px;
+//   background: var(--navbar-dark-primary);
+//   border-radius: 16px;
+//   z-index: 2;
+//   display: flex;
+//   align-items: center;
+//   transition:
+//     opacity 0.1s,
+//     width 0.2s;
+// `;
 const StyledContent = styled.div`
   margin: -16px 0;
   padding: 16px 0;

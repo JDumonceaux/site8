@@ -8,43 +8,62 @@ export const HomeMenu = (): JSX.Element => {
 
   return (
     <StyledNav>
-      {data?.level1?.map((item) =>
-        getLevel(item.id)?.map((x) => (
-          <StyledMenuSection key={x.id}>
-            <StyledMenuTitle key={x.id}>{x.name}</StyledMenuTitle>
-            {getLevel2(x.id)?.map((x) => (
-              <StyledMenuItem key={x.name}>
-                <StyledNavLink
-                  key={x.name}
-                  to={`/${item.url}/${x.url}`}
-                  variant="dark">
-                  {x.name}
-                </StyledNavLink>
-              </StyledMenuItem>
+      {data?.level1?.map((x) => (
+        <StyledSection key={x.id}>
+          <StyledSectionTitle>{x.name}</StyledSectionTitle>
+          <StyledGrid>
+            {getLevel(x.id)?.map((y) => (
+              <StyledMenuSection key={y.id}>
+                <StyledMenuTitle key={y.id}>{y.name}</StyledMenuTitle>
+                {getLevel2(y.id)?.map((z) => (
+                  <StyledMenuItem key={z.name}>
+                    <StyledNavLink
+                      key={z.name}
+                      to={`/${x.url}/${y.url}/${z.url}`}
+                      variant="dark">
+                      {z.name}
+                    </StyledNavLink>
+                  </StyledMenuItem>
+                ))}
+              </StyledMenuSection>
             ))}
-          </StyledMenuSection>
-        )),
-      )}
+          </StyledGrid>
+        </StyledSection>
+      ))}
     </StyledNav>
   );
 };
 
-const StyledNav = styled.nav`
-  color: var(--palette-text-dark);
+const StyledGrid = styled.div`
   column-count: 4;
   column-width: 200px;
   column-gap: 20px;
   column-rule-width: thin;
 `;
+const StyledNav = styled.nav`
+  color: var(--palette-text-dark);
+`;
 const StyledMenuItem = styled.div`
   font-size: 0.8rem;
-  padding: 6px 0;
+  padding: 3px 12px;
 `;
 const StyledMenuTitle = styled.div`
   font-weight: 700;
   font-size: 0.9rem;
   text-transform: uppercase;
   margin-bottom: 6px;
+`;
+const StyledSectionTitle = styled.div`
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--palette-border);
+`;
+const StyledSection = styled.div`
+  margin-bottom: 18px;
+  break-inside: avoid;
 `;
 const StyledMenuSection = styled.div`
   margin-bottom: 18px;
