@@ -25,7 +25,10 @@ export class MenuService {
     }
   }
 
-  private getModifiedMenu(level?: Menu[], level2?: Menu[] | Page[]) {
+  private getModifiedMenu(
+    level?: ReadonlyArray<Menu>,
+    level2?: ReadonlyArray<Menu> | ReadonlyArray<Page>,
+  ) {
     try {
       if (!level) {
         return undefined;

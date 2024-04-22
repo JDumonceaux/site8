@@ -1,18 +1,20 @@
+'use client';
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
-import { Meta } from 'components/common/Meta';
+
 import { TextInput } from 'components/form/input';
 
-import { LoadingWrapper, PageTitle } from 'components';
-import StyledMain from 'components/common/StyledMain';
 import useSnackbar from 'hooks/useSnackbar';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { StyledPlainButton } from 'components/common/Link/StyledPlainButton';
+
 import { TextArea } from 'components/form/input/TextArea';
 import { Button } from 'components/form/Button';
+import { styled } from 'styled-components';
+import { Meta, PageTitle, StyledPlainButton, LoadingWrapper } from 'components';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
@@ -67,7 +69,7 @@ const PageEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            <menu>
+            <StyledMenu>
               {!isSaved ? (
                 <li>
                   <StyledPlainButton
@@ -79,13 +81,11 @@ const PageEditPage = (): JSX.Element => {
                 </li>
               ) : null}
               <li>
-                {' '}
                 <StyledLink data-testid="nav-new" to="/admin/page/edit">
                   New
                 </StyledLink>
               </li>
               <li>
-                {' '}
                 <StyledLink data-testid="nav-list" to="/admin/pages">
                   List
                 </StyledLink>
@@ -106,7 +106,7 @@ const PageEditPage = (): JSX.Element => {
                   Clear All
                 </StyledPlainButton>
               </li>
-            </menu>
+            </StyledMenu>
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <form noValidate onSubmit={handleSubmit}>
@@ -236,3 +236,8 @@ const PageEditPage = (): JSX.Element => {
 };
 
 export default PageEditPage;
+
+const StyledMenu = styled.menu`
+  display: inline-flex;
+  list-style-type: none;
+`;

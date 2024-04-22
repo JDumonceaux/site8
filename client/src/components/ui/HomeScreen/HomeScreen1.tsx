@@ -1,5 +1,5 @@
-import { HomeMenu } from 'components/common/Menu/MainMenu/HomeMenu';
-import { Meta } from 'components/common/Meta';
+import { HomeMenu } from 'components/common/Menu/HomeMenu';
+import { Meta } from 'components';
 import { MatrixBG } from 'components/ui/Animation/MatrixBG';
 import { styled } from 'styled-components';
 

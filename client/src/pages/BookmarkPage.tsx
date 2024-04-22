@@ -1,11 +1,9 @@
-import { LoadingWrapper } from 'components/common/Loading';
-import { PageTitle } from 'components/common/PageTitle';
-import { Meta } from 'components/common/Meta';
-import { useDeferredValue } from 'react';
-
+'use client';
+import { Meta, PageTitle, LoadingWrapper } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 import { BookmarkTags } from 'components/custom/BookmarksTags';
-import StyledMain from 'components/common/StyledMain';
 import { useAxios } from 'hooks/Axios';
+import { useDeferredValue } from 'react';
 import { BookmarksTags } from 'services/types';
 import { ServiceUrl } from 'utils';
 

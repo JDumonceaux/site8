@@ -28,6 +28,8 @@ export enum FileType {
   ZIP = 'zip',
 }
 
+export const GRAPHQL_IMAGES = `http://localhost:4000/images`;
+
 //export const API_ROOT = `${Environment.getPublicUrl()}/api`;
 export const API_ROOT = `http://localhost:3005/api`;
 //export const API_ROOT = `https://s12k0iq8o1.execute-api.us-west-2.amazonaws.com/Prod/api`;

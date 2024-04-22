@@ -94,7 +94,9 @@ export class PagesIndexService {
   }
 
   // Get Next Id
-  public findFreeId(pages: Page[] | undefined): number | undefined {
+  public findFreeId(
+    pages: ReadonlyArray<Page> | undefined,
+  ): number | undefined {
     try {
       // Check to make sure pages isn't undefined
       if (pages) {

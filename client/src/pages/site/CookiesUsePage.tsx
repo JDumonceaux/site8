@@ -1,4 +1,4 @@
-import { Meta } from 'components/common/Meta';
+import { Meta } from 'components';
 
 import { APP_NAME } from 'utils/constants';
 import { useEffect } from 'react';

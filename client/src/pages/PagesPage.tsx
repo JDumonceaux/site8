@@ -1,12 +1,12 @@
-import { LoadingWrapper } from 'components/common/Loading';
-import { PageTitle } from 'components/common/PageTitle';
-import { Meta } from 'components/common/Meta';
+'use client';
 import React, { useDeferredValue } from 'react';
-import { StyledLink } from 'components/ui/Form/StyledLink';
-import StyledMain from 'components/common/StyledMain';
+
 import { useAxios } from 'hooks/Axios';
 import { ServiceUrl } from 'utils';
 import { Pages } from 'services/types';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { Meta, LoadingWrapper, PageTitle } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const PagesPage = (): JSX.Element => {
   const { data, isLoading, error } = useAxios<Pages>(
@@ -36,7 +36,7 @@ const PagesPage = (): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                {deferredData?.items?.map((item) => (
+                {deferredData?.level1?.map((item) => (
                   <React.Fragment key={item.id}>
                     <tr>
                       <td>{item.name}</td>
@@ -46,7 +46,7 @@ const PagesPage = (): JSX.Element => {
                         </StyledLink>
                       </td>
                     </tr>
-                    {item.items?.map((x) => (
+                    {/* {item?.map((x) => (
                       <tr key={x.id}>
                         <td />
                         <td>
@@ -56,7 +56,7 @@ const PagesPage = (): JSX.Element => {
                         </td>
                         <td> {x.id}</td>
                       </tr>
-                    ))}
+                    ))} */}
                   </React.Fragment>
                 ))}
               </tbody>

@@ -1,34 +1,35 @@
 'use client';
+import { Suspense, useDeferredValue } from 'react';
 
-import { Meta, LoadingWrapper, PageTitle, RenderHtml } from 'components';
-import SubjectMenu from 'components/common/Menu/SubjectMenu';
+import { LoadingWrapper, Meta, PageTitle, RenderHtml } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { useAxios } from 'hooks/Axios';
-import { useDeferredValue, Suspense } from 'react';
-import { useParams } from 'react-router-dom';
-import { Page } from 'services/types';
+import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import { styled } from 'styled-components';
-import { ServiceUrl } from 'utils';
+import { useQuery, gql } from '@apollo/client';
 
-type GenericPageProps = {
-  readonly id?: string | number;
-  readonly title?: string;
-};
+const IMAGE_QUERY = gql`
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
 
-const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
-  const routeParams = useParams<{
-    id: string;
-  }>();
+const GenericImagePage = (): JSX.Element => {
+  // const routeParams = useParams<{
+  //   id: string;
+  // }>();
 
-  const tempId = id ? id : routeParams.id;
+  //const tempId = routeParams.id;
 
-  const { data, isLoading, error } = useAxios<Page>(
-    `${ServiceUrl.ENDPOINT_PAGE}/${tempId}`,
-  );
+  const { data, loading, error } = useQuery(IMAGE_QUERY);
 
   const deferredData = useDeferredValue(data);
 
-  const pageTitle = deferredData?.name ?? title;
+  const pageTitle = deferredData?.name;
+
+  if (error) return <pre>{error.message}</pre>;
 
   return (
     <>
@@ -38,7 +39,7 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
           <SubjectMenu />
         </StyledMain.Menu>
         <StyledMain.Article>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          <LoadingWrapper error={error} isLoading={loading}>
             <PageTitle title={pageTitle} />
             <StyledSection>
               <Suspense fallback="Loading results ...">
@@ -53,7 +54,7 @@ const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
   );
 };
 
-export default GenericPage;
+export default GenericImagePage;
 
 const StyledSection = styled.section`
   pre {

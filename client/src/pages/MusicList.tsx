@@ -1,34 +1,12 @@
-import { LoadingWrapper } from 'components/common/Loading';
-import { PageTitle } from 'components/common/PageTitle';
-import { Meta } from 'components/common/Meta';
+'use client';
+
 import './musicList.css';
 
-import memoize from 'memoize-one';
-import { useDeferredValue, useEffect } from 'react';
-import { FixedSizeList as List } from 'react-window';
-import { MusicItem } from 'services/types/MusicItem';
-import useMusic from 'services/hooks/useMusic';
-import { ItemRenderer } from './ItemRenderer';
-import StyledMain from 'components/common/StyledMain';
+import { Meta, PageTitle } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const MusicList = (): JSX.Element => {
   const title = 'YouTube Videos';
-  const { data, isLoading, error, fetchData } = useMusic();
-
-  const deferredData = useDeferredValue(data);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  // Memoize the data
-  const createItemData = memoize((items: MusicItem[]) => ({
-    items,
-  }));
-
-  const itemData = deferredData?.items
-    ? createItemData(deferredData?.items)
-    : undefined;
 
   return (
     <>
@@ -37,7 +15,7 @@ const MusicList = (): JSX.Element => {
         <PageTitle title={title} />
         <section>
           <p>These are some of my favorite YouTube videos.</p>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          {/* <LoadingWrapper error={error} isLoading={isLoading}>
             <List
               height={600}
               itemCount={data?.items?.length ? data?.items?.length : 0}
@@ -48,19 +26,7 @@ const MusicList = (): JSX.Element => {
               {ItemRenderer}
             </List>
 
-            {/* {data?.items?.map((item) => (
-                <div key={item.id}>
-                  <div>{item.description}</div>
-                  <iframe
-                    width={560}
-                    height={200}
-                    src={item.url}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  ></iframe>
-                </div>
-              ))} */}
-          </LoadingWrapper>
+          </LoadingWrapper> */}
         </section>
       </StyledMain>
     </>

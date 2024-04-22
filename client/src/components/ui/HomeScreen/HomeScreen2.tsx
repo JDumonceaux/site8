@@ -1,4 +1,4 @@
-import { Meta } from 'components/common/Meta';
+import { Meta } from 'components';
 import StyledMain from 'components/common/StyledMain';
 import { styled, keyframes } from 'styled-components';
 

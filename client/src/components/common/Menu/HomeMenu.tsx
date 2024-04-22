@@ -35,8 +35,8 @@ export const HomeMenu = (): JSX.Element => {
 };
 
 const StyledGrid = styled.div`
-  column-count: 4;
-  column-width: 200px;
+  column-count: 6;
+  column-width: 150px;
   column-gap: 20px;
   column-rule-width: thin;
 `;

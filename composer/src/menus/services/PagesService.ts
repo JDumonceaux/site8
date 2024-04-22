@@ -97,7 +97,7 @@ export class PagesService {
     try {
       // Check to make sure items isn't undefined
       if (items) {
-        const sortedArray = items.toSorted((a, b) => a.id - b.id);
+        const sortedArray = items.sort((a, b) => a.id - b.id);
 
         // Start with the first id in the sorted array
         let nextId = sortedArray[0].id;

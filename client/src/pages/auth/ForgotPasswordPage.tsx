@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { Meta } from 'components/common/Meta';
+import { Meta } from 'components';
 import { Button2 } from 'components/form';
 
 import useAuth from 'hooks/useAuth';

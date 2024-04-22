@@ -1,13 +1,11 @@
-import { LoadingWrapper } from 'components/common/Loading';
-import { PageTitle } from 'components/common/PageTitle';
-import { Meta } from 'components/common/Meta';
-
+'use client';
 import { useDeferredValue } from 'react';
 
-import StyledMain from 'components/common/StyledMain';
 import { useAxios } from 'hooks/Axios';
 import { ServiceUrl } from 'utils';
 import { Photos } from 'services/types';
+import { Meta, PageTitle, LoadingWrapper } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const PhotoPage = (): JSX.Element => {
   const { data, isLoading, error } = useAxios<Photos>(

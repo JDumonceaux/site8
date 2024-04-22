@@ -1,90 +1,102 @@
-import { PageTitle } from 'components/common/PageTitle';
-import { Meta } from 'components/common/Meta';
+'use client';
 import { styled } from 'styled-components';
-import StyledMain from 'components/common/StyledMain';
+import { Suspense } from 'react';
+import SubjectMenu from 'components/common/Menu/SubjectMenu';
+import { Meta, PageTitle } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const boxStyle = '56.25% 0 0 0';
 
 const YachtsPage = (): JSX.Element => {
+  const pageTitle = 'Yachts';
+
   return (
     <>
-      <Meta title="Yatchs" />
+      <Meta title={pageTitle} />
       <StyledMain>
-        <PageTitle title="Yatchs" />
-        <section>
-          <p>
-            The design of this yacht is called <em>Nature</em>.
-          </p>
-          <p>
-            I&#39;d do just about anything to own this beautiful beast... Is
-            anyone feeling generous?
-          </p>
-          <p>
-            I love the Japanese influence, low profile, clean lines, and
-            brooding color. The bow panels on either side slide back to expose
-            the floor-to-ceiling windows of the upper observation lounge. Large
-            doors fold down from the sides - becoming decks from which you can
-            dangle your feet in warm waters.
-          </p>
-          <p>
-            Imagine slipping through tropical waters with a fine drink in your
-            hand.
-          </p>
-          <p>
-            <a href="https://sinot.com/nature/">
-              Sinot Yacht Architecture and Design
-            </a>{' '}
-            has a range of other beautiful designs:{' '}
-            <a href="https://sinot.com/aware/">Aware</a>,{' '}
-            <a href="https://sinot.com/beach/">Beach</a>,{' '}
-            <a href="https://sinot.com/poetry/">Poetry</a>,{' '}
-            <a href="https://sinot.com/aqua/">Aqua</a>,{' '}
-            <a href="https://sinot.com/the-art-of-life/">The Art of Life</a>,{' '}
-            <a href="https://sinot.com/nature/">Nature</a>,{' '}
-            <a href="https://sinot.com/zen/">Zen</a>, and{' '}
-            <a href="https://sinot.com/balance/">Balance</a>. All equally
-            beautiful and innovative.
-          </p>
-          <div>
-            <StyledTitle>Nature Design</StyledTitle>
-            <img alt="" src="/images/yachts/sinot-nature-1.jpg.webp" />
-          </div>
-          <div>
-            <StyledTitle>Nature Design</StyledTitle>
-            <img alt="" src="/images/yachts/sinot-nature-2.jpg.webp" />
-          </div>
-          <div>
-            <StyledTitle>
-              Nature Design - Observation Lounge with floor to ceiling windows
-            </StyledTitle>
-            <img
-              alt="Nature - Observation Lounge"
-              src="/images/yachts/sinot-nature-5.png"
-              title="Nature - Observation Lounge"
-            />
-          </div>
-          <div>
-            <StyledTitle>Nature Design - Expansive Decks</StyledTitle>
-            <img alt="" src="/images/yachts/sinot-nature-3.png" />
-          </div>
-          <div>
-            <StyledTitle>Nature Design - Guest Bedroom</StyledTitle>
-            <img
-              alt="Nature - Guest Bedroom"
-              src="/images/yachts/sinot-nature-4.png"
-              title="Nature - Guest Bedroom"
-            />
-          </div>
+        <StyledMain.Menu>
+          <SubjectMenu />
+        </StyledMain.Menu>
+        <StyledMain.Article>
+          <PageTitle title={pageTitle} />
+          <StyledMain.Section>
+            <Suspense fallback="Loading results ...">
+              <p>
+                The design of this yacht is called <em>Nature</em>.
+              </p>
+              <p>
+                I&#39;d do just about anything to own this beautiful beast... Is
+                anyone feeling generous?
+              </p>
+              <p>
+                I love the Japanese influence, low profile, clean lines, and
+                brooding color. The bow panels on either side slide back to
+                expose the floor-to-ceiling windows of the upper observation
+                lounge. Large doors fold down from the sides - becoming decks
+                from which you can dangle your feet in warm waters.
+              </p>
+              <p>
+                Imagine slipping through tropical waters with a fine drink in
+                your hand.
+              </p>
+              <p>
+                <a href="https://sinot.com/nature/">
+                  Sinot Yacht Architecture and Design
+                </a>
+                has a range of other beautiful designs:{' '}
+                <a href="https://sinot.com/aware/">Aware</a>,{' '}
+                <a href="https://sinot.com/beach/">Beach</a>,{' '}
+                <a href="https://sinot.com/poetry/">Poetry</a>,{' '}
+                <a href="https://sinot.com/aqua/">Aqua</a>,{' '}
+                <a href="https://sinot.com/the-art-of-life/">The Art of Life</a>
+                , <a href="https://sinot.com/nature/">Nature</a>,{' '}
+                <a href="https://sinot.com/zen/">Zen</a>, and{' '}
+                <a href="https://sinot.com/balance/">Balance</a>. All equally
+                beautiful and innovative.
+              </p>
+              <div>
+                <StyledTitle>Nature Design</StyledTitle>
+                <img alt="" src="/images/yachts/sinot-nature-1.jpg.webp" />
+              </div>
+              <div>
+                <StyledTitle>Nature Design</StyledTitle>
+                <img alt="" src="/images/yachts/sinot-nature-2.jpg.webp" />
+              </div>
+              <div>
+                <StyledTitle>
+                  Nature Design - Observation Lounge with floor to ceiling
+                  windows
+                </StyledTitle>
+                <img
+                  alt="Nature - Observation Lounge"
+                  src="/images/yachts/sinot-nature-5.png"
+                  title="Nature - Observation Lounge"
+                />
+              </div>
+              <div>
+                <StyledTitle>Nature Design - Expansive Decks</StyledTitle>
+                <img alt="" src="/images/yachts/sinot-nature-3.png" />
+              </div>
+              <div>
+                <StyledTitle>Nature Design - Guest Bedroom</StyledTitle>
+                <img
+                  alt="Nature - Guest Bedroom"
+                  src="/images/yachts/sinot-nature-4.png"
+                  title="Nature - Guest Bedroom"
+                />
+              </div>
 
-          <div>
-            <StyledTitle>Beach Design</StyledTitle>
-            <img alt="" src="/images/yachts/sinot-beach.png" />
-          </div>
-          <div>
-            <StyledTitle>Aqua Design - Owner&#39s Suite</StyledTitle>
-            <img alt="" src="/images/yachts/sinot-aqua-owners-suite.png" />
-          </div>
-        </section>
+              <div>
+                <StyledTitle>Beach Design</StyledTitle>
+                <img alt="" src="/images/yachts/sinot-beach.png" />
+              </div>
+              <div>
+                <StyledTitle>Aqua Design - Owner&apos; Suite</StyledTitle>
+                <img alt="" src="/images/yachts/sinot-aqua-owners-suite.png" />
+              </div>
+            </Suspense>
+          </StyledMain.Section>
+        </StyledMain.Article>
 
         <StyledMain.Aside>
           {/* Art of Life */}

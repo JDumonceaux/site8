@@ -3,7 +3,7 @@ import axios, { isCancel } from 'axios';
 import { httpErrorHandler } from 'utils/errorHandler';
 import { AcceptHeader, PreferHeader } from 'utils';
 
-export const useAxios = <T>(url?: string) => {
+export const useGraphQL = <T>(url?: string) => {
   const [data, setData] = useState<T | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -14,10 +14,8 @@ export const useAxios = <T>(url?: string) => {
     setIsLoading(true);
     setError(undefined);
 
-    const controller = AbortSignal.timeout(5000);
     try {
       const response = await axios.get<T>(url, {
-        signal: controller,
         responseType: 'json',
         headers: { Accept: AcceptHeader.JSON },
       });
@@ -124,7 +122,7 @@ export const useAxios = <T>(url?: string) => {
     data,
     isLoading,
     error,
-    fetchData: fetchDataAsync,
+    fetchDat: fetchDataAsync,
     postData: postDataAsync,
     patchData: patchDataAsync,
     deleteData: deleteDataAsync,

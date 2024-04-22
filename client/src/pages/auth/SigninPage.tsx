@@ -1,4 +1,4 @@
-import { Meta } from 'components/common/Meta';
+import { Meta } from 'components';
 import { useCallback, useMemo } from 'react';
 
 import { Button2 } from 'components/form';

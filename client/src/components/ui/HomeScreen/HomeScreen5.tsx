@@ -1,4 +1,4 @@
-import { HomeMenu } from 'components/common/Menu/MainMenu/HomeMenu';
+import { HomeMenu } from 'components/common/Menu/HomeMenu';
 
 import StyledMain from 'components/common/StyledMain';
 import { CircleAnimation } from './Animations/CircleAnimation';

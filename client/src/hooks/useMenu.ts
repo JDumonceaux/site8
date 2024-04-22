@@ -40,22 +40,25 @@ const useMenu = () => {
       const menu2 = data?.level2?.find(
         (x) => x.url === url2 && x.parentId === menu1?.id,
       );
-      const menu3 = data?.pages?.filter((x) => x.parentId === menu2?.id);
+      const menu3Temp = data?.pages?.filter((x) => x.parentId === menu2?.id);
+      const menu3 = menu3Temp && menu3Temp?.length > 0 ? menu3Temp : undefined;
       return { menu1, menu2, menu3 };
     },
     [data],
   );
 
   const getRemaining = useCallback(
-    (url1: string | undefined, url2: string | undefined) => {
-      if (!data || !url1 || !url2) return undefined;
-      const menu1 = data?.level1?.find((x) => x.url === url1);
-      const menu2 = data?.level2?.find(
-        (x) => x.url === url2 && x.parentId === menu1?.id,
-      );
-      const menu3 = data?.pages?.find((x) => x.parentId === menu2?.id);
-
-      return { menu1, menu2, menu3 };
+    (parentId: number | undefined, currId: number | undefined) => {
+      if (parentId && currId) {
+        console.log('parentId', parentId, 'currId', currId);
+        return data?.level2?.filter(
+          (x) => x.parentId === parentId && x.id !== currId,
+        );
+      }
+      if (parentId) {
+        return data?.level2?.filter((x) => x.parentId === parentId);
+      }
+      return data?.level2;
     },
     [data],
   );

@@ -1,6 +1,6 @@
-import { PageTitle } from 'components/common/PageTitle';
-import { Meta } from 'components/common/Meta';
-import StyledMain from 'components/common/StyledMain';
+'use client';
+import { Meta, PageTitle } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const Artists = (): JSX.Element => {
   const title = 'Art';

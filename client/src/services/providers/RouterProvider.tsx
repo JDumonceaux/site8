@@ -13,6 +13,7 @@ import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
 import { ErrorPage } from 'pages/ErrorPage';
 
 const GenericPage = lazy(() => import('pages/GenericPage'));
+const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
 const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFoundPage'));
 
@@ -97,7 +98,6 @@ const router = createBrowserRouter(
           <Route element={<MainLayout />} path="art">
             <Route element={<GenericPage />} index />
             <Route element={<GenericPage />} path=":id" />
-            <Route element={<YachtsPage />} path="yachts" />
           </Route>
           {/* 3 - Artist */}
           <Route element={<GenericPage />} path="artists">
@@ -111,6 +111,8 @@ const router = createBrowserRouter(
             <Route element={<BookmarkPage />} path="bookmarks" />
             <Route element={<PhotoPage />} path="photos" />
           </Route>
+          <Route element={<YachtsPage />} path="yachts" />
+          <Route element={<GenericImagePage />} path="images" />
         </Route>
 
         <Route element={<MainLayout />} path="web">

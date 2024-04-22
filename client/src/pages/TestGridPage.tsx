@@ -1,4 +1,6 @@
-import { PageTitle } from 'components/common/PageTitle';
+'use client';
+import { PageTitle } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 import './testGrid.css';
 
 import axios from 'axios';
@@ -6,7 +8,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { TestItem } from 'services/types/TestItem';
 import { ServiceUrl } from 'utils/constants';
-import StyledMain from 'components/common/StyledMain';
 
 const TestGridPage = (): JSX.Element => {
   const [data, setData] = useState<TestItem>();

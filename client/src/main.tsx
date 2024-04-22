@@ -11,15 +11,18 @@ import { ReduxProvider } from './services/providers/ReduxProvider';
 import { RouterProvider } from './services/providers/RouterProvider';
 import { Amplify } from 'aws-amplify';
 import config from './amplifyconfiguration.json';
+import { ApolloProvider } from 'services/providers/ApolloProvider';
 Amplify.configure(config);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ReduxProvider>
-      <HelmetProvider>
-        <RouterProvider />
-      </HelmetProvider>
-    </ReduxProvider>
+    <ApolloProvider>
+      <ReduxProvider>
+        <HelmetProvider>
+          <RouterProvider />
+        </HelmetProvider>
+      </ReduxProvider>
+    </ApolloProvider>
   </React.StrictMode>,
 );
 

@@ -6,57 +6,57 @@
     {
       "id": 1,
       "name": "Cosimo and the Hot Coals - Blues dell'Emigrante (Live from Villa Bossi)",
-      "description": "",
+
       "channel": "youtube",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/OIp97UMmqgQ?si=JAHPbqMqybV_7wbo"
     },
     {
       "id": 2,
       "name": "St. James Infirmary - Cosimo and the Hot Coals (Live from Villa Bossi)",
-      "description": "",
+
       "channel": "youtube",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/QFPMWKTiSkI?si=gFFdo9xNKtXGBxsq"
     },
     {
       "id": 3,
       "name": "Sail North - Bones (Official Lyric Video)",
-      "description": "",
+
       "channel": "youtube",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/9YR2CzCj0w4?si=kLo4QOqVHgLzX1uL"
     },
     {
       "id": 4,
       "name": "Sail North - Tale of The Shadow (Official Lyric Video)",
-      "description": "",
+
       "channel": "youtube",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/TvtcwsouILY?si=2kyALCjobWwn7J3X"
     },
     {
       "id": 5,
       "name": "Auld Lang Syne ~ Guy Lombardo ~ 1947 Version",
-      "description": "",
+
       "channel": "youtube",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/adwni-Jt8qQ?si=P2m1nmwHaNYQCtkr"
     },
     {
       "id": 6,
       "name": "JÖRMUNGANDR (VolfgangTwins) Heavy Viking Music",
-      "description": "",
+
       "channel": "youtube",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/IIHFxeN4BW4?si=pfIEfaf4jXl0emuW"
     },
     {
       "id": 7,
       "name": "PALLADIO - Asturia Quartet",
-      "description": "",
+
       "channel": "youtube",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/oTf5qi2J6PM?si=l3rmz8Ntp2EnGdsb"
     },
     {
@@ -153,7 +153,7 @@
       "description": "Imagine",
       "channel": "youtube",
       "artist": "Julian Lennon",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/NicWjYMPDG0?si=NpcDfYeWZxVRmkjs"
     },
     {
@@ -271,9 +271,9 @@
     {
       "id": 0,
       "name": "Songs that use 5/4 time (discussion on Take Five)",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/KQ76-WiFTlo?si=KB4_Y-6cG3POoq84"
     },
@@ -379,7 +379,7 @@
     {
       "id": 0,
       "name": "Some Say The Devil is Dead",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Ceol",
       "rating": 0,
@@ -389,7 +389,7 @@
     {
       "id": 0,
       "name": "The Ferryman",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Ceol",
       "rating:": 1,
@@ -429,7 +429,7 @@
       "name": "Retour sur la Fête des Lumières 2023 !",
       "description": "Festival of Lights 2023 Lyon, France",
       "channel": "youtube",
-      "artist": "",
+
       "tags": ["2023"],
       "url": "https://www.youtube.com/embed/sGBTVngHvug?si=6dxiaiYCQ2k8G5MF"
     },
@@ -438,7 +438,7 @@
       "name": "Fête des lumières 2023 Lyon - Gare Saint Paul : 'Nouvelle Vague' (artistes divers)",
       "description": "Festival of Lights 2023 Lyon, France",
       "channel": "youtube",
-      "artist": "",
+
       "tags": ["2023"],
       "url": "https://www.youtube.com/embed/M3Ne0YIyZ44?si=CKCGSKFUTRvS8gMn"
     },
@@ -447,16 +447,16 @@
       "name": "Fête des lumières 2023 - Sign – Place de la République",
       "description": "Festival of Lights 2023 Lyon, France",
       "channel": "youtube",
-      "artist": "",
+
       "tags": ["2023"],
       "url": "https://www.youtube.com/embed/r_dXy5EDgBE?si=GOAYkY0iDcTjXV4p"
     },
     {
       "id": 0,
       "name": "Massed Pipes & Drums Parade, Edinburgh Hogmanay 2023",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "time": "4:12",
       "tags": ["Edinburgh", "2023", "Hogmanay", "Bagpipes"],
       "url": "https://www.youtube.com/embed/FHHBLEcObvM?si=BpteQeFNG59R-ToK"
@@ -464,88 +464,88 @@
     {
       "id": 0,
       "name": "M.A.S.H. Theme Song",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/GIGYLBVjYZA?si=i9TPS3z5Y-kje-9O"
     },
     {
       "id": 0,
       "name": "Gilligan's Island Theme Song",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/yfSLuEj99d0?si=wS1-pndgDeQqsMq6"
     },
     {
       "id": 0,
       "name": "Green Acres Intro~HD with Lyrics(Best version on youtube)",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/wzT1kO_-xbQ?si=Iq5aixqikJTWcMGl"
     },
     {
       "id": 0,
       "name": "Addam's Family Opening Theme Song With Lyrics(Best Version On Youtube)",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/GFhLYnzGSno?si=5UpWUOr3ikUZRmAh"
     },
     {
       "id": 0,
       "name": "The Munsters Theme Song",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": ["https://www.youtube.com/embed/JdrbLvFJkB4?si=-LHvUovqP6-z1e_H"],
       "url": ""
     },
     {
       "id": 0,
       "name": "The Jetsons Theme Song",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/tTq6Tofmo7E?si=l8zIoU8ikh3VLVDZ"
     },
     {
       "id": 0,
       "name": "The Flintstones Opening and Closing Theme 1960 1966",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/uq7noaMwLfg?si=KO7cDtuOki83hoO5"
     },
     {
       "id": 0,
       "name": "Coca-Cola  \"I'd like to buy the world a Coke\" 1971",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/1VM2eLhvsSM?si=fSJRP17HLm2a_NWA"
     },
     {
       "id": 0,
       "name": "Let's All go to the Lobby! Intermission Bumper 4K Update",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": [""],
       "url": "https://www.youtube.com/embed/lm6IU6V-dE8?si=874c845kOeamlLJF"
     },
     {
       "id": 0,
       "name": "Eurythmics, Annie Lennox, Dave Stewart - Sweet Dreams (Are Made Of This) (Official Video)",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Eurythmics",
       "tags": ["Eurythmics", "Annie Lennox"],
@@ -554,7 +554,7 @@
     {
       "id": 0,
       "name": "Annie Lennox - Walking on Broken Glass (Official Video)",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Annie Lennox",
       "tags": ["Annie Lennox"],
@@ -563,7 +563,7 @@
     {
       "id": 0,
       "name": "Annie Lennox - No More \"I Love You's\" (Official Video)",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Annie Lennox",
       "tags": ["Annie Lennox"],
@@ -572,7 +572,7 @@
     {
       "id": 0,
       "name": "Annie Lennox - Why (Official Music Video)",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Annie Lennox",
       "tags": ["Annie Lennox"],
@@ -581,7 +581,7 @@
     {
       "id": 0,
       "name": "Annie Lennox - A Whiter Shade of Pale (Remastered)",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Annie Lennox",
       "tags": ["Annie Lennox"],
@@ -601,7 +601,7 @@
       "name": "Diva Dance from The Fifth Element. Full version.",
       "description": "The Fifth Element",
       "channel": "youtube",
-      "artist": "",
+
       "tags": ["Movies", "The Fifth Element"],
       "url": "https://www.youtube.com/embed/a7Dh5QoXv2c?si=fL75BFLcHLsoSTCJ"
     },
@@ -610,7 +610,7 @@
       "name": "Deliverance • Dueling Banjos • Arthur Smith, Eric Weissberg & Steve Mandell",
       "description": "Dueling Banjos",
       "channel": "youtube",
-      "artist": "",
+
       "tags": ["Movies", "Deliverance"],
       "url": "https://www.youtube.com/embed/NFutge4xn3w?si=oFNTjD8T8VUqOM3w"
     },
@@ -646,8 +646,7 @@
       "name": "\"The Ladies Who Lunch\" with Meryl Streep, Christine Baranski & Audra McDonald (Official Video)",
       "description": "The Ladies Who Lunch",
       "channel": "youtube",
-      "artist": "",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/-mBA9tNdolg?si=vIoM0rGtv2XmnydI"
     },
     {
@@ -656,7 +655,7 @@
       "description": "Pink Panther Theme",
       "channel": "youtube",
       "artist": "Henri Mancini",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/SRIIO408ats?si=xE0kUih-ba0iBy8s"
     },
     {
@@ -673,8 +672,7 @@
       "name": "Dark Ballad Of A Warrior. Epic Medieval Ballad. Hurdy-Gurdy Solo",
       "description": "Dark Ballad Of A Warrior",
       "channel": "youtube",
-      "artist": "",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/0dPHRxvs3KY?si=uj75L5tcvAU2qq3T"
     },
     {
@@ -692,13 +690,13 @@
       "description": "Dark Eyes",
       "channel": "youtube",
       "artist": "Django Reinhardt",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/gfiqW1WaGbw?si=igFR1wssHVAFMKws"
     },
     {
       "id": 0,
       "name": "Cajun Music With Pays D’en Haut (Tit Galop Pour Mamou)",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Pays D’en Haut",
       "tags": ["Cajun"],
@@ -710,7 +708,7 @@
       "description": "Angels in Heaven",
       "channel": "youtube",
       "artist": "Chris Rodrigues",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/_nLmM9kcBKs?si=q8vKH8-q8rT21BoW"
     },
     {
@@ -719,7 +717,7 @@
       "description": "(Ghost) Riders In the Sky",
       "channel": "youtube",
       "artist": "American Outlaws",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/nOWjX4BpC24?si=ETZP4nK5KqtO6SPU"
     },
     {
@@ -728,7 +726,7 @@
       "description": "Ghost Riders in the Sky",
       "channel": "youtube",
       "artist": "Southern Raised",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/oG85zhpgmJY?si=gyOdzHRAuLR5CW2K"
     },
     {
@@ -737,7 +735,7 @@
       "description": "Jolene",
       "channel": "youtube",
       "artist": "Southern Raised",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/td6-pyXw7aQ?si=UUJFqTHNRgb-UzN1"
     },
     {
@@ -746,7 +744,7 @@
       "description": "Maple Leaf Rag",
       "channel": "youtube",
       "artist": "Dario Ronchi",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/bCxLAr_bwpA?si=cJBpIR2Ran90Ddff"
     },
     {
@@ -755,7 +753,7 @@
       "description": "Pata Pata",
       "channel": "youtube",
       "artist": "Miriam Makeba",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/lNeP3hrm__k?si=hC6MeLyE45nuWNfx"
     },
     {
@@ -764,7 +762,7 @@
       "description": "Leader of the Pack",
       "channel": "youtube",
       "artist": "The Shangri-Las",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/5Ge8_6rtQvs?si=th6oA-BB5WUFeDtm"
     },
     {
@@ -773,7 +771,7 @@
       "description": "King Of The Road",
       "channel": "youtube",
       "artist": "Roger Miller",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/4c7D0YsgnrE?si=uDvRnmfan-WS4KnA"
     },
     {
@@ -782,15 +780,15 @@
       "description": "The Wanderer",
       "channel": "youtube",
       "artist": "Dion",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/rXqWCeB8Vto?si=bYDGvE_VtaAdQFaQ"
     },
     {
       "id": 0,
       "name": "Gwangalli Drone Show, January 1, 2024",
-      "description": "",
+
       "channel": "youtube",
-      "artist": "",
+
       "tags": ["Drones"],
       "url": "https://www.youtube.com/embed/1O6OzbFu2ho?si=XKkdGexOrQvmOyIk"
     },
@@ -800,7 +798,7 @@
       "description": "The Second Waltz",
       "channel": "youtube",
       "artist": "Dmitri Shostakovich",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/-2-Zqog-p5c?si=Km5yUB7n5xLf3kzp"
     },
     {
@@ -809,7 +807,7 @@
       "description": "Por una Cabeza",
       "channel": "youtube",
       "artist": "Carlos Gardel",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/Gcxv7i02lXc?si=mlfZub0zGtu65V-3"
     },
     {
@@ -845,7 +843,7 @@
       "description": " Parla più piano",
       "channel": "youtube",
       "artist": "Jonas Kaufmann",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/nvkVakdV4z8?si=7Gd8eJOnc859OztI"
     },
     {
@@ -926,7 +924,7 @@
     {
       "id": 0,
       "name": "Great Moments with Mr. Lincoln",
-      "description": "",
+
       "channel": "youtube",
       "artist": "Disney",
       "tags": ["Disneyland"],
@@ -990,7 +988,7 @@
       "description": "The Impossible Dream",
       "channel": "youtube",
       "artist": "Jim Nabors",
-      "tags": [],
+
       "url": "https://www.youtube.com/embed/yJlgio-UOng?si=0Dg_O9Yibki7HATR"
     },
     {
@@ -1032,7 +1030,6 @@
     {
       "id": 0,
       "name": "The Dead South - Yours to Keep [Official Music Video]",
-      "description": "",
       "channel": "youtube",
       "artist": "The Dead South",
       "tags": ["Music"],
@@ -1041,10 +1038,7 @@
     {
       "id": 0,
       "name": "Wonderful New York in the early 1900s in color!",
-      "description": "",
       "channel": "youtube",
-      "artist": "",
-      "tags": [],
       "url": "https://www.youtube.com/embed/85WMpJMv8aA?si=lCtSA1f3UB2Ircc-"
     },
     {
@@ -1151,7 +1145,7 @@
     {
       "id": 0,
       "name": "Auld Lang Syne",
-      "description": "",
+
       "channel": "tiktok",
       "artist": "Sail North",
       "tags": [""],

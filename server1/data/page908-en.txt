@@ -1,0 +1,12 @@
+A web site is a non-ending process of maintenance.  The biggest reason is to address security vulnerabilities.  Then, bugs and defects.  Lowest on the list, but equally important to keep the code current: the numerous libraries upon which applications are built continue to change.  
+
+Here are some items to consider:
+<ol>
+<li>Typescript</li>
+  <ol>
+     <li>Update the version:  npm install -D typescript    <a href="https://www.npmjs.com/package/typescript>NPM - Typescript</a>.</li>
+     <li>Read the release notes: <a href="https://www.typescriptlang.org/">Typescript.org</a></li>
+     <li>Implement or open work tickets for any deprecated features.</li>
+     <li>Refactor code to take advantage of new features.</li>
+  </ol>
+</ol>

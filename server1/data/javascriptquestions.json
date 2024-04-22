@@ -10,7 +10,7 @@
         "A high-level, interpreted programming language called JavaScript makes it possible to create interactive web pages and online apps with dynamic functionality. Commonly referred to as the universal language, Javascript is primarily used by developers for front-end and back-end work."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -29,7 +29,7 @@
         "Array"
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -39,7 +39,7 @@
         "Hoisting is a JavaScript concept that refers to the process of moving declarations to the top of their scope. This means that variables and functions can be used before they are declared, as long as they are declared before they are used in a function."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -49,7 +49,7 @@
         "null is an assignment value that represents no value or an empty value, while undefined is a variable that has been declared but not assigned a value."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -59,7 +59,7 @@
         "The this keyword refers to the object that is executing the current function or method. It allows access to object properties and methods within the context of that object."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -69,7 +69,7 @@
         "The equality == operator is a comparison operator that compares two values and returns true if they are equal. The strict equality === operator is also a comparison operator, but it compares two values and returns true only if they are equal and of the same type."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -80,7 +80,7 @@
         "The var keyword declares a global variable, which means that the variable can be accessed from anywhere in the code. The let keyword declares a local variable, which means that the variable can only be accessed within the block of code where it is declared."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -90,7 +90,7 @@
         "Closures (closureFn) are functions that have access to variables from an outer function even after the outer function has finished executing. They “remember” the environment in which they were created."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -100,7 +100,7 @@
         "Event delegation is a technique where you attach a single event listener to a parent element, and that event listener handles events occurring on its child elements. It helps optimize performance and reduce memory consumption."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -110,7 +110,7 @@
         "let and const were introduced in ES6 and have block scope. let is reassignable, and const is non-reassignable. var is function-scoped and can be redeclared and reassigned throughout the function."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -118,7 +118,7 @@
       "question": "What is “using”",
       "answer": [""],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -128,7 +128,7 @@
         "Implicit type coercion is a JavaScript concept that refers to the process of converting a value from one type to another. If you try to add a string to a number, JavaScript will implicitly coerce the string to a number before performing the addition operation."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -138,7 +138,7 @@
         "Prototypes are a mechanism used by JavaScript objects for inheritance. Every JavaScript object has a prototype, which provides properties and methods that can be accessed by that object."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -148,7 +148,7 @@
         "There are multiple ways to clone an object in JavaScript. One common method is using the Object.assign() method or the spread operator (...)."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -158,7 +158,7 @@
         "Higher order functions are functions that can accept other functions as arguments or return functions as their results. They enable powerful functional programming patterns in JavaScript."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -168,7 +168,7 @@
         "The bind() method is used to create a new function with a specified this value and an initial set of arguments. It allows you to set the context of a function permanently."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -178,7 +178,7 @@
         "Function declarations are defined using the function keyword, while function expressions are defined by assigning a function to a variable. Function declarations are hoisted, while function expressions are not."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -192,7 +192,7 @@
         "Logical errors: These errors occur when the JavaScript code does not do what it is supposed to do."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -202,7 +202,7 @@
         "Memoization is a technique that can be used to improve the performance of JavaScript code. Memoization works by storing the results of expensive calculations in a cache. This allows the JavaScript code to avoid re-performing the expensive calculations if the same input is provided again."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -212,7 +212,7 @@
         "Recursion is a programming technique that allows a function to call itself. Recursion can be used to solve a variety of problems, such as finding the factorial of a number or calculating the Fibonacci sequence."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -222,7 +222,7 @@
         "A constructor function is a special type of function that is used to create objects. Constructor functions are used to define the properties and methods of an object."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -232,7 +232,7 @@
         "A function declaration is a statement that defines a function. A function expression is an expression that evaluates to a function. "
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -242,7 +242,7 @@
         "A callback function is a function passed as an argument to another function, which is then invoked inside the outer function. It allows asynchronous or event-driven programming."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -252,7 +252,7 @@
         "Promises are objects used for asynchronous operations. They represent the eventual completion or failure of an asynchronous operation and allow chaining and handling of success or error cases."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -262,7 +262,7 @@
         "In synchronous programming, the program execution occurs sequentially, and each statement blocks the execution until it is completed. In asynchronous programming, multiple tasks can be executed concurrently, and the program doesn’t wait for a task to finish before moving to the next one."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -272,7 +272,7 @@
         "Event bubbling is the process where an event triggers on a nested element, and then the same event is propagated to its parent elements in the document object model (DOM) tree. It starts from the innermost element and goes up to the document root."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -282,7 +282,7 @@
         "Arrow functions are a concise syntax for writing JavaScript functions. They have a more compact syntax compared to traditional function expressions and inherit the this value from their surrounding scope."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -292,7 +292,7 @@
         "The setTimeout() function is used to delay the execution of a function or the evaluation of an expression after a specified amount of time in milliseconds."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -302,7 +302,7 @@
         "You can use the preventDefault() method on the event object within an event handler to prevent the default behavior associated with that event."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -314,7 +314,7 @@
         "sessionStorage stores data for a single browser session and is accessible only within the same tab or window."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -324,7 +324,7 @@
         "You can use the toLowerCase() method to convert a string to lowercase in JavaScript."
       ],
       "level": 1,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -334,7 +334,7 @@
         "The map() function is used to iterate over an array and apply a transformation or computation on each element. It returns a new array with the results of the transformation."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -345,7 +345,7 @@
         "slice() is used to create a new array that contains a portion of an existing array, specified by the starting and ending indices."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
 
@@ -356,7 +356,7 @@
         "The reduce() function is used to reduce an array to a single value by applying a function to each element and accumulating the result."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -366,7 +366,7 @@
         "You can use the includes() method to check if an array includes a specific value. It returns true if the value is found, and false otherwise."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -377,7 +377,7 @@
         "Prototype properties are shared by all objects that are created by a constructor function. Instance properties are not shared by other objects."
       ],
       "level": 0,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -388,7 +388,7 @@
         "Arrays are indexed by numbers. Objects are indexed by strings. Arrays can only store primitive data types and objects. Objects can store primitive data types, objects and arrays."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -398,7 +398,7 @@
         "One way to remove duplicates from an array is by using the Set object or by using the filter() method with the indexOf() method."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -408,7 +408,7 @@
         "The fetch() function is used to make asynchronous HTTP requests in JavaScript. It returns a Promise that resolves to the response from the server."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -418,7 +418,7 @@
         "A generator function is a special type of function that can be paused and resumed during its execution. It allows generating a sequence of values over time, using the yield keyword."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -428,7 +428,7 @@
         "The async and await keywords are used for handling asynchronous operations in a more synchronous-like manner. The async keyword is used to define an asynchronous function, and the await keyword is used to pause the execution of an async function until a promise is fulfilled or rejected."
       ],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     },
     {
@@ -436,7 +436,7 @@
       "question": "",
       "answer": [""],
       "level": 2,
-      "tags": [],
+
       "url": "https://builtin.com/software-engineering-perspectives/javascript-interview-questions"
     }
   ]

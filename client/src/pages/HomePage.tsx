@@ -1,5 +1,5 @@
-import { Meta } from 'components/common/Meta';
-import StyledMain from 'components/common/StyledMain';
+import { Meta } from 'components';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 import { HomeScreen5 } from 'components/ui/HomeScreen/HomeScreen5';
 import { APP_NAME } from 'utils';
 

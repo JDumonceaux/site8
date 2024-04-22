@@ -1,0 +1,107 @@
+<h2>Instance Store – Hardware disks</h2>
+<ul>
+<li>Optimized for cache</li>
+<li>Block store</li>
+<li>Temporary block-level storage</li>
+<li>Physically attached to the host computer</li>
+<li>No cost (included)</li>
+<li>Terminates with instance</li>
+<li>Buffers, caches, scratch data, temp content, replicated data</li>
+</ul>
+<h2>EFS</h2>
+<ul>
+<li>High Availability</li>
+<li>Multiple AZ in a Region</li>
+<li>NFS File system</li>
+<li>Scalable</li>
+<li>Not hardware disks</li>
+<li> concurrently-accessible storage for up to thousands of Amazon EC2 instances</li>
+</ul>
+<h2>EFS – Infrequent Access</h2>
+<ul>
+<li>You will pay a fee each time you read from or write data stored on the Amazon Elastic File System (Amazon EFS) - Infrequent Access storage class</li>
+</ul>
+<h2>EBS</h2>
+<ul>
+<li>Amazon Elastic Block Store (Amazon EBS) Snapshots are stored incrementally, which means you are billed only for the changed blocks stored</li>
+<li>Block store</li>
+<li>Single EC2 Instance</li>
+<li>Not hardware disks</li>
+<li>Throughput and transaction-intensive workloads</li>
+<li>Matches to <em>EC2</em></li>	
+<li>EBS volume can be attached to a single instance in the same Availability Zone (AZ) whereas EFS file system can be mounted on instances across multiple 
+Availability Zones (AZ)</li>
+</ul>
+
+<h2>S3</h2>
+<ul>
+<li>Not hardware disks</li>
+<li>Automatic data encryption</li>
+<li>Object store</li>
+<li>Minimum of 3 AZ</li>
+<li>Versioning</li>
+<li>Lifecycle Configuration</li>
+<li>Archive or move objects to less expensive storage</li>
+</ul>
+<h2>S3 Transfer Acceleration</h2>
+<ul>
+<li>Client > S3 bucket</li>
+</ul>
+<h2>S3 CRR -Cross region replication</h2>
+<ul>
+<li>by default data is stored in 3+ geographically distant AZ</li>
+<li>Replicate across specific Regions</li>
+<li>Minimize latency</li>
+</ul>
+<h2>S3 SRR – Same Region Replication</h2>
+<ul>
+<li>Same region rep</li>
+<li>Consolidate logs</li>
+</ul>
+<h2>S3 Standard</h2>
+    <ul>
+        <li>No data retrieval fee</li>
+    </ul>
+    <h2>S3 Standard-Infrequent Access (S3 Standard-IA)</h2>
+    <ul>
+        <li>Minimum storage duration</li>
+        <li>Accessed less frequently, but requires rapid access when needed</li>
+        <li>Long-term storage, backups, disaster recovery, audit requirements</li>
+    </ul>
+    <h2>S3 Intelligent-Tiering</h2>
+    <ul>
+        <li>No data retrieval fee</li>
+    </ul>
+    <h2>S3 One Zone IA</h2>
+    <ul>
+        <li>Minimum storage duration</li>
+        <li>Rapid, but less frequent access</li>
+        <li>Single Zone</li>
+        <li>Lowest availability</li>
+    </ul>
+    <h2>S3 Express One Zone IA</h2>
+    <!-- No details provided, assuming a section placeholder -->
+    <h2>S3 Glacier Instant Retrieval</h2>
+    <ul>
+        <li>Milliseconds</li>
+        <li>Minimum storage duration</li>
+    </ul>
+    <h2>S3 Glacier Flexible Retrieval</h2>
+    <ul>
+        <li>Minutes</li>
+        <li>Minimum storage duration</li>
+    </ul>
+    <h2>S3 Glacier Deep Archive</h2>
+    <ul>
+        <li>Hours</li>
+        <li>Slowest first byte latency: 12 – 48 hours</li>
+        <li>Minimum storage duration</li>
+    </ul>
+
+
+<h2>AWS Storage Gateway</h2>
+    <ul>
+        <li>Automatic data encryption</li>
+        <li>Hybrid cloud</li>
+        <li>Data transfer from on-premises to cloud</li>
+    </ul>

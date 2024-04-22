@@ -1,3 +1,4 @@
+'use client';
 import type { ListChildComponentProps } from 'react-window';
 import { MusicItem } from 'services/types/MusicItem';
 

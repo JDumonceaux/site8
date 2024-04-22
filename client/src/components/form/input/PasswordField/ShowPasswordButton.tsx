@@ -1,5 +1,5 @@
-import { IconVisibility } from 'components/ui/Icons/IconVisibility';
-import { IconVisibilityOff } from 'components/ui/Icons/IconVisibilityOff';
+import { IconVisibility } from 'components/Icons/IconVisibility';
+import { IconVisibilityOff } from 'components/Icons/IconVisibilityOff';
 import { styled } from 'styled-components';
 
 type ShowPasswordButtonProps = {

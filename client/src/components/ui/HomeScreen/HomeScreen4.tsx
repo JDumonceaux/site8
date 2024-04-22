@@ -1,6 +1,6 @@
 import { styled, keyframes } from 'styled-components';
 import { PinkGraphic } from './PinkGraphic';
-import { HomeMenu } from 'components/common/Menu/MainMenu/HomeMenu';
+import { HomeMenu } from 'components/common/Menu/HomeMenu';
 import { TitleAnimation } from './Animations/TitleAnimation';
 
 export const HomeScreen4 = (): JSX.Element => {

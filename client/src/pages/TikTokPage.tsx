@@ -2,16 +2,14 @@
 import { Suspense, useDeferredValue } from 'react';
 import { ServiceUrl } from 'utils';
 import { Page } from 'services/types/Page';
-import { PageTitle } from 'components/common/PageTitle';
-import { LoadingWrapper } from 'components/common/Loading';
-import { Meta } from 'components/common/Meta';
-
-import StyledMain from 'components/common/StyledMain';
 
 import { styled } from 'styled-components';
-import TikTokItem from 'components/common/TikTokItem';
-import SubjectMenu from 'components/common/Menu/MainMenu/SubjectMenu/SubjectMenu';
+
 import { useAxios } from 'hooks/Axios';
+import { Meta, LoadingWrapper, PageTitle } from 'components';
+import SubjectMenu from 'components/common/Menu/SubjectMenu';
+import StyledMain from 'components/common/StyledMain/StyledMain';
+import TikTokItem from 'components/custom/TikTokItem/TikTokItem';
 
 type TikTokPageProps = {
   readonly title?: string;

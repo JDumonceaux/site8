@@ -1,10 +1,11 @@
 import useMenu from 'hooks/useMenu';
-import { LoadingWrapper } from 'components/common/Loading';
+
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 import { getURLPath } from 'utils/helpers';
 import { useEffect } from 'react';
+import { LoadingWrapper } from 'components';
 
 const SubjectMenu = (): JSX.Element => {
   const { getLevel3, getRemaining, fetchData, isLoading, error } = useMenu();
@@ -14,41 +15,45 @@ const SubjectMenu = (): JSX.Element => {
   const tempPathName2 = getURLPath(pathname, 2);
 
   useEffect(() => {
-    fetchData;
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
-  const currentMenu = getLevel3(tempPathName1, tempPathName2);
+  const { menu1, menu2, menu3 } = getLevel3(tempPathName1, tempPathName2);
 
-  console.log('currentMenu', currentMenu);
+  const additionalMenus = getRemaining(menu1?.id, menu2?.id);
 
   return (
     <StyledNav>
       <StyledContent>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          {currentMenu ? (
-            <StyledMenuSection key={currentMenu.menu2?.id}>
+          {menu2 ? (
+            <StyledMenuSection key={menu2.id}>
               <StyledMenuTitle
-                key={currentMenu.menu2?.name}
-                to={`/${currentMenu.menu2?.url}`}>
-                {currentMenu.menu2?.name}
+                key={menu2.name}
+                to={`/${menu1?.url}/${menu2.url}`}>
+                {menu2.name}
               </StyledMenuTitle>
-              {currentMenu?.menu3?.map((x) => (
-                <StyledMenuItem
-                  key={x.name}
-                  to={`/${currentMenu.menu1?.url}/${currentMenu.menu2?.url}/${x.url}`}>
-                  {x.name}
-                </StyledMenuItem>
-              ))}
+              {menu3 ? (
+                menu3?.map((x) => (
+                  <StyledMenuItem
+                    key={x.name}
+                    to={`/${menu1?.url}/${menu2?.url}/${x.url}`}>
+                    {x.name}
+                  </StyledMenuItem>
+                ))
+              ) : (
+                <StyledNoItem>No Items found</StyledNoItem>
+              )}
             </StyledMenuSection>
           ) : null}
         </LoadingWrapper>
-        {/* <LoadingWrapper error={error} isLoading={isLoading}>
-          {filtereMenus?.map((item) => (
-            <StyledMenuTitle key={item.name} to={`/${item.url}`}>
+        <LoadingWrapper error={error} isLoading={isLoading}>
+          {additionalMenus?.map((item) => (
+            <StyledMenuTitle key={item.name} to={`/${menu1?.url}/${item.url}`}>
               {item.name}
             </StyledMenuTitle>
           ))}
-        </LoadingWrapper> */}
+        </LoadingWrapper>
       </StyledContent>
       {/* <StyledFooter>FOOTER</StyledFooter> */}
     </StyledNav>
@@ -82,6 +87,11 @@ const StyledMenuTitle = styled(StyledMenuLink)`
     background: var(--navbar-dark-secondary);
   }
 `;
+const StyledNoItem = styled.div`
+  color: var(--navbar-text);
+  font-size: 0.8rem;
+  padding: 6px 12px 6px 24px;
+`;
 const StyledMenuItem = styled(StyledMenuLink)`
   font-size: 0.8rem;
   padding: 6px 12px 6px 24px;
@@ -95,7 +105,7 @@ const StyledNav = styled.nav`
   // position: absolute;
   // left: 1vw;
   // top: 1vw;
-  height: calc(100% - 2vw);
+  height: calc(100dvh - 2vh);
   // border-radius: 16px;
   display: flex;
   flex-direction: column;
