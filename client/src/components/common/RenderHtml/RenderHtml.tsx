@@ -1,7 +1,8 @@
 'use client';
+import { RenderCode } from 'components';
 //import DOMPurify from 'dompurify';
 import parse, { Element, domToReact } from 'html-react-parser';
-import RenderCode from '../RenderCode';
+
 import type { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
 
 type RenderHtmlProps = {

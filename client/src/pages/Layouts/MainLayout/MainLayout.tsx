@@ -2,11 +2,10 @@ import { styled } from 'styled-components';
 
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-
+import { Header } from 'components';
 import AppSetup from 'components/common/AppSetup/AppSetup';
-import Header from 'components/common/Header';
+import Snackbar from 'components/common/Snackbar/Snackbar';
 import { ErrorBoundary } from 'react-error-boundary';
-import Snackbar from 'components/common/Snackbar';
 
 export const MainLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>

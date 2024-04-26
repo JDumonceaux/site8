@@ -14,6 +14,7 @@ import { ErrorPage } from 'pages/ErrorPage';
 
 const GenericPage = lazy(() => import('pages/GenericPage'));
 const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
+const ImageEditPage = lazy(() => import('pages/ImageEditPage'));
 const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFoundPage'));
 
@@ -143,6 +144,8 @@ const router = createBrowserRouter(
           <Route element={<PagesPage />} path="pages" />
           <Route element={<PageEditPage />} path="page/edit" />
           <Route element={<PageEditPage />} path="page/edit/:id" />
+          <Route element={<ImageEditPage />} path="image/edit" />
+          <Route element={<ImageEditPage />} path="image/edit/:id" />
         </Route>
 
         {/* Auth */}

@@ -5,8 +5,7 @@ import { styled } from 'styled-components';
 
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-
-import Header from 'components/common/Header';
+import { Header } from 'components';
 
 export const AuthLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>

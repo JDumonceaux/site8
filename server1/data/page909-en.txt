@@ -1,0 +1,8 @@
+The MERN technology stack consists of:
+
+<ul>
+<li>MongoDB</li>
+<li>Express</li>
+<li>React</li>
+<li>Nodejs</li>
+</ul>

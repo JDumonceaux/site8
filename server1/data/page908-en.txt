@@ -9,4 +9,11 @@ Here are some items to consider:
      <li>Implement or open work tickets for any deprecated features.</li>
      <li>Refactor code to take advantage of new features.</li>
   </ol>
+<li>Lazy Load</li>
+  <ol>
+     <li>Router Provider - validate Lazy load is used where appropriate</li>
+     <li>Chrome | Developer Tools | Sources tab | Page.  Review loaded code and implement Lazy load where appropriate.</li>
+     <li>Chrome | Developer Tools | Sources tab | Page.  Remove excess files.</li>
+  </ol>
+
 </ol>

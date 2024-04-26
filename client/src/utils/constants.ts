@@ -28,7 +28,7 @@ export enum FileType {
   ZIP = 'zip',
 }
 
-export const GRAPHQL_IMAGES = `http://localhost:4000/images`;
+export const ENDPOINT_GRAPHQL_IMAGES = `http://localhost:4000/images`;
 
 //export const API_ROOT = `${Environment.getPublicUrl()}/api`;
 export const API_ROOT = `http://localhost:3005/api`;

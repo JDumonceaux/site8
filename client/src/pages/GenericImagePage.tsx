@@ -1,20 +1,32 @@
 'use client';
+import { styled } from 'styled-components';
 import { Suspense, useDeferredValue } from 'react';
 
-import { LoadingWrapper, Meta, PageTitle, RenderHtml } from 'components';
+import { LoadingWrapper, Meta, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import SubjectMenu from 'components/common/Menu/SubjectMenu';
-import { styled } from 'styled-components';
 import { useQuery, gql } from '@apollo/client';
 
 const IMAGE_QUERY = gql`
   {
-    launchesPast(limit: 10) {
-      id
-      mission_name
+    images {
+      file
+      description
     }
   }
 `;
+
+export type Images = {
+  readonly images: {
+    readonly file: string;
+    readonly description: string;
+  }[];
+};
+
+export type Image = {
+  readonly file: string;
+  readonly description: string;
+};
 
 const GenericImagePage = (): JSX.Element => {
   // const routeParams = useParams<{
@@ -25,9 +37,14 @@ const GenericImagePage = (): JSX.Element => {
 
   const { data, loading, error } = useQuery(IMAGE_QUERY);
 
-  const deferredData = useDeferredValue(data);
+  console.log('data', data);
 
-  const pageTitle = deferredData?.name;
+  const deferredData = useDeferredValue<Image[]>(
+    data?.images ? data.images : undefined,
+  );
+
+  const pageTitle = 'Images';
+  const imagePath = '/images/like/';
 
   if (error) return <pre>{error.message}</pre>;
 
@@ -41,11 +58,19 @@ const GenericImagePage = (): JSX.Element => {
         <StyledMain.Article>
           <LoadingWrapper error={error} isLoading={loading}>
             <PageTitle title={pageTitle} />
-            <StyledSection>
+            <StyledMain.Section>
               <Suspense fallback="Loading results ...">
-                <RenderHtml text={deferredData?.text} />
+                {deferredData?.map((item, index) => (
+                  <div key={index}>
+                    <StyledImage
+                      alt={item.description}
+                      src={`${imagePath}${item.file}`}
+                    />
+                    <div>{item.description}</div>
+                  </div>
+                ))}
               </Suspense>
-            </StyledSection>
+            </StyledMain.Section>
           </LoadingWrapper>
         </StyledMain.Article>
         <StyledMain.Aside />
@@ -56,12 +81,7 @@ const GenericImagePage = (): JSX.Element => {
 
 export default GenericImagePage;
 
-const StyledSection = styled.section`
-  pre {
-    > div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  }
+const StyledImage = styled.img`
+  height: 200px;
+  width: 200px;
 `;

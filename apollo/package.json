@@ -12,8 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/datasource-rest": "^6.2.2",
     "@apollo/server": "^4.10.4",
-    "graphql": "^16.8.1"
+    "@graphql-tools/mock": "^9.0.2",
+    "@graphql-tools/schema": "^10.0.3",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",

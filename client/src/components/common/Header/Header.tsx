@@ -1,8 +1,9 @@
 import { styled } from 'styled-components';
 import { APP_NAME } from 'utils/constants';
 import { MenuIcon } from './MenuIcon';
-import Avatar from '../Avatar';
+
 import StyledLink from '../Link/StyledLink/StyledLink';
+import { Avatar } from 'components';
 
 type HeaderProps = {
   readonly includeMenu?: boolean;

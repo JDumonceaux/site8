@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
-    "rootDirs": ["src"],
+    "baseUrl": "src",
     "outDir": "dist",
-    "lib": ["es2020"],
-    "target": "es2020",
-    "module": "esnext",
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "strict": true,
+    "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "types": ["node"]
+    "types": ["node"],
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false
   }
 }

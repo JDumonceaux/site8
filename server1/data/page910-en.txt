@@ -1,0 +1,6 @@
+The Serverless stack uses cloud based service from one or more of the cloud providers.  Here are the top three:
+<ul>
+<li>AWS Lambda</li>
+<li>Google Could Functions</li>
+<li>Azure Functions</li>
+</ul>

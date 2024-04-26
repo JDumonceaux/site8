@@ -1,5 +1,5 @@
 import { Meta } from 'components';
-import StyledMain from 'components/common/StyledMain';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 import { styled, keyframes } from 'styled-components';
 
 export const HomeScreen2 = (): JSX.Element => {

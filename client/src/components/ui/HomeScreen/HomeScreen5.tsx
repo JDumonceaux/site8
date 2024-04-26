@@ -1,9 +1,9 @@
 import { HomeMenu } from 'components/common/Menu/HomeMenu';
 
-import StyledMain from 'components/common/StyledMain';
 import { CircleAnimation } from './Animations/CircleAnimation';
 import { CircleMenuAnimation } from './Animations/CircleMenuAnimation';
 import { TitleAnimation } from './Animations/TitleAnimation';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 
 export const HomeScreen5 = (): JSX.Element => {
   return (

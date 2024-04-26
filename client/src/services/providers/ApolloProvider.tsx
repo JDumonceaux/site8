@@ -4,13 +4,14 @@ import {
   ApolloClient,
   InMemoryCache,
 } from '@apollo/client';
+import { ENDPOINT_GRAPHQL_IMAGES } from 'utils';
 
 interface IProps {
   readonly children: ReactNode;
 }
 
 const client = new ApolloClient({
-  uri: 'https://api.spacex.land/graphql/',
+  uri: `${ENDPOINT_GRAPHQL_IMAGES}`,
   cache: new InMemoryCache(),
 });
 
