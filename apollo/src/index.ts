@@ -1,7 +1,8 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import typeDefs from "./schema.js";
+import { typeDefs } from "./schema.js";
 import resolvers from "./resolvers.js";
+import TrackAPI from "./trackapi.js";
 //import TrackAPI from "./datasources/track-api.js";
 
 // const images = [
@@ -51,13 +52,31 @@ import resolvers from "./resolvers.js";
 //   console.log(`🚀 Server ready at ${url}`);
 // }
 
+// async function startApolloServer() {
+//   const server = new ApolloServer({
+//     typeDefs,
+//     resolvers,
+//   });
+//   const { url } = await startStandaloneServer(server, {
+//     listen: { port: 4000 },
+//   });
+//   console.log(`🚀 Server ready at ${url}`);
+// }
+
 async function startApolloServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
   });
   const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
+    context: async () => {
+      //  const { cache } = server;
+      return {
+        dataSources: {
+          trackAPI: new TrackAPI(),
+        },
+      };
+    },
   });
   console.log(`🚀 Server ready at ${url}`);
 }

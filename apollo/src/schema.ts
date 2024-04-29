@@ -1,24 +1,33 @@
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
-const typeDefs = gql`
-  #graphql
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-  # This "Image" type defines the queryable fields for every image in our data source.
-  type Image {
-    file: String
-    description: String
+export const typeDefs = gql`
+  type Query {
+    "Query to get tracks array for the homepage grid"
+    tracksForHome: [Track!]!
+    tracksForHomeFetch: [Track!]!
   }
 
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "images" query returns an array of zero or more Images (defined above).
-  type Query {
-    images: [Image]
+  "A track is a group of Modules that teaches about a specific topic"
+  type Track {
+    id: ID!
+    "The track's title"
+    title: String!
+    "The track's main Author"
+    author: Author!
+    "The track's illustration to display in track card or track page detail"
+    thumbnail: String
+    "The track's approximate length to complete, in minutes"
+    length: Int
+    "The number of modules this track contains"
+    modulesCount: Int
+  }
+
+  "Author of a complete Track or a Module"
+  type Author {
+    id: ID!
+    "Author's first and last name"
+    name: String!
+    "Author's profile picture"
+    photo: String
   }
 `;
-
-export default typeDefs;
