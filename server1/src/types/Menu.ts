@@ -1,9 +1,7 @@
-import { PageSummary } from './PageSummary.js';
+import { MenuEntry } from './MenuEntry.js';
+import { Metadata } from './Metadata.js';
 
 export type Menu = {
-  readonly id: number;
-  readonly name: string;
-  readonly url: string;
-  readonly parentId?: number;
-  readonly childCount?: number;
+  readonly metadata: Metadata;
+  readonly items?: MenuEntry[];
 };

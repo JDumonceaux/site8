@@ -4,11 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 import { getURLPath } from 'utils/helpers';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { LoadingWrapper } from 'components';
+import { MenuEntry } from 'services/types/MenuEntry';
 
 const SubjectMenu = (): JSX.Element => {
-  const { getLevel3, getRemaining, fetchData, isLoading, error } = useMenu();
+  const { getMenu, fetchData, isLoading, error } = useMenu();
   const location = useLocation();
   const { pathname } = location;
   const tempPathName1 = getURLPath(pathname, 1);
@@ -18,87 +19,80 @@ const SubjectMenu = (): JSX.Element => {
     fetchData();
   }, [fetchData]);
 
-  const { menu1, menu2, menu3 } = getLevel3(tempPathName1, tempPathName2);
+  const { menu } = getMenu(tempPathName1, tempPathName2);
 
-  const additionalMenus = getRemaining(menu1?.id, menu2?.id);
+  console.log('menuxxxxx', menu);
+
+  //const additionalMenus = getRemaining(menu1?.id, menu2?.id);
+
+  const renderItem = useCallback(
+    (item: MenuEntry | undefined): JSX.Element | null => {
+      if (!item) {
+        return null;
+      }
+
+      const menuItem = () => {
+        if (item.type === 'menu') {
+          if (item.level === 1) {
+            return (
+              <StyledMenuTitle key={item.id} to={item.url || ''}>
+                {item.name}
+              </StyledMenuTitle>
+            );
+          } else {
+            return (
+              <StyledMenuTitle1 key={item.id} to={item.url || ''}>
+                {item.name}
+              </StyledMenuTitle1>
+            );
+          }
+        }
+        if (item.type === 'page') {
+          if (item.level === 1) {
+            return (
+              <StyledMenuLink key={item.id} to={item.url || ''}>
+                {item.name}
+              </StyledMenuLink>
+            );
+          } else {
+            return (
+              <StyledMenuLink1 key={item.id} to={item.url || ''}>
+                {item.name}
+              </StyledMenuLink1>
+            );
+          }
+        }
+        return undefined;
+      };
+      return (
+        <>
+          {menuItem()}
+          {item.items?.map((x) => renderItem(x))}
+        </>
+      );
+    },
+    [],
+  );
 
   return (
     <StyledNav>
       <StyledContent>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          {menu2 ? (
-            <StyledMenuSection key={menu2.id}>
-              <StyledMenuTitle
-                key={menu2.name}
-                to={`/${menu1?.url}/${menu2.url}`}>
-                {menu2.name}
-              </StyledMenuTitle>
-              {menu3 ? (
-                menu3?.map((x) => (
-                  <StyledMenuItem
-                    key={x.name}
-                    to={`/${menu1?.url}/${menu2?.url}/${x.url}`}>
-                    {x.name}
-                  </StyledMenuItem>
-                ))
-              ) : (
-                <StyledNoItem>No Items found</StyledNoItem>
-              )}
-            </StyledMenuSection>
-          ) : null}
+          {menu ? renderItem(menu) : null}
         </LoadingWrapper>
+        <br />
+        <br />
+
         <LoadingWrapper error={error} isLoading={isLoading}>
-          {additionalMenus?.map((item) => (
-            <StyledMenuTitle key={item.name} to={`/${menu1?.url}/${item.url}`}>
-              {item.name}
-            </StyledMenuTitle>
-          ))}
+          <div>More</div>
         </LoadingWrapper>
       </StyledContent>
-      {/* <StyledFooter>FOOTER</StyledFooter> */}
     </StyledNav>
   );
 };
 
 export default SubjectMenu;
 
-const StyledMenuSection = styled.div`
-  color: var(--navbar-text);
-  break-inside: avoid;
-}`;
-const StyledMenuLink = styled(StyledNavLink)`
-  color: var(--navbar-text);
-  &:link,
-  &:visited,
-  &:hover,
-  &:active {
-    color: var(--navbar-text);
-  }
-  display: inline-block;
-  width: 100%;
-  padding: 12px;
-  &.active {
-    background: var(--navbar-dark-secondary);
-  }
-`;
-const StyledMenuTitle = styled(StyledMenuLink)`
-  padding: 12px;
-  &.active {
-    background: var(--navbar-dark-secondary);
-  }
-`;
-const StyledNoItem = styled.div`
-  color: var(--navbar-text);
-  font-size: 0.8rem;
-  padding: 6px 12px 6px 24px;
-`;
-const StyledMenuItem = styled(StyledMenuLink)`
-  font-size: 0.8rem;
-  padding: 6px 12px 6px 24px;
-  &.active {
-    background: var(--navbar-dark-3);
-  }
-`;
 const StyledNav = styled.nav`
   color: var(--navbar-text);
   background: var(--navbar-dark-primary);
@@ -112,22 +106,6 @@ const StyledNav = styled.nav`
   overflow: hidden;
   user-select: none;
 `;
-// const StyledHeader = styled.div`
-//   position: relative;
-//   opacity: 0;
-//   pointer-events: none;
-//   left: 16px;
-//   width: calc(var(--navbar-width) - 16px);
-//   min-height: 80px;
-//   background: var(--navbar-dark-primary);
-//   border-radius: 16px;
-//   z-index: 2;
-//   display: flex;
-//   align-items: center;
-//   transition:
-//     opacity 0.1s,
-//     width 0.2s;
-// `;
 const StyledContent = styled.div`
   margin: -16px 0;
   padding: 16px 0;
@@ -139,16 +117,31 @@ const StyledContent = styled.div`
   overflow-x: hidden;
   transition: width 0.2s;
 `;
-// const StyledFooter = styled.div`
-//   position: relative;
-//   width: var(--navbar-width);
-//   height: 54px;
-//   background: var(--navbar-dark-secondary);
-//   border-radius: 16px;
-//   display: flex;
-//   flex-direction: column;
-//   z-index: 2;
-//   transition:
-//     width 0.2s,
-//     height 0.2s;
-// `;
+const StyledMenuLink = styled(StyledNavLink)`
+  color: var(--navbar-text);
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: var(--navbar-text);
+  }
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 4px;
+  // &.active {
+  //   background: var(--navbar-dark-secondary);
+  // }
+`;
+const StyledMenuLink1 = styled(StyledMenuLink)`
+  padding-left: 30px;
+`;
+const StyledMenuTitle = styled(StyledMenuLink)`
+  padding: 12px;
+  &.active {
+    background: var(--navbar-dark-secondary);
+  }
+`;
+const StyledMenuTitle1 = styled(StyledMenuTitle)`
+  padding-left: 18px;
+`;

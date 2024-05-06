@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { Pages } from '../types/Pages';
+import { Menu } from 'services/types';
 
 interface MenuState {
-  MenuData: Pages | null;
+  MenuData: Menu | null;
   isLoading: boolean;
   error: string | null;
 }
@@ -19,7 +19,7 @@ const initialState: MenuState = {
 const controller = new AbortController();
 
 export const fetchMenu = createAsyncThunk('menu/fetchMenu', async () => {
-  const response = await axios.get<Pages>(ServiceUrl.ENDPOINT_MENUS, {
+  const response = await axios.get<Menu>(ServiceUrl.ENDPOINT_MENUS, {
     responseType: 'json',
     signal: controller.signal,
   });

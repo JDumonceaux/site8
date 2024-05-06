@@ -1,0 +1,1 @@
+It ensures a class only has one instance, and provides a global point of access to it.

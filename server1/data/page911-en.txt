@@ -1,0 +1,1 @@
+<a href="https://www.geeksforgeeks.org/complete-guide-to-design-patterns-in-programming/">Geeks for Geeks - Design Patterns</a>

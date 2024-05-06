@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useTransition } from 'react';
 import { useParams } from 'react-router-dom';
 import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'hooks/usePageEdit';
@@ -20,6 +20,7 @@ const PageEditPage = (): JSX.Element => {
   const params = useParams();
   // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const {
     formValues,
     isProcessing,
@@ -41,15 +42,16 @@ const PageEditPage = (): JSX.Element => {
       e.stopPropagation();
       e.preventDefault();
       setSnackbarMessage('Saving...');
-      const result = submitForm();
-      console.log('Result', result);
-      if (result) {
-        setSnackbarMessage('Saved');
-      } else {
-        setSnackbarMessage(`Error saving ${error}`);
-      }
+      startTransition(() => {
+        const result = submitForm();
+        if (result) {
+          setSnackbarMessage('Saved');
+        } else {
+          setSnackbarMessage(`Error saving ${error}`);
+        }
+      });
     },
-    [submitForm, error, setSnackbarMessage],
+    [startTransition, setSnackbarMessage, submitForm, error],
   );
 
   const handleClear = useCallback(
@@ -222,7 +224,7 @@ const PageEditPage = (): JSX.Element => {
                 <Button id="cancel" onClick={handleCancel} variant="secondary">
                   Cancel
                 </Button>
-                <Button id="submit" type="submit">
+                <Button disabled={isPending} id="submit" type="submit">
                   {isProcessing ? 'Processing' : 'Submit'}
                 </Button>
               </TwoColumn>

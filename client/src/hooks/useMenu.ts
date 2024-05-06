@@ -1,15 +1,15 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Pages } from '../services/types/Pages';
-import { fetchMenu } from '../services/state/menuSlice';
-import { AppDispatch, RootState } from '../services/state/store';
+import { fetchMenu } from 'services/state/menuSlice';
+import { AppDispatch, RootState } from 'services/state/store';
+import { Menu } from 'services/types';
 
 const useMenu = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.menu;
-  const data: Pages | null = useSelector(selector).MenuData;
+  const data: Menu | null = useSelector(selector).MenuData;
   const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
@@ -18,47 +18,14 @@ const useMenu = () => {
     [dispatch],
   );
 
-  const getLevel = useCallback(
-    (id: number) => {
-      if (!data || !data.level2) return undefined;
-      return data.level2.filter((x) => x.parentId === id);
-    },
-    [data],
-  );
-
-  const getLevel2 = useCallback(
-    (id: number) => {
-      if (!data || !data.pages) return undefined;
-      return data.pages.filter((x) => x.parentId === id);
-    },
-    [data],
-  );
-
-  const getLevel3 = useCallback(
-    (url1: string | undefined, url2: string | undefined) => {
-      const menu1 = data?.level1?.find((x) => x.url === url1);
-      const menu2 = data?.level2?.find(
-        (x) => x.url === url2 && x.parentId === menu1?.id,
-      );
-      const menu3Temp = data?.pages?.filter((x) => x.parentId === menu2?.id);
-      const menu3 = menu3Temp && menu3Temp?.length > 0 ? menu3Temp : undefined;
-      return { menu1, menu2, menu3 };
-    },
-    [data],
-  );
-
-  const getRemaining = useCallback(
-    (parentId: number | undefined, currId: number | undefined) => {
-      if (parentId && currId) {
-        console.log('parentId', parentId, 'currId', currId);
-        return data?.level2?.filter(
-          (x) => x.parentId === parentId && x.id !== currId,
-        );
-      }
-      if (parentId) {
-        return data?.level2?.filter((x) => x.parentId === parentId);
-      }
-      return data?.level2;
+  const getMenu = useCallback(
+    (sec1: string | undefined, sec2: string | undefined) => {
+      console.log('data', data);
+      // Get the parent menu
+      const menu = data?.items?.find((x) => x.to === sec1);
+      // Get the child menu
+      const menu1 = menu?.items?.find((x) => x.to === sec2);
+      return { menu: menu1 };
     },
     [data],
   );
@@ -67,10 +34,7 @@ const useMenu = () => {
     data,
     isLoading,
     error,
-    getLevel,
-    getLevel2,
-    getLevel3,
-    getRemaining,
+    getMenu,
     fetchData: dispatchFetchMenu,
   };
 };
