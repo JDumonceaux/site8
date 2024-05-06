@@ -18,7 +18,7 @@
     "@apollo/client": "^3.9.11",
     "@aws-amplify/ui-react": "^6.1.8",
     "@reduxjs/toolkit": "^2.2.3",
-    "aws-amplify": "^6.1.4",
+    "aws-amplify": "^6.2.0",
     "axios": "^1.6.8",
     "date-fns": "^3.6.0",
     "dompurify": "^3.0.11",
