@@ -4,12 +4,11 @@ export type Page = {
   readonly long_title?: string;
   readonly edit_date?: Date;
   readonly create_date?: Date;
-  readonly parentId: number[];
+  readonly parent?: { id?: number; seq?: number }[];
   readonly file?: boolean;
   readonly text?: string;
   readonly reading_time?: string;
   readonly readability_score?: string;
   readonly to?: string;
   readonly url?: string;
-  readonly seq?: number;
 };

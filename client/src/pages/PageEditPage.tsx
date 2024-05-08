@@ -4,11 +4,8 @@ import { useParams } from 'react-router-dom';
 import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
-
 import { TextInput } from 'components/form/input';
-
 import useSnackbar from 'hooks/useSnackbar';
-
 import { TextArea } from 'components/form/input/TextArea';
 import { Button } from 'components/form/Button';
 import { styled } from 'styled-components';
@@ -18,7 +15,6 @@ import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
-  // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const {
@@ -131,6 +127,21 @@ const PageEditPage = (): JSX.Element => {
               <TextInput
                 autoCapitalize="off"
                 enterKeyHint="next"
+                errorText={getFieldErrors('to')}
+                errorTextShort="Please enter a route"
+                hasError={hasError('to')}
+                id="to"
+                inputMode="text"
+                label="To"
+                onChange={handleChange}
+                required={true}
+                spellCheck={true}
+                value={formValues.to}
+                //ref={focusElement}
+              />
+              <TextInput
+                autoCapitalize="off"
+                enterKeyHint="next"
                 errorText={getFieldErrors('url')}
                 errorTextShort="Please enter a url"
                 hasError={hasError('url')}
@@ -144,18 +155,18 @@ const PageEditPage = (): JSX.Element => {
                 //ref={focusElement}
               />
               <TextInput
-                errorText={getFieldErrors('parentId')}
+                errorText={getFieldErrors('parent')}
                 errorTextShort="Please enter a parent"
-                hasError={hasError('parentId')}
-                id="parentId"
+                hasError={hasError('parent')}
+                id="parent"
                 label="Parent"
                 list="parentIds"
                 onChange={handleChange}
                 type="text"
-                value={formValues.parentId}
+                value={formValues.parent}
               />
-              <datalist id="parentIds">
-                <option value="10">Art</option>
+              <datalist id="parentOptions">
+                {/* <option value="10">Art</option>
                 <option value="3">Artists</option>
                 <option value="5">Cheat Sheets</option>
                 <option value="8">Code Solutions</option>
@@ -167,7 +178,7 @@ const PageEditPage = (): JSX.Element => {
                 <option value="6">React Programming</option>
                 <option value="7">React Project</option>
                 <option value="9">Patterns</option>
-                <option value="13">Security</option>
+                <option value="13">Security</option> */}
               </datalist>
 
               <TextArea

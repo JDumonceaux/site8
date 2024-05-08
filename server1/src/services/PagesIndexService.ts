@@ -145,12 +145,14 @@ export class PagesIndexService {
     const results = await readFile(this.filePath, { encoding: 'utf8' });
     const jsonData = JSON.parse(results) as Pages;
 
-    const { id, text, ...rest } = data;
     const retPages = jsonData.pages ?? [];
+
+    // We don't want to update the text field and create_date so we'll remove them
+    const { text, ...rest } = data;
 
     const updatedFile: Pages = {
       ...jsonData,
-      pages: [...retPages, { ...rest, id: data.id, file: file }],
+      pages: [...retPages, { ...rest, file: file }],
     };
 
     return this.writeNewFile(updatedFile);

@@ -27,24 +27,15 @@ const pageSchema = z.object({
     .max(250)
     .trim()
     .optional(),
-  url: z
-    .string({
-      required_error: 'URL is required.',
-      invalid_type_error: 'URL must be a string',
-    })
-    .min(1, REQUIRED_FIELD)
-    .max(30, 'Max length exceeded: 30')
-    .trim(),
+  to: z.string().trim().optional(),
+  url: z.string().trim().optional(),
   create_date: z.string().optional(),
   edit_date: z.string().optional(),
-  resources: z.boolean(),
-  parentId: z.coerce.number().optional(),
+  // parentId: z.coerce.number().optional(),
+  parent: z.string().optional(),
   reading_time: z.string().trim().optional(),
   readability_score: z.string().trim().optional(),
-  text: z
-    .string({ required_error: 'Text is required.' })
-    .min(1, REQUIRED_FIELD)
-    .trim(),
+  text: z.string().trim(),
 });
 
 const usePageEdit = (id: string | undefined) => {
@@ -55,13 +46,13 @@ const usePageEdit = (id: string | undefined) => {
     () => ({
       id: 0,
       name: '',
+      to: '',
       url: '',
+      text: '',
       long_title: '',
       edit_date: format(new Date(), DF_LONG),
       create_date: format(new Date(), DF_LONG),
-      resources: false,
-      text: '',
-      parentId: 0,
+      parent: '',
       reading_time: '',
       readability_score: '',
     }),
@@ -81,12 +72,28 @@ const usePageEdit = (id: string | undefined) => {
   const { data, isLoading, error, fetchData, patchData, postData } =
     useAxios<Page>();
 
+  const combineParent = useCallback(
+    (item: { id?: number; seq?: number }[] | undefined): string | undefined => {
+      if (!item) {
+        return '';
+      }
+      const ret = item
+        .flatMap((x) => [x.id?.toString(), x.seq?.toString()])
+        .filter(Boolean);
+      return ret.join(',');
+    },
+    [],
+  );
+
   const updateFormValues = useCallback(
     (items: Page | undefined | null) => {
       if (items) {
         const item: FormValues = {
           id: items.id,
           name: items.name ?? '',
+          to: items.to ?? '',
+          url: items.url ?? '',
+          text: items.text ?? '',
           long_title: items.long_title ?? '',
           edit_date:
             (items.edit_date && format(items.edit_date, DF_LONG)) ??
@@ -94,10 +101,8 @@ const usePageEdit = (id: string | undefined) => {
           create_date:
             (items.create_date && format(items.create_date, DF_LONG)) ??
             format(new Date(), DF_LONG),
-          resources: items.resources ?? false,
-          text: items.text ?? '',
-          parentId: items.parentId ?? 0,
-          url: items.url ?? '',
+
+          parent: combineParent(items.parent),
           reading_time: items.reading_time ?? '',
           readability_score: items.readability_score ?? '',
         };
@@ -105,7 +110,7 @@ const usePageEdit = (id: string | undefined) => {
         setFormValues(item);
       }
     },
-    [setFormValues],
+    [combineParent, setFormValues],
   );
 
   useEffect(() => {
@@ -154,23 +159,57 @@ const usePageEdit = (id: string | undefined) => {
     [setFormValues],
   );
 
+  const splitParent = useCallback(
+    (value: string | undefined): { id: number; seq: number }[] | undefined => {
+      if (!value) {
+        return undefined;
+      }
+      const x = value.trim().length > 0 ? value.trim().split(',') : undefined;
+      if (!x) {
+        return undefined;
+      }
+      return x
+        .map((item, index) => {
+          if (index % 2 === 0) {
+            const id = parseInt(item);
+            const seq = parseInt(x[index + 1]);
+            if (!isNaN(id) && !isNaN(seq)) {
+              return { id, seq };
+            }
+          }
+          return undefined;
+        })
+        .filter(Boolean) as { id: number; seq: number }[];
+    },
+    [],
+  );
+
   const saveItem = useCallback(
     async (items: FormValues) => {
-      const { create_date, edit_date, ...rest } = items;
-      const revisedData = {
-        ...rest,
-        edit_date: getDateTime(edit_date) ?? new Date(),
-        create_date: getDateTime(create_date) ?? new Date(),
-      };
-
-      if (revisedData.id > 0) {
-        await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
+      const { id, create_date, edit_date, parent, ...rest } = items;
+      const data =
+        id > 0
+          ? {
+              ...rest,
+              id,
+              parent: splitParent(parent),
+              edit_date: getDateTime(edit_date) ?? new Date(),
+            }
+          : {
+              ...rest,
+              id,
+              parent: splitParent(parent),
+              edit_date: getDateTime(edit_date) ?? new Date(),
+              create_date: getDateTime(create_date) ?? new Date(),
+            };
+      if (data.id > 0) {
+        await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
       } else {
-        await postData(`${ServiceUrl.ENDPOINT_PAGE}`, revisedData);
+        await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
       }
       return true;
     },
-    [patchData, postData],
+    [patchData, postData, splitParent],
   );
 
   const submitForm = useCallback((): boolean => {

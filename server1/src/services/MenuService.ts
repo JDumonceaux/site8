@@ -28,76 +28,153 @@ export class MenuService {
     }
   }
 
+  // Sort the MenuEntry by seq, then name
+  private sortMenuEntry(ob1: MenuEntry, ob2: MenuEntry) {
+    if (ob1.seq > ob2.seq) {
+      return 1;
+    } else if (ob1.seq < ob2.seq) {
+      return -1;
+    }
+
+    // Else go to the 2nd item
+    if (ob1.name < ob2.name) {
+      return -1;
+    } else if (ob1.name > ob2.name) {
+      return 1;
+    } else {
+      // nothing to split them
+      return 0;
+    }
+  }
+
   // Convert the MenuItems to MenuEntry
-  private getExpandedMenu(
-    level: number,
+  private fillMenu(
+    id: number,
+    menuItems?: ReadonlyArray<MenuItem>,
+  ): MenuEntry[] | undefined {
+    if (!menuItems) {
+      return undefined;
+    }
+
+    // Get the MenuItems for the current parent
+    const currMenus: MenuItem[] = menuItems.filter((item) =>
+      item.parent?.some((x) => x.id === id),
+    );
+
+    // Declare the return array
+    const ret: MenuEntry[] = currMenus.map((item) => {
+      const x = item.parent.find((x) => x.id === id);
+      return {
+        id: item.id,
+        name: item.name,
+        type: 'menu',
+        parentId: id,
+        seq: x && x.seq ? x.seq : 0,
+        sortby: item.sortby || 'name',
+        menuItem: item,
+        pageItem: undefined,
+        items: this.fillMenu(item.id, menuItems),
+        url: item.url,
+        to: item.to,
+        toComplete: item.to,
+      };
+    });
+    return ret;
+  }
+
+  // Get the root level and convert the MenuItems to MenuEntry
+  private getRootMenu(
     menuItems?: ReadonlyArray<MenuItem>,
   ): MenuEntry[] | undefined {
     try {
       if (!menuItems) {
         return undefined;
       }
-      // Declare the return array
-      const ret: MenuEntry[] = [];
+
       // Get the MenuItems for the current level
-      const currMenus = menuItems.filter((x) => x.level?.includes(level));
-      // Map the current level (0) MenuItem to MenuEntry
-      currMenus.forEach((item) => {
-        ret.push({
-          id: item.id,
-          name: item.name,
-          seq: 0,
-          parentId: 0,
-          type: 'menu',
-          level: level,
-          sortby: item.sortby || 'name',
-          pageItem: undefined,
-          menuItem: item,
-          items: this.getExpandedMenu(level + 1, menuItems),
-          url: item.url,
-          to: item.to,
-        });
+      const currMenus: MenuItem[] = menuItems.filter((item) =>
+        item.parent?.some((x) => x.id === 0),
+      );
+
+      // Declare the return array
+      const ret: MenuEntry[] | undefined = this.fillMenu(0, menuItems);
+      return ret;
+    } catch (error) {
+      Logger.error(`MenuService: getRootMenu -> ${error}`);
+    }
+    return undefined;
+  }
+
+  // Convert the MenuItems to MenuEntry
+  private getExpandedMenu(
+    menuItems?: ReadonlyArray<MenuItem>,
+    menuRoot?: ReadonlyArray<MenuEntry>,
+  ): MenuEntry[] | undefined {
+    try {
+      if (!menuItems || !menuRoot) {
+        return undefined;
+      }
+
+      const ret: MenuEntry[] | undefined = [];
+      menuRoot.forEach((item) => {
+        const x: MenuEntry[] | undefined = this.fillMenu(item.id, menuItems);
+        ret.push({ ...item, items: x });
       });
       return ret;
     } catch (error) {
-      Logger.error(`MenuService: getModifiedMenu -> ${error}`);
+      Logger.error(`MenuService: getExpandedMenu -> ${error}`);
     }
     return undefined;
   }
 
   // Add in the pages as Menu Entry
   private getPages(
-    menuItems?: ReadonlyArray<MenuEntry> | undefined,
+    items?: ReadonlyArray<MenuEntry> | undefined,
     pages?: ReadonlyArray<Page>,
   ): MenuEntry[] | undefined {
+    console.log('items1', items);
+    console.log('pages1', pages);
     try {
-      if (!menuItems || !pages) {
+      if (!items || !pages) {
         return undefined;
       }
       // Declare the return array
-      const ret: MenuEntry[] = [...menuItems];
-      menuItems.forEach((item) => {
+      const ret: MenuEntry[] | undefined = [];
+
+      console.log('items', items);
+
+      items.forEach((item) => {
         // Add pages to the menu
-        const filteredPages = pages.filter(
-          (x) => x.parentId && x.parentId.includes(item.id),
+        const filteredPages = pages.filter((page) =>
+          page.parent?.some((x) => x.id === item.id),
         );
+
+        console.log('item23232', item);
+
+        console.log('filteredPages', filteredPages);
+        const temp: MenuEntry[] | undefined = [];
+
         filteredPages.forEach((page) => {
-          ret.push({
+          const x = page.parent.find((x) => x.id === item.id);
+          const y = this.getPages(item.items, pages);
+
+          temp.push({
             id: page.id,
             name: page.name,
-            seq: 0,
-            parentId: item.id,
             type: 'page',
-            level: 0,
+            parentId: item.id,
+            seq: x && x.seq ? x.seq : 0,
             sortby: item.sortby || 'name',
             pageItem: page,
             menuItem: undefined,
+            items: y ? item.items?.concat(y) : item.items,
             url: page.url,
             to: page.to,
           });
+
+          console.log('push', temp);
+          ret.push({ ...item, items: temp });
         });
-        // Recursively add pages to the menu
-        item.items = this.getPages(item.items, pages);
       });
       return ret;
     } catch (error) {
@@ -116,12 +193,20 @@ export class MenuService {
         return undefined;
       }
 
+      // Get the root level menu
+      const x = this.getRootMenu(data.menuItems);
+      // Get child menu items
+      const y = this.getExpandedMenu(data.menuItems, x);
+      // Add in pages
+      const z = this.getPages(y, data.pages);
+      console.log('z33', z);
+      // Sort all the menu items: mixing menu and pages
+
+      // Fill in URLs
+
       return {
         metadata: data.metadata,
-        items: this.getPages(
-          this.getExpandedMenu(0, data.menuItems),
-          data.pages,
-        ),
+        items: z,
       };
     } catch (error) {
       Logger.error(`MenuService: getMenu --> Error: ${error}`);

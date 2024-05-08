@@ -7,175 +7,301 @@
       "id": 100,
       "name": "Programming",
       "to": "programming",
-      "level": [0]
+      "parent": [
+        {
+          "id": 0,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 200,
       "name": "React",
       "to": "react",
-      "level": [0]
+      "parent": [
+        {
+          "id": 0,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 300,
       "name": "AWS",
       "to": "aws",
-      "level": [0]
+      "parent": [
+        {
+          "id": 0,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 400,
       "name": "Fun Stuff",
       "to": "fun",
-      "level": [0]
+      "parent": [
+        {
+          "id": 0,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 500,
       "name": "Web",
       "to": "web",
-      "level": [0]
+      "parent": [
+        {
+          "id": 0,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 9,
-      "parentId": [100],
       "name": "Patterns",
       "to": "patterns",
-      "level": [1]
+      "parent": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 1000,
-      "parentId": [9],
+      "parent": [
+        {
+          "id": 9,
+          "seq": 0
+        }
+      ],
       "name": "Creational Design Patterns",
-      "to": "creational-design-patterns",
-      "level": [2]
-    }
-  ],
-  "level2": [
-    {
-      "id": 1,
-      "parentId": [100],
-      "name": "CSS",
-      "to": "css"
+      "to": "creational-design-patterns"
     },
     {
       "id": 1,
-      "parentId": [100],
+      "name": "CSS",
+      "to": "css",
+      "parent": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
       "name": "Javascript",
-      "to": "javascript"
+      "to": "javascript",
+      "parent": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 2,
-      "parentId": [500],
       "name": "Design Styles",
-      "to": "design"
+      "to": "design",
+      "parent": [
+        {
+          "id": 500,
+          "seq": 0
+        }
+      ]
     },
     {
       "id": 5,
-      "parentId": [100],
+      "parent": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
       "name": "Cheat Sheets",
       "to": "cheatsheet"
     },
     {
       "id": 8,
-      "parentId": [100],
+      "parent": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
       "name": "Code Solutions",
       "to": "code/solutions"
     },
     {
       "id": 13,
-      "parentId": [500],
+      "parent": [
+        {
+          "id": 500,
+          "seq": 0
+        }
+      ],
       "name": "Security",
       "to": "security"
     },
     {
       "id": 15,
-      "parentId": [500],
+      "parent": [
+        {
+          "id": 500,
+          "seq": 0
+        }
+      ],
       "name": "Maintenance",
       "to": "maintenance"
     },
     {
       "id": 11,
-      "parentId": [500],
+      "parent": [
+        {
+          "id": 500,
+          "seq": 0
+        }
+      ],
       "name": "IDE",
       "to": "ide"
     },
     {
       "id": 14,
-      "parentId": [300],
+      "parent": [
+        {
+          "id": 300,
+          "seq": 0
+        }
+      ],
       "name": "AWS",
       "to": "aws"
     },
     {
       "id": 16,
-      "parentId": [400],
+      "parent": [
+        {
+          "id": 400,
+          "seq": 0
+        }
+      ],
       "name": "Art",
       "to": "art"
     },
     {
       "id": 3,
-      "parentId": [400],
+      "parent": [
+        {
+          "id": 400,
+          "seq": 0
+        }
+      ],
       "name": "Artist",
       "to": "artists"
     },
     {
       "id": 17,
-      "parentId": [400],
+      "parent": [
+        {
+          "id": 400,
+          "seq": 0
+        }
+      ],
       "name": "Yachts",
       "to": "yachts"
     },
     {
       "id": 6,
-      "parentId": [200],
+      "parent": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
       "name": "React",
       "to": "react"
     },
     {
       "id": 18,
-      "parentId": [400],
+      "parent": [
+        {
+          "id": 400,
+          "seq": 0
+        }
+      ],
       "name": "Images",
       "to": "images"
     },
     {
       "id": 19,
-      "parentId": [100],
+      "parent": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
       "name": "Technology Stacks",
       "to": "technology-stacks"
     }
   ],
-  "level3": [],
   "pages": [
     {
       "name": "Overview",
       "to": "overview",
       "long_title": "",
       "resources": false,
-      "parentId": [9],
+      "parent": [
+        {
+          "id": 500,
+          "seq": 0
+        }
+      ],
       "reading_time": "",
       "readability_score": "",
       "edit_date": "1911-12-15T15:46:00.000Z",
       "create_date": "1911-12-15T15:46:00.000Z",
       "id": 911,
-      "file": true,
-      "seq": 0
+      "file": true
     },
     {
       "name": "Singleton Pattern",
       "to": "singleton-pattern",
       "long_title": "",
       "resources": false,
-      "parentId": [9, 1000],
+      "parent": [
+        {
+          "id": 9,
+          "seq": 0
+        },
+        {
+          "id": 1000,
+          "seq": 0
+        }
+      ],
       "reading_time": "",
       "readability_score": "",
       "edit_date": "1911-12-15T15:49:00.000Z",
       "create_date": "1911-12-15T15:49:00.000Z",
       "id": 912,
-      "file": true,
-      "seq": 1000
+      "file": true
     },
     {
       "name": "Factory Method Pattern",
       "to": "factory-method-pattern",
       "long_title": "",
       "resources": false,
-      "parentId": [9, 1000],
+      "parent": [
+        {
+          "id": 9,
+          "seq": 0
+        },
+        {
+          "id": 1000,
+          "seq": 0
+        }
+      ],
       "reading_time": "",
       "readability_score": "",
       "edit_date": "1911-12-15T15:52:00.000Z",
@@ -189,14 +315,24 @@
       "name": "CSS",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [1],
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "to": "css"
     },
     {
       "id": 901,
       "name": "Internationalization",
       "edit_date": "01/18/2024",
-      "parentId": [0],
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "to": "internationalization",
       "file": true
     },
@@ -205,7 +341,12 @@
       "name": "Skeuomorphism",
       "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
       "edit_date": "01/18/2024",
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "to": "skeuomorphism",
       "file": true
     },
@@ -214,7 +355,12 @@
       "name": "Flat Design",
       "long_title": "Flat Design: The Art of Simplicity",
       "edit_date": "01/18/2024",
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "to": "flat-design",
       "file": true
     },
@@ -224,7 +370,12 @@
       "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "reading_time": "1 min 37 sec",
       "readability_score": "22",
       "to": "corporate-memphis-design"
@@ -233,7 +384,12 @@
       "id": 1004,
       "name": "Glassmorphism",
       "edit_date": "01/18/2024",
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "to": "glassmorphism",
       "file": true
     },
@@ -241,7 +397,12 @@
       "id": 1005,
       "name": "Minimalism",
       "edit_date": "01/18/2024",
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "to": "minimalism",
       "file": true
     },
@@ -249,7 +410,12 @@
       "id": 1007,
       "name": "Retrofuturism",
       "edit_date": "01/18/2024",
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "to": "retrofuturism",
       "file": true
     },
@@ -257,7 +423,12 @@
       "id": 1008,
       "name": "Swiss Style",
       "edit_date": "01/18/2024",
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "to": "swiss-style",
       "file": true
     },
@@ -265,7 +436,12 @@
       "id": 2001,
       "name": "Chrome Extensions",
       "edit_date": "01/18/2024",
-      "parentId": [0],
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "to": "chrome-extensions",
       "file": true
     },
@@ -273,7 +449,12 @@
       "id": 2002,
       "name": "Git",
       "edit_date": "01/18/2024",
-      "parentId": [0],
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "file": true,
       "to": "git"
     },
@@ -282,7 +463,12 @@
       "name": "Visual Studio Code",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [0],
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "to": "visual-studio-code"
     },
     {
@@ -290,7 +476,12 @@
       "name": "Visual Studio Code: Extensions",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [0],
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "to": "visual-studio-code-extensions"
     },
     {
@@ -298,7 +489,12 @@
       "name": "At Last - Pleasantville",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [3],
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
       "to": "at-last-pleasantville"
     },
     {
@@ -306,7 +502,12 @@
       "name": "Gallos",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [3],
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
       "to": "gallos"
     },
     {
@@ -314,13 +515,23 @@
       "name": "Shoes on the Danube Bank",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [3],
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
       "to": "shoes-on-the-danube-bank"
     },
     {
       "id": 4000,
       "name": "Kelly Boesch",
-      "parentId": [3],
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
       "to": "kelly-boesch"
     },
     {
@@ -328,7 +539,12 @@
       "name": "Lazels Puzzles",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [3],
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
       "to": "puzzles-lazel"
     },
     {
@@ -336,14 +552,24 @@
       "name": "Puzzle Lab",
       "edit_date": "01/18/2024",
       "file": true,
-      "parentId": [3],
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
       "to": "puzzles-the-puzzle-lab"
     },
     {
       "id": 6000,
       "name": "Input Element",
       "edit_date": "03/24/2024",
-      "parentId": [5],
+      "parent": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
       "file": true,
       "to": "input-element"
     },
@@ -351,7 +577,12 @@
       "id": 6001,
       "name": "Data Types",
       "edit_date": "03/24/2024",
-      "parentId": [5],
+      "parent": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
       "file": true,
       "to": "data-types"
     },
@@ -359,7 +590,12 @@
       "id": 6002,
       "name": "String Functions",
       "edit_date": "03/24/2024",
-      "parentId": [5],
+      "parent": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
       "file": true,
       "to": "string-functions"
     },
@@ -367,7 +603,12 @@
       "id": 6004,
       "name": "Math Functions",
       "edit_date": "03/24/2024",
-      "parentId": [5],
+      "parent": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
       "file": true,
       "to": "math-functions"
     },
@@ -375,14 +616,24 @@
       "id": 6005,
       "name": "Javascript Array",
       "edit_date": "03/24/2024",
-      "parentId": [5],
+      "parent": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
       "file": true,
       "to": "javascript-array"
     },
     {
       "id": 7001,
       "name": "Functional Components",
-      "parentId": [6],
+      "parent": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
       "to": "functional-components",
       "file": true
     },
@@ -390,14 +641,24 @@
       "id": 15002,
       "name": "Design Patterns - Facade",
       "edit_date": "3/30/2024 2:24 PM",
-      "parentId": [6],
+      "parent": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
       "to": "design-patterns-facade"
     },
     {
       "id": 902,
       "name": "Javascript 2024",
       "edit_date": "4/2/2024 2:23 PM",
-      "parentId": [12],
+      "parent": [
+        {
+          "id": 12,
+          "seq": 0
+        }
+      ],
       "to": "javascript-2024",
       "file": true
     },
@@ -405,7 +666,12 @@
       "id": 1006,
       "name": "Neumorphism",
       "edit_date": "1/18/2024 12:00 AM",
-      "parentId": [2],
+      "parent": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
       "to": "neumorphism",
       "file": true
     },
@@ -413,14 +679,24 @@
       "name": "HTTP Headers",
       "to": "http-headers",
       "edit_date": "4/4/2024 12:45 PM",
-      "parentId": [5],
+      "parent": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
       "id": 903,
       "file": true
     },
     {
       "id": 6003,
       "name": "Global Functions",
-      "parentId": [5],
+      "parent": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
       "to": "global-functions",
       "edit_date": "1918-02-19T18:00:00.000Z",
       "file": true
@@ -428,7 +704,12 @@
     {
       "name": "Code Review",
       "to": "code-review",
-      "parentId": [6],
+      "parent": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
       "edit_date": "1910-02-14T18:30:00.000Z",
       "create_date": "1910-02-14T18:30:00.000Z",
       "id": 905,
@@ -437,7 +718,12 @@
     {
       "id": 904,
       "name": "Best Practices",
-      "parentId": [6],
+      "parent": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
       "to": "best-practices",
       "edit_date": "1908-04-24T18:15:00.000Z",
       "file": true
@@ -445,7 +731,12 @@
     {
       "id": 906,
       "name": "Units",
-      "parentId": [1],
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "to": "css-units",
       "edit_date": "1908-04-24T16:11:00.000Z",
       "file": true
@@ -453,24 +744,26 @@
     {
       "name": "Storage Options",
       "to": "storage_options",
-      "parentId": [14],
+      "parent": [
+        {
+          "id": 14,
+          "seq": 0
+        }
+      ],
       "edit_date": "1911-01-14T10:22:00.000Z",
       "create_date": "1911-01-14T10:22:00.000Z",
       "id": 907,
       "file": true
     },
     {
-      "id": 908,
-      "name": "Maintenance",
-      "parentId": [6],
-      "to": "maintenance",
-      "edit_date": "1909-07-24T15:55:00.000Z",
-      "file": true
-    },
-    {
       "id": 15000,
       "name": "Images",
-      "parentId": [14],
+      "parent": [
+        {
+          "id": 14,
+          "seq": 0
+        }
+      ],
       "to": "images",
       "edit_date": "1909-07-24T15:55:00.000Z",
       "file": false
@@ -480,7 +773,12 @@
       "to": "mern",
       "long_title": "",
       "resources": false,
-      "parentId": [19],
+      "parent": [
+        {
+          "id": 19,
+          "seq": 0
+        }
+      ],
       "reading_time": "",
       "readability_score": "",
       "edit_date": "1911-07-17T08:22:00.000Z",
@@ -493,7 +791,12 @@
       "to": "serverless",
       "long_title": "",
       "resources": false,
-      "parentId": [19],
+      "parent": [
+        {
+          "id": 19,
+          "seq": 0
+        }
+      ],
       "reading_time": "",
       "readability_score": "",
       "edit_date": "1911-07-17T08:22:00.000Z",
@@ -506,12 +809,34 @@
       "to": "usetransition",
       "long_title": "",
       "resources": false,
-      "parentId": 0,
+      "parent": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
       "reading_time": "",
       "readability_score": "",
       "edit_date": "1910-09-14T08:41:00.000Z",
       "create_date": "1910-09-14T08:41:00.000Z",
       "id": 914,
+      "file": true
+    },
+    {
+      "name": "Maintenance",
+      "to": "maintenance",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 908,
+      "parent": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "edit_date": "1908-11-26T15:55:00.000Z",
       "file": true
     }
   ]
