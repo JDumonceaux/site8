@@ -1,14 +1,14 @@
-import { Logger } from '../utils/Logger.js';
-import { getFilePath } from '../utils/getFilePath.js';
-import { readFile } from 'fs/promises';
-import { Bookmarks } from 'types/Bookmarks.js';
-import { Bookmark } from 'types/Bookmark.js';
-import { BookmarksTags } from 'types/BookmarksTags.js';
-import { BookmarksTag } from 'types/BookmarksTag.js';
+import { readFile } from "fs/promises";
+import { Bookmark } from "menus/types/Bookmark.js";
+import { Bookmarks } from "menus/types/Bookmarks.js";
+import { BookmarksTag } from "menus/types/BookmarksTag.js";
+import { BookmarksTags } from "menus/types/BookmarksTags.js";
+import { Logger } from "../utils/Logger.js";
+import { getFilePath } from "../utils/getFilePath.js";
 
 export class BookmarksService {
-  private fileName = 'bookmarks.json';
-  private filePath = '';
+  private fileName = "bookmarks.json";
+  private filePath = "";
 
   constructor() {
     this.filePath = getFilePath(this.fileName);
@@ -18,10 +18,10 @@ export class BookmarksService {
     Logger.info(`BookmarkService: getFilteredBookmarks -> `);
 
     try {
-      const fileData = await readFile(this.filePath, { encoding: 'utf8' });
+      const fileData = await readFile(this.filePath, { encoding: "utf8" });
       const data = JSON.parse(fileData) as Bookmarks;
       const sortedItmes: Bookmark[] = data.items.toSorted((a, b) =>
-        a.name.localeCompare(b.name),
+        a.name.localeCompare(b.name)
       );
       return { metadata: data.metadata, items: sortedItmes };
     } catch (error) {
@@ -34,7 +34,7 @@ export class BookmarksService {
     Logger.info(`BookmarkService: getAllItemsByTag -> `);
 
     try {
-      const fileData = await readFile(this.filePath, { encoding: 'utf8' });
+      const fileData = await readFile(this.filePath, { encoding: "utf8" });
       const data = Object.freeze(JSON.parse(fileData) as Bookmarks);
       // Clean up and normalize tags
       const fixedTags = this.CleanUpAndNormalizeTags(data.items);
@@ -50,17 +50,17 @@ export class BookmarksService {
   }
 
   public async getBookmarksForPage(
-    pageId: string,
+    pageId: string
   ): Promise<Bookmarks | undefined> {
     Logger.info(`BookmarkService: getBookmarksForPage -> `);
 
     try {
-      const fileData = await readFile(this.filePath, { encoding: 'utf8' });
+      const fileData = await readFile(this.filePath, { encoding: "utf8" });
       const data = JSON.parse(fileData) as Bookmarks;
       const searchId = parseInt(pageId);
       const items = data.items.filter((x) => x.page?.includes(searchId));
-      const sortedItmes: Bookmark[] = items.toSorted((a, b) =>
-        a.name.localeCompare(b.name),
+      const sortedItmes: Bookmark[] = items.toSorted(
+        (a: { name: string }, b: { name: any }) => a.name.localeCompare(b.name)
       );
 
       return { metadata: data.metadata, items: sortedItmes };
@@ -78,7 +78,7 @@ export class BookmarksService {
 
       const uniqueArr = items.reduce((arr, item) => {
         if (item?.tags) {
-          item.tags.forEach((tag) => {
+          item.tags.forEach((tag: any) => {
             if (!arr.includes(tag)) {
               arr.push(tag);
             }
@@ -96,7 +96,7 @@ export class BookmarksService {
   }
 
   private CleanUpAndNormalizeTags(
-    items: Bookmark[] | undefined,
+    items: Bookmark[] | undefined
   ): Bookmark[] | undefined {
     try {
       if (!items) {
@@ -105,16 +105,16 @@ export class BookmarksService {
 
       const tagsWithDefault = items.map((x) => {
         // Remove empty tags
-        const nonEmptyTags = x.tags?.filter((x) => x);
+        const nonEmptyTags = x.tags?.filter((x: any) => x);
         // Remove tag element if empty
         const tagsWithValues = nonEmptyTags?.length ? nonEmptyTags : undefined;
         // Return tag element or default to General
-        return { ...x, tags: tagsWithValues ?? ['General'] };
+        return { ...x, tags: tagsWithValues ?? ["General"] };
       });
       return tagsWithDefault;
     } catch (error) {
       Logger.error(
-        `BookmarkService: CleanUpAndNormalizeTags --> Error: ${error}`,
+        `BookmarkService: CleanUpAndNormalizeTags --> Error: ${error}`
       );
     }
     return undefined;
@@ -122,7 +122,7 @@ export class BookmarksService {
 
   private RemapBookmarks(
     items: Bookmark[] | undefined,
-    tags: string[] | undefined,
+    tags: string[] | undefined
   ): BookmarksTag[] | undefined {
     try {
       if (!items || !tags) {
@@ -132,7 +132,7 @@ export class BookmarksService {
       const ret: BookmarksTag[] = tags.map((x) => {
         const filteredItems = items.filter((item) => item.tags?.includes(x));
         const sortedItems = filteredItems.sort((a, b) =>
-          a.name.localeCompare(b.name),
+          a.name.localeCompare(b.name)
         );
         return {
           tag: x,

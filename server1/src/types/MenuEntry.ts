@@ -9,10 +9,12 @@ export type MenuEntry = {
   readonly seq: number;
   readonly type: 'menu' | 'page';
   readonly sortby: 'seq' | 'name';
-  readonly pageItem?: Page;
-  readonly menuItem?: MenuItem;
+  readonly item?: Page | MenuItem;
   readonly to?: string;
   readonly toComplete?: string;
   readonly url?: string;
+  readonly menuItems: MenuEntry[];
+  readonly pageItems: MenuEntry[];
   readonly items?: MenuEntry[];
+  readonly parent: { id?: number; seq?: number }[];
 };

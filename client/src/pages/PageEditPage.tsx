@@ -12,11 +12,13 @@ import { styled } from 'styled-components';
 import { Meta, PageTitle, StyledPlainButton, LoadingWrapper } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import useMenuValues from 'hooks/useMenuValues';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const { data: values } = useMenuValues();
   const {
     formValues,
     isProcessing,
@@ -165,6 +167,18 @@ const PageEditPage = (): JSX.Element => {
                 type="text"
                 value={formValues.parent}
               />
+              <Field>
+                <label htmlFor="options">Menu</label>
+
+                <select>
+                  <option value="">Select a menu</option>
+                  {values?.map((value) => (
+                    <option key={value.id} value={value.id}>
+                      {value.name} - {value.id}
+                    </option>
+                  ))}
+                </select>
+              </Field>
               <datalist id="parentOptions">
                 {/* <option value="10">Art</option>
                 <option value="3">Artists</option>
@@ -253,4 +267,15 @@ export default PageEditPage;
 const StyledMenu = styled.menu`
   display: inline-flex;
   list-style-type: none;
+`;
+const Field = styled.div`
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 20px;
+  select {
+    border: 1px solid #ccc;
+    margin-left: 20px;
+   
+    padding: 6px; 12px;
+  }
 `;

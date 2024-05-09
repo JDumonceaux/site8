@@ -6,8 +6,8 @@ import { MenuItem } from '../types/MenuItem.js';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Page } from '../types/Page.js';
 import { Menu } from 'types/Menu.js';
-import { MenuLevel } from 'types/MenuLevel.js';
 import { MenuEntry } from 'types/MenuEntry.js';
+import { MenuEntryFlat } from 'types/MenuEntryFlat.js';
 
 export class MenuService {
   private fileName = 'pagesIndex.json';
@@ -29,22 +29,45 @@ export class MenuService {
   }
 
   // Sort the MenuEntry by seq, then name
-  private sortMenuEntry(ob1: MenuEntry, ob2: MenuEntry) {
-    if (ob1.seq > ob2.seq) {
-      return 1;
-    } else if (ob1.seq < ob2.seq) {
-      return -1;
+  // private sortMenuEntry(ob1: MenuEntry, ob2: MenuEntry) {
+  //   if (ob1.seq > ob2.seq) {
+  //     return 1;
+  //   } else if (ob1.seq < ob2.seq) {
+  //     return -1;
+  //   }
+
+  //   // Else go to the 2nd item
+  //   if (ob1.name < ob2.name) {
+  //     return -1;
+  //   } else if (ob1.name > ob2.name) {
+  //     return 1;
+  //   } else {
+  //     // nothing to split them
+  //     return 0;
+  //   }
+  // }
+
+  // Convert the MenuItems to MenuEntry
+  private getMenuEntry(item: MenuItem | undefined): MenuEntry | undefined {
+    if (!item) {
+      return undefined;
     }
 
-    // Else go to the 2nd item
-    if (ob1.name < ob2.name) {
-      return -1;
-    } else if (ob1.name > ob2.name) {
-      return 1;
-    } else {
-      // nothing to split them
-      return 0;
-    }
+    return {
+      id: item.id,
+      name: item.name,
+      type: 'menu',
+      parentId: 0,
+      seq: 0,
+      sortby: item.sortby || 'name',
+      item: item,
+      url: item.url,
+      to: item.to,
+      toComplete: undefined,
+      parent: item.parent,
+      menuItems: [],
+      pageItems: [],
+    } as MenuEntry;
   }
 
   // Convert the MenuItems to MenuEntry
@@ -64,20 +87,13 @@ export class MenuService {
     // Declare the return array
     const ret: MenuEntry[] = currMenus.map((item) => {
       const x = item.parent.find((x) => x.id === id);
-      return {
-        id: item.id,
-        name: item.name,
-        type: 'menu',
+      const currItem = {
+        ...this.getMenuEntry(item),
         parentId: id,
         seq: x && x.seq ? x.seq : 0,
-        sortby: item.sortby || 'name',
-        menuItem: item,
-        pageItem: undefined,
-        items: this.fillMenu(item.id, menuItems),
-        url: item.url,
-        to: item.to,
-        toComplete: item.to,
-      };
+        menuItems: this.fillMenu(item.id, menuItems),
+      } as MenuEntry;
+      return currItem;
     });
     return ret;
   }
@@ -96,8 +112,17 @@ export class MenuService {
         item.parent?.some((x) => x.id === 0),
       );
 
-      // Declare the return array
-      const ret: MenuEntry[] | undefined = this.fillMenu(0, menuItems);
+      const ret: MenuEntry[] | undefined = [];
+      currMenus.forEach((item) => {
+        ret.push({
+          ...this.getMenuEntry(item),
+          id: item.id,
+          name: item.name,
+          seq: item.parent.find((x) => x.id === 0)?.seq || 0,
+          menuItems: this.fillMenu(item.id, menuItems) || [],
+          parent: item.parent,
+        } as MenuEntry);
+      });
       return ret;
     } catch (error) {
       Logger.error(`MenuService: getRootMenu -> ${error}`);
@@ -105,80 +130,104 @@ export class MenuService {
     return undefined;
   }
 
-  // Convert the MenuItems to MenuEntry
-  private getExpandedMenu(
-    menuItems?: ReadonlyArray<MenuItem>,
-    menuRoot?: ReadonlyArray<MenuEntry>,
-  ): MenuEntry[] | undefined {
-    try {
-      if (!menuItems || !menuRoot) {
-        return undefined;
-      }
-
-      const ret: MenuEntry[] | undefined = [];
-      menuRoot.forEach((item) => {
-        const x: MenuEntry[] | undefined = this.fillMenu(item.id, menuItems);
-        ret.push({ ...item, items: x });
-      });
-      return ret;
-    } catch (error) {
-      Logger.error(`MenuService: getExpandedMenu -> ${error}`);
-    }
-    return undefined;
-  }
-
-  // Add in the pages as Menu Entry
-  private getPages(
-    items?: ReadonlyArray<MenuEntry> | undefined,
+  private getPagesAsMenuEntry(
     pages?: ReadonlyArray<Page>,
   ): MenuEntry[] | undefined {
-    console.log('items1', items);
-    console.log('pages1', pages);
     try {
-      if (!items || !pages) {
+      if (!pages) {
         return undefined;
       }
+
       // Declare the return array
       const ret: MenuEntry[] | undefined = [];
-
-      console.log('items', items);
-
-      items.forEach((item) => {
-        // Add pages to the menu
-        const filteredPages = pages.filter((page) =>
-          page.parent?.some((x) => x.id === item.id),
-        );
-
-        console.log('item23232', item);
-
-        console.log('filteredPages', filteredPages);
-        const temp: MenuEntry[] | undefined = [];
-
-        filteredPages.forEach((page) => {
-          const x = page.parent.find((x) => x.id === item.id);
-          const y = this.getPages(item.items, pages);
-
-          temp.push({
-            id: page.id,
-            name: page.name,
-            type: 'page',
-            parentId: item.id,
-            seq: x && x.seq ? x.seq : 0,
-            sortby: item.sortby || 'name',
-            pageItem: page,
-            menuItem: undefined,
-            items: y ? item.items?.concat(y) : item.items,
-            url: page.url,
-            to: page.to,
-          });
-
-          console.log('push', temp);
-          ret.push({ ...item, items: temp });
+      pages.forEach((item) => {
+        ret.push({
+          id: item.id,
+          name: item.name,
+          type: 'page',
+          parentId: 0,
+          seq: 0,
+          sortby: 'name',
+          item: item,
+          url: item.url,
+          to: item.to,
+          parent: item.parent,
+          menuItems: [],
+          pageItems: [],
         });
       });
       return ret;
     } catch (error) {
-      Logger.error(`MenuService: getPages -> ${error}`);
+      Logger.error(`MenuService: getPagesAsMenuEntry -> ${error}`);
+    }
+    return undefined;
+  }
+
+  private getMatchedPages(
+    item: MenuEntry,
+    pages?: ReadonlyArray<MenuEntry>,
+  ): MenuEntry[] | undefined {
+    try {
+      if (!item) {
+        return undefined;
+      }
+      return pages?.filter((page) =>
+        page.parent?.some((x) => x.id === item.id),
+      );
+    } catch (error) {
+      Logger.error(`MenuService: getMatchedPages -> ${error}`);
+    }
+    return undefined;
+  }
+
+  private getMatchedEntries(
+    menuItems?: ReadonlyArray<MenuEntry>,
+    pages?: ReadonlyArray<MenuEntry>,
+  ): MenuEntry[] | undefined {
+    try {
+      if (!menuItems) {
+        return undefined;
+      }
+      if (!pages) {
+        return [...menuItems];
+      }
+
+      // Declare the return array
+      const ret: MenuEntry[] | undefined = [];
+      menuItems.forEach((item) => {
+        ret.push({
+          ...item,
+          pageItems: this.getMatchedPages(item, pages) || [],
+          menuItems: this.getMatchedEntries(item.menuItems, pages) || [],
+        });
+      });
+      return ret;
+    } catch (error) {
+      Logger.error(`MenuService: getMatchedEntries -> ${error}`);
+    }
+    return undefined;
+  }
+
+  private getCombinedEntries(
+    items?: ReadonlyArray<MenuEntry>,
+  ): MenuEntry[] | undefined {
+    try {
+      if (!items) {
+        return undefined;
+      }
+
+      // Declare the return array
+      const ret: MenuEntry[] | undefined = [];
+      items.forEach((item) => {
+        const x = this.getCombinedEntries(item.menuItems) || [];
+        ret.push({
+          ...item,
+          items: [...x, ...item.pageItems],
+        });
+      });
+      return ret;
+    } catch (error) {
+      Logger.error(`MenuService: getMatchedEntries -> ${error}`);
     }
     return undefined;
   }
@@ -195,21 +244,51 @@ export class MenuService {
 
       // Get the root level menu
       const x = this.getRootMenu(data.menuItems);
-      // Get child menu items
-      const y = this.getExpandedMenu(data.menuItems, x);
+      // // Get child menu items
+      const y = this.getPagesAsMenuEntry(data.pages);
+
+      // const y = this.getExpandedMenu(data.menuItems, x);
       // Add in pages
-      const z = this.getPages(y, data.pages);
-      console.log('z33', z);
+      const z = this.getMatchedEntries(x, y);
+
+      const zz = this.getCombinedEntries(z);
+      console.log('zz', zz);
+      // console.log('z', z);
       // Sort all the menu items: mixing menu and pages
 
       // Fill in URLs
 
       return {
         metadata: data.metadata,
-        items: z,
+        items: zz,
       };
     } catch (error) {
       Logger.error(`MenuService: getMenu --> Error: ${error}`);
+      throw error;
+    }
+  }
+
+  public async getMenuValues(): Promise<MenuEntryFlat[] | undefined> {
+    Logger.info(`MenuService: getValues -> `);
+    try {
+      // Get all the data from pagesIndex.json
+      const data: Pages | undefined = await this.getItems();
+      if (!data) {
+        return undefined;
+      }
+
+      return data.menuItems
+        ? data.menuItems
+            .map((x) => ({
+              id: x.id,
+              name: x.name,
+              to: x.to,
+              url: x.url,
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name))
+        : undefined;
+    } catch (error) {
+      Logger.error(`MenuService: getMenuValues --> Error: ${error}`);
       throw error;
     }
   }

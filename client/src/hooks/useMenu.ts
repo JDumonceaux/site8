@@ -9,7 +9,7 @@ const useMenu = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.menu;
-  const data: Menu | null = useSelector(selector).MenuData;
+  const data: Menu | null = useSelector(selector).data;
   const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
@@ -20,7 +20,6 @@ const useMenu = () => {
 
   const getMenu = useCallback(
     (sec1: string | undefined, sec2: string | undefined) => {
-      console.log('data', data);
       // Get the parent menu
       const menu = data?.items?.find((x) => x.to === sec1);
       // Get the child menu

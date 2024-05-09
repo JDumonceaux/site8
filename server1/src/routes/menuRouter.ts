@@ -14,3 +14,13 @@ menuRouter.get('/', async (_req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+menuRouter.get('/values', async (_req: Request, res: Response) => {
+  try {
+    const menu = await new MenuService().getMenuValues();
+    res.json(menu);
+  } catch (error) {
+    Logger.error(`menuRouter: getValues -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
