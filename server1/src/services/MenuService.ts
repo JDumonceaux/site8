@@ -5,9 +5,13 @@ import { Pages } from '../types/Pages.js';
 import { MenuItem } from '../types/MenuItem.js';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Page } from '../types/Page.js';
-import { Menu } from 'types/Menu.js';
-import { MenuEntry } from 'types/MenuEntry.js';
-import { MenuEntryFlat } from 'types/MenuEntryFlat.js';
+import { Menu } from '../types/Menu.js';
+import {
+  MenuEntry,
+  sortMenuEntryName,
+  sortMenuEntrySeq,
+} from '../types/MenuEntry.js';
+import { MenuEntryFlat } from '../types/MenuEntryFlat.js';
 
 export class MenuService {
   private fileName = 'pagesIndex.json';
@@ -28,25 +32,6 @@ export class MenuService {
     }
   }
 
-  // Sort the MenuEntry by seq, then name
-  // private sortMenuEntry(ob1: MenuEntry, ob2: MenuEntry) {
-  //   if (ob1.seq > ob2.seq) {
-  //     return 1;
-  //   } else if (ob1.seq < ob2.seq) {
-  //     return -1;
-  //   }
-
-  //   // Else go to the 2nd item
-  //   if (ob1.name < ob2.name) {
-  //     return -1;
-  //   } else if (ob1.name > ob2.name) {
-  //     return 1;
-  //   } else {
-  //     // nothing to split them
-  //     return 0;
-  //   }
-  // }
-
   // Convert the MenuItems to MenuEntry
   private getMenuEntry(item: MenuItem | undefined): MenuEntry | undefined {
     if (!item) {
@@ -55,7 +40,7 @@ export class MenuService {
 
     return {
       id: item.id,
-      name: item.name,
+      name: item.name.trim(),
       type: 'menu',
       parentId: 0,
       seq: 0,
@@ -63,7 +48,7 @@ export class MenuService {
       item: item,
       url: item.url,
       to: item.to,
-      toComplete: undefined,
+      toComplete: item.to,
       parent: item.parent,
       menuItems: [],
       pageItems: [],
@@ -90,7 +75,7 @@ export class MenuService {
       const currItem = {
         ...this.getMenuEntry(item),
         parentId: id,
-        seq: x && x.seq ? x.seq : 0,
+        seq: x?.seq ?? 0,
         menuItems: this.fillMenu(item.id, menuItems),
       } as MenuEntry;
       return currItem;
@@ -118,7 +103,7 @@ export class MenuService {
           ...this.getMenuEntry(item),
           id: item.id,
           name: item.name,
-          seq: item.parent.find((x) => x.id === 0)?.seq || 0,
+          seq: item.parent.find((x) => x.id === 0)?.seq ?? 0,
           menuItems: this.fillMenu(item.id, menuItems) || [],
           parent: item.parent,
         } as MenuEntry);
@@ -208,6 +193,17 @@ export class MenuService {
     return undefined;
   }
 
+  private combineItems(item: MenuEntry): MenuEntry | undefined {
+    if (!item) {
+      return undefined;
+    }
+
+    return {
+      ...item,
+      items: [...(item.menuItems || []), ...(item.pageItems || [])],
+    };
+  }
+
   private getCombinedEntries(
     items?: ReadonlyArray<MenuEntry>,
   ): MenuEntry[] | undefined {
@@ -217,19 +213,104 @@ export class MenuService {
       }
 
       // Declare the return array
-      const ret: MenuEntry[] | undefined = [];
+      const ret: MenuEntry[] = [];
       items.forEach((item) => {
         const x = this.getCombinedEntries(item.menuItems) || [];
         ret.push({
           ...item,
-          items: [...x, ...item.pageItems],
+          items: [...x, ...(item.pageItems || [])],
         });
       });
       return ret;
     } catch (error) {
-      Logger.error(`MenuService: getMatchedEntries -> ${error}`);
+      Logger.error(`MenuService: getCombinedEntries -> ${error}`);
+      return undefined;
     }
-    return undefined;
+  }
+
+  private sortMenu(item: MenuEntry): MenuEntry {
+    const x =
+      item.sortby === 'seq'
+        ? item?.items?.sort((a, b) => sortMenuEntrySeq(a, b))
+        : item?.items?.sort((a, b) => sortMenuEntryName(a, b));
+
+    return {
+      ...item,
+      items: x ? [...x] : undefined,
+    };
+  }
+
+  private fillURL(item: MenuEntry): MenuEntry {
+    try {
+      const items = item.items?.map((x) => {
+        return {
+          ...x,
+          toComplete:
+            x.to && item.toComplete ? `${item.toComplete}/${x.to}` : undefined,
+        };
+      });
+
+      return {
+        ...item,
+        items: items ?? undefined,
+      };
+    } catch (error) {
+      Logger.error(`MenuService: fillURL --> Error: ${error}`);
+      throw error;
+    }
+  }
+
+  private trimItem(entry: MenuEntry): MenuEntry {
+    try {
+      const { item, menuItems, pageItems, parent, ...rest } = entry;
+      return {
+        ...rest,
+        item: undefined,
+        menuItems: undefined,
+        pageItems: undefined,
+        parent: undefined,
+      };
+    } catch (error) {
+      Logger.error(`MenuService: trimItem --> Error: ${error}`);
+      throw error;
+    }
+  }
+
+  private loopItems(
+    callback: (item: MenuEntry) => MenuEntry,
+    items?: ReadonlyArray<MenuEntry>,
+  ): MenuEntry[] | undefined {
+    if (!items) {
+      return undefined;
+    }
+
+    return items.map((x) => {
+      const y = callback(x);
+      const updatedItems = this.loopItems(callback, y?.items);
+      return {
+        ...y,
+        items: updatedItems,
+      };
+    });
+  }
+
+  private loopMenuItems(
+    callback: (item: MenuEntry) => MenuEntry | undefined,
+    items?: ReadonlyArray<MenuEntry>,
+  ): MenuEntry[] | undefined {
+    if (!items) {
+      return undefined;
+    }
+
+    const x = items.map((item) => {
+      const y = callback(item);
+      const z = this.loopMenuItems(callback, y?.menuItems);
+      return {
+        ...item,
+        items: z,
+      };
+    });
+    return x;
   }
 
   public async getMenu(): Promise<Menu | undefined> {
@@ -243,24 +324,23 @@ export class MenuService {
       }
 
       // Get the root level menu
-      const x = this.getRootMenu(data.menuItems);
-      // // Get child menu items
-      const y = this.getPagesAsMenuEntry(data.pages);
-
-      // const y = this.getExpandedMenu(data.menuItems, x);
-      // Add in pages
-      const z = this.getMatchedEntries(x, y);
-
-      const zz = this.getCombinedEntries(z);
-      console.log('zz', zz);
-      // console.log('z', z);
+      const rootMenu = this.getRootMenu(data.menuItems);
+      // Get pages
+      const pages = this.getPagesAsMenuEntry(data.pages);
+      // Add pages to menus
+      const menuPages = this.getMatchedEntries(rootMenu, pages);
+      // Combine items
+      const combinedItems = this.getCombinedEntries(menuPages);
       // Sort all the menu items: mixing menu and pages
-
+      const sortedMenus = this.loopItems(this.sortMenu, combinedItems);
       // Fill in URLs
+      const urlMenus = this.loopItems(this.fillURL, sortedMenus);
+      // Clean up
+      const cleanMenus = this.loopItems(this.trimItem, urlMenus);
 
       return {
         metadata: data.metadata,
-        items: zz,
+        items: cleanMenus,
       };
     } catch (error) {
       Logger.error(`MenuService: getMenu --> Error: ${error}`);

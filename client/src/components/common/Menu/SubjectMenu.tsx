@@ -21,64 +21,78 @@ const SubjectMenu = (): JSX.Element => {
 
   const { menu } = getMenu(tempPathName1, tempPathName2);
 
-  console.log('menuxxxxx', menu);
-
-  //const additionalMenus = getRemaining(menu1?.id, menu2?.id);
+  const renderWrapper = useCallback(
+    (
+      itemType: 'menu' | 'page',
+      id: number,
+      toComplete: string,
+      url: string,
+      level: number,
+      children: React.ReactNode,
+    ): JSX.Element | null => {
+      console.log('to', toComplete);
+      if (itemType === 'menu') {
+        const StyledMenuTitleComponent =
+          level === 0
+            ? StyledMenuTitle
+            : level === 1
+              ? StyledMenuTitle1
+              : StyledMenuTitle2;
+        return (
+          <StyledMenuTitleComponent key={id} to={`/${toComplete}`}>
+            {children}
+          </StyledMenuTitleComponent>
+        );
+      }
+      if (itemType === 'page') {
+        const StyledMenuLinkComponent =
+          level === 0
+            ? StyledMenuLink
+            : level === 1
+              ? StyledMenuLink1
+              : StyledMenuLink2;
+        return (
+          <StyledMenuLinkComponent key={id} to={`/${toComplete}`}>
+            {children}
+          </StyledMenuLinkComponent>
+        );
+      }
+      return null;
+    },
+    [],
+  );
 
   const renderItem = useCallback(
-    (item: MenuEntry | undefined): JSX.Element | null => {
+    (item: MenuEntry | undefined, level: number): JSX.Element | null => {
       if (!item) {
         return null;
       }
 
       const menuItem = () => {
-        if (item.type === 'menu') {
-          if (item.level === 1) {
-            return (
-              <StyledMenuTitle key={item.id} to={item.url || ''}>
-                {item.name}
-              </StyledMenuTitle>
-            );
-          } else {
-            return (
-              <StyledMenuTitle1 key={item.id} to={item.url || ''}>
-                {item.name}
-              </StyledMenuTitle1>
-            );
-          }
-        }
-        if (item.type === 'page') {
-          if (item.level === 1) {
-            return (
-              <StyledMenuLink key={item.id} to={item.url || ''}>
-                {item.name}
-              </StyledMenuLink>
-            );
-          } else {
-            return (
-              <StyledMenuLink1 key={item.id} to={item.url || ''}>
-                {item.name}
-              </StyledMenuLink1>
-            );
-          }
-        }
-        return undefined;
+        return renderWrapper(
+          item.type,
+          item.id,
+          item.toComplete ?? '',
+          item.url ?? '',
+          level,
+          item.name,
+        );
       };
       return (
         <>
           {menuItem()}
-          {item.items?.map((x) => renderItem(x))}
+          {item.items?.map((x) => renderItem(x, level + 1))}
         </>
       );
     },
-    [],
+    [renderWrapper],
   );
 
   return (
     <StyledNav>
       <StyledContent>
         <LoadingWrapper error={error} isLoading={isLoading}>
-          {menu ? renderItem(menu) : null}
+          {menu ? renderItem(menu, 0) : null}
         </LoadingWrapper>
         <br />
         <br />
@@ -134,6 +148,9 @@ const StyledMenuLink = styled(StyledNavLink)`
   // }
 `;
 const StyledMenuLink1 = styled(StyledMenuLink)`
+  padding-left: 20px;
+`;
+const StyledMenuLink2 = styled(StyledMenuLink)`
   padding-left: 30px;
 `;
 const StyledMenuTitle = styled(StyledMenuLink)`
@@ -143,5 +160,8 @@ const StyledMenuTitle = styled(StyledMenuLink)`
   }
 `;
 const StyledMenuTitle1 = styled(StyledMenuTitle)`
-  padding-left: 18px;
+  padding-left: 20px;
+`;
+const StyledMenuTitle2 = styled(StyledMenuTitle)`
+  padding-left: 30px;
 `;
