@@ -15,7 +15,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.11",
+    "@apollo/client": "^3.10.3",
     "@aws-amplify/ui-react": "^6.1.9",
     "@reduxjs/toolkit": "^2.2.3",
     "aws-amplify": "^6.2.0",
