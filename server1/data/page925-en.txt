@@ -1,0 +1,13 @@
+Split your React application into smaller chunks using code splitting and load only the necessary parts when needed. By asynchronously loading components or routes, you can improve the initial load time of your application and reduce the overall bundle size.
+
+<pre><code>
+const LazyComponent = React.lazy(() => import('./LazyComponent'))
+
+const MyComponent = () => {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </React.Suspense>
+  );
+};
+</pre></code>

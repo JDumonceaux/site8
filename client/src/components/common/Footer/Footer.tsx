@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { memo } from 'react';
 
 export const Footer = (): JSX.Element => {
   const thisYear = new Date().getFullYear();
@@ -11,7 +12,7 @@ export const Footer = (): JSX.Element => {
   );
 };
 
-export default Footer;
+export default memo(Footer);
 
 const StyledFooter = styled.footer`
   min-height: 20px;

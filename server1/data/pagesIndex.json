@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": 1,
+      "id": 4,
       "name": "Javascript",
       "to": "javascript",
       "parent": [
@@ -244,6 +244,50 @@
       ],
       "name": "Technology Stacks",
       "to": "technology-stacks"
+    },
+    {
+      "id": 20,
+      "parent": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "name": "Performance",
+      "to": "performance"
+    },
+    {
+      "id": 22,
+      "parent": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "name": "Hooks",
+      "to": "hooks"
+    },
+    {
+      "id": 23,
+      "parent": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "name": "Hooks Custom",
+      "to": "hooks=custom"
+    },
+    {
+      "id": 24,
+      "parent": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "name": "Patterns",
+      "to": "patterns"
     }
   ],
   "pages": [
@@ -620,6 +664,10 @@
         {
           "id": 5,
           "seq": 0
+        },
+        {
+          "id": 4,
+          "seq": 0
         }
       ],
       "file": true,
@@ -811,7 +859,7 @@
       "resources": false,
       "parent": [
         {
-          "id": 1,
+          "id": 22,
           "seq": 0
         }
       ],
@@ -837,6 +885,487 @@
         }
       ],
       "edit_date": "1908-11-26T15:55:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Minimize Re-renders",
+      "to": "minimize-re-renders",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 915,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 1
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use Memoization",
+      "to": "use-memoization",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 916,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 2
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Avoid Using Index as a Key",
+      "to": "avoid-using-index-as-a-key",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 917,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 3
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use Functional Components",
+      "to": "use-functional-components",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 918,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 4
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use React.Fragment",
+      "to": "use-react-fragment",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 919,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 5
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Reduce Unnecessary Props",
+      "to": "reduce-unnecessary-props",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 920,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 6
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Avoid Inline Functions",
+      "to": "avoid-inline-functions",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 921,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 7
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use React.PureComponent",
+      "to": "use-react-purecomponent-or-react-memo",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 922,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 8
+        }
+      ],
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use Efficient Event Handlers",
+      "to": "use-efficient-event-handlers",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 923,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 9
+        }
+      ],
+      "edit_date": "1911-06-16T18:39:00.000Z",
+      "create_date": "1911-06-16T18:39:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Batch State Updates",
+      "to": "batch-state-updates",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 924,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 10
+        }
+      ],
+      "edit_date": "1911-06-16T11:04:00.000Z",
+      "create_date": "1911-06-16T11:04:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use Code Splitting and Lazy Loading",
+      "to": "use-code-splitting-and-lazy-loading",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 925,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 11
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use Memo or useCallback",
+      "to": "use-memo-or-usecallback",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 926,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 12
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Optimize Network Requests",
+      "to": "optimize-network-requests",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 927,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 13
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Implement Virtualization for Large Lists",
+      "to": "implement-virtualization-for-large-lists",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 928,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 15
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use React.memo",
+      "to": "use-react-memo",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 929,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 15
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Compress and Cache Static Assets",
+      "to": "compress-and-cache-static-assets",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 930,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 16
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Optimize CSS Animations",
+      "to": "optimize-css-animations",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 931,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 17
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Defer Expensive Operations in useEffect",
+      "to": "defer-expensive-operations-in-use-effect",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 932,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 18
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use Webpack’s Tree Shaking",
+      "to": "use-webpacks-tree-shaking",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 933,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 19
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Use Redux or MobX for State Management",
+      "to": "use-redux-or-mobx-for-state-management",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 934,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 20
+        }
+      ],
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Shape the Data",
+      "to": "shape-the-data",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 935,
+      "parent": [
+        {
+          "id": 20,
+          "seq": 21
+        }
+      ],
+      "edit_date": "1911-06-16T16:09:00.000Z",
+      "create_date": "1911-06-16T16:09:00.000Z",
+      "file": true
+    },
+    {
+      "name": "useLocalStorage",
+      "to": "uselocalstorage",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 936,
+      "parent": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "file": true
+    },
+    {
+      "name": "useMediaQuery",
+      "to": "usemediaquery",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 937,
+      "parent": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "file": true
+    },
+    {
+      "name": "useDebounce",
+      "to": "usedebounce",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 938,
+      "parent": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "file": true
+    },
+    {
+      "name": "useFetch",
+      "to": "usefetch",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 939,
+      "parent": [],
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "file": true
+    },
+    {
+      "name": "useToggle",
+      "to": "usetoggle",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 940,
+      "parent": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Adapter Pattern",
+      "to": "adapter-pattern",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 941,
+      "parent": [
+        {
+          "id": 24,
+          "seq": 0
+        }
+      ],
+      "edit_date": "1911-08-17T16:17:00.000Z",
+      "create_date": "1911-08-17T16:17:00.000Z",
       "file": true
     }
   ]

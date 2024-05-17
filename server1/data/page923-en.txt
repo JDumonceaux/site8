@@ -1,0 +1,1 @@
+Avoid attaching event handlers to individual elements within lists. Instead, utilize event delegation by attaching a single event handler to a parent element. This approach reduces the number of event listeners and improves the overall performance of your React application.

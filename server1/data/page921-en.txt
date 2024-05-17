@@ -1,0 +1,12 @@
+*** Needs more
+
+Example:
+<pre><code>
+const MyComponent = ({ onClick }) => {
+  const handleClick = useCallback(() => {
+    onClick();
+  }, [onClick]);
+
+  return <button onClick={handleClick}>Click Me</button>;
+};
+</code></pre>

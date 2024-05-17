@@ -18,7 +18,7 @@ const pageSchema = z.object({
       invalid_type_error: 'Title must be a string',
     })
     .min(1, REQUIRED_FIELD)
-    .max(30, 'Max length exceeded: 30')
+    .max(100, 'Max length exceeded: 100')
     .trim(),
   long_title: z
     .string({
@@ -154,9 +154,17 @@ const usePageEdit = (id: string | undefined) => {
         ...prev,
         [name]: value,
       }));
+
+      if (name === 'name' && value.length > 0 && formValues.to?.length === 0) {
+        const x = value.toLowerCase().replaceAll(' ', '-');
+        setFormValues((prev) => ({
+          ...prev,
+          to: x,
+        }));
+      }
       setIsSaved(false);
     },
-    [setFormValues],
+    [formValues.to?.length, setFormValues],
   );
 
   const splitParent = useCallback(

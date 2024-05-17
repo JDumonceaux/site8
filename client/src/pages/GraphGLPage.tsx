@@ -22,7 +22,6 @@ const GraphGLPage = () => {
         query: listTodos,
       });
       const todos = todoData.data.listTodos.items;
-      console.log('todos:', todos);
       setTodos(todos);
     } catch (err) {
       console.log('error fetching todos');

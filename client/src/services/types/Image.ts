@@ -3,8 +3,11 @@ export type Image = {
   readonly name: string;
   readonly location?: string;
   readonly src?: string;
-  readonly description?: string;
+  readonly folder?: string;
   readonly official_url?: string;
   readonly tags?: string[];
-  readonly childCount?: number;
+  readonly description?: string;
+  readonly edit_date?: Date;
+  readonly create_date?: Date;
+  readonly isMatched?: boolean;
 };

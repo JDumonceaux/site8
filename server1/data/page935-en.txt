@@ -1,0 +1,14 @@
+There are two issues to be concerned with:  1) too much data and 2) too many calls.
+
+When possible, you should strive to return data to the front end in the structure (shape) that is needed for display.  You don't want to perform manipulations and assemble data at the front end - do it earlier in the process.  You don't want to send excess data to your clients.  You don't want to make excess call: common with parent-child relationships.
+
+I believe that .Net introduced the concepts of models.  Multiple models may be used to describe the same data.  You may have a view model which exactly matches all the data that is displayed on the UI - no more, no less.  You may have an add model - which is the data needed to create a new record.  And an edit model - which extends the add model and mostly likely includes an additional ID.  Your delete model is probably just an ID - no more.  
+
+React tends to use a single type or interface to represent all these models.  However, you need to be careful not to include all the data possible: it is just a waste.  
+
+Understandable, API developers tend to give you the whole record - "just in case".  Hopefully, you are able to trim this down in a node.js or other layer to just what you need.
+
+<h2>Too Many Calls</h2>
+The other issue is multiple calls to assemble the data.  This slows everything down - especially for multiple "pages" of data.  
+
+If you're interested, there are tools - such as GraphQL - that will "shape" the data to exactly what is needed.  After defining the schema, GraphQL, returns only the data that is request - with one API vs. multiple.      

@@ -1,0 +1,1 @@
+Functional components have a smaller memory footprint and are faster to render compared to class components. They also promote better code organization and reusability. 

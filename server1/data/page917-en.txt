@@ -1,0 +1,1 @@
+Using index as the key can lead to unexpected behavior and poor performance when adding, removing, or reordering items in the list. Instead, use a unique identifier from your data as the key.

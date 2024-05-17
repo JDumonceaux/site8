@@ -30,7 +30,6 @@ const SubjectMenu = (): JSX.Element => {
       level: number,
       children: React.ReactNode,
     ): JSX.Element | null => {
-      console.log('to', toComplete);
       if (itemType === 'menu') {
         const StyledMenuTitleComponent =
           level === 0

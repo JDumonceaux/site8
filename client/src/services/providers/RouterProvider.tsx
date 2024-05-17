@@ -50,93 +50,34 @@ const router = createBrowserRouter(
         </Route>
 
         {/* 1 - PROGRAMMING */}
-        <Route element={<MainLayout />} path="programming">
-          {/* 1 - CSS */}
-          <Route element={<GenericPage />} path="css">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
-          {/* 8 - Code Solutions */}
-          <Route element={<GenericPage />} path="code/solutions">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
-          {/* 12 = Javascript */}
-          <Route element={<GenericPage />} path="javascript">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
-          {/* 5 - Cheat Sheets */}
-          <Route element={<GenericPage />} path="cheatsheet">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
-          {/* 9 - Patterns */}
-          <Route element={<GenericPage />} path="patterns">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
+        <Route element={<MainLayout />}>
+          <Route element={<GenericPage />} path="/:lang?/programming/*" />
         </Route>
 
         {/* 6 - React */}
-        <Route element={<MainLayout />} path="react">
-          <Route element={<GenericPage />} path="react">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
+        <Route element={<MainLayout />}>
+          <Route element={<GenericPage />} path="/:lang?/react/*" />
         </Route>
 
         {/* 14 = AWS */}
-        <Route element={<MainLayout />} path="aws">
-          <Route element={<GenericPage />} path="aws">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
+        <Route element={<MainLayout />}>
+          <Route element={<GenericPage />} path="/:lang?/aws/*" />
         </Route>
 
-        <Route element={<MainLayout />} path="fun">
-          {/* 10 - Art */}
-          <Route element={<MainLayout />} path="art">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
+        <Route element={<MainLayout />}>
+          <Route element={<TikTokPage />} path="fun/tiktock" />
+          <Route element={<BookmarkPage />} path="fun/bookmarks" />
+          <Route element={<YachtsPage />} path="fun/yachts" />
+          <Route element={<GenericImagePage />} path="fun/images" />
+          <Route element={<PhotoLayout />}>
+            <Route element={<PhotoPage />} path="fun/photos" />
           </Route>
-          {/* 3 - Artist */}
-          <Route element={<GenericPage />} path="artists">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-            <Route element={<TikTokPage />} path="tiktock" />
-          </Route>
-          {/* 4 - General */}
-          <Route element={<PhotoLayout />} path="other">
-            <Route element={<GenericPage />} index />
-            <Route element={<BookmarkPage />} path="bookmarks" />
-            <Route element={<PhotoPage />} path="photos" />
-          </Route>
-          <Route element={<YachtsPage />} path="yachts" />
-          <Route element={<GenericImagePage />} path="images" />
+          <Route element={<YachtsPage />} path="fun/yachts" />
+          <Route element={<GenericPage />} path="/:lang?/fun/*" />
         </Route>
 
-        <Route element={<MainLayout />} path="web">
-          {/* 2 - Design  */}
-          <Route element={<GenericPage />} path="design">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
-          {/* 11 = IDE */}
-          <Route element={<GenericPage />} path="ide">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
-          {/* 13 = Security */}
-          <Route element={<GenericPage />} path="security">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
-          {/* 15 = Maintenance */}
-          <Route element={<GenericPage />} path="maintenance">
-            <Route element={<GenericPage />} index />
-            <Route element={<GenericPage />} path=":id" />
-          </Route>
+        <Route element={<MainLayout />}>
+          <Route element={<GenericPage />} path="/:lang?/web/*" />
         </Route>
 
         {/* ADMIN */}

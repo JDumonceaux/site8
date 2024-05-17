@@ -45,7 +45,7 @@ export class PageService {
     if (Number.isInteger(tempId) && tempId > 0) {
       ret = jsonData.pages?.find((x) => x.id === tempId);
     } else {
-      ret = jsonData.pages?.find((x) => x.url === id);
+      ret = jsonData.pages?.find((x) => x.to === id);
     }
     return ret;
   }
@@ -57,7 +57,7 @@ export class PageService {
     const pageSummary = await this.getMetaData(id);
     if (!pageSummary) {
       return Promise.reject(
-        new Error('PageService getAllData -> Page not found: ${id}'),
+        new Error(`PageService getAllData -> Page not found: ${id}`),
       );
     }
 

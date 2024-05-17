@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios, { isCancel } from 'axios';
 import { httpErrorHandler } from 'utils/errorHandler';
 import { AcceptHeader, PreferHeader } from 'utils';
 
-export const useAxios = <T>(url?: string) => {
+export const useAxios = <T>() => {
   const [data, setData] = useState<T | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -21,8 +21,8 @@ export const useAxios = <T>(url?: string) => {
         responseType: 'json',
         headers: { Accept: AcceptHeader.JSON },
       });
-      const res = await response.data;
-      setData(res);
+
+      setData(response.data);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -32,7 +32,10 @@ export const useAxios = <T>(url?: string) => {
     } finally {
       setIsLoading(false);
     }
-    return undefined;
+    // Cleanup
+    return () => {
+      //
+    };
   };
 
   const postDataAsync = async (url: string, data: T) => {
@@ -48,8 +51,7 @@ export const useAxios = <T>(url?: string) => {
           Accept: AcceptHeader.JSON,
         },
       });
-      const res = await response.data;
-      setData(res);
+      setData(response.data);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -75,8 +77,7 @@ export const useAxios = <T>(url?: string) => {
           Accept: AcceptHeader.JSON,
         },
       });
-      const res = await response.data;
-      setData(res);
+      setData(response.data);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -86,7 +87,6 @@ export const useAxios = <T>(url?: string) => {
     } finally {
       setIsLoading(false);
     }
-    return undefined;
   };
 
   const deleteDataAsync = async (url: string) => {
@@ -98,8 +98,8 @@ export const useAxios = <T>(url?: string) => {
       const response = await axios.delete<T>(url, {
         responseType: 'json',
       });
-      const res = await response.data;
-      setData(res);
+
+      setData(response.data);
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -111,14 +111,6 @@ export const useAxios = <T>(url?: string) => {
     }
     return undefined;
   };
-
-  useEffect(() => {
-    if (!url || url.length === 0) {
-      return;
-    }
-    fetchDataAsync(url);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url]);
 
   return {
     data,

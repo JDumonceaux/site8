@@ -1,0 +1,1 @@
+Pass only the necessary props to your components to minimize unnecessary re-renders.

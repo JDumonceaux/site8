@@ -1,0 +1,1 @@
+By wrapping multiple state updates in a single function call or using the useEffect hook, you can prevent unnecessary renders caused by multiple state updates.

@@ -7,12 +7,10 @@ const useAppSetup = () => {
   const { fetchData: fetchMenuValues } = useMenuValues();
 
   useEffect(() => {
-    console.log('fetchMenu');
     fetchMenu();
   }, [fetchMenu]);
 
   useEffect(() => {
-    console.log('fetchMenuValues');
     fetchMenuValues();
   }, [fetchMenuValues]);
 };

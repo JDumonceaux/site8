@@ -1,3 +1,4 @@
+export * from './AppSettings';
 export * from './Art';
 export * from './ArtItem';
 export * from './Bookmark';

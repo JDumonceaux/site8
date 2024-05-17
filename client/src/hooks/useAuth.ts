@@ -199,7 +199,7 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       const { nextStep } = await autoSignIn();
-      console.log(nextStep);
+
       handleSignInStep(nextStep);
     } catch (error: unknown) {
       handleError(error);

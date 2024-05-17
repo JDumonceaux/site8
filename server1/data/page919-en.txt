@@ -1,0 +1,71 @@
+Using React.Fragment helps to reduce the number of DOM nodes, leading to improved rendering performance.
+
+Example:
+<pre><code>
+const MyComponent = () => {
+  return (
+    <>
+      <div>Element 1</div>
+      <div>Element 2</div>
+      <div>Element 3</div>
+    </>
+  );
+};
+</pre></code>
+
+or, if you need to add a key, then you need to use the longer format:
+<pre><code>
+const MyComponent = () => {
+  return (
+    <React.Fragment>
+      <div>Element 1</div>
+      <div>Element 2</div>
+      <div>Element 3</div>
+    </React.Fragment>
+  );
+};
+</pre></code>
+
+
+JSX requires that you have one parent element.  
+
+JSX complains about this code because there are three top level elements/nodes (i.d. <div>)
+<pre><code>
+const MyComponent = () => {
+  return (
+      <div>Element 1</div>
+      <div>Element 2</div>
+      <div>Element 3</div>
+  );
+};
+</pre></code>
+
+The tendency is to wrap this in a parent div.
+<pre><code>
+const MyComponent = () => {
+  return (
+    <div>
+      <div>Element 1</div>
+      <div>Element 2</div>
+      <div>Element 3</div>
+    </div>
+  );
+};
+</pre></code>
+
+One style of coding is to wrap every component with classNames and other attributes.
+<pre><code>
+const MyComponent = () => {
+  return (
+    <div className="mycomponent" data-testid="mycomponent">
+      <div>Element 1</div>
+      <div>Element 2</div>
+      <div>Element 3</div>
+    </div>
+  );
+};
+</pre></code>
+
+It should be a goal to keep your code as "lite" as possible - refactoring out excess layers of divs and overly complex components.
+
+

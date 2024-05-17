@@ -117,7 +117,7 @@ export class PagesIndexService {
         return nextId;
       } else {
         Logger.error(
-          `PagesIndexService: findFreeIdd -> Error: pages missing from file`,
+          `PagesIndexService: findFreeId -> Error: pages missing from file`,
         );
         return undefined;
       }

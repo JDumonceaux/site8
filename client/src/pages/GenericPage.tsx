@@ -5,7 +5,7 @@ import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { useAxios } from 'hooks/Axios';
 import { useDeferredValue, Suspense } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Page } from 'services/types';
 import { styled } from 'styled-components';
 import { ServiceUrl } from 'utils';
@@ -16,11 +16,8 @@ type GenericPageProps = {
 };
 
 const GenericPage = ({ id, title }: GenericPageProps): JSX.Element => {
-  const routeParams = useParams<{
-    id: string;
-  }>();
-
-  const tempId = id ? id : routeParams.id;
+  const x = useLocation();
+  const tempId = id ? id : x.pathname.split('/').slice(-1);
 
   const { data, isLoading, error } = useAxios<Page>(
     `${ServiceUrl.ENDPOINT_PAGE}/${tempId}`,

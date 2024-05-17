@@ -1,0 +1,9 @@
+Example:
+<pre><code>
+const MyComponent = ({ data }) => {
+  // Only re-renders when the data prop changes
+  return <div>{data}</div>;
+};
+
+export default React.memo(MyComponent);
+</code></pre>

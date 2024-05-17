@@ -1,0 +1,47 @@
+The Adapter pattern is used to convert one structure into other.  Typically, this is used to convert the response from a backend API into the structure needed for the UI.
+
+<a href="https://medium.com/javascript-in-plain-english/how-i-use-adapter-pattern-in-reactjs-cb331e9bef0c">How I Use Adapter Pattern in React</a>
+<a href="https://refactoring.guru/design-patterns/adapter">Refactoring Guru - Adapter Pattern</a>
+
+<pre><code>
+export class Adapter {
+  private static value: unknown;
+
+  static from<Source>(originalData: Source) {
+    this.value = originalData;
+    return this;
+  }
+
+  static to<Input, Output>(mapperFn: (value: Input) => Output) {
+    const transformed = mapperFn(this.value as Input);
+    return transformed;
+  }
+}
+
+type Notification = { 
+  id: string;
+  title: string;
+  body: string;
+  date: string;
+};
+
+export class NotificationAdapter {
+  private  value: Notification;
+
+  constructor(value: Notification) {
+   this.value = value;
+  }
+
+  adapt() {
+    return {
+      id: this.value.id,
+      title: this.value.title,
+      body: this.value.body,
+      date: this.value.date,
+    };
+  }
+
+}
+
+const data = Adapter.from(data).to(item) => new NotificationAdapter(item).adapt();
+</code></pre>

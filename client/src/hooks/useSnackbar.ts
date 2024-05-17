@@ -9,7 +9,7 @@ const useSnackbar = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.snackbar;
-  const data: Snackbar | null = useSelector(selector).snackbarData;
+  const data: Snackbar | null = useSelector(selector).data;
 
   const initialState: Snackbar = useMemo(
     () => ({

@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Snackbar } from 'services/types/Snackbar';
 
 interface SnackbarState {
-  snackbarData: Snackbar | null;
+  data: Snackbar | null;
 }
 
 const initialState: SnackbarState = {
-  snackbarData: null,
+  data: null,
 };
 
 const snackbarSlice = createSlice({
@@ -14,7 +14,7 @@ const snackbarSlice = createSlice({
   initialState,
   reducers: {
     save: (state, action) => {
-      state.snackbarData = action.payload;
+      state.data = action.payload;
     },
   },
 });

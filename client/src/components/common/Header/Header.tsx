@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { APP_NAME } from 'utils/constants';
 import { MenuIcon } from './MenuIcon';
+import { memo } from 'react';
 
 import StyledLink from '../Link/StyledLink/StyledLink';
 import { Avatar } from 'components';
@@ -26,7 +27,7 @@ export const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
   );
 };
 
-export default Header;
+export default memo(Header);
 
 const StyledHeader = styled.header`
   background-color: var(--palette-main-color, #000);

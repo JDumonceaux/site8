@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 
 type Canvas3Props = {
-  draw: () => void;
-  backgroundColor?: string;
-  height?: string;
-  width?: string;
-  fps?: number;
-  establishContext?: (value: CanvasRenderingContext2D | null) => void;
-  establishCanvasWidth?: (width: number) => void;
+  readonly draw: () => void;
+  readonly backgroundColor?: string;
+  readonly height?: string;
+  readonly width?: string;
+  readonly fps?: number;
+  readonly establishContext?: (value: CanvasRenderingContext2D | null) => void;
+  readonly establishCanvasWidth?: (width: number) => void;
 };
 
-export function Canvas3({
+export const Canvas3 = ({
   draw,
   backgroundColor = '#000',
   height = '100%',
@@ -18,7 +18,7 @@ export function Canvas3({
   fps = 15,
   establishContext,
   establishCanvasWidth,
-}: Canvas3Props): JSX.Element {
+}: Canvas3Props): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
@@ -54,7 +54,7 @@ export function Canvas3({
         establishContext(ctx);
       }
     }
-  }, []);
+  }, [establishContext, resizeCanvas]);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -89,13 +89,11 @@ export function Canvas3({
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, [draw, context]);
+  }, [draw, context, fps]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{ width, height, backgroundColor }}>
+    <canvas ref={canvasRef} style={{ width, height, backgroundColor }}>
       Canvas not supported
     </canvas>
   );
-}
+};

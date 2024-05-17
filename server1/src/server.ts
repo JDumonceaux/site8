@@ -11,6 +11,7 @@ import { pagesIndexRouter } from './routes/pagesIndexRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { bookmarksRouter } from './routes/bookmarksRouter.js';
 import { imagesRouter } from './routes/imagesRouter.js';
+import { imageRouter } from './routes/imageRouter.js';
 
 const app = express();
 
@@ -65,6 +66,7 @@ app.use('/api/page', pageRouter);
 app.use('/api/pages', pagesIndexRouter);
 app.use('/api/photos', photosRouter);
 app.use('/api/bookmarks', bookmarksRouter);
+app.use('/api/image', imageRouter);
 app.use('/api/images', imagesRouter);
 app.use('*', (_req: Request, res: Response) => {
   res.status(404).send('API Not Found');

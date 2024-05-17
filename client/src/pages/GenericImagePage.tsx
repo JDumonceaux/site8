@@ -15,8 +15,6 @@ const GenericImagePage = (): JSX.Element => {
     `${ServiceUrl.ENDPOINT_IMAGES}`,
   );
 
-  console.log('data', data);
-
   const deferredData = useDeferredValue<Image[]>(data ? data.items : []);
 
   const pageTitle = 'Images';

@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 
 type Canvas2Props = {
-  backgroundColor?: string;
-  height?: string;
-  width?: string;
+  readonly backgroundColor?: string;
+  readonly height?: string;
+  readonly width?: string;
 };
 
-export function Canvas2({
+export const Canvas2 = ({
   backgroundColor = '#000',
   height = '100%',
   width = '100%',
-}: Canvas2Props): JSX.Element {
+}: Canvas2Props): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
@@ -71,10 +71,8 @@ export function Canvas2({
   }, [draw, context]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{ width, height, backgroundColor }}>
+    <canvas ref={canvasRef} style={{ width, height, backgroundColor }}>
       Canvas not supported
     </canvas>
   );
-}
+};
