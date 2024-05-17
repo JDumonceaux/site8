@@ -17,6 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.9.11",
     "@aws-amplify/ui-react": "^6.1.9",
+    "@radix-ui/react-switch": "^1.0.3",
     "@reduxjs/toolkit": "^2.2.3",
     "aws-amplify": "^6.2.0",
     "axios": "^1.6.8",

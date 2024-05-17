@@ -4,13 +4,16 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Image } from 'services/types';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
+import { Switch } from 'components/primatives/Switch/Switch';
+import { styled } from 'styled-components';
+import { IMAGE_BASE } from 'utils/constants';
 
 // type ImageSelectorProps = {
 //   // readonly data?: BookmarksTags | null;
 // };
 
 export const ImageSelector = (): JSX.Element => {
-  const { data: appData, showUnmatched, setShowUnmatched } = useAppSettings();
+  const { showUnmatched, setShowUnmatched } = useAppSettings();
   const { data, error, isLoading, fetchData } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>(
     undefined,
@@ -20,10 +23,6 @@ export const ImageSelector = (): JSX.Element => {
     fetchData();
   }, [fetchData]);
 
-  useEffect(() => {
-    setShowUnmatched(true);
-  }, [setShowUnmatched]);
-
   const onRefresh = useCallback(() => {
     fetchData();
   }, []);
@@ -32,9 +31,12 @@ export const ImageSelector = (): JSX.Element => {
     setSelectedItem(undefined);
   }, []);
 
-  const onShowUnmatched = useCallback(() => {
-    setShowUnmatched(!appData?.showUnmatched);
-  }, [appData?.showUnmatched, setShowUnmatched]);
+  const onShowUnmatched = useCallback(
+    (checked: boolean) => {
+      setShowUnmatched(checked);
+    },
+    [setShowUnmatched],
+  );
 
   const onSelect = useCallback(
     (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -59,7 +61,6 @@ export const ImageSelector = (): JSX.Element => {
   );
 
   const getFilteredData = useCallback(() => {
-    console.log('id', selectedItem?.id);
     if (selectedItem) {
       return data?.items?.filter((x) => x.id === selectedItem.id) ?? undefined;
     } else if (showUnmatched) {
@@ -71,30 +72,42 @@ export const ImageSelector = (): JSX.Element => {
   const filteredData = getFilteredData();
 
   return (
-    <LoadingWrapper error={error} isLoading={isLoading}>
-      <button onClick={onRefresh} type="button">
-        Refresh
-      </button>
-      <button onClick={onShowAll} type="button">
-        Show All
-      </button>
-      <button onClick={onShowUnmatched} type="button">
-        Unmatched
-      </button>
-
-      {filteredData?.map((item) => (
-        <React.Fragment key={item.id}>
-          <button
-            id={item.id.toString()}
-            onClick={onSelect}
-            onKeyDown={onKeyboardSelect}
-            type="button">
-            <img alt={item.name} src={item.src} />
-          </button>
-        </React.Fragment>
-      ))}
-    </LoadingWrapper>
+    <>
+      <StyledButtonRow>
+        <button onClick={onRefresh} type="button">
+          Refresh
+        </button>
+        <button onClick={onShowAll} type="button">
+          Show All
+        </button>
+        <Switch
+          checked={showUnmatched}
+          defaultChecked={false}
+          id="showUnmatched"
+          label={showUnmatched ? 'Hide Unmatched' : 'Show Unmatched'}
+          onCheckedChange={(e) => onShowUnmatched(e)}
+        />
+      </StyledButtonRow>
+      <LoadingWrapper error={error} isLoading={isLoading}>
+        {filteredData?.map((item) => (
+          <React.Fragment key={item.id}>
+            <button
+              id={item.id.toString()}
+              onClick={onSelect}
+              onKeyDown={onKeyboardSelect}
+              type="button">
+              <img alt={item.name} src={`${IMAGE_BASE}/${item.src}`} />
+            </button>
+          </React.Fragment>
+        ))}
+      </LoadingWrapper>
+    </>
   );
 };
 
 export default ImageSelector;
+
+const StyledButtonRow = styled.div`
+  display: flex;
+  align-items: center;
+`;

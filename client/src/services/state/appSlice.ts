@@ -14,10 +14,9 @@ const initialState: AppState = {
   error: null,
 };
 
-const AppSlice = createSlice({
+const appSlice = createSlice({
   name: 'app',
   initialState,
-
   reducers: {
     save: (state, action) => {
       state.data = action.payload;
@@ -25,4 +24,5 @@ const AppSlice = createSlice({
   },
 });
 
-export default AppSlice.reducer;
+export const { save } = appSlice.actions;
+export default appSlice.reducer;

@@ -1,0 +1,12 @@
+Principals of goo design:
+
+<ol>
+<li>Empathy: Understand your audience.</li>
+<li>Layout: Guide the eye effortlessly across the landscape.</li>
+<li>Essentialism: Simplicity and purpose.</li>
+<li>Guidance: Lead somewhere.</li>
+<li>Aesthetics: Communicate a feeling.</li>
+<li>Novelty:</li>
+<li>Consistency:</li>
+<li>Engagement:</li>
+</ol>

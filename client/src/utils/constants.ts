@@ -52,3 +52,5 @@ export enum ServiceUrl {
 export const REQUIRED_FIELD = 'Required Field';
 
 export const DF_LONG = 'M/d/yyyy h:mm a';
+
+export const IMAGE_BASE = '/images';

@@ -10,7 +10,7 @@ export class ImageService extends ImagesService {
       if (!ret) {
         return Promise.reject(new Error('getItem -> No data found'));
       }
-      return ret.items.find((x) => x.id === id);
+      return ret.items?.find((x) => x.id === id);
     } catch (error) {
       Logger.error(`ImageService: getItem -> ${error}`);
       return undefined;
@@ -31,7 +31,7 @@ export class ImageService extends ImagesService {
 
       const updatedFile: Images = {
         metadata: ret.metadata,
-        items: [...ret.items, { ...data, id: id }],
+        items: [...(ret.items ?? []), { ...data, id: id }],
       };
 
       await this.writeNewFile(updatedFile);
@@ -55,7 +55,7 @@ export class ImageService extends ImagesService {
 
       const updatedFile: Images = {
         metadata: ret.metadata,
-        items: [...updateItems, data],
+        items: [...(updateItems ?? []), data],
       };
 
       await this.writeNewFile(updatedFile);

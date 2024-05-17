@@ -7,4 +7,7 @@ export type Image = {
   readonly official_url?: string;
   readonly tags?: string[];
   readonly childCount?: number;
+  readonly isMatched?: boolean;
+  readonly matchedId?: number;
+  readonly folder?: string;
 };

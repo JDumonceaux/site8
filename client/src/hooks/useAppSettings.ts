@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../services/state/store';
 import { AppSettings } from 'services/types/AppSettings';
-import { save } from '../services/state/snackbarSlice';
+import { save } from '../services/state/appSlice';
 
 const useAppSettings = () => {
   const dispatch = useDispatch<AppDispatch>();
