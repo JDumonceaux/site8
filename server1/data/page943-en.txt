@@ -1,0 +1,5 @@
+ESLint is an important tool in helping you become a better coder: it can enforce specific standards and help avoid errors.
+
+It is important that you set up ESLint early in your project and continue to review the settings.  If you set it up after you've started coding, you'll undoubtably have a lot technical debt to re-work.   
+
+It is also important to remember that ESLint continues to evolve - especially in it's relationship with Prettier.  Prettier does some linting, but is moving away from this - leaving the linting to ESLint.

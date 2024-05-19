@@ -11,14 +11,12 @@ export const Avatar = (): JSX.Element => {
 
   useEffect(() => {
     authFetchAuthSession();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (authorized) {
       authFetchUserAttributes();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authorized]);
 
   return (

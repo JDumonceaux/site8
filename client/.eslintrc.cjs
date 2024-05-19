@@ -32,6 +32,7 @@ module.exports = {
     'jest',
     'react-refresh',
     'prefer-arrow-functions',
+    'eslint-plugin-react-compiler',
   ],
   settings: {
     react: {
@@ -48,6 +49,8 @@ module.exports = {
     },
   },
   rules: {
+    // React Compiler
+    'react-compiler/react-compiler': 'error',
     // Enforce ES5 or ES6 class for React Components
     'react/prefer-es6-class': 'warn',
     // PascalCase file names - warning

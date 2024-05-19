@@ -125,7 +125,6 @@ const usePageEdit = (id: string | undefined) => {
     if (!isNaN(tempId) && tempId > 0) {
       fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${tempId}`);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {

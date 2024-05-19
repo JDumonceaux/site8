@@ -1,0 +1,51 @@
+React is working on creating a new compiler <a href="https://react.dev/learn/react-compiler">React Compiler</a> (05/2024).  The goal of this compiler is to optimize the application - especially in the areas of useMemo, useCallback, and useEffect - hopefully eliminating the need to manually code any of these.
+
+Along with this work, they have released a recommended ESLint Plugin that will work now and help improve your code.  
+
+<a href="https://react.dev/learn/react-compiler#installing-eslint-plugin-react-compiler">ESLint React Compiler Plugin</a>
+
+<h2>Installation</h2>
+Install in the React level of your project - not the node.js level.
+
+<pre><code data-type="terminal">
+npm install eslint-plugin-react-compiler
+</code></pre>
+
+Add to your ESLint config.  In this case, I'm using the .cjs version, but there are versions of this file.
+<pre><code data-file=".eslintrc.cjs">
+module.exports = {
+  plugins: [
+    'eslint-plugin-react-compiler',
+  ],
+  rules: {
+    'react-compiler/react-compiler': "error",
+  },
+}
+</code></pre>
+
+
+<h2>Using with Vite</h2>
+Note: Did not work.  Need to add another library?
+If you use Vite, you can add the plugin to vite-plugin-react:
+<pre><code data-file="vite.config.js">
+// vite.config.js
+const ReactCompilerConfig = { /* ... */ };
+
+export default defineConfig(() => {
+  return {
+    plugins: [
+      react({
+        babel: {
+          plugins: [
+            ["babel-plugin-react-compiler", ReactCompilerConfig],
+          ],
+        },
+      }),
+    ],
+    // ...
+  };
+});
+</code></pre>
+
+<h2>Validation</h2>
+React Devtools (v5.0+) has built-in support for React Compiler and will display a “Memo ✨” badge next to components that have been optimized by the compiler.

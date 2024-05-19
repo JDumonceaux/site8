@@ -115,7 +115,6 @@ export const useGraphQL = <T>(url?: string) => {
       return;
     }
     fetchDataAsync(url);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   return {
