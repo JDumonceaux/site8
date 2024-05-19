@@ -1,5 +1,10 @@
 import { LoadingWrapper } from 'components/common/Loading/LoadingWrapper';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useState,
+} from 'react';
 
 import { Image } from 'services/types';
 import useAppSettings from 'hooks/useAppSettings';
@@ -8,11 +13,13 @@ import { Switch } from 'components/primatives/Switch/Switch';
 import { styled } from 'styled-components';
 import { IMAGE_BASE } from 'utils/constants';
 
-// type ImageSelectorProps = {
-//   // readonly data?: BookmarksTags | null;
-// };
+type ImageSelectorProps = {
+  readonly onSelectImage: (image: Image | undefined) => void;
+};
 
-export const ImageSelector = (): JSX.Element => {
+export const ImageSelector = ({
+  onSelectImage,
+}: ImageSelectorProps): JSX.Element => {
   const { showUnmatched, setShowUnmatched } = useAppSettings();
   const { data, error, isLoading, fetchData } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>(
@@ -43,9 +50,11 @@ export const ImageSelector = (): JSX.Element => {
       event.preventDefault();
       event.stopPropagation();
       const id = Number(event.currentTarget.id);
-      setSelectedItem(data?.items?.find((x) => x.id === id) ?? undefined);
+      const item = data?.items?.find((x) => x.id === id) ?? undefined;
+      setSelectedItem(item);
+      onSelectImage(item);
     },
-    [data?.items],
+    [data?.items, onSelectImage],
   );
 
   const onKeyboardSelect = useCallback(
@@ -71,6 +80,8 @@ export const ImageSelector = (): JSX.Element => {
 
   const filteredData = getFilteredData();
 
+  const itemCount = useDeferredValue(filteredData?.length);
+
   return (
     <>
       <StyledButtonRow>
@@ -82,11 +93,11 @@ export const ImageSelector = (): JSX.Element => {
         </button>
         <Switch
           checked={showUnmatched}
-          defaultChecked={false}
           id="showUnmatched"
           label={showUnmatched ? 'Hide Unmatched' : 'Show Unmatched'}
           onCheckedChange={(e) => onShowUnmatched(e)}
         />
+        <div>{itemCount}</div>
       </StyledButtonRow>
       <LoadingWrapper error={error} isLoading={isLoading}>
         {filteredData?.map((item) => (
@@ -110,4 +121,11 @@ export default ImageSelector;
 const StyledButtonRow = styled.div`
   display: flex;
   align-items: center;
+  button {
+    margin-right: 20px;
+    font-size: 0.8rem;
+  }
+  label {
+    font-size: 0.8rem;
+  }
 `;

@@ -1,4 +1,4 @@
-import { readdirSync, statSync } from 'fs';
+import { readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 import { Logger } from '../utils/Logger.js';
 
@@ -31,22 +31,24 @@ export class ImagesFileService {
         const newFile = file.replaceAll('\\', '/');
         return {
           id: index,
-          name: path.basename(file),
+          fileName: path.basename(file),
           folder: path.dirname(file) === '.' ? '' : path.dirname(file),
           src: newFile,
         };
       }) as Image[];
 
+      const filteredImages = ret.filter((x) => x.folder != 'site');
+
       const results: Images = {
         metadata: { title: 'Images' },
-        items: ret,
+        items: filteredImages,
       };
 
       const x = await this.matchItems(results.items);
 
       return { ...results, items: x };
     } catch (error) {
-      Logger.error(`ImagesService: getItems -> ${error}`);
+      Logger.error(`ImagesFileService: getItems -> ${error}`);
       return undefined;
     }
   }
@@ -72,8 +74,33 @@ export class ImagesFileService {
       });
       return ret;
     } catch (error) {
-      Logger.error(`ImagesService: getItems -> ${error}`);
+      Logger.error(`ImagesFileService: getItems -> ${error}`);
       return undefined;
+    }
+  }
+
+  public async fixNames(): Promise<boolean> {
+    try {
+      // All the files and all the directories
+      // If encoding is missing, returns buffer vs. strings
+      const items = readdirSync(this.directoryPath, {
+        encoding: 'utf8',
+        recursive: true,
+      });
+
+      items.forEach((item) => {
+        const itemPath = path.join(this.directoryPath, item);
+        const stats = statSync(itemPath);
+        if (stats.isFile()) {
+          console.log(item);
+          renameSync(itemPath, itemPath.toLowerCase());
+        }
+      });
+
+      return true;
+    } catch (error) {
+      Logger.error(`ImagesFileService: fixNames -> ${error}`);
+      return false;
     }
   }
 }

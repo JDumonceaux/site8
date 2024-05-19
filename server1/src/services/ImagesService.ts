@@ -79,4 +79,45 @@ export class ImagesService {
       return undefined;
     }
   }
+
+  public async fixNames(): Promise<boolean> {
+    try {
+      const item = await this.getItems();
+
+      const fixedItems = item?.items?.map((x) => ({
+        ...x,
+        src: x.src ? x.src.toLowerCase() : x.src,
+        fileName: x.fileName ? x.fileName.toLowerCase() : x.fileName,
+      }));
+
+      const data: Images = {
+        metadata: item?.metadata ?? { title: 'Images' },
+        items: fixedItems,
+      };
+
+      await this.writeNewFile(data);
+      return true;
+    } catch (error) {
+      Logger.error(`ImagesService: fixNames -> ${error}`);
+      return false;
+    }
+  }
+
+  public async listDuplicates(): Promise<string[] | string | undefined> {
+    try {
+      const item = await this.getItems();
+
+      const duplicates = item?.items
+        ?.map((x) => x.fileName)
+        .filter((x, i, a) => a.indexOf(x) !== i);
+
+      // Filter out null
+      const filtered = duplicates?.filter((x) => x);
+
+      return filtered && filtered.length > 0 ? filtered : 'No duplicates found';
+    } catch (error) {
+      Logger.error(`ImagesService: listDuplicates -> ${error}`);
+      return 'No duplicates found';
+    }
+  }
 }

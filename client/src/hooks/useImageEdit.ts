@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'services/types/Image';
-import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
+import { DF_LONG, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 
@@ -17,9 +17,9 @@ const pageSchema = z.object({
       required_error: 'Short Title is required.',
       invalid_type_error: 'Title must be a string',
     })
-    .min(1, REQUIRED_FIELD)
     .max(100, 'Max length exceeded: 100')
-    .trim(),
+    .trim()
+    .optional(),
   location: z
     .string({
       invalid_type_error: 'Location must be a string',
@@ -27,6 +27,7 @@ const pageSchema = z.object({
     .max(250)
     .trim()
     .optional(),
+  fileName: z.string().trim(),
   src: z.string().trim().optional(),
   folder: z.string().trim().optional(),
   official_url: z.string().trim().optional(),
@@ -45,6 +46,7 @@ const useImageEdit = (id: string | undefined) => {
       id: 0,
       name: '',
       location: '',
+      fileName: '',
       src: '',
       folder: '',
       official_url: '',
@@ -75,6 +77,7 @@ const useImageEdit = (id: string | undefined) => {
         const item: FormValues = {
           id: items.id,
           name: items.name ?? '',
+          fileName: items.fileName ?? '',
           src: items.src ?? '',
           folder: items.folder ?? '',
           official_url: items.official_url ?? '',
@@ -105,7 +108,7 @@ const useImageEdit = (id: string | undefined) => {
   useEffect(() => {
     const tempId = parseInt(id ?? '');
     if (!isNaN(tempId) && tempId > 0) {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${tempId}`);
+      fetchData(`${ServiceUrl.ENDPOINT_IMAGES}/${tempId}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -161,9 +164,9 @@ const useImageEdit = (id: string | undefined) => {
               create_date: getDateTime(create_date) ?? new Date(),
             };
       if (data.id > 0) {
-        await patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, data);
+        await patchData(`${ServiceUrl.ENDPOINT_IMAGE}`, data);
       } else {
-        await postData(`${ServiceUrl.ENDPOINT_IMAGES}`, data);
+        await postData(`${ServiceUrl.ENDPOINT_IMAGE}`, data);
       }
       return true;
     },
@@ -221,6 +224,20 @@ const useImageEdit = (id: string | undefined) => {
     [getFieldErrors, hasError, formValues],
   );
 
+  const handleChangeImage = useCallback(
+    (item: Image | undefined) => {
+      setFormValues((prev) => ({
+        ...prev,
+        fileName: item?.fileName ?? '',
+        src: item?.src ?? '',
+        folder: item?.folder ?? '',
+      }));
+
+      setIsSaved(false);
+    },
+    [setFormValues],
+  );
+
   return useMemo(
     () => ({
       pageSchema,
@@ -240,6 +257,8 @@ const useImageEdit = (id: string | undefined) => {
       isLoading,
       error,
       isSaved,
+
+      handleChangeImage,
     }),
     [
       formValues,
@@ -257,6 +276,7 @@ const useImageEdit = (id: string | undefined) => {
       isLoading,
       error,
       isSaved,
+      handleChangeImage,
     ],
   );
 };

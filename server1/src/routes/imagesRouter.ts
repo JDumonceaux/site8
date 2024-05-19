@@ -21,7 +21,39 @@ imagesRouter.get('/scan', async (_req: Request, res: Response) => {
     const images = await new ImagesFileService().getItems();
     res.json(images);
   } catch (error) {
-    Logger.error(`imagesRouter: get -> Error: ${error}`);
+    Logger.error(`imagesRouter: scan -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+imagesRouter.get('/fix-file-names', async (_req: Request, res: Response) => {
+  try {
+    //const ret = await new ImagesFileService().fixNames();
+    const ret = true;
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`imagesRouter: fixNames -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+imagesRouter.get('/fix-index', async (_req: Request, res: Response) => {
+  try {
+    //const ret = await new ImagesService().fixNames();
+    const ret = true;
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`imagesRouter: fixNames -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+imagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
+  try {
+    const ret = await new ImagesService().listDuplicates();
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`imagesRouter: listDuplicates -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

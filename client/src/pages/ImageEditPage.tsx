@@ -8,6 +8,7 @@ import { ModalProcessing } from 'components/common/ModalProcessing';
 import { TextInput } from 'components/form/input';
 
 import useSnackbar from 'hooks/useSnackbar';
+import { Image } from 'services/types';
 
 import { TextArea } from 'components/form/input/TextArea';
 import { Button } from 'components/form/Button';
@@ -34,6 +35,7 @@ const ImageEditImage = (): JSX.Element => {
     handleReset,
     hasError,
     submitForm,
+    handleChangeImage,
   } = useImageEdit(params.id);
   const { setSnackbarMessage } = useSnackbar();
 
@@ -59,6 +61,13 @@ const ImageEditImage = (): JSX.Element => {
       onClear();
     },
     [onClear],
+  );
+
+  const handleSelectImage = useCallback(
+    (item: Image | undefined) => {
+      handleChangeImage(item);
+    },
+    [handleChangeImage],
   );
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
@@ -141,6 +150,21 @@ const ImageEditImage = (): JSX.Element => {
                     required={true}
                     spellCheck={true}
                     value={formValues.location}
+                    //ref={focusElement}
+                  />
+                  <TextInput
+                    autoCapitalize="off"
+                    enterKeyHint="next"
+                    errorText={getFieldErrors('fileName')}
+                    errorTextShort="Please enter a File Name"
+                    hasError={hasError('fileName')}
+                    id="fileName"
+                    inputMode="text"
+                    label="File Name"
+                    onChange={handleChange}
+                    required={true}
+                    spellCheck={true}
+                    value={formValues.fileName}
                     //ref={focusElement}
                   />
                   <TextInput
@@ -237,7 +261,7 @@ const ImageEditImage = (): JSX.Element => {
                 </form>
               </FormContainer>
               <ImageContainer>
-                <ImageSelector />
+                <ImageSelector onSelectImage={(e) => handleSelectImage(e)} />
               </ImageContainer>
             </StyledContainer>
           </LoadingWrapper>

@@ -52,7 +52,7 @@ const useAppSettings = () => {
     });
   }, [initialState, updateAppSettingsDispatch]);
 
-  const showUnmatched = data?.showUnmatched || false;
+  const showUnmatched = data?.showUnmatched || true;
 
   return {
     data: data,

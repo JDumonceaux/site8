@@ -29,13 +29,12 @@ const StyledWrapper = styled.div`
 const StyledLabel = styled.label`
   padding-fight: 15px;
   color: var(--palette-text);
-  font-size: 1rem;
-  line-height: 1;
+  font-size: inherit;
 `;
 const StyledSwitchRoot = styled(RadixSwitch.Root)`
   width: 42px;
   height: 25px;
-  background-color: var(--black-a9);
+  background-color: #dcdcdc;
   border-radius: 9999px;
   position: relative;
   box-shadow: 0 2px 10px #dcdcdc;
