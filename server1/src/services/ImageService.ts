@@ -2,7 +2,7 @@ import { Logger } from '../utils/Logger.js';
 import { Image } from 'types/Image.js';
 import { ImagesService } from './ImagesService.js';
 import { Images } from 'types/Images.js';
-import { removeEmptyAttributes, sorteObjectKeys } from 'utils/objectUtil.js';
+import { removeEmptyAttributes, sorteObjectKeys } from '../utils/objectUtil.js';
 
 export class ImageService extends ImagesService {
   public async getItem(id: number): Promise<Image | undefined> {
