@@ -2,6 +2,7 @@ import { Logger } from '../utils/Logger.js';
 import { Image } from 'types/Image.js';
 import { ImagesService } from './ImagesService.js';
 import { Images } from 'types/Images.js';
+import { removeEmptyAttributes, sorteObjectKeys } from 'utils/objectUtil.js';
 
 export class ImageService extends ImagesService {
   public async getItem(id: number): Promise<Image | undefined> {
@@ -14,6 +15,17 @@ export class ImageService extends ImagesService {
     } catch (error) {
       Logger.error(`ImageService: getItem -> ${error}`);
       return undefined;
+    }
+  }
+
+  public cleanUpData(data: Image) {
+    try {
+      const cleanedData = removeEmptyAttributes<Image>(data);
+      const sortedData = sorteObjectKeys<Image>(cleanedData);
+      const [id, ...rest] = sortedData;
+      return { id, ...rest };
+    } catch (error) {
+      Logger.error(`ImageService: cleanUpData -> ${error}`);
     }
   }
 
@@ -31,7 +43,7 @@ export class ImageService extends ImagesService {
 
       const updatedFile: Images = {
         metadata: ret.metadata,
-        items: [...(ret.items ?? []), { ...data, id: id }],
+        items: [...(ret.items ?? []), this.cleanUpData(data)],
       };
 
       await this.writeNewFile(updatedFile);
@@ -55,7 +67,7 @@ export class ImageService extends ImagesService {
 
       const updatedFile: Images = {
         metadata: ret.metadata,
-        items: [...(updateItems ?? []), data],
+        items: [...(updateItems ?? []), this.cleanUpData(data)],
       };
 
       await this.writeNewFile(updatedFile);
