@@ -70,17 +70,20 @@ export const ImageSelector = ({
   );
 
   const getFilteredData = useCallback(() => {
-    if (selectedItem) {
-      return data?.items?.filter((x) => x.id === selectedItem.id) ?? undefined;
-    } else if (showUnmatched) {
-      return data?.items.filter((x) => !x.isMatched);
+    if (!data) {
+      return undefined;
     }
-    return data?.items;
+    if (selectedItem) {
+      return data.items?.filter((x) => x.id === selectedItem.id) ?? undefined;
+    } else if (showUnmatched) {
+      return data.items?.filter((x) => !x.isMatched);
+    }
+    return data.items;
   }, [data?.items, selectedItem, showUnmatched]);
 
   const filteredData = getFilteredData();
 
-  const itemCount = useDeferredValue(filteredData?.length);
+  const itemCount = useDeferredValue(filteredData?.length ?? 0);
 
   return (
     <>

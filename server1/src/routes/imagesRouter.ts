@@ -18,7 +18,7 @@ imagesRouter.get('/', async (_req: Request, res: Response) => {
 
 imagesRouter.get('/scan', async (_req: Request, res: Response) => {
   try {
-    const images = await new ImagesFileService().getItems();
+    const images = await new ImagesFileService().getMatchedItems();
     res.json(images);
   } catch (error) {
     Logger.error(`imagesRouter: scan -> Error: ${error}`);

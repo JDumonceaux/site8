@@ -11,7 +11,20 @@ export class ImagesFileService {
     'C:\\Users\\jdumo\\Documents\\0Projects\\site8\\client\\public\\images';
 
   // Get all data
-  public async getItems(): Promise<Images | undefined> {
+  public async getMatchedItems(): Promise<Images | undefined> {
+    try {
+      const items = await this.getItemsFromDirectory();
+      const x = await this.matchItems(items?.items);
+
+      return { metadata: { title: 'Images' }, items: x };
+    } catch (error) {
+      Logger.error(`ImagesFileService: getItems -> ${error}`);
+      return undefined;
+    }
+  }
+
+  // Get all data
+  private async getItemsFromDirectory(): Promise<Images | undefined> {
     try {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
@@ -27,6 +40,7 @@ export class ImagesFileService {
         return stats.isFile();
       });
 
+      // Return a list of images
       const ret: Image[] = files.map((file, index) => {
         const newFile = file.replaceAll('\\', '/');
         return {
@@ -37,23 +51,17 @@ export class ImagesFileService {
         };
       }) as Image[];
 
+      // Filter out 'site' folder
       const filteredImages = ret.filter((x) => x.folder != 'site');
 
-      const results: Images = {
-        metadata: { title: 'Images' },
-        items: filteredImages,
-      };
-
-      const x = await this.matchItems(results.items);
-
-      return { ...results, items: x };
+      return { metadata: { title: 'Images' }, items: filteredImages };
     } catch (error) {
       Logger.error(`ImagesFileService: getItems -> ${error}`);
       return undefined;
     }
   }
 
-  public async matchItems(
+  private async matchItems(
     items: Image[] | undefined,
   ): Promise<Image[] | undefined> {
     try {
@@ -65,16 +73,18 @@ export class ImagesFileService {
       }
 
       const ret = items?.map((item) => {
-        const matched = data?.items?.find((x) => x.src === item.src);
+        const matched = item.src
+          ? data.items?.find((x) => x.src === item.src)
+          : false;
         return {
           ...item,
-          isMatched: matched ? true : false,
+          isMatched: !!matched,
           matchedId: matched ? matched?.id : 0,
         };
       });
       return ret;
     } catch (error) {
-      Logger.error(`ImagesFileService: getItems -> ${error}`);
+      Logger.error(`ImagesFileService: matchItems -> ${error}`);
       return undefined;
     }
   }
