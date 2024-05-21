@@ -3,15 +3,17 @@ import { Meta, PageTitle, LoadingWrapper } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { BookmarkTags } from 'components/custom/BookmarksTags';
 import { useAxios } from 'hooks/Axios';
-import { useDeferredValue } from 'react';
+import { useDeferredValue, useEffect } from 'react';
 import { BookmarksTags } from 'services/types';
 import { ServiceUrl } from 'utils';
 
 const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
-  const { data, error, isLoading } = useAxios<BookmarksTags>(
-    `${ServiceUrl.ENDPOINT_BOOKMARKS}`,
-  );
+  const { data, error, isLoading, fetchData } = useAxios<BookmarksTags>();
+  useEffect(() => {
+    fetchData(`${ServiceUrl.ENDPOINT_BOOKMARKS}`);
+  }, []);
+
   const deferredData = useDeferredValue(data);
 
   return (

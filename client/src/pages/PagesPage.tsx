@@ -1,5 +1,5 @@
 'use client';
-import React, { useDeferredValue } from 'react';
+import React, { useDeferredValue, useEffect } from 'react';
 
 import { useAxios } from 'hooks/Axios';
 import { ServiceUrl } from 'utils';
@@ -9,11 +9,12 @@ import { Meta, LoadingWrapper, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const PagesPage = (): JSX.Element => {
-  const { data, isLoading, error } = useAxios<Pages>(
-    `${ServiceUrl.ENDPOINT_MENUS}`,
-  );
-
+  const { data, isLoading, error, fetchData } = useAxios<Pages>();
   const deferredData = useDeferredValue(data);
+
+  useEffect(() => {
+    fetchData(`${ServiceUrl.ENDPOINT_MENUS}`);
+  }, []);
 
   return (
     <>

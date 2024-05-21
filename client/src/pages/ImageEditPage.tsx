@@ -1,7 +1,7 @@
 'use client';
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TwoColumn } from 'components/ui/TwoColumn';
+
 import useImageEdit from 'hooks/useImageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 
@@ -29,7 +29,6 @@ const ImageEditImage = (): JSX.Element => {
     error,
     isSaved,
     getFieldErrors,
-    handleCancel,
     handleChange,
     handleClear: onClear,
     handleReset,
@@ -79,6 +78,28 @@ const ImageEditImage = (): JSX.Element => {
         <StyledMain.Section>
           <PageTitle title={title}>
             <StyledMenu>
+              <li>
+                <StyledLink
+                  data-testid="nav-first"
+                  to="/admin/image/edit/first">
+                  First
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink data-testid="nav-prev" to="/admin/image/edit/prev">
+                  Prev
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink data-testid="nav-next" to="/admin/image/edit/next">
+                  Next
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink data-testid="nav-last" to="/admin/image/edit/last">
+                  Last
+                </StyledLink>
+              </li>
               {!isSaved ? (
                 <li>
                   <StyledPlainButton
@@ -247,17 +268,10 @@ const ImageEditImage = (): JSX.Element => {
                     value={formValues.edit_date}
                     // required={true}
                   />
-                  <TwoColumn includeGap includeMargin>
-                    <Button
-                      id="cancel"
-                      onClick={handleCancel}
-                      variant="secondary">
-                      Cancel
-                    </Button>
-                    <Button id="submit" type="submit">
-                      {isProcessing ? 'Processing' : 'Submit'}
-                    </Button>
-                  </TwoColumn>
+
+                  <Button id="submit" type="submit">
+                    {isProcessing ? 'Processing' : 'Submit'}
+                  </Button>
                 </form>
               </FormContainer>
               <ImageContainer>

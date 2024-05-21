@@ -38,39 +38,48 @@ const pageSchema = z.object({
 });
 
 const useImageEdit = (id: string | undefined) => {
+  // Use Axios to fetch data
+  const { data, isLoading, error, fetchData, patchData, postData } =
+    useAxios<Image>();
+  // Create a type from the schema
   type FormValues = z.infer<typeof pageSchema>;
   type keys = keyof FormValues;
+  // Current Item
+  const [currentId, setCurrentId] = useState<number>(0);
+  // Current Item
+  const [currentAction, setCurrentAction] = useState<string | undefined>(
+    undefined,
+  );
+  // Does the data need to be saved?
+  const [isSaved, setIsSaved] = useState<boolean>(true);
+  // Is the form saving?
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
   // Return default form values
   const defaultFormValues: FormValues = useMemo(
     () => ({
       id: 0,
       name: '',
-      location: '',
       fileName: '',
       src: '',
       folder: '',
       official_url: '',
-      tags: '',
       description: '',
+      location: '',
+      tags: '',
       edit_date: format(new Date(), DF_LONG),
       create_date: format(new Date(), DF_LONG),
     }),
     [],
   );
-
-  const [isSaved, setIsSaved] = useState<boolean>(true);
-
+  // Create a form
   const { formValues, setFormValues, setFieldValue, errors, setErrors } =
     useForm<FormValues>(defaultFormValues);
+  // Keep a copy of the form values to reset
+  const [originalValues, setOriginalValues] = useState<Image | undefined>(
+    undefined,
+  );
 
-  const [resetFormValues, setResetFormValues] = useState<
-    FormValues | undefined
-  >(undefined);
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-
-  const { data, isLoading, error, fetchData, patchData, postData } =
-    useAxios<Image>();
-
+  // Update the form values from the data
   const updateFormValues = useCallback(
     (items: Image | undefined | null) => {
       if (items) {
@@ -91,46 +100,83 @@ const useImageEdit = (id: string | undefined) => {
             (items.create_date && format(items.create_date, DF_LONG)) ??
             format(new Date(), DF_LONG),
         };
-        setResetFormValues(item);
         setFormValues(item);
       }
     },
     [setFormValues],
   );
 
-  useEffect(() => {
-    setFormValues(defaultFormValues);
-    if (!id) {
-      return;
-    }
-  }, [defaultFormValues, id, setFormValues]);
+  console.log('useImageEdit: id:', id);
 
   useEffect(() => {
-    const tempId = parseInt(id ?? '');
-    if (!isNaN(tempId) && tempId > 0) {
-      fetchData(`${ServiceUrl.ENDPOINT_IMAGES}/${tempId}`);
+    console.log('x1');
+    if (id) {
+      console.log('x2');
+      const tempId = parseInt(id ?? '');
+      if (!isNaN(tempId) && tempId > 0) {
+        setCurrentId(tempId);
+      }
+      console.log('x3');
+      if (['first', 'last', 'next', 'prev'].includes(id)) {
+        console.log('x4');
+        setCurrentAction(id);
+      }
     }
   }, [id]);
 
+  // Fetch data when currentId changes
+  useEffect(() => {
+    if (currentId > 0) {
+      fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}`);
+    }
+  }, [currentId]);
+
+  useEffect(() => {
+    if (currentAction) {
+      fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}/${currentAction}`);
+    }
+  }, [currentAction]);
+
+  // Update the form values when the data changes
   useEffect(() => {
     updateFormValues(data);
+    setOriginalValues(data);
   }, [data, updateFormValues]);
 
+  // Validate the form
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(pageSchema, formValues);
     setErrors(result.errorFormatted);
-
     return result.success;
   }, [formValues, setErrors]);
 
-  const handleCancel = useCallback(() => {
+  // Handle reset form
+  const resetForm = useCallback(() => {
+    updateFormValues(originalValues);
+    setIsSaved(true);
+    setIsProcessing(false);
+    setErrors(null);
+  }, [originalValues, setFormValues]);
+
+  // Handle clear form
+  const clearForm = useCallback(() => {
     setFormValues(defaultFormValues);
+    setIsSaved(true);
+    setIsProcessing(false);
+    setErrors(null);
   }, [defaultFormValues, setFormValues]);
 
-  const handleReset = useCallback(() => {
-    setFormValues(resetFormValues ?? defaultFormValues);
-  }, [defaultFormValues, resetFormValues, setFormValues]);
+  // Handle clear form
+  const handleClear = useCallback(() => {
+    clearForm();
+  }, []);
 
+  // Handle form reset
+  const handleReset = useCallback(() => {
+    resetForm();
+  }, []);
+
+  // Hanlde field change
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = event.target;
@@ -248,11 +294,10 @@ const useImageEdit = (id: string | undefined) => {
       setFormValues,
       setFieldValue,
       setId,
-      handleCancel,
-      handleClear: handleCancel,
+      handleClear,
       handleChange,
-      submitForm,
       handleReset,
+      submitForm,
       isLoading,
       error,
       isSaved,
@@ -268,7 +313,7 @@ const useImageEdit = (id: string | undefined) => {
       setFormValues,
       setFieldValue,
       setId,
-      handleCancel,
+      handleClear,
       handleChange,
       submitForm,
       handleReset,

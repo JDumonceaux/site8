@@ -1,5 +1,5 @@
 'use client';
-import { useDeferredValue } from 'react';
+import { useDeferredValue, useEffect } from 'react';
 
 import { useAxios } from 'hooks/Axios';
 import { ServiceUrl } from 'utils';
@@ -8,10 +8,12 @@ import { Meta, PageTitle, LoadingWrapper } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const PhotoPage = (): JSX.Element => {
-  const { data, isLoading, error } = useAxios<Photos>(
-    `${ServiceUrl.ENDPOINT_PHOTOS}`,
-  );
+  const { data, isLoading, error, fetchData } = useAxios<Photos>();
   const deferredData = useDeferredValue(data);
+
+  useEffect(() => {
+    fetchData(`${ServiceUrl.ENDPOINT_PHOTOS}`);
+  }, []);
 
   return (
     <>

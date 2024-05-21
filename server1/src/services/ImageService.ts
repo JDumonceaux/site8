@@ -21,7 +21,6 @@ export class ImageService extends ImagesService {
   public cleanUpData(data: Image): Image {
     try {
       const cleanedData: Image = removeEmptyAttributes<Image>(data);
-      console.log('cleanData', cleanedData);
       const sortedData: Image = sorteObjectKeys<Image>(cleanedData);
       const { id, ...rest } = sortedData;
       return { id, ...rest };
@@ -35,12 +34,13 @@ export class ImageService extends ImagesService {
     Logger.info(`ImageService: addItem -> `);
 
     try {
+      // Clean up the data
       const updatedItem = this.cleanUpData(data);
-
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
 
+      // Get the current file data
       const ret = await this.getItems();
       if (!ret) {
         throw new Error('addItem -> No data found');
@@ -53,6 +53,7 @@ export class ImageService extends ImagesService {
       const { id, ...rest } = updatedItem;
       const newItem = { id: idNew, ...rest };
 
+      // Save the new item
       const updatedFile: Images = {
         metadata: ret.metadata,
         items: [...(ret.items ?? []), newItem],

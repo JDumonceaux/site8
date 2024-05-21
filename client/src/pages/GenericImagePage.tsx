@@ -1,6 +1,6 @@
 'use client';
 import { styled } from 'styled-components';
-import { Suspense, useDeferredValue } from 'react';
+import { Suspense, useDeferredValue, useEffect } from 'react';
 
 import { LoadingWrapper, Meta, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
@@ -11,11 +11,13 @@ import { Image } from 'services/types/Image';
 import { Images } from 'services/types/Images';
 
 const GenericImagePage = (): JSX.Element => {
-  const { data, isLoading, error } = useAxios<Images>(
-    `${ServiceUrl.ENDPOINT_IMAGES}`,
-  );
+  const { data, isLoading, error, fetchData } = useAxios<Images>();
 
   const deferredData = useDeferredValue<Image[]>(data ? data.items : []);
+
+  useEffect(() => {
+    fetchData(`${ServiceUrl.ENDPOINT_IMAGES}`);
+  }, []);
 
   const pageTitle = 'Images';
   const imagePath = '/images/like/';

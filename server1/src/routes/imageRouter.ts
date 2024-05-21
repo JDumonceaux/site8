@@ -4,8 +4,57 @@ import { Logger } from '../utils/Logger.js';
 import { PreferHeader, Responses, Errors } from '../utils/Constants.js';
 import { Image } from '../types/Image.js';
 import { ImageService } from '../services/ImageService.js';
+import { ImagesService } from '../services/ImagesService.js';
 
 export const imageRouter = express.Router();
+
+imageRouter.get('/:id', async (req: Request, res: Response) => {
+  Logger.info(`imageRouter: get Id->`);
+
+  try {
+    const images = await new ImagesService().getItems();
+    const ret = images?.items?.find((x) => x.id === parseInt(req.params.id));
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`imageRouter: get -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
+
+imageRouter.get('/:id/:action', async (req: Request, res: Response) => {
+  Logger.info(`imageRouter: get Id Action ->`);
+
+  try {
+    const images = await new ImagesService().getItems();
+    const action = req.params.action;
+    const items = images?.items;
+
+    const find = () => {
+      if (items) {
+        const currIndex = items.findIndex(
+          (x) => x.id > parseInt(req.params.id),
+        );
+        switch (action) {
+          case 'first':
+            return items.at(0);
+          case 'next':
+            return items.at(currIndex + 1);
+          case 'prev':
+            return items.at(currIndex - 1);
+          case 'last':
+            return items.at(-1);
+          default:
+            return undefined;
+        }
+      }
+    };
+    const ret = find();
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`imageRouter: get -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
 
 // Add new item
 imageRouter.post('/', async (req: Request, res: Response) => {

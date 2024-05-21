@@ -16,17 +16,6 @@ export const useForm = <T>(defaultFormValues: T) => {
     [setFormValues],
   );
 
-  // const hasError = (fieldName: keys) => {
-  //   return getFieldErrors(fieldName) ? false : true;
-  // };
-
-  // const getFieldErrors = useCallback(
-  //   (fieldName: keys) => {
-  //     return errors && errors[fieldName]?._errors;
-  //   },
-  //   [errors],
-  // );
-
   return {
     setFormValues,
     formValues,

@@ -58,9 +58,9 @@ export class ImagesService {
         // Start with the first id in the sorted array
         let nextId = sortedArray[0].id;
         // Iterate through the array to find the missing id
-        for (let i = 0; i < sortedArray.length; i++) {
+        for (const element of sortedArray) {
           // Check if the current object's id is not equal to the nextId
-          if (sortedArray[i].id !== nextId) {
+          if (element.id !== nextId) {
             return nextId; // Found the gap
           }
           nextId++; // Move to the next expected id

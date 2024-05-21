@@ -1,5 +1,5 @@
 'use client';
-import { Suspense, useDeferredValue } from 'react';
+import { Suspense, useDeferredValue, useEffect } from 'react';
 import { ServiceUrl } from 'utils';
 import { Page } from 'services/types/Page';
 
@@ -18,11 +18,14 @@ type TikTokPageProps = {
 const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
   const tempId = 4000;
   //   id && id > 0 ? id : routeParams.id ? parseInt(routeParams.id, 10) : 0;
-  const { data, isLoading, error } = useAxios<Page>(
-    tempId && tempId > 0 ? `${ServiceUrl.ENDPOINT_PAGE}/${tempId}` : undefined,
-  );
-
+  const { data, isLoading, error } = useAxios<Page>();
   const deferredData = useDeferredValue(data);
+
+  useEffect(() => {
+    if (tempId) {
+      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${tempId}`);
+    }
+  }, []);
 
   const pageTitle = deferredData?.long_title ?? title;
   return (
@@ -59,3 +62,6 @@ const StyledSection = styled.section`
     }
   }
 `;
+function fetchData(arg0: string) {
+  throw new Error('Function not implemented.');
+}
