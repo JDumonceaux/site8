@@ -36,6 +36,7 @@ const ImageEditImage = (): JSX.Element => {
     submitForm,
     handleChangeImage,
   } = useImageEdit(params.id);
+
   const { setSnackbarMessage } = useSnackbar();
 
   const handleSubmit = useCallback(

@@ -1,7 +1,6 @@
 'use client';
 import { useCallback, useState, useTransition } from 'react';
 import { useParams } from 'react-router-dom';
-import { TwoColumn } from 'components/ui/TwoColumn';
 import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { TextInput } from 'components/form/input';
@@ -26,13 +25,14 @@ const PageEditPage = (): JSX.Element => {
     error,
     isSaved,
     getFieldErrors,
-    handleCancel,
     handleChange,
-    handleClear: onClear,
     handleReset,
+    handleClear: onClear,
     hasError,
     submitForm,
+    setFormValues,
   } = usePageEdit(params.id);
+
   const { setSnackbarMessage } = useSnackbar();
 
   const handleSubmit = useCallback(
@@ -52,6 +52,16 @@ const PageEditPage = (): JSX.Element => {
     [startTransition, setSnackbarMessage, submitForm, error],
   );
 
+  const handeOnBlur = useCallback(() => {
+    if (formValues.name.length > 0 && formValues.to?.length === 0) {
+      const x = formValues.name.toLowerCase().replaceAll(' ', '-');
+      setFormValues((prev) => ({
+        ...prev,
+        to: x,
+      }));
+    }
+  }, [startTransition, setSnackbarMessage, submitForm, error]);
+
   const handleClear = useCallback(
     (e: React.FormEvent) => {
       e.stopPropagation();
@@ -70,6 +80,26 @@ const PageEditPage = (): JSX.Element => {
         <StyledMain.Section>
           <PageTitle title={title}>
             <StyledMenu>
+              <li>
+                <StyledLink data-testid="nav-first" to="/admin/page/edit/first">
+                  First
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink data-testid="nav-prev" to="/admin/page/edit/prev">
+                  Prev
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink data-testid="nav-next" to="/admin/page/edit/next">
+                  Next
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink data-testid="nav-last" to="/admin/page/edit/last">
+                  Last
+                </StyledLink>
+              </li>
               {!isSaved ? (
                 <li>
                   <StyledPlainButton
@@ -120,6 +150,7 @@ const PageEditPage = (): JSX.Element => {
                 inputMode="text"
                 label="Short Title"
                 onChange={handleChange}
+                onBlur={handeOnBlur}
                 required={true}
                 spellCheck={true}
                 value={formValues.name}
@@ -179,21 +210,7 @@ const PageEditPage = (): JSX.Element => {
                   ))}
                 </select>
               </Field>
-              <datalist id="parentOptions">
-                {/* <option value="10">Art</option>
-                <option value="3">Artists</option>
-                <option value="5">Cheat Sheets</option>
-                <option value="8">Code Solutions</option>
-                <option value="1">CSS</option>
-                <option value="2">Design Styles</option>
-                <option value="4">General</option>
-                <option value="11">IDE</option>
-                <option value="12">JavaScript</option>
-                <option value="6">React Programming</option>
-                <option value="7">React Project</option>
-                <option value="9">Patterns</option>
-                <option value="13">Security</option> */}
-              </datalist>
+              <datalist id="parentOptions"></datalist>
 
               <TextArea
                 errorText={getFieldErrors('text')}
@@ -245,14 +262,10 @@ const PageEditPage = (): JSX.Element => {
                 onChange={handleChange}
                 value={formValues.readability_score}
               />
-              <TwoColumn includeGap includeMargin>
-                <Button id="cancel" onClick={handleCancel} variant="secondary">
-                  Cancel
-                </Button>
-                <Button disabled={isPending} id="submit" type="submit">
-                  {isProcessing ? 'Processing' : 'Submit'}
-                </Button>
-              </TwoColumn>
+
+              <Button disabled={isPending} id="submit" type="submit">
+                {isProcessing ? 'Processing' : 'Submit'}
+              </Button>
             </form>
           </LoadingWrapper>
         </StyledMain.Section>

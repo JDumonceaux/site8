@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
-import { PagesIndexService } from '../services/PagesIndexService.js';
+import { PagesService } from '../services/PagesService.js';
 import { PageService } from '../services/PageService.js';
 import { Page } from '../types/Page.js';
 import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
+import { Pages } from '../types/Pages.js';
 
 export const pageRouter = express.Router();
 
@@ -30,11 +31,46 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
+pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: get Id Action ->`);
+
+  try {
+    const pages: Pages | undefined = await new PagesService().getItems();
+    const action = req.params.action;
+    const items = pages?.pages;
+
+    const find = () => {
+      if (items) {
+        const currIndex = items.findIndex(
+          (x) => x.id > parseInt(req.params.id),
+        );
+        switch (action) {
+          case 'first':
+            return items.at(0);
+          case 'next':
+            return items.at(currIndex + 1);
+          case 'prev':
+            return items.at(currIndex - 1);
+          case 'last':
+            return items.at(-1);
+          default:
+            return undefined;
+        }
+      }
+    };
+    const ret = find();
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`pageRouter: get -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
+
 // Delete Item
 pageRouter.delete('/:id', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: delete ->`);
 
-  const service = new PagesIndexService();
+  const service = new PagesService();
   const pageService = new PageService();
   const id = parseInt(req.params.id);
   if (isNaN(id) || id === 0) {
@@ -55,7 +91,7 @@ pageRouter.post('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: post ->`);
   const Prefer = req.get('Prefer');
   const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const service = new PagesIndexService();
+  const service = new PagesService();
   const pageService = new PageService();
   const data: Page = req.body;
 
@@ -89,7 +125,7 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: patch ->`);
   const Prefer = req.get('Prefer');
   const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const service = new PagesIndexService();
+  const service = new PagesService();
   const pageService = new PageService();
   const data: Page = req.body;
 

@@ -5,7 +5,7 @@ import { getFilePath } from '../utils/getFilePath.js';
 import { Page } from '../types/Page.js';
 import { Pages } from '../types/Pages.js';
 
-export class PagesIndexService {
+export class PagesService {
   private fileName = 'pagesIndex.json';
   private filePath = '';
 
@@ -14,12 +14,12 @@ export class PagesIndexService {
   }
 
   // Get all data
-  private async getItems(): Promise<Pages | undefined> {
+  public async getItems(): Promise<Pages | undefined> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       return JSON.parse(results) as Pages;
     } catch (error) {
-      Logger.error(`PagesIndexService: getItems -> ${error}`);
+      Logger.error(`PagesService: getItems -> ${error}`);
       return undefined;
     }
   }
@@ -46,7 +46,7 @@ export class PagesIndexService {
       }
       return ret;
     } catch (error) {
-      Logger.error(`PagesIndexService: getMetaData -> ${error}`);
+      Logger.error(`PagesService: getMetaData -> ${error}`);
       return undefined;
     }
   }
@@ -63,7 +63,7 @@ export class PagesIndexService {
         const itr = typeof data.pages[Symbol.iterator] === 'function';
         if (!itr) {
           Logger.error(
-            `PagesIndexService: getLastId -> Error: pages is not iterable`,
+            `PagesService: getLastId -> Error: pages is not iterable`,
           );
           return undefined;
         }
@@ -71,12 +71,12 @@ export class PagesIndexService {
         return maxItem ? maxItem.id : undefined;
       } else {
         Logger.error(
-          `PagesIndexService: getLastId -> Error: pages missing from file`,
+          `PagesService: getLastId -> Error: pages missing from file`,
         );
         return undefined;
       }
     } catch (error) {
-      Logger.error(`PagesIndexService: getLastId -> Error: ${error}`);
+      Logger.error(`PagesService: getLastId -> Error: ${error}`);
       return undefined;
     }
   }
@@ -88,7 +88,7 @@ export class PagesIndexService {
       const item = await this.getItems();
       return this.findFreeId(item?.pages ?? undefined);
     } catch (error) {
-      Logger.error(`PagesIndexService: getLastId -> Error: ${error}`);
+      Logger.error(`PagesService: getLastId -> Error: ${error}`);
       return undefined;
     }
   }
@@ -117,12 +117,12 @@ export class PagesIndexService {
         return nextId;
       } else {
         Logger.error(
-          `PagesIndexService: findFreeId -> Error: pages missing from file`,
+          `PagesService: findFreeId -> Error: pages missing from file`,
         );
         return undefined;
       }
     } catch (error) {
-      Logger.error(`PagesIndexService: findFreeId -> Error: ${error}`);
+      Logger.error(`PagesService: findFreeId -> Error: ${error}`);
       return undefined;
     }
   }
@@ -134,7 +134,7 @@ export class PagesIndexService {
       });
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`PagesIndexService: writeFile -> ${error}`);
+      Logger.error(`PagesService: writeFile -> ${error}`);
       return Promise.resolve(false);
     }
   }
@@ -179,7 +179,7 @@ export class PagesIndexService {
       await this.writeNewFile(updatedFile);
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`PagesIndexService: updateItem -> ${error}`);
+      Logger.error(`PagesService: updateItem -> ${error}`);
       return Promise.resolve(false);
     }
   }
@@ -198,7 +198,7 @@ export class PagesIndexService {
       await this.writeNewFile(updatedFile);
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`PagesIndexService: deleteItem -> ${error}`);
+      Logger.error(`PagesService: deleteItem -> ${error}`);
       return Promise.resolve(false);
     }
   }

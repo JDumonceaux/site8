@@ -46,7 +46,7 @@ const useImageEdit = (id: string | undefined) => {
   type keys = keyof FormValues;
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
-  // Current Item
+  // Current Action
   const [currentAction, setCurrentAction] = useState<string | undefined>(
     undefined,
   );
@@ -78,7 +78,6 @@ const useImageEdit = (id: string | undefined) => {
   const [originalValues, setOriginalValues] = useState<Image | undefined>(
     undefined,
   );
-
   // Update the form values from the data
   const updateFormValues = useCallback(
     (items: Image | undefined | null) => {
@@ -106,19 +105,14 @@ const useImageEdit = (id: string | undefined) => {
     [setFormValues],
   );
 
-  console.log('useImageEdit: id:', id);
-
+  // Get the data if the params change
   useEffect(() => {
-    console.log('x1');
     if (id) {
-      console.log('x2');
       const tempId = parseInt(id ?? '');
       if (!isNaN(tempId) && tempId > 0) {
         setCurrentId(tempId);
       }
-      console.log('x3');
       if (['first', 'last', 'next', 'prev'].includes(id)) {
-        console.log('x4');
         setCurrentAction(id);
       }
     }
@@ -131,6 +125,7 @@ const useImageEdit = (id: string | undefined) => {
     }
   }, [currentId]);
 
+  // Fetch data when currentAction changes
   useEffect(() => {
     if (currentAction) {
       fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}/${currentAction}`);
@@ -143,7 +138,7 @@ const useImageEdit = (id: string | undefined) => {
     setOriginalValues(data);
   }, [data, updateFormValues]);
 
-  // Validate the form
+  // Validate  form
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(pageSchema, formValues);
     setErrors(result.errorFormatted);
@@ -176,7 +171,7 @@ const useImageEdit = (id: string | undefined) => {
     resetForm();
   }, []);
 
-  // Hanlde field change
+  // Handle field change
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = event.target;
@@ -190,6 +185,7 @@ const useImageEdit = (id: string | undefined) => {
     [setFormValues],
   );
 
+  // Handle save
   const saveItem = useCallback(
     async (items: FormValues) => {
       const { id, create_date, edit_date, tags, ...rest } = items;
@@ -218,10 +214,9 @@ const useImageEdit = (id: string | undefined) => {
     [patchData, postData],
   );
 
+  // Handle form submission
   const submitForm = useCallback((): boolean => {
-    // Handle form submission here
     setIsProcessing(true);
-
     if (validateForm()) {
       saveItem(formValues);
       setIsProcessing(false);

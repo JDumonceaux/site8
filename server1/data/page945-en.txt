@@ -1,0 +1,73 @@
+Indexes are an unfortunate "gotcha" in React programming.  
+
+<h2>Explanation of the Issue</h2>
+JSX requires lists to have keys.  This helps React keep track of which items are added, changed, or removed.  If the item hasn't changed, then React will not re-render the component.
+
+Articles:
+<a href="https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key">Keeping list items in order with key<a>
+<a href="https://javascript.plainenglish.io/why-cant-we-use-indexes-as-keys-in-react-9f914f5910df">Why can’t we use indexes as keys in React?</a>
+
+Example:
+<pre><code data-type="typescript">
+<ul>
+   <li key="0">Item 1</li>
+   <li key="1">Item 2</li>
+   <li key="2">Item 3</li>
+   <li key="pizza">Item 4</li>
+   <li key="car">Item 5</li>
+</ul>
+</code></pre>
+Note that the keys don't need to be sequential or consistent - just unique.
+
+
+Since it is already available, it seems intuitive and easy to use the index property. 
+<pre><code data-type="typescript">
+<ul>
+   {arr.map((item, index) => {
+      <li key={index}>{item}</li>
+   }   
+</ul>
+</code></pre>
+
+This renders something like:
+<pre><code data-type="typescript">
+<ul>
+   <li key="0">Item 0</li>
+   <li key="1">Item 1</li>
+   <li key="2">Item 2</li>
+   <li key="3">Item 3</li>   
+</ul>
+</code></pre>
+
+The problem arises when you modify the data.  Ex. Remove Item 1.   Now, the key for Item 2 and 3 are wrong.
+<pre><code data-type="typescript">
+<ul>
+   <li key="0">Item 0</li>
+  
+   <li key="1">Item 2</li>
+   <li key="2">Item 3</li>   
+</ul>
+</code></pre>
+Note:  This really isn't an issue if you're not going to manipulate the data (i.e. just display it as is).  However, any code checkers and linters will continue to flag this as issue - so you should just fix it as common practice. 
+
+
+<h2>Solutions</h2>
+<ol>
+<li>Best: Hopefully your data has an unique id that can be used (possibly from a database).</li>
+<li>You can add an id or index to your data earlier in the process - hopefully outside the component.*</li>
+<li>You can use an attribute from the data.  However, you need to be confident that it will always be unique.</li>
+</ol>
+Note:  Some people will create UUIDs or use external UUID libraries to create unique keys.  Generally, this is overkill - a simple numeric index works in most cases.  UUID take up excess space and difficult to visually compare.  Frequently, a numeric sequence can be used as a quick check of when a record was added.
+
+<h2>useId Hook</h2>
+I've seen a suggestion to use the useId hook introduced in React 18.  This would incorrect.  
+
+Per the React documentation: <a href="https://react.dev/reference/react/useId">useId is a React Hook for generating unique IDs that can be passed to accessibility attributes.</a>
+"You can’t call it inside loops or conditions."
+"useId should not be used to generate keys in a list. Keys should be generated from your data."
+
+i.e. useId can be used when you have two or more of the same component on a page.  You can use the Id to make them unique.
+ 
+
+
+

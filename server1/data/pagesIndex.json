@@ -220,8 +220,8 @@
           "seq": 0
         }
       ],
-      "name": "React",
-      "to": "react"
+      "name": "Best Practices",
+      "to": "best-practices"
     },
     {
       "id": 18,
@@ -1425,6 +1425,23 @@
       ],
       "edit_date": "2024-05-19T03:38:00.000Z",
       "create_date": "2024-05-19T03:38:00.000Z",
+      "file": true
+    },
+    {
+      "name": "Using an Index as a Key",
+      "to": "using-an-index-as-a-key",
+      "url": "",
+      "long_title": "",
+      "reading_time": "",
+      "readability_score": "",
+      "id": 945,
+      "parent": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "edit_date": "2024-05-24T05:43:00.000Z",
       "file": true
     }
   ]

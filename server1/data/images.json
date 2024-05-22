@@ -65,7 +65,9 @@
       "location": "Dublin, Ireland",
       "src": "libraryoftrinitycollege.jpg",
       "official_url": "http://www.tcd.ie/library/",
-      "tags": ["Library"]
+      "tags": [
+        "Library"
+      ]
     },
     {
       "id": 10,
@@ -507,7 +509,9 @@
       "location": "Norway",
       "src": "",
       "official_url": "https://rail.ninja/route/oslo-to-bergen?utm_term=bergen%20to%20oslo%20train",
-      "tags": ["Train"]
+      "tags": [
+        "Train"
+      ]
     },
     {
       "id": 73,
@@ -515,7 +519,9 @@
       "location": "Madrid, Spain",
       "src": "",
       "official_url": "",
-      "tags": ["Library"]
+      "tags": [
+        "Library"
+      ]
     },
     {
       "id": 74,
@@ -523,7 +529,9 @@
       "location": "Hereford, England",
       "src": "",
       "official_url": "",
-      "tags": ["Library"]
+      "tags": [
+        "Library"
+      ]
     },
     {
       "name": "",
@@ -534,7 +542,9 @@
       "description": "",
       "location": "",
       "id": 75,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-04-01T15:36:00.000Z"
     },
     {
@@ -546,7 +556,9 @@
       "official_url": "",
       "description": "",
       "id": 76,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-11-14T15:36:00.000Z",
       "create_date": "1911-11-14T15:36:00.000Z"
     },
@@ -559,7 +571,9 @@
       "official_url": "",
       "description": "",
       "id": 77,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -572,7 +586,9 @@
       "official_url": "",
       "description": "",
       "id": 78,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -585,7 +601,9 @@
       "official_url": "",
       "description": "",
       "id": 79,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -598,7 +616,9 @@
       "official_url": "",
       "description": "",
       "id": 80,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -611,7 +631,9 @@
       "official_url": "",
       "description": "",
       "id": 81,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -624,7 +646,9 @@
       "official_url": "",
       "description": "",
       "id": 82,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -637,7 +661,9 @@
       "official_url": "",
       "description": "",
       "id": 83,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -650,7 +676,9 @@
       "official_url": "",
       "description": "",
       "id": 84,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -663,7 +691,9 @@
       "official_url": "",
       "description": "",
       "id": 85,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -676,7 +706,9 @@
       "official_url": "",
       "description": "",
       "id": 86,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -689,7 +721,9 @@
       "official_url": "",
       "description": "",
       "id": 87,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -702,7 +736,9 @@
       "official_url": "",
       "description": "",
       "id": 88,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -715,7 +751,9 @@
       "official_url": "",
       "description": "",
       "id": 89,
-      "tags": [""],
+      "tags": [
+        ""
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -728,7 +766,9 @@
       "official_url": "",
       "description": "",
       "id": 90,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -741,7 +781,9 @@
       "official_url": "",
       "description": "",
       "id": 91,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -754,7 +796,9 @@
       "official_url": "",
       "description": "",
       "id": 92,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -767,7 +811,9 @@
       "official_url": "",
       "description": "",
       "id": 93,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -780,7 +826,9 @@
       "official_url": "",
       "description": "",
       "id": 94,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -793,7 +841,9 @@
       "official_url": "",
       "description": "",
       "id": 95,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -806,7 +856,9 @@
       "official_url": "",
       "description": "",
       "id": 96,
-      "tags": [""],
+      "tags": [
+        ""
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -819,7 +871,9 @@
       "official_url": "",
       "description": "",
       "id": 97,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -832,7 +886,9 @@
       "official_url": "",
       "description": "",
       "id": 98,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -845,7 +901,9 @@
       "official_url": "",
       "description": "",
       "id": 99,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -858,7 +916,9 @@
       "official_url": "",
       "description": "",
       "id": 100,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -871,7 +931,9 @@
       "official_url": "",
       "description": "",
       "id": 101,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -884,7 +946,9 @@
       "official_url": "",
       "description": "",
       "id": 102,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -897,7 +961,9 @@
       "official_url": "",
       "description": "",
       "id": 103,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -910,7 +976,9 @@
       "official_url": "",
       "description": "",
       "id": 105,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -923,7 +991,9 @@
       "official_url": "",
       "description": "",
       "id": 106,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T07:14:00.000Z",
       "create_date": "1911-12-15T07:14:00.000Z"
     },
@@ -936,7 +1006,9 @@
       "official_url": "",
       "description": "",
       "id": 107,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -949,7 +1021,9 @@
       "official_url": "",
       "description": "",
       "id": 111,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -962,7 +1036,9 @@
       "official_url": "",
       "description": "",
       "id": 112,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -975,7 +1051,9 @@
       "official_url": "",
       "description": "",
       "id": 113,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -988,7 +1066,9 @@
       "official_url": "",
       "description": "",
       "id": 114,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -1001,7 +1081,9 @@
       "official_url": "",
       "description": "",
       "id": 115,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -1014,7 +1096,9 @@
       "official_url": "",
       "description": "",
       "id": 116,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -1027,7 +1111,9 @@
       "official_url": "",
       "description": "",
       "id": 117,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -1040,7 +1126,9 @@
       "official_url": "",
       "description": "",
       "id": 118,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -1053,7 +1141,9 @@
       "official_url": "",
       "description": "",
       "id": 119,
-      "tags": [""],
+      "tags": [
+        ""
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -1066,7 +1156,9 @@
       "official_url": "",
       "description": "",
       "id": 120,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T08:52:00.000Z",
       "create_date": "1911-12-15T08:52:00.000Z"
     },
@@ -1079,7 +1171,9 @@
       "official_url": "",
       "description": "",
       "id": 104,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T16:11:00.000Z",
       "create_date": "1911-12-15T16:11:00.000Z"
     },
@@ -1092,7 +1186,9 @@
       "official_url": "",
       "description": "",
       "id": 108,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-15T16:22:00.000Z",
       "create_date": "1911-12-15T16:22:00.000Z"
     },
@@ -1105,7 +1201,9 @@
       "official_url": "",
       "description": "",
       "id": 109,
-      "tags": ["Meme"],
+      "tags": [
+        "Meme"
+      ],
       "edit_date": "1911-12-16T04:28:00.000Z",
       "create_date": "1911-12-16T04:28:00.000Z"
     },
@@ -1118,7 +1216,9 @@
       "official_url": "",
       "description": "",
       "id": 110,
-      "tags": ["Poster"],
+      "tags": [
+        "Poster"
+      ],
       "edit_date": "1911-12-16T04:32:00.000Z",
       "create_date": "1911-12-16T04:32:00.000Z"
     },
@@ -1131,7 +1231,9 @@
       "official_url": "",
       "description": "",
       "id": 121,
-      "tags": ["Poster"],
+      "tags": [
+        "Poster"
+      ],
       "edit_date": "2024-05-19T03:35:00.000Z",
       "create_date": "2024-05-19T03:35:00.000Z"
     },
@@ -1145,7 +1247,9 @@
       "location": "",
       "id": 122,
       "hide": true,
-      "tags": [""],
+      "tags": [
+        ""
+      ],
       "edit_date": "2024-05-20T17:37:00.000Z"
     },
     {
@@ -1158,7 +1262,9 @@
       "location": "",
       "id": 123,
       "hide": true,
-      "tags": [""],
+      "tags": [
+        ""
+      ],
       "edit_date": "2024-05-20T17:37:00.000Z"
     },
     {
@@ -1171,7 +1277,9 @@
       "description": "",
       "id": 124,
       "hide": true,
-      "tags": [""],
+      "tags": [
+        ""
+      ],
       "edit_date": "2024-05-20T05:37:00.000Z",
       "create_date": "2024-05-20T05:37:00.000Z"
     },
@@ -1185,7 +1293,9 @@
       "description": "",
       "id": 125,
       "hide": true,
-      "tags": [""],
+      "tags": [
+        ""
+      ],
       "edit_date": "2024-05-20T05:37:00.000Z",
       "create_date": "2024-05-20T05:37:00.000Z"
     },
@@ -1204,6 +1314,21 @@
         "0": "Castles",
         "1": "France",
         "2": "Loire Valley"
+      }
+    },
+    {
+      "id": 127,
+      "create_date": "2024-05-22T05:22:00.000Z",
+      "description": "This beautiful hall looks very similar to the front hall of the Palais Garnier (the Paris opera house).   ",
+      "edit_date": "2024-05-22T05:22:00.000Z",
+      "fileName": "img_6971.jpg",
+      "folder": "architecture",
+      "location": "Rome, Italy",
+      "name": "Galleria Doria Pamphilj",
+      "official_url": "https://www.doriapamphilj.it/en/rome/",
+      "src": "architecture/img_6971.jpg",
+      "tags": {
+        "0": "Palaces"
       }
     }
   ]
