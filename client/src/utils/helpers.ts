@@ -6,3 +6,40 @@ export const getURLPath = (url: string, segment: number) => {
   }
   return undefined;
 };
+
+// Convert the parent array to a string
+export const combineParent = (
+  item: { id?: number; seq?: number }[] | undefined,
+): string | undefined => {
+  if (!item) {
+    return '';
+  }
+  const ret = item
+    .flatMap((x) => [x.id?.toString(), x.seq?.toString()])
+    .filter(Boolean);
+  return ret.join(',');
+};
+
+export const splitParent = (
+  value: string | undefined,
+): { id: number; seq: number }[] | undefined => {
+  if (!value) {
+    return undefined;
+  }
+  const x = value.trim().length > 0 ? value.trim().split(',') : undefined;
+  if (!x) {
+    return undefined;
+  }
+  return x
+    .map((item, index) => {
+      if (index % 2 === 0) {
+        const id = parseInt(item);
+        const seq = parseInt(x[index + 1]);
+        if (!isNaN(id) && !isNaN(seq)) {
+          return { id, seq };
+        }
+      }
+      return undefined;
+    })
+    .filter(Boolean) as { id: number; seq: number }[];
+};

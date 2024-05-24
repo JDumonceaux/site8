@@ -1,9 +1,8 @@
 import { readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 import { Logger } from '../utils/Logger.js';
-
-import { Images } from 'types/Images.js';
-import { Image } from 'types/Image.js';
+import { Images } from '../types/Images.js';
+import { Image } from '../types/Image.js';
 import { ImagesService } from './ImagesService.js';
 
 export class ImagesFileService {

@@ -7,7 +7,7 @@ import { Logger } from './utils/Logger.js';
 import { fileRouter } from './routes/fileRouter.js';
 import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
-import { pagesIndexRouter } from './routes/pagesIndexRouter.js';
+import { pagesIndexRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { bookmarksRouter } from './routes/bookmarksRouter.js';
 import { imagesRouter } from './routes/imagesRouter.js';

@@ -2,8 +2,10 @@ import { readFile, writeFile } from 'fs/promises';
 
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-import { Page } from '../types/Page.js';
+
 import { Pages } from '../types/Pages.js';
+import { Page } from '../types/Page.js';
+import { getNextId } from '../utils/objectUtil.js';
 
 export class PagesService {
   private fileName = 'pagesIndex.json';
@@ -15,6 +17,8 @@ export class PagesService {
 
   // Get all data
   public async getItems(): Promise<Pages | undefined> {
+    Logger.error(`PagesService: getItems ->`);
+
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       return JSON.parse(results) as Pages;
@@ -24,110 +28,46 @@ export class PagesService {
     }
   }
 
-  // Get the summary for a page
-  public async getMetaData(id: string | number): Promise<Page | undefined> {
-    try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-
-      const jsonData = JSON.parse(results) as Pages;
-
-      let tempId = 0;
-      if (typeof id === 'string') {
-        tempId = parseInt(id as string, 10);
-      } else {
-        tempId = id as number;
-      }
-
-      let ret: Page | undefined = undefined;
-      if (tempId > 0) {
-        ret = jsonData?.pages?.find((x) => x.id === tempId);
-      } else {
-        ret = jsonData?.pages?.find((x) => x.url === id);
-      }
-      return ret;
-    } catch (error) {
-      Logger.error(`PagesService: getMetaData -> ${error}`);
-      return undefined;
-    }
-  }
-
-  // Get the last id. We'll increase this by one to add the next record
-  public async getLastId(): Promise<number | undefined> {
-    Logger.info(`getLastId -> `);
-    try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const data = JSON.parse(results) as Pages;
-      // Check to make sure pages isn't undefined
-      if (data.pages) {
-        // Check to make sure it is iterable
-        const itr = typeof data.pages[Symbol.iterator] === 'function';
-        if (!itr) {
-          Logger.error(
-            `PagesService: getLastId -> Error: pages is not iterable`,
-          );
-          return undefined;
-        }
-        const maxItem = data.pages.reduce((a, b) => (+a.id > +b.id ? a : b));
-        return maxItem ? maxItem.id : undefined;
-      } else {
-        Logger.error(
-          `PagesService: getLastId -> Error: pages missing from file`,
-        );
-        return undefined;
-      }
-    } catch (error) {
-      Logger.error(`PagesService: getLastId -> Error: ${error}`);
-      return undefined;
-    }
-  }
-
-  // Get the next available id
   public async getNextId(): Promise<number | undefined> {
-    Logger.info(`getNextId -> `);
     try {
-      const item = await this.getItems();
-      return this.findFreeId(item?.pages ?? undefined);
+      const data = await this.getItems();
+      return getNextId<Page>(data?.items);
     } catch (error) {
-      Logger.error(`PagesService: getLastId -> Error: ${error}`);
+      Logger.error(`ImagesService: getItems -> ${error}`);
       return undefined;
     }
   }
 
-  // Get Next Id
-  public findFreeId(
-    pages: ReadonlyArray<Page> | undefined,
-  ): number | undefined {
-    try {
-      // Check to make sure pages isn't undefined
-      if (pages) {
-        const sortedArray = pages.toSorted((a, b) => a.id - b.id);
+  // Get the summary for a page
+  // public async getMetaData(id: string | number): Promise<Page | undefined> {
+  //   try {
+  //     const results = await readFile(this.filePath, { encoding: 'utf8' });
 
-        // Start with the first id in the sorted array
-        let nextId = sortedArray[0].id;
-        // Iterate through the array to find the missing id
-        for (let i = 0; i < sortedArray.length; i++) {
-          // Check if the current object's id is not equal to the nextId
-          if (sortedArray[i].id !== nextId) {
-            return nextId; // Found the gap
-          }
-          nextId++; // Move to the next expected id
-        }
+  //     const jsonData = JSON.parse(results) as Pages;
 
-        // If no gaps were found, the next free id is one greater than the last object's id
-        return nextId;
-      } else {
-        Logger.error(
-          `PagesService: findFreeId -> Error: pages missing from file`,
-        );
-        return undefined;
-      }
-    } catch (error) {
-      Logger.error(`PagesService: findFreeId -> Error: ${error}`);
-      return undefined;
-    }
-  }
+  //     let tempId = 0;
+  //     if (typeof id === 'string') {
+  //       tempId = parseInt(id as string, 10);
+  //     } else {
+  //       tempId = id as number;
+  //     }
 
-  private async writeNewFile(data: Pages): Promise<boolean> {
+  //     let ret: Page | undefined = undefined;
+  //     if (tempId > 0) {
+  //       ret = jsonData?.items?.find((x) => x.id === tempId);
+  //     } else {
+  //       ret = jsonData?.items.find((x) => x.url === id);
+  //     }
+  //     return ret;
+  //   } catch (error) {
+  //     Logger.error(`PagesService: getMetaData -> ${error}`);
+  //     return undefined;
+  //   }
+  // }
+
+  protected async writeFile(data: Pages): Promise<boolean> {
+    Logger.error(`PagesService: writeFile -> `);
+
     try {
       await writeFile(this.filePath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
@@ -139,67 +79,23 @@ export class PagesService {
     }
   }
 
-  // Add an item
-  public async addItem(data: Page, file: boolean) {
-    // Get the current file contents
-    const results = await readFile(this.filePath, { encoding: 'utf8' });
-    const jsonData = JSON.parse(results) as Pages;
+  public async listDuplicates(): Promise<string[] | string | undefined> {
+    Logger.error(`PagesService: listDuplicates -> `);
 
-    const retPages = jsonData.pages ?? [];
-
-    // We don't want to update the text field and create_date so we'll remove them
-    const { text, ...rest } = data;
-
-    const updatedFile: Pages = {
-      ...jsonData,
-      pages: [...retPages, { ...rest, file: file }],
-    };
-
-    return this.writeNewFile(updatedFile);
-  }
-
-  // Update an item
-  public async updateItem(data: Page, file: boolean): Promise<boolean> {
     try {
-      // Get the current file contents
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const jsonData = JSON.parse(results) as Pages;
-      // Remove the current item from the data
-      const ret = jsonData.pages?.filter((x) => x.id !== data.id);
+      const item = await this.getItems();
 
-      // We don't want to update the text field and create_date so we'll remove them
-      const { text, create_date, ...rest } = data;
-      const retPages = ret ?? [];
+      const duplicates = item?.items
+        ?.map((x) => x.id)
+        .filter((x, i, a) => a.indexOf(x) !== i);
+      // Filter out null
+      const filtered = duplicates?.filter((x) => x);
+      const ret = filtered?.map((x) => x.toString());
 
-      const updatedFile: Pages = {
-        ...jsonData,
-        pages: [...retPages, { ...rest, file: file }],
-      };
-
-      await this.writeNewFile(updatedFile);
-      return Promise.resolve(true);
+      return ret && ret.length > 0 ? ret : 'No duplicates found';
     } catch (error) {
-      Logger.error(`PagesService: updateItem -> ${error}`);
-      return Promise.resolve(false);
-    }
-  }
-
-  // Delete an item
-  public async deleteItem(id: number): Promise<boolean> {
-    try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      const jsonData = JSON.parse(results) as Pages;
-      const ret = jsonData?.pages?.filter((x) => x.id !== id);
-
-      const updatedFile: Pages = {
-        ...jsonData,
-        pages: ret ? { ...ret } : [],
-      };
-      await this.writeNewFile(updatedFile);
-      return Promise.resolve(true);
-    } catch (error) {
-      Logger.error(`PagesService: deleteItem -> ${error}`);
-      return Promise.resolve(false);
+      Logger.error(`PagesService: listDuplicates -> ${error}`);
+      return 'No duplicates found';
     }
   }
 }

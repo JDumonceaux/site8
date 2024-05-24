@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
-import { PagesService } from '../services/PagesService.js';
 import { PageService } from '../services/PageService.js';
+import { PageFileService } from '../services/PageFileService.js';
 import { Page } from '../types/Page.js';
 import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { Pages } from '../types/Pages.js';
+import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
 
 export const pageRouter = express.Router();
 
@@ -13,12 +14,13 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: get -> `);
 
   try {
-    const id = req.params.id;
-    if (!id) {
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    if (!isValid) {
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
-    const item = await new PageService().getAllData(id);
-    res.json(item);
+
+    const ret = await new PageService().getItemComplete(id);
+    res.json(ret);
   } catch (error) {
     Logger.error(`pageRouter: get -> ${error}`);
     if (error instanceof Error) {
@@ -31,19 +33,111 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
+// Add new item
+pageRouter.post('/', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: post ->`);
+
+  try {
+    const Prefer = req.get('Prefer');
+    const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
+    const service = new PageService();
+    const fileService = new PageFileService();
+    const data: Page = req.body;
+
+    // Get next id
+    const idNew = (await service.getNextId()) ?? 0;
+
+    if (!idNew || idNew === 0) {
+      res.status(400).json({ error: 'Next Id not found.' });
+    }
+
+    await Promise.all([
+      service.addItem(data, idNew),
+      fileService.addFile(idNew, data.text),
+    ]);
+
+    // Return the new item
+    if (returnRepresentation) {
+      const ret = await new PageService().getItemComplete(idNew);
+      // 201 Created
+      res.status(201).json(ret);
+    } else {
+      res.status(201).json({ results: Responses.SUCCESS });
+    }
+  } catch (error) {
+    Logger.error(`pageRouter: post -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
+
+// Update Item
+pageRouter.patch('/', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: patch ->`);
+
+  try {
+    const Prefer = req.get('Prefer');
+    const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
+    const service = new PageService();
+    const fileService = new PageFileService();
+    const data: Page = req.body;
+
+    await Promise.all([
+      service.updateItem(data, false),
+      fileService.updateFile(data.id, data.text),
+    ]);
+
+    // Return the new item
+    if (returnRepresentation) {
+      const ret = await new PageService().getItemComplete(data.id);
+      res.status(201).json(ret);
+    } else {
+      // 200 OK
+      // 204 No Content
+      res.status(200).json({ results: 'Success' });
+    }
+  } catch (error) {
+    Logger.error(`pageRouter: patch -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
+
+// Delete Item
+pageRouter.delete('/:id', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: delete ->`);
+
+  try {
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    if (!isValid) {
+      return res.status(400).json({ error: Responses.INVALID_ID });
+    }
+
+    const service = new PageService();
+    const fileService = new PageFileService();
+    await Promise.all([service.deleteItem(id), fileService.deleteFile(id)]);
+    res.status(204).json({ results: Responses.SUCCESS });
+  } catch (error) {
+    Logger.error(`pageRouter: delete -> Error: ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
+
+// Get first, next, prev, last item
 pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: get Id Action ->`);
 
   try {
-    const pages: Pages | undefined = await new PagesService().getItems();
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    if (!isValid) {
+      return res.status(400).json({ error: Responses.INVALID_ID });
+    }
+
+    const pages: Pages | undefined = await new PageService().getItems();
     const action = req.params.action;
-    const items = pages?.pages;
+    const items = pages?.items;
 
     const find = () => {
       if (items) {
-        const currIndex = items.findIndex(
-          (x) => x.id > parseInt(req.params.id),
-        );
+        const currIndex = items.findIndex((x) => x.id > id);
         switch (action) {
           case 'first':
             return items.at(0);
@@ -66,83 +160,34 @@ pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
   }
 });
 
-// Delete Item
-pageRouter.delete('/:id', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: delete ->`);
-
-  const service = new PagesService();
-  const pageService = new PageService();
-  const id = parseInt(req.params.id);
-  if (isNaN(id) || id === 0) {
-    return res.status(400).json({ error: Responses.INVALID_ID });
-  }
+pageRouter.get('/:id', async (req: Request, res: Response) => {
+  Logger.info(`pageRouter: get -> `);
 
   try {
-    await Promise.all([service.deleteItem(id), pageService.deleteItem(id)]);
-    res.status(204).json({ results: Responses.SUCCESS });
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    if (!isValid) {
+      return res.status(400).json({ error: Responses.INVALID_ID });
+    }
+
+    const ret = await Promise.all([
+      await new PageService().getItem(id),
+      await new PageFileService().getFile(id),
+    ]);
+
+    const [item, itemText] = ret;
+    if (!item) {
+      return res.status(404).json({ error: Errors.ITEM_NOT_FOUND });
+    }
+
+    res.json({ ...item, text: itemText });
   } catch (error) {
-    Logger.error(`pageRouter: delete -> Error: ${error}`);
-    res.status(500).json({ error: Errors.SERVER_ERROR });
-  }
-});
-
-// Add new item
-pageRouter.post('/', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: post ->`);
-  const Prefer = req.get('Prefer');
-  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const service = new PagesService();
-  const pageService = new PageService();
-  const data: Page = req.body;
-
-  try {
-    // Get the next id to insert
-    const nextId = await service.getNextId();
-    Logger.info('nextId', nextId);
-    if (!nextId) {
-      res.status(400).json({ error: 'Next Id not found.' });
-    } else {
-      await service.addItem({ ...data, id: nextId }, true);
-      await pageService.addItem(nextId, data.text);
-
-      // Return the new item
-      if (returnRepresentation) {
-        const result = await pageService.getAllData(nextId.toString());
-        // 201 Created
-        res.status(201).json(result);
+    Logger.error(`pageRouter: get -> ${error}`);
+    if (error instanceof Error) {
+      if (error.message.includes('ENOENT')) {
+        res.status(404).json({ error: Errors.FILE_NOT_FOUND });
       } else {
-        res.status(201).json({ results: Responses.SUCCESS });
+        res.status(500).json({ error: Errors.SERVER_ERROR });
       }
     }
-  } catch (error) {
-    Logger.error(`pageRouter: post -> Error: ${error}`);
-    res.status(500).json({ error: Errors.SERVER_ERROR });
-  }
-});
-
-// Update Item
-pageRouter.patch('/', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: patch ->`);
-  const Prefer = req.get('Prefer');
-  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const service = new PagesService();
-  const pageService = new PageService();
-  const data: Page = req.body;
-
-  try {
-    await service.updateItem(data, true);
-    await pageService.updateItem(data.id, data.text);
-    // Return the new item
-    if (returnRepresentation) {
-      const result = await pageService.getAllData(data.id.toString());
-      res.status(200).json(result);
-    } else {
-      // 200 OK
-      // 204 No Content
-      res.status(200).json({ results: 'Success' });
-    }
-  } catch (error) {
-    Logger.error(`pageRouter: patch -> Error: ${error}`);
-    res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });

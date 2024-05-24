@@ -1,8 +1,8 @@
 import { Logger } from '../utils/Logger.js';
-import { Image } from 'types/Image.js';
+import { Image } from '../types/Image.js';
 import { ImagesService } from './ImagesService.js';
-import { Images } from 'types/Images.js';
-import { removeEmptyAttributes, sorteObjectKeys } from '../utils/objectUtil.js';
+import { Images } from '../types/Images.js';
+import { cleanUpData } from '../utils/objectUtil.js';
 
 export class ImageService extends ImagesService {
   public async getItem(id: number): Promise<Image | undefined> {
@@ -18,24 +18,12 @@ export class ImageService extends ImagesService {
     }
   }
 
-  public cleanUpData(data: Image): Image {
-    try {
-      const cleanedData: Image = removeEmptyAttributes<Image>(data);
-      const sortedData: Image = sorteObjectKeys<Image>(cleanedData);
-      const { id, ...rest } = sortedData;
-      return { id, ...rest };
-    } catch (error) {
-      Logger.error(`ImageService: cleanUpData -> ${error}`);
-    }
-    return data;
-  }
-
   public async addItem(data: Image): Promise<number> {
     Logger.info(`ImageService: addItem -> `);
 
     try {
       // Clean up the data
-      const updatedItem = this.cleanUpData(data);
+      const updatedItem = cleanUpData<Image>(data);
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
@@ -59,11 +47,11 @@ export class ImageService extends ImagesService {
         items: [...(ret.items ?? []), newItem],
       };
 
-      await this.writeNewFile(updatedFile);
+      await this.writeFile(updatedFile);
       return Promise.resolve(id);
     } catch (error) {
       Logger.error(`ImageService: addItem -> ${error}`);
-      return Promise.reject(new Error('fail'));
+      return Promise.reject(new Error('add failed'));
     }
   }
 
@@ -71,7 +59,7 @@ export class ImageService extends ImagesService {
     Logger.info(`ImageService: updateItem -> `);
 
     try {
-      const updatedItem = this.cleanUpData(data);
+      const updatedItem = cleanUpData<Image>(data);
       if (!updatedItem) {
         return Promise.reject(new Error('updateItem -> Invalid item'));
       }
@@ -93,7 +81,7 @@ export class ImageService extends ImagesService {
         items: [...(updateItems ?? []), newItem],
       };
 
-      await this.writeNewFile(updatedFile);
+      await this.writeFile(updatedFile);
       return Promise.resolve(data.id);
     } catch (error) {
       Logger.error(`ImageService: updateItem -> ${error}`);

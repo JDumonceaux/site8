@@ -23,7 +23,7 @@ export function removeEmptyAttributes<T>(obj: T | any): T | any {
 }
 
 // Create a new object with sorted keys
-export function sorteObjectKeys<T>(obj: T | any): T | any {
+export function sortObjectKeys<T>(obj: T | any): T | any {
   const sortedKeys: string[] = Object.keys(obj).sort();
 
   const sortedObject: Record<string, number> = sortedKeys.reduce(
@@ -35,4 +35,37 @@ export function sorteObjectKeys<T>(obj: T | any): T | any {
   );
 
   return sortedObject;
+}
+
+export type CleanupType = {
+  readonly id: number;
+};
+
+export function cleanUpData<T extends CleanupType>(data: T): T {
+  const cleanedData: T = removeEmptyAttributes<T>(data);
+  const sortedData: T = sortObjectKeys<T>(cleanedData);
+  const { id, ...rest } = sortedData;
+  return { id, ...rest } as T;
+}
+
+export function getNextId<T extends CleanupType>(
+  items: ReadonlyArray<T> | undefined,
+): number | undefined {
+  if (!items) {
+    return undefined;
+  }
+
+  const sortedArray = items.toSorted((a, b) => a.id - b.id);
+  // Start with the first id in the sorted array
+  let nextId = sortedArray[0].id;
+  // Iterate through the array to find the missing id
+  for (let i = 0; i < sortedArray.length; i++) {
+    // Check if the current object's id is not equal to the nextId
+    if (sortedArray[i].id !== nextId) {
+      return nextId; // Found the gap
+    }
+    nextId++; // Move to the next expected id
+  }
+  // If no gaps were found, the next free id is one greater than the last object's id
+  return nextId;
 }

@@ -1,0 +1,12 @@
+A double-render is normal when using Vite in StrictMode.  This is intended to help validate that your components are <em>pure</em>.
+
+<a href="https://dpericich.medium.com/why-am-i-getting-a-double-render-in-reacts-useeffect-hook-968c4d437155">Why am I getting a Double Render in React’s useEffect Hook?</a>
+
+<h2>What is a <em>Pure</em> component?</h2>
+Boiled down, it means: given the same inputs, you get the same results.  Ex. 1 + 3 = 4.
+
+<aside>I feel like there should be a "best practices" testing dashboard for React: something that will go through all your code and give you a complete analysis of the code.  It should give you code complexity, SOLID score, performance, vulnerabilities, deprecated code, old code or patterns, dead code, accessibility, recommendations, etc. across all files in the project. This would be especially true for CSS:  summary of colors, invalid CSS, CSS that is overwritten, responsive recommendations, new feature recommendations, "can I use" analysis.  Image suggestions.  API performance.  "Dead" third party libraries.  
+
+Some of this exists, but in multiple tools and generally only applies to open files.
+</aside>
+

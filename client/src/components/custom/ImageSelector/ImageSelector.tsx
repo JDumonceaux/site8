@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-
 import { Image } from 'services/types';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
@@ -28,7 +27,7 @@ export const ImageSelector = ({
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   const onRefresh = useCallback(() => {
     fetchData();
@@ -79,7 +78,7 @@ export const ImageSelector = ({
       return data.items?.filter((x) => !x.isMatched);
     }
     return data.items;
-  }, [data?.items, selectedItem, showUnmatched]);
+  }, [data, selectedItem, showUnmatched]);
 
   const filteredData = getFilteredData();
 

@@ -5,6 +5,7 @@ import { PreferHeader, Responses, Errors } from '../utils/Constants.js';
 import { Image } from '../types/Image.js';
 import { ImageService } from '../services/ImageService.js';
 import { ImagesService } from '../services/ImagesService.js';
+import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
 
 export const imageRouter = express.Router();
 
@@ -12,8 +13,13 @@ imageRouter.get('/:id', async (req: Request, res: Response) => {
   Logger.info(`imageRouter: get Id->`);
 
   try {
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    if (!isValid) {
+      return res.status(400).json({ error: Responses.INVALID_ID });
+    }
+
     const images = await new ImagesService().getItems();
-    const ret = images?.items?.find((x) => x.id === parseInt(req.params.id));
+    const ret = images?.items?.find((x) => x.id === id);
     res.json(ret);
   } catch (error) {
     Logger.error(`imageRouter: get -> Error: ${error}`);
@@ -25,15 +31,18 @@ imageRouter.get('/:id/:action', async (req: Request, res: Response) => {
   Logger.info(`imageRouter: get Id Action ->`);
 
   try {
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    if (!isValid) {
+      return res.status(400).json({ error: Responses.INVALID_ID });
+    }
+
     const images = await new ImagesService().getItems();
     const action = req.params.action;
     const items = images?.items;
 
     const find = () => {
       if (items) {
-        const currIndex = items.findIndex(
-          (x) => x.id > parseInt(req.params.id),
-        );
+        const currIndex = items.findIndex((x) => x.id > id);
         switch (action) {
           case 'first':
             return items.at(0);
@@ -59,12 +68,13 @@ imageRouter.get('/:id/:action', async (req: Request, res: Response) => {
 // Add new item
 imageRouter.post('/', async (req: Request, res: Response) => {
   Logger.info(`imageRouter: post ->`);
-  const Prefer = req.get('Prefer');
-  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const service = new ImageService();
-  const data: Image = req.body;
 
   try {
+    const Prefer = req.get('Prefer');
+    const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
+    const service = new ImageService();
+    const data: Image = req.body;
+
     // Add item
     const id = await service.addItem(data);
 
@@ -85,12 +95,13 @@ imageRouter.post('/', async (req: Request, res: Response) => {
 // Update Item
 imageRouter.patch('/', async (req: Request, res: Response) => {
   Logger.info(`imageRouter: patch ->`);
-  const Prefer = req.get('Prefer');
-  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const service = new ImageService();
-  const data: Image = req.body;
 
   try {
+    const Prefer = req.get('Prefer');
+    const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
+    const service = new ImageService();
+    const data: Image = req.body;
+
     const id = await service.updateItem(data);
 
     // Return the new item

@@ -1,6 +1,6 @@
 'use client';
-import { useCallback, useState, useTransition } from 'react';
-import { useParams } from 'react-router-dom';
+import { useCallback, useEffect, useState, useTransition } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { TextInput } from 'components/form/input';
@@ -15,6 +15,7 @@ import useMenuValues from 'hooks/useMenuValues';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
+  const navigation = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const { data: values } = useMenuValues();
@@ -25,15 +26,45 @@ const PageEditPage = (): JSX.Element => {
     error,
     isSaved,
     getFieldErrors,
+    handleAction,
     handleChange,
     handleReset,
     handleClear: onClear,
     hasError,
     submitForm,
     setFormValues,
-  } = usePageEdit(params.id);
+  } = usePageEdit();
+  // Current Item
+  const [currentId, setCurrentId] = useState<number>(0);
 
   const { setSnackbarMessage } = useSnackbar();
+
+  console.log('x', formValues.id);
+  console.log('y', currentId);
+  useEffect(() => {
+    if (formValues.id !== 0) {
+      setCurrentId(formValues.id);
+      console.log('h1');
+    } else {
+      console.log('h2');
+      const value = params.id;
+      if (value) {
+        const tempId = parseInt(value ?? '');
+        if (!isNaN(tempId) && tempId > 0) {
+          setCurrentId(tempId);
+        }
+      }
+    }
+  }, [formValues.id, params.id]);
+
+  const handleOnClick = useCallback(
+    (action: string) => {
+      console.log('new actionxxxxxx', action, currentId);
+      handleAction(currentId, action);
+      // navigation(`/admin/page/edit/${action}`);
+    },
+    [currentId, handleAction],
+  );
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -49,7 +80,7 @@ const PageEditPage = (): JSX.Element => {
         }
       });
     },
-    [startTransition, setSnackbarMessage, submitForm, error],
+    [error, setSnackbarMessage, submitForm],
   );
 
   const handeOnBlur = useCallback(() => {
@@ -60,7 +91,7 @@ const PageEditPage = (): JSX.Element => {
         to: x,
       }));
     }
-  }, [startTransition, setSnackbarMessage, submitForm, error]);
+  }, [formValues.name, formValues.to?.length, setFormValues]);
 
   const handleClear = useCallback(
     (e: React.FormEvent) => {
@@ -81,24 +112,36 @@ const PageEditPage = (): JSX.Element => {
           <PageTitle title={title}>
             <StyledMenu>
               <li>
-                <StyledLink data-testid="nav-first" to="/admin/page/edit/first">
+                <button
+                  data-testid="nav-first"
+                  onClick={() => handleOnClick('first')}
+                  type="button">
                   First
-                </StyledLink>
+                </button>
               </li>
               <li>
-                <StyledLink data-testid="nav-prev" to="/admin/page/edit/prev">
+                <button
+                  data-testid="nav-prev"
+                  onClick={() => handleOnClick('prev')}
+                  type="button">
                   Prev
-                </StyledLink>
+                </button>
               </li>
               <li>
-                <StyledLink data-testid="nav-next" to="/admin/page/edit/next">
+                <button
+                  data-testid="nav-next"
+                  onClick={() => handleOnClick('next')}
+                  type="button">
                   Next
-                </StyledLink>
+                </button>
               </li>
               <li>
-                <StyledLink data-testid="nav-last" to="/admin/page/edit/last">
+                <button
+                  data-testid="nav-last"
+                  onClick={() => handleOnClick('last')}
+                  type="button">
                   Last
-                </StyledLink>
+                </button>
               </li>
               {!isSaved ? (
                 <li>
@@ -149,8 +192,8 @@ const PageEditPage = (): JSX.Element => {
                 id="name"
                 inputMode="text"
                 label="Short Title"
-                onChange={handleChange}
                 onBlur={handeOnBlur}
+                onChange={handleChange}
                 required={true}
                 spellCheck={true}
                 value={formValues.name}
@@ -210,7 +253,7 @@ const PageEditPage = (): JSX.Element => {
                   ))}
                 </select>
               </Field>
-              <datalist id="parentOptions"></datalist>
+              <datalist id="parentOptions" />
 
               <TextArea
                 errorText={getFieldErrors('text')}

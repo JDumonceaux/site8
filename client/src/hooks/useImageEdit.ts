@@ -145,31 +145,21 @@ const useImageEdit = (id: string | undefined) => {
     return result.success;
   }, [formValues, setErrors]);
 
-  // Handle reset form
-  const resetForm = useCallback(() => {
-    updateFormValues(originalValues);
-    setIsSaved(true);
-    setIsProcessing(false);
-    setErrors(null);
-  }, [originalValues, setFormValues]);
-
   // Handle clear form
-  const clearForm = useCallback(() => {
+  const handleClear = useCallback(() => {
     setFormValues(defaultFormValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }, [defaultFormValues, setFormValues]);
-
-  // Handle clear form
-  const handleClear = useCallback(() => {
-    clearForm();
-  }, []);
+  }, [defaultFormValues, setErrors, setFormValues]);
 
   // Handle form reset
   const handleReset = useCallback(() => {
-    resetForm();
-  }, []);
+    updateFormValues(originalValues);
+    setIsSaved(true);
+    setIsProcessing(false);
+    setErrors(null);
+  }, [originalValues, setErrors, updateFormValues]);
 
   // Handle field change
   const handleChange = useCallback(
@@ -179,7 +169,6 @@ const useImageEdit = (id: string | undefined) => {
         ...prev,
         [name]: value,
       }));
-
       setIsSaved(false);
     },
     [setFormValues],
@@ -189,23 +178,16 @@ const useImageEdit = (id: string | undefined) => {
   const saveItem = useCallback(
     async (items: FormValues) => {
       const { id, create_date, edit_date, tags, ...rest } = items;
-      const data =
-        id > 0
-          ? {
-              ...rest,
-              id,
-              tags: tags?.split(',') ?? [],
-              edit_date: getDateTime(edit_date) ?? new Date(),
-            }
-          : {
-              ...rest,
-              id,
-              tags: tags?.split(',') ?? [],
-              edit_date: getDateTime(edit_date) ?? new Date(),
-              create_date: getDateTime(create_date) ?? new Date(),
-            };
+      const data: Image = {
+        ...rest,
+        id,
+        tags: tags?.split(',') ?? [],
+        edit_date: getDateTime(edit_date) ?? new Date(),
+        create_date:
+          id > 0 ? getDateTime(create_date) ?? new Date() : new Date(),
+      };
       if (data.id > 0) {
-        await patchData(`${ServiceUrl.ENDPOINT_IMAGE}`, data);
+        await patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`, data);
       } else {
         await postData(`${ServiceUrl.ENDPOINT_IMAGE}`, data);
       }

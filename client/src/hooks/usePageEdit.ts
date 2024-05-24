@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import { useForm } from './useForm';
 import { getDateTime } from 'utils/dateUtils';
 import { useAxios } from './Axios/useAxios';
+import { combineParent, splitParent } from 'utils/helpers';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -38,19 +39,13 @@ const pageSchema = z.object({
   text: z.string().trim(),
 });
 
-const usePageEdit = (id: string | undefined) => {
+const usePageEdit = () => {
   // Use Axios to fetch data
   const { data, isLoading, error, fetchData, patchData, postData } =
     useAxios<Page>();
   // Create a type from the schema
   type FormValues = z.infer<typeof pageSchema>;
   type keys = keyof FormValues;
-  // Current Item
-  const [currentId, setCurrentId] = useState<number>(0);
-  // Current Action
-  const [currentAction, setCurrentAction] = useState<string | undefined>(
-    undefined,
-  );
   // Does the data need to be saved?
   const [isSaved, setIsSaved] = useState<boolean>(true);
   // Is the form saving?
@@ -75,52 +70,12 @@ const usePageEdit = (id: string | undefined) => {
   // Create a form
   const { formValues, setFormValues, setFieldValue, errors, setErrors } =
     useForm<FormValues>(defaultFormValues);
-  // Keep a copy of the form values to reset
+  // Keep a copy of the original values to reset
   const [originalValues, setOriginalValues] = useState<Page | undefined>(
     undefined,
   );
 
-  // MOVE TO UTILs
-  // Convert the parent array to a string
-  const combineParent = useCallback(
-    (item: { id?: number; seq?: number }[] | undefined): string | undefined => {
-      if (!item) {
-        return '';
-      }
-      const ret = item
-        .flatMap((x) => [x.id?.toString(), x.seq?.toString()])
-        .filter(Boolean);
-      return ret.join(',');
-    },
-    [],
-  );
-
-  const splitParent = useCallback(
-    (value: string | undefined): { id: number; seq: number }[] | undefined => {
-      if (!value) {
-        return undefined;
-      }
-      const x = value.trim().length > 0 ? value.trim().split(',') : undefined;
-      if (!x) {
-        return undefined;
-      }
-      return x
-        .map((item, index) => {
-          if (index % 2 === 0) {
-            const id = parseInt(item);
-            const seq = parseInt(x[index + 1]);
-            if (!isNaN(id) && !isNaN(seq)) {
-              return { id, seq };
-            }
-          }
-          return undefined;
-        })
-        .filter(Boolean) as { id: number; seq: number }[];
-    },
-    [],
-  );
-
-  // Update the form values from the data
+  // Update the form values
   const updateFormValues = useCallback(
     (items: Page | undefined | null) => {
       if (items) {
@@ -142,37 +97,11 @@ const usePageEdit = (id: string | undefined) => {
           readability_score: items.readability_score ?? '',
         };
         setFormValues(item);
+        console.log('item', item);
       }
     },
-    [combineParent, setFormValues],
+    [setFormValues],
   );
-
-  // Get the data if the params change
-  useEffect(() => {
-    if (id) {
-      const tempId = parseInt(id ?? '');
-      if (!isNaN(tempId) && tempId > 0) {
-        setCurrentId(tempId);
-      }
-      if (['first', 'last', 'next', 'prev'].includes(id)) {
-        setCurrentAction(id);
-      }
-    }
-  }, [id]);
-
-  // Fetch data when currentId changes
-  useEffect(() => {
-    if (currentId > 0) {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${currentId}`);
-    }
-  }, [currentId]);
-
-  // Fetch data when currentAction changes
-  useEffect(() => {
-    if (currentAction) {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${currentId}/${currentAction}`);
-    }
-  }, [currentAction]);
 
   // Update the form values when the data changes
   useEffect(() => {
@@ -187,31 +116,29 @@ const usePageEdit = (id: string | undefined) => {
     return result.success;
   }, [formValues, setErrors]);
 
-  // Handle reset form
-  const resetForm = useCallback(() => {
-    updateFormValues(originalValues);
-    setIsSaved(true);
-    setIsProcessing(false);
-    setErrors(null);
-  }, [originalValues, setFormValues]);
+  // Handle change action
+  const handleAction = useCallback(
+    (id: number, action: string) => {
+      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${id.toString()}/${action}`);
+    },
+    [fetchData],
+  );
 
   // Handle clear form
-  const clearForm = useCallback(() => {
+  const handleClear = useCallback(() => {
     setFormValues(defaultFormValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }, [defaultFormValues, setFormValues]);
-
-  // Handle clear form
-  const handleClear = useCallback(() => {
-    clearForm();
-  }, []);
+  }, [defaultFormValues, setErrors, setFormValues]);
 
   // Handle form reset
   const handleReset = useCallback(() => {
-    resetForm();
-  }, []);
+    updateFormValues(originalValues);
+    setIsSaved(true);
+    setIsProcessing(false);
+    setErrors(null);
+  }, [originalValues, setErrors, updateFormValues]);
 
   // Handle field change
   const handleChange = useCallback(
@@ -223,28 +150,21 @@ const usePageEdit = (id: string | undefined) => {
       }));
       setIsSaved(false);
     },
-    [formValues.to?.length, setFormValues],
+    [setFormValues],
   );
 
   // Handle save
   const saveItem = useCallback(
     async (items: FormValues) => {
       const { id, create_date, edit_date, parent, ...rest } = items;
-      const data =
-        id > 0
-          ? {
-              ...rest,
-              id,
-              parent: splitParent(parent),
-              edit_date: getDateTime(edit_date) ?? new Date(),
-            }
-          : {
-              ...rest,
-              id,
-              parent: splitParent(parent),
-              edit_date: getDateTime(edit_date) ?? new Date(),
-              create_date: getDateTime(create_date) ?? new Date(),
-            };
+      const data = {
+        ...rest,
+        id,
+        parent: splitParent(parent),
+        edit_date: getDateTime(edit_date) ?? new Date(),
+        create_date:
+          id > 0 ? getDateTime(create_date) ?? new Date() : undefined,
+      };
       if (data.id > 0) {
         await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
       } else {
@@ -252,7 +172,7 @@ const usePageEdit = (id: string | undefined) => {
       }
       return true;
     },
-    [patchData, postData, splitParent],
+    [patchData, postData],
   );
 
   // Handle form submission
@@ -266,18 +186,6 @@ const usePageEdit = (id: string | undefined) => {
     }
     return false;
   }, [formValues, saveItem, validateForm]);
-
-  const setId = useCallback(
-    (value: string | undefined) => {
-      if (value) {
-        const id = parseInt(value);
-        if (!isNaN(id) || id > 0) {
-          setFieldValue('id', id);
-        }
-      }
-    },
-    [setFieldValue],
-  );
 
   const getFieldErrors = useCallback(
     (fieldName: keys) => {
@@ -315,7 +223,7 @@ const usePageEdit = (id: string | undefined) => {
       hasError,
       setFormValues,
       setFieldValue,
-      setId,
+      handleAction,
       handleClear,
       handleChange,
       handleReset,
@@ -332,10 +240,11 @@ const usePageEdit = (id: string | undefined) => {
       hasError,
       setFormValues,
       setFieldValue,
-      setId,
+      handleAction,
+      handleClear,
       handleChange,
-      submitForm,
       handleReset,
+      submitForm,
       isLoading,
       error,
       isSaved,

@@ -2,7 +2,8 @@ import { readFile, writeFile } from 'fs/promises';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Images } from '../types/Images.js';
-import { Image } from 'types/Image.js';
+import { Image } from '../types/Image.js';
+import { getNextId } from '../utils/objectUtil.js';
 
 export class ImagesService {
   private fileName = 'images.json';
@@ -23,7 +24,7 @@ export class ImagesService {
     }
   }
 
-  protected async writeNewFile(data: Images): Promise<boolean> {
+  protected async writeFile(data: Images): Promise<boolean> {
     try {
       await writeFile(this.filePath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
@@ -38,44 +39,9 @@ export class ImagesService {
   protected async getNextId(): Promise<number | undefined> {
     try {
       const data = await this.getItems();
-
-      return this.findFreeId(data?.items);
+      return getNextId<Image>(data?.items);
     } catch (error) {
       Logger.error(`ImagesService: getItems -> ${error}`);
-      return undefined;
-    }
-  }
-
-  // Get Next available Id
-  private findFreeId(
-    items: ReadonlyArray<Image> | undefined,
-  ): number | undefined {
-    try {
-      // Check to make sure pages isn't undefined
-      if (items) {
-        const sortedArray = items.toSorted((a, b) => a.id - b.id);
-
-        // Start with the first id in the sorted array
-        let nextId = sortedArray[0].id;
-        // Iterate through the array to find the missing id
-        for (const element of sortedArray) {
-          // Check if the current object's id is not equal to the nextId
-          if (element.id !== nextId) {
-            return nextId; // Found the gap
-          }
-          nextId++; // Move to the next expected id
-        }
-
-        // If no gaps were found, the next free id is one greater than the last object's id
-        return nextId;
-      } else {
-        Logger.error(
-          `ImagesService: findFreeId -> Error: Items missing from file`,
-        );
-        return undefined;
-      }
-    } catch (error) {
-      Logger.error(`ImagesService: findFreeId -> Error: ${error}`);
       return undefined;
     }
   }
@@ -95,7 +61,7 @@ export class ImagesService {
         items: fixedItems,
       };
 
-      await this.writeNewFile(data);
+      await this.writeFile(data);
       return true;
     } catch (error) {
       Logger.error(`ImagesService: fixNames -> ${error}`);

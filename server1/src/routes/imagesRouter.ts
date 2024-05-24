@@ -50,7 +50,8 @@ imagesRouter.get('/fix-index', async (_req: Request, res: Response) => {
 
 imagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
   try {
-    const ret = await new ImagesService().listDuplicates();
+    //const ret = await new ImagesService().listDuplicates();
+    const ret = true;
     res.json(ret);
   } catch (error) {
     Logger.error(`imagesRouter: listDuplicates -> Error: ${error}`);
