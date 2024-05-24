@@ -4,43 +4,57 @@ import { Pages } from '../types/Pages.js';
 import { PagesService } from './PagesService.js';
 import { cleanUpData } from '../utils/objectUtil.js';
 import { PageFileService } from './PageFileService.js';
+import { z } from 'zod';
+import { safeParse } from '../utils/zodHelper.js';
 
 const DEFAULT_METADATA = { title: 'Pages' };
+
+const pageAddSchema = z
+  .object({
+    id: z.number(),
+    name: z
+      .string({
+        required_error: 'Name is required.',
+        invalid_type_error: 'Name must be a string',
+      })
+      .max(500, 'Name max length exceeded: 500')
+      .trim(),
+    to: z.string().trim().optional(),
+    url: z.string().trim().optional(),
+    parent: z
+      .object({
+        id: z.number(),
+        seq: z.number(),
+      })
+      .array()
+      .min(1),
+  })
+  .refine(
+    (data) => data.to || data.url,
+    'Either to or url should be filled in.',
+  );
+type addData = z.infer<typeof pageAddSchema>;
 
 export class PageService extends PagesService {
   // Get Item
   public async getItem(id: number): Promise<Page | undefined> {
-    Logger.error(`PageService: getItem -> `);
-
-    try {
-      // Get the current file
-      const items = await this.getItems();
-      const ret = items?.items?.find((x) => x.id === id);
-      return ret;
-    } catch (error) {
-      Logger.error(`PageService: addItem -> ${error}`);
-      return Promise.resolve(undefined);
-    }
+    Logger.info(`PageService: getItem -> ${id}`);
+    // Get the current file
+    const items = await this.getItems();
+    return items?.items?.find((x) => x.id === id);
   }
 
   // Get Item Complete
   public async getItemComplete(id: number): Promise<Page | undefined> {
-    Logger.error(`PageService: getItem -> `);
-
-    try {
-      const ret = await Promise.all([
-        await new PageService().getItem(id),
-        await new PageFileService().getFile(id),
-      ]);
-    } catch (error) {
-      Logger.error(`PageService: addItem -> ${error}`);
-      return Promise.resolve(undefined);
-    }
+    Logger.info(`PageService: getItemComplete -> ${id}`);
+    const ret = await this.getItem(id);
+    const file = await new PageFileService().getFile(id);
+    return ret ? { ...ret, text: file } : undefined;
   }
 
   // Add an item
   public async addItem(data: Page, idNew: number): Promise<number> {
-    Logger.error(`PageService: addItem -> `);
+    Logger.info(`PageService: addItem -> `);
 
     // Get the current file contents
     try {
@@ -49,6 +63,12 @@ export class PageService extends PagesService {
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
+
+      const result = safeParse<addData>(pageAddSchema, data);
+      if (result.error) {
+        throw new Error(`addItem -> ${result.error}`);
+      }
+
       // Get the current file
       const items = await this.getItems();
 
@@ -70,7 +90,7 @@ export class PageService extends PagesService {
 
   // Update an item
   public async updateItem(data: Page, file: boolean): Promise<number> {
-    Logger.error(`PageService: updateItem -> `);
+    Logger.info(`PageService: updateItem -> `);
 
     try {
       // Clean up the data
@@ -101,7 +121,7 @@ export class PageService extends PagesService {
 
   // Delete an item
   public async deleteItem(id: number): Promise<boolean> {
-    Logger.error(`PageService: deleteItem -> `);
+    Logger.info(`PageService: deleteItem -> `);
 
     try {
       const items = await this.getItems();
@@ -116,25 +136,6 @@ export class PageService extends PagesService {
     } catch (error) {
       Logger.error(`PageService: deleteItem -> ${error}`);
       return Promise.resolve(false);
-    }
-  }
-
-  public async listDuplicates(): Promise<string[] | string | undefined> {
-    Logger.error(`PageService: listDuplicates -> `);
-
-    try {
-      const item = await this.getItems();
-      const duplicates = item?.items
-        ?.map((x) => x.id)
-        .filter((x, i, a) => a.indexOf(x) !== i);
-      // Filter out null
-      const filtered = duplicates?.filter((x) => x);
-      const ret = filtered?.map((x) => x.toString());
-
-      return ret && ret.length > 0 ? ret : 'No duplicates found';
-    } catch (error) {
-      Logger.error(`PageService: listDuplicates -> ${error}`);
-      return 'No duplicates found';
     }
   }
 }

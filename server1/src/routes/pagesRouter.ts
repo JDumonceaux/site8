@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { Logger } from '../utils/Logger.js';
-import { PagesService } from 'services/PagesService.js';
+import { PagesService } from '../services/PagesService.js';
 
 export const pagesRouter = express.Router();
 

@@ -33,29 +33,28 @@ const PageEditPage = (): JSX.Element => {
     hasError,
     submitForm,
     setFormValues,
+    fetchItem,
   } = usePageEdit();
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
 
   const { setSnackbarMessage } = useSnackbar();
 
-  console.log('x', formValues.id);
-  console.log('y', currentId);
   useEffect(() => {
-    if (formValues.id !== 0) {
-      setCurrentId(formValues.id);
-      console.log('h1');
-    } else {
-      console.log('h2');
-      const value = params.id;
-      if (value) {
-        const tempId = parseInt(value ?? '');
-        if (!isNaN(tempId) && tempId > 0) {
-          setCurrentId(tempId);
-        }
+    const value = params.id;
+    if (value) {
+      const tempId = parseInt(value ?? '');
+      if (!isNaN(tempId) && tempId > 0) {
+        setCurrentId(tempId);
       }
     }
-  }, [formValues.id, params.id]);
+  }, [params.id]);
+
+  useEffect(() => {
+    if (currentId && currentId > 0) {
+      fetchItem(currentId);
+    }
+  }, [currentId, fetchItem]);
 
   const handleOnClick = useCallback(
     (action: string) => {
@@ -266,17 +265,7 @@ const PageEditPage = (): JSX.Element => {
                 value={formValues.text}
                 // required={true}
               />
-              <TextInput
-                errorText={getFieldErrors('long_title')}
-                errorTextShort="Please enter a title"
-                hasError={hasError('long_title')}
-                id="long_title"
-                label="Long Title"
-                onChange={handleChange}
-                spellCheck={true}
-                value={formValues.long_title}
-                // required={true}
-              />
+
               <TextInput
                 errorText={getFieldErrors('edit_date')}
                 errorTextShort="Please enter a date"

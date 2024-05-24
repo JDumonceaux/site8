@@ -1,7 +1,6 @@
 export type Page = {
   readonly id: number;
   readonly name: string;
-  readonly long_title?: string;
   readonly edit_date?: Date;
   readonly create_date?: Date;
   readonly parent?: { id?: number; seq?: number }[];

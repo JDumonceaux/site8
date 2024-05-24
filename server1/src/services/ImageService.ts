@@ -6,6 +6,8 @@ import { cleanUpData } from '../utils/objectUtil.js';
 
 export class ImageService extends ImagesService {
   public async getItem(id: number): Promise<Image | undefined> {
+    Logger.info(`ImageService: getItem -> ${id}`);
+
     try {
       const ret = await this.getItems();
       if (!ret) {
@@ -13,7 +15,7 @@ export class ImageService extends ImagesService {
       }
       return ret.items?.find((x) => x.id === id);
     } catch (error) {
-      Logger.error(`ImageService: getItem -> ${error}`);
+      Logger.error(`ImageService: getItem -> ${id} ${error}`);
       return undefined;
     }
   }

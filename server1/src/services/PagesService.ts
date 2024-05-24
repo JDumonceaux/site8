@@ -17,7 +17,7 @@ export class PagesService {
 
   // Get all data
   public async getItems(): Promise<Pages | undefined> {
-    Logger.error(`PagesService: getItems ->`);
+    Logger.info(`PagesService: getItems ->`);
 
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
@@ -33,40 +33,13 @@ export class PagesService {
       const data = await this.getItems();
       return getNextId<Page>(data?.items);
     } catch (error) {
-      Logger.error(`ImagesService: getItems -> ${error}`);
+      Logger.error(`PagesService: getNextId -> ${error}`);
       return undefined;
     }
   }
 
-  // Get the summary for a page
-  // public async getMetaData(id: string | number): Promise<Page | undefined> {
-  //   try {
-  //     const results = await readFile(this.filePath, { encoding: 'utf8' });
-
-  //     const jsonData = JSON.parse(results) as Pages;
-
-  //     let tempId = 0;
-  //     if (typeof id === 'string') {
-  //       tempId = parseInt(id as string, 10);
-  //     } else {
-  //       tempId = id as number;
-  //     }
-
-  //     let ret: Page | undefined = undefined;
-  //     if (tempId > 0) {
-  //       ret = jsonData?.items?.find((x) => x.id === tempId);
-  //     } else {
-  //       ret = jsonData?.items.find((x) => x.url === id);
-  //     }
-  //     return ret;
-  //   } catch (error) {
-  //     Logger.error(`PagesService: getMetaData -> ${error}`);
-  //     return undefined;
-  //   }
-  // }
-
   protected async writeFile(data: Pages): Promise<boolean> {
-    Logger.error(`PagesService: writeFile -> `);
+    Logger.info(`PagesService: writeFile -> `);
 
     try {
       await writeFile(this.filePath, JSON.stringify(data, null, 2), {
@@ -80,7 +53,7 @@ export class PagesService {
   }
 
   public async listDuplicates(): Promise<string[] | string | undefined> {
-    Logger.error(`PagesService: listDuplicates -> `);
+    Logger.info(`PagesService: listDuplicates -> `);
 
     try {
       const item = await this.getItems();

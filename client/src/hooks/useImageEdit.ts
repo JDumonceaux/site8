@@ -14,17 +14,17 @@ const pageSchema = z.object({
   id: z.number(),
   name: z
     .string({
-      required_error: 'Short Title is required.',
-      invalid_type_error: 'Title must be a string',
+      required_error: 'Name is required.',
+      invalid_type_error: 'Name must be a string',
     })
-    .max(100, 'Max length exceeded: 100')
+    .max(100, 'Name max length exceeded: 100')
     .trim()
     .optional(),
   location: z
     .string({
       invalid_type_error: 'Location must be a string',
     })
-    .max(250)
+    .max(250, 'Location max length exceeded: 500')
     .trim()
     .optional(),
   fileName: z.string().trim(),

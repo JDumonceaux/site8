@@ -326,7 +326,7 @@ export class MenuService {
       // Get the root level menu
       const rootMenu = this.getRootMenu(data.menuItems);
       // Get pages
-      const pages = this.getPagesAsMenuEntry(data.pages);
+      const pages = this.getPagesAsMenuEntry(data.items);
       // Add pages to menus
       const menuPages = this.getMatchedEntries(rootMenu, pages);
       // Combine items

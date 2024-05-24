@@ -11,34 +11,31 @@ import { useAxios } from './Axios/useAxios';
 import { combineParent, splitParent } from 'utils/helpers';
 
 // Define Zod Shape
-const pageSchema = z.object({
-  id: z.number(),
-  name: z
-    .string({
-      required_error: 'Short Title is required.',
-      invalid_type_error: 'Title must be a string',
-    })
-    .min(1, REQUIRED_FIELD)
-    .max(100, 'Max length exceeded: 100')
-    .trim(),
-  long_title: z
-    .string({
-      invalid_type_error: 'Title must be a string',
-    })
-    .max(250)
-    .trim()
-    .optional(),
-  to: z.string().trim().optional(),
-  url: z.string().trim().optional(),
-  create_date: z.string().optional(),
-  edit_date: z.string().optional(),
-  // parentId: z.coerce.number().optional(),
-  parent: z.string().optional(),
-  reading_time: z.string().trim().optional(),
-  readability_score: z.string().trim().optional(),
-  text: z.string().trim(),
-});
+const pageSchema = z
+  .object({
+    id: z.number(),
+    name: z
+      .string({
+        required_error: 'Name is required.',
+        invalid_type_error: 'Name must be a string',
+      })
+      .min(1, REQUIRED_FIELD)
+      .max(500, 'Name max length exceeded: 500')
+      .trim(),
 
+    to: z.string().trim().optional(),
+    url: z.string().trim().optional(),
+    create_date: z.string().optional(),
+    edit_date: z.string().optional(),
+    parent: z.string().min(1, REQUIRED_FIELD),
+    reading_time: z.string().trim().optional(),
+    readability_score: z.string().trim().optional(),
+    text: z.string().trim(),
+  })
+  .refine(
+    (data) => data.to || data.url,
+    'Either to or url should be filled in.',
+  );
 const usePageEdit = () => {
   // Use Axios to fetch data
   const { data, isLoading, error, fetchData, patchData, postData } =
@@ -58,7 +55,6 @@ const usePageEdit = () => {
       to: '',
       url: '',
       text: '',
-      long_title: '',
       edit_date: format(new Date(), DF_LONG),
       create_date: format(new Date(), DF_LONG),
       parent: '',
@@ -85,7 +81,6 @@ const usePageEdit = () => {
           to: items.to ?? '',
           url: items.url ?? '',
           text: items.text ?? '',
-          long_title: items.long_title ?? '',
           edit_date:
             (items.edit_date && format(items.edit_date, DF_LONG)) ??
             format(new Date(), DF_LONG),
@@ -108,6 +103,10 @@ const usePageEdit = () => {
     updateFormValues(data);
     setOriginalValues(data);
   }, [data, updateFormValues]);
+
+  const fetchItem = useCallback((id: number) => {
+    fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${id.toString()}`);
+  }, []);
 
   // Validate form
   const validateForm = useCallback(() => {
@@ -231,6 +230,7 @@ const usePageEdit = () => {
       isLoading,
       error,
       isSaved,
+      fetchItem,
     }),
     [
       formValues,
@@ -248,6 +248,7 @@ const usePageEdit = () => {
       isLoading,
       error,
       isSaved,
+      fetchItem,
     ],
   );
 };

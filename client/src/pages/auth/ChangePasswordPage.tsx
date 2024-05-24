@@ -6,12 +6,11 @@ import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
-import { PasswordField } from 'components/ui/Form/PasswordField';
-
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
-import { StyledLink } from 'components/ui/Form/StyledLink';
 import { password } from './ZodStrings';
+import { PasswordField } from 'components/form/input/PasswordField';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 
 // Define Zod Shape
 const schema = z

@@ -6,6 +6,7 @@ import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { Pages } from '../types/Pages.js';
 import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
+import { Console } from 'winston/lib/winston/transports/index.js';
 
 export const pageRouter = express.Router();
 
@@ -20,6 +21,7 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
     }
 
     const ret = await new PageService().getItemComplete(id);
+    console.log('ret', ret);
     res.json(ret);
   } catch (error) {
     Logger.error(`pageRouter: get -> ${error}`);
@@ -157,37 +159,5 @@ pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
   } catch (error) {
     Logger.error(`pageRouter: get -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
-  }
-});
-
-pageRouter.get('/:id', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: get -> `);
-
-  try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
-    if (!isValid) {
-      return res.status(400).json({ error: Responses.INVALID_ID });
-    }
-
-    const ret = await Promise.all([
-      await new PageService().getItem(id),
-      await new PageFileService().getFile(id),
-    ]);
-
-    const [item, itemText] = ret;
-    if (!item) {
-      return res.status(404).json({ error: Errors.ITEM_NOT_FOUND });
-    }
-
-    res.json({ ...item, text: itemText });
-  } catch (error) {
-    Logger.error(`pageRouter: get -> ${error}`);
-    if (error instanceof Error) {
-      if (error.message.includes('ENOENT')) {
-        res.status(404).json({ error: Errors.FILE_NOT_FOUND });
-      } else {
-        res.status(500).json({ error: Errors.SERVER_ERROR });
-      }
-    }
   }
 });
