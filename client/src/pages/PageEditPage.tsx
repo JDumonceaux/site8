@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useEffect, useState, useTransition } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import usePageEdit from 'hooks/usePageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { TextInput } from 'components/form/input';
@@ -15,7 +15,7 @@ import useMenuValues from 'hooks/useMenuValues';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
-  const navigation = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const { data: values } = useMenuValues();
@@ -58,7 +58,6 @@ const PageEditPage = (): JSX.Element => {
 
   const handleOnClick = useCallback(
     (action: string) => {
-      console.log('new actionxxxxxx', action, currentId);
       handleAction(currentId, action);
       // navigation(`/admin/page/edit/${action}`);
     },
@@ -142,16 +141,7 @@ const PageEditPage = (): JSX.Element => {
                   Last
                 </button>
               </li>
-              {!isSaved ? (
-                <li>
-                  <StyledPlainButton
-                    data-testid="button-save"
-                    onClick={handleSubmit}
-                    type="submit">
-                    Save
-                  </StyledPlainButton>
-                </li>
-              ) : null}
+
               <li>
                 <StyledLink data-testid="nav-new" to="/admin/page/edit">
                   New
@@ -167,7 +157,7 @@ const PageEditPage = (): JSX.Element => {
                   data-testid="button-reset"
                   onClick={handleReset}
                   type="reset">
-                  Reset
+                  Undo
                 </StyledPlainButton>
               </li>
               <li>
@@ -175,9 +165,19 @@ const PageEditPage = (): JSX.Element => {
                   data-testid="button-clear"
                   onClick={handleClear}
                   type="reset">
-                  Clear All
+                  Clear
                 </StyledPlainButton>
               </li>
+              {!isSaved ? (
+                <li>
+                  <StyledSaveButton
+                    data-testid="button-save"
+                    onClick={handleSubmit}
+                    type="submit">
+                    Save
+                  </StyledSaveButton>
+                </li>
+              ) : null}
             </StyledMenu>
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
@@ -245,11 +245,11 @@ const PageEditPage = (): JSX.Element => {
 
                 <select>
                   <option value="">Select a menu</option>
-                  {values?.map((value) => (
+                  {/* {values?.map((value) => (
                     <option key={value.id} value={value.id}>
                       {value.name} - {value.id}
                     </option>
-                  ))}
+                  ))} */}
                 </select>
               </Field>
               <datalist id="parentOptions" />
@@ -323,4 +323,7 @@ const Field = styled.div`
    
     padding: 6px; 12px;
   }
+`;
+const StyledSaveButton = styled(StyledPlainButton)`
+  font-weight: bold;
 `;

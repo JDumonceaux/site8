@@ -9,14 +9,22 @@ export const getURLPath = (url: string, segment: number) => {
 
 // Convert the parent array to a string
 export const combineParent = (
-  item: { id?: number; seq?: number }[] | undefined,
-): string | undefined => {
-  if (!item) {
+  items: { id?: number; seq?: number }[] | undefined,
+): string => {
+  if (!items) {
     return '';
   }
-  const ret = item
-    .flatMap((x) => [x.id?.toString(), x.seq?.toString()])
-    .filter(Boolean);
+  const ret: string[] = [];
+
+  items.forEach((x) => {
+    if (x.id) {
+      ret.push(x.id.toString());
+    }
+    if (x.seq) {
+      ret.push(x.seq.toString());
+    }
+  });
+
   return ret.join(',');
 };
 

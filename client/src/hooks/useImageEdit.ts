@@ -184,7 +184,7 @@ const useImageEdit = (id: string | undefined) => {
         tags: tags?.split(',') ?? [],
         edit_date: getDateTime(edit_date) ?? new Date(),
         create_date:
-          id > 0 ? getDateTime(create_date) ?? new Date() : new Date(),
+          id == 0 ? getDateTime(create_date) ?? new Date() : new Date(),
       };
       if (data.id > 0) {
         await patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`, data);

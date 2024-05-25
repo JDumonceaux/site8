@@ -162,7 +162,7 @@ const usePageEdit = () => {
         parent: splitParent(parent),
         edit_date: getDateTime(edit_date) ?? new Date(),
         create_date:
-          id > 0 ? getDateTime(create_date) ?? new Date() : undefined,
+          id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
       };
       if (data.id > 0) {
         await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data);

@@ -72,7 +72,8 @@ export class PageService extends PagesService {
       // Get the current file
       const items = await this.getItems();
 
-      const { id, ...rest } = updatedItem;
+      // Remove id and text from item
+      const { id, text, ...rest } = updatedItem;
       const newItem = { id: idNew, ...rest };
 
       // Save the new item

@@ -6,7 +6,6 @@ import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { Pages } from '../types/Pages.js';
 import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
-import { Console } from 'winston/lib/winston/transports/index.js';
 
 export const pageRouter = express.Router();
 
@@ -21,7 +20,6 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
     }
 
     const ret = await new PageService().getItemComplete(id);
-    console.log('ret', ret);
     res.json(ret);
   } catch (error) {
     Logger.error(`pageRouter: get -> ${error}`);
@@ -35,7 +33,7 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
-// Add new item
+// Add item
 pageRouter.post('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: post ->`);
 
