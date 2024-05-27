@@ -1,4 +1,4 @@
-export const APP_NAME = 'React Notes';
+export const APP_NAME = 'ReactTotal.io';
 
 export enum SortOrder {
   ASC = 'asc',

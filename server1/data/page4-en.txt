@@ -1,0 +1,1 @@
+This is a good tutorial on the foundations of React <a href="https://nextjs.org/learn/react-foundations">Next.js - React Foundations</a>

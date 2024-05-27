@@ -10,16 +10,16 @@ import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
 export const pageRouter = express.Router();
 
 // Get item
-pageRouter.get('/:id', async (req: Request, res: Response) => {
+pageRouter.get('/:name', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: get -> `);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
-    if (!isValid) {
-      return res.status(400).json({ error: Responses.INVALID_ID });
-    }
+    // const { id, isValid } = getRequestIdAsNumeric(req.params.name);
+    // if (!isValid) {
+    //   return res.status(400).json({ error: Responses.INVALID_ID });
+    // }
 
-    const ret = await new PageService().getItemComplete(id);
+    const ret = await new PageService().getItemCompleteByName(req.params.name);
     res.json(ret);
   } catch (error) {
     Logger.error(`pageRouter: get -> ${error}`);
@@ -58,7 +58,7 @@ pageRouter.post('/', async (req: Request, res: Response) => {
 
     // Return the new item
     if (returnRepresentation) {
-      const ret = await new PageService().getItemComplete(idNew);
+      const ret = await new PageService().getItemCompleteById(idNew);
       // 201 Created
       res.status(201).json(ret);
     } else {
@@ -88,7 +88,7 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
 
     // Return the new item
     if (returnRepresentation) {
-      const ret = await new PageService().getItemComplete(data.id);
+      const ret = await new PageService().getItemCompleteById(data.id);
       res.status(201).json(ret);
     } else {
       // 200 OK

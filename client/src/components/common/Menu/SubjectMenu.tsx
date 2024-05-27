@@ -4,11 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 import { getURLPath } from 'utils/helpers';
-import { useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { LoadingWrapper } from 'components';
 import { MenuEntry } from 'services/types/MenuEntry';
+import React from 'react';
 
-const SubjectMenu = (): JSX.Element => {
+const SubjectMenu = memo((): JSX.Element => {
   const { getMenu, fetchData, isLoading, error } = useMenu();
   const location = useLocation();
   const { pathname } = location;
@@ -77,11 +78,12 @@ const SubjectMenu = (): JSX.Element => {
           item.name,
         );
       };
+
       return (
-        <>
+        <React.Fragment key={item.id}>
           {menuItem()}
           {item.items?.map((x) => renderItem(x, level + 1))}
-        </>
+        </React.Fragment>
       );
     },
     [renderWrapper],
@@ -102,7 +104,9 @@ const SubjectMenu = (): JSX.Element => {
       </StyledContent>
     </StyledNav>
   );
-};
+});
+
+SubjectMenu.displayName = 'SubjectMenu';
 
 export default SubjectMenu;
 

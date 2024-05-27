@@ -245,11 +245,11 @@ const PageEditPage = (): JSX.Element => {
 
                 <select>
                   <option value="">Select a menu</option>
-                  {/* {values?.map((value) => (
+                  {values?.map((value) => (
                     <option key={value.id} value={value.id}>
                       {value.name} - {value.id}
                     </option>
-                  ))} */}
+                  ))}
                 </select>
               </Field>
               <datalist id="parentOptions" />

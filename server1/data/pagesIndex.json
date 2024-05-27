@@ -4,7 +4,7 @@
   },
   "menuItems": [
     {
-      "id": 100,
+      "id": 1,
       "name": "Programming",
       "to": "programming",
       "parent": [
@@ -81,7 +81,7 @@
       "to": "creational-design-patterns"
     },
     {
-      "id": 1,
+      "id": 600,
       "name": "CSS",
       "to": "css",
       "parent": [
@@ -321,6 +321,28 @@
       ],
       "name": "Interview Questions",
       "to": "interview-questions"
+    },
+    {
+      "id": 28,
+      "parent": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "name": "NodeJS",
+      "to": "nodejs"
+    },
+    {
+      "id": 29,
+      "parent": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "name": "Getting Started",
+      "to": "getting-started"
     }
   ],
   "items": [
@@ -1360,7 +1382,12 @@
       "reading_time": "",
       "readability_score": "",
       "id": 939,
-      "parent": [],
+      "parent": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
       "edit_date": "1911-07-17T15:34:00.000Z",
       "create_date": "1911-07-17T15:34:00.000Z",
       "file": true
@@ -1411,7 +1438,13 @@
       "id": 942,
       "edit_date": "1911-11-14T09:02:00.000Z",
       "create_date": "1911-11-14T09:02:00.000Z",
-      "file": true
+      "file": true,
+      "parent": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ]
     },
     {
       "name": "Overview",
@@ -1512,25 +1545,90 @@
       "id": 949,
       "edit_date": "2024-05-25T02:37:00.000Z",
       "name": "Monads",
-      "parent": {
-        "0": {
+      "parent": [
+        {
           "id": 4,
           "seq": 0
         }
-      },
+      ],
       "to": "monads"
     },
     {
       "id": 1,
       "edit_date": "2024-05-25T02:49:00.000Z",
       "name": "Declarative Programming",
-      "parent": {
-        "0": {
+      "parent": [
+        {
           "id": 4,
           "seq": 0
         }
-      },
+      ],
       "to": "declarative-programming"
+    },
+    {
+      "id": 2,
+      "create_date": "2024-05-25T03:16:00.000Z",
+      "edit_date": "2024-05-25T03:16:00.000Z",
+      "name": "Server-Side Caching",
+      "parent": [
+        {
+          "id": 4,
+          "seq": 0
+        }
+      ],
+      "to": "server-side-caching"
+    },
+    {
+      "id": 3,
+      "create_date": "2024-05-25T18:34:00.000Z",
+      "edit_date": "2024-05-25T18:34:00.000Z",
+      "name": "Standards",
+      "parent": [
+        {
+          "id": 29,
+          "seq": 1
+        }
+      ],
+      "to": "standards"
+    },
+    {
+      "id": 4,
+      "create_date": "2024-05-25T19:00:00.000Z",
+      "edit_date": "2024-05-25T19:00:00.000Z",
+      "name": "Learning React",
+      "parent": [
+        {
+          "id": 29,
+          "seq": 2
+        }
+      ],
+      "to": "learning-react"
+    },
+    {
+      "id": 5,
+      "create_date": "2024-05-25T19:11:00.000Z",
+      "edit_date": "2024-05-25T19:11:00.000Z",
+      "name": "Object Destructuring",
+      "parent": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "to": "object-destructuring"
+    },
+    {
+      "id": 6,
+      "create_date": "2024-05-25T20:06:00.000Z",
+      "edit_date": "2024-05-25T20:06:00.000Z",
+      "name": "Performance",
+      "parent": [
+        {
+          "id": 20,
+          "seq": 0
+        }
+      ],
+      "to": "performance"
     }
   ]
 }

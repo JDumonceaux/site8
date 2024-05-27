@@ -7,8 +7,6 @@ import { PageFileService } from './PageFileService.js';
 import { z } from 'zod';
 import { safeParse } from '../utils/zodHelper.js';
 
-const DEFAULT_METADATA = { title: 'Pages' };
-
 const pageAddSchema = z
   .object({
     id: z.number(),
@@ -45,10 +43,26 @@ export class PageService extends PagesService {
   }
 
   // Get Item Complete
-  public async getItemComplete(id: number): Promise<Page | undefined> {
+  public async getItemCompleteByName(name: string): Promise<Page | undefined> {
+    Logger.info(`PageService: getItemComplete -> ${name}`);
+    const items = await this.getItems();
+    const ret = items?.items?.find((x) => x.name === name);
+    if (!ret || ret?.id === 0) {
+      throw new Error('getItem -> Item not found');
+    }
+    const file = await new PageFileService().getFile(ret.id);
+    return ret ? { ...ret, text: file } : undefined;
+  }
+
+  // Get Item Complete
+  public async getItemCompleteById(id: number): Promise<Page | undefined> {
     Logger.info(`PageService: getItemComplete -> ${id}`);
-    const ret = await this.getItem(id);
-    const file = await new PageFileService().getFile(id);
+    const items = await this.getItems();
+    const ret = items?.items?.find((x) => x.id === id);
+    if (!ret || ret?.id === 0) {
+      throw new Error('getItem -> Item not found');
+    }
+    const file = await new PageFileService().getFile(ret.id);
     return ret ? { ...ret, text: file } : undefined;
   }
 
@@ -70,7 +84,10 @@ export class PageService extends PagesService {
       }
 
       // Get the current file
-      const items = await this.getItems();
+      const pages = await this.getItems();
+      if (!pages) {
+        throw new Error('addItem -> Index missing');
+      }
 
       // Remove id and text from item
       const { id, text, ...rest } = updatedItem;
@@ -78,11 +95,13 @@ export class PageService extends PagesService {
 
       // Save the new item
       const updatedFile: Pages = {
-        metadata: items?.metadata || DEFAULT_METADATA,
-        items: [...(items?.items ?? []), newItem],
+        ...pages,
+        items: [...(pages?.items ?? []), newItem],
       };
-      await this.writeFile(updatedFile);
-      return Promise.resolve(id);
+      const ret = await this.writeFile(updatedFile);
+      return ret
+        ? Promise.resolve(id)
+        : Promise.reject(new Error(`Add failed : ${id}`));
     } catch (error) {
       Logger.error(`PageService: addItem -> ${error}`);
       return Promise.reject(new Error('add failed'));
@@ -100,15 +119,19 @@ export class PageService extends PagesService {
         throw new Error('addItem -> Invalid item');
       }
       // Get the current file
-      const items = await this.getItems();
+      const pages = await this.getItems();
+      if (!pages) {
+        throw new Error('addItem -> Index missing');
+      }
+
       // Remove the current item from the data
-      const ret = items?.items?.filter((x) => x.id !== data.id) || [];
+      const ret = pages?.items?.filter((x) => x.id !== data.id) || [];
 
       // We don't want to update the text field and create_date so we'll remove them
       const { text, create_date, ...rest } = newItem;
 
       const updatedFile: Pages = {
-        metadata: items?.metadata || DEFAULT_METADATA,
+        ...pages,
         items: [...ret, newItem],
       };
 
@@ -125,18 +148,23 @@ export class PageService extends PagesService {
     Logger.info(`PageService: deleteItem -> `);
 
     try {
-      const items = await this.getItems();
-      const ret = items?.items?.filter((x) => x.id !== id);
+      // Get the current file
+      const pages = await this.getItems();
+      if (!pages) {
+        throw new Error('deleteItem -> Failed to read file');
+      }
+
+      const ret = pages?.items?.filter((x) => x.id !== id);
 
       const updatedFile: Pages = {
-        metadata: items?.metadata || DEFAULT_METADATA,
+        ...pages,
         items: ret ? { ...ret } : [],
       };
       await this.writeFile(updatedFile);
       return Promise.resolve(true);
     } catch (error) {
       Logger.error(`PageService: deleteItem -> ${error}`);
-      return Promise.resolve(false);
+      return Promise.reject(new Error(`Failed to delete item: ${id}`));
     }
   }
 }

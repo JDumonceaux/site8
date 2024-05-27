@@ -1,0 +1,18 @@
+<pre><code>
+const cache = require('memory-cache');
+ 
+function getDataFromCache(key) {
+  const cachedData = cache.get(key);
+  if (cachedData) {
+    return cachedData;
+  }
+ 
+  // If data is not in cache, fetch it from the source
+  const data = fetchDataFromSource();
+ 
+  // Store data in cache for future use
+  cache.put(key, data, 60000); // Cache for 60 seconds
+ 
+  return data;
+}
+</code></pre>

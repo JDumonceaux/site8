@@ -15,16 +15,14 @@ export const combineParent = (
     return '';
   }
   const ret: string[] = [];
-
   items.forEach((x) => {
-    if (x.id) {
+    if (x.id != undefined) {
       ret.push(x.id.toString());
     }
-    if (x.seq) {
+    if (x.seq != undefined) {
       ret.push(x.seq.toString());
     }
   });
-
   return ret.join(',');
 };
 

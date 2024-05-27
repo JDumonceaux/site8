@@ -7,8 +7,12 @@ export const menuRouter = express.Router();
 
 menuRouter.get('/', async (_req: Request, res: Response) => {
   try {
-    const menu = await new MenuService().getMenu();
-    res.json(menu);
+    const ret = await new MenuService().getMenu();
+    if (!ret) {
+      res.status(204).json({ error: 'No content found' });
+    }
+
+    res.status(200).json(ret);
   } catch (error) {
     Logger.error(`menuRouter: get -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -17,8 +21,12 @@ menuRouter.get('/', async (_req: Request, res: Response) => {
 
 menuRouter.get('/values', async (_req: Request, res: Response) => {
   try {
-    const menu = await new MenuService().getMenuValues();
-    res.json(menu);
+    const ret = await new MenuService().getMenuValues();
+    if (!ret) {
+      res.status(204).json({ error: 'No content found' });
+    }
+
+    res.status(200).json(ret);
   } catch (error) {
     Logger.error(`menuRouter: getValues -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });

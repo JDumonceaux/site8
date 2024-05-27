@@ -1,0 +1,21 @@
+<h2>Memo</h2>
+
+By wrapping a component with memo(), React will memoize the component and only re-render it when its props have changed.
+
+<pre><code>
+import React, { memo } from 'react';
+
+const MyComponent = memo((props) => {
+  // Component logic and rendering
+});
+export default MyComponent;
+</code></pre>
+
+
+Using memo() ensures that a component re-renders only when it is necessary, leading to improved performance.
+
+<a href="https://react.dev/reference/react/memo">React.dev - memo</a>
+"If most interactions in your app are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
+
+Optimizing with memo  is only valuable when your component re-renders often with the same exact props, and its re-rendering logic is expensive. If there is no perceptible lag when your component re-renders, memo is unnecessary. Keep in mind that memo is completely useless if the props passed to your component are always different, such as if you pass an object or a plain function defined during rendering."
+

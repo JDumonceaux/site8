@@ -48,27 +48,52 @@ export class PagesService {
       return Promise.resolve(true);
     } catch (error) {
       Logger.error(`PagesService: writeFile -> ${error}`);
-      return Promise.resolve(false);
+      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
     }
   }
 
-  public async listDuplicates(): Promise<string[] | string | undefined> {
+  public async listDuplicates(): Promise<any> {
     Logger.info(`PagesService: listDuplicates -> `);
 
     try {
       const item = await this.getItems();
 
-      const duplicates = item?.items
-        ?.map((x) => x.id)
+      const ret: string[] = [];
+
+      item?.menuItems?.forEach((x) => {
+        if (x.id) {
+          ret.push(x.id.toString());
+        } else {
+          ret.push(x.name);
+        }
+      });
+
+      const ret2: string[] = [];
+      item?.items?.forEach((x) => {
+        if (x.id) {
+          ret2.push(x.id.toString());
+        } else {
+          ret.push(x.name);
+        }
+      });
+
+      const duplicates = ret
+        ?.map((x) => x)
         .filter((x, i, a) => a.indexOf(x) !== i);
       // Filter out null
       const filtered = duplicates?.filter((x) => x);
-      const ret = filtered?.map((x) => x.toString());
 
-      return ret && ret.length > 0 ? ret : 'No duplicates found';
+      const duplicates2 = ret2
+        ?.map((x) => x)
+        .filter((x, i, a) => a.indexOf(x) !== i);
+      // Filter out null
+      const filtered2 = duplicates2?.filter((x) => x);
+      // Convert to string
+
+      return { menu: filtered, items: filtered2 };
     } catch (error) {
       Logger.error(`PagesService: listDuplicates -> ${error}`);
-      return 'No duplicates found';
+      return Promise.reject(new Error(`List Duplicates. Error: ${error}`));
     }
   }
 }

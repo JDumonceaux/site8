@@ -1,0 +1,3 @@
+<ol>
+<li>React components should be capitalized.   Ex. Header vs. header</li>
+</ol>

@@ -1,9 +1,6 @@
-import { readFile } from 'fs/promises';
-
 import { Logger } from '../utils/Logger.js';
 import { Pages } from '../types/Pages.js';
 import { MenuItem } from '../types/MenuItem.js';
-import { getFilePath } from '../utils/getFilePath.js';
 import { Page } from '../types/Page.js';
 import { Menu } from '../types/Menu.js';
 import {
@@ -12,24 +9,12 @@ import {
   sortMenuEntrySeq,
 } from '../types/MenuEntry.js';
 import { MenuEntryFlat } from '../types/MenuEntryFlat.js';
+import { PagesService } from './PagesService.js';
 
 export class MenuService {
-  private fileName = 'pagesIndex.json';
-  private filePath = '';
-
-  constructor() {
-    this.filePath = getFilePath(this.fileName);
-  }
-
-  // Get all data
+  // 1. Get all data
   private async getItems(): Promise<Pages | undefined> {
-    try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as Pages;
-    } catch (error) {
-      Logger.error(`MenuService: getItems -> ${error}`);
-      return undefined;
-    }
+    return new PagesService().getItems();
   }
 
   // Convert the MenuItems to MenuEntry
@@ -193,17 +178,6 @@ export class MenuService {
     return undefined;
   }
 
-  private combineItems(item: MenuEntry): MenuEntry | undefined {
-    if (!item) {
-      return undefined;
-    }
-
-    return {
-      ...item,
-      items: [...(item.menuItems || []), ...(item.pageItems || [])],
-    };
-  }
-
   private getCombinedEntries(
     items?: ReadonlyArray<MenuEntry>,
   ): MenuEntry[] | undefined {
@@ -280,18 +254,23 @@ export class MenuService {
     callback: (item: MenuEntry) => MenuEntry,
     items?: ReadonlyArray<MenuEntry>,
   ): MenuEntry[] | undefined {
-    if (!items) {
-      return undefined;
-    }
+    try {
+      if (!items) {
+        return undefined;
+      }
 
-    return items.map((x) => {
-      const y = callback(x);
-      const updatedItems = this.loopItems(callback, y?.items);
-      return {
-        ...y,
-        items: updatedItems,
-      };
-    });
+      return items.map((x) => {
+        const y = callback(x);
+        const updatedItems = this.loopItems(callback, y?.items);
+        return {
+          ...y,
+          items: updatedItems,
+        };
+      });
+    } catch (error) {
+      Logger.error(`MenuService: loop items --> Error: ${error}`);
+      throw error;
+    }
   }
 
   private loopMenuItems(
@@ -313,12 +292,12 @@ export class MenuService {
     return x;
   }
 
+  // 0. Get Menu
   public async getMenu(): Promise<Menu | undefined> {
     Logger.info(`MenuService: getMenu -> `);
     try {
       // Get all the data from pagesIndex.json
       const data: Pages | undefined = await this.getItems();
-
       if (!data) {
         return undefined;
       }
