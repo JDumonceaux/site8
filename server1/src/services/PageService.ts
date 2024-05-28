@@ -46,7 +46,7 @@ export class PageService extends PagesService {
   public async getItemCompleteByName(name: string): Promise<Page | undefined> {
     Logger.info(`PageService: getItemComplete -> ${name}`);
     const items = await this.getItems();
-    const ret = items?.items?.find((x) => x.name === name);
+    const ret = items?.items?.find((x) => x.to === name);
     if (!ret || ret?.id === 0) {
       throw new Error('getItem -> Item not found');
     }
@@ -68,16 +68,17 @@ export class PageService extends PagesService {
 
   // Add an item
   public async addItem(data: Page, idNew: number): Promise<number> {
-    Logger.info(`PageService: addItem -> `);
+    Logger.debug(`PageService: addItem -> `);
 
-    // Get the current file contents
     try {
+      console.log('data', data);
       // Clean up the data
       const updatedItem = cleanUpData<Page>(data);
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
 
+      console.log('u8i', updatedItem);
       const result = safeParse<addData>(pageAddSchema, data);
       if (result.error) {
         throw new Error(`addItem -> ${result.error}`);
@@ -92,6 +93,8 @@ export class PageService extends PagesService {
       // Remove id and text from item
       const { id, text, ...rest } = updatedItem;
       const newItem = { id: idNew, ...rest };
+
+      console.log('item', newItem);
 
       // Save the new item
       const updatedFile: Pages = {

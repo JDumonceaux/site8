@@ -1,0 +1,23 @@
+Security always needs to be at the top-of-the-stack.  In the NodeJs layer, there are two considerations:  1) validating the data and 2) validating the URL.
+
+This is a starter article on one option for validating the data.  This uses Joi to validate that the data matches what is expected.  
+<a href="https://medium.com/@techsuneel99/validate-incoming-requests-in-node-js-like-a-pro-95fbdff4bc07">Validate Incoming Requests in Node.js like a Pro</a>.  
+
+I prefer using Zod - which seems to be almost the same library.
+
+<a href="https://www.stackhawk.com/blog/react-xss-guide-examples-and-prevention/">React XSS Guide:
+Examples and Prevention</a>
+
+<a href="https://www.stackhawk.com/blog/what-is-cross-site-scripting-xss/">What is Cross-Site Scripting (XSS)?</a>
+
+<a href="https://medium.com/@ferrosful/nodejs-security-unleashed-exploring-xss-attack-8d3a61a01a09">Node.js Security Unleashed: Your Ultimate Defense Guide (3/7)</a>
+
+<a hrev="https://www.npmjs.com/package/validator">https://www.npmjs.com/package/validator</a>
+
+
+npm install validator
+npm i --save-dev @types/validator
+
+
+import isAlphanumeric from 'validator/lib/isAlphanumeric.js';
+

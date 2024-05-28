@@ -6,6 +6,7 @@ type IProps = {
   readonly loadingText?: ReactNode;
   readonly isLoading?: boolean;
   readonly error: string | undefined | null;
+  readonly fallback?: ReactNode;
 };
 
 // If the progress bar is describing the loading progress of a particular region of a page,
@@ -18,11 +19,13 @@ export const LoadingWrapper = ({
   isLoading,
   loadingText,
   error,
+  fallback,
 }: IProps): JSX.Element => {
   if (isLoading)
     return (
       <StyledLoadingDiv>
-        {loadingText ? loadingText : `Loading...`}
+        {loadingText ? loadingText : null}
+        {fallback ? fallback : null}
       </StyledLoadingDiv>
     );
 

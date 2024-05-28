@@ -1,0 +1,41 @@
+React has some built in tools to measure performance.  On is the <a href="https://react.dev/reference/react/Profiler">Profile component</a>
+
+You can wrap the component around any other component(s) to get some timings.
+
+<pre><code>
+<Profiler id="App" onRender={onRender}>
+  <App />
+</Profiler>
+</code></pre>
+
+<pre><code>
+import { Profiler } from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  return (
+    <div>
+      <Profiler id="ChildComponent" onRender={onRenderCallback}>
+        <ChildComponent />
+      </Profiler>
+    </div>
+  );
+}
+</code></pre>
+
+<h2>This is a callback function</h2>
+<pre><code>
+  const onRender = (
+    id: string,
+    phase: string,
+    actualDuration: number,
+    baseDuration: number,
+    startTime: number,
+    endTime: number,
+  ) => {
+    console.log(`Profiler [${id}] - ${phase} - ${actualDuration} ms`);
+  };
+</code></pre>
+
+
+

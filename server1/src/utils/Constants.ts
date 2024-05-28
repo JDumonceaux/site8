@@ -7,8 +7,13 @@ export const enum Errors {
 export const enum Responses {
   SUCCESS = 'Success',
   INVALID_ID = 'Invalid Id',
+  INVALID_PARAM = 'Invalid Parementer',
 }
 
 export enum PreferHeader {
   REPRESENTATION = 'return=representation',
+}
+
+export const enum RegEx {
+  ALPHANUMERIC_PLUS = "^[a-zA-Z0-9-:;']+$",
 }

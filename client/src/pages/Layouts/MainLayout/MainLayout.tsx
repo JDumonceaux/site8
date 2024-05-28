@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from 'components';
 import AppSetup from 'components/common/AppSetup/AppSetup';
-import Snackbar from 'components/common/Snackbar/Snackbar';
 import { ErrorBoundary } from 'react-error-boundary';
+const Header = lazy(() => import('components/common/Header/Header'));
+const Snackbar = lazy(() => import('components/common/Snackbar/Snackbar'));
 
 export const MainLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
@@ -15,13 +15,7 @@ export const MainLayout = (): JSX.Element => (
       <Suspense fallback="Loading ...">
         <Outlet />
       </Suspense>
-
       <Snackbar />
-      {/*
-      <MainMenu />
-      <Suspense fallback="Loading ...">
-        <Footer />
-      </Suspense> */}
     </LayoutDiv>
   </ErrorBoundary>
 );

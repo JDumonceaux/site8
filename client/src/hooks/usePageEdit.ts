@@ -47,6 +47,10 @@ const usePageEdit = () => {
   const [isSaved, setIsSaved] = useState<boolean>(true);
   // Is the form saving?
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  // Is the form saving?
+  const [processError, setProcessError] = useState<string | undefined>(
+    undefined,
+  );
   // Return default form values
   const defaultFormValues: FormValues = useMemo(
     () => ({
@@ -152,9 +156,21 @@ const usePageEdit = () => {
     [setFormValues],
   );
 
+  const updateField = useCallback(
+    (fieldName: string, value: string) => {
+      setFormValues((prev) => ({
+        ...prev,
+        [fieldName]: value,
+      }));
+      setIsSaved(false);
+    },
+    [setFormValues],
+  );
+
   // Handle save
   const saveItem = useCallback(
     async (items: FormValues) => {
+      setProcessError(undefined);
       const { id, create_date, edit_date, parent, ...rest } = items;
       const data = {
         ...rest,
@@ -164,11 +180,12 @@ const usePageEdit = () => {
         create_date:
           id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
       };
-      if (data.id > 0) {
-        await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
-      } else {
-        await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
-      }
+
+      const results =
+        data.id > 0
+          ? await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data)
+          : await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
+      setProcessError(undefined);
       return true;
     },
     [patchData, postData],
@@ -231,6 +248,7 @@ const usePageEdit = () => {
       error,
       isSaved,
       fetchItem,
+      updateField,
     }),
     [
       formValues,
@@ -249,6 +267,7 @@ const usePageEdit = () => {
       error,
       isSaved,
       fetchItem,
+      updateField,
     ],
   );
 };

@@ -141,9 +141,15 @@ export class MenuService {
       if (!item) {
         return undefined;
       }
-      return pages?.filter((page) =>
-        page.parent?.some((x) => x.id === item.id),
-      );
+      return pages?.filter((page) => {
+        if (!Array.isArray(page.parent) || page.parent.length === 0) {
+          Logger.error(
+            `MenuService: getMatchedPages -> parent format is incorrect.`,
+          );
+          return undefined;
+        }
+        return page.parent?.some((x) => x.id === item.id);
+      });
     } catch (error) {
       Logger.error(`MenuService: getMatchedPages -> ${error}`);
     }

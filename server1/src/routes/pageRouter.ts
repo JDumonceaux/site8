@@ -2,40 +2,58 @@ import express, { Request, Response } from 'express';
 import { PageService } from '../services/PageService.js';
 import { PageFileService } from '../services/PageFileService.js';
 import { Page } from '../types/Page.js';
-import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
+import { Errors, PreferHeader, RegEx, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { Pages } from '../types/Pages.js';
 import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
+import validator from 'validator';
 
 export const pageRouter = express.Router();
 
 // Get item
-pageRouter.get('/:name', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: get -> `);
+pageRouter.get('/:id', async (req: Request, res: Response) => {
+  Logger.debug(`pageRouter: get by Id -> `);
 
   try {
-    // const { id, isValid } = getRequestIdAsNumeric(req.params.name);
-    // if (!isValid) {
-    //   return res.status(400).json({ error: Responses.INVALID_ID });
-    // }
-
-    const ret = await new PageService().getItemCompleteByName(req.params.name);
-    res.json(ret);
-  } catch (error) {
-    Logger.error(`pageRouter: get -> ${error}`);
-    if (error instanceof Error) {
-      if (error.message.includes('ENOENT')) {
-        res.status(404).json({ error: Errors.FILE_NOT_FOUND });
-      } else {
-        res.status(500).json({ error: Errors.SERVER_ERROR });
-      }
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
+    if (!isValid) {
+      Logger.info(`pageRouter: get by id -> invalid param: ${id}`);
+      return res.status(400).json({ error: Responses.INVALID_ID });
     }
+    const ret = await new PageService().getItemCompleteById(id);
+    ret
+      ? res.status(200).json(ret)
+      : res.status(404).json({ message: `Item not found: ${id}` });
+  } catch (error) {
+    Logger.error(`pageRouter: get Id -> ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
+
+// Get item
+pageRouter.get('/name/:name', async (req: Request, res: Response) => {
+  Logger.debug(`pageRouter: get by name -> `);
+
+  try {
+    const name = req.params.name.trim();
+    if (!name.match(RegEx.ALPHANUMERIC_PLUS)) {
+      Logger.info(`pageRouter: get by name -> invalid param: ${name}`);
+      return res.status(400).json({ error: Responses.INVALID_PARAM });
+    }
+
+    const ret = await new PageService().getItemCompleteByName(name);
+    ret
+      ? res.status(200).json(ret)
+      : res.status(404).json({ message: `Item not found: ${name}` });
+  } catch (error) {
+    Logger.error(`pageRouter: get name -> ${error}`);
+    res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });
 
 // Add item
 pageRouter.post('/', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: post ->`);
+  Logger.debug(`pageRouter: post ->`);
 
   try {
     const Prefer = req.get('Prefer');
@@ -62,7 +80,7 @@ pageRouter.post('/', async (req: Request, res: Response) => {
       // 201 Created
       res.status(201).json(ret);
     } else {
-      res.status(201).json({ results: Responses.SUCCESS });
+      res.status(201).json({ message: Responses.SUCCESS });
     }
   } catch (error) {
     Logger.error(`pageRouter: post -> Error: ${error}`);
@@ -72,7 +90,7 @@ pageRouter.post('/', async (req: Request, res: Response) => {
 
 // Update Item
 pageRouter.patch('/', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: patch ->`);
+  Logger.debug(`pageRouter: patch ->`);
 
   try {
     const Prefer = req.get('Prefer');
@@ -91,9 +109,7 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
       const ret = await new PageService().getItemCompleteById(data.id);
       res.status(201).json(ret);
     } else {
-      // 200 OK
-      // 204 No Content
-      res.status(200).json({ results: 'Success' });
+      res.status(200).json({ message: 'Success' });
     }
   } catch (error) {
     Logger.error(`pageRouter: patch -> Error: ${error}`);
@@ -103,11 +119,12 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
 
 // Delete Item
 pageRouter.delete('/:id', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: delete ->`);
+  Logger.debug(`pageRouter: delete ->`);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
     if (!isValid) {
+      Logger.info(`pageRouter: get by name -> invalid param: ${id}`);
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
 
@@ -123,11 +140,12 @@ pageRouter.delete('/:id', async (req: Request, res: Response) => {
 
 // Get first, next, prev, last item
 pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
-  Logger.info(`pageRouter: get Id Action ->`);
+  Logger.debug(`pageRouter: get Id Action ->`);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
+    const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
     if (!isValid) {
+      Logger.info(`pageRouter: get by name -> invalid param: ${id}`);
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
 

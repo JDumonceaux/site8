@@ -43,6 +43,7 @@ export enum ServiceUrl {
   ENDPOINT_MENUS_VALUES = `${API_ROOT}/menus/values`,
   ENDPOINT_MUSIC = `${API_ROOT}/music`,
   ENDPOINT_PAGE = `${API_ROOT}/page`,
+  ENDPOINT_PAGE_NAME = `${API_ROOT}/page/name`,
   ENDPOINT_PAGES = `${API_ROOT}/pages`,
   ENDPOINT_PAGE_CONTENT = `${API_ROOT}/page/content`,
   ENDPOINT_PHOTOS = `${API_ROOT}/photos`,

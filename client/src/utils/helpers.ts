@@ -15,6 +15,9 @@ export const combineParent = (
     return '';
   }
   const ret: string[] = [];
+  if (!Array.isArray(items)) {
+    return '0,0';
+  }
   items.forEach((x) => {
     if (x.id != undefined) {
       ret.push(x.id.toString());

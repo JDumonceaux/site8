@@ -3,8 +3,8 @@ export function removeEmptyAttributes<T>(obj: T | any): T | any {
   const temp = Object.fromEntries(
     Object.entries(obj)
       .filter(([_, v]) => v != null)
-      .filter(([_, v]) => v !== undefined)
-      .map(([k, v]) => [k, v === Object(v) ? removeEmptyAttributes(v) : v]),
+      .filter(([_, v]) => v !== undefined),
+    // .map(([k, v]) => [k, v === Object(v) ? removeEmptyAttributes(v) : v]),
   );
   for (const k in temp) {
     const x = temp[k];

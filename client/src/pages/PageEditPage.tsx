@@ -34,6 +34,7 @@ const PageEditPage = (): JSX.Element => {
     submitForm,
     setFormValues,
     fetchItem,
+    updateField,
   } = usePageEdit();
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
@@ -62,6 +63,15 @@ const PageEditPage = (): JSX.Element => {
       // navigation(`/admin/page/edit/${action}`);
     },
     [currentId, handleAction],
+  );
+
+  const handleInsert = useCallback(
+    (action: string) => {
+      if (action === 'code') {
+        updateField('text', formValues.text + '<pre><code>\n\n</code></pre>\n');
+      }
+    },
+    [formValues.text, updateField],
   );
 
   const handleSubmit = useCallback(
@@ -253,6 +263,25 @@ const PageEditPage = (): JSX.Element => {
                 </select>
               </Field>
               <datalist id="parentOptions" />
+
+              <StyledMenu>
+                <li>
+                  <button
+                    data-testid="insert-code"
+                    onClick={() => handleInsert('code')}
+                    type="button">
+                    Code
+                  </button>
+                </li>
+                {/* <li>
+                <button
+                  data-testid="nav-prev"
+                  onClick={() => handleOnClick('prev')}
+                  type="button">
+                  Prev
+                </button>
+                </li> */}
+              </StyledMenu>
 
               <TextArea
                 errorText={getFieldErrors('text')}
