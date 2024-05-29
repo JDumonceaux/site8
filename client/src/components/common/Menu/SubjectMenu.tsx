@@ -4,10 +4,9 @@ import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 import { getURLPath } from 'utils/helpers';
-import { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { LoadingWrapper } from 'components';
 import { MenuEntry } from 'services/types/MenuEntry';
-import React from 'react';
 
 const SubjectMenu = memo((): JSX.Element => {
   const { getMenu, fetchData, isLoading, error } = useMenu();

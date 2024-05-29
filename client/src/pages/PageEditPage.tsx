@@ -31,16 +31,17 @@ const PageEditPage = (): JSX.Element => {
     handleReset,
     handleClear: onClear,
     hasError,
-    submitForm,
-    setFormValues,
+    handleSave,
     fetchItem,
-    updateField,
+    setFieldValue,
+    validateForm,
   } = usePageEdit();
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
 
   const { setSnackbarMessage } = useSnackbar();
 
+  // Set the id from the parameters if present
   useEffect(() => {
     const value = params.id;
     if (value) {
@@ -68,38 +69,38 @@ const PageEditPage = (): JSX.Element => {
   const handleInsert = useCallback(
     (action: string) => {
       if (action === 'code') {
-        updateField('text', formValues.text + '<pre><code>\n\n</code></pre>\n');
+        setFieldValue(
+          'text',
+          formValues.text + '<pre><code>\n\n</code></pre>\n',
+        );
       }
     },
-    [formValues.text, updateField],
+    [formValues.text, setFieldValue],
   );
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      setSnackbarMessage('Saving...');
-      startTransition(() => {
-        const result = submitForm();
-        if (result) {
+      console.log('handleSubmit');
+      if (validateForm()) {
+        setSnackbarMessage('Saving...');
+        startTransition(() => {
+          console.log('handleSave');
+          handleSave();
           setSnackbarMessage('Saved');
-        } else {
-          setSnackbarMessage(`Error saving ${error}`);
-        }
-      });
+        });
+      }
     },
-    [error, setSnackbarMessage, submitForm],
+    [validateForm, setSnackbarMessage, handleSave],
   );
 
   const handeOnBlur = useCallback(() => {
     if (formValues.name.length > 0 && formValues.to?.length === 0) {
       const x = formValues.name.toLowerCase().replaceAll(' ', '-');
-      setFormValues((prev) => ({
-        ...prev,
-        to: x,
-      }));
+      setFieldValue('to', x);
     }
-  }, [formValues.name, formValues.to?.length, setFormValues]);
+  }, [formValues.name, formValues.to?.length, setFieldValue]);
 
   const handleClear = useCallback(
     (e: React.FormEvent) => {
@@ -201,6 +202,7 @@ const PageEditPage = (): JSX.Element => {
                 id="name"
                 inputMode="text"
                 label="Short Title"
+                layout="horizontal"
                 onBlur={handeOnBlur}
                 onChange={handleChange}
                 required={true}
@@ -218,6 +220,7 @@ const PageEditPage = (): JSX.Element => {
                 id="to"
                 inputMode="text"
                 label="To"
+                layout="horizontal"
                 onChange={handleChange}
                 required={true}
                 spellCheck={true}
@@ -233,6 +236,7 @@ const PageEditPage = (): JSX.Element => {
                 id="url"
                 inputMode="text"
                 label="URL"
+                layout="horizontal"
                 onChange={handleChange}
                 required={true}
                 spellCheck={true}
@@ -245,6 +249,7 @@ const PageEditPage = (): JSX.Element => {
                 hasError={hasError('parent')}
                 id="parent"
                 label="Parent"
+                layout="horizontal"
                 list="parentIds"
                 onChange={handleChange}
                 type="text"

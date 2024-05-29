@@ -23,6 +23,7 @@ export const useAxios = <T>() => {
       });
 
       setData(response.data);
+      return true;
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -32,10 +33,7 @@ export const useAxios = <T>() => {
     } finally {
       setIsLoading(false);
     }
-    // Cleanup
-    return () => {
-      //
-    };
+    return false;
   };
 
   const postDataAsync = async (url: string, data: T) => {
@@ -52,6 +50,7 @@ export const useAxios = <T>() => {
         },
       });
       setData(response.data);
+      return true;
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -61,7 +60,7 @@ export const useAxios = <T>() => {
     } finally {
       setIsLoading(false);
     }
-    return undefined;
+    return false;
   };
 
   const patchDataAsync = async (url: string, data: T) => {
@@ -78,6 +77,7 @@ export const useAxios = <T>() => {
         },
       });
       setData(response.data);
+      return true;
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -87,6 +87,7 @@ export const useAxios = <T>() => {
     } finally {
       setIsLoading(false);
     }
+    return false;
   };
 
   const deleteDataAsync = async (url: string) => {
@@ -98,8 +99,8 @@ export const useAxios = <T>() => {
       const response = await axios.delete<T>(url, {
         responseType: 'json',
       });
-
       setData(response.data);
+      return true;
     } catch (error) {
       if (isCancel(error)) {
         // console.log(REQUEST_CANCELLED, error.message);
@@ -109,7 +110,7 @@ export const useAxios = <T>() => {
     } finally {
       setIsLoading(false);
     }
-    return undefined;
+    return false;
   };
 
   return {

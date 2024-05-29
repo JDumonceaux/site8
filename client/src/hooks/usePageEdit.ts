@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { Page } from 'services/types/Page';
 import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
@@ -36,23 +36,18 @@ const pageSchema = z
     (data) => data.to || data.url,
     'Either to or url should be filled in.',
   );
+
+// Create a type from the schema
+export type FormValues = z.infer<typeof pageSchema>;
+export type keys = keyof FormValues;
+
 const usePageEdit = () => {
   // Use Axios to fetch data
   const { data, isLoading, error, fetchData, patchData, postData } =
     useAxios<Page>();
-  // Create a type from the schema
-  type FormValues = z.infer<typeof pageSchema>;
-  type keys = keyof FormValues;
-  // Does the data need to be saved?
-  const [isSaved, setIsSaved] = useState<boolean>(true);
-  // Is the form saving?
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  // Is the form saving?
-  const [processError, setProcessError] = useState<string | undefined>(
-    undefined,
-  );
+
   // Return default form values
-  const defaultFormValues: FormValues = useMemo(
+  const initialFormValues: FormValues = useMemo(
     () => ({
       id: 0,
       name: '',
@@ -67,46 +62,60 @@ const usePageEdit = () => {
     }),
     [],
   );
-  // Create a form
-  const { formValues, setFormValues, setFieldValue, errors, setErrors } =
-    useForm<FormValues>(defaultFormValues);
-  // Keep a copy of the original values to reset
-  const [originalValues, setOriginalValues] = useState<Page | undefined>(
-    undefined,
-  );
 
-  // Update the form values
-  const updateFormValues = useCallback(
-    (items: Page | undefined | null) => {
-      if (items) {
-        const item: FormValues = {
-          id: items.id,
-          name: items.name ?? '',
-          to: items.to ?? '',
-          url: items.url ?? '',
-          text: items.text ?? '',
+  // Create a form
+  const {
+    hasError,
+    formValues,
+    isSaved,
+    isProcessing,
+    handleChange,
+    handleClear,
+    handleReset,
+    setFieldValue,
+    setErrors,
+    setIsSaved,
+    setIsProcessing,
+    getFieldErrors,
+    setAllValues,
+    setInitialFormValues,
+  } = useForm<FormValues>(initialFormValues);
+
+  // Map page to form values
+  const mapPageToFormValues = useCallback(
+    (item: Page | undefined | null): FormValues | undefined => {
+      if (item) {
+        const ret = {
+          id: item.id,
+          name: item.name ?? '',
+          to: item.to ?? '',
+          url: item.url ?? '',
+          text: item.text ?? '',
           edit_date:
-            (items.edit_date && format(items.edit_date, DF_LONG)) ??
+            (item.edit_date && format(item.edit_date, DF_LONG)) ??
             format(new Date(), DF_LONG),
           create_date:
-            (items.create_date && format(items.create_date, DF_LONG)) ??
+            (item.create_date && format(item.create_date, DF_LONG)) ??
             format(new Date(), DF_LONG),
-          parent: combineParent(items.parent),
-          reading_time: items.reading_time ?? '',
-          readability_score: items.readability_score ?? '',
+          parent: combineParent(item.parent),
+          reading_time: item.reading_time ?? '',
+          readability_score: item.readability_score ?? '',
         };
-        setFormValues(item);
-        console.log('item', item);
+        return ret;
       }
+      return undefined;
     },
-    [setFormValues],
+    [],
   );
 
   // Update the form values when the data changes
   useEffect(() => {
-    updateFormValues(data);
-    setOriginalValues(data);
-  }, [data, updateFormValues]);
+    const values = mapPageToFormValues(data);
+    if (values) {
+      setAllValues(values);
+      setInitialFormValues(values);
+    }
+  }, [data, mapPageToFormValues, setAllValues, setInitialFormValues]);
 
   const fetchItem = useCallback((id: number) => {
     fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${id.toString()}`);
@@ -115,7 +124,7 @@ const usePageEdit = () => {
   // Validate form
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(pageSchema, formValues);
-    setErrors(result.errorFormatted);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
 
@@ -127,95 +136,30 @@ const usePageEdit = () => {
     [fetchData],
   );
 
-  // Handle clear form
-  const handleClear = useCallback(() => {
-    setFormValues(defaultFormValues);
-    setIsSaved(true);
-    setIsProcessing(false);
-    setErrors(null);
-  }, [defaultFormValues, setErrors, setFormValues]);
-
-  // Handle form reset
-  const handleReset = useCallback(() => {
-    updateFormValues(originalValues);
-    setIsSaved(true);
-    setIsProcessing(false);
-    setErrors(null);
-  }, [originalValues, setErrors, updateFormValues]);
-
-  // Handle field change
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = event.target;
-      setFormValues((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-      setIsSaved(false);
-    },
-    [setFormValues],
-  );
-
-  const updateField = useCallback(
-    (fieldName: string, value: string) => {
-      setFormValues((prev) => ({
-        ...prev,
-        [fieldName]: value,
-      }));
-      setIsSaved(false);
-    },
-    [setFormValues],
-  );
-
   // Handle save
-  const saveItem = useCallback(
-    async (items: FormValues) => {
-      setProcessError(undefined);
-      const { id, create_date, edit_date, parent, ...rest } = items;
-      const data = {
-        ...rest,
-        id,
-        parent: splitParent(parent),
-        edit_date: getDateTime(edit_date) ?? new Date(),
-        create_date:
-          id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
-      };
-
-      const results =
-        data.id > 0
-          ? await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data)
-          : await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
-      setProcessError(undefined);
-      return true;
-    },
-    [patchData, postData],
-  );
-
-  // Handle form submission
-  const submitForm = useCallback((): boolean => {
+  const submitForm = useCallback(async () => {
     setIsProcessing(true);
-    if (validateForm()) {
-      saveItem(formValues);
-      setIsProcessing(false);
-      setIsSaved(true);
-      return true;
-    }
-    return false;
-  }, [formValues, saveItem, validateForm]);
+    const { id, create_date, edit_date, parent, ...rest } = formValues;
+    const data = {
+      ...rest,
+      id,
+      parent: splitParent(parent),
+      edit_date: getDateTime(edit_date) ?? new Date(),
+      create_date: id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
+    };
+    const result =
+      data.id > 0
+        ? await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data)
+        : await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
+    setIsProcessing(false);
+    setIsSaved(result);
+    return result;
+  }, [formValues, patchData, postData, setIsProcessing, setIsSaved]);
 
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
-
-  const hasError = useCallback(
-    (fieldName: keys) => {
-      return !getFieldErrors(fieldName);
-    },
-    [getFieldErrors],
-  );
+  const handleSave = useCallback(async () => {
+    const ret = await submitForm();
+    return ret;
+  }, [submitForm]);
 
   const getStandardTextInputAttributes = useCallback(
     (fieldName: keys) => {
@@ -234,40 +178,40 @@ const usePageEdit = () => {
       pageSchema,
       formValues,
       isProcessing,
+      isLoading,
+      error,
+      isSaved,
       getFieldErrors,
       getStandardTextInputAttributes,
       hasError,
-      setFormValues,
+      setAllValues,
       setFieldValue,
       handleAction,
       handleClear,
       handleChange,
       handleReset,
-      submitForm,
-      isLoading,
-      error,
-      isSaved,
+      handleSave,
       fetchItem,
-      updateField,
+      validateForm,
     }),
     [
       formValues,
       isProcessing,
+      isLoading,
+      error,
+      isSaved,
       getFieldErrors,
       getStandardTextInputAttributes,
       hasError,
-      setFormValues,
+      setAllValues,
       setFieldValue,
       handleAction,
       handleClear,
       handleChange,
       handleReset,
-      submitForm,
-      isLoading,
-      error,
-      isSaved,
+      handleSave,
       fetchItem,
-      updateField,
+      validateForm,
     ],
   );
 };
