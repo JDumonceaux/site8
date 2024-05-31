@@ -1,1 +1,9 @@
-x
+<a href="https://react.dev/">React</a> is a Javascript library for building User Interfaces.
+
+At it's foundation, React is pretty easy - it is just a layer on top of Javascript.  However, despite being a seasoned programmer, I found learning React a "challenge" because it comes with a whole bag of related tools, libraries, and interconnected technologies.  Also, React has evolved significantly from version 16 to 18: the structure of pre-18, pre-hooks code is very different from React's current approach.
+
+This makes it difficult to "Google-for-answers":  a very high percentage of solutions will be in an older format or be incompatible.  And then, you have to identify which technology you're looking at and what keywords to search for.  The majority of YouTube and online tutorials start off with traditional create-react-app - creating the foundation of a simple React App (and wasting 40% of the tutorial).  This is almost like creating a "Hello, world" app in React.  Yet, React now recommends against using create-react-app and suggests taking other approaches.
+
+I recommend you start off with this course <a href="https://nextjs.org/learn/react-foundations">React Foundations</a> from Next.Js.  It is a very minimal shift from a traditional web page to a very basic React page - without introducing third party libraries.
+
+  

@@ -1,7 +1,9 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { REQUIRED_FIELD } from 'utils';
 import { z } from 'zod';
-import { useForm } from './useForm';
+import { useFormArray } from './useFormArray';
+import useMenu from './useMenu';
+import { MenuEntry } from 'services/types/MenuEntry';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -10,13 +12,21 @@ const pageSchema = z.object({
   seq: z.number(),
   sortby: z.string(),
 });
+
+// Create a type from the schema
+export type FormValues = z.infer<typeof pageSchema>;
+export type keys = keyof FormValues;
+
 const usePagesEdit = () => {
-  // Create a type from the schema
-  type FormValues = z.infer<typeof pageSchema>;
-  type keys = keyof FormValues;
+  const { data, fetchData, isLoading, error } = useMenu();
+
+  // Get the data
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   // Return default form values
-  const defaultFormValues: FormValues = useMemo(
+  const initialFormValues: FormValues = useMemo(
     () => ({
       id: 0,
       parent: '',
@@ -25,137 +35,160 @@ const usePagesEdit = () => {
     }),
     [],
   );
+
   // Create a form
   const {
     formValues,
-    setAllValues,
+    isSaved,
+    isProcessing,
+    setIsProcessing,
     setFieldValue,
-    errors,
-    setErrors,
-    isFormValid,
-  } = useForm<FormValues>(defaultFormValues);
+    setAllValues,
+    getItem,
+  } = useFormArray<FormValues>(initialFormValues);
+
+  const getFieldValue = useCallback(
+    (id: number, fieldName: keys) => {
+      const i = getItem(id);
+      if (!i) {
+        return undefined;
+      }
+      return i[fieldName as keys];
+    },
+    [getItem],
+  );
+
+  // Map page to form values
+  const mapPageToFormValues = useCallback(
+    (items: MenuEntry[] | undefined): FormValues[] | undefined => {
+      if (!items) {
+        return undefined;
+      }
+
+      const ret = items.map((x) => {
+        return {
+          id: x.id,
+          parent: x.parentId.toString(),
+          seq: x.seq,
+          sortby: x.sortby,
+        };
+      });
+      return ret;
+    },
+    [],
+  );
+
+  const getDataFlat = useCallback(
+    (items: MenuEntry[] | undefined | null): MenuEntry[] | undefined => {
+      if (!items) {
+        return undefined;
+      }
+
+      const ret: MenuEntry[] = [];
+      items.forEach((item) => {
+        ret.push(item);
+        if (item.items) {
+          const x = getDataFlat(item.items);
+          if (x) {
+            ret.push(...x);
+          }
+        }
+      });
+      return ret;
+    },
+    [],
+  );
+
+  // Update the form values when the data changes
+  useEffect(() => {
+    const values = data?.items
+      ? mapPageToFormValues(getDataFlat(data.items))
+      : undefined;
+    if (values) {
+      setAllValues(values);
+    }
+  }, [data, getDataFlat, mapPageToFormValues, setAllValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
   //   const result = safeParse<FormValues>(pageSchema, formValues);
-  //   setErrors(result.errorFormatted);
+  //   setErrors(result.error?.issues);
   //   return result.success;
   // }, [formValues, setErrors]);
 
-  // Handle clear form
-  const handleClear = useCallback(() => {
-    setAllValues([defaultFormValues]);
-    setErrors(null);
-  }, [defaultFormValues, setErrors, setAllValues]);
-
-  // Handle form reset
-  const handleReset = useCallback(() => {
-    // updateFormValues(originalValues);
-    // setIsSaved(true);
-    // setIsProcessing(false);
-    setErrors(null);
-  }, []);
-
-  // Handle field change
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = event.target;
-      setFieldValue(name as keys, value);
-    },
-    [setFieldValue],
-  );
-
-  const updateField = useCallback(
-    (name: string, value: string) => {
-      setFieldValue(0, name as keys, value);
-    },
-    [setFieldValue],
-  );
-
   // Handle save
-  const saveItem = useCallback(async (items: FormValues) => {
-    // setProcessError(undefined);
-    // const { id, create_date, edit_date, parent, ...rest } = items;
-    // // const data = {
+  const submitForm = useCallback(async () => {
+    setIsProcessing(true);
+    // const { id, ...rest } = formValues;
+    // const data = {
     //   ...rest,
     //   id,
-    //   parent: splitParent(parent),
-    //   edit_date: getDateTime(edit_date) ?? new Date(),
-    //   create_date: id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
+    //   //  parent: splitParent(parent),
     // };
+    // // const result =
+    // //   data.id > 0
+    // //     ? await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data)
+    // //     : await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
+    // setIsProcessing(false);
+    // setIsSaved(result);
+    // return result;
+  }, [setIsProcessing]);
 
-    // const results =
-    //   data.id > 0
-    //     ? await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data)
-    //     : await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
-    // setProcessError(undefined);
-    return true;
-  }, []);
-
-  // Handle form submission
-  const submitForm = useCallback((): boolean => {
-    // setIsProcessing(true);
-    // if (validateForm()) {
-    //   saveItem(formValues);
-    //   setIsProcessing(false);
-    //   setIsSaved(true);
-    //   return true;
-    // }
-    return false;
-  }, []);
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
+  const handleChange = useCallback(
+    (id: number, fieldName: keys, value: string) => {
+      setFieldValue(id, fieldName, value);
     },
-    [errors],
+    [setFieldValue],
   );
 
-  const hasError = useCallback(
-    (fieldName: keys) => {
-      return !getFieldErrors(fieldName);
-    },
-    [getFieldErrors],
-  );
+  const handleSave = useCallback(async () => {
+    const ret = await submitForm();
+    return ret;
+  }, [submitForm]);
 
   const getStandardTextInputAttributes = useCallback(
-    (fieldName: keys) => {
+    (id: number, fieldName: keys) => {
+      const field = id + '-' + fieldName;
       return {
-        id: fieldName,
-        errorText: getFieldErrors(fieldName),
-        hasError: hasError(fieldName),
-        value: formValues[fieldName],
+        id: field,
+        value: getFieldValue(id, fieldName),
+        // errorText: getFieldErrors(fieldName),
+        // hasError: hasError(fieldName),
+        // value: formValues[fieldName],
       };
     },
-    [getFieldErrors, hasError, formValues],
+    [getFieldValue],
   );
 
   return useMemo(
     () => ({
+      data,
+      pageSchema,
       formValues,
-      getFieldErrors,
+      isProcessing,
+      isLoading,
+      error,
+      isSaved,
+      getFieldValue,
       getStandardTextInputAttributes,
-      hasError,
       setAllValues,
       setFieldValue,
-      handleClear,
       handleChange,
-      handleReset,
-      submitForm,
-      updateField,
+      handleSave,
     }),
     [
+      data,
       formValues,
-      getFieldErrors,
+      isProcessing,
+      isLoading,
+      error,
+      isSaved,
+      getFieldValue,
       getStandardTextInputAttributes,
-      hasError,
       setAllValues,
       setFieldValue,
-      handleClear,
       handleChange,
-      handleReset,
-      submitForm,
-      updateField,
+      handleSave,
     ],
   );
 };

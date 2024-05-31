@@ -1,21 +1,21 @@
 'use client';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { Meta, LoadingWrapper, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import useMenu from 'hooks/useMenu';
 import { MenuEntry } from 'services/types/MenuEntry';
 import { styled } from 'styled-components';
 import { TextInput } from 'components/form/input';
 import usePagesEdit from 'hooks/usePagesEdit';
 
 const PagesPage = (): JSX.Element => {
-  const { data, fetchData, isLoading, error } = useMenu();
-  const { formValues, getFieldErrors, handleChange, hasError } = usePagesEdit();
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const {
+    data,
+    error,
+    isLoading,
+    handleChange,
+    getStandardTextInputAttributes,
+  } = usePagesEdit();
 
   const renderItem = useCallback(
     (item: MenuEntry | undefined, level: number): JSX.Element | null => {
@@ -44,17 +44,18 @@ const PagesPage = (): JSX.Element => {
             )}
             <td>
               <TextInput
+                {...getStandardTextInputAttributes(item.id, 'parent')}
                 autoCapitalize="off"
                 enterKeyHint="next"
-                errorText={getFieldErrors(`parentId${item.id}`)}
-                errorTextShort="Please enter a short title"
-                hasError={hasError(`parentId${item.id}`)}
-                id={`parentId${item.id}`}
+                // errorText={getFieldErrors(`parentId${item.id}`)}
+                // errorTextShort="Please enter a short title"
+                // hasError={hasError(`parentId${item.id}`)}
                 inputMode="text"
-                onChange={handleChange}
+                onChange={(e) =>
+                  handleChange(item.id, 'parent', e.target.value)
+                }
                 required={true}
                 spellCheck={true}
-                value={formValues[`parentId${item.id}`]}
               />
             </td>
             <td>{item.seq}</td>
@@ -67,7 +68,7 @@ const PagesPage = (): JSX.Element => {
         </React.Fragment>
       );
     },
-    [],
+    [getStandardTextInputAttributes, handleChange],
   );
 
   return (

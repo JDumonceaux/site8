@@ -1,0 +1,46 @@
+React comes in many flavors.
+
+<h2>React / ReactJS</h2>
+The "original" <a href="https://react.dev/">React</a> (aka React.js or ReactJS) was developed by a software engineer at Meta.  
+
+For a long time, npm create-react-app was the starting point for creating a React SPA (Single Page Application).   This would create all the folders, configs, and initial files for a simple React application.  Nearly all the tutorials on YouTube and elsewhere start with this step.
+
+However, as of Nov. 2023, React recommends <em>against</em> using npm create-react-app.  This creates a version that is very heavy.  
+
+Note: There is a <a href="https://legacy.reactjs.org/">legacy version of the React documentation</a> that commonly comes up when doing Google searches.  Make sure you use the most current version:  <a href="https://react.dev/">https://react.dev/</a> 
+
+<h2>React Options</h2>
+<a href="https://vitejs.dev/">ViteJs</a> is a lightweight, fast framework for React.  I suggest you build at least one site with Vite, then move to NextJs.
+
+<a href="https://nextjs.org/">NextJs</a> is currently a very popular React framework and jobs are in-demand.  I recommend you learn this version.  
+
+<a href="https://remix.run/">Remix</a> is another React framework.
+
+<a href="https://www.gatsbyjs.com/">Gatsby</a> is another React framework.
+
+Note:  If you don't have time to learn these other frameworks, you may want to take at least sometime to understand their strengths and their different approaches.
+
+<h2>React Alternatives</h2>
+Alternatives to React include:  Angular.js, Backbone.js, Ember.js, Svelte, Vue.js and others.
+
+<h2>React Variants</h2>
+There are other "versions" of React for other platforms:
+
+<table>
+<tr><td>React</td><td>Web.  Works with the web browser and DOM model</td></tr>
+<tr><td>React Native</td><td>iPhones.  Works with iPhone or Android devices
+No DOM model  (no HTML tags: div, p, h1, etc.)
+Pages and views vs. URLs
+Access to additional features: accelerometer, location services, swipe gestures</td></tr>
+<tr><td>React 360</td><td>used to create 3D app, forms and animations, it’s a VR library. You can check the official documentation here : https://facebook.github.io/react-360/doc</td></tr>
+<tr><td>React Canvas</td><td>Draw on a canvas</td></tr>
+<tr><td>React SVG</td><td>Inject SVG into the DOM</td></tr>
+<tr><td>React Hardware</td><td>Render to physical hardware</td></tr>
+<tr><td>React Blessed </td><td>Terminal library (i.e. mainframe)</td></tr>
+<tr><td>React NodeGUI</td><td>build desktop apps with React.js library</td></tr>
+</table>
+	
+
+
+
+

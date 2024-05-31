@@ -82,11 +82,9 @@ const PageEditPage = (): JSX.Element => {
     (e: React.FormEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      console.log('handleSubmit');
       if (validateForm()) {
         setSnackbarMessage('Saving...');
         startTransition(() => {
-          console.log('handleSave');
           handleSave();
           setSnackbarMessage('Saved');
         });

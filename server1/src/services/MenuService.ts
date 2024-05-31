@@ -68,7 +68,7 @@ export class MenuService {
     return ret;
   }
 
-  // Get the root level and convert the MenuItems to MenuEntry
+  // 1. Get the root level and convert the MenuItems to MenuEntry
   private getRootMenu(
     menuItems?: ReadonlyArray<MenuItem>,
   ): MenuEntry[] | undefined {
@@ -77,29 +77,29 @@ export class MenuService {
         return undefined;
       }
 
-      // Get the MenuItems for the current level
+      // Get the MenuItems for the root level
       const currMenus: MenuItem[] = menuItems.filter((item) =>
         item.parent?.some((x) => x.id === 0),
       );
 
-      const ret: MenuEntry[] | undefined = [];
-      currMenus.forEach((item) => {
-        ret.push({
+      return currMenus.map((item) => {
+        const parent = item.parent.find((x) => x.id === 0);
+        return {
           ...this.getMenuEntry(item),
           id: item.id,
           name: item.name,
-          seq: item.parent.find((x) => x.id === 0)?.seq ?? 0,
+          seq: parent?.seq ?? 0,
           menuItems: this.fillMenu(item.id, menuItems) || [],
           parent: item.parent,
-        } as MenuEntry);
+        } as MenuEntry;
       });
-      return ret;
     } catch (error) {
       Logger.error(`MenuService: getRootMenu -> ${error}`);
     }
     return undefined;
   }
 
+  // 2. Get the pages and convert to MenuEntry
   private getPagesAsMenuEntry(
     pages?: ReadonlyArray<Page>,
   ): MenuEntry[] | undefined {
@@ -108,10 +108,9 @@ export class MenuService {
         return undefined;
       }
 
-      // Declare the return array
-      const ret: MenuEntry[] | undefined = [];
-      pages.forEach((item) => {
-        ret.push({
+      // Convert the pages to MenuEntry
+      return pages?.map((item) => {
+        return {
           id: item.id,
           name: item.name,
           type: 'page',
@@ -124,31 +123,39 @@ export class MenuService {
           parent: item.parent,
           menuItems: [],
           pageItems: [],
-        });
+        };
       });
-      return ret;
     } catch (error) {
       Logger.error(`MenuService: getPagesAsMenuEntry -> ${error}`);
     }
     return undefined;
   }
 
+  // 3.5 Get the matched pages
   private getMatchedPages(
-    item: MenuEntry,
+    id: number,
     pages?: ReadonlyArray<MenuEntry>,
   ): MenuEntry[] | undefined {
     try {
-      if (!item) {
-        return undefined;
-      }
-      return pages?.filter((page) => {
+      // Get items where parent is the current id
+      const items = pages?.filter((page) => {
         if (!Array.isArray(page.parent) || page.parent.length === 0) {
           Logger.error(
             `MenuService: getMatchedPages -> parent format is incorrect.`,
           );
           return undefined;
         }
-        return page.parent?.some((x) => x.id === item.id);
+        return page.parent?.some((x) => x.id === id);
+      });
+
+      return items?.map((x) => {
+        // Find parent match
+        const match = x.parent?.find((y) => y.id === id);
+        return {
+          ...x,
+          parentId: id,
+          seq: match?.seq ?? 0,
+        };
       });
     } catch (error) {
       Logger.error(`MenuService: getMatchedPages -> ${error}`);
@@ -156,6 +163,7 @@ export class MenuService {
     return undefined;
   }
 
+  // 3. Get the matched entries
   private getMatchedEntries(
     menuItems?: ReadonlyArray<MenuEntry>,
     pages?: ReadonlyArray<MenuEntry>,
@@ -173,7 +181,9 @@ export class MenuService {
       menuItems.forEach((item) => {
         ret.push({
           ...item,
-          pageItems: this.getMatchedPages(item, pages) || [],
+          // 3.5 Get the matched pages
+          pageItems: this.getMatchedPages(item.id, pages) || [],
+          // Recursively call the function
           menuItems: this.getMatchedEntries(item.menuItems, pages) || [],
         });
       });
@@ -184,6 +194,7 @@ export class MenuService {
     return undefined;
   }
 
+  // 4. Combine the entries
   private getCombinedEntries(
     items?: ReadonlyArray<MenuEntry>,
   ): MenuEntry[] | undefined {
@@ -208,18 +219,20 @@ export class MenuService {
     }
   }
 
+  // 5. Sort the menu items
   private sortMenu(item: MenuEntry): MenuEntry {
-    const x =
+    const items =
       item.sortby === 'seq'
         ? item?.items?.sort((a, b) => sortMenuEntrySeq(a, b))
         : item?.items?.sort((a, b) => sortMenuEntryName(a, b));
 
     return {
       ...item,
-      items: x ? [...x] : undefined,
+      items: items ? [...items] : undefined,
     };
   }
 
+  // 6. Fill in the URLs
   private fillURL(item: MenuEntry): MenuEntry {
     try {
       const items = item.items?.map((x) => {
@@ -240,6 +253,7 @@ export class MenuService {
     }
   }
 
+  // 7. Clean up
   private trimItem(entry: MenuEntry): MenuEntry {
     try {
       const { item, menuItems, pageItems, parent, ...rest } = entry;
@@ -256,6 +270,7 @@ export class MenuService {
     }
   }
 
+  // Generic loop function
   private loopItems(
     callback: (item: MenuEntry) => MenuEntry,
     items?: ReadonlyArray<MenuEntry>,
@@ -279,25 +294,6 @@ export class MenuService {
     }
   }
 
-  private loopMenuItems(
-    callback: (item: MenuEntry) => MenuEntry | undefined,
-    items?: ReadonlyArray<MenuEntry>,
-  ): MenuEntry[] | undefined {
-    if (!items) {
-      return undefined;
-    }
-
-    const x = items.map((item) => {
-      const y = callback(item);
-      const z = this.loopMenuItems(callback, y?.menuItems);
-      return {
-        ...item,
-        items: z,
-      };
-    });
-    return x;
-  }
-
   // 0. Get Menu
   public async getMenu(): Promise<Menu | undefined> {
     Logger.info(`MenuService: getMenu -> `);
@@ -308,19 +304,19 @@ export class MenuService {
         return undefined;
       }
 
-      // Get the root level menu
+      // 1. Get the root level menu
       const rootMenu = this.getRootMenu(data.menuItems);
-      // Get pages
+      // 2. Get pages
       const pages = this.getPagesAsMenuEntry(data.items);
-      // Add pages to menus
+      // 3. Add pages to menus
       const menuPages = this.getMatchedEntries(rootMenu, pages);
-      // Combine items
+      // 4. Combine items
       const combinedItems = this.getCombinedEntries(menuPages);
-      // Sort all the menu items: mixing menu and pages
+      // 5. Sort all the menu items: mixing menu and pages
       const sortedMenus = this.loopItems(this.sortMenu, combinedItems);
-      // Fill in URLs
+      // 6. Fill in URLs
       const urlMenus = this.loopItems(this.fillURL, sortedMenus);
-      // Clean up
+      // 7. Clean up
       const cleanMenus = this.loopItems(this.trimItem, urlMenus);
 
       return {
@@ -333,6 +329,7 @@ export class MenuService {
     }
   }
 
+  // 0 Get Menu Values
   public async getMenuValues(): Promise<MenuEntryFlat[] | undefined> {
     Logger.info(`MenuService: getValues -> `);
     try {
