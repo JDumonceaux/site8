@@ -16,7 +16,7 @@
     "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" "
   },
   "dependencies": {
-    "@graphql-tools/schema": "^10.0.3",
+    "@graphql-tools/schema": "^10.0.4",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.19.2",
@@ -41,14 +41,14 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prefer-arrow-functions": "^3.3.1",
-    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-promise": "^6.2.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-sonarjs": "^1.0.3",
     "husky": "^9.0.11",
     "pre-commit": "^1.2.2",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.0",
     "pretty-quick": "^4.0.0",
     "typescript": "^5.4.5"
   },
