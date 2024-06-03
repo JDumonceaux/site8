@@ -20,3 +20,4 @@ export * from './PhotoSet';
 export * from './Snackbar';
 export * from './Image';
 export * from './Images';
+export * from './MenuEdit';

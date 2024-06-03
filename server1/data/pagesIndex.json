@@ -2,72 +2,54 @@
   "metadata": {
     "title": "Pages"
   },
-  "menuItems": [
+  "items": [
     {
-      "id": 1,
+      "id": 10001,
       "name": "Programming",
       "to": "programming",
-      "parent": [
-        {
-          "id": 0,
-          "seq": 0
-        }
-      ]
+      "sortby": "name",
+      "type": "root",
+      "seq": 0
     },
     {
-      "id": 200,
+      "id": 10002,
       "name": "React",
       "to": "react",
-      "parent": [
-        {
-          "id": 0,
-          "seq": 0
-        }
-      ]
+      "sortby": "name",
+      "type": "root",
+      "seq": 0
     },
     {
-      "id": 300,
+      "id": 10003,
       "name": "AWS",
       "to": "aws",
-      "parent": [
-        {
-          "id": 0,
-          "seq": 0
-        }
-      ]
+      "sortby": "name",
+      "type": "root",
+      "seq": 0
     },
     {
-      "id": 400,
+      "id": 10004,
       "name": "Fun Stuff",
       "to": "fun",
-      "parent": [
-        {
-          "id": 0,
-          "seq": 0
-        }
-      ]
+      "sortby": "name",
+      "type": "root",
+      "seq": 0
     },
     {
-      "id": 500,
+      "id": 10005,
       "name": "Web",
       "to": "web",
-      "parent": [
-        {
-          "id": 0,
-          "seq": 0
-        }
-      ]
+      "sortby": "name",
+      "type": "root",
+      "seq": 0
     },
     {
-      "id": 600,
+      "id": 10006,
       "name": "React A-Z",
       "to": "react-a-z",
-      "parent": [
-        {
-          "id": 0,
-          "seq": 0
-        }
-      ]
+      "sortby": "seq",
+      "type": "root",
+      "seq": 0
     },
     {
       "id": 40,
@@ -75,10 +57,12 @@
       "to": "getting-started",
       "parent": [
         {
-          "id": 600,
+          "id": 10006,
           "seq": 1
         }
-      ]
+      ],
+      "sortby": "seq",
+      "type": "menu"
     },
     {
       "id": 9,
@@ -89,7 +73,9 @@
           "id": 100,
           "seq": 0
         }
-      ]
+      ],
+      "sortby": "seq",
+      "type": "menu"
     },
     {
       "id": 1000,
@@ -100,7 +86,8 @@
         }
       ],
       "name": "Creational Design Patterns",
-      "to": "creational-design-patterns"
+      "to": "creational-design-patterns",
+      "type": "menu"
     },
     {
       "id": 4,
@@ -111,7 +98,8 @@
           "id": 100,
           "seq": 0
         }
-      ]
+      ],
+      "type": "menu"
     },
     {
       "id": 2,
@@ -119,10 +107,11 @@
       "to": "design",
       "parent": [
         {
-          "id": 500,
+          "id": 10005,
           "seq": 0
         }
-      ]
+      ],
+      "type": "menu"
     },
     {
       "id": 5,
@@ -133,7 +122,8 @@
         }
       ],
       "name": "Cheat Sheets",
-      "to": "cheatsheet"
+      "to": "cheatsheet",
+      "type": "menu"
     },
     {
       "id": 8,
@@ -144,106 +134,116 @@
         }
       ],
       "name": "Code Solutions",
-      "to": "code/solutions"
+      "to": "code/solutions",
+      "type": "menu"
     },
     {
       "id": 13,
       "parent": [
         {
-          "id": 500,
+          "id": 10005,
           "seq": 0
         }
       ],
       "name": "Security",
-      "to": "security"
+      "to": "security",
+      "type": "menu"
     },
     {
       "id": 15,
       "parent": [
         {
-          "id": 500,
+          "id": 10005,
           "seq": 0
         }
       ],
       "name": "Maintenance",
-      "to": "maintenance"
+      "to": "maintenance",
+      "type": "menu"
     },
     {
-      "id": 11,
+      "id": 30,
       "parent": [
         {
-          "id": 500,
+          "id": 10005,
           "seq": 0
         }
       ],
       "name": "IDE",
-      "to": "ide"
+      "to": "ide",
+      "type": "menu"
     },
     {
       "id": 14,
       "parent": [
         {
-          "id": 300,
+          "id": 10003,
           "seq": 0
         }
       ],
       "name": "AWS",
-      "to": "aws"
+      "to": "aws",
+      "type": "menu"
     },
     {
       "id": 16,
       "parent": [
         {
-          "id": 400,
+          "id": 10004,
           "seq": 0
         }
       ],
       "name": "Art",
-      "to": "art"
+      "to": "art",
+      "type": "menu"
     },
     {
       "id": 3,
       "parent": [
         {
-          "id": 400,
+          "id": 10004,
           "seq": 0
         }
       ],
       "name": "Artist",
-      "to": "artists"
+      "to": "artists",
+      "type": "menu"
     },
     {
       "id": 17,
       "parent": [
         {
-          "id": 400,
+          "id": 10004,
           "seq": 0
         }
       ],
       "name": "Yachts",
-      "to": "yachts"
+      "to": "yachts",
+      "type": "menu"
     },
     {
       "id": 6,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Best Practices",
-      "to": "best-practices"
+      "to": "best-practices",
+      "type": "menu"
     },
     {
       "id": 18,
       "parent": [
         {
-          "id": 400,
+          "id": 10004,
           "seq": 0
         }
       ],
       "name": "Images",
-      "to": "images"
+      "to": "images",
+      "type": "menu"
     },
     {
       "id": 19,
@@ -254,109 +254,118 @@
         }
       ],
       "name": "Technology Stacks",
-      "to": "technology-stacks"
+      "to": "technology-stacks",
+      "type": "menu"
     },
     {
       "id": 20,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Performance",
-      "to": "performance"
+      "to": "performance",
+      "type": "menu"
     },
     {
       "id": 22,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Hooks",
-      "to": "hooks"
+      "to": "hooks",
+      "type": "menu"
     },
     {
       "id": 23,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Hooks Custom",
-      "to": "hooks=custom"
+      "to": "hooks=custom",
+      "type": "menu"
     },
     {
       "id": 24,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Patterns",
-      "to": "patterns"
+      "to": "patterns",
+      "type": "menu"
     },
     {
       "id": 25,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "ESLint",
-      "to": "eslint"
+      "to": "eslint",
+      "type": "menu"
     },
     {
       "id": 26,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Troubleshooting",
-      "to": "troubleshooting"
+      "to": "troubleshooting",
+      "type": "menu"
     },
     {
       "id": 27,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Interview Questions",
-      "to": "interview-questions"
+      "to": "interview-questions",
+      "type": "menu"
     },
     {
       "id": 28,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "NodeJS",
-      "to": "nodejs"
+      "to": "nodejs",
+      "type": "menu"
     },
     {
       "id": 29,
       "parent": [
         {
-          "id": 200,
+          "id": 10002,
           "seq": 0
         }
       ],
       "name": "Getting Started",
-      "to": "getting-started"
-    }
-  ],
-  "items": [
+      "to": "getting-started",
+      "type": "menu"
+    },
+
     {
       "name": "Overview",
       "to": "overview",
@@ -364,7 +373,7 @@
       "resources": false,
       "parent": [
         {
-          "id": 500,
+          "id": 10005,
           "seq": 0
         }
       ],
@@ -373,7 +382,8 @@
       "edit_date": "1911-12-15T15:46:00.000Z",
       "create_date": "1911-12-15T15:46:00.000Z",
       "id": 911,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Singleton Pattern",
@@ -395,7 +405,8 @@
       "edit_date": "1911-12-15T15:49:00.000Z",
       "create_date": "1911-12-15T15:49:00.000Z",
       "id": 912,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Factory Method Pattern",
@@ -418,7 +429,8 @@
       "create_date": "1911-12-15T15:52:00.000Z",
       "id": 913,
       "file": true,
-      "seq": 1000
+      "seq": 1000,
+      "type": "page"
     },
     {
       "id": 900,
@@ -427,11 +439,12 @@
       "file": true,
       "parent": [
         {
-          "id": 1,
+          "id": 10001,
           "seq": 0
         }
       ],
-      "to": "css"
+      "to": "css",
+      "type": "page"
     },
     {
       "id": 901,
@@ -439,12 +452,13 @@
       "edit_date": "01/18/2024",
       "parent": [
         {
-          "id": 1,
+          "id": 10001,
           "seq": 0
         }
       ],
       "to": "internationalization",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 1001,
@@ -458,7 +472,8 @@
         }
       ],
       "to": "skeuomorphism",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 1002,
@@ -472,7 +487,8 @@
         }
       ],
       "to": "flat-design",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 1003,
@@ -488,7 +504,8 @@
       ],
       "reading_time": "1 min 37 sec",
       "readability_score": "22",
-      "to": "corporate-memphis-design"
+      "to": "corporate-memphis-design",
+      "type": "page"
     },
     {
       "id": 1004,
@@ -501,7 +518,8 @@
         }
       ],
       "to": "glassmorphism",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 1005,
@@ -514,7 +532,8 @@
         }
       ],
       "to": "minimalism",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 1007,
@@ -527,7 +546,8 @@
         }
       ],
       "to": "retrofuturism",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 1008,
@@ -540,7 +560,8 @@
         }
       ],
       "to": "swiss-style",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 2001,
@@ -548,12 +569,13 @@
       "edit_date": "01/18/2024",
       "parent": [
         {
-          "id": 1,
+          "id": 10001,
           "seq": 0
         }
       ],
       "to": "chrome-extensions",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 2002,
@@ -561,12 +583,13 @@
       "edit_date": "01/18/2024",
       "parent": [
         {
-          "id": 1,
+          "id": 10001,
           "seq": 0
         }
       ],
       "file": true,
-      "to": "git"
+      "to": "git",
+      "type": "page"
     },
     {
       "id": 2003,
@@ -575,11 +598,12 @@
       "file": true,
       "parent": [
         {
-          "id": 1,
+          "id": 10001,
           "seq": 0
         }
       ],
-      "to": "visual-studio-code"
+      "to": "visual-studio-code",
+      "type": "page"
     },
     {
       "id": 2004,
@@ -588,11 +612,12 @@
       "file": true,
       "parent": [
         {
-          "id": 1,
+          "id": 10001,
           "seq": 0
         }
       ],
-      "to": "visual-studio-code-extensions"
+      "to": "visual-studio-code-extensions",
+      "type": "page"
     },
     {
       "id": 3001,
@@ -605,7 +630,8 @@
           "seq": 0
         }
       ],
-      "to": "at-last-pleasantville"
+      "to": "at-last-pleasantville",
+      "type": "page"
     },
     {
       "id": 3002,
@@ -618,7 +644,8 @@
           "seq": 0
         }
       ],
-      "to": "gallos"
+      "to": "gallos",
+      "type": "page"
     },
     {
       "id": 3003,
@@ -631,7 +658,8 @@
           "seq": 0
         }
       ],
-      "to": "shoes-on-the-danube-bank"
+      "to": "shoes-on-the-danube-bank",
+      "type": "page"
     },
     {
       "id": 4000,
@@ -642,7 +670,8 @@
           "seq": 0
         }
       ],
-      "to": "kelly-boesch"
+      "to": "kelly-boesch",
+      "type": "page"
     },
     {
       "id": 5001,
@@ -655,7 +684,8 @@
           "seq": 0
         }
       ],
-      "to": "puzzles-lazel"
+      "to": "puzzles-lazel",
+      "type": "page"
     },
     {
       "id": 5002,
@@ -668,7 +698,8 @@
           "seq": 0
         }
       ],
-      "to": "puzzles-the-puzzle-lab"
+      "to": "puzzles-the-puzzle-lab",
+      "type": "page"
     },
     {
       "id": 6000,
@@ -681,7 +712,8 @@
         }
       ],
       "file": true,
-      "to": "input-element"
+      "to": "input-element",
+      "type": "page"
     },
     {
       "id": 6001,
@@ -694,7 +726,8 @@
         }
       ],
       "file": true,
-      "to": "data-types"
+      "to": "data-types",
+      "type": "page"
     },
     {
       "id": 6002,
@@ -707,7 +740,8 @@
         }
       ],
       "file": true,
-      "to": "string-functions"
+      "to": "string-functions",
+      "type": "page"
     },
     {
       "id": 6004,
@@ -720,7 +754,8 @@
         }
       ],
       "file": true,
-      "to": "math-functions"
+      "to": "math-functions",
+      "type": "page"
     },
     {
       "id": 6005,
@@ -737,7 +772,8 @@
         }
       ],
       "file": true,
-      "to": "javascript-array"
+      "to": "javascript-array",
+      "type": "page"
     },
     {
       "id": 7001,
@@ -749,7 +785,8 @@
         }
       ],
       "to": "functional-components",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 15002,
@@ -761,7 +798,8 @@
           "seq": 0
         }
       ],
-      "to": "design-patterns-facade"
+      "to": "design-patterns-facade",
+      "type": "page"
     },
     {
       "id": 902,
@@ -774,7 +812,8 @@
         }
       ],
       "to": "javascript-2024",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 1006,
@@ -787,7 +826,8 @@
         }
       ],
       "to": "neumorphism",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "HTTP Headers",
@@ -800,7 +840,8 @@
         }
       ],
       "id": 903,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 6003,
@@ -813,7 +854,8 @@
       ],
       "to": "global-functions",
       "edit_date": "1918-02-19T18:00:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Code Review",
@@ -827,7 +869,8 @@
       "edit_date": "1910-02-14T18:30:00.000Z",
       "create_date": "1910-02-14T18:30:00.000Z",
       "id": 905,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 904,
@@ -840,20 +883,22 @@
       ],
       "to": "best-practices",
       "edit_date": "1908-04-24T18:15:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 906,
       "name": "Units",
       "parent": [
         {
-          "id": 1,
+          "id": 10001,
           "seq": 0
         }
       ],
       "to": "css-units",
       "edit_date": "1908-04-24T16:11:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Storage Options",
@@ -867,7 +912,8 @@
       "edit_date": "1911-01-14T10:22:00.000Z",
       "create_date": "1911-01-14T10:22:00.000Z",
       "id": 907,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 15000,
@@ -880,7 +926,8 @@
       ],
       "to": "images",
       "edit_date": "1909-07-24T15:55:00.000Z",
-      "file": false
+      "file": false,
+      "type": "page"
     },
     {
       "name": "MERN",
@@ -898,7 +945,8 @@
       "edit_date": "1911-07-17T08:22:00.000Z",
       "create_date": "1911-07-17T08:22:00.000Z",
       "id": 909,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Serverless",
@@ -916,7 +964,8 @@
       "edit_date": "1911-07-17T08:22:00.000Z",
       "create_date": "1911-07-17T08:22:00.000Z",
       "id": 910,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "useTransition",
@@ -934,7 +983,8 @@
       "edit_date": "1910-09-14T08:41:00.000Z",
       "create_date": "1910-09-14T08:41:00.000Z",
       "id": 914,
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Maintenance",
@@ -951,7 +1001,8 @@
         }
       ],
       "edit_date": "1908-11-26T15:55:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Minimize Re-renders",
@@ -969,7 +1020,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use Memoization",
@@ -987,7 +1039,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Avoid Using Index as a Key",
@@ -1005,7 +1058,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use Functional Components",
@@ -1023,7 +1077,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use React.Fragment",
@@ -1041,7 +1096,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Reduce Unnecessary Props",
@@ -1059,7 +1115,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Avoid Inline Functions",
@@ -1077,7 +1134,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use React.PureComponent",
@@ -1095,7 +1153,8 @@
       ],
       "edit_date": "1911-06-16T18:07:00.000Z",
       "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use Efficient Event Handlers",
@@ -1113,7 +1172,8 @@
       ],
       "edit_date": "1911-06-16T18:39:00.000Z",
       "create_date": "1911-06-16T18:39:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Batch State Updates",
@@ -1131,7 +1191,8 @@
       ],
       "edit_date": "1911-06-16T11:04:00.000Z",
       "create_date": "1911-06-16T11:04:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use Code Splitting and Lazy Loading",
@@ -1149,7 +1210,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use Memo or useCallback",
@@ -1167,7 +1229,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Optimize Network Requests",
@@ -1185,7 +1248,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Implement Virtualization for Large Lists",
@@ -1203,7 +1267,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use React.memo",
@@ -1221,7 +1286,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Compress and Cache Static Assets",
@@ -1239,7 +1305,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Optimize CSS Animations",
@@ -1257,7 +1324,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Defer Expensive Operations in useEffect",
@@ -1275,7 +1343,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use Webpack’s Tree Shaking",
@@ -1293,7 +1362,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Use Redux or MobX for State Management",
@@ -1311,7 +1381,8 @@
       ],
       "edit_date": "1911-06-16T11:44:00.000Z",
       "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Shape the Data",
@@ -1329,7 +1400,8 @@
       ],
       "edit_date": "1911-06-16T16:09:00.000Z",
       "create_date": "1911-06-16T16:09:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "useLocalStorage",
@@ -1347,7 +1419,8 @@
       ],
       "edit_date": "1911-07-17T15:34:00.000Z",
       "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "useMediaQuery",
@@ -1365,7 +1438,8 @@
       ],
       "edit_date": "1911-07-17T15:34:00.000Z",
       "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "useDebounce",
@@ -1383,7 +1457,8 @@
       ],
       "edit_date": "1911-07-17T15:34:00.000Z",
       "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "useFetch",
@@ -1401,7 +1476,8 @@
       ],
       "edit_date": "1911-07-17T15:34:00.000Z",
       "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "useToggle",
@@ -1419,7 +1495,8 @@
       ],
       "edit_date": "1911-07-17T15:34:00.000Z",
       "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Adapter Pattern",
@@ -1437,7 +1514,8 @@
       ],
       "edit_date": "1911-08-17T16:17:00.000Z",
       "create_date": "1911-08-17T16:17:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Overview",
@@ -1455,7 +1533,8 @@
           "id": 23,
           "seq": 0
         }
-      ]
+      ],
+      "type": "page"
     },
     {
       "name": "Overview",
@@ -1473,7 +1552,8 @@
       ],
       "edit_date": "2024-05-19T03:38:00.000Z",
       "create_date": "2024-05-19T03:38:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "ESLint - React Compiler",
@@ -1491,7 +1571,8 @@
       ],
       "edit_date": "2024-05-19T03:38:00.000Z",
       "create_date": "2024-05-19T03:38:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Using an Index as a Key",
@@ -1504,7 +1585,8 @@
         }
       ],
       "edit_date": "2024-05-24T05:43:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "name": "Double Render",
@@ -1518,7 +1600,8 @@
       ],
       "edit_date": "2024-05-24T05:01:00.000Z",
       "create_date": "2024-05-19T03:38:00.000Z",
-      "file": true
+      "file": true,
+      "type": "page"
     },
     {
       "id": 947,
@@ -1532,7 +1615,8 @@
         }
       ],
       "edit_date": "2024-05-24T03:11:00.000Z",
-      "create_date": "2024-05-19T03:38:00.000Z"
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "type": "page"
     },
     {
       "name": "Function vs. Method",
@@ -1550,7 +1634,8 @@
       ],
       "edit_date": "2024-05-24T03:11:00.000Z",
       "create_date": "2024-05-19T03:38:00.000Z",
-      "file": false
+      "file": false,
+      "type": "page"
     },
     {
       "id": 949,
@@ -1562,10 +1647,11 @@
           "seq": 0
         }
       ],
-      "to": "monads"
+      "to": "monads",
+      "type": "page"
     },
     {
-      "id": 1,
+      "id": 10001,
       "edit_date": "2024-05-25T02:49:00.000Z",
       "name": "Declarative Programming",
       "parent": [
@@ -1574,7 +1660,8 @@
           "seq": 0
         }
       ],
-      "to": "declarative-programming"
+      "to": "declarative-programming",
+      "type": "page"
     },
     {
       "id": 2,
@@ -1587,7 +1674,8 @@
           "seq": 0
         }
       ],
-      "to": "server-side-caching"
+      "to": "server-side-caching",
+      "type": "page"
     },
     {
       "id": 3,
@@ -1600,7 +1688,8 @@
           "seq": 1
         }
       ],
-      "to": "standards"
+      "to": "standards",
+      "type": "page"
     },
     {
       "id": 4,
@@ -1613,7 +1702,8 @@
           "seq": 2
         }
       ],
-      "to": "learning-react"
+      "to": "learning-react",
+      "type": "page"
     },
     {
       "id": 5,
@@ -1626,7 +1716,8 @@
           "seq": 1
         }
       ],
-      "to": "object-destructuring"
+      "to": "object-destructuring",
+      "type": "page"
     },
     {
       "id": 6,
@@ -1639,7 +1730,8 @@
           "seq": 0
         }
       ],
-      "to": "performance"
+      "to": "performance",
+      "type": "page"
     },
     {
       "id": 7,
@@ -1652,7 +1744,8 @@
           "seq": 0
         }
       ],
-      "to": "security---request-validation"
+      "to": "security---request-validation",
+      "type": "page"
     },
     {
       "id": 8,
@@ -1665,7 +1758,8 @@
           "seq": 20
         }
       ],
-      "to": "profiler-component"
+      "to": "profiler-component",
+      "type": "page"
     },
     {
       "id": 10,
@@ -1678,7 +1772,8 @@
           "seq": 2
         }
       ],
-      "to": "adding-fonts"
+      "to": "adding-fonts",
+      "type": "page"
     },
     {
       "id": 11,
@@ -1691,7 +1786,8 @@
           "seq": 3
         }
       ],
-      "to": "choosing-a-css-platform"
+      "to": "choosing-a-css-platform",
+      "type": "page"
     },
     {
       "id": 9,
@@ -1703,8 +1799,8 @@
           "seq": 1
         }
       ],
-      "text": "<a href=\"https://react.dev/\">React</a> is a Javascript library for building User Interfaces.\n\nAt it's foundation, React is pretty easy - it is just a layer on top of Javascript.  However, despite being a seasoned programmer, I found learning React a \"challenge\" because it comes with a whole bag of related tools, libraries, and interconnected technologies.  Also, React has evolved significantly from version 16 to 18: the structure of pre-18, pre-hooks code is very different from React's current approach.\n\nThis makes it difficult to \"Google-for-answers\":  a very high percentage of solutions will be in an older format or be incompatible.  And then, you have to identify which technology you're looking at and what keywords to search for.  The majority of YouTube and online tutorials start off with traditional create-react-app - creating the foundation of a simple React App (and wasting 40% of the tutorial).  This is almost like creating a \"Hello, world\" app in React.  Yet, React now recommends against using create-react-app and suggests taking other approaches.\n\nI recommend you start off with this course <a href=\"https://nextjs.org/learn/react-foundations\">React Foundations</a> from Next.Js.  It is a very minimal shift from a traditional web page to a very basic React page - without introducing third party libraries.\n\n  ",
-      "to": "overview"
+      "to": "overview",
+      "type": "page"
     },
     {
       "id": 12,
@@ -1717,7 +1813,8 @@
           "seq": 2
         }
       ],
-      "to": "choosing-a-version"
+      "to": "choosing-a-version",
+      "type": "page"
     }
   ]
 }

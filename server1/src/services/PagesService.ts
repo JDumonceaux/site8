@@ -1,8 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
-
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-
 import { Pages } from '../types/Pages.js';
 import { Page } from '../types/Page.js';
 import { getNextId } from '../utils/objectUtil.js';
@@ -57,43 +55,85 @@ export class PagesService {
 
     try {
       const item = await this.getItems();
-
-      const ret: string[] = [];
-
-      item?.menuItems?.forEach((x) => {
-        if (x.id) {
-          ret.push(x.id.toString());
-        } else {
-          ret.push(x.name);
-        }
-      });
-
-      const ret2: string[] = [];
-      item?.items?.forEach((x) => {
-        if (x.id) {
-          ret2.push(x.id.toString());
-        } else {
-          ret.push(x.name);
-        }
-      });
-
-      const duplicates = ret
-        ?.map((x) => x)
+      const duplicates = item?.items
+        ?.map((x) => x.id?.toString() || x.name)
         .filter((x, i, a) => a.indexOf(x) !== i);
       // Filter out null
       const filtered = duplicates?.filter((x) => x);
-
-      const duplicates2 = ret2
-        ?.map((x) => x)
-        .filter((x, i, a) => a.indexOf(x) !== i);
-      // Filter out null
-      const filtered2 = duplicates2?.filter((x) => x);
       // Convert to string
-
-      return { menu: filtered, items: filtered2 };
+      return { items: filtered };
     } catch (error) {
       Logger.error(`PagesService: listDuplicates -> ${error}`);
       return Promise.reject(new Error(`List Duplicates. Error: ${error}`));
+    }
+  }
+
+  public async addMenuItem(item: Page): Promise<void> {
+    Logger.info(`PagesService: addMenuItem ->`);
+
+    try {
+      const pages = await this.getItems();
+      if (!pages) {
+        return Promise.reject(new Error('No items found'));
+      }
+
+      const data: Pages = {
+        ...pages,
+        items: [...pages.items, item],
+      };
+      // Verify count
+      if (
+        pages &&
+        pages.items &&
+        data.items &&
+        pages.items.length > data.items.length + 1
+      ) {
+        throw new Error('Inconsistent count.');
+      }
+      // Add item
+      await this.writeFile(data);
+      return Promise.resolve();
+    } catch (error) {
+      Logger.error(`PagesService: addMenuItem -> ${error}`);
+      return undefined;
+    }
+  }
+
+  public async updateMenuItems(items: Page[]): Promise<void> {
+    Logger.info(`PagesService: updateMenuItems ->`);
+
+    try {
+      const pages = await this.getItems();
+      if (!pages || !pages.items) {
+        return Promise.reject(new Error('No items found'));
+      }
+
+      const menuItems = pages.items;
+      items.forEach((x) => {
+        const currItem = menuItems.find((x) => x.id === x.id);
+        const newParent = x.parent ? x.parent[0] : undefined;
+        if (currItem && newParent) {
+          const currParent = currItem.parent?.find((y) => y.id === currItem.id);
+          if (currParent) {
+            currParent.seq = newParent.seq;
+          } else {
+            if (!currItem.parent) {
+              currItem.parent = [];
+            }
+            currItem.parent.push({ id: newParent.id, seq: newParent.seq });
+          }
+          if (x.sortby) {
+            currItem.sortby = x.sortby;
+          }
+        }
+      });
+
+      // Add item
+      await this.writeFile(pages);
+      return Promise.resolve();
+    } catch (error) {
+      Logger.error(`PagesService: addMenuItem -> ${error}`);
+      return undefined;
     }
   }
 }

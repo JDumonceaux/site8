@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import axios, { isCancel } from 'axios';
 import { httpErrorHandler } from 'utils/errorHandler';
 import { AcceptHeader, PreferHeader } from 'utils';
@@ -9,32 +9,26 @@ export const useAxios = <T>() => {
   const [error, setError] = useState<string | undefined>(undefined);
 
   // Private function to fetch data
-  const fetchDataAsync = async (url: string) => {
+  const fetchDataAsync = useCallback(async (url: string) => {
     setData(undefined);
     setIsLoading(true);
     setError(undefined);
 
-    const controller = AbortSignal.timeout(5000);
     try {
       const response = await axios.get<T>(url, {
-        signal: controller,
         responseType: 'json',
         headers: { Accept: AcceptHeader.JSON },
       });
 
       setData(response.data);
-      return true;
+      return Promise.resolve(true);
     } catch (error) {
-      if (isCancel(error)) {
-        // console.log(REQUEST_CANCELLED, error.message);
-      } else {
-        setError(httpErrorHandler(error));
-      }
+      setError(httpErrorHandler(error));
     } finally {
       setIsLoading(false);
     }
-    return false;
-  };
+    return Promise.resolve(false);
+  }, []);
 
   const postDataAsync = async (url: string, data: T) => {
     setData(undefined);

@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo } from 'react';
-import { REQUIRED_FIELD } from 'utils';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useFormArray } from './useFormArray';
-import useMenu from './useMenu';
-import { MenuEntry } from 'services/types/MenuEntry';
+import { useAxios } from './Axios/useAxios';
+
+import { Menu, MenuEdit, Page } from 'services/types';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -18,11 +19,13 @@ export type FormValues = z.infer<typeof pageSchema>;
 export type keys = keyof FormValues;
 
 const usePagesEdit = () => {
-  const { data, fetchData, isLoading, error } = useMenu();
+  const { data, fetchData, isLoading, error } = useAxios<Menu>();
+  const [dataFlat, setDataFlat] = useState<Page[] | undefined>(undefined);
+  const { patchData } = useAxios<MenuEdit[]>();
 
   // Get the data
   useEffect(() => {
-    fetchData();
+    fetchData(ServiceUrl.ENDPOINT_MENUS_EDIT);
   }, [fetchData]);
 
   // Return default form values
@@ -45,6 +48,7 @@ const usePagesEdit = () => {
     setFieldValue,
     setAllValues,
     getItem,
+    setIsSaved,
   } = useFormArray<FormValues>(initialFormValues);
 
   const getFieldValue = useCallback(
@@ -60,7 +64,7 @@ const usePagesEdit = () => {
 
   // Map page to form values
   const mapPageToFormValues = useCallback(
-    (items: MenuEntry[] | undefined): FormValues[] | undefined => {
+    (items: Page[] | undefined): FormValues[] | undefined => {
       if (!items) {
         return undefined;
       }
@@ -68,7 +72,8 @@ const usePagesEdit = () => {
       const ret = items.map((x) => {
         return {
           id: x.id,
-          parent: x.parentId.toString(),
+          //parent: x.parentId.toString(),
+          parent: '0',
           seq: x.seq,
           sortby: x.sortby,
         };
@@ -78,36 +83,66 @@ const usePagesEdit = () => {
     [],
   );
 
-  const getDataFlat = useCallback(
-    (items: MenuEntry[] | undefined | null): MenuEntry[] | undefined => {
-      if (!items) {
-        return undefined;
-      }
-
-      const ret: MenuEntry[] = [];
-      items.forEach((item) => {
-        ret.push(item);
-        if (item.items) {
-          const x = getDataFlat(item.items);
-          if (x) {
-            ret.push(...x);
-          }
-        }
-      });
-      return ret;
-    },
-    [],
-  );
-
   // Update the form values when the data changes
   useEffect(() => {
-    const values = data?.items
-      ? mapPageToFormValues(getDataFlat(data.items))
-      : undefined;
-    if (values) {
-      setAllValues(values);
+    setDataFlat(data?.items);
+  }, [data?.items]);
+
+  // Map data to form values
+  useEffect(() => {
+    setAllValues(mapPageToFormValues(dataFlat) ?? []);
+  }, [dataFlat, setAllValues, mapPageToFormValues]);
+
+  // Get the updates
+  const getUpdates = useCallback((): MenuEdit[] | undefined => {
+    if (!dataFlat) {
+      return undefined;
     }
-  }, [data, getDataFlat, mapPageToFormValues, setAllValues]);
+
+    const ret: MenuEdit[] = [];
+    formValues.forEach((item) => {
+      const originalItem = dataFlat.find((x) => x.id === item.id);
+      if (originalItem) {
+        const newParent =
+          item.parent !== originalItem.parentId?.toString()
+            ? parseInt(item.parent)
+            : undefined;
+        const newSeq = item.seq !== originalItem.seq ? item.seq : undefined;
+        const newSortby =
+          item.sortby !== originalItem.sortby
+            ? item.sortby === 'name'
+              ? 'name'
+              : 'seq'
+            : undefined;
+
+        const y = () => {
+          if (newParent || newSeq || newSortby) {
+            return {
+              id: item.id,
+              parentId: newParent,
+              seq: newSeq,
+              sortby: newSortby,
+              type: originalItem.type,
+            };
+          }
+          return undefined;
+        };
+        if (y) {
+          ret.push(y() as MenuEdit);
+        }
+      } else {
+        ret.push({
+          id: item.id,
+          parentId: parseInt(item.parent),
+          seq: item.seq,
+          sortby: item.sortby === 'name' ? 'name' : 'seq',
+          type: 'menu',
+        });
+      }
+    });
+    // Filter out empty array values
+    return ret ? ret.filter((x) => x) : undefined;
+  }, [dataFlat, formValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
@@ -118,21 +153,16 @@ const usePagesEdit = () => {
 
   // Handle save
   const submitForm = useCallback(async () => {
+    const data = getUpdates();
+    if (!data) {
+      return false;
+    }
     setIsProcessing(true);
-    // const { id, ...rest } = formValues;
-    // const data = {
-    //   ...rest,
-    //   id,
-    //   //  parent: splitParent(parent),
-    // };
-    // // const result =
-    // //   data.id > 0
-    // //     ? await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data)
-    // //     : await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
-    // setIsProcessing(false);
-    // setIsSaved(result);
-    // return result;
-  }, [setIsProcessing]);
+    const result = await patchData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
+    setIsProcessing(false);
+    setIsSaved(result);
+    return result;
+  }, [getUpdates, patchData, setIsProcessing, setIsSaved]);
 
   const handleChange = useCallback(
     (id: number, fieldName: keys, value: string) => {
@@ -162,7 +192,7 @@ const usePagesEdit = () => {
 
   return useMemo(
     () => ({
-      data,
+      data: data?.tree,
       pageSchema,
       formValues,
       isProcessing,

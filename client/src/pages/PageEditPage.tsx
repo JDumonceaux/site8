@@ -11,14 +11,14 @@ import { styled } from 'styled-components';
 import { Meta, PageTitle, StyledPlainButton, LoadingWrapper } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import useMenuValues from 'hooks/useMenuValues';
+import useMenu from 'hooks/useMenu';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const { data: values } = useMenuValues();
+  const { data } = useMenu();
   const {
     formValues,
     isProcessing,
@@ -110,6 +110,9 @@ const PageEditPage = (): JSX.Element => {
   );
 
   const title = formValues.id ? `Edit Page ${formValues.id}` : 'New Page';
+
+  const menuItems =
+    data?.items?.filter((x) => x.type === 'menu' || x.type === 'root') ?? [];
 
   return (
     <>
@@ -258,7 +261,7 @@ const PageEditPage = (): JSX.Element => {
 
                 <select>
                   <option value="">Select a menu</option>
-                  {values?.map((value) => (
+                  {menuItems.map((value) => (
                     <option key={value.id} value={value.id}>
                       {value.name} - {value.id}
                     </option>

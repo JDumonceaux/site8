@@ -1,20 +1,20 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMenuValues } from 'services/state/menuValuesSlice';
+import { fetchMenuAbbr } from 'services/state/menuAbbrSlice';
 
 import { AppDispatch, RootState } from 'services/state/store';
-import { MenuEntryFlat } from 'services/types/MenuEntryFlat';
+import { MenuAbbr } from 'services/types/MenuAbbr';
 
-const useMenuValues = () => {
+const useMenuAbbr = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const selector = (state: RootState) => state.menuValues;
-  const data: MenuEntryFlat[] | null = useSelector(selector).data;
+  const selector = (state: RootState) => state.menuAbbr;
+  const data: MenuAbbr[] | null = useSelector(selector).data;
   const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
   const dispatchFetch = useCallback(
-    () => dispatch(fetchMenuValues()),
+    () => dispatch(fetchMenuAbbr()),
     [dispatch],
   );
 
@@ -26,4 +26,4 @@ const useMenuValues = () => {
   };
 };
 
-export default useMenuValues;
+export default useMenuAbbr;

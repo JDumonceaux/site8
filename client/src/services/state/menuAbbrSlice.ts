@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { MenuEntryFlat } from 'services/types/MenuEntryFlat';
+import { MenuAbbr } from 'services/types/MenuAbbr';
 
 interface MenuState {
-  data: MenuEntryFlat[] | null;
+  data: MenuAbbr[] | null;
   isLoading: boolean;
   error: string | null;
 }
@@ -18,11 +18,11 @@ const initialState: MenuState = {
 
 const controller = new AbortController();
 
-export const fetchMenuValues = createAsyncThunk(
-  'menu/fetchMenuValues',
+export const fetchMenuAbbr = createAsyncThunk(
+  'menu/fetchMenuAbbr',
   async () => {
-    const response = await axios.get<MenuEntryFlat[]>(
-      ServiceUrl.ENDPOINT_MENUS_VALUES,
+    const response = await axios.get<MenuAbbr[]>(
+      ServiceUrl.ENDPOINT_MENUS_ABBR,
       {
         responseType: 'json',
         signal: controller.signal,
@@ -32,25 +32,25 @@ export const fetchMenuValues = createAsyncThunk(
   },
 );
 
-const MenuValuesSlice = createSlice({
-  name: 'values',
+const MenuAbbrSlice = createSlice({
+  name: 'menuAbbr',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchMenuValues.pending, (state) => {
+      .addCase(fetchMenuAbbr.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchMenuValues.fulfilled, (state, action) => {
+      .addCase(fetchMenuAbbr.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
       })
-      .addCase(fetchMenuValues.rejected, (state, action) => {
+      .addCase(fetchMenuAbbr.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'An error occurred';
       });
   },
 });
 
-export default MenuValuesSlice.reducer;
+export default MenuAbbrSlice.reducer;

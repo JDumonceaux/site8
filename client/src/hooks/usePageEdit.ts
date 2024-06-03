@@ -117,9 +117,12 @@ const usePageEdit = () => {
     }
   }, [data, mapPageToFormValues, setAllValues, setInitialFormValues]);
 
-  const fetchItem = useCallback((id: number) => {
-    fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${id.toString()}`);
-  }, []);
+  const fetchItem = useCallback(
+    (id: number) => {
+      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${id.toString()}`);
+    },
+    [fetchData],
+  );
 
   // Validate form
   const validateForm = useCallback(() => {

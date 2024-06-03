@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import useMenu from './useMenu';
-import useMenuValues from './useMenuValues';
+import useMenuAbbr from './useMenuAbbr';
 
 const useAppSetup = () => {
   const { fetchData: fetchMenu } = useMenu();
-  const { fetchData: fetchMenuValues } = useMenuValues();
+  const { fetchData: fetchMenuAbbr } = useMenuAbbr();
 
   useEffect(() => {
     fetchMenu();
   }, [fetchMenu]);
 
   useEffect(() => {
-    fetchMenuValues();
-  }, [fetchMenuValues]);
+    fetchMenuAbbr();
+  }, [fetchMenuAbbr]);
 };
 
 export default useAppSetup;

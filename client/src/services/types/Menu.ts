@@ -1,7 +1,8 @@
-import { MenuEntry } from './MenuEntry';
 import { Metadata } from './Metadata';
+import { Page } from './Page';
 
 export type Menu = {
   readonly metadata: Metadata;
-  readonly items?: MenuEntry[];
+  readonly items?: Page[];
+  readonly tree?: Page[];
 };

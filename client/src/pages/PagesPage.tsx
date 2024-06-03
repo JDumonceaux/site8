@@ -1,24 +1,27 @@
 'use client';
 import React, { useCallback } from 'react';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { Meta, LoadingWrapper, PageTitle } from 'components';
+import { Meta, LoadingWrapper, PageTitle, StyledPlainButton } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { MenuEntry } from 'services/types/MenuEntry';
 import { styled } from 'styled-components';
 import { TextInput } from 'components/form/input';
 import usePagesEdit from 'hooks/usePagesEdit';
+import StyledMenu from 'components/common/StyledMain/StyledMenu';
+import { Page } from 'services/types';
 
 const PagesPage = (): JSX.Element => {
   const {
     data,
     error,
     isLoading,
+    isSaved,
     handleChange,
+    handleSave,
     getStandardTextInputAttributes,
   } = usePagesEdit();
 
   const renderItem = useCallback(
-    (item: MenuEntry | undefined, level: number): JSX.Element | null => {
+    (item: Page | undefined, level: number): JSX.Element | null => {
       if (!item) {
         return null;
       }
@@ -58,8 +61,39 @@ const PagesPage = (): JSX.Element => {
                 spellCheck={true}
               />
             </td>
-            <td>{item.seq}</td>
-            <td>{item.type === 'menu' ? item.sortby : null}</td>
+            <td>
+              {' '}
+              <TextInput
+                {...getStandardTextInputAttributes(item.id, 'seq')}
+                autoCapitalize="off"
+                enterKeyHint="next"
+                // errorText={getFieldErrors(`parentId${item.id}`)}
+                // errorTextShort="Please enter a short title"
+                // hasError={hasError(`parentId${item.id}`)}
+                inputMode="numeric"
+                onChange={(e) => handleChange(item.id, 'seq', e.target.value)}
+                required={true}
+                spellCheck={true}
+              />
+            </td>
+            <td>
+              {item.type === 'menu' ? (
+                <TextInput
+                  {...getStandardTextInputAttributes(item.id, 'sortby')}
+                  autoCapitalize="off"
+                  enterKeyHint="next"
+                  // errorText={getFieldErrors(`parentId${item.id}`)}
+                  // errorTextShort="Please enter a short title"
+                  // hasError={hasError(`parentId${item.id}`)}
+                  inputMode="text"
+                  onChange={(e) =>
+                    handleChange(item.id, 'sortby', e.target.value)
+                  }
+                  required={true}
+                  spellCheck={true}
+                />
+              ) : null}
+            </td>
             <td>
               {item.type} - {level}
             </td>
@@ -75,34 +109,46 @@ const PagesPage = (): JSX.Element => {
     <>
       <Meta title="Pages" />
       <StyledMain>
-        <LoadingWrapper error={error} isLoading={isLoading}>
-          <StyledMain.Section>
-            <PageTitle title="Pages">
+        <StyledMain.Section>
+          <PageTitle title="Pages">
+            <StyledMenu>
               <StyledLink data-testid="nav-new" to="/admin/page/edit">
                 New
               </StyledLink>
-            </PageTitle>
-            <table>
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Parent</th>
-                  <th>Seq</th>
-                  <th>Sortby</th>
-                  <th>Type</th>
-                </tr>
-              </thead>
+              {!isSaved ? (
+                <li>
+                  <StyledSaveButton
+                    data-testid="button-save"
+                    onClick={handleSave}
+                    type="submit">
+                    Save
+                  </StyledSaveButton>
+                </li>
+              ) : null}
+            </StyledMenu>
+          </PageTitle>
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Parent</th>
+                <th>Seq</th>
+                <th>Sortby</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <LoadingWrapper error={error} isLoading={isLoading}>
               <tbody>
-                {data?.items?.map((item) => (
+                {data?.map((item) => (
                   <React.Fragment key={item.id}>
                     {renderItem(item, 0)}
                   </React.Fragment>
                 ))}
               </tbody>
-            </table>
-          </StyledMain.Section>
-        </LoadingWrapper>
+            </LoadingWrapper>
+          </table>
+        </StyledMain.Section>
       </StyledMain>
     </>
   );
@@ -118,4 +164,7 @@ const StyledTd2 = styled.td`
 `;
 const StyledTd3 = styled.td`
   padding-left: 60px;
+`;
+const StyledSaveButton = styled(StyledPlainButton)`
+  font-weight: bold;
 `;

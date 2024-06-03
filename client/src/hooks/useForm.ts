@@ -30,6 +30,13 @@ export const useForm = <T>(initialValues: T) => {
     [setFormValues],
   );
 
+  const getFieldValue = useCallback(
+    (fieldName: keys): string => {
+      return formValues[fieldName] as string;
+    },
+    [formValues],
+  );
+
   const getFieldErrors = useCallback(
     (fieldName: keys): string | string[] | undefined => {
       const x =
@@ -86,6 +93,7 @@ export const useForm = <T>(initialValues: T) => {
       handleChange,
       handleClear,
       handleReset,
+      getFieldValue,
       setIsSaved,
       setErrors,
       setFieldValue,
@@ -104,10 +112,9 @@ export const useForm = <T>(initialValues: T) => {
       handleChange,
       handleClear,
       handleReset,
+      getFieldValue,
       setFieldValue,
       setAllValues,
-      setInitialFormValues,
-      setBlankFormValues,
     ],
   );
 };

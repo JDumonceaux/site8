@@ -11,3 +11,4 @@ export * from './PageSummary.js';
 export * from './Photo.js';
 export * from './Photos.js';
 export * from './PhotoSet.js';
+export * from './MenuAbbr.js';
