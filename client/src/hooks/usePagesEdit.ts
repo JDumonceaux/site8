@@ -3,8 +3,7 @@ import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useFormArray } from './useFormArray';
 import { useAxios } from './Axios/useAxios';
-
-import { Menu, MenuEdit, Page } from 'services/types';
+import { Menu, MenuEdit, MenuItem } from 'services/types';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -20,8 +19,10 @@ export type keys = keyof FormValues;
 
 const usePagesEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
-  const [dataFlat, setDataFlat] = useState<Page[] | undefined>(undefined);
   const { patchData } = useAxios<MenuEdit[]>();
+  const [initialData, setInitialData] = useState<MenuItem[] | undefined>(
+    undefined,
+  );
 
   // Get the data
   useEffect(() => {
@@ -64,16 +65,15 @@ const usePagesEdit = () => {
 
   // Map page to form values
   const mapPageToFormValues = useCallback(
-    (items: Page[] | undefined): FormValues[] | undefined => {
+    (items: MenuItem[] | undefined): FormValues[] | undefined => {
       if (!items) {
         return undefined;
       }
 
       const ret = items.map((x) => {
         return {
-          id: x.id,
-          //parent: x.parentId.toString(),
-          parent: '0',
+          id: x.tempId ?? 0,
+          parent: x.parentId?.toString() ?? '',
           seq: x.seq,
           sortby: x.sortby,
         };
@@ -83,26 +83,51 @@ const usePagesEdit = () => {
     [],
   );
 
+  const flattenArray = useCallback((items: MenuItem[] | undefined) => {
+    if (!items) {
+      return undefined;
+    }
+
+    const ret: MenuItem[] = [];
+    items.forEach((x) => {
+      ret.push(x);
+      if (x.items) {
+        //ret.push(...x.items);
+        const y = flattenArray(x.items);
+        if (y) {
+          ret.push(...y);
+        }
+      }
+    });
+    return ret ? ret.sort((a, b) => a.tempId - b.tempId) : undefined;
+  }, []);
+
+  console.log('initialData', initialData);
+
   // Update the form values when the data changes
   useEffect(() => {
-    setDataFlat(data?.items);
-  }, [data?.items]);
+    const ret = flattenArray(data?.items);
+    setInitialData(ret);
+  }, [data?.items, flattenArray]);
 
   // Map data to form values
   useEffect(() => {
-    setAllValues(mapPageToFormValues(dataFlat) ?? []);
-  }, [dataFlat, setAllValues, mapPageToFormValues]);
+    setAllValues(mapPageToFormValues(initialData) ?? []);
+  }, [initialData, setAllValues, mapPageToFormValues]);
 
   // Get the updates
   const getUpdates = useCallback((): MenuEdit[] | undefined => {
-    if (!dataFlat) {
+    if (!initialData) {
       return undefined;
     }
 
     const ret: MenuEdit[] = [];
+
     formValues.forEach((item) => {
-      const originalItem = dataFlat.find((x) => x.id === item.id);
+      // Match on TempId = Id
+      const originalItem = initialData.find((x) => x.tempId === item.id);
       if (originalItem) {
+        // Calculate the changes
         const newParent =
           item.parent !== originalItem.parentId?.toString()
             ? parseInt(item.parent)
@@ -122,7 +147,6 @@ const usePagesEdit = () => {
               parentId: newParent,
               seq: newSeq,
               sortby: newSortby,
-              type: originalItem.type,
             };
           }
           return undefined;
@@ -136,13 +160,12 @@ const usePagesEdit = () => {
           parentId: parseInt(item.parent),
           seq: item.seq,
           sortby: item.sortby === 'name' ? 'name' : 'seq',
-          type: 'menu',
         });
       }
     });
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
-  }, [dataFlat, formValues]);
+  }, [initialData, formValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
@@ -178,7 +201,7 @@ const usePagesEdit = () => {
 
   const getStandardTextInputAttributes = useCallback(
     (id: number, fieldName: keys) => {
-      const field = id + '-' + fieldName;
+      const field = fieldName + '-' + id;
       return {
         id: field,
         value: getFieldValue(id, fieldName),
@@ -192,7 +215,7 @@ const usePagesEdit = () => {
 
   return useMemo(
     () => ({
-      data: data?.tree,
+      data: data?.items,
       pageSchema,
       formValues,
       isProcessing,

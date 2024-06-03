@@ -1,9 +1,14 @@
+// Returned to front end
 export type MenuItem = {
   readonly id: number;
-  readonly name: string;
-  // readonly url: string;
-  // readonly parentId?: number[];
-  // readonly level?: number[];
-  // readonly seq: number;
-  // readonly sortby: 'seq' | 'name';
+  readonly tempId: number;
+  readonly name?: string;
+  readonly to?: string;
+  readonly url?: string;
+  readonly toComplete?: string;
+  readonly parentId?: number;
+  readonly seq: number;
+  readonly type: 'root' | 'menu' | 'page';
+  readonly items?: MenuItem[];
+  readonly sortby: 'seq' | 'name';
 };

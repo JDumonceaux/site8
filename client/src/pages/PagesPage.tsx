@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
 import { TextInput } from 'components/form/input';
 import usePagesEdit from 'hooks/usePagesEdit';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
-import { Page } from 'services/types';
+import { MenuItem } from 'services/types/MenuItem';
 
 const PagesPage = (): JSX.Element => {
   const {
@@ -21,7 +21,7 @@ const PagesPage = (): JSX.Element => {
   } = usePagesEdit();
 
   const renderItem = useCallback(
-    (item: Page | undefined, level: number): JSX.Element | null => {
+    (item: MenuItem | undefined, level: number): JSX.Element | null => {
       if (!item) {
         return null;
       }
@@ -47,7 +47,7 @@ const PagesPage = (): JSX.Element => {
             )}
             <td>
               <TextInput
-                {...getStandardTextInputAttributes(item.id, 'parent')}
+                {...getStandardTextInputAttributes(item.tempId, 'parent')}
                 autoCapitalize="off"
                 enterKeyHint="next"
                 // errorText={getFieldErrors(`parentId${item.id}`)}
@@ -55,7 +55,7 @@ const PagesPage = (): JSX.Element => {
                 // hasError={hasError(`parentId${item.id}`)}
                 inputMode="text"
                 onChange={(e) =>
-                  handleChange(item.id, 'parent', e.target.value)
+                  handleChange(item.tempId, 'parent', e.target.value)
                 }
                 required={true}
                 spellCheck={true}
@@ -64,22 +64,24 @@ const PagesPage = (): JSX.Element => {
             <td>
               {' '}
               <TextInput
-                {...getStandardTextInputAttributes(item.id, 'seq')}
+                {...getStandardTextInputAttributes(item.tempId, 'seq')}
                 autoCapitalize="off"
                 enterKeyHint="next"
                 // errorText={getFieldErrors(`parentId${item.id}`)}
                 // errorTextShort="Please enter a short title"
                 // hasError={hasError(`parentId${item.id}`)}
                 inputMode="numeric"
-                onChange={(e) => handleChange(item.id, 'seq', e.target.value)}
+                onChange={(e) =>
+                  handleChange(item.tempId, 'seq', e.target.value)
+                }
                 required={true}
                 spellCheck={true}
               />
             </td>
             <td>
-              {item.type === 'menu' ? (
+              {item.type !== 'page' ? (
                 <TextInput
-                  {...getStandardTextInputAttributes(item.id, 'sortby')}
+                  {...getStandardTextInputAttributes(item.tempId, 'sortby')}
                   autoCapitalize="off"
                   enterKeyHint="next"
                   // errorText={getFieldErrors(`parentId${item.id}`)}
@@ -87,7 +89,7 @@ const PagesPage = (): JSX.Element => {
                   // hasError={hasError(`parentId${item.id}`)}
                   inputMode="text"
                   onChange={(e) =>
-                    handleChange(item.id, 'sortby', e.target.value)
+                    handleChange(item.tempId, 'sortby', e.target.value)
                   }
                   required={true}
                   spellCheck={true}
