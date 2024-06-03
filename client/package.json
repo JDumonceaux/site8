@@ -22,7 +22,7 @@
     "aws-amplify": "^6.3.4",
     "axios": "^1.7.2",
     "date-fns": "^3.6.0",
-    "dompurify": "^3.1.4",
+    "dompurify": "^3.1.5",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-c8b3f72-20240517",
     "graphql": "^16.8.1",
     "html-react-parser": "^5.1.10",
