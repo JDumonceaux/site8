@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
 import { Logger } from '../utils/Logger.js';
 import { MenuService } from '../services/MenuService.js';
-import { MenuUpdate } from '../types/MenuUpdate.js';
 import { Errors, Responses } from '../utils/Constants.js';
 import { PagesService } from '../services/PagesService.js';
 import { MenuItem } from '../types/MenuItem.js';
+import { MenuEdit } from '../types/MenuEntryUpdate.js';
 
 export const menuRouter = express.Router();
 
@@ -78,7 +78,7 @@ menuRouter.patch('/', async (req: Request, res: Response) => {
   Logger.debug(`menuRouter: patch ->`);
 
   try {
-    const data: MenuUpdate = req.body;
+    const data: MenuEdit[] = req.body;
 
     // if (data && data.menus) {
     //   const service = new PagesService();

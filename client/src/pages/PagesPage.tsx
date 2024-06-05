@@ -28,7 +28,7 @@ const PagesPage = (): JSX.Element => {
 
       return (
         <React.Fragment key={item.id}>
-          <tr>
+          <StyledTr>
             <td>
               {item.type === 'page' ? (
                 <StyledLink to={`/admin/page/edit/${item.id}`}>
@@ -46,23 +46,24 @@ const PagesPage = (): JSX.Element => {
               <StyledTd3>{item.name}</StyledTd3>
             )}
             <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.tempId, 'parent')}
-                autoCapitalize="off"
-                enterKeyHint="next"
-                // errorText={getFieldErrors(`parentId${item.id}`)}
-                // errorTextShort="Please enter a short title"
-                // hasError={hasError(`parentId${item.id}`)}
-                inputMode="text"
-                onChange={(e) =>
-                  handleChange(item.tempId, 'parent', e.target.value)
-                }
-                required={true}
-                spellCheck={true}
-              />
+              {item.type !== 'root' ? (
+                <TextInput
+                  {...getStandardTextInputAttributes(item.tempId, 'parent')}
+                  autoCapitalize="off"
+                  enterKeyHint="next"
+                  // errorText={getFieldErrors(`parentId${item.id}`)}
+                  // errorTextShort="Please enter a short title"
+                  // hasError={hasError(`parentId${item.id}`)}
+                  inputMode="text"
+                  onChange={(e) =>
+                    handleChange(item.tempId, 'parent', e.target.value)
+                  }
+                  required={true}
+                  spellCheck={true}
+                />
+              ) : null}
             </td>
             <td>
-              {' '}
               <TextInput
                 {...getStandardTextInputAttributes(item.tempId, 'seq')}
                 autoCapitalize="off"
@@ -99,7 +100,7 @@ const PagesPage = (): JSX.Element => {
             <td>
               {item.type} - {level}
             </td>
-          </tr>
+          </StyledTr>
           {item.items?.map((x) => renderItem(x, level + 1))}
         </React.Fragment>
       );
@@ -158,6 +159,11 @@ const PagesPage = (): JSX.Element => {
 
 export default PagesPage;
 
+const StyledTr = styled.tr`
+  td {
+    padding: 3px 15px;
+  }
+`;
 const StyledTd1 = styled.td`
   padding-left: 0px;
 `;

@@ -92,7 +92,6 @@ const usePagesEdit = () => {
     items.forEach((x) => {
       ret.push(x);
       if (x.items) {
-        //ret.push(...x.items);
         const y = flattenArray(x.items);
         if (y) {
           ret.push(...y);
@@ -101,8 +100,6 @@ const usePagesEdit = () => {
     });
     return ret ? ret.sort((a, b) => a.tempId - b.tempId) : undefined;
   }, []);
-
-  console.log('initialData', initialData);
 
   // Update the form values when the data changes
   useEffect(() => {
@@ -121,48 +118,27 @@ const usePagesEdit = () => {
       return undefined;
     }
 
-    const ret: MenuEdit[] = [];
-
+    const temp: MenuEdit[] = [];
     formValues.forEach((item) => {
       // Match on TempId = Id
       const originalItem = initialData.find((x) => x.tempId === item.id);
       if (originalItem) {
-        // Calculate the changes
-        const newParent =
-          item.parent !== originalItem.parentId?.toString()
-            ? parseInt(item.parent)
-            : undefined;
-        const newSeq = item.seq !== originalItem.seq ? item.seq : undefined;
-        const newSortby =
-          item.sortby !== originalItem.sortby
-            ? item.sortby === 'name'
-              ? 'name'
-              : 'seq'
-            : undefined;
-
-        const y = () => {
-          if (newParent || newSeq || newSortby) {
-            return {
-              id: item.id,
-              parentId: newParent,
-              seq: newSeq,
-              sortby: newSortby,
-            };
-          }
-          return undefined;
-        };
-        if (y) {
-          ret.push(y() as MenuEdit);
-        }
-      } else {
-        ret.push({
-          id: item.id,
-          parentId: parseInt(item.parent),
-          seq: item.seq,
-          sortby: item.sortby === 'name' ? 'name' : 'seq',
-        });
+        const x: MenuEdit = {
+          ...originalItem,
+          newParentId: parseInt(item.parent),
+          newSeq: item.seq,
+          newSortby: item.sortby,
+        } as MenuEdit;
+        temp.push(x);
       }
     });
+
+    const ret = temp.filter(
+      (x) =>
+        x.newParentId !== x.parentId ||
+        x.newSeq !== x.seq ||
+        x.newSortby !== x.sortby,
+    );
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
   }, [initialData, formValues]);
@@ -177,6 +153,7 @@ const usePagesEdit = () => {
   // Handle save
   const submitForm = useCallback(async () => {
     const data = getUpdates();
+    console.log('data', data);
     if (!data) {
       return false;
     }

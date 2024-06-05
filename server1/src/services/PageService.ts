@@ -170,42 +170,4 @@ export class PageService extends PagesService {
       return Promise.reject(new Error(`Failed to delete item: ${id}`));
     }
   }
-
-  public async updateItems(items: Page[]): Promise<void> {
-    Logger.info(`PageService: updateItems ->`);
-
-    try {
-      const pages = await this.getItems();
-      if (!pages || !pages.items) {
-        return Promise.reject(new Error('No items found'));
-      }
-
-      const pageItems = pages.items;
-      items.forEach((x) => {
-        const currItem = pageItems.find((x) => x.id === x.id);
-        const newParent = x.parent ? x.parent[0] : undefined;
-        if (currItem && newParent) {
-          const currParent = currItem.parent?.find((y) => y.id === currItem.id);
-          if (currParent) {
-            currParent.seq = newParent.seq;
-          } else {
-            if (!currItem.parent) {
-              currItem.parent = [];
-            }
-            currItem.parent.push({ id: newParent.id, seq: newParent.seq });
-          }
-          if (x.sortby) {
-            currItem.sortby = x.sortby;
-          }
-        }
-      });
-
-      // Add item
-      await this.writeFile(pages);
-      return Promise.resolve();
-    } catch (error) {
-      Logger.error(`PageService: updateItems -> ${error}`);
-      return undefined;
-    }
-  }
 }
