@@ -9,13 +9,14 @@ import { Menu, MenuEdit, MenuItem } from 'services/types';
 const pageSchema = z.object({
   id: z.number(),
   parent: z.string().min(1, REQUIRED_FIELD),
-  seq: z.number(),
+  seq: z.string(),
   sortby: z.string(),
 });
 
 // Create a type from the schema
 export type FormValues = z.infer<typeof pageSchema>;
 export type keys = keyof FormValues;
+export type sortByType = 'seq' | 'name' | undefined;
 
 const usePagesEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
@@ -34,7 +35,7 @@ const usePagesEdit = () => {
     () => ({
       id: 0,
       parent: '',
-      seq: 0,
+      seq: '',
       sortby: '',
     }),
     [],
@@ -74,7 +75,7 @@ const usePagesEdit = () => {
         return {
           id: x.tempId ?? 0,
           parent: x.parentId?.toString() ?? '',
-          seq: x.seq,
+          seq: x.seq?.toString() ?? '',
           sortby: x.sortby,
         };
       });
@@ -126,9 +127,9 @@ const usePagesEdit = () => {
         const x: MenuEdit = {
           ...originalItem,
           newParentId: parseInt(item.parent),
-          newSeq: item.seq,
-          newSortby: item.sortby,
-        } as MenuEdit;
+          newSeq: parseInt(item.seq),
+          newSortby: item.sortby as sortByType,
+        };
         temp.push(x);
       }
     });
@@ -153,7 +154,6 @@ const usePagesEdit = () => {
   // Handle save
   const submitForm = useCallback(async () => {
     const data = getUpdates();
-    console.log('data', data);
     if (!data) {
       return false;
     }

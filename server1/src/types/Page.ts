@@ -15,7 +15,7 @@ export type Page = {
   readonly toComplete?: string;
   readonly parentId?: number;
   readonly seq: number;
-  parent?: { id: number; seq: number }[];
+  readonly parent?: { readonly id: number; readonly seq: number }[];
   sortby: 'seq' | 'name';
 };
 

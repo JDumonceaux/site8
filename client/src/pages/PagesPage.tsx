@@ -1,19 +1,18 @@
 'use client';
 import React, { useCallback } from 'react';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { Meta, LoadingWrapper, PageTitle, StyledPlainButton } from 'components';
+import { Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { styled } from 'styled-components';
 import { TextInput } from 'components/form/input';
 import usePagesEdit from 'hooks/usePagesEdit';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
 import { MenuItem } from 'services/types/MenuItem';
+import MenuAdd from 'components/custom/MenuAdd';
 
 const PagesPage = (): JSX.Element => {
   const {
     data,
-    error,
-    isLoading,
     isSaved,
     handleChange,
     handleSave,
@@ -141,16 +140,16 @@ const PagesPage = (): JSX.Element => {
                 <th>Type</th>
               </tr>
             </thead>
-            <LoadingWrapper error={error} isLoading={isLoading}>
-              <tbody>
-                {data?.map((item) => (
-                  <React.Fragment key={item.id}>
-                    {renderItem(item, 0)}
-                  </React.Fragment>
-                ))}
-              </tbody>
-            </LoadingWrapper>
+
+            <tbody>
+              {data?.map((item) => (
+                <React.Fragment key={item.id}>
+                  {renderItem(item, 0)}
+                </React.Fragment>
+              ))}
+            </tbody>
           </table>
+          <MenuAdd />
         </StyledMain.Section>
       </StyledMain>
     </>

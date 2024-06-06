@@ -3,31 +3,32 @@ import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 
-import { MenuEdit } from 'services/types';
+import { MenuAdd } from 'services/types';
 import { useForm } from './useForm';
 import { safeParse } from 'utils/zodHelper';
 
 // Define Zod Shape
 const pageSchema = z.object({
   name: z.string().min(1, REQUIRED_FIELD),
-  parent: z.number(),
-  seq: z.number(),
-  sortby: z.string(),
+  parent: z.string().min(1, REQUIRED_FIELD),
+  seq: z.string().min(1, REQUIRED_FIELD),
+  sortby: z.string().min(1, REQUIRED_FIELD),
 });
 
 // Create a type from the schema
 export type FormValues = z.infer<typeof pageSchema>;
 export type keys = keyof FormValues;
+export type sortByType = 'seq' | 'name';
 
 const useMenuEdit = () => {
-  const { postData, isLoading, error } = useAxios<MenuEdit>();
+  const { postData, isLoading, error } = useAxios<MenuAdd>();
   // Return default form values
   const initialFormValues: FormValues = useMemo(
     () => ({
       name: '',
-      parent: 0,
-      seq: 0,
-      sortby: '',
+      parent: '',
+      seq: '0',
+      sortby: 'name',
     }),
     [],
   );
@@ -54,9 +55,20 @@ const useMenuEdit = () => {
     return result.success;
   }, [formValues, setErrors]);
 
+  // Get the updates
+  const getUpdates = useCallback((): MenuAdd => {
+    return {
+      id: 0,
+      name: formValues.name,
+      parentId: parseInt(formValues.parent),
+      seq: parseInt(formValues.seq),
+      sortby: formValues.sortby as sortByType,
+    };
+  }, [formValues]);
+
   // Handle save
   const submitForm = useCallback(async () => {
-    const data = { id: 0 };
+    const data = getUpdates();
     if (!data) {
       return false;
     }
@@ -65,7 +77,7 @@ const useMenuEdit = () => {
     setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [postData, setIsProcessing, setIsSaved]);
+  }, [getUpdates, postData, setIsProcessing, setIsSaved]);
 
   const handleChange = useCallback(
     (fieldName: keys, value: string) => {

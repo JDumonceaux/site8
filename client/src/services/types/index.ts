@@ -22,3 +22,4 @@ export * from './Image';
 export * from './Images';
 export * from './MenuEdit';
 export * from './MenuItem';
+export * from './MenuAdd';

@@ -3,8 +3,8 @@ import { Logger } from '../utils/Logger.js';
 import { MenuService } from '../services/MenuService.js';
 import { Errors, Responses } from '../utils/Constants.js';
 import { PagesService } from '../services/PagesService.js';
-import { MenuItem } from '../types/MenuItem.js';
 import { MenuEdit } from '../types/MenuEntryUpdate.js';
+import { MenuAdd } from '../types/MenuAdd.js';
 
 export const menuRouter = express.Router();
 
@@ -57,7 +57,7 @@ menuRouter.post('/', async (req: Request, res: Response) => {
 
   try {
     const service = new PagesService();
-    const data: MenuItem = req.body;
+    const data: MenuAdd = req.body;
 
     // Get next id
     const idNew = (await service.getNextId()) ?? 0;
@@ -65,7 +65,7 @@ menuRouter.post('/', async (req: Request, res: Response) => {
       res.status(400).json({ error: 'Next Id not found.' });
     }
 
-    // await Promise.all([service.addMenuItem({ ...data, id: idNew })]);
+    await Promise.all([service.addItem({ ...data, id: idNew })]);
     res.status(201).json({ message: Responses.SUCCESS });
   } catch (error) {
     Logger.error(`menuRouter: post -> Error: ${error}`);
@@ -79,17 +79,12 @@ menuRouter.patch('/', async (req: Request, res: Response) => {
 
   try {
     const data: MenuEdit[] = req.body;
+    if (!data) {
+      res.status(400).json({ error: 'No data found' });
+      res.end();
+    }
 
-    // if (data && data.menus) {
-    //   const service = new PagesService();
-    //   await service.updateMenuItems(data.menus);
-    // }
-    // if (data && data.pages) {
-    //   const service = new PageService();
-    //   await service.updateMenuItems(data.menus);
-    // }
-
-    // Return the new item
+    await new PagesService().updateItems(data);
     res.status(200).json({ message: 'Success' });
   } catch (error) {
     Logger.error(`menuRouter: patch -> Error: ${error}`);

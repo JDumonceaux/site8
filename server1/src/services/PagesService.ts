@@ -4,7 +4,8 @@ import { getFilePath } from '../utils/getFilePath.js';
 import { Pages } from '../types/Pages.js';
 import { Page } from '../types/Page.js';
 import { cleanUpData, getNextId } from '../utils/objectUtil.js';
-import { MenuEdit } from '../types/MenuEntryUpdate.js';
+import { MenuEdit } from '../types/MenuEdit.js';
+import { MenuAdd } from '../types/MenuAdd.js';
 
 export class PagesService {
   private fileName = 'pagesIndex.json';
@@ -69,8 +70,8 @@ export class PagesService {
     }
   }
 
-  public async addMenuItem(item: Page): Promise<void> {
-    Logger.info(`PagesService: addMenuItem ->`);
+  public async addItem(item: MenuAdd): Promise<void> {
+    Logger.info(`PagesService: addItem ->`);
 
     try {
       const pages = await this.getItems();
@@ -80,7 +81,7 @@ export class PagesService {
 
       const data: Pages = {
         ...pages,
-        items: [...pages.items, item],
+        items: [...pages.items, { ...item, type: 'menu' }],
       };
       // Verify count
       if (
@@ -95,29 +96,44 @@ export class PagesService {
       await this.writeFile(data);
       return Promise.resolve();
     } catch (error) {
-      Logger.error(`PagesService: addMenuItem -> ${error}`);
+      Logger.error(`PagesService: addItem -> ${error}`);
       return undefined;
     }
   }
 
-  private getUpdatedItem(item: MenuEdit, foundItem: Page | undefined) {
+  private getUpdatedItem(
+    item: MenuEdit | undefined,
+    foundItem: Page | undefined,
+  ) {
     Logger.info(`PagesService: getUpdatedItem ->`);
 
     try {
-      if (!foundItem) {
+      if (!foundItem || !item) {
         return undefined;
       }
-      // Find old parent record
-      const parent = foundItem.parent;
-      const newParentArray = parent
-        ? parent
-            .filter((x) => x.id !== item.parentId)
-            .concat({ id: item.parentId, seq: item.seq })
-            .sort((a, b) => a.id - b.seq)
-        : undefined;
 
-      const ret = { ...foundItem, parent: newParentArray, sortby: item.sortby };
-      return ret ? cleanUpData(ret) : undefined;
+      let newParent: { readonly id: number; readonly seq: number }[] = [];
+
+      if (foundItem.parent) {
+        newParent = foundItem.parent.map((x) => {
+          if (x.id === item.parentId && item.newParentId && item.newSeq) {
+            return { id: item.newParentId, seq: item.newSeq };
+          } else {
+            return x;
+          }
+        });
+      } else {
+        if (item.newParentId && item.newSeq) {
+          newParent = [{ id: item.newParentId, seq: item.newSeq }];
+        }
+      }
+
+      const retItem: Page = {
+        ...foundItem,
+        parent: newParent,
+        sortby: item.sortby,
+      };
+      return retItem ? cleanUpData(retItem) : undefined;
     } catch (error) {
       Logger.error(`PagesService: getItems -> ${error}`);
       return undefined;
@@ -132,16 +148,15 @@ export class PagesService {
       if (!pages || !pages.items) {
         return Promise.reject(new Error('No items found'));
       }
-      const retItems = pages.items;
 
-      items.forEach((x) => {
-        const foundIndex = retItems
-          .map(function (y) {
-            return y.id;
-          })
-          .indexOf(x.id);
-        const item = this.getUpdatedItem(x, retItems[foundIndex]);
-        item ? (retItems[foundIndex] = item) : null;
+      const retItems = pages.items.map((item) => {
+        const updateItem = items.find((x) => x.id === item.id);
+        console.log('updateItem', updateItem);
+        const ret = updateItem
+          ? this.getUpdatedItem(updateItem, item)
+          : undefined;
+        console.log('ret', ret);
+        return ret ?? item;
       });
 
       // Add item

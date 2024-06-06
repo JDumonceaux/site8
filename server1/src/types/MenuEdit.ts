@@ -6,6 +6,6 @@ export type MenuEdit = {
   readonly seq: number;
   readonly sortby: 'seq' | 'name';
   readonly newParentId?: number;
-  readonly newSeq: number;
-  readonly newSortby: 'seq' | 'name';
+  readonly newSeq?: number;
+  readonly newSortby?: 'seq' | 'name';
 };
