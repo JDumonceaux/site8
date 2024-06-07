@@ -14,16 +14,16 @@ export type Page = {
   readonly items?: Page[];
   readonly toComplete?: string;
   readonly parentId?: number;
-  readonly seq: number;
+  readonly seq?: number;
   readonly parent?: { readonly id: number; readonly seq: number }[];
-  sortby: 'seq' | 'name';
+  readonly sortby: 'seq' | 'name';
 };
 
 //  Sort the Page by seq, then name
 export function sortMenuEntrySeq(ob1: Page, ob2: Page) {
-  if (ob1.seq !== ob2.seq) {
-    return ob1.seq - ob2.seq;
-  }
+  // if (ob1.seq !== ob2.seq) {
+  //   return ob1.seq - ob2.seq;
+  // }
   return ob1.name.localeCompare(ob2.name);
 }
 
@@ -32,6 +32,9 @@ export function sortMenuEntryName(ob1: Page, ob2: Page) {
   const nameComparison = ob1.name.localeCompare(ob2.name);
   if (nameComparison !== 0) {
     return nameComparison;
+  }
+  if (ob1.seq === undefined || ob2.seq === undefined) {
+    return 0;
   }
   return ob1.seq - ob2.seq;
 }

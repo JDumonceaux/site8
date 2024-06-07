@@ -4,6 +4,7 @@ import { Logger } from "../utils/Logger.js";
 import { getFilePath } from "../utils/getFilePath.js";
 import { Page } from "../types/Page.js";
 import { Pages } from "../types/Pages.js";
+import { getNextId } from "../utils/objectUtil.js";
 
 export class PagesService {
   private fileName = "pagesIndex.json";
@@ -50,76 +51,14 @@ export class PagesService {
     }
   }
 
-  // Get the last id. We'll increase this by one to add the next record
-  public async getLastId(): Promise<number | undefined> {
-    Logger.info(`getLastId -> `);
-    try {
-      const results = await readFile(this.filePath, { encoding: "utf8" });
-      const data = JSON.parse(results) as Pages;
-      // Check to make sure items isn't undefined
-      if (data.items) {
-        // Check to make sure it is iterable
-        const itr = typeof data.items[Symbol.iterator] === "function";
-        if (!itr) {
-          Logger.error(
-            `PagesService: getLastId -> Error: items is not iterable`
-          );
-          return undefined;
-        }
-        const maxItem = data.items.reduce((a, b) => (+a.id > +b.id ? a : b));
-        return maxItem ? maxItem.id : undefined;
-      } else {
-        Logger.error(
-          `PagesService: getLastId -> Error: items missing from file`
-        );
-        return undefined;
-      }
-    } catch (error) {
-      Logger.error(`PagesService: getLastId -> Error: ${error}`);
-      return undefined;
-    }
-  }
-
   // Get the next available id
   public async getNextId(): Promise<number | undefined> {
     Logger.info(`getNextId -> `);
     try {
       const item = await this.getItems();
-      return this.findFreeId(item?.items ?? undefined);
+      return getNextId<Page>(data?.items);
     } catch (error) {
       Logger.error(`PagesService: getLastId -> Error: ${error}`);
-      return undefined;
-    }
-  }
-
-  // Get Next Id
-  public findFreeId(items: Page[] | undefined): number | undefined {
-    try {
-      // Check to make sure items isn't undefined
-      if (items) {
-        const sortedArray = items.sort((a, b) => a.id - b.id);
-
-        // Start with the first id in the sorted array
-        let nextId = sortedArray[0].id;
-        // Iterate through the array to find the missing id
-        for (let i = 0; i < sortedArray.length; i++) {
-          // Check if the current object's id is not equal to the nextId
-          if (sortedArray[i].id !== nextId) {
-            return nextId; // Found the gap
-          }
-          nextId++; // Move to the next expected id
-        }
-
-        // If no gaps were found, the next free id is one greater than the last object's id
-        return nextId;
-      } else {
-        Logger.error(
-          `PagesService: findFreeIdd -> Error: items missing from file`
-        );
-        return undefined;
-      }
-    } catch (error) {
-      Logger.error(`PagesService: findFreeId -> Error: ${error}`);
       return undefined;
     }
   }

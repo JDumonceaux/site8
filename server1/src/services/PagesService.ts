@@ -7,7 +7,7 @@ import { cleanUpData, getNextId } from '../utils/objectUtil.js';
 import { MenuEdit } from '../types/MenuEdit.js';
 import { MenuAdd } from '../types/MenuAdd.js';
 import { z } from 'zod';
-import { safeParse } from 'utils/zodHelper.js';
+import { safeParse } from '../utils/zodHelper.js';
 
 const menuAddSchema = z
   .object({
@@ -91,9 +91,18 @@ export class PagesService {
         return Promise.reject(new Error('No items found'));
       }
 
-      const data = cleanUpData<Page>(item);
+      // Reformat item
+      const itemToAdd: Page = {
+        ...item,
+        parent: [{ id: item.parentId, seq: item.seq }],
+        parentId: undefined,
+        seq: 0,
+      };
+
+      // Remove undefined values and sort
+      const newItem = cleanUpData<Page>(itemToAdd);
       // Validate data
-      const result = safeParse<addData>(menuAddSchema, data);
+      const result = safeParse<addData>(menuAddSchema, newItem);
       if (result.error) {
         throw new Error(`addItem -> ${result.error}`);
       }
@@ -101,18 +110,8 @@ export class PagesService {
       // Add
       const newData: Pages = {
         ...pages,
-        items: [...pages.items, item],
+        items: [...pages.items, newItem],
       };
-
-      // Confirm 1 and only 1 item has been added
-      if (
-        pages &&
-        pages.items &&
-        data.items &&
-        pages.items.length > data.items.length + 1
-      ) {
-        throw new Error('Inconsistent count.');
-      }
       // Write to file
       await this.writeFile(newData);
       return Promise.resolve();
@@ -134,7 +133,6 @@ export class PagesService {
       }
 
       let newParent: { readonly id: number; readonly seq: number }[] = [];
-
       if (foundItem.parent) {
         newParent = foundItem.parent.map((x) => {
           if (x.id === item.parentId && item.newParentId && item.newSeq) {
@@ -197,14 +195,12 @@ export class PagesService {
       if (!pages || !pages.items) {
         return Promise.reject(new Error('No items found'));
       }
-
       const data = pages.items.map((item) => {
         const newItem = cleanUpData<Page>(item);
         return newItem;
       });
 
       const newData = { ...pages, items: data };
-
       await this.writeFile(newData);
       return Promise.resolve();
     } catch (error) {

@@ -61,7 +61,6 @@ pageRouter.post('/', async (req: Request, res: Response) => {
 
     // Get next id
     const idNew = (await new PagesService().getNextId()) ?? 0;
-
     if (!idNew || idNew === 0) {
       res.status(400).json({ error: 'Next Id not found.' });
     }

@@ -6,55 +6,54 @@
     {
       "id": 10001,
       "name": "Programming",
-      "to": "programming",
+      "seq": 0,
       "sortby": "name",
-      "type": "root",
-      "seq": 0
+      "to": "programming",
+      "type": "root"
     },
     {
       "id": 10002,
       "name": "React",
-      "to": "react",
+      "seq": 0,
       "sortby": "name",
-      "type": "root",
-      "seq": 0
+      "to": "react",
+      "type": "root"
     },
     {
       "id": 10003,
       "name": "AWS",
-      "to": "aws",
+      "seq": 0,
       "sortby": "name",
-      "type": "root",
-      "seq": 0
+      "to": "aws",
+      "type": "root"
     },
     {
       "id": 10004,
       "name": "Fun Stuff",
-      "to": "fun",
+      "seq": 0,
       "sortby": "name",
-      "type": "root",
-      "seq": 0
+      "to": "fun",
+      "type": "root"
     },
     {
       "id": 10005,
       "name": "Web",
-      "to": "web",
+      "seq": 0,
       "sortby": "name",
-      "type": "root",
-      "seq": 0
+      "to": "web",
+      "type": "root"
     },
     {
       "id": 10006,
       "name": "React A-Z",
-      "to": "react-a-z",
+      "seq": 0,
       "sortby": "seq",
-      "type": "root",
-      "seq": 0
+      "to": "react-a-z",
+      "type": "root"
     },
     {
       "id": 40,
       "name": "Getting Started",
-      "to": "getting-started",
       "parent": [
         {
           "id": 10006,
@@ -62,12 +61,12 @@
         }
       ],
       "sortby": "seq",
+      "to": "getting-started",
       "type": "menu"
     },
     {
       "id": 9,
       "name": "Patterns",
-      "to": "patterns",
       "parent": [
         {
           "id": 100,
@@ -75,343 +74,319 @@
         }
       ],
       "sortby": "seq",
+      "to": "patterns",
       "type": "menu"
     },
     {
       "id": 1000,
+      "name": "Creational Design Patterns",
       "parent": [
         {
           "id": 9,
           "seq": 0
         }
       ],
-      "name": "Creational Design Patterns",
       "to": "creational-design-patterns",
       "type": "menu"
     },
     {
       "id": 4,
       "name": "Javascript",
-      "to": "javascript",
       "parent": [
         {
           "id": 100,
           "seq": 0
         }
       ],
+      "to": "javascript",
       "type": "menu"
     },
     {
       "id": 2,
       "name": "Design Styles",
-      "to": "design",
       "parent": [
         {
           "id": 10005,
           "seq": 0
         }
       ],
+      "to": "design",
       "type": "menu"
     },
     {
       "id": 5,
+      "name": "Cheat Sheets",
       "parent": [
         {
           "id": 100,
           "seq": 0
         }
       ],
-      "name": "Cheat Sheets",
       "to": "cheatsheet",
       "type": "menu"
     },
     {
       "id": 8,
+      "name": "Code Solutions",
       "parent": [
         {
           "id": 100,
           "seq": 0
         }
       ],
-      "name": "Code Solutions",
       "to": "code/solutions",
       "type": "menu"
     },
     {
       "id": 13,
+      "name": "Security",
       "parent": [
         {
           "id": 10005,
           "seq": 0
         }
       ],
-      "name": "Security",
       "to": "security",
       "type": "menu"
     },
     {
       "id": 15,
+      "name": "Maintenance",
       "parent": [
         {
           "id": 10005,
           "seq": 0
         }
       ],
-      "name": "Maintenance",
       "to": "maintenance",
       "type": "menu"
     },
     {
       "id": 30,
+      "name": "IDE",
       "parent": [
         {
           "id": 10005,
           "seq": 0
         }
       ],
-      "name": "IDE",
       "to": "ide",
       "type": "menu"
     },
     {
       "id": 14,
+      "name": "AWS",
       "parent": [
         {
           "id": 10003,
           "seq": 0
         }
       ],
-      "name": "AWS",
       "to": "aws",
       "type": "menu"
     },
     {
       "id": 16,
+      "name": "Art",
       "parent": [
         {
           "id": 10004,
           "seq": 0
         }
       ],
-      "name": "Art",
       "to": "art",
       "type": "menu"
     },
     {
       "id": 3,
+      "name": "Artist",
       "parent": [
         {
           "id": 10004,
           "seq": 0
         }
       ],
-      "name": "Artist",
       "to": "artists",
       "type": "menu"
     },
     {
       "id": 17,
+      "name": "Yachts",
       "parent": [
         {
           "id": 10004,
           "seq": 0
         }
       ],
-      "name": "Yachts",
       "to": "yachts",
       "type": "menu"
     },
     {
       "id": 6,
+      "name": "Best Practices",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Best Practices",
       "to": "best-practices",
       "type": "menu"
     },
     {
       "id": 18,
+      "name": "Images",
       "parent": [
         {
           "id": 10004,
           "seq": 0
         }
       ],
-      "name": "Images",
       "to": "images",
       "type": "menu"
     },
     {
       "id": 19,
+      "name": "Technology Stacks",
       "parent": [
         {
           "id": 100,
           "seq": 0
         }
       ],
-      "name": "Technology Stacks",
       "to": "technology-stacks",
       "type": "menu"
     },
     {
       "id": 20,
+      "name": "Performance",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Performance",
       "to": "performance",
       "type": "menu"
     },
     {
       "id": 22,
+      "name": "Hooks",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Hooks",
       "to": "hooks",
       "type": "menu"
     },
     {
       "id": 23,
+      "name": "Hooks Custom",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Hooks Custom",
       "to": "hooks=custom",
       "type": "menu"
     },
     {
       "id": 24,
+      "name": "Patterns",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Patterns",
       "to": "patterns",
       "type": "menu"
     },
     {
       "id": 25,
+      "name": "ESLint",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "ESLint",
       "to": "eslint",
       "type": "menu"
     },
     {
       "id": 26,
+      "name": "Troubleshooting",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Troubleshooting",
       "to": "troubleshooting",
       "type": "menu"
     },
     {
       "id": 27,
+      "name": "Interview Questions",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Interview Questions",
       "to": "interview-questions",
       "type": "menu"
     },
     {
       "id": 28,
+      "name": "NodeJS",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "NodeJS",
       "to": "nodejs",
       "type": "menu"
     },
     {
       "id": 29,
+      "name": "Getting Started",
       "parent": [
         {
           "id": 10002,
           "seq": 0
         }
       ],
-      "name": "Getting Started",
       "to": "getting-started",
       "type": "menu"
     },
     {
+      "id": 911,
+      "create_date": "1911-12-15T15:46:00.000Z",
+      "edit_date": "1911-12-15T15:46:00.000Z",
+      "file": true,
       "name": "Overview",
-      "to": "overview",
-      "long_title": "",
-      "resources": false,
       "parent": [
         {
           "id": 10005,
           "seq": 0
         }
       ],
-      "reading_time": "",
-      "readability_score": "",
-      "edit_date": "1911-12-15T15:46:00.000Z",
-      "create_date": "1911-12-15T15:46:00.000Z",
-      "id": 911,
-      "file": true,
+      "resources": false,
+      "to": "overview",
       "type": "page"
     },
     {
-      "name": "Singleton Pattern",
-      "to": "singleton-pattern",
-      "long_title": "",
-      "resources": false,
-      "parent": [
-        {
-          "id": 9,
-          "seq": 0
-        },
-        {
-          "id": 1000,
-          "seq": 0
-        }
-      ],
-      "reading_time": "",
-      "readability_score": "",
-      "edit_date": "1911-12-15T15:49:00.000Z",
-      "create_date": "1911-12-15T15:49:00.000Z",
       "id": 912,
+      "create_date": "1911-12-15T15:49:00.000Z",
+      "edit_date": "1911-12-15T15:49:00.000Z",
       "file": true,
-      "type": "page"
-    },
-    {
-      "name": "Factory Method Pattern",
-      "to": "factory-method-pattern",
-      "long_title": "",
-      "resources": false,
+      "name": "Singleton Pattern",
       "parent": [
         {
           "id": 9,
@@ -422,20 +397,36 @@
           "seq": 0
         }
       ],
-      "reading_time": "",
-      "readability_score": "",
-      "edit_date": "1911-12-15T15:52:00.000Z",
-      "create_date": "1911-12-15T15:52:00.000Z",
+      "resources": false,
+      "to": "singleton-pattern",
+      "type": "page"
+    },
+    {
       "id": 913,
+      "create_date": "1911-12-15T15:52:00.000Z",
+      "edit_date": "1911-12-15T15:52:00.000Z",
       "file": true,
+      "name": "Factory Method Pattern",
+      "parent": [
+        {
+          "id": 9,
+          "seq": 0
+        },
+        {
+          "id": 1000,
+          "seq": 0
+        }
+      ],
+      "resources": false,
       "seq": 1000,
+      "to": "factory-method-pattern",
       "type": "page"
     },
     {
       "id": 900,
-      "name": "CSS",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "CSS",
       "parent": [
         {
           "id": 10001,
@@ -447,8 +438,9 @@
     },
     {
       "id": 901,
-      "name": "Internationalization",
       "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Internationalization",
       "parent": [
         {
           "id": 10001,
@@ -456,14 +448,14 @@
         }
       ],
       "to": "internationalization",
-      "file": true,
       "type": "page"
     },
     {
       "id": 1001,
-      "name": "Skeuomorphism",
-      "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
       "edit_date": "01/18/2024",
+      "file": true,
+      "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
+      "name": "Skeuomorphism",
       "parent": [
         {
           "id": 2,
@@ -471,14 +463,14 @@
         }
       ],
       "to": "skeuomorphism",
-      "file": true,
       "type": "page"
     },
     {
       "id": 1002,
-      "name": "Flat Design",
-      "long_title": "Flat Design: The Art of Simplicity",
       "edit_date": "01/18/2024",
+      "file": true,
+      "long_title": "Flat Design: The Art of Simplicity",
+      "name": "Flat Design",
       "parent": [
         {
           "id": 2,
@@ -486,30 +478,30 @@
         }
       ],
       "to": "flat-design",
-      "file": true,
       "type": "page"
     },
     {
       "id": 1003,
-      "name": "Corporate Memphis Design",
-      "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
       "edit_date": "01/18/2024",
       "file": true,
+      "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
+      "name": "Corporate Memphis Design",
       "parent": [
         {
           "id": 2,
           "seq": 0
         }
       ],
-      "reading_time": "1 min 37 sec",
       "readability_score": "22",
+      "reading_time": "1 min 37 sec",
       "to": "corporate-memphis-design",
       "type": "page"
     },
     {
       "id": 1004,
-      "name": "Glassmorphism",
       "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Glassmorphism",
       "parent": [
         {
           "id": 2,
@@ -517,13 +509,13 @@
         }
       ],
       "to": "glassmorphism",
-      "file": true,
       "type": "page"
     },
     {
       "id": 1005,
-      "name": "Minimalism",
       "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Minimalism",
       "parent": [
         {
           "id": 2,
@@ -531,13 +523,13 @@
         }
       ],
       "to": "minimalism",
-      "file": true,
       "type": "page"
     },
     {
       "id": 1007,
-      "name": "Retrofuturism",
       "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Retrofuturism",
       "parent": [
         {
           "id": 2,
@@ -545,13 +537,13 @@
         }
       ],
       "to": "retrofuturism",
-      "file": true,
       "type": "page"
     },
     {
       "id": 1008,
-      "name": "Swiss Style",
       "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Swiss Style",
       "parent": [
         {
           "id": 2,
@@ -559,13 +551,13 @@
         }
       ],
       "to": "swiss-style",
-      "file": true,
       "type": "page"
     },
     {
       "id": 2001,
-      "name": "Chrome Extensions",
       "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Chrome Extensions",
       "parent": [
         {
           "id": 10001,
@@ -573,28 +565,27 @@
         }
       ],
       "to": "chrome-extensions",
-      "file": true,
       "type": "page"
     },
     {
       "id": 2002,
-      "name": "Git",
       "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Git",
       "parent": [
         {
           "id": 10001,
           "seq": 0
         }
       ],
-      "file": true,
       "to": "git",
       "type": "page"
     },
     {
       "id": 2003,
-      "name": "Visual Studio Code",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "Visual Studio Code",
       "parent": [
         {
           "id": 10001,
@@ -606,9 +597,9 @@
     },
     {
       "id": 2004,
-      "name": "Visual Studio Code: Extensions",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "Visual Studio Code: Extensions",
       "parent": [
         {
           "id": 10001,
@@ -620,9 +611,9 @@
     },
     {
       "id": 3001,
-      "name": "At Last - Pleasantville",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "At Last - Pleasantville",
       "parent": [
         {
           "id": 3,
@@ -634,9 +625,9 @@
     },
     {
       "id": 3002,
-      "name": "Gallos",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "Gallos",
       "parent": [
         {
           "id": 3,
@@ -648,9 +639,9 @@
     },
     {
       "id": 3003,
-      "name": "Shoes on the Danube Bank",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "Shoes on the Danube Bank",
       "parent": [
         {
           "id": 3,
@@ -674,9 +665,9 @@
     },
     {
       "id": 5001,
-      "name": "Lazels Puzzles",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "Lazels Puzzles",
       "parent": [
         {
           "id": 3,
@@ -688,9 +679,9 @@
     },
     {
       "id": 5002,
-      "name": "Puzzle Lab",
       "edit_date": "01/18/2024",
       "file": true,
+      "name": "Puzzle Lab",
       "parent": [
         {
           "id": 3,
@@ -702,64 +693,65 @@
     },
     {
       "id": 6000,
-      "name": "Input Element",
       "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Input Element",
       "parent": [
         {
           "id": 5,
           "seq": 0
         }
       ],
-      "file": true,
       "to": "input-element",
       "type": "page"
     },
     {
       "id": 6001,
-      "name": "Data Types",
       "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Data Types",
       "parent": [
         {
           "id": 5,
           "seq": 0
         }
       ],
-      "file": true,
       "to": "data-types",
       "type": "page"
     },
     {
       "id": 6002,
-      "name": "String Functions",
       "edit_date": "03/24/2024",
+      "file": true,
+      "name": "String Functions",
       "parent": [
         {
           "id": 5,
           "seq": 0
         }
       ],
-      "file": true,
       "to": "string-functions",
       "type": "page"
     },
     {
       "id": 6004,
-      "name": "Math Functions",
       "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Math Functions",
       "parent": [
         {
           "id": 5,
           "seq": 0
         }
       ],
-      "file": true,
       "to": "math-functions",
       "type": "page"
     },
     {
       "id": 6005,
-      "name": "Javascript Array",
       "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Javascript Array",
       "parent": [
         {
           "id": 5,
@@ -770,12 +762,12 @@
           "seq": 0
         }
       ],
-      "file": true,
       "to": "javascript-array",
       "type": "page"
     },
     {
       "id": 7001,
+      "file": true,
       "name": "Functional Components",
       "parent": [
         {
@@ -784,13 +776,12 @@
         }
       ],
       "to": "functional-components",
-      "file": true,
       "type": "page"
     },
     {
       "id": 15002,
-      "name": "Design Patterns - Facade",
       "edit_date": "3/30/2024 2:24 PM",
+      "name": "Design Patterns - Facade",
       "parent": [
         {
           "id": 6,
@@ -802,8 +793,9 @@
     },
     {
       "id": 902,
-      "name": "Javascript 2024",
       "edit_date": "4/2/2024 2:23 PM",
+      "file": true,
+      "name": "Javascript 2024",
       "parent": [
         {
           "id": 12,
@@ -811,13 +803,13 @@
         }
       ],
       "to": "javascript-2024",
-      "file": true,
       "type": "page"
     },
     {
       "id": 1006,
-      "name": "Neumorphism",
       "edit_date": "1/18/2024 12:00 AM",
+      "file": true,
+      "name": "Neumorphism",
       "parent": [
         {
           "id": 2,
@@ -825,25 +817,26 @@
         }
       ],
       "to": "neumorphism",
-      "file": true,
       "type": "page"
     },
     {
-      "name": "HTTP Headers",
-      "to": "http-headers",
+      "id": 903,
       "edit_date": "4/4/2024 12:45 PM",
+      "file": true,
+      "name": "HTTP Headers",
       "parent": [
         {
           "id": 5,
           "seq": 0
         }
       ],
-      "id": 903,
-      "file": true,
+      "to": "http-headers",
       "type": "page"
     },
     {
       "id": 6003,
+      "edit_date": "1918-02-19T18:00:00.000Z",
+      "file": true,
       "name": "Global Functions",
       "parent": [
         {
@@ -852,27 +845,27 @@
         }
       ],
       "to": "global-functions",
-      "edit_date": "1918-02-19T18:00:00.000Z",
-      "file": true,
       "type": "page"
     },
     {
+      "id": 905,
+      "create_date": "1910-02-14T18:30:00.000Z",
+      "edit_date": "1910-02-14T18:30:00.000Z",
+      "file": true,
       "name": "Code Review",
-      "to": "code-review",
       "parent": [
         {
           "id": 6,
           "seq": 0
         }
       ],
-      "edit_date": "1910-02-14T18:30:00.000Z",
-      "create_date": "1910-02-14T18:30:00.000Z",
-      "id": 905,
-      "file": true,
+      "to": "code-review",
       "type": "page"
     },
     {
       "id": 904,
+      "edit_date": "1908-04-24T18:15:00.000Z",
+      "file": true,
       "name": "Best Practices",
       "parent": [
         {
@@ -881,12 +874,12 @@
         }
       ],
       "to": "best-practices",
-      "edit_date": "1908-04-24T18:15:00.000Z",
-      "file": true,
       "type": "page"
     },
     {
       "id": 906,
+      "edit_date": "1908-04-24T16:11:00.000Z",
+      "file": true,
       "name": "Units",
       "parent": [
         {
@@ -895,27 +888,27 @@
         }
       ],
       "to": "css-units",
-      "edit_date": "1908-04-24T16:11:00.000Z",
-      "file": true,
       "type": "page"
     },
     {
+      "id": 907,
+      "create_date": "1911-01-14T10:22:00.000Z",
+      "edit_date": "1911-01-14T10:22:00.000Z",
+      "file": true,
       "name": "Storage Options",
-      "to": "storage_options",
       "parent": [
         {
           "id": 14,
           "seq": 0
         }
       ],
-      "edit_date": "1911-01-14T10:22:00.000Z",
-      "create_date": "1911-01-14T10:22:00.000Z",
-      "id": 907,
-      "file": true,
+      "to": "storage_options",
       "type": "page"
     },
     {
       "id": 15000,
+      "edit_date": "1909-07-24T15:55:00.000Z",
+      "file": false,
       "name": "Images",
       "parent": [
         {
@@ -924,717 +917,579 @@
         }
       ],
       "to": "images",
-      "edit_date": "1909-07-24T15:55:00.000Z",
-      "file": false,
       "type": "page"
     },
     {
-      "name": "MERN",
-      "to": "mern",
-      "long_title": "",
-      "resources": false,
-      "parent": [
-        {
-          "id": 19,
-          "seq": 0
-        }
-      ],
-      "reading_time": "",
-      "readability_score": "",
-      "edit_date": "1911-07-17T08:22:00.000Z",
-      "create_date": "1911-07-17T08:22:00.000Z",
       "id": 909,
+      "create_date": "1911-07-17T08:22:00.000Z",
+      "edit_date": "1911-07-17T08:22:00.000Z",
       "file": true,
-      "type": "page"
-    },
-    {
-      "name": "Serverless",
-      "to": "serverless",
-      "long_title": "",
-      "resources": false,
+      "name": "MERN",
       "parent": [
         {
           "id": 19,
           "seq": 0
         }
       ],
-      "reading_time": "",
-      "readability_score": "",
-      "edit_date": "1911-07-17T08:22:00.000Z",
-      "create_date": "1911-07-17T08:22:00.000Z",
-      "id": 910,
-      "file": true,
+      "resources": false,
+      "to": "mern",
       "type": "page"
     },
     {
-      "name": "useTransition",
-      "to": "usetransition",
-      "long_title": "",
+      "id": 910,
+      "create_date": "1911-07-17T08:22:00.000Z",
+      "edit_date": "1911-07-17T08:22:00.000Z",
+      "file": true,
+      "name": "Serverless",
+      "parent": [
+        {
+          "id": 19,
+          "seq": 0
+        }
+      ],
       "resources": false,
+      "to": "serverless",
+      "type": "page"
+    },
+    {
+      "id": 914,
+      "create_date": "1910-09-14T08:41:00.000Z",
+      "edit_date": "1910-09-14T08:41:00.000Z",
+      "file": true,
+      "name": "useTransition",
       "parent": [
         {
           "id": 22,
           "seq": 0
         }
       ],
-      "reading_time": "",
-      "readability_score": "",
-      "edit_date": "1910-09-14T08:41:00.000Z",
-      "create_date": "1910-09-14T08:41:00.000Z",
-      "id": 914,
-      "file": true,
+      "resources": false,
+      "to": "usetransition",
       "type": "page"
     },
     {
-      "name": "Maintenance",
-      "to": "maintenance",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 908,
+      "edit_date": "1908-11-26T15:55:00.000Z",
+      "file": true,
+      "name": "Maintenance",
       "parent": [
         {
           "id": 6,
           "seq": 0
         }
       ],
-      "edit_date": "1908-11-26T15:55:00.000Z",
-      "file": true,
+      "to": "maintenance",
       "type": "page"
     },
     {
-      "name": "Minimize Re-renders",
-      "to": "minimize-re-renders",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 915,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Minimize Re-renders",
       "parent": [
         {
           "id": 20,
           "seq": 1
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "minimize-re-renders",
       "type": "page"
     },
     {
-      "name": "Use Memoization",
-      "to": "use-memoization",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 916,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Use Memoization",
       "parent": [
         {
           "id": 20,
           "seq": 2
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "use-memoization",
       "type": "page"
     },
     {
-      "name": "Avoid Using Index as a Key",
-      "to": "avoid-using-index-as-a-key",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 917,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Avoid Using Index as a Key",
       "parent": [
         {
           "id": 20,
           "seq": 3
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "avoid-using-index-as-a-key",
       "type": "page"
     },
     {
-      "name": "Use Functional Components",
-      "to": "use-functional-components",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 918,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Use Functional Components",
       "parent": [
         {
           "id": 20,
           "seq": 4
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "use-functional-components",
       "type": "page"
     },
     {
-      "name": "Use React.Fragment",
-      "to": "use-react-fragment",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 919,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Use React.Fragment",
       "parent": [
         {
           "id": 20,
           "seq": 5
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "use-react-fragment",
       "type": "page"
     },
     {
-      "name": "Reduce Unnecessary Props",
-      "to": "reduce-unnecessary-props",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 920,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Reduce Unnecessary Props",
       "parent": [
         {
           "id": 20,
           "seq": 6
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "reduce-unnecessary-props",
       "type": "page"
     },
     {
-      "name": "Avoid Inline Functions",
-      "to": "avoid-inline-functions",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 921,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Avoid Inline Functions",
       "parent": [
         {
           "id": 20,
           "seq": 7
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "avoid-inline-functions",
       "type": "page"
     },
     {
-      "name": "Use React.PureComponent",
-      "to": "use-react-purecomponent-or-react-memo",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 922,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Use React.PureComponent",
       "parent": [
         {
           "id": 20,
           "seq": 8
         }
       ],
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
+      "to": "use-react-purecomponent-or-react-memo",
       "type": "page"
     },
     {
-      "name": "Use Efficient Event Handlers",
-      "to": "use-efficient-event-handlers",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 923,
+      "create_date": "1911-06-16T18:39:00.000Z",
+      "edit_date": "1911-06-16T18:39:00.000Z",
+      "file": true,
+      "name": "Use Efficient Event Handlers",
       "parent": [
         {
           "id": 20,
           "seq": 9
         }
       ],
-      "edit_date": "1911-06-16T18:39:00.000Z",
-      "create_date": "1911-06-16T18:39:00.000Z",
-      "file": true,
+      "to": "use-efficient-event-handlers",
       "type": "page"
     },
     {
-      "name": "Batch State Updates",
-      "to": "batch-state-updates",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 924,
+      "create_date": "1911-06-16T11:04:00.000Z",
+      "edit_date": "1911-06-16T11:04:00.000Z",
+      "file": true,
+      "name": "Batch State Updates",
       "parent": [
         {
           "id": 20,
           "seq": 10
         }
       ],
-      "edit_date": "1911-06-16T11:04:00.000Z",
-      "create_date": "1911-06-16T11:04:00.000Z",
-      "file": true,
+      "to": "batch-state-updates",
       "type": "page"
     },
     {
-      "name": "Use Code Splitting and Lazy Loading",
-      "to": "use-code-splitting-and-lazy-loading",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 925,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Code Splitting and Lazy Loading",
       "parent": [
         {
           "id": 20,
           "seq": 11
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "use-code-splitting-and-lazy-loading",
       "type": "page"
     },
     {
-      "name": "Use Memo or useCallback",
-      "to": "use-memo-or-usecallback",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 926,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Memo or useCallback",
       "parent": [
         {
           "id": 20,
           "seq": 12
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "use-memo-or-usecallback",
       "type": "page"
     },
     {
-      "name": "Optimize Network Requests",
-      "to": "optimize-network-requests",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 927,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Optimize Network Requests",
       "parent": [
         {
           "id": 20,
           "seq": 13
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "optimize-network-requests",
       "type": "page"
     },
     {
-      "name": "Implement Virtualization for Large Lists",
-      "to": "implement-virtualization-for-large-lists",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 928,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Implement Virtualization for Large Lists",
       "parent": [
         {
           "id": 20,
           "seq": 15
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "implement-virtualization-for-large-lists",
       "type": "page"
     },
     {
-      "name": "Use React.memo",
-      "to": "use-react-memo",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 929,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use React.memo",
       "parent": [
         {
           "id": 20,
           "seq": 15
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "use-react-memo",
       "type": "page"
     },
     {
-      "name": "Compress and Cache Static Assets",
-      "to": "compress-and-cache-static-assets",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 930,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Compress and Cache Static Assets",
       "parent": [
         {
           "id": 20,
           "seq": 16
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "compress-and-cache-static-assets",
       "type": "page"
     },
     {
-      "name": "Optimize CSS Animations",
-      "to": "optimize-css-animations",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 931,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Optimize CSS Animations",
       "parent": [
         {
           "id": 20,
           "seq": 17
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "optimize-css-animations",
       "type": "page"
     },
     {
-      "name": "Defer Expensive Operations in useEffect",
-      "to": "defer-expensive-operations-in-use-effect",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 932,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Defer Expensive Operations in useEffect",
       "parent": [
         {
           "id": 20,
           "seq": 18
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "defer-expensive-operations-in-use-effect",
       "type": "page"
     },
     {
-      "name": "Use Webpack’s Tree Shaking",
-      "to": "use-webpacks-tree-shaking",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 933,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Webpack’s Tree Shaking",
       "parent": [
         {
           "id": 20,
           "seq": 19
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "use-webpacks-tree-shaking",
       "type": "page"
     },
     {
-      "name": "Use Redux or MobX for State Management",
-      "to": "use-redux-or-mobx-for-state-management",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 934,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Redux or MobX for State Management",
       "parent": [
         {
           "id": 20,
           "seq": 20
         }
       ],
-      "edit_date": "1911-06-16T11:44:00.000Z",
-      "create_date": "1911-06-16T11:44:00.000Z",
-      "file": true,
+      "to": "use-redux-or-mobx-for-state-management",
       "type": "page"
     },
     {
-      "name": "Shape the Data",
-      "to": "shape-the-data",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 935,
+      "create_date": "1911-06-16T16:09:00.000Z",
+      "edit_date": "1911-06-16T16:09:00.000Z",
+      "file": true,
+      "name": "Shape the Data",
       "parent": [
         {
           "id": 20,
           "seq": 21
         }
       ],
-      "edit_date": "1911-06-16T16:09:00.000Z",
-      "create_date": "1911-06-16T16:09:00.000Z",
-      "file": true,
+      "to": "shape-the-data",
       "type": "page"
     },
     {
-      "name": "useLocalStorage",
-      "to": "uselocalstorage",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 936,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useLocalStorage",
       "parent": [
         {
           "id": 23,
           "seq": 0
         }
       ],
-      "edit_date": "1911-07-17T15:34:00.000Z",
-      "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true,
+      "to": "uselocalstorage",
       "type": "page"
     },
     {
-      "name": "useMediaQuery",
-      "to": "usemediaquery",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 937,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useMediaQuery",
       "parent": [
         {
           "id": 23,
           "seq": 0
         }
       ],
-      "edit_date": "1911-07-17T15:34:00.000Z",
-      "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true,
+      "to": "usemediaquery",
       "type": "page"
     },
     {
-      "name": "useDebounce",
-      "to": "usedebounce",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 938,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useDebounce",
       "parent": [
         {
           "id": 23,
           "seq": 0
         }
       ],
-      "edit_date": "1911-07-17T15:34:00.000Z",
-      "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true,
+      "to": "usedebounce",
       "type": "page"
     },
     {
-      "name": "useFetch",
-      "to": "usefetch",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 939,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useFetch",
       "parent": [
         {
           "id": 23,
           "seq": 0
         }
       ],
-      "edit_date": "1911-07-17T15:34:00.000Z",
-      "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true,
+      "to": "usefetch",
       "type": "page"
     },
     {
-      "name": "useToggle",
-      "to": "usetoggle",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 940,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useToggle",
       "parent": [
         {
           "id": 23,
           "seq": 0
         }
       ],
-      "edit_date": "1911-07-17T15:34:00.000Z",
-      "create_date": "1911-07-17T15:34:00.000Z",
-      "file": true,
+      "to": "usetoggle",
       "type": "page"
     },
     {
-      "name": "Adapter Pattern",
-      "to": "adapter-pattern",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 941,
+      "create_date": "1911-08-17T16:17:00.000Z",
+      "edit_date": "1911-08-17T16:17:00.000Z",
+      "file": true,
+      "name": "Adapter Pattern",
       "parent": [
         {
           "id": 24,
           "seq": 0
         }
       ],
-      "edit_date": "1911-08-17T16:17:00.000Z",
-      "create_date": "1911-08-17T16:17:00.000Z",
-      "file": true,
+      "to": "adapter-pattern",
       "type": "page"
     },
     {
-      "name": "Overview",
-      "to": "overview",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 942,
-      "edit_date": "1911-11-14T09:02:00.000Z",
       "create_date": "1911-11-14T09:02:00.000Z",
+      "edit_date": "1911-11-14T09:02:00.000Z",
       "file": true,
+      "name": "Overview",
       "parent": [
         {
           "id": 23,
           "seq": 0
         }
       ],
+      "to": "overview",
       "type": "page"
     },
     {
-      "name": "Overview",
-      "to": "Overview",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 943,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-19T03:38:00.000Z",
+      "file": true,
+      "name": "Overview",
       "parent": [
         {
           "id": 25,
           "seq": 0
         }
       ],
-      "edit_date": "2024-05-19T03:38:00.000Z",
-      "create_date": "2024-05-19T03:38:00.000Z",
-      "file": true,
+      "to": "Overview",
       "type": "page"
     },
     {
-      "name": "ESLint - React Compiler",
-      "to": "ESLint - React Compiler",
-      "url": "",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 944,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-19T03:38:00.000Z",
+      "file": true,
+      "name": "ESLint - React Compiler",
       "parent": [
         {
           "id": 25,
           "seq": 1
         }
       ],
-      "edit_date": "2024-05-19T03:38:00.000Z",
-      "create_date": "2024-05-19T03:38:00.000Z",
-      "file": true,
+      "to": "ESLint - React Compiler",
       "type": "page"
     },
     {
-      "name": "Using an Index as a Key",
-      "to": "using-an-index-as-a-key",
       "id": 945,
+      "edit_date": "2024-05-24T05:43:00.000Z",
+      "file": true,
+      "name": "Using an Index as a Key",
       "parent": [
         {
           "id": 6,
           "seq": 0
         }
       ],
-      "edit_date": "2024-05-24T05:43:00.000Z",
-      "file": true,
+      "to": "using-an-index-as-a-key",
       "type": "page"
     },
     {
-      "name": "Double Render",
-      "to": "double-render",
       "id": 946,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-24T05:01:00.000Z",
+      "file": true,
+      "name": "Double Render",
       "parent": [
         {
           "id": 25,
           "seq": 0
         }
       ],
-      "edit_date": "2024-05-24T05:01:00.000Z",
-      "create_date": "2024-05-19T03:38:00.000Z",
-      "file": true,
+      "to": "double-render",
       "type": "page"
     },
     {
       "id": 947,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-24T03:11:00.000Z",
       "file": true,
       "name": "React Interview Questions",
-      "to": "react-interview-questions",
       "parent": [
         {
           "id": 27,
           "seq": 0
         }
       ],
-      "edit_date": "2024-05-24T03:11:00.000Z",
-      "create_date": "2024-05-19T03:38:00.000Z",
+      "to": "react-interview-questions",
       "type": "page"
     },
     {
-      "name": "Function vs. Method",
-      "to": "function-vs.-method",
-      "url": "https://medium.com/@jsomineni/function-vs-method-in-javascript-1d92b3d4eae4",
-      "long_title": "",
-      "reading_time": "",
-      "readability_score": "",
       "id": 948,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-24T03:11:00.000Z",
+      "file": false,
+      "name": "Function vs. Method",
       "parent": [
         {
           "id": 4,
           "seq": 0
         }
       ],
-      "edit_date": "2024-05-24T03:11:00.000Z",
-      "create_date": "2024-05-19T03:38:00.000Z",
-      "file": false,
-      "type": "page"
+      "to": "function-vs.-method",
+      "type": "page",
+      "url": "https://medium.com/@jsomineni/function-vs-method-in-javascript-1d92b3d4eae4"
     },
     {
       "id": 949,
@@ -1650,7 +1505,7 @@
       "type": "page"
     },
     {
-      "id": 10001,
+      "id": 53,
       "edit_date": "2024-05-25T02:49:00.000Z",
       "name": "Declarative Programming",
       "parent": [
@@ -1663,7 +1518,7 @@
       "type": "page"
     },
     {
-      "id": 2,
+      "id": 54,
       "create_date": "2024-05-25T03:16:00.000Z",
       "edit_date": "2024-05-25T03:16:00.000Z",
       "name": "Server-Side Caching",
@@ -1677,7 +1532,7 @@
       "type": "page"
     },
     {
-      "id": 3,
+      "id": 62,
       "create_date": "2024-05-25T18:34:00.000Z",
       "edit_date": "2024-05-25T18:34:00.000Z",
       "name": "Standards",
@@ -1691,7 +1546,7 @@
       "type": "page"
     },
     {
-      "id": 4,
+      "id": 57,
       "create_date": "2024-05-25T19:00:00.000Z",
       "edit_date": "2024-05-25T19:00:00.000Z",
       "name": "Learning React",
@@ -1705,7 +1560,7 @@
       "type": "page"
     },
     {
-      "id": 5,
+      "id": 58,
       "create_date": "2024-05-25T19:11:00.000Z",
       "edit_date": "2024-05-25T19:11:00.000Z",
       "name": "Object Destructuring",
@@ -1719,7 +1574,7 @@
       "type": "page"
     },
     {
-      "id": 6,
+      "id": 59,
       "create_date": "2024-05-25T20:06:00.000Z",
       "edit_date": "2024-05-25T20:06:00.000Z",
       "name": "Performance",
@@ -1747,7 +1602,7 @@
       "type": "page"
     },
     {
-      "id": 8,
+      "id": 60,
       "create_date": "2024-05-28T00:02:00.000Z",
       "edit_date": "2024-05-28T00:02:00.000Z",
       "name": "Profiler Component",
@@ -1789,7 +1644,7 @@
       "type": "page"
     },
     {
-      "id": 9,
+      "id": 61,
       "edit_date": "2024-05-28T19:56:00.000Z",
       "name": "Overview",
       "parent": [
@@ -1816,7 +1671,7 @@
       "type": "page"
     },
     {
-      "id": 3,
+      "id": 56,
       "create_date": "2024-06-06T23:01:00.000Z",
       "edit_date": "2024-06-06T23:01:00.000Z",
       "name": "File Not Found",

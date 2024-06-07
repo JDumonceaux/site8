@@ -33,7 +33,6 @@ export function sortObjectKeys<T>(obj: T | any): T | any {
     },
     {},
   );
-
   return sortedObject;
 }
 
@@ -54,16 +53,17 @@ export function getNextId<T extends CleanupType>(
   if (!items) {
     return undefined;
   }
-
   const sortedArray = items.toSorted((a, b) => a.id - b.id);
   // Start with the first id in the sorted array
   let nextId = sortedArray[0].id;
   // Iterate through the array to find the missing id
   for (let i = 0; i < sortedArray.length; i++) {
-    // Check if the current object's id is not equal to the nextId
-    if (sortedArray[i].id !== nextId) {
-      return nextId; // Found the gap
+    const y = sortedArray.find((x) => x.id === nextId);
+    if (!y) {
+      console.log('nextId3', nextId);
+      return nextId;
     }
+    console.log('nextId2', nextId);
     nextId++; // Move to the next expected id
   }
   // If no gaps were found, the next free id is one greater than the last object's id
