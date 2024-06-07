@@ -1,3 +1,5 @@
-<ol>
-<li>React components should be capitalized.   Ex. Header vs. header</li>
-</ol>
+If you rename, delete, or move a file in Visual Studio Code, you may get an error message in your tsconfig.json file.
+
+This is a bit puzzling because if you go looking for the file or a reference to it, you won't find one - it is holding the reference in-memory.
+
+In VSCode, hold Ctrl + Shift + p.   This will open the Command Palette at the top of the page.  Find <em>Typescript: Restart TS Server</em>.  This will fix the issue or you could restart VSCode completely. 

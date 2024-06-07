@@ -63,6 +63,8 @@ const useMenuEdit = () => {
       parentId: parseInt(formValues.parent),
       seq: parseInt(formValues.seq),
       sortby: formValues.sortby as sortByType,
+      type: 'menu',
+      to: formValues.name.toLowerCase().replaceAll(' ', '-'),
     };
   }, [formValues]);
 

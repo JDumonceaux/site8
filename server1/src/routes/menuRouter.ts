@@ -53,7 +53,7 @@ menuRouter.get('/abbr', async (_req: Request, res: Response) => {
 
 // Add item
 menuRouter.post('/', async (req: Request, res: Response) => {
-  Logger.debug(`menuRouter: post ->`);
+  Logger.info(`menuRouter: post ->`);
 
   try {
     const service = new PagesService();
@@ -75,7 +75,7 @@ menuRouter.post('/', async (req: Request, res: Response) => {
 
 // Update Item
 menuRouter.patch('/', async (req: Request, res: Response) => {
-  Logger.debug(`menuRouter: patch ->`);
+  Logger.info(`menuRouter: patch ->`);
 
   try {
     const data: MenuEdit[] = req.body;

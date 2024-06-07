@@ -6,6 +6,34 @@ import { Page } from '../types/Page.js';
 import { cleanUpData, getNextId } from '../utils/objectUtil.js';
 import { MenuEdit } from '../types/MenuEdit.js';
 import { MenuAdd } from '../types/MenuAdd.js';
+import { z } from 'zod';
+import { safeParse } from 'utils/zodHelper.js';
+
+const menuAddSchema = z
+  .object({
+    id: z.number(),
+    name: z
+      .string({
+        required_error: 'Name is required.',
+        invalid_type_error: 'Name must be a string',
+      })
+      .max(500, 'Name max length exceeded: 500')
+      .trim(),
+    to: z.string().trim().optional(),
+    url: z.string().trim().optional(),
+    parent: z
+      .object({
+        id: z.number(),
+        seq: z.number(),
+      })
+      .array()
+      .min(1),
+  })
+  .refine(
+    (data) => data.to || data.url,
+    'Either to or url should be filled in.',
+  );
+type addData = z.infer<typeof menuAddSchema>;
 
 export class PagesService {
   private fileName = 'pagesIndex.json';
@@ -23,22 +51,24 @@ export class PagesService {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       return JSON.parse(results) as Pages;
     } catch (error) {
-      Logger.error(`PagesService: getItems -> ${error}`);
+      Logger.error(`PagesService: getItems. Error -> ${error}`);
       return undefined;
     }
   }
 
   public async getNextId(): Promise<number | undefined> {
+    Logger.info(`PagesService: getNextId -> `);
+
     try {
       const data = await this.getItems();
       return getNextId<Page>(data?.items);
     } catch (error) {
-      Logger.error(`PagesService: getNextId -> ${error}`);
+      Logger.error(`PagesService: getNextId. Error -> ${error}`);
       return undefined;
     }
   }
 
-  protected async writeFile(data: Pages): Promise<boolean> {
+  public async writeFile(data: Pages): Promise<boolean> {
     Logger.info(`PagesService: writeFile -> `);
 
     try {
@@ -47,26 +77,8 @@ export class PagesService {
       });
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`PagesService: writeFile -> ${error}`);
+      Logger.error(`PagesService: writeFile. Error -> ${error}`);
       return Promise.reject(new Error(`Write file failed. Error: ${error}`));
-    }
-  }
-
-  public async listDuplicates(): Promise<any> {
-    Logger.info(`PagesService: listDuplicates -> `);
-
-    try {
-      const item = await this.getItems();
-      const duplicates = item?.items
-        ?.map((x) => x.id?.toString() || x.name)
-        .filter((x, i, a) => a.indexOf(x) !== i);
-      // Filter out null
-      const filtered = duplicates?.filter((x) => x);
-      // Convert to string
-      return { items: filtered };
-    } catch (error) {
-      Logger.error(`PagesService: listDuplicates -> ${error}`);
-      return Promise.reject(new Error(`List Duplicates. Error: ${error}`));
     }
   }
 
@@ -79,11 +91,20 @@ export class PagesService {
         return Promise.reject(new Error('No items found'));
       }
 
-      const data: Pages = {
+      const data = cleanUpData<Page>(item);
+      // Validate data
+      const result = safeParse<addData>(menuAddSchema, data);
+      if (result.error) {
+        throw new Error(`addItem -> ${result.error}`);
+      }
+
+      // Add
+      const newData: Pages = {
         ...pages,
-        items: [...pages.items, { ...item, type: 'menu' }],
+        items: [...pages.items, item],
       };
-      // Verify count
+
+      // Confirm 1 and only 1 item has been added
       if (
         pages &&
         pages.items &&
@@ -92,11 +113,11 @@ export class PagesService {
       ) {
         throw new Error('Inconsistent count.');
       }
-      // Add item
-      await this.writeFile(data);
+      // Write to file
+      await this.writeFile(newData);
       return Promise.resolve();
     } catch (error) {
-      Logger.error(`PagesService: addItem -> ${error}`);
+      Logger.error(`PagesService: addItem. Error -> ${error}`);
       return undefined;
     }
   }
@@ -135,7 +156,7 @@ export class PagesService {
       };
       return retItem ? cleanUpData(retItem) : undefined;
     } catch (error) {
-      Logger.error(`PagesService: getItems -> ${error}`);
+      Logger.error(`PagesService: getUpdatedItem. Error: -> ${error}`);
       return undefined;
     }
   }
@@ -163,8 +184,50 @@ export class PagesService {
       await this.writeFile({ ...pages, items: retItems });
       return Promise.resolve();
     } catch (error) {
-      Logger.error(`PagesService: updateItems -> ${error}`);
+      Logger.error(`PagesService: updateItems. Error -> ${error}`);
       return undefined;
+    }
+  }
+
+  public async fixAllEntries(): Promise<any> {
+    Logger.info(`PagesService: fixAllEntries -> `);
+
+    try {
+      const pages = await this.getItems();
+      if (!pages || !pages.items) {
+        return Promise.reject(new Error('No items found'));
+      }
+
+      const data = pages.items.map((item) => {
+        const newItem = cleanUpData<Page>(item);
+        return newItem;
+      });
+
+      const newData = { ...pages, items: data };
+
+      await this.writeFile(newData);
+      return Promise.resolve();
+    } catch (error) {
+      Logger.error(`PagesService: fixAllEntries. Error -> ${error}`);
+      return Promise.reject(new Error(`fixAllEntries. Error: ${error}`));
+    }
+  }
+
+  public async listDuplicates(): Promise<any> {
+    Logger.info(`PagesService: listDuplicates -> `);
+
+    try {
+      const item = await this.getItems();
+      const duplicates = item?.items
+        ?.map((x) => x.id?.toString() || x.name)
+        .filter((x, i, a) => a.indexOf(x) !== i);
+      // Filter out null
+      const filtered = duplicates?.filter((x) => x);
+      // Convert to string
+      return { items: filtered };
+    } catch (error) {
+      Logger.error(`PagesService: listDuplicates -> ${error}`);
+      return Promise.reject(new Error(`List Duplicates. Error: ${error}`));
     }
   }
 }

@@ -31,7 +31,7 @@ pagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
 });
 
 pagesRouter.post('/', async (req: Request, res: Response) => {
-  Logger.debug(`pageRouter: post ->`);
+  Logger.info(`pageRouter: post ->`);
 
   try {
     const service = new PagesService();
@@ -48,5 +48,17 @@ pagesRouter.post('/', async (req: Request, res: Response) => {
   } catch (error) {
     Logger.error(`pagesRouter: post -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
+  }
+});
+
+pagesRouter.get('/fix-entries', async (_req: Request, res: Response) => {
+  Logger.info(`pagesIndexRouter: listDuplicates ->`);
+
+  try {
+    const ret = await new PagesService().fixAllEntries;
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`pagesRouter: listDuplicates -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });

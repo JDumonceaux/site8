@@ -33,7 +33,16 @@ const pageAddSchema = z
   );
 type addData = z.infer<typeof pageAddSchema>;
 
-export class PageService extends PagesService {
+export class PageService {
+  // Get Items
+  private async getItems(): Promise<Pages | undefined> {
+    return new PagesService().getItems();
+  }
+  // Write Items
+  private async writeItems(newData: Pages): Promise<boolean> {
+    return new PagesService().writeFile(newData);
+  }
+
   // Get Item
   public async getItem(id: number): Promise<Page | undefined> {
     Logger.info(`PageService: getItem -> ${id}`);
@@ -67,18 +76,16 @@ export class PageService extends PagesService {
   }
 
   // Add an item
-  public async addItem(data: Page, idNew: number): Promise<number> {
-    Logger.debug(`PageService: addItem -> `);
+  public async addItem(data: Page): Promise<number> {
+    Logger.info(`PageService: addItem -> `);
 
     try {
-      console.log('data', data);
       // Clean up the data
       const updatedItem = cleanUpData<Page>(data);
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
 
-      console.log('u8i', updatedItem);
       const result = safeParse<addData>(pageAddSchema, data);
       if (result.error) {
         throw new Error(`addItem -> ${result.error}`);
@@ -91,22 +98,19 @@ export class PageService extends PagesService {
       }
 
       // Remove id and text from item
-      const { id, text, ...rest } = updatedItem;
-      const newItem = { id: idNew, ...rest };
-
-      console.log('item', newItem);
-
+      const { text, id, ...rest } = updatedItem;
+      const newItem = { id: id, ...rest };
       // Save the new item
       const updatedFile: Pages = {
         ...pages,
         items: [...(pages?.items ?? []), newItem],
       };
-      const ret = await this.writeFile(updatedFile);
+      const ret = await this.writeItems(updatedFile);
       return ret
         ? Promise.resolve(id)
         : Promise.reject(new Error(`Add failed : ${id}`));
     } catch (error) {
-      Logger.error(`PageService: addItem -> ${error}`);
+      Logger.error(`PageService: addItem. Error -> ${error}`);
       return Promise.reject(new Error('add failed'));
     }
   }
@@ -138,10 +142,10 @@ export class PageService extends PagesService {
         items: [...ret, newItem],
       };
 
-      await this.writeFile(updatedFile);
+      await this.writeItems(updatedFile);
       return Promise.resolve(data.id);
     } catch (error) {
-      Logger.error(`PageService: updateItem -> ${error}`);
+      Logger.error(`PageService: updateItem. Error -> ${error}`);
       return Promise.reject(new Error('fail'));
     }
   }
@@ -163,10 +167,10 @@ export class PageService extends PagesService {
         ...pages,
         items: ret ? { ...ret } : [],
       };
-      await this.writeFile(updatedFile);
+      await this.writeItems(updatedFile);
       return Promise.resolve(true);
     } catch (error) {
-      Logger.error(`PageService: deleteItem -> ${error}`);
+      Logger.error(`PageService: deleteItem. Error -> ${error}`);
       return Promise.reject(new Error(`Failed to delete item: ${id}`));
     }
   }

@@ -4,4 +4,6 @@ export type MenuAdd = {
   readonly name: string;
   readonly seq: number;
   readonly sortby: 'seq' | 'name';
+  readonly to: string;
+  readonly type: 'root' | 'menu' | 'page';
 };

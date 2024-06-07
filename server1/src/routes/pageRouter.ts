@@ -4,15 +4,14 @@ import { PageFileService } from '../services/PageFileService.js';
 import { Page } from '../types/Page.js';
 import { Errors, PreferHeader, RegEx, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
-import { Pages } from '../types/Pages.js';
 import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
-import validator from 'validator';
+import { PagesService } from '../services/PagesService.js';
 
 export const pageRouter = express.Router();
 
 // Get item
 pageRouter.get('/:id', async (req: Request, res: Response) => {
-  Logger.debug(`pageRouter: get by Id -> `);
+  Logger.info(`pageRouter: get by Id -> `);
 
   try {
     const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
@@ -32,7 +31,7 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
 
 // Get item
 pageRouter.get('/name/:name', async (req: Request, res: Response) => {
-  Logger.debug(`pageRouter: get by name -> `);
+  Logger.info(`pageRouter: get by name -> `);
 
   try {
     const name = req.params.name.trim();
@@ -53,35 +52,28 @@ pageRouter.get('/name/:name', async (req: Request, res: Response) => {
 
 // Add item
 pageRouter.post('/', async (req: Request, res: Response) => {
-  Logger.debug(`pageRouter: post ->`);
+  Logger.info(`pageRouter: post ->`);
 
   try {
-    const Prefer = req.get('Prefer');
-    const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
     const service = new PageService();
     const fileService = new PageFileService();
     const data: Page = req.body;
 
     // Get next id
-    const idNew = (await service.getNextId()) ?? 0;
+    const idNew = (await new PagesService().getNextId()) ?? 0;
 
     if (!idNew || idNew === 0) {
       res.status(400).json({ error: 'Next Id not found.' });
     }
 
     await Promise.all([
-      service.addItem(data, idNew),
+      service.addItem({ ...data, id: idNew }),
       fileService.addFile(idNew, data.text),
     ]);
 
-    // Return the new item
-    if (returnRepresentation) {
-      const ret = await new PageService().getItemCompleteById(idNew);
-      // 201 Created
-      res.status(201).json(ret);
-    } else {
-      res.status(201).json({ message: Responses.SUCCESS });
-    }
+    const ret = await service.getItemCompleteById(idNew);
+    // 201 Created
+    res.status(201).json(ret);
   } catch (error) {
     Logger.error(`pageRouter: post -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
@@ -90,7 +82,7 @@ pageRouter.post('/', async (req: Request, res: Response) => {
 
 // Update Item
 pageRouter.patch('/', async (req: Request, res: Response) => {
-  Logger.debug(`pageRouter: patch ->`);
+  Logger.info(`pageRouter: patch ->`);
 
   try {
     const Prefer = req.get('Prefer');
@@ -119,7 +111,7 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
 
 // Delete Item
 pageRouter.delete('/:id', async (req: Request, res: Response) => {
-  Logger.debug(`pageRouter: delete ->`);
+  Logger.info(`pageRouter: delete ->`);
 
   try {
     const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
@@ -140,7 +132,7 @@ pageRouter.delete('/:id', async (req: Request, res: Response) => {
 
 // Get first, next, prev, last item
 pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
-  Logger.debug(`pageRouter: get Id Action ->`);
+  Logger.info(`pageRouter: get Id Action ->`);
 
   try {
     const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
@@ -149,29 +141,29 @@ pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
 
-    const pages: Pages | undefined = await new PageService().getItems();
-    const action = req.params.action;
-    const items = pages?.items;
+    // const pages: Pages | undefined = await new PageService().getItems();
+    // const action = req.params.action;
+    // const items = pages?.items;
 
-    const find = () => {
-      if (items) {
-        const currIndex = items.findIndex((x) => x.id > id);
-        switch (action) {
-          case 'first':
-            return items.at(0);
-          case 'next':
-            return items.at(currIndex + 1);
-          case 'prev':
-            return items.at(currIndex - 1);
-          case 'last':
-            return items.at(-1);
-          default:
-            return undefined;
-        }
-      }
-    };
-    const ret = find();
-    res.json(ret);
+    // const find = () => {
+    //   if (items) {
+    //     const currIndex = items.findIndex((x) => x.id > id);
+    //     switch (action) {
+    //       case 'first':
+    //         return items.at(0);
+    //       case 'next':
+    //         return items.at(currIndex + 1);
+    //       case 'prev':
+    //         return items.at(currIndex - 1);
+    //       case 'last':
+    //         return items.at(-1);
+    //       default:
+    //         return undefined;
+    //     }
+    //   }
+    // };
+    // const ret = find();
+    res.json(null);
   } catch (error) {
     Logger.error(`pageRouter: get -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
