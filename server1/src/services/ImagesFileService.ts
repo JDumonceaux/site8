@@ -101,7 +101,6 @@ export class ImagesFileService {
         const itemPath = path.join(this.directoryPath, item);
         const stats = statSync(itemPath);
         if (stats.isFile()) {
-          console.log(item);
           renameSync(itemPath, itemPath.toLowerCase());
         }
       });

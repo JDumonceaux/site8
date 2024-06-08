@@ -4,9 +4,9 @@ export type IdType = {
   readonly id: number;
 };
 
-export const useFormArray = <T extends IdType>(initialValues: T) => {
+export const useFormArray = <T extends IdType>() => {
   //const [errors, setErrors] = useState<z.ZodIssue[] | undefined>(undefined);
-  const [formValues, setFormValues] = useState<T[]>([initialValues]);
+  const [formValues, setFormValues] = useState<T[]>([]);
 
   // const [blankFormValues, setBlankFormValues] = useState<T extends IdType[]>(unknown as T[]);
   type keys = keyof T;
@@ -34,6 +34,31 @@ export const useFormArray = <T extends IdType>(initialValues: T) => {
     [formValues],
   );
 
+  const getFieldValue = useCallback(
+    (id: number, fieldName: keys) => {
+      const rec = formValues.find((x) => x.id === id);
+      if (!rec) {
+        return '';
+      }
+      return rec[fieldName] || '';
+    },
+    [formValues],
+  );
+  const setItem = useCallback(
+    (id: number, item: T) => {
+      const i = formValues.findIndex((x) => x.id === id);
+      const newFormValues = [...formValues];
+      if (i >= 0) {
+        newFormValues[i] = { ...newFormValues[i], ...item };
+      } else {
+        newFormValues.push({ ...item, id } as T);
+      }
+      setFormValues(newFormValues);
+      setIsSaved(false);
+    },
+    [formValues],
+  );
+
   const getItem = useCallback(
     (id: number) => {
       const i = formValues.findIndex((x) => x.id === id);
@@ -43,13 +68,6 @@ export const useFormArray = <T extends IdType>(initialValues: T) => {
       return formValues[i] as T;
     },
     [formValues],
-  );
-
-  const setAllValues = useCallback(
-    (values: T[]) => {
-      setFormValues(values);
-    },
-    [setFormValues],
   );
 
   // const getFieldErrors = useCallback(
@@ -96,18 +114,22 @@ export const useFormArray = <T extends IdType>(initialValues: T) => {
       setIsProcessing,
       handleChange,
       setIsSaved,
+      getFieldValue,
       setFieldValue,
-      setAllValues,
+      setFormValues,
       getItem,
+      setItem,
     }),
     [
       formValues,
       isSaved,
       isProcessing,
       handleChange,
+      getFieldValue,
       setFieldValue,
-      setAllValues,
+      setFormValues,
       getItem,
+      setItem,
     ],
   );
 };

@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../services/state/store';
-import { AppSettings } from 'services/types/AppSettings';
+import { AppSettings } from 'types/AppSettings';
 import { save } from '../services/state/appSlice';
 
 const useAppSettings = () => {

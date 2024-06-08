@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
@@ -7,17 +7,37 @@ import { styled } from 'styled-components';
 import { TextInput } from 'components/form/input';
 import usePagesEdit from 'hooks/usePagesEdit';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
-import { MenuItem } from 'services/types/MenuItem';
 import MenuAdd from 'components/custom/MenuAdd';
+import { MenuItem } from 'types';
 
 const PagesPage = (): JSX.Element => {
   const {
     data,
+    dataFlat,
     isSaved,
     handleChange,
     handleSave,
+    setFormValues,
     getStandardTextInputAttributes,
+    getFieldValue,
   } = usePagesEdit();
+
+  useEffect(() => {
+    const ret = dataFlat?.map((item) => {
+      return {
+        id: item.tempId,
+        name: item.name,
+        parent: item.parentId?.toString() || '0',
+        seq: item.seq?.toString(),
+        sortby: item.sortby,
+        type: item.type,
+        tempId: item.id,
+      };
+    });
+    if (ret) {
+      setFormValues(ret);
+    }
+  }, [dataFlat, setFormValues]);
 
   const renderItem = useCallback(
     (item: MenuItem | undefined, level: number): JSX.Element | null => {
@@ -78,7 +98,9 @@ const PagesPage = (): JSX.Element => {
                 spellCheck={true}
               />
             </td>
-            <td>
+            <td>{getFieldValue(item.tempId, 'sortby')}</td>
+            <td>{item.tempId}</td>
+            {/* <td>
               {item.type !== 'page' ? (
                 <TextInput
                   {...getStandardTextInputAttributes(item.tempId, 'sortby')}
@@ -95,7 +117,7 @@ const PagesPage = (): JSX.Element => {
                   spellCheck={true}
                 />
               ) : null}
-            </td>
+            </td> */}
             <td>
               {item.type} - {level}
             </td>

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { Page } from 'services/types/Page';
+import { Page } from 'types/Page';
 import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
@@ -143,12 +143,14 @@ const usePageEdit = () => {
   const submitForm = useCallback(async () => {
     setIsProcessing(true);
     const { id, create_date, edit_date, parent, ...rest } = formValues;
-    const data = {
+    const data: Page = {
       ...rest,
       id,
       parent: splitParent(parent),
       edit_date: getDateTime(edit_date) ?? new Date(),
       create_date: id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
+      seq: 0,
+      type: 'page',
     };
     const result =
       data.id > 0

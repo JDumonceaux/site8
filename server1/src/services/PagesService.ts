@@ -170,11 +170,9 @@ export class PagesService {
 
       const retItems = pages.items.map((item) => {
         const updateItem = items.find((x) => x.id === item.id);
-        console.log('updateItem', updateItem);
         const ret = updateItem
           ? this.getUpdatedItem(updateItem, item)
           : undefined;
-        console.log('ret', ret);
         return ret ?? item;
       });
 

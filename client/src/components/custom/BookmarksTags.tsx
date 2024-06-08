@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookmarksTags } from 'services/types';
+import { BookmarksTags } from 'types';
 
 type BookmarksTagsProps = {
   readonly data?: BookmarksTags | null;

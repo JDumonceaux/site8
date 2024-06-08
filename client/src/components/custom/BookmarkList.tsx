@@ -1,4 +1,4 @@
-import { Bookmarks } from 'services/types/Bookmarks';
+import { Bookmarks } from 'types/Bookmarks';
 
 type BookmarksProps = {
   readonly id?: number;

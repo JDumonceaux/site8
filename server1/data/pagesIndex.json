@@ -610,20 +610,6 @@
       "type": "page"
     },
     {
-      "id": 3001,
-      "edit_date": "01/18/2024",
-      "file": true,
-      "name": "At Last - Pleasantville",
-      "parent": [
-        {
-          "id": 3,
-          "seq": 0
-        }
-      ],
-      "to": "at-last-pleasantville",
-      "type": "page"
-    },
-    {
       "id": 3002,
       "edit_date": "01/18/2024",
       "file": true,
@@ -1682,6 +1668,19 @@
         }
       ],
       "to": "file-not-found"
+    },
+    {
+      "id": 3001,
+      "edit_date": "2024-01-18T18:00:00.000Z",
+      "name": "At Last - Pleasantville",
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "text": "<p>Most people have probably never seen this movie or have forgotten about it.  I believe it contains\none of the most beautiful scenes and beautiful songs in movie history.</p>\n<p><em>Toby Maguire</em> as Bud and <em>Reese Witherspoon</em> as Mary Sue \nare pulled from the present age into the monochromatic, perfect universe of a 1950's TV sitcom. \nIn this idealized world, everything epitomizes the quintessence of perfection \nand wholesomeness: where married couples sleep in separate beds and life proceeds at a peaceful pace.</p>\n<p>However, the arrival of Bud and Mary Sue gradually upsets the perfect balance of the town and ushers in a transformation. \nThis picturesque slice of Americana starts to awaken to the realms of art, love, and passion. \nAs it discovers \"life\", the town turns from black and white into a bloom of passionate color.</p>\n<p>A pivotal moment in the story, reminiscent of the iconic transition in <em>The Wizard of Oz</em>, \noccurs amidst the soulful strains of <em>Etta James'</em> classic, <em>At Last</em>. \nThe beauty of this scene is unparalleled.  As Bud and his girlfriend drive down a gravel road to a secluded lake, the scene transforms from black and white to full color.  The clouds of cherry blossoms, the beautiful lines of a classic car, \nand a quiet glade all evoke a sense of tranquillity and peace.</p> \n<p>The cast includes <em>Jeff Daniels</em> in, what I consider, one of his better roles \nand <em>Don Knotts</em> in his last on-screen peformance.</p>\n<p>I also love this movie because it is where I discovered <em>Etta James</em>.  \nAfter hearing <em>At Last</em>, \nI had to delve into learning more about <em>Miss James</em>.</p>\n<p>Fortunately, I was able to see <em>Miss James</em> perform in person \nat the <em>Guthrie Theatre</em> (the original) on March 17, 1989. Although age and life had taken their toll on her, with mobility \nbecoming a challenge, her stage presence and voice remained as commanding as ever.</p>   \n\n\n<iframe width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/El_LAaweUvg?si=1f9er1PaSv8FNp8Q\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n",
+      "to": "at-last-pleasantville"
     }
   ]
 }

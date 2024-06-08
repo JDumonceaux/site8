@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { Images } from 'services/types';
+import { Images } from 'types';
 
 interface ImageState {
   data: Images | null;

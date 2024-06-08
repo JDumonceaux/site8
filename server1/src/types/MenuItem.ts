@@ -1,10 +1,13 @@
-// Structure of MenuItem in pagesIndex.json
-
 export type MenuItem = {
-  // readonly id: number;
-  // readonly name: string;
-  // readonly url: string;
-  // readonly to: string;
-  // parent: { id?: number; seq?: number }[];
-  // sortby: 'seq' | 'name';
+  readonly id: number;
+  readonly tempId: number;
+  readonly name?: string;
+  readonly to?: string;
+  readonly url?: string;
+  readonly toComplete?: string;
+  readonly parentId?: number;
+  readonly seq: number;
+  readonly type: 'root' | 'menu' | 'page';
+  readonly items?: MenuItem[];
+  readonly sortby: 'seq' | 'name';
 };

@@ -6,7 +6,7 @@ import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 import { getURLPath } from 'utils/helpers';
 import React, { memo, useCallback, useEffect } from 'react';
 import { LoadingWrapper } from 'components';
-import { MenuEntry } from 'services/types/MenuEntry';
+import { MenuEntry } from 'types/MenuEntry';
 
 const SubjectMenu = memo((): JSX.Element => {
   const { getMenu, fetchData, isLoading, error } = useMenu();

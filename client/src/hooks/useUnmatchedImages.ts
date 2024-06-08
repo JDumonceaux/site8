@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchImages } from 'services/state/imageSlice';
 
 import { AppDispatch, RootState } from 'services/state/store';
-import { Images } from 'services/types/Images';
+import { Images } from 'types/Images';
 
 const useUnmatchedImages = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -64,7 +64,6 @@ menuRouter.post('/', async (req: Request, res: Response) => {
     if (!idNew || idNew === 0) {
       res.status(400).json({ error: 'Next Id not found.' });
     }
-    console.log('idNew', idNew);
 
     await Promise.all([service.addItem({ ...data, id: idNew })]);
     res.status(201).json({ message: Responses.SUCCESS });

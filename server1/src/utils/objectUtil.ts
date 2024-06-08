@@ -60,10 +60,8 @@ export function getNextId<T extends CleanupType>(
   for (let i = 0; i < sortedArray.length; i++) {
     const y = sortedArray.find((x) => x.id === nextId);
     if (!y) {
-      console.log('nextId3', nextId);
       return nextId;
     }
-    console.log('nextId2', nextId);
     nextId++; // Move to the next expected id
   }
   // If no gaps were found, the next free id is one greater than the last object's id

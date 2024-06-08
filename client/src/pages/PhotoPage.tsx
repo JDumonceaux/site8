@@ -3,7 +3,7 @@ import { useDeferredValue, useEffect } from 'react';
 
 import { useAxios } from 'hooks/Axios';
 import { ServiceUrl } from 'utils';
-import { Photos } from 'services/types';
+import { Photos } from 'types';
 import { Meta, PageTitle, LoadingWrapper } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 

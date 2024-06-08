@@ -1,4 +1,4 @@
-import { Metadata } from './Metadata';
+import { Metadata } from 'types';
 import { TestGridItem } from './TestGridItem';
 
 export type TestItem = {

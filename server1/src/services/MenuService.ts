@@ -4,6 +4,7 @@ import { Page, sortMenuEntryName, sortMenuEntrySeq } from '../types/Page.js';
 import { Menu } from '../types/Menu.js';
 import { PagesService } from './PagesService.js';
 import { MenuAbbr } from '../types/MenuAbbr.js';
+import { MenuItem } from 'types/MenuItem.js';
 
 let index = 0;
 
@@ -62,7 +63,7 @@ export class MenuService {
   }
 
   // 4.  Index items
-  private indexItems(item: Page): Page {
+  private indexItems(item: Readonly<Page>): Page {
     if (!item.items) {
       return item;
     }
@@ -79,7 +80,7 @@ export class MenuService {
   }
 
   // 6. Sort the menu items
-  private sortMenu(item: Page): Page {
+  private sortMenu(item: Readonly<Page>): Page {
     const items =
       item.sortby === 'seq'
         ? item?.items?.sort((a, b) => sortMenuEntrySeq(a, b))
@@ -92,7 +93,7 @@ export class MenuService {
   }
 
   // 7. Fill in the URLs
-  private fillURL(item: Page): Page {
+  private fillURL(item: Readonly<Page>): Page {
     try {
       const items = item.items?.map((x) => {
         return {
@@ -112,10 +113,45 @@ export class MenuService {
     }
   }
 
-  // 8. Clean up
-  private trimItem(item: Page): Page {
+  // 8. Map
+  private maptoMenuItem(item: Readonly<Page>): MenuItem {
     try {
-      const { parent, ...rest } = item;
+      const {
+        text,
+        edit_date,
+        create_date,
+        file,
+        readability_score,
+        reading_time,
+        parent,
+        items,
+        ...rest
+      } = item;
+
+      const xItems = items
+        ? items.map((x) => this.maptoMenuItem(x))
+        : undefined;
+
+      const ret: MenuItem = {
+        ...rest,
+        tempId: item.tempId ?? 0,
+        seq: item.seq ?? 0,
+        items: xItems,
+      };
+      return ret;
+    } catch (error) {
+      Logger.error(`MenuService: trimItem --> Error: ${error}`);
+      throw error;
+    }
+  }
+
+  private maptoMenuItems(items: ReadonlyArray<Page>): MenuItem[] {
+    return items.map((x) => this.maptoMenuItem(x));
+  }
+
+  // 9. Clean up
+  private trimItem(item: Readonly<MenuItem>): MenuItem {
+    try {
       return {
         tempId: item.tempId,
         id: item.id,
@@ -133,6 +169,10 @@ export class MenuService {
       Logger.error(`MenuService: trimItem --> Error: ${error}`);
       throw error;
     }
+  }
+
+  private trimItems(items: ReadonlyArray<MenuItem>): MenuItem[] {
+    return items.map((x) => this.trimItem(x));
   }
 
   // Generic loop function
@@ -155,6 +195,26 @@ export class MenuService {
     }
   }
 
+  private flattenItems(
+    items: ReadonlyArray<MenuItem> | undefined,
+  ): MenuItem[] | undefined {
+    if (!items) {
+      return undefined;
+    }
+    const ret: MenuItem[] = [];
+    items.forEach((x) => {
+      const { items: _extraItems, ...rest } = x;
+      ret.push({ ...rest });
+      if (x.items) {
+        const y = this.flattenItems(x.items);
+        if (y) {
+          ret.push(...y);
+        }
+      }
+    });
+    return ret ? ret.sort((a, b) => a.tempId - b.tempId) : undefined;
+  }
+
   // 0. Get Menu
   public async getMenu(): Promise<Menu | undefined> {
     Logger.info(`MenuService: getMenu -> `);
@@ -175,12 +235,17 @@ export class MenuService {
       const x2 = x1 && this.loopItems(x1, this.sortMenu);
       // 7. Fill in URLs
       const x3 = x2 && this.loopItems(x2, this.fillURL);
+      // 8. Map Item to MenuItem
+      const x4 = x3 && this.maptoMenuItems(x3);
       // 8. Clean up
-      const x4 = x3 && this.loopItems(x3, this.trimItem);
+      const x5 = x4 && this.trimItems(x4);
+
+      const flat = this.flattenItems(x5);
 
       return {
         metadata: data.metadata,
-        items: x4,
+        items: x5,
+        flat: flat,
       };
     } catch (error) {
       Logger.error(`MenuService: getMenu --> Error: ${error}`);

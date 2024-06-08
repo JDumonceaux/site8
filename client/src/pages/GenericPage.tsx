@@ -14,7 +14,7 @@ import {
   Profiler,
 } from 'react';
 import { useLocation, Link as BaseLink } from 'react-router-dom';
-import { Page } from 'services/types';
+import { Page } from 'types';
 import { styled } from 'styled-components';
 import { ServiceUrl } from 'utils';
 

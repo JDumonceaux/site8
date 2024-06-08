@@ -1,16 +1,19 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useFormArray } from './useFormArray';
 import { useAxios } from './Axios/useAxios';
-import { Menu, MenuEdit, MenuItem } from 'services/types';
+import { Menu, MenuEdit, MenuItem } from 'types';
 
 // Define Zod Shape
 const pageSchema = z.object({
   id: z.number(),
+  name: z.string().optional(),
   parent: z.string().min(1, REQUIRED_FIELD),
   seq: z.string(),
   sortby: z.string(),
+  tempId: z.number(),
+  type: z.string(),
 });
 
 // Create a type from the schema
@@ -21,25 +24,6 @@ export type sortByType = 'seq' | 'name' | undefined;
 const usePagesEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
   const { patchData } = useAxios<MenuEdit[]>();
-  const [initialData, setInitialData] = useState<MenuItem[] | undefined>(
-    undefined,
-  );
-
-  // Get the data
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_MENUS_EDIT);
-  }, [fetchData]);
-
-  // Return default form values
-  const initialFormValues: FormValues = useMemo(
-    () => ({
-      id: 0,
-      parent: '',
-      seq: '',
-      sortby: '',
-    }),
-    [],
-  );
 
   // Create a form
   const {
@@ -48,47 +32,15 @@ const usePagesEdit = () => {
     isProcessing,
     setIsProcessing,
     setFieldValue,
-    setAllValues,
-    getItem,
+    getFieldValue,
     setIsSaved,
-  } = useFormArray<FormValues>(initialFormValues);
-
-  const getFieldValue = useCallback(
-    (id: number, fieldName: keys) => {
-      const i = getItem(id);
-      if (!i) {
-        return undefined;
-      }
-      return i[fieldName as keys];
-    },
-    [getItem],
-  );
-
-  // Map page to form values
-  const mapPageToFormValues = useCallback(
-    (items: MenuItem[] | undefined): FormValues[] | undefined => {
-      if (!items) {
-        return undefined;
-      }
-
-      const ret = items.map((x) => {
-        return {
-          id: x.tempId ?? 0,
-          parent: x.parentId?.toString() ?? '',
-          seq: x.seq?.toString() ?? '',
-          sortby: x.sortby,
-        };
-      });
-      return ret;
-    },
-    [],
-  );
+    setFormValues,
+  } = useFormArray<FormValues>();
 
   const flattenArray = useCallback((items: MenuItem[] | undefined) => {
     if (!items) {
       return undefined;
     }
-
     const ret: MenuItem[] = [];
     items.forEach((x) => {
       ret.push(x);
@@ -102,27 +54,21 @@ const usePagesEdit = () => {
     return ret ? ret.sort((a, b) => a.tempId - b.tempId) : undefined;
   }, []);
 
-  // Update the form values when the data changes
+  // Get the data
   useEffect(() => {
-    const ret = flattenArray(data?.items);
-    setInitialData(ret);
-  }, [data?.items, flattenArray]);
-
-  // Map data to form values
-  useEffect(() => {
-    setAllValues(mapPageToFormValues(initialData) ?? []);
-  }, [initialData, setAllValues, mapPageToFormValues]);
+    fetchData(ServiceUrl.ENDPOINT_MENUS_EDIT);
+  }, [fetchData]);
 
   // Get the updates
   const getUpdates = useCallback((): MenuEdit[] | undefined => {
-    if (!initialData) {
+    if (!data?.flat) {
       return undefined;
     }
 
     const temp: MenuEdit[] = [];
     formValues.forEach((item) => {
       // Match on TempId = Id
-      const originalItem = initialData.find((x) => x.tempId === item.id);
+      const originalItem = data.flat?.find((x) => x.tempId === item.id);
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
@@ -142,7 +88,7 @@ const usePagesEdit = () => {
     );
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
-  }, [initialData, formValues]);
+  }, [data?.flat, formValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
@@ -190,35 +136,37 @@ const usePagesEdit = () => {
     [getFieldValue],
   );
 
+  console.log('formValues', formValues);
+
   return useMemo(
     () => ({
       data: data?.items,
+      dataFlat: data?.flat,
       pageSchema,
-      formValues,
       isProcessing,
       isLoading,
       error,
       isSaved,
       getFieldValue,
       getStandardTextInputAttributes,
-      setAllValues,
       setFieldValue,
       handleChange,
       handleSave,
+      setFormValues,
     }),
     [
-      data,
-      formValues,
+      data?.items,
+      data?.flat,
       isProcessing,
       isLoading,
       error,
       isSaved,
       getFieldValue,
       getStandardTextInputAttributes,
-      setAllValues,
       setFieldValue,
       handleChange,
       handleSave,
+      setFormValues,
     ],
   );
 };

@@ -4,7 +4,7 @@ import StyledMain from 'components/common/StyledMain/StyledMain';
 import { BookmarkTags } from 'components/custom/BookmarksTags';
 import { useAxios } from 'hooks/Axios';
 import { useDeferredValue, useEffect } from 'react';
-import { BookmarksTags } from 'services/types';
+import { BookmarksTags } from 'types';
 import { ServiceUrl } from 'utils';
 
 const BookmarkPage = (): JSX.Element => {

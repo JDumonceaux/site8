@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchMenu } from 'services/state/menuSlice';
 import { AppDispatch, RootState } from 'services/state/store';
-import { Menu } from 'services/types';
+import { Menu } from 'types';
 
 const useMenu = () => {
   const dispatch = useDispatch<AppDispatch>();

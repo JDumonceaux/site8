@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { ServiceUrl } from '../../utils';
-import { Menu } from 'services/types';
+import { Menu } from 'types';
 
 interface MenuState {
   data: Menu | null;

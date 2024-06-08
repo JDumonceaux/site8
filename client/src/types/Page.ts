@@ -15,5 +15,5 @@ export type Page = {
   readonly parentId?: number;
   readonly seq: number;
   parent?: { id: number; seq: number }[];
-  sortby: 'seq' | 'name';
+  sortby?: 'seq' | 'name';
 };

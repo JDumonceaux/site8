@@ -7,8 +7,8 @@ import StyledMain from 'components/common/StyledMain/StyledMain';
 import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import { useAxios } from 'hooks/Axios';
 import { ServiceUrl } from 'utils';
-import { Image } from 'services/types/Image';
-import { Images } from 'services/types/Images';
+import { Image } from 'types/Image';
+import { Images } from 'types/Images';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useAxios<Images>();

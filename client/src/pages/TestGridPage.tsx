@@ -6,7 +6,7 @@ import './testGrid.css';
 import axios from 'axios';
 
 import { useEffect, useState } from 'react';
-import { TestItem } from 'services/types/TestItem';
+import { TestItem } from 'types/TestItem';
 import { ServiceUrl } from 'utils/constants';
 
 const TestGridPage = (): JSX.Element => {

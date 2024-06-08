@@ -1,5 +1,5 @@
 import { Metadata } from './Metadata';
-import { ArtItem } from './ArtItem';
+import { ArtItem } from '../services/types/ArtItem';
 
 export type Art = {
   readonly metadata: Metadata;

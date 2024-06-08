@@ -1,7 +1,7 @@
 'use client';
 import { Suspense, useDeferredValue, useEffect } from 'react';
 import { ServiceUrl } from 'utils';
-import { Page } from 'services/types/Page';
+import { Page } from 'types/Page';
 
 import { styled } from 'styled-components';
 

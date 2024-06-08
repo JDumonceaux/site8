@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { Image } from 'services/types';
+import { Image } from 'types';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
 import { Switch } from 'components/primatives/Switch/Switch';

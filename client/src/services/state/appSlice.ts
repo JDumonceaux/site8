@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { AppSettings } from 'services/types';
+import { AppSettings } from 'types';
 
 interface AppState {
   data: AppSettings | null;

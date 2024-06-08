@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 import useMenu from 'hooks/useMenu';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
-import { MenuEntry } from 'services/types/MenuEntry';
+import { MenuEntry } from 'types/MenuEntry';
 
 export const HomeMenu = (): JSX.Element => {
   const { data } = useMenu();

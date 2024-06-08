@@ -3,7 +3,7 @@ import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 
-import { MenuAdd } from 'services/types';
+import { MenuAdd } from 'types';
 import { useForm } from './useForm';
 import { safeParse } from 'utils/zodHelper';
 

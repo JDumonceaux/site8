@@ -5,7 +5,7 @@ import useImageEdit from 'hooks/useImageEdit';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import { TextInput } from 'components/form/input';
 import useSnackbar from 'hooks/useSnackbar';
-import { Image } from 'services/types';
+import { Image } from 'types';
 import { TextArea } from 'components/form/input/TextArea';
 import { Button } from 'components/form/Button';
 import { styled } from 'styled-components';

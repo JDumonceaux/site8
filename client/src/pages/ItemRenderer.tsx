@@ -1,6 +1,6 @@
 'use client';
 import type { ListChildComponentProps } from 'react-window';
-import { MusicItem } from 'services/types/MusicItem';
+import { MusicItem } from 'types/MusicItem';
 
 export const ItemRenderer = ({
   data,
