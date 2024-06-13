@@ -23,7 +23,12 @@ export class MenuService {
 
       return items
         .filter((x) => x.type === 'root')
-        .map((x) => ({ ...x, tempId: index++, toComplete: x.to, parentId: 0 }));
+        .map((x) => ({
+          ...x,
+          tempId: index++,
+          toComplete: '/' + x.to,
+          parentId: 0,
+        }));
     } catch (error) {
       Logger.error(`MenuService: getRootMenu -> ${error}`);
     }

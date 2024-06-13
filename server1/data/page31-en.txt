@@ -1,0 +1,52 @@
+Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. 
+
+Bubble Sort algorithm:
+traverse from left and compare adjacent elements and the higher one is placed at right side. 
+In this way, the largest element is moved to the rightmost end at first. 
+This process is then continued to find the second largest and place it and so on until the data is sorted.
+
+Time Complexity:  O(n2).
+Auxiliary Space: O(1).
+Total no. of passes: n-1
+Total no. of comparisons: n*(n-1)/2
+
+<pre><code data-type="python">
+def bubbleSort(arr):
+    n = len(arr)
+    
+    # Traverse through all array elements
+    for i in range(n):
+        swapped = False
+
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+
+            # Traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                swapped = True
+        if (swapped == False):
+            break
+</code></pre>
+
+Example:
+Input: arr[] = {6, 3, 0, 5}
+First Pass: [3,0,5,6] - Largest element is moved to end of array
+Second Pass:  [3,0,5,6] - Second largest element is moved to end of array
+Third Pass:  [0,3,5,6] - Remaining elements sorted
+
+Advantages of Bubble Sort:
+Bubble sort is easy to understand and implement.
+It does not require any additional memory space.
+It is a stable sorting algorithm, meaning that elements with the same key value maintain their relative order in the sorted output.
+
+Disadvantages of Bubble Sort:
+Bubble sort has a time complexity of O(N2) which makes it very slow for large data sets.
+Bubble sort is a comparison-based sorting algorithm, which means that it requires a comparison operator to determine the relative order of elements in the input data set. It can limit the efficiency of the algorithm in certain cases.
+
+Some FAQs related to Bubble Sort:
+What is the Boundary Case for Bubble sort? 
+Bubble sort takes minimum time (Order of n) when elements are already sorted. Hence it is best to check if the array is already sorted or not beforehand, to avoid O(N2) time complexity.
+

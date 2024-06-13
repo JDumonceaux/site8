@@ -6,7 +6,7 @@ enchanting tales of a bygone Arthurian era.</p>
  is designed not to depict a specific individual 
  but to encapsulate the historical essence of its surroundings.</p>
 <p>Often referred to as the King Arthur statue, 
-it stands proudly at Tintagel Castle in North Cornwall, England. <em>Gallos</em> is Cornish for "power".</p>
+it stands proudly at Tintagel Castle in North Cornwall, England. (<em>Gallos</em> is Cornish for "power".)</p>
 
 <p>What captivates me is how its placement near the sea 
 conjures images of a legendary knight, perhaps returning home from an ill-fated voyage. 
@@ -16,4 +16,4 @@ One can imagine the ghost of a long-dead medieval knight stumbling out of the se
 hinting at a storied past that stretches far beyond its recent origins.</p> 
 <p><a href="https://rubineynon.co.uk/">More art by Rubin Eynon</a>: https://rubineynon.co.uk/</p>
 
-<img src="/images/art/gallos.jpg" width="500px" />
+<img src="/images/sculpture/gallos.jpg" width="500px" />

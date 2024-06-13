@@ -9,6 +9,7 @@ import usePagesEdit from 'hooks/usePagesEdit';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
 import MenuAdd from 'components/custom/MenuAdd';
 import { MenuItem } from 'types';
+import RenderLevel from 'components/ui/PagesPage/RenderLevel';
 
 const PagesPage = (): JSX.Element => {
   const {
@@ -19,7 +20,6 @@ const PagesPage = (): JSX.Element => {
     handleSave,
     setFormValues,
     getStandardTextInputAttributes,
-    getFieldValue,
   } = usePagesEdit();
 
   useEffect(() => {
@@ -57,13 +57,9 @@ const PagesPage = (): JSX.Element => {
                 item.id
               )}
             </td>
-            {level === 0 ? (
-              <StyledTd1>{item.name}</StyledTd1>
-            ) : level === 1 ? (
-              <StyledTd2>{item.name}</StyledTd2>
-            ) : (
-              <StyledTd3>{item.name}</StyledTd3>
-            )}
+            <RenderLevel level={level}>
+              <StyledLink to={item.toComplete || ''}> {item.name}</StyledLink>
+            </RenderLevel>
             <td>
               {item.type !== 'root' ? (
                 <TextInput
@@ -98,9 +94,8 @@ const PagesPage = (): JSX.Element => {
                 spellCheck={true}
               />
             </td>
-            <td>{getFieldValue(item.tempId, 'sortby')}</td>
-            <td>{item.tempId}</td>
-            {/* <td>
+
+            <td>
               {item.type !== 'page' ? (
                 <TextInput
                   {...getStandardTextInputAttributes(item.tempId, 'sortby')}
@@ -117,7 +112,7 @@ const PagesPage = (): JSX.Element => {
                   spellCheck={true}
                 />
               ) : null}
-            </td> */}
+            </td>
             <td>
               {item.type} - {level}
             </td>
@@ -154,7 +149,7 @@ const PagesPage = (): JSX.Element => {
           <table>
             <thead>
               <tr>
-                <th>Id</th>
+                <th>Edit</th>
                 <th>Name</th>
                 <th>Parent</th>
                 <th>Seq</th>
@@ -184,15 +179,6 @@ const StyledTr = styled.tr`
   td {
     padding: 3px 15px;
   }
-`;
-const StyledTd1 = styled.td`
-  padding-left: 0px;
-`;
-const StyledTd2 = styled.td`
-  padding-left: 30px;
-`;
-const StyledTd3 = styled.td`
-  padding-left: 60px;
 `;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: bold;

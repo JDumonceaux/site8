@@ -52,6 +52,14 @@
       "type": "root"
     },
     {
+      "id": 10008,
+      "name": "Typescript",
+      "seq": 0,
+      "sortby": "name",
+      "to": "typescript",
+      "type": "root"
+    },
+    {
       "id": 40,
       "name": "Getting Started",
       "parent": [
@@ -607,20 +615,6 @@
         }
       ],
       "to": "visual-studio-code-extensions",
-      "type": "page"
-    },
-    {
-      "id": 3002,
-      "edit_date": "01/18/2024",
-      "file": true,
-      "name": "Gallos",
-      "parent": [
-        {
-          "id": 3,
-          "seq": 0
-        }
-      ],
-      "to": "gallos",
       "type": "page"
     },
     {
@@ -1681,6 +1675,122 @@
       ],
       "text": "<p>Most people have probably never seen this movie or have forgotten about it.  I believe it contains\none of the most beautiful scenes and beautiful songs in movie history.</p>\n<p><em>Toby Maguire</em> as Bud and <em>Reese Witherspoon</em> as Mary Sue \nare pulled from the present age into the monochromatic, perfect universe of a 1950's TV sitcom. \nIn this idealized world, everything epitomizes the quintessence of perfection \nand wholesomeness: where married couples sleep in separate beds and life proceeds at a peaceful pace.</p>\n<p>However, the arrival of Bud and Mary Sue gradually upsets the perfect balance of the town and ushers in a transformation. \nThis picturesque slice of Americana starts to awaken to the realms of art, love, and passion. \nAs it discovers \"life\", the town turns from black and white into a bloom of passionate color.</p>\n<p>A pivotal moment in the story, reminiscent of the iconic transition in <em>The Wizard of Oz</em>, \noccurs amidst the soulful strains of <em>Etta James'</em> classic, <em>At Last</em>. \nThe beauty of this scene is unparalleled.  As Bud and his girlfriend drive down a gravel road to a secluded lake, the scene transforms from black and white to full color.  The clouds of cherry blossoms, the beautiful lines of a classic car, \nand a quiet glade all evoke a sense of tranquillity and peace.</p> \n<p>The cast includes <em>Jeff Daniels</em> in, what I consider, one of his better roles \nand <em>Don Knotts</em> in his last on-screen peformance.</p>\n<p>I also love this movie because it is where I discovered <em>Etta James</em>.  \nAfter hearing <em>At Last</em>, \nI had to delve into learning more about <em>Miss James</em>.</p>\n<p>Fortunately, I was able to see <em>Miss James</em> perform in person \nat the <em>Guthrie Theatre</em> (the original) on March 17, 1989. Although age and life had taken their toll on her, with mobility \nbecoming a challenge, her stage presence and voice remained as commanding as ever.</p>   \n\n\n<iframe width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/El_LAaweUvg?si=1f9er1PaSv8FNp8Q\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n",
       "to": "at-last-pleasantville"
+    },
+    {
+      "id": 3002,
+      "edit_date": "2024-01-19T06:00:00.000Z",
+      "name": "Gallos",
+      "parent": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "text": "<p>Tucked away amidst a backdrop rich in historical significance, \nthe <em>Gallos</em> statue breathes life into the \nenchanting tales of a bygone Arthurian era.</p>\n\n<p>The imposing 8-foot bronze creation by <em>Rubin Eynon</em>\n is designed not to depict a specific individual \n but to encapsulate the historical essence of its surroundings.</p>\n<p>Often referred to as the King Arthur statue, \nit stands proudly at Tintagel Castle in North Cornwall, England. (<em>Gallos</em> is Cornish for \"power\".)</p>\n\n<p>What captivates me is how its placement near the sea \nconjures images of a legendary knight, perhaps returning home from an ill-fated voyage. \nOne can imagine the ghost of a long-dead medieval knight stumbling out of the sea after countless centuries. </p>\n\n<p>Although a modern addition, the statue possesses an air of incompleteness, \nhinting at a storied past that stretches far beyond its recent origins.</p> \n<p><a href=\"https://rubineynon.co.uk/\">More art by Rubin Eynon</a>: https://rubineynon.co.uk/</p>\n\n<img src=\"/images/sculpture/gallos.jpg\" width=\"500px\" />",
+      "to": "gallos",
+      "type": "page"
+    },
+    {
+      "id": 1007,
+      "name": "Python",
+      "parent": [
+        {
+          "id": 0,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "python",
+      "type": "root"
+    },
+    {
+      "id": 1008,
+      "name": "Management",
+      "parent": [
+        {
+          "id": 0,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "management",
+      "type": "root"
+    },
+    {
+      "id": 21,
+      "name": "Algorithims",
+      "parent": [
+        {
+          "id": 1007,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "algorithims",
+      "type": "menu"
+    },
+    {
+      "id": 22,
+      "name": "Algorithims",
+      "parent": [
+        {
+          "id": 1008,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "algorithims",
+      "type": "menu"
+    },
+    {
+      "id": 32,
+      "create_date": "2024-06-11T03:00:00.000Z",
+      "edit_date": "2024-06-11T03:00:00.000Z",
+      "name": "Bubble Sort",
+      "parent": [
+        {
+          "id": 22,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "to": "bubble-sort",
+      "type": "page"
+    },
+    {
+      "id": 31,
+      "edit_date": "2024-06-11T02:46:00.000Z",
+      "name": "Bubble Sort",
+      "parent": [
+        {
+          "id": 21,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "text": "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. \n\nBubble Sort algorithm:\ntraverse from left and compare adjacent elements and the higher one is placed at right side. \nIn this way, the largest element is moved to the rightmost end at first. \nThis process is then continued to find the second largest and place it and so on until the data is sorted.\n\nTime Complexity:  O(n2).\nAuxiliary Space: O(1).\nTotal no. of passes: n-1\nTotal no. of comparisons: n*(n-1)/2\n\n<pre><code data-type=\"python\">\ndef bubbleSort(arr):\n    n = len(arr)\n    \n    # Traverse through all array elements\n    for i in range(n):\n        swapped = False\n\n        # Last i elements are already in place\n        for j in range(0, n-i-1):\n\n            # Traverse the array from 0 to n-i-1\n            # Swap if the element found is greater\n            # than the next element\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n                swapped = True\n        if (swapped == False):\n            break\n</code></pre>\n\nExample:\nInput: arr[] = {6, 3, 0, 5}\nFirst Pass: [3,0,5,6] - Largest element is moved to end of array\nSecond Pass:  [3,0,5,6] - Second largest element is moved to end of array\nThird Pass:  [0,3,5,6] - Remaining elements sorted\n\nAdvantages of Bubble Sort:\nBubble sort is easy to understand and implement.\nIt does not require any additional memory space.\nIt is a stable sorting algorithm, meaning that elements with the same key value maintain their relative order in the sorted output.\n\nDisadvantages of Bubble Sort:\nBubble sort has a time complexity of O(N2) which makes it very slow for large data sets.\nBubble sort is a comparison-based sorting algorithm, which means that it requires a comparison operator to determine the relative order of elements in the input data set. It can limit the efficiency of the algorithm in certain cases.\n\nSome FAQs related to Bubble Sort:\nWhat is the Boundary Case for Bubble sort? \nBubble sort takes minimum time (Order of n) when elements are already sorted. Hence it is best to check if the array is already sorted or not beforehand, to avoid O(N2) time complexity.\n\n",
+      "to": "bubble-sort",
+      "type": "page"
+    },
+    {
+      "id": 33,
+      "create_date": "2024-06-11T03:17:00.000Z",
+      "edit_date": "2024-06-11T03:17:00.000Z",
+      "name": "Basics",
+      "parent": [
+        {
+          "id": 1007,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "basics",
+      "type": "page"
     }
   ]
 }

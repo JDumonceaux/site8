@@ -136,8 +136,6 @@ const usePagesEdit = () => {
     [getFieldValue],
   );
 
-  console.log('formValues', formValues);
-
   return useMemo(
     () => ({
       data: data?.items,

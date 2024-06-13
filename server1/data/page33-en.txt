@@ -1,0 +1,45 @@
+
+<h2>Indentation</h2>
+Typical indentation is 4 spaces.  At least 1 is required.
+
+<h2>Variables</h2>
+Python has no command for declaring a variable.
+Variables are created when you assign a value to it:
+x = 5
+y = "Hello, World!"
+
+There is no type specification required.
+Types can be changed.
+Multiple assignment is allowed:  
+x, y, z = "Orange", "Banana", "Cherry"
+
+<h2>Scope</h2>
+Global = created outside a function
+Local = created inside a function
+# Names can be the same
+
+<h2>Rules for Python variables:</h2>
+A variable name must start with a letter or the underscore character
+A variable name cannot start with a number
+A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )
+Variable names are case-sensitive (age, Age and AGE are three different variables)
+A variable name cannot be any of the Python keywords.
+
+<h2>Casting</h2>
+x = str(3)    # x will be '3'
+y = int(3)    # y will be 3
+z = float(3)  # z will be 3.0
+
+
+<h2>Comments</h2>
+#This is a comment.
+
+Comments can be placed at the end of a line, and Python will ignore the rest of the line:
+Comments can also be used to prevent Python from executing code:
+
+<h2>Print</h2>
+print(x)
+print(x, y, z)  # Preferred
+print(x + y + z)
+print(x + y)  # Numbers will be added together.
+print(x + y)  # String + Number results in an error.
