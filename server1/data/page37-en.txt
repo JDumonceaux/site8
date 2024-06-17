@@ -1,0 +1,5 @@
+IMO, it is a good practice to delete all the files from the node_modules folder and re-run npm install. 
+
+This helps validate that the package.json is valid and that another developer is able to download and run the code.  
+
+If you're actively working on a project, you may consider doing this once-a-month.  If you haven't worked on a project for awhile, I'd recommend doing this as part of the "sync" and "get-up-to-speed" process.

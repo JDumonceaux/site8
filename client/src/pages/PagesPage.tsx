@@ -1,19 +1,22 @@
 'use client';
-import React, { useCallback, useEffect } from 'react';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { Meta, PageTitle, StyledPlainButton } from 'components';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { styled } from 'styled-components';
-import { TextInput } from 'components/form/input';
-import usePagesEdit from 'hooks/usePagesEdit';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
 import MenuAdd from 'components/custom/MenuAdd';
-import { MenuItem } from 'types';
+import { TextInput } from 'components/form/input';
+import { Switch } from 'components/primatives/Switch/Switch';
 import RenderLevel from 'components/ui/PagesPage/RenderLevel';
+import useAppSettings from 'hooks/useAppSettings';
+import usePagesEdit from 'hooks/usePagesEdit';
+import React, { useCallback, useEffect } from 'react';
+import { styled } from 'styled-components';
+import { MenuItem } from 'types';
 
 const PagesPage = (): JSX.Element => {
   const {
     data,
+    dataMenuOnly,
     dataFlat,
     isSaved,
     handleChange,
@@ -21,6 +24,8 @@ const PagesPage = (): JSX.Element => {
     setFormValues,
     getStandardTextInputAttributes,
   } = usePagesEdit();
+
+  const { showPages, setShowPages } = useAppSettings();
 
   useEffect(() => {
     const ret = dataFlat?.map((item) => {
@@ -124,6 +129,19 @@ const PagesPage = (): JSX.Element => {
     [getStandardTextInputAttributes, handleChange],
   );
 
+  const onShowPages = useCallback(
+    (checked: boolean) => {
+      setShowPages(checked);
+    },
+    [setShowPages],
+  );
+
+  const getData = useCallback(() => {
+    return showPages ? data : dataMenuOnly;
+  }, [data, dataMenuOnly, showPages]);
+
+  const filteredData = getData();
+
   return (
     <>
       <Meta title="Pages" />
@@ -131,6 +149,12 @@ const PagesPage = (): JSX.Element => {
         <StyledMain.Section>
           <PageTitle title="Pages">
             <StyledMenu>
+              <Switch
+                checked={showPages}
+                id="showPags"
+                label={showPages ? 'Hide Pages' : 'Show Pages'}
+                onCheckedChange={(e) => onShowPages(e)}
+              />
               <StyledLink data-testid="nav-new" to="/admin/page/edit">
                 New
               </StyledLink>
@@ -159,7 +183,7 @@ const PagesPage = (): JSX.Element => {
             </thead>
 
             <tbody>
-              {data?.map((item) => (
+              {filteredData?.map((item) => (
                 <React.Fragment key={item.id}>
                   {renderItem(item, 0)}
                 </React.Fragment>

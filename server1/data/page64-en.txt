@@ -1,0 +1,49 @@
+To get the latest list of browsers, run:
+npx update-browserslist-db@latest 
+
+The .browerslistrc file specifies which browsers are supported by the application.  You can also add this as a section in your package.json (easier).   
+
+Added to package.json:
+<pre><code>
+"browserslist": [
+">0.2%",
+"not dead",
+"not ie <= 11",
+"not op_mini all",
+"last 2 versions",
+]
+</code></pre>
+
+As a separate .broswerslistrc file:
+<pre><code>
+module.exports = [">0.2%", "not dead", "not ie <= 11", "not op_mini all"];
+</code></pre>
+
+<a href="https://github.com/browserslist/browserslist">BrowsersList Github</a> 
+0.2%: All browsers that have at least 0,2% of global market share
+not dead: Exclude browsers without official support in the last 24 months
+not ie <= 11: Exclude IE 11 and older versions
+not op_mini all: Exclude Opera Mini
+
+Browserslist will use caniuse-lite with Can I Use data for this queries.
+
+Note: Browserslist recommends either "default" or "last 2 versions, not dead, > 0.2%"
+
+
+
+Note: If you have several projects, you may consider creating a single version which is imported into each project vs. maintaining each project separately. 
+
+If you support older browsers, transpilers have to do additional conversion of the code and add Polyfills to substitute for missing features. 
+
+<em>Polyfills</em> are pieces of code that provide modern functionality to older browsers that lack native support for those features. They bridge the gap between the JavaScript language features and APIs that are available in modern browsers and the limited capabilities of older browser versions.
+
+
+During development we want to use the latest javascript features (e.g ES6) as it makes our jobs easier, leads to cleaner code, possibly better performance.
+
+As javascript evolves, browsers won't support new features at the same pace, for instance not all browsers have built-in support for ES6 (aka ES2015). By using browserslist, transpilers/bundlers know what browsers you want to support, so they can "group" browsers in different categories and generate separate bundles, for example:
+
+Legacy Bundle: Contains polyfills, larger bundle size, compatible with old browsers without ES6 support.
+Modern Bundle: Smaller bundle size, optimized for modern browsers.
+<pre><code>
+
+</code></pre>

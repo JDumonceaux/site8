@@ -1,0 +1,30 @@
+Quick answer:  use <em>Types</em>.
+
+
+Javascript does not have Types and Interfaces, but Typescript does.  
+
+Which one should you use?
+
+<em>Interfaces</em> define a contract - basically what a class needs to implement.
+
+<em>Types</em> are actually <em>Type Aliases</em> - alternative names for Typescript primitive types or combination of types.
+
+Boiled down, <em>Types</em> can do almost everything <em>Interfaces</em> can do and more.  Just to make it easy and consistent, use <em>Types</em>.
+
+
+<pre><code>
+type Animal = {
+  species: string
+  name: string
+  age: number
+}
+
+
+interface Animal {
+  species: string
+  name: string
+  age: number
+}
+</code></pre>
+
+<a href="https://blog.logrocket.com/types-vs-interfaces-typescript/">Types vs. interfaces in TypeScript</a>

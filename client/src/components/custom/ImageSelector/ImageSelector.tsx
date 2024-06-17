@@ -1,15 +1,15 @@
 import { LoadingWrapper } from 'components/common/Loading/LoadingWrapper';
+import { Switch } from 'components/primatives/Switch/Switch';
+import useAppSettings from 'hooks/useAppSettings';
+import useUnmatchedImages from 'hooks/useUnmatchedImages';
 import React, {
   useCallback,
   useDeferredValue,
   useEffect,
   useState,
 } from 'react';
-import { Image } from 'types';
-import useAppSettings from 'hooks/useAppSettings';
-import useUnmatchedImages from 'hooks/useUnmatchedImages';
-import { Switch } from 'components/primatives/Switch/Switch';
 import { styled } from 'styled-components';
+import { Image } from 'types';
 import { IMAGE_BASE } from 'utils/constants';
 
 type ImageSelectorProps = {
@@ -27,11 +27,11 @@ export const ImageSelector = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [ fetchData]);
 
   const onRefresh = useCallback(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const onShowAll = useCallback(() => {
     setSelectedItem(undefined);

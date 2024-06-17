@@ -1,14 +1,14 @@
 'use client';
-import { styled } from 'styled-components';
 import { Suspense, useDeferredValue, useEffect } from 'react';
+import { styled } from 'styled-components';
 
 import { LoadingWrapper, Meta, PageTitle } from 'components';
-import StyledMain from 'components/common/StyledMain/StyledMain';
 import SubjectMenu from 'components/common/Menu/SubjectMenu';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 import { useAxios } from 'hooks/Axios';
-import { ServiceUrl } from 'utils';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';
+import { ServiceUrl } from 'utils';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useAxios<Images>();
@@ -17,7 +17,7 @@ const GenericImagePage = (): JSX.Element => {
 
   useEffect(() => {
     fetchData(`${ServiceUrl.ENDPOINT_IMAGES}`);
-  }, []);
+  }, [fetchData]);
 
   const pageTitle = 'Images';
   const imagePath = '/images/like/';

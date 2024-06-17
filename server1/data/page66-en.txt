@@ -1,0 +1,65 @@
+
+
+<h2>Vite</h2>
+Vite is the "engine" that runs the app - it contains all the scripts for how to build and run the application.
+
+The following scripts are automatically added for you:
+<pre><code>
+{
+  "scripts": {
+    "dev": "vite", // start dev server, aliases: `vite dev`, `vite serve`
+    "build": "vite build", // build for production
+    "preview": "vite preview" // locally preview production build
+  }
+}
+</code></pre>
+npm run dev > starts a local web server with Hot Module Replacement for development, and will automatically change when code changes
+npm run build > builds the project, and outputs to the folder ./dist
+npm run preview > start a local web server that serves the built solution from ./dist for previewing (run build first)
+
+<a href="https://vitejs.dev/guide/cli.html">Command documentation</a>
+
+
+<h2>Next</h2>
+The following scripts are automatically added for you:
+<pre><code>
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+  },
+</code></pre>
+npm run dev > starts local web server
+npm run build > builds the project
+npm run start > starts the project in production (run build first)
+npm run export > export the project as a static HTML - no Node.js server required.
+
+<a href="https://nextjs.org/docs/pages/api-reference/next-cli">Next CLI</a>
+
+
+
+<h2>Create React App</h2>
+If you used the traditional "create react app" as a starting point for your application, it uses the react-scripts to "run" the application
+
+The following scripts are automatically added for you:
+<pre><code>
+ "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+</code></pre>
+
+npm start > starts a webpack development server for local development
+npm build > builds and minifies the project for release
+npm test > runs any Jest tests in the project
+npm eject > "explodes" out the react-scripts - allowing you to customize all details.  
+Note: eject is a one-way operation - it cannot be undone.  Save the code to source control first before running this command. 
+
+
+<a href="https://blog.logrocket.com/everything-you-need-know-about-react-scripts/">Everything you need to know about react-scripts</a>
+
+
+

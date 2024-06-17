@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { generateClient } from 'aws-amplify/api';
 import { CreateTodoInput, Todo } from 'API';
+import { generateClient } from 'aws-amplify/api';
 import { createTodo } from 'graphql/mutations';
 import { listTodos } from 'graphql/queries';
 

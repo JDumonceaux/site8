@@ -1,0 +1,5 @@
+npm Audit can be used to find any vulnerabilities with packages - including related dependencies.
+
+Running npm Audit fix should fix the issues.
+
+Note:  You should have gitHub Dependabot security alerts enabled - which will also notify you of such issues. 

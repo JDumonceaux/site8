@@ -4,7 +4,7 @@ import { Page, sortMenuEntryName, sortMenuEntrySeq } from '../types/Page.js';
 import { Menu } from '../types/Menu.js';
 import { PagesService } from './PagesService.js';
 import { MenuAbbr } from '../types/MenuAbbr.js';
-import { MenuItem } from 'types/MenuItem.js';
+import { MenuItem } from '../types/MenuItem.js';
 
 let index = 0;
 

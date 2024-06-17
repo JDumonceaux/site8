@@ -6,13 +6,16 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "precommit": "pretty-quick --staged",
-    "prepare": "cd .. && husky install client/.husky",
     "preview": "vite preview",
     "serve": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "prepare": "npx husky install",
+    "pre-commit": "npx lint-staged",
+    "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
+    "knip": "knip"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
@@ -46,7 +49,7 @@
     "@types/amplify": "^1.1.28",
     "@types/dompurify": "^3.0.5",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.0",
+    "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-window": "^1.8.8",
@@ -69,6 +72,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-sonarjs": "^1.0.3",
     "husky": "^9.0.11",
+    "knip": "^5.20.0",
     "pre-commit": "^1.2.2",
     "prettier": "^3.3.1",
     "pretty-quick": "^4.0.0",
@@ -78,5 +82,13 @@
   },
   "pre-commit": "lint",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all",
+    "last 2 versions",
+    "maintained node versions"
+  ]
 }

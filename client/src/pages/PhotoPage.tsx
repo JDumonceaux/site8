@@ -13,7 +13,7 @@ const PhotoPage = (): JSX.Element => {
 
   useEffect(() => {
     fetchData(`${ServiceUrl.ENDPOINT_PHOTOS}`);
-  }, []);
+  }, [fetchData]);
 
   return (
     <>

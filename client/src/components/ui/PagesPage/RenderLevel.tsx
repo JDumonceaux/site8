@@ -12,8 +12,10 @@ export const RenderLevel = ({ level, children }: Props): JSX.Element | null => {
     <StyledTd1>{children}</StyledTd1>
   ) : level === 1 ? (
     <StyledTd2>{children}</StyledTd2>
-  ) : (
+  ) : level === 2 ? (
     <StyledTd3>{children}</StyledTd3>
+  ) : (
+    <StyledTd4>{children}</StyledTd4>
   );
 };
 
@@ -23,8 +25,17 @@ const StyledTd1 = styled.td`
   padding-left: 0px;
 `;
 const StyledTd2 = styled.td`
-  padding-left: 30px;
+  a {
+    padding-left: 30px;
+  }
 `;
 const StyledTd3 = styled.td`
-  padding-left: 60px;
+  a {
+    padding-left: 60px;
+  }
+`;
+const StyledTd4 = styled.td`
+  a {
+    padding-left: 90px;
+  }
 `;

@@ -1,0 +1,5 @@
+Use npm Outdated to find and update package versions.  
+
+Note: npm Outdated checks both the package.json and package-lock.json.  You should update the package.json and then run npm install to actually update the files under node_modules.
+
+Note:  You should set up GitHub Dependabot to automatically update package versions for you.  This will update only the package.json - not the actual node_modules.  You need to sync your code and run npm install to actually get things updated.

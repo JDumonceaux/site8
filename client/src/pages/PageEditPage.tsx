@@ -1,17 +1,17 @@
 'use client';
+import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { ModalProcessing } from 'components/common/ModalProcessing';
+import StyledMain from 'components/common/StyledMain/StyledMain';
+import { Button } from 'components/form/Button';
+import { TextInput } from 'components/form/input';
+import { TextArea } from 'components/form/input/TextArea';
+import useMenu from 'hooks/useMenu';
+import usePageEdit from 'hooks/usePageEdit';
+import useSnackbar from 'hooks/useSnackbar';
 import { useCallback, useEffect, useState, useTransition } from 'react';
 import { useParams } from 'react-router-dom';
-import usePageEdit from 'hooks/usePageEdit';
-import { ModalProcessing } from 'components/common/ModalProcessing';
-import { TextInput } from 'components/form/input';
-import useSnackbar from 'hooks/useSnackbar';
-import { TextArea } from 'components/form/input/TextArea';
-import { Button } from 'components/form/Button';
 import { styled } from 'styled-components';
-import { Meta, PageTitle, StyledPlainButton, LoadingWrapper } from 'components';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import useMenu from 'hooks/useMenu';
 
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
@@ -38,6 +38,7 @@ const PageEditPage = (): JSX.Element => {
   } = usePageEdit();
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
+  const [currPosition, setCurrentPosition] = useState<number>(0);
 
   const { setSnackbarMessage } = useSnackbar();
 
@@ -68,14 +69,22 @@ const PageEditPage = (): JSX.Element => {
 
   const handleInsert = useCallback(
     (action: string) => {
+      const textBefore = formValues.text.substring(0, currPosition);
+      const textAfter = formValues.text.substring(currPosition);
       if (action === 'code') {
         setFieldValue(
           'text',
-          formValues.text + '<pre><code>\n\n</code></pre>\n',
+          textBefore + '<pre><code>\n\n</code></pre>\n' + textAfter,
         );
       }
+      if (action === 'h2') {
+        setFieldValue('text', textBefore + '<h2> </h2>\n' + textAfter);
+      }
+      if (action === 'link') {
+        setFieldValue('text', textBefore + '<a href=""></a>\n' + textAfter);
+      }
     },
-    [formValues.text, setFieldValue],
+    [currPosition, formValues.text, setFieldValue],
   );
 
   const handleSubmit = useCallback(
@@ -279,14 +288,22 @@ const PageEditPage = (): JSX.Element => {
                     Code
                   </button>
                 </li>
-                {/* <li>
-                <button
-                  data-testid="nav-prev"
-                  onClick={() => handleOnClick('prev')}
-                  type="button">
-                  Prev
-                </button>
-                </li> */}
+                <li>
+                  <button
+                    data-testid="insert-h2"
+                    onClick={() => handleInsert('h2')}
+                    type="button">
+                    H2
+                  </button>
+                </li>
+                <li>
+                  <button
+                    data-testid="insert-link"
+                    onClick={() => handleInsert('link')}
+                    type="button">
+                    Link
+                  </button>
+                </li>
               </StyledMenu>
 
               <TextArea
@@ -294,6 +311,7 @@ const PageEditPage = (): JSX.Element => {
                 hasError={hasError('text')}
                 id="text"
                 label="Text"
+                onBlur={(e) => setCurrentPosition(e.target.selectionStart)}
                 onChange={handleChange}
                 rows={30}
                 spellCheck={true}
@@ -347,6 +365,10 @@ export default PageEditPage;
 const StyledMenu = styled.menu`
   display: inline-flex;
   list-style-type: none;
+  margin-left: 30px;
+  li {
+    padding-right: 10px;
+  }
 `;
 const Field = styled.div`
   display: inline-flex;

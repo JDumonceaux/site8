@@ -1,5 +1,5 @@
 'use client';
-import { Meta, PageTitle, LoadingWrapper } from 'components';
+import { LoadingWrapper, Meta, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { BookmarkTags } from 'components/custom/BookmarksTags';
 import { useAxios } from 'hooks/Axios';
@@ -12,7 +12,7 @@ const BookmarkPage = (): JSX.Element => {
   const { data, error, isLoading, fetchData } = useAxios<BookmarksTags>();
   useEffect(() => {
     fetchData(`${ServiceUrl.ENDPOINT_BOOKMARKS}`);
-  }, []);
+  }, [fetchData]);
 
   const deferredData = useDeferredValue(data);
 

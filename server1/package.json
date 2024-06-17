@@ -10,10 +10,13 @@
     "start": "npm run build && node dist/server.js",
     "build": "tsc",
     "precommit": "pretty-quick --staged",
-    "prepare": "cd .. && husky install server1/.husky",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
-    "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" "
+    "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
+    "prepare": "npx husky install",
+    "pre-commit": "npx lint-staged",
+    "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
+    "knip": "knip"
   },
   "dependencies": {
     "@graphql-tools/schema": "^10.0.4",
@@ -33,6 +36,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.2",
     "@types/validator": "^13.11.10",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
@@ -47,6 +51,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-sonarjs": "^1.0.3",
     "husky": "^9.0.11",
+    "knip": "^5.20.0",
     "pre-commit": "^1.2.2",
     "prettier": "^3.3.1",
     "pretty-quick": "^4.0.0",

@@ -1,0 +1,9 @@
+React 19
+
+<a href="https://react.dev/reference/react-dom/hooks/useFormStatus">useFormStatus<a>
+
+The useFormStatus Hook provides status information of the last form submission.
+
+
+
+<a href="https://blog.logrocket.com/understanding-react-useformstate-useformstatus-hooks/">Understanding React’s useFormState and useFormStatus Hooks</a>

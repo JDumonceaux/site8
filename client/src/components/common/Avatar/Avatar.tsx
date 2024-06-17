@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
 import useAuth from 'hooks/useAuth';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import StyledLink from '../Link/StyledLink/StyledLink';
 

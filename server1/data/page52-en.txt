@@ -1,0 +1,50 @@
+Automatically lint your commit messages, code, and run tests upon committing or pushing.
+
+<a href="https://typicode.github.io/husky/">Husky</a>
+<a href="https://www.npmjs.com/package/husky">npm - Husky</a>
+
+You can install husky to UI and NodeJS projects
+
+npm install --save-dev husky
+
+Husky is installed as a dev dependency
+<pre><code>
+  "devDependencies": {
+    "husky": "^9.0", 
+ }
+</code></pre>
+
+npx husky init
+
+Husky creates a .husky/_ folder with sample scripts.   You should copy relevant scripts to .husky and modify as needed.  
+Note: there are no extensions on the script files.
+Note: You can add a .gitignore file for the /_ folder if you want.
+
+Example pre-commit
+<pre><code>
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run pre-commit
+</code></pre>
+
+Example prepare-commit-msg
+<pre><code>
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run prepare-commit-msg
+</code></pre>
+
+Add script commands for Husky to package.json
+<pre><code>
+ "scripts": {
+    "prepare": "npx husky install",
+    "pre-commit": "npx lint-staged",
+    "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG"
+  },
+</code></pre>
+
+Husky will now execute the pre-commit and prepare-commit-msg scripts on commit.
+
+Repeat for NodeJS project.

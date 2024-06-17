@@ -1,0 +1,8 @@
+npm depcheck can be used to find unused dependencies in your code.
+
+Run either: 
+npm install depcheck -g
+depcheck
+
+or (to run without installing)
+npx depcheck

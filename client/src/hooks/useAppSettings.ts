@@ -1,9 +1,8 @@
 import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { AppDispatch, RootState } from '../services/state/store';
 import { AppSettings } from 'types/AppSettings';
 import { save } from '../services/state/appSlice';
+import { AppDispatch, RootState } from '../services/state/store';
 
 const useAppSettings = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,6 +14,7 @@ const useAppSettings = () => {
     () => ({
       showAll: false,
       showUnmatched: false,
+      showPages: false,
     }),
     [],
   );
@@ -46,18 +46,31 @@ const useAppSettings = () => {
     [data, updateAppSettingsDispatch],
   );
 
+  const setShowPages = useCallback(
+    (value: boolean) => {
+      updateAppSettingsDispatch({
+        ...data,
+        showPages: value,
+      });
+    },
+    [data, updateAppSettingsDispatch],
+  );
+
   const reset = useCallback(() => {
     updateAppSettingsDispatch({
       ...initialState,
     });
   }, [initialState, updateAppSettingsDispatch]);
 
-  const showUnmatched = data?.showUnmatched || true;
+  const showUnmatched = data?.showUnmatched ? data.showUnmatched : false;
+  const showPages = data?.showPages ? data.showPages : false;
 
   return {
     data: data,
     setShowAll,
+    setShowPages,
     showUnmatched,
+    showPages,
     setShowUnmatched,
     reset,
   };

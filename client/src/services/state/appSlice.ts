@@ -4,14 +4,10 @@ import { AppSettings } from 'types';
 
 interface AppState {
   data: AppSettings | null;
-  isLoading: boolean;
-  error: string | null;
 }
 
 const initialState: AppState = {
   data: null,
-  isLoading: false,
-  error: null,
 };
 
 const appSlice = createSlice({

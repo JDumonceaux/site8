@@ -60,6 +60,14 @@
       "type": "root"
     },
     {
+      "id": 10009,
+      "name": "Javascript",
+      "seq": 0,
+      "sortby": "name",
+      "to": "javascript",
+      "type": "root"
+    },
+    {
       "id": 40,
       "name": "Getting Started",
       "parent": [
@@ -1661,7 +1669,8 @@
           "seq": 1
         }
       ],
-      "to": "file-not-found"
+      "to": "file-not-found",
+      "type": "page"
     },
     {
       "id": 3001,
@@ -1674,7 +1683,8 @@
         }
       ],
       "text": "<p>Most people have probably never seen this movie or have forgotten about it.  I believe it contains\none of the most beautiful scenes and beautiful songs in movie history.</p>\n<p><em>Toby Maguire</em> as Bud and <em>Reese Witherspoon</em> as Mary Sue \nare pulled from the present age into the monochromatic, perfect universe of a 1950's TV sitcom. \nIn this idealized world, everything epitomizes the quintessence of perfection \nand wholesomeness: where married couples sleep in separate beds and life proceeds at a peaceful pace.</p>\n<p>However, the arrival of Bud and Mary Sue gradually upsets the perfect balance of the town and ushers in a transformation. \nThis picturesque slice of Americana starts to awaken to the realms of art, love, and passion. \nAs it discovers \"life\", the town turns from black and white into a bloom of passionate color.</p>\n<p>A pivotal moment in the story, reminiscent of the iconic transition in <em>The Wizard of Oz</em>, \noccurs amidst the soulful strains of <em>Etta James'</em> classic, <em>At Last</em>. \nThe beauty of this scene is unparalleled.  As Bud and his girlfriend drive down a gravel road to a secluded lake, the scene transforms from black and white to full color.  The clouds of cherry blossoms, the beautiful lines of a classic car, \nand a quiet glade all evoke a sense of tranquillity and peace.</p> \n<p>The cast includes <em>Jeff Daniels</em> in, what I consider, one of his better roles \nand <em>Don Knotts</em> in his last on-screen peformance.</p>\n<p>I also love this movie because it is where I discovered <em>Etta James</em>.  \nAfter hearing <em>At Last</em>, \nI had to delve into learning more about <em>Miss James</em>.</p>\n<p>Fortunately, I was able to see <em>Miss James</em> perform in person \nat the <em>Guthrie Theatre</em> (the original) on March 17, 1989. Although age and life had taken their toll on her, with mobility \nbecoming a challenge, her stage presence and voice remained as commanding as ever.</p>   \n\n\n<iframe width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/El_LAaweUvg?si=1f9er1PaSv8FNp8Q\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>\n",
-      "to": "at-last-pleasantville"
+      "to": "at-last-pleasantville",
+      "type": "page"
     },
     {
       "id": 3002,
@@ -1743,7 +1753,6 @@
         }
       ],
       "seq": 0,
-      "sortby": "name",
       "to": "algorithims",
       "type": "menu"
     },
@@ -1790,6 +1799,345 @@
       ],
       "seq": 0,
       "to": "basics",
+      "type": "page"
+    },
+    {
+      "id": 34,
+      "create_date": "2024-06-13T19:16:00.000Z",
+      "edit_date": "2024-06-13T19:16:00.000Z",
+      "name": "npm Audit",
+      "parent": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "npm-audit",
+      "type": "page"
+    },
+    {
+      "id": 35,
+      "create_date": "2024-06-13T19:19:00.000Z",
+      "edit_date": "2024-06-13T19:19:00.000Z",
+      "name": "npm Outdated",
+      "parent": [
+        {
+          "id": 15,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "to": "npm-outdated",
+      "type": "page"
+    },
+    {
+      "id": 36,
+      "create_date": "2024-06-13T19:24:00.000Z",
+      "edit_date": "2024-06-13T19:24:00.000Z",
+      "name": "npm Depcheck",
+      "parent": [
+        {
+          "id": 15,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "to": "npm-depcheck",
+      "type": "page"
+    },
+    {
+      "id": 37,
+      "create_date": "2024-06-13T19:34:00.000Z",
+      "edit_date": "2024-06-13T19:34:00.000Z",
+      "name": "node_modules",
+      "parent": [
+        {
+          "id": 26,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "to": "node_modules",
+      "type": "page"
+    },
+    {
+      "id": 38,
+      "name": "Versions",
+      "parent": [
+        {
+          "id": 10002,
+          "seq": 10
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "versions",
+      "type": "menu"
+    },
+    {
+      "id": 39,
+      "name": "React 19",
+      "parent": [
+        {
+          "id": 38,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "react-19",
+      "type": "menu"
+    },
+    {
+      "id": 41,
+      "create_date": "2024-06-13T19:47:00.000Z",
+      "edit_date": "2024-06-13T19:47:00.000Z",
+      "name": "What's New",
+      "parent": [
+        {
+          "id": 39,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "to": "whats-new",
+      "type": "page"
+    },
+    {
+      "id": 42,
+      "create_date": "2024-06-13T19:50:00.000Z",
+      "edit_date": "2024-06-13T19:50:00.000Z",
+      "name": "React Complier",
+      "parent": [
+        {
+          "id": 39,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "react-complier",
+      "type": "page"
+    },
+    {
+      "id": 43,
+      "create_date": "2024-06-13T19:57:00.000Z",
+      "edit_date": "2024-06-13T19:57:00.000Z",
+      "name": "useOptimistic",
+      "parent": [
+        {
+          "id": 39,
+          "seq": 2
+        }
+      ],
+      "seq": 0,
+      "to": "useoptimistic",
+      "type": "page"
+    },
+    {
+      "id": 44,
+      "create_date": "2024-06-14T02:56:00.000Z",
+      "edit_date": "2024-06-14T02:56:00.000Z",
+      "name": "useFormStatus",
+      "parent": [
+        {
+          "id": 39,
+          "seq": 3
+        }
+      ],
+      "seq": 0,
+      "to": "useformstatus",
+      "type": "page"
+    },
+    {
+      "id": 45,
+      "create_date": "2024-06-15T05:18:00.000Z",
+      "edit_date": "2024-06-15T05:18:00.000Z",
+      "name": "Types vs Interfaces",
+      "parent": [
+        {
+          "id": 10008,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "types-vs-interfaces",
+      "type": "page"
+    },
+    {
+      "id": 46,
+      "name": "Architecture",
+      "parent": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "architecture",
+      "type": "menu"
+    },
+    {
+      "id": 47,
+      "create_date": "2024-06-14T23:15:00.000Z",
+      "edit_date": "2024-06-14T23:15:00.000Z",
+      "name": "Micro-frontend",
+      "parent": [
+        {
+          "id": 46,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "to": "micro-frontend",
+      "type": "page"
+    },
+    {
+      "id": 48,
+      "name": "Best Practices",
+      "parent": [
+        {
+          "id": 10009,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "best-practices",
+      "type": "menu"
+    },
+    {
+      "id": 49,
+      "edit_date": "2024-06-15T02:49:00.000Z",
+      "name": "Best Practices",
+      "parent": [
+        {
+          "id": 10009,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "text": "<h2>1. Use `let` and `const` Instead of `var`</h2>\n\n<pre><code>\nlet count = 0;\nconst PI = 3.14;\n\nvs.\nvar count = 0;\n</code></pre>\n\nUsing `let` and `const` helps prevent scope-related bugs by ensuring variables are only accessible within the block they are defined.  `var` has function scope which can lead to bugs and unpredictable behavior.  `let` and `const` which have block scope.\n\n<h2>2. Use Default Parameters</h2>\n\n\"Guest\" is a default parameter.\n<pre><code>\nfunction greet(name = 'Guest') {\nreturn `Hello, ${name}!`;\n}\n</code></pre>\n\n<h2>3. Use Template Literals</h2>\n\n<pre><code>\n`string text`\n\n// Multi line strings \n`string text line 1\n string text line 2`\n\n// String interpolation\n`string text ${expression} string text`\n\ntagFunction`string text ${expression} string text`\n</code></pre>\n\nTemplate literals are literals delimited with backtick (`) characters, allowing for multi-line strings, string interpolation with embedded expressions, and special constructs called tagged templates.\n\n<a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals\">Mozilla - Template literals (Template strings)</a>\n\n<h2>4. Destructuring</h2>\n\nDestructuring assignment allows you to extract properties from objects and elements from arrays into distinct variables easily.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, age } = user;  // Destructure user\nconsole.log(name, age); \n</code></pre>\n\n<h2>5. Arrow Functions</h2>\n\nArrow functions provide a concise syntax for function expressions and ensure that `this` is lexically bound.\n\n<pre><code>\nconst add = (a, b) => a + b;\n</code></pre>\n\n<h2>6. Spread Operator</h2>\n\nThe spread operator allows you to spread the elements of an array or object into another array or object.\n\n<pre><code>\nconst arr1 = [1, 2, 3];\nconst arr2 = [4, 5, 6];\nconst combined = […arr1, …arr2];\n</code></pre>\n\n<h2>7. Rest Parameters</h2>\n\nRest parameters allow you to handle an indefinite number of arguments as an array, making your functions more flexible.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, ...rest } = user;  // Destructure user into 'name' and the \"rest\"\nconsole.log ( ... rest );\n</code></pre>\n\n<h2>8. Short-Circuit Evaluation</h2>\n\nThere are a couple of variations of the short-circuit evaluation.\n\nWe tend to do nested and multi-level if-else statements - making the code complex.  Changing this to a short-circuit version, we remove the if-else statements and exit early from a function.   This is especially useful for processing API calls - where parameters may be missing or invalid.\n<pre><code>\n  private function ( items ) {\n    if (!items) {\n      return undefined;   // Exit early  vs. if-else construction\n    }\n    ....\n  }\n</code></pre>\n\nThe second variation is using the logical &&` and `||`\n<pre><code>\nconst isLoggedIn = true;\nconst user = isLoggedIn && { name: 'Jane', age: 25 };\n</code></pre>\n\n\n\n",
+      "to": "best-practices",
+      "type": "page"
+    },
+    {
+      "id": 50,
+      "create_date": "2024-06-16T05:17:00.000Z",
+      "edit_date": "2024-06-16T05:17:00.000Z",
+      "name": "CommonJs vs ES Modules",
+      "parent": [
+        {
+          "id": 10009,
+          "seq": 2
+        }
+      ],
+      "seq": 0,
+      "to": "commonjs-vs-es-modules",
+      "type": "page"
+    },
+    {
+      "id": 51,
+      "name": "Tools",
+      "parent": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "tools",
+      "type": "menu"
+    },
+    {
+      "id": 52,
+      "create_date": "2024-06-16T05:41:00.000Z",
+      "edit_date": "2024-06-16T05:41:00.000Z",
+      "name": "Husky",
+      "parent": [
+        {
+          "id": 51,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "husky",
+      "type": "page"
+    },
+    {
+      "id": 55,
+      "create_date": "2024-06-15T19:16:00.000Z",
+      "edit_date": "2024-06-15T19:16:00.000Z",
+      "name": "VSCode",
+      "parent": [
+        {
+          "id": 51,
+          "seq": 2
+        }
+      ],
+      "seq": 0,
+      "to": "vscode",
+      "type": "page"
+    },
+    {
+      "id": 63,
+      "create_date": "2024-06-15T19:42:00.000Z",
+      "edit_date": "2024-06-15T19:42:00.000Z",
+      "name": "nginx",
+      "parent": [
+        {
+          "id": 51,
+          "seq": 3
+        }
+      ],
+      "seq": 0,
+      "to": "nginx",
+      "type": "page"
+    },
+    {
+      "id": 64,
+      "create_date": "2024-06-15T19:44:00.000Z",
+      "edit_date": "2024-06-15T19:44:00.000Z",
+      "name": "browserslistrc",
+      "parent": [
+        {
+          "id": 51,
+          "seq": 4
+        }
+      ],
+      "seq": 0,
+      "to": "browserslistrc",
+      "type": "page"
+    },
+    {
+      "id": 65,
+      "name": "Package.json",
+      "parent": [
+        {
+          "id": 29,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "package.json",
+      "type": "menu"
+    },
+    {
+      "id": 66,
+      "create_date": "2024-06-16T19:34:00.000Z",
+      "edit_date": "2024-06-16T19:34:00.000Z",
+      "name": "React-scripts",
+      "parent": [
+        {
+          "id": 65,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "react_scripts",
       "type": "page"
     }
   ]

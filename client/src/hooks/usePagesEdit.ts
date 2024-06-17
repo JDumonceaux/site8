@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo } from 'react';
+import { Menu, MenuEdit, MenuItem } from 'types';
 import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
-import { useFormArray } from './useFormArray';
 import { useAxios } from './Axios/useAxios';
-import { Menu, MenuEdit, MenuItem } from 'types';
+import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -36,23 +36,6 @@ const usePagesEdit = () => {
     setIsSaved,
     setFormValues,
   } = useFormArray<FormValues>();
-
-  const flattenArray = useCallback((items: MenuItem[] | undefined) => {
-    if (!items) {
-      return undefined;
-    }
-    const ret: MenuItem[] = [];
-    items.forEach((x) => {
-      ret.push(x);
-      if (x.items) {
-        const y = flattenArray(x.items);
-        if (y) {
-          ret.push(...y);
-        }
-      }
-    });
-    return ret ? ret.sort((a, b) => a.tempId - b.tempId) : undefined;
-  }, []);
 
   // Get the data
   useEffect(() => {
@@ -136,9 +119,27 @@ const usePagesEdit = () => {
     [getFieldValue],
   );
 
+  const filter = (arr: MenuItem[] | undefined) => {
+    const matches: MenuItem[] = [];
+    if (!Array.isArray(arr)) return matches;
+    arr.forEach((i) => {
+      if (i.type !== 'page') {
+        const { items, ...rest } = i;
+        const childResults = filter(items);
+        matches.push({ items: childResults, ...rest });
+      }
+    });
+    return matches;
+  };
+
+  const filteredData = filter(data?.items);
+
+  console.log('filteredData', filteredData);
+
   return useMemo(
     () => ({
       data: data?.items,
+      dataMenuOnly: filteredData,
       dataFlat: data?.flat,
       pageSchema,
       isProcessing,
@@ -155,6 +156,7 @@ const usePagesEdit = () => {
     [
       data?.items,
       data?.flat,
+      filteredData,
       isProcessing,
       isLoading,
       error,

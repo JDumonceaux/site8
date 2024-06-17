@@ -1,21 +1,20 @@
 'use client';
 
-import { Meta, LoadingWrapper, PageTitle, RenderHtml } from 'components';
+import { LoadingWrapper, Meta, PageTitle, RenderHtml } from 'components';
 import Fallback from 'components/common/Fallback/Fallback';
 import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
 import { useAxios } from 'hooks/Axios';
 import {
-  useDeferredValue,
   Suspense,
+  useDeferredValue,
   useEffect,
-  useState,
-  Profiler,
+  useState
 } from 'react';
-import { useLocation, Link as BaseLink } from 'react-router-dom';
-import { Page } from 'types';
+import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { Page } from 'types';
 import { ServiceUrl } from 'utils';
 
 type GenericPageProps = {
@@ -40,7 +39,7 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
     if (id) {
       fetchData(`${ServiceUrl.ENDPOINT_PAGE_NAME}/${id}`);
     }
-  }, [id]);
+  }, [fetchData, id]);
 
   const pageTitle = deferredData?.name ?? title;
 

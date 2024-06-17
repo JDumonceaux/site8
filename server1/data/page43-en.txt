@@ -1,0 +1,8 @@
+React 19
+
+<a href="https://react.dev/reference/react/useOptimistic">useOptimistic</a>
+
+Used to "optimistically" update the UI with an expected result.  
+1. UI is updated with expected result (ex. "sending")
+2. Network or other request is made.
+3. UI is updated with actual results.

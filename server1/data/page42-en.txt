@@ -1,0 +1,5 @@
+Although being discussed as a React 19, React Complier is a separate change that may or may not be released along-side React 19.
+
+The main impact of the React Complier is to eliminate the manual coding of useEffect, useCallback, useMemo: the complier will do this analysis for you and ... hopefully ... eliminate unnecessary component re-renders.
+
+Currently, React does not have a complier stage - so this is a significant change.  

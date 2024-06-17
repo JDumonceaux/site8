@@ -1,0 +1,57 @@
+
+
+<a href="https://github.com/microsoft/vscode/tree/9b8548e4479c12e7f6e0e6023b63d660c3906225">VSCode source code</a>
+
+Create .vscode folder in the project root.
+
+Create a settings.json file.
+
+Possible options:
+<pre><code>
+{
+  "prettier.singleAttributePerLine": false,
+
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports": "explicit"
+  }
+}
+</code></pre>
+
+Note: The values for codeActionsOnSave were true/false.  They changed (Sept 2023 release)
+
+The options are:
+
+explicit: Triggers Code Actions when explicitly saved. Same as true.
+always: Triggers Code Actions when explicitly saved and on Auto Saves from window or focus changes.
+never: Never triggers Code Actions on save. Same as false.
+
+
+<h2>Launch.json</h2>
+You may also have a lauch.json - which configures the debugger.
+
+<a href="https://code.visualstudio.com/docs/editor/debugging#_launch-configurations">Documentation</a>
+
+ 
+

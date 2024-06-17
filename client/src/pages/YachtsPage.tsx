@@ -1,9 +1,9 @@
 'use client';
-import { styled } from 'styled-components';
-import { Suspense } from 'react';
-import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import { Meta, PageTitle } from 'components';
+import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import { Suspense } from 'react';
+import { styled } from 'styled-components';
 
 const boxStyle = '56.25% 0 0 0';
 
