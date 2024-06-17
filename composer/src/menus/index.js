@@ -1,8 +1,8 @@
-import serverless from "serverless-http";
-import express from "express";
 import compression from "compression";
-import { menuRouter } from "./routes/menuRouter.js";
 import cors from "cors";
+import express from "express";
+import serverless from "serverless-http";
+import { menuRouter } from "./routes/menuRouter.js";
 
 const app = express();
 app.set("x-powered-by", false);
@@ -31,10 +31,19 @@ app.use((_req, res, next) => {
   next();
 });
 
-app.use("/api/menus", menuRouter);
-
-app.get("/", (req, res) => {
-  res.json({ message: "Pages" });
+// set up rate limiter
+const limiter = RateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // max 100 requests per windowMs
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  statusCode: 429,
+  message: "Rate limit reached",
 });
+
+app.use("/api/files", fileRouter, limiter);
+app.use("/api/menus", menuRouter);
+app.use("/api/page", pageRouter, limiter);
+app.use("/api/pages", pagesRouter);
 
 export const handler = serverless(app);
