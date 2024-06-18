@@ -20,11 +20,16 @@ const useMenu = () => {
 
   const getMenu = useCallback(
     (sec1: string | undefined, sec2: string | undefined) => {
+      if (!sec1) {
+        return undefined;
+      }
       // Get the parent menu
       const menu = data?.items?.find((x) => x.to === sec1);
+      if (!sec2) {
+        return menu;
+      }
       // Get the child menu
-      const menu1 = menu?.items?.find((x) => x.to === sec2);
-      return { menu: menu1 };
+      return menu?.items?.find((x) => x.to === sec2);
     },
     [data],
   );

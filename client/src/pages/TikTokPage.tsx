@@ -6,9 +6,9 @@ import { ServiceUrl } from 'utils';
 import { styled } from 'styled-components';
 
 import { LoadingWrapper, Meta, PageTitle } from 'components';
-import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import TikTokItem from 'components/custom/TikTokItem/TikTokItem';
+import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { useAxios } from 'hooks/Axios';
 
 type TikTokPageProps = {
@@ -25,7 +25,7 @@ const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
     if (tempId) {
       fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${tempId}`);
     }
-  }, [fetchData, tempId ]);
+  }, [fetchData, tempId]);
 
   const pageTitle = deferredData?.name ?? title;
   return (

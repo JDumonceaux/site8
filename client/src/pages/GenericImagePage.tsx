@@ -3,8 +3,8 @@ import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 
 import { LoadingWrapper, Meta, PageTitle } from 'components';
-import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { useAxios } from 'hooks/Axios';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';

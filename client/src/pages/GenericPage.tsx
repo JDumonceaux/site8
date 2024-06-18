@@ -2,16 +2,11 @@
 
 import { LoadingWrapper, Meta, PageTitle, RenderHtml } from 'components';
 import Fallback from 'components/common/Fallback/Fallback';
-import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
+import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { useAxios } from 'hooks/Axios';
-import {
-  Suspense,
-  useDeferredValue,
-  useEffect,
-  useState
-} from 'react';
+import { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Page } from 'types';

@@ -1,7 +1,7 @@
 'use client';
 import { Meta, PageTitle } from 'components';
-import SubjectMenu from 'components/common/Menu/SubjectMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 
