@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
-import { PageService } from '../services/PageService.js';
 import { PageFileService } from '../services/PageFileService.js';
+import { PageService } from '../services/PageService.js';
+import { PagesService } from '../services/PagesService.js';
 import { Page } from '../types/Page.js';
 import { Errors, PreferHeader, RegEx, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
-import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
-import { PagesService } from '../services/PagesService.js';
+import { parseRequestId } from '../utils/helperUtils.js';
 
 export const pageRouter = express.Router();
 
@@ -14,8 +14,8 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: get by Id -> `);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
-    if (!isValid) {
+    const { id, isValid } = parseRequestId(req.params.id.trim());
+    if (!isValid || !id) {
       Logger.info(`pageRouter: get by id -> invalid param: ${id}`);
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
@@ -113,8 +113,8 @@ pageRouter.delete('/:id', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: delete ->`);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
-    if (!isValid) {
+    const { id, isValid } = parseRequestId(req.params.id.trim());
+    if (!isValid || !id) {
       Logger.info(`pageRouter: get by name -> invalid param: ${id}`);
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
@@ -134,8 +134,8 @@ pageRouter.get('/:id/:action', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: get Id Action ->`);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id.trim());
-    if (!isValid) {
+    const { id, isValid } = parseRequestId(req.params.id.trim());
+    if (!isValid || !id) {
       Logger.info(`pageRouter: get by name -> invalid param: ${id}`);
       return res.status(400).json({ error: Responses.INVALID_ID });
     }

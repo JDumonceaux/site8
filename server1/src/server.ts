@@ -1,17 +1,18 @@
-import express, { Request, Response } from 'express';
-import RateLimit from 'express-rate-limit';
 import compression from 'compression';
 import cors from 'cors';
+import express, { Request, Response } from 'express';
+import RateLimit from 'express-rate-limit';
 
-import { Logger } from './utils/Logger.js';
-import { fileRouter } from './routes/fileRouter.js';
+import { bookmarksRouter } from './routes/bookmarksRouter.js';
+import { filesRouter } from './routes/filesRouter.js';
+import { imageRouter } from './routes/imageRouter.js';
+import { imagesRouter } from './routes/imagesRouter.js';
 import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
-import { bookmarksRouter } from './routes/bookmarksRouter.js';
-import { imagesRouter } from './routes/imagesRouter.js';
-import { imageRouter } from './routes/imageRouter.js';
+import { testsRouter } from './routes/testsRouter.js';
+import { Logger } from './utils/Logger.js';
 
 const app = express();
 
@@ -73,8 +74,9 @@ app.use((_req, res, next) => {
   );
   next();
 });
-app.use('/api/files', fileRouter, limiter);
+app.use('/api/files', filesRouter, limiter);
 app.use('/api/photos', photosRouter);
+app.use('/api/tests', testsRouter, limiter);
 app.use('/api/bookmarks', bookmarksRouter);
 app.use((_req, res, next) => {
   res.setHeader(

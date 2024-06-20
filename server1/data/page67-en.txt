@@ -1,0 +1,31 @@
+
+The vite.config.ts is similar to a webpack file:
+<pre><code>
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [tsconfigPaths()],
+  // Allow absolute imports from the `src` directory
+  resolve: {
+    alias: {
+      src: '/src',
+      components: '/src/components',
+    },
+  },
+});
+</code></pre>
+
+<a href="https://vitejs.dev/config/">https://vitejs.dev/config/</a>
+
+
+
+
+This should provide intellisense 
+<pre><code>
+import { defineConfig } from 'vite';
+</code></pre>
+
+This is a good article on Vite
+<a href="https://www.sitepoint.com/webpack-vite-migration/">A Guide to Migrating from Webpack to Vite</a>

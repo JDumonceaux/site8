@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'types/Image';
 import { DF_LONG, ServiceUrl } from 'utils';
-import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 
 import { format } from 'date-fns';
-import { useForm } from './useForm';
 import { getDateTime } from 'utils/dateUtils';
 import { useAxios } from './Axios/useAxios';
+import { useForm } from './useForm';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -43,7 +43,7 @@ const useImageEdit = (id: string | undefined) => {
     useAxios<Image>();
   // Create a type from the schema
   type FormValues = z.infer<typeof pageSchema>;
-  type keys = keyof FormValues;
+
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
   // Current Action
@@ -72,8 +72,14 @@ const useImageEdit = (id: string | undefined) => {
     [],
   );
   // Create a form
-  const { formValues, setFormValues, setFieldValue, errors, setErrors } =
-    useForm<FormValues>(defaultFormValues);
+  const {
+    formValues,
+    setFormValues,
+    setFieldValue,
+    getDefaultFields,
+    setErrors,
+    handleChange,
+  } = useForm<FormValues>(defaultFormValues);
   // Keep a copy of the form values to reset
   const [originalValues, setOriginalValues] = useState<Image | undefined>(
     undefined,
@@ -123,14 +129,14 @@ const useImageEdit = (id: string | undefined) => {
     if (currentId > 0) {
       fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}`);
     }
-  }, [currentId]);
+  }, [currentId, fetchData]);
 
   // Fetch data when currentAction changes
   useEffect(() => {
     if (currentAction) {
       fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}/${currentAction}`);
     }
-  }, [currentAction]);
+  }, [currentAction, currentId, fetchData]);
 
   // Update the form values when the data changes
   useEffect(() => {
@@ -141,7 +147,7 @@ const useImageEdit = (id: string | undefined) => {
   // Validate  form
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(pageSchema, formValues);
-    setErrors(result.errorFormatted);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
 
@@ -150,7 +156,7 @@ const useImageEdit = (id: string | undefined) => {
     setFormValues(defaultFormValues);
     setIsSaved(true);
     setIsProcessing(false);
-    setErrors(null);
+    setErrors(undefined);
   }, [defaultFormValues, setErrors, setFormValues]);
 
   // Handle form reset
@@ -158,21 +164,8 @@ const useImageEdit = (id: string | undefined) => {
     updateFormValues(originalValues);
     setIsSaved(true);
     setIsProcessing(false);
-    setErrors(null);
+    setErrors(undefined);
   }, [originalValues, setErrors, updateFormValues]);
-
-  // Handle field change
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = event.target;
-      setFormValues((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-      setIsSaved(false);
-    },
-    [setFormValues],
-  );
 
   // Handle save
   const saveItem = useCallback(
@@ -220,32 +213,6 @@ const useImageEdit = (id: string | undefined) => {
     [setFieldValue],
   );
 
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
-
-  const hasError = useCallback(
-    (fieldName: keys) => {
-      return !getFieldErrors(fieldName);
-    },
-    [getFieldErrors],
-  );
-
-  const getStandardTextInputAttributes = useCallback(
-    (fieldName: keys) => {
-      return {
-        id: fieldName,
-        errorText: getFieldErrors(fieldName),
-        hasError: hasError(fieldName),
-        value: formValues[fieldName],
-      };
-    },
-    [getFieldErrors, hasError, formValues],
-  );
-
   const handleChangeImage = useCallback(
     (item: Image | undefined) => {
       setFormValues((prev) => ({
@@ -265,9 +232,7 @@ const useImageEdit = (id: string | undefined) => {
       pageSchema,
       formValues,
       isProcessing,
-      getFieldErrors,
-      getStandardTextInputAttributes,
-      hasError,
+
       setFormValues,
       setFieldValue,
       setId,
@@ -278,15 +243,12 @@ const useImageEdit = (id: string | undefined) => {
       isLoading,
       error,
       isSaved,
-
+      getDefaultFields,
       handleChangeImage,
     }),
     [
       formValues,
       isProcessing,
-      getFieldErrors,
-      getStandardTextInputAttributes,
-      hasError,
       setFormValues,
       setFieldValue,
       setId,
@@ -298,6 +260,7 @@ const useImageEdit = (id: string | undefined) => {
       error,
       isSaved,
       handleChangeImage,
+      getDefaultFields,
     ],
   );
 };

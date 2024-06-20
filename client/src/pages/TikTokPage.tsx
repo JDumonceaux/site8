@@ -1,4 +1,3 @@
-'use client';
 import { Suspense, useDeferredValue, useEffect } from 'react';
 import { Page } from 'types/Page';
 import { ServiceUrl } from 'utils';

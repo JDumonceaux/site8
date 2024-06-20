@@ -4,8 +4,8 @@ import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 
 import { MenuAdd } from 'types';
-import { useForm } from './useForm';
 import { safeParse } from 'utils/zodHelper';
+import { useForm } from './useForm';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -40,7 +40,7 @@ const useMenuEdit = () => {
     isProcessing,
     setIsProcessing,
     setFieldValue,
-    setAllValues,
+    setFormValues,
     setIsSaved,
     setErrors,
     getFieldValue,
@@ -115,7 +115,7 @@ const useMenuEdit = () => {
       isSaved,
       getFieldValue,
       getStandardTextInputAttributes,
-      setAllValues,
+      setFormValues,
       setFieldValue,
       handleChange,
       handleSave,
@@ -129,7 +129,7 @@ const useMenuEdit = () => {
       isSaved,
       getFieldValue,
       getStandardTextInputAttributes,
-      setAllValues,
+      setFormValues,
       setFieldValue,
       handleChange,
       handleSave,

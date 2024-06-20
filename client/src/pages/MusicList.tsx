@@ -1,5 +1,3 @@
-'use client';
-
 import './musicList.css';
 
 import { Meta, PageTitle } from 'components';

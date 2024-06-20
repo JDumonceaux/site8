@@ -100,11 +100,11 @@ export const useFormArray = <T extends IdType>() => {
   );
 
   // const handleClear = useCallback(() => {
-  //   setAllValues(blankFormValues);
+  //   setFormValues(blankFormValues);
   //   setIsSaved(true);
   //   setIsProcessing(false);
   //   setErrors(undefined);
-  // }, [setAllValues, blankFormValues]);
+  // }, [setFormValues, blankFormValues]);
 
   return useMemo(
     () => ({

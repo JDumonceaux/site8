@@ -1,9 +1,8 @@
-import { styled } from 'styled-components';
-
-import { Suspense, lazy } from 'react';
-import { Outlet } from 'react-router-dom';
 import AppSetup from 'components/common/AppSetup/AppSetup';
+import { Suspense, lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { Outlet } from 'react-router-dom';
+import { styled } from 'styled-components';
 const Header = lazy(() => import('components/common/Header/Header'));
 const Snackbar = lazy(() => import('components/common/Snackbar/Snackbar'));
 

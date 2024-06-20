@@ -1,11 +1,10 @@
-'use client';
 import { useDeferredValue, useEffect } from 'react';
 
-import { useAxios } from 'hooks/Axios';
-import { ServiceUrl } from 'utils';
-import { Photos } from 'types';
-import { Meta, PageTitle, LoadingWrapper } from 'components';
+import { LoadingWrapper, Meta, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import { useAxios } from 'hooks/Axios';
+import { Photos } from 'types';
+import { ServiceUrl } from 'utils';
 
 const PhotoPage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useAxios<Photos>();

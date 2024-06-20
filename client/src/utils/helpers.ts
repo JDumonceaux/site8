@@ -1,10 +1,8 @@
-export const getURLPath = (url: string, segment: number) => {
-  if (url) {
-    return url.split('/').length > segment
-      ? url.split('/')[segment]
-      : undefined;
+export const getURLPath = (url: string) => {
+  if (!url) {
+    return undefined;
   }
-  return undefined;
+  return url.split('/').slice(1);
 };
 
 // Convert the parent array to a string

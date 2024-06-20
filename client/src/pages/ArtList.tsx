@@ -1,4 +1,3 @@
-'use client';
 import { Meta, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 

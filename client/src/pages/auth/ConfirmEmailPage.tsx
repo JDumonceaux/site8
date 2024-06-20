@@ -1,54 +1,55 @@
-import { useCallback } from 'react';
 import useAuth from 'hooks/useAuth';
-import { z } from 'zod';
+import { useCallback, useMemo } from 'react';
 import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 
 import { Meta } from 'components';
 import { Button2 } from 'components/form';
 
 import { useForm } from 'hooks/useForm';
 
+import { EmailField, TextInput } from 'components/form/input';
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
 import { authCode } from './ZodStrings';
-import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
-import { TextInput } from 'components/ui/Form/Input/TextInput';
 
 // Define Zod Shape
-const pageSchema = z.object({
+const schema = z.object({
   emailAddress: z.string().trim(),
   authenticationCode: authCode,
 });
 
 export const ConfirmEmailPage = (): JSX.Element => {
   const title = 'Confirmation';
+
   const { authConfirmSignUp, authResendConfirmationCode, isLoading, error } =
     useAuth();
-  type FormValues = { emailAddress: string; authenticationCode: string };
 
-  const { formValues, setFormValues, errors, setErrors } = useForm<FormValues>({
-    emailAddress: '',
-    authenticationCode: '',
-  });
-
+  type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
 
-  const hasError = (fieldName: keys) => {
-    return !getFieldErrors(fieldName);
-  };
+  const initialFormValues: FormValues = useMemo(
+    () => ({
+      emailAddress: '',
+      authenticationCode: '',
+    }),
+    [],
+  );
+
+  const {
+    formValues,
+    getFieldErrors,
+    hasError,
+    setErrors,
+    handleChange,
+    getDefaultFields,
+  } = useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
-    const result = safeParse<FormValues>(pageSchema, formValues);
-    setErrors(result.errorFormatted);
+    const result = safeParse<FormValues>(schema, formValues);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {
@@ -72,16 +73,6 @@ export const ConfirmEmailPage = (): JSX.Element => {
       formValues.authenticationCode,
     ],
   );
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const handleResend = useCallback(async () => {
     try {
@@ -119,7 +110,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
             required
             spellCheck="false"
             type="email"
-            {...getStandardTextInputAttributes('emailAddress')}
+            {...getDefaultFields('emailAddress')}
           />
           <TextInput
             autoComplete="one-time-code"

@@ -1,10 +1,11 @@
-export function getRequestIdAsNumeric(value: string | undefined) {
+export function parseRequestId(value: string | undefined) {
   let isValid = false;
-  let id = 0;
+  let id: number | undefined;
 
   if (value) {
     id = parseInt(value);
-    isValid = !(isNaN(id) || id === 0);
+    isValid = !Number.isNaN(id) && id !== 0;
   }
+
   return { isValid, id };
 }

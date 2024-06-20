@@ -1,20 +1,20 @@
 import { Meta } from 'components';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useId, useMemo } from 'react';
 
 import { Button2 } from 'components/form';
 
 import useAuth from 'hooks/useAuth';
-import { z } from 'zod';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
 
+import { PasswordField } from '@aws-amplify/ui-react';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { EmailField } from 'components/form/input';
 import { emailAddress, password } from './ZodStrings';
-import { StyledLink } from 'components/ui/Form/StyledLink';
-import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
-import { PasswordField } from 'components/ui/Form/Input/PasswordField';
 
 // Define Zod Shape
 const schema = z.object({
@@ -24,11 +24,13 @@ const schema = z.object({
 
 export const SigninPage = (): JSX.Element => {
   const title = 'Sign-In';
-
-  const { authSignIn, isLoading, error } = useAuth();
+  const compId = useId();
 
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
+
+  const { authSignIn, isLoading, error } = useAuth();
+
   const defaultFormValues: FormValues = useMemo(
     () => ({
       emailAddress: '',
@@ -36,12 +38,18 @@ export const SigninPage = (): JSX.Element => {
     }),
     [],
   );
-  const { formValues, setFormValues, errors, setErrors } =
-    useForm<FormValues>(defaultFormValues);
+
+  const {
+    formValues,
+    getDefaultPasswordFields,
+    setErrors,
+    handleChange,
+    getDefaultFields,
+  } = useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.errorFormatted);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
 
@@ -58,36 +66,6 @@ export const SigninPage = (): JSX.Element => {
     },
     [validateForm, authSignIn, formValues],
   );
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const hasError = (fieldName: keys) => {
-    return !getFieldErrors(fieldName);
-  };
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
-
-  const getStandardTextInputAttributes = (fieldName: keys) => {
-    return {
-      id: fieldName,
-      errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
-      value: formValues[fieldName],
-    };
-  };
 
   return (
     <>
@@ -112,19 +90,14 @@ export const SigninPage = (): JSX.Element => {
             required
             spellCheck="false"
             type="email"
-            {...getStandardTextInputAttributes('emailAddress')}
+            {...getDefaultFields('emailAddress' as keys)}
           />
           <PasswordField
             autoComplete="current-password"
-            errorTextShort="Please enter a password"
-            inputMode="text"
+            //   errorTextShort="Please enter a password"
             label="Password"
-            maxLength={60}
-            onChange={handleChange}
             placeholder="Enter Password"
-            required
-            type="password"
-            {...getStandardTextInputAttributes('password')}
+            {...getDefaultPasswordFields('password' as keys, compId)}
           />
           <Button2 id="login" type="submit" variant="secondary">
             {isLoading ? 'Processing' : 'Submit'}

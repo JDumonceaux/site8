@@ -1,0 +1,128 @@
+Run a Lighthouse Report in Chrome
+
+1. You want to run and resolve this report for multiple pages in your application (every page?)   If time or cost are constraints, then focus on your first page and your most used.  In my case, I have a couple of components that represent most of the content - so I'll focus on those.
+
+2. Some of these metrics are useful in a development environment, but, generally, they have more meaning in a production build.  
+
+To run a production build in Vite, 
+npm run build
+npm run preview
+
+
+<h2>Metrics</h2>
+
+<table>
+<tr><th>Measurement</th><th>Target</th><th>Actual</th></tr>
+<tr><th>First Contentful Paint</th><th>Green:  0–1.8s  Orange: 1.8–3s  Red: over 3s</th><th>12.5s</th></tr>
+<tr><th>Largest Contentful Paint</th><th>Green: 0-2.5s  Orange: 2.5-4s  Red: over 4s</th><th>26.0s</th></tr>
+<tr><th>Total Blocking Time</th><th>Green: 0–200ms Orange: 200-600ms  Red: over 600ms</th><th>30.0ms</th></tr>
+<tr><th>Cumulative Layout Shift</th><th>Green:  0.1  Orange: 0.1 - .25  Red: over .25</th><th>0.016</th></tr>
+<tr><th>Speed Index</th><th>Green:  0–3.4s  Orange: 3.4–5.8s  Red: over 5.8s</th><th>16.3s</th></tr>
+</table>
+
+
+<a href="https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint">First Contentful Paint</a>
+<a href="https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint">Largest Contentful Paint</a>
+<a href="https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time">Total Blocking Time</a>
+<a href="https://web.dev/articles/cls?utm_source=lighthouse&utm_medium=devtools">Cumulative Layout Shift</a>
+<a href="https://developer.chrome.com/docs/lighthouse/performance/speed-index">Speed Index</a>
+
+
+<h2>Diagnostics</h2>
+
+<h3>a. Largest Contentful Paint element</h3>
+
+<h3>b. Minimize main-thread work<h3> 
+
+<h3>c. Enable Text Compression</h3>
+
+<h3>d. Minify Javascript</h3>
+
+<h3>e. Reduce unused JavaScript</h3>
+
+<h3>f. Eliminate render-blocking resources</h3>
+
+<h3>g. Preconnect to required origins </h3>
+
+<h3>h. Page prevented back/forward cache restoration </h3>
+
+<h3>i. Remove duplicate modules in JavaScript bundles</h3>
+
+<h3>j. Avoid enormous network payloads</h3>
+
+<h3>k. Avoid large layout shifts</h3>
+
+<h3>l. JavaScript execution time</h3>
+
+<h3>m. Avoid long main-thread tasks</h3>
+
+<h3>n. User Timing marks and measures</h3>
+
+<h3>o. Avoid non-composited animations </h3>
+
+<h3>p. Initial server response time was short</h3>
+
+<h3>q. Avoids an excessive DOM size</h3>
+
+<h3>r. Avoid chaining critical requests</h3>
+
+<h3>s. Minimize third-party usage</h3>
+
+
+<h2>Passed Audits</h2>
+
+<h3>a. Properly size images</h3>
+
+<h3>b. Defer offscreen images<h3> 
+
+<h3>c. Minify CSS</h3>
+
+<h3>d. Reduce unused CSS</h3>
+
+<h3>e. Efficiently encode images</h3>
+
+<h3>f. Serve images in next-gen formats</h3>
+
+<h3>g. Avoid multiple page redirects</h3>
+
+<h3>h. Preload key requests</h3>
+
+<h3>i. Use HTTP/2</h3>
+
+<h3>j. Use video formats for animated content</h3>
+
+<h3>k. Avoid serving legacy JavaScript to modern browsers</h3>
+
+<h3>l. Preload Largest Contentful Paint image</h3>
+
+<h3>m. Uses efficient cache policy on static assets</h3>
+
+<h3>n. All text remains visible during webfont loads</h3>
+
+<h3>o. Lazy load third-party resources with facades</h3>
+
+<h3>p. Largest Contentful Paint image was not lazily loaded</h3>
+
+<h3>q. Uses passive listeners to improve scrolling performance</h3>
+
+<h3>r. Avoids document.write()</h3>
+
+<h3>s. Image elements have explicit width and height</h3>
+
+<h3>t. Has a <meta name="viewport"> tag with width or initial-scale</h3>
+
+
+<h2>Accessibility</h2>
+
+
+<h2>Best Practices</h2>
+
+<h2>SEO</h2>
+
+
+<h2>PWA</h2>
+
+
+
+
+

@@ -1,3 +1,4 @@
+import { ErrorPage } from 'pages/ErrorPage';
 import { lazy } from 'react';
 import {
   createBrowserRouter,
@@ -5,19 +6,15 @@ import {
   Route,
   RouterProvider as Router,
 } from 'react-router-dom';
-
 import ProtectedRoute from './ProtectedRoute';
-import AuthLayout from 'pages/Layouts/AuthLayout/AuthLayout';
-import HomeLayout from 'pages/Layouts/HomeLayout/HomeLayout';
-import MainLayout from 'pages/Layouts/MainLayout/MainLayout';
-import { ErrorPage } from 'pages/ErrorPage';
-
+const AuthLayout = lazy(() => import('pages/Layouts/AuthLayout/AuthLayout'));
+const HomeLayout = lazy(() => import('pages/Layouts/HomeLayout/HomeLayout'));
+const MainLayout = lazy(() => import('pages/Layouts/MainLayout/MainLayout'));
 const GenericPage = lazy(() => import('pages/GenericPage'));
 const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
 const ImageEditPage = lazy(() => import('pages/ImageEditPage'));
 const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFoundPage'));
-
 const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
 const PageEditPage = lazy(() => import('pages/PageEditPage'));
 const PagesPage = lazy(() => import('pages/PagesPage'));
@@ -26,6 +23,7 @@ const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
 const Sitemap = lazy(() => import('pages/SitemapPage'));
 const TikTokPage = lazy(() => import('pages/TikTokPage'));
 const YachtsPage = lazy(() => import('pages/YachtsPage'));
+const TestsPage = lazy(() => import('pages/TestsPage'));
 // Site Pages
 const TermsOfUsePage = lazy(() => import('pages/site/TermsOfUsePage'));
 const CookiesUsePage = lazy(() => import('pages/site/CookiesUsePage'));
@@ -78,6 +76,11 @@ const router = createBrowserRouter(
 
         <Route element={<MainLayout />}>
           <Route element={<GenericPage />} path="/:lang?/web/*" />
+        </Route>
+
+        {/* Test Grid */}
+        <Route element={<MainLayout />}>
+          <Route element={<TestsPage />} path="/react/testing/test-grid" />
         </Route>
 
         {/* ADMIN */}

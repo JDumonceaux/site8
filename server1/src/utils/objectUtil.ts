@@ -8,15 +8,11 @@ export function removeEmptyAttributes<T>(obj: T | any): T | any {
   );
   for (const k in temp) {
     const x = temp[k];
-    if (typeof x === 'string') {
-      if (x.trim() === '') {
-        delete temp[k];
-      }
+    if (typeof x === 'string' && x.trim() === '') {
+      delete temp[k];
     }
-    if (Array.isArray(x)) {
-      if (x.length === 0) {
-        delete temp[k];
-      }
+    if (Array.isArray(x) && x.length === 0) {
+      delete temp[k];
     }
   }
   return temp;
@@ -26,14 +22,10 @@ export function removeEmptyAttributes<T>(obj: T | any): T | any {
 export function sortObjectKeys<T>(obj: T | any): T | any {
   const sortedKeys: string[] = Object.keys(obj).sort();
 
-  const sortedObject: Record<string, number> = sortedKeys.reduce(
-    (acc: Record<string, number>, key: string) => {
-      acc[key] = obj[key];
-      return acc;
-    },
-    {},
-  );
-  return sortedObject;
+  return sortedKeys.reduce((acc: Record<string, number>, key: string) => {
+    acc[key] = obj[key];
+    return acc;
+  }, {});
 }
 
 export type CleanupType = {

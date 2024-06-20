@@ -1,4 +1,3 @@
-'use client';
 import { Meta } from 'components';
 import { styled } from 'styled-components';
 

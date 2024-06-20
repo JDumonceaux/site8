@@ -3,7 +3,10 @@ type IconProps = {
   readonly focusable?: boolean;
 };
 
-const CloseIcon = ({ ariaHidden = false, focusable = true }: IconProps) => {
+export const CloseIcon = ({
+  ariaHidden = false,
+  focusable = true,
+}: IconProps) => {
   return (
     <svg
       aria-hidden={ariaHidden}
@@ -17,5 +20,3 @@ const CloseIcon = ({ ariaHidden = false, focusable = true }: IconProps) => {
     </svg>
   );
 };
-
-export default CloseIcon;

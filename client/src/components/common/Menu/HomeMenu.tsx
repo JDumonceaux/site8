@@ -1,19 +1,18 @@
 import React, { useCallback } from 'react';
 import { styled } from 'styled-components';
 
-import useMenu from 'hooks/useMenu';
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
-import { MenuEntry } from 'types/MenuEntry';
+import useMenu from 'hooks/useMenu';
+import { MenuItem } from 'types/MenuItem';
 
 export const HomeMenu = (): JSX.Element => {
   const { data } = useMenu();
 
   const renderWrapper = useCallback(
     (
-      itemType: 'menu' | 'page',
+      itemType: 'menu' | 'page' | 'root',
       id: number,
       toComplete: string,
-      url: string,
       level: number,
       children: React.ReactNode,
     ): JSX.Element | null => {
@@ -37,7 +36,7 @@ export const HomeMenu = (): JSX.Element => {
   );
 
   const renderItem = useCallback(
-    (item: MenuEntry | undefined, level: number): JSX.Element | null => {
+    (item: MenuItem | undefined, level: number): JSX.Element | null => {
       if (!item) {
         return null;
       }
@@ -47,7 +46,6 @@ export const HomeMenu = (): JSX.Element => {
           item.type,
           item.id,
           item.toComplete ?? '',
-          item.url ?? '',
           level,
           item.name,
         );

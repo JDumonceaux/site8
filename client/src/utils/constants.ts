@@ -49,7 +49,7 @@ export enum ServiceUrl {
   ENDPOINT_PAGE_CONTENT = `${API_ROOT}/page/content`,
   ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
   ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
-  ENDPOINT_TESTGRID = `${API_ROOT}/testgrid`,
+  ENDPOINT_TESTS = `${API_ROOT}/tests`,
 }
 
 export const REQUIRED_FIELD = 'Required Field';

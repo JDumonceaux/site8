@@ -1,15 +1,14 @@
-import { useCallback } from 'react';
 import { Meta } from 'components';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { Button2 } from 'components/form';
-
-import { z } from 'zod';
-import { safeParse } from 'utils/zodHelper';
+import { TextInput } from 'components/form/input';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
+import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
+import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 import { AuthContainer } from './AuthContainer';
-import { StyledLink } from 'components/ui/Form/StyledLink';
-import { TextInput } from 'components/form/input';
 
 // Define Zod Shape
 const schema = z.object({
@@ -25,26 +24,22 @@ export const DeleteAccountPage = (): JSX.Element => {
     deleteCode?: string;
   };
   type keys = keyof FormValues;
-  const { formValues, setFormValues, errors, setErrors } = useForm<FormValues>({
-    deleteCode: '',
-  });
 
-  const hasError = (fieldName: keys) => {
-    return !getFieldErrors(fieldName);
-  };
+  const initialFormValues: FormValues = useMemo(
+    () => ({
+      deleteCode: '',
+    }),
+    [],
+  );
+
+  const { formValues, getFieldErrors, hasError, setErrors, handleChange } =
+    useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.errorFormatted);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {
@@ -59,16 +54,6 @@ export const DeleteAccountPage = (): JSX.Element => {
     },
     [validateForm, authDeleteUser],
   );
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const getStandardTextInputAttributes = (fieldName: keys) => {
     return {

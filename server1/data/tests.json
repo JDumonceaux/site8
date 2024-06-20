@@ -274,6 +274,12 @@
       "result": "",
       "comment": "",
       "help": ""
+    },
+    {
+      "seq": 100,
+      "id": 501,
+      "type": "action",
+      "text": "Lighthouse - Run tests"
     }
   ]
 }

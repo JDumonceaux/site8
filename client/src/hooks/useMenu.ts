@@ -34,11 +34,30 @@ const useMenu = () => {
     [data],
   );
 
+  const getOtherMenus = useCallback(
+    (id: number | undefined) => {
+      if (!id) {
+        return undefined;
+      }
+      // Get the current menu
+      const currItem = data?.items?.find((x) => x.id === id);
+      if (!currItem) {
+        return data?.items;
+      }
+      // Get the parent menu (i.e. Root menu)
+      const parentItem = data?.items?.find((x) => x.id === currItem.parentId);
+      // Return the other menus
+      return parentItem?.items?.filter((x) => x.id !== id);
+    },
+    [data],
+  );
+
   return {
-    data,
+    data: data,
     isLoading,
     error,
     getMenu,
+    getOtherMenus,
     fetchData: dispatchFetchMenu,
   };
 };

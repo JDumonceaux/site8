@@ -1,17 +1,17 @@
-import { useCallback, useMemo } from 'react';
 import { Meta } from 'components';
 import { Button2 } from 'components/form';
+import { useCallback, useMemo } from 'react';
 
 import useAuth from 'hooks/useAuth';
-import { z } from 'zod';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 
-import { AuthContainer } from './AuthContainer';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { EmailField } from 'components/form/input';
 import { styled } from 'styled-components';
+import { AuthContainer } from './AuthContainer';
 import { emailAddress, password } from './ZodStrings';
-import { StyledLink } from 'components/ui/Form/StyledLink';
-import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
 
 // Define Zod Shape
 const schema = z.object({
@@ -22,10 +22,11 @@ const schema = z.object({
 export const ForgotPasswordPage = (): JSX.Element => {
   const title = 'Forgot Password';
 
-  const { authResetPassword, isLoading, error } = useAuth();
-
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
+
+  const { authResetPassword, isLoading, error } = useAuth();
+
   const defaultFormValues: FormValues = useMemo(
     () => ({
       emailAddress: '',
@@ -33,12 +34,13 @@ export const ForgotPasswordPage = (): JSX.Element => {
     }),
     [],
   );
-  const { formValues, setFormValues, errors, setErrors } =
+
+  const { formValues, setErrors, handleChange, getDefaultFields } =
     useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.errorFormatted);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
 
@@ -55,36 +57,6 @@ export const ForgotPasswordPage = (): JSX.Element => {
     },
     [validateForm, authResetPassword, formValues.emailAddress],
   );
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const hasError = (fieldName: keys) => {
-    return !getFieldErrors(fieldName);
-  };
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
-
-  const getStandardTextInputAttributes = (fieldName: keys) => {
-    return {
-      id: fieldName,
-      errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
-      value: formValues[fieldName],
-    };
-  };
 
   return (
     <>
@@ -109,7 +81,7 @@ export const ForgotPasswordPage = (): JSX.Element => {
             required
             spellCheck="false"
             type="email"
-            {...getStandardTextInputAttributes('emailAddress')}
+            {...getDefaultFields('emailAddress' as keys)}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your

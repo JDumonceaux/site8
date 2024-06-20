@@ -1,4 +1,3 @@
-'use client';
 import { LoadingWrapper, Meta, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { BookmarkTags } from 'components/custom/BookmarksTags';

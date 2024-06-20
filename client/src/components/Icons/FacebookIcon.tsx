@@ -3,7 +3,7 @@ type IconProps = {
   readonly focusable?: boolean;
 };
 
-export const Facebook = ({
+export const FacebookIcon = ({
   ariaHidden = false,
   focusable = true,
 }: IconProps) => {

@@ -1,4 +1,3 @@
-'use client';
 import { RenderCode } from 'components';
 //import DOMPurify from 'dompurify';
 import parse, { Element, domToReact } from 'html-react-parser';

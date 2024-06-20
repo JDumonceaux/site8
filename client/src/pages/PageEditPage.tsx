@@ -1,4 +1,3 @@
-'use client';
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { ModalProcessing } from 'components/common/ModalProcessing';

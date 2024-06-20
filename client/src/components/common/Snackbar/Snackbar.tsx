@@ -1,9 +1,9 @@
-import { useCallback } from 'react';
-import useSnackbar from 'hooks/useSnackbar';
-import { SnackbarVariant } from 'types';
-import { styled } from 'styled-components';
 import { IconButton } from 'components/form/IconButton';
-import CloseIcon from 'components/Icons/CloseIcon';
+import { CloseIcon } from 'components/icons/CloseIcon';
+import useSnackbar from 'hooks/useSnackbar';
+import { useCallback } from 'react';
+import { styled } from 'styled-components';
+import { SnackbarVariant } from 'types';
 
 type SnackbarProps = {
   readonly variant?: SnackbarVariant;

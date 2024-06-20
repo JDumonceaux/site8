@@ -8,6 +8,7 @@ export const enum Responses {
   SUCCESS = 'Success',
   INVALID_ID = 'Invalid Id',
   INVALID_PARAM = 'Invalid Parementer',
+  NOT_FOUND = 'Not Found',
 }
 
 export enum PreferHeader {

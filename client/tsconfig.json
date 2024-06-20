@@ -27,7 +27,6 @@
     "noUnusedParameters": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
-
     "baseUrl": "src"
   },
   // Allow absolute imports from the `src` directory

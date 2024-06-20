@@ -1,7 +1,5 @@
-'use client';
-
-import { Copy } from 'components/Icons/Copy';
 import { IconButton } from 'components/form/IconButton/IconButton';
+import { CopyIcon } from 'components/icons/CopyIcon';
 import React, { useRef } from 'react';
 import { styled } from 'styled-components';
 
@@ -58,7 +56,7 @@ export const RenderCode = ({ children }: RenderCodeProps) => {
         <div>JavaScript</div>
         <div>
           <IconButton aria-label="Copy" id="copy" onClick={handleCopy}>
-            <Copy ariaHidden focusable={false} />
+            <CopyIcon ariaHidden focusable={false} />
           </IconButton>
         </div>
       </StyledHeader>

@@ -3,7 +3,10 @@ type IconProps = {
   readonly focusable?: boolean;
 };
 
-export const Copy = ({ ariaHidden = false, focusable = true }: IconProps) => {
+export const CopyIcon = ({
+  ariaHidden = false,
+  focusable = true,
+}: IconProps) => {
   return (
     <svg
       aria-hidden={ariaHidden}

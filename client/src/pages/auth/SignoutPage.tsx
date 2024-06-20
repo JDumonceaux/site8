@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from 'react';
 import { Meta } from 'components';
 import { Button2 } from 'components/form';
 import useAuth from 'hooks/useAuth';
+import { useCallback, useEffect } from 'react';
 
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
-import { StyledLink } from 'components/ui/Form/StyledLink';
 
 export const SignOutpPage = (): JSX.Element => {
   const title = 'Sign-Out';
@@ -15,7 +15,6 @@ export const SignOutpPage = (): JSX.Element => {
 
   useEffect(() => {
     authFetchAuthSession();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = useCallback(

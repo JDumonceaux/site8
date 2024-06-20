@@ -23,13 +23,6 @@ export const useForm = <T>(initialValues: T) => {
     [setFormValues],
   );
 
-  const setAllValues = useCallback(
-    (value: T) => {
-      setFormValues(value);
-    },
-    [setFormValues],
-  );
-
   const getFieldValue = useCallback(
     (fieldName: keys): string => {
       return formValues[fieldName] as string;
@@ -67,18 +60,46 @@ export const useForm = <T>(initialValues: T) => {
   );
 
   const handleClear = useCallback(() => {
-    setAllValues(blankFormValues);
+    setFormValues(blankFormValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [setAllValues, blankFormValues]);
+  }, [setFormValues, blankFormValues]);
 
   const handleReset = useCallback(() => {
-    setAllValues(initialFormValues);
+    setFormValues(initialFormValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [initialFormValues, setAllValues]);
+  }, [initialFormValues, setFormValues]);
+
+  const getDefaultFields = useCallback(
+    (fieldName: keys) => {
+      return {
+        id: `${fieldName as string}`,
+        errorText: getFieldErrors(fieldName),
+        hasError: hasError(fieldName),
+        value: formValues[fieldName],
+      };
+    },
+    [getFieldErrors, hasError, formValues],
+  );
+
+  const getDefaultPasswordFields = useCallback(
+    (fieldName: keys, id: string) => {
+      return {
+        id: `${fieldName as string} - ${id}`,
+        errorText: getFieldErrors(fieldName),
+        hasError: hasError(fieldName),
+        value: formValues[fieldName],
+        maxLength: 60,
+        onChange: handleChange,
+        required: true,
+        showCounter: true,
+      };
+    },
+    [getFieldErrors, hasError, formValues, handleChange],
+  );
 
   return useMemo(
     () => ({
@@ -89,6 +110,7 @@ export const useForm = <T>(initialValues: T) => {
       hasError,
       isFormValid,
       getFieldErrors,
+      getDefaultFields,
       setIsProcessing,
       handleChange,
       handleClear,
@@ -97,9 +119,10 @@ export const useForm = <T>(initialValues: T) => {
       setIsSaved,
       setErrors,
       setFieldValue,
-      setAllValues,
+      setFormValues,
       setInitialFormValues,
       setBlankFormValues,
+      getDefaultPasswordFields,
     }),
     [
       formValues,
@@ -109,12 +132,14 @@ export const useForm = <T>(initialValues: T) => {
       hasError,
       isFormValid,
       getFieldErrors,
+      getDefaultFields,
       handleChange,
       handleClear,
       handleReset,
       getFieldValue,
       setFieldValue,
-      setAllValues,
+      setFormValues,
+      getDefaultPasswordFields,
     ],
   );
 };

@@ -1,12 +1,12 @@
 import { readFile, writeFile } from 'fs/promises';
+import { z } from 'zod';
+import { MenuAdd } from '../types/MenuAdd.js';
+import { MenuEdit } from '../types/MenuEdit.js';
+import { Page } from '../types/Page.js';
+import { Pages } from '../types/Pages.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-import { Pages } from '../types/Pages.js';
-import { Page } from '../types/Page.js';
 import { cleanUpData, getNextId } from '../utils/objectUtil.js';
-import { MenuEdit } from '../types/MenuEdit.js';
-import { MenuAdd } from '../types/MenuAdd.js';
-import { z } from 'zod';
 import { safeParse } from '../utils/zodHelper.js';
 
 const menuAddSchema = z
@@ -56,6 +56,7 @@ export class PagesService {
     }
   }
 
+  // Get the next id for the record
   public async getNextId(): Promise<number | undefined> {
     Logger.info(`PagesService: getNextId -> `);
 
@@ -68,6 +69,7 @@ export class PagesService {
     }
   }
 
+  // Write to file
   public async writeFile(data: Pages): Promise<boolean> {
     Logger.info(`PagesService: writeFile -> `);
 
@@ -82,6 +84,7 @@ export class PagesService {
     }
   }
 
+  // Add item
   public async addItem(item: MenuAdd): Promise<void> {
     Logger.info(`PagesService: addItem ->`);
 
@@ -98,7 +101,6 @@ export class PagesService {
         parentId: undefined,
         seq: 0,
       };
-
       // Remove undefined values and sort
       const newItem = cleanUpData<Page>(itemToAdd);
       // Validate data
@@ -107,10 +109,13 @@ export class PagesService {
         throw new Error(`addItem -> ${result.error}`);
       }
 
+      // Take out text element
+      const { text, ...rest } = newItem;
+
       // Add
       const newData: Pages = {
         ...pages,
-        items: [...pages.items, newItem],
+        items: [...pages.items, { ...rest }],
       };
       // Write to file
       await this.writeFile(newData);
@@ -121,6 +126,7 @@ export class PagesService {
     }
   }
 
+  // ?
   private getUpdatedItem(
     item: MenuEdit | undefined,
     foundItem: Page | undefined,
@@ -131,7 +137,6 @@ export class PagesService {
       if (!foundItem || !item) {
         return undefined;
       }
-
       let newParent: { readonly id: number; readonly seq: number }[] = [];
       if (foundItem.parent) {
         newParent = foundItem.parent.map((x) => {
@@ -159,6 +164,7 @@ export class PagesService {
     }
   }
 
+  // Update multiple items in pagesIndex.json
   public async updateItems(items: ReadonlyArray<MenuEdit>): Promise<void> {
     Logger.info(`PagesService: updateItems ->`);
 
@@ -185,6 +191,7 @@ export class PagesService {
     }
   }
 
+  // Standardize all entries in pagesIndex.json
   public async fixAllEntries(): Promise<any> {
     Logger.info(`PagesService: fixAllEntries -> `);
 
@@ -207,6 +214,7 @@ export class PagesService {
     }
   }
 
+  // List duplicates Ids
   public async listDuplicates(): Promise<any> {
     Logger.info(`PagesService: listDuplicates -> `);
 

@@ -1,11 +1,8 @@
-'use client';
-
+import { Suspense, lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { styled } from 'styled-components';
-
-import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from 'components';
+import { styled } from 'styled-components';
+const Header = lazy(() => import('components/common/Header/Header'));
 
 export const AuthLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>

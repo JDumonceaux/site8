@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
 
-import { Logger } from '../utils/Logger.js';
-import { PreferHeader, Responses, Errors } from '../utils/Constants.js';
-import { Image } from '../types/Image.js';
 import { ImageService } from '../services/ImageService.js';
 import { ImagesService } from '../services/ImagesService.js';
-import { getRequestIdAsNumeric } from '../utils/helperUtils.js';
+import { Image } from '../types/Image.js';
+import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
+import { Logger } from '../utils/Logger.js';
+import { parseRequestId } from '../utils/helperUtils.js';
 
 export const imageRouter = express.Router();
 
@@ -13,14 +13,17 @@ imageRouter.get('/:id', async (req: Request, res: Response) => {
   Logger.info(`imageRouter: get Id->`);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
-    if (!isValid) {
+    const { id, isValid } = parseRequestId(req.params.id);
+    if (!isValid || !id) {
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
 
     const images = await new ImagesService().getItems();
     const ret = images?.items?.find((x) => x.id === id);
-    res.json(ret);
+    if (!ret) {
+      return res.status(404).json({ message: Responses.NOT_FOUND });
+    }
+    res.status(200).json(ret);
   } catch (error) {
     Logger.error(`imageRouter: get -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
@@ -31,8 +34,8 @@ imageRouter.get('/:id/:action', async (req: Request, res: Response) => {
   Logger.info(`imageRouter: get Id Action ->`);
 
   try {
-    const { id, isValid } = getRequestIdAsNumeric(req.params.id);
-    if (!isValid) {
+    const { id, isValid } = parseRequestId(req.params.id);
+    if (!isValid || !id) {
       return res.status(400).json({ error: Responses.INVALID_ID });
     }
 

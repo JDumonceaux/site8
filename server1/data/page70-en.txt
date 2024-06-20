@@ -1,0 +1,116 @@
+<h2>Summary</h2>
+npm run build
+npx vite-bundle-visualizer
+
+<h2>Vite</h2>
+Vite uses Rollup to build the code for release.  
+
+<pre><code>
+  "scripts": {
+    "build": "tsc && vite build",
+  },
+</code></pre>
+
+npm run build 
+
+You can use npx vite-bundle-visualizer as a replacement for webpack-bundle-analyzer with Vite.  This uses the rollup-plugin-visualizer.  
+
+<a href="https://www.npmjs.com/package/vite-bundle-visualizer">vite-bundle-visualizer</a>
+
+
+Add Rollup Plugin Visualizer
+
+npm install --save-dev rollup-plugin-visualizer
+
+Add to vite.config.ts
+<pre><code>
+import { visualizer } from 'rollup-plugin-visualizer'
+import { defineConfig, type PluginOption } from 'vite';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [tsconfigPaths(), visualizer() as PluginOption],
+  },
+});
+</code></pre>
+
+npm run build
+
+
+Add Rollup Plugin Analyzer
+
+This installs the rollup-plugin analyzer
+<pre><code>
+  "devDependencies": {
+    "rollup-plugin-analyzer": "^4.0.0",
+  },
+</code></pre>
+
+In the vite.config.js file, add
+<pre><code>
+import analyze from 'rollup-plugin-analyzer';
+  build: {
+    ...
+    rollupOptions: {
+      plugins: [analyze()],
+    },
+  },
+</code></pre>
+
+Treemap:  npx vite-bundle-visualizer
+Treemap:  npx vite-bundle-visualizer -t treemap
+List: npx vite-bundle-visualizer -t list
+Sunburst: npx vite-bundle-visualizer -t sunburst
+Network:  npx vite-bundle-visualizer -t network
+Raw Data: npx vite-bundle-visualizer -t raw-data
+
+
+<h2>React - Create React App</h2>
+With the "traditional" CRA, it uses webpack to bundle the code for production release.  As part of this process, npm run build should generate a /build/stats.json file.  
+
+npm run build
+
+With webpack-bundle-analyzer, you can get a graphical presentation of the stats.json file and analyze your bundles.
+
+npm i -D webpack-bundle-analyzer
+
+
+See <a href="https://www.debugbear.com/blog/webpack-bundle-analyzer">Using the Bundle Analyzer to improve your app's performance</a>
+
+In the project root directory, create a file called analyzer.js
+<pre><code>
+const webpack = require('webpack');
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpackConfigProd = require('react-scripts/config/webpack.config')(
+  'production'
+);
+
+webpackConfigProd.plugins.push(new BundleAnalyzerPlugin());
+
+webpack(webpackConfigProd, (err, stats) => {
+  if (err || stats.hasErrors()) {
+    console.error(err);
+  }
+});
+</code></pre>
+
+Run the following command to start the Webpack analyzer:
+<em>npm run analyze</em>
+
+You can add a command to your scripts to open this file.  (not confirmed)
+<pre><code>
+  "scripts": {
+    "stats": "webpack-bundle-analyzer build/stats.json"
+  },
+</code></pre>
+
+npm run stats
+
+You may need to add a devDependency
+<pre><code>
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.10.2"
+  },
+</code></pre>
+

@@ -1,5 +1,5 @@
-import Password from 'components/svg/Password';
-import PasswordHide from 'components/svg/PasswordHide';
+import { IconVisibility } from 'components/icons/IconVisibility';
+import { IconVisibilityOff } from 'components/icons/IconVisibilityOff';
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import { Tooltip } from '../Tooltip/Tooltip';
@@ -19,11 +19,7 @@ export const EndAdornment = ({ onClick }: EndAdornmentProps): JSX.Element => {
   return (
     <StyledButton onClick={handleClick} type="button">
       <Tooltip text={show ? 'Hide password' : 'Show password'}>
-        {show ? (
-          <Password fillColor="#6e6e6e" />
-        ) : (
-          <PasswordHide fillColor="#6e6e6e" />
-        )}
+        {show ? <IconVisibility /> : <IconVisibilityOff />}
       </Tooltip>
     </StyledButton>
   );

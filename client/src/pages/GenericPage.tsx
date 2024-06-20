@@ -1,5 +1,3 @@
-'use client';
-
 import { LoadingWrapper, Meta, PageTitle, RenderHtml } from 'components';
 import Fallback from 'components/common/Fallback/Fallback';
 import StyledMain from 'components/common/StyledMain/StyledMain';

@@ -1,34 +1,24 @@
-import fs from 'fs';
 import { readFile } from 'fs/promises';
-import path from 'path';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
 
 export class FileService {
-  private fileName = '';
-  private filePath = '';
-  private ROOT = '/data';
+  // private ROOT = '/data';
 
-  constructor(fileName: string) {
-    this.fileName = fileName;
-    this.filePath = getFilePath(this.fileName);
-  }
-
-  public async getFile(): Promise<string | undefined> {
-    Logger.info(`FileService: getFile -> `);
+  public async getFile(fileName: string): Promise<string | undefined> {
+    Logger.info(`FileService: getFile -> ${fileName}`);
 
     try {
+      const filePath = getFilePath(fileName);
       // GOOD: Verify that the file path is under the root directory
-      const tempFilePath = fs.realpathSync(
-        path.resolve(this.ROOT, this.filePath),
-      );
-      if (!tempFilePath.startsWith(this.ROOT)) {
-        return undefined;
-      }
+      // const tempFilePath = fs.realpathSync(path.resolve(this.ROOT, filePath));
+      // if (!tempFilePath.startsWith(this.ROOT)) {
+      //   return undefined;
+      // }
 
-      return await readFile(this.filePath, { encoding: 'utf8' });
+      return readFile(filePath, { encoding: 'utf8' });
     } catch (error) {
-      Logger.error(`FileService: getFile --> Error: ${error}`);
+      Logger.error(`FileService: getFile: ${fileName} --> Error: ${error}`);
       return undefined;
     }
   }

@@ -1,12 +1,10 @@
-'use client';
-
 import { styled } from 'styled-components';
-import StyledMenu from './StyledMenu';
 import StyledArticle from './StyledArticle';
 import StyledAside from './StyledAside';
-import StyledSection from './StyledSection';
 import StyledFullWidth from './StyledFullWidth';
+import StyledMenu from './StyledMenu';
 import StyledPageSection from './StyledPageSection';
+import StyledSection from './StyledSection';
 
 type Props = {
   readonly children: React.ReactNode;

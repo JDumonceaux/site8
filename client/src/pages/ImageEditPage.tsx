@@ -1,4 +1,3 @@
-'use client';
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { ModalProcessing } from 'components/common/ModalProcessing';
@@ -24,11 +23,10 @@ const ImageEditImage = (): JSX.Element => {
     isLoading,
     error,
     isSaved,
-    getFieldErrors,
     handleChange,
     handleClear: onClear,
     handleReset,
-    hasError,
+    getDefaultFields,
     submitForm,
     handleChangeImage,
   } = useImageEdit(params.id);
@@ -142,128 +140,101 @@ const ImageEditImage = (): JSX.Element => {
                   <TextInput
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorText={getFieldErrors('name')}
                     errorTextShort="Please enter a short title"
-                    hasError={hasError('name')}
-                    id="name"
                     inputMode="text"
                     label="Short Title"
                     onChange={handleChange}
                     required={true}
                     spellCheck={true}
-                    value={formValues.name}
                     // {...getStandardTextInputAttributes('name')}
                     //ref={focusElement}
+                    {...getDefaultFields('name')}
                   />
                   <TextInput
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorText={getFieldErrors('location')}
                     errorTextShort="Please enter a location"
-                    hasError={hasError('location')}
-                    id="location"
                     inputMode="text"
                     label="Location"
                     onChange={handleChange}
                     required={true}
                     spellCheck={true}
-                    value={formValues.location}
                     //ref={focusElement}
+                    {...getDefaultFields('location')}
                   />
                   <TextInput
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorText={getFieldErrors('fileName')}
                     errorTextShort="Please enter a File Name"
-                    hasError={hasError('fileName')}
-                    id="fileName"
                     inputMode="text"
                     label="File Name"
                     onChange={handleChange}
                     required={true}
                     spellCheck={true}
-                    value={formValues.fileName}
+                    {...getDefaultFields('fileName')}
                     //ref={focusElement}
                   />
                   <TextInput
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorText={getFieldErrors('src')}
                     errorTextShort="Please enter a image path"
-                    hasError={hasError('src')}
-                    id="src"
                     inputMode="text"
                     label="SRC"
                     onChange={handleChange}
                     required={true}
                     spellCheck={true}
-                    value={formValues.src}
+                    {...getDefaultFields('src')}
                     //ref={focusElement}
                   />
                   <TextInput
-                    errorText={getFieldErrors('folder')}
                     errorTextShort="Please enter a folder"
-                    hasError={hasError('folder')}
-                    id="folderId"
                     label="Folder"
                     onChange={handleChange}
                     required={false}
-                    type="description"
-                    value={formValues.folder}
+                    type="text"
+                    {...getDefaultFields('folder')}
                   />
                   <TextInput
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorText={getFieldErrors('official_url')}
                     errorTextShort="Please enter a official URL"
-                    hasError={hasError('official_url')}
-                    id="official_url"
                     inputMode="text"
                     label="Official URL"
                     onChange={handleChange}
                     required={false}
                     spellCheck={true}
-                    value={formValues.official_url}
+                    {...getDefaultFields('official_url')}
                     //ref={focusElement}
                   />
                   <TextInput
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorText={getFieldErrors('tags')}
                     errorTextShort="Please enter a tag"
-                    hasError={hasError('tags')}
-                    id="tags"
                     inputMode="text"
                     label="Tags"
                     onChange={handleChange}
                     required={false}
                     spellCheck={true}
-                    value={formValues.tags}
+                    {...getDefaultFields('tags')}
                     //ref={focusElement}
                   />
 
                   <TextArea
-                    errorText={getFieldErrors('description')}
-                    hasError={hasError('description')}
-                    id="description"
                     label="Description"
                     onChange={handleChange}
                     rows={30}
                     spellCheck={true}
-                    value={formValues.description}
+                    {...getDefaultFields('description')}
                     // required={true}
                   />
                   <TextInput
-                    errorText={getFieldErrors('edit_date')}
                     errorTextShort="Please enter a date"
-                    hasError={hasError('edit_date')}
-                    id="edit_date"
                     label="Edit Date"
                     maxLength={10}
                     onChange={handleChange}
                     spellCheck={false}
-                    value={formValues.edit_date}
                     // required={true}
+                    {...getDefaultFields('edit_date')}
                   />
 
                   <Button id="submit" type="submit">

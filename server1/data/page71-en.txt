@@ -1,0 +1,78 @@
+<h2>How to Optimize the code?</h2>
+<a href="https://www.debugbear.com/blog/webpack-bundle-analyzer">Improve React App Performance With Webpack Bundle Analyzer</a>
+
+<a href="https://www.steveworkman.com/2020/bundle-analysis-deep-dive-how-to-remove-a-megabyte-of-code-from-your-app/">Bundle analysis deep-dive - how to remove a megabyte of code from your app</a>
+
+<h2>1. Run a Lighthouse Report in Chrome</h2>
+
+<a href="/react/optimization/lighthouse-report">Lighthouse Report</a>
+
+<h2>2. Use Fetch vs. Axios</h2>
+
+Axios adds 33.8kb.  Consider using built-in fetch instead.
+
+<h2>Only use required imports</h2>
+When using packages with multiple components, you can reduce the bundle size of your application by importing only the necessary components.
+
+<pre><code>
+import Grid from "@mui/material/Grid";
+vs.
+import * from '@mui/material";
+</code></pre>
+
+
+<h2>3. Code Splitting</h2>
+Add React.lazy and Suspense to split code
+
+
+<pre><code>
+import React, { Suspense, useState, useEffect } from "react";
+
+const Authors = React.lazy(() => import("./components/Authors"));
+
+function App() {
+  const [showAuthors, setShowAuthors] = useState(false);
+  useEffect(() => {
+    setShowAuthors(true);
+  }, []);
+
+  return (
+    <div className="App">
+      {showAuthors ? (
+        <Suspense fallback={<div>Loading..</div>}>
+          <Authors />
+        </Suspense>
+      ) : (
+        <p>Loading</p>
+      )}
+    </div>
+  );
+}
+
+export default App;
+</code></pre>
+
+<h2>4. Use Modules</h2>
+CommonJS modules are harder to optimize because dynamic imports and exports are supported.
+
+In tsconfig.json, make sure module is "module": "ESNext",   vs. "module": "CommonJs",
+
+
+Turn any CommonJS packages into 100% ESM packages?
+
+In package.json, add
+
+
+<pre><code>
+"type": "module",
+  "module": "dist/index",
+  "browser": "dist/index",
+  "main": "dist/index",
+</code></pre>
+
+
+
+
+
+
+

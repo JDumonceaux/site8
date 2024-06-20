@@ -1,0 +1,61 @@
+<h2>Vite</h2>
+Vite uses Rollup instead of Webpack to build the code.  You can use vite-bundle-visualizer to analyze the code - which uses rollup-plugin-visualizer
+
+<a href="https://www.npmjs.com/package/vite-bundle-visualizer">vite-bundle-visualizer</a>
+
+Treemap:  npx vite-bundle-visualizer
+Treemap:  npx vite-bundle-visualizer -t treemap
+List: npx vite-bundle-visualizer -t list
+Sunburst: npx vite-bundle-visualizer -t sunburst
+Network: npx vite-bundle-visualizer -t network
+Raw: npx vite-bundle-visualizer -t raw-data
+
+Add to vite.config.ts filed
+<pre><code>
+  build: {
+    ...
+    rollupOptions: {
+      plugins: [analyze()],
+    },
+  },
+</code></pre>
+
+Add to package.json
+<pre><code>
+  "devDependencies": {
+     ...
+    "rollup-plugin-analyzer": "^4.0.0",
+  },
+</code></pre>
+
+
+
+
+
+
+<h2>Create React App</h2>
+
+Create webpack.config.js in the project root.
+
+This is the commonJs version.  Can this be recreated in a ECM version (i.e. with imports)?
+<pre><code>
+const webpack = require('webpack');
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpackConfigProd = require('react-scripts/config/webpack.config')(
+  'production'
+);
+
+webpackConfigProd.plugins.push(new BundleAnalyzerPlugin());
+
+webpack(webpackConfigProd, (err, stats) => {
+  if (err || stats.hasErrors()) {
+    console.error(err);
+  }
+});
+</code></pre>
+
+
+
+
+

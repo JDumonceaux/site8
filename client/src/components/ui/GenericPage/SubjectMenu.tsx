@@ -7,17 +7,17 @@ import { getURLPath } from 'utils/helpers';
 import { ItemRender } from './ItemRender';
 
 const SubjectMenu = memo((): JSX.Element => {
-  const { getMenu, fetchData, isLoading, error } = useMenu();
-  const location = useLocation();
-  const { pathname } = location;
+  const { getMenu, getOtherMenus, fetchData, isLoading, error } = useMenu();
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  const tempPathName1 = getURLPath(pathname, 1);
-  const tempPathName2 = getURLPath(pathname, 2);
-  const data = getMenu(tempPathName1, tempPathName2);
+  const { pathname } = useLocation();
+  const [pn1, pn2] = getURLPath(pathname) || [];
+  const data = getMenu(pn1, pn2);
+  const data2 = getOtherMenus(data?.id);
+
   return (
     <StyledNav>
       <StyledContent>
@@ -32,7 +32,9 @@ const SubjectMenu = memo((): JSX.Element => {
         <br />
 
         <LoadingWrapper error={error} isLoading={isLoading}>
-          <div>More</div>
+          <ItemRender item={data} level={0}>
+            {data2?.map((x) => <ItemRender item={x} key={x.id} level={1} />)}
+          </ItemRender>
         </LoadingWrapper>
       </StyledContent>
     </StyledNav>

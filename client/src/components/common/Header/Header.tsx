@@ -1,10 +1,10 @@
+import { memo } from 'react';
 import { styled } from 'styled-components';
 import { APP_NAME } from 'utils/constants';
-import { MenuIcon } from './MenuIcon';
-import { memo } from 'react';
+import { MenuIcon } from '../../icons/MenuIcon';
 
-import StyledLink from '../Link/StyledLink/StyledLink';
 import { Avatar } from 'components';
+import StyledLink from '../Link/StyledLink/StyledLink';
 
 type HeaderProps = {
   readonly includeMenu?: boolean;

@@ -1,4 +1,4 @@
-import StyledMain from 'components/common/StyledMain';
+import StyledMain from 'components/common/StyledMain/StyledMain';
 import { styled } from 'styled-components';
 
 type AuthContainerProps = {

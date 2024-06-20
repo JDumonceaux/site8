@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { Page } from 'types/Page';
 import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
-import { z } from 'zod';
 import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 
 import { format } from 'date-fns';
-import { useForm } from './useForm';
 import { getDateTime } from 'utils/dateUtils';
-import { useAxios } from './Axios/useAxios';
 import { combineParent, splitParent } from 'utils/helpers';
+import { useAxios } from './Axios/useAxios';
+import { useForm } from './useForm';
 
 // Define Zod Shape
 const pageSchema = z
@@ -77,7 +77,7 @@ const usePageEdit = () => {
     setIsSaved,
     setIsProcessing,
     getFieldErrors,
-    setAllValues,
+    setFormValues,
     setInitialFormValues,
   } = useForm<FormValues>(initialFormValues);
 
@@ -112,10 +112,10 @@ const usePageEdit = () => {
   useEffect(() => {
     const values = mapPageToFormValues(data);
     if (values) {
-      setAllValues(values);
+      setFormValues(values);
       setInitialFormValues(values);
     }
-  }, [data, mapPageToFormValues, setAllValues, setInitialFormValues]);
+  }, [data, mapPageToFormValues, setFormValues, setInitialFormValues]);
 
   const fetchItem = useCallback(
     (id: number) => {
@@ -189,7 +189,7 @@ const usePageEdit = () => {
       getFieldErrors,
       getStandardTextInputAttributes,
       hasError,
-      setAllValues,
+      setFormValues,
       setFieldValue,
       handleAction,
       handleClear,
@@ -208,7 +208,7 @@ const usePageEdit = () => {
       getFieldErrors,
       getStandardTextInputAttributes,
       hasError,
-      setAllValues,
+      setFormValues,
       setFieldValue,
       handleAction,
       handleClear,

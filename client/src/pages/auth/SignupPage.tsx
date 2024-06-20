@@ -1,21 +1,17 @@
-import { useCallback, useMemo } from 'react';
-import { Meta } from 'components';
+import { AmazonIcon, FacebookIcon, GoogleIcon, Meta } from 'components';
 import { Button2 } from 'components/form';
-import { z } from 'zod';
-import { safeParse } from 'utils/zodHelper';
 import useAuth, { SocialProvider } from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
+import { useCallback, useId, useMemo } from 'react';
+import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 
-import { Facebook } from 'components/ui/Icons/Facebook';
-import { Amazon } from 'components/ui/Icons/Amazon';
-import { Google } from 'components/ui/Icons/Google';
-import { Divider } from 'components/ui/Form/Divider/Divider';
+import { Divider, PasswordField } from '@aws-amplify/ui-react';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { EmailField } from 'components/form/input';
 import { styled } from 'styled-components';
 import { AuthContainer } from './AuthContainer';
-import { StyledLink } from 'components/ui/Form/StyledLink';
 import { emailAddress, password } from './ZodStrings';
-import { EmailField } from 'components/ui/Form/Input/EmailField/EmailField';
-import { PasswordField } from 'components/ui/Form/Input/PasswordField';
 
 // Define Zod Shape
 const schema = z.object({
@@ -25,11 +21,13 @@ const schema = z.object({
 
 export const SignupPage = (): JSX.Element => {
   const title = 'Sign-Up';
-
-  const { authSignUp, authSignInWithRedirect, isLoading, error } = useAuth();
+  const compId = useId();
 
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
+
+  const { authSignUp, authSignInWithRedirect, isLoading, error } = useAuth();
+
   const defaultFormValues: FormValues = useMemo(
     () => ({
       emailAddress: '',
@@ -37,25 +35,20 @@ export const SignupPage = (): JSX.Element => {
     }),
     [],
   );
-  const { formValues, setFormValues, errors, setErrors } =
-    useForm<FormValues>(defaultFormValues);
 
-  const hasError = (fieldName: keys) => {
-    return !getFieldErrors(fieldName);
-  };
+  const {
+    formValues,
+    setErrors,
+    handleChange,
+    getDefaultFields,
+    getDefaultPasswordFields,
+  } = useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.errorFormatted);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {
@@ -71,27 +64,8 @@ export const SignupPage = (): JSX.Element => {
     [validateForm, authSignUp, formValues],
   );
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleClick = (provider: SocialProvider) => {
     authSignInWithRedirect(provider);
-  };
-
-  const getStandardTextInputAttributes = (fieldName: keys) => {
-    return {
-      id: fieldName,
-      errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
-      value: formValues[fieldName],
-    };
   };
 
   return (
@@ -102,7 +76,7 @@ export const SignupPage = (): JSX.Element => {
         leftImage={<img alt="" src="/images/face.png" />}
         title="Sign Up">
         <Button2
-          icon={<Amazon ariaHidden focusable={false} />}
+          icon={<AmazonIcon ariaHidden focusable={false} />}
           id="login"
           marginBottom="15px"
           onClick={() => handleClick(SocialProvider.AMAZON)}
@@ -110,7 +84,7 @@ export const SignupPage = (): JSX.Element => {
           Sign up with Amazon
         </Button2>
         <Button2
-          icon={<Facebook ariaHidden focusable={false} />}
+          icon={<FacebookIcon ariaHidden focusable={false} />}
           id="login"
           marginBottom="15px"
           onClick={() => handleClick(SocialProvider.FACEBOOK)}
@@ -118,7 +92,7 @@ export const SignupPage = (): JSX.Element => {
           Sign up with Facebook
         </Button2>
         <Button2
-          icon={<Google ariaHidden focusable={false} />}
+          icon={<GoogleIcon ariaHidden focusable={false} />}
           id="login"
           marginBottom="15px"
           onClick={() => handleClick(SocialProvider.GOOGLE)}
@@ -143,21 +117,13 @@ export const SignupPage = (): JSX.Element => {
             required
             spellCheck="false"
             type="email"
-            {...getStandardTextInputAttributes('emailAddress')}
+            {...getDefaultFields('emailAddress' as keys)}
           />
           <PasswordField
             autoComplete="new-password"
-            errorTextShort="Please enter a password"
-            helpText={['8 characters minimum']}
-            inputMode="text"
             label="Password"
-            maxLength={60}
-            onChange={handleChange}
             placeholder="Enter your password"
-            required
-            showCounter
-            type="password"
-            {...getStandardTextInputAttributes('password')}
+            {...getDefaultPasswordFields('password' as keys, compId)}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your

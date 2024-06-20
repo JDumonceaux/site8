@@ -1,16 +1,15 @@
-import { useCallback, useId } from 'react';
 import { Meta } from 'components';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { Button2 } from 'components/form';
-
-import { z } from 'zod';
-import { safeParse } from 'utils/zodHelper';
+import { PasswordField } from 'components/form/input/PasswordField';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
+import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
+import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
 import { AuthContainer } from './AuthContainer';
 import { password } from './ZodStrings';
-import { PasswordField } from 'components/form/input/PasswordField';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 
 // Define Zod Shape
 const schema = z
@@ -32,28 +31,29 @@ export const ChangePasswordPage = (): JSX.Element => {
 
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
-  const { formValues, setFormValues, errors, setErrors } = useForm<FormValues>({
-    password: '',
-    newPassword: '',
-    confirmPassword: '',
-  });
 
-  const hasError = (fieldName: keys) => {
-    return !getFieldErrors(fieldName);
-  };
+  const initialFormValues: FormValues = useMemo(
+    () => ({
+      id: 0,
+      name: '',
+      to: '',
+      url: '',
+      text: '',
+      password: '',
+      newPassword: '',
+      confirmPassword: '',
+    }),
+    [],
+  );
+
+  const { formValues, setErrors, getDefaultPasswordFields } =
+    useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.errorFormatted);
+    setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
-
-  const getFieldErrors = useCallback(
-    (fieldName: keys) => {
-      return errors && errors[fieldName]?._errors;
-    },
-    [errors],
-  );
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {
@@ -68,25 +68,6 @@ export const ChangePasswordPage = (): JSX.Element => {
     },
     [validateForm, authUpdatePassword, formValues],
   );
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const getStandardTextInputAttributes = (fieldName: keys) => {
-    return {
-      id: `${fieldName}-${compId}`,
-      errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
-      value: formValues[fieldName],
-    };
-  };
 
   return (
     <>
@@ -104,45 +85,26 @@ export const ChangePasswordPage = (): JSX.Element => {
           <PasswordField
             autoComplete="current-password"
             errorTextShort="Please enter a password"
-            inputMode="text"
             label="Current Password"
-            maxLength={60}
-            onChange={handleChange}
             placeholder="Current password"
-            required
-            showCounter
-            type="password"
-            {...getStandardTextInputAttributes('password')}
+            {...getDefaultPasswordFields('password' as keys, compId)}
           />
           <PasswordField
             autoComplete="new-password"
             errorTextShort="Please enter a password"
             helpText={['8 characters minimum']}
-            inputMode="text"
             label="New Password"
-            maxLength={60}
-            onChange={handleChange}
             placeholder="New password"
-            required
-            showCounter
-            type="password"
-            {...getStandardTextInputAttributes('newPassword')}
+            {...getDefaultPasswordFields('newPassword' as keys, compId)}
           />
           <PasswordField
-            autoComplete="new-password"
+            autoComplete="confirm-password"
             errorTextShort="Please enter a password"
             helpText={['8 characters minimum']}
-            inputMode="text"
             label="Confirm Password"
-            maxLength={60}
-            onChange={handleChange}
             placeholder="Confirm password"
-            required
-            showCounter
-            type="password"
-            {...getStandardTextInputAttributes('confirmPassword')}
+            {...getDefaultPasswordFields('confirmPassword' as keys, compId)}
           />
-
           <Button2 id="login" type="submit" variant="secondary">
             {isLoading ? 'Processing' : 'Submit'}
           </Button2>

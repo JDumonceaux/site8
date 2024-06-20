@@ -1,5 +1,3 @@
-'use client';
-
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 
 const SitemapPage = (): JSX.Element => (

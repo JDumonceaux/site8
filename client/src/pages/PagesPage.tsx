@@ -1,4 +1,3 @@
-'use client';
 import { Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';

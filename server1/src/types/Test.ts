@@ -1,6 +1,9 @@
-export type TestGridItem = {
+export type Test = {
   readonly id: number;
-  readonly area: string;
+  readonly seq?: number;
+  readonly type?: string;
+  readonly text?: string;
+  readonly area?: string;
   readonly subarea?: string;
   readonly value?: string;
   readonly result?: string;

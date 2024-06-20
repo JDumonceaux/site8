@@ -1,5 +1,3 @@
-'use client';
-
 import useAuth from 'hooks/useAuth';
 import { useEffect } from 'react';
 import { styled } from 'styled-components';
@@ -17,7 +15,7 @@ export const Avatar = (): JSX.Element => {
     if (authorized) {
       authFetchUserAttributes();
     }
-  }, [authorized]);
+  }, [authFetchUserAttributes, authorized]);
 
   return (
     <StyledDiv data-testid="avatar">

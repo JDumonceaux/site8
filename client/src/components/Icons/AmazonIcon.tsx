@@ -3,7 +3,10 @@ type IconProps = {
   readonly focusable?: boolean;
 };
 
-export const Amazon = ({ ariaHidden = false, focusable = true }: IconProps) => {
+export const AmazonIcon = ({
+  ariaHidden = false,
+  focusable = true,
+}: IconProps) => {
   return (
     <svg
       aria-hidden={ariaHidden}
