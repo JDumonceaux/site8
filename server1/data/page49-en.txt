@@ -96,5 +96,161 @@ const isLoggedIn = true;
 const user = isLoggedIn && { name: 'Jane', age: 25 };
 </code></pre>
 
+<h2>9. Optional Chaining</h2>
+
+Optional chaining allows you to safely access nested properties without having to explicitly check each level of the chain for `null` or `undefined`.
+
+<pre><code>
+const user = { profile: { name: 'Jane' } };
+const userName = user?.profile?.name;
+</code></pre>
+
+<h2>10. Nullish Coalescing</h2>
+
+Nullish coalescing allows you to provide default values only when the left-hand side is `null` or `undefined`.
+
+<pre><code>
+const userAge = user.age ?? 18;
+</code></pre>
+
+<h2>11. Object Property Shorthand</h2>
+
+Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.
+
+<pre><code>
+const name = 'Jane';
+const age = 25;
+const user = { name, age };
+vs.
+const user = { name : name, age : age };
+</code></pre>
+
+<h2>12. Dynamic Property Names</h2>
+
+Computed property names allow you to create object properties dynamically, using the value of an expression as the property name.
+
+<pre><code>
+const propName = 'age';
+const user = { name: 'Jane', [propName]: 25 };
+</code></pre>
+
+<h2>13. Array `map()`, `filter()`, and `reduce()`</h2>
+
+These array methods provide a functional approach to transforming, filtering, and reducing arrays, making your code more expressive and concise.
+
+<pre><code>
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8, 10]
+const evens = numbers.filter(num => num % 2 === 0);
+console.log(evens); // [2, 4]
+const sum = numbers.reduce((total, num) => total + num, 0);
+console.log(sum); // 15
+</code></pre>
+
+<h2>String `includes()`, `startsWith()`, and `endsWith()`</h2>
+
+These string methods provide a simple and readable way to check for the presence, start, or end of a substring.
+
+<pre><code>
+const str = 'Hello, world!';
+console.log(str.includes('world')); // true
+console.log(str.startsWith('Hello')); // true
+console.log(str.endsWith('!')); // true
+</code></pre>
+
+<h2>15. Array and Object Destructuring in Function Parameters</h2>
+
+Destructuring in function parameters allows you to directly extract values from objects or arrays passed to the function, making the code more concise and readable.
+
+<pre><code>
+const user = { name: 'Jane', age: 25 };
+
+function greet({ name, age }) {
+return `Hello, ${name}! You are ${age} years old.`;
+}
+// Note that user is passed as an object, but is immediately destructured
+console.log(greet(user));
+</code></pre>
+
+<h2>16. Default Values in Destructuring</h2>
+
+Default values in destructuring allow you to provide fallback values for properties that may be missing, making your code more robust.
+
+Use default values in destructuring:
+<pre><code>
+const user = { name: 'Jane' };
+const { name, age = 18 } = user;
+
+// More commonly seen in passing props to a component.  inclueMenu is optional, so we provide a default false value.
+type HeaderProps = {
+  readonly includeMenu?: boolean;
+};
+
+export const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
+</code></pre>
+
+
+<h2>17. Object `assign()`</h2>
+
+`Object.assign()` allows you to clone or merge objects efficiently, reducing the need for manual copying.
+
+WARNING:  This creates a shallow copy (vs. deep copy) - meaning that it will not copy children.  For complex objects, see structuredClone() and make sure you validate.
+
+Use `Object.assign()` to clone or merge objects:
+
+<pre><code>
+const target = { a: 1 };
+const source = { b: 2 };
+const merged = Object.assign(target, source);
+</code></pre>
+
+
+<h2>18. Array `find()` and `findIndex()`</h2>
+
+These array methods provide a simple way to find an element or its index based on a condition, improving code readability.
+
+<pre><code>
+// Returns object
+const user = users.find(u => u.id === 1);
+// Returns number
+const index = users.findIndex(u => u.id === 1);
+</code></pre>
+
+<h2>19. Array `some()` and `every()`</h2>
+
+These array methods allow you to check if some or all elements in an array meet a condition in a concise way.
+
+<pre><code>
+// Returns boolean
+const hasEven = numbers.some(num => num % 2 === 0);
+const allEven = numbers.every(num => num % 2 === 0);
+</code></pre>
+
+<h2>20. Array `flat()` and `flatMap()`</h2>
+
+These array methods provide a simple way to flatten nested arrays and to map and flatten in a single step.
+
+<pre><code>
+const myArr = [[1,2],[3,4],[5,6]];
+const newArr = myArr.flat();
+// Returns [1,2,3,4,5,6]
+
+// array.flat(depth)
+const nested = [1, [2, [3, [4]]]];
+const flat = nested.flat(2);
+// Returns [1, 2, 3, [4]]
+
+const mapped = [1, 2, 3].flatMap(x => [x, x * 2]);
+// Returns  2,4,6
+
+// Flatten an object?
+const fn = objArr.flatMap();
+</code></pre>
+
+
+
+
+
 
 

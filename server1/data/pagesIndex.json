@@ -2005,20 +2005,6 @@
       "type": "menu"
     },
     {
-      "id": 49,
-      "edit_date": "2024-06-15T02:49:00.000Z",
-      "name": "Best Practices",
-      "parent": [
-        {
-          "id": 10009,
-          "seq": 1
-        }
-      ],
-      "seq": 0,
-      "to": "best-practices",
-      "type": "page"
-    },
-    {
       "id": 50,
       "create_date": "2024-06-16T05:17:00.000Z",
       "edit_date": "2024-06-16T05:17:00.000Z",
@@ -2195,21 +2181,6 @@
       "type": "page"
     },
     {
-      "id": 70,
-      "edit_date": "2024-06-19T06:31:00.000Z",
-      "name": "Bundle Analyzer",
-      "parent": [
-        {
-          "id": 69,
-          "seq": 1
-        }
-      ],
-      "seq": 0,
-      "text": "<h2>Summary</h2>\nnpm run build\nnpx vite-bundle-visualizer\n\n<h2>Vite</h2>\nVite uses Rollup to build the code for release.  \n\n<pre><code>\n  \"scripts\": {\n    \"build\": \"tsc && vite build\",\n  },\n</code></pre>\n\nnpm run build \n\nYou can use npx vite-bundle-visualizer as a replacement for webpack-bundle-analyzer with Vite.  This uses the rollup-plugin-visualizer.  \n\n<a href=\"https://www.npmjs.com/package/vite-bundle-visualizer\">vite-bundle-visualizer</a>\n\n\nAdd Rollup Plugin Visualizer\n\nnpm install --save-dev rollup-plugin-visualizer\n\nAdd to vite.config.ts\n<pre><code>\nimport { visualizer } from 'rollup-plugin-visualizer'\nimport { defineConfig, type PluginOption } from 'vite';\n\n// https://vitejs.dev/config/\nexport default defineConfig({\n  plugins: [tsconfigPaths(), visualizer() as PluginOption],\n  },\n});\n</code></pre>\n\nnpm run build\n\n\nAdd Rollup Plugin Analyzer\n\nThis installs the rollup-plugin analyzer\n<pre><code>\n  \"devDependencies\": {\n    \"rollup-plugin-analyzer\": \"^4.0.0\",\n  },\n</code></pre>\n\nIn the vite.config.js file, add\n<pre><code>\nimport analyze from 'rollup-plugin-analyzer';\n  build: {\n    ...\n    rollupOptions: {\n      plugins: [analyze()],\n    },\n  },\n</code></pre>\n\nTreemap:  npx vite-bundle-visualizer\nTreemap:  npx vite-bundle-visualizer -t treemap\nList: npx vite-bundle-visualizer -t list\nSunburst: npx vite-bundle-visualizer -t sunburst\nNetwork:  npx vite-bundle-visualizer -t network\nRaw Data: npx vite-bundle-visualizer -t raw-data\n\n\n<h2>React - Create React App</h2>\nWith the \"traditional\" CRA, it uses webpack to bundle the code for production release.  As part of this process, npm run build should generate a /build/stats.json file.  \n\nnpm run build\n\nWith webpack-bundle-analyzer, you can get a graphical presentation of the stats.json file and analyze your bundles.\n\nnpm i -D webpack-bundle-analyzer\n\n\nSee <a href=\"https://www.debugbear.com/blog/webpack-bundle-analyzer\">Using the Bundle Analyzer to improve your app's performance</a>\n\nIn the project root directory, create a file called analyzer.js\n<pre><code>\nconst webpack = require('webpack');\nconst BundleAnalyzerPlugin =\n  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;\nconst webpackConfigProd = require('react-scripts/config/webpack.config')(\n  'production'\n);\n\nwebpackConfigProd.plugins.push(new BundleAnalyzerPlugin());\n\nwebpack(webpackConfigProd, (err, stats) => {\n  if (err || stats.hasErrors()) {\n    console.error(err);\n  }\n});\n</code></pre>\n\nRun the following command to start the Webpack analyzer:\n<em>npm run analyze</em>\n\nYou can add a command to your scripts to open this file.  (not confirmed)\n<pre><code>\n  \"scripts\": {\n    \"stats\": \"webpack-bundle-analyzer build/stats.json\"\n  },\n</code></pre>\n\nnpm run stats\n\nYou may need to add a devDependency\n<pre><code>\n  \"devDependencies\": {\n    \"webpack-bundle-analyzer\": \"^4.10.2\"\n  },\n</code></pre>\n\n",
-      "to": "bundle-analyzer",
-      "type": "page"
-    },
-    {
       "id": 71,
       "edit_date": "2024-06-19T07:00:00.000Z",
       "name": "Bundle Optimization",
@@ -2266,6 +2237,96 @@
       ],
       "seq": 0,
       "to": "test-grid",
+      "type": "page"
+    },
+    {
+      "id": 49,
+      "edit_date": "2024-06-15T02:49:00.000Z",
+      "name": "Best Practices",
+      "parent": [
+        {
+          "id": 10009,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "text": "<h2>1. Use `let` and `const` Instead of `var`</h2>\n\n<pre><code>\nlet count = 0;\nconst PI = 3.14;\n\nvs.\nvar count = 0;\n</code></pre>\n\nUsing `let` and `const` helps prevent scope-related bugs by ensuring variables are only accessible within the block they are defined.  `var` has function scope which can lead to bugs and unpredictable behavior.  `let` and `const` which have block scope.\n\n<h2>2. Use Default Parameters</h2>\n\n\"Guest\" is a default parameter.\n<pre><code>\nfunction greet(name = 'Guest') {\nreturn `Hello, ${name}!`;\n}\n</code></pre>\n\n<h2>3. Use Template Literals</h2>\n\n<pre><code>\n`string text`\n\n// Multi line strings \n`string text line 1\n string text line 2`\n\n// String interpolation\n`string text ${expression} string text`\n\ntagFunction`string text ${expression} string text`\n</code></pre>\n\nTemplate literals are literals delimited with backtick (`) characters, allowing for multi-line strings, string interpolation with embedded expressions, and special constructs called tagged templates.\n\n<a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals\">Mozilla - Template literals (Template strings)</a>\n\n<h2>4. Destructuring</h2>\n\nDestructuring assignment allows you to extract properties from objects and elements from arrays into distinct variables easily.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, age } = user;  // Destructure user\nconsole.log(name, age); \n</code></pre>\n\n<h2>5. Arrow Functions</h2>\n\nArrow functions provide a concise syntax for function expressions and ensure that `this` is lexically bound.\n\n<pre><code>\nconst add = (a, b) => a + b;\n</code></pre>\n\n<h2>6. Spread Operator</h2>\n\nThe spread operator allows you to spread the elements of an array or object into another array or object.\n\n<pre><code>\nconst arr1 = [1, 2, 3];\nconst arr2 = [4, 5, 6];\nconst combined = […arr1, …arr2];\n</code></pre>\n\n<h2>7. Rest Parameters</h2>\n\nRest parameters allow you to handle an indefinite number of arguments as an array, making your functions more flexible.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, ...rest } = user;  // Destructure user into 'name' and the \"rest\"\nconsole.log ( ... rest );\n</code></pre>\n\n<h2>8. Short-Circuit Evaluation</h2>\n\nThere are a couple of variations of the short-circuit evaluation.\n\nWe tend to do nested and multi-level if-else statements - making the code complex.  Changing this to a short-circuit version, we remove the if-else statements and exit early from a function.   This is especially useful for processing API calls - where parameters may be missing or invalid.\n<pre><code>\n  private function ( items ) {\n    if (!items) {\n      return undefined;   // Exit early  vs. if-else construction\n    }\n    ....\n  }\n</code></pre>\n\nThe second variation is using the logical &&` and `||`\n<pre><code>\nconst isLoggedIn = true;\nconst user = isLoggedIn && { name: 'Jane', age: 25 };\n</code></pre>\n\n<h2>9. Optional Chaining</h2>\n\nOptional chaining allows you to safely access nested properties without having to explicitly check each level of the chain for `null` or `undefined`.\n\n<pre><code>\nconst user = { profile: { name: 'Jane' } };\nconst userName = user?.profile?.name;\n</code></pre>\n\n<h2>10. Nullish Coalescing</h2>\n\nNullish coalescing allows you to provide default values only when the left-hand side is `null` or `undefined`.\n\n<pre><code>\nconst userAge = user.age ?? 18;\n</code></pre>\n\n<h2>11. Object Property Shorthand</h2>\n\nProperty shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.\n\n<pre><code>\nconst name = 'Jane';\nconst age = 25;\nconst user = { name, age };\nvs.\nconst user = { name : name, age : age };\n</code></pre>\n\n<h2>12. Dynamic Property Names</h2>\n\nComputed property names allow you to create object properties dynamically, using the value of an expression as the property name.\n\n<pre><code>\nconst propName = 'age';\nconst user = { name: 'Jane', [propName]: 25 };\n</code></pre>\n\n<h2>13. Array `map()`, `filter()`, and `reduce()`</h2>\n\nThese array methods provide a functional approach to transforming, filtering, and reducing arrays, making your code more expressive and concise.\n\n<pre><code>\nconst numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(num => num * 2);\nconsole.log(doubled); // [2, 4, 6, 8, 10]\nconst evens = numbers.filter(num => num % 2 === 0);\nconsole.log(evens); // [2, 4]\nconst sum = numbers.reduce((total, num) => total + num, 0);\nconsole.log(sum); // 15\n</code></pre>\n\n<h2>String `includes()`, `startsWith()`, and `endsWith()`</h2>\n\nThese string methods provide a simple and readable way to check for the presence, start, or end of a substring.\n\n<pre><code>\nconst str = 'Hello, world!';\nconsole.log(str.includes('world')); // true\nconsole.log(str.startsWith('Hello')); // true\nconsole.log(str.endsWith('!')); // true\n</code></pre>\n\n<h2>15. Array and Object Destructuring in Function Parameters</h2>\n\nDestructuring in function parameters allows you to directly extract values from objects or arrays passed to the function, making the code more concise and readable.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\n\nfunction greet({ name, age }) {\nreturn `Hello, ${name}! You are ${age} years old.`;\n}\n// Note that user is passed as an object, but is immediately destructured\nconsole.log(greet(user));\n</code></pre>\n\n<h2>16. Default Values in Destructuring</h2>\n\nDefault values in destructuring allow you to provide fallback values for properties that may be missing, making your code more robust.\n\nUse default values in destructuring:\n<pre><code>\nconst user = { name: 'Jane' };\nconst { name, age = 18 } = user;\n\n// More commonly seen in passing props to a component.  inclueMenu is optional, so we provide a default false value.\ntype HeaderProps = {\n  readonly includeMenu?: boolean;\n};\n\nexport const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {\n</code></pre>\n\n\n<h2>17. Object `assign()`</h2>\n\n`Object.assign()` allows you to clone or merge objects efficiently, reducing the need for manual copying.\n\nWARNING:  This creates a shallow copy (vs. deep copy) - meaning that it will not copy children.  For complex objects, see structuredClone() and make sure you validate.\n\nUse `Object.assign()` to clone or merge objects:\n\n<pre><code>\nconst target = { a: 1 };\nconst source = { b: 2 };\nconst merged = Object.assign(target, source);\n</code></pre>\n\n\n<h2>18. Array `find()` and `findIndex()`</h2>\n\nThese array methods provide a simple way to find an element or its index based on a condition, improving code readability.\n\n<pre><code>\n// Returns object\nconst user = users.find(u => u.id === 1);\n// Returns number\nconst index = users.findIndex(u => u.id === 1);\n</code></pre>\n\n<h2>19. Array `some()` and `every()`</h2>\n\nThese array methods allow you to check if some or all elements in an array meet a condition in a concise way.\n\n<pre><code>\n// Returns boolean\nconst hasEven = numbers.some(num => num % 2 === 0);\nconst allEven = numbers.every(num => num % 2 === 0);\n</code></pre>\n\n<h2>20. Array `flat()` and `flatMap()`</h2>\n\nThese array methods provide a simple way to flatten nested arrays and to map and flatten in a single step.\n\n<pre><code>\nconst myArr = [[1,2],[3,4],[5,6]];\nconst newArr = myArr.flat();\n// Returns [1,2,3,4,5,6]\n\n// array.flat(depth)\nconst nested = [1, [2, [3, [4]]]];\nconst flat = nested.flat(2);\n// Returns [1, 2, 3, [4]]\n\nconst mapped = [1, 2, 3].flatMap(x => [x, x * 2]);\n// Returns  2,4,6\n\n// Flatten an object?\nconst fn = objArr.flatMap();\n</code></pre>\n\n\n\n\n\n\n\n",
+      "to": "best-practices",
+      "type": "page"
+    },
+    {
+      "id": 70,
+      "create_date": "2024-06-21T16:01:00.000Z",
+      "edit_date": "2024-06-21T16:01:00.000Z",
+      "name": "React Components",
+      "parent": [
+        {
+          "id": 69,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "react-components",
+      "type": "page"
+    },
+    {
+      "id": 76,
+      "create_date": "2024-06-21T16:02:00.000Z",
+      "edit_date": "2024-06-21T16:02:00.000Z",
+      "name": "React Profiler",
+      "parent": [
+        {
+          "id": 69,
+          "seq": 2
+        }
+      ],
+      "seq": 0,
+      "to": "react-profiler",
+      "type": "page"
+    },
+    {
+      "id": 77,
+      "create_date": "2024-06-21T16:03:00.000Z",
+      "edit_date": "2024-06-21T16:03:00.000Z",
+      "name": "Performance Insights",
+      "parent": [
+        {
+          "id": 69,
+          "seq": 3
+        }
+      ],
+      "seq": 0,
+      "to": "performance-insights",
+      "type": "page"
+    },
+    {
+      "id": 78,
+      "create_date": "2024-06-22T05:11:00.000Z",
+      "edit_date": "2024-06-22T05:11:00.000Z",
+      "name": "Console",
+      "parent": [
+        {
+          "id": 69,
+          "seq": 10
+        }
+      ],
+      "seq": 0,
+      "to": "console",
+      "type": "page"
+    },
+    {
+      "id": 79,
+      "create_date": "2024-06-22T05:21:00.000Z",
+      "edit_date": "2024-06-22T05:21:00.000Z",
+      "name": "Network",
+      "parent": [
+        {
+          "id": 69,
+          "seq": 11
+        }
+      ],
+      "seq": 0,
+      "to": "network",
       "type": "page"
     }
   ]

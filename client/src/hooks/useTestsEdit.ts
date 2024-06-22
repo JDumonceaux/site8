@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { Menu, MenuEdit, MenuItem } from 'types';
-import { REQUIRED_FIELD, ServiceUrl } from 'utils';
+import { Test } from 'types/Test';
+import { Tests } from 'types/Tests';
+import { ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
@@ -9,11 +10,12 @@ import { useFormArray } from './useFormArray';
 const pageSchema = z.object({
   id: z.number(),
   name: z.string().optional(),
-  parent: z.string().min(1, REQUIRED_FIELD),
-  seq: z.string(),
-  sortby: z.string(),
-  tempId: z.number(),
-  type: z.string(),
+  text: z.string().optional(),
+  type: z.string().optional(),
+  level: z.string().optional(),
+  projectType: z.string().optional(),
+  parent: z.string().optional(),
+  action: z.string().optional(),
 });
 
 // Create a type from the schema
@@ -21,9 +23,9 @@ export type FormValues = z.infer<typeof pageSchema>;
 export type keys = keyof FormValues;
 export type sortByType = 'seq' | 'name' | undefined;
 
-const usePagesEdit = () => {
-  const { data, fetchData, isLoading, error } = useAxios<Menu>();
-  const { patchData } = useAxios<MenuEdit[]>();
+const useTestsEdit = () => {
+  const { data, fetchData, isLoading, error } = useAxios<Tests>();
+  const { patchData } = useAxios<Tests>();
 
   // Create a form
   const {
@@ -39,39 +41,36 @@ const usePagesEdit = () => {
 
   // Get the data
   useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_MENUS_EDIT);
+    fetchData(ServiceUrl.ENDPOINT_TESTS);
   }, [fetchData]);
 
   // Get the updates
-  const getUpdates = useCallback((): MenuEdit[] | undefined => {
-    if (!data?.flat) {
+  const getUpdates = useCallback((): Tests | undefined => {
+    if (!data?.items) {
       return undefined;
     }
 
-    const temp: MenuEdit[] = [];
+    const ret: Test[] = [];
     formValues.forEach((item) => {
       // Match on TempId = Id
-      const originalItem = data.flat?.find((x) => x.tempId === item.id);
+      const originalItem = data.items?.find((x) => x.id === item.id);
       if (originalItem) {
-        const x: MenuEdit = {
-          ...originalItem,
-          newParentId: parseInt(item.parent),
-          newSeq: parseInt(item.seq),
-          newSortby: item.sortby as sortByType,
-        };
-        temp.push(x);
+        // const x: Test = {
+        //   ...originalItem,
+        //   newParentId: parseInt(item.parent),
+        //   newSeq: parseInt(item.seq),
+        //   newSortby: item.sortby as sortByType,
+        // };
+        // temp.push(x);
       }
     });
 
-    const ret = temp.filter(
-      (x) =>
-        x.newParentId !== x.parentId ||
-        x.newSeq !== x.seq ||
-        x.newSortby !== x.sortby,
-    );
     // Filter out empty array values
-    return ret ? ret.filter((x) => x) : undefined;
-  }, [data?.flat, formValues]);
+    return {
+      ...data,
+      items: ret ? ret.filter((x) => x) : undefined,
+    };
+  }, [data?.items, formValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
@@ -87,7 +86,7 @@ const usePagesEdit = () => {
       return false;
     }
     setIsProcessing(true);
-    const result = await patchData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
+    const result = await patchData(`${ServiceUrl.ENDPOINT_TESTS}`, data);
     setIsProcessing(false);
     setIsSaved(result);
     return result;
@@ -119,26 +118,9 @@ const usePagesEdit = () => {
     [getFieldValue],
   );
 
-  const filter = (arr: MenuItem[] | undefined) => {
-    const matches: MenuItem[] = [];
-    if (!Array.isArray(arr)) return matches;
-    arr.forEach((i) => {
-      if (i.type !== 'page') {
-        const { items, ...rest } = i;
-        const childResults = filter(items);
-        matches.push({ items: childResults, ...rest });
-      }
-    });
-    return matches;
-  };
-
-  const filteredData = filter(data?.items);
-
   return useMemo(
     () => ({
       data: data?.items,
-      dataMenuOnly: filteredData,
-      dataFlat: data?.flat,
       pageSchema,
       isProcessing,
       isLoading,
@@ -153,8 +135,6 @@ const usePagesEdit = () => {
     }),
     [
       data?.items,
-      data?.flat,
-      filteredData,
       isProcessing,
       isLoading,
       error,
@@ -169,4 +149,4 @@ const usePagesEdit = () => {
   );
 };
 
-export default usePagesEdit;
+export default useTestsEdit;

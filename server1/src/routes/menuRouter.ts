@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
-import { Logger } from '../utils/Logger.js';
 import { MenuService } from '../services/MenuService.js';
-import { Errors, Responses } from '../utils/Constants.js';
 import { PagesService } from '../services/PagesService.js';
-import { MenuEdit } from '../types/MenuEntryUpdate.js';
 import { MenuAdd } from '../types/MenuAdd.js';
+import { MenuEdit } from '../types/MenuEntryUpdate.js';
+import { Errors, Responses } from '../utils/Constants.js';
+import { Logger } from '../utils/Logger.js';
 
 export const menuRouter = express.Router();
 
@@ -81,7 +81,7 @@ menuRouter.patch('/', async (req: Request, res: Response) => {
     const data: MenuEdit[] = req.body;
     if (!data) {
       res.status(400).json({ error: 'No data found' });
-      res.end();
+      return res.end();
     }
 
     await new PagesService().updateItems(data);

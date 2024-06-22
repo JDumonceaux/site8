@@ -30,8 +30,8 @@ const TestsPage = (): JSX.Element => {
               <table>
                 <thead>
                   <tr>
-                    <th>Area</th>
-                    <th>Subarea</th>
+                    <th></th>
+                    <th></th>
                     <th>Value</th>
                     <th>Result</th>
                     <th>Comment</th>
@@ -41,13 +41,20 @@ const TestsPage = (): JSX.Element => {
                 <Suspense fallback="Loading results ...">
                   <tbody>
                     {data?.items?.map((item) =>
-                      item.type === 'action' ? (
+                      item.type === 'section' ? (
                         <StyledActionRow key={item.id}>
-                          <td>{item.text}</td>
+                          <td>{item.name}</td>
+                          <td colSpan={4}>{item.text}</td>
                         </StyledActionRow>
                       ) : (
                         <tr key={item.id}>
-                          <td>{item.area}</td>
+                          <td>{item.id}</td>
+                          <td>{item.name}</td>
+                          <td>{item.text}</td>
+                          <td>{item.type}</td>
+                          <td>{item.level}</td>
+                          <td>{item.projectType}</td>
+                          {/* <td>{item.parent || ''}</td> */}
                         </tr>
                       ),
                     )}

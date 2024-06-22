@@ -150,7 +150,7 @@ const PagesPage = (): JSX.Element => {
             <StyledMenu>
               <Switch
                 checked={showPages}
-                id="showPags"
+                id="showPages"
                 label={showPages ? 'Hide Pages' : 'Show Pages'}
                 onCheckedChange={(e) => onShowPages(e)}
               />

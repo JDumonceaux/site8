@@ -17,7 +17,8 @@ pageRouter.get('/:id', async (req: Request, res: Response) => {
     const { id, isValid } = parseRequestId(req.params.id.trim());
     if (!isValid || !id) {
       Logger.info(`pageRouter: get by id -> invalid param: ${id}`);
-      return res.status(400).json({ error: Responses.INVALID_ID });
+      res.status(400).json({ error: Responses.INVALID_ID });
+      return res.end();
     }
     const ret = await new PageService().getItemCompleteById(id);
     ret

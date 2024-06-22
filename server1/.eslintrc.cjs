@@ -31,6 +31,7 @@ module.exports = {
     },
   },
   rules: {
+    'object-shorthand': 'always',
     // Enforce ES5 or ES6 class for React Components
     'react/prefer-es6-class': 1,
     // PascalCase file names - warning

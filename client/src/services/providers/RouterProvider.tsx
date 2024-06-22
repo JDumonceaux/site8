@@ -24,6 +24,7 @@ const Sitemap = lazy(() => import('pages/SitemapPage'));
 const TikTokPage = lazy(() => import('pages/TikTokPage'));
 const YachtsPage = lazy(() => import('pages/YachtsPage'));
 const TestsPage = lazy(() => import('pages/TestsPage'));
+const TestsEditPage = lazy(() => import('pages/TestsEditPage'));
 // Site Pages
 const TermsOfUsePage = lazy(() => import('pages/site/TermsOfUsePage'));
 const CookiesUsePage = lazy(() => import('pages/site/CookiesUsePage'));
@@ -90,6 +91,7 @@ const router = createBrowserRouter(
           <Route element={<PageEditPage />} path="page/edit/:id" />
           <Route element={<ImageEditPage />} path="image/edit" />
           <Route element={<ImageEditPage />} path="image/edit/:id" />
+          <Route element={<TestsEditPage />} path="tests/edit" />
         </Route>
 
         {/* Auth */}

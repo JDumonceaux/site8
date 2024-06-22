@@ -1,0 +1,3 @@
+Make sure to routinely look at your browser console for errors.  Your application may appear to be running normally, but the console may show that you have duplicate keys, too many re-renders, authentication failures, etc.   You may also find debug messages that you've forgotten to remove.  Generally, the console should be clean.
+
+p.s. Don't use the console log to output "operational" messages.

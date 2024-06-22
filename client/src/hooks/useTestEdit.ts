@@ -21,7 +21,7 @@ export type FormValues = z.infer<typeof pageSchema>;
 export type keys = keyof FormValues;
 export type sortByType = 'seq' | 'name' | undefined;
 
-const usePagesEdit = () => {
+const useTestEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
   const { patchData } = useAxios<MenuEdit[]>();
 
@@ -134,6 +134,8 @@ const usePagesEdit = () => {
 
   const filteredData = filter(data?.items);
 
+  console.log('filteredData', filteredData);
+
   return useMemo(
     () => ({
       data: data?.items,
@@ -169,4 +171,4 @@ const usePagesEdit = () => {
   );
 };
 
-export default usePagesEdit;
+export default useTestEdit;

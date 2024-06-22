@@ -1,12 +1,13 @@
 export type Test = {
+  readonly line: number;
+  readonly action?: 'add' | 'edit' | 'delete';
   readonly id: number;
-  readonly seq?: number;
-  readonly type?: string;
+  readonly name: string;
   readonly text?: string;
-  readonly area?: string;
-  readonly subarea?: string;
-  readonly value?: string;
-  readonly result?: string;
-  readonly comment?: string;
-  readonly help?: string;
+  readonly type?: 'section' | 'test';
+  readonly level?: 'page' | 'project';
+  readonly projectType?: ['react', 'nodejs'];
+  readonly parentId: number;
+  readonly parentSeq: number;
+  readonly parent?: { id: number; seq: number }[];
 };

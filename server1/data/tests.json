@@ -1,285 +1,373 @@
 {
   "metadata": {
-    "title": "Test Grid"
+    "title": "Tests"
   },
   "items": [
     {
       "id": 501,
-      "area": "Media Queries",
-      "subarea": "Media Type",
-      "value": "All",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Media Queries",
+      "text": "Media Type",
+      "value": "All"
     },
     {
       "id": 502,
-      "area": "Media Queries",
-      "subarea": "Media Type",
-      "value": "Print",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Media Queries",
+      "text": "Media Type",
+      "value": "Print"
     },
     {
       "id": 503,
-      "area": "Media Queries",
-      "subarea": "Media Type",
-      "value": "Screen",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Media Queries",
+      "text": "Media Type",
+      "value": "Screen"
     },
     {
       "id": 504,
-      "area": "Media Queries",
-      "subarea": "Orientation",
-      "value": "Portrait",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Media Queries",
+      "text": "Orientation",
+      "value": "Portrait"
     },
     {
       "id": 505,
-      "area": "Media Queries",
-      "subarea": "Orientation",
-      "value": "Landscape",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Media Queries",
+      "text": "Orientation",
+      "value": "Landscape"
     },
     {
       "id": 506,
-      "area": "Media Queries",
-      "subarea": "Prefers Color Scheme",
-      "value": "light",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Media Queries",
+      "text": "Prefers Color Scheme",
+      "value": "light"
     },
     {
       "id": 507,
-      "area": "Media Queries",
-      "subarea": "Prefers Color Scheme",
-      "value": "dark",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Media Queries",
+      "text": "Prefers Color Scheme",
+      "value": "dark"
     },
-
+    {
+      "id": 199,
+      "name": "Code",
+      "projectType": ["react"],
+      "type": "section",
+      "parentId": [0, 2]
+    },
     {
       "id": 1101,
-      "area": "Code",
-      "subarea": "Check for unused styles",
-      "value": "",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Styles",
+      "text": "Check for unused styles",
+      "type": "test",
+      "parentId": [199, 2]
     },
     {
       "id": 1102,
-      "area": "Code",
-      "subarea": "Check for invalid styles (browser inspect)",
-      "value": "",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Styles",
+      "text": "Check for invalid styles (browser inspect)",
+      "type": "test",
+      "parentId": [199, 3]
     },
     {
       "id": 1103,
-      "area": "Code",
-      "subarea": "Check for styles that are overwritten (browser inspect)",
-      "value": "",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Styles",
+      "text": "Check for styles that are overwritten (browser inspect)",
+      "type": "test",
+      "parentId": [199, 2]
     },
     {
       "id": 1104,
-      "area": "Code",
-      "subarea": "Check for Pure Functions",
-      "value": "",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Check for Pure Functions",
+      "type": "test",
+      "parentId": [199, 2]
+    },
+    {
+      "id": 200,
+      "name": "HTML Header",
+      "value": "Validate Entries",
+      "projectType": ["react"],
+      "type": "section",
+      "parentId": [0, 1]
     },
     {
       "id": 1105,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Check for Open Graph",
-      "result": "",
-      "comment": "",
-      "help": ""
+
+      "name": "Check for Open Graph",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 10]
     },
     {
       "id": 1106,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Doc Type",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "name": "Doc Type",
+      "value": "",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 1]
     },
     {
       "id": 1107,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Language",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1108,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Language - change language",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1109,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Encoding",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1110,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Author",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1111,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Keywords",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1112,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Title",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1113,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Description",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1114,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Favicon",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1115,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Publish Date",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1116,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Canonical URL",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1117,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Viewport",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1117,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Open Graph Coding",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1118,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Base Element",
-      "result": "",
-      "comment": "",
-      "help": ""
-    },
-    {
-      "id": 1119,
-      "area": "Code",
-      "subarea": "Header",
-      "value": "Remove type from stylesheet ref (no longer required)",
-      "result": "",
-      "comment": "",
-      "help": ""
+
+      "name": "Language",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 2]
     },
 
     {
+      "id": 1108,
+
+      "name": "Language - change language",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 3]
+    },
+    {
+      "id": 1109,
+      "name": "Code",
+      "text": "Header",
+      "value": "Encoding",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 4]
+    },
+    {
+      "id": 1110,
+      "name": "Code",
+      "text": "Header",
+      "value": "Author",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 5]
+    },
+    {
+      "id": 1111,
+      "name": "Code",
+      "text": "Header",
+      "value": "Keywords",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 6]
+    },
+    {
+      "id": 1112,
+      "name": "Code",
+      "text": "Header",
+      "value": "Title",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 7]
+    },
+    {
+      "id": 1113,
+      "name": "Code",
+      "text": "Header",
+      "value": "Description",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 8]
+    },
+    {
+      "id": 1114,
+      "name": "Code",
+      "text": "Header",
+      "value": "Favicon",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 9]
+    },
+    {
+      "id": 1115,
+      "name": "Code",
+      "text": "Header",
+      "value": "Publish Date",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 11]
+    },
+    {
+      "id": 1116,
+      "name": "Code",
+      "text": "Header",
+      "value": "Canonical URL",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 12]
+    },
+    {
+      "id": 1117,
+      "name": "Code",
+      "text": "Header",
+      "value": "Viewport",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 13]
+    },
+    {
+      "id": 1117,
+      "name": "Code",
+      "text": "Header",
+      "value": "Open Graph Coding",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 14]
+    },
+    {
+      "id": 1118,
+      "name": "Code",
+      "text": "Header",
+      "value": "Base Element",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 15]
+    },
+    {
+      "id": 1119,
+      "name": "Code",
+      "text": "Header",
+      "value": "Remove type from stylesheet ref (no longer required)",
+      "projectType": ["react"],
+      "type": "test",
+      "parentId": [200, 16]
+    },
+    {
       "id": 1200,
-      "area": "Images",
-      "subarea": "Accessibility",
+      "name": "Images",
+      "text": "Accessibility",
       "value": "Empty alt",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "projectType": ["react"]
     },
     {
       "id": 1200,
-      "area": "Images",
-      "subarea": "Accessibility",
+      "name": "Images",
+      "text": "Accessibility",
       "value": "Valid alt",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "projectType": ["react"]
     },
     {
       "id": 1200,
-      "area": "Images",
-      "subarea": "Accessibility",
+      "name": "Images",
+      "text": "Accessibility",
       "value": "Valid title",
-      "result": "",
-      "comment": "",
-      "help": ""
+      "projectType": ["react"]
     },
     {
+      "level": "page",
       "seq": 100,
       "id": 501,
-      "type": "action",
-      "text": "Lighthouse - Run tests"
+      "type": "section",
+      "name": "Lighthouse",
+      "text": "Chrome DevTools:  Run tests.",
+      "projectType": ["react"]
+    },
+
+    {
+      "level": "page",
+      "seq": 101,
+      "id": 506,
+      "type": "section",
+      "name": "React Components",
+      "text": "Chrome DevTools:  Run tests.",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 102,
+      "id": 507,
+      "type": "section",
+      "name": "React Profiler",
+      "text": "Chrome DevTools:  Run tests.",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 103,
+      "id": 508,
+      "type": "section",
+      "name": "Performance Insights",
+      "text": "Chrome DevTools:  Run tests.",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 104,
+      "id": 509,
+      "type": "section",
+      "name": "Performance",
+      "text": "Chrome DevTools:  Run tests.",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 105,
+      "id": 510,
+      "type": "section",
+      "name": "Redux",
+      "text": "Chrome DevTools: Validate state - Check for unused state",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 106,
+      "id": 511,
+      "type": "section",
+      "name": "Network",
+      "text": "Chrome DevTools: Check network tab for missing files (images), connection issues, etc.",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 106,
+      "id": 515,
+      "type": "section",
+      "name": "ColorBlindy",
+      "text": "Test for color blindness.",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 107,
+      "id": 520,
+      "type": "section",
+      "name": "Console",
+      "text": "Chrome DevTools: Check for errors",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "seq": 107,
+      "id": 512,
+      "type": "section",
+      "name": "Inspect",
+      "text": "Inspect style: Click through elements to check for unused or invalid styles.",
+      "projectType": ["react"]
+    },
+
+    {
+      "level": "project",
+      "seq": 100,
+      "id": 505,
+      "type": "section",
+      "name": "ESLint",
+      "text": ".eslintrc.json or eslintrc.cjs file",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "seq": 1000,
+      "id": 502,
+      "parentId": [505, 506],
+      "type": "test",
+      "name": "ESLint - Object Property Shorthand",
+      "text": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "seq": 100,
+      "id": 506,
+      "type": "section",
+      "name": "ESLint",
+      "text": ".eslintrc.json or eslintrc.cjs file",
+      "projectType": ["nodejs"]
     }
   ]
 }

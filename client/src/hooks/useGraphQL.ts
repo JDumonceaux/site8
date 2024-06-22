@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import axios, { isCancel } from 'axios';
-import { httpErrorHandler } from 'utils/errorHandler';
+import { useEffect, useState } from 'react';
 import { AcceptHeader, PreferHeader } from 'utils';
+import { httpErrorHandler } from 'utils/errorHandler';
 
 export const useGraphQL = <T>(url?: string) => {
   const [data, setData] = useState<T | undefined>(undefined);
