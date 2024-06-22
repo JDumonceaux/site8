@@ -1,6 +1,6 @@
 export type MenuEdit = {
   readonly id: number;
-  readonly tempId?: number;
+  readonly localId: number;
   readonly parentId?: number;
   readonly name?: string;
   readonly seq: number;

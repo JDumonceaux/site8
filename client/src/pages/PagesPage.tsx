@@ -29,13 +29,13 @@ const PagesPage = (): JSX.Element => {
   useEffect(() => {
     const ret = dataFlat?.map((item) => {
       return {
-        id: item.tempId,
+        id: item.id,
+        localId: item.localId,
         name: item.name,
         parent: item.parentId?.toString() || '0',
         seq: item.seq?.toString(),
         sortby: item.sortby,
         type: item.type,
-        tempId: item.id,
       };
     });
     if (ret) {
@@ -50,12 +50,12 @@ const PagesPage = (): JSX.Element => {
       }
 
       return (
-        <React.Fragment key={item.id}>
+        <React.Fragment key={item.localId}>
           <StyledTr>
             <td>
               {item.type === 'page' ? (
                 <StyledLink to={`/admin/page/edit/${item.id}`}>
-                  {item.id}
+                  {item.localId}
                 </StyledLink>
               ) : (
                 item.id
@@ -67,15 +67,12 @@ const PagesPage = (): JSX.Element => {
             <td>
               {item.type !== 'root' ? (
                 <TextInput
-                  {...getStandardTextInputAttributes(item.tempId, 'parent')}
+                  {...getStandardTextInputAttributes(item.localId, 'parent')}
                   autoCapitalize="off"
                   enterKeyHint="next"
-                  // errorText={getFieldErrors(`parentId${item.id}`)}
-                  // errorTextShort="Please enter a short title"
-                  // hasError={hasError(`parentId${item.id}`)}
                   inputMode="text"
                   onChange={(e) =>
-                    handleChange(item.tempId, 'parent', e.target.value)
+                    handleChange(item.localId, 'parent', e.target.value)
                   }
                   required={true}
                   spellCheck={true}
@@ -84,15 +81,12 @@ const PagesPage = (): JSX.Element => {
             </td>
             <td>
               <TextInput
-                {...getStandardTextInputAttributes(item.tempId, 'seq')}
+                {...getStandardTextInputAttributes(item.localId, 'seq')}
                 autoCapitalize="off"
                 enterKeyHint="next"
-                // errorText={getFieldErrors(`parentId${item.id}`)}
-                // errorTextShort="Please enter a short title"
-                // hasError={hasError(`parentId${item.id}`)}
                 inputMode="numeric"
                 onChange={(e) =>
-                  handleChange(item.tempId, 'seq', e.target.value)
+                  handleChange(item.localId, 'seq', e.target.value)
                 }
                 required={true}
                 spellCheck={true}
@@ -102,15 +96,12 @@ const PagesPage = (): JSX.Element => {
             <td>
               {item.type !== 'page' ? (
                 <TextInput
-                  {...getStandardTextInputAttributes(item.tempId, 'sortby')}
+                  {...getStandardTextInputAttributes(item.localId, 'sortby')}
                   autoCapitalize="off"
                   enterKeyHint="next"
-                  // errorText={getFieldErrors(`parentId${item.id}`)}
-                  // errorTextShort="Please enter a short title"
-                  // hasError={hasError(`parentId${item.id}`)}
                   inputMode="text"
                   onChange={(e) =>
-                    handleChange(item.tempId, 'sortby', e.target.value)
+                    handleChange(item.localId, 'sortby', e.target.value)
                   }
                   required={true}
                   spellCheck={true}
@@ -183,7 +174,7 @@ const PagesPage = (): JSX.Element => {
 
             <tbody>
               {filteredData?.map((item) => (
-                <React.Fragment key={item.id}>
+                <React.Fragment key={item.localId}>
                   {renderItem(item, 0)}
                 </React.Fragment>
               ))}

@@ -2328,6 +2328,35 @@
       "seq": 0,
       "to": "network",
       "type": "page"
+    },
+    {
+      "id": 80,
+      "name": "Extras",
+      "parent": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "seq": 0,
+      "sortby": "name",
+      "to": "extras",
+      "type": "menu"
+    },
+    {
+      "id": 81,
+      "create_date": "2024-06-22T19:53:00.000Z",
+      "edit_date": "2024-06-22T19:53:00.000Z",
+      "name": "Drag 'n Drop",
+      "parent": [
+        {
+          "id": 80,
+          "seq": 1
+        }
+      ],
+      "seq": 0,
+      "to": "drag-n-drop",
+      "type": "page"
     }
   ]
 }

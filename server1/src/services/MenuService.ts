@@ -1,10 +1,10 @@
-import { Logger } from '../utils/Logger.js';
-import { Pages } from '../types/Pages.js';
-import { Page, sortMenuEntryName, sortMenuEntrySeq } from '../types/Page.js';
 import { Menu } from '../types/Menu.js';
-import { PagesService } from './PagesService.js';
 import { MenuAbbr } from '../types/MenuAbbr.js';
 import { MenuItem } from '../types/MenuItem.js';
+import { Page, sortMenuEntryName, sortMenuEntrySeq } from '../types/Page.js';
+import { Pages } from '../types/Pages.js';
+import { Logger } from '../utils/Logger.js';
+import { PagesService } from './PagesService.js';
 
 let index = 0;
 
@@ -139,7 +139,6 @@ export class MenuService {
 
       const ret: MenuItem = {
         ...rest,
-        tempId: item.tempId ?? 0,
         seq: item.seq ?? 0,
         items: xItems,
       };
@@ -158,7 +157,6 @@ export class MenuService {
   private trimItem(item: Readonly<MenuItem>): MenuItem {
     try {
       return {
-        tempId: item.tempId,
         id: item.id,
         parentId: item.parentId,
         name: item.name,
@@ -217,7 +215,7 @@ export class MenuService {
         }
       }
     });
-    return ret ? ret.sort((a, b) => a.tempId - b.tempId) : undefined;
+    return ret ? ret.sort((a, b) => a.id - b.id) : undefined;
   }
 
   // 0. Get Menu

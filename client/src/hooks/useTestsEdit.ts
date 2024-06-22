@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Test } from 'types/Test';
 import { Tests } from 'types/Tests';
 import { ServiceUrl } from 'utils';
@@ -8,13 +8,15 @@ import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
+  localId: z.number(),
   id: z.number(),
   name: z.string().optional(),
   text: z.string().optional(),
   type: z.string().optional(),
   level: z.string().optional(),
   projectType: z.string().optional(),
-  parent: z.string().optional(),
+  parentId: z.string().optional(),
+  parentSeq: z.string().optional(),
   action: z.string().optional(),
 });
 
@@ -25,6 +27,7 @@ export type sortByType = 'seq' | 'name' | undefined;
 
 const useTestsEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Tests>();
+  const [localItems, setLocalItems] = useState<Test[] | undefined>();
   const { patchData } = useAxios<Tests>();
 
   // Create a form
@@ -70,7 +73,7 @@ const useTestsEdit = () => {
       ...data,
       items: ret ? ret.filter((x) => x) : undefined,
     };
-  }, [data?.items, formValues]);
+  }, [data, formValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
@@ -118,9 +121,13 @@ const useTestsEdit = () => {
     [getFieldValue],
   );
 
+  useEffect(() => {
+    setLocalItems(data?.items?.map((x, index) => ({ ...x, localId: index })));
+  }, [data?.items, setLocalItems]);
+
   return useMemo(
     () => ({
-      data: data?.items,
+      data: localItems,
       pageSchema,
       isProcessing,
       isLoading,
@@ -134,7 +141,7 @@ const useTestsEdit = () => {
       setFormValues,
     }),
     [
-      data?.items,
+      localItems,
       isProcessing,
       isLoading,
       error,

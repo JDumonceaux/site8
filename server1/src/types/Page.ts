@@ -1,6 +1,5 @@
 export type Page = {
   readonly id: number;
-  readonly tempId?: number;
   readonly name: string;
   readonly to?: string;
   readonly url?: string;

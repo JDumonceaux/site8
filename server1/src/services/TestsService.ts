@@ -11,9 +11,10 @@ export class TestsService {
         return undefined;
       }
 
-      items.sort(function (a, b) {
+      const sorted = items.sort(function (a, b) {
         return a.parentId - b.parentId || a.parentSeq - b.parentSeq;
       });
+      return sorted;
     } catch (error) {
       Logger.error(`TestsService: getItems:  --> Error: ${error}`);
       return undefined;

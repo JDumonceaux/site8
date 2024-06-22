@@ -48,7 +48,7 @@ module.exports = {
     },
   },
   rules: {
-    'object-shorthand': 'always',
+    'object-shorthand': 'warn',
     // React Compiler
     'react-compiler/react-compiler': 'error',
     // Enforce ES5 or ES6 class for React Components

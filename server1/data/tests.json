@@ -83,14 +83,15 @@
       "id": 200,
       "name": "HTML Header",
       "value": "Validate Entries",
+      "level": "page",
       "projectType": ["react"],
       "type": "section",
       "parentId": [0, 1]
     },
     {
       "id": 1105,
-
       "name": "Check for Open Graph",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 10]
@@ -98,15 +99,16 @@
     {
       "id": 1106,
       "name": "Doc Type",
-      "value": "",
+      "text": "",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 1]
     },
     {
       "id": 1107,
-
       "name": "Language",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 2]
@@ -114,116 +116,105 @@
 
     {
       "id": 1108,
-
       "name": "Language - change language",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 3]
     },
     {
       "id": 1109,
-      "name": "Code",
-      "text": "Header",
-      "value": "Encoding",
+      "name": "Encoding",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 4]
     },
     {
       "id": 1110,
-      "name": "Code",
-      "text": "Header",
-      "value": "Author",
+      "name": "Author",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 5]
     },
     {
       "id": 1111,
-      "name": "Code",
-      "text": "Header",
-      "value": "Keywords",
+      "name": "Keywords",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 6]
     },
     {
       "id": 1112,
-      "name": "Code",
-      "text": "Header",
-      "value": "Title",
+      "name": "Title",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 7]
     },
     {
       "id": 1113,
-      "name": "Code",
-      "text": "Header",
-      "value": "Description",
+      "name": "Description",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 8]
     },
     {
       "id": 1114,
-      "name": "Code",
-      "text": "Header",
-      "value": "Favicon",
+      "name": "Favicon",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 9]
     },
     {
       "id": 1115,
-      "name": "Code",
-      "text": "Header",
-      "value": "Publish Date",
+      "name": "Publish Date",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 11]
     },
     {
       "id": 1116,
-      "name": "Code",
-      "text": "Header",
-      "value": "Canonical URL",
+      "name": "Canonical URL",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 12]
     },
     {
       "id": 1117,
-      "name": "Code",
-      "text": "Header",
-      "value": "Viewport",
+      "name": "Viewport",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 13]
     },
     {
       "id": 1117,
-      "name": "Code",
-      "text": "Header",
-      "value": "Open Graph Coding",
+      "name": "Open Graph Coding",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 14]
     },
     {
       "id": 1118,
-      "name": "Code",
-      "text": "Header",
-      "value": "Base Element",
+      "name": "Base Element",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 15]
     },
     {
       "id": 1119,
-      "name": "Code",
-      "text": "Header",
-      "value": "Remove type from stylesheet ref (no longer required)",
+      "name": "Stylesheet Ref",
+      "text": "Remove type from stylesheet ref (no longer required)",
+      "level": "page",
       "projectType": ["react"],
       "type": "test",
       "parentId": [200, 16]
@@ -288,7 +279,6 @@
     },
     {
       "level": "page",
-      "seq": 104,
       "id": 509,
       "type": "section",
       "name": "Performance",
@@ -297,7 +287,7 @@
     },
     {
       "level": "page",
-      "seq": 105,
+
       "id": 510,
       "type": "section",
       "name": "Redux",
@@ -306,7 +296,6 @@
     },
     {
       "level": "page",
-      "seq": 106,
       "id": 511,
       "type": "section",
       "name": "Network",
@@ -315,7 +304,7 @@
     },
     {
       "level": "page",
-      "seq": 106,
+
       "id": 515,
       "type": "section",
       "name": "ColorBlindy",
@@ -324,7 +313,7 @@
     },
     {
       "level": "page",
-      "seq": 107,
+
       "id": 520,
       "type": "section",
       "name": "Console",
@@ -333,7 +322,7 @@
     },
     {
       "level": "page",
-      "seq": 107,
+
       "id": 512,
       "type": "section",
       "name": "Inspect",
@@ -343,7 +332,7 @@
 
     {
       "level": "project",
-      "seq": 100,
+
       "id": 505,
       "type": "section",
       "name": "ESLint",
@@ -353,7 +342,6 @@
     {
       "level": "project",
       "seq": 1000,
-      "id": 502,
       "parentId": [505, 506],
       "type": "test",
       "name": "ESLint - Object Property Shorthand",
@@ -362,7 +350,6 @@
     },
     {
       "level": "project",
-      "seq": 100,
       "id": 506,
       "type": "section",
       "name": "ESLint",

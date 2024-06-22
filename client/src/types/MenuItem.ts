@@ -1,7 +1,7 @@
 // Returned to front end
 export type MenuItem = {
   readonly id: number;
-  readonly tempId: number;
+  readonly localId: number;
   readonly name?: string;
   readonly to?: string;
   readonly url?: string;

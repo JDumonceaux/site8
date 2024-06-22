@@ -1,5 +1,4 @@
 export type Test = {
-  readonly line: number;
   readonly action?: 'add' | 'edit' | 'delete';
   readonly id: number;
   readonly name: string;

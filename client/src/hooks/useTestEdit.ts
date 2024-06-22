@@ -7,6 +7,7 @@ import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
+  localId: z.number(),
   id: z.number(),
   name: z.string().optional(),
   parent: z.string().min(1, REQUIRED_FIELD),
@@ -50,8 +51,7 @@ const useTestEdit = () => {
 
     const temp: MenuEdit[] = [];
     formValues.forEach((item) => {
-      // Match on TempId = Id
-      const originalItem = data.flat?.find((x) => x.tempId === item.id);
+      const originalItem = data.flat?.find((x) => x.localId === item.localId);
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
@@ -106,11 +106,11 @@ const useTestEdit = () => {
   }, [submitForm]);
 
   const getStandardTextInputAttributes = useCallback(
-    (id: number, fieldName: keys) => {
-      const field = fieldName + '-' + id;
+    (localId: number, fieldName: keys) => {
+      const field = fieldName + '-' + localId;
       return {
         id: field,
-        value: getFieldValue(id, fieldName),
+        value: getFieldValue(localId, fieldName),
         // errorText: getFieldErrors(fieldName),
         // hasError: hasError(fieldName),
         // value: formValues[fieldName],
@@ -133,8 +133,6 @@ const useTestEdit = () => {
   };
 
   const filteredData = filter(data?.items);
-
-  console.log('filteredData', filteredData);
 
   return useMemo(
     () => ({

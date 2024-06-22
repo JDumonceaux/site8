@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
 export type IdType = {
-  readonly id: number;
+  readonly localId: number;
 };
 
 export const useFormArray = <T extends IdType>() => {
@@ -17,16 +17,16 @@ export const useFormArray = <T extends IdType>() => {
 
   const setFieldValue = useCallback(
     (
-      id: number,
+      localId: number,
       fieldName: keys,
       value: string | boolean | number | undefined,
     ) => {
-      const i = formValues.findIndex((x) => x.id === id);
+      const i = formValues.findIndex((x) => x.localId === localId);
       const newFormValues = [...formValues];
       if (i >= 0) {
         newFormValues[i] = { ...newFormValues[i], [fieldName]: value };
       } else {
-        newFormValues.push({ id, [fieldName]: value } as T);
+        newFormValues.push({ localId, [fieldName]: value } as T);
       }
       setFormValues(newFormValues);
       setIsSaved(false);
@@ -35,8 +35,8 @@ export const useFormArray = <T extends IdType>() => {
   );
 
   const getFieldValue = useCallback(
-    (id: number, fieldName: keys) => {
-      const rec = formValues.find((x) => x.id === id);
+    (localId: number, fieldName: keys) => {
+      const rec = formValues.find((x) => x.localId === localId);
       if (!rec) {
         return '';
       }
@@ -45,13 +45,13 @@ export const useFormArray = <T extends IdType>() => {
     [formValues],
   );
   const setItem = useCallback(
-    (id: number, item: T) => {
-      const i = formValues.findIndex((x) => x.id === id);
+    (localId: number, item: T) => {
+      const i = formValues.findIndex((x) => x.localId === localId);
       const newFormValues = [...formValues];
       if (i >= 0) {
         newFormValues[i] = { ...newFormValues[i], ...item };
       } else {
-        newFormValues.push({ ...item, id } as T);
+        newFormValues.push({ ...item, localId } as T);
       }
       setFormValues(newFormValues);
       setIsSaved(false);
@@ -60,8 +60,8 @@ export const useFormArray = <T extends IdType>() => {
   );
 
   const getItem = useCallback(
-    (id: number) => {
-      const i = formValues.findIndex((x) => x.id === id);
+    (localId: number) => {
+      const i = formValues.findIndex((x) => x.localId === localId);
       if (i < 0) {
         return undefined;
       }

@@ -1,0 +1,9 @@
+<a href="https://docs.dndkit.com/">Drag N Drop Kit</a>
+
+npm install @dnd-kit/core
+
+// Install Sortable
+npm install @dnd-kit/sortable
+
+// Optional
+npm install @dnd-kit/modifiers

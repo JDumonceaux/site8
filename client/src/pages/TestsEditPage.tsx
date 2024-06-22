@@ -23,16 +23,20 @@ const TestsEditPage = (): JSX.Element => {
 
   const { showPages, setShowPages } = useAppSettings();
 
+  console.log('data', data);
+
   useEffect(() => {
     const ret = data?.map((item) => {
       return {
         id: item.id,
+        localId: item.localId,
         name: item.name,
         text: item.text,
         type: item.type?.toString(),
         level: item.level?.toString(),
         projectType: item.projectType?.toString(),
-        parent: item.parent?.toString(),
+        parentId: item.parentId.toString(),
+        parentSeq: item.parentSeq.toString(),
         action: '',
       };
     });
@@ -48,46 +52,70 @@ const TestsEditPage = (): JSX.Element => {
       }
 
       return (
-        <React.Fragment key={item.id}>
+        <React.Fragment key={item.localId}>
           <StyledTr>
             <td>{item.id}</td>
             <td>
               <TextInput
-                {...getStandardTextInputAttributes(item.id, 'name')}
-                onChange={(e) => handleChange(item.id, 'name', e.target.value)}
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.id, 'text')}
-                onChange={(e) => handleChange(item.id, 'text', e.target.value)}
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.id, 'type')}
-                onChange={(e) => handleChange(item.id, 'type', e.target.value)}
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.id, 'level')}
-                onChange={(e) => handleChange(item.id, 'level', e.target.value)}
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.id, 'parent')}
+                {...getStandardTextInputAttributes(item.localId, 'name')}
                 onChange={(e) =>
-                  handleChange(item.id, 'parent', e.target.value)
+                  handleChange(item.localId, 'name', e.target.value)
                 }
               />
             </td>
             <td>
               <TextInput
-                {...getStandardTextInputAttributes(item.id, 'action')}
+                {...getStandardTextInputAttributes(item.localId, 'text')}
                 onChange={(e) =>
-                  handleChange(item.id, 'action', e.target.value)
+                  handleChange(item.localId, 'text', e.target.value)
+                }
+              />
+            </td>
+            <td>
+              <TextInput
+                {...getStandardTextInputAttributes(item.localId, 'type')}
+                onChange={(e) =>
+                  handleChange(item.localId, 'type', e.target.value)
+                }
+              />
+            </td>
+            <td>
+              <TextInput
+                {...getStandardTextInputAttributes(item.localId, 'level')}
+                onChange={(e) =>
+                  handleChange(item.localId, 'level', e.target.value)
+                }
+              />
+            </td>
+            <td>
+              <TextInput
+                {...getStandardTextInputAttributes(item.localId, 'parentId')}
+                onChange={(e) =>
+                  handleChange(item.localId, 'parentId', e.target.value)
+                }
+              />
+            </td>
+            <td>
+              <TextInput
+                {...getStandardTextInputAttributes(item.localId, 'parentSeq')}
+                onChange={(e) =>
+                  handleChange(item.localId, 'parentSeq', e.target.value)
+                }
+              />
+            </td>
+            <td>
+              <TextInput
+                {...getStandardTextInputAttributes(item.localId, 'projectType')}
+                onChange={(e) =>
+                  handleChange(item.localId, 'projectType', e.target.value)
+                }
+              />
+            </td>
+            <td>
+              <TextInput
+                {...getStandardTextInputAttributes(item.localId, 'action')}
+                onChange={(e) =>
+                  handleChange(item.localId, 'action', e.target.value)
                 }
               />
             </td>
@@ -136,18 +164,21 @@ const TestsEditPage = (): JSX.Element => {
           <table>
             <thead>
               <tr>
-                <th>Edit</th>
+                <th>Id</th>
                 <th>Name</th>
+                <th>Text</th>
+                <th>Type</th>
+                <th>Level</th>
                 <th>Parent</th>
                 <th>Seq</th>
-                <th>Sortby</th>
-                <th>Type</th>
+                <th>Project Type</th>
+                <th>Action</th>
               </tr>
             </thead>
 
             <tbody>
               {data?.map((item) => (
-                <React.Fragment key={item.id}>
+                <React.Fragment key={item.localId}>
                   {renderItem(item)}
                 </React.Fragment>
               ))}
