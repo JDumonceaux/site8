@@ -17,7 +17,7 @@ const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFoundPage'));
 const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
 const PageEditPage = lazy(() => import('pages/PageEditPage'));
-const PagesPage = lazy(() => import('pages/PagesPage'));
+const PagesEditPage = lazy(() => import('pages/PagesEditPage'));
 const PhotoPage = lazy(() => import('pages/PhotoPage'));
 const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
 const Sitemap = lazy(() => import('pages/SitemapPage'));
@@ -86,7 +86,7 @@ const router = createBrowserRouter(
 
         {/* ADMIN */}
         <Route element={<MainLayout />} path="admin">
-          <Route element={<PagesPage />} path="pages" />
+          <Route element={<PagesEditPage />} path="pages" />
           <Route element={<PageEditPage />} path="page/edit" />
           <Route element={<PageEditPage />} path="page/edit/:id" />
           <Route element={<ImageEditPage />} path="image/edit" />

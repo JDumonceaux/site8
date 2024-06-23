@@ -4,9 +4,10 @@ export type MenuItem = {
   readonly to?: string;
   readonly url?: string;
   readonly toComplete?: string;
-  readonly parentId?: number;
-  readonly seq: number;
+  readonly parentId: number;
+  readonly parentSeq: number;
   readonly type: 'root' | 'menu' | 'page';
-  readonly items?: MenuItem[];
   readonly sortby: 'seq' | 'name';
+  readonly file?: boolean;
+  readonly seq: number;
 };

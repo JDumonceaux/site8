@@ -35,6 +35,7 @@ const useTestsEdit = () => {
     formValues,
     isSaved,
     isProcessing,
+    getDefaultProps,
     setIsProcessing,
     setFieldValue,
     getFieldValue,
@@ -46,6 +47,11 @@ const useTestsEdit = () => {
   useEffect(() => {
     fetchData(ServiceUrl.ENDPOINT_TESTS);
   }, [fetchData]);
+
+  // Save to local - adding local index
+  useEffect(() => {
+    setLocalItems(data?.items?.map((x, index) => ({ ...x, localId: index })));
+  }, [data?.items, setLocalItems]);
 
   // Get the updates
   const getUpdates = useCallback((): Tests | undefined => {
@@ -107,24 +113,6 @@ const useTestsEdit = () => {
     return ret;
   }, [submitForm]);
 
-  const getStandardTextInputAttributes = useCallback(
-    (id: number, fieldName: keys) => {
-      const field = fieldName + '-' + id;
-      return {
-        id: field,
-        value: getFieldValue(id, fieldName),
-        // errorText: getFieldErrors(fieldName),
-        // hasError: hasError(fieldName),
-        // value: formValues[fieldName],
-      };
-    },
-    [getFieldValue],
-  );
-
-  useEffect(() => {
-    setLocalItems(data?.items?.map((x, index) => ({ ...x, localId: index })));
-  }, [data?.items, setLocalItems]);
-
   return useMemo(
     () => ({
       data: localItems,
@@ -133,8 +121,8 @@ const useTestsEdit = () => {
       isLoading,
       error,
       isSaved,
+      getDefaultProps,
       getFieldValue,
-      getStandardTextInputAttributes,
       setFieldValue,
       handleChange,
       handleSave,
@@ -146,8 +134,8 @@ const useTestsEdit = () => {
       isLoading,
       error,
       isSaved,
+      getDefaultProps,
       getFieldValue,
-      getStandardTextInputAttributes,
       setFieldValue,
       handleChange,
       handleSave,

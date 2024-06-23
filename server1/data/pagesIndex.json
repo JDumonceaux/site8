@@ -393,7 +393,7 @@
           "seq": 0
         }
       ],
-      "resources": false,
+
       "to": "overview",
       "type": "page"
     },
@@ -413,7 +413,7 @@
           "seq": 0
         }
       ],
-      "resources": false,
+
       "to": "singleton-pattern",
       "type": "page"
     },
@@ -433,7 +433,7 @@
           "seq": 0
         }
       ],
-      "resources": false,
+
       "seq": 1000,
       "to": "factory-method-pattern",
       "type": "page"
@@ -919,7 +919,7 @@
           "seq": 0
         }
       ],
-      "resources": false,
+
       "to": "mern",
       "type": "page"
     },
@@ -935,7 +935,7 @@
           "seq": 0
         }
       ],
-      "resources": false,
+
       "to": "serverless",
       "type": "page"
     },
@@ -951,7 +951,7 @@
           "seq": 0
         }
       ],
-      "resources": false,
+
       "to": "usetransition",
       "type": "page"
     },

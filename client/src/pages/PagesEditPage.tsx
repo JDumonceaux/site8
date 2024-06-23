@@ -12,28 +12,20 @@ import React, { useCallback, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { MenuItem } from 'types';
 
-const PagesPage = (): JSX.Element => {
-  const {
-    data,
-    dataMenuOnly,
-    dataFlat,
-    isSaved,
-    handleChange,
-    handleSave,
-    setFormValues,
-    getStandardTextInputAttributes,
-  } = usePagesEdit();
+const PagesEditPage = (): JSX.Element => {
+  const { data, isSaved, handleSave, setFormValues, getDefaultProps } =
+    usePagesEdit();
 
   const { showPages, setShowPages } = useAppSettings();
 
   useEffect(() => {
-    const ret = dataFlat?.map((item) => {
+    const ret = data?.map((item) => {
       return {
         id: item.id,
         localId: item.localId,
         name: item.name,
         parent: item.parentId?.toString() || '0',
-        seq: item.seq?.toString(),
+        seq: item.parentSeq?.toString(),
         sortby: item.sortby,
         type: item.type,
       };
@@ -41,7 +33,7 @@ const PagesPage = (): JSX.Element => {
     if (ret) {
       setFormValues(ret);
     }
-  }, [dataFlat, setFormValues]);
+  }, [data, setFormValues]);
 
   const renderItem = useCallback(
     (item: MenuItem | undefined, level: number): JSX.Element | null => {
@@ -66,57 +58,26 @@ const PagesPage = (): JSX.Element => {
             </RenderLevel>
             <td>
               {item.type !== 'root' ? (
-                <TextInput
-                  {...getStandardTextInputAttributes(item.localId, 'parent')}
-                  autoCapitalize="off"
-                  enterKeyHint="next"
-                  inputMode="text"
-                  onChange={(e) =>
-                    handleChange(item.localId, 'parent', e.target.value)
-                  }
-                  required={true}
-                  spellCheck={true}
-                />
+                <TextInput {...getDefaultProps(item.localId, 'parent')} />
               ) : null}
             </td>
             <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'seq')}
-                autoCapitalize="off"
-                enterKeyHint="next"
-                inputMode="numeric"
-                onChange={(e) =>
-                  handleChange(item.localId, 'seq', e.target.value)
-                }
-                required={true}
-                spellCheck={true}
-              />
+              <TextInput {...getDefaultProps(item.localId, 'seq')} />
             </td>
 
             <td>
               {item.type !== 'page' ? (
-                <TextInput
-                  {...getStandardTextInputAttributes(item.localId, 'sortby')}
-                  autoCapitalize="off"
-                  enterKeyHint="next"
-                  inputMode="text"
-                  onChange={(e) =>
-                    handleChange(item.localId, 'sortby', e.target.value)
-                  }
-                  required={true}
-                  spellCheck={true}
-                />
+                <TextInput {...getDefaultProps(item.localId, 'sortby')} />
               ) : null}
             </td>
             <td>
               {item.type} - {level}
             </td>
           </StyledTr>
-          {item.items?.map((x) => renderItem(x, level + 1))}
         </React.Fragment>
       );
     },
-    [getStandardTextInputAttributes, handleChange],
+    [getDefaultProps],
   );
 
   const onShowPages = useCallback(
@@ -125,12 +86,6 @@ const PagesPage = (): JSX.Element => {
     },
     [setShowPages],
   );
-
-  const getData = useCallback(() => {
-    return showPages ? data : dataMenuOnly;
-  }, [data, dataMenuOnly, showPages]);
-
-  const filteredData = getData();
 
   return (
     <>
@@ -173,7 +128,7 @@ const PagesPage = (): JSX.Element => {
             </thead>
 
             <tbody>
-              {filteredData?.map((item) => (
+              {data?.map((item) => (
                 <React.Fragment key={item.localId}>
                   {renderItem(item, 0)}
                 </React.Fragment>
@@ -187,7 +142,7 @@ const PagesPage = (): JSX.Element => {
   );
 };
 
-export default PagesPage;
+export default PagesEditPage;
 
 const StyledTr = styled.tr`
   td {

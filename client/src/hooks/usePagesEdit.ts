@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Menu, MenuEdit, MenuItem } from 'types';
 import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
@@ -23,6 +23,7 @@ export type sortByType = 'seq' | 'name' | undefined;
 
 const usePagesEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
+  const [localItems, setLocalItems] = useState<MenuItem[] | undefined>();
   const { patchData } = useAxios<MenuEdit[]>();
 
   // Create a form
@@ -30,6 +31,7 @@ const usePagesEdit = () => {
     formValues,
     isSaved,
     isProcessing,
+    getDefaultProps,
     setIsProcessing,
     setFieldValue,
     getFieldValue,
@@ -42,21 +44,28 @@ const usePagesEdit = () => {
     fetchData(ServiceUrl.ENDPOINT_MENUS_EDIT);
   }, [fetchData]);
 
+  // Save to local - adding local index
+  useEffect(() => {
+    setLocalItems(
+      data?.items?.map((x, index) => ({ ...x, localId: index + 1 })),
+    );
+  }, [data?.items, setLocalItems]);
+
   // Get the updates
   const getUpdates = useCallback((): MenuEdit[] | undefined => {
-    if (!data?.flat) {
+    if (!data?.items) {
       return undefined;
     }
 
     const temp: MenuEdit[] = [];
     formValues.forEach((item) => {
       // Match on TempId = Id
-      const originalItem = data.flat?.find((x) => x.localId === item.localId);
+      const originalItem = data.items?.find((x) => x.localId === item.localId);
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
           newParentId: parseInt(item.parent),
-          newSeq: parseInt(item.seq),
+          newParentSeq: parseInt(item.seq),
           newSortby: item.sortby as sortByType,
         };
         temp.push(x);
@@ -66,12 +75,12 @@ const usePagesEdit = () => {
     const ret = temp.filter(
       (x) =>
         x.newParentId !== x.parentId ||
-        x.newSeq !== x.seq ||
+        x.newParentSeq !== x.parentSeq ||
         x.newSortby !== x.sortby,
     );
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
-  }, [data?.flat, formValues]);
+  }, [data?.items, formValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
@@ -105,62 +114,44 @@ const usePagesEdit = () => {
     return ret;
   }, [submitForm]);
 
-  const getStandardTextInputAttributes = useCallback(
-    (localId: number, fieldName: keys) => {
-      const field = fieldName + '-' + localId;
-      return {
-        id: field,
-        value: getFieldValue(localId, fieldName),
-        // errorText: getFieldErrors(fieldName),
-        // hasError: hasError(fieldName),
-        // value: formValues[fieldName],
-      };
-    },
-    [getFieldValue],
-  );
+  // const filter = (arr: MenuItem[] | undefined) => {
+  //   const matches: MenuItem[] = [];
+  //   if (!Array.isArray(arr)) return matches;
+  //   arr.forEach((i) => {
+  //     if (i.type !== 'page') {
+  //       const { items, ...rest } = i;
+  //       const childResults = filter(items);
+  //       matches.push({ items: childResults, ...rest });
+  //     }
+  //   });
+  //   return matches;
+  // };
 
-  const filter = (arr: MenuItem[] | undefined) => {
-    const matches: MenuItem[] = [];
-    if (!Array.isArray(arr)) return matches;
-    arr.forEach((i) => {
-      if (i.type !== 'page') {
-        const { items, ...rest } = i;
-        const childResults = filter(items);
-        matches.push({ items: childResults, ...rest });
-      }
-    });
-    return matches;
-  };
-
-  const filteredData = filter(data?.items);
+  const filteredData = localItems;
 
   return useMemo(
     () => ({
-      data: data?.items,
-      dataMenuOnly: filteredData,
-      dataFlat: data?.flat,
+      data: filteredData,
       pageSchema,
       isProcessing,
       isLoading,
       error,
       isSaved,
       getFieldValue,
-      getStandardTextInputAttributes,
+      getDefaultProps,
       setFieldValue,
       handleChange,
       handleSave,
       setFormValues,
     }),
     [
-      data?.items,
-      data?.flat,
       filteredData,
       isProcessing,
       isLoading,
       error,
       isSaved,
       getFieldValue,
-      getStandardTextInputAttributes,
+      getDefaultProps,
       setFieldValue,
       handleChange,
       handleSave,

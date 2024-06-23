@@ -26,8 +26,6 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
     setId(tempId);
   }, [x.pathname]);
 
-  console.log('id', id);
-
   useEffect(() => {
     if (id) {
       fetchData(`${ServiceUrl.ENDPOINT_PAGE_NAME}/${id}`);

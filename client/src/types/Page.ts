@@ -12,8 +12,8 @@ export type Page = {
   readonly type: 'root' | 'menu' | 'page';
   readonly items?: Page[];
   readonly toComplete?: string;
-  readonly parentId?: number;
-  readonly seq: number;
+  readonly parentId: number;
+  readonly parentSeq: number;
   parent?: { id: number; seq: number }[];
   sortby?: 'seq' | 'name';
 };

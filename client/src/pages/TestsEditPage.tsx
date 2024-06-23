@@ -1,29 +1,42 @@
+import {
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import { Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import StyledMenu from 'components/common/StyledMain/StyledMenu';
-import MenuAdd from 'components/custom/MenuAdd';
 import { TextInput } from 'components/form/input';
 import { Switch } from 'components/primatives/Switch/Switch';
+import { SortableItem } from 'components/ui/TestEditPage/SortableItem';
 import useAppSettings from 'hooks/useAppSettings';
 import useTestsEdit from 'hooks/useTestsEdit';
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import { Test } from 'types/Test';
 
 const TestsEditPage = (): JSX.Element => {
-  const {
-    data,
-    isSaved,
-    handleChange,
-    handleSave,
-    setFormValues,
-    getStandardTextInputAttributes,
-  } = useTestsEdit();
+  const { data, isSaved, handleSave, setFormValues, getDefaultProps } =
+    useTestsEdit();
+
+  const [items, setItems] = useState([1, 2, 3]);
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
 
   const { showPages, setShowPages } = useAppSettings();
-
-  console.log('data', data);
 
   useEffect(() => {
     const ret = data?.map((item) => {
@@ -45,86 +58,84 @@ const TestsEditPage = (): JSX.Element => {
     }
   }, [data, setFormValues]);
 
-  const renderItem = useCallback(
-    (item: Test | undefined): JSX.Element | null => {
-      if (!item) {
-        return null;
-      }
+  // const renderItem = useCallback(
+  //   (item: Test | undefined): JSX.Element | null => {
+  //     if (!item) {
+  //       return null;
+  //     }
 
-      return (
-        <React.Fragment key={item.localId}>
-          <StyledTr>
-            <td>{item.id}</td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'name')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'name', e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'text')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'text', e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'type')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'type', e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'level')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'level', e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'parentId')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'parentId', e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'parentSeq')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'parentSeq', e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'projectType')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'projectType', e.target.value)
-                }
-              />
-            </td>
-            <td>
-              <TextInput
-                {...getStandardTextInputAttributes(item.localId, 'action')}
-                onChange={(e) =>
-                  handleChange(item.localId, 'action', e.target.value)
-                }
-              />
-            </td>
-          </StyledTr>
-        </React.Fragment>
-      );
-    },
-    [getStandardTextInputAttributes, handleChange],
-  );
+  //     return (
+  //       <React.Fragment key={item.localId}>
+  //         <StyledTr>
+  //           <td>{item.id}</td>
+  // <td>
+  //   <TextInput
+  //     {...getDefaultProps(item.localId, 'name')}
+  //     onChange={(e) => handleChange(item.localId, 'name', e.target.value)}
+  //   />
+  // </td>;
+  //           <td>
+  //             <TextInput
+  //               {...getDefaultProps(item.localId, 'text')}
+  //               onChange={(e) =>
+  //                 handleChange(item.localId, 'text', e.target.value)
+  //               }
+  //             />
+  //           </td>
+  //           <td>
+  //             <TextInput
+  //               {...getDefaultProps(item.localId, 'type')}
+  //               onChange={(e) =>
+  //                 handleChange(item.localId, 'type', e.target.value)
+  //               }
+  //             />
+  //           </td>
+  //           <td>
+  //             <TextInput
+  //               {...getDefaultProps(item.localId, 'level')}
+  //               onChange={(e) =>
+  //                 handleChange(item.localId, 'level', e.target.value)
+  //               }
+  //             />
+  //           </td>
+  //           <td>
+  //             <TextInput
+  //               {...getDefaultProps(item.localId, 'parentId')}
+  //               onChange={(e) =>
+  //                 handleChange(item.localId, 'parentId', e.target.value)
+  //               }
+  //             />
+  //           </td>
+  //           <td>
+  //             <TextInput
+  //               {...getDefaultProps(item.localId, 'parentSeq')}
+  //               onChange={(e) =>
+  //                 handleChange(item.localId, 'parentSeq', e.target.value)
+  //               }
+  //             />
+  //           </td>
+  //           <td>
+  //             <TextInput
+  //               {...getDefaultProps(item.localId, 'projectType')}
+  //               onChange={(e) =>
+  //                 handleChange(item.localId, 'projectType', e.target.value)
+  //               }
+  //             />
+  //           </td>
+  //           <td>
+  //             <TextInput
+  //               {...getDefaultProps(item.localId, 'action')}
+  //               onChange={(e) =>
+  //                 handleChange(item.localId, 'action', e.target.value)
+  //               }
+  //             />
+  //           </td>
+  //         </StyledTr>
+  //       </React.Fragment>
+  //     );
+  //   },
+  //   [getDefaultProps, handleChange],
+  // );
 
   const onShowPages = useCallback(
     (checked: boolean) => {
@@ -132,6 +143,19 @@ const TestsEditPage = (): JSX.Element => {
     },
     [setShowPages],
   );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      setItems((items) => {
+        const oldIndex = items.indexOf(active.id);
+        const newIndex = items.indexOf(over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
 
   return (
     <>
@@ -177,14 +201,31 @@ const TestsEditPage = (): JSX.Element => {
             </thead>
 
             <tbody>
-              {data?.map((item) => (
-                <React.Fragment key={item.localId}>
-                  {renderItem(item)}
-                </React.Fragment>
-              ))}
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                sensors={sensors}>
+                <SortableContext
+                  items={items}
+                  strategy={verticalListSortingStrategy}>
+                  {data?.map((item) => (
+                    <SortableItem id={item.localId} key={item.localId}>
+                      <StyledTr>
+                        <td>{item.id}</td>
+                        <td>
+                          <TextInput
+                            {...getDefaultProps(item.localId, 'name')}
+                          />
+                        </td>
+                      </StyledTr>
+                    </SortableItem>
+                  ))}
+                </SortableContext>
+              </DndContext>
+
+              {/* {data?.map((item) => renderItem(item))} */}
             </tbody>
           </table>
-          <MenuAdd />
         </StyledMain.Section>
       </StyledMain>
     </>

@@ -106,6 +106,21 @@ export const useFormArray = <T extends IdType>() => {
   //   setErrors(undefined);
   // }, [setFormValues, blankFormValues]);
 
+  const getDefaultProps = useCallback(
+    (localId: number, fieldName: keys) => {
+      const field = `${fieldName as string}-${localId}`;
+      return {
+        id: field,
+        value: getFieldValue(localId, fieldName),
+        onChange: handleChange,
+        // errorText: getFieldErrors(fieldName),
+        // hasError: hasError(fieldName),
+        // value: formValues[fieldName],
+      };
+    },
+    [getFieldValue, handleChange],
+  );
+
   return useMemo(
     () => ({
       formValues,
@@ -117,6 +132,7 @@ export const useFormArray = <T extends IdType>() => {
       getFieldValue,
       setFieldValue,
       setFormValues,
+      getDefaultProps,
       getItem,
       setItem,
     }),
@@ -127,7 +143,7 @@ export const useFormArray = <T extends IdType>() => {
       handleChange,
       getFieldValue,
       setFieldValue,
-      setFormValues,
+      getDefaultProps,
       getItem,
       setItem,
     ],

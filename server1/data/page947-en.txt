@@ -381,7 +381,7 @@ HTML and React event handling are similar in many ways, but there are some key d
 
 Syntax:
 
-In HTML, event handlers are typically written directly as attributes in the HTML tags, such as <button onclick="handleClick()">Click me</button>.
+In HTML, event handlers are typically written directly as attributes in the HTML tags, such as <button onClick="handleClick()">Click me</button>.
 In React, event handlers are specified as camelCase props on JSX elements, such as <button onClick={handleClick}>Click me</button>.
 Handling Events:
 

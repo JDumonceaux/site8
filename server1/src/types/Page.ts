@@ -12,8 +12,8 @@ export type Page = {
   readonly type: 'root' | 'menu' | 'page';
   readonly items?: Page[];
   readonly toComplete?: string;
-  readonly parentId?: number;
-  readonly seq?: number;
+  readonly parentId: number;
+  readonly parentSeq: number;
   readonly parent?: { readonly id: number; readonly seq: number }[];
   readonly sortby: 'seq' | 'name';
 };
@@ -32,8 +32,8 @@ export function sortMenuEntryName(ob1: Page, ob2: Page) {
   if (nameComparison !== 0) {
     return nameComparison;
   }
-  if (ob1.seq === undefined || ob2.seq === undefined) {
+  if (ob1.parentSeq === undefined || ob2.parentSeq === undefined) {
     return 0;
   }
-  return ob1.seq - ob2.seq;
+  return ob1.parentSeq - ob2.parentSeq;
 }

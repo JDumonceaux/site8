@@ -98,8 +98,8 @@ export class PagesService {
       const itemToAdd: Page = {
         ...item,
         parent: [{ id: item.parentId, seq: item.seq }],
-        parentId: undefined,
-        seq: 0,
+        parentId: 0,
+        parentSeq: 0,
       };
       // Remove undefined values and sort
       const newItem = cleanUpData<Page>(itemToAdd);

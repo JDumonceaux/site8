@@ -32,7 +32,7 @@
       "name": "CSS",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 1,
       "reading_time": "",
       "readability_score": "",
@@ -44,7 +44,7 @@
       "name": "Internationalization",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 0,
       "reading_time": "",
       "readability_score": "",
@@ -56,7 +56,7 @@
       "name": "Skeuomorphism",
       "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "",
       "readability_score": "",
@@ -68,7 +68,7 @@
       "name": "Flat Design",
       "long_title": "Flat Design: The Art of Simplicity",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "",
       "readability_score": "",
@@ -80,7 +80,7 @@
       "name": "Corporate Memphis Design",
       "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "1 min 37 sec",
       "readability_score": "22",
@@ -92,7 +92,7 @@
       "name": "Glassmorphism",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "",
       "readability_score": "",
@@ -104,7 +104,7 @@
       "name": "Minimalism",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "",
       "readability_score": "",
@@ -116,7 +116,7 @@
       "name": "Neumorphism",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "",
       "readability_score": "",
@@ -128,7 +128,7 @@
       "name": "Retrofuturism",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "",
       "readability_score": "",
@@ -140,7 +140,7 @@
       "name": "Swiss Style",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 2,
       "reading_time": "",
       "readability_score": "",
@@ -152,7 +152,7 @@
       "name": "Chrome Extensions",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 0,
       "reading_time": "",
       "readability_score": "",
@@ -164,7 +164,7 @@
       "name": "Git",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 0,
       "reading_time": "",
       "readability_score": "",
@@ -176,7 +176,7 @@
       "name": "Visual Studio Code",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 0,
       "reading_time": "",
       "readability_score": "",
@@ -188,7 +188,7 @@
       "name": "Visual Studio Code: Extensions",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 0,
       "reading_time": "",
       "readability_score": "",
@@ -200,7 +200,7 @@
       "name": "At Last - Pleasantville",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 3,
       "reading_time": "",
       "readability_score": "",
@@ -212,7 +212,7 @@
       "name": "Gallos",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 3,
       "reading_time": "",
       "readability_score": "",
@@ -224,7 +224,7 @@
       "name": "Shoes on the Danube Bank",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 3,
       "reading_time": "",
       "readability_score": "",
@@ -236,7 +236,7 @@
       "name": "Lazels Puzzles",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 3,
       "reading_time": "",
       "readability_score": "",
@@ -248,7 +248,7 @@
       "name": "Puzzle Lab",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 3,
       "reading_time": "",
       "readability_score": "",
@@ -260,7 +260,7 @@
       "name": "Yatchs",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 3,
       "reading_time": "",
       "readability_score": "",
@@ -272,7 +272,7 @@
       "name": "Bookmarks",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 4,
       "reading_time": "",
       "readability_score": "",
@@ -284,7 +284,7 @@
       "name": "Photos",
       "long_title": "",
       "edit_date": "01/18/2024",
-      "resources": true,
+
       "parentId": 4,
       "reading_time": "",
       "readability_score": "",
