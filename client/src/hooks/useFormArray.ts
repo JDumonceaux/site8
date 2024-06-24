@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 export type IdType = {
   readonly localId: number;
@@ -91,10 +91,22 @@ export const useFormArray = <T extends IdType>() => {
   // }, [errors]);
 
   // Handle field change
+  // const handleChange = useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  //     const { name: fieldName, value } = event.target;
+  //     setFieldValue(0, fieldName as keys, value);
+  //   },
+  //   [setFieldValue],
+  // );
+
   const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name: fieldName, value } = event.target;
-      setFieldValue(0, fieldName as keys, value);
+    (
+      localId: number,
+      fieldName: keys,
+      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      const { value } = event.target;
+      setFieldValue(localId, fieldName as keys, value);
     },
     [setFieldValue],
   );
@@ -112,7 +124,8 @@ export const useFormArray = <T extends IdType>() => {
       return {
         id: field,
         value: getFieldValue(localId, fieldName),
-        onChange: handleChange,
+        onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+          handleChange(localId, fieldName, e),
         // errorText: getFieldErrors(fieldName),
         // hasError: hasError(fieldName),
         // value: formValues[fieldName],

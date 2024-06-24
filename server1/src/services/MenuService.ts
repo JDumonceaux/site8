@@ -22,7 +22,11 @@ export class MenuService {
       }
       const ret: MenuItem[] = [];
       items.forEach((item) => {
-        if (!Array.isArray(item.parentItems)) {
+        if (
+          item.parentItems &&
+          item.parentItems.length > 0 &&
+          !Array.isArray(item.parentItems)
+        ) {
           Logger.error(
             `MenuService: getExpandedMenu -> parentItems is not an array.`,
           );
@@ -71,7 +75,6 @@ export class MenuService {
           }
         }
       });
-
       return ret.length > 0 ? ret : undefined;
     } catch (error) {
       Logger.error(`MenuService: getExpandedMenu -> ${error}`);
@@ -80,19 +83,44 @@ export class MenuService {
   }
 
   // 3. Get ordered menu - Root > Menu > Page
-  private getOrderedMenu(
+  private getChildren(
     items: ReadonlyArray<MenuItem>,
     parentId: number,
+    seq: number = 0,
+  ): MenuItem[] | undefined {
+    try {
+      if (seq > 4) {
+        return undefined;
+      }
+      const ret: MenuItem[] = [];
+      const children = items.filter((x) => x.parent.id === parentId);
+      children.forEach((x) => {
+        ret.push(x);
+        const y = this.getChildren(items, x.id, seq + 1);
+        if (y) {
+          ret.push(...y);
+        }
+      });
+      return ret;
+    } catch (error) {
+      Logger.error(`MenuService: getChildren -> ${error}`);
+    }
+    return undefined;
+  }
+
+  private getOrderedMenu(
+    items: ReadonlyArray<MenuItem>,
     sortBy?: string,
   ): MenuItem[] | undefined {
     try {
       const ret: MenuItem[] = [];
-
       // Add parent, then add children. Perform recursively.
-      const children = items.filter((x) => x.parent.id === parentId);
+      // Start with the root menu
+      const children = items.filter((x) => x.parent.id === 0);
       children.forEach((x) => {
+        // Add this item
         ret.push(x);
-        const y = this.getOrderedMenu(items, x.id, x.parent.sortby);
+        const y = this.getChildren(items, x.id);
         if (y) {
           ret.push(...y);
         }
@@ -111,11 +139,15 @@ export class MenuService {
         return undefined;
       }
       // Get the menu
-      const ret = this.getOrderedMenu(items, 0);
-      // Add any items that were missed as problems
-      const missed = items.filter((x) => !ret?.includes(x));
-      const y = missed.map((x) => ({ ...x, issue: true }));
-      ret?.push(...y);
+      const orderedMenu = this.getOrderedMenu(items);
+      const missedArr: MenuItem[] = [];
+      items?.forEach((x) => {
+        const found = orderedMenu?.find((item) => x.id === item.id);
+        if (!found) {
+          missedArr.push({ ...x, issue: true });
+        }
+      });
+      const ret = orderedMenu?.concat(missedArr);
       // Sequence the items
       return ret?.map((x, index) => ({ ...x, seq: index + 1 }));
     } catch (error) {
@@ -133,8 +165,8 @@ export class MenuService {
       if (!data || !data.items) {
         return undefined;
       }
-
-      const ret = this.getFullMenu(this.getExpandedMenu(data?.items));
+      const x1 = this.getExpandedMenu(data?.items);
+      const ret = this.getFullMenu(x1);
       return {
         metadata: data.metadata,
         items: ret,

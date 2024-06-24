@@ -23,8 +23,8 @@ const PagesEditPage = (): JSX.Element => {
         id: item.id,
         localId: item.localId,
         name: item.name,
-        parentId: item.parent.id.toString() || '0',
-        parentSeq: item.parent.seq.toString(),
+        parentId: item.parent.id ? item.parent.id.toString() : '0',
+        parentSeq: item.parent.seq ? item.parent.seq.toString() : '0',
         parentSortby: item.parent.sortby || '',
         type: item.type,
       };
