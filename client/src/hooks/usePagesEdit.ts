@@ -17,9 +17,9 @@ const pageSchema = z.object({
 });
 
 // Create a type from the schema
-export type FormValues = z.infer<typeof pageSchema>;
-export type keys = keyof FormValues;
-export type sortByType = 'seq' | 'name';
+export type FormType = z.infer<typeof pageSchema>;
+export type keys = keyof FormType;
+export type SortByType = 'seq' | 'name';
 
 const usePagesEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
@@ -37,7 +37,7 @@ const usePagesEdit = () => {
     getFieldValue,
     setIsSaved,
     setFormValues,
-  } = useFormArray<FormValues>();
+  } = useFormArray<FormType>();
 
   // Get the data
   useEffect(() => {
@@ -51,6 +51,70 @@ const usePagesEdit = () => {
     );
   }, [data?.items, setLocalItems]);
 
+  const mapFormTypeToMenuEdit = useCallback(
+    (item: FormType): MenuEdit | undefined => {
+      if (!item) {
+        return undefined;
+      }
+      return {
+        id: item.id,
+        parent: {
+          id: Number.isNaN(item.parentId) ? 0 : Number(item.parentId),
+          seq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
+          sortby: item.parentSortby as SortByType,
+        },
+      };
+    },
+    [],
+  );
+
+  const shouldUpdate = useCallback(
+    (
+      originalItem: MenuItem | undefined,
+      newItem: MenuEdit | undefined,
+    ): boolean => {
+      if (!originalItem || !newItem) {
+        return false;
+      }
+      if (!originalItem.parent && !newItem.parent) {
+        return false;
+      }
+      if (originalItem.parent && !newItem.parent) {
+        return false;
+      }
+      const { id, seq, sortby } = newItem.parent;
+      if (id && Number.isInteger(id) && id > -1) {
+        if (!originalItem.parent.id) {
+          return true;
+        }
+        if (originalItem.parent.id && originalItem.parent.id !== id) {
+          return true;
+        }
+      }
+      if (seq && Number.isInteger(seq) && seq > -1) {
+        if (!originalItem.parent.seq) {
+          return true;
+        }
+        if (originalItem.parent.seq && originalItem.parent.seq !== seq) {
+          return true;
+        }
+      }
+      if (sortby && sortby.length > 0) {
+        if (!originalItem.parent.sortby) {
+          return true;
+        }
+        if (
+          originalItem.parent.sortby &&
+          originalItem.parent.sortby !== sortby
+        ) {
+          return true;
+        }
+      }
+      return false;
+    },
+    [],
+  );
+
   // Get the updates
   // We only want to submit the differences - not every record.
   const getUpdates = useCallback((): MenuEdit[] | undefined => {
@@ -59,42 +123,26 @@ const usePagesEdit = () => {
     }
 
     const ret: MenuEdit[] = [];
-
     formValues.forEach((item) => {
+      // Map item
+      const newItem = mapFormTypeToMenuEdit(item);
       // Find the original item
       const currItem = localItems.find((x) => x.localId === item.localId);
-      if (currItem) {
-        const tempId = parseInt(item.parentId);
-        const tempSeq = parseInt(item.parentSortby);
-        const currParent = currItem.parent;
-        const updateItem =
-          currParent.id !== tempId ||
-          currParent.seq !== tempSeq ||
-          currParent.sortby !== item.parentSortby;
-        if (updateItem) {
-          ret.push({
-            id: currItem.id,
-            parent: { ...currParent },
-            newParent: {
-              id: currParent.id !== tempId ? tempId : 0,
-              seq: currParent.seq !== tempSeq ? tempSeq : 0,
-              sortby:
-                currParent.sortby !== item.parentSortby
-                  ? (item.parentSortby as sortByType)
-                  : 'name',
-            },
-          });
+      if (shouldUpdate(currItem, newItem)) {
+        if (newItem) {
+          ret.push(newItem);
         }
       }
     });
 
+    // console.log('ret', ret);
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
-  }, [formValues, localItems]);
+  }, [formValues, localItems, mapFormTypeToMenuEdit, shouldUpdate]);
 
   // Validate form
   // const validateForm = useCallback(() => {
-  //   const result = safeParse<FormValues>(pageSchema, formValues);
+  //   const result = safeParse<FormType>(pageSchema, formValues);
   //   setErrors(result.error?.issues);
   //   return result.success;
   // }, [formValues, setErrors]);

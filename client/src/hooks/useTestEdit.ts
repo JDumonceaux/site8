@@ -18,8 +18,8 @@ const pageSchema = z.object({
 });
 
 // Create a type from the schema
-export type FormValues = z.infer<typeof pageSchema>;
-export type keys = keyof FormValues;
+export type FormType = z.infer<typeof pageSchema>;
+export type keys = keyof FormType;
 export type sortByType = 'seq' | 'name' | undefined;
 
 const useTestEdit = () => {
@@ -36,7 +36,7 @@ const useTestEdit = () => {
     getFieldValue,
     setIsSaved,
     setFormValues,
-  } = useFormArray<FormValues>();
+  } = useFormArray<FormType>();
 
   // Get the data
   useEffect(() => {
@@ -55,27 +55,30 @@ const useTestEdit = () => {
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
-          newParentId: parseInt(item.parent),
-          newParentSeq: parseInt(item.seq),
-          newSortby: item.sortby as sortByType,
+          parent: {
+            id: parseInt(item.parent),
+            seq: parseInt(item.seq),
+            sortby: item.sortby as sortByType,
+          },
         };
         temp.push(x);
       }
     });
 
-    const ret = temp.filter(
-      (x) =>
-        x.newParentId !== x.parentId ||
-        x.newParentSeq !== x.parentSeq ||
-        x.newSortby !== x.sortby,
-    );
+    // const ret = temp.filter(
+    //   (x) =>
+    //     x.newParent.id !== x.parent.id ||
+    //     x.newParent.seq !== x.parent.seq ||
+    //     x.newParent.sortby !== x.parent.sortby,
+    // );
+    const ret = temp;
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
   }, [data?.items, formValues]);
 
   // Validate form
   // const validateForm = useCallback(() => {
-  //   const result = safeParse<FormValues>(pageSchema, formValues);
+  //   const result = safeParse<FormType>(pageSchema, formValues);
   //   setErrors(result.error?.issues);
   //   return result.success;
   // }, [formValues, setErrors]);

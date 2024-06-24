@@ -92,8 +92,6 @@ const PagesEditPage = (): JSX.Element => {
     [setShowPages],
   );
 
-  console.log('edata', data);
-
   return (
     <>
       <Meta title="Pages" />

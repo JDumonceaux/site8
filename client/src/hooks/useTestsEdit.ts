@@ -21,8 +21,8 @@ const pageSchema = z.object({
 });
 
 // Create a type from the schema
-export type FormValues = z.infer<typeof pageSchema>;
-export type keys = keyof FormValues;
+export type FormType = z.infer<typeof pageSchema>;
+export type keys = keyof FormType;
 export type sortByType = 'seq' | 'name' | undefined;
 
 const useTestsEdit = () => {
@@ -41,7 +41,7 @@ const useTestsEdit = () => {
     getFieldValue,
     setIsSaved,
     setFormValues,
-  } = useFormArray<FormValues>();
+  } = useFormArray<FormType>();
 
   // Get the data
   useEffect(() => {
@@ -83,7 +83,7 @@ const useTestsEdit = () => {
 
   // Validate form
   // const validateForm = useCallback(() => {
-  //   const result = safeParse<FormValues>(pageSchema, formValues);
+  //   const result = safeParse<FormType>(pageSchema, formValues);
   //   setErrors(result.error?.issues);
   //   return result.success;
   // }, [formValues, setErrors]);

@@ -38,8 +38,8 @@ const pageSchema = z
   );
 
 // Create a type from the schema
-export type FormValues = z.infer<typeof pageSchema>;
-export type keys = keyof FormValues;
+export type FormType = z.infer<typeof pageSchema>;
+export type keys = keyof FormType;
 
 const usePageEdit = () => {
   // Use Axios to fetch data
@@ -47,7 +47,7 @@ const usePageEdit = () => {
     useAxios<Page>();
 
   // Return default form values
-  const initialFormValues: FormValues = useMemo(
+  const initialFormValues: FormType = useMemo(
     () => ({
       id: 0,
       name: '',
@@ -79,11 +79,11 @@ const usePageEdit = () => {
     getFieldErrors,
     setFormValues,
     setInitialFormValues,
-  } = useForm<FormValues>(initialFormValues);
+  } = useForm<FormType>(initialFormValues);
 
-  // Map page to form values
-  const mapPageToFormValues = useCallback(
-    (item: Page | undefined | null): FormValues | undefined => {
+  // Map page to form type
+  const mapPageToFormType = useCallback(
+    (item: Page | undefined | null): FormType | undefined => {
       if (item) {
         const ret = {
           id: item.id,
@@ -110,12 +110,12 @@ const usePageEdit = () => {
 
   // Update the form values when the data changes
   useEffect(() => {
-    const values = mapPageToFormValues(data);
+    const values = mapPageToFormType(data);
     if (values) {
       setFormValues(values);
       setInitialFormValues(values);
     }
-  }, [data, mapPageToFormValues, setFormValues, setInitialFormValues]);
+  }, [data, mapPageToFormType, setFormValues, setInitialFormValues]);
 
   const fetchItem = useCallback(
     (id: number) => {
@@ -126,7 +126,7 @@ const usePageEdit = () => {
 
   // Validate form
   const validateForm = useCallback(() => {
-    const result = safeParse<FormValues>(pageSchema, formValues);
+    const result = safeParse<FormType>(pageSchema, formValues);
     setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
@@ -149,7 +149,6 @@ const usePageEdit = () => {
       parent: splitParent(parent),
       edit_date: getDateTime(edit_date) ?? new Date(),
       create_date: id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
-      seq: 0,
       type: 'page',
     };
     const result =

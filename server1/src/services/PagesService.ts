@@ -183,18 +183,20 @@ export class PagesService {
       if (!pages || !pages.items) {
         return Promise.reject(new Error('No items found'));
       }
-      // Loop through items from pagesIndex.json
-      const retItems = pages.items.map((item) => {
-        // Get the updates from the incoming records - could be more than one update per entry.
-        const updateItems = items.filter((x) => x.id === item.id);
-        // Get the updated item
-        const updatedItem = this.getUpdatedItem(updateItems, item);
-        // Add update (if there is one) or original
-        return updatedItem ?? item;
-      });
 
-      // Write back the updates
-      await this.writeFile({ ...pages, items: retItems });
+      console.log('items', items);
+      // Loop through items from pagesIndex.json
+      // const retItems = pages.items.map((item) => {
+      //   // Get the updates from the incoming records - could be more than one update per entry.
+      //   const updateItems = items.filter((x) => x.id === item.id);
+      //   // Get the updated item
+      //   const updatedItem = this.getUpdatedItem(updateItems, item);
+      //   // Add update (if there is one) or original
+      //   return updatedItem ?? item;
+      // });
+
+      // // Write back the updates
+      // await this.writeFile({ ...pages, items: retItems });
       return Promise.resolve();
     } catch (error) {
       Logger.error(`PagesService: updateItems. Error -> ${error}`);

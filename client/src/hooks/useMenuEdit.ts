@@ -16,14 +16,14 @@ const pageSchema = z.object({
 });
 
 // Create a type from the schema
-export type FormValues = z.infer<typeof pageSchema>;
-export type keys = keyof FormValues;
+export type FormType = z.infer<typeof pageSchema>;
+export type keys = keyof FormType;
 export type sortByType = 'seq' | 'name';
 
 const useMenuEdit = () => {
   const { postData, isLoading, error } = useAxios<MenuAdd>();
   // Return default form values
-  const initialFormValues: FormValues = useMemo(
+  const initialFormValues: FormType = useMemo(
     () => ({
       name: '',
       parent: '',
@@ -46,11 +46,11 @@ const useMenuEdit = () => {
     getFieldValue,
     getFieldErrors,
     hasError,
-  } = useForm<FormValues>(initialFormValues);
+  } = useForm<FormType>(initialFormValues);
 
   //Validate form
   const validateForm = useCallback(() => {
-    const result = safeParse<FormValues>(pageSchema, formValues);
+    const result = safeParse<FormType>(pageSchema, formValues);
     setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
@@ -60,9 +60,11 @@ const useMenuEdit = () => {
     return {
       id: 0,
       name: formValues.name,
-      parentId: parseInt(formValues.parent),
-      seq: parseInt(formValues.seq),
-      sortby: formValues.sortby as sortByType,
+      parent: {
+        id: parseInt(formValues.parent),
+        seq: parseInt(formValues.seq),
+        sortby: formValues.sortby as sortByType,
+      },
       type: 'menu',
       to: formValues.name.toLowerCase().replaceAll(' ', '-'),
     };
