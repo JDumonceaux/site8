@@ -1,11 +1,6 @@
-// Returned to front end
-export type MenuEdit = {
-  readonly id: number;
-  readonly tempId?: number;
-  readonly parentId?: number;
-  readonly seq: number;
-  readonly sortby: 'seq' | 'name';
-  readonly newParentId?: number;
-  readonly newSeq?: number;
-  readonly newSortby?: 'seq' | 'name';
+import { MenuItem } from './MenuItem.js';
+import { ParentSortby } from './ParentSortby.js';
+
+export type MenuEdit = Pick<MenuItem, 'id' | 'parent'> & {
+  readonly newParent: ParentSortby;
 };

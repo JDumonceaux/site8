@@ -5,7 +5,6 @@ import StyledMenu from 'components/common/StyledMain/StyledMenu';
 import MenuAdd from 'components/custom/MenuAdd';
 import { TextInput } from 'components/form/input';
 import { Switch } from 'components/primatives/Switch/Switch';
-import RenderLevel from 'components/ui/PagesPage/RenderLevel';
 import useAppSettings from 'hooks/useAppSettings';
 import usePagesEdit from 'hooks/usePagesEdit';
 import React, { useCallback, useEffect } from 'react';
@@ -24,9 +23,9 @@ const PagesEditPage = (): JSX.Element => {
         id: item.id,
         localId: item.localId,
         name: item.name,
-        parent: item.parentId?.toString() || '0',
-        seq: item.parentSeq?.toString(),
-        sortby: item.sortby,
+        parentId: item.parent.id.toString() || '0',
+        parentSeq: item.parent.seq.toString(),
+        parentSortby: item.parent.sortby || '',
         type: item.type,
       };
     });
@@ -36,10 +35,13 @@ const PagesEditPage = (): JSX.Element => {
   }, [data, setFormValues]);
 
   const renderItem = useCallback(
-    (item: MenuItem | undefined, level: number): JSX.Element | null => {
+    (item: MenuItem | undefined): JSX.Element | null => {
       if (!item) {
         return null;
       }
+
+      const level =
+        item.type === 'page' ? ' ---- ' : item.type === 'menu' ? ' -- ' : '';
 
       return (
         <React.Fragment key={item.localId}>
@@ -47,31 +49,34 @@ const PagesEditPage = (): JSX.Element => {
             <td>
               {item.type === 'page' ? (
                 <StyledLink to={`/admin/page/edit/${item.id}`}>
-                  {item.localId}
+                  {item.id}
                 </StyledLink>
               ) : (
                 item.id
               )}
             </td>
-            <RenderLevel level={level}>
-              <StyledLink to={item.toComplete || ''}> {item.name}</StyledLink>
-            </RenderLevel>
+            <td>
+              <StyledLink to={item.toComplete || ''}>
+                {level}
+                {item.name}
+              </StyledLink>
+            </td>
             <td>
               {item.type !== 'root' ? (
-                <TextInput {...getDefaultProps(item.localId, 'parent')} />
+                <TextInput {...getDefaultProps(item.localId, 'parentId')} />
               ) : null}
             </td>
             <td>
-              <TextInput {...getDefaultProps(item.localId, 'seq')} />
+              <TextInput {...getDefaultProps(item.localId, 'parentSeq')} />
             </td>
 
             <td>
               {item.type !== 'page' ? (
-                <TextInput {...getDefaultProps(item.localId, 'sortby')} />
+                <TextInput {...getDefaultProps(item.localId, 'parentSortby')} />
               ) : null}
             </td>
             <td>
-              {item.type} - {level}
+              {item.type} {item.issue ? 'I' : null}
             </td>
           </StyledTr>
         </React.Fragment>
@@ -86,6 +91,8 @@ const PagesEditPage = (): JSX.Element => {
     },
     [setShowPages],
   );
+
+  console.log('edata', data);
 
   return (
     <>
@@ -127,13 +134,7 @@ const PagesEditPage = (): JSX.Element => {
               </tr>
             </thead>
 
-            <tbody>
-              {data?.map((item) => (
-                <React.Fragment key={item.localId}>
-                  {renderItem(item, 0)}
-                </React.Fragment>
-              ))}
-            </tbody>
+            <tbody>{data?.map((item) => renderItem(item))}</tbody>
           </table>
           <MenuAdd />
         </StyledMain.Section>

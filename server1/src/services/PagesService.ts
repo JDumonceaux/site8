@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
+import { ParentSortby } from 'types/ParentSortby.js';
 import { z } from 'zod';
 import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuEdit } from '../types/MenuEdit.js';
@@ -97,9 +98,13 @@ export class PagesService {
       // Reformat item
       const itemToAdd: Page = {
         ...item,
-        parent: [{ id: item.parentId, seq: item.seq }],
-        parentId: 0,
-        parentSeq: 0,
+        parentItems: [
+          {
+            id: item.parent.id,
+            seq: item.parent.seq,
+            sortby: item.parent.sortby,
+          },
+        ],
       };
       // Remove undefined values and sort
       const newItem = cleanUpData<Page>(itemToAdd);
@@ -128,40 +133,45 @@ export class PagesService {
 
   // ?
   private getUpdatedItem(
-    item: MenuEdit | undefined,
+    items: MenuEdit[] | undefined,
     foundItem: Page | undefined,
-  ) {
+  ): Page | undefined {
     Logger.info(`PagesService: getUpdatedItem ->`);
 
     try {
-      if (!foundItem || !item) {
+      if (!foundItem || !items) {
         return undefined;
       }
-      let newParent: { readonly id: number; readonly seq: number }[] = [];
-      if (foundItem.parent) {
-        newParent = foundItem.parent.map((x) => {
-          if (x.id === item.parentId && item.newParentId && item.newSeq) {
-            return { id: item.newParentId, seq: item.newSeq };
-          } else {
-            return x;
-          }
-        });
-      } else {
-        if (item.newParentId && item.newSeq) {
-          newParent = [{ id: item.newParentId, seq: item.newSeq }];
-        }
-      }
 
-      const retItem: Page = {
-        ...foundItem,
-        parent: newParent,
-        sortby: item.sortby,
-      };
-      return retItem ? cleanUpData(retItem) : undefined;
+      const newArr: ParentSortby[] = [];
+      // Update existing item
+      foundItem.parentItems?.forEach((item) => {
+        // If there's a match, update
+        const match = items.find((x) => x.id === item.id);
+
+        const update = match
+          ? {
+              ...item,
+              seq: match.newParent.seq,
+              sortby: match.newParent.sortby,
+            }
+          : item;
+        newArr.push(update);
+      });
+
+      // Second Loop through "new items"
+      items.forEach((x) => {
+        const notFound = newArr.find((y) => y.id !== x.id);
+        if (notFound) {
+          newArr.push({ ...x.newParent, id: x.id });
+        }
+      });
+
+      return { ...foundItem, parentItems: newArr };
     } catch (error) {
       Logger.error(`PagesService: getUpdatedItem. Error: -> ${error}`);
-      return undefined;
     }
+    return undefined;
   }
 
   // Update multiple items in pagesIndex.json
@@ -173,16 +183,17 @@ export class PagesService {
       if (!pages || !pages.items) {
         return Promise.reject(new Error('No items found'));
       }
-
+      // Loop through items from pagesIndex.json
       const retItems = pages.items.map((item) => {
-        const updateItem = items.find((x) => x.id === item.id);
-        const ret = updateItem
-          ? this.getUpdatedItem(updateItem, item)
-          : undefined;
-        return ret ?? item;
+        // Get the updates from the incoming records - could be more than one update per entry.
+        const updateItems = items.filter((x) => x.id === item.id);
+        // Get the updated item
+        const updatedItem = this.getUpdatedItem(updateItems, item);
+        // Add update (if there is one) or original
+        return updatedItem ?? item;
       });
 
-      // Add item
+      // Write back the updates
       await this.writeFile({ ...pages, items: retItems });
       return Promise.resolve();
     } catch (error) {

@@ -6,271 +6,123 @@ import { Pages } from '../types/Pages.js';
 import { Logger } from '../utils/Logger.js';
 import { PagesService } from './PagesService.js';
 
+type PageAbbr = Pick<Page, 'id' | 'name' | 'to' | 'url' | 'file' | 'type'>;
+
 export class MenuService {
   // 0. Get all data
   public async getItems(): Promise<Pages | undefined> {
     return new PagesService().getItems();
   }
 
+  // 1. Get all the menu items.  Add additional lines for each parent element
   private getExpandedMenu(items?: ReadonlyArray<Page>): MenuItem[] | undefined {
     try {
       if (!items) {
         return undefined;
       }
-      const ret: MenuItem[] =
-        items.flatMap((item) => {
-          const {
-            items,
-            parent,
-            create_date,
-            edit_date,
+      const ret: MenuItem[] = [];
+      items.forEach((item) => {
+        if (!Array.isArray(item.parentItems)) {
+          Logger.error(
+            `MenuService: getExpandedMenu -> parentItems is not an array.`,
+          );
+          return undefined;
+        }
 
-            ...rest
-          } = item;
-          if (item.parent) {
-            return item.parent.map((parent) => ({
-              ...rest,
-              parentId: parent.id,
-              parentSeq: parent.seq,
-              seq: 0,
-            }));
+        // Shed excess properties from Page
+        const temp = item as PageAbbr;
+        // Loop through parentItems records
+        if (item.parentItems) {
+          // Add a new record for each parent
+          item.parentItems.forEach((parent) => {
+            // Convert parentItems to parent child
+            ret.push({
+              ...temp,
+              parent: {
+                id: parent.id,
+                seq: parent.seq,
+                sortby: parent.sortby,
+              },
+              line: 0,
+              issue: false,
+            });
+          });
+        } else {
+          // If no parentItems ...
+          if (item.type == 'root') {
+            ret.push({
+              ...temp,
+              parent: { id: 0, seq: 0, sortby: 'name' },
+              line: 0,
+              issue: false,
+            });
           } else {
-            return [{ ...rest, parentId: 0, parentSeq: 0, seq: 0 }];
+            // This item has no parent - which is an error.  Issue = true.
+            ret.push({
+              ...temp,
+              parent: {
+                id: 0,
+                seq: 0,
+                sortby: undefined,
+              },
+              line: 0,
+              issue: true,
+            });
           }
-        }) || [];
-      return ret;
+        }
+      });
+
+      return ret.length > 0 ? ret : undefined;
     } catch (error) {
       Logger.error(`MenuService: getExpandedMenu -> ${error}`);
     }
     return undefined;
   }
 
-  // 3. Get children
-  private getChildren(
+  // 3. Get ordered menu - Root > Menu > Page
+  private getOrderedMenu(
     items: ReadonlyArray<MenuItem>,
     parentId: number,
-    sortBy: string,
+    sortBy?: string,
   ): MenuItem[] | undefined {
     try {
       const ret: MenuItem[] = [];
-      const children = items.filter((x) => x.parentId === parentId);
 
+      // Add parent, then add children. Perform recursively.
+      const children = items.filter((x) => x.parent.id === parentId);
       children.forEach((x) => {
         ret.push(x);
-        const y = this.getChildren(items, x.id, x.sortby);
+        const y = this.getOrderedMenu(items, x.id, x.parent.sortby);
         if (y) {
           ret.push(...y);
         }
       });
       return ret;
     } catch (error) {
-      Logger.error(`MenuService: getChildren -> ${error}`);
+      Logger.error(`MenuService: getOrderedMenu -> ${error}`);
     }
     return undefined;
   }
 
-  // 2. Get the root level
-  private getRootMenu(items?: ReadonlyArray<MenuItem>): MenuItem[] | undefined {
+  // 2. Get the full menu
+  private getFullMenu(items?: ReadonlyArray<MenuItem>): MenuItem[] | undefined {
     try {
       if (!items) {
         return undefined;
       }
-      const ret = this.getChildren(items, 0, 'name');
+      // Get the menu
+      const ret = this.getOrderedMenu(items, 0);
+      // Add any items that were missed as problems
+      const missed = items.filter((x) => !ret?.includes(x));
+      const y = missed.map((x) => ({ ...x, issue: true }));
+      ret?.push(...y);
+      // Sequence the items
       return ret?.map((x, index) => ({ ...x, seq: index + 1 }));
     } catch (error) {
-      Logger.error(`MenuService: getRootMenu -> ${error}`);
+      Logger.error(`MenuService: getFullMenu -> ${error}`);
     }
     return undefined;
   }
-
-  // 2. Get the root level
-  // private getRootMenu(items?: ReadonlyArray<Page>): Page[] | undefined {
-  //   try {
-  //     if (!items) {
-  //       return undefined;
-  //     }
-
-  //     return items
-  //       .filter((x) => x.type === 'root')
-  //       .map((x) => ({
-  //         ...x,
-  //         toComplete: x.to,
-  //         parentId: 0,
-  //       }));
-  //   } catch (error) {
-  //     Logger.error(`MenuService: getRootMenu -> ${error}`);
-  //   }
-  //   return undefined;
-  // }
-
-  // 3. Add children
-  // private addChildren(
-  //   items?: ReadonlyArray<Page>,
-  //   allItems?: ReadonlyArray<Page>,
-  // ): Page[] | undefined {
-  //   try {
-  //     if (!items || !allItems) {
-  //       return undefined;
-  //     }
-
-  //     return items?.map((x) => {
-  //       const children = allItems.filter((y) =>
-  //         y.parent?.some((z) => z.id === x.id),
-  //       );
-
-  //       const children2 = children.map((y) => ({
-  //         ...y,
-  //         parentId: x.id,
-  //         seq: y.parent?.find((a) => a.id === x.id)?.seq ?? 0,
-  //       }));
-
-  //       return {
-  //         ...x,
-  //         items: this.addChildren(children2, allItems),
-  //       };
-  //     }) as Page[];
-  //   } catch (error) {
-  //     Logger.error(`MenuService: addChildren -> ${error}`);
-  //   }
-  //   return undefined;
-  // }
-
-  // 5. Sort the menu items
-  // private sortMenu(item: Readonly<Page>): Page {
-  //   const items =
-  //     item.sortby === 'seq'
-  //       ? item?.items?.sort((a, b) => sortMenuEntrySeq(a, b))
-  //       : item?.items?.sort((a, b) => sortMenuEntryName(a, b));
-
-  //   return {
-  //     ...item,
-  //     items: items ? [...items] : undefined,
-  //   };
-  // }
-
-  // 6. Fill in the URLs
-  // private fillURL(item: Readonly<Page>): Page {
-  //   try {
-  //     const items = item.items?.map((x) => {
-  //       return {
-  //         ...x,
-  //         toComplete:
-  //           x.to && item.toComplete ? `${item.toComplete}/${x.to}` : undefined,
-  //       };
-  //     });
-
-  //     return {
-  //       ...item,
-  //       items: items ?? undefined,
-  //     };
-  //   } catch (error) {
-  //     Logger.error(`MenuService: fillURL --> Error: ${error}`);
-  //     throw error;
-  //   }
-  // }
-
-  // 7. Map
-  // private maptoMenuItem(item: Readonly<Page>): MenuItem {
-  //   try {
-  //     const {
-  //       text,
-  //       edit_date,
-  //       create_date,
-  //       file,
-  //       readability_score,
-  //       reading_time,
-  //       parent,
-  //       items,
-  //       ...rest
-  //     } = item;
-
-  //     const xItems = items
-  //       ? items.map((x) => this.maptoMenuItem(x))
-  //       : undefined;
-
-  //     const ret: MenuItem = {
-  //       ...rest,
-  //       seq: item.seq ?? 0,
-  //       items: xItems,
-  //     };
-  //     return ret;
-  //   } catch (error) {
-  //     Logger.error(`MenuService: trimItem --> Error: ${error}`);
-  //     throw error;
-  //   }
-  // }
-
-  // private maptoMenuItems(items: ReadonlyArray<Page>): MenuItem[] {
-  //   return items.map((x) => this.maptoMenuItem(x));
-  // }
-
-  // 8. Clean up
-  // private trimItem(item: Readonly<MenuItem>): MenuItem {
-  //   try {
-  //     return {
-  //       id: item.id,
-  //       parentId: item.parentId,
-  //       name: item.name,
-  //       to: item.to,
-  //       url: item.url,
-  //       toComplete: item.toComplete,
-  //       type: item.type,
-  //       seq: item.seq,
-  //       sortby: item.sortby,
-  //       items: item.items && item.items.length > 0 ? item.items : undefined,
-  //     };
-  //   } catch (error) {
-  //     Logger.error(`MenuService: trimItem --> Error: ${error}`);
-  //     throw error;
-  //   }
-  // }
-
-  // private trimItems(items: ReadonlyArray<MenuItem>): MenuItem[] {
-  //   return items.map((x) => this.trimItem(x));
-  // }
-
-  // Generic loop function
-  // private loopItems(
-  //   items: ReadonlyArray<Page> | undefined,
-  //   callback: (item: Page) => Page,
-  // ): Page[] | undefined {
-  //   try {
-  //     if (!items) {
-  //       return undefined;
-  //     }
-  //     return items.map((x) => {
-  //       const y = callback(x);
-  //       const updatedItems = y.items && this.loopItems(y.items, callback);
-  //       return {
-  //         ...y,
-  //         items: updatedItems,
-  //       };
-  //     });
-  //   } catch (error) {
-  //     Logger.error(`MenuService: loop items --> Error: ${error}`);
-  //     throw error;
-  //   }
-  // }
-
-  // private flattenItems(
-  //   items: ReadonlyArray<MenuItem> | undefined,
-  // ): MenuItem[] | undefined {
-  //   if (!items) {
-  //     return undefined;
-  //   }
-  //   const ret: MenuItem[] = [];
-  //   items.forEach((x) => {
-  //     const { items: _extraItems, ...rest } = x;
-  //     ret.push({ ...rest });
-  //     if (x.items) {
-  //       const y = this.flattenItems(x.items);
-  //       if (y) {
-  //         ret.push(...y);
-  //       }
-  //     }
-  //   });
-  //   return ret ? ret.sort((a, b) => a.id - b.id) : undefined;
-  // }
 
   // 0. Get Menu
   public async getMenu(): Promise<Menu | undefined> {
@@ -281,28 +133,11 @@ export class MenuService {
       if (!data || !data.items) {
         return undefined;
       }
-      // index = 1;
-      // 2. Get the root level menu
-      // const rootMenu = this.getRootMenu(data.items);
-      // // 3. Build Menu Tree
-      // const x1 = this.addChildren(rootMenu, data.items);
-      // // 4. Sort all the menu items: mixing menu and pages
-      // const x2 = this.loopItems(x1, this.sortMenu);
-      // // 5. Fill in URLs
-      // const x3 = this.loopItems(x2, this.fillURL);
-      // // 6. Map Item to MenuItem
-      // const x4 = x3 && this.maptoMenuItems(x3);
-      // // 7. Clean up
-      // const x5 = x4 && this.trimItems(x4);
-      // // 8. Create a flatten version
-      // const flat = this.flattenItems(x5);
 
-      const x1 = this.getExpandedMenu(data?.items);
-      const x2 = this.getRootMenu(x1);
-
+      const ret = this.getFullMenu(this.getExpandedMenu(data?.items));
       return {
         metadata: data.metadata,
-        items: x2,
+        items: ret,
       };
     } catch (error) {
       Logger.error(`MenuService: getMenu --> Error: ${error}`);

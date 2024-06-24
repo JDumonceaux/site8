@@ -48,8 +48,8 @@ const TestsEditPage = (): JSX.Element => {
         type: item.type?.toString(),
         level: item.level?.toString(),
         projectType: item.projectType?.toString(),
-        parentId: item.parentId.toString(),
-        parentSeq: item.parentSeq.toString(),
+        parentId: item.parent.id.toString(),
+        parentSeq: item.parent.seq.toString(),
         action: '',
       };
     });

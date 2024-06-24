@@ -1,14 +1,15 @@
+import { ParentSortby } from './ParentSortby';
+
 // Returned to front end
 export type MenuItem = {
   readonly id: number;
-  readonly name?: string;
+  readonly name: string;
   readonly to?: string;
   readonly url?: string;
   readonly toComplete?: string;
-  readonly parentId: number;
-  readonly parentSeq: number;
   readonly type: 'root' | 'menu' | 'page';
-  readonly sortby: 'seq' | 'name';
   readonly file?: boolean;
   readonly localId: number;
+  readonly issue?: boolean;
+  readonly parent: ParentSortby;
 };

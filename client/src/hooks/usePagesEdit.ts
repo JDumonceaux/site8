@@ -10,16 +10,16 @@ const pageSchema = z.object({
   localId: z.number(),
   id: z.number(),
   name: z.string().optional(),
-  parent: z.string().min(1, REQUIRED_FIELD),
-  seq: z.string(),
-  sortby: z.string(),
+  parentId: z.string().min(1, REQUIRED_FIELD),
+  parentSeq: z.string(),
+  parentSortby: z.string(),
   type: z.string(),
 });
 
 // Create a type from the schema
 export type FormValues = z.infer<typeof pageSchema>;
 export type keys = keyof FormValues;
-export type sortByType = 'seq' | 'name' | undefined;
+export type sortByType = 'seq' | 'name';
 
 const usePagesEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
@@ -52,35 +52,45 @@ const usePagesEdit = () => {
   }, [data?.items, setLocalItems]);
 
   // Get the updates
+  // We only want to submit the differences - not every record.
   const getUpdates = useCallback((): MenuEdit[] | undefined => {
-    if (!data?.items) {
+    if (!localItems) {
       return undefined;
     }
 
-    const temp: MenuEdit[] = [];
+    const ret: MenuEdit[] = [];
+
     formValues.forEach((item) => {
-      // Match on TempId = Id
-      const originalItem = data.items?.find((x) => x.localId === item.localId);
-      if (originalItem) {
-        const x: MenuEdit = {
-          ...originalItem,
-          newParentId: parseInt(item.parent),
-          newParentSeq: parseInt(item.seq),
-          newSortby: item.sortby as sortByType,
-        };
-        temp.push(x);
+      // Find the original item
+      const currItem = localItems.find((x) => x.localId === item.localId);
+      if (currItem) {
+        const tempId = parseInt(item.parentId);
+        const tempSeq = parseInt(item.parentSortby);
+        const currParent = currItem.parent;
+        const updateItem =
+          currParent.id !== tempId ||
+          currParent.seq !== tempSeq ||
+          currParent.sortby !== item.parentSortby;
+        if (updateItem) {
+          ret.push({
+            id: currItem.id,
+            parent: { ...currParent },
+            newParent: {
+              id: currParent.id !== tempId ? tempId : 0,
+              seq: currParent.seq !== tempSeq ? tempSeq : 0,
+              sortby:
+                currParent.sortby !== item.parentSortby
+                  ? (item.parentSortby as sortByType)
+                  : 'name',
+            },
+          });
+        }
       }
     });
 
-    const ret = temp.filter(
-      (x) =>
-        x.newParentId !== x.parentId ||
-        x.newParentSeq !== x.parentSeq ||
-        x.newSortby !== x.sortby,
-    );
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
-  }, [data?.items, formValues]);
+  }, [formValues, localItems]);
 
   // Validate form
   // const validateForm = useCallback(() => {

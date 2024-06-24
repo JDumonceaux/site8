@@ -1,3 +1,5 @@
+import { ParentSortby } from './ParentSortby.js';
+
 export type Page = {
   readonly id: number;
   readonly name: string;
@@ -11,11 +13,7 @@ export type Page = {
   readonly readability_score?: string;
   readonly type: 'root' | 'menu' | 'page';
   readonly items?: Page[];
-  readonly toComplete?: string;
-  readonly parentId: number;
-  readonly parentSeq: number;
-  readonly parent?: { readonly id: number; readonly seq: number }[];
-  readonly sortby: 'seq' | 'name';
+  readonly parentItems?: ParentSortby[];
 };
 
 //  Sort the Page by seq, then name
@@ -32,8 +30,8 @@ export function sortMenuEntryName(ob1: Page, ob2: Page) {
   if (nameComparison !== 0) {
     return nameComparison;
   }
-  if (ob1.parentSeq === undefined || ob2.parentSeq === undefined) {
+  if (ob1.name === undefined || ob2.name === undefined) {
     return 0;
   }
-  return ob1.parentSeq - ob2.parentSeq;
+  return ob1.id - ob2.id;
 }

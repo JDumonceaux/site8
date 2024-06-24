@@ -1,3 +1,5 @@
+import { ParentSortby } from './ParentSortby';
+
 export type Page = {
   readonly id: number;
   readonly name: string;
@@ -12,8 +14,5 @@ export type Page = {
   readonly type: 'root' | 'menu' | 'page';
   readonly items?: Page[];
   readonly toComplete?: string;
-  readonly parentId: number;
-  readonly parentSeq: number;
-  parent?: { id: number; seq: number }[];
-  sortby?: 'seq' | 'name';
+  readonly parent?: ParentSortby[];
 };

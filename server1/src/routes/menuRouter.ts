@@ -2,7 +2,8 @@ import express, { Request, Response } from 'express';
 import { MenuService } from '../services/MenuService.js';
 import { PagesService } from '../services/PagesService.js';
 import { MenuAdd } from '../types/MenuAdd.js';
-import { MenuEdit } from '../types/MenuEntryUpdate.js';
+
+import { MenuEdit } from 'types/MenuEdit.js';
 import { Errors, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 

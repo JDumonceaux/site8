@@ -11,12 +11,13 @@ export class TestsService {
         return undefined;
       }
 
-      const sorted = items.sort(function (a, b) {
-        return a.parentId - b.parentId || a.parentSeq - b.parentSeq;
-      });
-      return sorted;
+      // const sorted = items.sort(function (a, b) {
+      //   return a.parentId - b.parentId || a.parentSeq - b.parentSeq;
+      // });
+      // return sorted;
+      return items;
     } catch (error) {
-      Logger.error(`TestsService: getItems:  --> Error: ${error}`);
+      Logger.error(`TestsService: sortItems:  --> Error: ${error}`);
       return undefined;
     }
   }
@@ -32,8 +33,8 @@ export class TestsService {
 
       const expanded: Test[] =
         rawData.items?.flatMap((item) => {
-          if (item.parent) {
-            return item.parent.map((parent) => ({
+          if (item.parentItems) {
+            return item?.parentItems?.map((parent) => ({
               ...item,
               parentId: parent.id,
               parentSeq: parent.seq,

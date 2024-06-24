@@ -6,18 +6,28 @@
     {
       "id": 10001,
       "name": "Programming",
-      "seq": 0,
-      "sortby": "name",
       "to": "programming",
-      "type": "root"
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
     },
     {
       "id": 10002,
       "name": "React",
-      "seq": 0,
-      "sortby": "name",
       "to": "react",
-      "type": "root"
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
     },
     {
       "id": 10003,
@@ -70,7 +80,7 @@
     {
       "id": 40,
       "name": "Getting Started",
-      "parent": [
+      "parentItems": [
         {
           "id": 10006,
           "seq": 1
@@ -83,7 +93,7 @@
     {
       "id": 9,
       "name": "Patterns",
-      "parent": [
+      "parentItems": [
         {
           "id": 100,
           "seq": 0
@@ -96,7 +106,7 @@
     {
       "id": 1000,
       "name": "Creational Design Patterns",
-      "parent": [
+      "parentItems": [
         {
           "id": 9,
           "seq": 0
@@ -108,7 +118,7 @@
     {
       "id": 4,
       "name": "Javascript",
-      "parent": [
+      "parentItems": [
         {
           "id": 100,
           "seq": 0
@@ -120,7 +130,7 @@
     {
       "id": 2,
       "name": "Design Styles",
-      "parent": [
+      "parentItems": [
         {
           "id": 10005,
           "seq": 0
@@ -132,7 +142,7 @@
     {
       "id": 5,
       "name": "Cheat Sheets",
-      "parent": [
+      "parentItems": [
         {
           "id": 100,
           "seq": 0
@@ -144,7 +154,7 @@
     {
       "id": 8,
       "name": "Code Solutions",
-      "parent": [
+      "parentItems": [
         {
           "id": 100,
           "seq": 0
@@ -156,7 +166,7 @@
     {
       "id": 13,
       "name": "Security",
-      "parent": [
+      "parentItems": [
         {
           "id": 10005,
           "seq": 0
@@ -168,7 +178,7 @@
     {
       "id": 15,
       "name": "Maintenance",
-      "parent": [
+      "parentItems": [
         {
           "id": 10005,
           "seq": 0
@@ -180,7 +190,7 @@
     {
       "id": 30,
       "name": "IDE",
-      "parent": [
+      "parentItems": [
         {
           "id": 10005,
           "seq": 0
@@ -192,7 +202,7 @@
     {
       "id": 14,
       "name": "AWS",
-      "parent": [
+      "parentItems": [
         {
           "id": 10003,
           "seq": 0
@@ -204,7 +214,7 @@
     {
       "id": 16,
       "name": "Art",
-      "parent": [
+      "parentItems": [
         {
           "id": 10004,
           "seq": 0
@@ -216,7 +226,7 @@
     {
       "id": 3,
       "name": "Artist",
-      "parent": [
+      "parentItems": [
         {
           "id": 10004,
           "seq": 0
@@ -228,7 +238,7 @@
     {
       "id": 17,
       "name": "Yachts",
-      "parent": [
+      "parentItems": [
         {
           "id": 10004,
           "seq": 0
@@ -240,7 +250,7 @@
     {
       "id": 6,
       "name": "Best Practices",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -252,7 +262,7 @@
     {
       "id": 18,
       "name": "Images",
-      "parent": [
+      "parentItems": [
         {
           "id": 10004,
           "seq": 0
@@ -264,7 +274,7 @@
     {
       "id": 19,
       "name": "Technology Stacks",
-      "parent": [
+      "parentItems": [
         {
           "id": 100,
           "seq": 0
@@ -276,7 +286,7 @@
     {
       "id": 20,
       "name": "Performance",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -286,9 +296,9 @@
       "type": "menu"
     },
     {
-      "id": 22,
+      "id": 6006,
       "name": "Hooks",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -300,7 +310,7 @@
     {
       "id": 23,
       "name": "Hooks Custom",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -312,7 +322,7 @@
     {
       "id": 24,
       "name": "Patterns",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -324,7 +334,7 @@
     {
       "id": 25,
       "name": "ESLint",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -336,7 +346,7 @@
     {
       "id": 26,
       "name": "Troubleshooting",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -348,7 +358,7 @@
     {
       "id": 27,
       "name": "Interview Questions",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -360,7 +370,7 @@
     {
       "id": 28,
       "name": "NodeJS",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -372,7 +382,7 @@
     {
       "id": 29,
       "name": "Getting Started",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -387,7 +397,7 @@
       "edit_date": "1911-12-15T15:46:00.000Z",
       "file": true,
       "name": "Overview",
-      "parent": [
+      "parentItems": [
         {
           "id": 10005,
           "seq": 0
@@ -403,7 +413,7 @@
       "edit_date": "1911-12-15T15:49:00.000Z",
       "file": true,
       "name": "Singleton Pattern",
-      "parent": [
+      "parentItems": [
         {
           "id": 9,
           "seq": 0
@@ -423,7 +433,7 @@
       "edit_date": "1911-12-15T15:52:00.000Z",
       "file": true,
       "name": "Factory Method Pattern",
-      "parent": [
+      "parentItems": [
         {
           "id": 9,
           "seq": 0
@@ -443,7 +453,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "CSS",
-      "parent": [
+      "parentItems": [
         {
           "id": 10001,
           "seq": 0
@@ -457,7 +467,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Internationalization",
-      "parent": [
+      "parentItems": [
         {
           "id": 10001,
           "seq": 0
@@ -472,7 +482,7 @@
       "file": true,
       "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
       "name": "Skeuomorphism",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -487,7 +497,7 @@
       "file": true,
       "long_title": "Flat Design: The Art of Simplicity",
       "name": "Flat Design",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -502,7 +512,7 @@
       "file": true,
       "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
       "name": "Corporate Memphis Design",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -518,7 +528,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Glassmorphism",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -532,7 +542,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Minimalism",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -546,7 +556,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Retrofuturism",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -560,7 +570,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Swiss Style",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -574,7 +584,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Chrome Extensions",
-      "parent": [
+      "parentItems": [
         {
           "id": 10001,
           "seq": 0
@@ -588,7 +598,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Git",
-      "parent": [
+      "parentItems": [
         {
           "id": 10001,
           "seq": 0
@@ -602,7 +612,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Visual Studio Code",
-      "parent": [
+      "parentItems": [
         {
           "id": 10001,
           "seq": 0
@@ -616,7 +626,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Visual Studio Code: Extensions",
-      "parent": [
+      "parentItems": [
         {
           "id": 10001,
           "seq": 0
@@ -630,7 +640,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Shoes on the Danube Bank",
-      "parent": [
+      "parentItems": [
         {
           "id": 3,
           "seq": 0
@@ -642,7 +652,7 @@
     {
       "id": 4000,
       "name": "Kelly Boesch",
-      "parent": [
+      "parentItems": [
         {
           "id": 3,
           "seq": 0
@@ -656,7 +666,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Lazels Puzzles",
-      "parent": [
+      "parentItems": [
         {
           "id": 3,
           "seq": 0
@@ -670,7 +680,7 @@
       "edit_date": "01/18/2024",
       "file": true,
       "name": "Puzzle Lab",
-      "parent": [
+      "parentItems": [
         {
           "id": 3,
           "seq": 0
@@ -684,7 +694,7 @@
       "edit_date": "03/24/2024",
       "file": true,
       "name": "Input Element",
-      "parent": [
+      "parentItems": [
         {
           "id": 5,
           "seq": 0
@@ -698,7 +708,7 @@
       "edit_date": "03/24/2024",
       "file": true,
       "name": "Data Types",
-      "parent": [
+      "parentItems": [
         {
           "id": 5,
           "seq": 0
@@ -712,7 +722,7 @@
       "edit_date": "03/24/2024",
       "file": true,
       "name": "String Functions",
-      "parent": [
+      "parentItems": [
         {
           "id": 5,
           "seq": 0
@@ -726,7 +736,7 @@
       "edit_date": "03/24/2024",
       "file": true,
       "name": "Math Functions",
-      "parent": [
+      "parentItems": [
         {
           "id": 5,
           "seq": 0
@@ -740,7 +750,7 @@
       "edit_date": "03/24/2024",
       "file": true,
       "name": "Javascript Array",
-      "parent": [
+      "parentItems": [
         {
           "id": 5,
           "seq": 0
@@ -757,7 +767,7 @@
       "id": 7001,
       "file": true,
       "name": "Functional Components",
-      "parent": [
+      "parentItems": [
         {
           "id": 6,
           "seq": 0
@@ -770,7 +780,7 @@
       "id": 15002,
       "edit_date": "3/30/2024 2:24 PM",
       "name": "Design Patterns - Facade",
-      "parent": [
+      "parentItems": [
         {
           "id": 6,
           "seq": 0
@@ -784,7 +794,7 @@
       "edit_date": "4/2/2024 2:23 PM",
       "file": true,
       "name": "Javascript 2024",
-      "parent": [
+      "parentItems": [
         {
           "id": 12,
           "seq": 0
@@ -798,7 +808,7 @@
       "edit_date": "1/18/2024 12:00 AM",
       "file": true,
       "name": "Neumorphism",
-      "parent": [
+      "parentItems": [
         {
           "id": 2,
           "seq": 0
@@ -812,7 +822,7 @@
       "edit_date": "4/4/2024 12:45 PM",
       "file": true,
       "name": "HTTP Headers",
-      "parent": [
+      "parentItems": [
         {
           "id": 5,
           "seq": 0
@@ -826,7 +836,7 @@
       "edit_date": "1918-02-19T18:00:00.000Z",
       "file": true,
       "name": "Global Functions",
-      "parent": [
+      "parentItems": [
         {
           "id": 5,
           "seq": 0
@@ -841,7 +851,7 @@
       "edit_date": "1910-02-14T18:30:00.000Z",
       "file": true,
       "name": "Code Review",
-      "parent": [
+      "parentItems": [
         {
           "id": 6,
           "seq": 0
@@ -855,7 +865,7 @@
       "edit_date": "1908-04-24T18:15:00.000Z",
       "file": true,
       "name": "Best Practices",
-      "parent": [
+      "parentItems": [
         {
           "id": 6,
           "seq": 0
@@ -869,7 +879,7 @@
       "edit_date": "1908-04-24T16:11:00.000Z",
       "file": true,
       "name": "Units",
-      "parent": [
+      "parentItems": [
         {
           "id": 10001,
           "seq": 0
@@ -884,7 +894,7 @@
       "edit_date": "1911-01-14T10:22:00.000Z",
       "file": true,
       "name": "Storage Options",
-      "parent": [
+      "parentItems": [
         {
           "id": 14,
           "seq": 0
@@ -898,7 +908,7 @@
       "edit_date": "1909-07-24T15:55:00.000Z",
       "file": false,
       "name": "Images",
-      "parent": [
+      "parentItems": [
         {
           "id": 14,
           "seq": 0
@@ -913,7 +923,7 @@
       "edit_date": "1911-07-17T08:22:00.000Z",
       "file": true,
       "name": "MERN",
-      "parent": [
+      "parentItems": [
         {
           "id": 19,
           "seq": 0
@@ -929,7 +939,7 @@
       "edit_date": "1911-07-17T08:22:00.000Z",
       "file": true,
       "name": "Serverless",
-      "parent": [
+      "parentItems": [
         {
           "id": 19,
           "seq": 0
@@ -945,7 +955,7 @@
       "edit_date": "1910-09-14T08:41:00.000Z",
       "file": true,
       "name": "useTransition",
-      "parent": [
+      "parentItems": [
         {
           "id": 22,
           "seq": 0
@@ -960,7 +970,7 @@
       "edit_date": "1908-11-26T15:55:00.000Z",
       "file": true,
       "name": "Maintenance",
-      "parent": [
+      "parentItems": [
         {
           "id": 6,
           "seq": 0
@@ -975,7 +985,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Minimize Re-renders",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 1
@@ -990,7 +1000,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Use Memoization",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 2
@@ -1005,7 +1015,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Avoid Using Index as a Key",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 3
@@ -1020,7 +1030,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Use Functional Components",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 4
@@ -1035,7 +1045,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Use React.Fragment",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 5
@@ -1050,7 +1060,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Reduce Unnecessary Props",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 6
@@ -1065,7 +1075,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Avoid Inline Functions",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 7
@@ -1080,7 +1090,7 @@
       "edit_date": "1911-06-16T18:07:00.000Z",
       "file": true,
       "name": "Use React.PureComponent",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 8
@@ -1095,7 +1105,7 @@
       "edit_date": "1911-06-16T18:39:00.000Z",
       "file": true,
       "name": "Use Efficient Event Handlers",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 9
@@ -1110,7 +1120,7 @@
       "edit_date": "1911-06-16T11:04:00.000Z",
       "file": true,
       "name": "Batch State Updates",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 10
@@ -1125,7 +1135,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Use Code Splitting and Lazy Loading",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 11
@@ -1140,7 +1150,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Use Memo or useCallback",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 12
@@ -1155,7 +1165,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Optimize Network Requests",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 13
@@ -1170,7 +1180,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Implement Virtualization for Large Lists",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 15
@@ -1185,7 +1195,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Use React.memo",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 15
@@ -1200,7 +1210,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Compress and Cache Static Assets",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 16
@@ -1215,7 +1225,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Optimize CSS Animations",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 17
@@ -1230,7 +1240,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Defer Expensive Operations in useEffect",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 18
@@ -1245,7 +1255,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Use Webpack’s Tree Shaking",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 19
@@ -1260,7 +1270,7 @@
       "edit_date": "1911-06-16T11:44:00.000Z",
       "file": true,
       "name": "Use Redux or MobX for State Management",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 20
@@ -1275,7 +1285,7 @@
       "edit_date": "1911-06-16T16:09:00.000Z",
       "file": true,
       "name": "Shape the Data",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 21
@@ -1290,7 +1300,7 @@
       "edit_date": "1911-07-17T15:34:00.000Z",
       "file": true,
       "name": "useLocalStorage",
-      "parent": [
+      "parentItems": [
         {
           "id": 23,
           "seq": 0
@@ -1305,7 +1315,7 @@
       "edit_date": "1911-07-17T15:34:00.000Z",
       "file": true,
       "name": "useMediaQuery",
-      "parent": [
+      "parentItems": [
         {
           "id": 23,
           "seq": 0
@@ -1320,7 +1330,7 @@
       "edit_date": "1911-07-17T15:34:00.000Z",
       "file": true,
       "name": "useDebounce",
-      "parent": [
+      "parentItems": [
         {
           "id": 23,
           "seq": 0
@@ -1335,7 +1345,7 @@
       "edit_date": "1911-07-17T15:34:00.000Z",
       "file": true,
       "name": "useFetch",
-      "parent": [
+      "parentItems": [
         {
           "id": 23,
           "seq": 0
@@ -1350,7 +1360,7 @@
       "edit_date": "1911-07-17T15:34:00.000Z",
       "file": true,
       "name": "useToggle",
-      "parent": [
+      "parentItems": [
         {
           "id": 23,
           "seq": 0
@@ -1365,7 +1375,7 @@
       "edit_date": "1911-08-17T16:17:00.000Z",
       "file": true,
       "name": "Adapter Pattern",
-      "parent": [
+      "parentItems": [
         {
           "id": 24,
           "seq": 0
@@ -1380,7 +1390,7 @@
       "edit_date": "1911-11-14T09:02:00.000Z",
       "file": true,
       "name": "Overview",
-      "parent": [
+      "parentItems": [
         {
           "id": 23,
           "seq": 0
@@ -1395,7 +1405,7 @@
       "edit_date": "2024-05-19T03:38:00.000Z",
       "file": true,
       "name": "Overview",
-      "parent": [
+      "parentItems": [
         {
           "id": 25,
           "seq": 0
@@ -1410,7 +1420,7 @@
       "edit_date": "2024-05-19T03:38:00.000Z",
       "file": true,
       "name": "ESLint - React Compiler",
-      "parent": [
+      "parentItems": [
         {
           "id": 25,
           "seq": 1
@@ -1424,7 +1434,7 @@
       "edit_date": "2024-05-24T05:43:00.000Z",
       "file": true,
       "name": "Using an Index as a Key",
-      "parent": [
+      "parentItems": [
         {
           "id": 6,
           "seq": 0
@@ -1439,7 +1449,7 @@
       "edit_date": "2024-05-24T05:01:00.000Z",
       "file": true,
       "name": "Double Render",
-      "parent": [
+      "parentItems": [
         {
           "id": 25,
           "seq": 0
@@ -1454,7 +1464,7 @@
       "edit_date": "2024-05-24T03:11:00.000Z",
       "file": true,
       "name": "React Interview Questions",
-      "parent": [
+      "parentItems": [
         {
           "id": 27,
           "seq": 0
@@ -1469,7 +1479,7 @@
       "edit_date": "2024-05-24T03:11:00.000Z",
       "file": false,
       "name": "Function vs. Method",
-      "parent": [
+      "parentItems": [
         {
           "id": 4,
           "seq": 0
@@ -1483,7 +1493,7 @@
       "id": 949,
       "edit_date": "2024-05-25T02:37:00.000Z",
       "name": "Monads",
-      "parent": [
+      "parentItems": [
         {
           "id": 4,
           "seq": 0
@@ -1496,7 +1506,7 @@
       "id": 53,
       "edit_date": "2024-05-25T02:49:00.000Z",
       "name": "Declarative Programming",
-      "parent": [
+      "parentItems": [
         {
           "id": 4,
           "seq": 0
@@ -1510,7 +1520,7 @@
       "create_date": "2024-05-25T03:16:00.000Z",
       "edit_date": "2024-05-25T03:16:00.000Z",
       "name": "Server-Side Caching",
-      "parent": [
+      "parentItems": [
         {
           "id": 4,
           "seq": 0
@@ -1524,7 +1534,7 @@
       "create_date": "2024-05-25T18:34:00.000Z",
       "edit_date": "2024-05-25T18:34:00.000Z",
       "name": "Standards",
-      "parent": [
+      "parentItems": [
         {
           "id": 29,
           "seq": 1
@@ -1538,7 +1548,7 @@
       "create_date": "2024-05-25T19:00:00.000Z",
       "edit_date": "2024-05-25T19:00:00.000Z",
       "name": "Learning React",
-      "parent": [
+      "parentItems": [
         {
           "id": 29,
           "seq": 2
@@ -1552,7 +1562,7 @@
       "create_date": "2024-05-25T19:11:00.000Z",
       "edit_date": "2024-05-25T19:11:00.000Z",
       "name": "Object Destructuring",
-      "parent": [
+      "parentItems": [
         {
           "id": 4,
           "seq": 1
@@ -1566,7 +1576,7 @@
       "create_date": "2024-05-25T20:06:00.000Z",
       "edit_date": "2024-05-25T20:06:00.000Z",
       "name": "Performance",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 0
@@ -1580,7 +1590,7 @@
       "create_date": "2024-05-27T03:38:00.000Z",
       "edit_date": "2024-05-27T03:38:00.000Z",
       "name": "Security - Request Validation",
-      "parent": [
+      "parentItems": [
         {
           "id": 28,
           "seq": 0
@@ -1594,7 +1604,7 @@
       "create_date": "2024-05-28T00:02:00.000Z",
       "edit_date": "2024-05-28T00:02:00.000Z",
       "name": "Profiler Component",
-      "parent": [
+      "parentItems": [
         {
           "id": 20,
           "seq": 20
@@ -1608,7 +1618,7 @@
       "create_date": "2024-05-28T19:56:00.000Z",
       "edit_date": "2024-05-28T19:56:00.000Z",
       "name": "Adding Fonts",
-      "parent": [
+      "parentItems": [
         {
           "id": 40,
           "seq": 2
@@ -1622,7 +1632,7 @@
       "create_date": "2024-05-28T20:08:00.000Z",
       "edit_date": "2024-05-28T20:08:00.000Z",
       "name": "Choosing a CSS Platform",
-      "parent": [
+      "parentItems": [
         {
           "id": 40,
           "seq": 3
@@ -1635,7 +1645,7 @@
       "id": 61,
       "edit_date": "2024-05-28T19:56:00.000Z",
       "name": "Overview",
-      "parent": [
+      "parentItems": [
         {
           "id": 40,
           "seq": 1
@@ -1649,7 +1659,7 @@
       "create_date": "2024-05-30T02:58:00.000Z",
       "edit_date": "2024-05-30T02:58:00.000Z",
       "name": "Choosing a Version",
-      "parent": [
+      "parentItems": [
         {
           "id": 40,
           "seq": 2
@@ -1663,9 +1673,9 @@
       "create_date": "2024-06-06T23:01:00.000Z",
       "edit_date": "2024-06-06T23:01:00.000Z",
       "name": "File Not Found",
-      "parent": [
+      "parentItems": [
         {
-          "id": 1001,
+          "id": 26,
           "seq": 1
         }
       ],
@@ -1676,7 +1686,7 @@
       "id": 3001,
       "edit_date": "2024-01-18T18:00:00.000Z",
       "name": "At Last - Pleasantville",
-      "parent": [
+      "parentItems": [
         {
           "id": 3,
           "seq": 0
@@ -1689,7 +1699,7 @@
       "id": 3002,
       "edit_date": "2024-01-19T06:00:00.000Z",
       "name": "Gallos",
-      "parent": [
+      "parentItems": [
         {
           "id": 3,
           "seq": 0
@@ -1700,9 +1710,9 @@
       "type": "page"
     },
     {
-      "id": 1007,
+      "id": 10012,
       "name": "Python",
-      "parent": [
+      "parentItems": [
         {
           "id": 0,
           "seq": 0
@@ -1714,9 +1724,9 @@
       "type": "root"
     },
     {
-      "id": 1008,
+      "id": 10010,
       "name": "Management",
-      "parent": [
+      "parentItems": [
         {
           "id": 0,
           "seq": 0
@@ -1730,9 +1740,9 @@
     {
       "id": 21,
       "name": "Algorithims",
-      "parent": [
+      "parentItems": [
         {
-          "id": 1007,
+          "id": 10012,
           "seq": 0
         }
       ],
@@ -1742,15 +1752,16 @@
       "type": "menu"
     },
     {
-      "id": 22,
+      "id": 6007,
       "name": "Algorithims",
-      "parent": [
+      "parentItems": [
         {
-          "id": 1008,
+          "id": 10009,
           "seq": 0
         }
       ],
       "seq": 0,
+      "sortby": "name",
       "to": "algorithims",
       "type": "menu"
     },
@@ -1759,9 +1770,9 @@
       "create_date": "2024-06-11T03:00:00.000Z",
       "edit_date": "2024-06-11T03:00:00.000Z",
       "name": "Bubble Sort",
-      "parent": [
+      "parentItems": [
         {
-          "id": 22,
+          "id": 6007,
           "seq": 0
         }
       ],
@@ -1773,7 +1784,7 @@
       "id": 31,
       "edit_date": "2024-06-11T02:46:00.000Z",
       "name": "Bubble Sort",
-      "parent": [
+      "parentItems": [
         {
           "id": 21,
           "seq": 0
@@ -1788,7 +1799,7 @@
       "create_date": "2024-06-11T03:17:00.000Z",
       "edit_date": "2024-06-11T03:17:00.000Z",
       "name": "Basics",
-      "parent": [
+      "parentItems": [
         {
           "id": 1007,
           "seq": 1
@@ -1803,7 +1814,7 @@
       "create_date": "2024-06-13T19:16:00.000Z",
       "edit_date": "2024-06-13T19:16:00.000Z",
       "name": "npm Audit",
-      "parent": [
+      "parentItems": [
         {
           "id": 15,
           "seq": 1
@@ -1818,7 +1829,7 @@
       "create_date": "2024-06-13T19:19:00.000Z",
       "edit_date": "2024-06-13T19:19:00.000Z",
       "name": "npm Outdated",
-      "parent": [
+      "parentItems": [
         {
           "id": 15,
           "seq": 0
@@ -1833,7 +1844,7 @@
       "create_date": "2024-06-13T19:24:00.000Z",
       "edit_date": "2024-06-13T19:24:00.000Z",
       "name": "npm Depcheck",
-      "parent": [
+      "parentItems": [
         {
           "id": 15,
           "seq": 0
@@ -1848,7 +1859,7 @@
       "create_date": "2024-06-13T19:34:00.000Z",
       "edit_date": "2024-06-13T19:34:00.000Z",
       "name": "node_modules",
-      "parent": [
+      "parentItems": [
         {
           "id": 26,
           "seq": 0
@@ -1861,7 +1872,7 @@
     {
       "id": 38,
       "name": "Versions",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 10
@@ -1875,7 +1886,7 @@
     {
       "id": 39,
       "name": "React 19",
-      "parent": [
+      "parentItems": [
         {
           "id": 38,
           "seq": 0
@@ -1891,7 +1902,7 @@
       "create_date": "2024-06-13T19:47:00.000Z",
       "edit_date": "2024-06-13T19:47:00.000Z",
       "name": "What's New",
-      "parent": [
+      "parentItems": [
         {
           "id": 39,
           "seq": 0
@@ -1906,7 +1917,7 @@
       "create_date": "2024-06-13T19:50:00.000Z",
       "edit_date": "2024-06-13T19:50:00.000Z",
       "name": "React Complier",
-      "parent": [
+      "parentItems": [
         {
           "id": 39,
           "seq": 1
@@ -1921,7 +1932,7 @@
       "create_date": "2024-06-13T19:57:00.000Z",
       "edit_date": "2024-06-13T19:57:00.000Z",
       "name": "useOptimistic",
-      "parent": [
+      "parentItems": [
         {
           "id": 39,
           "seq": 2
@@ -1936,7 +1947,7 @@
       "create_date": "2024-06-14T02:56:00.000Z",
       "edit_date": "2024-06-14T02:56:00.000Z",
       "name": "useFormStatus",
-      "parent": [
+      "parentItems": [
         {
           "id": 39,
           "seq": 3
@@ -1951,7 +1962,7 @@
       "create_date": "2024-06-15T05:18:00.000Z",
       "edit_date": "2024-06-15T05:18:00.000Z",
       "name": "Types vs Interfaces",
-      "parent": [
+      "parentItems": [
         {
           "id": 10008,
           "seq": 1
@@ -1964,7 +1975,7 @@
     {
       "id": 46,
       "name": "Architecture",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -1980,7 +1991,7 @@
       "create_date": "2024-06-14T23:15:00.000Z",
       "edit_date": "2024-06-14T23:15:00.000Z",
       "name": "Micro-frontend",
-      "parent": [
+      "parentItems": [
         {
           "id": 46,
           "seq": 0
@@ -1993,7 +2004,7 @@
     {
       "id": 48,
       "name": "Best Practices",
-      "parent": [
+      "parentItems": [
         {
           "id": 10009,
           "seq": 0
@@ -2009,7 +2020,7 @@
       "create_date": "2024-06-16T05:17:00.000Z",
       "edit_date": "2024-06-16T05:17:00.000Z",
       "name": "CommonJs vs ES Modules",
-      "parent": [
+      "parentItems": [
         {
           "id": 10009,
           "seq": 2
@@ -2022,7 +2033,7 @@
     {
       "id": 51,
       "name": "Tools",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -2038,7 +2049,7 @@
       "create_date": "2024-06-16T05:41:00.000Z",
       "edit_date": "2024-06-16T05:41:00.000Z",
       "name": "Husky",
-      "parent": [
+      "parentItems": [
         {
           "id": 51,
           "seq": 1
@@ -2053,7 +2064,7 @@
       "create_date": "2024-06-15T19:16:00.000Z",
       "edit_date": "2024-06-15T19:16:00.000Z",
       "name": "VSCode",
-      "parent": [
+      "parentItems": [
         {
           "id": 51,
           "seq": 2
@@ -2068,7 +2079,7 @@
       "create_date": "2024-06-15T19:42:00.000Z",
       "edit_date": "2024-06-15T19:42:00.000Z",
       "name": "nginx",
-      "parent": [
+      "parentItems": [
         {
           "id": 51,
           "seq": 3
@@ -2083,7 +2094,7 @@
       "create_date": "2024-06-15T19:44:00.000Z",
       "edit_date": "2024-06-15T19:44:00.000Z",
       "name": "browserslistrc",
-      "parent": [
+      "parentItems": [
         {
           "id": 51,
           "seq": 4
@@ -2096,7 +2107,7 @@
     {
       "id": 65,
       "name": "Package.json",
-      "parent": [
+      "parentItems": [
         {
           "id": 29,
           "seq": 0
@@ -2112,7 +2123,7 @@
       "create_date": "2024-06-16T19:34:00.000Z",
       "edit_date": "2024-06-16T19:34:00.000Z",
       "name": "React-scripts",
-      "parent": [
+      "parentItems": [
         {
           "id": 65,
           "seq": 1
@@ -2127,7 +2138,7 @@
       "create_date": "2024-06-18T18:24:00.000Z",
       "edit_date": "2024-06-18T18:24:00.000Z",
       "name": "Vite Config",
-      "parent": [
+      "parentItems": [
         {
           "id": 29,
           "seq": 3
@@ -2137,24 +2148,11 @@
       "to": "vite-config",
       "type": "page"
     },
-    {
-      "id": 68,
-      "name": "Optimization",
-      "parent": [
-        {
-          "id": 1002,
-          "seq": 0
-        }
-      ],
-      "seq": 0,
-      "sortby": "name",
-      "to": "optimization",
-      "type": "menu"
-    },
+
     {
       "id": 69,
       "name": "Optimization",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -2170,7 +2168,7 @@
       "create_date": "2024-06-19T07:02:00.000Z",
       "edit_date": "2024-06-19T07:02:00.000Z",
       "name": "Bundle Analyzer",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 1
@@ -2184,7 +2182,7 @@
       "id": 71,
       "edit_date": "2024-06-19T07:00:00.000Z",
       "name": "Bundle Optimization",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 2
@@ -2199,7 +2197,7 @@
       "id": 73,
       "edit_date": "2024-06-20T00:59:00.000Z",
       "name": "Lighthouse Report",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 1
@@ -2213,7 +2211,7 @@
     {
       "id": 74,
       "name": "Testing",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -2229,7 +2227,7 @@
       "create_date": "2024-06-21T05:29:00.000Z",
       "edit_date": "2024-06-21T05:29:00.000Z",
       "name": "Test Grid",
-      "parent": [
+      "parentItems": [
         {
           "id": 74,
           "seq": 1
@@ -2242,8 +2240,8 @@
     {
       "id": 49,
       "edit_date": "2024-06-15T02:49:00.000Z",
-      "name": "Best Practices",
-      "parent": [
+      "name": "Overview",
+      "parentItems": [
         {
           "id": 10009,
           "seq": 1
@@ -2259,7 +2257,7 @@
       "create_date": "2024-06-21T16:01:00.000Z",
       "edit_date": "2024-06-21T16:01:00.000Z",
       "name": "React Components",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 1
@@ -2274,7 +2272,7 @@
       "create_date": "2024-06-21T16:02:00.000Z",
       "edit_date": "2024-06-21T16:02:00.000Z",
       "name": "React Profiler",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 2
@@ -2289,7 +2287,7 @@
       "create_date": "2024-06-21T16:03:00.000Z",
       "edit_date": "2024-06-21T16:03:00.000Z",
       "name": "Performance Insights",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 3
@@ -2304,7 +2302,7 @@
       "create_date": "2024-06-22T05:11:00.000Z",
       "edit_date": "2024-06-22T05:11:00.000Z",
       "name": "Console",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 10
@@ -2319,7 +2317,7 @@
       "create_date": "2024-06-22T05:21:00.000Z",
       "edit_date": "2024-06-22T05:21:00.000Z",
       "name": "Network",
-      "parent": [
+      "parentItems": [
         {
           "id": 69,
           "seq": 11
@@ -2332,7 +2330,7 @@
     {
       "id": 80,
       "name": "Extras",
-      "parent": [
+      "parentItems": [
         {
           "id": 10002,
           "seq": 0
@@ -2348,7 +2346,7 @@
       "create_date": "2024-06-22T19:53:00.000Z",
       "edit_date": "2024-06-22T19:53:00.000Z",
       "name": "Drag 'n Drop",
-      "parent": [
+      "parentItems": [
         {
           "id": 80,
           "seq": 1

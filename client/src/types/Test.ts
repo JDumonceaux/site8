@@ -1,3 +1,5 @@
+import { Parent } from './Parent';
+
 export type Test = {
   readonly localId: number;
   readonly action?: 'add' | 'edit' | 'delete';
@@ -7,6 +9,5 @@ export type Test = {
   readonly type?: 'section' | 'test';
   readonly level?: 'page' | 'project';
   readonly projectType?: ['react', 'nodejs'];
-  readonly parentId: number;
-  readonly parentSeq: number;
+  readonly parent: Parent;
 };
