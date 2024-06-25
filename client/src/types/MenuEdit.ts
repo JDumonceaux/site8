@@ -2,5 +2,6 @@ import { ParentSortby } from './ParentSortby';
 
 export type MenuEdit = {
   readonly id: number;
-  readonly parent: ParentSortby;
+  readonly priorParent: ParentSortby;
+  readonly newParent: ParentSortby;
 };

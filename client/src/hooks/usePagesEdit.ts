@@ -58,7 +58,9 @@ const usePagesEdit = () => {
       }
       return {
         id: item.id,
-        parent: {
+        // Temporary filler
+        priorParent: { id: 0, seq: 0, sortby: 'name' as SortByType },
+        newParent: {
           id: Number.isNaN(item.parentId) ? 0 : Number(item.parentId),
           seq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
           sortby: item.parentSortby as SortByType,
@@ -76,39 +78,33 @@ const usePagesEdit = () => {
       if (!originalItem || !newItem) {
         return false;
       }
-      if (!originalItem.parent && !newItem.parent) {
+      const { parent } = originalItem;
+      const { newParent } = newItem;
+      if (!parent && !newParent) {
         return false;
       }
-      if (originalItem.parent && !newItem.parent) {
+      if (parent && !newParent) {
         return false;
       }
-      const { id, seq, sortby } = newItem.parent;
+      const { id, seq, sortby } = newParent;
       if (id && Number.isInteger(id) && id > -1) {
-        if (!originalItem.parent.id) {
+        if (!parent.id) {
           return true;
         }
-        if (originalItem.parent.id && originalItem.parent.id !== id) {
+        if (parent.id !== id) {
           return true;
         }
       }
       if (seq && Number.isInteger(seq) && seq > -1) {
-        if (!originalItem.parent.seq) {
+        if (!parent.seq) {
           return true;
         }
-        if (originalItem.parent.seq && originalItem.parent.seq !== seq) {
+        if (parent.seq !== seq) {
           return true;
         }
       }
-      if (sortby && sortby.length > 0) {
-        if (!originalItem.parent.sortby) {
-          return true;
-        }
-        if (
-          originalItem.parent.sortby &&
-          originalItem.parent.sortby !== sortby
-        ) {
-          return true;
-        }
+      if (sortby && sortby.length > 0 && parent.sortby !== sortby) {
+        return true;
       }
       return false;
     },
@@ -125,9 +121,16 @@ const usePagesEdit = () => {
     const ret: MenuEdit[] = [];
     formValues.forEach((item) => {
       // Map item
-      const newItem = mapFormTypeToMenuEdit(item);
+      const tempItem = mapFormTypeToMenuEdit(item);
+
       // Find the original item
       const currItem = localItems.find((x) => x.localId === item.localId);
+
+      const newItem =
+        tempItem && currItem?.parent
+          ? { ...tempItem, priorParent: { ...currItem?.parent } }
+          : tempItem;
+
       if (shouldUpdate(currItem, newItem)) {
         if (newItem) {
           ret.push(newItem);

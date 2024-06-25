@@ -1,6 +1,7 @@
-import { MenuItem } from './MenuItem.js';
 import { ParentSortby } from './ParentSortby.js';
 
-export type MenuEdit = Pick<MenuItem, 'id' | 'parent'> & {
+export type MenuEdit = {
+  readonly id: number;
+  readonly priorParent: ParentSortby;
   readonly newParent: ParentSortby;
 };

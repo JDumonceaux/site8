@@ -139,15 +139,15 @@ export class PagesService {
     Logger.info(`PagesService: getUpdatedItem ->`);
 
     try {
-      if (!foundItem || !items) {
+      if (!foundItem || !items || !Array.isArray(items)) {
         return undefined;
       }
 
       const newArr: ParentSortby[] = [];
       // Update existing item
       foundItem.parentItems?.forEach((item) => {
-        // If there's a match, update
-        const match = items.find((x) => x.id === item.id);
+        // Find the prior record
+        const match = items.find((x) => x.priorParent.id === item.id);
 
         const update = match
           ? {
@@ -160,12 +160,12 @@ export class PagesService {
       });
 
       // Second Loop through "new items"
-      items.forEach((x) => {
-        const notFound = newArr.find((y) => y.id !== x.id);
-        if (notFound) {
-          newArr.push({ ...x.newParent, id: x.id });
-        }
-      });
+      // items.forEach((x) => {
+      //   const notFound = newArr.find((y) => y.id !== x.id);
+      //   if (notFound) {
+      //     newArr.push({ ...x.newParent, id: x.id });
+      //   }
+      // });
 
       return { ...foundItem, parentItems: newArr };
     } catch (error) {
@@ -184,19 +184,38 @@ export class PagesService {
         return Promise.reject(new Error('No items found'));
       }
 
-      console.log('items', items);
-      // Loop through items from pagesIndex.json
-      // const retItems = pages.items.map((item) => {
-      //   // Get the updates from the incoming records - could be more than one update per entry.
-      //   const updateItems = items.filter((x) => x.id === item.id);
-      //   // Get the updated item
-      //   const updatedItem = this.getUpdatedItem(updateItems, item);
-      //   // Add update (if there is one) or original
-      //   return updatedItem ?? item;
-      // });
+      let countUpdate = 0;
+      let countTotal = 0;
+      const countIn = items.length;
 
-      // // Write back the updates
-      // await this.writeFile({ ...pages, items: retItems });
+      // Loop through items from pagesIndex.json
+      const retItems = pages.items.map((item) => {
+        // Get the updates from the incoming records - could be more than one update per entry.
+        const updateItems = items.filter((x) => x.id === item.id);
+        // Check for zero length array
+        const isValidArray =
+          Array.isArray(updateItems) && updateItems.length > 0;
+        // Get the updated item or undefined.
+        const updatedItem = isValidArray
+          ? this.getUpdatedItem(updateItems, item)
+          : undefined;
+
+        console.log('updatedItem', updatedItem);
+
+        countUpdate += updatedItem ? 1 : 0;
+        countTotal++;
+        // Add update (if there is one) or original
+        return updatedItem ?? item;
+      });
+
+      // Number of records to update should be less than or equal to the number of incoming changes
+      if (countUpdate > countIn) {
+        throw new RangeError(
+          `Update count (${countUpdate}) is greater than incoming changes (${countIn}).`,
+        );
+      }
+      // Write back the updates
+      await this.writeFile({ ...pages, items: retItems });
       return Promise.resolve();
     } catch (error) {
       Logger.error(`PagesService: updateItems. Error -> ${error}`);
