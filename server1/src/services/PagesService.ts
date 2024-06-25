@@ -201,16 +201,28 @@ export class PagesService {
         // Check for zero length array
         const hasContent = isValidArray(updateItems);
         // Get the updated item or undefined.
-        const updatedItem =
-          hasContent && this.getUpdatedParent(updateItems, item);
+        const updatedItem = hasContent
+          ? this.getUpdatedParent(updateItems, item)
+          : undefined;
 
-        console.log('updatedItem', updatedItem);
+        if (updatedItem) {
+          console.log('updatedItem', updatedItem);
 
-        countUpdate += updatedItem ? 1 : 0;
+          countUpdate++;
+        }
         countTotal++;
         // Add update (if there is one) or original
-        return updatedItem ?? item;
+        return updatedItem ? { ...item, parentItems: updatedItem } : item;
       });
+      // Number of records to update should be less than or equal to the number of incoming changes
+      if (countUpdate > countIn) {
+        throw new RangeError(
+          `Update count (${countUpdate}) is greater than incoming changes (${countIn}).`,
+        );
+      }
+      // Write back the updates
+      await this.writeFile({ ...pages, items: retItems });
+      return Promise.resolve();
     } catch (error) {
       Logger.error(`PagesService: updateItems. Error -> ${error}`);
       return undefined;
