@@ -1,12 +1,13 @@
 import { readFile, writeFile } from 'fs/promises';
-import { ParentSortby } from 'types/ParentSortby.js';
 import { z } from 'zod';
 import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuEdit } from '../types/MenuEdit.js';
 import { Page } from '../types/Page.js';
 import { Pages } from '../types/Pages.js';
+import { ParentSortby } from '../types/ParentSortby.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
+import { isValidArray } from '../utils/helperUtils.js';
 import { cleanUpData, getNextId } from '../utils/objectUtil.js';
 import { safeParse } from '../utils/zodHelper.js';
 
@@ -132,44 +133,49 @@ export class PagesService {
   }
 
   // ?
-  private getUpdatedItem(
-    items: MenuEdit[] | undefined,
-    foundItem: Page | undefined,
-  ): Page | undefined {
-    Logger.info(`PagesService: getUpdatedItem ->`);
+  private getUpdatedParent(
+    updates: MenuEdit[] | undefined,
+    currItem: Page | undefined,
+  ): ParentSortby[] | undefined {
+    Logger.info(`PagesService: getUpdatedParent ->`);
 
     try {
-      if (!foundItem || !items || !Array.isArray(items)) {
+      if (!currItem || !updates || !isValidArray(updates)) {
         return undefined;
       }
 
       const newArr: ParentSortby[] = [];
       // Update existing item
-      foundItem.parentItems?.forEach((item) => {
+      currItem.parentItems?.forEach((item) => {
         // Find the prior record
-        const match = items.find((x) => x.priorParent.id === item.id);
+        const match = updates.find((x) => x.priorParent.id === item.id);
 
-        const update = match
-          ? {
-              ...item,
-              seq: match.newParent.seq,
-              sortby: match.newParent.sortby,
-            }
-          : item;
-        newArr.push(update);
+        const update = match && {
+          id: match.newParent.id,
+          seq: match.newParent.seq,
+          sortby: match.newParent.sortby,
+        };
+
+        newArr.push(update ?? item);
       });
 
-      // Second Loop through "new items"
-      // items.forEach((x) => {
-      //   const notFound = newArr.find((y) => y.id !== x.id);
-      //   if (notFound) {
-      //     newArr.push({ ...x.newParent, id: x.id });
-      //   }
-      // });
+      //Second Loop through "new items"
+      updates.forEach((x) => {
+        const found = newArr.find((y) => y.id !== x.id);
+        if (!found) {
+          newArr.push(x.newParent);
+        }
+      });
 
-      return { ...foundItem, parentItems: newArr };
+      const filtered =
+        currItem.type === 'page'
+          ? newArr.map((x) => ({ id: x.id, seq: x.seq }))
+          : newArr;
+      const sorted = filtered.sort((a, b) => a.id - b.id);
+
+      return sorted.length > 0 ? sorted : undefined;
     } catch (error) {
-      Logger.error(`PagesService: getUpdatedItem. Error: -> ${error}`);
+      Logger.error(`PagesService: getUpdatedParent. Error: -> ${error}`);
     }
     return undefined;
   }
@@ -193,12 +199,10 @@ export class PagesService {
         // Get the updates from the incoming records - could be more than one update per entry.
         const updateItems = items.filter((x) => x.id === item.id);
         // Check for zero length array
-        const isValidArray =
-          Array.isArray(updateItems) && updateItems.length > 0;
+        const hasContent = isValidArray(updateItems);
         // Get the updated item or undefined.
-        const updatedItem = isValidArray
-          ? this.getUpdatedItem(updateItems, item)
-          : undefined;
+        const updatedItem =
+          hasContent && this.getUpdatedParent(updateItems, item);
 
         console.log('updatedItem', updatedItem);
 
@@ -207,16 +211,6 @@ export class PagesService {
         // Add update (if there is one) or original
         return updatedItem ?? item;
       });
-
-      // Number of records to update should be less than or equal to the number of incoming changes
-      if (countUpdate > countIn) {
-        throw new RangeError(
-          `Update count (${countUpdate}) is greater than incoming changes (${countIn}).`,
-        );
-      }
-      // Write back the updates
-      await this.writeFile({ ...pages, items: retItems });
-      return Promise.resolve();
     } catch (error) {
       Logger.error(`PagesService: updateItems. Error -> ${error}`);
       return undefined;

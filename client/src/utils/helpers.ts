@@ -50,3 +50,15 @@ export const splitParent = (
     })
     .filter(Boolean) as { id: number; seq: number }[];
 };
+
+// Array.isArray(), checks whether its argument is an array.
+// This weeds out values like null,
+// undefined and anything else that is not an array.
+// arr.length condition checks whether the
+// variable's length property evaluates to a truthy value.
+export const isValidArray = (arr: unknown[] | undefined) => {
+  if (!Array.isArray(arr) || !arr.length) {
+    return false;
+  }
+  return true;
+};
