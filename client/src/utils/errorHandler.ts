@@ -27,10 +27,15 @@ export const httpErrorHandler = (
     if (response) {
       //The request was made and the server responded with a status code that falls out of the range of 2xx the http status code mentioned above
       const statusCode = response?.status;
-      if (statusCode === 404) {
-        return 'The requested resource does not exist or has been deleted';
-      } else if (statusCode === 401) {
-        return 'Please login to access this resource';
+      switch (statusCode) {
+        case 408:
+          return 'Request timed out';
+        case 404:
+          return 'The requested resource does not exist or has been deleted';
+        case 401:
+          return 'Please login to access this resource';
+        default:
+          return 'Unknown error occurred...';
       }
     } else if (request) {
       //The request was made but no response was received, `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in Node.js

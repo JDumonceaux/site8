@@ -15,21 +15,16 @@ export const PageTitle = ({
   }
 
   return (
-    <StyledDivWrapper>
+    <StyledWrapper>
       <div>
         <StyledElement data-testid="page-title">{title}</StyledElement>
       </div>
-      {children ? <div>{children}</div> : null}
-    </StyledDivWrapper>
+      {children ? <StyledChildren>{children}</StyledChildren> : null}
+    </StyledWrapper>
   );
 };
 
-const StyledElement = styled.h1`
-  color: var(--palette-page-title);
-  font-size: 2.25rem;
-  display: inline-block;
-`;
-const StyledDivWrapper = styled.div`
+const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -40,6 +35,15 @@ const StyledDivWrapper = styled.div`
   padding-bottom: 6px;
   margin-bottom: 18px;
   font-size: 0.75rem;
+`;
+const StyledElement = styled.h1`
+  color: var(--palette-page-title);
+  font-size: 2.25rem;
+  display: inline-block;
+`;
+const StyledChildren = styled.div`
+  display: inline-flex;
+  align-items: baseline;
   button,
   a {
     margin-left: 12px;

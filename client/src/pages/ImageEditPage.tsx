@@ -72,66 +72,44 @@ const ImageEditImage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            <StyledMenu>
-              <li>
-                <StyledLink
-                  data-testid="nav-first"
-                  to="/admin/image/edit/first">
-                  First
-                </StyledLink>
-              </li>
-              <li>
-                <StyledLink data-testid="nav-prev" to="/admin/image/edit/prev">
-                  Prev
-                </StyledLink>
-              </li>
-              <li>
-                <StyledLink data-testid="nav-next" to="/admin/image/edit/next">
-                  Next
-                </StyledLink>
-              </li>
-              <li>
-                <StyledLink data-testid="nav-last" to="/admin/image/edit/last">
-                  Last
-                </StyledLink>
-              </li>
-              {!isSaved ? (
-                <li>
-                  <StyledPlainButton
-                    data-testid="button-save"
-                    onClick={handleSubmit}
-                    type="submit">
-                    Save
-                  </StyledPlainButton>
-                </li>
-              ) : null}
-              <li>
-                <StyledLink data-testid="nav-new" to="/admin/image/edit">
-                  New
-                </StyledLink>
-              </li>
-              <li>
-                <StyledLink data-testid="nav-list" to="/admin/images">
-                  List
-                </StyledLink>
-              </li>
-              <li>
-                <StyledPlainButton
-                  data-testid="button-reset"
-                  onClick={handleReset}
-                  type="reset">
-                  Reset
-                </StyledPlainButton>
-              </li>
-              <li>
-                <StyledPlainButton
-                  data-testid="button-clear"
-                  onClick={handleClear}
-                  type="reset">
-                  Clear All
-                </StyledPlainButton>
-              </li>
-            </StyledMenu>
+            <StyledLink data-testid="nav-first" to="/admin/image/edit/first">
+              First
+            </StyledLink>
+            <StyledLink data-testid="nav-prev" to="/admin/image/edit/prev">
+              Prev
+            </StyledLink>
+            <StyledLink data-testid="nav-next" to="/admin/image/edit/next">
+              Next
+            </StyledLink>
+            <StyledLink data-testid="nav-last" to="/admin/image/edit/last">
+              Last
+            </StyledLink>
+            {!isSaved ? (
+              <StyledPlainButton
+                data-testid="button-save"
+                onClick={handleSubmit}
+                type="submit">
+                Save
+              </StyledPlainButton>
+            ) : null}
+            <StyledLink data-testid="nav-new" to="/admin/image/edit">
+              New
+            </StyledLink>
+            <StyledLink data-testid="nav-list" to="/admin/images">
+              List
+            </StyledLink>
+            <StyledPlainButton
+              data-testid="button-reset"
+              onClick={handleReset}
+              type="reset">
+              Reset
+            </StyledPlainButton>
+            <StyledPlainButton
+              data-testid="button-clear"
+              onClick={handleClear}
+              type="reset">
+              Clear All
+            </StyledPlainButton>
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <StyledContainer>
@@ -256,10 +234,6 @@ const ImageEditImage = (): JSX.Element => {
 
 export default ImageEditImage;
 
-const StyledMenu = styled.menu`
-  display: inline-flex;
-  list-style-type: none;
-`;
 const StyledContainer = styled.div`
   display: flex;
   column-gap: 20px;

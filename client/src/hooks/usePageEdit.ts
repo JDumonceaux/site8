@@ -97,7 +97,7 @@ const usePageEdit = () => {
           create_date:
             (item.create_date && format(item.create_date, DF_LONG)) ??
             format(new Date(), DF_LONG),
-          parent: combineParent(item.parent),
+          parent: combineParent(item.parentItems),
           reading_time: item.reading_time ?? '',
           readability_score: item.readability_score ?? '',
         };
@@ -146,7 +146,7 @@ const usePageEdit = () => {
     const data: Page = {
       ...rest,
       id,
-      parent: splitParent(parent),
+      parentItems: splitParent(parent),
       edit_date: getDateTime(edit_date) ?? new Date(),
       create_date: id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
       type: 'page',

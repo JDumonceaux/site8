@@ -8,11 +8,10 @@ export type Page = {
   readonly text?: string;
   readonly edit_date?: Date;
   readonly create_date?: Date;
-  readonly file?: boolean;
   readonly reading_time?: string;
   readonly readability_score?: string;
   readonly type: 'root' | 'menu' | 'page';
   readonly items?: Page[];
   readonly toComplete?: string;
-  readonly parent?: ParentSortby[];
+  readonly parentItems?: ParentSortby[];
 };
