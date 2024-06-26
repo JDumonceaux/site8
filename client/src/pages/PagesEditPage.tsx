@@ -1,7 +1,6 @@
 import { Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import StyledMenu from 'components/common/StyledMain/StyledMenu';
 import MenuAdd from 'components/custom/MenuAdd';
 import { TextInput } from 'components/form/input';
 import { Switch } from 'components/primatives/Switch/Switch';
@@ -98,27 +97,23 @@ const PagesEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title="Pages">
-            <StyledMenu>
-              <Switch
-                checked={showPages}
-                id="showPages"
-                label={showPages ? 'Hide Pages' : 'Show Pages'}
-                onCheckedChange={(e) => onShowPages(e)}
-              />
-              <StyledLink data-testid="nav-new" to="/admin/page/edit">
-                New
-              </StyledLink>
-              {!isSaved ? (
-                <li>
-                  <StyledSaveButton
-                    data-testid="button-save"
-                    onClick={handleSave}
-                    type="submit">
-                    Save
-                  </StyledSaveButton>
-                </li>
-              ) : null}
-            </StyledMenu>
+            <Switch
+              checked={showPages}
+              id="showPages"
+              label={showPages ? 'Hide Pages' : 'Show Pages'}
+              onCheckedChange={(e) => onShowPages(e)}
+            />
+            <StyledLink data-testid="nav-new" to="/admin/page/edit">
+              New
+            </StyledLink>
+            {!isSaved ? (
+              <StyledSaveButton
+                data-testid="button-save"
+                onClick={handleSave}
+                type="submit">
+                Save
+              </StyledSaveButton>
+            ) : null}
           </PageTitle>
           <table>
             <thead>

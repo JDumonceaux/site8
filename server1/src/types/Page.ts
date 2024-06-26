@@ -8,7 +8,7 @@ export type Page = {
   readonly text?: string;
   readonly edit_date?: Date;
   readonly create_date?: Date;
-  readonly file?: boolean;
+  readonly content: boolean;
   readonly reading_time?: string;
   readonly readability_score?: string;
   readonly type: 'root' | 'menu' | 'page';

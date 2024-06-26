@@ -106,6 +106,7 @@ export class PagesService {
             sortby: item.parent.sortby,
           },
         ],
+        content: false,
       };
       // Remove undefined values and sort
       const newItem = cleanUpData<Page>(itemToAdd);
@@ -206,8 +207,6 @@ export class PagesService {
           : undefined;
 
         if (updatedItem) {
-          console.log('updatedItem', updatedItem);
-
           countUpdate++;
         }
         countTotal++;
@@ -221,7 +220,10 @@ export class PagesService {
         );
       }
       // Write back the updates
-      await this.writeFile({ ...pages, items: retItems });
+      const result = await this.writeFile({ ...pages, items: retItems });
+      if (!result) {
+        throw new Error('Update failed.');
+      }
       return Promise.resolve();
     } catch (error) {
       Logger.error(`PagesService: updateItems. Error -> ${error}`);

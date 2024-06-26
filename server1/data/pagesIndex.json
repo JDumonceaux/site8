@@ -461,7 +461,6 @@
           "seq": 0
         }
       ],
-      "seq": 1000,
       "to": "factory-method-pattern",
       "type": "page"
     },

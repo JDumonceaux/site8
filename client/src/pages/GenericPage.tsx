@@ -1,7 +1,6 @@
 import { LoadingWrapper, Meta, PageTitle, RenderHtml } from 'components';
 import Fallback from 'components/common/Fallback/Fallback';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import StyledMenu from 'components/common/StyledMain/StyledMenu';
 import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { useAxios } from 'hooks/Axios';
 import { Suspense, useDeferredValue, useEffect, useState } from 'react';
@@ -48,15 +47,8 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
           <Suspense fallback="Loading ...">
             <StyledMain.Article>
               <PageTitle title={pageTitle}>
-                <StyledMenu>
-                  <li>
-                    <BaseLink to={`/admin/page/edit/${data?.id}`}>
-                      Edit
-                    </BaseLink>
-                  </li>
-                </StyledMenu>
+                <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
               </PageTitle>
-
               <StyledSection>
                 <RenderHtml text={deferredData?.text} />
               </StyledSection>

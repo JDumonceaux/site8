@@ -66,10 +66,27 @@ pageRouter.post('/', async (req: Request, res: Response) => {
       res.status(400).json({ error: 'Next Id not found.' });
     }
 
-    await Promise.all([
-      service.addItem({ ...data, id: idNew }),
-      fileService.addFile(idNew, data.text),
-    ]);
+    const promise1 = new Promise((resolve, reject) => {
+      service.addItem({ ...data, id: idNew });
+    });
+    const promise2 = new Promise((resolve, reject) => {
+      fileService.addFile(idNew, data.text);
+    });
+
+    const promises = [promise1];
+
+    if (data.content) {
+      promises.push(promise2);
+    }
+
+    const results = await Promise.allSettled(promises);
+    // Use a for loop so you can break out.  You may not be able to break other loops.
+    for (const result of results) {
+      if (result.status !== 'fulfilled') {
+        res.status(400).json({ error: result.reason });
+        res.end();
+      }
+    }
 
     const ret = await service.getItemCompleteById(idNew);
     // 201 Created
@@ -91,10 +108,26 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
     const fileService = new PageFileService();
     const data: Page = req.body;
 
-    await Promise.all([
-      service.updateItem(data, false),
-      fileService.updateFile(data.id, data.text),
-    ]);
+    const promise1 = new Promise((resolve, reject) => {
+      service.updateItem({ ...data });
+    });
+    const promise2 = new Promise((resolve, reject) => {
+      fileService.updateFile(data.id, data.text);
+    });
+
+    const promises = [promise1];
+
+    if (data.content) {
+      promises.push(promise2);
+    }
+    const results = await Promise.allSettled(promises);
+    // Use a for loop so you can break out.  You may not be able to break other loops.
+    for (const result of results) {
+      if (result.status !== 'fulfilled') {
+        res.status(400).json({ error: result.reason });
+        res.end();
+      }
+    }
 
     // Return the new item
     if (returnRepresentation) {

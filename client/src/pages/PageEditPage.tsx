@@ -128,77 +128,60 @@ const PageEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            <StyledMenu>
-              <li>
-                <button
-                  data-testid="nav-first"
-                  onClick={() => handleOnClick('first')}
-                  type="button">
-                  First
-                </button>
-              </li>
-              <li>
-                <button
-                  data-testid="nav-prev"
-                  onClick={() => handleOnClick('prev')}
-                  type="button">
-                  Prev
-                </button>
-              </li>
-              <li>
-                <button
-                  data-testid="nav-next"
-                  onClick={() => handleOnClick('next')}
-                  type="button">
-                  Next
-                </button>
-              </li>
-              <li>
-                <button
-                  data-testid="nav-last"
-                  onClick={() => handleOnClick('last')}
-                  type="button">
-                  Last
-                </button>
-              </li>
-
-              <li>
-                <StyledLink data-testid="nav-new" to="/admin/page/edit">
-                  New
-                </StyledLink>
-              </li>
-              <li>
-                <StyledLink data-testid="nav-list" to="/admin/pages">
-                  List
-                </StyledLink>
-              </li>
-              <li>
-                <StyledPlainButton
-                  data-testid="button-reset"
-                  onClick={handleReset}
-                  type="reset">
-                  Undo
-                </StyledPlainButton>
-              </li>
-              <li>
-                <StyledPlainButton
-                  data-testid="button-clear"
-                  onClick={handleClear}
-                  type="reset">
-                  Clear
-                </StyledPlainButton>
-              </li>
-              {!isSaved ? (
-                <li>
-                  <StyledSaveButton
-                    data-testid="button-save"
-                    onClick={handleSubmit}
-                    type="submit">
-                    Save
-                  </StyledSaveButton>
-                </li>
-              ) : null}
-            </StyledMenu>
+            <button
+              data-testid="nav-first"
+              onClick={() => handleOnClick('first')}
+              type="button">
+              First
+            </button>
+            <button
+              data-testid="nav-prev"
+              onClick={() => handleOnClick('prev')}
+              type="button">
+              Prev
+            </button>
+            <button
+              data-testid="nav-next"
+              onClick={() => handleOnClick('next')}
+              type="button">
+              Next
+            </button>
+            <button
+              data-testid="nav-last"
+              onClick={() => handleOnClick('last')}
+              type="button">
+              Last
+            </button>
+            <div>
+              <StyledLink data-testid="nav-new" to="/admin/page/edit">
+                New
+              </StyledLink>
+            </div>
+            <div>
+              <StyledLink data-testid="nav-list" to="/admin/pages">
+                List
+              </StyledLink>
+            </div>
+            <StyledPlainButton
+              data-testid="button-reset"
+              onClick={handleReset}
+              type="reset">
+              Undo
+            </StyledPlainButton>
+            <StyledPlainButton
+              data-testid="button-clear"
+              onClick={handleClear}
+              type="reset">
+              Clear
+            </StyledPlainButton>
+            {!isSaved ? (
+              <StyledSaveButton
+                data-testid="button-save"
+                onClick={handleSubmit}
+                type="submit">
+                Save
+              </StyledSaveButton>
+            ) : null}
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <form noValidate onSubmit={handleSubmit}>
@@ -252,6 +235,7 @@ const PageEditPage = (): JSX.Element => {
                 value={formValues.url}
                 //ref={focusElement}
               />
+
               <TextInput
                 errorText={getFieldErrors('parent')}
                 errorTextShort="Please enter a parent"
@@ -263,6 +247,17 @@ const PageEditPage = (): JSX.Element => {
                 onChange={handleChange}
                 type="text"
                 value={formValues.parent}
+              />
+              <TextInput
+                errorText={getFieldErrors('content')}
+                errorTextShort="Please enter a content"
+                hasError={hasError('content')}
+                id="content"
+                label="content"
+                layout="horizontal"
+                onChange={handleChange}
+                type="text"
+                value={formValues.content}
               />
               <Field>
                 <label htmlFor="options">Menu</label>
@@ -278,33 +273,26 @@ const PageEditPage = (): JSX.Element => {
               </Field>
               <datalist id="parentOptions" />
 
-              <StyledMenu>
-                <li>
-                  <button
-                    data-testid="insert-code"
-                    onClick={() => handleInsert('code')}
-                    type="button">
-                    Code
-                  </button>
-                </li>
-                <li>
-                  <button
-                    data-testid="insert-h2"
-                    onClick={() => handleInsert('h2')}
-                    type="button">
-                    H2
-                  </button>
-                </li>
-                <li>
-                  <button
-                    data-testid="insert-link"
-                    onClick={() => handleInsert('link')}
-                    type="button">
-                    Link
-                  </button>
-                </li>
-              </StyledMenu>
-
+              <StyledSubMenu>
+                <button
+                  data-testid="insert-code"
+                  onClick={() => handleInsert('code')}
+                  type="button">
+                  Code
+                </button>
+                <button
+                  data-testid="insert-h2"
+                  onClick={() => handleInsert('h2')}
+                  type="button">
+                  H2
+                </button>
+                <button
+                  data-testid="insert-link"
+                  onClick={() => handleInsert('link')}
+                  type="button">
+                  Link
+                </button>
+              </StyledSubMenu>
               <TextArea
                 errorText={getFieldErrors('text')}
                 hasError={hasError('text')}
@@ -324,6 +312,7 @@ const PageEditPage = (): JSX.Element => {
                 hasError={hasError('edit_date')}
                 id="edit_date"
                 label="Edit Date"
+                layout="horizontal"
                 maxLength={10}
                 onChange={handleChange}
                 spellCheck={false}
@@ -335,6 +324,7 @@ const PageEditPage = (): JSX.Element => {
                 hasError={hasError('reading_time')}
                 id="reading_time"
                 label="Reading Time"
+                layout="horizontal"
                 onChange={handleChange}
                 value={formValues.reading_time}
               />
@@ -343,6 +333,7 @@ const PageEditPage = (): JSX.Element => {
                 hasError={hasError('readability_score')}
                 id="readability_score"
                 label="Readability Score"
+                layout="horizontal"
                 onChange={handleChange}
                 value={formValues.readability_score}
               />
@@ -361,14 +352,6 @@ const PageEditPage = (): JSX.Element => {
 
 export default PageEditPage;
 
-const StyledMenu = styled.menu`
-  display: inline-flex;
-  list-style-type: none;
-  margin-left: 30px;
-  li {
-    padding-right: 10px;
-  }
-`;
 const Field = styled.div`
   display: inline-flex;
   align-items: center;
@@ -382,4 +365,9 @@ const Field = styled.div`
 `;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: bold;
+`;
+const StyledSubMenu = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: left;
 `;

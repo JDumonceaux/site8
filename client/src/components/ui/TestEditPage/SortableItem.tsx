@@ -18,15 +18,6 @@ export const SortableItem = ({ id, children }: SortableItemProps) => {
   return (
     <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
       {children}
-      {/* <td>item {id}</td>
-      <td>
-        <TextInput {...getDefaultProps(item.localId, 'name')} />
-      </td>
-      <td>{item.text}</td>
-      <td>{item.type}</td>
-      <td>{item.level}</td>
-      <td>{item.parentId}</td>
-      <td>{item.parentSeq}</td> */}
     </tr>
   );
 };
