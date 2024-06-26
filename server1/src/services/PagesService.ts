@@ -106,6 +106,7 @@ export class PagesService {
             sortby: item.parent.sortby,
           },
         ],
+        content: false,
       };
       // Remove undefined values and sort
       const newItem = cleanUpData<Page>(itemToAdd);

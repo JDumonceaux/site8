@@ -11,6 +11,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "name"
         }
       ]
@@ -23,6 +24,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "name"
         }
       ]
@@ -35,6 +37,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "name"
         }
       ]
@@ -47,6 +50,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "name"
         }
       ]
@@ -59,6 +63,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "name"
         }
       ]
@@ -71,6 +76,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "seq"
         }
       ]
@@ -83,6 +89,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "name"
         }
       ]
@@ -95,6 +102,7 @@
       "parentItems": [
         {
           "id": 0,
+
           "sortBy": "name"
         }
       ]
@@ -442,6 +450,7 @@
           "seq": 0
         }
       ],
+
       "to": "singleton-pattern",
       "type": "page"
     },
@@ -461,6 +470,7 @@
           "seq": 0
         }
       ],
+
       "seq": 1000,
       "to": "factory-method-pattern",
       "type": "page"
@@ -946,6 +956,7 @@
           "seq": 0
         }
       ],
+
       "to": "mern",
       "type": "page"
     },
@@ -961,6 +972,7 @@
           "seq": 0
         }
       ],
+
       "to": "serverless",
       "type": "page"
     },
@@ -976,6 +988,7 @@
           "seq": 0
         }
       ],
+
       "to": "usetransition",
       "type": "page"
     },
@@ -1731,6 +1744,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "python",
       "type": "root"
@@ -1744,6 +1758,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "management",
       "type": "root"
@@ -1878,6 +1893,7 @@
           "seq": 10
         }
       ],
+
       "sortby": "name",
       "to": "versions",
       "type": "menu"
@@ -1891,6 +1907,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "react-19",
       "type": "menu"
@@ -1906,6 +1923,7 @@
           "seq": 0
         }
       ],
+
       "to": "whats-new",
       "type": "page"
     },
@@ -1920,6 +1938,7 @@
           "seq": 1
         }
       ],
+
       "to": "react-complier",
       "type": "page"
     },
@@ -1934,6 +1953,7 @@
           "seq": 2
         }
       ],
+
       "to": "useoptimistic",
       "type": "page"
     },
@@ -1948,6 +1968,7 @@
           "seq": 3
         }
       ],
+
       "to": "useformstatus",
       "type": "page"
     },
@@ -1962,6 +1983,7 @@
           "seq": 1
         }
       ],
+
       "to": "types-vs-interfaces",
       "type": "page"
     },
@@ -1974,6 +1996,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "architecture",
       "type": "menu"
@@ -1989,6 +2012,7 @@
           "seq": 0
         }
       ],
+
       "to": "micro-frontend",
       "type": "page"
     },
@@ -2001,6 +2025,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "best-practices",
       "type": "menu"
@@ -2016,6 +2041,7 @@
           "seq": 2
         }
       ],
+
       "to": "commonjs-vs-es-modules",
       "type": "page"
     },
@@ -2028,6 +2054,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "tools",
       "type": "menu"
@@ -2043,6 +2070,7 @@
           "seq": 1
         }
       ],
+
       "to": "husky",
       "type": "page"
     },
@@ -2057,6 +2085,7 @@
           "seq": 2
         }
       ],
+
       "to": "vscode",
       "type": "page"
     },
@@ -2071,6 +2100,7 @@
           "seq": 3
         }
       ],
+
       "to": "nginx",
       "type": "page"
     },
@@ -2085,6 +2115,7 @@
           "seq": 4
         }
       ],
+
       "to": "browserslistrc",
       "type": "page"
     },
@@ -2097,6 +2128,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "package.json",
       "type": "menu"
@@ -2112,6 +2144,7 @@
           "seq": 1
         }
       ],
+
       "to": "react_scripts",
       "type": "page"
     },
@@ -2126,9 +2159,11 @@
           "seq": 3
         }
       ],
+
       "to": "vite-config",
       "type": "page"
     },
+
     {
       "id": 69,
       "name": "Optimization",
@@ -2138,6 +2173,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "optimization",
       "type": "menu"
@@ -2153,6 +2189,7 @@
           "seq": 1
         }
       ],
+
       "to": "bundle-analyzer",
       "type": "page"
     },
@@ -2166,6 +2203,7 @@
           "seq": 2
         }
       ],
+
       "text": "<h2>How to Optimize the code?</h2>\n<a href=\"https://www.debugbear.com/blog/webpack-bundle-analyzer\">Improve React App Performance With Webpack Bundle Analyzer</a>\n\n<a href=\"https://www.steveworkman.com/2020/bundle-analysis-deep-dive-how-to-remove-a-megabyte-of-code-from-your-app/\">Bundle analysis deep-dive - how to remove a megabyte of code from your app</a>\n\n<h2>1. Run a Lighthouse Report in Chrome</h2>\n\n<a href=\"/react/optimization/lighthouse-report\">Lighthouse Report</a>\n\n<h2>2. Use Fetch vs. Axios</h2>\n\nAxios adds 33.8kb.  Consider using built-in fetch instead.\n\n<h2>Only use required imports</h2>\nWhen using packages with multiple components, you can reduce the bundle size of your application by importing only the necessary components.\n\n<pre><code>\nimport Grid from \"@mui/material/Grid\";\nvs.\nimport * from '@mui/material\";\n</code></pre>\n\n\n<h2>3. Code Splitting</h2>\nAdd React.lazy and Suspense to split code\n\n\n<pre><code>\nimport React, { Suspense, useState, useEffect } from \"react\";\n\nconst Authors = React.lazy(() => import(\"./components/Authors\"));\n\nfunction App() {\n  const [showAuthors, setShowAuthors] = useState(false);\n  useEffect(() => {\n    setShowAuthors(true);\n  }, []);\n\n  return (\n    <div className=\"App\">\n      {showAuthors ? (\n        <Suspense fallback={<div>Loading..</div>}>\n          <Authors />\n        </Suspense>\n      ) : (\n        <p>Loading</p>\n      )}\n    </div>\n  );\n}\n\nexport default App;\n</code></pre>\n\n<h2>4. Use Modules</h2>\nCommonJS modules are harder to optimize because dynamic imports and exports are supported.\n\nIn tsconfig.json, make sure module is \"module\": \"ESNext\",   vs. \"module\": \"CommonJs\",\n\n\nTurn any CommonJS packages into 100% ESM packages?\n\nIn package.json, add\n\n\n<pre><code>\n\"type\": \"module\",\n  \"module\": \"dist/index\",\n  \"browser\": \"dist/index\",\n  \"main\": \"dist/index\",\n</code></pre>\n\n\n\n\n\n\n\n",
       "to": "bundle-optimization",
       "type": "page"
@@ -2180,6 +2218,7 @@
           "seq": 1
         }
       ],
+
       "text": "Run a Lighthouse Report in Chrome\n\n1. You want to run and resolve this report for multiple pages in your application (every page?)   If time or cost are constraints, then focus on your first page and your most used.  In my case, I have a couple of components that represent most of the content - so I'll focus on those.\n\n2. Some of these metrics are useful in a development environment, but, generally, they have more meaning in a production build.  \n\nTo run a production build in Vite, \nnpm run build\nnpm run preview\n\n\n<h2>Metrics</h2>\n\n<table>\n<tr><th>Measurement</th><th>Target</th><th>Actual</th></tr>\n<tr><th>First Contentful Paint</th><th>Green:  0–1.8s  Orange: 1.8–3s  Red: over 3s</th><th>12.5s</th></tr>\n<tr><th>Largest Contentful Paint</th><th>Green: 0-2.5s  Orange: 2.5-4s  Red: over 4s</th><th>26.0s</th></tr>\n<tr><th>Total Blocking Time</th><th>Green: 0–200ms Orange: 200-600ms  Red: over 600ms</th><th>30.0ms</th></tr>\n<tr><th>Cumulative Layout Shift</th><th>Green:  0.1  Orange: 0.1 - .25  Red: over .25</th><th>0.016</th></tr>\n<tr><th>Speed Index</th><th>Green:  0–3.4s  Orange: 3.4–5.8s  Red: over 5.8s</th><th>16.3s</th></tr>\n</table>\n\n\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint\">First Contentful Paint</a>\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint\">Largest Contentful Paint</a>\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time\">Total Blocking Time</a>\n<a href=\"https://web.dev/articles/cls?utm_source=lighthouse&utm_medium=devtools\">Cumulative Layout Shift</a>\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/speed-index\">Speed Index</a>\n\n\n<h2>Diagnostics</h2>\n\n<h3>a. Largest Contentful Paint element</h3>\n\n<h3>b. Minimize main-thread work<h3> \n\n<h3>c. Enable Text Compression</h3>\n\n<h3>d. Minify Javascript</h3>\n\n<h3>e. Reduce unused JavaScript</h3>\n\n<h3>f. Eliminate render-blocking resources</h3>\n\n<h3>g. Preconnect to required origins </h3>\n\n<h3>h. Page prevented back/forward cache restoration </h3>\n\n<h3>i. Remove duplicate modules in JavaScript bundles</h3>\n\n<h3>j. Avoid enormous network payloads</h3>\n\n<h3>k. Avoid large layout shifts</h3>\n\n<h3>l. JavaScript execution time</h3>\n\n<h3>m. Avoid long main-thread tasks</h3>\n\n<h3>n. User Timing marks and measures</h3>\n\n<h3>o. Avoid non-composited animations </h3>\n\n<h3>p. Initial server response time was short</h3>\n\n<h3>q. Avoids an excessive DOM size</h3>\n\n<h3>r. Avoid chaining critical requests</h3>\n\n<h3>s. Minimize third-party usage</h3>\n\n\n<h2>Passed Audits</h2>\n\n<h3>a. Properly size images</h3>\n\n<h3>b. Defer offscreen images<h3> \n\n<h3>c. Minify CSS</h3>\n\n<h3>d. Reduce unused CSS</h3>\n\n<h3>e. Efficiently encode images</h3>\n\n<h3>f. Serve images in next-gen formats</h3>\n\n<h3>g. Avoid multiple page redirects</h3>\n\n<h3>h. Preload key requests</h3>\n\n<h3>i. Use HTTP/2</h3>\n\n<h3>j. Use video formats for animated content</h3>\n\n<h3>k. Avoid serving legacy JavaScript to modern browsers</h3>\n\n<h3>l. Preload Largest Contentful Paint image</h3>\n\n<h3>m. Uses efficient cache policy on static assets</h3>\n\n<h3>n. All text remains visible during webfont loads</h3>\n\n<h3>o. Lazy load third-party resources with facades</h3>\n\n<h3>p. Largest Contentful Paint image was not lazily loaded</h3>\n\n<h3>q. Uses passive listeners to improve scrolling performance</h3>\n\n<h3>r. Avoids document.write()</h3>\n\n<h3>s. Image elements have explicit width and height</h3>\n\n<h3>t. Has a <meta name=\"viewport\"> tag with width or initial-scale</h3>\n\n\n<h2>Accessibility</h2>\n\n\n<h2>Best Practices</h2>\n\n<h2>SEO</h2>\n\n\n<h2>PWA</h2>\n\n\n\n\n\n",
       "to": "lighthouse-report",
       "type": "page"
@@ -2193,6 +2232,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "testing",
       "type": "menu"
@@ -2208,6 +2248,7 @@
           "seq": 1
         }
       ],
+
       "to": "test-grid",
       "type": "page"
     },
@@ -2221,6 +2262,7 @@
           "seq": 1
         }
       ],
+
       "text": "<h2>1. Use `let` and `const` Instead of `var`</h2>\n\n<pre><code>\nlet count = 0;\nconst PI = 3.14;\n\nvs.\nvar count = 0;\n</code></pre>\n\nUsing `let` and `const` helps prevent scope-related bugs by ensuring variables are only accessible within the block they are defined.  `var` has function scope which can lead to bugs and unpredictable behavior.  `let` and `const` which have block scope.\n\n<h2>2. Use Default Parameters</h2>\n\n\"Guest\" is a default parameter.\n<pre><code>\nfunction greet(name = 'Guest') {\nreturn `Hello, ${name}!`;\n}\n</code></pre>\n\n<h2>3. Use Template Literals</h2>\n\n<pre><code>\n`string text`\n\n// Multi line strings \n`string text line 1\n string text line 2`\n\n// String interpolation\n`string text ${expression} string text`\n\ntagFunction`string text ${expression} string text`\n</code></pre>\n\nTemplate literals are literals delimited with backtick (`) characters, allowing for multi-line strings, string interpolation with embedded expressions, and special constructs called tagged templates.\n\n<a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals\">Mozilla - Template literals (Template strings)</a>\n\n<h2>4. Destructuring</h2>\n\nDestructuring assignment allows you to extract properties from objects and elements from arrays into distinct variables easily.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, age } = user;  // Destructure user\nconsole.log(name, age); \n</code></pre>\n\n<h2>5. Arrow Functions</h2>\n\nArrow functions provide a concise syntax for function expressions and ensure that `this` is lexically bound.\n\n<pre><code>\nconst add = (a, b) => a + b;\n</code></pre>\n\n<h2>6. Spread Operator</h2>\n\nThe spread operator allows you to spread the elements of an array or object into another array or object.\n\n<pre><code>\nconst arr1 = [1, 2, 3];\nconst arr2 = [4, 5, 6];\nconst combined = […arr1, …arr2];\n</code></pre>\n\n<h2>7. Rest Parameters</h2>\n\nRest parameters allow you to handle an indefinite number of arguments as an array, making your functions more flexible.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, ...rest } = user;  // Destructure user into 'name' and the \"rest\"\nconsole.log ( ... rest );\n</code></pre>\n\n<h2>8. Short-Circuit Evaluation</h2>\n\nThere are a couple of variations of the short-circuit evaluation.\n\nWe tend to do nested and multi-level if-else statements - making the code complex.  Changing this to a short-circuit version, we remove the if-else statements and exit early from a function.   This is especially useful for processing API calls - where parameters may be missing or invalid.\n<pre><code>\n  private function ( items ) {\n    if (!items) {\n      return undefined;   // Exit early  vs. if-else construction\n    }\n    ....\n  }\n</code></pre>\n\nThe second variation is using the logical &&` and `||`\n<pre><code>\nconst isLoggedIn = true;\nconst user = isLoggedIn && { name: 'Jane', age: 25 };\n</code></pre>\n\n<h2>9. Optional Chaining</h2>\n\nOptional chaining allows you to safely access nested properties without having to explicitly check each level of the chain for `null` or `undefined`.\n\n<pre><code>\nconst user = { profile: { name: 'Jane' } };\nconst userName = user?.profile?.name;\n</code></pre>\n\n<h2>10. Nullish Coalescing</h2>\n\nNullish coalescing allows you to provide default values only when the left-hand side is `null` or `undefined`.\n\n<pre><code>\nconst userAge = user.age ?? 18;\n</code></pre>\n\n<h2>11. Object Property Shorthand</h2>\n\nProperty shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.\n\n<pre><code>\nconst name = 'Jane';\nconst age = 25;\nconst user = { name, age };\nvs.\nconst user = { name : name, age : age };\n</code></pre>\n\n<h2>12. Dynamic Property Names</h2>\n\nComputed property names allow you to create object properties dynamically, using the value of an expression as the property name.\n\n<pre><code>\nconst propName = 'age';\nconst user = { name: 'Jane', [propName]: 25 };\n</code></pre>\n\n<h2>13. Array `map()`, `filter()`, and `reduce()`</h2>\n\nThese array methods provide a functional approach to transforming, filtering, and reducing arrays, making your code more expressive and concise.\n\n<pre><code>\nconst numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(num => num * 2);\nconsole.log(doubled); // [2, 4, 6, 8, 10]\nconst evens = numbers.filter(num => num % 2 === 0);\nconsole.log(evens); // [2, 4]\nconst sum = numbers.reduce((total, num) => total + num, 0);\nconsole.log(sum); // 15\n</code></pre>\n\n<h2>String `includes()`, `startsWith()`, and `endsWith()`</h2>\n\nThese string methods provide a simple and readable way to check for the presence, start, or end of a substring.\n\n<pre><code>\nconst str = 'Hello, world!';\nconsole.log(str.includes('world')); // true\nconsole.log(str.startsWith('Hello')); // true\nconsole.log(str.endsWith('!')); // true\n</code></pre>\n\n<h2>15. Array and Object Destructuring in Function Parameters</h2>\n\nDestructuring in function parameters allows you to directly extract values from objects or arrays passed to the function, making the code more concise and readable.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\n\nfunction greet({ name, age }) {\nreturn `Hello, ${name}! You are ${age} years old.`;\n}\n// Note that user is passed as an object, but is immediately destructured\nconsole.log(greet(user));\n</code></pre>\n\n<h2>16. Default Values in Destructuring</h2>\n\nDefault values in destructuring allow you to provide fallback values for properties that may be missing, making your code more robust.\n\nUse default values in destructuring:\n<pre><code>\nconst user = { name: 'Jane' };\nconst { name, age = 18 } = user;\n\n// More commonly seen in passing props to a component.  inclueMenu is optional, so we provide a default false value.\ntype HeaderProps = {\n  readonly includeMenu?: boolean;\n};\n\nexport const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {\n</code></pre>\n\n\n<h2>17. Object `assign()`</h2>\n\n`Object.assign()` allows you to clone or merge objects efficiently, reducing the need for manual copying.\n\nWARNING:  This creates a shallow copy (vs. deep copy) - meaning that it will not copy children.  For complex objects, see structuredClone() and make sure you validate.\n\nUse `Object.assign()` to clone or merge objects:\n\n<pre><code>\nconst target = { a: 1 };\nconst source = { b: 2 };\nconst merged = Object.assign(target, source);\n</code></pre>\n\n\n<h2>18. Array `find()` and `findIndex()`</h2>\n\nThese array methods provide a simple way to find an element or its index based on a condition, improving code readability.\n\n<pre><code>\n// Returns object\nconst user = users.find(u => u.id === 1);\n// Returns number\nconst index = users.findIndex(u => u.id === 1);\n</code></pre>\n\n<h2>19. Array `some()` and `every()`</h2>\n\nThese array methods allow you to check if some or all elements in an array meet a condition in a concise way.\n\n<pre><code>\n// Returns boolean\nconst hasEven = numbers.some(num => num % 2 === 0);\nconst allEven = numbers.every(num => num % 2 === 0);\n</code></pre>\n\n<h2>20. Array `flat()` and `flatMap()`</h2>\n\nThese array methods provide a simple way to flatten nested arrays and to map and flatten in a single step.\n\n<pre><code>\nconst myArr = [[1,2],[3,4],[5,6]];\nconst newArr = myArr.flat();\n// Returns [1,2,3,4,5,6]\n\n// array.flat(depth)\nconst nested = [1, [2, [3, [4]]]];\nconst flat = nested.flat(2);\n// Returns [1, 2, 3, [4]]\n\nconst mapped = [1, 2, 3].flatMap(x => [x, x * 2]);\n// Returns  2,4,6\n\n// Flatten an object?\nconst fn = objArr.flatMap();\n</code></pre>\n\n\n\n\n\n\n\n",
       "to": "best-practices",
       "type": "page"
@@ -2236,6 +2278,7 @@
           "seq": 1
         }
       ],
+
       "to": "react-components",
       "type": "page"
     },
@@ -2250,6 +2293,7 @@
           "seq": 2
         }
       ],
+
       "to": "react-profiler",
       "type": "page"
     },
@@ -2264,6 +2308,7 @@
           "seq": 3
         }
       ],
+
       "to": "performance-insights",
       "type": "page"
     },
@@ -2278,6 +2323,7 @@
           "seq": 10
         }
       ],
+
       "to": "console",
       "type": "page"
     },
@@ -2292,6 +2338,7 @@
           "seq": 11
         }
       ],
+
       "to": "network",
       "type": "page"
     },
@@ -2304,6 +2351,7 @@
           "seq": 0
         }
       ],
+
       "sortby": "name",
       "to": "extras",
       "type": "menu"
@@ -2319,21 +2367,8 @@
           "seq": 1
         }
       ],
+
       "to": "drag-n-drop",
-      "type": "page"
-    },
-    {
-      "id": 22,
-      "create_date": "2024-06-25T03:25:00.000Z",
-      "edit_date": "2024-06-25T03:25:00.000Z",
-      "name": "ErrorTypes",
-      "parent": [
-        {
-          "id": 24,
-          "seq": 0
-        }
-      ],
-      "to": "errortypes",
       "type": "page"
     }
   ]
