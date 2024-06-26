@@ -1,12 +1,11 @@
-import { PageEdit } from 'types/PageEdit.js';
-import { z } from 'zod';
+import { Logger } from '../utils/Logger.js';
 import { Page } from '../types/Page.js';
 import { Pages } from '../types/Pages.js';
-import { Logger } from '../utils/Logger.js';
-import { cleanUpData } from '../utils/objectUtil.js';
-import { safeParse } from '../utils/zodHelper.js';
-import { PageFileService } from './PageFileService.js';
 import { PagesService } from './PagesService.js';
+import { cleanUpData } from '../utils/objectUtil.js';
+import { PageFileService } from './PageFileService.js';
+import { z } from 'zod';
+import { safeParse } from '../utils/zodHelper.js';
 
 const pageAddSchema = z
   .object({
@@ -20,7 +19,6 @@ const pageAddSchema = z
       .trim(),
     to: z.string().trim().optional(),
     url: z.string().trim().optional(),
-    content: z.boolean(),
     parent: z
       .object({
         id: z.number(),
@@ -40,7 +38,6 @@ export class PageService {
   private async getItems(): Promise<Pages | undefined> {
     return new PagesService().getItems();
   }
-
   // Write Items
   private async writeItems(newData: Pages): Promise<boolean> {
     return new PagesService().writeFile(newData);
@@ -54,57 +51,44 @@ export class PageService {
     return items?.items?.find((x) => x.id === id);
   }
 
-  private async getItemWithFile(
-    item: Page | undefined,
-  ): Promise<Page | undefined> {
-    Logger.info(`PageService: getItemWithFile `);
-
-    try {
-      if (!item || item?.id === 0) {
-        throw new Error('getItem -> Item not found');
-      }
-      // Only get file if it exists
-      // const file = item.content
-      //   ? await new PageFileService().getFile(item.id)
-      //   : undefined;
-      const file = await new PageFileService().getFile(item.id);
-      return item ? { ...item, text: file } : undefined;
-    } catch (error) {
-      Logger.error(`PageService: getItemWithFile. Error -> ${error}`);
-      return Promise.reject(new Error('add failed'));
-    }
-  }
-
-  // Get Item Complete - including content
+  // Get Item Complete
   public async getItemCompleteByName(name: string): Promise<Page | undefined> {
     Logger.info(`PageService: getItemComplete -> ${name}`);
     const items = await this.getItems();
-    const item = items?.items?.find((x) => x.to === name);
-    return this.getItemWithFile(item);
+    const ret = items?.items?.find((x) => x.to === name);
+    if (!ret || ret?.id === 0) {
+      throw new Error('getItem -> Item not found');
+    }
+    const file = await new PageFileService().getFile(ret.id);
+    return ret ? { ...ret, text: file } : undefined;
   }
 
   // Get Item Complete
   public async getItemCompleteById(id: number): Promise<Page | undefined> {
     Logger.info(`PageService: getItemComplete -> ${id}`);
     const items = await this.getItems();
-    const item = items?.items?.find((x) => x.id === id);
-    return this.getItemWithFile(item);
+    const ret = items?.items?.find((x) => x.id === id);
+    if (!ret || ret?.id === 0) {
+      throw new Error('getItem -> Item not found');
+    }
+    const file = await new PageFileService().getFile(ret.id);
+    return ret ? { ...ret, text: file } : undefined;
   }
 
   // Add an item
-  public async addItem(data: PageEdit): Promise<void> {
+  public async addItem(data: Page): Promise<number> {
     Logger.info(`PageService: addItem -> `);
 
     try {
       // Clean up the data
-      const item = cleanUpData<PageEdit>(data);
-      if (!item) {
+      const updatedItem = cleanUpData<Page>(data);
+      if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
 
-      const parse = safeParse<addData>(pageAddSchema, data);
-      if (parse.error) {
-        throw new Error(`addItem -> ${parse.error}`);
+      const result = safeParse<addData>(pageAddSchema, data);
+      if (result.error) {
+        throw new Error(`addItem -> ${result.error}`);
       }
 
       // Get the current file
@@ -113,21 +97,18 @@ export class PageService {
         throw new Error('addItem -> Index missing');
       }
 
-      // Remove text property from item
-      const { text, ...rest } = item;
-      const itemToAdd = { ...rest } as Page;
+      // Remove id and text from item
+      const { text, id, ...rest } = updatedItem;
+      const newItem = { id: id, ...rest };
       // Save the new item
       const updatedFile: Pages = {
         ...pages,
-        items: [...(pages?.items ?? []), itemToAdd],
+        items: [...(pages?.items ?? []), newItem],
       };
-
-      const result = await this.writeItems(updatedFile);
-      if (!result) {
-        throw new Error('updateItem -> Failed to write file');
-      }
-
-      return Promise.resolve();
+      const ret = await this.writeItems(updatedFile);
+      return ret
+        ? Promise.resolve(id)
+        : Promise.reject(new Error(`Add failed : ${id}`));
     } catch (error) {
       Logger.error(`PageService: addItem. Error -> ${error}`);
       return Promise.reject(new Error('add failed'));
@@ -135,41 +116,37 @@ export class PageService {
   }
 
   // Update an item
-  public async updateItem(data: PageEdit): Promise<void> {
+  public async updateItem(data: Page, file: boolean): Promise<number> {
     Logger.info(`PageService: updateItem -> `);
 
     try {
       // Clean up the data
-      const item = cleanUpData<PageEdit>(data);
-      if (!item) {
-        throw new Error('updateItem -> Invalid item');
+      const newItem = cleanUpData<Page>(data);
+      if (!newItem) {
+        throw new Error('addItem -> Invalid item');
       }
       // Get the current file
       const pages = await this.getItems();
       if (!pages) {
-        throw new Error('updateItem -> Items missing');
+        throw new Error('addItem -> Index missing');
       }
 
       // Remove the current item from the data
-      const ret = pages?.items?.filter((x) => x.id !== item.id) || [];
+      const ret = pages?.items?.filter((x) => x.id !== data.id) || [];
 
       // We don't want to update the text field and create_date so we'll remove them
-      const { text, create_date, ...rest } = item;
-      const itemToAdd = { ...rest } as Page;
+      const { text, create_date, ...rest } = newItem;
 
       const updatedFile: Pages = {
         ...pages,
-        items: [...ret, itemToAdd],
+        items: [...ret, newItem],
       };
 
-      const result = await this.writeItems(updatedFile);
-      if (!result) {
-        throw new Error('updateItem -> Failed to write file');
-      }
-      return Promise.resolve();
+      await this.writeItems(updatedFile);
+      return Promise.resolve(data.id);
     } catch (error) {
       Logger.error(`PageService: updateItem. Error -> ${error}`);
-      return Promise.reject(new Error('Failed to write file'));
+      return Promise.reject(new Error('fail'));
     }
   }
 

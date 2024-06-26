@@ -6,7 +6,7 @@ import { Pages } from '../types/Pages.js';
 import { Logger } from '../utils/Logger.js';
 import { PagesService } from './PagesService.js';
 
-type PageAbbr = Pick<Page, 'id' | 'name' | 'to' | 'url' | 'content' | 'type'>;
+type PageAbbr = Pick<Page, 'id' | 'name' | 'to' | 'url' | 'file' | 'type'>;
 
 export class MenuService {
   // 0. Get all data

@@ -36,10 +36,11 @@ export class TestsService {
           if (item.parentItems) {
             return item?.parentItems?.map((parent) => ({
               ...item,
-              parent: { id: parent.id, seq: parent.seq },
+              parentId: parent.id,
+              parentSeq: parent.seq,
             }));
           } else {
-            return [{ ...item, parent: { id: 0, seq: 0 } }];
+            return [{ ...item, parentId: 0, parentSeq: 0 }];
           }
         }) || [];
 
