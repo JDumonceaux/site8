@@ -31,7 +31,6 @@ const pageSchema = z
     reading_time: z.string().trim().optional(),
     readability_score: z.string().trim().optional(),
     text: z.string().trim(),
-    content: z.string().optional(),
   })
   .refine(
     (data) => data.to || data.url,
@@ -60,7 +59,6 @@ const usePageEdit = () => {
       parent: '',
       reading_time: '',
       readability_score: '',
-      content: '',
     }),
     [],
   );
@@ -99,10 +97,9 @@ const usePageEdit = () => {
           create_date:
             (item.create_date && format(item.create_date, DF_LONG)) ??
             format(new Date(), DF_LONG),
-          parent: combineParent(item.parent),
+          parent: combineParent(item.parentItems),
           reading_time: item.reading_time ?? '',
           readability_score: item.readability_score ?? '',
-          content: item.content?.toString() ?? '',
         };
         return ret;
       }
@@ -145,15 +142,14 @@ const usePageEdit = () => {
   // Handle save
   const submitForm = useCallback(async () => {
     setIsProcessing(true);
-    const { id, create_date, edit_date, parent, content, ...rest } = formValues;
+    const { id, create_date, edit_date, parent, ...rest } = formValues;
     const data: Page = {
       ...rest,
       id,
-      parent: splitParent(parent),
+      parentItems: splitParent(parent),
       edit_date: getDateTime(edit_date) ?? new Date(),
       create_date: id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
       type: 'page',
-      content: content === 'true,',
     };
     const result =
       data.id > 0

@@ -42,9 +42,13 @@ export const LoadingWrapper = ({
 };
 
 const StyledLoadingDiv = styled.div`
-  color: var(  --palette-text);
+  color: var(--palette-text);
 }`;
 
 const StyledErrorDiv = styled.div`
-  color: var(  --palette-text);
+  width: 100%;
+  color: var(--palette-error);
+  border: 1px solid var(--palette-error);
+  padding: 12px;
+  margin-bottom: 20px;
 }`;

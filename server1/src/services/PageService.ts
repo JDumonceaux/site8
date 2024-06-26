@@ -1,3 +1,4 @@
+import { PageEdit } from 'types/PageEdit.js';
 import { z } from 'zod';
 import { Page } from '../types/Page.js';
 import { Pages } from '../types/Pages.js';
@@ -53,43 +54,50 @@ export class PageService {
     return items?.items?.find((x) => x.id === id);
   }
 
+  private async getItemWithFile(
+    item: Page | undefined,
+  ): Promise<Page | undefined> {
+    Logger.info(`PageService: getItemWithFile `);
+
+    try {
+      if (!item || item?.id === 0) {
+        throw new Error('getItem -> Item not found');
+      }
+      // Only get file if it exists
+      // const file = item.content
+      //   ? await new PageFileService().getFile(item.id)
+      //   : undefined;
+      const file = await new PageFileService().getFile(item.id);
+      return item ? { ...item, text: file } : undefined;
+    } catch (error) {
+      Logger.error(`PageService: getItemWithFile. Error -> ${error}`);
+      return Promise.reject(new Error('add failed'));
+    }
+  }
+
   // Get Item Complete - including content
   public async getItemCompleteByName(name: string): Promise<Page | undefined> {
     Logger.info(`PageService: getItemComplete -> ${name}`);
     const items = await this.getItems();
-    const ret = items?.items?.find((x) => x.to === name);
-    if (!ret || ret?.id === 0) {
-      throw new Error('getItem -> Item not found');
-    }
-    // Only get file if it exists
-    const file = ret.content
-      ? await new PageFileService().getFile(ret.id)
-      : undefined;
-    return ret ? { ...ret, text: file } : undefined;
+    const item = items?.items?.find((x) => x.to === name);
+    return this.getItemWithFile(item);
   }
 
   // Get Item Complete
   public async getItemCompleteById(id: number): Promise<Page | undefined> {
     Logger.info(`PageService: getItemComplete -> ${id}`);
     const items = await this.getItems();
-    const ret = items?.items?.find((x) => x.id === id);
-    if (!ret || ret?.id === 0) {
-      throw new Error('getItem -> Item not found');
-    }
-    // Only get file if it exists
-    const file = ret.content
-      ? await new PageFileService().getFile(ret.id)
-      : undefined;
-    return ret ? { ...ret, text: file } : undefined;
+    const item = items?.items?.find((x) => x.id === id);
+    return this.getItemWithFile(item);
   }
 
   // Add an item
-  public async addItem(data: Page): Promise<void> {
+  public async addItem(data: PageEdit): Promise<void> {
     Logger.info(`PageService: addItem -> `);
 
     try {
       // Clean up the data
-      const item = cleanUpData<Page>(data);
+      const item = cleanUpData<PageEdit>(data);
       if (!item) {
         throw new Error('addItem -> Invalid item');
       }
@@ -107,7 +115,7 @@ export class PageService {
 
       // Remove text property from item
       const { text, ...rest } = item;
-      const itemToAdd = { ...rest };
+      const itemToAdd = { ...rest } as Page;
       // Save the new item
       const updatedFile: Pages = {
         ...pages,
@@ -127,12 +135,12 @@ export class PageService {
   }
 
   // Update an item
-  public async updateItem(data: Page): Promise<void> {
+  public async updateItem(data: PageEdit): Promise<void> {
     Logger.info(`PageService: updateItem -> `);
 
     try {
       // Clean up the data
-      const item = cleanUpData<Page>(data);
+      const item = cleanUpData<PageEdit>(data);
       if (!item) {
         throw new Error('updateItem -> Invalid item');
       }
@@ -147,7 +155,7 @@ export class PageService {
 
       // We don't want to update the text field and create_date so we'll remove them
       const { text, create_date, ...rest } = item;
-      const itemToAdd = { ...rest };
+      const itemToAdd = { ...rest } as Page;
 
       const updatedFile: Pages = {
         ...pages,

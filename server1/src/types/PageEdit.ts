@@ -1,6 +1,6 @@
-import { ParentSortby } from './ParentSortby';
+import { ParentSortby } from './ParentSortby.js';
 
-export type Page = {
+export type PageEdit = {
   readonly id: number;
   readonly name: string;
   readonly to?: string;
@@ -11,7 +11,5 @@ export type Page = {
   readonly reading_time?: string;
   readonly readability_score?: string;
   readonly type: 'root' | 'menu' | 'page';
-  readonly items?: Page[];
-  readonly toComplete?: string;
-  readonly parentItems?: ParentSortby[];
+  readonly parentItems: ParentSortby[];
 };

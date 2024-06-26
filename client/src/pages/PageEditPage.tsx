@@ -2,7 +2,6 @@ import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { Button } from 'components/form/Button';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import useMenu from 'hooks/useMenu';
@@ -20,7 +19,6 @@ const PageEditPage = (): JSX.Element => {
   const { data } = useMenu();
   const {
     formValues,
-    isProcessing,
     isLoading,
     error,
     isSaved,
@@ -94,12 +92,15 @@ const PageEditPage = (): JSX.Element => {
         setSnackbarMessage('Saving...');
         startTransition(() => {
           handleSave();
-          setSnackbarMessage('Saved');
         });
       }
     },
     [validateForm, setSnackbarMessage, handleSave],
   );
+
+  useEffect(() => {
+    setSnackbarMessage(!error ? 'Saved' : 'Error');
+  }, [error, setSnackbarMessage]);
 
   const handeOnBlur = useCallback(() => {
     if (formValues.name.length > 0 && formValues.to?.length === 0) {
@@ -179,7 +180,7 @@ const PageEditPage = (): JSX.Element => {
                 data-testid="button-save"
                 onClick={handleSubmit}
                 type="submit">
-                Save
+                {isPending ? 'Saving' : 'Save'}
               </StyledSaveButton>
             ) : null}
           </PageTitle>
@@ -200,7 +201,6 @@ const PageEditPage = (): JSX.Element => {
                 required={true}
                 spellCheck={true}
                 value={formValues.name}
-                // {...getStandardTextInputAttributes('name')}
                 //ref={focusElement}
               />
               <TextInput
@@ -243,56 +243,43 @@ const PageEditPage = (): JSX.Element => {
                 id="parent"
                 label="Parent"
                 layout="horizontal"
-                list="parentIds"
                 onChange={handleChange}
                 type="text"
                 value={formValues.parent}
               />
-              <TextInput
-                errorText={getFieldErrors('content')}
-                errorTextShort="Please enter a content"
-                hasError={hasError('content')}
-                id="content"
-                label="content"
-                layout="horizontal"
-                onChange={handleChange}
-                type="text"
-                value={formValues.content}
-              />
-              <Field>
-                <label htmlFor="options">Menu</label>
-
-                <select>
-                  <option value="">Select a menu</option>
-                  {menuItems.map((value) => (
-                    <option key={value.id} value={value.id}>
-                      {value.name} - {value.id}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              <datalist id="parentOptions" />
-
-              <StyledSubMenu>
-                <button
-                  data-testid="insert-code"
-                  onClick={() => handleInsert('code')}
-                  type="button">
-                  Code
-                </button>
-                <button
-                  data-testid="insert-h2"
-                  onClick={() => handleInsert('h2')}
-                  type="button">
-                  H2
-                </button>
-                <button
-                  data-testid="insert-link"
-                  onClick={() => handleInsert('link')}
-                  type="button">
-                  Link
-                </button>
-              </StyledSubMenu>
+              <StyledLine>
+                <Field>
+                  <label htmlFor="options">Menu</label>
+                  <select>
+                    <option value="">Select a menu</option>
+                    {menuItems.map((value) => (
+                      <option key={value.id} value={value.id}>
+                        {value.name} - {value.id}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <StyledSubMenu>
+                  <button
+                    data-testid="insert-code"
+                    onClick={() => handleInsert('code')}
+                    type="button">
+                    Code
+                  </button>
+                  <button
+                    data-testid="insert-h2"
+                    onClick={() => handleInsert('h2')}
+                    type="button">
+                    H2
+                  </button>
+                  <button
+                    data-testid="insert-link"
+                    onClick={() => handleInsert('link')}
+                    type="button">
+                    Link
+                  </button>
+                </StyledSubMenu>
+              </StyledLine>
               <TextArea
                 errorText={getFieldErrors('text')}
                 hasError={hasError('text')}
@@ -337,10 +324,6 @@ const PageEditPage = (): JSX.Element => {
                 onChange={handleChange}
                 value={formValues.readability_score}
               />
-
-              <Button disabled={isPending} id="submit" type="submit">
-                {isProcessing ? 'Processing' : 'Submit'}
-              </Button>
             </form>
           </LoadingWrapper>
         </StyledMain.Section>
@@ -370,4 +353,12 @@ const StyledSubMenu = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: left;
+`;
+const StyledLine = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: left;
+  button {
+    margin-left: 10px;
+  }
 `;
