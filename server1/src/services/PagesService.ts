@@ -205,34 +205,13 @@ export class PagesService {
         const updatedItem =
           hasContent && this.getUpdatedParent(updateItems, item);
 
-<<<<<<< HEAD
-        if (updatedItem) {
-          countUpdate++;
-        }
-=======
         console.log('updatedItem', updatedItem);
 
         countUpdate += updatedItem ? 1 : 0;
->>>>>>> parent of e9da9e8 (Update menu)
         countTotal++;
         // Add update (if there is one) or original
         return updatedItem ?? item;
       });
-<<<<<<< HEAD
-      // Number of records to update should be less than or equal to the number of incoming changes
-      if (countUpdate > countIn) {
-        throw new RangeError(
-          `Update count (${countUpdate}) is greater than incoming changes (${countIn}).`,
-        );
-      }
-      // Write back the updates
-      const result = await this.writeFile({ ...pages, items: retItems });
-      if (!result) {
-        throw new Error('Update failed.');
-      }
-      return Promise.resolve();
-=======
->>>>>>> parent of e9da9e8 (Update menu)
     } catch (error) {
       Logger.error(`PagesService: updateItems. Error -> ${error}`);
       return undefined;
