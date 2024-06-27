@@ -1,6 +1,4 @@
 import { readFile, writeFile } from 'fs/promises';
-import { z } from 'zod';
-import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuEdit } from '../types/MenuEdit.js';
 import { Page } from '../types/Page.js';
 import { Pages } from '../types/Pages.js';
@@ -9,33 +7,6 @@ import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
 import { isValidArray } from '../utils/helperUtils.js';
 import { cleanUpData, getNextId } from '../utils/objectUtil.js';
-import { safeParse } from '../utils/zodHelper.js';
-
-const menuAddSchema = z
-  .object({
-    id: z.number(),
-    name: z
-      .string({
-        required_error: 'Name is required.',
-        invalid_type_error: 'Name must be a string',
-      })
-      .max(500, 'Name max length exceeded: 500')
-      .trim(),
-    to: z.string().trim().optional(),
-    url: z.string().trim().optional(),
-    parent: z
-      .object({
-        id: z.number(),
-        seq: z.number(),
-      })
-      .array()
-      .min(1),
-  })
-  .refine(
-    (data) => data.to || data.url,
-    'Either to or url should be filled in.',
-  );
-type addData = z.infer<typeof menuAddSchema>;
 
 export class PagesService {
   private fileName = 'pagesIndex.json';
@@ -83,52 +54,6 @@ export class PagesService {
     } catch (error) {
       Logger.error(`PagesService: writeFile. Error -> ${error}`);
       return Promise.reject(new Error(`Write file failed. Error: ${error}`));
-    }
-  }
-
-  // Add item
-  public async addItem(item: MenuAdd): Promise<void> {
-    Logger.info(`PagesService: addItem ->`);
-
-    try {
-      const pages = await this.getItems();
-      if (!pages) {
-        return Promise.reject(new Error('No items found'));
-      }
-
-      // Reformat item
-      const itemToAdd: Page = {
-        ...item,
-        parentItems: [
-          {
-            id: item.parent.id,
-            seq: item.parent.seq,
-            sortby: item.parent.sortby,
-          },
-        ],
-      };
-      // Remove undefined values and sort
-      const newItem = cleanUpData<Page>(itemToAdd);
-      // Validate data
-      const result = safeParse<addData>(menuAddSchema, newItem);
-      if (result.error) {
-        throw new Error(`addItem -> ${result.error}`);
-      }
-
-      // Take out text element
-      const { text, ...rest } = newItem;
-
-      // Add
-      const newData: Pages = {
-        ...pages,
-        items: [...pages.items, { ...rest }],
-      };
-      // Write to file
-      await this.writeFile(newData);
-      return Promise.resolve();
-    } catch (error) {
-      Logger.error(`PagesService: addItem. Error -> ${error}`);
-      return undefined;
     }
   }
 

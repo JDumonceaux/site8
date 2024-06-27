@@ -12,4 +12,5 @@ export type PageEdit = {
   readonly readability_score?: string;
   readonly type: 'root' | 'menu' | 'page';
   readonly parentItems: ParentSortby[];
+  readonly hasFile: boolean;
 };

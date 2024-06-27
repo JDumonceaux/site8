@@ -3,7 +3,7 @@ import { PageFileService } from '../services/PageFileService.js';
 import { PageService } from '../services/PageService.js';
 import { PagesService } from '../services/PagesService.js';
 import { Page } from '../types/Page.js';
-import { Errors, PreferHeader, RegEx, Responses } from '../utils/Constants.js';
+import { Errors, RegEx, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { parseRequestId } from '../utils/helperUtils.js';
 
@@ -57,21 +57,34 @@ pageRouter.post('/', async (req: Request, res: Response) => {
 
   try {
     const service = new PageService();
+    const service2 = new PagesService();
     const fileService = new PageFileService();
-    const data: Page = req.body;
+    const item: Page = req.body;
 
     // Get next id
-    const idNew = (await new PagesService().getNextId()) ?? 0;
+    const idNew = (await service2.getNextId()) ?? 0;
     if (!idNew || idNew === 0) {
       res.status(400).json({ error: 'Next Id not found.' });
     }
 
-    await Promise.all([
-      service.addItem({ ...data, id: idNew }),
-      fileService.addFile(idNew, data.text),
-    ]);
+    const promise1 = service.addItem({ ...item, id: idNew });
+    const promise2 = fileService.addFile(idNew, item.text);
+    const promises =
+      item.text && item.text.length > 0 ? [promise1, promise2] : [promise1];
 
-    const ret = await service.getItemCompleteById(idNew);
+    const results = await Promise.allSettled(promises);
+    // Use a for loop so you can break out.  You may not be able to break other loops.
+    for (const result of results) {
+      if (result.status !== 'fulfilled') {
+        Logger.error(
+          `pageRouter: post -> Error: ${result.status} - ${result.reason}`,
+        );
+        res.status(400).json({ error: result.reason });
+        res.end();
+      }
+    }
+
+    const ret = await new PageService().getItemCompleteById(idNew);
     // 201 Created
     res.status(201).json(ret);
   } catch (error) {
@@ -85,24 +98,32 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: patch ->`);
 
   try {
-    const Prefer = req.get('Prefer');
-    const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
+    // const Prefer = req.get('Prefer');
+    // const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
     const service = new PageService();
     const fileService = new PageFileService();
-    const data: Page = req.body;
+    const item: Page = req.body;
 
-    await Promise.all([
-      service.updateItem(data, false),
-      fileService.updateFile(data.id, data.text),
-    ]);
+    const promise1 = service.updateItem(item);
+    const promise2 = fileService.updateFile(item.id, item.text);
+    const promises =
+      item.text && item.text.length > 0 ? [promise1, promise2] : [promise1];
 
-    // Return the new item
-    if (returnRepresentation) {
-      const ret = await new PageService().getItemCompleteById(data.id);
-      res.status(201).json(ret);
-    } else {
-      res.status(200).json({ message: 'Success' });
+    const results = await Promise.allSettled(promises);
+    // Use a for loop so you can break out.  You may not be able to break other loops.
+    for (const result of results) {
+      if (result.status !== 'fulfilled') {
+        Logger.error(
+          `pageRouter: patch -> Error: ${result.status} - ${result.reason}`,
+        );
+        res.status(400).json({ error: result.reason });
+        res.end();
+      }
     }
+
+    // Return the updated item
+    const ret = await new PageService().getItemCompleteById(item.id);
+    res.status(200).json(ret);
   } catch (error) {
     Logger.error(`pageRouter: patch -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });

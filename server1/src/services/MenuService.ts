@@ -1,12 +1,42 @@
+import { z } from 'zod';
 import { Menu } from '../types/Menu.js';
 import { MenuAbbr } from '../types/MenuAbbr.js';
+import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuItem } from '../types/MenuItem.js';
 import { Page } from '../types/Page.js';
 import { Pages } from '../types/Pages.js';
 import { Logger } from '../utils/Logger.js';
+import { cleanUpData } from '../utils/objectUtil.js';
+import { safeParse } from '../utils/zodHelper.js';
 import { PagesService } from './PagesService.js';
 
 type PageAbbr = Pick<Page, 'id' | 'name' | 'to' | 'url' | 'file' | 'type'>;
+
+const menuAddSchema = z
+  .object({
+    id: z.number(),
+    name: z
+      .string({
+        required_error: 'Name is required.',
+        invalid_type_error: 'Name must be a string',
+      })
+      .max(500, 'Name max length exceeded: 500')
+      .trim(),
+    to: z.string().trim().optional(),
+    url: z.string().trim().optional(),
+    parent: z
+      .object({
+        id: z.number(),
+        seq: z.number(),
+      })
+      .array()
+      .min(1),
+  })
+  .refine(
+    (data) => data.to || data.url,
+    'Either to or url should be filled in.',
+  );
+type addData = z.infer<typeof menuAddSchema>;
 
 export class MenuService {
   // 0. Get all data
@@ -202,6 +232,44 @@ export class MenuService {
     } catch (error) {
       Logger.error(`MenuService: getMenuAbbr --> Error: ${error}`);
       throw error;
+    }
+  }
+
+  // Add item
+  public async addItem(item: MenuAdd): Promise<void> {
+    Logger.info(`PagesService: addItem ->`);
+
+    try {
+      // Get all items
+      const pages = await new PagesService().getItems();
+      if (!pages) {
+        return Promise.reject(new Error('No items found'));
+      }
+
+      // Remove undefined values and sort
+      const newItem = cleanUpData<MenuAdd>(item);
+      // Validate data
+      const valid = safeParse<addData>(menuAddSchema, newItem);
+      if (valid.error) {
+        throw new Error(`addItem -> ${valid.error}`);
+      }
+
+      // Cast to Page
+      const newPage = { ...item } as Page;
+
+      // Add
+      const newData: Pages = {
+        ...pages,
+        items: [...pages.items, { ...newPage }],
+      };
+      // Write to file
+      const result = await new PagesService().writeFile(newData);
+      return result
+        ? Promise.resolve()
+        : Promise.reject(new Error('Add failed'));
+    } catch (error) {
+      Logger.error(`PagesService: addItem. Error -> ${error}`);
+      return undefined;
     }
   }
 }

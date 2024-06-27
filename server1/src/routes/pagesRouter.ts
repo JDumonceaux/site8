@@ -27,7 +27,7 @@ pagesRouter.post('/', async (req: Request, res: Response) => {
 
   try {
     const service = new PagesService();
-    const data: MenuItem = req.body;
+    const item: MenuItem = req.body;
 
     // Get next id
     const idNew = (await service.getNextId()) ?? 0;
@@ -36,7 +36,7 @@ pagesRouter.post('/', async (req: Request, res: Response) => {
       return res.end();
     }
 
-    // await service.addMenuItem({ ...data, id: idNew }),
+    // await service.addMenuItem({ ...item, id: idNew }),
     // Return the new item
     res.status(201).json({ message: Responses.SUCCESS });
   } catch (error) {

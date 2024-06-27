@@ -1,16 +1,18 @@
 // Remove empty attributes from an object
 export function removeEmptyAttributes<T>(obj: T | any): T | any {
+  // Remove null and undefined attributes
   const temp = Object.fromEntries(
     Object.entries(obj)
       .filter(([_, v]) => v != null)
       .filter(([_, v]) => v !== undefined),
-    // .map(([k, v]) => [k, v === Object(v) ? removeEmptyAttributes(v) : v]),
   );
   for (const k in temp) {
     const x = temp[k];
+    // Remove empty strings
     if (typeof x === 'string' && x.trim() === '') {
       delete temp[k];
     }
+    // Remove empty arrays
     if (Array.isArray(x) && x.length === 0) {
       delete temp[k];
     }
@@ -18,13 +20,25 @@ export function removeEmptyAttributes<T>(obj: T | any): T | any {
   return temp;
 }
 
+// Trim strings
+export function trimAttributes<T>(obj: T | any): T | any {
+  const trimmedObj = { ...obj };
+  Object.keys(trimmedObj).forEach((key: string) => {
+    if (typeof trimmedObj[key] === 'string') {
+      trimmedObj[key] = trimmedObj[key].trim();
+    }
+  });
+  return trimmedObj;
+}
+
 // Create a new object with sorted keys
 export function sortObjectKeys<T>(obj: T | any): T | any {
   const sortedKeys: string[] = Object.keys(obj).sort();
-
   return sortedKeys.reduce((acc: Record<string, number>, key: string) => {
-    acc[key] = obj[key];
-    return acc;
+    return {
+      ...acc,
+      [key]: obj[key],
+    };
   }, {});
 }
 
@@ -35,7 +49,8 @@ export type CleanupType = {
 export function cleanUpData<T extends CleanupType>(data: T): T {
   const cleanedData: T = removeEmptyAttributes<T>(data);
   const sortedData: T = sortObjectKeys<T>(cleanedData);
-  const { id, ...rest } = sortedData;
+  const trimmedData: T = trimAttributes<T>(sortedData);
+  const { id, ...rest } = trimmedData;
   return { id, ...rest } as T;
 }
 

@@ -14,6 +14,7 @@ export type Page = {
   readonly type: 'root' | 'menu' | 'page';
   readonly items?: Page[];
   readonly parentItems?: ParentSortby[];
+  readonly hasFile: boolean;
 };
 
 //  Sort the Page by seq, then name

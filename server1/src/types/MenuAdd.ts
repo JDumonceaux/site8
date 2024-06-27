@@ -5,6 +5,6 @@ export type MenuAdd = {
   readonly name: string;
   readonly to?: string;
   readonly url?: string;
-  readonly type: 'root' | 'menu' | 'page';
-  readonly parent: ParentSortby;
+  readonly type: 'root' | 'menu';
+  readonly parentItems: ParentSortby[];
 };

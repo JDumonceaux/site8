@@ -5,17 +5,38 @@
 import winston from 'winston';
 import { Environment } from './Environment.js';
 
+const options = {
+  file: {
+    level: 'info',
+    filename: 'local.log',
+    handleExceptions: true,
+    json: true,
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
+    colorize: false,
+    timestamp: true,
+  },
+  console: {
+    level: 'debug',
+    handleExceptions: true,
+    json: true,
+    colorize: true,
+    timestamp: true,
+  },
+};
+
 //eslint-disable-next-line
-const transports: any[] = [new winston.transports.Console()];
+const transports: any[] = [new winston.transports.Console(options.console)];
 let winstonFormat = winston.format.json();
 
 if (Environment.isLocal()) {
-  transports.push(new winston.transports.File({ filename: 'local.log' }));
+  transports.push(new winston.transports.File(options.file));
   winstonFormat = winston.format.combine(
     winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
     winston.format.printf(
       (info) => `[${info.timestamp}] ${info.level}: ${info.message}`,
     ),
+
     // winston.format.json(),
     // winston.format.prettyPrint()
   );
