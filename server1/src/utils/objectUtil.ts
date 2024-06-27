@@ -1,4 +1,9 @@
-// Remove empty attributes from an object
+/**
+ * Removes empty attributes from an object.
+ *
+ * @param obj - The object from which to remove empty attributes.
+ * @returns The object with empty attributes removed.
+ */
 export function removeEmptyAttributes<T>(obj: T | any): T | any {
   // Remove null and undefined attributes
   const temp = Object.fromEntries(
@@ -20,7 +25,11 @@ export function removeEmptyAttributes<T>(obj: T | any): T | any {
   return temp;
 }
 
-// Trim strings
+/**
+ * Trims the string values of an object.
+ * @param obj - The object to trim.
+ * @returns The object with trimmed string values.
+ */
 export function trimAttributes<T>(obj: T | any): T | any {
   const trimmedObj = { ...obj };
   Object.keys(trimmedObj).forEach((key: string) => {
@@ -31,7 +40,12 @@ export function trimAttributes<T>(obj: T | any): T | any {
   return trimmedObj;
 }
 
-// Create a new object with sorted keys
+/**
+ * Sorts the keys of an object in alphabetical order.
+ *
+ * @param obj - The object whose keys need to be sorted.
+ * @returns A new object with the keys sorted in alphabetical order.
+ */
 export function sortObjectKeys<T>(obj: T | any): T | any {
   const sortedKeys: string[] = Object.keys(obj).sort();
   return sortedKeys.reduce((acc: Record<string, number>, key: string) => {
@@ -42,10 +56,22 @@ export function sortObjectKeys<T>(obj: T | any): T | any {
   }, {});
 }
 
+/**
+ * Represents a CleanupType object.
+ * CleanupType objects must have an id attribute.
+ */
 export type CleanupType = {
   readonly id: number;
 };
 
+/**
+ * Cleans up the provided data by removing empty attributes, sorting object keys,
+ * and trimming attribute values.
+ *
+ * @template T - The type of the data to clean up.
+ * @param {T} data - The data to clean up.
+ * @returns {T} - The cleaned up data.
+ */
 export function cleanUpData<T extends CleanupType>(data: T): T {
   const cleanedData: T = removeEmptyAttributes<T>(data);
   const sortedData: T = sortObjectKeys<T>(cleanedData);
@@ -54,6 +80,12 @@ export function cleanUpData<T extends CleanupType>(data: T): T {
   return { id, ...rest } as T;
 }
 
+/**
+ * Returns the next available ID for a given array of items.
+ *
+ * @param items - The array of items to search for the next ID.
+ * @returns The next available ID or undefined if the array is empty.
+ */
 export function getNextId<T extends CleanupType>(
   items: ReadonlyArray<T> | undefined,
 ): number | undefined {
