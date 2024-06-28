@@ -47,8 +47,8 @@ const TestsEditPage = (): JSX.Element => {
         type: item.type?.toString(),
         level: item.level?.toString(),
         projectType: item.projectType?.toString(),
-        parentId: item.parent.id.toString(),
-        parentSeq: item.parent.seq.toString(),
+        parentId: item.parent?.id.toString(),
+        parentSeq: item.parent?.seq.toString(),
         action: '',
       };
     });
@@ -116,14 +116,14 @@ const TestsEditPage = (): JSX.Element => {
               </tr>
             </thead>
 
-            <tbody>
-              <DndContext
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                sensors={sensors}>
-                <SortableContext
-                  items={items}
-                  strategy={verticalListSortingStrategy}>
+            <DndContext
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+              sensors={sensors}>
+              <SortableContext
+                items={items}
+                strategy={verticalListSortingStrategy}>
+                <tbody>
                   {data?.map((item) => (
                     <SortableItem id={item.localId} key={item.localId}>
                       <td>{item.id}</td>
@@ -163,11 +163,9 @@ const TestsEditPage = (): JSX.Element => {
                       </td>
                     </SortableItem>
                   ))}
-                </SortableContext>
-              </DndContext>
-
-              {/* {data?.map((item) => renderItem(item))} */}
-            </tbody>
+                </tbody>
+              </SortableContext>
+            </DndContext>
           </table>
         </StyledMain.Section>
       </StyledMain>

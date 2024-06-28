@@ -23,6 +23,8 @@ const GenericImagePage = (): JSX.Element => {
 
   if (error) return <pre>{error}</pre>;
 
+  console.log('deferredData:', deferredData);
+
   return (
     <>
       <Meta title={pageTitle} />
@@ -45,7 +47,7 @@ const GenericImagePage = (): JSX.Element => {
                     <div>
                       <a href={`${item.name}`}>Offical Site</a>
                     </div>
-                    <div>{item.tags}</div>
+                    {/* <div>{item.tags}</div>  */}
                   </div>
                 ))}
               </Suspense>

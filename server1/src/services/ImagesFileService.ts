@@ -1,8 +1,8 @@
 import { readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
-import { Logger } from '../utils/Logger.js';
-import { Images } from '../types/Images.js';
 import { Image } from '../types/Image.js';
+import { Images } from '../types/Images.js';
+import { Logger } from '../utils/Logger.js';
 import { ImagesService } from './ImagesService.js';
 
 export class ImagesFileService {
@@ -12,7 +12,7 @@ export class ImagesFileService {
   // Get all data
   public async getMatchedItems(): Promise<Images | undefined> {
     try {
-      const items = await this.getItemsFromDirectory();
+      const items = await this.getItemsFromBaseDirectory();
       const x = await this.matchItems(items?.items);
 
       return { metadata: { title: 'Images' }, items: x };
@@ -22,19 +22,32 @@ export class ImagesFileService {
     }
   }
 
+  public async getNewItems(): Promise<Images | undefined> {
+    try {
+      const items = await this.getItemsFromSortDirectory();
+
+      return { metadata: { title: 'Images' }, items: items?.items };
+    } catch (error) {
+      Logger.error(`ImagesFileService: getItems -> ${error}`);
+      return undefined;
+    }
+  }
+
   // Get all data
-  private async getItemsFromDirectory(): Promise<Images | undefined> {
+  private async getItemsFromDirectory(
+    dir: string,
+  ): Promise<Images | undefined> {
     try {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
-      const items = readdirSync(this.directoryPath, {
+      const items = readdirSync(dir, {
         encoding: 'utf8',
         recursive: true,
       });
 
       // Filter out directories
       const files = items.filter((item) => {
-        const itemPath = path.join(this.directoryPath, item);
+        const itemPath = path.join(dir, item);
         const stats = statSync(itemPath);
         return stats.isFile();
       });
@@ -58,6 +71,16 @@ export class ImagesFileService {
       Logger.error(`ImagesFileService: getItems -> ${error}`);
       return undefined;
     }
+  }
+
+  // Get "items" from 'sort' directory
+  private async getItemsFromSortDirectory(): Promise<Images | undefined> {
+    return this.getItemsFromDirectory(this.directoryPath + '\\sort');
+  }
+
+  // Get all data
+  private async getItemsFromBaseDirectory(): Promise<Images | undefined> {
+    return this.getItemsFromDirectory(this.directoryPath);
   }
 
   private async matchItems(

@@ -4,6 +4,7 @@ import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
+import { sortByType } from './useMenuEdit';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -18,9 +19,8 @@ const pageSchema = z.object({
 });
 
 // Create a type from the schema
-export type FormType = z.infer<typeof pageSchema>;
-export type keys = keyof FormType;
-export type sortByType = 'seq' | 'name' | undefined;
+type FormType = z.infer<typeof pageSchema>;
+type keys = keyof FormType;
 
 const useTestEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();
@@ -55,10 +55,15 @@ const useTestEdit = () => {
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
-          parent: {
+          priorParent: {
             id: parseInt(item.parent),
             seq: parseInt(item.seq),
             sortby: item.sortby as sortByType,
+          },
+          newParent: {
+            id: 0,
+            seq: 0,
+            sortby: 'name',
           },
         };
         temp.push(x);

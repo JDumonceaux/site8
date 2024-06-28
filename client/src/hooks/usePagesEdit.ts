@@ -17,9 +17,9 @@ const pageSchema = z.object({
 });
 
 // Create a type from the schema
-export type FormType = z.infer<typeof pageSchema>;
-export type keys = keyof FormType;
-export type SortByType = 'seq' | 'name';
+type FormType = z.infer<typeof pageSchema>;
+type keys = keyof FormType;
+type SortByType = 'seq' | 'name';
 
 const usePagesEdit = () => {
   const { data, fetchData, isLoading, error } = useAxios<Menu>();

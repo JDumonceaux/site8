@@ -287,7 +287,6 @@
     },
     {
       "level": "page",
-
       "id": 510,
       "type": "section",
       "name": "Redux",
@@ -304,7 +303,6 @@
     },
     {
       "level": "page",
-
       "id": 515,
       "type": "section",
       "name": "ColorBlindy",
@@ -322,7 +320,6 @@
     },
     {
       "level": "page",
-
       "id": 512,
       "type": "section",
       "name": "Inspect",
@@ -332,7 +329,6 @@
 
     {
       "level": "project",
-
       "id": 505,
       "type": "section",
       "name": "ESLint",
@@ -340,6 +336,7 @@
       "projectType": ["react"]
     },
     {
+      "id": 507,
       "level": "project",
       "seq": 1000,
       "parentId": [505, 506],

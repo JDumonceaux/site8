@@ -75,7 +75,6 @@ const useImageEdit = (id: string | undefined) => {
   const {
     formValues,
     setFormValues,
-    setFieldValue,
     getDefaultFields,
     setErrors,
     handleChange,
@@ -201,18 +200,6 @@ const useImageEdit = (id: string | undefined) => {
     return false;
   }, [formValues, saveItem, validateForm]);
 
-  const setId = useCallback(
-    (value: string | undefined) => {
-      if (value) {
-        const id = parseInt(value);
-        if (!isNaN(id) || id > 0) {
-          setFieldValue('id', id);
-        }
-      }
-    },
-    [setFieldValue],
-  );
-
   const handleChangeImage = useCallback(
     (item: Image | undefined) => {
       setFormValues((prev) => ({
@@ -229,29 +216,21 @@ const useImageEdit = (id: string | undefined) => {
 
   return useMemo(
     () => ({
-      pageSchema,
       formValues,
       isProcessing,
-
-      setFormValues,
-      setFieldValue,
-      setId,
-      handleClear,
-      handleChange,
-      handleReset,
-      submitForm,
       isLoading,
       error,
       isSaved,
+      handleChange,
+      handleClear,
+      handleReset,
       getDefaultFields,
+      submitForm,
       handleChangeImage,
     }),
     [
       formValues,
       isProcessing,
-      setFormValues,
-      setFieldValue,
-      setId,
       handleClear,
       handleChange,
       submitForm,

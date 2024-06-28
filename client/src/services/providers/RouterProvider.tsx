@@ -7,15 +7,17 @@ import {
   RouterProvider as Router,
 } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
+
 const AuthLayout = lazy(() => import('pages/Layouts/AuthLayout/AuthLayout'));
+const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
 const HomeLayout = lazy(() => import('pages/Layouts/HomeLayout/HomeLayout'));
 const MainLayout = lazy(() => import('pages/Layouts/MainLayout/MainLayout'));
 const GenericPage = lazy(() => import('pages/GenericPage'));
 const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
 const ImageEditPage = lazy(() => import('pages/ImageEditPage'));
+const ImagesEditPage = lazy(() => import('pages/ImagesEditPage'));
 const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFoundPage'));
-const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
 const PageEditPage = lazy(() => import('pages/PageEditPage'));
 const PagesEditPage = lazy(() => import('pages/PagesEditPage'));
 const PhotoPage = lazy(() => import('pages/PhotoPage'));
@@ -91,6 +93,7 @@ const router = createBrowserRouter(
           <Route element={<PageEditPage />} path="page/edit/:id" />
           <Route element={<ImageEditPage />} path="image/edit" />
           <Route element={<ImageEditPage />} path="image/edit/:id" />
+          <Route element={<ImagesEditPage />} path="image/quick" />
           <Route element={<TestsEditPage />} path="tests/edit" />
         </Route>
 

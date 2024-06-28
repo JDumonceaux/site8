@@ -30,8 +30,8 @@ const TestsPage = (): JSX.Element => {
               <table>
                 <thead>
                   <tr>
-                    <th></th>
-                    <th></th>
+                    <th />
+                    <th />
                     <th>Value</th>
                     <th>Result</th>
                     <th>Comment</th>

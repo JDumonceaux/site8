@@ -39,6 +39,7 @@ export enum ServiceUrl {
   ENDPOINT_IMAGE = `${API_ROOT}/image`,
   ENDPOINT_IMAGES = `${API_ROOT}/images`,
   ENDPOINT_IMAGES_SCAN = `${API_ROOT}/images/scan`,
+  ENDPOINT_IMAGES_NEW = `${API_ROOT}/images/new`,
   ENDPOINT_MENUS = `${API_ROOT}/menus`,
   ENDPOINT_MENUS_EDIT = `${API_ROOT}/menus/edit`,
   ENDPOINT_MENUS_ABBR = `${API_ROOT}/menus/abbr`,

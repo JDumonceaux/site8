@@ -38,8 +38,8 @@ const pageSchema = z
   );
 
 // Create a type from the schema
-export type FormType = z.infer<typeof pageSchema>;
-export type keys = keyof FormType;
+type FormType = z.infer<typeof pageSchema>;
+type keys = keyof FormType;
 
 const usePageEdit = () => {
   // Use Axios to fetch data

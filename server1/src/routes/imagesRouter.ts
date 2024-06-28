@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 
-import { Logger } from '../utils/Logger.js';
-import { ImagesService } from '../services/ImagesService.js';
 import { ImagesFileService } from '../services/ImagesFileService.js';
+import { ImagesService } from '../services/ImagesService.js';
+import { Logger } from '../utils/Logger.js';
 
 export const imagesRouter = express.Router();
 
@@ -22,6 +22,16 @@ imagesRouter.get('/scan', async (_req: Request, res: Response) => {
     res.json(images);
   } catch (error) {
     Logger.error(`imagesRouter: scan -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+imagesRouter.get('/new', async (_req: Request, res: Response) => {
+  try {
+    const images = await new ImagesFileService().getNewItems();
+    res.json(images);
+  } catch (error) {
+    Logger.error(`imagesRouter: new -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
