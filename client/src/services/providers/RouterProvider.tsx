@@ -93,7 +93,7 @@ const router = createBrowserRouter(
           <Route element={<PageEditPage />} path="page/edit/:id" />
           <Route element={<ImageEditPage />} path="image/edit" />
           <Route element={<ImageEditPage />} path="image/edit/:id" />
-          <Route element={<ImagesEditPage />} path="image/quick" />
+          <Route element={<ImagesEditPage />} path="images/new" />
           <Route element={<TestsEditPage />} path="tests/edit" />
         </Route>
 

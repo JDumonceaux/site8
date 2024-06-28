@@ -14,29 +14,20 @@ export class ImagesFileService {
     try {
       const items = await this.getItemsFromBaseDirectory();
       const x = await this.matchItems(items?.items);
-
       return { metadata: { title: 'Images' }, items: x };
     } catch (error) {
-      Logger.error(`ImagesFileService: getItems -> ${error}`);
+      Logger.error(`ImagesFileService: getMatchedItems -> ${error}`);
       return undefined;
     }
   }
 
   public async getNewItems(): Promise<Images | undefined> {
-    try {
-      const items = await this.getItemsFromSortDirectory();
-
-      return { metadata: { title: 'Images' }, items: items?.items };
-    } catch (error) {
-      Logger.error(`ImagesFileService: getItems -> ${error}`);
-      return undefined;
-    }
+    const items = await this.getItemsFromSortDirectory();
+    return { metadata: { title: 'Images' }, items: items?.items };
   }
 
   // Get all data
-  private async getItemsFromDirectory(
-    dir: string,
-  ): Promise<Images | undefined> {
+  public async getItemsFromDirectory(dir: string): Promise<Images | undefined> {
     try {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings

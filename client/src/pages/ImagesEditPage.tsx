@@ -1,16 +1,15 @@
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
-import { ModalProcessing } from 'components/common/ModalProcessing';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { Button } from 'components/form/Button';
 import { TextInput } from 'components/form/input';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback, useState } from 'react';
+import { useCallback, useTransition } from 'react';
 import { styled } from 'styled-components';
 
 const ImagesEditPage = (): JSX.Element => {
-  // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
   const {
     isProcessing,
     isLoading,
@@ -20,6 +19,7 @@ const ImagesEditPage = (): JSX.Element => {
     handleClear: onClear,
     getDefaultFields,
     submitForm,
+    scanForNewItems,
   } = useImagesEdit();
 
   const { setSnackbarMessage } = useSnackbar();
@@ -39,6 +39,14 @@ const ImagesEditPage = (): JSX.Element => {
     [submitForm, error, setSnackbarMessage],
   );
 
+  const handleScan = useCallback(() => {
+    setSnackbarMessage('Scanning...');
+    startTransition(() => {
+      scanForNewItems();
+    });
+    setSnackbarMessage('Done');
+  }, [scanForNewItems, setSnackbarMessage, startTransition]);
+
   const handleClear = useCallback(
     (e: React.FormEvent) => {
       e.stopPropagation();
@@ -47,6 +55,7 @@ const ImagesEditPage = (): JSX.Element => {
     },
     [onClear],
   );
+
   const title = 'Edit Images';
 
   return (
@@ -55,6 +64,12 @@ const ImagesEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
+            <StyledPlainButton
+              data-testid="button-scan"
+              onClick={handleScan}
+              type="submit">
+              Scan for New
+            </StyledPlainButton>
             {!isSaved ? (
               <StyledPlainButton
                 data-testid="button-save"
@@ -72,6 +87,7 @@ const ImagesEditPage = (): JSX.Element => {
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <StyledContainer>
+              {isPending ? <div>Looking ...</div> : null}
               <form noValidate onSubmit={handleSubmit}>
                 <Row>
                   <div>Image</div>
@@ -128,7 +144,6 @@ const ImagesEditPage = (): JSX.Element => {
           </LoadingWrapper>
         </StyledMain.Section>
       </StyledMain>
-      <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 };

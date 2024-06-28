@@ -154,6 +154,12 @@ const useImagesEdit = () => {
     return false;
   }, [formValues, saveItem, validateForm]);
 
+  // Scan the 'sort' directory for new items
+  const scanForNewItems = useCallback(() => {
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
+    return false;
+  }, [fetchData]);
+
   return useMemo(
     () => ({
       isProcessing,
@@ -164,6 +170,7 @@ const useImagesEdit = () => {
       handleChange,
       getDefaultFields,
       submitForm,
+      scanForNewItems,
     }),
     [
       isProcessing,
@@ -174,6 +181,7 @@ const useImagesEdit = () => {
       error,
       isSaved,
       getDefaultFields,
+      scanForNewItems,
     ],
   );
 };

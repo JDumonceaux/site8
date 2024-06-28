@@ -26,9 +26,10 @@ imagesRouter.get('/scan', async (_req: Request, res: Response) => {
   }
 });
 
+// Scan the 'sort' directory for new items and load into images.json
 imagesRouter.get('/new', async (_req: Request, res: Response) => {
   try {
-    const images = await new ImagesFileService().getNewItems();
+    const images = await new ImagesService().loadNewItems();
     res.json(images);
   } catch (error) {
     Logger.error(`imagesRouter: new -> Error: ${error}`);
