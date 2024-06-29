@@ -129,8 +129,6 @@ export class PagesService {
         const updatedItem =
           hasContent && this.getUpdatedParent(updateItems, item);
 
-        console.log('updatedItem', updatedItem);
-
         countUpdate += updatedItem ? 1 : 0;
         countTotal++;
         // Add update (if there is one) or original

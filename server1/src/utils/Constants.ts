@@ -18,3 +18,5 @@ export enum PreferHeader {
 export const enum RegEx {
   ALPHANUMERIC_PLUS = "^[a-zA-Z0-9-:;']+$",
 }
+
+export const DF_LONG = 'M/d/yyyy h:mm a';

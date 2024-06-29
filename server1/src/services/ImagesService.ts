@@ -26,7 +26,7 @@ export class ImagesService {
   }
 
   // Write to file
-  private async writeFile(data: Readonly<Images>): Promise<boolean> {
+  public async writeFile(data: Readonly<Images>): Promise<boolean> {
     Logger.info(`ImagesService: writeFile -> `);
 
     try {
@@ -63,45 +63,71 @@ export class ImagesService {
     return this.readFile();
   }
 
-  public async loadNewItems(path = 'sort'): Promise<Images | undefined> {
+  public async loadNewItems(): Promise<Images | undefined> {
     try {
       // Get new images from 'sort' directory
-      const images = await new ImagesFileService().getItemsFromDirectory(path);
+      const images = await new ImagesFileService().getItemsFromSortDirectory();
       // Get current items
       const prev = await this.readFile();
       if (!prev) {
         throw new Error('loadNewItems > Index file not loaded');
       }
 
+      const items = prev.items;
       // Make sure item isn't already in the list
-      const filteredItems = images?.items?.filter(
-        (x) => !prev.items?.find((y) => y.fileName === x.fileName),
+      const newItems = images?.items?.filter(
+        (x) => !items?.find((y) => y.fileName === x.fileName),
       );
+      // Get duplicate items
+      const duplicateImages = images?.items?.filter((x) =>
+        items?.find((y) => y.fileName === x.fileName),
+      );
+      // Get the next id - assume there are no gaps in the id sequence
+      // that we want to fill in.  If there are gaps, we can fill
+      // these in when we add a single image.
+      const nextId =
+        items?.sort((a, b) => a.id - b.id)[items?.length - 1].id ?? 0;
+
+      // One time clean up of the data
+      // const cleanedItems: Image[] | undefined = prev.items?.map((item) => {
+      //   return cleanUpData<Image>({
+      //     ...item,
+      //     edit_date: new Date(),
+      //     create_date: new Date(),
+      //   });
+      // });
+
+      // Update the data
+      let id = nextId;
+      const updatedItems: Image[] | undefined = newItems?.map((item) => {
+        return cleanUpData<Image>({
+          ...item,
+          id: id++,
+          edit_date: new Date(),
+          create_date: new Date(),
+          src:
+            item.folder && item.folder.length > 0
+              ? `${item.folder}/${item.fileName}`
+              : item.fileName,
+        });
+      });
 
       // Add new items to existing
-      const newItems = prev?.items?.concat(filteredItems ?? []);
+      const combinedItems = updatedItems ? items?.concat(updatedItems) : items;
 
-      // Update the item id
-      const updatedItems: Image[] = [];
-      newItems?.forEach((item) => {
-        if (!item.id || item.id === 0) {
-          const id = getNextId<Image>(newItems) || 0;
-          const newItem = cleanUpData<Image>({ ...item, id });
-          updatedItems.push(newItem);
-        } else {
-          updatedItems.push(item);
-        }
-      });
-      const data = { ...prev, items: updatedItems };
+      const sortedData = combinedItems?.sort((a, b) => a.id - b.id);
+      // Write back file
+      const data = { ...prev, items: sortedData };
       await this.writeFile(data);
-      return data;
+      // Return items + duplicates
+      return { ...data, duplicateImages };
     } catch (error) {
       Logger.error(`ImagesService: loadNewItems -> ${error}`);
     }
     return undefined;
   }
 
-  protected async getNextId(): Promise<number | undefined> {
+  public async getNextId(): Promise<number | undefined> {
     try {
       const data = await this.readFile();
       return getNextId<Image>(data?.items);

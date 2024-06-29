@@ -100,11 +100,6 @@ const useImagesEdit = () => {
     [setFormValues],
   );
 
-  // Fetch data when currentId changes
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
-  }, [fetchData]);
-
   // Update the form values when the data changes
   useEffect(() => {
     //updateFormValues(data);

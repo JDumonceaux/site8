@@ -138,7 +138,6 @@ const usePagesEdit = () => {
       }
     });
 
-    // console.log('ret', ret);
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
   }, [formValues, localItems, mapFormTypeToMenuEdit, shouldUpdate]);

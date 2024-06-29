@@ -27,30 +27,35 @@ export class ImagesFileService {
   }
 
   // Get all data
-  public async getItemsFromDirectory(dir: string): Promise<Images | undefined> {
+  private async getItemsFromDirectory(
+    basePath: string,
+    addPath?: string,
+  ): Promise<Images | undefined> {
     try {
+      const fullPath = addPath ? path.join(basePath, addPath) : basePath;
+      Logger.error(
+        `ImagesFileService: getItemsFromDirectory -> path: ${fullPath}`,
+      );
+
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
-      const items = readdirSync(dir, {
+      const items = readdirSync(fullPath, {
         encoding: 'utf8',
         recursive: true,
       });
 
       // Filter out directories
       const files = items.filter((item) => {
-        const itemPath = path.join(dir, item);
+        const itemPath = path.join(fullPath, item);
         const stats = statSync(itemPath);
         return stats.isFile();
       });
 
       // Return a list of images
-      const ret: Image[] = files.map((file, index) => {
-        const newFile = file.replaceAll('\\', '/');
+      const ret: Image[] = files.map((file) => {
         return {
-          id: index,
           fileName: path.basename(file),
-          folder: path.dirname(file) === '.' ? '' : path.dirname(file),
-          src: newFile,
+          folder: addPath ?? '',
         };
       }) as Image[];
 
@@ -59,18 +64,18 @@ export class ImagesFileService {
 
       return { metadata: { title: 'Images' }, items: filteredImages };
     } catch (error) {
-      Logger.error(`ImagesFileService: getItems -> ${error}`);
-      return undefined;
+      Logger.error(`ImagesFileService: getItemsFromDirectory -> ${error}`);
     }
+    return undefined;
   }
 
   // Get "items" from 'sort' directory
-  private async getItemsFromSortDirectory(): Promise<Images | undefined> {
-    return this.getItemsFromDirectory(this.directoryPath + '\\sort');
+  public async getItemsFromSortDirectory(): Promise<Images | undefined> {
+    return this.getItemsFromDirectory(this.directoryPath, 'sort');
   }
 
   // Get all data
-  private async getItemsFromBaseDirectory(): Promise<Images | undefined> {
+  public async getItemsFromBaseDirectory(): Promise<Images | undefined> {
     return this.getItemsFromDirectory(this.directoryPath);
   }
 

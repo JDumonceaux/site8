@@ -1,15 +1,15 @@
-import { Logger } from '../utils/Logger.js';
 import { Image } from '../types/Image.js';
-import { ImagesService } from './ImagesService.js';
 import { Images } from '../types/Images.js';
+import { Logger } from '../utils/Logger.js';
 import { cleanUpData } from '../utils/objectUtil.js';
+import { ImagesService } from './ImagesService.js';
 
-export class ImageService extends ImagesService {
+export class ImageService {
   public async getItem(id: number): Promise<Image | undefined> {
     Logger.info(`ImageService: getItem -> ${id}`);
 
     try {
-      const ret = await this.getItems();
+      const ret = await new ImagesService().getItems();
       if (!ret) {
         return Promise.reject(new Error('getItem -> No data found'));
       }
@@ -31,13 +31,13 @@ export class ImageService extends ImagesService {
       }
 
       // Get the current file data
-      const ret = await this.getItems();
+      const ret = await new ImagesService().getItems();
       if (!ret) {
         throw new Error('addItem -> No data found');
       }
 
       // Get next id
-      const idNew = (await this.getNextId()) ?? 0;
+      const idNew = (await new ImagesService().getNextId()) ?? 0;
 
       // I want the Id to show up first in the record in the file
       const { id, ...rest } = updatedItem;
@@ -49,7 +49,7 @@ export class ImageService extends ImagesService {
         items: [...(ret.items ?? []), newItem],
       };
 
-      await this.writeFile(updatedFile);
+      await new ImagesService().writeFile(updatedFile);
       return Promise.resolve(id);
     } catch (error) {
       Logger.error(`ImageService: addItem -> ${error}`);
@@ -66,7 +66,7 @@ export class ImageService extends ImagesService {
         return Promise.reject(new Error('updateItem -> Invalid item'));
       }
 
-      const ret = await this.getItems();
+      const ret = await new ImagesService().getItems();
       if (!ret) {
         throw new Error('updateItem -> No data found');
       }
@@ -83,7 +83,7 @@ export class ImageService extends ImagesService {
         items: [...(updateItems ?? []), newItem],
       };
 
-      await this.writeFile(updatedFile);
+      await new ImagesService().writeFile(updatedFile);
       return Promise.resolve(data.id);
     } catch (error) {
       Logger.error(`ImageService: updateItem -> ${error}`);

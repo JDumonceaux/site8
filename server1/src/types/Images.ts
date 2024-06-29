@@ -4,4 +4,5 @@ import { Metadata } from './Metadata.js';
 export type Images = {
   readonly metadata: Metadata;
   readonly items: Image[] | undefined;
+  readonly duplicateImages?: Image[] | undefined;
 };

@@ -1,6 +1,5 @@
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { Button } from 'components/form/Button';
 import { TextInput } from 'components/form/input';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
@@ -11,7 +10,6 @@ const ImagesEditPage = (): JSX.Element => {
   const [isPending, startTransition] = useTransition();
 
   const {
-    isProcessing,
     isLoading,
     error,
     isSaved,
@@ -96,7 +94,6 @@ const ImagesEditPage = (): JSX.Element => {
                     enterKeyHint="next"
                     errorTextShort="Please enter a name"
                     inputMode="text"
-                    label="Name"
                     onChange={handleChange}
                     required={true}
                     spellCheck={true}
@@ -107,7 +104,6 @@ const ImagesEditPage = (): JSX.Element => {
                     enterKeyHint="next"
                     errorTextShort="Please enter a location"
                     inputMode="text"
-                    label="Location"
                     onChange={handleChange}
                     required={true}
                     spellCheck={true}
@@ -118,7 +114,6 @@ const ImagesEditPage = (): JSX.Element => {
                     enterKeyHint="next"
                     errorTextShort="Please enter a File Name"
                     inputMode="text"
-                    label="File Name"
                     onChange={handleChange}
                     required={true}
                     spellCheck={true}
@@ -129,16 +124,12 @@ const ImagesEditPage = (): JSX.Element => {
                     enterKeyHint="next"
                     errorTextShort="Please enter a official URL"
                     inputMode="text"
-                    label="Official URL"
                     onChange={handleChange}
                     required={false}
                     spellCheck={true}
                     {...getDefaultFields('official_url')}
                   />
                 </Row>
-                <Button id="submit" type="submit">
-                  {isProcessing ? 'Processing' : 'Submit'}
-                </Button>
               </form>
             </StyledContainer>
           </LoadingWrapper>
@@ -155,7 +146,7 @@ const StyledContainer = styled.div`
   column-gap: 20px;
 `;
 const Row = styled.div`
-  display: flex:
+  display: flex;
   flex-direction: row;
   justify-content: left;
 `;
