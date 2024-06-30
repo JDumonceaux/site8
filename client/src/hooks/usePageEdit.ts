@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { Page } from 'types/Page';
-import { DF_LONG, REQUIRED_FIELD, ServiceUrl } from 'utils';
+import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
 
-import { format } from 'date-fns';
-import { getDateTime } from 'utils/dateUtils';
 import { combineParent, splitParent } from 'utils/helpers';
 import { useAxios } from './Axios/useAxios';
 import { useForm } from './useForm';
@@ -25,8 +23,6 @@ const pageSchema = z
 
     to: z.string().trim().optional(),
     url: z.string().trim().optional(),
-    create_date: z.string().optional(),
-    edit_date: z.string().optional(),
     parent: z.string().min(1, REQUIRED_FIELD),
     reading_time: z.string().trim().optional(),
     readability_score: z.string().trim().optional(),
@@ -54,8 +50,6 @@ const usePageEdit = () => {
       to: '',
       url: '',
       text: '',
-      edit_date: format(new Date(), DF_LONG),
-      create_date: format(new Date(), DF_LONG),
       parent: '',
       reading_time: '',
       readability_score: '',
@@ -91,12 +85,6 @@ const usePageEdit = () => {
           to: item.to ?? '',
           url: item.url ?? '',
           text: item.text ?? '',
-          edit_date:
-            (item.edit_date && format(item.edit_date, DF_LONG)) ??
-            format(new Date(), DF_LONG),
-          create_date:
-            (item.create_date && format(item.create_date, DF_LONG)) ??
-            format(new Date(), DF_LONG),
           parent: combineParent(item.parentItems),
           reading_time: item.reading_time ?? '',
           readability_score: item.readability_score ?? '',
@@ -142,13 +130,11 @@ const usePageEdit = () => {
   // Handle save
   const submitForm = useCallback(async () => {
     setIsProcessing(true);
-    const { id, create_date, edit_date, parent, ...rest } = formValues;
+    const { id, parent, ...rest } = formValues;
     const data: Page = {
       ...rest,
       id,
       parentItems: splitParent(parent),
-      edit_date: getDateTime(edit_date) ?? new Date(),
-      create_date: id == 0 ? getDateTime(create_date) ?? new Date() : undefined,
       type: 'page',
     };
     const result =

@@ -53,7 +53,7 @@ const useMenu = () => {
   );
 
   return {
-    data: data,
+    data,
     isLoading,
     error,
     getMenu,

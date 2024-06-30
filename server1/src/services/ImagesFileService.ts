@@ -1,5 +1,6 @@
 import { readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
+import { ImageEdit } from 'types/ImageEdit.js';
 import { Image } from '../types/Image.js';
 import { Images } from '../types/Images.js';
 import { Logger } from '../utils/Logger.js';
@@ -24,6 +25,29 @@ export class ImagesFileService {
   public async getNewItems(): Promise<Images | undefined> {
     const items = await this.getItemsFromSortDirectory();
     return { metadata: { title: 'Images' }, items: items?.items };
+  }
+
+  // Get all data
+  public getFolders() {
+    try {
+      const fullPath = this.directoryPath;
+      Logger.error(`ImagesFileService: getFolders -> path: ${fullPath}`);
+
+      // All the files and all the directories
+      // If encoding is missing, returns buffer vs. strings
+      const items = readdirSync(fullPath, {
+        encoding: 'utf8',
+        recursive: true,
+        withFileTypes: true,
+      });
+
+      return items
+        .filter((item) => item.isDirectory())
+        .map((item) => item.name);
+    } catch (error) {
+      Logger.error(`ImagesFileService: getFolders -> ${error}`);
+    }
+    return undefined;
   }
 
   // Get all data
@@ -104,6 +128,33 @@ export class ImagesFileService {
     } catch (error) {
       Logger.error(`ImagesFileService: matchItems -> ${error}`);
       return undefined;
+    }
+  }
+
+  public async moveItems(items: ImageEdit[] | undefined): Promise<boolean> {
+    try {
+      if (!items) {
+        return true;
+      }
+
+      items.forEach((item) => {
+        const path1 = path.join(
+          this.directoryPath,
+          item.originalFolder ?? '',
+          item.fileName,
+        );
+        const path2 = path.join(
+          this.directoryPath,
+          item.folder ?? '',
+          item.fileName,
+        );
+        renameSync(path1, path2);
+      });
+
+      return true;
+    } catch (error) {
+      Logger.error(`ImagesFileService: moveItems -> ${error}`);
+      return false;
     }
   }
 

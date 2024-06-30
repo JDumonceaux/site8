@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
+import { ImageEdit } from 'types/ImageEdit.js';
 import { Image } from '../types/Image.js';
 import { Images } from '../types/Images.js';
 import { Logger } from '../utils/Logger.js';
@@ -36,24 +37,6 @@ export class ImagesService {
       return Promise.resolve(true);
     } catch (error) {
       Logger.error(`ImagesService: writeFile. Error -> ${error}`);
-      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
-    }
-  }
-
-  // Update  file
-  private async updateFile(data: ReadonlyArray<Images>): Promise<boolean> {
-    Logger.info(`ImagesService: updateFile -> `);
-
-    try {
-      const file = await readFile(this.filePath, { encoding: 'utf8' });
-      const prev = JSON.parse(file) as Images;
-      const updated = JSON.stringify({ ...prev, items: data }, null, 2);
-      await writeFile(this.filePath, updated, {
-        encoding: 'utf8',
-      });
-      return Promise.resolve(true);
-    } catch (error) {
-      Logger.error(`ImagesService: updateFile. Error -> ${error}`);
       return Promise.reject(new Error(`Write file failed. Error: ${error}`));
     }
   }
@@ -176,5 +159,47 @@ export class ImagesService {
       Logger.error(`ImagesService: listDuplicates -> ${error}`);
       return 'No duplicates found';
     }
+  }
+
+  public async updateItems(items: ImageEdit[] | undefined): Promise<boolean> {
+    try {
+      if (!items) {
+        return false;
+      }
+      const images = await this.readFile();
+      if (!images || !images.items) {
+        return false;
+      }
+
+      // Get the updated records
+      const updatedItems: Image[] = images.items.map((item) => {
+        const currItem = items.find((x) => x.id === item.id);
+        return currItem
+          ? {
+              ...currItem,
+              ...item,
+              originalFolder: currItem.folder,
+              src: currItem.folder
+                ? `${currItem.folder}/${currItem.fileName}`
+                : currItem.fileName,
+            }
+          : item;
+      });
+
+      // Move the files to a new directory
+      await new ImagesFileService().moveItems(updatedItems);
+
+      // Remove multiple items
+      const data: Image[] = images.items.map((x) => {
+        const newItem = updatedItems.find((y) => y.id === x.id);
+        return newItem ? newItem : x;
+      });
+      console.log('data', data);
+      //await this.writeFile({ ...images, items: data });
+      return true;
+    } catch (error) {
+      Logger.error(`ImagesService: updateItem -> ${error}`);
+    }
+    return false;
   }
 }

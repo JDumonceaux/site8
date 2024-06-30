@@ -10,36 +10,17 @@ export const NoteIcon = ({
   return (
     <svg
       aria-hidden={ariaHidden}
-      enableBackground="new 0 0 512 512"
+      enableBackground="new 0 0 24 24"
       focusable={focusable}
-      height="512px"
+      height="24px"
       id="Layer_1"
       version="1.1"
-      viewBox="0 0 512 512"
-      width="512px"
+      viewBox="0 0 24 24"
+      width="24px"
       x="0px"
       xmlSpace="preserve"
       xmlns="http://www.w3.org/2000/svg"
       y="0px">
-      <link id="dark-mode-custom-link" rel="stylesheet" type="text/css" />
-      <link id="dark-mode-general-link" rel="stylesheet" type="text/css" />
-      <style id="dark-mode-custom-style" lang="en" type="text/css" />
-      <style id="dark-mode-native-style" lang="en" type="text/css" />
-      <style id="dark-mode-native-sheet" lang="en" type="text/css" />
-      <text
-        fill="#FFFF00"
-        fontFamily="'Verdana-Bold'"
-        fontSize="20"
-        transform="matrix(1 0 0 1 168.7834 543.8083)">
-        simpleicon.com
-      </text>
-      <text
-        fill="#FFFF00"
-        fontFamily="'Verdana'"
-        fontSize="20"
-        transform="matrix(1 0 0 1 9.1926 567.8083)">
-        Collection Of Flat Icon, Symbols And Glyph Icons
-      </text>
       <g>
         <path
           d="M402.5,74.74c0-4.551-3.689-8.24-8.24-8.24H117.74c-4.551,0-8.24,3.689-8.24,8.24v362.52   c0,4.551,3.689,8.24,8.24,8.24h276.52c4.551,0,8.24-3.689,8.24-8.24V74.74z"

@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import menuReducer from './menuSlice';
-import menuAbbrReducer from './menuAbbrSlice';
-import snackbarReducer from './snackbarSlice';
 import appReducer from './appSlice';
+import folderReducer from './folderSlice';
 import imageReducer from './imageSlice';
+import menuAbbrReducer from './menuAbbrSlice';
+import menuReducer from './menuSlice';
+import snackbarReducer from './snackbarSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     snackbar: snackbarReducer,
     image: imageReducer,
     appSettings: appReducer,
+    folders: folderReducer,
   },
 });
 

@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 
+import { ImageEdit } from 'types/ImageEdit.js';
 import { ImagesFileService } from '../services/ImagesFileService.js';
 import { ImagesService } from '../services/ImagesService.js';
 import { Logger } from '../utils/Logger.js';
@@ -20,6 +21,16 @@ imagesRouter.get('/scan', async (_req: Request, res: Response) => {
   try {
     const images = await new ImagesFileService().getMatchedItems();
     res.json(images);
+  } catch (error) {
+    Logger.error(`imagesRouter: scan -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+imagesRouter.get('/folders', async (_req: Request, res: Response) => {
+  try {
+    const folders = await new ImagesFileService().getFolders();
+    res.json(folders);
   } catch (error) {
     Logger.error(`imagesRouter: scan -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -66,6 +77,18 @@ imagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
     res.json(ret);
   } catch (error) {
     Logger.error(`imagesRouter: listDuplicates -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+imagesRouter.patch('/', async (req: Request, res: Response) => {
+  try {
+    const items: ImageEdit[] = req.body;
+
+    const ret = await new ImagesService().updateItems(items);
+    res.json(ret);
+  } catch (error) {
+    Logger.error(`imagesRouter: patch -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

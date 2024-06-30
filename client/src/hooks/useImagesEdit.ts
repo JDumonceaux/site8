@@ -1,25 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'types/Image';
-import { DF_LONG, ServiceUrl } from 'utils';
-import { safeParse } from 'utils/zodHelper';
+import { ServiceUrl } from 'utils';
 import { z } from 'zod';
 
-import { format } from 'date-fns';
 import { Images } from 'types';
+import { ImageEdit } from 'types/ImageEdit';
 import { useAxios } from './Axios/useAxios';
-import { useForm } from './useForm';
+import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
   id: z.number(),
-  name: z
-    .string({
-      required_error: 'Name is required.',
-      invalid_type_error: 'Name must be a string',
-    })
-    .max(100, 'Name max length exceeded: 100')
-    .trim()
-    .optional(),
+  localId: z.number(),
+  name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
+  fileName: z.string().trim(),
   location: z
     .string({
       invalid_type_error: 'Location must be a string',
@@ -27,127 +21,161 @@ const pageSchema = z.object({
     .max(250, 'Location max length exceeded: 500')
     .trim()
     .optional(),
-  fileName: z.string().trim(),
   src: z.string().trim().optional(),
   folder: z.string().trim().optional(),
   official_url: z.string().trim().optional(),
   tags: z.string().trim().optional(),
   description: z.string().trim().optional(),
-  create_date: z.string().optional(),
-  edit_date: z.string().optional(),
 });
 
 const useImagesEdit = () => {
   // Use Axios to fetch data
-  const { data, isLoading, error, fetchData } = useAxios<Images>();
+  const { data, isLoading, error, fetchData, patchData } = useAxios<Images>();
   // Create a type from the schema
   type FormType = z.infer<typeof pageSchema>;
+
+  const [localItems, setLocalItems] = useState<Image[] | undefined>();
 
   // Does the data need to be saved?
   const [isSaved, setIsSaved] = useState<boolean>(true);
   // Is the form saving?
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  // Return default form values
-  const defaultFormValues: FormType = useMemo(
-    () => ({
-      id: 0,
-      name: '',
-      fileName: '',
-      src: '',
-      folder: '',
-      official_url: '',
-      description: '',
-      location: '',
-      tags: '',
-      edit_date: format(new Date(), DF_LONG),
-      create_date: format(new Date(), DF_LONG),
-    }),
-    [],
-  );
+
   // Create a form
-  const {
-    formValues,
-    setFormValues,
-    getDefaultFields,
-    setErrors,
-    handleChange,
-  } = useForm<FormType>(defaultFormValues);
+  const { formValues, getDefaultProps, setFormValues, setFieldValue } =
+    useFormArray<FormType>();
 
-  // Update the form values from the data
-  const updateFormValues = useCallback(
-    (items: Image | undefined | null) => {
-      if (items) {
-        const item: FormType = {
-          id: items.id,
-          name: items.name ?? '',
-          fileName: items.fileName ?? '',
-          src: items.src ?? '',
-          folder: items.folder ?? '',
-          official_url: items.official_url ?? '',
-          description: items.description ?? '',
-          location: items.location ?? '',
-          tags: items.tags?.toString() ?? '',
-          edit_date:
-            (items.edit_date && format(items.edit_date, DF_LONG)) ??
-            format(new Date(), DF_LONG),
-          create_date:
-            (items.create_date && format(items.create_date, DF_LONG)) ??
-            format(new Date(), DF_LONG),
-        };
-        setFormValues(item);
-      }
-    },
-    [setFormValues],
-  );
-
-  // Update the form values when the data changes
+  // Save to local - adding local index
   useEffect(() => {
-    //updateFormValues(data);
-  }, [data, updateFormValues]);
+    setLocalItems(
+      data?.items?.map((x, index) => ({ ...x, localId: index + 1 })),
+    );
+  }, [data?.items, setLocalItems]);
+
+  useEffect(() => {
+    const ret: FormType[] | undefined = localItems?.map((item) => {
+      return {
+        id: item.id || 0,
+        localId: item.localId || 0,
+        name: item.name || '',
+        fileName: item.fileName || '',
+        src: item.src || '',
+        folder: item.folder || '',
+        official_url: item.official_url || '',
+        description: item.description || '',
+        location: item.location || '',
+        tags: '',
+      };
+    });
+    if (ret) {
+      setFormValues(ret);
+    }
+  }, [localItems, setFormValues]);
 
   // Validate  form
-  const validateForm = useCallback(() => {
-    const result = safeParse<FormType>(pageSchema, formValues);
-    setErrors(result.error?.issues);
-    return result.success;
-  }, [formValues, setErrors]);
+  // const validateForm = useCallback(() => {
+  //   const result = safeParse<FormType>(pageSchema, formValues);
+  //   setErrors(result.error?.issues);
+  //   return result.success;
+  // }, [formValues, setErrors]);
 
   // Handle clear form
   const handleClear = useCallback(() => {
-    setFormValues(defaultFormValues);
     setIsSaved(true);
     setIsProcessing(false);
-    setErrors(undefined);
-  }, [defaultFormValues, setErrors, setFormValues]);
+  }, []);
+
+  const getDifference = useCallback(
+    (prev: string | undefined, update: string | undefined) => {
+      const tempPrev =
+        prev && prev?.trim().length > 0 ? prev?.trim() : undefined;
+      const tempUpdate =
+        update && update?.trim().length > 0 ? update?.trim() : undefined;
+      // No change
+      if (!tempPrev && !tempUpdate) {
+        return { hasChange: false, value: undefined };
+      }
+      // No change
+      if (tempPrev === tempUpdate) {
+        return { hasChange: false, value: undefined };
+      }
+      if (tempUpdate) {
+        return { hasChange: true, value: tempUpdate };
+      }
+      if (tempPrev && !tempUpdate) {
+        return { hasChange: true, value: undefined };
+      }
+      return { hasChange: false, value: undefined };
+    },
+    [],
+  );
+
+  const getUpdates = useCallback(() => {
+    const ret: ImageEdit[] = [];
+    formValues.forEach((item) => {
+      const prev = localItems?.find((x) => x.localId === item.localId);
+      const tempName = getDifference(prev?.name, item.name);
+      const tempLocation = getDifference(prev?.location, item.location);
+      const tempDescription = getDifference(
+        prev?.description,
+        item.description,
+      );
+      const tempOfficialUrl = getDifference(
+        prev?.official_url,
+        item.official_url,
+      );
+      const tempFolder = getDifference(prev?.folder, item.folder);
+      // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
+
+      if (
+        tempName.hasChange ||
+        tempLocation.hasChange ||
+        tempDescription.hasChange ||
+        tempOfficialUrl.hasChange ||
+        tempFolder.hasChange
+      ) {
+        ret.push({
+          id: item.id,
+          name: tempName.hasChange ? tempName.value : prev?.name,
+          location: tempLocation.hasChange
+            ? tempLocation.value
+            : prev?.location,
+          description: tempDescription.hasChange
+            ? tempDescription.value
+            : prev?.description,
+          official_url: tempOfficialUrl.hasChange
+            ? tempOfficialUrl.value
+            : prev?.official_url,
+          folder: tempFolder.hasChange ? tempFolder.value : prev?.folder,
+          fileName: item.fileName,
+          src: item.src,
+        });
+      }
+    });
+
+    return ret;
+  }, [formValues, getDifference, localItems]);
 
   // Handle save
-  const saveItem = useCallback(async (items: FormType) => {
-    //const { id, create_date, edit_date, tags, ...rest } = items;
-    // const data: Image = {
-    //   ...rest,
-    //   id,
-    //   tags: tags?.split(',') ?? [],
-    //   edit_date: getDateTime(edit_date) ?? new Date(),
-    //   create_date:
-    //     id == 0 ? getDateTime(create_date) ?? new Date() : new Date(),
-    // };
-
-    //        await patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`);
+  const saveItems = useCallback(async () => {
+    const data = getUpdates();
+    if (!data) {
+      return;
+    }
+    await patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, { items: data });
 
     return true;
-  }, []);
+  }, [getUpdates, patchData]);
 
   // Handle form submission
   const submitForm = useCallback((): boolean => {
     setIsProcessing(true);
-    if (validateForm()) {
-      saveItem(formValues);
-      setIsProcessing(false);
-      setIsSaved(true);
-      return true;
-    }
-    return false;
-  }, [formValues, saveItem, validateForm]);
+    // if (validateForm()) {
+    saveItems();
+    setIsProcessing(false);
+    setIsSaved(true);
+    return true;
+  }, [saveItems]);
 
   // Scan the 'sort' directory for new items
   const scanForNewItems = useCallback(() => {
@@ -157,26 +185,28 @@ const useImagesEdit = () => {
 
   return useMemo(
     () => ({
+      data: formValues,
       isProcessing,
       isLoading,
       error,
       isSaved,
       handleClear,
-      handleChange,
-      getDefaultFields,
       submitForm,
       scanForNewItems,
+      getDefaultProps,
+      setFieldValue,
     }),
     [
+      formValues,
       isProcessing,
-      handleClear,
-      handleChange,
-      submitForm,
       isLoading,
       error,
       isSaved,
-      getDefaultFields,
+      handleClear,
+      submitForm,
       scanForNewItems,
+      getDefaultProps,
+      setFieldValue,
     ],
   );
 };
