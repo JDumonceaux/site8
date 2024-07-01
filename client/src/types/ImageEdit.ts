@@ -7,5 +7,4 @@ export type ImageEdit = {
   readonly tags?: string[];
   readonly fileName: string;
   readonly folder?: string;
-  readonly src?: string;
 };

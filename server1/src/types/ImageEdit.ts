@@ -8,5 +8,4 @@ export type ImageEdit = {
   readonly fileName: string;
   readonly folder?: string;
   readonly originalFolder?: string;
-  readonly src?: string;
 };

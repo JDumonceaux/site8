@@ -57,7 +57,7 @@ export class ImagesFileService {
   ): Promise<Images | undefined> {
     try {
       const fullPath = addPath ? path.join(basePath, addPath) : basePath;
-      Logger.error(
+      Logger.info(
         `ImagesFileService: getItemsFromDirectory -> path: ${fullPath}`,
       );
 
@@ -133,9 +133,15 @@ export class ImagesFileService {
 
   public async moveItems(items: ImageEdit[] | undefined): Promise<boolean> {
     try {
+      Logger.info(
+        `ImagesFileService: moveItems. -> (${items ? items?.length : 0}) to move.`,
+      );
+
       if (!items) {
         return true;
       }
+
+      console.log('items', items);
 
       items.forEach((item) => {
         const path1 = path.join(
@@ -148,7 +154,10 @@ export class ImagesFileService {
           item.folder ?? '',
           item.fileName,
         );
-        renameSync(path1, path2);
+        console.log('path1', path1);
+        console.log('path2', path2);
+
+        //renameSync(path1, path2);
       });
 
       return true;

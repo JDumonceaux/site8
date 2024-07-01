@@ -161,9 +161,12 @@ export class ImagesService {
     }
   }
 
-  public async updateItems(items: ImageEdit[] | undefined): Promise<boolean> {
+  public async updateItems(
+    items: ReadonlyArray<ImageEdit> | undefined,
+  ): Promise<boolean> {
     try {
-      if (!items) {
+      console.log('sems1', items);
+      if (!items || !Array.isArray(items) || items.length === 0) {
         return false;
       }
       const images = await this.readFile();
@@ -172,19 +175,22 @@ export class ImagesService {
       }
 
       // Get the updated records
-      const updatedItems: Image[] = images.items.map((item) => {
-        const currItem = items.find((x) => x.id === item.id);
-        return currItem
-          ? {
-              ...currItem,
-              ...item,
-              originalFolder: currItem.folder,
-              src: currItem.folder
-                ? `${currItem.folder}/${currItem.fileName}`
-                : currItem.fileName,
-            }
-          : item;
+      const updatedItems: Image[] = items.map((item) => {
+        const currItem = images.items?.find((x) => x.id === item.id);
+        console.log('currItem', currItem, item.id);
+        if (currItem) {
+          return {
+            ...currItem,
+            ...item,
+            originalFolder: currItem.folder,
+            src: item.folder
+              ? `${item.folder}/${item.fileName}`
+              : item.fileName,
+          };
+        }
       });
+
+      console.log('updatedItems12', updatedItems);
 
       // Move the files to a new directory
       await new ImagesFileService().moveItems(updatedItems);
@@ -194,8 +200,16 @@ export class ImagesService {
         const newItem = updatedItems.find((y) => y.id === x.id);
         return newItem ? newItem : x;
       });
-      console.log('data', data);
-      //await this.writeFile({ ...images, items: data });
+
+      console.log('data1', data.length);
+      console.log('items1', images.items.length);
+
+      if (data.length !== images.items.length) {
+        Logger.error(`ImagesService: updateItem -> Item count mismatch`);
+        return false;
+      }
+
+      await this.writeFile({ ...images, items: data });
       return true;
     } catch (error) {
       Logger.error(`ImagesService: updateItem -> ${error}`);

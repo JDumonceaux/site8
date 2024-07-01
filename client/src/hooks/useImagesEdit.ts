@@ -47,9 +47,11 @@ const useImagesEdit = () => {
 
   // Save to local - adding local index
   useEffect(() => {
-    setLocalItems(
-      data?.items?.map((x, index) => ({ ...x, localId: index + 1 })),
-    );
+    // Trim down to "sort" folder only
+    const filteredItems = data?.items
+      ?.filter((x) => x.folder === 'sort')
+      .map((x, index) => ({ ...x, localId: index + 1 }));
+    setLocalItems(filteredItems);
   }, [data?.items, setLocalItems]);
 
   useEffect(() => {
@@ -125,6 +127,7 @@ const useImagesEdit = () => {
         item.official_url,
       );
       const tempFolder = getDifference(prev?.folder, item.folder);
+      const tempFileName = getDifference(prev?.fileName, item.fileName);
       // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
 
       if (
@@ -132,7 +135,8 @@ const useImagesEdit = () => {
         tempLocation.hasChange ||
         tempDescription.hasChange ||
         tempOfficialUrl.hasChange ||
-        tempFolder.hasChange
+        tempFolder.hasChange ||
+        tempFileName.hasChange
       ) {
         ret.push({
           id: item.id,
@@ -147,28 +151,26 @@ const useImagesEdit = () => {
             ? tempOfficialUrl.value
             : prev?.official_url,
           folder: tempFolder.hasChange ? tempFolder.value : prev?.folder,
-          fileName: item.fileName,
-          src: item.src,
+          fileName: tempFileName.hasChange
+            ? tempFileName.value ?? ''
+            : prev?.fileName ?? '',
         });
       }
     });
-
     return ret;
   }, [formValues, getDifference, localItems]);
 
   // Handle save
   const saveItems = useCallback(async () => {
-    const data = getUpdates();
-    if (!data) {
+    const updates = getUpdates();
+    if (!updates) {
       return;
     }
-    await patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, { items: data });
-
-    return true;
+    await patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, { items: updates });
   }, [getUpdates, patchData]);
 
   // Handle form submission
-  const submitForm = useCallback((): boolean => {
+  const submitForm = useCallback(() => {
     setIsProcessing(true);
     // if (validateForm()) {
     saveItems();
@@ -180,7 +182,6 @@ const useImagesEdit = () => {
   // Scan the 'sort' directory for new items
   const scanForNewItems = useCallback(() => {
     fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
-    return false;
   }, [fetchData]);
 
   return useMemo(

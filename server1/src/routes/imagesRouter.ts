@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 
-import { ImageEdit } from 'types/ImageEdit.js';
+import { ImagesEdit } from 'types/ImagesEdit.js';
 import { ImagesFileService } from '../services/ImagesFileService.js';
 import { ImagesService } from '../services/ImagesService.js';
 import { Logger } from '../utils/Logger.js';
@@ -50,9 +50,10 @@ imagesRouter.get('/new', async (_req: Request, res: Response) => {
 
 imagesRouter.get('/fix-file-names', async (_req: Request, res: Response) => {
   try {
-    //const ret = await new ImagesFileService().fixNames();
-    const ret = true;
-    res.json(ret);
+    const ret = await new ImagesFileService().fixNames();
+    res.json('Done');
+    //const ret = "Not implemented";
+    //res.status(501).json(ret);
   } catch (error) {
     Logger.error(`imagesRouter: fixNames -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -61,9 +62,10 @@ imagesRouter.get('/fix-file-names', async (_req: Request, res: Response) => {
 
 imagesRouter.get('/fix-index', async (_req: Request, res: Response) => {
   try {
-    //const ret = await new ImagesService().fixNames();
-    const ret = true;
-    res.json(ret);
+    const ret = await new ImagesService().fixNames();
+    res.json('Done');
+    //const ret = "Not implemented";
+    //res.status(501).json(ret);
   } catch (error) {
     Logger.error(`imagesRouter: fixNames -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -72,9 +74,10 @@ imagesRouter.get('/fix-index', async (_req: Request, res: Response) => {
 
 imagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
   try {
-    //const ret = await new ImagesService().listDuplicates();
-    const ret = true;
+    const ret = await new ImagesService().listDuplicates();
     res.json(ret);
+    //const ret = "Not implemented";
+    //res.status(501).json(ret);
   } catch (error) {
     Logger.error(`imagesRouter: listDuplicates -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -83,9 +86,8 @@ imagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
 
 imagesRouter.patch('/', async (req: Request, res: Response) => {
   try {
-    const items: ImageEdit[] = req.body;
-
-    const ret = await new ImagesService().updateItems(items);
+    const images: ImagesEdit = req.body;
+    const ret = await new ImagesService().updateItems(images.items);
     res.json(ret);
   } catch (error) {
     Logger.error(`imagesRouter: patch -> Error: ${error}`);
