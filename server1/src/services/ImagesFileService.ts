@@ -1,15 +1,13 @@
-import { readdirSync, renameSync, statSync } from 'fs';
+import { existsSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
-import { ImageEdit } from 'types/ImageEdit.js';
 import { Image } from '../types/Image.js';
+import { ImageEdit } from '../types/ImageEdit.js';
 import { Images } from '../types/Images.js';
+import { LOCAL_IMAGE_PATH } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { ImagesService } from './ImagesService.js';
 
 export class ImagesFileService {
-  private directoryPath =
-    'C:\\Users\\jdumo\\Documents\\0Projects\\site8\\client\\public\\images';
-
   // Get all data
   public async getMatchedItems(): Promise<Images | undefined> {
     try {
@@ -30,12 +28,13 @@ export class ImagesFileService {
   // Get all data
   public getFolders() {
     try {
-      const fullPath = this.directoryPath;
-      Logger.error(`ImagesFileService: getFolders -> path: ${fullPath}`);
+      Logger.error(
+        `ImagesFileService: getFolders -> path: ${LOCAL_IMAGE_PATH}`,
+      );
 
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
-      const items = readdirSync(fullPath, {
+      const items = readdirSync(LOCAL_IMAGE_PATH, {
         encoding: 'utf8',
         recursive: true,
         withFileTypes: true,
@@ -95,12 +94,12 @@ export class ImagesFileService {
 
   // Get "items" from 'sort' directory
   public async getItemsFromSortDirectory(): Promise<Images | undefined> {
-    return this.getItemsFromDirectory(this.directoryPath, 'sort');
+    return this.getItemsFromDirectory(LOCAL_IMAGE_PATH, 'sort');
   }
 
   // Get all data
   public async getItemsFromBaseDirectory(): Promise<Images | undefined> {
-    return this.getItemsFromDirectory(this.directoryPath);
+    return this.getItemsFromDirectory(LOCAL_IMAGE_PATH);
   }
 
   private async matchItems(
@@ -114,17 +113,17 @@ export class ImagesFileService {
         return items;
       }
 
-      const ret = items?.map((item) => {
-        const matched = item.src
-          ? data.items?.find((x) => x.src === item.src)
-          : false;
-        return {
-          ...item,
-          isMatched: !!matched,
-          matchedId: matched ? matched?.id : 0,
-        };
-      });
-      return ret;
+      // const ret = items?.map((item) => {
+      //   const matched = item.src
+      //     ? data.items?.find((x) => x.src === item.src)
+      //     : false;
+      //   return {
+      //     ...item,
+      //     isMatched: !!matched,
+      //     matchedId: matched ? matched?.id : 0,
+      //   };
+      // });
+      // return ret;
     } catch (error) {
       Logger.error(`ImagesFileService: matchItems -> ${error}`);
       return undefined;
@@ -141,28 +140,27 @@ export class ImagesFileService {
         return true;
       }
 
-      console.log('items', items);
-
       items.forEach((item) => {
         const path1 = path.join(
-          this.directoryPath,
+          LOCAL_IMAGE_PATH,
           item.originalFolder ?? '',
           item.fileName,
         );
         const path2 = path.join(
-          this.directoryPath,
+          LOCAL_IMAGE_PATH,
           item.folder ?? '',
           item.fileName,
         );
-        console.log('path1', path1);
-        console.log('path2', path2);
-
-        //renameSync(path1, path2);
+        if (existsSync(path2)) {
+          Logger.error(`ImagesFileService: moveItems -> ${path2} exists.`);
+          return false;
+        }
+        renameSync(path1, path2);
       });
 
       return true;
     } catch (error) {
-      Logger.error(`ImagesFileService: moveItems -> ${error}`);
+      Logger.error(`ImagesFileService: moveItems ->  ${error}`);
       return false;
     }
   }
@@ -171,13 +169,13 @@ export class ImagesFileService {
     try {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
-      const items = readdirSync(this.directoryPath, {
+      const items = readdirSync(LOCAL_IMAGE_PATH, {
         encoding: 'utf8',
         recursive: true,
       });
 
       items.forEach((item) => {
-        const itemPath = path.join(this.directoryPath, item);
+        const itemPath = path.join(LOCAL_IMAGE_PATH, item);
         const stats = statSync(itemPath);
         if (stats.isFile()) {
           renameSync(itemPath, itemPath.toLowerCase());

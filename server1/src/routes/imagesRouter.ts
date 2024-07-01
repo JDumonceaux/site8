@@ -17,6 +17,17 @@ imagesRouter.get('/', async (_req: Request, res: Response) => {
   }
 });
 
+imagesRouter.get('/file', async (_req: Request, res: Response) => {
+  try {
+    const images = await new ImagesService().getItems();
+    const items = images?.items?.filter((item) => item.folder === 'sort');
+    res.json({ ...images, items });
+  } catch (error) {
+    Logger.error(`imagesRouter: get -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 imagesRouter.get('/scan', async (_req: Request, res: Response) => {
   try {
     const images = await new ImagesFileService().getMatchedItems();
@@ -55,7 +66,7 @@ imagesRouter.get('/fix-file-names', async (_req: Request, res: Response) => {
     //const ret = "Not implemented";
     //res.status(501).json(ret);
   } catch (error) {
-    Logger.error(`imagesRouter: fixNames -> Error: ${error}`);
+    Logger.error(`imagesRouter: fixFileNames -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -67,7 +78,7 @@ imagesRouter.get('/fix-index', async (_req: Request, res: Response) => {
     //const ret = "Not implemented";
     //res.status(501).json(ret);
   } catch (error) {
-    Logger.error(`imagesRouter: fixNames -> Error: ${error}`);
+    Logger.error(`imagesRouter: fixIndex -> Error: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

@@ -9,7 +9,6 @@ export type Image = {
   readonly matchedId?: number;
   readonly fileName: string;
   readonly folder?: string;
-  readonly src: string;
   readonly edit_date?: Date;
   readonly create_date?: Date;
 };

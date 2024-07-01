@@ -5,9 +5,9 @@ import { SelectIcon } from 'components/icons/SelectIcon';
 import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback, useState, useTransition } from 'react';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 import { styled } from 'styled-components';
-import { IMAGE_BASE } from 'utils';
+import { IMAGE_BASE, ServiceUrl } from 'utils';
 
 const ImagesEditPage = (): JSX.Element => {
   const [isPending, startTransition] = useTransition();
@@ -23,10 +23,16 @@ const ImagesEditPage = (): JSX.Element => {
     handleClear: onClear,
     submitForm,
     scanForNewItems,
+    refreshItems,
     setFieldValue,
+    fetchData,
   } = useImagesEdit();
 
   const { setSnackbarMessage } = useSnackbar();
+
+  useEffect(() => {
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_FILE);
+  }, [fetchData]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -47,6 +53,14 @@ const ImagesEditPage = (): JSX.Element => {
     setSnackbarMessage('Scanning...');
     startTransition(() => {
       scanForNewItems();
+    });
+    setSnackbarMessage('Done');
+  }, [scanForNewItems, setSnackbarMessage, startTransition]);
+
+  const handleRefresh = useCallback(() => {
+    setSnackbarMessage('Updating...');
+    startTransition(() => {
+      refreshItems();
     });
     setSnackbarMessage('Done');
   }, [scanForNewItems, setSnackbarMessage, startTransition]);
@@ -79,12 +93,6 @@ const ImagesEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            <StyledPlainButton
-              data-testid="button-scan"
-              onClick={handleScan}
-              type="submit">
-              Scan for New
-            </StyledPlainButton>
             <a
               href="http://localhost:3005/api/images/fix-file-names"
               rel="noreferrer"
@@ -108,6 +116,18 @@ const ImagesEditPage = (): JSX.Element => {
               onClick={handleClear}
               type="reset">
               Clear All
+            </StyledPlainButton>
+            <StyledPlainButton
+              data-testid="button-scan"
+              onClick={handleScan}
+              type="submit">
+              Scan for New
+            </StyledPlainButton>
+            <StyledPlainButton
+              data-testid="button-refresh"
+              onClick={handleRefresh}
+              type="submit">
+              Refresh
             </StyledPlainButton>
             <StyledPlainButton
               data-testid="button-save"

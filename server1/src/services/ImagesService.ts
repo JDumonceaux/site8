@@ -88,10 +88,6 @@ export class ImagesService {
           id: id++,
           edit_date: new Date(),
           create_date: new Date(),
-          src:
-            item.folder && item.folder.length > 0
-              ? `${item.folder}/${item.fileName}`
-              : item.fileName,
         });
       });
 
@@ -126,7 +122,6 @@ export class ImagesService {
 
       const fixedItems = item?.items?.map((x) => ({
         ...x,
-        src: x.src ? x.src.toLowerCase() : x.src,
         fileName: x.fileName ? x.fileName.toLowerCase() : x.fileName,
       }));
 
@@ -175,7 +170,7 @@ export class ImagesService {
       }
 
       // Get the updated records
-      const updatedItems: Image[] = items.map((item) => {
+      const updatedItems: ImageEdit[] = items.map((item) => {
         const currItem = images.items?.find((x) => x.id === item.id);
         console.log('currItem', currItem, item.id);
         if (currItem) {
@@ -190,27 +185,26 @@ export class ImagesService {
         }
       });
 
-      console.log('updatedItems12', updatedItems);
-
       // Move the files to a new directory
       await new ImagesFileService().moveItems(updatedItems);
 
-      // Remove multiple items
-      const data: Image[] = images.items.map((x) => {
-        const newItem = updatedItems.find((y) => y.id === x.id);
-        return newItem ? newItem : x;
-      });
-
-      console.log('data1', data.length);
-      console.log('items1', images.items.length);
-
-      if (data.length !== images.items.length) {
-        Logger.error(`ImagesService: updateItem -> Item count mismatch`);
-        return false;
-      }
+      // Replace the changed records in the original data
+      const data: Image[] = images.items
+        .map((x) => {
+          const foundItem = updatedItems.find((y) => y.id === x.id);
+          const addItem = () => {
+            if (foundItem) {
+              const { originalFolder, ...rest } = foundItem;
+              return cleanUpData<Image>({ ...rest });
+            }
+            return undefined;
+          };
+          const newItem = addItem();
+          return newItem ? newItem : x;
+        })
+        .filter(Boolean);
 
       await this.writeFile({ ...images, items: data });
-      return true;
     } catch (error) {
       Logger.error(`ImagesService: updateItem -> ${error}`);
     }

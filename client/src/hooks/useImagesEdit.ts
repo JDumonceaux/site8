@@ -47,11 +47,7 @@ const useImagesEdit = () => {
 
   // Save to local - adding local index
   useEffect(() => {
-    // Trim down to "sort" folder only
-    const filteredItems = data?.items
-      ?.filter((x) => x.folder === 'sort')
-      .map((x, index) => ({ ...x, localId: index + 1 }));
-    setLocalItems(filteredItems);
+    setLocalItems(data?.items);
   }, [data?.items, setLocalItems]);
 
   useEffect(() => {
@@ -184,9 +180,14 @@ const useImagesEdit = () => {
     fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
   }, [fetchData]);
 
+  const refreshItems = useCallback(() => {
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_FILE);
+  }, [fetchData]);
+
   return useMemo(
     () => ({
       data: formValues,
+      fetchData,
       isProcessing,
       isLoading,
       error,
@@ -196,9 +197,11 @@ const useImagesEdit = () => {
       scanForNewItems,
       getDefaultProps,
       setFieldValue,
+      refreshItems,
     }),
     [
       formValues,
+      fetchData,
       isProcessing,
       isLoading,
       error,
@@ -208,6 +211,7 @@ const useImagesEdit = () => {
       scanForNewItems,
       getDefaultProps,
       setFieldValue,
+      refreshItems,
     ],
   );
 };
