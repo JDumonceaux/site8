@@ -45,9 +45,15 @@ const useImagesEdit = () => {
   const { formValues, getDefaultProps, setFormValues, setFieldValue } =
     useFormArray<FormType>();
 
+  console.log('localItems', localItems);
+
   // Save to local - adding local index
   useEffect(() => {
-    setLocalItems(data?.items);
+    const indexedItems = data?.items?.map((x, index) => ({
+      ...x,
+      localId: index + 1,
+    }));
+    setLocalItems(indexedItems);
   }, [data?.items, setLocalItems]);
 
   useEffect(() => {
@@ -69,6 +75,15 @@ const useImagesEdit = () => {
       setFormValues(ret);
     }
   }, [localItems, setFormValues]);
+
+  // Scan the 'sort' directory for new items
+  const scanForNewItems = useCallback(() => {
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
+  }, [fetchData]);
+
+  const refreshItems = useCallback(() => {
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_FILE);
+  }, [fetchData]);
 
   // Validate  form
   // const validateForm = useCallback(() => {
@@ -174,15 +189,6 @@ const useImagesEdit = () => {
     setIsSaved(true);
     return true;
   }, [saveItems]);
-
-  // Scan the 'sort' directory for new items
-  const scanForNewItems = useCallback(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
-  }, [fetchData]);
-
-  const refreshItems = useCallback(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_FILE);
-  }, [fetchData]);
 
   return useMemo(
     () => ({

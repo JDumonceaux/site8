@@ -28,9 +28,7 @@ export class ImagesFileService {
   // Get all data
   public getFolders() {
     try {
-      Logger.error(
-        `ImagesFileService: getFolders -> path: ${LOCAL_IMAGE_PATH}`,
-      );
+      Logger.info(`ImagesFileService: getFolders -> path: ${LOCAL_IMAGE_PATH}`);
 
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
@@ -135,11 +133,9 @@ export class ImagesFileService {
       Logger.info(
         `ImagesFileService: moveItems. -> (${items ? items?.length : 0}) to move.`,
       );
-
       if (!items) {
         return true;
       }
-
       items.forEach((item) => {
         const path1 = path.join(
           LOCAL_IMAGE_PATH,
@@ -157,7 +153,6 @@ export class ImagesFileService {
         }
         renameSync(path1, path2);
       });
-
       return true;
     } catch (error) {
       Logger.error(`ImagesFileService: moveItems ->  ${error}`);

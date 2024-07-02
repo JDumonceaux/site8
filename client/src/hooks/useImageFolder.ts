@@ -17,8 +17,13 @@ const useImageFolder = () => {
     [dispatch],
   );
 
+  const getData = useCallback(
+    () => data?.map((x, index) => ({ id: index + 1, name: x })),
+    [data],
+  );
+
   return {
-    data,
+    data: getData(),
     isLoading,
     error,
     fetchData: dispatchFetchImageFolder,

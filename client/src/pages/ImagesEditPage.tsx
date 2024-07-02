@@ -5,16 +5,16 @@ import { SelectIcon } from 'components/icons/SelectIcon';
 import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback, useEffect, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { styled } from 'styled-components';
-import { IMAGE_BASE, ServiceUrl } from 'utils';
+
+import { IMAGE_BASE } from 'utils';
 
 const ImagesEditPage = (): JSX.Element => {
   const [isPending, startTransition] = useTransition();
   const [currFolder, setCurrFolder] = useState<string>('');
 
   const { data: imageFolders } = useImageFolder();
-
   const {
     data,
     isLoading,
@@ -27,40 +27,43 @@ const ImagesEditPage = (): JSX.Element => {
     setFieldValue,
     fetchData,
   } = useImagesEdit();
-
   const { setSnackbarMessage } = useSnackbar();
 
   useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_FILE);
-  }, [fetchData]);
+    refreshItems();
+  }, [fetchData, refreshItems]);
+
+  const handleRefresh = useCallback(() => {
+    setSnackbarMessage('Updating...');
+    startTransition(() => {
+      refreshItems();
+    });
+    setSnackbarMessage('Done');
+  }, [refreshItems, setSnackbarMessage]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.stopPropagation();
       e.preventDefault();
       setSnackbarMessage('Saving...');
+
       const result = submitForm();
       if (result) {
         setSnackbarMessage('Saved');
       } else {
         setSnackbarMessage(`Error saving ${error}`);
       }
+      if (result) {
+        handleRefresh();
+      }
     },
-    [submitForm, error, setSnackbarMessage],
+    [setSnackbarMessage, submitForm, handleRefresh, error],
   );
 
   const handleScan = useCallback(() => {
     setSnackbarMessage('Scanning...');
     startTransition(() => {
       scanForNewItems();
-    });
-    setSnackbarMessage('Done');
-  }, [scanForNewItems, setSnackbarMessage, startTransition]);
-
-  const handleRefresh = useCallback(() => {
-    setSnackbarMessage('Updating...');
-    startTransition(() => {
-      refreshItems();
     });
     setSnackbarMessage('Done');
   }, [scanForNewItems, setSnackbarMessage, startTransition]);
@@ -183,25 +186,38 @@ const ImagesEditPage = (): JSX.Element => {
           </LoadingWrapper>
         </StyledMain.Section>
         <StyledMain.Aside>
-          {currFolder && currFolder.length > 0 ? (
-            <StyledButton
-              // eslint-disable-next-line react/no-array-index-key
-              onClick={() => handleOnClick('')}
-              type="button">
-              {currFolder}
-            </StyledButton>
-          ) : (
-            <div>Select Folder</div>
-          )}
+          <StyledHeader>
+            <div>
+              {currFolder && currFolder.length > 0 ? (
+                <StyledButton
+                  // eslint-disable-next-line react/no-array-index-key
+                  onClick={() => handleOnClick('')}
+                  type="button">
+                  {currFolder}
+                </StyledButton>
+              ) : (
+                <div>Select Folder</div>
+              )}
+            </div>
+            <div>{data.length}</div>
+          </StyledHeader>
           <hr />
-          {imageFolders?.map((folder, index) => (
-            <StyledButton
-              // eslint-disable-next-line react/no-array-index-key
-              key={index}
-              onClick={() => handleOnClick(folder)}
-              type="button">
-              {folder}
-            </StyledButton>
+          {imageFolders?.map((folder) => (
+            <React.Fragment key={folder.id}>
+              {folder.name === currFolder ? (
+                <StyledActiveButton
+                  onClick={() => handleOnClick(folder.name)}
+                  type="button">
+                  {folder.name}
+                </StyledActiveButton>
+              ) : (
+                <StyledButton
+                  onClick={() => handleOnClick(folder.name)}
+                  type="button">
+                  {folder.name}
+                </StyledButton>
+              )}
+            </React.Fragment>
           ))}
         </StyledMain.Aside>
       </StyledMain>
@@ -217,7 +233,17 @@ const StyledContainer = styled.div`
 `;
 const StyledButton = styled.button`
   display: block;
+  width: 100%;
   padding: 5px 0;
+  text-align: left;
+`;
+const StyledActiveButton = styled.button`
+  display: block;
+  width: 100%;
+  padding: 5px 0;
+  color: var(--navbar-dark-primary);
+  background-color: var(--palette-samp);
+  text-align: left;
 `;
 const StyledButton2 = styled.button`
   padding: 0 5px;
@@ -227,7 +253,6 @@ const StyledButton2 = styled.button`
 const StyledForm = styled.form`
   width: 100%;
 `;
-
 const StyledImgContainer = styled.div`
   display: flex;
   align-items: left;
@@ -250,4 +275,10 @@ const StyledOuterRow = styled.div`
 const StyledSubRow = styled.div`
   display: flex;
   width: 100%;
+`;
+const StyledHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px;
+  align-items: baseline;
 `;
