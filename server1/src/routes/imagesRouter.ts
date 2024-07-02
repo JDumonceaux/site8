@@ -95,6 +95,16 @@ imagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
   }
 });
 
+imagesRouter.get('/sync', async (_req: Request, res: Response) => {
+  try {
+    const images = await new ImagesService().syncItems();
+    res.json(images);
+  } catch (error) {
+    Logger.error(`imagesRouter: get -> Error: ${error}`);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 imagesRouter.patch('/', async (req: Request, res: Response) => {
   try {
     const images: ImagesEdit = req.body;

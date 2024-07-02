@@ -114,6 +114,12 @@ const ImagesEditPage = (): JSX.Element => {
               target="_blank">
               List Duplicates
             </a>
+            <a
+              href="http://localhost:3005/api/images/sync"
+              rel="noreferrer"
+              target="_blank">
+              Sync
+            </a>
             <StyledPlainButton
               data-testid="button-clear"
               onClick={handleClear}

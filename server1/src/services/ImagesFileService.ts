@@ -76,7 +76,7 @@ export class ImagesFileService {
       const ret: Image[] = files.map((file) => {
         return {
           fileName: path.basename(file),
-          folder: addPath ?? '',
+          folder: path.dirname(file),
         };
       }) as Image[];
 
@@ -149,9 +149,9 @@ export class ImagesFileService {
         );
         if (existsSync(path2)) {
           Logger.error(`ImagesFileService: moveItems -> ${path2} exists.`);
-          return false;
+        } else {
+          renameSync(path1, path2);
         }
-        renameSync(path1, path2);
       });
       return true;
     } catch (error) {

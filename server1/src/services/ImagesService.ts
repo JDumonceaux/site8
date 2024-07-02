@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
-import { ImageEdit } from 'types/ImageEdit.js';
 import { Image } from '../types/Image.js';
+import { ImageEdit } from '../types/ImageEdit.js';
+import { ImageSync } from '../types/ImagerSync.js';
 import { Images } from '../types/Images.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
@@ -102,6 +103,91 @@ export class ImagesService {
       return { ...data, duplicateImages };
     } catch (error) {
       Logger.error(`ImagesService: loadNewItems -> ${error}`);
+    }
+    return undefined;
+  }
+
+  public async syncItems(): Promise<ImageSync | undefined> {
+    try {
+      // Get all images directory
+      const images = await new ImagesFileService().getItemsFromBaseDirectory();
+      // Get current items
+      const prev = await this.readFile();
+      if (!prev) {
+        throw new Error('syncItems > Index file not loaded');
+      }
+
+      const ret: Image[] = [];
+      const issues: Image[] = [];
+      let recordsUpdated = 0;
+
+      // Match the index file to the images directory
+      prev.items?.forEach((item) => {
+        const matchedItems = images?.items?.filter(
+          (x) => x.fileName.length > 0 && x.fileName === item.fileName,
+        );
+        const { src, ...rest } = item;
+        const newItem = { ...rest };
+        if (matchedItems) {
+          switch (matchedItems.length) {
+            case 0:
+              ret.push(newItem);
+              issues.push({ ...newItem, issue: 'Image not found' });
+              break;
+            case 1:
+              // Automatically update folder if it's different
+              if (newItem.folder !== matchedItems[0].folder) {
+                ret.push({ ...newItem, folder: matchedItems[0].folder });
+                recordsUpdated++;
+              } else {
+                ret.push(newItem);
+              }
+              break;
+            case 2:
+              ret.push(newItem);
+              issues.push({ ...newItem, issue: 'Duplicate found' });
+              break;
+            default:
+              ret.push(newItem);
+              issues.push({
+                ...newItem,
+                issue: matchedItems.length + ' found',
+              });
+              break;
+          }
+        } else {
+          ret.push(item);
+          issues.push({ ...item, issue: 'No match found' });
+        }
+      });
+
+      if (prev.items?.length !== ret.length) {
+        Logger.info(
+          `ImagesService: syncItems -> ${issues.length} issues found`,
+        );
+        return;
+      }
+
+      // Write back file
+      const data = { ...prev, items: ret };
+      await this.writeFile(data);
+
+      // Trim down the data for display
+      const issuesTemp = issues
+        .sort((a, b) => a.fileName?.localeCompare(b.fileName))
+        .map((x) => ({
+          id: x.id,
+          fileName: x.fileName,
+          issue: x.issue,
+          folder: x.folder,
+        }));
+      return {
+        fileCount: ret.length,
+        recordsUpdated: recordsUpdated,
+        issues: issuesTemp,
+      };
+    } catch (error) {
+      Logger.error(`ImagesService: syncItems -> ${error}`);
     }
     return undefined;
   }

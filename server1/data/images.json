@@ -9,8 +9,7 @@
       "edit_date": "2024-06-29T19:23:56.046Z",
       "location": "Hillerød, Denmark",
       "name": "Frederiksborg Castle",
-      "official_url": "https://dnm.dk/en/frederiksborg-castle/",
-      "src": "frederiksborg-castle-denmark.webp"
+      "official_url": "https://dnm.dk/en/frederiksborg-castle/"
     },
     {
       "id": 2,
@@ -18,8 +17,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Helsingør, Denmark",
       "name": "Kronborg Castle",
-      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/kronborg-castle.html",
-      "src": "kronborg-castle-denmark.webp"
+      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/kronborg-castle.html"
     },
     {
       "id": 3,
@@ -27,8 +25,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Copenhagen, Denmark",
       "name": "Rosenborg Castle",
-      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/rosenborg-castle.html",
-      "src": "rosenborg-castle-denmark.webp"
+      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/rosenborg-castle.html"
     },
     {
       "id": 4,
@@ -36,8 +33,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Copenhagen, Denmark",
       "name": "Amalienborg Palace",
-      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/amalienborg-palace.html",
-      "src": "amalienborg-palace-denmark.webp"
+      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/amalienborg-palace.html"
     },
     {
       "id": 5,
@@ -45,8 +41,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Copenhagen, Denmark",
       "name": "Christiansborg Palace",
-      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/christiansborg-palace.html",
-      "src": "christiansborg-palace-denmark.webp"
+      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/christiansborg-palace.html"
     },
     {
       "id": 6,
@@ -54,8 +49,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Fredensborg, Denmark",
       "name": "Fredensborg Palace",
-      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/fredensborg-palace.html",
-      "src": "fredensborg-palace-denmark.webp"
+      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/fredensborg-palace.html"
     },
     {
       "id": 7,
@@ -63,8 +57,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Gråsten, Denmark",
       "name": "Gråsten Palace",
-      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/graasten-palace.html",
-      "src": "grasten-palace-denmark.webp"
+      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/graasten-palace.html"
     },
     {
       "id": 8,
@@ -72,8 +65,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Aarhus, Denmark",
       "name": "Marselisborg Palace",
-      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/marselisborg-palace.html",
-      "src": "marselisborg-palace-denmark.webp"
+      "official_url": "https://kongeligeslotte.dk/en/palaces-and-gardens/marselisborg-palace.html"
     },
     {
       "id": 9,
@@ -82,7 +74,6 @@
       "location": "Dublin, Ireland",
       "name": "Library of Trinity College",
       "official_url": "http://www.tcd.ie/library/",
-      "src": "libraryoftrinitycollege.jpg",
       "tags": [
         "Library"
       ]
@@ -93,8 +84,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Dublin, Ireland",
       "name": "Dublin Castle",
-      "official_url": "https://www.dublincastle.ie/",
-      "src": "dublin-castle-ireland.webp"
+      "official_url": "https://www.dublincastle.ie/"
     },
     {
       "id": 11,
@@ -102,8 +92,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Kilkenny, Ireland",
       "name": "Kilkenny Castle",
-      "official_url": "https://kilkennycastle.ie/",
-      "src": "kilkenny-castle-ireland.webp"
+      "official_url": "https://kilkennycastle.ie/"
     },
     {
       "id": 12,
@@ -111,8 +100,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Malahide, Ireland",
       "name": "Malahide Castle",
-      "official_url": "https://www.malahidecastleandgardens.ie/",
-      "src": "malahide-castle-ireland.webp"
+      "official_url": "https://www.malahidecastleandgardens.ie/"
     },
     {
       "id": 13,
@@ -120,8 +108,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Cashel, Ireland",
       "name": "Rock of Cashel",
-      "official_url": "https://www.heritageireland.ie/en/south-east/rockofcashel/",
-      "src": "rock-of-cashel-ireland.webp"
+      "official_url": "https://www.heritageireland.ie/en/south-east/rockofcashel/"
     },
     {
       "id": 14,
@@ -129,8 +116,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Blarney, Ireland",
       "name": "Blarney Castle",
-      "official_url": "https://www.blarneycastle.ie/",
-      "src": "blarney-castle-ireland.webp"
+      "official_url": "https://www.blarneycastle.ie/"
     },
     {
       "id": 15,
@@ -138,8 +124,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Bunratty, Ireland",
       "name": "Bunratty Castle",
-      "official_url": "https://www.shannonheritage.com/Visit/BunrattyCastleFolkPark/",
-      "src": "bunratty-castle-ireland.webp"
+      "official_url": "https://www.shannonheritage.com/Visit/BunrattyCastleFolkPark/"
     },
     {
       "id": 16,
@@ -147,8 +132,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Connemara, Ireland",
       "name": "Kylemore Abbey",
-      "official_url": "https://www.kylemoreabbey.com/",
-      "src": "kylemore-abbey-ireland.webp"
+      "official_url": "https://www.kylemoreabbey.com/"
     },
     {
       "id": 17,
@@ -156,8 +140,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Cong, Ireland",
       "name": "Ashford Castle",
-      "official_url": "https://www.ashfordcastle.com/",
-      "src": "ashford-castle-ireland.webp"
+      "official_url": "https://www.ashfordcastle.com/"
     },
     {
       "id": 18,
@@ -165,8 +148,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Edinburgh, Scotland",
       "name": "Edinburgh Castle",
-      "official_url": "https://www.edinburghcastle.scot/",
-      "src": "edinburgh-castle-scotland.webp"
+      "official_url": "https://www.edinburghcastle.scot/"
     },
     {
       "id": 19,
@@ -174,8 +156,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Stirling, Scotland",
       "name": "Stirling Castle",
-      "official_url": "https://www.stirlingcastle.scot/",
-      "src": "stirling-castle-scotland.webp"
+      "official_url": "https://www.stirlingcastle.scot/"
     },
     {
       "id": 20,
@@ -183,8 +164,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Glamis, Scotland",
       "name": "Glamis Castle",
-      "official_url": "https://www.glamis-castle.co.uk/",
-      "src": "glamis-castle-scotland.webp"
+      "official_url": "https://www.glamis-castle.co.uk/"
     },
     {
       "id": 21,
@@ -192,8 +172,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Blair Atholl, Scotland",
       "name": "Blair Castle",
-      "official_url": "https://www.blair-castle.co.uk/",
-      "src": "blair-castle-scotland.webp"
+      "official_url": "https://www.blair-castle.co.uk/"
     },
     {
       "id": 22,
@@ -201,8 +180,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Ballater, Scotland",
       "name": "Balmoral Castle",
-      "official_url": "https://www.balmoralcastle.com/",
-      "src": "balmoral-castle-scotland.webp"
+      "official_url": "https://www.balmoralcastle.com/"
     },
     {
       "id": 23,
@@ -210,8 +188,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Inveraray, Scotland",
       "name": "Inveraray Castle",
-      "official_url": "https://www.inveraray-castle.com/",
-      "src": "inveraray-castle-scotland.webp"
+      "official_url": "https://www.inveraray-castle.com/"
     },
     {
       "id": 24,
@@ -219,8 +196,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Golspie, Scotland",
       "name": "Dunrobin Castle",
-      "official_url": "https://www.dunrobincastle.co.uk/",
-      "src": "dunrobin-castle-scotland.webp"
+      "official_url": "https://www.dunrobincastle.co.uk/"
     },
     {
       "id": 25,
@@ -228,8 +204,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Dornie, Scotland",
       "name": "Eilean Donan Castle",
-      "official_url": "https://www.eileandonancastle.com/",
-      "src": "eilean-donan-castle-scotland.webp"
+      "official_url": "https://www.eileandonancastle.com/"
     },
     {
       "id": 26,
@@ -237,8 +212,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Drumnadrochit, Scotland",
       "name": "Urquhart Castle",
-      "official_url": "https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/",
-      "src": "urquhart-castle-scotland.webp"
+      "official_url": "https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/"
     },
     {
       "id": 27,
@@ -246,8 +220,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Nairn, Scotland",
       "name": "Cawdor Castle",
-      "official_url": "https://www.cawdorcastle.com/",
-      "src": "cawdor-castle-scotland.webp"
+      "official_url": "https://www.cawdorcastle.com/"
     },
     {
       "id": 28,
@@ -255,8 +228,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Dunvegan, Scotland",
       "name": "Dunvegan Castle",
-      "official_url": "https://www.dunvegancastle.com/",
-      "src": "dunvegan-castle-scotland.webp"
+      "official_url": "https://www.dunvegancastle.com/"
     },
     {
       "id": 29,
@@ -264,8 +236,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Marazion, England",
       "name": "St. Michael's Mount",
-      "official_url": "https://www.stmichaelsmount.co.uk/",
-      "src": "st-michaels-mount-england.webp"
+      "official_url": "https://www.stmichaelsmount.co.uk/"
     },
     {
       "id": 30,
@@ -273,8 +244,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Windsor, England",
       "name": "Windsor Castle",
-      "official_url": "https://www.rct.uk/visit/windsor-castle",
-      "src": "windsor-castle-england.webp"
+      "official_url": "https://www.rct.uk/visit/windsor-castle"
     },
     {
       "id": 31,
@@ -282,8 +252,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "London, England",
       "name": "Buckingham Palace",
-      "official_url": "https://www.rct.uk/visit/the-state-rooms-buckingham-palace",
-      "src": "buckingham-palace-england.webp"
+      "official_url": "https://www.rct.uk/visit/the-state-rooms-buckingham-palace"
     },
     {
       "id": 32,
@@ -291,8 +260,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "London, England",
       "name": "Tower of London",
-      "official_url": "https://www.hrp.org.uk/tower-of-london/",
-      "src": "tower-of-london-england.webp"
+      "official_url": "https://www.hrp.org.uk/tower-of-london/"
     },
     {
       "id": 33,
@@ -300,8 +268,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "East Molesey, England",
       "name": "Hampton Court Palace",
-      "official_url": "https://www.hrp.org.uk/hampton-court-palace/",
-      "src": "hampton-court-palace-england.webp"
+      "official_url": "https://www.hrp.org.uk/hampton-court-palace/"
     },
     {
       "id": 34,
@@ -309,8 +276,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Woodstock, England",
       "name": "Blenheim Palace",
-      "official_url": "https://www.blenheimpalace.com/",
-      "src": "blenheim-palace-england.webp"
+      "official_url": "https://www.blenheimpalace.com/"
     },
     {
       "id": 35,
@@ -318,8 +284,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Warwick, England",
       "name": "Warwick Castle",
-      "official_url": "https://www.warwick-castle.com/",
-      "src": "warwick-castle-england.webp"
+      "official_url": "https://www.warwick-castle.com/"
     },
     {
       "id": 36,
@@ -327,8 +292,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Maidstone, England",
       "name": "Leeds Castle",
-      "official_url": "https://www.leeds-castle.com/",
-      "src": "leeds-castle-england.webp"
+      "official_url": "https://www.leeds-castle.com/"
     },
     {
       "id": 37,
@@ -336,8 +300,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Edenbridge, England",
       "name": "Hever Castle",
-      "official_url": "https://www.hevercastle.co.uk/",
-      "src": "hever-castle-england.webp"
+      "official_url": "https://www.hevercastle.co.uk/"
     },
     {
       "id": 38,
@@ -345,8 +308,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Arundel, England",
       "name": "Arundel Castle",
-      "official_url": "https://www.arundelcastle.org/",
-      "src": "arundel-castle-england.webp"
+      "official_url": "https://www.arundelcastle.org/"
     },
     {
       "id": 39,
@@ -354,8 +316,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Newbury, England",
       "name": "Highclere Castle",
-      "official_url": "https://www.highclerecastle.co.uk/",
-      "src": "highclere-castle-england.webp"
+      "official_url": "https://www.highclerecastle.co.uk/"
     },
     {
       "id": 40,
@@ -363,8 +324,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Chambord, France",
       "name": "Château de Chambord",
-      "official_url": "https://www.chambord.org/",
-      "src": "chateau-de-chambord-france.webp"
+      "official_url": "https://www.chambord.org/"
     },
     {
       "id": 41,
@@ -372,8 +332,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Chenonceaux, France",
       "name": "Château de Chenonceau",
-      "official_url": "https://www.chenonceau.com/",
-      "src": "chateau-de-chenonceau-france.webp"
+      "official_url": "https://www.chenonceau.com/"
     },
     {
       "id": 42,
@@ -381,8 +340,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Versailles, France",
       "name": "Château de Versailles",
-      "official_url": "https://en.chateauversailles.fr/",
-      "src": "chateau-de-versailles-france.webp"
+      "official_url": "https://en.chateauversailles.fr/"
     },
     {
       "id": 43,
@@ -390,8 +348,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Chantilly, France",
       "name": "Château de Chantilly",
-      "official_url": "https://www.domainedechantilly.com/en/",
-      "src": "chateau-de-chantilly-france.webp"
+      "official_url": "https://www.domainedechantilly.com/en/"
     },
     {
       "id": 44,
@@ -399,8 +356,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Fontainebleau, France",
       "name": "Château de Fontainebleau",
-      "official_url": "https://www.chateaudefontainebleau.fr/",
-      "src": "chateau-de-fontainebleau-france.webp"
+      "official_url": "https://www.chateaudefontainebleau.fr/"
     },
     {
       "id": 45,
@@ -408,8 +364,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Maincy, France",
       "name": "Château de Vaux-le-Vicomte",
-      "official_url": "https://vaux-le-vicomte.com/en/",
-      "src": "chateau-de-vaux-le-vicomte-france.webp"
+      "official_url": "https://vaux-le-vicomte.com/en/"
     },
     {
       "id": 46,
@@ -417,8 +372,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Villandry, France",
       "name": "Château de Villandry",
-      "official_url": "https://www.chateauvillandry.fr/",
-      "src": "chateau-de-villandry-france.webp"
+      "official_url": "https://www.chateauvillandry.fr/"
     },
     {
       "id": 47,
@@ -426,8 +380,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Blois, France",
       "name": "Château de Blois",
-      "official_url": "https://en.chateaudeblois.fr/",
-      "src": "chateau-de-blois-france.webp"
+      "official_url": "https://en.chateaudeblois.fr/"
     },
     {
       "id": 48,
@@ -435,8 +388,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Châteaudun, France",
       "name": "Château de Châteaudun",
-      "official_url": "https://www.chateaudun.net/",
-      "src": "chateau-de-chateaudun-france.webp"
+      "official_url": "https://www.chateaudun.net/"
     },
     {
       "id": 49,
@@ -444,8 +396,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Saumur, France",
       "name": "Château de Saumur",
-      "official_url": "https://www.chateau-saumur.fr/",
-      "src": "chateau-de-saumur-france.webp"
+      "official_url": "https://www.chateau-saumur.fr/"
     },
     {
       "id": 50,
@@ -453,8 +404,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Sully-sur-Loire, France",
       "name": "Château de Sully-sur-Loire",
-      "official_url": "https://www.chateausully.fr/",
-      "src": "chateau-de-sully-sur-loire-france.webp"
+      "official_url": "https://www.chateausully.fr/"
     },
     {
       "id": 51,
@@ -462,8 +412,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Valençay, France",
       "name": "Château de Valençay",
-      "official_url": "https://www.chateau-valencay.fr/",
-      "src": "chateau-de-valencay-france.webp"
+      "official_url": "https://www.chateau-valencay.fr/"
     },
     {
       "id": 52,
@@ -471,8 +420,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Cheverny, France",
       "name": "Château de Cheverny",
-      "official_url": "https://www.chateau-cheverny.fr/",
-      "src": "chateau-de-cheverny-france.webp"
+      "official_url": "https://www.chateau-cheverny.fr/"
     },
     {
       "id": 53,
@@ -480,8 +428,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Pierrefonds, France",
       "name": "Château de Pierrefonds",
-      "official_url": "https://www.chateau-pierrefonds.fr/",
-      "src": "chateau-de-pierrefonds-france.webp"
+      "official_url": "https://www.chateau-pierrefonds.fr/"
     },
     {
       "id": 54,
@@ -489,8 +436,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Compiègne, France",
       "name": "Château de Compiègne",
-      "official_url": "https://en.compiegne.fr/",
-      "src": "chateau-de-compiegne-france.webp"
+      "official_url": "https://en.compiegne.fr/"
     },
     {
       "id": 55,
@@ -498,8 +444,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Rambouillet, France",
       "name": "Château de Rambouillet",
-      "official_url": "https://www.chateau-rambouillet.fr/",
-      "src": "chateau-de-rambouillet-france.webp"
+      "official_url": "https://www.chateau-rambouillet.fr/"
     },
     {
       "id": 56,
@@ -507,8 +452,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Rueil-Malmaison, France",
       "name": "Château de Malmaison",
-      "official_url": "https://en.chateau-malmaison.fr/",
-      "src": "chateau-de-malmaison-france.webp"
+      "official_url": "https://en.chateau-malmaison.fr/"
     },
     {
       "id": 57,
@@ -516,8 +460,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Champs-sur-Marne, France",
       "name": "Château de Champs-sur-Marne",
-      "official_url": "https://en.chateau-champs-sur-marne.fr/",
-      "src": "chateau-de-champs-sur-marne-france.webp"
+      "official_url": "https://en.chateau-champs-sur-marne.fr/"
     },
     {
       "id": 58,
@@ -525,8 +468,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Vincennes, France",
       "name": "Château de Vincennes",
-      "official_url": "https://www.chateau-de-vincennes.fr/",
-      "src": "chateau-de-vincennes-france.webp"
+      "official_url": "https://www.chateau-de-vincennes.fr/"
     },
     {
       "id": 59,
@@ -534,8 +476,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Maisons-Laffitte, France",
       "name": "Château de Maisons-Laffitte",
-      "official_url": "https://www.maisonslaffitte.fr/",
-      "src": "chateau-de-maisons-laffitte-france.webp"
+      "official_url": "https://www.maisonslaffitte.fr/"
     },
     {
       "id": 60,
@@ -543,8 +484,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Marmagne, France",
       "name": "Château de Fontenay",
-      "official_url": "https://www.chateaudefontenay.com/",
-      "src": "chateau-de-fontenay-france.webp"
+      "official_url": "https://www.chateaudefontenay.com/"
     },
     {
       "id": 61,
@@ -552,8 +492,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Bussy-le-Grand, France",
       "name": "Château de Bussy-Rabutin",
-      "official_url": "https://www.bussy-rabutin.monuments-nationaux.fr/",
-      "src": "chateau-de-bussy-rabutin-france.webp"
+      "official_url": "https://www.bussy-rabutin.monuments-nationaux.fr/"
     },
     {
       "id": 62,
@@ -561,8 +500,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Tanlay, France",
       "name": "Château de Tanlay",
-      "official_url": "https://www.chateaudetanlay.fr/",
-      "src": "chateau-de-tanlay-france.webp"
+      "official_url": "https://www.chateaudetanlay.fr/"
     },
     {
       "id": 63,
@@ -570,8 +508,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Cormatin, France",
       "name": "Château de Cormatin",
-      "official_url": "https://www.chateaudecormatin.com/",
-      "src": "chateau-de-cormatin-france.webp"
+      "official_url": "https://www.chateaudecormatin.com/"
     },
     {
       "id": 64,
@@ -579,8 +516,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Sercy, France",
       "name": "Château de Sercy",
-      "official_url": "https://www.chateaudesercy.com/",
-      "src": "chateau-de-sercy-france.webp"
+      "official_url": "https://www.chateaudesercy.com/"
     },
     {
       "id": 65,
@@ -588,8 +524,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Couches, France",
       "name": "Château de Couches",
-      "official_url": "https://www.chateaudecouches.com/",
-      "src": "chateau-de-couches-france.webp"
+      "official_url": "https://www.chateaudecouches.com/"
     },
     {
       "id": 66,
@@ -597,8 +532,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "La Rochepot, France",
       "name": "Château de La Rochepot",
-      "official_url": "https://www.chateaudelarochepot.com/",
-      "src": "chateau-de-la-rochepot-france.webp"
+      "official_url": "https://www.chateaudelarochepot.com/"
     },
     {
       "id": 67,
@@ -606,8 +540,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Cormatin, France",
       "name": "Château de Cormatin",
-      "official_url": "https://www.chateaudecormatin.com/",
-      "src": "chateau-de-cormatin-france.webp"
+      "official_url": "https://www.chateaudecormatin.com/"
     },
     {
       "id": 68,
@@ -615,8 +548,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Berzé-le-Châtel, France",
       "name": "Château de Berzé-le-Châtel",
-      "official_url": "https://www.berze.fr/",
-      "src": "chateau-de-berze-le-chatel-france.webp"
+      "official_url": "https://www.berze.fr/"
     },
     {
       "id": 69,
@@ -624,8 +556,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Pierreclos, France",
       "name": "Château de Pierreclos",
-      "official_url": "https://www.chateaudepierreclos.com/",
-      "src": "chateau-de-pierreclos-france.webp"
+      "official_url": "https://www.chateaudepierreclos.com/"
     },
     {
       "id": 70,
@@ -633,8 +564,7 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "location": "Cormatin, France",
       "name": "Château de Cormatin",
-      "official_url": "https://www.chateaudecormatin.com/",
-      "src": "chateau-de-cormatin-france.webp"
+      "official_url": "https://www.chateaudecormatin.com/"
     },
     {
       "id": 71,
@@ -681,7 +611,6 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "fileName": "img_7020.png",
       "folder": "memes",
-      "src": "memes/img_7020.png",
       "tags": [
         "Meme"
       ]
@@ -692,7 +621,6 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "fileName": "img_7017.png",
       "folder": "memes",
-      "src": "memes/img_7017.png",
       "tags": [
         "Meme"
       ]
@@ -703,7 +631,6 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "fileName": "img_6467.png",
       "folder": "memes",
-      "src": "memes/img_6467.png",
       "tags": [
         "Meme"
       ]
@@ -714,7 +641,6 @@
       "edit_date": "2024-06-29T19:23:56.047Z",
       "fileName": "img_6470.png",
       "folder": "memes",
-      "src": "memes/img_6470.png",
       "tags": [
         "Meme"
       ]
@@ -725,7 +651,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6466.png",
       "folder": "memes",
-      "src": "memes/img_6466.png",
       "tags": [
         "Meme"
       ]
@@ -736,7 +661,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6930.png",
       "folder": "memes",
-      "src": "memes/img_6930.png",
       "tags": [
         "Meme"
       ]
@@ -747,7 +671,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6479.png",
       "folder": "memes",
-      "src": "memes/img_6479.png",
       "tags": [
         "Meme"
       ]
@@ -758,7 +681,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6872.png",
       "folder": "memes",
-      "src": "memes/img_6872.png",
       "tags": [
         "Meme"
       ]
@@ -769,7 +691,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6474.png",
       "folder": "memes",
-      "src": "memes/img_6474.png",
       "tags": [
         "Meme"
       ]
@@ -780,7 +701,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6487.png",
       "folder": "memes",
-      "src": "memes/img_6487.png",
       "tags": [
         "Meme"
       ]
@@ -791,7 +711,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6480.png",
       "folder": "memes",
-      "src": "memes/img_6480.png",
       "tags": [
         "Meme"
       ]
@@ -802,7 +721,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6926.png",
       "folder": "memes",
-      "src": "memes/img_6926.png",
       "tags": [
         "Meme"
       ]
@@ -813,7 +731,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6473.png",
       "folder": "memes",
-      "src": "memes/img_6473.png",
       "tags": [
         "Meme"
       ]
@@ -824,7 +741,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6475.png",
       "folder": "memes",
-      "src": "memes/img_6475.png",
       "tags": [
         "Meme"
       ]
@@ -835,7 +751,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6483.png",
       "folder": "memes",
-      "src": "memes/img_6483.png",
       "tags": [
         ""
       ]
@@ -846,7 +761,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6874.png",
       "folder": "memes",
-      "src": "memes/img_6874.png",
       "tags": [
         "Meme"
       ]
@@ -857,7 +771,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6881.png",
       "folder": "memes",
-      "src": "memes/img_6881.png",
       "tags": [
         "Meme"
       ]
@@ -868,7 +781,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6888.png",
       "folder": "memes",
-      "src": "memes/img_6888.png",
       "tags": [
         "Meme"
       ]
@@ -879,7 +791,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6924.png",
       "folder": "memes",
-      "src": "memes/img_6924.png",
       "tags": [
         "Meme"
       ]
@@ -890,7 +801,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6985.png",
       "folder": "memes",
-      "src": "memes/img_6985.png",
       "tags": [
         "Meme"
       ]
@@ -901,7 +811,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6469.png",
       "folder": "memes",
-      "src": "memes/img_6469.png",
       "tags": [
         "Meme"
       ]
@@ -912,7 +821,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6488.png",
       "folder": "memes",
-      "src": "memes/img_6488.png",
       "tags": [
         ""
       ]
@@ -923,7 +831,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6481.png",
       "folder": "memes",
-      "src": "memes/img_6481.png",
       "tags": [
         "Meme"
       ]
@@ -934,7 +841,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6887.png",
       "folder": "memes",
-      "src": "memes/img_6887.png",
       "tags": [
         "Meme"
       ]
@@ -945,7 +851,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6932.png",
       "folder": "memes",
-      "src": "memes/img_6932.png",
       "tags": [
         "Meme"
       ]
@@ -956,7 +861,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6886.png",
       "folder": "memes",
-      "src": "memes/img_6886.png",
       "tags": [
         "Meme"
       ]
@@ -967,7 +871,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6934.png",
       "folder": "memes",
-      "src": "memes/img_6934.png",
       "tags": [
         "Meme"
       ]
@@ -978,7 +881,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6986.png",
       "folder": "memes",
-      "src": "memes/img_6986.png",
       "tags": [
         "Meme"
       ]
@@ -989,7 +891,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6871.png",
       "folder": "memes",
-      "src": "memes/img_6871.png",
       "tags": [
         "Meme"
       ]
@@ -1000,7 +901,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6931.png",
       "folder": "memes",
-      "src": "memes/img_6931.png",
       "tags": [
         "Meme"
       ]
@@ -1011,7 +911,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6925.png",
       "folder": "memes",
-      "src": "memes/img_6925.png",
       "tags": [
         "Meme"
       ]
@@ -1022,7 +921,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6922.png",
       "folder": "memes",
-      "src": "memes/img_6922.png",
       "tags": [
         "Meme"
       ]
@@ -1033,7 +931,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6463.png",
       "folder": "memes",
-      "src": "memes/img_6463.png",
       "tags": [
         "Meme"
       ]
@@ -1044,7 +941,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6936.png",
       "folder": "memes",
-      "src": "memes/img_6936.png",
       "tags": [
         "Meme"
       ]
@@ -1055,7 +951,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6991.png",
       "folder": "memes",
-      "src": "memes/img_6991.png",
       "tags": [
         "Meme"
       ]
@@ -1067,7 +962,6 @@
       "fileName": "image7.jpeg",
       "folder": "artdeco",
       "name": "Zeppelin",
-      "src": "artdeco/image7.jpeg",
       "tags": [
         "Poster"
       ]
@@ -1078,7 +972,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6927.png",
       "folder": "memes",
-      "src": "memes/img_6927.png",
       "tags": [
         "Meme"
       ]
@@ -1089,7 +982,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6988.png",
       "folder": "memes",
-      "src": "memes/img_6988.png",
       "tags": [
         "Meme"
       ]
@@ -1100,7 +992,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6928.png",
       "folder": "memes",
-      "src": "memes/img_6928.png",
       "tags": [
         "Meme"
       ]
@@ -1111,7 +1002,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_7021.png",
       "folder": "memes",
-      "src": "memes/img_7021.png",
       "tags": [
         "Meme"
       ]
@@ -1122,7 +1012,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6993.png",
       "folder": "memes",
-      "src": "memes/img_6993.png",
       "tags": [
         "Meme"
       ]
@@ -1133,7 +1022,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6990.png",
       "folder": "memes",
-      "src": "memes/img_6990.png",
       "tags": [
         "Meme"
       ]
@@ -1144,7 +1032,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6987.png",
       "folder": "memes",
-      "src": "memes/img_6987.png",
       "tags": [
         "Meme"
       ]
@@ -1155,7 +1042,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6995.png",
       "folder": "memes",
-      "src": "memes/img_6995.png",
       "tags": [
         "Meme"
       ]
@@ -1166,7 +1052,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6929.png",
       "folder": "memes",
-      "src": "memes/img_6929.png",
       "tags": [
         ""
       ]
@@ -1177,7 +1062,6 @@
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6933.png",
       "folder": "memes",
-      "src": "memes/img_6933.png",
       "tags": [
         "Meme"
       ]
@@ -1189,7 +1073,6 @@
       "fileName": "image8.jpeg",
       "folder": "artdeco",
       "name": "Art Deco - Lady on the Stairs",
-      "src": "artdeco/image8.jpeg",
       "tags": [
         "Poster"
       ]
@@ -1201,7 +1084,6 @@
       "fileName": "1-2.png",
       "folder": "example1",
       "hide": true,
-      "src": "example1/1-2.png",
       "tags": [
         ""
       ]
@@ -1213,7 +1095,6 @@
       "fileName": "1-3.png",
       "folder": "example1",
       "hide": true,
-      "src": "example1/1-3.png",
       "tags": [
         ""
       ]
@@ -1225,7 +1106,6 @@
       "fileName": "1-4.png",
       "folder": "example1",
       "hide": true,
-      "src": "example1/1-4.png",
       "tags": [
         ""
       ]
@@ -1237,7 +1117,6 @@
       "fileName": "1-1.png",
       "folder": "example1",
       "hide": true,
-      "src": "example1/1-1.png",
       "tags": [
         ""
       ]
@@ -1252,7 +1131,6 @@
       "location": "Chambord, Loire Valley, France",
       "name": "Château de Chambord",
       "official_url": "https://www.chambord.org/en/",
-      "src": "architecture/img_7012.jpg",
       "tags": {
         "0": "Castles",
         "1": "France",
@@ -1269,7 +1147,6 @@
       "location": "Rome, Italy",
       "name": "Galleria Doria Pamphilj",
       "official_url": "https://www.doriapamphilj.it/en/rome/",
-      "src": "architecture/img_6971.jpg",
       "tags": {
         "0": "Palaces"
       }
@@ -1279,2848 +1156,2051 @@
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_5966.heic",
-      "folder": "sort",
-      "src": "sort/img_5966.heic"
+      "folder": "sort"
     },
     {
       "id": 129,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6012.png",
-      "folder": "sort",
-      "src": "sort/img_6012.png"
+      "folder": "sort"
     },
     {
       "id": 130,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6020.png",
-      "folder": "memes",
-      "src": "memes/img_6020.png"
+      "folder": "memes"
     },
     {
       "id": 131,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6021.png",
-      "folder": "sort",
-      "src": "sort/img_6021.png"
+      "folder": "sort"
     },
     {
       "id": 132,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6098.jpg",
-      "folder": "sort",
-      "src": "sort/img_6098.jpg"
+      "folder": "sort"
     },
     {
       "id": 133,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6100.jpg",
-      "folder": "sort",
-      "src": "sort/img_6100.jpg"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 134,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6101.webp",
-      "folder": "sort",
-      "src": "sort/img_6101.webp"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 135,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6109.png",
-      "folder": "sort",
-      "src": "sort/img_6109.png"
+      "folder": "sort"
     },
     {
       "id": 136,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6172.png",
-      "folder": "sort",
-      "src": "sort/img_6172.png"
+      "folder": "sort"
     },
     {
       "id": 137,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6255.png",
-      "folder": "sort",
-      "src": "sort/img_6255.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 138,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6261.png",
-      "folder": "sort",
-      "src": "sort/img_6261.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 139,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6274.png",
-      "folder": "sort",
-      "src": "sort/img_6274.png"
+      "folder": "sort"
     },
     {
       "id": 140,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6322.png",
-      "folder": "memes",
-      "src": "memes/img_6322.png"
+      "folder": "memes"
     },
     {
       "id": 141,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6325.png",
-      "folder": "memes",
-      "src": "memes/img_6325.png"
+      "folder": "memes"
     },
     {
       "id": 142,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6327.heic",
-      "folder": "sort",
-      "src": "sort/img_6327.heic"
+      "folder": "sort"
     },
     {
       "id": 143,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6328.heic",
-      "folder": "sort",
-      "src": "sort/img_6328.heic"
+      "folder": "sort"
     },
     {
       "id": 144,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6329.png",
-      "folder": "sort",
-      "src": "sort/img_6329.png"
+      "folder": "sort"
     },
     {
       "id": 145,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6398.png",
-      "folder": "sort",
-      "src": "sort/img_6398.png"
+      "folder": "sort"
     },
     {
       "id": 146,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6402.png",
-      "folder": "sort",
-      "src": "sort/img_6402.png"
+      "folder": "sort"
     },
     {
       "id": 147,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6403.png",
-      "folder": "sort",
-      "src": "sort/img_6403.png"
+      "folder": "sort"
     },
     {
       "id": 148,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6404.png",
-      "folder": "sort",
-      "src": "sort/img_6404.png"
+      "folder": "sort"
     },
     {
       "id": 149,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6405.png",
-      "folder": "sort",
-      "src": "sort/img_6405.png"
+      "folder": "sort"
     },
     {
       "id": 150,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6406.png",
-      "folder": "sort",
-      "src": "sort/img_6406.png"
+      "folder": "sort"
     },
     {
       "id": 151,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6407.png",
-      "folder": "sort",
-      "src": "sort/img_6407.png"
+      "folder": "sort"
     },
     {
       "id": 152,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6408.png",
-      "folder": "sort",
-      "src": "sort/img_6408.png"
+      "folder": "sort"
     },
     {
       "id": 153,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6409.png",
-      "folder": "sort",
-      "src": "sort/img_6409.png"
+      "folder": "sort"
     },
     {
       "id": 154,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6410.png",
-      "folder": "sort",
-      "src": "sort/img_6410.png"
+      "folder": "sort"
     },
     {
       "id": 155,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6435.png",
-      "folder": "sort",
-      "src": "sort/img_6435.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 156,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6436.png",
-      "folder": "sort",
-      "src": "sort/img_6436.png"
+      "folder": "sort"
     },
     {
       "id": 157,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6445.png",
-      "folder": "sort",
-      "src": "sort/img_6445.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 158,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6446.png",
-      "folder": "sort",
-      "src": "sort/img_6446.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 159,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6449.png",
-      "folder": "sort",
-      "src": "sort/img_6449.png"
+      "folder": "sort"
     },
     {
       "id": 160,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6455.png",
-      "folder": "sort",
-      "src": "sort/img_6455.png"
+      "folder": "sort"
     },
     {
       "id": 161,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6456.png",
-      "folder": "sort",
-      "src": "sort/img_6456.png"
-    },
-    {
-      "id": 162,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6463.png",
-      "folder": "memes",
-      "src": "memes/img_6463.png"
+      "folder": "sort"
     },
     {
       "id": 163,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6466.png",
-      "folder": "memes",
-      "src": "memes/img_6466.png"
+      "folder": "memes"
     },
     {
       "id": 164,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6467.png",
-      "folder": "memes",
-      "src": "memes/img_6467.png"
-    },
-    {
-      "id": 165,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6468.png",
-      "folder": "sort",
-      "src": "sort/img_6468.png"
+      "folder": "memes"
     },
     {
       "id": 166,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6470.png",
-      "folder": "sort",
-      "src": "sort/img_6470.png"
+      "folder": "memes"
     },
     {
       "id": 167,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6473.png",
-      "folder": "memes",
-      "src": "memes/img_6473.png"
-    },
-    {
-      "id": 168,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6474.png",
-      "folder": "memes",
-      "src": "memes/img_6474.png"
-    },
-    {
-      "id": 169,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6475.png",
-      "folder": "memes",
-      "src": "memes/img_6475.png"
+      "folder": "memes"
     },
     {
       "id": 170,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6479.png",
-      "folder": "memes",
-      "src": "memes/img_6479.png"
-    },
-    {
-      "id": 171,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6480.png",
-      "folder": "memes",
-      "src": "memes/img_6480.png"
-    },
-    {
-      "id": 172,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6481.png",
-      "folder": "memes",
-      "src": "memes/img_6481.png"
+      "folder": "memes"
     },
     {
       "id": 173,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6482.png",
-      "folder": "memes",
-      "src": "memes/img_6482.png"
-    },
-    {
-      "id": 174,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6483.png",
-      "folder": "memes",
-      "src": "memes/img_6483.png"
-    },
-    {
-      "id": 175,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6487.png",
-      "folder": "memes",
-      "src": "memes/img_6487.png"
-    },
-    {
-      "id": 176,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "img_6488.png",
-      "folder": "memes",
-      "src": "memes/img_6488.png"
+      "folder": "memes"
     },
     {
       "id": 177,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6510.png",
-      "folder": "memes",
-      "src": "memes/img_6510.png"
+      "folder": "memes"
     },
     {
       "id": 178,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6511.png",
-      "folder": "memes",
-      "src": "memes/img_6511.png"
+      "folder": "memes"
     },
     {
       "id": 179,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6512.png",
-      "folder": "memes",
-      "src": "memes/img_6512.png"
+      "folder": "memes"
     },
     {
       "id": 180,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6521.png",
-      "folder": "memes",
-      "src": "memes/img_6521.png"
+      "folder": "memes"
     },
     {
       "id": 181,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6522.heic",
-      "folder": "sort",
-      "src": "sort/img_6522.heic"
+      "folder": "sort"
     },
     {
       "id": 182,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6523.png",
-      "folder": "memes",
-      "src": "memes/img_6523.png"
+      "folder": "memes"
     },
     {
       "id": 183,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6524.png",
-      "folder": "memes",
-      "src": "memes/img_6524.png"
+      "folder": "memes"
     },
     {
       "id": 184,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6529.png",
-      "folder": "memes",
-      "src": "memes/img_6529.png"
+      "folder": "memes"
     },
     {
       "id": 185,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6531.png",
-      "folder": "memes",
-      "src": "memes/img_6531.png"
+      "folder": "memes"
     },
     {
       "id": 186,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6532.heic",
-      "folder": "sort",
-      "src": "sort/img_6532.heic"
+      "folder": "sort"
     },
     {
       "id": 187,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6533.png",
-      "folder": "memes",
-      "src": "memes/img_6533.png"
+      "folder": "memes"
     },
     {
       "id": 188,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6534.png",
-      "folder": "memes",
-      "src": "memes/img_6534.png"
+      "folder": "memes"
     },
     {
       "id": 189,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6536.png",
-      "folder": "sort",
-      "src": "sort/img_6536.png"
+      "folder": "sort"
     },
     {
       "id": 190,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6557.png",
-      "folder": "sort",
-      "src": "sort/img_6557.png"
+      "folder": "sort"
     },
     {
       "id": 191,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6560.png",
-      "folder": "sort",
-      "src": "sort/img_6560.png"
+      "folder": "sort"
     },
     {
       "id": 192,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6562.png",
-      "folder": "sort",
-      "src": "sort/img_6562.png"
+      "folder": "sort"
     },
     {
       "id": 193,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6563.png",
-      "folder": "sort",
-      "src": "sort/img_6563.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 194,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6564.png",
-      "folder": "sort",
-      "src": "sort/img_6564.png"
+      "folder": "sort"
     },
     {
       "id": 195,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6565.png",
-      "folder": "memes",
-      "src": "memes/img_6565.png"
+      "folder": "memes"
     },
     {
       "id": 196,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6566.png",
-      "folder": "sort",
-      "src": "sort/img_6566.png"
+      "folder": "sort"
     },
     {
       "id": 197,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6568.png",
-      "folder": "sort",
-      "src": "sort/img_6568.png"
+      "folder": "sort"
     },
     {
       "id": 198,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6572.png",
-      "folder": "memes",
-      "src": "memes/img_6572.png"
+      "folder": "memes"
     },
     {
       "id": 199,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6573.png",
-      "folder": "memes",
-      "src": "memes/img_6573.png"
+      "folder": "memes"
     },
     {
       "id": 200,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6574.png",
-      "folder": "memes",
-      "src": "memes/img_6574.png"
+      "folder": "memes"
     },
     {
       "id": 201,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6577.jpg",
-      "folder": "sort",
-      "src": "sort/img_6577.jpg"
+      "folder": "sort"
     },
     {
       "id": 202,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6578.png",
-      "folder": "sort",
-      "src": "sort/img_6578.png"
+      "folder": "sort"
     },
     {
       "id": 203,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6584.png",
-      "folder": "memes",
-      "src": "memes/img_6584.png"
+      "folder": "memes"
     },
     {
       "id": 204,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6585.png",
-      "folder": "memes",
-      "src": "memes/img_6585.png"
+      "folder": "memes"
     },
     {
       "id": 205,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6586.png",
-      "folder": "memes",
-      "src": "memes/img_6586.png"
+      "folder": "memes"
     },
     {
       "id": 206,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6587.png",
-      "folder": "memes",
-      "src": "memes/img_6587.png"
+      "folder": "memes"
     },
     {
       "id": 207,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6588.png",
-      "folder": "memes",
-      "src": "memes/img_6588.png"
+      "folder": "memes"
     },
     {
       "id": 208,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6589.png",
-      "folder": "memes",
-      "src": "memes/img_6589.png"
+      "folder": "memes"
     },
     {
       "id": 209,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6590.png",
-      "folder": "memes",
-      "src": "memes/img_6590.png"
+      "folder": "memes"
     },
     {
       "id": 210,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6591.png",
-      "folder": "memes",
-      "src": "memes/img_6591.png"
+      "folder": "memes"
     },
     {
       "id": 211,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6593.png",
-      "folder": "memes",
-      "src": "memes/img_6593.png"
+      "folder": "memes"
     },
     {
       "id": 212,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6594.jpg",
-      "folder": "sort",
-      "src": "sort/img_6594.jpg"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 213,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6597.png",
-      "folder": "sort",
-      "src": "sort/img_6597.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 214,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6598.png",
-      "folder": "sort",
-      "src": "sort/img_6598.png"
+      "folder": "sort"
     },
     {
       "id": 215,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6603.png",
-      "folder": "sort",
-      "src": "sort/img_6603.png"
+      "folder": "sort"
     },
     {
       "id": 216,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6604.png",
-      "folder": "sort",
-      "src": "sort/img_6604.png"
+      "folder": "sort"
     },
     {
       "id": 217,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6605.png",
-      "folder": "memes",
-      "src": "memes/img_6605.png"
+      "folder": "memes"
     },
     {
       "id": 218,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6610.png",
-      "folder": "memes",
-      "src": "memes/img_6610.png"
+      "folder": "memes"
     },
     {
       "id": 219,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6612.png",
-      "folder": "memes",
-      "src": "memes/img_6612.png"
+      "folder": "memes"
     },
     {
       "id": 220,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6613.png",
-      "folder": "memes",
-      "src": "memes/img_6613.png"
+      "folder": "memes"
     },
     {
       "id": 221,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6656.png",
-      "folder": "memes",
-      "src": "memes/img_6656.png"
+      "folder": "memes"
     },
     {
       "id": 222,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6657.png",
-      "folder": "memes",
-      "src": "memes/img_6657.png"
+      "folder": "memes"
     },
     {
       "id": 223,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6671.png",
-      "folder": "sort",
-      "src": "sort/img_6671.png"
+      "folder": "sort"
     },
     {
       "id": 224,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6686.png",
-      "folder": "memes",
-      "src": "memes/img_6686.png"
+      "folder": "memes"
     },
     {
       "id": 225,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6688.jpg",
-      "folder": "sort",
-      "src": "sort/img_6688.jpg"
+      "folder": "sort"
     },
     {
       "id": 226,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6697.png",
-      "folder": "sort",
-      "src": "sort/img_6697.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 227,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6710.heic",
-      "folder": "sort",
-      "src": "sort/img_6710.heic"
+      "folder": "sort"
     },
     {
       "id": 228,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6713.png",
-      "folder": "sort",
-      "src": "sort/img_6713.png"
+      "folder": "sort"
     },
     {
       "id": 229,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6719.png",
-      "folder": "sort",
-      "src": "sort/img_6719.png"
+      "folder": "sort"
     },
     {
       "id": 230,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6736.png",
-      "folder": "sort",
-      "src": "sort/img_6736.png"
+      "folder": "sort"
     },
     {
       "id": 231,
       "create_date": "2024-06-29T19:23:56.048Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6739.png",
-      "folder": "sort",
-      "src": "sort/img_6739.png"
+      "folder": "sort"
     },
     {
       "id": 232,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.048Z",
       "fileName": "img_6752.png",
-      "folder": "sort",
-      "src": "sort/img_6752.png"
+      "folder": "sort"
     },
     {
       "id": 233,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6754.png",
-      "folder": "sort",
-      "src": "sort/img_6754.png"
+      "folder": "sort"
     },
     {
       "id": 234,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6755.png",
-      "folder": "sort",
-      "src": "sort/img_6755.png"
+      "folder": "sort"
     },
     {
       "id": 235,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6776.png",
-      "folder": "sort",
-      "src": "sort/img_6776.png"
+      "folder": "sort"
     },
     {
       "id": 236,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6792.png",
-      "folder": "sort",
-      "src": "sort/img_6792.png"
+      "folder": "sort"
     },
     {
       "id": 237,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6793.png",
-      "folder": "sort",
-      "src": "sort/img_6793.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 238,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6800.png",
-      "folder": "sort",
-      "src": "sort/img_6800.png"
+      "folder": "sort"
     },
     {
       "id": 239,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6802.png",
-      "folder": "sort",
-      "src": "sort/img_6802.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 240,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6810.png",
-      "folder": "sort",
-      "src": "sort/img_6810.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 241,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6813.heic",
-      "folder": "sort",
-      "src": "sort/img_6813.heic"
+      "folder": "sort"
     },
     {
       "id": 242,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6814.jpg",
-      "folder": "sort",
-      "src": "sort/img_6814.jpg"
+      "folder": "sort"
     },
     {
       "id": 243,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6815.png",
-      "folder": "memes",
-      "src": "memes/img_6815.png"
+      "folder": "memes"
     },
     {
       "id": 244,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6817.jpg",
-      "folder": "sort",
-      "src": "sort/img_6817.jpg"
+      "folder": "sort"
     },
     {
       "id": 245,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6818.jpg",
-      "folder": "sort",
-      "src": "sort/img_6818.jpg"
+      "folder": "sort"
     },
     {
       "id": 246,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6819.jpg",
-      "folder": "sort",
-      "src": "sort/img_6819.jpg"
+      "folder": "sort"
     },
     {
       "id": 247,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6820.png",
-      "folder": "sort",
-      "src": "sort/img_6820.png"
+      "folder": "sort"
     },
     {
       "id": 248,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6825.jpg",
-      "folder": "sort",
-      "src": "sort/img_6825.jpg"
+      "folder": "sort"
     },
     {
       "id": 249,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6826.png",
-      "folder": "memes",
-      "src": "memes/img_6826.png"
+      "folder": "memes"
     },
     {
       "id": 250,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6827.png",
-      "folder": "memes",
-      "src": "memes/img_6827.png"
+      "folder": "memes"
     },
     {
       "id": 251,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6829.png",
-      "folder": "memes",
-      "src": "memes/img_6829.png"
+      "folder": "memes"
     },
     {
       "id": 252,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6841.jpg",
-      "folder": "sort",
-      "src": "sort/img_6841.jpg"
+      "folder": "sort"
     },
     {
       "id": 253,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6842.jpg",
-      "folder": "sort",
-      "src": "sort/img_6842.jpg"
+      "folder": "sort"
     },
     {
       "id": 254,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6844.jpg",
-      "folder": "sort",
-      "src": "sort/img_6844.jpg"
+      "folder": "sort"
     },
     {
       "id": 255,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6848.png",
-      "folder": "sort",
-      "src": "sort/img_6848.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 256,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6849.png",
-      "folder": "sort",
-      "src": "sort/img_6849.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 257,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6850.png",
-      "folder": "sort",
-      "src": "sort/img_6850.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 258,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6856.jpg",
-      "folder": "sort",
-      "src": "sort/img_6856.jpg"
+      "folder": "sort"
     },
     {
       "id": 259,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6857.jpg",
-      "folder": "sort",
-      "src": "sort/img_6857.jpg"
+      "folder": "sort"
     },
     {
       "id": 260,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6858.png",
-      "folder": "sort",
-      "src": "sort/img_6858.png"
+      "folder": "sort"
     },
     {
       "id": 261,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6859.jpg",
-      "folder": "sort",
-      "src": "sort/img_6859.jpg"
+      "folder": "sort"
     },
     {
       "id": 262,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6861.png",
-      "folder": "sort",
-      "src": "sort/img_6861.png"
+      "folder": "sort"
     },
     {
       "id": 263,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6863.heic",
-      "folder": "sort",
-      "src": "sort/img_6863.heic"
+      "folder": "sort"
     },
     {
       "id": 264,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6864.jpg",
-      "folder": "sort",
-      "src": "sort/img_6864.jpg"
+      "folder": "sort"
     },
     {
       "id": 265,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6865.jpg",
-      "folder": "sort",
-      "src": "sort/img_6865.jpg"
+      "folder": "sort"
     },
     {
       "id": 266,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6869.jpg",
-      "folder": "sort",
-      "src": "sort/img_6869.jpg"
+      "folder": "sort"
     },
     {
       "id": 267,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6870.jpg",
-      "folder": "sort",
-      "src": "sort/img_6870.jpg"
-    },
-    {
-      "id": 268,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6871.png",
-      "folder": "memes",
-      "src": "memes/img_6871.png"
-    },
-    {
-      "id": 269,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6872.png",
-      "folder": "memes",
-      "src": "memes/img_6872.png"
-    },
-    {
-      "id": 270,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6874.png",
-      "folder": "memes",
-      "src": "memes/img_6874.png"
+      "folder": "sort"
     },
     {
       "id": 271,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6878.jpg",
-      "folder": "sort",
-      "src": "sort/img_6878.jpg"
-    },
-    {
-      "id": 272,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6881.png",
-      "folder": "memes",
-      "src": "memes/img_6881.png"
-    },
-    {
-      "id": 273,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6886.png",
-      "folder": "sort",
-      "src": "sort/img_6886.png"
-    },
-    {
-      "id": 274,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6887.png",
-      "folder": "memes",
-      "src": "memes/img_6887.png"
-    },
-    {
-      "id": 275,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6888.png",
-      "folder": "memes",
-      "src": "memes/img_6888.png"
+      "folder": "sort"
     },
     {
       "id": 276,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6889.png",
-      "folder": "sort",
-      "src": "sort/img_6889.png"
+      "folder": "sort"
     },
     {
       "id": 277,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6892.jpg",
-      "folder": "sort",
-      "src": "sort/img_6892.jpg"
-    },
-    {
-      "id": 278,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6922.png",
-      "folder": "sort",
-      "src": "sort/img_6922.png"
+      "folder": "sort"
     },
     {
       "id": 279,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6923.webp",
-      "folder": "sort",
-      "src": "sort/img_6923.webp"
-    },
-    {
-      "id": 280,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6924.png",
-      "folder": "memes",
-      "src": "memes/img_6924.png"
-    },
-    {
-      "id": 281,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6925.png",
-      "folder": "memes",
-      "src": "memes/img_6925.png"
-    },
-    {
-      "id": 282,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6926.png",
-      "folder": "memes",
-      "src": "memes/img_6926.png"
-    },
-    {
-      "id": 283,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6927.png",
-      "folder": "memes",
-      "src": "memes/img_6927.png"
-    },
-    {
-      "id": 284,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6928.png",
-      "folder": "sort",
-      "src": "sort/img_6928.png"
-    },
-    {
-      "id": 285,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6929.png",
-      "folder": "memes",
-      "src": "memes/img_6929.png"
-    },
-    {
-      "id": 286,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6930.png",
-      "folder": "memes",
-      "src": "memes/img_6930.png"
-    },
-    {
-      "id": 287,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6931.png",
-      "folder": "memes",
-      "src": "memes/img_6931.png"
-    },
-    {
-      "id": 288,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6932.png",
-      "folder": "memes",
-      "src": "memes/img_6932.png"
-    },
-    {
-      "id": 289,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6933.png",
-      "folder": "memes",
-      "src": "memes/img_6933.png"
-    },
-    {
-      "id": 290,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6934.png",
-      "folder": "sort",
-      "src": "sort/img_6934.png"
-    },
-    {
-      "id": 291,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6936.png",
-      "folder": "sort",
-      "src": "sort/img_6936.png"
+      "folder": "sort"
     },
     {
       "id": 292,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6937.png",
-      "folder": "sort",
-      "src": "sort/img_6937.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 293,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6938.png",
-      "folder": "sort",
-      "src": "sort/img_6938.png"
+      "folder": "sort"
     },
     {
       "id": 294,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6940.webp",
-      "folder": "sort",
-      "src": "sort/img_6940.webp"
+      "folder": "sort"
     },
     {
       "id": 295,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6941.jpg",
-      "folder": "sort",
-      "src": "sort/img_6941.jpg"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 296,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6942.png",
-      "folder": "sort",
-      "src": "sort/img_6942.png"
-    },
-    {
-      "id": 297,
-      "create_date": "2024-06-29T19:23:56.049Z",
-      "edit_date": "2024-06-29T19:23:56.049Z",
-      "fileName": "img_6943.jpg",
-      "folder": "sort",
-      "src": "sort/img_6943.jpg"
+      "folder": "sort"
     },
     {
       "id": 298,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6946.png",
-      "folder": "sort",
-      "src": "sort/img_6946.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 299,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6947.png",
-      "folder": "sort",
-      "src": "sort/img_6947.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 300,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6948.png",
-      "folder": "memes",
-      "src": "memes/img_6948.png"
+      "folder": "memes"
     },
     {
       "id": 301,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6949.png",
-      "folder": "memes",
-      "src": "memes/img_6949.png"
+      "folder": "memes"
     },
     {
       "id": 302,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6950.png",
-      "folder": "sort",
-      "src": "sort/img_6950.png"
+      "folder": "sort"
     },
     {
       "id": 303,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6951.png",
-      "folder": "sort",
-      "src": "sort/img_6951.png"
+      "folder": "sort"
     },
     {
       "id": 304,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6952.png",
-      "folder": "sort",
-      "src": "sort/img_6952.png"
+      "folder": "sort"
     },
     {
       "id": 305,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6953.png",
-      "folder": "memes",
-      "src": "memes/img_6953.png"
+      "folder": "memes"
     },
     {
       "id": 306,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6954.png",
-      "folder": "memes",
-      "src": "memes/img_6954.png"
+      "folder": "memes"
     },
     {
       "id": 307,
       "create_date": "2024-06-29T19:23:56.049Z",
       "edit_date": "2024-06-29T19:23:56.049Z",
       "fileName": "img_6955.png",
-      "folder": "memes",
-      "src": "memes/img_6955.png"
+      "folder": "memes"
     },
     {
       "id": 308,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6956.png",
-      "folder": "sort",
-      "src": "sort/img_6956.png"
+      "folder": "sort"
     },
     {
       "id": 309,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6959.png",
-      "folder": "sort",
-      "src": "sort/img_6959.png"
+      "folder": "sort"
     },
     {
       "id": 310,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6960.png",
-      "folder": "memes",
-      "src": "memes/img_6960.png"
+      "folder": "memes"
     },
     {
       "id": 311,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6962.png",
-      "folder": "memes",
-      "src": "memes/img_6962.png"
+      "folder": "memes"
     },
     {
       "id": 312,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6963.jpg",
-      "folder": "sort",
-      "src": "sort/img_6963.jpg"
+      "folder": "sort"
     },
     {
       "id": 313,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6964.png",
-      "folder": "memes",
-      "src": "memes/img_6964.png"
+      "folder": "memes"
     },
     {
       "id": 314,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6965.png",
-      "folder": "memes",
-      "src": "memes/img_6965.png"
+      "folder": "memes"
     },
     {
       "id": 315,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6966.png",
-      "folder": "sort",
-      "src": "sort/img_6966.png"
+      "folder": "sort"
     },
     {
       "id": 316,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6967.png",
-      "folder": "memes",
-      "src": "memes/img_6967.png"
+      "folder": "memes"
     },
     {
       "id": 317,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6968.png",
-      "folder": "memes",
-      "src": "memes/img_6968.png"
+      "folder": "memes"
     },
     {
       "id": 318,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6969.jpg",
-      "folder": "sort",
-      "src": "sort/img_6969.jpg"
+      "folder": "sort"
     },
     {
       "id": 319,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6970.jpg",
-      "folder": "sort",
-      "src": "sort/img_6970.jpg"
-    },
-    {
-      "id": 320,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6971.jpg",
-      "folder": "sort",
-      "src": "sort/img_6971.jpg"
-    },
-    {
-      "id": 321,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6972.jpg",
-      "folder": "sort",
-      "src": "sort/img_6972.jpg"
-    },
-    {
-      "id": 322,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6973.jpg",
-      "folder": "sort",
-      "src": "sort/img_6973.jpg"
-    },
-    {
-      "id": 323,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6974.jpg",
-      "folder": "sort",
-      "src": "sort/img_6974.jpg"
-    },
-    {
-      "id": 324,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6975.jpg",
-      "folder": "sort",
-      "src": "sort/img_6975.jpg"
-    },
-    {
-      "id": 325,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6976.jpg",
-      "folder": "sort",
-      "src": "sort/img_6976.jpg"
+      "folder": "sort"
     },
     {
       "id": 326,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6977.jpg",
-      "folder": "sort",
-      "src": "sort/img_6977.jpg"
+      "folder": "sculpture"
     },
     {
       "id": 327,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6978.jpg",
-      "folder": "sort",
-      "src": "sort/img_6978.jpg"
+      "folder": "architecture"
     },
     {
       "id": 328,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6979.jpg",
-      "folder": "sort",
-      "src": "sort/img_6979.jpg"
+      "folder": "architecture"
     },
     {
       "id": 329,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6980.jpg",
-      "folder": "sort",
-      "src": "sort/img_6980.jpg"
+      "folder": "architecture"
     },
     {
       "id": 330,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6981.jpg",
-      "folder": "sort",
-      "src": "sort/img_6981.jpg"
+      "folder": "sort"
     },
     {
       "id": 331,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6982.jpg",
-      "folder": "sort",
-      "src": "sort/img_6982.jpg"
+      "folder": "architecture"
     },
     {
       "id": 332,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6983.jpg",
-      "folder": "sort",
-      "src": "sort/img_6983.jpg"
+      "folder": "sort"
     },
     {
       "id": 333,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6984.jpg",
-      "folder": "sort",
-      "src": "sort/img_6984.jpg"
-    },
-    {
-      "id": 334,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6985.png",
-      "folder": "memes",
-      "src": "memes/img_6985.png"
-    },
-    {
-      "id": 335,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6986.png",
-      "folder": "memes",
-      "src": "memes/img_6986.png"
-    },
-    {
-      "id": 336,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6987.png",
-      "folder": "memes",
-      "src": "memes/img_6987.png"
-    },
-    {
-      "id": 337,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6988.png",
-      "folder": "memes",
-      "src": "memes/img_6988.png"
+      "folder": "architecture"
     },
     {
       "id": 338,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6989.jpg",
-      "folder": "sort",
-      "src": "sort/img_6989.jpg"
-    },
-    {
-      "id": 339,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6990.png",
-      "folder": "memes",
-      "src": "memes/img_6990.png"
-    },
-    {
-      "id": 340,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6991.png",
-      "folder": "memes",
-      "src": "memes/img_6991.png"
-    },
-    {
-      "id": 341,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6993.png",
-      "folder": "memes",
-      "src": "memes/img_6993.png"
-    },
-    {
-      "id": 342,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6995.png",
-      "folder": "sort",
-      "src": "sort/img_6995.png"
+      "folder": "sort"
     },
     {
       "id": 343,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6996.png",
-      "folder": "sort",
-      "src": "sort/img_6996.png"
-    },
-    {
-      "id": 344,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6998.jpg",
-      "folder": "sort",
-      "src": "sort/img_6998.jpg"
-    },
-    {
-      "id": 345,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_6999.jpg",
-      "folder": "sort",
-      "src": "sort/img_6999.jpg"
-    },
-    {
-      "id": 346,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7001.jpg",
-      "folder": "sort",
-      "src": "sort/img_7001.jpg"
-    },
-    {
-      "id": 347,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7002.jpg",
-      "folder": "sort",
-      "src": "sort/img_7002.jpg"
-    },
-    {
-      "id": 348,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7003.jpg",
-      "folder": "sort",
-      "src": "sort/img_7003.jpg"
-    },
-    {
-      "id": 349,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7004.jpg",
-      "folder": "sort",
-      "src": "sort/img_7004.jpg"
-    },
-    {
-      "id": 350,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7005.jpg",
-      "folder": "sort",
-      "src": "sort/img_7005.jpg"
-    },
-    {
-      "id": 351,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7006.jpg",
-      "folder": "sort",
-      "src": "sort/img_7006.jpg"
-    },
-    {
-      "id": 352,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7007.jpg",
-      "folder": "sort",
-      "src": "sort/img_7007.jpg"
-    },
-    {
-      "id": 353,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7008.jpg",
-      "folder": "sort",
-      "src": "sort/img_7008.jpg"
-    },
-    {
-      "id": 354,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7009.jpg",
-      "folder": "sort",
-      "src": "sort/img_7009.jpg"
-    },
-    {
-      "id": 355,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7010.jpg",
-      "folder": "sort",
-      "src": "sort/img_7010.jpg"
-    },
-    {
-      "id": 356,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7011.jpg",
-      "folder": "sort",
-      "src": "sort/img_7011.jpg"
-    },
-    {
-      "id": 357,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7012.jpg",
-      "folder": "sort",
-      "src": "sort/img_7012.jpg"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 358,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7013.png",
-      "folder": "sort",
-      "src": "sort/img_7013.png"
-    },
-    {
-      "id": 359,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7014.jpg",
-      "folder": "sort",
-      "src": "sort/img_7014.jpg"
-    },
-    {
-      "id": 360,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7015.jpg",
-      "folder": "sort",
-      "src": "sort/img_7015.jpg"
-    },
-    {
-      "id": 361,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7016.jpg",
-      "folder": "sort",
-      "src": "sort/img_7016.jpg"
+      "folder": "sort"
     },
     {
       "id": 362,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7017.png",
-      "folder": "memes",
-      "src": "memes/img_7017.png"
-    },
-    {
-      "id": 363,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7018.jpg",
-      "folder": "sort",
-      "src": "sort/img_7018.jpg"
+      "folder": "memes"
     },
     {
       "id": 364,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7019.jpg",
-      "folder": "sort",
-      "src": "sort/img_7019.jpg"
+      "folder": "sort"
     },
     {
       "id": 365,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7020.png",
-      "folder": "memes",
-      "src": "memes/img_7020.png"
-    },
-    {
-      "id": 366,
-      "create_date": "2024-06-29T19:23:56.050Z",
-      "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7021.png",
-      "folder": "memes",
-      "src": "memes/img_7021.png"
+      "folder": "memes"
     },
     {
       "id": 367,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7025.jpg",
-      "folder": "sort",
-      "src": "sort/img_7025.jpg"
+      "folder": "sort"
     },
     {
       "id": 368,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7026.jpg",
-      "folder": "sort",
-      "src": "sort/img_7026.jpg"
+      "folder": "sort"
     },
     {
       "id": 369,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7030.png",
-      "folder": "sort",
-      "src": "sort/img_7030.png"
+      "folder": "sort"
     },
     {
       "id": 370,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7033.mov",
-      "folder": "sort",
-      "src": "sort/img_7033.mov"
+      "folder": "sort"
     },
     {
       "id": 371,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7034.jpg",
-      "folder": "sort",
-      "src": "sort/img_7034.jpg"
+      "folder": "sort"
     },
     {
       "id": 372,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7035.jpg",
-      "folder": "sort",
-      "src": "sort/img_7035.jpg"
+      "folder": "sort"
     },
     {
       "id": 373,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7036.jpg",
-      "folder": "sort",
-      "src": "sort/img_7036.jpg"
+      "folder": "sort"
     },
     {
       "id": 374,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7037.png",
-      "folder": "memes",
-      "src": "memes/img_7037.png"
+      "folder": "memes"
     },
     {
       "id": 375,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7038.png",
-      "folder": "memes",
-      "src": "memes/img_7038.png"
+      "folder": "memes"
     },
     {
       "id": 376,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7039.png",
-      "folder": "memes",
-      "src": "memes/img_7039.png"
+      "folder": "memes"
     },
     {
       "id": 377,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7040.jpg",
-      "folder": "sort",
-      "src": "sort/img_7040.jpg"
+      "folder": "sort"
     },
     {
       "id": 378,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7041.jpg",
-      "folder": "sort",
-      "src": "sort/img_7041.jpg"
+      "folder": "sort"
     },
     {
       "id": 379,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7042.jpg",
-      "folder": "sort",
-      "src": "sort/img_7042.jpg"
+      "folder": "sort"
     },
     {
       "id": 380,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7043.png",
-      "folder": "sort",
-      "src": "sort/img_7043.png"
+      "folder": "sort"
     },
     {
       "id": 381,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7044.heic",
-      "folder": "sort",
-      "src": "sort/img_7044.heic"
+      "folder": "sort"
     },
     {
       "id": 382,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7045.png",
-      "folder": "sort",
-      "src": "sort/img_7045.png"
+      "folder": "sort"
     },
     {
       "id": 383,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7046.png",
-      "folder": "memes",
-      "src": "memes/img_7046.png"
+      "folder": "memes"
     },
     {
       "id": 384,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7047.jpg",
-      "folder": "sort",
-      "src": "sort/img_7047.jpg"
+      "folder": "sort"
     },
     {
       "id": 385,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7048.jpg",
-      "folder": "sort",
-      "src": "sort/img_7048.jpg"
+      "folder": "sort"
     },
     {
       "id": 386,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7051.png",
-      "folder": "sort",
-      "src": "sort/img_7051.png"
+      "folder": "sort"
     },
     {
       "id": 387,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7054.png",
-      "folder": "sort",
-      "src": "sort/img_7054.png"
+      "folder": "sort"
     },
     {
       "id": 388,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7055.heic",
-      "folder": "sort",
-      "src": "sort/img_7055.heic"
+      "folder": "sort"
     },
     {
       "id": 389,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7057.png",
-      "folder": "sort",
-      "src": "sort/img_7057.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 390,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7058.png",
-      "folder": "sort",
-      "src": "sort/img_7058.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 391,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7059.png",
-      "folder": "sort",
-      "src": "sort/img_7059.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 392,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7060.png",
-      "folder": "sort",
-      "src": "sort/img_7060.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 393,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7061.png",
-      "folder": "sort",
-      "src": "sort/img_7061.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 394,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7062.png",
-      "folder": "sort",
-      "src": "sort/img_7062.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 395,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7063.png",
-      "folder": "sort",
-      "src": "sort/img_7063.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 396,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7065.png",
-      "folder": "sort",
-      "src": "sort/img_7065.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 397,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7066.png",
-      "folder": "sort",
-      "src": "sort/img_7066.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 398,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7068.webp",
-      "folder": "sort",
-      "src": "sort/img_7068.webp"
+      "folder": "sort"
     },
     {
       "id": 399,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7069.png",
-      "folder": "sort",
-      "src": "sort/img_7069.png"
+      "folder": "sort"
     },
     {
       "id": 400,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7070.heic",
-      "folder": "sort",
-      "src": "sort/img_7070.heic"
+      "folder": "sort"
     },
     {
       "id": 401,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7071.jpg",
-      "folder": "sort",
-      "src": "sort/img_7071.jpg"
+      "folder": "sort"
     },
     {
       "id": 402,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7072.png",
-      "folder": "sort",
-      "src": "sort/img_7072.png"
+      "folder": "sort"
     },
     {
       "id": 403,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7073.png",
-      "folder": "sort",
-      "src": "sort/img_7073.png"
+      "folder": "sort"
     },
     {
       "id": 404,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7074.jpg",
-      "folder": "sort",
-      "src": "sort/img_7074.jpg"
+      "folder": "sort"
     },
     {
       "id": 405,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7077.jpg",
-      "folder": "sort",
-      "src": "sort/img_7077.jpg"
+      "folder": "sort"
     },
     {
       "id": 406,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7078.jpg",
-      "folder": "sort",
-      "src": "sort/img_7078.jpg"
+      "folder": "sort"
     },
     {
       "id": 407,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7079.png",
-      "folder": "sort",
-      "src": "sort/img_7079.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 408,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7081.png",
-      "folder": "sort",
-      "src": "sort/img_7081.png"
+      "folder": "sort"
     },
     {
       "id": 409,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7082.png",
-      "folder": "sort",
-      "src": "sort/img_7082.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 410,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7083.png",
-      "folder": "sort",
-      "src": "sort/img_7083.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 411,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7084.png",
-      "folder": "sort",
-      "src": "sort/img_7084.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 412,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7085.png",
-      "folder": "sort",
-      "src": "sort/img_7085.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 413,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7086.png",
-      "folder": "sort",
-      "src": "sort/img_7086.png"
+      "folder": "sort"
     },
     {
       "id": 414,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7087.png",
-      "folder": "sort",
-      "src": "sort/img_7087.png"
+      "folder": "sort"
     },
     {
       "id": 415,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7090.png",
-      "folder": "sort",
-      "src": "sort/img_7090.png"
+      "folder": "memes\\memes-trump"
     },
     {
       "id": 416,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7091.png",
-      "folder": "sort",
-      "src": "sort/img_7091.png"
+      "folder": "sort"
     },
     {
       "id": 417,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7092.jpg",
-      "folder": "sort",
-      "src": "sort/img_7092.jpg"
+      "folder": "sort"
     },
     {
       "id": 418,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7093.jpg",
-      "folder": "sort",
-      "src": "sort/img_7093.jpg"
+      "folder": "sort"
     },
     {
       "id": 419,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7096.jpg",
-      "folder": "sort",
-      "src": "sort/img_7096.jpg"
+      "folder": "sort"
     },
     {
       "id": 420,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7097.png",
-      "folder": "sort",
-      "src": "sort/img_7097.png"
+      "folder": "sort"
     },
     {
       "id": 421,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7098.png",
-      "folder": "sort",
-      "src": "sort/img_7098.png"
+      "folder": "sort"
     },
     {
       "id": 422,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7100.png",
-      "folder": "sort",
-      "src": "sort/img_7100.png"
+      "folder": "sort"
     },
     {
       "id": 423,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7101.png",
-      "folder": "sort",
-      "src": "sort/img_7101.png"
+      "folder": "sort"
     },
     {
       "id": 424,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7107.png",
-      "folder": "sort",
-      "src": "sort/img_7107.png"
+      "folder": "sort"
     },
     {
       "id": 425,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7108.png",
-      "folder": "sort",
-      "src": "sort/img_7108.png"
+      "folder": "sort"
     },
     {
       "id": 426,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7110.jpg",
-      "folder": "sort",
-      "src": "sort/img_7110.jpg"
+      "folder": "sort"
     },
     {
       "id": 427,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7111.png",
-      "folder": "sort",
-      "src": "sort/img_7111.png"
+      "folder": "sort"
     },
     {
       "id": 428,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7112.png",
-      "folder": "sort",
-      "src": "sort/img_7112.png"
+      "folder": "sort"
     },
     {
       "id": 429,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7113.png",
-      "folder": "sort",
-      "src": "sort/img_7113.png"
+      "folder": "sort"
     },
     {
       "id": 430,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7114.png",
-      "folder": "sort",
-      "src": "sort/img_7114.png"
+      "folder": "sort"
     },
     {
       "id": 431,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7116.jpg",
-      "folder": "sort",
-      "src": "sort/img_7116.jpg"
+      "folder": "sort"
     },
     {
       "id": 432,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7120.png",
-      "folder": "sort",
-      "src": "sort/img_7120.png"
+      "folder": "sort"
     },
     {
       "id": 433,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7121.webp",
-      "folder": "sort",
-      "src": "sort/img_7121.webp"
+      "folder": "sort"
     },
     {
       "id": 434,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7122.png",
-      "folder": "sort",
-      "src": "sort/img_7122.png"
+      "folder": "sort"
     },
     {
       "id": 435,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7123.png",
-      "folder": "sort",
-      "src": "sort/img_7123.png"
+      "folder": "sort"
     },
     {
       "id": 436,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7124.png",
-      "folder": "sort",
-      "src": "sort/img_7124.png"
+      "folder": "sort"
     },
     {
       "id": 437,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7125.png",
-      "folder": "sort",
-      "src": "sort/img_7125.png"
+      "folder": "sort"
     },
     {
       "id": 438,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7126.png",
-      "folder": "sort",
-      "src": "sort/img_7126.png"
+      "folder": "sort"
     },
     {
       "id": 439,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7127.png",
-      "folder": "sort",
-      "src": "sort/img_7127.png"
+      "folder": "sort"
     },
     {
       "id": 440,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7128.png",
-      "folder": "sort",
-      "src": "sort/img_7128.png"
+      "folder": "sort"
     },
     {
       "id": 441,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7129.jpg",
-      "folder": "sort",
-      "src": "sort/img_7129.jpg"
+      "folder": "sort"
     },
     {
       "id": 442,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7130.jpg",
-      "folder": "sort",
-      "src": "sort/img_7130.jpg"
+      "folder": "sort"
     },
     {
       "id": 443,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7131.jpg",
-      "folder": "sort",
-      "src": "sort/img_7131.jpg"
+      "folder": "sort"
     },
     {
       "id": 444,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7132.jpg",
-      "folder": "sort",
-      "src": "sort/img_7132.jpg"
+      "folder": "sort"
     },
     {
       "id": 445,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7133.png",
-      "folder": "sort",
-      "src": "sort/img_7133.png"
+      "folder": "sort"
     },
     {
       "id": 446,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7134.png",
-      "folder": "sort",
-      "src": "sort/img_7134.png"
+      "folder": "sort"
     },
     {
       "id": 447,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7135.png",
-      "folder": "sort",
-      "src": "sort/img_7135.png"
+      "folder": "sort"
     },
     {
       "id": 448,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7136.png",
-      "folder": "sort",
-      "src": "sort/img_7136.png"
+      "folder": "sort"
     },
     {
       "id": 449,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7137.jpg",
-      "folder": "sort",
-      "src": "sort/img_7137.jpg"
+      "folder": "sort"
     },
     {
       "id": 450,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7138.png",
-      "folder": "sort",
-      "src": "sort/img_7138.png"
+      "folder": "sort"
     },
     {
       "id": 451,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7139.png",
-      "folder": "sort",
-      "src": "sort/img_7139.png"
+      "folder": "sort"
     },
     {
       "id": 452,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7140.png",
-      "folder": "sort",
-      "src": "sort/img_7140.png"
+      "folder": "sort"
     },
     {
       "id": 453,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7141.png",
-      "folder": "sort",
-      "src": "sort/img_7141.png"
+      "folder": "sort"
     },
     {
       "id": 454,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7142.jpg",
-      "folder": "sort",
-      "src": "sort/img_7142.jpg"
+      "folder": "sort"
     },
     {
       "id": 455,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7143.jpg",
-      "folder": "sort",
-      "src": "sort/img_7143.jpg"
+      "folder": "sort"
     },
     {
       "id": 456,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7144.jpg",
-      "folder": "sort",
-      "src": "sort/img_7144.jpg"
+      "folder": "sort"
     },
     {
       "id": 457,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7145.jpg",
-      "folder": "sort",
-      "src": "sort/img_7145.jpg"
+      "folder": "sort"
     },
     {
       "id": 458,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7146.jpg",
-      "folder": "sort",
-      "src": "sort/img_7146.jpg"
+      "folder": "sort"
     },
     {
       "id": 459,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7147.jpg",
-      "folder": "sort",
-      "src": "sort/img_7147.jpg"
+      "folder": "sort"
     },
     {
       "id": 460,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7148.png",
-      "folder": "sort",
-      "src": "sort/img_7148.png"
+      "folder": "sort"
     },
     {
       "id": 461,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7149.png",
-      "folder": "sort",
-      "src": "sort/img_7149.png"
+      "folder": "sort"
     },
     {
       "id": 462,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7150.png",
-      "folder": "sort",
-      "src": "sort/img_7150.png"
+      "folder": "sort"
     },
     {
       "id": 463,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7151.png",
-      "folder": "sort",
-      "src": "sort/img_7151.png"
+      "folder": "sort"
     },
     {
       "id": 464,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7152.png",
-      "folder": "sort",
-      "src": "sort/img_7152.png"
+      "folder": "sort"
     },
     {
       "id": 465,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7153.png",
-      "folder": "sort",
-      "src": "sort/img_7153.png"
+      "folder": "sort"
     },
     {
       "id": 466,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7167.png",
-      "folder": "sort",
-      "src": "sort/img_7167.png"
+      "folder": "sort"
     },
     {
       "id": 467,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7168.jpg",
-      "folder": "sort",
-      "src": "sort/img_7168.jpg"
+      "folder": "sort"
     },
     {
       "id": 468,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7169.jpg",
-      "folder": "sort",
-      "src": "sort/img_7169.jpg"
+      "folder": "sort"
     },
     {
       "id": 469,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7170.jpg",
-      "folder": "sort",
-      "src": "sort/img_7170.jpg"
+      "folder": "sort"
     },
     {
       "id": 470,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7171.jpg",
-      "folder": "sort",
-      "src": "sort/img_7171.jpg"
+      "folder": "sort"
     },
     {
       "id": 471,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7172.jpg",
-      "folder": "sort",
-      "src": "sort/img_7172.jpg"
+      "folder": "sort"
     },
     {
       "id": 472,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7173.jpg",
-      "folder": "sort",
-      "src": "sort/img_7173.jpg"
+      "folder": "sort"
     },
     {
       "id": 473,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7174.jpg",
-      "folder": "sort",
-      "src": "sort/img_7174.jpg"
+      "folder": "sort"
     },
     {
       "id": 474,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7175.jpg",
-      "folder": "sort",
-      "src": "sort/img_7175.jpg"
+      "folder": "sort"
     },
     {
       "id": 475,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7176.jpg",
-      "folder": "sort",
-      "src": "sort/img_7176.jpg"
+      "folder": "sort"
     },
     {
       "id": 476,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7177.jpg",
-      "folder": "sort",
-      "src": "sort/img_7177.jpg"
+      "folder": "sort"
     },
     {
       "id": 477,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7178.jpg",
-      "folder": "sort",
-      "src": "sort/img_7178.jpg"
+      "folder": "sort"
     },
     {
       "id": 478,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7179.jpg",
-      "folder": "sort",
-      "src": "sort/img_7179.jpg"
+      "folder": "sort"
     },
     {
       "id": 479,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7180.jpg",
-      "folder": "sort",
-      "src": "sort/img_7180.jpg"
+      "folder": "sort"
     },
     {
       "id": 480,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_7181.jpg",
-      "folder": "sort",
-      "src": "sort/img_7181.jpg"
+      "folder": "sort"
     },
     {
       "id": 481,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_8308.heic",
-      "folder": "sort",
-      "src": "sort/img_8308.heic"
+      "folder": "memes"
     },
     {
       "id": 482,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "img_9452.jpg",
-      "folder": "sort",
-      "src": "sort/img_9452.jpg"
+      "folder": "sort"
     },
     {
       "id": 483,
       "create_date": "2024-06-29T19:23:56.051Z",
       "edit_date": "2024-06-29T19:23:56.051Z",
       "fileName": "screenshot 2023-04-19 at 6.07.04 pm.heic",
-      "folder": "sort",
-      "src": "sort/screenshot 2023-04-19 at 6.07.04 pm.heic"
+      "folder": "sort"
     },
     {
       "id": 484,
@@ -4130,19 +3210,7 @@
       "folder": "sort",
       "location": "Coimbra, Portugal",
       "name": "Biblioteca Joanina",
-      "official_url": "https://visit.uc.pt/en/space-list/joanina",
-      "src": "sort/7ece6bd6dc9255fdf9c159980f184bcf.jpg"
-    },
-    {
-      "id": 484,
-      "create_date": "2024-06-29T19:23:56.048Z",
-      "edit_date": "2024-06-29T19:23:56.048Z",
-      "fileName": "7ece6bd6dc9255fdf9c159980f184bcf.jpg",
-      "folder": "sort",
-      "location": "Coimbra, Portugal",
-      "name": "Biblioteca Joanina",
-      "official_url": "https://visit.uc.pt/en/space-list/joanina",
-      "src": "sort/7ece6bd6dc9255fdf9c159980f184bcf.jpg"
+      "official_url": "https://visit.uc.pt/en/space-list/joanina"
     }
   ]
 }
