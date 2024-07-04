@@ -1,3 +1,5 @@
+import { IMAGE_BASE } from './constants';
+
 export const getURLPath = (url: string) => {
   if (!url) {
     return undefined;
@@ -61,4 +63,17 @@ export const isValidArray = (arr: unknown[] | undefined) => {
     return false;
   }
   return true;
+};
+
+export const getSRC = (
+  folder: string | undefined,
+  fileName: string | undefined,
+): string | undefined => {
+  if (!fileName || fileName.trim().length === 0) {
+    return undefined;
+  }
+  const tempFolder =
+    folder && folder.trim().length > 0 ? '/' + folder.trim() : '';
+
+  return IMAGE_BASE + tempFolder + '/' + fileName.trim();
 };

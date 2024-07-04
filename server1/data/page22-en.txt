@@ -1,0 +1,65 @@
+There are several dimensions to web performance:  general site performance, individual page performance, perceived performance, and the start-to-end experience.  For each of these, we can tackle improvements within the constraints of time, money, and management support.
+
+<h2>React Specific</h2>
+React has a number options to improve performance and continues to develop more.
+
+1. useMemo can be used to cache expensive operations.
+2. useDebounce can be used to delay action - the classic use case is to delay a search until the user has stopped entering the search term.
+3. useTransition - Allows you to update state without blocking the UI
+4. useDefferedValue - Allows you to delay updating the UI
+5. useOptimistic (React 19) Allows you to update the screen with anticipated results.
+6. Tree-shaking:  This reduces the transpiled code by removing 'dead' code from the final package.
+7. Code-splitting:  This breaks up the code into multiple files vs. a single monolithic file.  This prevents the user from getting hit with a significant delay the first time they access a site: instead loading the site in parts.
+7. Minification:  The reduces file sizes (usually CSS and JS) by removing all the comments and empty space.  It may also replace long variable and function names with short codes.
+8. Lazy loading. This delays loading components to the user until they are needed.   They typical user is not going to access admin pages, privacy policies, sitemaps, etc.  - so there is no reason to send these files to the user.
+
+<h2>General Site Performance</h2>
+Site performance is generally controlled by network and server speed.   
+
+1. Server speed can be increased by using a combination of faster servers, more server memory, and/or more servers.  Cloud computing services have a significant benefit in this area - allowing you to easily scaled up, down, in, and out.  With a proper architecture and configuration, you can setup your infrastructure to automatically respond to demand.  However, there are increasing costs with decreasing returns: as a general matter costs tend to limit the available options in this area.
+
+2. Network speed can be improved by a strategic architecture - moving your processes closer to the user.  This requires a practical understand of where your target users are physically located.  Again, cloud computing has an advantage of allowing you to host your site in multiple physical locations, utilizing local zones, or wavelength zones (cell service data centers).  
+
+Site performance can also be influenced by the choice of technologies and platforms.  For example, AWS Lambda services are low cost, but incur a cold startup time.  Data Warehouses are powerful, but not appropriate for quick response.
+
+<h2>Individual Page Performance</h2>
+1. HTTP2
+2. GZip Compression
+3. Controlling bundle sizes and included libraries
+4. CDN (content delivery networks).  CDNs offload requests to other servers - reducing the load on your servers.  Also, popular libraries may already been in a user's cache from a CDN - eliminating the need to re-download the library (ex. jQuery)
+5. Images: right-sizing and format. Image files tend to be large and a significant portion of web site's load.   It is important to size the image appropriately.  This almost always means multiple images for a site (ex. desktop size, mobile size).  The choice of the file format is also important: png was a popular format, but webp seems to be the new standard.  
+6. Div wrapping: avoiding complex DOM structures where content is wrapped in layers and layers of div tags.  If needed, React.Fragment can be used.
+7. CSS lite:  this is a challenging area (especially in React).  You don't want to bloat your code with lines of CSS code or large third-party UI libraries.  Normally, we'd focus on a single global.css file, but React's approach is the opposite: to move the CSS to the component level.  Development of small, reusable components will help control the CSS size.   
+8. Caching:  Redux or other libraries can be used to cache frequently used data locally.  This might include a menu, select options, business rules, etc.
+9. Minimize API calls.  If possible, assemble and merge any data on the back end vs. the front end.
+10. Shape the data:  Return only the attributes and records to the front end that are needed for display.  Don't return excess data.
+11.  Language inefficiencies:  Depending upon the language, you can explore the best algorithms.  For example, using StringBuilder in Java vs. string concatenation.  Or, using different sort methods.
+12. Windowing or virtualization of data allows scrolling without waiting for API calls.
+
+<h2>Perceived Performance</h2>
+This is the "feeling" by the user that the web site is responsive and things are "happening".
+
+1. Actually responsiveness.  As a developer, you need to avoid having your web site "lock up": preventing user interaction or input.    
+a. Timeouts on network calls.  You should implement a reasonable timeout on any network calls or data fetches and return an appropriate message upon failure.
+b. Unlock buttons.  Some designs will disable buttons to prevent a double-submit. You need to make sure that these are re-enabled in all cases.
+c. Resets.  If something goes wrong, you should allow the user to recover and not lock them into a unrecoverable or completely do over state.
+d. The useTransition hook from React can be used to update the UI without waiting for network responses.
+e. Handling logout situations nicely - allowing the user to easily return to the app.
+
+2. Spinners, Loading messages, skeleton loading, and blurred images. 
+These can be used to communicate to the user that something is happening.
+
+3. Animations
+Material UI animations give the user a fun sense of interaction.  These might include bounces, hovers, fades, grows, and other transitions.
+ 
+<h2>Start-to-end Experience</h2>
+The start-to-end experience is the overall experience and time spent by a user to get their work completed. There are a number of factors that can affect this experience:
+1. Consistency of design throughout the experience: from log-in screens to individual web pages. Is the layout consistent, is the UI design consistent, do components function and look the same on every page, is there minimal mouse movement as the user moves through the pages?  Differences mean that the user has to pause and figure out what to do next.  
+2. Heatmaps can give you insight into how users interact with a site and how to improve it.
+3. Users generally "learn" how to navigate the internet from the sites that they use most often, therefore you should try to borrow the language of the top sites (ex. Amazon, Google, Microsoft, Apple).  If one of these sites has a solution for re-ordering items on a page, it's simulate the same design - rather than confusing users with a new design.
+4. In earlier days, web sites tended to adopt a multiple page, multiple step design (i.e. paging through records or multi-step checkout processes).  Single Page Applications try to keep the user on a single page: using windowing to load multiple records and reducing the checkout process to one page.  Amazon's 1-click checkout has been extremely profitable - reducing the time needed for a purchase.
+5. Reduce typing.  Reducing the amount of data that a user needs to input - especially on a return visit - can really speed up the experience.  There are a number of options here:  a) capturing previous input in browser or other storage and using it to pre-fill items, b) "guessing" what a user might select or enter and pre-fill, c) incorporate data from other systems, d) document scanning, e) alternative input (ex. using a camera to capture credit card data). 
+6. Reduce, limit, control, and communicate change.  Nothing annoys me more than having to download a new app while I'm waiting in line at the grocery store or having to resign-in due to a system update.  These changes can be managed to give the user an opportunity to change when they want to vs. a forced change.
+7. A/B testing can be used to validate various designs. 
+
+

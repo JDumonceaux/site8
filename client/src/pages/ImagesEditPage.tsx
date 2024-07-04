@@ -8,8 +8,6 @@ import useSnackbar from 'hooks/useSnackbar';
 import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { styled } from 'styled-components';
 
-import { IMAGE_BASE } from 'utils';
-
 const ImagesEditPage = (): JSX.Element => {
   const [isPending, startTransition] = useTransition();
   const [currFolder, setCurrFolder] = useState<string>('');
@@ -152,10 +150,7 @@ const ImagesEditPage = (): JSX.Element => {
                 {data?.map((item) => (
                   <StyledRow key={item.localId}>
                     <StyledImgContainer>
-                      <StyledImg
-                        alt={item.name}
-                        src={`${IMAGE_BASE}/${item.src}`}
-                      />
+                      <StyledImg alt={item.name} src={item.src} />
                     </StyledImgContainer>
                     <StyledOuterRow>
                       <StyledSubRow>
@@ -264,16 +259,18 @@ const StyledImgContainer = styled.div`
   align-items: left;
   justify-content: top;
   margin-right: 20px;
-  width: 150px;
+  width: 250px;
 `;
 const StyledImg = styled.img`
-  width: 100px;
+  width: 200px;
 `;
 const StyledRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
   width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--palette-samp);
 `;
 const StyledOuterRow = styled.div`
   flex-grow: 1;

@@ -20,12 +20,20 @@ export class ImagesFileService {
     }
   }
 
+  /**
+   * Retrieves new items from the sort directory.
+   * @returns A Promise that resolves to an object of type Images or undefined.
+   */
   public async getNewItems(): Promise<Images | undefined> {
     const items = await this.getItemsFromSortDirectory();
     return { metadata: { title: 'Images' }, items: items?.items };
   }
 
-  // Get all data
+  /**
+   * Retrieves the list of folders in the specified path.
+   *
+   * @returns An array of folder names.
+   */
   public getFolders() {
     try {
       Logger.info(`ImagesFileService: getFolders -> path: ${LOCAL_IMAGE_PATH}`);
@@ -36,18 +44,24 @@ export class ImagesFileService {
         encoding: 'utf8',
         recursive: true,
         withFileTypes: true,
-      });
+      })
+        .filter((x) => x.isDirectory())
+        .map((x) => x.path + '\\' + x.name)
+        .map((x) => x.substring(LOCAL_IMAGE_PATH.length + 1).trim());
 
-      return items
-        .filter((item) => item.isDirectory())
-        .map((item) => item.name);
+      return items;
     } catch (error) {
       Logger.error(`ImagesFileService: getFolders -> ${error}`);
     }
     return undefined;
   }
 
-  // Get all data
+  /**
+   * Retrieves a list of images from a directory.
+   * @param basePath - The base path of the directory.
+   * @param addPath - An optional additional path to append to the base path.
+   * @returns A Promise that resolves to an object containing the metadata and items of the images.
+   */
   private async getItemsFromDirectory(
     basePath: string,
     addPath?: string,
@@ -63,20 +77,17 @@ export class ImagesFileService {
       const items = readdirSync(fullPath, {
         encoding: 'utf8',
         recursive: true,
-      });
-
-      // Filter out directories
-      const files = items.filter((item) => {
+      }).filter((item) => {
         const itemPath = path.join(fullPath, item);
         const stats = statSync(itemPath);
         return stats.isFile();
       });
 
       // Return a list of images
-      const ret: Image[] = files.map((file) => {
+      const ret: Image[] = items.map((x) => {
         return {
-          fileName: path.basename(file),
-          folder: path.dirname(file),
+          fileName: path.basename(x),
+          folder: path.dirname(x),
         };
       }) as Image[];
 

@@ -12,5 +12,4 @@ export type Image = {
   readonly edit_date?: Date;
   readonly create_date?: Date;
   readonly issue?: string;
-  readonly src?: string;
 };

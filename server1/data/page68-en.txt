@@ -1,0 +1,18 @@
+Components in React pre 16.8 versions used class components.  
+
+<h2>Mounting lifecycle methods</h2>
+   constructor()
+   static getDerivedStateFromProps()
+   render()
+   componentDidMount()
+<h2>Updating lifecycle methods</h2>
+   static getDerivedStateFromProps()
+   shouldComponentUpdate()
+   render() 
+   getSnapshotBeforeUpdate()
+   componentDidUpdate()
+<h2>Unmounting lifecycle method</h2>
+   componentWillUnmount
+<h2>Error handling lifecycle methods</h2>
+   static getDerivedStateFromError()
+   componentDidCatch()

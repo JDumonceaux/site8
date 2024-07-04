@@ -2320,6 +2320,32 @@
       ],
       "to": "performance-insights",
       "type": "page"
+    },
+    {
+      "id": 68,
+      "name": "Class Components",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 1
+        }
+      ],
+      "to": "class-components",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 22,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "hasFile": true
     }
   ]
 }

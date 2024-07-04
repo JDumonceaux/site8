@@ -19,7 +19,7 @@ const pageAddSchema = z
       .trim(),
     to: z.string().trim().optional(),
     url: z.string().trim().optional(),
-    parent: z
+    parentItems: z
       .object({
         id: z.number(),
         seq: z.number(),

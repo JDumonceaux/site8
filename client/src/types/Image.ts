@@ -10,5 +10,4 @@ export type Image = {
   readonly matchedId?: number;
   readonly fileName: string;
   readonly folder?: string;
-  readonly src?: string;
 };

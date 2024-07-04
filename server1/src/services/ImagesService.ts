@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
-import { ImageSync } from '../types/ImagerSync.js';
+import { ImageSync } from '../types/ImageSync.js';
 import { Images } from '../types/Images.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
@@ -126,31 +126,29 @@ export class ImagesService {
         const matchedItems = images?.items?.filter(
           (x) => x.fileName.length > 0 && x.fileName === item.fileName,
         );
-        const { src, ...rest } = item;
-        const newItem = { ...rest };
         if (matchedItems) {
           switch (matchedItems.length) {
             case 0:
-              ret.push(newItem);
-              issues.push({ ...newItem, issue: 'Image not found' });
+              ret.push(item);
+              issues.push({ ...item, issue: 'Image not found' });
               break;
             case 1:
               // Automatically update folder if it's different
-              if (newItem.folder !== matchedItems[0].folder) {
-                ret.push({ ...newItem, folder: matchedItems[0].folder });
+              if (item.folder !== matchedItems[0].folder) {
+                ret.push({ ...item, folder: matchedItems[0].folder });
                 recordsUpdated++;
               } else {
-                ret.push(newItem);
+                ret.push(item);
               }
               break;
             case 2:
-              ret.push(newItem);
-              issues.push({ ...newItem, issue: 'Duplicate found' });
+              ret.push(item);
+              issues.push({ ...item, issue: 'Duplicate found' });
               break;
             default:
-              ret.push(newItem);
+              ret.push(item);
               issues.push({
-                ...newItem,
+                ...item,
                 issue: matchedItems.length + ' found',
               });
               break;

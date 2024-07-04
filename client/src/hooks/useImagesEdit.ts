@@ -5,6 +5,7 @@ import { z } from 'zod';
 
 import { Images } from 'types';
 import { ImageEdit } from 'types/ImageEdit';
+import { getSRC } from 'utils/helpers';
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
 
@@ -21,11 +22,11 @@ const pageSchema = z.object({
     .max(250, 'Location max length exceeded: 500')
     .trim()
     .optional(),
-  src: z.string().trim().optional(),
   folder: z.string().trim().optional(),
   official_url: z.string().trim().optional(),
   tags: z.string().trim().optional(),
   description: z.string().trim().optional(),
+  src: z.string().optional(),
 });
 
 const useImagesEdit = () => {
@@ -63,12 +64,12 @@ const useImagesEdit = () => {
         localId: item.localId || 0,
         name: item.name || '',
         fileName: item.fileName || '',
-        src: item.src || '',
         folder: item.folder || '',
         official_url: item.official_url || '',
         description: item.description || '',
         location: item.location || '',
         tags: '',
+        src: getSRC(item.folder, item.fileName),
       };
     });
     if (ret) {
