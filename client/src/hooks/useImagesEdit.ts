@@ -28,6 +28,7 @@ const pageSchema = z.object({
   description: z.string().trim().optional(),
   src: z.string().optional(),
   duplicate: z.string().optional(),
+  delete: z.string().optional(),
 });
 
 const useImagesEdit = () => {
@@ -44,8 +45,13 @@ const useImagesEdit = () => {
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   // Create a form
-  const { formValues, getDefaultProps, setFormValues, setFieldValue } =
-    useFormArray<FormType>();
+  const {
+    formValues,
+    getDefaultProps,
+    getFieldValue,
+    setFormValues,
+    setFieldValue,
+  } = useFormArray<FormType>();
 
   // Save to local - adding local index
   useEffect(() => {
@@ -203,6 +209,7 @@ const useImagesEdit = () => {
       submitForm,
       scanForNewItems,
       getDefaultProps,
+      getFieldValue,
       setFieldValue,
       refreshItems,
     }),
@@ -217,6 +224,7 @@ const useImagesEdit = () => {
       submitForm,
       scanForNewItems,
       getDefaultProps,
+      getFieldValue,
       setFieldValue,
       refreshItems,
     ],

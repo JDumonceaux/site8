@@ -1,8 +1,9 @@
+import { Cross2Icon } from '@radix-ui/react-icons';
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import { IconMenu } from 'components/Radix/IconMenu';
+import { IconMenuItem } from 'components/Radix/IconMenuItem';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
-import { SelectIcon } from 'components/icons/SelectIcon';
 import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
@@ -24,6 +25,7 @@ const ImagesEditPage = (): JSX.Element => {
     scanForNewItems,
     refreshItems,
     setFieldValue,
+    getFieldValue,
     fetchData,
   } = useImagesEdit();
   const { setSnackbarMessage } = useSnackbar();
@@ -79,6 +81,14 @@ const ImagesEditPage = (): JSX.Element => {
   const handleOnClick = useCallback((value: string) => {
     setCurrFolder((prev) => (prev === value ? '' : value));
   }, []);
+
+  const handleOnDelete = useCallback(
+    (localId: number) => {
+      const prev = getFieldValue(localId, 'delete');
+      setFieldValue(localId, 'delete', !prev);
+    },
+    [getFieldValue, setFieldValue],
+  );
 
   const handleFolderClick = useCallback(
     (localId: number) => {
@@ -149,14 +159,18 @@ const ImagesEditPage = (): JSX.Element => {
               {isPending ? <div>Looking ...</div> : null}
               <StyledForm noValidate onSubmit={handleSubmit}>
                 {data?.map((item) => (
-                  <StyledRow key={item.localId}>
+                  <StyledRow
+                    $deleted={item.delete ? 'true' : 'false'}
+                    key={item.localId}>
                     <StyledImgContainer>
                       <StyledImg alt={item.name} src={item.src} />
                     </StyledImgContainer>
                     <StyledOuterRow>
+                      {item.duplicate === 'true' ? (
+                        <StyledSubRow>Duplicate Image</StyledSubRow>
+                      ) : null}
                       <StyledSubRow>
                         <TextInput {...getDefaultProps(item.localId, 'name')} />
-
                         <TextInput
                           {...getDefaultProps(item.localId, 'fileName')}
                         />
@@ -167,7 +181,8 @@ const ImagesEditPage = (): JSX.Element => {
                           <StyledButton2
                             onClick={() => handleFolderClick(item.localId)}
                             type="button">
-                            <SelectIcon />
+                            <Cross2Icon />
+                            {/* <CheckIcon /> */}
                           </StyledButton2>
                         </div>
                       </StyledSubRow>
@@ -178,15 +193,19 @@ const ImagesEditPage = (): JSX.Element => {
                         <TextInput
                           {...getDefaultProps(item.localId, 'official_url')}
                         />
-                        <div>{item.id}</div>
+                        <IconMenu>
+                          <IconMenuItem
+                            onClick={() => handleOnDelete(item.localId)}>
+                            Delete
+                          </IconMenuItem>
+                          <IconMenuItem>{item.id}</IconMenuItem>
+                        </IconMenu>
                       </StyledSubRow>
                       <StyledSubRow>
-                        <div>{item.duplicate}</div>
                         <TextInput
                           {...getDefaultProps(item.localId, 'description')}
                         />
                       </StyledSubRow>
-                      <IconMenu />
                     </StyledOuterRow>
                   </StyledRow>
                 ))}
@@ -274,13 +293,17 @@ const StyledImgContainer = styled.div`
 const StyledImg = styled.img`
   width: 200px;
 `;
-const StyledRow = styled.div`
+const StyledRow = styled.div<{
+  $deleted?: 'true' | 'false';
+}>`
   display: flex;
   flex-direction: row;
   justify-content: left;
   width: 100%;
   padding: 10px 0;
   border-bottom: 1px solid var(--palette-samp);
+  border: ${(props) =>
+    props.$deleted === 'true' ? `1px solid var(--navbar-dark-3)` : undefined};
 `;
 const StyledOuterRow = styled.div`
   flex-grow: 1;
@@ -298,4 +321,7 @@ const StyledHeader = styled.div`
 const StickyMenu = styled.div`
   position: sticky;
   top: 80px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding-bottom: 20px;
 `;

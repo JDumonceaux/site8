@@ -44,6 +44,14 @@ export const useFormArray = <T extends IdType>() => {
     },
     [formValues],
   );
+
+  /**
+   * Updates an item in the form values array.
+   * If an item with the provided localId already exists, it will be updated with the new item.
+   * If no item with the provided localId exists, a new item will be added to the array.
+   * @param localId - The localId of the item to update or add.
+   * @param item - The updated item to set.
+   */
   const setItem = useCallback(
     (localId: number, item: T) => {
       const i = formValues.findIndex((x) => x.localId === localId);
@@ -59,6 +67,12 @@ export const useFormArray = <T extends IdType>() => {
     [formValues],
   );
 
+  /**
+   * Retrieves an item from the form values array based on its localId.
+   *
+   * @param localId - The localId of the item to retrieve.
+   * @returns The item with the specified localId, or undefined if not found.
+   */
   const getItem = useCallback(
     (localId: number) => {
       const i = formValues.findIndex((x) => x.localId === localId);

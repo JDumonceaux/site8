@@ -7,8 +7,5 @@ type LinkButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const LinkButton = ({ to, children }: LinkButtonProps): JSX.Element => (
-  <StyledLink to={to}>
-    {/* <Button2 id="button" {...rest} /> */}
-    {children}
-  </StyledLink>
+  <StyledLink to={to}>{children}</StyledLink>
 );

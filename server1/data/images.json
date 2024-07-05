@@ -2382,8 +2382,11 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_6989.jpg",
-      "folder": "sort",
-      "src": "sort/img_6989.jpg"
+      "folder": "castles",
+      "location": "Salzburg, Austria",
+      "name": "Fortress Hohensalzburg",
+      "official_url": "https://www.salzburg-burgen.at/en/hohensalzburg-castle/",
+      "src": "castles/img_6989.jpg"
     },
     {
       "id": 343,
@@ -2412,8 +2415,11 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7019.jpg",
-      "folder": "sort",
-      "src": "sort/img_7019.jpg"
+      "folder": "art",
+      "location": "Tamara de Lempicka",
+      "name": "Mother and Child",
+      "official_url": "https://artsandculture.google.com/asset/mother-and-child-tamara-de-lempicka-1898-1980-beauvais-mudo-mus%C3%A9e-de-l-oise-%C2%A9-authorized-by-tamara-art-heritage-adagp-paris-2018/wAHsM_o8xJylag",
+      "src": "art/img_7019.jpg"
     },
     {
       "id": 365,
@@ -2463,24 +2469,33 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7034.jpg",
-      "folder": "sort",
-      "src": "sort/img_7034.jpg"
+      "folder": "architecture",
+      "location": "Newport, Rhode Island",
+      "name": "The Breakers",
+      "official_url": "https://www.newportmansions.org/mansions-and-gardens/the-breakers/",
+      "src": "architecture/img_7034.jpg"
     },
     {
       "id": 372,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7035.jpg",
-      "folder": "sort",
-      "src": "sort/img_7035.jpg"
+      "folder": "libraries",
+      "location": "Oxford, England",
+      "name": "Bodleian Library",
+      "official_url": "https://www.bodleian.ox.ac.uk/home",
+      "src": "libraries/img_7035.jpg"
     },
     {
       "id": 373,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7036.jpg",
-      "folder": "sort",
-      "src": "sort/img_7036.jpg"
+      "folder": "castles",
+      "location": "Turin, Italy",
+      "name": "La Venaria Reale",
+      "official_url": "https://lavenaria.it/en",
+      "src": "castles/img_7036.jpg"
     },
     {
       "id": 374,
@@ -2516,16 +2531,17 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7041.jpg",
-      "folder": "sort",
-      "src": "sort/img_7041.jpg"
+      "folder": "castles",
+      "location": "Chambord, France",
+      "name": "Château de Chambord",
+      "src": "castles/img_7041.jpg"
     },
     {
       "id": 379,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
-      "fileName": "img_7042.jpg",
       "folder": "sort",
-      "src": "sort/img_7042.jpg"
+      "src": "sort/"
     },
     {
       "id": 380,
@@ -2571,8 +2587,11 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7048.jpg",
-      "folder": "sort",
-      "src": "sort/img_7048.jpg"
+      "folder": "architecture",
+      "location": "Alexandria Bay, New York",
+      "name": "Boldt Castle & Boldt Yacht House",
+      "official_url": "https://www.boldtcastle.com/visitorinfo/",
+      "src": "architecture/img_7048.jpg"
     },
     {
       "id": 386,
@@ -2690,8 +2709,10 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7071.jpg",
-      "folder": "sort",
-      "src": "sort/img_7071.jpg"
+      "folder": "castles",
+      "location": "Chambord, France",
+      "name": "Château de Chambord",
+      "src": "castles/img_7071.jpg"
     },
     {
       "id": 402,
@@ -2714,16 +2735,22 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7074.jpg",
-      "folder": "sort",
-      "src": "sort/img_7074.jpg"
+      "folder": "castles",
+      "location": "Chenonceaux, France",
+      "name": "Château de Chenonceau",
+      "official_url": "https://www.chenonceau.com/en/",
+      "src": "castles/img_7074.jpg"
     },
     {
       "id": 405,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7077.jpg",
-      "folder": "sort",
-      "src": "sort/img_7077.jpg"
+      "folder": "castles",
+      "location": "Eure-et-Loir, France",
+      "name": "Château de Maintenon",
+      "official_url": "https://www.chateaudemaintenon.fr/en",
+      "src": "castles/img_7077.jpg"
     },
     {
       "id": 406,
@@ -2812,16 +2839,21 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7092.jpg",
-      "folder": "sort",
-      "src": "sort/img_7092.jpg"
+      "folder": "architecture",
+      "location": "Prague, Czech Republic",
+      "name": "National Theatre - Prague Prague",
+      "official_url": "https://www.narodni-divadlo.cz/en",
+      "src": "architecture/img_7092.jpg"
     },
     {
       "id": 418,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7093.jpg",
-      "folder": "sort",
-      "src": "sort/img_7093.jpg"
+      "folder": "travel\\france",
+      "location": "Paris, France",
+      "name": "Le Train Bleu",
+      "src": "travel\\france/img_7093.jpg"
     },
     {
       "id": 419,
@@ -2884,8 +2916,11 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7110.jpg",
-      "folder": "sort",
-      "src": "sort/img_7110.jpg"
+      "folder": "travel",
+      "location": "Budapest, Hungry",
+      "name": "New York Café",
+      "official_url": "https://newyorkcafe.hu/en/",
+      "src": "travel/img_7110.jpg"
     },
     {
       "id": 427,
@@ -3004,32 +3039,43 @@
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7129.jpg",
-      "folder": "sort",
-      "src": "sort/img_7129.jpg"
+      "folder": "architecture",
+      "location": "Waddesdon, England",
+      "name": "Waddesdon Manor",
+      "official_url": "https://waddesdon.org.uk/",
+      "src": "architecture/img_7129.jpg"
     },
     {
       "id": 442,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7130.jpg",
-      "folder": "sort",
-      "src": "sort/img_7130.jpg"
+      "folder": "architecture",
+      "location": "Waddesdon, England",
+      "name": "Waddesdon Manor",
+      "official_url": "https://waddesdon.org.uk/",
+      "src": "architecture/img_7130.jpg"
     },
     {
       "id": 443,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7131.jpg",
-      "folder": "sort",
-      "src": "sort/img_7131.jpg"
+      "folder": "architecture",
+      "location": "Paris, France",
+      "name": "Pont Neuf",
+      "src": "architecture/img_7131.jpg"
     },
     {
       "id": 444,
       "create_date": "2024-06-29T19:23:56.050Z",
       "edit_date": "2024-06-29T19:23:56.050Z",
       "fileName": "img_7132.jpg",
-      "folder": "sort",
-      "src": "sort/img_7132.jpg"
+      "folder": "castles",
+      "location": "Naples, Italy",
+      "name": "Royal Palace of Caserta (Reggia DiCaerta)",
+      "official_url": "https://reggiadicaserta.cultura.gov.it/en/",
+      "src": "castles/img_7132.jpg"
     },
     {
       "id": 445,
