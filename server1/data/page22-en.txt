@@ -35,6 +35,9 @@ Site performance can also be influenced by the choice of technologies and platfo
 10. Shape the data:  Return only the attributes and records to the front end that are needed for display.  Don't return excess data.
 11.  Language inefficiencies:  Depending upon the language, you can explore the best algorithms.  For example, using StringBuilder in Java vs. string concatenation.  Or, using different sort methods.
 12. Windowing or virtualization of data allows scrolling without waiting for API calls.
+13. Autofill forms: <a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill-field">html.spec.whatwg.org</a> If you name your form fields with "standard" names, Chrome and other browsers usually offer to autofill the field for you - saving you time.  <a href="https://web.dev/learn/forms/auto?continue=https%3A%2F%2Fweb.dev%2Flearn%2Fforms%23article-https%3A%2F%2Fweb.dev%2Flearn%2Fforms%2Fauto">More on forms</a>
+14. Autofill forms and validation:  Unfortunately, the validation on many sites works only when the user types in data - not when it is autofilled or cut 'n paste.  You should shy away from such validation schemes. 
+
 
 <h2>Perceived Performance</h2>
 This is the "feeling" by the user that the web site is responsive and things are "happening".

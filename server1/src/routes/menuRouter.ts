@@ -14,11 +14,11 @@ menuRouter.get('/', async (_req: Request, res: Response) => {
     if (ret) {
       res.status(200).json(ret);
     } else {
-      res.status(204).json({ error: 'No content found' });
+      res.status(204).json({ error: Errors.NO_CONTENT });
     }
   } catch (error) {
     Logger.error(`menuRouter: get -> Error: ${error}`);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });
 
@@ -29,11 +29,11 @@ menuRouter.get('/edit', async (_req: Request, res: Response) => {
     if (ret) {
       res.status(200).json(ret);
     } else {
-      res.status(204).json({ error: 'No content found' });
+      res.status(204).json({ error: Errors.NO_CONTENT });
     }
   } catch (error) {
     Logger.error(`menuRouter: get Edit -> Error: ${error}`);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });
 
@@ -43,11 +43,11 @@ menuRouter.get('/abbr', async (_req: Request, res: Response) => {
     if (ret) {
       res.status(200).json(ret);
     } else {
-      res.status(204).json({ error: 'No content found' });
+      res.status(204).json({ error: Errors.NO_CONTENT });
     }
   } catch (error) {
     Logger.error(`menuRouter: getAbbr -> Error: ${error}`);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });
 
@@ -61,7 +61,6 @@ menuRouter.post('/', async (req: Request, res: Response) => {
     const item: MenuAdd = req.body;
     if (!item) {
       res.status(400).json({ error: 'No data found' });
-      return res.end();
     }
 
     // Get next id
@@ -70,8 +69,12 @@ menuRouter.post('/', async (req: Request, res: Response) => {
       res.status(400).json({ error: 'Next Id not found.' });
     }
 
-    await service2.addItem({ ...item, id: idNew });
-    res.status(201).json({ message: Responses.SUCCESS });
+    const ret = await service2.addItem({ ...item, id: idNew });
+    if (ret) {
+      res.status(201).json({ message: Responses.SUCCESS });
+    } else {
+      res.status(400).json({ error: 'Error adding item' });
+    }
   } catch (error) {
     Logger.error(`menuRouter: post -> Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });

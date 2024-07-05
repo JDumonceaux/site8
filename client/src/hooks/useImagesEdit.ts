@@ -27,6 +27,7 @@ const pageSchema = z.object({
   tags: z.string().trim().optional(),
   description: z.string().trim().optional(),
   src: z.string().optional(),
+  duplicate: z.string().optional(),
 });
 
 const useImagesEdit = () => {
@@ -45,8 +46,6 @@ const useImagesEdit = () => {
   // Create a form
   const { formValues, getDefaultProps, setFormValues, setFieldValue } =
     useFormArray<FormType>();
-
-  console.log('localItems', localItems);
 
   // Save to local - adding local index
   useEffect(() => {
@@ -70,6 +69,7 @@ const useImagesEdit = () => {
         location: item.location || '',
         tags: '',
         src: getSRC(item.folder, item.fileName),
+        duplicate: String(item.isDuplicate) || 'false',
       };
     });
     if (ret) {

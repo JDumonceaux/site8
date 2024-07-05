@@ -1,10 +1,9 @@
 import { useCallback, useMemo } from 'react';
+import { MenuAdd } from 'types';
 import { REQUIRED_FIELD, ServiceUrl } from 'utils';
+import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
-
-import { MenuAdd } from 'types';
-import { safeParse } from 'utils/zodHelper';
 import { useForm } from './useForm';
 
 // Define Zod Shape
@@ -60,11 +59,13 @@ const useMenuEdit = () => {
     return {
       id: 0,
       name: formValues.name,
-      parent: {
-        id: parseInt(formValues.parent),
-        seq: parseInt(formValues.seq),
-        sortby: formValues.sortby as sortByType,
-      },
+      parentItems: [
+        {
+          id: parseInt(formValues.parent),
+          seq: parseInt(formValues.seq),
+          sortby: formValues.sortby as sortByType,
+        },
+      ],
       type: 'menu',
       to: formValues.name.toLowerCase().replaceAll(' ', '-'),
     };

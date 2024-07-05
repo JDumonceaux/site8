@@ -1,0 +1,46 @@
+Regular functions return only one, single value (or nothing).
+
+Generators can return (“yield”) multiple values, one after another, on-demand. They work great with iterables, allowing to create data streams with ease.
+
+<a href="https://www.youtube.com/watch?v=IJ6EgdiI_wU">Web Simplified - Generators</a>
+
+
+<pre><code>
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+// "generator function" creates "generator object"
+let generator = generateSequence();
+for(let value of generator) {
+  alert(value); // 1, then 2
+  // Iterators do not get to the return 
+}
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+let generator = generateSequence();
+for(let value of generator) {
+  alert(value); // 1, 2, 3
+}
+</code></pre>
+
+Using spread with a generator
+<pre><code>
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+let sequence = [0, ...generateSequence()];
+
+alert(sequence); // 0, 1, 2, 3
+</code></pre>
+

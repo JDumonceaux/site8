@@ -47,6 +47,32 @@ export class ImagesService {
     return this.readFile();
   }
 
+  // Get Items to file
+  public async getItemsToFile(): Promise<Images | undefined> {
+    // Get all records from images.json
+    const images = await new ImagesService().getItems();
+    // Filter out only the items that are in the 'sort' folder
+    const tempItems = images?.items?.filter((item) => item.folder === 'sort');
+    console.log('tempItems', tempItems);
+    // Filter out the items that are not in the 'sort' folder
+    const items2 = images?.items?.filter((item) => item.folder !== 'sort');
+    // Check to see if the items are duplicates
+    const items = tempItems?.map((x) => {
+      if (items2?.find((y) => y.fileName === x.fileName)) {
+        return {
+          ...x,
+          isDuplicate: true,
+        };
+      } else {
+        return {
+          ...x,
+          isDuplicate: false,
+        };
+      }
+    });
+    return { metadata: { title: 'Images' }, items };
+  }
+
   public async loadNewItems(): Promise<Images | undefined> {
     try {
       // Get new images from 'sort' directory

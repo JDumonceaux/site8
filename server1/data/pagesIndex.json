@@ -2346,6 +2346,32 @@
       "to": "overview",
       "type": "page",
       "hasFile": true
+    },
+    {
+      "id": 82,
+      "name": "Advanced",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 10,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "advanced"
+    },
+    {
+      "id": 83,
+      "name": "Generators",
+      "parentItems": [
+        {
+          "id": 82,
+          "seq": 1
+        }
+      ],
+      "to": "generators",
+      "type": "page",
+      "hasFile": true
     }
   ]
 }

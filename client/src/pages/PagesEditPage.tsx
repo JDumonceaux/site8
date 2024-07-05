@@ -1,9 +1,9 @@
-import { Meta, PageTitle, StyledPlainButton } from 'components';
+import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import MenuAdd from 'components/custom/MenuAdd';
 import { TextInput } from 'components/form/input';
-import { Switch } from 'components/primatives/Switch/Switch';
+import { Switch } from 'components/Radix/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import usePagesEdit from 'hooks/usePagesEdit';
 import React, { useCallback, useEffect } from 'react';
@@ -11,8 +11,15 @@ import { styled } from 'styled-components';
 import { MenuItem } from 'types';
 
 const PagesEditPage = (): JSX.Element => {
-  const { data, isSaved, handleSave, setFormValues, getDefaultProps } =
-    usePagesEdit();
+  const {
+    data,
+    isSaved,
+    error,
+    isLoading,
+    handleSave,
+    setFormValues,
+    getDefaultProps,
+  } = usePagesEdit();
 
   const { showPages, setShowPages } = useAppSettings();
 
@@ -115,20 +122,22 @@ const PagesEditPage = (): JSX.Element => {
               </StyledSaveButton>
             ) : null}
           </PageTitle>
-          <table>
-            <thead>
-              <tr>
-                <th>Edit</th>
-                <th>Name</th>
-                <th>Parent</th>
-                <th>Seq</th>
-                <th>Sortby</th>
-                <th>Type</th>
-              </tr>
-            </thead>
+          <LoadingWrapper error={error} isLoading={isLoading}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Edit</th>
+                  <th>Name</th>
+                  <th>Parent</th>
+                  <th>Seq</th>
+                  <th>Sortby</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
 
-            <tbody>{data?.map((item) => renderItem(item))}</tbody>
-          </table>
+              <tbody>{data?.map((item) => renderItem(item))}</tbody>
+            </table>
+          </LoadingWrapper>
           <MenuAdd />
         </StyledMain.Section>
       </StyledMain>

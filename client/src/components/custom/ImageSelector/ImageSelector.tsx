@@ -1,5 +1,5 @@
 import { LoadingWrapper } from 'components/common/Loading/LoadingWrapper';
-import { Switch } from 'components/primatives/Switch/Switch';
+import { Switch } from 'components/Radix/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
 import React, {
@@ -27,7 +27,7 @@ export const ImageSelector = ({
 
   useEffect(() => {
     fetchData();
-  }, [ fetchData]);
+  }, [fetchData]);
 
   const onRefresh = useCallback(() => {
     fetchData();
@@ -109,7 +109,7 @@ export const ImageSelector = ({
               onClick={onSelect}
               onKeyDown={onKeyboardSelect}
               type="button">
-              <img alt={item.name} src={`${IMAGE_BASE}/${item.src}`} />
+              <img alt={item.name} src={`${IMAGE_BASE}/${item.fileName}`} />
             </button>
           </React.Fragment>
         ))}

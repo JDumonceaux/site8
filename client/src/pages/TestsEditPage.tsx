@@ -13,10 +13,10 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { Meta, PageTitle, StyledPlainButton } from 'components';
+import { Switch } from 'components/Radix/Switch';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
-import { Switch } from 'components/primatives/Switch/Switch';
 import { SortableItem } from 'components/ui/TestEditPage/SortableItem';
 import useAppSettings from 'hooks/useAppSettings';
 import useTestsEdit from 'hooks/useTestsEdit';

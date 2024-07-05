@@ -1,4 +1,5 @@
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
+import { IconMenu } from 'components/Radix/IconMenu';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
 import { SelectIcon } from 'components/icons/SelectIcon';
@@ -179,6 +180,13 @@ const ImagesEditPage = (): JSX.Element => {
                         />
                         <div>{item.id}</div>
                       </StyledSubRow>
+                      <StyledSubRow>
+                        <div>{item.duplicate}</div>
+                        <TextInput
+                          {...getDefaultProps(item.localId, 'description')}
+                        />
+                      </StyledSubRow>
+                      <IconMenu />
                     </StyledOuterRow>
                   </StyledRow>
                 ))}
@@ -187,39 +195,41 @@ const ImagesEditPage = (): JSX.Element => {
           </LoadingWrapper>
         </StyledMain.Section>
         <StyledMain.Aside>
-          <StyledHeader>
-            <div>
-              {currFolder && currFolder.length > 0 ? (
-                <StyledButton
-                  // eslint-disable-next-line react/no-array-index-key
-                  onClick={() => handleOnClick('')}
-                  type="button">
-                  {currFolder}
-                </StyledButton>
-              ) : (
-                <div>Select Folder</div>
-              )}
-            </div>
-            <div>{data.length}</div>
-          </StyledHeader>
-          <hr />
-          {imageFolders?.map((folder) => (
-            <React.Fragment key={folder.id}>
-              {folder.name === currFolder ? (
-                <StyledActiveButton
-                  onClick={() => handleOnClick(folder.name)}
-                  type="button">
-                  {folder.name}
-                </StyledActiveButton>
-              ) : (
-                <StyledButton
-                  onClick={() => handleOnClick(folder.name)}
-                  type="button">
-                  {folder.name}
-                </StyledButton>
-              )}
-            </React.Fragment>
-          ))}
+          <StickyMenu>
+            <StyledHeader>
+              <div>
+                {currFolder && currFolder.length > 0 ? (
+                  <StyledButton
+                    // eslint-disable-next-line react/no-array-index-key
+                    onClick={() => handleOnClick('')}
+                    type="button">
+                    {currFolder}
+                  </StyledButton>
+                ) : (
+                  <div>Select Folder</div>
+                )}
+              </div>
+              <div>{data.length}</div>
+            </StyledHeader>
+            <hr />
+            {imageFolders?.map((folder) => (
+              <React.Fragment key={folder.id}>
+                {folder.name === currFolder ? (
+                  <StyledActiveButton
+                    onClick={() => handleOnClick(folder.name)}
+                    type="button">
+                    {folder.name}
+                  </StyledActiveButton>
+                ) : (
+                  <StyledButton
+                    onClick={() => handleOnClick(folder.name)}
+                    type="button">
+                    {folder.name}
+                  </StyledButton>
+                )}
+              </React.Fragment>
+            ))}
+          </StickyMenu>
         </StyledMain.Aside>
       </StyledMain>
     </>
@@ -284,4 +294,8 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   column-gap: 10px;
   align-items: baseline;
+`;
+const StickyMenu = styled.div`
+  position: sticky;
+  top: 80px;
 `;

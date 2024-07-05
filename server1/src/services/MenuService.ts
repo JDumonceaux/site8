@@ -24,7 +24,7 @@ const menuAddSchema = z
       .trim(),
     to: z.string().trim().optional(),
     url: z.string().trim().optional(),
-    parent: z
+    parentItems: z
       .object({
         id: z.number(),
         seq: z.number(),
@@ -236,40 +236,32 @@ export class MenuService {
   }
 
   // Add item
-  public async addItem(item: MenuAdd): Promise<void> {
-    Logger.info(`PagesService: addItem ->`);
+  public async addItem(item: MenuAdd): Promise<boolean> {
+    Logger.info(`MenuService: addItem ->`);
 
-    try {
-      // Get all items
-      const pages = await new PagesService().getItems();
-      if (!pages) {
-        return Promise.reject(new Error('No items found'));
-      }
-
-      // Remove undefined values and sort
-      const newItem = cleanUpData<MenuAdd>(item);
-      // Validate data
-      const valid = safeParse<addData>(menuAddSchema, newItem);
-      if (valid.error) {
-        throw new Error(`addItem -> ${valid.error}`);
-      }
-
-      // Cast to Page
-      const newPage = { ...item } as Page;
-
-      // Add
-      const newData: Pages = {
-        ...pages,
-        items: [...pages.items, { ...newPage }],
-      };
-      // Write to file
-      const result = await new PagesService().writeFile(newData);
-      return result
-        ? Promise.resolve()
-        : Promise.reject(new Error('Add failed'));
-    } catch (error) {
-      Logger.error(`PagesService: addItem. Error -> ${error}`);
-      return undefined;
+    // Get all items
+    const pages = await new PagesService().getItems();
+    if (!pages) {
+      return Promise.reject(new Error('No items found'));
     }
+
+    // Remove undefined values and sort
+    const newItem = cleanUpData<MenuAdd>(item);
+    // Validate data
+    const valid = safeParse<addData>(menuAddSchema, newItem);
+    if (valid.error) {
+      throw new Error(`addItem -> ${valid.error}`);
+    }
+
+    // Cast to Page
+    const newPage = { ...item } as Page;
+
+    // Add
+    const newData: Pages = {
+      ...pages,
+      items: [...pages.items, { ...newPage }],
+    };
+    // Write to file
+    return new PagesService().writeFile(newData);
   }
 }

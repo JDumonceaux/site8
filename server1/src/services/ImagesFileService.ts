@@ -36,7 +36,7 @@ export class ImagesFileService {
    */
   public getFolders() {
     try {
-      Logger.info(`ImagesFileService: getFolders -> path: ${LOCAL_IMAGE_PATH}`);
+      Logger.info(`ImagesFileService: getFolders ->`);
 
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
