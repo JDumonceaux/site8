@@ -10,7 +10,6 @@ export const IconMenu = (): JSX.Element => {
           <DotsVerticalIcon />
         </button>
       </DropdownMenu.Trigger>
-
       <DropdownMenu.Portal>
         <StyledMenuContent side="right" sideOffset={5}>
           <StyledMenuItem>Delete Item</StyledMenuItem>
