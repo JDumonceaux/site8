@@ -24,3 +24,5 @@ export const DF_LONG = 'M/d/yyyy h:mm a';
 
 export const LOCAL_IMAGE_PATH =
   'C:\\Users\\jdumo\\Documents\\0Projects\\site8\\client\\public\\images';
+
+export const FOLDERS_TO_IGNORE = ['content', 'site'];

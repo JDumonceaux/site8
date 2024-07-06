@@ -48,54 +48,26 @@ export class ImagesService {
     return this.readFile();
   }
 
-  // Get Items to file
-  public async getItemsToFile(): Promise<Images | undefined> {
-    // Get all records from images.json
-    const images = await new ImagesService().getItems();
-
-    const tempItems = images?.items?.filter((item) => item.isNewItem === true);
-
-    const items2 = images?.items?.filter(
-      (item) => item.isNewItem === false || item.isNewItem === undefined,
-    );
-    // Check to see if the items are duplicates
-    const items = tempItems?.map((x) => {
-      if (items2?.find((y) => y.fileName === x.fileName)) {
-        return {
-          ...x,
-          isDuplicate: true,
-        };
-      } else {
-        return {
-          ...x,
-          isDuplicate: false,
-        };
-      }
-    });
-    return { metadata: { title: 'Images' }, items };
+  // Get Items to sort into folders
+  public async getNewItems(): Promise<Images | undefined> {
+    // Get current items
+    const prev = await this.readFile();
+    if (!prev) {
+      throw new Error('getNewItems > Index file not loaded');
+    }
+    const items = prev.items?.filter((x) => x.isNewItem === true);
+    return { ...prev, items };
   }
 
   /**
    * Retrieves new items from the /images directory and updates the existing items.
    * @returns A Promise that resolves to the updated Images object, or undefined if an error occurs.
    */
-  public async getNewItems(): Promise<Images | undefined> {
-    try {
-      // Update the index file with new items
-      const ret = await this.updateIndexWithNewItems();
+  public async scanForNewItems(): Promise<Images | undefined> {
+    // Update the index file with new items
+    await this.updateIndexWithNewItems();
 
-      // Get current items
-      const prev = await this.readFile();
-      if (!prev) {
-        throw new Error('getNewItems > Index file not loaded');
-      }
-
-      const items = prev.items?.filter((x) => x.isNewItem === true);
-      return { ...prev, items };
-    } catch (error) {
-      Logger.error(`ImagesService: getNewItems -> ${error}`);
-    }
-    return undefined;
+    return this.getNewItems();
   }
 
   private async updateIndexWithNewItems(): Promise<boolean> {

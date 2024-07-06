@@ -3,7 +3,7 @@ import path from 'path';
 import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
 import { Images } from '../types/Images.js';
-import { LOCAL_IMAGE_PATH } from '../utils/Constants.js';
+import { FOLDERS_TO_IGNORE, LOCAL_IMAGE_PATH } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { ImagesService } from './ImagesService.js';
 
@@ -40,6 +40,7 @@ export class ImagesFileService {
 
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
+      // NOTE: path is deprecated, but replacement - parentPath - isn't working
       const items = readdirSync(LOCAL_IMAGE_PATH, {
         encoding: 'utf8',
         recursive: true,
@@ -47,8 +48,9 @@ export class ImagesFileService {
       })
         .filter((x) => x.isDirectory())
         .map((x) => x.path + '\\' + x.name)
-        .map((x) => x.substring(LOCAL_IMAGE_PATH.length + 1).trim());
-
+        .map((x) => x.substring(LOCAL_IMAGE_PATH.length + 1).trim())
+        .filter((x) => !FOLDERS_TO_IGNORE.some((y) => x.startsWith(y)))
+        .toSorted((a, b) => a.localeCompare(b));
       return items;
     } catch (error) {
       Logger.error(`ImagesFileService: getFolders -> ${error}`);

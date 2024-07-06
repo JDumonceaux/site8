@@ -85,11 +85,11 @@ const useImagesEdit = () => {
 
   // Scan the 'sort' directory for new items
   const scanForNewItems = useCallback(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_SCAN);
   }, [fetchData]);
 
-  const refreshItems = useCallback(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_FILE);
+  const fetchItems = useCallback(() => {
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_NEW);
   }, [fetchData]);
 
   // Validate  form
@@ -211,7 +211,7 @@ const useImagesEdit = () => {
       getDefaultProps,
       getFieldValue,
       setFieldValue,
-      refreshItems,
+      fetchItems,
     }),
     [
       formValues,
@@ -226,7 +226,7 @@ const useImagesEdit = () => {
       getDefaultProps,
       getFieldValue,
       setFieldValue,
-      refreshItems,
+      fetchItems,
     ],
   );
 };

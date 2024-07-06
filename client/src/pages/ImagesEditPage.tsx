@@ -23,23 +23,23 @@ const ImagesEditPage = (): JSX.Element => {
     handleClear: onClear,
     submitForm,
     scanForNewItems,
-    refreshItems,
+    fetchItems,
     setFieldValue,
     getFieldValue,
   } = useImagesEdit();
   const { setSnackbarMessage } = useSnackbar();
 
   useEffect(() => {
-    refreshItems();
-  }, [refreshItems]);
+    fetchItems();
+  }, [fetchItems]);
 
   const handleRefresh = useCallback(() => {
     setSnackbarMessage('Updating...');
     startTransition(() => {
-      refreshItems();
+      fetchItems();
     });
     setSnackbarMessage('Done');
-  }, [refreshItems, setSnackbarMessage]);
+  }, [fetchItems, setSnackbarMessage]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {

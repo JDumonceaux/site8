@@ -1,4 +1,5 @@
 import { Image } from 'types/Image.js';
+import { FOLDERS_TO_IGNORE } from './Constants.js';
 import { cleanUpData, getNextIdFromPos } from './objectUtil.js';
 
 export function getNewItems(
@@ -16,8 +17,12 @@ export function getNewItems(
           (y) => y.fileName === x.fileName && y.folder === x.folder,
         ),
     )
-    .filter((x) => x.folder !== 'site')
-    .filter((x) => x.folder !== 'yatchs')
+    .filter(
+      (x) =>
+        !FOLDERS_TO_IGNORE.some((y) =>
+          x.folder ? x.folder.startsWith(y) : true,
+        ),
+    )
     .filter((x) => x.fileName !== '')
     .map((x) =>
       cleanUpData<Image>({
@@ -26,7 +31,8 @@ export function getNewItems(
         edit_date: new Date(),
         create_date: new Date(),
       }),
-    );
+    )
+    .sort((a, b) => a.fileName.localeCompare(b.fileName));
   return ret;
 }
 
