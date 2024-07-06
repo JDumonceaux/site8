@@ -26,13 +26,12 @@ const ImagesEditPage = (): JSX.Element => {
     refreshItems,
     setFieldValue,
     getFieldValue,
-    fetchData,
   } = useImagesEdit();
   const { setSnackbarMessage } = useSnackbar();
 
   useEffect(() => {
     refreshItems();
-  }, [fetchData, refreshItems]);
+  }, [refreshItems]);
 
   const handleRefresh = useCallback(() => {
     setSnackbarMessage('Updating...');

@@ -55,10 +55,12 @@ export class ImagesService {
   public async getItemsToFile(): Promise<Images | undefined> {
     // Get all records from images.json
     const images = await new ImagesService().getItems();
-    // Filter out only the items that are in the 'sort' folder
-    const tempItems = images?.items?.filter((item) => item.folder === 'sort');
-    // Filter out the items that are not in the 'sort' folder
-    const items2 = images?.items?.filter((item) => item.folder !== 'sort');
+
+    const tempItems = images?.items?.filter((item) => item.isNewItem === true);
+
+    const items2 = images?.items?.filter(
+      (item) => item.isNewItem === false || item.isNewItem === undefined,
+    );
     // Check to see if the items are duplicates
     const items = tempItems?.map((x) => {
       if (items2?.find((y) => y.fileName === x.fileName)) {
