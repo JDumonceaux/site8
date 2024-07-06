@@ -139,6 +139,11 @@ export class ImagesFileService {
     }
   }
 
+  /**
+   * Moves the specified items to a new location.
+   * @param items - An array of ImageEdit objects representing the items to be moved.
+   * @returns A Promise that resolves to a boolean indicating whether the move operation was successful.
+   */
   public async moveItems(items: ImageEdit[] | undefined): Promise<boolean> {
     try {
       Logger.info(

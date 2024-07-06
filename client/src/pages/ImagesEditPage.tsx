@@ -105,42 +105,42 @@ const ImagesEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            <a
-              href="http://localhost:3005/api/images/fix-file-names"
-              rel="noreferrer"
-              target="_blank">
-              Fix Names
-            </a>
-            <a
-              href="http://localhost:3005/api/images/fix-index"
-              rel="noreferrer"
-              target="_blank">
-              Fix Index
-            </a>
-            <a
-              href="http://localhost:3005/api/images/list-duplicates"
-              rel="noreferrer"
-              target="_blank">
-              List Duplicates
-            </a>
-            <a
-              href="http://localhost:3005/api/images/sync"
-              rel="noreferrer"
-              target="_blank">
-              Sync
-            </a>
-            <StyledPlainButton
-              data-testid="button-clear"
-              onClick={handleClear}
-              type="reset">
-              Clear All
-            </StyledPlainButton>
-            <StyledPlainButton
-              data-testid="button-scan"
-              onClick={handleScan}
-              type="submit">
-              Scan for New
-            </StyledPlainButton>
+            <IconMenu>
+              <IconMenuItem onClick={handleScan}>Scan for New</IconMenuItem>
+              <IconMenuItem>
+                <a
+                  href="http://localhost:3005/api/images/list-duplicates"
+                  rel="noreferrer"
+                  target="_blank">
+                  List Duplicates
+                </a>
+              </IconMenuItem>
+              <IconMenuItem>
+                <a
+                  href="http://localhost:3005/api/images/sync"
+                  rel="noreferrer"
+                  target="_blank">
+                  Sync
+                </a>
+              </IconMenuItem>
+              <IconMenuItem>
+                <a
+                  href="http://localhost:3005/api/images/fix-index"
+                  rel="noreferrer"
+                  target="_blank">
+                  Fix Index
+                </a>
+              </IconMenuItem>
+              <IconMenuItem>
+                <a
+                  href="http://localhost:3005/api/images/fix-file-names"
+                  rel="noreferrer"
+                  target="_blank">
+                  Fix Names
+                </a>
+              </IconMenuItem>
+              <IconMenuItem onClick={handleClear}>Clear All</IconMenuItem>
+            </IconMenu>
             <StyledPlainButton
               data-testid="button-refresh"
               onClick={handleRefresh}

@@ -1,11 +1,15 @@
 import { readFile, writeFile } from 'fs/promises';
+import { ImageSync } from 'types/ImageSync.js';
 import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
-import { ImageSync } from '../types/ImageSync.js';
 import { Images } from '../types/Images.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-import { cleanUpData, getNextId } from '../utils/objectUtil.js';
+import {
+  cleanUpData,
+  getNextId,
+  getNextIdFromPos,
+} from '../utils/objectUtil.js';
 import { ImagesFileService } from './ImagesFileService.js';
 
 export class ImagesService {
@@ -53,7 +57,6 @@ export class ImagesService {
     const images = await new ImagesService().getItems();
     // Filter out only the items that are in the 'sort' folder
     const tempItems = images?.items?.filter((item) => item.folder === 'sort');
-    console.log('tempItems', tempItems);
     // Filter out the items that are not in the 'sort' folder
     const items2 = images?.items?.filter((item) => item.folder !== 'sort');
     // Check to see if the items are duplicates
@@ -71,6 +74,66 @@ export class ImagesService {
       }
     });
     return { metadata: { title: 'Images' }, items };
+  }
+
+  public async getNewItems(): Promise<Images | undefined> {
+    try {
+      // Get all images
+      const images = await new ImagesFileService().getItemsFromBaseDirectory();
+      // Get current items
+      const prev = await this.readFile();
+      if (!prev) {
+        throw new Error('getNewItems > Index file not loaded');
+      }
+
+      const items = prev.items;
+      // Get the items not already in the list
+      const newItems = images?.items
+        ?.filter(
+          (x) =>
+            !items?.find(
+              (y) => y.fileName === x.fileName && y.folder === x.folder,
+            ),
+        )
+        .map((x) => ({
+          ...x,
+          isNewItem: true,
+        }));
+
+      // Add the the new items to the existing items
+      const allItems: Image[] | undefined =
+        newItems && items ? { ...items, ...newItems } : items;
+
+      let startPos = 0;
+      const modifiedItems: Image[] | undefined = allItems?.map((item) => {
+        if (item.id > 0) {
+          return {
+            ...item,
+            edit_date: new Date(),
+          };
+        } else {
+          const nextId = getNextIdFromPos<Image>(allItems, startPos++) || {
+            value: 0,
+            index: 0,
+          };
+          startPos = nextId.index;
+          return cleanUpData<Image>({
+            ...item,
+            id: nextId.value,
+            edit_date: new Date(),
+            create_date: new Date(),
+          });
+        }
+      });
+      // Write back file
+      const data = { ...prev, items: modifiedItems };
+      await this.writeFile(data);
+      // Return items + duplicates
+      return data;
+    } catch (error) {
+      Logger.error(`ImagesService: getNewItems -> ${error}`);
+    }
+    return undefined;
   }
 
   public async loadNewItems(): Promise<Images | undefined> {

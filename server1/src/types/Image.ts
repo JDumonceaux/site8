@@ -13,4 +13,5 @@ export type Image = {
   readonly create_date?: Date;
   readonly issue?: string;
   readonly isDuplicate?: boolean;
+  readonly isNewItem?: boolean;
 };

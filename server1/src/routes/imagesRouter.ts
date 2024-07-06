@@ -36,7 +36,7 @@ imagesRouter.get('/file', async (_req: Request, res: Response) => {
 
 imagesRouter.get('/scan', async (_req: Request, res: Response) => {
   try {
-    const images = await new ImagesFileService().getMatchedItems();
+    const images = await new ImagesFileService().getNewItems();
     images
       ? res.status(200).json(images)
       : res.status(204).json({ error: Errors.NO_CONTENT });

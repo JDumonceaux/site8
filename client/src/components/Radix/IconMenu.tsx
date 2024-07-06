@@ -15,7 +15,7 @@ export const IconMenu = ({ children }: Props): JSX.Element => {
         </StyledButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <StyledMenuContent side="right" sideOffset={5}>
+        <StyledMenuContent align="start" side="right" sideOffset={5}>
           {children}
         </StyledMenuContent>
       </DropdownMenu.Portal>
@@ -47,4 +47,5 @@ const StyledMenuContent = styled(DropdownMenu.Content)`
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
+  z-index: 20;
 `;

@@ -106,3 +106,34 @@ export function getNextId<T extends CleanupType>(
   // If no gaps were found, the next free id is one greater than the last object's id
   return nextId;
 }
+
+/**
+ * Returns the next available ID from a given position in an array of objects.
+ * The objects in the array must have an `id` property.
+ *
+ * @template T - The type of objects in the array.
+ * @param items - The array of objects.
+ * @param start - The starting position to search for the next ID.
+ * @returns The next available ID or `undefined` if no IDs are available.
+ */
+export function getNextIdFromPos<T extends CleanupType>(
+  items: ReadonlyArray<T> | undefined,
+  start: number,
+): { value: number; index: number } | undefined {
+  if (!items) {
+    return undefined;
+  }
+  const sortedArray = items.toSorted((a, b) => a.id - b.id);
+  // Start with the first id in the sorted array
+  let nextId = sortedArray.length > start ? sortedArray[start].id : 1;
+  // Iterate through the array to find the missing id
+  for (let i = start; i < sortedArray.length; i++) {
+    const y = sortedArray.find((x) => x.id === nextId);
+    if (!y) {
+      return { value: nextId, index: i };
+    }
+    nextId++; // Move to the next expected id
+  }
+  // If no gaps were found, the next free id is one greater than the last object's id
+  return { value: nextId, index: 0 };
+}
