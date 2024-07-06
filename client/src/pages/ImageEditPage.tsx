@@ -3,7 +3,6 @@ import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { ImageSelector } from 'components/custom/ImageSelector/ImageSelector';
-import { Button } from 'components/form/Button';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import useImageEdit from 'hooks/useImageEdit';
@@ -15,16 +14,13 @@ import { Image } from 'types';
 
 const ImageEditImage = (): JSX.Element => {
   const params = useParams();
-  // const [showErrorOverlay, setShowErrorOverlay] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState(false);
   const {
     formValues,
-    isProcessing,
     isLoading,
     error,
     isSaved,
     handleChange,
-    handleClear: onClear,
     handleReset,
     getDefaultFields,
     submitForm,
@@ -46,15 +42,6 @@ const ImageEditImage = (): JSX.Element => {
       }
     },
     [submitForm, error, setSnackbarMessage],
-  );
-
-  const handleClear = useCallback(
-    (e: React.FormEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      onClear();
-    },
-    [onClear],
   );
 
   const handleSelectImage = useCallback(
@@ -103,12 +90,6 @@ const ImageEditImage = (): JSX.Element => {
               onClick={handleReset}
               type="reset">
               Reset
-            </StyledPlainButton>
-            <StyledPlainButton
-              data-testid="button-clear"
-              onClick={handleClear}
-              type="reset">
-              Clear All
             </StyledPlainButton>
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
@@ -196,7 +177,6 @@ const ImageEditImage = (): JSX.Element => {
                     {...getDefaultFields('tags')}
                     //ref={focusElement}
                   />
-
                   <TextArea
                     label="Description"
                     onChange={handleChange}
@@ -205,19 +185,6 @@ const ImageEditImage = (): JSX.Element => {
                     {...getDefaultFields('description')}
                     // required={true}
                   />
-                  <TextInput
-                    errorTextShort="Please enter a date"
-                    label="Edit Date"
-                    maxLength={10}
-                    onChange={handleChange}
-                    spellCheck={false}
-                    // required={true}
-                    {...getDefaultFields('edit_date')}
-                  />
-
-                  <Button id="submit" type="submit">
-                    {isProcessing ? 'Processing' : 'Submit'}
-                  </Button>
                 </form>
               </FormContainer>
               <ImageContainer>

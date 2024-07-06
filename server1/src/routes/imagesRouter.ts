@@ -46,18 +46,6 @@ imagesRouter.get('/scan', async (_req: Request, res: Response) => {
   }
 });
 
-// imagesRouter.get('/scan', async (_req: Request, res: Response) => {
-//   try {
-//     const images = await new ImagesFileService().getNewItems();
-//     images
-//       ? res.status(200).json(images)
-//       : res.status(204).json({ error: Errors.NO_CONTENT });
-//   } catch (error) {
-//     Logger.error(`imagesRouter: scan -> Error: ${error}`);
-//     res.status(500).json({ error: Errors.SERVER_ERROR });
-//   }
-// });
-
 imagesRouter.get('/folders', async (_req: Request, res: Response) => {
   try {
     const folders = await new ImagesFileService().getFolders();
@@ -69,6 +57,18 @@ imagesRouter.get('/folders', async (_req: Request, res: Response) => {
     res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });
+
+// imagesRouter.get('/scan', async (_req: Request, res: Response) => {
+//   try {
+//     const images = await new ImagesFileService().getNewItems();
+//     images
+//       ? res.status(200).json(images)
+//       : res.status(204).json({ error: Errors.NO_CONTENT });
+//   } catch (error) {
+//     Logger.error(`imagesRouter: scan -> Error: ${error}`);
+//     res.status(500).json({ error: Errors.SERVER_ERROR });
+//   }
+// });
 
 // Scan the 'sort' directory for new items and load into images.json
 // imagesRouter.get('/new', async (_req: Request, res: Response) => {
@@ -123,17 +123,17 @@ imagesRouter.get('/list-duplicates', async (_req: Request, res: Response) => {
   }
 });
 
-imagesRouter.get('/sync', async (_req: Request, res: Response) => {
-  try {
-    const images = await new ImagesService().syncItems();
-    images
-      ? res.status(200).json(images)
-      : res.status(204).json({ error: Errors.NO_CONTENT });
-  } catch (error) {
-    Logger.error(`imagesRouter: get -> Error: ${error}`);
-    res.status(500).json({ error: Errors.SERVER_ERROR });
-  }
-});
+// imagesRouter.get('/sync', async (_req: Request, res: Response) => {
+//   try {
+//     const images = await new ImagesService().syncItems();
+//     images
+//       ? res.status(200).json(images)
+//       : res.status(204).json({ error: Errors.NO_CONTENT });
+//   } catch (error) {
+//     Logger.error(`imagesRouter: get -> Error: ${error}`);
+//     res.status(500).json({ error: Errors.SERVER_ERROR });
+//   }
+// });
 
 imagesRouter.patch('/', async (req: Request, res: Response) => {
   try {

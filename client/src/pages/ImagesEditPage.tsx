@@ -20,7 +20,6 @@ const ImagesEditPage = (): JSX.Element => {
     isLoading,
     error,
     getDefaultProps,
-    handleClear: onClear,
     submitForm,
     scanForNewItems,
     fetchItems,
@@ -68,15 +67,6 @@ const ImagesEditPage = (): JSX.Element => {
     setSnackbarMessage('Done');
   }, [scanForNewItems, setSnackbarMessage, startTransition]);
 
-  const handleClear = useCallback(
-    (e: React.FormEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      onClear();
-    },
-    [onClear],
-  );
-
   const handleOnClick = useCallback((value: string) => {
     setCurrFolder((prev) => (prev === value ? '' : value));
   }, []);
@@ -116,14 +106,6 @@ const ImagesEditPage = (): JSX.Element => {
               </IconMenuItem>
               <IconMenuItem>
                 <a
-                  href="http://localhost:3005/api/images/sync"
-                  rel="noreferrer"
-                  target="_blank">
-                  Sync
-                </a>
-              </IconMenuItem>
-              <IconMenuItem>
-                <a
                   href="http://localhost:3005/api/images/fix-index"
                   rel="noreferrer"
                   target="_blank">
@@ -138,7 +120,6 @@ const ImagesEditPage = (): JSX.Element => {
                   Fix Names
                 </a>
               </IconMenuItem>
-              <IconMenuItem onClick={handleClear}>Clear All</IconMenuItem>
             </IconMenu>
             <StyledPlainButton
               data-testid="button-refresh"
