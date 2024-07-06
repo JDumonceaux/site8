@@ -12,7 +12,7 @@ export class ImagesFileService {
   public async getMatchedItems(): Promise<Images | undefined> {
     try {
       const items = await this.getItemsFromBaseDirectory();
-      const x = await this.matchItems(items?.items);
+      const x = await this.matchItems(items);
       return { metadata: { title: 'Images' }, items: x };
     } catch (error) {
       Logger.error(`ImagesFileService: getMatchedItems -> ${error}`);
@@ -26,7 +26,7 @@ export class ImagesFileService {
    */
   public async getNewItems(): Promise<Images | undefined> {
     const items = await this.getItemsFromSortDirectory();
-    return { metadata: { title: 'Images' }, items: items?.items };
+    return { metadata: { title: 'Images' }, items: items };
   }
 
   /**
@@ -65,7 +65,7 @@ export class ImagesFileService {
   private async getItemsFromDirectory(
     basePath: string,
     addPath?: string,
-  ): Promise<Images | undefined> {
+  ): Promise<Image[] | undefined> {
     try {
       const fullPath = addPath ? path.join(basePath, addPath) : basePath;
       Logger.info(
@@ -94,7 +94,7 @@ export class ImagesFileService {
       // Filter out 'site' folder
       const filteredImages = ret.filter((x) => x.folder != 'site');
 
-      return { metadata: { title: 'Images' }, items: filteredImages };
+      return filteredImages;
     } catch (error) {
       Logger.error(`ImagesFileService: getItemsFromDirectory -> ${error}`);
     }
@@ -102,12 +102,12 @@ export class ImagesFileService {
   }
 
   // Get "items" from 'sort' directory
-  public async getItemsFromSortDirectory(): Promise<Images | undefined> {
+  public async getItemsFromSortDirectory(): Promise<Image[] | undefined> {
     return this.getItemsFromDirectory(LOCAL_IMAGE_PATH, 'sort');
   }
 
   // Get all data
-  public async getItemsFromBaseDirectory(): Promise<Images | undefined> {
+  public async getItemsFromBaseDirectory(): Promise<Image[] | undefined> {
     return this.getItemsFromDirectory(LOCAL_IMAGE_PATH);
   }
 

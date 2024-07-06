@@ -29,22 +29,34 @@ imagesRouter.get('/file', async (_req: Request, res: Response) => {
       ? res.status(200).json(images)
       : res.status(204).json({ error: Errors.NO_CONTENT });
   } catch (error) {
-    Logger.error(`imagesRouter: get -> Error: ${error}`);
+    Logger.error(`imagesRouter: get -> new. Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });
 
-imagesRouter.get('/scan', async (_req: Request, res: Response) => {
+imagesRouter.get('/new', async (_req: Request, res: Response) => {
   try {
-    const images = await new ImagesFileService().getNewItems();
+    const images = await new ImagesService().getNewItems();
     images
       ? res.status(200).json(images)
       : res.status(204).json({ error: Errors.NO_CONTENT });
   } catch (error) {
-    Logger.error(`imagesRouter: scan -> Error: ${error}`);
+    Logger.error(`imagesRouter: get -> new. Error: ${error}`);
     res.status(500).json({ error: Errors.SERVER_ERROR });
   }
 });
+
+// imagesRouter.get('/scan', async (_req: Request, res: Response) => {
+//   try {
+//     const images = await new ImagesFileService().getNewItems();
+//     images
+//       ? res.status(200).json(images)
+//       : res.status(204).json({ error: Errors.NO_CONTENT });
+//   } catch (error) {
+//     Logger.error(`imagesRouter: scan -> Error: ${error}`);
+//     res.status(500).json({ error: Errors.SERVER_ERROR });
+//   }
+// });
 
 imagesRouter.get('/folders', async (_req: Request, res: Response) => {
   try {
@@ -59,17 +71,17 @@ imagesRouter.get('/folders', async (_req: Request, res: Response) => {
 });
 
 // Scan the 'sort' directory for new items and load into images.json
-imagesRouter.get('/new', async (_req: Request, res: Response) => {
-  try {
-    const images = await new ImagesService().loadNewItems();
-    images
-      ? res.status(200).json(images)
-      : res.status(204).json({ error: Errors.NO_CONTENT });
-  } catch (error) {
-    Logger.error(`imagesRouter: new -> Error: ${error}`);
-    res.status(500).json({ error: Errors.SERVER_ERROR });
-  }
-});
+// imagesRouter.get('/new', async (_req: Request, res: Response) => {
+//   try {
+//     const images = await new ImagesService().loadNewItems();
+//     images
+//       ? res.status(200).json(images)
+//       : res.status(204).json({ error: Errors.NO_CONTENT });
+//   } catch (error) {
+//     Logger.error(`imagesRouter: new -> Error: ${error}`);
+//     res.status(500).json({ error: Errors.SERVER_ERROR });
+//   }
+// });
 
 imagesRouter.get('/fix-file-names', async (_req: Request, res: Response) => {
   try {

@@ -1,15 +1,12 @@
 import { readFile, writeFile } from 'fs/promises';
-import { ImageSync } from 'types/ImageSync.js';
 import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
+import { ImageSync } from '../types/ImageSync.js';
 import { Images } from '../types/Images.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-import {
-  cleanUpData,
-  getNextId,
-  getNextIdFromPos,
-} from '../utils/objectUtil.js';
+import { getNewIds, getNewItems } from '../utils/imagesUtil.js';
+import { cleanUpData, getNextId } from '../utils/objectUtil.js';
 import { ImagesFileService } from './ImagesFileService.js';
 
 export class ImagesService {
@@ -78,59 +75,39 @@ export class ImagesService {
     return { metadata: { title: 'Images' }, items };
   }
 
-  public async getNewItems(): Promise<Images | undefined> {
+  /**
+   * Retrieves new items from the /images directory and updates the existing items.
+   * @returns A Promise that resolves to the updated Images object, or undefined if an error occurs.
+   */
+  public async getNewItems(): Promise<Promise<Images | undefined>> {
     try {
-      // Get all images
+      // Get all images from /images directory
       const images = await new ImagesFileService().getItemsFromBaseDirectory();
       // Get current items
       const prev = await this.readFile();
       if (!prev) {
         throw new Error('getNewItems > Index file not loaded');
       }
+      const currItems: Image[] = prev.items || [];
 
-      const items = prev.items;
       // Get the items not already in the list
-      const newItems = images?.items
-        ?.filter(
-          (x) =>
-            !items?.find(
-              (y) => y.fileName === x.fileName && y.folder === x.folder,
-            ),
-        )
-        .map((x) => ({
-          ...x,
-          isNewItem: true,
-        }));
+      const newItems = getNewItems(currItems, images) || [];
 
       // Add the the new items to the existing items
-      const allItems: Image[] | undefined =
-        newItems && items ? { ...items, ...newItems } : items;
+      const allItems = [...currItems, ...newItems];
 
-      let startPos = 0;
-      const modifiedItems: Image[] | undefined = allItems?.map((item) => {
-        if (item.id > 0) {
-          return {
-            ...item,
-            edit_date: new Date(),
-          };
-        } else {
-          const nextId = getNextIdFromPos<Image>(allItems, startPos++) || {
-            value: 0,
-            index: 0,
-          };
-          startPos = nextId.index;
-          return cleanUpData<Image>({
-            ...item,
-            id: nextId.value,
-            edit_date: new Date(),
-            create_date: new Date(),
-          });
-        }
-      });
+      console.log('allItems5', allItems);
+
+      // Get ids for the new items
+      const modifiedItems = getNewIds(allItems);
+
+      console.log('newI35', modifiedItems);
+
+      // console.log('modifiedItems5', modifiedItems);
       // Write back file
       const data = { ...prev, items: modifiedItems };
-      await this.writeFile(data);
-      // Return items + duplicates
+      // await this.writeFile(data);
+
       return data;
     } catch (error) {
       Logger.error(`ImagesService: getNewItems -> ${error}`);
@@ -150,11 +127,11 @@ export class ImagesService {
 
       const items = prev.items;
       // Make sure item isn't already in the list
-      const newItems = images?.items?.filter(
+      const newItems = items?.filter(
         (x) => !items?.find((y) => y.fileName === x.fileName),
       );
       // Get duplicate items
-      const duplicateImages = images?.items?.filter((x) =>
+      const duplicateImages = images?.filter((x) =>
         items?.find((y) => y.fileName === x.fileName),
       );
       // Get the next id - assume there are no gaps in the id sequence
@@ -214,7 +191,7 @@ export class ImagesService {
 
       // Match the index file to the images directory
       prev.items?.forEach((item) => {
-        const matchedItems = images?.items?.filter(
+        const matchedItems = images?.filter(
           (x) => x.fileName.length > 0 && x.fileName === item.fileName,
         );
         if (matchedItems) {
@@ -347,15 +324,11 @@ export class ImagesService {
       // Get the updated records
       const updatedItems: ImageEdit[] = items.map((item) => {
         const currItem = images.items?.find((x) => x.id === item.id);
-        console.log('currItem', currItem, item.id);
         if (currItem) {
           return {
             ...currItem,
             ...item,
             originalFolder: currItem.folder,
-            src: item.folder
-              ? `${item.folder}/${item.fileName}`
-              : item.fileName,
           };
         }
       });

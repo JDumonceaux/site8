@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'types/Image';
-import { DF_LONG, ServiceUrl } from 'utils';
+import { ServiceUrl } from 'utils';
 import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
 
-import { format } from 'date-fns';
-import { getDateTime } from 'utils/dateUtils';
+import { getSRC } from 'utils/helpers';
 import { useAxios } from './Axios/useAxios';
 import { useForm } from './useForm';
 
@@ -33,8 +32,6 @@ const pageSchema = z.object({
   official_url: z.string().trim().optional(),
   tags: z.string().trim().optional(),
   description: z.string().trim().optional(),
-  create_date: z.string().optional(),
-  edit_date: z.string().optional(),
 });
 
 const useImageEdit = (id: string | undefined) => {
@@ -60,14 +57,11 @@ const useImageEdit = (id: string | undefined) => {
       id: 0,
       name: '',
       fileName: '',
-      src: '',
       folder: '',
       official_url: '',
       description: '',
       location: '',
       tags: '',
-      edit_date: format(new Date(), DF_LONG),
-      create_date: format(new Date(), DF_LONG),
     }),
     [],
   );
@@ -91,18 +85,12 @@ const useImageEdit = (id: string | undefined) => {
           id: items.id,
           name: items.name ?? '',
           fileName: items.fileName ?? '',
-          src: items.src ?? '',
           folder: items.folder ?? '',
           official_url: items.official_url ?? '',
           description: items.description ?? '',
           location: items.location ?? '',
           tags: items.tags?.toString() ?? '',
-          edit_date:
-            (items.edit_date && format(items.edit_date, DF_LONG)) ??
-            format(new Date(), DF_LONG),
-          create_date:
-            (items.create_date && format(items.create_date, DF_LONG)) ??
-            format(new Date(), DF_LONG),
+          src: getSRC(items.folder, items.fileName),
         };
         setFormValues(item);
       }
@@ -169,14 +157,11 @@ const useImageEdit = (id: string | undefined) => {
   // Handle save
   const saveItem = useCallback(
     async (items: FormValues) => {
-      const { id, create_date, edit_date, tags, ...rest } = items;
+      const { id, tags, ...rest } = items;
       const data: Image = {
         ...rest,
         id,
         tags: tags?.split(',') ?? [],
-        edit_date: getDateTime(edit_date) ?? new Date(),
-        create_date:
-          id == 0 ? getDateTime(create_date) ?? new Date() : new Date(),
       };
       if (data.id > 0) {
         await patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`, data);
@@ -205,7 +190,6 @@ const useImageEdit = (id: string | undefined) => {
       setFormValues((prev) => ({
         ...prev,
         fileName: item?.fileName ?? '',
-        src: item?.src ?? '',
         folder: item?.folder ?? '',
       }));
 
