@@ -1,0 +1,62 @@
+<h2>1. Forgotten Event Listeners</h2>
+
+<pre><code>
+// Example usage
+const button = document.getElementById('myButton');
+const clickHandler = () => {
+  // Handle the click event
+};
+
+button.addEventListener('click', clickHandler);
+
+// Later, when the button is no longer needed or the component unmounts
+button.removeEventListener('click', clickHandler);
+</code></pre>
+
+<h2>2. Unintended Closures</h2>
+
+<pre><code>
+function createCounter() {
+  let count = 0;
+  // Returning a closure
+  return () => {
+    count++;
+    console.log(`Count: ${count}`);
+  };
+}
+const increment = createCounter();
+// Calling the increment function repeatedly
+setInterval(() => {
+  increment();
+}, 1000);
+// The `increment` function captures the `count` variable, preventing it from being garbage collected
+</code></pre>
+
+<h2>3. Uncleared Timers and Intervals</h2>
+
+<pre><code>
+// Setting an interval that runs indefinitely
+const intervalId = setInterval(() => {
+  // Some repeated task
+}, 1000);
+// Forgetting to clear the interval when it's no longer needed
+// This can lead to memory leaks as the interval continues to run
+</code></pre>
+
+<h2>4. Retained DOM Elements</h2>
+
+<pre><code>
+const element = document.createElement('div');
+// Storing a reference to the element
+const container = document.getElementById('container');
+container.appendChild(element);
+// Later, removing the element from the container
+container.removeChild(element);
+// Failing to remove the reference to the element
+
+// Solution:  Also null element
+element = null;
+</code></pre>
+
+
+

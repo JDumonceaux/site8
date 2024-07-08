@@ -1,0 +1,81 @@
+<h2>Don't use any</h2>
+
+<pre><code>
+{
+  // 👎 Bad
+  const main = (callback: () => any) => {
+    const returnValue = callback();
+    // TypeScript does not throw errors
+    returnValue.get();
+  };
+}
+
+{
+  // 👍 Good
+  const main = (callback: () => void) => {
+    const returnValue = callback();
+    // ❌ Property 'get' does not exist on type 'void'
+    returnValue.get();
+  };
+}
+</code></pre>
+
+<h2>2. Use string enums instead of numeric enums</h2>
+
+<pre><code>
+// Bad
+  enum Fruit {
+    APPLE, // APPLE = 0,
+    PINEAPPLE, // PINEAPPLE = 1,
+    ORANGE, // ORANGE = 2,
+  }
+
+// Good
+  enum Fruit {
+    APPLE = 'Apple',
+    PINEAPPLE = 'Pineapple',
+    ORANGE = 'Orange',
+  }
+</code></pre>
+
+<h2>3. Correct use of type aliases and interfaces</h2>
+
+<pre><code>
+// Interfaces with the same name merge into one - a potential for hard to find errors
+{
+  interface PrintName {
+    (name: string): void;
+  }
+
+  // ✅ Auto merge
+  interface PrintName {
+    (name: number): void;
+  }
+}
+// Types do not merge
+{
+  type PrintName = (name: string) => void;
+
+  // ❌ Duplicate identifier 'PrintName'
+  type PrintName = (name: number) => void;
+}
+</code></pre>
+
+<h2>Function Overloading</h2>
+See <a href="https://stackoverflow.com/questions/76376494/how-to-correctly-overload-functions-in-typescript">How to correctly overload functions in TypeScript?</a>
+
+It is possible to using function overloading (multiple call signatures and a single implementation, which has its own signature), but I think you should generally avoid it.   
+<pre><code>
+declare function getName(x: string): string;
+declare function getName(x: number): number;
+declare function getName(x: unknown): unknown;
+
+// ✅ str is string
+const str = getName('11');
+// ✅ num is number
+const num = getName(11);
+</code></pre>
+
+
+
+

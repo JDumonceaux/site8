@@ -34,4 +34,13 @@ setPerson( person );
 setPerson ( (prev) => { ... prev, age: 31} );
 </code></pre>
 
+<h2>Combining Functions</h2>
+Chaining multiple tasks helps for fast and powerful operations. Don’t be afraid to experiment and mix them to create complicated changes in a single line.
+
+<h2>Immutability</h2>
+Whenever possible, try creating new arrays instead of changing old ones. This improves readability and reduces the risk of unwanted effects. Create new arrays using methods such as map, filter, and slice.
+
+<h2>Error Handling</h2>
+Always use working error handling in your callback habits to catch strange inputs or missing items. This avoids errors from combining and crashing your program.
+
 

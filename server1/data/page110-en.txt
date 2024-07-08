@@ -1,0 +1,35 @@
+I prefer async/await as cleaner:  resembling synchronous code.
+
+<h2>async/await</h2>
+
+<pre><code>
+async function fetchUserDetails() {
+  try {
+    const users = await fetchUsers();
+    const userDetails = await fetchUserDetailsById(users);
+    processUserDetails(userDetails);
+    return userDetails;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+</code></pre>
+
+<h2>Promise Chanining</h2>
+<pre><code>
+fetchUsers()
+  .then(users => {
+    return fetchUserDetailsById(users);
+  })
+  .then(userDetails => {
+    processUserDetails(userDetails);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+</code></pre>
+
+
+<a href="https://sameemabbas.medium.com/async-await-vs-promise-chaining-in-javascript-a15c35ddb45c">async/await vs. Promise Chaining in JavaScript</a>
+

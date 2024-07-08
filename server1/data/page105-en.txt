@@ -1,0 +1,7 @@
+<pre><code>
+.hidden {
+    display: none;
+}
+</code></pre>
+
+Note: Be careful of accessibility issues with this: something that is visually hidden may still be read out loud by a screen reader.

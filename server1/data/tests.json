@@ -352,6 +352,78 @@
       "name": "ESLint",
       "text": ".eslintrc.json or eslintrc.cjs file",
       "projectType": ["nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 521,
+      "type": "section",
+      "name": "SEO",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 522,
+      "type": "test",
+      "name": "Robot.txt",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 523,
+      "type": "test",
+      "name": "Sitemap.xml",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 524,
+      "type": "test",
+      "name": "Semantic HTML",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 525,
+      "type": "test",
+      "name": "Optimized Page Speed",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 526,
+      "type": "test",
+      "name": "Meta Tags",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 527,
+      "type": "test",
+      "name": "Accessibility",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 528,
+      "type": "test",
+      "name": "Mobile Friendly",
+      "text": "",
+      "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 529,
+      "type": "test",
+      "name": "Quality Content",
+      "text": "",
+      "projectType": ["react"]
     }
   ]
 }

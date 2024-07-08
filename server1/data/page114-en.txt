@@ -1,0 +1,142 @@
+<h2>1. forEach()</h2>
+
+<pre><code>
+const fruits = ["apple", "banana", "cherry"];
+
+fruits.forEach(fruit => console.log(fruit));
+</code></pre>
+
+<h2>map()</h2>
+
+<pre><code>
+const numbers = [1, 2, 3, 4];
+
+const doubledNumbers = numbers.map(number => number * 2);
+// Output [2, 4, 6, 8]
+</code></pre>
+Note:  Map returns a new array.
+
+<h2>3. filter()</h2>
+
+<pre><code>
+const numbers = [1, 2, 3, 4, 5];
+
+const evenNumbers = numbers.filter(number => number % 2 === 0);
+// Output [2, 4]
+</code></pre>
+
+<h2>4. reduce()</h2>
+
+Sums and averages 
+Maximum and lowest values
+Creating complex data structures
+<pre><code>
+// Sum
+const numbers = [1, 2, 3, 4];
+// numbers.reduce((accumulator, current)
+const sum = numbers.reduce((a, b) => a + b, 0);
+console.log(sum); 
+
+// Average
+const sum = arr.reduce(function (accumulator, currentValue){
+  return accumulator + currentValue;
+}, 0);
+
+const average = sum / arr.length;
+
+// Min
+ const min = args.reduce((acc, val) => {
+        return acc < val ? acc : val;
+});
+return min;
+// Or  Math.min(...items)
+
+// Max
+const max= args.reduce((acc, val) => {
+    return acc > val ? acc : val;
+});
+return max;
+//  Math.max(...items)
+</code></pre>
+
+<h2>5. find()</h2>
+
+<pre><code>
+const numbers = [1, 2, 4, 5];
+
+const x = numbers.find(number => number > 3);
+</code></pre>
+
+<h2>6. findIndex()</h2>
+
+<pre><code>
+const numbers = [1, 2, 4, 5];
+
+const x = numbers.findIndex(number => number > 3);
+</code></pre>
+
+<h2>7. some()</h2>
+
+At least one entry that meets a specific condition
+
+* short logic when a single matching element is enough
+<pre><code>
+const numbers = [1, 5, 8, 12];
+
+const x = numbers.some(number => number > 10);
+</code></pre>
+
+<h2>8. every()</h2>
+
+* all entries in an array pass a test given by a callback function.
+<pre><code>
+const data = ["apple", "banana", 10];
+
+const allStrings = data.every(element => typeof element === "string");
+// Returns false
+</code></pre>
+
+<h2>9. includes()</h2>
+
+<pre><code>
+const fruits = ["apple", "banana", "cherry"];
+
+const hasOrange = fruits.includes("orange");
+</code></pre>
+
+
+<h2>10. flat()</h2>
+
+* converts multidimensional arrays into single-dimensional arrays
+<pre><code>
+const nestedArray = [1, [2, 3], 4];
+
+const flattenedArray = nestedArray.flat();
+// Output: [1, 2, 3, 4]
+</code></pre>
+
+<h2>11. flatMap()</h2>
+
+The flatMap() method of Array instances returns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level. It is identical to a map() followed by a flat() of depth 1 (arr.map(...args).flat()), but slightly more efficient than calling those two methods separately.
+
+<pre><code>
+const arr1 = [1, 2, 1];
+
+const result = arr1.flatMap((num) => (num === 2 ? [2, 2] : 1));
+
+console.log(result);
+// Expected output: Array [1, 2, 2, 1]
+</code></pre>
+
+
+<h2>Chaining array methods</h2>
+<pre><code>
+const evenSquares = numbers.filter(number => number % 2 === 0)
+                           .map(number => number * number);
+</code></pre>
+
+
+
+
+
+

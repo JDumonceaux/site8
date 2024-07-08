@@ -1,0 +1,219 @@
+<h2>Arrow Function</h2>
+
+You can use arrow functions to simplify function declarations.
+
+<pre><code>
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+
+// Arrow function with brackets and return
+const add = (a, b) => {a + b};
+
+const add = (a, b) => {
+   return a + b
+};
+
+const add = (a, b) => {
+   // Do stuff
+   return a + b
+};
+</code></pre>
+
+<h2>Array.from()</h2>
+
+<pre><code>
+const str = "Hello!";
+const arr = Array.from(str);
+
+console.log(arr); //Output: ['H', 'e', 'l', 'l', 'o', '!']
+</code></pre>
+
+<h2>console.table()</h2>
+
+<pre><code>
+const person = {
+    name: 'John', 
+    age: 25,
+    profession: 'Programmer'
+}
+console.table(person);
+</code></pre>
+
+<h2>Use const and let Efficiently</h2>
+
+const should be used 99.99% of the time.  You should rarely use let.  
+
+Note: You should have a linting rule that enforces this.
+
+<h2>Destructuring</h2>
+
+<pre><code>
+const person = {
+    name: 'John', 
+    age: 25,
+    profession: 'Programmer'
+}
+
+//Instead of this 👇
+console.log(person.name);
+console.log(person.age);
+
+//Use this👇
+const {name, age} = person;
+console.log(name);
+console.log(age);
+</code></pre>
+
+<h2>Set Default Values with Logical OR Operator</h2>
+
+<pre><code>
+function greet(name) {
+  name = name || 'Person';
+}
+</code></pre>
+
+<h2>Empty an Array</h2>
+
+<pre><code>
+const numbers = [1, 2, 3, 4];
+numbers.length = 0;
+</code></pre>
+
+<h2>JSON.parse()</h2>
+
+<pre><code>
+const jsonStr = '{"name": "John", "age": 25}';
+const person = JSON.parse(jsonStr);
+</code></pre>
+
+<h2>Map() Function</h2>
+
+<pre><code>
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+</code></pre>
+
+<h2>Object.seal()</h2>
+
+Prevent adding or removing properties in the object.
+<pre><code>
+const person = {
+    name: 'John', 
+    age: 25
+};
+Object.seal(person);
+</code></pre>
+
+<h2>Object.freeze()</h2>
+
+Prevent any changes to an object, including adding, modifying or deleting properties.
+<pre><code>
+const person = {
+    name: 'John', 
+    age: 25
+};
+Object.freeze(person);
+</code></pre>
+
+<h2>Remove Array Duplicates</h2>
+
+<pre><code>
+const arrWithDuplicates = [1, 12, 2, 13, 4, 4, 13];
+// Uses Set
+const arrWithoutDuplicates = [...new Set(arrWithDuplicates)];
+</code></pre>
+
+<h2>Swap values using Destructuring</h2>
+
+<pre><code>
+let x = 7, y = 13;
+[x, y] = [y, x];
+</code></pre>
+
+<h2>Spread Operator</h2>
+
+<pre><code>
+const arr1 = [1, 2, 3];
+const arr2 = [9, 8, 7];
+// Assignment to new variable
+const arr3 = [...arr2];
+// Merge arrays
+const mergedArr = [...arr1, ...arr2];
+</code></pre>
+
+<h2>Template Interpolation</h2>
+
+<pre><code>
+const name = 'John';
+const message = `Hello, ${name}!`;
+</code></pre>
+
+<h2>Ternary Operator</h2>
+
+test ? true : false;
+<pre><code>
+const age = 20;
+age >= 18 ? console.log("You can drive") : console.log("You cannot drive");
+</code></pre>
+
+<h2>Use === Instead of ==</h2>
+
+Prevent type coercion issues by using strict equality (===) instead of loose equality (==)
+<pre><code>
+const num1 = 5;
+const num2 = '5';
+
+// use ===
+if (num1 === num2) {
+vs.
+if (num1 == num2) {
+</code></pre>
+
+<h2>Use Descriptive Variable and Function Names</h2>
+
+<pre><code>
+// Don't declare variable like this
+const a = 18;
+
+// use descriptive names
+const numberOfTips = 18;
+</code></pre>
+
+<h2>Consistent use of Variable Names</h2>
+
+I suspect some will disagree with me, but I would suggest that you're better off with a few, consistent key variable names vs. trying to think up descriptive variables.
+
+Instead folders, folder, files, file, pages, pages, invoices, invoice, etc.  I use items and item.  
+
+Benefits:
+* The simpler your code, the more likely you're going to see issues and errors.
+* The code starts looking like there's an opportunity to pull out code and create generic functions.
+
+<pre><code>
+const data = getUpdates();
+
+formValues.forEach((item) => {
+    data?.items?.find((x) => x.localId === item.localId);
+
+const result = await patchData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
+
+return await submitForm();
+
+  const updateSnackbarDispatch = useCallback(
+    (data: Snackbar) => {
+      dispatch(save(data));
+    },
+    [dispatch],
+  );
+</code></pre>
+
+
+
+
+
+
+

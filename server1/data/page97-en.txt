@@ -1,0 +1,4 @@
+A library from Adobe that provides accessible UI primitives for React applications.
+
+
+You do not have to use this library, but might consider using it as a reference if you're developing your own component library.

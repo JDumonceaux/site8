@@ -1,0 +1,13 @@
+Add to global css
+<pre><code>
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+</code></pre>
+
+
+It simply defines how a box reacts to the border and padding of the elements within it.
+
+By default, the box-sizing property is set to content-box, which means that the width and height of an element only include its padding and border. This can cause unexpected layout problems.
+
+Ensures that the width and height of elements include padding and border, prevents unexpected sizing issues and makes layouts more predictable.

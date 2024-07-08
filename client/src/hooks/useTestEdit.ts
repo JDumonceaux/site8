@@ -49,7 +49,7 @@ const useTestEdit = () => {
       return undefined;
     }
 
-    const temp: MenuEdit[] = [];
+    const ret: MenuEdit[] = [];
     formValues.forEach((item) => {
       const originalItem = data?.items?.find((x) => x.localId === item.localId);
       if (originalItem) {
@@ -66,17 +66,10 @@ const useTestEdit = () => {
             sortby: 'name',
           },
         };
-        temp.push(x);
+        ret.push(x);
       }
     });
 
-    // const ret = temp.filter(
-    //   (x) =>
-    //     x.newParent.id !== x.parent.id ||
-    //     x.newParent.seq !== x.parent.seq ||
-    //     x.newParent.sortby !== x.parent.sortby,
-    // );
-    const ret = temp;
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
   }, [data?.items, formValues]);
@@ -109,8 +102,7 @@ const useTestEdit = () => {
   );
 
   const handleSave = useCallback(async () => {
-    const ret = await submitForm();
-    return ret;
+    return await submitForm();
   }, [submitForm]);
 
   const getStandardTextInputAttributes = useCallback(

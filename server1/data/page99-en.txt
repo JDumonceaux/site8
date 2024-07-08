@@ -1,0 +1,1 @@
+Interaction to Next Paint (INP): INP is a measure of page responsiveness and is the newest Core Web Vital, a set of metrics that Google uses to rank websites in search results.

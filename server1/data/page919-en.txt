@@ -15,9 +15,9 @@ const MyComponent = () => {
 
 or, if you need to add a key, then you need to use the longer format:
 <pre><code>
-const MyComponent = () => {
+const MyComponent = ({id: number}) => {
   return (
-    <React.Fragment>
+    <React.Fragment key={id}>
       <div>Element 1</div>
       <div>Element 2</div>
       <div>Element 3</div>

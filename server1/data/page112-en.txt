@@ -1,0 +1,32 @@
+<a href="https://levelup.gitconnected.com/next-js-middleware-explained-in-5-minutes-d736361e87e5">Next.js Middleware Explained in 5 Minutes</a>
+<a href="https://nextjs.org/docs/app/building-your-application/routing/middleware">Next.js</a>
+
+Use Cases
+Integrating Middleware into your application can lead to significant improvements in performance, security, and user experience. Some common scenarios where Middleware is particularly effective include:
+
+Authentication and Authorization: Ensure user identity and check session cookies before granting access to specific pages or API routes.
+Server-Side Redirects: Redirect users at the server level based on certain conditions (e.g., locale, user role).
+Path Rewriting: Support A/B testing, feature rollouts, or legacy paths by dynamically rewriting paths to API routes or pages based on request properties.
+Bot Detection: Protect your resources by detecting and blocking bot traffic.
+Logging and Analytics: Capture and analyze request data for insights before processing by the page or API.
+Feature Flagging: Enable or disable features dynamically for seamless feature rollouts or testing.
+
+
+Use the file middleware.ts (or .js) in the root of your project to define Middleware. For example, at the same level as pages or app, or inside src if applicable.
+
+Only one middleware.ts file is supported per project.
+
+<pre><code>
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+ 
+// This function can be marked `async` if using `await` inside
+export function middleware(request: NextRequest) {
+  return NextResponse.redirect(new URL('/home', request.url))
+}
+ 
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: '/about/:path*',
+}
+</code></pre>

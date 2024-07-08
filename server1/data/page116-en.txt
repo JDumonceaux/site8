@@ -1,0 +1,1 @@
+<a href="https://medium.com/@franciscomoretti/next-js-authentication-best-practices-6897dad3a170">Next.js Authentication Best Practices</a>

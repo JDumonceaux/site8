@@ -1,0 +1,1 @@
+WAVE (Web Accessibility Evaluation Tool): WAVE, provided by WebAIM, is available as both a browser extension and a web-based tool. It provides visual feedback about the accessibility of your content by highlighting issues directly on the page.

@@ -878,20 +878,6 @@
       "type": "page"
     },
     {
-      "id": 904,
-      "edit_date": "1908-04-24T18:15:00.000Z",
-      "file": true,
-      "name": "Best Practices",
-      "parentItems": [
-        {
-          "id": 6,
-          "seq": 0
-        }
-      ],
-      "to": "best-practices",
-      "type": "page"
-    },
-    {
       "id": 906,
       "edit_date": "1908-04-24T16:11:00.000Z",
       "file": true,
@@ -1051,21 +1037,6 @@
         }
       ],
       "to": "use-functional-components",
-      "type": "page"
-    },
-    {
-      "id": 919,
-      "create_date": "1911-06-16T18:07:00.000Z",
-      "edit_date": "1911-06-16T18:07:00.000Z",
-      "file": true,
-      "name": "Use React.Fragment",
-      "parentItems": [
-        {
-          "id": 20,
-          "seq": 5
-        }
-      ],
-      "to": "use-react-fragment",
       "type": "page"
     },
     {
@@ -2370,6 +2341,475 @@
         }
       ],
       "to": "generators",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 84,
+      "name": "Folder Structure",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 1
+        },
+        {
+          "id": 40,
+          "seq": 4
+        }
+      ],
+      "to": "folder-structure",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 85,
+      "name": "Accessibility",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 10,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "accessibility"
+    },
+    {
+      "id": 86,
+      "name": "SEO",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 11,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "seo"
+    },
+    {
+      "id": 87,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 85,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 88,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 86,
+          "seq": 1
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 89,
+      "name": "Next.js",
+      "parentItems": [
+        {
+          "id": 86,
+          "seq": 2,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "next.js"
+    },
+    {
+      "id": 90,
+      "name": "JSON-LD",
+      "parentItems": [
+        {
+          "id": 89,
+          "seq": 1
+        }
+      ],
+      "to": "json-ld",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 91,
+      "name": "Sitemap",
+      "parentItems": [
+        {
+          "id": 89,
+          "seq": 2
+        }
+      ],
+      "to": "sitemap",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 92,
+      "name": "Testing",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 20,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "testing"
+    },
+    {
+      "id": 93,
+      "name": "Lighthouse",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 2
+        }
+      ],
+      "to": "lighthouse",
+      "type": "page"
+    },
+    {
+      "id": 94,
+      "name": "axe Accessibility Checker",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 3
+        }
+      ],
+      "to": "axe-accessibility-checker",
+      "type": "page"
+    },
+    {
+      "id": 95,
+      "name": "WAVE",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 4
+        }
+      ],
+      "to": "wave",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 96,
+      "name": "eslint-plugin-jsx-a11y",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 5
+        }
+      ],
+      "to": "eslint-plugin-jsx-a11y",
+      "type": "page"
+    },
+    {
+      "id": 97,
+      "name": "React Aria",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 9
+        }
+      ],
+      "to": "react-aria",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 98,
+      "name": "Measurements",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 2,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "measurements"
+    },
+    {
+      "id": 99,
+      "name": "Interaction to Next Paint",
+      "parentItems": [
+        {
+          "id": 98,
+          "seq": 1
+        }
+      ],
+      "to": "interaction-to-next-paint",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 100,
+      "name": "React 17 to 18",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 1
+        }
+      ],
+      "to": "react-17-to-18",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 101,
+      "name": "Code Snippets",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "code-snippets"
+    },
+    {
+      "id": 102,
+      "name": "CSS",
+      "parentItems": [
+        {
+          "id": 101,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "css"
+    },
+    {
+      "id": 103,
+      "name": "Centering an Element Horizontally and Vertically",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 1
+        }
+      ],
+      "to": "centering-an-element-horizontally-and-vertically",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 104,
+      "name": "Universal box sizing",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 2
+        }
+      ],
+      "to": "universal-box-sizing",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 105,
+      "name": "Hiding an Element",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 3
+        }
+      ],
+      "to": "hiding-an-element",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 106,
+      "name": "Styling Placeholder Text",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 4
+        }
+      ],
+      "to": "styling-placeholder-text",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 107,
+      "name": "Truncating Text with Ellipsis",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 5
+        }
+      ],
+      "to": "truncating-text-with-ellipsis",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 108,
+      "name": "Responsive Image",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 6
+        }
+      ],
+      "to": "responsive-image",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 109,
+      "name": "Memory Leaks",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 10
+        }
+      ],
+      "to": "memory-leaks",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 110,
+      "name": "async/await vs Promise Chaining",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 3
+        }
+      ],
+      "to": "async-await-vs-promise-chaining",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 111,
+      "name": "NextJs",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "nextjs"
+    },
+    {
+      "id": 112,
+      "name": "Middleware",
+      "parentItems": [
+        {
+          "id": 111,
+          "seq": 1
+        }
+      ],
+      "to": "middleware",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 113,
+      "name": "Javascript",
+      "parentItems": [
+        {
+          "id": 101,
+          "seq": 2,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "javascript"
+    },
+    {
+      "id": 114,
+      "name": "Array Functions",
+      "parentItems": [
+        {
+          "id": 113,
+          "seq": 1
+        }
+      ],
+      "to": "array-functions",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 919,
+      "name": "Use React.Fragment",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 5
+        }
+      ],
+      "to": "use-react-fragment",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 904,
+      "name": "Best Practices",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "best-practices",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 115,
+      "name": "Better Typescript",
+      "parentItems": [
+        {
+          "id": 10008,
+          "seq": 2
+        }
+      ],
+      "to": "better-typescript",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 116,
+      "name": "Articles",
+      "parentItems": [
+        {
+          "id": 111,
+          "seq": 1
+        }
+      ],
+      "to": "articles",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 117,
+      "name": "Tips",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 2
+        }
+      ],
+      "to": "tips",
       "type": "page",
       "hasFile": true
     }

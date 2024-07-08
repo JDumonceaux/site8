@@ -1,0 +1,6 @@
+<pre><code>
+::placeholder {
+    color: #999;
+    font-style: italic;
+}
+</code></pre>

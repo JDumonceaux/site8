@@ -1,0 +1,9 @@
+<pre><code>
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+</code></pre>
+Perfectly centers an element within its parent container both horizontally and vertically, regardless of its size.
