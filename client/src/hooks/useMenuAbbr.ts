@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMenuAbbr } from 'services/state/menuAbbrSlice';
-
-import { AppDispatch, RootState } from 'services/state/store';
+import { fetchMenuAbbr } from 'store/menuAbbrSlice';
+import { AppDispatch, RootState } from 'store/store';
 import { MenuAbbr } from 'types/MenuAbbr';
 
 const useMenuAbbr = () => {

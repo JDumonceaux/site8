@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { ServiceUrl } from '../../utils';
 import { Images } from 'types';
+import { ServiceUrl } from '../utils';
 
 interface ImageState {
   data: Images | null;

@@ -1,4 +1,3 @@
-import { ErrorPage } from 'pages/ErrorPage';
 import { lazy } from 'react';
 import {
   createBrowserRouter,
@@ -6,39 +5,42 @@ import {
   Route,
   RouterProvider as Router,
 } from 'react-router-dom';
+
+import { ErrorPage } from 'components/pages/ErrorPage';
 import ProtectedRoute from './ProtectedRoute';
 
-const AuthLayout = lazy(() => import('pages/Layouts/AuthLayout/AuthLayout'));
-const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
-const HomeLayout = lazy(() => import('pages/Layouts/HomeLayout/HomeLayout'));
-const MainLayout = lazy(() => import('pages/Layouts/MainLayout/MainLayout'));
-const GenericPage = lazy(() => import('pages/GenericPage'));
-const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
-const ImageEditPage = lazy(() => import('pages/ImageEditPage'));
-const ImagesEditPage = lazy(() => import('pages/ImagesEditPage'));
-const Home = lazy(() => import('pages/HomePage'));
-const NotFound = lazy(() => import('pages/NotFoundPage'));
-const PageEditPage = lazy(() => import('pages/PageEditPage'));
-const PagesEditPage = lazy(() => import('pages/PagesEditPage'));
-const PhotoPage = lazy(() => import('pages/PhotoPage'));
-const PhotoLayout = lazy(() => import('pages/Layouts/PhotoLayout/PhotoLayout'));
-const Sitemap = lazy(() => import('pages/SitemapPage'));
-const TikTokPage = lazy(() => import('pages/TikTokPage'));
-const YachtsPage = lazy(() => import('pages/YachtsPage'));
-const TestsPage = lazy(() => import('pages/TestsPage'));
-const TestsEditPage = lazy(() => import('pages/TestsEditPage'));
+const AuthLayout = lazy(() => import('components/layouts/AuthLayout/AuthLayout'));
+const HomeLayout = lazy(() => import('components/layouts/HomeLayout/HomeLayout'));
+const MainLayout = lazy(() => import('components/layouts/MainLayout/MainLayout'));
+const PhotoLayout = lazy(() => import('components/layouts/PhotoLayout/PhotoLayout'));
+const BookmarkPage = lazy(() => import('components/pages/BookmarkPage'));
+const GenericPage = lazy(() => import('components/pages/GenericPage'));
+const GenericImagePage = lazy(() => import('components/pages/GenericImagePage'));
+const ImageEditPage = lazy(() => import('components/pages/ImageEditPage'));
+const ImagesEditPage = lazy(() => import('components/pages/ImagesEditPage'));
+const Home = lazy(() => import('components/pages/HomePage'));
+const NotFound = lazy(() => import('components/pages/NotFoundPage'));
+const PageEditPage = lazy(() => import('components/pages/PageEditPage'));
+const PagesEditPage = lazy(() => import('components/pages/PagesEditPage'));
+const PhotoPage = lazy(() => import('components/pages/PhotoPage'));
+
+const Sitemap = lazy(() => import('components/pages/SitemapPage'));
+const TikTokPage = lazy(() => import('components/pages/TikTokPage'));
+const YachtsPage = lazy(() => import('components/pages/YachtsPage'));
+const TestsPage = lazy(() => import('components/pages/TestsPage'));
+const TestsEditPage = lazy(() => import('components/pages/TestsEditPage'));
 // Site Pages
-const TermsOfUsePage = lazy(() => import('pages/site/TermsOfUsePage'));
-const CookiesUsePage = lazy(() => import('pages/site/CookiesUsePage'));
-const PrivacyPolicyPage = lazy(() => import('pages/site/PrivacyPolicyPage'));
+const TermsOfUsePage = lazy(() => import('components/pages/site/TermsOfUsePage'));
+const CookiesUsePage = lazy(() => import('components/pages/site/CookiesUsePage'));
+const PrivacyPolicyPage = lazy(() => import('components/pages/site/PrivacyPolicyPage'));
 // Auth Pages
-const SigninPage = lazy(() => import('pages/auth/SigninPage'));
-const SignoutPage = lazy(() => import('pages/auth/SignoutPage'));
-const SignupPage = lazy(() => import('pages/auth/SignupPage'));
-const ConfirmEmailPage = lazy(() => import('pages/auth/ConfirmEmailPage'));
-const ForgotPasswordPage = lazy(() => import('pages/auth/ForgotPasswordPage'));
-const ChangePasswordPage = lazy(() => import('pages/auth/ChangePasswordPage'));
-const DeleteAccountPage = lazy(() => import('pages/auth/DeleteAccountPage'));
+const SigninPage = lazy(() => import('components/pages/auth/SigninPage'));
+const SignoutPage = lazy(() => import('components/pages/auth/SignoutPage'));
+const SignupPage = lazy(() => import('components/pages/auth/SignupPage'));
+const ConfirmEmailPage = lazy(() => import('components/pages/auth/ConfirmEmailPage'));
+const ForgotPasswordPage = lazy(() => import('components/pages/auth/ForgotPasswordPage'));
+const ChangePasswordPage = lazy(() => import('components/pages/auth/ChangePasswordPage'));
+const DeleteAccountPage = lazy(() => import('components/pages/auth/DeleteAccountPage'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(

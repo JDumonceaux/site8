@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchImages } from 'services/state/imageSlice';
-
-import { AppDispatch, RootState } from 'services/state/store';
+import { fetchImages } from 'store/imageSlice';
+import { AppDispatch, RootState } from 'store/store';
 import { Images } from 'types/Images';
 
 const useUnmatchedImages = () => {

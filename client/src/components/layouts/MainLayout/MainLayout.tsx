@@ -25,7 +25,6 @@ const LayoutDiv = styled.div`
   max-width: 1920px;
   margin-inline: auto;
   min-height: 100vh;
-  min-height: 100dvh;
   margin-top: 50px;
   color: var(--palette-text);
   background-color: var(--palette-background);

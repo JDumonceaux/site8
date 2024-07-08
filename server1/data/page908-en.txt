@@ -2,6 +2,15 @@ A web site is a non-ending process of maintenance.  The biggest reason is to add
 
 Here are some items to consider:
 <ol>
+<li>Start Over</li>
+  <ol>
+     <li>It is a good idea to start fresh every so often - pulling your code into a new project and getting it to run.</li>
+     <li>I discovered that I was missing some files in source control because of my .gitignore settings</li>
+     <li>If you change the capitalization on a directory ("Store" to "store"), React will often continue to work and not indicate any errors.  However, if you 
+pull the code from source control - it won't compile and only then will it throw an error.</li>
+    <li>For Node projects, the code is compiled the <em>dist</em> folder.   If you delete files, they may continue to exist (and be used) from the dist folder.  Clear out the folder occassionally.</li>
+
+ </ol>
 <li>Typescript</li>
   <ol>
      <li>Update the version:  npm install -D typescript    <a href="https://www.npmjs.com/package/typescript>NPM - Typescript</a>.</li>

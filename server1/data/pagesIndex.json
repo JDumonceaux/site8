@@ -966,20 +966,6 @@
       "type": "page"
     },
     {
-      "id": 908,
-      "edit_date": "1908-11-26T15:55:00.000Z",
-      "file": true,
-      "name": "Maintenance",
-      "parentItems": [
-        {
-          "id": 6,
-          "seq": 0
-        }
-      ],
-      "to": "maintenance",
-      "type": "page"
-    },
-    {
       "id": 915,
       "create_date": "1911-06-16T18:07:00.000Z",
       "edit_date": "1911-06-16T18:07:00.000Z",
@@ -2810,6 +2796,19 @@
         }
       ],
       "to": "tips",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 908,
+      "name": "Maintenance",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "maintenance",
       "type": "page",
       "hasFile": true
     }

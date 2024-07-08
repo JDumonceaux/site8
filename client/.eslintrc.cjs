@@ -23,6 +23,8 @@ module.exports = {
     // This disables the formatting rules in ESLint that Prettier is going to be responsible for handling.
     // Make sure it's always the last config, so it gets the chance to override other configs.
     'eslint-config-prettier',
+    'plugin:css/recommended'
+
   ],
   plugins: [
     'react-redux',
@@ -32,6 +34,7 @@ module.exports = {
     'react-refresh',
     'prefer-arrow-functions',
     'eslint-plugin-react-compiler',
+    'css'
   ],
   settings: {
     react: {

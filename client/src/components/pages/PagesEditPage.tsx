@@ -3,7 +3,7 @@ import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import MenuAdd from 'components/custom/MenuAdd';
 import { TextInput } from 'components/form/input';
-import { Switch } from 'components/Radix/Switch';
+import { Switch } from 'components/radix/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import usePagesEdit from 'hooks/usePagesEdit';
 import React, { useCallback, useEffect } from 'react';

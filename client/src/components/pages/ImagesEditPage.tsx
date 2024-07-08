@@ -1,9 +1,9 @@
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
-import { IconMenu } from 'components/Radix/IconMenu';
-import { IconMenuItem } from 'components/Radix/IconMenuItem';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
+import { IconMenu } from 'components/radix/IconMenu';
+import { IconMenuItem } from 'components/radix/IconMenuItem';
 import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';

@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { fetchFolders } from 'services/state/folderSlice';
-import { AppDispatch, RootState } from 'services/state/store';
+import { fetchFolders } from 'store/folderSlice';
+import { AppDispatch, RootState } from 'store/store';
 
 const useImageFolder = () => {
   const dispatch = useDispatch<AppDispatch>();
