@@ -1599,20 +1599,6 @@
       "type": "page"
     },
     {
-      "id": 11,
-      "create_date": "2024-05-28T20:08:00.000Z",
-      "edit_date": "2024-05-28T20:08:00.000Z",
-      "name": "Choosing a CSS Platform",
-      "parentItems": [
-        {
-          "id": 40,
-          "seq": 3
-        }
-      ],
-      "to": "choosing-a-css-platform",
-      "type": "page"
-    },
-    {
       "id": 61,
       "edit_date": "2024-05-28T19:56:00.000Z",
       "name": "Overview",
@@ -1934,20 +1920,6 @@
       "sortby": "name",
       "to": "architecture",
       "type": "menu"
-    },
-    {
-      "id": 47,
-      "create_date": "2024-06-14T23:15:00.000Z",
-      "edit_date": "2024-06-14T23:15:00.000Z",
-      "name": "Micro-frontend",
-      "parentItems": [
-        {
-          "id": 46,
-          "seq": 0
-        }
-      ],
-      "to": "micro-frontend",
-      "type": "page"
     },
     {
       "id": 48,
@@ -2809,6 +2781,97 @@
         }
       ],
       "to": "maintenance",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 47,
+      "name": "Micro-frontend",
+      "parentItems": [
+        {
+          "id": 46,
+          "seq": 0
+        }
+      ],
+      "to": "micro-frontend",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 11,
+      "name": "Choosing a CSS Platform",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 3
+        }
+      ],
+      "to": "choosing-a-css-platform",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 118,
+      "name": "Standard",
+      "parentItems": [
+        {
+          "id": 6006,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "standard"
+    },
+    {
+      "id": 119,
+      "name": "useState",
+      "parentItems": [
+        {
+          "id": 118,
+          "seq": 1
+        }
+      ],
+      "to": "usestate",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 120,
+      "name": "useReducer",
+      "parentItems": [
+        {
+          "id": 118,
+          "seq": 2
+        }
+      ],
+      "to": "usereducer",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 121,
+      "name": "Error Handling",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 4,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "error-handling"
+    },
+    {
+      "id": 122,
+      "name": "Error Boundaries",
+      "parentItems": [
+        {
+          "id": 121,
+          "seq": 1
+        }
+      ],
+      "to": "error-boundaries",
       "type": "page",
       "hasFile": true
     }

@@ -1,0 +1,75 @@
+<a href="https://refine.dev/blog/common-usestate-mistakes-and-how-to-avoid/#what-is-react-usestate">5 Most Common useState Mistakes React Developers Often Make</a>
+
+The hook returns an array with two elements: the current state value and a function to maintain or set that value.
+
+<pre><code>
+const [count, setCount] = useState(0);
+</code></pre>
+
+
+With every useState, by default, every state change of our component will re-render.
+<ul>
+<li>Use Functional updates</li>
+<li>Limit # of useState variables: group related parts of your state to one state object.</li>
+<li>useReducer for more complex items</li>
+</ul>
+
+Initiating the useState hook incorrectly can result in a failure to render. 
+
+<pre><code>
+// This may result in a blank page since the user isn't initialized.
+
+const [user, setUser] = useState();
+<p>User: {user.name}</p>
+<p>About: {user.bio}</p>
+</code></pre>
+
+// Preferred method.  The useState is initialized with the expected data type.
+<pre><code>
+ const [user, setUser] = useState({});
+// or 
+// Initializing state with expected data type
+  const [user, setUser] = useState({
+    image: "",
+    name: "",
+    bio: "",
+  });
+</code></pre>
+
+<h2>Use a Functional Update vs. Direct Update</h2>
+
+State can update anytime it wants - not necessarily when you expect it to.  
+When updating, you should get a reference to the "current" value with setCount ((prev) =>
+"Prev" can be any variable. Using "prev" is a common convention.
+
+<pre><code>
+// GOOD
+const update = () => setCount((prev) => prev + 1);
+// or
+const update = () => setCount((count) => count + 1);
+
+//vs - BAD
+const update = () => setCount(count + 1);
+</code></pre>
+
+<h2></h2>
+
+State can update anytime it wants - not necessarily when you expect it to.  
+When updating, you should get a reference to the "current" value with setCount ((prev) =>
+"Prev" can be any variable. Using "prev" is a common convention.
+
+<pre><code>
+// GOOD - using the spread operator to keep any other properties.
+ setUser((user) => ({ ...user, name: "Mark" }));
+
+// BAD - the rest of the user properties are wiped out - only name remains
+setUser((user) => (user.name = "Mark"));
+</code></pre>
+
+
+
+
+
+
+
+
