@@ -1,0 +1,26 @@
+Use libraries like Luxon or date-fns. (Don't use moment.js because objects are mutable).
+
+Javascript has many issues:
+
+<ol>
+<li>It doesn’t support Dates but only Datetimes (all date objects are unix timestamps).</li>
+<li>It doesn’t support time zones other than the user’s local time and UTC.</li>
+<li>The parser’s behaviour is inconsistent from one platform to another.</li>
+<li>The Date object is mutable.</li>
+<li>The behaviour of daylight saving time is unpredictable.</li>
+<li>No support for non-Gregorian calendars.</li>
+<li>No date arithmetic like add or subtract time.</li>
+</ol>
+
+<h2>The Hidden Problem(s)</h2>
+
+<ol>
+<li>Timezone issue</li>
+<li>Date vs DateTime issue</li>
+<li>Ignore Leap Year</li>
+<li>Ignore Locale</li>
+<li>Doesn’t respect the ISO 8601 norm</li>
+</ol>
+
+<a href="https://medium.com/@raphael.moutard/handling-dates-in-javascript-the-wrong-way-d98cb2835200">Handling Dates in Javascript the Wrong Way.</a>
+

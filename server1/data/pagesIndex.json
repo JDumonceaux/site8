@@ -2264,19 +2264,6 @@
       "hasFile": true
     },
     {
-      "id": 22,
-      "name": "Overview",
-      "parentItems": [
-        {
-          "id": 20,
-          "seq": 0
-        }
-      ],
-      "to": "overview",
-      "type": "page",
-      "hasFile": true
-    },
-    {
       "id": 82,
       "name": "Advanced",
       "parentItems": [
@@ -2872,6 +2859,45 @@
         }
       ],
       "to": "error-boundaries",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 123,
+      "name": "Date Handling",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 1
+        }
+      ],
+      "to": "date-handling",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 22,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 124,
+      "name": "bundlephobia",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 10
+        }
+      ],
+      "to": "bundlephobia",
       "type": "page",
       "hasFile": true
     }

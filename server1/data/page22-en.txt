@@ -16,9 +16,11 @@ React has a number options to improve performance and continues to develop more.
 <h2>General Site Performance</h2>
 Site performance is generally controlled by network and server speed.   
 
-1. Server speed can be increased by using a combination of faster servers, more server memory, and/or more servers.  Cloud computing services have a significant benefit in this area - allowing you to easily scaled up, down, in, and out.  With a proper architecture and configuration, you can setup your infrastructure to automatically respond to demand.  However, there are increasing costs with decreasing returns: as a general matter costs tend to limit the available options in this area.
+1. Limit the support of older and less used browsers.   Compilers (webpack) add polyfills and additional code to support older browsers - increasing the code size. 
 
-2. Network speed can be improved by a strategic architecture - moving your processes closer to the user.  This requires a practical understand of where your target users are physically located.  Again, cloud computing has an advantage of allowing you to host your site in multiple physical locations, utilizing local zones, or wavelength zones (cell service data centers).  
+2. Server speed can be increased by using a combination of faster servers, more server memory, and/or more servers.  Cloud computing services have a significant benefit in this area - allowing you to easily scaled up, down, in, and out.  With a proper architecture and configuration, you can setup your infrastructure to automatically respond to demand.  However, there are increasing costs with decreasing returns: as a general matter costs tend to limit the available options in this area.
+
+3. Network speed can be improved by a strategic architecture - moving your processes closer to the user.  This requires a practical understand of where your target users are physically located.  Again, cloud computing has an advantage of allowing you to host your site in multiple physical locations, utilizing local zones, or wavelength zones (cell service data centers).  
 
 Site performance can also be influenced by the choice of technologies and platforms.  For example, AWS Lambda services are low cost, but incur a cold startup time.  Data Warehouses are powerful, but not appropriate for quick response.
 

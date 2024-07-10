@@ -35,7 +35,8 @@ const PageEditPage = (): JSX.Element => {
   } = usePageEdit();
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
-  const [currPosition, setCurrentPosition] = useState<number>(0);
+  const [currPositionStart, setCurrentPositionStart] = useState<number>(0);
+  const [currPositionEnd, setCurrentPositionEnd] = useState<number>(0);
 
   const { setSnackbarMessage } = useSnackbar();
 
@@ -64,24 +65,52 @@ const PageEditPage = (): JSX.Element => {
     [currentId, handleAction],
   );
 
+  const parseString = useCallback(
+    (value: string) => {
+      const arr = value.split('\n');
+      return arr.map((x) => '<li>' + x + '</li>').join('\n');
+    },
+    [currPositionStart, formValues.text, setFieldValue],
+  );
+
   const handleInsert = useCallback(
     (action: string) => {
-      const textBefore = formValues.text.substring(0, currPosition);
-      const textAfter = formValues.text.substring(currPosition);
-      if (action === 'code') {
-        setFieldValue(
-          'text',
-          textBefore + '<pre><code>\n\n</code></pre>\n' + textAfter,
-        );
-      }
-      if (action === 'h2') {
-        setFieldValue('text', textBefore + '<h2> </h2>\n' + textAfter);
-      }
-      if (action === 'link') {
-        setFieldValue('text', textBefore + '<a href=""></a>\n' + textAfter);
+      const textBefore = formValues.text.substring(0, currPositionStart);
+      const textAfter = formValues.text.substring(currPositionEnd);
+      const middle = formValues.text.substring(
+        currPositionStart,
+        currPositionEnd - currPositionStart,
+      );
+      switch (action) {
+        case 'li':
+          setFieldValue(
+            'text',
+            textBefore + '<ul>' + parseString(middle) + '</ul>' + textAfter,
+          );
+          break;
+        case 'code':
+          setFieldValue(
+            'text',
+            textBefore + '<pre><code>' + middle + '</code></pre>' + textAfter,
+          );
+          break;
+        case 'h2':
+          setFieldValue(
+            'text',
+            textBefore + '<h2>' + middle + '</h2>\n' + textAfter,
+          );
+          break;
+        case 'link':
+          setFieldValue(
+            'text',
+            textBefore + '<a href="">' + middle + '</a>\n' + textAfter,
+          );
+          break;
+        default:
+          break;
       }
     },
-    [currPosition, formValues.text, setFieldValue],
+    [currPositionStart, formValues.text, setFieldValue],
   );
 
   const handleSubmit = useCallback(
@@ -116,6 +145,14 @@ const PageEditPage = (): JSX.Element => {
       onClear();
     },
     [onClear],
+  );
+
+  const handeTextAreaBlur = useCallback(
+    (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      setCurrentPositionStart(e.currentTarget.selectionStart);
+      setCurrentPositionEnd(e.currentTarget.selectionEnd);
+    },
+    [setCurrentPositionStart, setCurrentPositionEnd],
   );
 
   const title = formValues.id ? `Edit Page ${formValues.id}` : 'New Page';
@@ -235,7 +272,6 @@ const PageEditPage = (): JSX.Element => {
                 value={formValues.url}
                 //ref={focusElement}
               />
-
               <TextInput
                 errorText={getFieldErrors('parent')}
                 errorTextShort="Please enter a parent"
@@ -278,6 +314,12 @@ const PageEditPage = (): JSX.Element => {
                     type="button">
                     Link
                   </button>
+                  <button
+                    data-testid="insert-li"
+                    onClick={() => handleInsert('li')}
+                    type="button">
+                    LI
+                  </button>
                 </StyledSubMenu>
               </StyledLine>
               <TextArea
@@ -285,25 +327,11 @@ const PageEditPage = (): JSX.Element => {
                 hasError={hasError('text')}
                 id="text"
                 label="Text"
-                onBlur={(e) => setCurrentPosition(e.target.selectionStart)}
+                onBlur={handeTextAreaBlur}
                 onChange={handleChange}
                 rows={30}
                 spellCheck={true}
                 value={formValues.text}
-                // required={true}
-              />
-
-              <TextInput
-                errorText={getFieldErrors('edit_date')}
-                errorTextShort="Please enter a date"
-                hasError={hasError('edit_date')}
-                id="edit_date"
-                label="Edit Date"
-                layout="horizontal"
-                maxLength={10}
-                onChange={handleChange}
-                spellCheck={false}
-                value={formValues.edit_date}
                 // required={true}
               />
               <TextInput

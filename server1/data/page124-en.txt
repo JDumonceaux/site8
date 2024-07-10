@@ -1,0 +1,5 @@
+"Bundlephobia lets you understand the performance cost of npm install ing a new npm package before it becomes a part of your bundle. Analyze size, compositions and exports"
+<a href="https://bundlephobia.com/package/date-fns@3.6.0">bundlephobia</a>
+
+<a href="https://bundlephobia.com/scan">package.json scanner</a>
+
