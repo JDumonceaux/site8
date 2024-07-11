@@ -1,4 +1,3 @@
-import PageController from 'controllers/pageController.js';
 import express, { Request, Response } from 'express';
 import { PageFileService } from '../services/PageFileService.js';
 import { PageService } from '../services/PageService.js';
@@ -10,7 +9,7 @@ import { parseRequestId } from '../utils/helperUtils.js';
 
 export const pageRouter = express.Router();
 
-pageRouter.get('/welcome/hello-world', PageController.helloWorld());
+// pageRouter.get('/welcome/hello-world', PageController.helloWorld());
 
 // Get item
 pageRouter.get('/:id', async (req: Request, res: Response) => {

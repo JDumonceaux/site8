@@ -44,9 +44,8 @@ export const Modal = ({
 
   // Eventlistener: trigger onclose when cancel detected
   const onCancel = useCallback(() => {
-    //e.preventDefault();
-    if (!isLocked) onClose();
-  }, [isLocked, onClose]);
+    if (!isLocked) onClose();  }, 
+    [isLocked, onClose]);
 
   // Eventlistener: trigger onclose when click outside
   const onClick = useCallback(

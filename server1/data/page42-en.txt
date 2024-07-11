@@ -1,5 +1,7 @@
-Although being discussed as a React 19, React Complier is a separate change that may or may not be released along-side React 19.
+Although being discussed as a React 19, React Compiler is a separate change that may or may not be released alongside React 19.  The project name for this is "React Forget"
 
-The main impact of the React Complier is to eliminate the manual coding of useEffect, useCallback, useMemo: the complier will do this analysis for you and ... hopefully ... eliminate unnecessary component re-renders.
+The main impact of the React Complier is to eliminate the manual coding of useEffect, useCallback, useMemo: the compiler will do this analysis for you and ... hopefully ... eliminate unnecessary component re-renders.
 
-Currently, React does not have a complier stage - so this is a significant change.  
+Currently, React does not have a compiler stage - so this is a significant change.  
+
+<a href="https://adevnadia.medium.com/i-tried-react-compiler-today-and-guess-what-c0570ce10ecc">I tried React Compiler today, and guess what… </a>
