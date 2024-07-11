@@ -82,7 +82,7 @@ const PageEditPage = (): JSX.Element => {
         currPositionEnd - currPositionStart,
       );
       switch (action) {
-        case 'li':
+        case 'ul':
           setFieldValue(
             'text',
             textBefore + '<ul>' + parseString(middle) + '</ul>' + textAfter,
@@ -315,10 +315,10 @@ const PageEditPage = (): JSX.Element => {
                     Link
                   </button>
                   <button
-                    data-testid="insert-li"
-                    onClick={() => handleInsert('li')}
+                    data-testid="insert-ul"
+                    onClick={() => handleInsert('ul')}
                     type="button">
-                    LI
+                    UL
                   </button>
                 </StyledSubMenu>
               </StyledLine>

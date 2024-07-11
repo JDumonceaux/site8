@@ -1,0 +1,3 @@
+<a href="https://github.com/facebook/react/blob/main/CHANGELOG.md#1831-april-26-2024">https://react.dev/versions</a>
+
+"This release is identical to 18.2 but adds warnings for deprecated APIs and other changes that are needed for React 19"
