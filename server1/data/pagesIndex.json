@@ -392,12 +392,12 @@
       "name": "NodeJS",
       "parentItems": [
         {
-          "id": 10002,
+          "id": 0,
           "seq": 0
         }
       ],
       "to": "nodejs",
-      "type": "menu"
+      "type": "root"
     },
     {
       "id": 29,
@@ -1839,20 +1839,6 @@
       "type": "menu"
     },
     {
-      "id": 41,
-      "create_date": "2024-06-13T19:47:00.000Z",
-      "edit_date": "2024-06-13T19:47:00.000Z",
-      "name": "What's New",
-      "parentItems": [
-        {
-          "id": 39,
-          "seq": 0
-        }
-      ],
-      "to": "whats-new",
-      "type": "page"
-    },
-    {
       "id": 42,
       "create_date": "2024-06-13T19:50:00.000Z",
       "edit_date": "2024-06-13T19:50:00.000Z",
@@ -2911,6 +2897,45 @@
         }
       ],
       "to": "react-18.3.1---april-2024",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 41,
+      "name": "What's New",
+      "parentItems": [
+        {
+          "id": 39,
+          "seq": 0
+        }
+      ],
+      "to": "whats-new",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 126,
+      "name": "Codemods",
+      "parentItems": [
+        {
+          "id": 39,
+          "seq": 0
+        }
+      ],
+      "to": "codemods",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 127,
+      "name": "Routes and Controllers",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 0
+        }
+      ],
+      "to": "routes-and-controllers",
       "type": "page",
       "hasFile": true
     }

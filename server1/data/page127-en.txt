@@ -1,0 +1,46 @@
+<a href-"https://semaphoreci.medium.com/how-to-organize-all-your-routes-in-a-single-layer-in-node-js-783a870aa803">How to Organize All Your Routes in a Single Layer in Node.js</a>
+
+<h2>Controller</h2>
+const WelcomeController = {
+  helloWorld: (req, res) => {
+    res.json({
+      message: "Hello, World!",
+    });
+  },
+  // other route-handler functions...
+};
+
+
+<h2>Route</h2>
+const router = new Router();
+router.get("/welcome/hello-world", WelcomeController.helloWorld());
+// other routes...
+
+├── controllers/
+    │    ├── authentication.js
+    │    ├── ...
+    │    ├── membership.js
+    │    ├── ...
+    │    └── welcome.js
+    ├── routes/
+         ├── authentication.js
+         ├── ...
+         ├── membership.js
+         ├── ...
+         └── welcome.js
+Note that, for each controller file, there is a corresponding router file.
+
+<h2>Middleware</h2>
+app.get("/api/v1/tasks", loggingMiddleware, authenticationMiddleware, async (req, res) => {
+    // retrieve all tasks from the database
+    const tasks = await Task.findAll();
+
+// Better
+router.get("/api/v1/tasks", loggingMiddleware, authenticationMiddleware, TaskController.getTasks());
+
+<h2>Versions</h2>
+router.get("/api/v1/greetings/hello-world", GreetingController.helloWorldV1());
+// other routes...
+router.get("/api/v2/greetings/hello-world", GreetingController.helloWorldV2());
+
+

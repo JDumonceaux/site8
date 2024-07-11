@@ -1,3 +1,29 @@
+If you wish, you can start using React 19 now.  There is a Canary release that contains the current code, however this isn't ready for general release.
+
 React Compiler
 Actions
 Metadata
+Server Components 
+Server Actions 
+New hook: use
+New hook: useActionState 
+New hook: useOptimistic
+New hook: useFormStatus 
+useDeferredValue initial value
+Support for stylesheets 
+Support for async scripts
+Support for preloading resources 
+
+<a href="https://codedthemes.medium.com/whats-new-in-react-19-381bba4e6e08">What’s New in React 19?</a>
+
+React 19 codemods
+<a href="https://github.com/reactjs/react-codemod">React Codemods</a>
+remove-context-provider
+remove-forward-ref
+use-context-hook
+replace-act-import
+replace-string-ref
+replace-use-form-state
+replace-reactdom-render
+
+

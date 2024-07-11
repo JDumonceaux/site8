@@ -369,8 +369,7 @@ const Field = styled.div`
   margin-bottom: 20px;
   select {
     border: 1px solid #ccc;
-    margin-left: 20px;
-   
+    margin-left: 20px;   
     padding: 6px; 12px;
   }
 `;

@@ -1,0 +1,54 @@
+Existing codemods:
+<a href="https://github.com/reactjs/react-codemod">React Codemods</a>
+<a href="https://github.com/reactjs/react-codemod>JS Codemods</a>
+<a href="https://github.com/rajasegar/awesome-codemods>Awesome Codemods</a>
+
+<a href="https://www.sitepoint.com/getting-started-with-codemods/">Codemod</a>
+
+Codemod is a tool developed by Facebook to help with the refactor of large-scale codebases.
+
+<a href="https://github.com/facebookarchive/codemod">Codemod repo</a>
+
+"Codemods are a powerful tool for large-scale codebase refactoring. They automate the process of making systematic changes to your code, saving you time and reducing the risk of human error. Codemods can also help to maintain code consistency and improve code readability, which is particularly beneficial in large projects with multiple contributors. They can be used to upgrade dependencies, migrate to a new coding standard, or even to rewrite your code in a different language."
+
+JSCodeshift is the next step up in the refactor toolkit. Also developed by Facebook, its a tool for running codemods across multiple files. 
+
+Recast is a Node module that exposes an interface for parsing and reprinting JavaScript code. It can parse code in string format and generates an object from this which follows an AST structure. This allows us to inspect the code for patterns such as a function declarations.
+
+Recast builds an AST from our code string. An AST is a tree representation of the abstract syntax of source code. Each node of the tree represents a construct in the source code and the node provides important information about the construct.
+
+<h2>Useful Codemods</h2>
+js-codemod template-literals will replace instances of string concatenation with template literals.
+js-codemod no-vars which will convert all instances of var into either let or const
+js-codemod/arrow-function: conservatively convert functions to arrow functions.
+js-codemod/object-shorthand: transform object literals to use ES6 shorthand for properties and methods
+js-codemod/unchain-variables: unchain chained variable declarations
+
+Before:
+npx codemod react/pure-component --target <path>
+
+const belong = 'anywhere', welcome = 'home';
+After:
+
+const belong = 'anywhere';
+const welcome = 'home';
+
+js-codemod/unquote-properties: remove quotes from object properties
+Before:
+
+const things = {
+  'belong': 'anywhere',
+};
+After:
+
+const things = {
+  belong: 'anywhere',
+};
+
+react-codemod/class: transform `React.createClass` calls into ES6 classes
+
+react-codemod/sort-comp: reorder React component methods to match the ESLint react/sort-comp rule
+
+js-codemod/template-literals: transform string concatenation to template literals
+
+
