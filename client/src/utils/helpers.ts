@@ -58,7 +58,7 @@ export const splitParent = (
 // undefined and anything else that is not an array.
 // arr.length condition checks whether the
 // variable's length property evaluates to a truthy value.
-export const isValidArray = (arr: unknown[] | undefined) => {
+export const isValidArray = (arr: unknown[] | undefined | null) => {
   if (!Array.isArray(arr) || !arr.length) {
     return false;
   }

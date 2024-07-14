@@ -424,6 +424,31 @@
       "name": "Quality Content",
       "text": "",
       "projectType": ["react"]
+    },
+    {
+      "level": "project",
+      "id": 530,
+      "type": "test",
+      "name": "npm audit",
+      "text": "",
+      "projectType": ["react","nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 531,
+      "type": "test",
+      "name": "npm outdated",
+      "text": "",
+      "projectType": ["react","nodejs"]
+    }
+    ,
+    {
+      "level": "project",
+      "id": 532,
+      "type": "test",
+      "name": "Synk",
+      "text": "",
+      "projectType": ["react","nodejs"]
     }
   ]
 }

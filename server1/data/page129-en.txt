@@ -1,0 +1,32 @@
+<h2>Optimization of Multi-condition Judgments</h2>
+<pre><code>
+// Good
+if (['abc', 'def', 'ghi', 'jkl'].includes(x)) {}
+// Bad
+if (x === 'abc' || x === 'def' || x === 'ghi' || x === 'jkl') {}
+</code></pre>
+
+<h2>if…else… Statement Optimization</h2>
+
+<pre><code>
+// Good
+let test = x > 10;
+// Bad
+let test: boolean;
+ if (x > 100) {
+    test = true;
+ } else {
+    test = false;
+ }
+</code></pre>
+
+<h2>Optimization of Null and Undefined Checks</h2>
+
+<pre><code>
+// Good
+let second = first || '';
+// Bad
+if (first !== null || first !== undefined || first !== '') {
+     let second = first;
+ }
+</code></pre>

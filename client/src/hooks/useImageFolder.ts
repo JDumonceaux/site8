@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFolders } from 'store/folderSlice';
 import { AppDispatch, RootState } from 'store/store';
+import { isValidArray } from 'utils/helpers';
 
 const useImageFolder = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +18,7 @@ const useImageFolder = () => {
   );
 
   const getData = useCallback(
-    () => data?.map((x, index) => ({ id: index + 1, name: x })),
+    () =>  isValidArray(data) ? data?.map((x, index) => ({ id: index + 1, name: x })) :undefined,
     [data],
   );
 

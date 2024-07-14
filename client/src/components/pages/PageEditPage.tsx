@@ -2,6 +2,7 @@ import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import HTMLMenu from 'components/custom/PageEditPage/HTMLMenu';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import useMenu from 'hooks/useMenu';
@@ -35,8 +36,8 @@ const PageEditPage = (): JSX.Element => {
   } = usePageEdit();
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
-  const [currPositionStart, setCurrentPositionStart] = useState<number>(0);
-  const [currPositionEnd, setCurrentPositionEnd] = useState<number>(0);
+  const [currPositionStart, setCurrPositionStart] = useState<number>(0);
+  const [currPositionEnd, setCurrPositionEnd] = useState<number>(0);
 
   const { setSnackbarMessage } = useSnackbar();
 
@@ -60,7 +61,6 @@ const PageEditPage = (): JSX.Element => {
   const handleOnClick = useCallback(
     (action: string) => {
       handleAction(currentId, action);
-      // navigation(`/admin/page/edit/${action}`);
     },
     [currentId, handleAction],
   );
@@ -70,7 +70,7 @@ const PageEditPage = (): JSX.Element => {
       const arr = value.split('\n');
       return arr.map((x) => '<li>' + x + '</li>').join('\n');
     },
-    [currPositionStart, formValues.text, setFieldValue],
+    [],
   );
 
   const handleInsert = useCallback(
@@ -78,9 +78,9 @@ const PageEditPage = (): JSX.Element => {
       const textBefore = formValues.text.substring(0, currPositionStart);
       const textAfter = formValues.text.substring(currPositionEnd);
       const middle = formValues.text.substring(
-        currPositionStart,
-        currPositionEnd - currPositionStart,
-      );
+        currPositionStart, currPositionEnd
+  
+      );    
       switch (action) {
         case 'ul':
           setFieldValue(
@@ -91,10 +91,10 @@ const PageEditPage = (): JSX.Element => {
         case 'code':
           setFieldValue(
             'text',
-            textBefore + '<pre><code>' + middle + '</code></pre>' + textAfter,
+            textBefore + '<pre><code>' + middle + '\n</code></pre>' + textAfter,
           );
           break;
-        case 'h2':
+        case 'h2': 
           setFieldValue(
             'text',
             textBefore + '<h2>' + middle + '</h2>\n' + textAfter,
@@ -110,7 +110,7 @@ const PageEditPage = (): JSX.Element => {
           break;
       }
     },
-    [currPositionStart, formValues.text, setFieldValue],
+    [currPositionStart, currPositionEnd, formValues.text, setFieldValue, parseString],
   );
 
   const handleSubmit = useCallback(
@@ -149,10 +149,10 @@ const PageEditPage = (): JSX.Element => {
 
   const handeTextAreaBlur = useCallback(
     (e: React.FocusEvent<HTMLTextAreaElement>) => {
-      setCurrentPositionStart(e.currentTarget.selectionStart);
-      setCurrentPositionEnd(e.currentTarget.selectionEnd);
+      setCurrPositionStart(e.currentTarget.selectionStart);
+      setCurrPositionEnd(e.currentTarget.selectionEnd);
     },
-    [setCurrentPositionStart, setCurrentPositionEnd],
+    [setCurrPositionStart, setCurrPositionEnd],
   );
 
   const title = formValues.id ? `Edit Page ${formValues.id}` : 'New Page';
@@ -295,33 +295,8 @@ const PageEditPage = (): JSX.Element => {
                     ))}
                   </select>
                 </Field>
-                <StyledSubMenu>
-                  <button
-                    data-testid="insert-code"
-                    onClick={() => handleInsert('code')}
-                    type="button">
-                    Code
-                  </button>
-                  <button
-                    data-testid="insert-h2"
-                    onClick={() => handleInsert('h2')}
-                    type="button">
-                    H2
-                  </button>
-                  <button
-                    data-testid="insert-link"
-                    onClick={() => handleInsert('link')}
-                    type="button">
-                    Link
-                  </button>
-                  <button
-                    data-testid="insert-ul"
-                    onClick={() => handleInsert('ul')}
-                    type="button">
-                    UL
-                  </button>
-                </StyledSubMenu>
-              </StyledLine>
+                <HTMLMenu onClick={handleInsert}/>
+                </StyledLine>
               <TextArea
                 errorText={getFieldErrors('text')}
                 hasError={hasError('text')}
@@ -375,11 +350,6 @@ const Field = styled.div`
 `;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: bold;
-`;
-const StyledSubMenu = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: left;
 `;
 const StyledLine = styled.div`
   display: flex;

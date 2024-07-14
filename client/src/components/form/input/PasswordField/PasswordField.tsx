@@ -1,8 +1,8 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
-import { ShowPasswordButton } from './ShowPasswordButton';
 import { TextInput } from '../TextInput';
 import { TextInputProps } from '../TextInput/TextInput';
+import { ShowPasswordButton } from './ShowPasswordButton';
 
 type PasswordFieldType = 'password' | 'text';
 
@@ -61,8 +61,7 @@ type PasswordFieldProps = {
     | 'current-password'
     | 'new-password'
     | 'one-time-code'
-    | 'off'
-    | string;
+    | 'off';
 } & Omit<TextInputProps, InvalidAttributes | 'autoComplete' | 'type'>;
 
 // Note: autocapitalize is not a valid prop for password, url, email fields

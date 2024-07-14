@@ -40,7 +40,7 @@ const folderSlice = createSlice({
       })
       .addCase(fetchFolders.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.data = action.payload && action.payload.length > 0 ? action.payload : null;
       })
       .addCase(fetchFolders.rejected, (state, action) => {
         state.isLoading = false;

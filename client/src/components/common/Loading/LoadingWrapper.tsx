@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
-type IProps = {
+type LoadingWrapperProps = {
   readonly children: ReactNode;
   readonly loadingText?: ReactNode;
   readonly isLoading?: boolean;
@@ -20,7 +20,7 @@ export const LoadingWrapper = ({
   loadingText,
   error,
   fallback,
-}: IProps): JSX.Element => {
+}: LoadingWrapperProps): JSX.Element => {
   if (isLoading)
     return (
       <StyledLoadingDiv>
