@@ -4,7 +4,8 @@ import { REQUIRED_FIELD, ServiceUrl } from 'utils';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
-import { sortByType } from './useMenuEdit';
+
+export type sortByType = 'seq' | 'name';
 
 // Define Zod Shape
 const pageSchema = z.object({

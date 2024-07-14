@@ -1,4 +1,4 @@
-
-
 <a href="https://praveenkumar-54493.medium.com/micro-frontend-architecture-with-react-af35df973ab9">Micro-frontend architecture with react</a>
 <a href="https://medium.com/@isuruariyarathna2k00/a-deep-dive-into-micro-frontend-architecture-with-react-js-264ca6edca6b">A Deep Dive into Micro Frontend Architecture with React.js</a>
+<a href="https://blog.bitsrc.io/react-micro-frontends-with-es-modules-bfed32014d3c">React Micro Frontends with ES Modules</a>
+

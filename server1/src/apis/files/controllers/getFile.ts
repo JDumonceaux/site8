@@ -26,7 +26,7 @@ export const getFile = async (
       }
       res.status(200).json(response);
     })
-    .catch((error: Error) => {
+    .catch((error: unknown) => {
       next(error);
     });
 };

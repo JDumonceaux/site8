@@ -78,7 +78,16 @@ const PagesEditPage = (): JSX.Element => {
 
             <td>
               {item.type !== 'page' ? (
-                <TextInput {...getDefaultProps(item.localId, 'parentSortby')} />
+                <>
+                  <TextInput
+                    {...getDefaultProps(item.localId, 'parentSortby')}
+                    list="sortTypes"
+                  />
+                  <datalist id="sortTypes">
+                    <option value="seq" />
+                    <option value="name" />
+                  </datalist>
+                </>
               ) : null}
             </td>
             <td>

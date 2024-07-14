@@ -1,7 +1,6 @@
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import DialogSaving from 'components/common/Dialog/DialogSaving';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { ModalProcessing } from 'components/common/ModalProcessing';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import HTMLMenu from 'components/custom/PageEditPage/HTMLMenu';
 import { TextInput } from 'components/form/input';
@@ -16,7 +15,6 @@ import { styled } from 'styled-components';
 const PageEditPage = (): JSX.Element => {
   const params = useParams();
 
-  const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const { data } = useMenu();
   const {
@@ -39,19 +37,20 @@ const PageEditPage = (): JSX.Element => {
   const [currentId, setCurrentId] = useState<number>(0);
   const [currPositionStart, setCurrPositionStart] = useState<number>(0);
   const [currPositionEnd, setCurrPositionEnd] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { setSnackbarMessage } = useSnackbar();
 
   // Set the id from the parameters if present
   useEffect(() => {
-    const value = params.id;
+    const value = params['id'];
     if (value) {
       const tempId = parseInt(value ?? '');
       if (!isNaN(tempId) && tempId > 0) {
         setCurrentId(tempId);
       }
     }
-  }, [params.id]);
+  }, [params]);
 
   useEffect(() => {
     if (currentId && currentId > 0) {
@@ -110,6 +109,43 @@ const PageEditPage = (): JSX.Element => {
             textBefore + '<a href="">' + middle + '</a>\n' + textAfter,
           );
           break;
+        case 'abbr':
+          setFieldValue(
+            'text',
+            textBefore + '<abbr title="">' + middle + '</abbr>' + textAfter,
+          );
+          break;
+        case 'q':
+          setFieldValue(
+            'text',
+            textBefore + '<q>' + middle + '</q>' + textAfter,
+          );
+          break;
+        case 's':
+          setFieldValue(
+            'text',
+            textBefore + '<s>' + middle + '</s>' + textAfter,
+          );
+          break;
+        case 'mark':
+          setFieldValue(
+            'text',
+            textBefore + '<mark>' + middle + '</mark>' + textAfter,
+          );
+          break;
+        case 'sup':
+          setFieldValue(
+            'text',
+            textBefore + '<sup>' + middle + '</sup>' + textAfter,
+          );
+          break;
+        case 'sub':
+          setFieldValue(
+            'text',
+            textBefore + '<sub>' + middle + '</sub>' + textAfter,
+          );
+          break;
+
         default:
           break;
       }
@@ -129,9 +165,11 @@ const PageEditPage = (): JSX.Element => {
       e.preventDefault();
       if (validateForm()) {
         setSnackbarMessage('Saving...');
+        setIsModalOpen(true);
         startTransition(() => {
           handleSave();
         });
+        setIsModalOpen(false);
       }
     },
     [validateForm, setSnackbarMessage, handleSave],
@@ -341,8 +379,7 @@ const PageEditPage = (): JSX.Element => {
           </LoadingWrapper>
         </StyledMain.Section>
       </StyledMain>
-      <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      <DialogSaving isOpen={true}>Saving ...</DialogSaving>
+      <DialogSaving isOpen={isModalOpen}>Saving ...</DialogSaving>
     </>
   );
 };

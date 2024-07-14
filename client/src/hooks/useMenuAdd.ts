@@ -12,12 +12,14 @@ const pageSchema = z.object({
   parent: z.string().min(1, REQUIRED_FIELD),
   seq: z.string().min(1, REQUIRED_FIELD),
   sortby: z.string().min(1, REQUIRED_FIELD),
+  type: z.string().min(1, REQUIRED_FIELD),
 });
 
 // Create a type from the schema
 export type FormType = z.infer<typeof pageSchema>;
 export type keys = keyof FormType;
 export type sortByType = 'seq' | 'name';
+export type menuType = 'menu' | 'root';
 
 const useMenuEdit = () => {
   const { postData, isLoading, error } = useAxios<MenuAdd>();
@@ -28,6 +30,7 @@ const useMenuEdit = () => {
       parent: '',
       seq: '0',
       sortby: 'name',
+      type: 'menu',
     }),
     [],
   );
@@ -66,7 +69,7 @@ const useMenuEdit = () => {
           sortby: formValues.sortby as sortByType,
         },
       ],
-      type: 'menu',
+      type: formValues.type as menuType,
       to: formValues.name.toLowerCase().replaceAll(' ', '-'),
     };
   }, [formValues]);
@@ -91,11 +94,6 @@ const useMenuEdit = () => {
     [setFieldValue],
   );
 
-  const handleSave = useCallback(async () => {
-    const ret = await submitForm();
-    return ret;
-  }, [submitForm]);
-
   const getStandardTextInputAttributes = useCallback(
     (fieldName: keys) => {
       return {
@@ -107,6 +105,10 @@ const useMenuEdit = () => {
     },
     [getFieldErrors, getFieldValue, hasError],
   );
+
+  const clearForm = useCallback(() => {
+    setFormValues(initialFormValues);
+  }, [initialFormValues, setFormValues]);
 
   return useMemo(
     () => ({
@@ -121,7 +123,8 @@ const useMenuEdit = () => {
       setFormValues,
       setFieldValue,
       handleChange,
-      handleSave,
+      clearForm,
+      submitForm,
       validateForm,
     }),
     [
@@ -134,8 +137,9 @@ const useMenuEdit = () => {
       getStandardTextInputAttributes,
       setFormValues,
       setFieldValue,
+      clearForm,
       handleChange,
-      handleSave,
+      submitForm,
       validateForm,
     ],
   );

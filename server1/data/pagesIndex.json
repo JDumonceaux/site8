@@ -2731,19 +2731,6 @@
       "hasFile": true
     },
     {
-      "id": 47,
-      "name": "Micro-frontend",
-      "parentItems": [
-        {
-          "id": 46,
-          "seq": 0
-        }
-      ],
-      "to": "micro-frontend",
-      "type": "page",
-      "hasFile": true
-    },
-    {
       "id": 11,
       "name": "Choosing a CSS Platform",
       "parentItems": [
@@ -3099,6 +3086,32 @@
       "hasFile": true
     },
     {
+      "id": 141,
+      "name": "Fluent Design",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "fluent-design",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 47,
+      "name": "Micro-frontend",
+      "parentItems": [
+        {
+          "id": 46,
+          "seq": 0
+        }
+      ],
+      "to": "micro-frontend",
+      "type": "page",
+      "hasFile": true
+    },
+    {
       "id": 116,
       "name": "Articles",
       "parentItems": [
@@ -3112,15 +3125,28 @@
       "hasFile": true
     },
     {
-      "id": 141,
-      "name": "Fluent Design",
+      "id": 142,
+      "name": "HTML",
       "parentItems": [
         {
-          "id": 2,
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "html"
+    },
+    {
+      "id": 143,
+      "name": "Rarely Used HTML Tags",
+      "parentItems": [
+        {
+          "id": 141,
           "seq": 0
         }
       ],
-      "to": "fluent-design",
+      "to": "rarely-used-html-tags",
       "type": "page",
       "hasFile": true
     }

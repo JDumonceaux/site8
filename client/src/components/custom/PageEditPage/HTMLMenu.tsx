@@ -38,6 +38,36 @@ const HTMLMenu = ({ onClick }: HTMLMenuProps): JSX.Element => {
         type="button">
         OL
       </button>
+      <button
+        data-testid="insert-abbr"
+        onClick={() => onClick('abbr')}
+        type="button">
+        abbr
+      </button>
+      <button data-testid="insert-q" onClick={() => onClick('q')} type="button">
+        q
+      </button>
+      <button data-testid="insert-s" onClick={() => onClick('s')} type="button">
+        s
+      </button>
+      <button
+        data-testid="insert-mark"
+        onClick={() => onClick('mark')}
+        type="button">
+        mark
+      </button>
+      <button
+        data-testid="insert-sup"
+        onClick={() => onClick('sup')}
+        type="button">
+        sup
+      </button>
+      <button
+        data-testid="insert-sub"
+        onClick={() => onClick('sub')}
+        type="button">
+        sub
+      </button>
     </StyledSubMenu>
   );
 };

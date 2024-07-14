@@ -24,7 +24,7 @@ export const RenderCode = ({ children }: RenderCodeProps) => {
           return false;
         }
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         console.error(error);
       });
 

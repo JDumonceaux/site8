@@ -1,11 +1,11 @@
-import * as RadixSwitch from '@radix-ui/react-switch';
+import * as radixSwitch from '@radix-ui/react-switch';
 import { styled } from 'styled-components';
 
 type SwitchProps = {
   readonly id: string;
   readonly label: string;
   readonly onCheckedChange?: (checked: boolean) => void;
-} & RadixSwitch.SwitchProps;
+} & radixSwitch.SwitchProps;
 
 export const Switch = ({
   id,
@@ -31,7 +31,7 @@ const StyledLabel = styled.label`
   color: var(--palette-text);
   font-size: inherit;
 `;
-const StyledSwitchRoot = styled(RadixSwitch.Root)`
+const StyledSwitchRoot = styled(radixSwitch.Root)`
   width: 42px;
   height: 25px;
   background-color: #dcdcdc;
@@ -46,7 +46,7 @@ const StyledSwitchRoot = styled(RadixSwitch.Root)`
     background-color: black;
   }
 `;
-const StyledSwitchThumb = styled(RadixSwitch.Thumb)`
+const StyledSwitchThumb = styled(radixSwitch.Thumb)`
   display: block;
   width: 21px;
   height: 21px;

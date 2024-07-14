@@ -1,18 +1,19 @@
 import { LoadingWrapper } from 'components/common/Loading/LoadingWrapper';
 import { TextInput } from 'components/form/input';
-import useMenuEdit from 'hooks/useMenuEdit';
+import useMenuAdd from 'hooks/useMenuAdd';
 import useSnackbar from 'hooks/useSnackbar';
 import { startTransition, useCallback } from 'react';
 
 const MenuAdd = (): JSX.Element => {
   const {
     handleChange,
-    handleSave,
     getStandardTextInputAttributes,
+    submitForm,
     validateForm,
+    clearForm,
     error,
     isLoading,
-  } = useMenuEdit();
+  } = useMenuAdd();
   const { setSnackbarMessage } = useSnackbar();
 
   const handleSubmit = useCallback(
@@ -22,12 +23,13 @@ const MenuAdd = (): JSX.Element => {
       if (validateForm()) {
         setSnackbarMessage('Saving...');
         startTransition(() => {
-          handleSave();
+          submitForm();
+          clearForm();
           setSnackbarMessage('Saved');
         });
       }
     },
-    [validateForm, setSnackbarMessage, handleSave],
+    [validateForm, setSnackbarMessage, submitForm, clearForm],
   );
 
   return (
@@ -40,6 +42,7 @@ const MenuAdd = (): JSX.Element => {
             <th>Seq</th>
             <th>Sortby</th>
             <th>Type</th>
+            <th />
           </tr>
         </thead>
 
@@ -96,10 +99,34 @@ const MenuAdd = (): JSX.Element => {
                 // errorTextShort="Please enter a short title"
                 // hasError={hasError(`parentId${item.id}`)}
                 inputMode="numeric"
+                list="sortTypes"
                 onChange={(e) => handleChange('sortby', e.target.value)}
                 required={true}
                 spellCheck={true}
               />
+              <datalist id="sortTypes">
+                <option value="seq" />
+                <option value="name" />
+              </datalist>
+            </td>
+            <td>
+              <TextInput
+                {...getStandardTextInputAttributes('type')}
+                autoCapitalize="off"
+                enterKeyHint="next"
+                // errorText={getFieldErrors(`parentId${item.id}`)}
+                // errorTextShort="Please enter a short title"
+                // hasError={hasError(`parentId${item.id}`)}
+                inputMode="text"
+                list="menuTypes"
+                onChange={(e) => handleChange('type', e.target.value)}
+                required={true}
+                spellCheck={true}
+              />
+              <datalist id="menuTypes">
+                <option value="menu" />
+                <option value="root" />
+              </datalist>
             </td>
             <td>
               <button

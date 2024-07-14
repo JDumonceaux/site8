@@ -1,0 +1,50 @@
+<h2>abbr - abbreviation</h2>
+<pre><code>
+<abbr title="Hypertext Markup Language">html</abbr>
+</code></pre>
+
+<h2>q - quote</h2>
+<pre><code>
+<q>This is the time...</q>
+</code></pre>
+
+<h2>s - strikethrough</h2>
+<pre><code>
+<s>This is the time...</s>
+</code></pre>
+
+<h2>mark</h2>
+Usually used to highlight search terms
+<pre><code>
+This is the word you looked for <mark>pizza</mark>
+</code></pre>
+
+<h2>wbr - web break</h2>
+Used to tell the browser where to break a long word if needed.
+<pre><code>
+averyverylong<wbr />word
+</code></pre>
+
+<h2>optGroup - option group</h2>
+Used to group items in a select list
+<pre><code>
+<select>
+<optGroup label="North America">
+<option value="us">United States</option>
+<option value="ca">Canada</option>
+</optGroup>
+</select>
+</code></pre>
+
+<h2>datalist</h2>
+Used to suggest values for input boxes
+<pre><code>
+<input list="countries" />
+
+<datalist id="countries">
+<option value="us">United States</option>
+<option value="ca">Canada</option>
+</datalist>
+</code></pre>
+
+

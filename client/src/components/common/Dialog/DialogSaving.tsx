@@ -4,11 +4,13 @@ import { styled } from 'styled-components';
 type DialogSavingProps = {
   readonly children: React.ReactNode;
   readonly isOpen: boolean;
-} & Omit<DialogHTMLAttributes<HTMLDialogElement>, 'open'>;
+  readonly role?: 'alertdialog' | 'contentinfo' | 'dialog' | 'none' | 'status';
+} & Omit<DialogHTMLAttributes<HTMLDialogElement>, 'open' | 'tabindex' | 'role'>;
 
 const DialogSaving = ({
   isOpen,
   children,
+  role = 'contentinfo',
   ...rest
 }: DialogSavingProps): JSX.Element => {
   const modalRef = useRef(null);
@@ -20,14 +22,14 @@ const DialogSaving = ({
       (el as HTMLDialogElement).showModal();
     }
     // Show non-modal
-    // if (isOpen) el.showModal();
+    // if (isOpen) el.modal();
   }, [isOpen]);
 
   return (
     <StyledElement
       data-testid="DialogSaving"
       ref={modalRef}
-      role="contentinfo"
+      role={role}
       {...rest}>
       {children}
       <form method="dialog">
@@ -40,14 +42,8 @@ const DialogSaving = ({
 export default memo(DialogSaving);
 
 const StyledElement = styled.dialog`
-  min-height: 20px;
-  background-color: var(--palette-main-color, #000);
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  :: backdrop {
+  all: revert;
+  ::backdrop {
     opacity: 0.75;
   }
 `;
