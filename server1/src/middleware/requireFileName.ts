@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { Logger } from 'utils/Logger.js';
+import { Logger } from '../utils/Logger.js';
 
 export const requireFileName = (
   req: Request,
