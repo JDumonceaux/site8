@@ -1,0 +1,52 @@
+What is Hoisting in JS?
+Hoisting in JavaScript is when variables and function declarations are moved to the top of their scope during compilation, regardless of where they are initially declared.
+How it works?
+During the compilation phase, JavaScript moves variable and function declarations to the top of their containing scope. This allows you to use variables and functions before they are declared in your code.
+What is difference between let and var?
+The main difference between let and var is their scope. Variables declared with var are function-scoped, while variables declared with let are block-scoped.
+What is Event Loop?
+The event loop is a mechanism in JavaScript that allows asynchronous operations to be executed in a non-blocking manner. It continuously checks the call stack and the event queue to make sure that async tasks are executed when the call stack is not busy.
+What is precedence in Event Loop?
+The event loop handles tasks in the event queue according to their priority. Higher priority tasks, such as microtasks, are processed before lower priority tasks, such as macrotasks.
+What is the difference between setTimeout and setInterval?
+setTimeout executes a function once after a specified delay, while setInterval repeatedly executes a function at specified intervals.
+Where do you use Rest Operator?
+The rest operator (...) is used to gather remaining arguments into an array. It is commonly used in function parameters to handle variable numbers of arguments.
+Have you heard of array.reverse?
+Yes, array.reverse() is a built-in method in JavaScript used to reverse the elements of an array in place.
+What is meant by Shallow copy and Deep copy?
+Shallow copy makes a new object with copies of the original object's properties. Deep copy makes a new object and copies all nested objects recursively.
+What are Closures?
+Closures are functions that retain access to variables from their containing scope even after the containing function has finished executing. They “close over” their lexical environment.
+Have you used reduce function in JS?
+Array.prototype.reduce() is a function in JavaScript that reduces an array to a single value by applying a function to each element.
+What is the difference between map and reduce?
+map transforms each element of an array and returns a new array, while reduce combines all elements of an array into a single value.
+What are the parameters map function accepts?
+The map function accepts a callback function that is called for each element in the array, and an optional thisArg parameter that sets the value of this inside the callback function.
+What is the difference between a Promise and a Callback?
+Promises signify the eventual outcome of an asynchronous task, while callbacks are functions passed as arguments and run after a task is completed.
+What position attributes in CSS have you used?
+Position attributes in CSS include static, relative, absolute, fixed, and sticky.
+What is the difference between them?
+Position in CSS defines how an element is placed within its container and how it relates to other elements on the page.
+What is Flexbox?
+Flexbox is a layout model in CSS that allows you to create flexible and responsive layouts using a parent container and its child elements.
+What is difference between display=none and visibility=hidden?
+display: none removes an element from the layout entirely, while visibility: hidden hides the element but still preserves its space in the layout.
+What are the Hooks you have used?
+Hooks are functions that allow you to use state and other React features in functional components. Some commonly used hooks include useState, useEffect, useContext, useReducer, useCallback, useMemo, and useRef.
+What is the purpose of useCallback?
+useCallback is used to memoize functions in React to prevent unnecessary re-renders of components that rely on them.
+What are Class based Lifecycle methods?
+Class-based lifecycle methods in React include componentDidMount, componentDidUpdate, and componentWillUnmount, among others. They are used to performing side effects on class components.
+How would you be able to achieve componentDidMount, componentDidUpdate & componentDidUnMount in functional based component?
+In functional components, you can achieve similar functionality using the useEffect hook. useEffect allows you to perform side effects after every render, and clean up after the component unmounts.
+What are Pure Components and their purpose?
+Pure components are components in React that only re-render when their props or state change. They improve performance by preventing unnecessary re-renders.
+What are Higher Order components?
+Higher-order components (HOCs) are functions that take a component as input and return a new component with enhanced functionality.
+What HOCs have you used?
+Common examples of HOCs include connect from React Redux, withRouter from React Router, and withStyles from Material-UI.
+Have you used Context API?
+React's Context API enables data to be passed through the component tree without the need to manually pass props at every level.

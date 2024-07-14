@@ -1,0 +1,26 @@
+useLayoutEffect runs synchronously after DOM mutations, but before the browser updates the screen.
+It’s suitable for tasks like measuring DOM elements or performing animations.
+The dependency array controls when the effect runs, similar to useEffect.
+
+<pre><code>
+  useLayoutEffect(() => {
+    const { current } = ref;
+    if (!current) return;
+
+    const updateDimensions = () => {
+      setDimensions({
+        width: current.offsetWidth,
+        height: current.offsetHeight
+      });
+    };
+
+    updateDimensions();
+
+    window.addEventListener('resize', updateDimensions);
+
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+
+</code></pre>

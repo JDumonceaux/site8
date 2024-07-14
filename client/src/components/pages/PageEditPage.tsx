@@ -1,4 +1,5 @@
 import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
+import DialogSaving from 'components/common/Dialog/DialogSaving';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { ModalProcessing } from 'components/common/ModalProcessing';
 import StyledMain from 'components/common/StyledMain/StyledMain';
@@ -65,27 +66,30 @@ const PageEditPage = (): JSX.Element => {
     [currentId, handleAction],
   );
 
-  const parseString = useCallback(
-    (value: string) => {
-      const arr = value.split('\n');
-      return arr.map((x) => '<li>' + x + '</li>').join('\n');
-    },
-    [],
-  );
+  const parseString = useCallback((value: string) => {
+    const arr = value.split('\n');
+    return arr.map((x) => '<li>' + x + '</li>').join('\n');
+  }, []);
 
   const handleInsert = useCallback(
     (action: string) => {
       const textBefore = formValues.text.substring(0, currPositionStart);
       const textAfter = formValues.text.substring(currPositionEnd);
       const middle = formValues.text.substring(
-        currPositionStart, currPositionEnd
-  
-      );    
+        currPositionStart,
+        currPositionEnd,
+      );
       switch (action) {
         case 'ul':
           setFieldValue(
             'text',
-            textBefore + '<ul>' + parseString(middle) + '</ul>' + textAfter,
+            textBefore + '<ul>\n' + parseString(middle) + '\n</ul>' + textAfter,
+          );
+          break;
+        case 'ol':
+          setFieldValue(
+            'text',
+            textBefore + '<ol>\n' + parseString(middle) + '\n</ol>' + textAfter,
           );
           break;
         case 'code':
@@ -94,7 +98,7 @@ const PageEditPage = (): JSX.Element => {
             textBefore + '<pre><code>' + middle + '\n</code></pre>' + textAfter,
           );
           break;
-        case 'h2': 
+        case 'h2':
           setFieldValue(
             'text',
             textBefore + '<h2>' + middle + '</h2>\n' + textAfter,
@@ -110,7 +114,13 @@ const PageEditPage = (): JSX.Element => {
           break;
       }
     },
-    [currPositionStart, currPositionEnd, formValues.text, setFieldValue, parseString],
+    [
+      currPositionStart,
+      currPositionEnd,
+      formValues.text,
+      setFieldValue,
+      parseString,
+    ],
   );
 
   const handleSubmit = useCallback(
@@ -295,8 +305,8 @@ const PageEditPage = (): JSX.Element => {
                     ))}
                   </select>
                 </Field>
-                <HTMLMenu onClick={handleInsert}/>
-                </StyledLine>
+                <HTMLMenu onClick={handleInsert} />
+              </StyledLine>
               <TextArea
                 errorText={getFieldErrors('text')}
                 hasError={hasError('text')}
@@ -332,6 +342,7 @@ const PageEditPage = (): JSX.Element => {
         </StyledMain.Section>
       </StyledMain>
       <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <DialogSaving isOpen={true}>Saving ...</DialogSaving>
     </>
   );
 };

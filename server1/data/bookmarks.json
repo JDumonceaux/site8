@@ -292,6 +292,118 @@
       "description": "Sample Exams for AWS Certified Solutions Architect - Associate",
       "url": "https://tutorialsdojo.com/",
       "tags": ["Exam Prep", "AWS"]
+    },
+    {
+      "id": 39,
+      "name": "30 Days Of React",
+      "description": "A 30-day challenge to learn React step-by-step with daily lessons and exercises.",
+      "url": "https://github.com/Asabeneh/30-Days-Of-React",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "30 Seconds of React",
+      "description": "A collection of quick code snippets for React that you can use in no more than 30 seconds.",
+      "url": "https://github.com/Chalarangelo/30-seconds-of-react",
+      "tags": ["React", "Code Snippets"]
+    },
+    {
+      "id": 41,
+      "name": "Awesome React",
+      "description": "A collection of the best resources, libraries, and tools for React developers.",
+      "url": "https://github.com/enaqx/awesome-react",
+      "tags": ["React"]
+    },
+    {
+      "id": 42,
+      "name": "Awesome React Components",
+      "description": "A list of useful and popular React components to use in your projects.",
+      "url": "https://github.com/brillout/awesome-react-components",
+      "tags": ["React"]
+    },
+    {
+      "id": 43,
+      "name": "Beautiful React Hooks",
+      "description": "A collection of reusable React hooks for managing state and speed-up your components.",
+      "url": "https://github.com/antonioru/beautiful-react-hooks",
+      "tags": ["React"]
+    },
+    {
+      "id": 44,
+      "name": "Bullet Proof React",
+      "description": "A guide to building highly scalable and maintainable React applications.",
+      "url": "https://github.com/alan2207/bulletproof-react",
+      "tags": ["React"]
+    },
+    {
+      "id": 45,
+      "name": "React",
+      "description": "Official site",
+      "url": "https://github.com/facebook/react",
+      "tags": ["React"]
+    },
+    {
+      "id": 46,
+      "name": "React Spring",
+      "description": "A library for creating smooth animations in your React apps using spring physics.",
+      "url": "https://github.com/pmndrs/react-spring",
+      "tags": ["React", "Animation"]
+    },
+    {
+      "id": 47,
+      "name": "Cucumber",
+      "description": "Behavior-Driven Development (BDD)",
+      "url": "https://cucumber.io/",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "url": "",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "url": "",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "url": "",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "url": "",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "url": "",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "url": "",
+      "tags": ["React", "Tutorial"]
+    },
+    {
+      "id": 40,
+      "name": "",
+      "description": "",
+      "url": "",
+      "tags": ["React", "Tutorial"]
     }
   ]
 }

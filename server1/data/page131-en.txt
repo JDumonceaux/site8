@@ -1,0 +1,19 @@
+useEffect runs after the render is displayed on the screen.
+It can include an optional dependency array, triggering a re-run of the effect when any dependencies are modified.
+If a cleanup function is returned (optional), it executes before unmounting or re-rendering occurs
+
+<pre><code>
+useEffect (() => {
+    fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => setData(data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+
+// Cleanup function
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+
+
+</code></pre>

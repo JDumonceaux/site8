@@ -1,0 +1,41 @@
+Component Composition refers to the practice of creating reusable UI components by combining smaller components.
+
+Some refer to this as <a href="https://atomicdesign.bradfrost.com/">Atomic Design</a>
+
+<ul>
+<li>Reusability: Components can be easily reused across different parts of the application, making it easier to maintain and update the UI.</li>
+<li>Modularity: Breaking the UI down into smaller, more manageable components makes it easier to understand and work with, particularly for larger and more complex applications.</li>
+<li>Separation of Concerns: By separating the UI into smaller components, each component can focus on its specific functionality, making it easier to test and debug.</li>
+<li>Code Maintainability: Using smaller components that are easy to understand and maintain makes it easier to make changes and update the application over time.</li>
+</ul>
+
+
+This is an example of breaking down your code into small components: this is a single button.  
+
+<ul>
+<li>For simplicity, I've removed the styling.  Styling is one reason you might create a specific component: keeping the code and styling together in one file.  You could create multiple components with different designs (primary, secondary, round, square, cancel, submit, etc.) or have a single file and use an attribute (a variant) to specify which style to use.</li>
+<li>Notice that I'm extending the ButtonHTMLAttributes from react.  This allows us to pass in all the normal button attributes as "...rest".</li>
+<li>I've pulled out the id. I've decided that all my buttons must have an id (useful for testing). </li>
+<li>I've also pulled out (omitted) name and type - I don't want a user of the component to be able to set these.   Many HTML elements allow attributes that are not valid or deprecated without throwing any errors.  A good example is creating a password field using an input element.  There are about 15 input attributes that are not valid for a password field - you may want to prevent the user from coding by omitting them from the component properties.</li>
+</ul>
+
+<pre><code>
+import { ButtonHTMLAttributes } from 'react';
+
+type ButtonProps = {
+  readonly id: string;
+  readonly children: React.ReactNode;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
+
+const Button = ({
+  id,
+  children,
+  ...rest
+}: ButtonProps): JSX.Element => (
+  <button $variant={variant} id={id} name={id} {...rest} type="button">
+    {children}
+  </button>
+);
+
+export default Button;
+</code></pre>

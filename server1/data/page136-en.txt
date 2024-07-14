@@ -1,0 +1,18 @@
+<ul>
+<li>Array findLast()</li>
+<li>Array findLastIndex()</li>
+<li>Array toReversed()</li>
+<li>Array toSorted()</li>
+<li>Array toSpliced()</li>
+<li>Array with()</li>
+<li>#! (Shebang)</li>
+</ul>
+
+The "to" methods are immutable versions of their counterparts.  The counterpart mutates the original array.  It is preferred you use this version.
+
+Shebang - run with node
+<pre><code>
+#!/usr/bin/env node
+
+// Now, you can run JavaScript code with ./fileName.js instead of node fileName.js.
+</code></pre>

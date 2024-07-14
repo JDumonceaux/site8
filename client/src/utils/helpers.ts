@@ -43,7 +43,8 @@ export const splitParent = (
     .map((item, index) => {
       if (index % 2 === 0) {
         const id = parseInt(item);
-        const seq = parseInt(x[index + 1]);
+        const itemExists = !(typeof x[index + 1] === 'undefined');
+        const seq = itemExists ? parseInt(x[index + 1]) : 0;
         if (!isNaN(id) && !isNaN(seq)) {
           return { id, seq };
         }

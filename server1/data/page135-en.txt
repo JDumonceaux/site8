@@ -1,0 +1,4 @@
+Released July 2016
+
+Async/Await
+Array.includes()

@@ -5,18 +5,20 @@ type ButtonProps = {
   readonly id: string;
   readonly children: React.ReactNode;
   readonly variant?: 'primary' | 'secondary';
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'>;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
-export const Button = ({
+const Button = ({
   id,
   children,
   variant = 'primary',
   ...rest
 }: ButtonProps): JSX.Element => (
-  <StyledButton $variant={variant} id={id} name={id} {...rest}>
+  <StyledButton $variant={variant} id={id} name={id} {...rest} type="button">
     {children}
   </StyledButton>
 );
+
+export default Button;
 
 const StyledButton = styled.button<{
   $variant: 'primary' | 'secondary' | undefined;

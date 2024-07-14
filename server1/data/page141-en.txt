@@ -1,0 +1,6 @@
+<a href="https://fluent2.microsoft.design/">Fluent 2 Design System</a>
+<a href="https://react.fluentui.dev/">React Fluent</a>
+
+Fluent is Microsoft's current design system.
+
+

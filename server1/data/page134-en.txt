@@ -1,0 +1,15 @@
+Draft Released July 2024
+
+<a href="https://tc39.es/ecma402/">Official Specification</a>
+
+
+<h2>New Features</h2>
+
+<ul>
+<li>Object.groupBy()</li>
+<li>Map.groupBy()</li>
+<li>Temporal.PlainDate()</li>
+<li>Temporal.PlainTime()</li>
+<li>Temporal.PlainMonthDay()</li>
+<li>Temporal.PlainYearMonth()</li>
+</ul>

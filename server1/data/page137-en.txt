@@ -1,0 +1,65 @@
+<a href="https://medium.com/beyond-agile-leadership/how-to-solve-conflicts-between-developers-and-designers-in-software-projects-da12d2021ccc">How to Solve Conflicts Between Developers and Designers in Software Projects
+</a>
+
+
+<ol>
+<li>Level One: A Problem to Solve</li>
+<li>Conflicting goals, values, needs. Problem oriented rather than person oriented.</li>
+<li>Level Two: Disagreement</li>
+<li>Mixing of personalities and issues, problem cannot be clearly defined. Beginning of distrust and personalizing problem.</li>
+<li>Level Three: Contest</li>
+<li>Begin the dynamics of “win/lose.” Personal attacks. Formation of factions, sides, camps. Distortion a major problem.</li>
+<li>Level Four: Fight/Flight</li>
+<li>Shifts from winning to getting rid of person(s). Factions are solidified. Talk now takes on the language of “principles,” not “issues.”</li>
+<li>Level Five: Intractable Situations</li>
+<li>No longer clear understanding of issue(s); personalities have become the focus. Conflict is now unmanageable. Energy is centered on the elimination and/or destruction of the person(s).</li>
+</ol>
+
+<h2>Requirements Definition</h2>
+<ul>
+<li>User Story: As <who>, I want <what>, so that <reason></li>
+<li>Acceptance Criteria:  Gherkin Syntax: Scenario, Given, When, and Then.</li>
+<li>Visual Images:</li>
+</ul>
+
+<h2>Gherkin Syntax</h2>
+
+<a href="https://cucumber.io/docs/gherkin/">Gherkin Syntax</a>
+
+[Description]
+“Scenario” describes what test (requirement) it is.
+“Given” describes the initial context or state before the user takes any action.
+“When” describes the action taken by the user.
+“Then” describes the expected outcome or result of the action taken by the user.
+
+[Example]
+Scenario: Successful login.
+Given: The user already has an account.
+When: Input the correct email address and password. Then, press the login button.
+Then: Log in to the platform successfully.
+
+<h2>Acceptance Criteria</h2>
+Non-Functional Requirements (NFR): performance, scalability, security, usability, compatibility, availability, diversity, etc.
+
+
+<h2>Conway's Law</h2>
+This law states that the structure of an organization and communication based on work type will constrain the system design it produces. 
+
+Melvin Edward Conway 1967
+This is an anti-pattern
+
+
+<h2>PDCA (Plan, Do, Check, Action) cycle</h2>
+
+Scrum Implementation
+<ul><li>Sprint Planning (Plan): Plan what to do.</li>
+<li>Daily Scrum (Do): Check progress.</li>
+<li>Sprint Review (Check): Check results.</li>
+<li>Sprint Retrospective (Action): Discuss improvements.</li>
+</ul>
+
+A key point here is that all meetings are held at the same time, at the same duration, at the same place with the same people to make a rhythm.
+
+
+
+

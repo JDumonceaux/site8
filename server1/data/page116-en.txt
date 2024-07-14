@@ -1,1 +1,11 @@
 <a href="https://medium.com/@franciscomoretti/next-js-authentication-best-practices-6897dad3a170">Next.js Authentication Best Practices</a>
+<a href="https://medium.com/@cloudapp_dev/how-to-speed-up-your-next-js-14-website-easily-and-why-is-it-important-fcad73fcf76c">How to speed up your Next.js 14 website easily, and why is it important?</a>
+<a href="https://medium.com/@mitali_shah/why-is-next-js-15-revolutionizing-web-app-development-8164875d6f0d">Why Is Next.Js 15 Revolutionizing Web App Development?
+</a>
+
+<a href="https://swfungineer.medium.com/next-js-app-router-vs-pages-router-39439e7632d3">Next.JS: App Router vs Pages Router</a>
+<a href="https://weijunext.medium.com/next-js-15-introduces-breaking-cache-strategy-changes-a594e3b504df">Next.js 15 Introduces Breaking Cache Strategy Changes
+</a>
+
+
+

@@ -20,14 +20,17 @@ export class PagesService {
   public async getItems(): Promise<Pages | undefined> {
     Logger.info(`PagesService: getItems ->`);
 
+    let { promise, resolve, reject } = Promise.withResolvers<Pages | undefined>();
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as Pages;
+      if (!results) reject(new Error('No data found'));
+      resolve( JSON.parse(results) as Pages);
     } catch (error) {
       Logger.error(`PagesService: getItems. Error -> ${error}`);
-      return undefined;
+      reject(new Error(`Get Items failed. Error: ${error}`));
     }
-  }
+    return promise;
+ }
 
   // Get the next id for the record
   public async getNextId(): Promise<number | undefined> {

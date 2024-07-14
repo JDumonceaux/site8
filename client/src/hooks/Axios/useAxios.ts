@@ -1,20 +1,23 @@
-import { useCallback, useState } from 'react';
 import axios, { isCancel } from 'axios';
-import { httpErrorHandler } from 'utils/errorHandler';
+import { useCallback, useState } from 'react';
 import { AcceptHeader, PreferHeader } from 'utils';
+import { httpErrorHandler } from 'utils/errorHandler';
 
 export const useAxios = <T>() => {
   const [data, setData] = useState<T | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
-  // Private function to fetch data
-  const fetchDataAsync = useCallback(async (url: string) => {
+  const reset = () => {
     setData(undefined);
     setIsLoading(true);
     setError(undefined);
+  };
 
+  // Private function to fetch data
+  const fetchDataAsync = useCallback(async (url: string) => {
     try {
+      reset();
       const response = await axios.get<T>(url, {
         responseType: 'json',
         headers: { Accept: AcceptHeader.JSON },

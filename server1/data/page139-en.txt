@@ -1,0 +1,9 @@
+<a href="https://atomicdesign.bradfrost.com/">Atomic Design</a>
+
+This is a UI methodology of breaking a design into atoms, molecules, organisms, templates, and pages.   Atoms are individual HTML elements. Molecules are combinations of elements - ex. an input field with a label and perhaps a counter.
+
+Benefits
+Design consistency: Looking for small to large variations in design or process.
+Reducing the number of components:  You may have more overall components, but the components will be smaller, easier to test, reuse, and overall cost less to develop.
+Reduce design time: If you're designing each web page from scratch, this takes a lot of time. If you can standardize the header, footer, and menu - you're already substantially ahead.  If your library has input fields, buttons, error messages, etc. already designed -you don't have to spend time redesigning these.
+

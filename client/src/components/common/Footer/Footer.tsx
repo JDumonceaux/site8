@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
 
-export const Footer = (): JSX.Element => {
+const Footer = (): JSX.Element => {
   const thisYear = new Date().getFullYear();
   return (
     <StyledFooter data-testid="footer" role="contentinfo">

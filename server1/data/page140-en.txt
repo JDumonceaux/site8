@@ -1,0 +1,25 @@
+My philosophy is if you're using inline styles, you're doing something wrong.
+
+You should be looking for ways to make your code generic and reusable.  Inline styles go against this approach.
+
+Important!:  "normal" css uses kebab-case.
+<pre><code>
+{
+  background-color: 'red',
+  min-width:  200,
+  min-height: 200,
+};
+</code></pre>
+
+Styles in components use camel-case.  React looks for the change in case and will automatically convert this to kebab-case.  If you view source, it will be style="background-color: red, ..."
+<pre><code>
+const styles = {
+  backgroundColor: 'red',
+  minWidth:  200,
+  minHeight: 200,
+};
+
+const Button = () => (
+  <button style={styles}>My Button</button
+)
+</code></pre>

@@ -10,7 +10,7 @@ type HeaderProps = {
   readonly includeMenu?: boolean;
 };
 
-export const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
+const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
   return (
     <StyledHeader data-testid="header">
       <div>
