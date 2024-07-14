@@ -1,11 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
-import { FileService } from 'services/FileService.js';
+
 import { Responses } from 'utils/Constants.js';
 import { Logger } from 'utils/Logger.js';
+import { ServiceFactory } from 'utils/ServiceFactory.js';
 
 type Params = {
   filename: string;
 };
+
+const service = ServiceFactory.getFileService();
 
 export const getFile = async (
   req: Request<Params>,
@@ -15,7 +18,7 @@ export const getFile = async (
   Logger.debug(`Get File controller called`);
   const { filename } = req.params;
 
-  await new FileService()
+  await service
     .getFile(filename.trim() + '.json')
     .then((response) => {
       if (!response) {
