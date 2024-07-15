@@ -1,0 +1,38 @@
+You should consider updating Node.js as part of regular maintenance. 
+
+<pre><code>
+// Node version
+node -v
+
+// npm version
+npm -v
+
+// nvm version
+nvm -v
+</code></pre>
+
+
+<h2>Windows</h2>
+There are two options:  nvm (node version manager) or a pre-built installer.
+
+<a href="https://nodejs.org/en/download/prebuilt-installer">Node.js</a>
+Select 
+<ol>
+<li>LTS (long term support) version</li>
+<li>Windowsversion</li>
+<li>Running x64</li>
+</ol>
+
+This will download a .msi installation package.  Run to install.
+
+<h2>Installing NVM</h2>
+
+<ol>
+<li>uninstall Node.js to avoid issues</li>
+<li>Go to <a href="https://github.com/coreybutler/nvm-windows">https://github.com/coreybutler/nvm-windows</a></li>
+<li>Find the "Download Now" button</li>
+<li>Find the "Download Now" button</li>
+<li>On the next page, find the nvm-setup.exe file under Assets and download</li>
+<li>Execute file: nvm-setup.exe</li>
+<li>Verify nvm -v</li>
+</ol>

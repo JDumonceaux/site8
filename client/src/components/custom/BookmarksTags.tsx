@@ -2,7 +2,7 @@ import React from 'react';
 import { BookmarksTags } from 'types';
 
 type BookmarksTagsProps = {
-  readonly data?: BookmarksTags | null;
+  readonly data: BookmarksTags | undefined;
 };
 
 export const BookmarkTags = ({ data }: BookmarksTagsProps): JSX.Element => {

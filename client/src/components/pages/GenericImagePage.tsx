@@ -8,6 +8,7 @@ import { useAxios } from 'hooks/Axios';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';
 import { ServiceUrl } from 'utils';
+import { getSRC } from 'utils/helpers';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useAxios<Images>();
@@ -19,7 +20,6 @@ const GenericImagePage = (): JSX.Element => {
   }, [fetchData]);
 
   const pageTitle = 'Images';
-  const imagePath = '/images/like/';
 
   if (error) return <pre>{error}</pre>;
 
@@ -41,7 +41,7 @@ const GenericImagePage = (): JSX.Element => {
                   <div key={index}>
                     <StyledImage
                       alt={item.name}
-                      src={`${imagePath}${item.src}`}
+                      src={getSRC(item.folder, item.fileName)}
                     />
                     <div>{item.name}</div>
                     <div>

@@ -1,6 +1,47 @@
+<a href="https://www.typescriptlang.org/tsconfig/">TypeScript: TSConfig</a>
+<a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">TypeScript: Documentation</a>
+<a href="https://github.com/tsconfig/bases">Recommended tsconfig settings</a>
+
+<q>The tsconfig.json file specifies the root files and the compiler options required to compile the project.</q>
+<q>The presence of a tsconfig.json file in a directory indicates that the directory is the root of a TypeScript project.</q>
+
+Note: You should have different tsconfig files for the React.js frontend and the Node.js backend.
+
+<h2>React.Js</h2>
+
+<pre><code>
+npm install --save-dev @tsconfig/vite-react
+</code></pre>
+
+This is an example of extending an recommended config.  You can extend multiple .json files.
+<pre><code>
+{
+  "extends": "@tsconfig/vite-react/tsconfig.json"
+  "include": ["src/**/*"],
+  "exclude": ["**/*.spec.ts"]
+}
+</code></pre>
+
+<a href="https://github.com/tsconfig/bases/blob/main/bases/vite-react.json">React Vite tsconfig.json</a>
+
+<h2>Node.Js - version 22</h2>
+
+<pre><code>
+npm install --save-dev @tsconfig/node22
+</code></pre>
+
+<pre><code>
+"extends": "@tsconfig/node22/tsconfig.json"
+</code></pre>
+
+<a href="https://github.com/tsconfig/bases/blob/main/bases/node22.json">Node.js 22 tsconfig.json</a>
+
+<h2>This is my React tsconfig.js</h2>
+
+As you can see, there are many options. I'm targeting some experimental features, so I haven't gone with the recommended settings.
+<pre><code>
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "React Vite",
   "_version": "3.0.0",
 
   "compilerOptions": {
@@ -189,3 +230,7 @@
   "exclude": ["node_modules", "__test__"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
+</code></pre>
+
+
+
