@@ -1,10 +1,12 @@
+import { mapPageIndexToMenuItem } from 'apis/files/controllers/menus/mappers/MapPageIndexToMenuItem.js';
+import { MenuAbbr } from 'types/MenuAbbr.js';
+import { PageIndex, PagesIndex } from 'types/PageIndex.js';
 import { z } from 'zod';
-import { Menu } from '../types/Menu.js';
-import { MenuAbbr } from '../types/MenuAbbr.js';
 import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuItem } from '../types/MenuItem.js';
-import { Page } from '../types/Page.js';
-import { Pages } from '../types/Pages.js';
+import { Menu } from '../types/Menus.js';
+import { Page } from '../types/Pages.js';
+import { Pages } from '../types/PagesIndex.js';
 import { Logger } from '../utils/Logger.js';
 import { cleanUpData } from '../utils/objectUtil.js';
 import { safeParse } from '../utils/zodHelper.js';
@@ -40,17 +42,42 @@ type addData = z.infer<typeof menuAddSchema>;
 
 export class MenuService {
   // 0. Get all data
-  public async getItems(): Promise<Pages | undefined> {
+  public async getItems(): Promise<PagesIndex | undefined> {
     return new PagesService().getItems();
   }
 
   // 1. Get all the menu items.  Add additional lines for each parent element
-  private getExpandedMenu(items?: ReadonlyArray<Page>): MenuItem[] | undefined {
+  private getExpandedMenu(items?: ReadonlyArray<PageIndex>): MenuItem[] | undefined {
     try {
       if (!items) {
         return undefined;
       }
+
+      const menus = items.filter((x) => x.type === 'menu' || x.type === 'root')
+      const pages = items.filter((x) => x.type === 'page');
+
       const ret: MenuItem[] = [];
+      menus.forEach((item) => {
+        // Make sure parentItems is an array
+        if (          !Array.isArray(item.parentItems)
+        ) {
+          Logger.error(
+            `MenuService: getExpandedMenu -> parentItems is not an array.`,
+          );
+          
+        }
+        // Add an menu entry for each parent item
+        item.parentItems?.forEach((parent) => {
+          ret.push(mapPageIndexToMenuItem(item, parent))  ;
+        }
+
+      },
+
+
+
+
+
+
       items.forEach((item) => {
         if (
           item.parentItems &&
@@ -72,13 +99,13 @@ export class MenuService {
             // Convert parentItems to parent child
             ret.push({
               ...temp,
-              parent: {
+              parentItem: {
                 id: parent.id,
                 seq: parent.seq,
-                sortby: parent.sortby,
               },
               line: 0,
               issue: false,
+              sortBy:item.
             });
           });
         } else {
@@ -123,7 +150,7 @@ export class MenuService {
         return undefined;
       }
       const ret: MenuItem[] = [];
-      const children = items.filter((x) => x.parent.id === parentId);
+      const children = items.filter((x) => x.parentId === parentId);
       children.forEach((x) => {
         ret.push(x);
         const y = this.getChildren(items, x.id, seq + 1);
@@ -146,7 +173,7 @@ export class MenuService {
       const ret: MenuItem[] = [];
       // Add parent, then add children. Perform recursively.
       // Start with the root menu
-      const children = items.filter((x) => x.parent.id === 0);
+      const children = items.filter((x) => x.parentId === 0);
       children.forEach((x) => {
         // Add this item
         ret.push(x);
@@ -155,7 +182,14 @@ export class MenuService {
           ret.push(...y);
         }
       });
-      return ret;
+      const sorted =
+        sortBy === 'seq'
+          ? ret.sort((a, b) => {
+              return a.parentSeq - b.parentSeq;
+            })
+          : ret.sort((a, b) => a.name.localeCompare(b.name));
+
+      return sorted;
     } catch (error) {
       Logger.error(`MenuService: getOrderedMenu -> ${error}`);
     }
@@ -186,12 +220,12 @@ export class MenuService {
     return undefined;
   }
 
-  // 0. Get Menu
+  // 0. Get Menu | Admin > Pages
   public async getMenu(): Promise<Menu | undefined> {
     Logger.info(`MenuService: getMenu -> `);
     try {
       // 1. Get all the data from pagesIndex.json
-      const data: Pages | undefined = await this.getItems();
+      const data: PagesIndex | undefined = await this.getItems();
       if (!data || !data.items) {
         return undefined;
       }

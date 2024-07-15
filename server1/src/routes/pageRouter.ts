@@ -3,7 +3,7 @@ import PageController from '../controllers/pageController.js';
 import { PageFileService } from '../services/PageFileService.js';
 import { PageService } from '../services/PageService.js';
 import { PagesService } from '../services/PagesService.js';
-import { Page } from '../types/Page.js';
+import { Page } from '../types/Pages.js';
 import { Errors, RegEx, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { parseRequestId } from '../utils/helperUtils.js';

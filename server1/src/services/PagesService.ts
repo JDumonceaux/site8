@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import { MenuEdit } from '../types/MenuEdit.js';
-import { Page } from '../types/Page.js';
-import { Pages } from '../types/Pages.js';
+import { Page } from '../types/Pages.js';
+import { Pages, PagesIndex } from '../types/PagesIndex.js';
 import { ParentSortby } from '../types/ParentSortby.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
@@ -17,20 +17,23 @@ export class PagesService {
   }
 
   // Get all data
-  public async getItems(): Promise<Pages | undefined> {
+  public async getItems(): Promise<PagesIndex | undefined> {
     Logger.info(`PagesService: getItems ->`);
 
-    let { promise, resolve, reject } = Promise.withResolvers<Pages | undefined>();
+    let { promise, resolve, reject } = Promise.withResolvers<
+      Pages | undefined
+    >();
+
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
       if (!results) reject(new Error('No data found'));
-      resolve( JSON.parse(results) as Pages);
+      resolve(JSON.parse(results) as PagesIndex);
     } catch (error) {
       Logger.error(`PagesService: getItems. Error -> ${error}`);
       reject(new Error(`Get Items failed. Error: ${error}`));
     }
     return promise;
- }
+  }
 
   // Get the next id for the record
   public async getNextId(): Promise<number | undefined> {

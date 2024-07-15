@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { Page } from '../types/Page.js';
-import { Pages } from '../types/Pages.js';
+import { Page } from '../types/Pages.js';
+import { Pages } from '../types/PagesIndex.js';
 import { Logger } from '../utils/Logger.js';
 import { cleanUpData } from '../utils/objectUtil.js';
 import { safeParse } from '../utils/zodHelper.js';

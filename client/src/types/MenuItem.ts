@@ -11,5 +11,5 @@ export type MenuItem = {
   readonly file?: boolean;
   readonly localId: number;
   readonly issue?: boolean;
-  readonly parent: ParentSortby;
+  readonly parentItem: ParentSortby;
 };

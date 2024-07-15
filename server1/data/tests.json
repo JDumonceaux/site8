@@ -431,7 +431,7 @@
       "type": "test",
       "name": "npm audit",
       "text": "",
-      "projectType": ["react","nodejs"]
+      "projectType": ["react", "nodejs"]
     },
     {
       "level": "project",
@@ -439,16 +439,23 @@
       "type": "test",
       "name": "npm outdated",
       "text": "",
-      "projectType": ["react","nodejs"]
-    }
-    ,
+      "projectType": ["react", "nodejs"]
+    },
     {
       "level": "project",
       "id": 532,
       "type": "test",
       "name": "Synk",
       "text": "",
-      "projectType": ["react","nodejs"]
+      "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 533,
+      "type": "maintenance",
+      "name": "TSConfig.json",
+      "text": "Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>",
+      "projectType": ["react", "nodejs"]
     }
   ]
 }

@@ -357,18 +357,18 @@
       "tags": ["React", "Tutorial"]
     },
     {
-      "id": 40,
-      "name": "",
-      "description": "",
-      "url": "",
-      "tags": ["React", "Tutorial"]
+      "id": 48,
+      "name": "Stackademic",
+      "description": "Programming Articles",
+      "url": "https://blog.stackademic.com/",
+      "tags": ["React", "Tutorial", "Javascript"]
     },
     {
-      "id": 40,
-      "name": "",
-      "description": "",
-      "url": "",
-      "tags": ["React", "Tutorial"]
+      "id": 49,
+      "name": "Medium",
+      "description": "Programming Articles",
+      "url": "https://medium.com/",
+      "tags": ["React", "Tutorial", "Javascript", "Design"]
     },
     {
       "id": 40,
