@@ -470,7 +470,6 @@
           "seq": 0
         }
       ],
-
       "to": "factory-method-pattern",
       "type": "page"
     },
@@ -3225,6 +3224,123 @@
       "to": "security",
       "type": "page",
       "hasFile": true
+    },
+    {
+      "id": 149,
+      "name": "New - useActionState",
+      "parentItems": [
+        {
+          "id": 6006,
+          "seq": 0
+        }
+      ],
+      "to": "new---useactionstate",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 150,
+      "name": "Re-renders",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 0
+        }
+      ],
+      "to": "re-renders",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 151,
+      "name": "Monads",
+      "parentItems": [
+        {
+          "id": 82,
+          "seq": 0
+        }
+      ],
+      "to": "monads",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 152,
+      "name": "Performance",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "performance"
+    },
+    {
+      "id": 153,
+      "name": "Worker Threads",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "worker-threads",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 154,
+      "name": "ESM Development",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "esm-development",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 155,
+      "name": "Chrome Tools Debugging",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "chrome-tools-debugging",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 156,
+      "name": "Caching",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "caching",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 157,
+      "name": "Cluster Mode",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "cluster-mode",
+      "type": "page",
+      "file": true
     }
   ]
 }

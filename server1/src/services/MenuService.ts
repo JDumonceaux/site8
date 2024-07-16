@@ -63,14 +63,9 @@ export class MenuService {
       // Convert root menus to menu items and sort by seq
       const rootMenusTemp = rootMenus
         .map((item) =>
-          mapPageMenuToMenuItem(
-            item,
-            (item.parentItems && item.parentItems[0]) ?? defaultParent,
-          ),
+          mapPageMenuToMenuItem(item, item?.parentItems?.[0] ?? defaultParent),
         )
         .toSorted((a, b) => a.name.localeCompare(b.name) ?? 0);
-
-      //console.log('rootMenusTemp', rootMenusTemp, rootMenusTemp.length);
 
       // Loop through root menus
       const arr: MenuItem[] = [];
@@ -87,23 +82,29 @@ export class MenuService {
           });
         });
         // Sort the menu items as specified by parent
-        const sorted = ret2.toSorted(
-          (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
-        );
+        const sorted =
+          item.parentItem?.sortBy === 'name'
+            ? ret2.toSorted((a, b) => a.name.localeCompare(b.name))
+            : ret2.toSorted(
+                (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
+              );
         // Add the menu items to the return array
         arr.push(...sorted);
       });
 
       // console.log('arr', arr, arr.length);
 
+      // Add in orphans
       const menuOrphans = menus
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => ({ ...x, issue: 'no parent' }));
+        .map((x) => ({ ...x, issue: 'no parent' }))
+        .map((x) => mapPageMenuToMenuItem(x, defaultParent));
       const pageOrphans = pages
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => ({ ...x, issue: 'no parent' }));
+        .map((x) => ({ ...x, issue: 'no parent' }))
+        .map((x) => mapPageMenuToMenuItem(x, defaultParent));
 
-      const ret: MenuItem[] = arr;
+      const ret: MenuItem[] = arr.concat(...menuOrphans, ...pageOrphans);
 
       console.log('retA', ret?.length);
 

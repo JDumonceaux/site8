@@ -1,0 +1,27 @@
+<q>A monad is a type of functor (a container that holds a value and a function to manipulate that value) with two additional capabilities: it can wrap a value into a monadic container, and it can chain operations in a way that flattens the structure.</q>
+
+A monad function
+<pre><code>
+function Burrito(value) {
+    return {
+        value: value,
+        bind: function(func) {
+            return Burrito(func(this.value));
+        },
+        log: function() {
+            console.log(this.value);
+            return this; // Allow chaining by returning the burrito
+        }
+    };
+}
+</code></pre>
+
+Using the function
+<pre><code>
+let myBurrito = Burrito(10);
+myBurrito
+    .bind(value => value + 2) // Adds 2
+    .bind(value => value * 5) // Multiplies by 5
+    .log(); // Outputs: 60
+
+</code></pre>

@@ -1,0 +1,29 @@
+React 19
+
+A new React hook that helps us update state based on the result of a form action.
+
+<ul>
+<li>state = current state</li>
+<li>initialState = starting value of the state</li>
+<li>formAction = form action</li>
+<li>actionFunction = function that runs on form submit</li>
+</ul>
+
+<pre><code>
+import { useActionState } from 'react';
+
+async function increment(previousState, formData) {
+  return previousState + 1;
+}
+
+function StatefulForm() {
+  // const [state, formAction] = useActionState(actionFunction, initialState);
+  const [state, formAction] = useActionState(increment, 0);
+  return (
+    <form>
+      {state}
+      <button formAction={formAction}>Increment</button>
+    </form>
+  );
+}
+</code></pre>

@@ -1,0 +1,18 @@
+<pre><code>
+const cluster = require('cluster');
+
+if (cluster.isMaster) {
+  // Master process forks worker processes
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+} else {
+  // Worker process handles incoming requests
+  const server = http.createServer((req, res) => {
+    // ...
+  });
+  server.listen(PORT, () => {
+    console.log(`Worker process listening on port ${PORT}`);
+  });
+}
+</code></pre>

@@ -1,0 +1,10 @@
+One way to check for components that are re-rendering unnecessarily is to use <em>React dev tools</em>
+
+<ul>
+<li>Install React dev tools.</li>
+<li>Open the dev tool, go to the components tab, and click the settings icon</li>
+<li>Highlight updates when components render in the general setting tab in dev tools.</li>
+<li></li>
+</ul>
+
+Go to settings > profiler and enable the “Record why each component rendered” option

@@ -1,0 +1,15 @@
+<pre><code>
+const cacheableRequest = require('cacheable-request');
+
+const cachedRequest = cacheableRequest(
+  requestFn,
+  { ttl: 60000 } // Cache for 60 seconds
+);
+cachedRequest('https://api.example.com/data')
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+</code></pre>

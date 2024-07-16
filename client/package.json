@@ -20,7 +20,7 @@
     "prepare": "husky",
     "pre-commit": "npx lint-staged",
     "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
-    "knip": "knip"
+    "knip": "knip --production"
   },
   "dependencies": {
     "@apollo/client": "^3.10.8",

@@ -1,0 +1,21 @@
+The "normal" way to debug Node.js code is to insert console.logs or Logger.debug statements.  Unlike the React.js layer, the Node.js layer doesn't automatically recompile and use the current code:  we have to start and stop the server. (This can be fixed).  
+
+We can debug using the Chrome Tools.
+
+Start the node layer with the --inspect flag
+<pre><code>
+node --inspect app.js
+</code></pre>
+
+Go to:  chrome://inspect
+
+If you wish, you can add a new script to your package.json
+<pre><code>
+"scripts": {
+    "start": "npm run build && node dist/server.js",
+    "debug": "npm run build && node --inspect dist/server.js",
+ 
+     },
+</code></pre>
+
+npm run debug  vs. npm run start

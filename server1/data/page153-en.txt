@@ -1,0 +1,16 @@
+Node.js is single-threaded.  
+
+Worker threads allow you to offload heavy computations to separate threads, keeping your main thread free to handle user requests.
+
+<pre><code>
+const { Worker } = require('worker_threads');
+
+const worker = new Worker('./long_calculation.js');
+
+worker.on('message', (result) => {
+  console.log('Calculation result:', result);
+});
+
+worker.postMessage({ data: [1, 2, 3, 4, 5] });
+
+</code></pre>

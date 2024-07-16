@@ -1,0 +1,16 @@
+The older way of development is with CommonJS modules  (.cjm).  These are being replaced with <em>ECMAScript Modules (ESM)</em>.
+
+ESM offers a cleaner, more robust approach to modular development with features like top-level await and dynamic imports.
+
+<pre><code>
+// math.mjs
+export function add(x, y) {
+  return x + y;
+}
+
+export async function fetchData() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  return data;
+}
+</code></pre>
