@@ -68,9 +68,7 @@ export class MenuService {
             (item.parentItems && item.parentItems[0]) ?? defaultParent,
           ),
         )
-        .toSorted(
-          (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
-        );
+        .toSorted((a, b) => a.name.localeCompare(b.name) ?? 0);
 
       //console.log('rootMenusTemp', rootMenusTemp, rootMenusTemp.length);
 
@@ -89,14 +87,14 @@ export class MenuService {
           });
         });
         // Sort the menu items as specified by parent
-        const sorted = ret2.toSorted((a, b) =>
-          (a.name ?? '').localeCompare(b.name ?? ''),
+        const sorted = ret2.toSorted(
+          (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
         );
         // Add the menu items to the return array
         arr.push(...sorted);
       });
 
-      console.log('arr', arr, arr.length);
+      // console.log('arr', arr, arr.length);
 
       const menuOrphans = menus
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
