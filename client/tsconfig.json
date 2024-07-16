@@ -37,7 +37,7 @@
       "store/*": ["./src/store/*"],
       "styles/*": ["./src/styles/*"],
       "types/*": ["./src/types/*"],
-      "util/*": ["./src/util/*"],
+      "utils/*": ["./src/utils/*"],
       "graphql/*": ["./src/graphql/*"],
       "content/*": ["./src/content/*"]
     },

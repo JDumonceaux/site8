@@ -12,7 +12,6 @@ export type PageIndex = {
   readonly readability_score?: string;
   readonly parentItems?: Parent[];
   readonly file?: boolean;
-  readonly sortBy?: string;
   readonly toComplete?: string;
-  readonly type: 'root' | 'menu' | 'page';
+  readonly type: 'page';
 };

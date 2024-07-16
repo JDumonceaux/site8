@@ -1,9 +1,9 @@
-import { MenuItem } from 'types/MenuItem.js';
-import { PageIndex } from 'types/PageIndex.js';
-import { Parent } from 'types/Parent.js';
+import { Parent } from '../../..//types/Parent.js';
+import { MenuItem } from '../../../types/MenuItem.js';
+import { PageMenu } from '../../../types/PageMenu.js';
 
-export const mapPageIndexToMenuItem = (
-  item: PageIndex,
+export const mapPageMenuToMenuItem = (
+  item: PageMenu,
   currParent: Parent,
 ): MenuItem => {
   return {

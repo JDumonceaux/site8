@@ -1,6 +1,6 @@
 import { Parent } from './Parent.js';
 
-export type Page = {
+export type PageMenu = {
   readonly id: number;
   readonly name: string;
   readonly title?: string;
@@ -11,9 +11,7 @@ export type Page = {
   readonly create_date?: Date;
   readonly reading_time?: string;
   readonly readability_score?: string;
-  readonly parentItem?: Parent;
+  readonly parentItems?: Parent[];
   readonly file?: boolean;
-  readonly type?: 'page';
-  readonly issue?: boolean;
-  readonly line: number;
+  readonly type: 'page' | 'root' | 'menu';
 };

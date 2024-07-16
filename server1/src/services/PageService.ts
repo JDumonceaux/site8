@@ -1,6 +1,10 @@
 import { z } from 'zod';
-import { Page } from '../types/Pages.js';
-import { Pages } from '../types/PagesIndex.js';
+
+import { mapPageMenuToPageText } from '../apis/page/mappers/mapPageMenuToPageText.js';
+import { PageEdit } from '../types/PageEdit.js';
+import { PageMenu } from '../types/PageMenu.js';
+import { Pages } from '../types/Pages.js';
+import { PageText } from '../types/PageText.js';
 import { Logger } from '../utils/Logger.js';
 import { cleanUpData } from '../utils/objectUtil.js';
 import { safeParse } from '../utils/zodHelper.js';
@@ -45,16 +49,17 @@ export class PageService {
   }
 
   // Get Item
-  public async getItem(id: number): Promise<Page | undefined> {
+  public async getItem(id: number): Promise<PageText | undefined> {
     Logger.info(`PageService: getItem -> ${id}`);
     // Get the current file
     const items = await this.getItems();
-    return items?.items?.find((x) => x.id === id);
+    const item = items?.items?.find((x) => x.id === id);
+    return mapPageMenuToPageText(item);
   }
 
   private async getItemWithFile(
-    item: Page | undefined,
-  ): Promise<Page | undefined> {
+    item: PageMenu | undefined,
+  ): Promise<PageText | undefined> {
     Logger.info(`PageService: getItemWithFile `);
 
     if (!item || item?.id === 0) {
@@ -65,11 +70,14 @@ export class PageService {
     //   ? await new PageFileService().getFile(item.id)
     //   : undefined;
     const file = await new PageFileService().getFile(item.id);
-    return item ? { ...item, text: file } : undefined;
+    const ret = mapPageMenuToPageText(item);
+    return ret ? { ...ret, text: file } : undefined;
   }
 
   // Get Item Complete
-  public async getItemCompleteByName(name: string): Promise<Page | undefined> {
+  public async getItemCompleteByName(
+    name: string,
+  ): Promise<PageText | undefined> {
     Logger.info(`PageService: getItemComplete -> ${name}`);
     const items = await this.getItems();
     const item = items?.items?.find((x) => x.to === name);
@@ -77,7 +85,7 @@ export class PageService {
   }
 
   // Get Item Complete
-  public async getItemCompleteById(id: number): Promise<Page | undefined> {
+  public async getItemCompleteById(id: number): Promise<PageText | undefined> {
     Logger.info(`PageService: getItemComplete -> ${id}`);
     const items = await this.getItems();
     const item = items?.items?.find((x) => x.id === id);
@@ -85,12 +93,12 @@ export class PageService {
   }
 
   // Add an item
-  public async addItem(item: Page): Promise<number> {
+  public async addItem(item: PageEdit): Promise<number> {
     Logger.info(`PageService: addItem -> `);
 
     try {
       // Clean up the item
-      const updatedItem = cleanUpData<Page>(item);
+      const updatedItem = cleanUpData<PageEdit>(item);
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
@@ -110,7 +118,7 @@ export class PageService {
       const { text, id, ...rest } = updatedItem;
       const newItem = { id: id, ...rest };
       if (updatedItem.text && updatedItem.text.length > 0) {
-        newItem.hasFile = true;
+        newItem.file = true;
       }
       // Save the new item
       const updatedFile: Pages = {
@@ -128,12 +136,12 @@ export class PageService {
   }
 
   // Update an item
-  public async updateItem(item: Page): Promise<number> {
+  public async updateItem(item: PageEdit): Promise<number> {
     Logger.info(`PageService: updateItem -> `);
 
     try {
       // Clean up the item
-      const updatedItem = cleanUpData<Page>(item);
+      const updatedItem = cleanUpData<PageEdit>(item);
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
@@ -150,7 +158,7 @@ export class PageService {
       const { text, create_date, ...rest } = updatedItem;
       const newItem = { ...rest };
       if (updatedItem.text && updatedItem.text.length > 0) {
-        newItem.hasFile = true;
+        newItem.file = true;
       }
 
       const updatedFile: Pages = {

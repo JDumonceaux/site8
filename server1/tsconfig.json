@@ -12,7 +12,17 @@
     "strict": true,
     "outDir": "dist",
     // Allow absolute imports from the `src` directory
-    "baseUrl": "src"
+    "baseUrl": "src",
+
+    "paths": {
+      "*": ["./src/*"],
+      "apis/*": ["./src/apis/*"],
+      "middleware/*": ["./src/middleware/*"],
+      "routes/*": ["./src/routes/*"],
+      "services/*": ["./src/services/*"],
+      "types/*": ["./src/types/*"],
+      "utils/*": ["./src/utils/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "./*.ts", "__test__"]

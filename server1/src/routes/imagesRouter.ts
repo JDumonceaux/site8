@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
 
-import { ImagesEdit } from 'types/ImagesEdit.js';
-import { Errors } from 'utils/Constants.js';
 import { ImagesFileService } from '../services/ImagesFileService.js';
 import { ImagesService } from '../services/ImagesService.js';
+import { ImagesEdit } from '../types/ImagesEdit.js';
+import { Errors } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 
 export const imagesRouter = express.Router();

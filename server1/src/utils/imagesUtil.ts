@@ -1,4 +1,4 @@
-import { Image } from 'types/Image.js';
+import { Image } from '../types/Image.js';
 import { FOLDERS_TO_IGNORE } from './Constants.js';
 import { cleanUpData, getNextIdFromPos } from './objectUtil.js';
 

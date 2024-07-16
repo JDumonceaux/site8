@@ -1,12 +1,13 @@
 import { Parent } from './Parent.js';
 
-export type MenuIndex = {
+export type Menu = {
   readonly id: number;
   readonly name: string;
-  readonly parentItems?: Parent[];
-  readonly sortBy?: string;
+  readonly parentItem?: Parent;
   readonly to?: string;
   readonly url?: string;
   readonly toComplete?: string;
-  readonly type: 'root' | 'menu';
+  readonly type?: 'root' | 'menu';
+  readonly issue?: boolean;
+  readonly line: number;
 };

@@ -1,7 +1,8 @@
 import { readFile, writeFile } from 'fs/promises';
 import { MenuEdit } from '../types/MenuEdit.js';
-import { Page } from '../types/Pages.js';
-import { Pages, PagesIndex } from '../types/PagesIndex.js';
+import { PageMenu } from '../types/PageMenu.js';
+import { Pages } from '../types/Pages.js';
+import { PagesIndex } from '../types/PagesIndex.js';
 import { ParentSortby } from '../types/ParentSortby.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
@@ -41,7 +42,7 @@ export class PagesService {
 
     try {
       const data = await this.getItems();
-      return getNextId<Page>(data?.items);
+      return getNextId<PageMenu>(data?.items);
     } catch (error) {
       Logger.error(`PagesService: getNextId. Error -> ${error}`);
       return undefined;
@@ -66,7 +67,7 @@ export class PagesService {
   // ?
   private getUpdatedParent(
     updates: MenuEdit[] | undefined,
-    currItem: Page | undefined,
+    currItem: PageMenu | undefined,
   ): ParentSortby[] | undefined {
     Logger.info(`PagesService: getUpdatedParent ->`);
 
@@ -123,10 +124,9 @@ export class PagesService {
 
       let countUpdate = 0;
       let countTotal = 0;
-      const countIn = items.length;
 
       // Loop through items from pagesIndex.json
-      const retItems = pages.items.map((item) => {
+      pages.items.map((item) => {
         // Get the updates from the incoming records - could be more than one update per entry.
         const updateItems = items.filter((x) => x.id === item.id);
         // Check for zero length array
@@ -156,7 +156,7 @@ export class PagesService {
         return Promise.reject(new Error('No items found'));
       }
       const data = pages.items.map((item) => {
-        const newItem = cleanUpData<Page>(item);
+        const newItem = cleanUpData<PageMenu>(item);
         return newItem;
       });
 

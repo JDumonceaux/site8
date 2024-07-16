@@ -29,9 +29,9 @@ const PagesEditPage = (): JSX.Element => {
         id: item.id,
         localId: item.localId,
         name: item.name,
-        parentId: item.parent.id ? item.parent.id.toString() : '0',
-        parentSeq: item.parent.seq ? item.parent.seq.toString() : '0',
-        parentSortby: item.parent.sortby || '',
+        parentId: item.parentItem.id ? item.parentItem.id.toString() : '0',
+        parentSeq: item.parentItem.seq ? item.parentItem.seq.toString() : '0',
+        parentSortby: item.parentItem.sortby || '',
         type: item.type,
       };
     });

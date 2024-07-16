@@ -3,7 +3,7 @@ import PageController from '../controllers/pageController.js';
 import { PageFileService } from '../services/PageFileService.js';
 import { PageService } from '../services/PageService.js';
 import { PagesService } from '../services/PagesService.js';
-import { Page } from '../types/Pages.js';
+import { PageEdit } from '../types/PageEdit.js';
 import { Errors, RegEx, Responses } from '../utils/Constants.js';
 import { Logger } from '../utils/Logger.js';
 import { parseRequestId } from '../utils/helperUtils.js';
@@ -62,7 +62,7 @@ pageRouter.post('/', async (req: Request, res: Response) => {
     const service = new PageService();
     const service2 = new PagesService();
     const fileService = new PageFileService();
-    const item: Page = req.body;
+    const item: PageEdit = req.body;
 
     // Get next id
     const idNew = (await service2.getNextId()) ?? 0;
@@ -105,7 +105,7 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
     // const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
     const service = new PageService();
     const fileService = new PageFileService();
-    const item: Page = req.body;
+    const item: PageEdit = req.body;
 
     const promise1 = service.updateItem(item);
     const promise2 = fileService.updateFile(item.id, item.text);

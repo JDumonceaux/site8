@@ -1,18 +1,16 @@
-import { mapPageIndexToMenuItem } from 'apis/files/controllers/menus/mappers/MapPageIndexToMenuItem.js';
-import { MenuAbbr } from 'types/MenuAbbr.js';
-import { PageIndex, PagesIndex } from 'types/PageIndex.js';
 import { z } from 'zod';
+import { mapPageMenuToMenuItem } from '../apis/menu/mappers/mapPageMenuToMenuItem.js';
 import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuItem } from '../types/MenuItem.js';
-import { Menu } from '../types/Menus.js';
-import { Page } from '../types/Pages.js';
-import { Pages } from '../types/PagesIndex.js';
+import { Menus } from '../types/Menus.js';
+import { PageMenu } from '../types/PageMenu.js';
+import { Pages } from '../types/Pages.js';
+import { PagesIndex } from '../types/PagesIndex.js';
+import { Parent } from '../types/Parent.js';
 import { Logger } from '../utils/Logger.js';
 import { cleanUpData } from '../utils/objectUtil.js';
 import { safeParse } from '../utils/zodHelper.js';
 import { PagesService } from './PagesService.js';
-
-type PageAbbr = Pick<Page, 'id' | 'name' | 'to' | 'url' | 'file' | 'type'>;
 
 const menuAddSchema = z
   .object({
@@ -35,236 +33,116 @@ const menuAddSchema = z
       .min(1),
   })
   .refine(
-    (data) => data.to || data.url,
+    (data) => data.to ?? data.url,
     'Either to or url should be filled in.',
   );
 type addData = z.infer<typeof menuAddSchema>;
 
 export class MenuService {
   // 0. Get all data
-  public async getItems(): Promise<PagesIndex | undefined> {
+  private async getItems(): Promise<PagesIndex | undefined> {
     return new PagesService().getItems();
   }
 
-  // 1. Get all the menu items.  Add additional lines for each parent element
-  private getExpandedMenu(items?: ReadonlyArray<PageIndex>): MenuItem[] | undefined {
+  // 1. Get built menu
+  private buildMenu(items?: ReadonlyArray<PageMenu>): MenuItem[] | undefined {
     try {
       if (!items) {
         return undefined;
       }
 
-      const menus = items.filter((x) => x.type === 'menu' || x.type === 'root')
+      const rootMenus = items.filter((x) => x.type === 'root');
+      const menus = items.filter((x) => x.type === 'menu');
       const pages = items.filter((x) => x.type === 'page');
+      const defaultParent = {
+        id: 0,
+        seq: 0,
+        sortBy: 'name',
+      } as Parent;
 
-      const ret: MenuItem[] = [];
-      menus.forEach((item) => {
-        // Make sure parentItems is an array
-        if (          !Array.isArray(item.parentItems)
-        ) {
-          Logger.error(
-            `MenuService: getExpandedMenu -> parentItems is not an array.`,
-          );
-          
-        }
-        // Add an menu entry for each parent item
-        item.parentItems?.forEach((parent) => {
-          ret.push(mapPageIndexToMenuItem(item, parent))  ;
-        }
+      // Convert root menus to menu items and sort by seq
+      const rootMenusTemp = rootMenus
+        .map((item) =>
+          mapPageMenuToMenuItem(
+            item,
+            (item.parentItems && item.parentItems[0]) ?? defaultParent,
+          ),
+        )
+        .toSorted(
+          (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
+        );
 
-      },
+      //console.log('rootMenusTemp', rootMenusTemp, rootMenusTemp.length);
 
-
-
-
-
-
-      items.forEach((item) => {
-        if (
-          item.parentItems &&
-          item.parentItems.length > 0 &&
-          !Array.isArray(item.parentItems)
-        ) {
-          Logger.error(
-            `MenuService: getExpandedMenu -> parentItems is not an array.`,
-          );
-          return undefined;
-        }
-
-        // Shed excess properties from Page
-        const temp = item as PageAbbr;
-        // Loop through parentItems records
-        if (item.parentItems) {
-          // Add a new record for each parent
-          item.parentItems.forEach((parent) => {
-            // Convert parentItems to parent child
-            ret.push({
-              ...temp,
-              parentItem: {
-                id: parent.id,
-                seq: parent.seq,
-              },
-              line: 0,
-              issue: false,
-              sortBy:item.
-            });
+      // Loop through root menus
+      const arr: MenuItem[] = [];
+      rootMenusTemp.forEach((item) => {
+        // Add the root menu to the return array
+        arr.push(item);
+        // Find the children of the root menu
+        const ret2: MenuItem[] = [];
+        menus.map((menu) => {
+          menu.parentItems?.forEach((parent) => {
+            if (item.id === parent.id) {
+              ret2.push(mapPageMenuToMenuItem(menu, parent));
+            }
           });
-        } else {
-          // If no parentItems ...
-          if (item.type == 'root') {
-            ret.push({
-              ...temp,
-              parent: { id: 0, seq: 0, sortby: 'name' },
-              line: 0,
-              issue: false,
-            });
-          } else {
-            // This item has no parent - which is an error.  Issue = true.
-            ret.push({
-              ...temp,
-              parent: {
-                id: 0,
-                seq: 0,
-                sortby: undefined,
-              },
-              line: 0,
-              issue: true,
-            });
-          }
-        }
+        });
+        // Sort the menu items as specified by parent
+        const sorted = ret2.toSorted((a, b) =>
+          (a.name ?? '').localeCompare(b.name ?? ''),
+        );
+        // Add the menu items to the return array
+        arr.push(...sorted);
       });
+
+      console.log('arr', arr, arr.length);
+
+      const menuOrphans = menus
+        .filter((x) => !x.parentItems || x.parentItems.length === 0)
+        .map((x) => ({ ...x, issue: 'no parent' }));
+      const pageOrphans = pages
+        .filter((x) => !x.parentItems || x.parentItems.length === 0)
+        .map((x) => ({ ...x, issue: 'no parent' }));
+
+      const ret: MenuItem[] = arr;
+
+      console.log('retA', ret?.length);
+
       return ret.length > 0 ? ret : undefined;
     } catch (error) {
-      Logger.error(`MenuService: getExpandedMenu -> ${error}`);
-    }
-    return undefined;
-  }
-
-  // 3. Get ordered menu - Root > Menu > Page
-  private getChildren(
-    items: ReadonlyArray<MenuItem>,
-    parentId: number,
-    seq: number = 0,
-  ): MenuItem[] | undefined {
-    try {
-      if (seq > 4) {
-        return undefined;
-      }
-      const ret: MenuItem[] = [];
-      const children = items.filter((x) => x.parentId === parentId);
-      children.forEach((x) => {
-        ret.push(x);
-        const y = this.getChildren(items, x.id, seq + 1);
-        if (y) {
-          ret.push(...y);
-        }
-      });
-      return ret;
-    } catch (error) {
-      Logger.error(`MenuService: getChildren -> ${error}`);
-    }
-    return undefined;
-  }
-
-  private getOrderedMenu(
-    items: ReadonlyArray<MenuItem>,
-    sortBy?: string,
-  ): MenuItem[] | undefined {
-    try {
-      const ret: MenuItem[] = [];
-      // Add parent, then add children. Perform recursively.
-      // Start with the root menu
-      const children = items.filter((x) => x.parentId === 0);
-      children.forEach((x) => {
-        // Add this item
-        ret.push(x);
-        const y = this.getChildren(items, x.id);
-        if (y) {
-          ret.push(...y);
-        }
-      });
-      const sorted =
-        sortBy === 'seq'
-          ? ret.sort((a, b) => {
-              return a.parentSeq - b.parentSeq;
-            })
-          : ret.sort((a, b) => a.name.localeCompare(b.name));
-
-      return sorted;
-    } catch (error) {
-      Logger.error(`MenuService: getOrderedMenu -> ${error}`);
+      Logger.error(`MenuService: buildMenu -> ${error}`);
     }
     return undefined;
   }
 
   // 2. Get the full menu
-  private getFullMenu(items?: ReadonlyArray<MenuItem>): MenuItem[] | undefined {
-    try {
-      if (!items) {
-        return undefined;
-      }
-      // Get the menu
-      const orderedMenu = this.getOrderedMenu(items);
-      const missedArr: MenuItem[] = [];
-      items?.forEach((x) => {
-        const found = orderedMenu?.find((item) => x.id === item.id);
-        if (!found) {
-          missedArr.push({ ...x, issue: true });
-        }
-      });
-      const ret = orderedMenu?.concat(missedArr);
-      // Sequence the items
-      return ret?.map((x, index) => ({ ...x, seq: index + 1 }));
-    } catch (error) {
-      Logger.error(`MenuService: getFullMenu -> ${error}`);
-    }
-    return undefined;
-  }
+  // private getFullMenu(items?: ReadonlyArray<MenuItem>) {
+  //   items?.forEach((x) => {
+  //     const found = orderedMenu?.find((item) => x.id === item.id);
+  //     if (!found) {
+  //       missedArr.push({ ...x, issue: true });
+  //     }
+  //   });
+  // }
 
   // 0. Get Menu | Admin > Pages
-  public async getMenu(): Promise<Menu | undefined> {
+  public async getMenu(): Promise<Menus | undefined> {
     Logger.info(`MenuService: getMenu -> `);
     try {
       // 1. Get all the data from pagesIndex.json
       const data: PagesIndex | undefined = await this.getItems();
-      if (!data || !data.items) {
+      if (!data?.items) {
         return undefined;
       }
-      const x1 = this.getExpandedMenu(data?.items);
-      const ret = this.getFullMenu(x1);
+      const ret = this.buildMenu(data?.items);
+      console.log('ret', ret?.length);
       return {
         metadata: data.metadata,
         items: ret,
       };
     } catch (error) {
       Logger.error(`MenuService: getMenu --> Error: ${error}`);
-      throw error;
-    }
-  }
-
-  // 0 Get Menu Abbr
-  public async getMenuAbbr(): Promise<MenuAbbr[] | undefined> {
-    Logger.info(`MenuService: getValues -> `);
-    try {
-      // Get all the data from pagesIndex.json
-      const data: Pages | undefined = await this.getItems();
-      if (!data) {
-        return undefined;
-      }
-      const ret = data?.items.filter((x) => x.type !== 'page');
-      if (!ret) {
-        return undefined;
-      }
-
-      return ret
-        .map((x) => ({
-          id: x.id,
-          name: x.name,
-          to: x.to,
-          url: x.url,
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name));
-    } catch (error) {
-      Logger.error(`MenuService: getMenuAbbr --> Error: ${error}`);
       throw error;
     }
   }
@@ -288,7 +166,7 @@ export class MenuService {
     }
 
     // Cast to Page
-    const newPage = { ...item } as Page;
+    const newPage = { ...item } as PageMenu;
 
     // Add
     const newData: Pages = {
@@ -297,5 +175,10 @@ export class MenuService {
     };
     // Write to file
     return new PagesService().writeFile(newData);
+  }
+
+  // 0 Get Menu Abbr
+  public async getMenuAbbr(): Promise<unknown[] | undefined> {
+    return undefined;
   }
 }
