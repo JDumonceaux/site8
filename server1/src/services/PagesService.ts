@@ -27,11 +27,19 @@ export class PagesService {
 
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
+
       if (!results) reject(new Error('No data found'));
       resolve(JSON.parse(results) as PagesIndex);
     } catch (error) {
-      Logger.error(`PagesService: getItems. Error -> ${error}`);
-      reject(new Error(`Get Items failed. Error: ${error}`));
+      if (error instanceof SyntaxError) {
+        Logger.error(
+          `PagesService: getItems. Invalid JSON -> ${error.message}`,
+        );
+        reject(new Error('Syntax Error'));
+      } else {
+        Logger.error(`PagesService: getItems. Error -> ${error}`);
+        reject(new Error(`Get Items failed. Error: ${error}`));
+      }
     }
     return promise;
   }

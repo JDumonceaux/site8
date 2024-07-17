@@ -456,6 +456,14 @@
       "name": "TSConfig.json",
       "text": "Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>",
       "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 534,
+      "type": "test",
+      "name": "Security Headers",
+      "text": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
+      "projectType": ["react", "nodejs"]
     }
   ]
 }

@@ -8,6 +8,11 @@
 <a href="https://javascript.plainenglish.io/6-nextjs-projects-to-become-a-better-developer-61177e6d3741">6 Nextjs Projects to Become a Better Developer</a>
 <a href="https://medium.com/@sassenthusiast/my-epiphany-with-next-js-14s-server-components-08f69a2c1414">How to Use Next.js 14’s Server Components Effectively</a>
 <a href="https://medium.com/coding-beauty/nextjs-15-features-4817d33f7a5d">5 amazing features in the new Next.js 15</a>
+<a href="https://javascript.plainenglish.io/introducing-declarative-routing-for-nextjs-and-react-router-dbf34edc7542">Introducing Declarative Routing for NextJS and React-Router
+</a>
+
+<a href="https://medium.com/@sumsourabh14/2024-guide-to-infinite-scrolling-in-react-next-js-a7893e39ebb6">2024 Guide to Infinite Scrolling in React/Next.js</a>
+
 
 
 

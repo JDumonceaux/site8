@@ -1,0 +1,7 @@
+React Query is a third-party library that can be used in place of <em>fetch</em> or <em>Axios.get</em>
+
+<ol>
+<li>Automatic Caching: provides automatic caching, reducing unnecessary network requests and improving performance.</li>
+<li>Pagination and Infinite Loading: Easily implement pagination and infinite loading with built-in features, simplifying complex UI requirements.</li>
+<li>Automatic Data Re-fetching: Automatically updates fetched data when changes occur, ensuring that the UI reflects the latest information without manual intervention.</li>
+</ol>

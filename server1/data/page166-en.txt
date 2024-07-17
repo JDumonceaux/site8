@@ -1,0 +1,28 @@
+Helmet helps secure Express apps by setting HTTP response headers.
+
+<a href="https://github.com/helmetjs/helmet">GitHub - Helmet</a>
+
+Server.ts
+<pre data-file="Server.ts" data-lang="Typescript"><code>
+import helmet from "helmet";
+
+const app = express();
+
+app.use(helmet());
+</code></pre>
+
+<h2>Testing</h2>
+<a href="https://owasp.org/">OWASP</a>
+<a href="https://securityheaders.com/">Security Headers</a>
+
+<h2>ngrok</h2>
+
+Use ngrok to expose local server to the internet
+
+
+
+
+
+
+<a href="https://blog.logrocket.com/using-helmet-node-js-secure-application/">Using Helmet in Node.js to secure your application
+</a>

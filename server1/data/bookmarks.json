@@ -392,18 +392,39 @@
       "tags": ["Web", "Development"]
     },
     {
-      "id": 40,
-      "name": "",
+      "id": 53,
+      "name": "Security Headers",
       "description": "",
-      "url": "",
-      "tags": ["React", "Tutorial"]
+      "url": "https://securityheaders.com/",
+      "tags": ["Testing"]
     },
     {
-      "id": 40,
-      "name": "",
-      "description": "",
-      "url": "",
-      "tags": ["React", "Tutorial"]
+      "id": 54,
+      "name": "OWASP",
+      "description": "Security",
+      "url": "https://owasp.org/",
+      "tags": ["Standards", "Security"]
+    },
+    {
+      "id": 55,
+      "name": "Convertio",
+      "description": "File conversion",
+      "url": "https://convertio.co/",
+      "tags": ["Utilities"]
+    },
+    {
+      "id": 56,
+      "name": "Code Beautify",
+      "description": "Code formatting",
+      "url": "https://codebeautify.org/",
+      "tags": ["Utilities"]
+    },
+    {
+      "id": 57,
+      "name": "BundlePhobia",
+      "description": "Dependency size",
+      "url": "https://bundlephobia.com/",
+      "tags": ["Utilities"]
     }
   ]
 }

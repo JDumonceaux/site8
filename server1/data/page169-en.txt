@@ -1,0 +1,4 @@
+An in-depth article on bundlers:
+
+<a href="https://medium.com/ekino-france/beyond-webpack-esbuild-vite-rollup-swc-and-snowpack-97911a7175cf">Beyond Webpack: esbuild, Vite, Rollup, SWC and Snowpack
+</a>

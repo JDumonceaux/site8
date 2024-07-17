@@ -1,0 +1,290 @@
+1. What is Node.js?
+Node.js is a runtime environment that allows you to execute JavaScript code on the server side. It is built on Chrome’s V8 JavaScript engine.
+
+2. How does Node.js work?
+Node.js uses an event-driven, non-blocking I/O model, which makes it lightweight and efficient, suitable for real-time applications.
+
+3. What are the main features of Node.js?
+Asynchronous and Event-Driven
+Fast Execution with V8 Engine
+Single-Threaded but Highly Scalable
+No Buffering
+Cross-Platform
+4. What is npm?
+npm (Node Package Manager) is the default package manager for Node.js. It allows developers to install, share, and manage dependencies in their projects.
+
+5. How do you install a package using npm?
+npm install package-name
+6. What is package.json?
+package.json is a configuration file used to manage project dependencies, scripts, versioning, and other metadata related to the project.
+
+7. What is the difference between dependencies and devDependencies in package.json?
+dependencies: Packages required for the application to run.
+devDependencies: Packages needed only for development and testing.
+8. Explain the Event Loop in Node.js.
+The Event Loop is a core part of Node.js that handles asynchronous operations. It allows Node.js to perform non-blocking I/O operations by offloading tasks to the operating system whenever possible.
+
+9. What is the role of process in Node.js?
+The process object provides information about the current Node.js process, such as environment variables, arguments passed, and allows interaction with the operating system.
+
+10. How do you handle errors in Node.js?
+Errors can be handled using:
+
+Try-Catch blocks for synchronous code.
+Callbacks with error-first arguments for asynchronous code.
+Promises and async/await for modern asynchronous handling.
+11. What are streams in Node.js?
+Streams are objects that allow reading or writing data continuously. They are particularly useful for handling large files.
+
+12. Describe the different types of streams in Node.js.
+Readable: Used for reading data.
+Writable: Used for writing data.
+Duplex: Can both read and write.
+Transform: Can modify or transform data while reading or writing.
+13. What is the purpose of the buffer module?
+The buffer module provides a way to handle binary data directly in Node.js. It is used for reading or manipulating streams of binary data.
+
+14. How do you create an HTTP server in Node.js?
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+server.listen(3000, '127.0.0.1', () => {
+  console.log('Server running at http://127.0.0.1:3000/');
+});
+15. What is middleware in Express.js?
+Middleware functions are functions that have access to the request and response objects and can modify them, end the request-response cycle, or pass control to the next middleware function.
+
+16. Explain how you can create a middleware in Express.
+const express = require('express');
+const app = express();
+
+const myMiddleware = (req, res, next) => {
+  console.log('Middleware function called');
+  next();
+};
+app.use(myMiddleware);
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+17. What is the difference between res.send and res.json?
+res.send: Sends the response body in various formats.
+res.json: Sends a JSON response.
+18. How do you handle file uploads in Node.js?
+File uploads can be handled using middleware like multer.
+
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.send('File uploaded successfully');
+});
+19. What is the purpose of dotenv in a Node.js project?
+dotenv is used to load environment variables from a .env file into process.env.
+
+20. How do you use dotenv in a Node.js project?
+require('dotenv').config();
+console.log(process.env.MY_VARIABLE);
+21. Explain the concept of clustering in Node.js.
+Clustering allows you to create multiple instances of a Node.js process to handle multiple requests concurrently, making better use of multi-core systems.
+
+22. How do you implement clustering in Node.js?
+const cluster = require('cluster');
+const http = require('http');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+  
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`Worker ${worker.process.pid} died`);
+  });
+} else {
+  http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end('Hello World\n');
+  }).listen(8000);
+}
+23. What is PM2 and why is it used?
+PM2 is a process manager for Node.js applications that allows you to keep your applications alive, reload them without downtime, and manage various aspects of the process.
+
+24. How do you use PM2 to start a Node.js application?
+pm2 start app.js
+25. Explain the role of callback in Node.js.
+Callbacks are functions passed as arguments to other functions and are invoked after completing a task to handle asynchronous operations.
+
+26. What is the difference between synchronous and asynchronous functions?
+Synchronous functions block the execution until the task is completed.
+Asynchronous functions do not block the execution and allow other operations to run while the task is being completed.
+27. What is an event emitter in Node.js?
+An event emitter is a class that allows objects to emit and listen to events. It is part of the events module.
+
+28. How do you use an event emitter in Node.js?
+const EventEmitter = require('events');
+const eventEmitter = new EventEmitter();
+
+eventEmitter.on('event', () => {
+  console.log('An event occurred!');
+});
+eventEmitter.emit('event');
+29. What is the purpose of fs module in Node.js?
+The fs module provides an API for interacting with the file system, allowing you to read, write, and manipulate files.
+
+30. How do you read a file using the fs module?
+const fs = require('fs');
+
+fs.readFile('example.txt', 'utf8', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+31. What is the difference between fs.readFile and fs.readFileSync?
+fs.readFile: Asynchronously reads the contents of a file.
+fs.readFileSync: Synchronously reads the contents of a file.
+32. Explain the concept of streams and buffers.
+Streams are used for reading and writing data in chunks, whereas buffers provide a way to handle binary data directly in Node.js.
+
+33. What is the path module used for?
+The path module provides utilities for working with file and directory paths.
+
+34. How do you join multiple path segments using the path module?
+const path = require('path');
+
+const joinedPath = path.join('/foo', 'bar', 'baz/asdf', 'quux', '..');
+console.log(joinedPath); // Outputs: /foo/bar/baz/asdf
+35. What is the role of util module in Node.js?
+The util module provides various utility functions, including those for formatting strings, promising functions, and debugging.
+
+36. How do you promiscuity a function using util.promisify?
+const util = require('util');
+const fs = require('fs');
+
+const readFile = util.promisify(fs.readFile);
+readFile('example.txt', 'utf8')
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+37. What is the purpose of assert module in Node.js?
+The assert module provides a set of assertion functions for writing tests and ensuring that your code behaves as expected.
+
+38. How do you use the assert module to write a simple test?
+const assert = require('assert');
+
+assert.strictEqual(1 + 1, 2);
+39. What are WebSockets, and how are they used in Node.js?
+WebSockets provide a way to open a persistent connection between the client and server, allowing for real-time communication.
+
+40. How do you implement WebSockets in Node.js?
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on('connection', ws => {
+  ws.on('message', message => {
+    console.log(`Received message => ${message}`);
+  });
+  ws.send('Hello! Message From Server!!');
+});
+41. What is the purpose of child_process module?
+The child_process module allows you to spawn new processes and execute commands, enabling parallel processing and execution of shell commands.
+
+42. How do you spawn a new process using child_process?
+const { spawn } = require('child_process');
+
+const ls = spawn('ls', ['-lh', '/usr']);
+ls.stdout.on('data', data => {
+  console.log(`stdout: ${data}`);
+});
+ls.stderr.on('data', data => {
+  console.error(`stderr: ${data}`);
+});
+ls.on('close', code => {
+  console.log(`child process exited with code ${code}`);
+});
+43. What are the benefits of using asynchronous functions?
+Asynchronous functions improve the performance and scalability of an application by allowing it to handle multiple operations concurrently without blocking the execution.
+
+44. Explain the concept of microservices in Node.js.
+Microservices architecture involves breaking down an application into smaller, independent services that can be developed, deployed, and scaled independently.
+
+45. How do you implement a simple RESTful API in Node.js?
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.get('/api/items', (req, res) => {
+  res.json({ message: 'GET all items' });
+});
+app.post('/api/items', (req, res) => {
+  res.json({ message: 'POST a new item' });
+});
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+47. How do you use async and await in Node.js?
+async and await simplify writing asynchronous code, making it more readable and maintainable. An async the function returns a promise, and await pauses the execution until the promise is resolved.
+
+Example:
+
+const fetchData = async () => {
+  try {
+    const data = await someAsyncFunction();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+fetchData();
+48. What are JWTs and how are they used in Node.js?
+JSON Web Tokens (JWTs) are a compact and self-contained way to transmit information between parties as a JSON object. They are often used for authentication and authorization.
+
+Example:
+
+const jwt = require('jsonwebtoken');
+
+const token = jwt.sign({ userId: 123 }, 'your-256-bit-secret', { expiresIn: '1h' });
+jwt.verify(token, 'your-256-bit-secret', (err, decoded) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(decoded);
+  }
+});
+49. How do you handle CORS in Node.js?
+CORS (Cross-Origin Resource Sharing) can be managed in Node.js using middleware such as cors.
+
+Example:
+
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+app.use(cors());
+app.get('/data', (req, res) => {
+  res.json({ message: 'This is CORS-enabled for all origins!' });
+});
+app.listen(3000, () => {
+  console.log('CORS-enabled web server listening on port 3000');
+});
+50. Explain the purpose of helmet in a Node.js application.
+helmet is a middleware that helps secure Express apps by setting various HTTP headers to protect against well-known web vulnerabilities.
+
+Example:
+
+const express = require('express');
+const helmet = require('helmet');
+const app = express();
+
+app.use(helmet());
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
