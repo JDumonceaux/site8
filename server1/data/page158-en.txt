@@ -1,0 +1,40 @@
+The <em>Guard Clause</em> pattern checks a condition and returns immediately from a function if not true.
+
+<pre><code>
+ private RemapBookmarks(items: Bookmark[] | undefined) {
+      if (!items) {
+        return undefined;
+      }
+      ....
+  }
+</code></pre>
+
+I used to get caught up in some really complex and deep nested-if statements.  Using this pattern really helps cleanup my code and keeps it shallow.  
+
+Example of bad nesting
+<pre><code>
+if (condition) {
+    doSomething();
+    if (anotherCondition) {
+        doSomethingElse();
+        if (aThirdCondition) {
+            doSomethingDifferent();
+        }
+    }
+}
+</code></pre>
+
+<h2>Switch Statements</h2>
+
+Although not exactly the same thing, switch statements can sometimes convert a messy nested-if statement into something cleaner.  
+Note: It is recommended that you use switch only if there are 3+ options.  If there are less than 3, use an if statement.
+<pre><code>
+    switch(numberHands) {
+        case 3:
+            wonOrLost(h3.cards, h3);
+        case 2:
+            wonOrLost(h2.cards, h2);
+        case 1:
+            wonOrLost(h1.cards, h1);
+    }
+</code></pre>

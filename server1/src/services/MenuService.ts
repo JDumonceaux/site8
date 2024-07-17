@@ -92,8 +92,6 @@ export class MenuService {
         arr.push(...sorted);
       });
 
-      // console.log('arr', arr, arr.length);
-
       // Add in orphans
       const menuOrphans = menus
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
@@ -105,8 +103,6 @@ export class MenuService {
         .map((x) => mapPageMenuToMenuItem(x, defaultParent));
 
       const ret: MenuItem[] = arr.concat(...menuOrphans, ...pageOrphans);
-
-      console.log('retA', ret?.length);
 
       return ret.length > 0 ? ret : undefined;
     } catch (error) {
@@ -135,7 +131,6 @@ export class MenuService {
         return undefined;
       }
       const ret = this.buildMenu(data?.items);
-      console.log('ret', ret?.length);
       return {
         metadata: data.metadata,
         items: ret,

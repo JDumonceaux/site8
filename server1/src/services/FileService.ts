@@ -3,8 +3,6 @@ import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
 
 export class FileService {
-  // private ROOT = '/data';
-
   public async getFile(fileName: string): Promise<string | undefined> {
     Logger.info(`FileService: getFile -> ${fileName}`);
 

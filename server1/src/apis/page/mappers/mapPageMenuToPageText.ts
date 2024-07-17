@@ -8,13 +8,7 @@ export const mapPageMenuToPageText = (
     return undefined;
   }
   return {
-    id: item.id,
-    name: item.name,
-    to: item.to,
-    url: item.url,
-    toComplete: item.toComplete,
-    type: 'page',
-    issue: undefined,
-    line: 0,
+    ...item,
+    text: '',
   };
 };

@@ -2132,7 +2132,6 @@
           "seq": 1
         }
       ],
-      "text": "<h2>1. Use `let` and `const` Instead of `var`</h2>\n\n<pre><code>\nlet count = 0;\nconst PI = 3.14;\n\nvs.\nvar count = 0;\n</code></pre>\n\nUsing `let` and `const` helps prevent scope-related bugs by ensuring variables are only accessible within the block they are defined.  `var` has function scope which can lead to bugs and unpredictable behavior.  `let` and `const` which have block scope.\n\n<h2>2. Use Default Parameters</h2>\n\n\"Guest\" is a default parameter.\n<pre><code>\nfunction greet(name = 'Guest') {\nreturn `Hello, ${name}!`;\n}\n</code></pre>\n\n<h2>3. Use Template Literals</h2>\n\n<pre><code>\n`string text`\n\n// Multi line strings \n`string text line 1\n string text line 2`\n\n// String interpolation\n`string text ${expression} string text`\n\ntagFunction`string text ${expression} string text`\n</code></pre>\n\nTemplate literals are literals delimited with backtick (`) characters, allowing for multi-line strings, string interpolation with embedded expressions, and special constructs called tagged templates.\n\n<a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals\">Mozilla - Template literals (Template strings)</a>\n\n<h2>4. Destructuring</h2>\n\nDestructuring assignment allows you to extract properties from objects and elements from arrays into distinct variables easily.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, age } = user;  // Destructure user\nconsole.log(name, age); \n</code></pre>\n\n<h2>5. Arrow Functions</h2>\n\nArrow functions provide a concise syntax for function expressions and ensure that `this` is lexically bound.\n\n<pre><code>\nconst add = (a, b) => a + b;\n</code></pre>\n\n<h2>6. Spread Operator</h2>\n\nThe spread operator allows you to spread the elements of an array or object into another array or object.\n\n<pre><code>\nconst arr1 = [1, 2, 3];\nconst arr2 = [4, 5, 6];\nconst combined = […arr1, …arr2];\n</code></pre>\n\n<h2>7. Rest Parameters</h2>\n\nRest parameters allow you to handle an indefinite number of arguments as an array, making your functions more flexible.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\nconst { name, ...rest } = user;  // Destructure user into 'name' and the \"rest\"\nconsole.log ( ... rest );\n</code></pre>\n\n<h2>8. Short-Circuit Evaluation</h2>\n\nThere are a couple of variations of the short-circuit evaluation.\n\nWe tend to do nested and multi-level if-else statements - making the code complex.  Changing this to a short-circuit version, we remove the if-else statements and exit early from a function.   This is especially useful for processing API calls - where parameters may be missing or invalid.\n<pre><code>\n  private function ( items ) {\n    if (!items) {\n      return undefined;   // Exit early  vs. if-else construction\n    }\n    ....\n  }\n</code></pre>\n\nThe second variation is using the logical &&` and `||`\n<pre><code>\nconst isLoggedIn = true;\nconst user = isLoggedIn && { name: 'Jane', age: 25 };\n</code></pre>\n\n<h2>9. Optional Chaining</h2>\n\nOptional chaining allows you to safely access nested properties without having to explicitly check each level of the chain for `null` or `undefined`.\n\n<pre><code>\nconst user = { profile: { name: 'Jane' } };\nconst userName = user?.profile?.name;\n</code></pre>\n\n<h2>10. Nullish Coalescing</h2>\n\nNullish coalescing allows you to provide default values only when the left-hand side is `null` or `undefined`.\n\n<pre><code>\nconst userAge = user.age ?? 18;\n</code></pre>\n\n<h2>11. Object Property Shorthand</h2>\n\nProperty shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.\n\n<pre><code>\nconst name = 'Jane';\nconst age = 25;\nconst user = { name, age };\nvs.\nconst user = { name : name, age : age };\n</code></pre>\n\n<h2>12. Dynamic Property Names</h2>\n\nComputed property names allow you to create object properties dynamically, using the value of an expression as the property name.\n\n<pre><code>\nconst propName = 'age';\nconst user = { name: 'Jane', [propName]: 25 };\n</code></pre>\n\n<h2>13. Array `map()`, `filter()`, and `reduce()`</h2>\n\nThese array methods provide a functional approach to transforming, filtering, and reducing arrays, making your code more expressive and concise.\n\n<pre><code>\nconst numbers = [1, 2, 3, 4, 5];\nconst doubled = numbers.map(num => num * 2);\nconsole.log(doubled); // [2, 4, 6, 8, 10]\nconst evens = numbers.filter(num => num % 2 === 0);\nconsole.log(evens); // [2, 4]\nconst sum = numbers.reduce((total, num) => total + num, 0);\nconsole.log(sum); // 15\n</code></pre>\n\n<h2>String `includes()`, `startsWith()`, and `endsWith()`</h2>\n\nThese string methods provide a simple and readable way to check for the presence, start, or end of a substring.\n\n<pre><code>\nconst str = 'Hello, world!';\nconsole.log(str.includes('world')); // true\nconsole.log(str.startsWith('Hello')); // true\nconsole.log(str.endsWith('!')); // true\n</code></pre>\n\n<h2>15. Array and Object Destructuring in Function Parameters</h2>\n\nDestructuring in function parameters allows you to directly extract values from objects or arrays passed to the function, making the code more concise and readable.\n\n<pre><code>\nconst user = { name: 'Jane', age: 25 };\n\nfunction greet({ name, age }) {\nreturn `Hello, ${name}! You are ${age} years old.`;\n}\n// Note that user is passed as an object, but is immediately destructured\nconsole.log(greet(user));\n</code></pre>\n\n<h2>16. Default Values in Destructuring</h2>\n\nDefault values in destructuring allow you to provide fallback values for properties that may be missing, making your code more robust.\n\nUse default values in destructuring:\n<pre><code>\nconst user = { name: 'Jane' };\nconst { name, age = 18 } = user;\n\n// More commonly seen in passing props to a component.  inclueMenu is optional, so we provide a default false value.\ntype HeaderProps = {\n  readonly includeMenu?: boolean;\n};\n\nexport const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {\n</code></pre>\n\n\n<h2>17. Object `assign()`</h2>\n\n`Object.assign()` allows you to clone or merge objects efficiently, reducing the need for manual copying.\n\nWARNING:  This creates a shallow copy (vs. deep copy) - meaning that it will not copy children.  For complex objects, see structuredClone() and make sure you validate.\n\nUse `Object.assign()` to clone or merge objects:\n\n<pre><code>\nconst target = { a: 1 };\nconst source = { b: 2 };\nconst merged = Object.assign(target, source);\n</code></pre>\n\n\n<h2>18. Array `find()` and `findIndex()`</h2>\n\nThese array methods provide a simple way to find an element or its index based on a condition, improving code readability.\n\n<pre><code>\n// Returns object\nconst user = users.find(u => u.id === 1);\n// Returns number\nconst index = users.findIndex(u => u.id === 1);\n</code></pre>\n\n<h2>19. Array `some()` and `every()`</h2>\n\nThese array methods allow you to check if some or all elements in an array meet a condition in a concise way.\n\n<pre><code>\n// Returns boolean\nconst hasEven = numbers.some(num => num % 2 === 0);\nconst allEven = numbers.every(num => num % 2 === 0);\n</code></pre>\n\n<h2>20. Array `flat()` and `flatMap()`</h2>\n\nThese array methods provide a simple way to flatten nested arrays and to map and flatten in a single step.\n\n<pre><code>\nconst myArr = [[1,2],[3,4],[5,6]];\nconst newArr = myArr.flat();\n// Returns [1,2,3,4,5,6]\n\n// array.flat(depth)\nconst nested = [1, [2, [3, [4]]]];\nconst flat = nested.flat(2);\n// Returns [1, 2, 3, [4]]\n\nconst mapped = [1, 2, 3].flatMap(x => [x, x * 2]);\n// Returns  2,4,6\n\n// Flatten an object?\nconst fn = objArr.flatMap();\n</code></pre>\n\n\n\n\n\n\n\n",
       "to": "best-practices",
       "type": "page"
     },
@@ -3122,19 +3121,6 @@
       "hasFile": true
     },
     {
-      "id": 116,
-      "name": "Articles",
-      "parentItems": [
-        {
-          "id": 111,
-          "seq": 1
-        }
-      ],
-      "to": "articles",
-      "type": "page",
-      "hasFile": true
-    },
-    {
       "id": 142,
       "name": "HTML",
       "parentItems": [
@@ -3339,6 +3325,84 @@
         }
       ],
       "to": "cluster-mode",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 158,
+      "name": "Guard Clause pattern",
+      "parentItems": [
+        {
+          "id": 48,
+          "seq": 0
+        }
+      ],
+      "to": "guard-clause-pattern",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 116,
+      "name": "Articles",
+      "parentItems": [
+        {
+          "id": 111,
+          "seq": 1
+        }
+      ],
+      "to": "articles",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 159,
+      "name": "Fonts - Adding",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 0
+        }
+      ],
+      "to": "fonts---adding",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 160,
+      "name": "any, unknown, and never",
+      "parentItems": [
+        {
+          "id": 10008,
+          "seq": 1
+        }
+      ],
+      "to": "any-unknown-and-never",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 161,
+      "name": "Container Component Design Pattern",
+      "parentItems": [
+        {
+          "id": 24,
+          "seq": 0
+        }
+      ],
+      "to": "container-component-design-pattern",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 162,
+      "name": "CORS",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 10
+        }
+      ],
+      "to": "cors",
       "type": "page",
       "file": true
     }

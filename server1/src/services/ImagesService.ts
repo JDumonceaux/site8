@@ -296,12 +296,11 @@ export class ImagesService {
     items: ReadonlyArray<ImageEdit> | undefined,
   ): Promise<boolean> {
     try {
-      console.log('sems1', items);
       if (!items || !Array.isArray(items) || items.length === 0) {
         return false;
       }
       const images = await this.readFile();
-      if (!images || !images.items) {
+      if (!images?.items) {
         return false;
       }
 
@@ -332,7 +331,7 @@ export class ImagesService {
             return undefined;
           };
           const newItem = addItem();
-          return newItem ? newItem : x;
+          return newItem || x;
         })
         .filter(Boolean);
 

@@ -29,7 +29,7 @@ const pageSchema = z
     text: z.string().trim(),
   })
   .refine(
-    (data) => data.to || data.url,
+    (data) => data.to ?? data.url,
     'Either to or url should be filled in.',
   );
 
@@ -79,6 +79,7 @@ const usePageEdit = () => {
   const mapPageToFormType = useCallback(
     (item: Page | undefined | null): FormType | undefined => {
       if (item) {
+        console.log('item', item);
         const ret = {
           id: item.id,
           name: item.name ?? '',

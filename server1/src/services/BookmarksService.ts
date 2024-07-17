@@ -1,10 +1,10 @@
+import { readFile } from 'fs/promises';
+import { Bookmark } from '../types/Bookmark.js';
+import { Bookmarks } from '../types/Bookmarks.js';
+import { BookmarksTag } from '../types/BookmarksTag.js';
+import { BookmarksTags } from '../types/BookmarksTags.js';
 import { Logger } from '../utils/Logger.js';
 import { getFilePath } from '../utils/getFilePath.js';
-import { readFile } from 'fs/promises';
-import { Bookmarks } from '../types/Bookmarks.js';
-import { Bookmark } from '../types/Bookmark.js';
-import { BookmarksTags } from '../types/BookmarksTags.js';
-import { BookmarksTag } from '../types/BookmarksTag.js';
 
 export class BookmarksService {
   private fileName = 'bookmarks.json';
@@ -131,7 +131,7 @@ export class BookmarksService {
 
       const ret: BookmarksTag[] = tags.map((x) => {
         const filteredItems = items.filter((item) => item.tags?.includes(x));
-        const sortedItems = filteredItems.sort((a, b) =>
+        const sortedItems = filteredItems.toSorted((a, b) =>
           a.name.localeCompare(b.name),
         );
         return {

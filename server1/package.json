@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "npm run build && node dist/server.js",
+    "debug": "npm run build && node --inspect dist/server.js",
     "build": "tsc",
     "precommit": "pretty-quick --staged",
     "lint": "eslint . --ext .ts,.tsx",

@@ -371,25 +371,25 @@
       "tags": ["React", "Tutorial", "Javascript", "Design"]
     },
     {
-      "id": 40,
-      "name": "",
-      "description": "",
-      "url": "",
-      "tags": ["React", "Tutorial"]
+      "id": 50,
+      "name": "LambdaTest",
+      "description": "Free: Cloud-based tool that tests cross-browser compatibility in web applications",
+      "url": "https://www.lambdatest.com/",
+      "tags": ["Web", "Testing"]
     },
     {
-      "id": 40,
-      "name": "",
-      "description": "",
-      "url": "",
-      "tags": ["React", "Tutorial"]
+      "id": 51,
+      "name": "FrontendChecklist",
+      "description": "Free: thorough checklist of tasks and issues for improving website performance, accessibility, and SEO.",
+      "url": "https://frontendchecklist.io/",
+      "tags": ["Web", "Testing"]
     },
     {
-      "id": 40,
-      "name": "",
-      "description": "",
-      "url": "",
-      "tags": ["React", "Tutorial"]
+      "id": 52,
+      "name": "Mocky",
+      "description": "Free: API Mocks",
+      "url": "https://designer.mocky.io/",
+      "tags": ["Web", "Development"]
     },
     {
       "id": 40,

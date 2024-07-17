@@ -100,7 +100,9 @@
     // Improves performance. Files are parsed in the ECMAScript strict mode.
     "alwaysStrict": true,
     // Prevents 'undefined' from being assigned to optional variables
-    "exactOptionalPropertyTypes": true,
+    // 07-2024 JRD: Changed to false as this conflicts with a SonarLint rule
+    // Prevents from assigning undefined => readonly to?: string;
+    "exactOptionalPropertyTypes": false,
     // Prevents unintended fallthroughs in switch statements.
     // Must break, return, or throw at the end of each case
     "noFallthroughCasesInSwitch": true,

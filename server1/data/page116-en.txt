@@ -6,6 +6,10 @@
 <a href="https://swfungineer.medium.com/next-js-app-router-vs-pages-router-39439e7632d3">Next.JS: App Router vs Pages Router</a>
 <a href="https://weijunext.medium.com/next-js-15-introduces-breaking-cache-strategy-changes-a594e3b504df">Next.js 15 Introduces Breaking Cache Strategy Changes</a>
 <a href="https://javascript.plainenglish.io/6-nextjs-projects-to-become-a-better-developer-61177e6d3741">6 Nextjs Projects to Become a Better Developer</a>
+<a href="https://medium.com/@sassenthusiast/my-epiphany-with-next-js-14s-server-components-08f69a2c1414">How to Use Next.js 14’s Server Components Effectively</a>
+<a href="https://medium.com/coding-beauty/nextjs-15-features-4817d33f7a5d">5 amazing features in the new Next.js 15</a>
+
+
 
 
 

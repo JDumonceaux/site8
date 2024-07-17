@@ -1,0 +1,34 @@
+One way to add fonts is to use <a href="https://fonts.google.com/">Google Fonts</a>
+
+<h2>Download</h2>
+Another way to use fonts is to download it and host in your project.
+
+<ol>
+<li>Download the font (usually a .tiff file)</li>
+<li>Save to src => assets => fonts (or where ever you want)</li>
+<li>Create a font.css file under src => css</li>
+<li>Import into your main project file</li>
+<li>Use in styles</li>
+</ol>
+
+font.css
+<pre><code>
+@font-face {
+  font-family: "Factoria";
+  src: url("./assets/fonts/Factoria-Book.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+</code></pre>
+
+In index.tsx or main.tsx
+<pre><code>
+import "./fonts.css";
+</code></pre>
+
+Add to your main.css file
+<pre><code>
+{
+font-family: "Factoria", sans-serif;
+}
+</code></pre>

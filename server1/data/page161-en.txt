@@ -1,0 +1,21 @@
+Divide components into two categories: presentational components and container components
+
+Presentational components are responsible for rendering the user interface
+
+Container components are responsible for managing state, handling logic, and interacting with data sources
+
+The container component (MyContainer) wraps the presentational (MyComponent)
+<pre><code>
+// Example of a Container Component
+import React, { useState } from 'react';
+
+const MyContainer: React.FC = () => {
+  const [data, setData] = useState({ title: "Hello, Container Pattern!" });
+
+  const handleClick = () => {
+    // Logic for handling button click
+  };
+
+  return <MyComponent data={data} onClick={handleClick} />;
+};// Example of a Container Component
+</code></pre>

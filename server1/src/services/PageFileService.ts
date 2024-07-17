@@ -1,5 +1,5 @@
-import { readFile, writeFile, unlink } from 'fs/promises';
 import { existsSync } from 'fs';
+import { readFile, unlink, writeFile } from 'fs/promises';
 import { getFilePath } from '../utils/getFilePath.js';
 import { Logger } from '../utils/Logger.js';
 
@@ -49,7 +49,7 @@ export class PageFileService {
     text: string | undefined,
   ): Promise<boolean> {
     Logger.info(`PageFileService: updateFile -> `);
-    await this.saveFile(id, text || '');
+    await this.saveFile(id, text ?? '');
     return Promise.resolve(true);
   }
 
@@ -68,7 +68,7 @@ export class PageFileService {
       }
     } catch (error) {
       Logger.error(`PageFileService: deleteFile --> Error: ${error}`);
-      Logger.error(`Failed to delete file: ${error}`);
+      Logger.error(`Failed to delete file: ${filePath}`);
       throw error;
     }
   }

@@ -1,0 +1,28 @@
+<h2>Any</h2>
+The <em>any</em> type in TypeScript allows you to use a variable as if it could be any data type.
+
+Really, really try to avoid using <em>any</em>.  I recommend you add a linting rule warning if you are using <em>any</em>. 
+
+Use <em>any</em> when the type of a variable is unknown or can change, like with values from user input or external sources (APIs) 
+
+<h2>Unknown</h2>
+The <em>unknown</em> type in TypeScript is used for variables whose type is not yet known and needs to be determined. It's a type-safe counterpart to any.
+
+Use <em>unknown</em> in place of <em>any</em> if possible.
+
+<h2>Never</h2>
+Used in scenarios where a value will never be returned.
+
+Use never when writing a function that is not expected to return a value ever or in exhaustive type checks where every possible case has been covered and returning a value becomes impossible.
+
+<pre><code>
+function throwError(message: string): never {
+    throw new Error(message);
+}
+</code></pre>
+
+<h2>Undefined</h2>
+Variable has been declared but has not yet been assigned a value. 
+
+<h2>Null</h2>
+A null value means a variable has been explicitly set as (no value = null) or has been initialized and defined to be nothing.

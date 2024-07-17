@@ -118,7 +118,7 @@ export class PagesService {
 
     try {
       const pages = await this.getItems();
-      if (!pages || !pages.items) {
+      if (!pages?.items) {
         return Promise.reject(new Error('No items found'));
       }
 
@@ -152,7 +152,7 @@ export class PagesService {
 
     try {
       const pages = await this.getItems();
-      if (!pages || !pages.items) {
+      if (!pages?.items) {
         return Promise.reject(new Error('No items found'));
       }
       const data = pages.items.map((item) => {

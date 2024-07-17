@@ -1,5 +1,5 @@
-import { Page } from './Page.js';
+import { PageMenu } from './PageMenu.js';
 
-export type PageText = Page & {
+export type PageText = PageMenu & {
   readonly text?: string;
 };

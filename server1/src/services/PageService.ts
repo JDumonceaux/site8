@@ -32,7 +32,7 @@ const pageAddSchema = z
       .min(1),
   })
   .refine(
-    (data) => data.to || data.url,
+    (data) => data.to ?? data.url,
     'Either to or url should be filled in.',
   );
 type addData = z.infer<typeof pageAddSchema>;
@@ -78,7 +78,7 @@ export class PageService {
   public async getItemCompleteByName(
     name: string,
   ): Promise<PageText | undefined> {
-    Logger.info(`PageService: getItemComplete -> ${name}`);
+    Logger.info(`PageService: getItemCompleteByName -> ${name}`);
     const items = await this.getItems();
     const item = items?.items?.find((x) => x.to === name);
     return this.getItemWithFile(item);
@@ -86,9 +86,9 @@ export class PageService {
 
   // Get Item Complete
   public async getItemCompleteById(id: number): Promise<PageText | undefined> {
-    Logger.info(`PageService: getItemComplete -> ${id}`);
+    Logger.info(`PageService: getItemCompleteById -> ${id}`);
     const items = await this.getItems();
-    const item = items?.items?.find((x) => x.id === id);
+    const item: PageMenu | undefined = items?.items?.find((x) => x.id === id);
     return this.getItemWithFile(item);
   }
 
@@ -120,12 +120,14 @@ export class PageService {
       if (updatedItem.text && updatedItem.text.length > 0) {
         newItem.file = true;
       }
+
       // Save the new item
       const updatedFile: Pages = {
         ...pages,
         items: [...(pages?.items ?? []), newItem],
       };
       const result = await this.writeItems(updatedFile);
+
       return result
         ? Promise.resolve(id)
         : Promise.reject(new Error(`Add failed : ${id}`));
