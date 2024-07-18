@@ -3500,6 +3500,19 @@
       "to": "articles",
       "type": "page",
       "file": true
+    },
+    {
+      "id": 170,
+      "name": "Code Analysis",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 0
+        }
+      ],
+      "to": "code-analysis",
+      "type": "page",
+      "file": true
     }
   ]
 }

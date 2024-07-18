@@ -1,0 +1,76 @@
+Here is a VSCode add-in that may help:
+<a href="https://marketplace.visualstudio.com/items?itemName=CodeScene.codescene-vscode">CodeScene</a> $19/mo
+
+fyi, Visual Studio (not VSCode) has built in analysis tools
+
+
+<h2>Design rules</h2>
+Design rules support adherence to the framework guidelines
+
+<h2>Documentation rules</h2>
+Documentation rules support writing well-documented libraries through the correct use of XML documentation comments for externally visible APIs.
+
+<h2>Globalization rules</h2>
+Globalization rules support world-ready libraries and applications.
+
+<h2>Portability and interoperability rules</h2>
+Portability rules support portability across different platforms. Interoperability rules support interaction with COM clients.
+
+<h2>Maintainability rules</h2>
+Maintainability rules support library and application maintenance.
+
+<h2>Naming rules</h2>
+Naming rules support adherence to the naming conventions
+
+<h2>Performance rules</h2>
+Performance rules support high-performance libraries and applications.
+
+<h2>SingleFile rules</h2>
+?? Single-file rules support single-file applications.
+
+<h2>Reliability rules</h2>
+Reliability rules support library and application reliability, such as correct memory and thread usage.
+
+<h2>Security rules</h2>
+Security rules support safer libraries and applications. These rules help prevent security flaws in your program
+
+<h2>Style rules</h2>
+Style rules support consistent code style in your codebase. 
+
+<h2>Usage rules</h2>
+Usage rules support proper usage
+
+<a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/">Microsoft .Net Code Quality Rules</a>
+<a href="https://learn.microsoft.com/en-us/visualstudio/code-quality/code-metrics-values?view=vs-2022">Microsoft Code Metrics</a>
+
+<h2>Maintainability Index</h2>
+Calculates an index value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability. Color coded ratings can be used to quickly identify trouble spots in your code. A green rating is between 20 and 100 and indicates that the code has good maintainability. A yellow rating is between 10 and 19 and indicates that the code is moderately maintainable. A red rating is a rating between 0 and 9 and indicates low maintainability. For more information, see Maintainability index range and meaning.
+
+<h2>Cyclomatic Complexity</h2>
+Measures the structural complexity of the code. It is created by calculating the number of different code paths in the flow of the program. A program that has complex control flow requires more tests to achieve good code coverage and is less maintainable. For more information, see Cyclomatic complexity.
+
+<h2>Depth of Inheritance</h2>
+Indicates the number of different classes that inherit from one another, all the way back to the base class. Depth of Inheritance is similar to class coupling in that a change in a base class can affect any of its inherited classes. The higher this number, the deeper the inheritance and the higher the potential for base class modifications to result in a breaking change. For Depth of Inheritance, a low value is good and a high value is bad. For more information, see Depth of inheritance.
+
+<h2>Class Coupling</h2>
+Measures the coupling to unique classes through parameters, local variables, return types, method calls, generic or template instantiations, base classes, interface implementations, fields defined on external types, and attribute decoration. Good software design dictates that types and methods should have high cohesion and low coupling. High coupling indicates a design that is difficult to reuse and maintain because of its many interdependencies on other types. For more information, see Class coupling.
+
+<h2>Lines of Source code</h2>
+Indicates the exact number of source code lines that are present in your source file, including blank lines. 
+
+<h2>Lines of Executable code</h2>
+Indicates the approximate number of executable code lines or operations. This is a count of number of operations in executable code.  The value is typically a close match to the previous metric, Lines of Code, which is the MSIL-instruction-based metric used in legacy mode.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
