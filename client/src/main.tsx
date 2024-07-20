@@ -10,14 +10,18 @@ import { ReduxProvider } from './providers/ReduxProvider';
 import { RouterProvider } from './providers/RouterProvider';
 import reportWebVitals from './utils/reportWebVitals';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ReduxProvider>
-      <HelmetProvider>
-        <RouterProvider />
-      </HelmetProvider>
-    </ReduxProvider>
-  </React.StrictMode>,
-);
-
-reportWebVitals(console.log);
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <ReduxProvider>
+        <HelmetProvider>
+          <RouterProvider />
+        </HelmetProvider>
+      </ReduxProvider>
+    </React.StrictMode>,
+  );
+  reportWebVitals(console.log);
+} else {
+  console.error('Root element not found');
+}
