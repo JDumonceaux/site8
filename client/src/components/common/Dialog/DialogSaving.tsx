@@ -1,4 +1,4 @@
-import { DialogHTMLAttributes, memo, useLayoutEffect, useRef } from 'react';
+import { DialogHTMLAttributes, useLayoutEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 
 type DialogSavingProps = {
@@ -13,16 +13,13 @@ const DialogSaving = ({
   role = 'contentinfo',
   ...rest
 }: DialogSavingProps): JSX.Element => {
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   useLayoutEffect(() => {
     const { current: el } = modalRef;
-    // Show modal
     if (isOpen && el !== null) {
-      (el as HTMLDialogElement).showModal();
+      el.showModal();
     }
-    // Show non-modal
-    // if (isOpen) el.modal();
   }, [isOpen]);
 
   return (
@@ -39,7 +36,7 @@ const DialogSaving = ({
   );
 };
 
-export default memo(DialogSaving);
+export default DialogSaving;
 
 const StyledElement = styled.dialog`
   all: revert;

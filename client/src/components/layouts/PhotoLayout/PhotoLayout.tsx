@@ -1,11 +1,11 @@
-import AppSetup from 'components/common/AppSetup/AppSetup';
+import AppInitializer from 'components/common/AppInitializer/AppInitializer';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
 export const PhotoLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
-    <AppSetup />
+    <AppInitializer />
     <Suspense fallback="Loading ...">
       <Outlet />
     </Suspense>

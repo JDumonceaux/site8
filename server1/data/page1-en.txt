@@ -1,1 +1,37 @@
-<a href="https://www.ilearnengineering.com/computer/understanding-imperative-and-declarative-programming">Understanding imperative and declarative programming</a>
+Tools 
+
+<ul>
+<li>ESLint: eslint.org</li>
+<li>Prettier: prettier.io</li>
+<li>Jest: jestjs.io</li>
+<li>TypeScript: typescriptlang.org</li>
+<li>SonarQube: sonarqube.org</li>
+<li>React DevTools: React DevTools</li>
+<li>Lighthouse: developers.google.com/web/tools/lighthouse</li>
+</ul>
+
+1. Static Code Analysis
+ESLint: A popular tool for identifying and reporting on patterns found in ECMAScript/JavaScript/TypeScript code. It helps in maintaining code quality and enforcing coding standards.
+Use plugins like eslint-plugin-react for React-specific linting.
+Use @typescript-eslint/eslint-plugin for TypeScript-specific rules.
+TSLint: Although deprecated in favor of ESLint, it was historically used for TypeScript linting. Migrating to ESLint is recommended.
+2. Code Complexity Metrics
+Halstead Metrics: Measure the complexity of your code using Halstead metrics, which include volume, difficulty, effort, and estimated bugs.
+Cyclomatic Complexity: Measure the number of linearly independent paths through the code.
+Cognitive Complexity: Measure how difficult the code is to understand.
+3. Maintainability Index
+Tools like SonarQube provide a maintainability index, which is a measure of how easy it is to maintain the codebase. It considers cyclomatic complexity, lines of code, and Halstead volume.
+4. Code Coverage
+Jest: A JavaScript testing framework often used with React. It provides code coverage reports, indicating which parts of your code are tested.
+nyc (Istanbul): A tool to generate code coverage reports.
+5. Type Checking
+TypeScript Compiler (tsc): Ensures that type definitions are correctly used and helps catch type-related errors early.
+Type Coverage Tools: Tools like tsc can also generate type coverage reports to see how well your code is typed.
+6. Dependency Analysis
+Depcheck: A tool to identify unused dependencies in your project.
+Bundlephobia: Helps you understand the cost of adding a new npm package to your bundle.
+7. Code Formatting
+Prettier: An opinionated code formatter that helps maintain consistent code style across your codebase.
+8. Performance Profiling
+React DevTools: Browser extension for inspecting React component hierarchies and profiling performance.
+Lighthouse: An open-source, automated tool for improving the quality of web pages, including performance metrics.

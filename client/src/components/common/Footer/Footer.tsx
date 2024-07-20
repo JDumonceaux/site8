@@ -23,7 +23,7 @@ const StyledFooter = styled.footer`
   align-items: center;
   height: 40px;
 `;
-const StyledCopyright = styled.div`
+const StyledCopyright = styled.small`
   color: var(--palette-grey-10, #fff);
   font-size: 0.8rem;
   padding-left: 16px;
