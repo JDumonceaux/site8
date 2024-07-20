@@ -3513,6 +3513,71 @@
       "to": "code-analysis",
       "type": "page",
       "file": true
+    },
+    {
+      "id": 171,
+      "name": "Code Quality",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "code-quality"
+    },
+    {
+      "id": 173,
+      "name": "Halstead Bugs",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 0
+        }
+      ],
+      "to": "halstead-bugs",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 172,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 174,
+      "name": "Halstead Measurements",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 2
+        }
+      ],
+      "to": "halstead-measurements",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 175,
+      "name": "Code Smells",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 5
+        }
+      ],
+      "to": "code-smells",
+      "type": "page",
+      "file": true
     }
   ]
 }

@@ -1,4 +1,4 @@
-import AppSetup from 'components/common/AppSetup/AppSetup';
+import AppInitializer from 'components/common/AppInitializer/AppInitializer';
 import { Suspense, lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
@@ -8,7 +8,7 @@ const Snackbar = lazy(() => import('components/common/Snackbar/Snackbar'));
 
 export const MainLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
-    <AppSetup />
+    <AppInitializer />
     <Header />
     <LayoutDiv>
       <Suspense fallback="Loading ...">

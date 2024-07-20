@@ -1,0 +1,13 @@
+// Halstead difficulty: 12.63
+// Halstead volume: 290.675
+// Halstead effort: 3672.82
+// Halstead bug prediction (B): 0.09689166666666667
+// Halstead time: 203.82
+// Halstead length: 55
+// Halstead vocabulary: 39
+// Halstead complexity: 1
+// Halstead Metrics Summary
+// Number of unique operators (n1): 20
+// Number of unique operands (n2): 19
+// Total occurrences of operators (N1): 31
+// Total occurrences of operands (N2): 24

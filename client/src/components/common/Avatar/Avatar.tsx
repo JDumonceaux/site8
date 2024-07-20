@@ -1,5 +1,5 @@
 import useAuth from 'hooks/useAuth';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { styled } from 'styled-components';
 import StyledLink from '../Link/StyledLink/StyledLink';
 
@@ -37,7 +37,7 @@ export const Avatar = (): JSX.Element => {
   );
 };
 
-export default Avatar;
+export default memo(Avatar);
 
 const StyledDiv = styled.div`
   display: flex;
