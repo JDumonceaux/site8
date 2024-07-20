@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 import { Menu } from 'types';
-import { ServiceUrl } from '../utils';
+import { ServiceUrl } from 'utils/constants';
 
-interface MenuState {
+type MenuState = {
   data: Menu | null;
   isLoading: boolean;
   error: string | null;
-}
+};
 
 const initialState: MenuState = {
   data: null,

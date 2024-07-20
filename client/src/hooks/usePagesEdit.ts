@@ -78,9 +78,9 @@ const usePagesEdit = () => {
       if (!originalItem || !newItem) {
         return false;
       }
-      const { parent } = originalItem;
+      const { parentItem } = originalItem;
       const { newParent } = newItem;
-      if (!parent && !newParent) {
+      if (!parentItem && !newParent) {
         return false;
       }
       if (parent && !newParent) {
@@ -88,22 +88,22 @@ const usePagesEdit = () => {
       }
       const { id, seq, sortby } = newParent;
       if (id && Number.isInteger(id) && id > -1) {
-        if (!parent.id) {
+        if (!parentItem.id) {
           return true;
         }
-        if (parent.id !== id) {
+        if (parentItem.id !== id) {
           return true;
         }
       }
       if (seq && Number.isInteger(seq) && seq > -1) {
-        if (!parent.seq) {
+        if (!parentItem.seq) {
           return true;
         }
-        if (parent.seq !== seq) {
+        if (parentItem.seq !== seq) {
           return true;
         }
       }
-      if (sortby && sortby.length > 0 && parent.sortby !== sortby) {
+      if (sortby && sortby.length > 0 && parentItem.sortby !== sortby) {
         return true;
       }
       return false;
@@ -127,8 +127,8 @@ const usePagesEdit = () => {
       const currItem = localItems.find((x) => x.localId === item.localId);
 
       const newItem =
-        tempItem && currItem?.parent
-          ? { ...tempItem, priorParent: { ...currItem?.parent } }
+        tempItem && currItem?.parentItem
+          ? { ...tempItem, priorParent: { ...currItem?.parentItem } }
           : tempItem;
 
       if (shouldUpdate(currItem, newItem)) {
@@ -141,13 +141,6 @@ const usePagesEdit = () => {
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
   }, [formValues, localItems, mapFormTypeToMenuEdit, shouldUpdate]);
-
-  // Validate form
-  // const validateForm = useCallback(() => {
-  //   const result = safeParse<FormType>(pageSchema, formValues);
-  //   setErrors(result.error?.issues);
-  //   return result.success;
-  // }, [formValues, setErrors]);
 
   // Handle save
   const submitForm = useCallback(async () => {
@@ -173,19 +166,6 @@ const usePagesEdit = () => {
     const ret = await submitForm();
     return ret;
   }, [submitForm]);
-
-  // const filter = (arr: MenuItem[] | undefined) => {
-  //   const matches: MenuItem[] = [];
-  //   if (!Array.isArray(arr)) return matches;
-  //   arr.forEach((i) => {
-  //     if (i.type !== 'page') {
-  //       const { items, ...rest } = i;
-  //       const childResults = filter(items);
-  //       matches.push({ items: childResults, ...rest });
-  //     }
-  //   });
-  //   return matches;
-  // };
 
   const filteredData = localItems;
 

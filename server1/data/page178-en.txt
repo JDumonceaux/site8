@@ -1,0 +1,20 @@
+Install Jest library
+<pre><code>
+npm i jest --dev
+</code></pre>
+
+Add run script to package.json
+<pre><code>
+  "scripts": {
+    "dev": "vite",
+    "test": "jest",
+</code></pre>
+
+Write some tests
+
+Run npm run test
+
+
+
+
+

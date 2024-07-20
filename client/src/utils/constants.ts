@@ -28,11 +28,9 @@ export enum FileType {
   ZIP = 'zip',
 }
 
-export const ENDPOINT_GRAPHQL_IMAGES = `http://localhost:4000/images`;
-
-//export const API_ROOT = `${Environment.getPublicUrl()}/api`;
+//const API_ROOT = `${Environment.getPublicUrl()}/api`;
 export const API_ROOT = `http://localhost:3005/api`;
-//export const API_ROOT = `https://s12k0iq8o1.execute-api.us-west-2.amazonaws.com/Prod/api`;
+//const API_ROOT = `https://s12k0iq8o1.execute-api.us-west-2.amazonaws.com/Prod/api`;
 
 export enum ServiceUrl {
   ENDPOINT_ART = `${API_ROOT}/art`,
@@ -52,6 +50,7 @@ export enum ServiceUrl {
   ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
   ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
   ENDPOINT_TESTS = `${API_ROOT}/tests`,
+  ENDPOINT_GRAPHQL_IMAGES = `http://localhost:4000/images`,
 }
 
 export const REQUIRED_FIELD = 'Required Field';

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
-import { APP_NAME } from 'utils/constants';
+import { APP_NAME } from '../../../utils/constants';
 import { MenuIcon } from '../../icons/MenuIcon';
 
 import { Avatar } from 'components';

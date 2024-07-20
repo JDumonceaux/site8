@@ -6,7 +6,6 @@ module.exports = {
     // By extending from a plugin config, we can get recommended rules without having to add them manually.
     'eslint:recommended',
     'plugin:import/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     // Add SonarJS rules
     // 'plugin:sonarjs/recommended',

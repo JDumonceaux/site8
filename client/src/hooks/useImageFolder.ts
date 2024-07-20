@@ -18,7 +18,10 @@ const useImageFolder = () => {
   );
 
   const getData = useCallback(
-    () =>  isValidArray(data) ? data?.map((x, index) => ({ id: index + 1, name: x })) :undefined,
+    () =>
+      isValidArray(data)
+        ? data?.map((x, index) => ({ id: index + 1, name: x }))
+        : undefined,
     [data],
   );
 

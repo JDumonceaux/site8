@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { ServiceUrl } from 'utils/constants';
 
-import { ServiceUrl } from '../utils';
-
-interface FolderState {
+type FolderState = {
   data: string[] | null;
   isLoading: boolean;
   error: string | null;
-}
+};
 
 const initialState: FolderState = {
   data: null,
@@ -40,7 +39,8 @@ const folderSlice = createSlice({
       })
       .addCase(fetchFolders.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload && action.payload.length > 0 ? action.payload : null;
+        state.data =
+          action.payload && action.payload.length > 0 ? action.payload : null;
       })
       .addCase(fetchFolders.rejected, (state, action) => {
         state.isLoading = false;

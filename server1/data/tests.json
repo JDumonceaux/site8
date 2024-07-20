@@ -464,6 +464,33 @@
       "name": "Security Headers",
       "text": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
       "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "component",
+      "id": 535,
+      "type": "test",
+      "name": "Cyclomatic Complexity",
+      "text": "",
+      "goal": "1-4",
+      "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "component",
+      "id": 536,
+      "type": "test",
+      "name": "Code Smells",
+      "text": "",
+      "goal": "0",
+      "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "component",
+      "id": 537,
+      "type": "test",
+      "name": "SRP - Single Responsibility Principle",
+      "text": "",
+      "goal": "1 per function",
+      "projectType": ["react", "nodejs"]
     }
   ]
 }

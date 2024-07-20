@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 import { Images } from 'types';
-import { ServiceUrl } from '../utils';
+import { ServiceUrl } from 'utils/constants';
 
-interface ImageState {
+type ImageState = {
   data: Images | null;
   isLoading: boolean;
   error: string | null;
-}
+};
 
 const initialState: ImageState = {
   data: null,

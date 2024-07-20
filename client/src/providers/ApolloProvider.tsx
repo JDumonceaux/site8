@@ -1,20 +1,20 @@
-import { ReactNode } from 'react';
 import {
-  ApolloProvider as Provider,
   ApolloClient,
   InMemoryCache,
+  ApolloProvider as Provider,
 } from '@apollo/client';
-import { ENDPOINT_GRAPHQL_IMAGES } from 'utils';
+import { ReactNode } from 'react';
+import { ServiceUrl } from 'utils/constants';
 
-interface IProps {
+type ApolloProviderProps = {
   readonly children: ReactNode;
-}
+};
 
 const client = new ApolloClient({
-  uri: `${ENDPOINT_GRAPHQL_IMAGES}`,
+  uri: `${ServiceUrl.ENDPOINT_GRAPHQL_IMAGES}`,
   cache: new InMemoryCache(),
 });
 
-export const ApolloProvider = ({ children }: IProps) => {
+export const ApolloProvider = ({ children }: ApolloProviderProps) => {
   return <Provider client={client}>{children}</Provider>;
 };

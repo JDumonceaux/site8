@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { AppSettings } from 'types';
 
-interface AppState {
+type AppState = {
   data: AppSettings | null;
-}
+};
 
 const initialState: AppState = {
   data: null,

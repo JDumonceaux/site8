@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Snackbar } from 'types/Snackbar';
 
-interface SnackbarState {
+type SnackbarState = {
   data: Snackbar | null;
-}
+};
 
 const initialState: SnackbarState = {
   data: null,

@@ -118,11 +118,11 @@
     // Note: 07-2024 JRD - Code seems simplier with this off
     // "noPropertyAccessFromIndexSignature": true,
     // Adds 'undefined' to the type of undefined variables
-    "noUncheckedIndexedAccess": true,
+    //"noUncheckedIndexedAccess": true,
     // Warns about unusued local variables
-    "noUnusedLocals": true,
+    //"noUnusedLocals": true,
     // Warns about unused parameters
-    "noUnusedParameters": true,
+    //"noUnusedParameters": true,
     // Shorthand for a set of "stict" rules
     "strict": true,
     //"strictBindCallApply": true,
