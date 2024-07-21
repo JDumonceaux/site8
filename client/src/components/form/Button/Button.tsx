@@ -1,19 +1,29 @@
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-type ButtonProps = {
+export type ButtonProps = {
   readonly id: string;
   readonly children: React.ReactNode;
   readonly variant?: 'primary' | 'secondary';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
+/**
+ * Button component.
+ *
+ * @component
+ * @param {string} id - The ID of the button.
+ * @param {ReactNode} children - The content of the button.
+ * @param {string} variant - The variant of the button (default: 'primary').
+ * @param {ButtonProps} rest - Additional props for the button.
+ * @returns {JSX.Element} The rendered Button component.
+ */
 const Button = ({
   id,
   children,
   variant = 'primary',
   ...rest
 }: ButtonProps): JSX.Element => (
-  <StyledButton $variant={variant} id={id} name={id} {...rest} type="button">
+  <StyledButton id={id} name={id} variant={variant} {...rest} type="button">
     {children}
   </StyledButton>
 );
@@ -21,13 +31,13 @@ const Button = ({
 export default Button;
 
 const StyledButton = styled.button<{
-  $variant: 'primary' | 'secondary' | undefined;
+  variant: 'primary' | 'secondary' | undefined;
 }>`
-  color: ${(props) => (props.$variant === 'primary' ? '#fff' : '#000')};
+  color: ${(props) => (props.variant === 'primary' ? '#fff' : '#000')};
   background-color: ${(props) =>
-    props.$variant === 'primary' ? '#6db144' : '#fff'};
+    props.variant === 'primary' ? '#6db144' : '#fff'};
   border: ${(props) =>
-    props.$variant === 'primary' ? undefined : '1px solid #6db144'};
+    props.variant === 'primary' ? undefined : '1px solid #6db144'};
   box-shadow:
     0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14),

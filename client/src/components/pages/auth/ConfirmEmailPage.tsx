@@ -1,16 +1,13 @@
+import Meta from 'components/common/Meta/Meta';
+import { Button2 } from 'components/form/Button2';
+import { EmailField, TextInput } from 'components/form/input';
 import useAuth from 'hooks/useAuth';
+import { useForm } from 'hooks/useForm';
 import { useCallback, useMemo } from 'react';
+import { styled } from 'styled-components';
 import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
-
-import { Meta } from 'components';
-import { Button2 } from 'components/form';
-
-import { useForm } from 'hooks/useForm';
-
-import { EmailField, TextInput } from 'components/form/input';
-import { styled } from 'styled-components';
-import { AuthContainer } from './AuthContainer';
+import AuthContainer from './AuthContainer';
 import { authCode } from './ZodStrings';
 
 // Define Zod Shape
@@ -19,7 +16,7 @@ const schema = z.object({
   authenticationCode: authCode,
 });
 
-export const ConfirmEmailPage = (): JSX.Element => {
+const ConfirmEmailPage = (): JSX.Element => {
   const title = 'Confirmation';
 
   const { authConfirmSignUp, authResendConfirmationCode, isLoading, error } =

@@ -1,8 +1,8 @@
-import { Meta } from 'components';
+import Meta from 'components/common/Meta/Meta';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { styled, keyframes } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 
-export const HomeScreen2 = (): JSX.Element => {
+const HomeScreen2 = (): JSX.Element => {
   const title = 'Home';
 
   return (
@@ -24,13 +24,13 @@ export const HomeScreen2 = (): JSX.Element => {
   );
 };
 
+export default HomeScreen2;
+
 const breatheAnimation = keyframes`
  0% { height: 25px; width: 25px; }
 //  30% { height: 400px; width: 400px; opacity: 1 }
 //  40% { height: 405px; width: 405px; opacity: 0.3; }
  100% { height: 100px; width: 100px; opacity: 0.6; }
-
-
 `;
 const SDiv = styled.div`
   position: fixed;

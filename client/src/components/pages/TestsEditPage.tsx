@@ -12,13 +12,15 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { Meta, PageTitle, StyledPlainButton } from 'components';
 
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
 import { Switch } from 'components/radix/Switch';
-import { SortableItem } from 'components/ui/TestEditPage/SortableItem';
+import SortableItem from 'components/ui/TestEditPage/SortableItem';
 import useAppSettings from 'hooks/useAppSettings';
 import useTestsEdit from 'hooks/useTestsEdit';
 import { useCallback, useEffect, useState } from 'react';

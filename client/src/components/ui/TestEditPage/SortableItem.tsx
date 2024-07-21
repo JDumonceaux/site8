@@ -6,7 +6,7 @@ type SortableItemProps = {
   readonly children?: React.ReactNode;
 };
 
-export const SortableItem = ({ id, children }: SortableItemProps) => {
+const SortableItem = ({ id, children }: SortableItemProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -21,3 +21,5 @@ export const SortableItem = ({ id, children }: SortableItemProps) => {
     </tr>
   );
 };
+
+export default SortableItem;

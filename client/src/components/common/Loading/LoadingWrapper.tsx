@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { styled } from 'styled-components';
 
 type LoadingWrapperProps = {
@@ -14,7 +14,7 @@ type LoadingWrapperProps = {
 // busy attribute to true on that region until it has finished loading.
 // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/progressbar_role
 
-export const LoadingWrapper = ({
+const LoadingWrapper = ({
   children,
   isLoading,
   loadingText,
@@ -40,6 +40,8 @@ export const LoadingWrapper = ({
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;
 };
+
+export default memo(LoadingWrapper);
 
 const StyledLoadingDiv = styled.div`
   color: var(--palette-text);

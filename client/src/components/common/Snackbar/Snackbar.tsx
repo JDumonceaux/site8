@@ -1,16 +1,23 @@
 import { IconButton } from 'components/form/IconButton';
 import { CloseIcon } from 'components/icons/CloseIcon';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { styled } from 'styled-components';
 import { SnackbarVariant } from 'types';
 
+// Note: Snackbars or Toast Snackbars are not recommended
+// https://www.magentaa11y.com/checklist-web/toast-snackbar/
 type SnackbarProps = {
   readonly variant?: SnackbarVariant;
 };
 
-// Note: Snackbars or Toast Snackbars are not recommended
-// https://www.magentaa11y.com/checklist-web/toast-snackbar/
+/**
+ * Snackbar component displays a notification message to the user.
+ *
+ * @param {Object} props - The component props.
+ * @param {SnackbarVariant} props.variant - The variant of the snackbar. Defaults to SnackbarVariant.INFO.
+ * @returns {JSX.Element | null} The rendered Snackbar component.
+ */
 const Snackbar = ({
   variant = SnackbarVariant.INFO,
 }: SnackbarProps): JSX.Element | null => {
@@ -26,10 +33,10 @@ const Snackbar = ({
 
   return (
     <StyledDialog
-      $variant={variant}
       data-testid="snackbar"
       onClose={handleOnClose}
-      open={snackbarData?.isOpen}>
+      open={snackbarData?.isOpen}
+      variant={variant}>
       <div>{snackbarData?.contents}</div>
       <IconButton aria-label="close" onClick={handleOnClose}>
         <CloseIcon ariaHidden focusable={false} />
@@ -43,12 +50,12 @@ const Snackbar = ({
   );
 };
 
-export default Snackbar;
+export default memo(Snackbar);
 
-const StyledDialog = styled.dialog<{ $variant: string }>`
+const StyledDialog = styled.dialog<{ variant: string }>`
   background: var(--snackbar-background);
   color: ${(props) =>
-    props.$variant === SnackbarVariant.INFO
+    props.variant === SnackbarVariant.INFO
       ? `var(--snackbar-color)`
       : `var(--palette-error)`};
   width: 100%;

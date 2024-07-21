@@ -7,15 +7,13 @@ type LinkButtonProps = {
   readonly to: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const LinkButton = ({
-  to,
-
-  ...rest
-}: LinkButtonProps): JSX.Element => (
+const LinkButton = ({ to, ...rest }: LinkButtonProps): JSX.Element => (
   <StyledLink to={to}>
     <StyledElement id="button" {...rest} />
   </StyledLink>
 );
+
+export default LinkButton;
 
 const StyledElement = styled.button<{
   $margin?: string;

@@ -1,4 +1,4 @@
-import { LoadingWrapper } from 'components';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import useMenu from 'hooks/useMenu';
 import { memo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -40,8 +40,6 @@ const SubjectMenu = memo((): JSX.Element => {
     </StyledNav>
   );
 });
-
-SubjectMenu.displayName = 'SubjectMenu';
 
 export default SubjectMenu;
 

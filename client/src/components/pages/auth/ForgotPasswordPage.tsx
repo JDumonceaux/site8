@@ -1,16 +1,14 @@
-import { Meta } from 'components';
-import { Button2 } from 'components/form';
-import { useCallback, useMemo } from 'react';
-
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import Meta from 'components/common/Meta/Meta';
+import { Button2 } from 'components/form/Button2';
+import { EmailField } from 'components/form/input';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
+import { useCallback, useMemo } from 'react';
+import { styled } from 'styled-components';
 import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
-
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { EmailField } from 'components/form/input';
-import { styled } from 'styled-components';
-import { AuthContainer } from './AuthContainer';
+import AuthContainer from './AuthContainer';
 import { emailAddress, password } from './ZodStrings';
 
 // Define Zod Shape
@@ -19,7 +17,7 @@ const schema = z.object({
   password: password,
 });
 
-export const ForgotPasswordPage = (): JSX.Element => {
+const ForgotPasswordPage = (): JSX.Element => {
   const title = 'Forgot Password';
 
   type FormValues = z.infer<typeof schema>;

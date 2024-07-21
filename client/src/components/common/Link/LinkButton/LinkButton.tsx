@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, memo } from 'react';
 import StyledLink from '../StyledLink/StyledLink';
 
 type LinkButtonProps = {
@@ -6,6 +6,16 @@ type LinkButtonProps = {
   readonly to: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const LinkButton = ({ to, children }: LinkButtonProps): JSX.Element => (
+/**
+ * Renders a button that acts as a link.
+ *
+ * @component
+ * @param {string} to - The URL to navigate to when the button is clicked.
+ * @param {React.ReactNode} children - The content of the button.
+ * @returns {JSX.Element} - The rendered LinkButton component.
+ */
+const LinkButton = ({ to, children }: LinkButtonProps): JSX.Element => (
   <StyledLink to={to}>{children}</StyledLink>
 );
+
+export default memo(LinkButton);

@@ -2,14 +2,21 @@ import { memo } from 'react';
 import { styled } from 'styled-components';
 import { APP_NAME } from '../../../utils/constants';
 import { MenuIcon } from '../../icons/MenuIcon';
-
-import { Avatar } from 'components';
+import Avatar from '../Avatar/Avatar';
 import StyledLink from '../Link/StyledLink/StyledLink';
 
 type HeaderProps = {
   readonly includeMenu?: boolean;
 };
 
+/**
+ * Renders the header component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {boolean} props.includeMenu - Determines whether to include the menu icon.
+ * @returns {JSX.Element} The rendered header component.
+ */
 const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
   return (
     <StyledHeader data-testid="header">

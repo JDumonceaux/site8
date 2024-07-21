@@ -20,5 +20,4 @@ export * from './icons/GoogleIcon';
 export * from './icons/IconVisibility';
 export * from './icons/IconVisibilityOff';
 export * from './icons/NoteIcon';
-export * from './ui';
 export * from './ui/GenericPage/SubjectMenu';

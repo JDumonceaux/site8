@@ -8,7 +8,7 @@ type AuthContainerProps = {
   readonly error: { code: string; message: string } | null;
 };
 
-export const AuthContainer = ({
+const AuthContainer = ({
   children,
   leftImage,
   title,
@@ -32,6 +32,8 @@ export const AuthContainer = ({
     </StyledMain>
   );
 };
+
+export default AuthContainer;
 
 const StyledDivError = styled.div`
   border: 1px solid var(--palette-error);

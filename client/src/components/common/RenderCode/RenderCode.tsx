@@ -7,86 +7,84 @@ type RenderCodeProps = {
   readonly children?: React.ReactNode;
 };
 
-export const RenderCode = ({ children }: RenderCodeProps) => {
-  const ref = useRef(null);
-
-  const isCopyPermitted = () => {
-    navigator.permissions
-      .query({ name: 'clipboard-write' as PermissionName })
-      .then((permissionStatus) => {
-        if (
-          permissionStatus.state === 'granted' ||
-          permissionStatus.state === 'prompt'
-        ) {
-          return true;
-        } else {
-          alert('Copy to clipboard is not supported.');
-          return false;
-        }
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-      });
-
-    return false;
-  };
+/**
+ * Renders a secton of code with a copy button for the generic page.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {React.ReactNode} props.children - The code to be rendered.
+ * @returns {JSX.Element} The rendered code block.
+ */
+const RenderCode = ({ children }: RenderCodeProps) => {
+  const ref = useRef<HTMLElement>(null);
 
   const copyToClipboard = async (text: string) => {
-    if (isCopyPermitted() === false) {
-      try {
+    try {
+      const permissionStatus = await navigator.permissions.query({
+        name: 'clipboard-write' as PermissionName,
+      });
+      if (
+        permissionStatus.state === 'granted' ||
+        permissionStatus.state === 'prompt'
+      ) {
         await navigator.clipboard.writeText(text);
         alert('Copied.');
-      } catch (err) {
-        alert('Failed to copy.');
+      } else {
+        alert('Copy to clipboard is not supported.');
       }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to copy.');
     }
   };
 
   const handleCopy = () => {
-    const node = ref?.current ? (ref.current as HTMLElement) : null;
-    const text = node ? node.innerText : undefined;
+    const text = ref.current?.innerText;
     if (text) {
       copyToClipboard(text);
     }
   };
 
   return (
-    <>
+    <CodeBlock>
       <StyledHeader>
         <div>JavaScript</div>
-        <div>
-          <IconButton aria-label="Copy" id="copy" onClick={handleCopy}>
-            <CopyIcon ariaHidden focusable={false} />
-          </IconButton>
-        </div>
+        <IconButton aria-label="Copy" id="copy" onClick={handleCopy}>
+          <CopyIcon aria-hidden focusable={false} />
+        </IconButton>
       </StyledHeader>
       <StyledElement>
         <code ref={ref}>{children}</code>
       </StyledElement>
-    </>
+    </CodeBlock>
   );
 };
 
 export default RenderCode;
 
+const CodeBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 const StyledHeader = styled.div`
   background-color: var(--palette-kbd);
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding: 8px;
 `;
-
 const StyledElement = styled.pre`
   background-color: var(--palette-dark-background);
   color: var(--palette-dark-text);
   padding: 12px;
+  overflow-x: auto;
   var {
     color: var(--palette-var);
-  },
+  }
   samp {
     color: var(--palette-samp);
-  },
+  }
   kbd {
     color: var(--palette-kbd);
-  },
+  }
 `;

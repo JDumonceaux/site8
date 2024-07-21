@@ -1,15 +1,7 @@
-import { Meta } from 'components';
+import Meta from 'components/common/Meta/Meta';
 
-import { APP_NAME } from 'utils/constants';
-import { useEffect } from 'react';
-
-export const TermsOfUsePage = (): JSX.Element => {
+const TermsOfUsePage = (): JSX.Element => {
   const title = 'Terms of Use';
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
-
   return (
     <>
       <Meta title={title} />

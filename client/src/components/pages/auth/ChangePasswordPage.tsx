@@ -1,6 +1,6 @@
-import { Meta } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { Button2 } from 'components/form';
+import Meta from 'components/common/Meta/Meta';
+import { Button2 } from 'components/form/Button2';
 import { PasswordField } from 'components/form/input/PasswordField';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
@@ -8,8 +8,8 @@ import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
-import { AuthContainer } from './AuthContainer';
 import { password } from './ZodStrings';
+import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
 const schema = z
@@ -23,7 +23,7 @@ const schema = z
     path: ['confirmPassword'],
   });
 
-export const ChangePasswordPage = (): JSX.Element => {
+const ChangePasswordPage = (): JSX.Element => {
   const title = 'Change Password';
   const compId = useId();
 
@@ -98,7 +98,7 @@ export const ChangePasswordPage = (): JSX.Element => {
             {...getDefaultPasswordFields('newPassword' as keys, compId)}
           />
           <PasswordField
-            autoComplete="confirm-password"
+            autoComplete="new-password"
             errorTextShort="Please enter a password"
             helpText={['8 characters minimum']}
             label="Confirm Password"

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import { Footer } from './Footer';
+import Footer from './Footer';
 
 describe('Footer component', () => {
   it('renders the copyright information', () => {

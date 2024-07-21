@@ -1,14 +1,7 @@
-import { Meta } from 'components';
+import Meta from 'components/common/Meta/Meta';
 
-import { APP_NAME } from 'utils/constants';
-import { useEffect } from 'react';
-
-export const CookiesUsePage = (): JSX.Element => {
+const CookiesUsePage = (): JSX.Element => {
   const title = 'Cookies Use';
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

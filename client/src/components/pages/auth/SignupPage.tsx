@@ -1,16 +1,16 @@
-import { AmazonIcon, FacebookIcon, GoogleIcon, Meta } from 'components';
-import { Button2 } from 'components/form';
+import { Divider, PasswordField } from '@aws-amplify/ui-react';
+import { AmazonIcon, FacebookIcon, GoogleIcon } from 'components';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import Meta from 'components/common/Meta/Meta';
+import { Button2 } from 'components/form/Button2';
+import { EmailField } from 'components/form/input';
 import useAuth, { SocialProvider } from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { useCallback, useId, useMemo } from 'react';
+import { styled } from 'styled-components';
 import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
-
-import { Divider, PasswordField } from '@aws-amplify/ui-react';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { EmailField } from 'components/form/input';
-import { styled } from 'styled-components';
-import { AuthContainer } from './AuthContainer';
+import AuthContainer from './AuthContainer';
 import { emailAddress, password } from './ZodStrings';
 
 // Define Zod Shape
@@ -19,7 +19,7 @@ const schema = z.object({
   emailAddress: emailAddress,
 });
 
-export const SignupPage = (): JSX.Element => {
+const SignupPage = (): JSX.Element => {
   const title = 'Sign-Up';
   const compId = useId();
 

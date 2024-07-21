@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
 type PageTitleProps = {
@@ -6,23 +6,33 @@ type PageTitleProps = {
   readonly children?: React.ReactNode;
 };
 
-export const PageTitle = ({
-  title,
-  children,
-}: PageTitleProps): JSX.Element | null => {
+/**
+ * Renders a page title component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title to be displayed.
+ * @param {ReactNode} props.children - The children elements to be rendered.
+ * @returns {JSX.Element | null} The rendered page title component.
+ */
+const PageTitle = ({ title, children }: PageTitleProps): JSX.Element | null => {
   if (!title) {
     return null;
   }
 
   return (
     <StyledWrapper>
-      <div>
-        <StyledElement data-testid="page-title">{title}</StyledElement>
-      </div>
-      {children ? <StyledChildren>{children}</StyledChildren> : null}
+      {title ? (
+        <div>
+          <StyledElement data-testid="page-title">{title}</StyledElement>
+        </div>
+      ) : null}
+      <StyledChildren>{children}</StyledChildren>
     </StyledWrapper>
   );
 };
+
+export default memo(PageTitle);
 
 const StyledWrapper = styled.div`
   display: flex;

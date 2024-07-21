@@ -3,29 +3,7 @@ module.exports = {
     node: true,
     'jest/globals': true,
   },
-  extends: [
-    // By extending from a plugin config, we can get recommended rules without having to add them manually.
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:import/recommended',
-    // React Hooks
-    'plugin:react-hooks/recommended',
-    // Accessibility rules
-    'plugin:jsx-a11y/recommended',
-    // TypeScript rules
-    'plugin:@typescript-eslint/recommended',
-    // React Redux
-    'plugin:react-redux/recommended',
-    // Handle JSX transform in React 17+
-    'plugin:react/jsx-runtime',
-    // Add SonarJS rules
-    //'plugin:sonarjs/recommended',
-    // This disables the formatting rules in ESLint that Prettier is going to be responsible for handling.
-    // Make sure it's always the last config, so it gets the chance to override other configs.
-    'eslint-config-prettier',
-    'plugin:css/recommended'
-
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:import/recommended', 'plugin:react-hooks/recommended', 'plugin:jsx-a11y/recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-redux/recommended', 'plugin:react/jsx-runtime', 'eslint-config-prettier', 'plugin:css/recommended', 'plugin:storybook/recommended'],
   plugins: [
     'react-redux',
     'immutable',

@@ -1,5 +1,8 @@
-import { LoadingWrapper, Meta, PageTitle, RenderHtml } from 'components';
 import Fallback from 'components/common/Fallback/Fallback';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
+import RenderHtml from 'components/common/RenderHtml/RenderHtml';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { useAxios } from 'hooks/Axios';

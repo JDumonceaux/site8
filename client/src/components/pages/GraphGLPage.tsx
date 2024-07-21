@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-
 import { CreateTodoInput, Todo } from 'API';
 import { generateClient } from 'aws-amplify/api';
 import { createTodo } from 'graphql/mutations';
 import { listTodos } from 'graphql/queries';
+import { useEffect, useState } from 'react';
 
 const initialState: CreateTodoInput = { name: '', description: '' };
 const client = generateClient();

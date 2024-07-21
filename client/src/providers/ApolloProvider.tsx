@@ -15,6 +15,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const ApolloProvider = ({ children }: ApolloProviderProps) => {
+const ApolloProvider = ({ children }: ApolloProviderProps) => {
   return <Provider client={client}>{children}</Provider>;
 };
+
+export default ApolloProvider;

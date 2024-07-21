@@ -1,19 +1,15 @@
-import { Meta } from 'components';
-import { useCallback, useId, useMemo } from 'react';
-
-import { Button2 } from 'components/form';
-
-import useAuth from 'hooks/useAuth';
-import { useForm } from 'hooks/useForm';
-import { safeParse } from 'utils/zodHelper';
-import { z } from 'zod';
-
-import { styled } from 'styled-components';
-import { AuthContainer } from './AuthContainer';
-
 import { PasswordField } from '@aws-amplify/ui-react';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import Meta from 'components/common/Meta/Meta';
+import { Button2 } from 'components/form/Button2';
 import { EmailField } from 'components/form/input';
+import useAuth from 'hooks/useAuth';
+import { useForm } from 'hooks/useForm';
+import { useCallback, useId, useMemo } from 'react';
+import { styled } from 'styled-components';
+import { safeParse } from 'utils/zodHelper';
+import { z } from 'zod';
+import AuthContainer from './AuthContainer';
 import { emailAddress, password } from './ZodStrings';
 
 // Define Zod Shape
@@ -22,7 +18,7 @@ const schema = z.object({
   password: password,
 });
 
-export const SigninPage = (): JSX.Element => {
+const SigninPage = (): JSX.Element => {
   const title = 'Sign-In';
   const compId = useId();
 

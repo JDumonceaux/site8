@@ -1,16 +1,13 @@
 import { useCallback, useMemo, useState } from 'react';
-import { unknown, z } from 'zod';
+import { z } from 'zod';
 
 export const useForm = <T>(initialValues: T) => {
-  const [errors, setErrors] = useState<z.ZodIssue[] | undefined>(undefined);
   const [formValues, setFormValues] = useState<T>(initialValues);
-  const [initialFormValues, setInitialFormValues] = useState<T>(initialValues);
-  const [blankFormValues, setBlankFormValues] = useState<T>(unknown as T);
-  type keys = keyof T;
-  // Does the data need to be saved?
+  const [errors, setErrors] = useState<z.ZodIssue[] | undefined>(undefined);
   const [isSaved, setIsSaved] = useState<boolean>(true);
-  // Is the form saving?
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+
+  type keys = keyof T;
 
   const setFieldValue = useCallback(
     (fieldName: keys, value: string | boolean | number | undefined) => {
@@ -60,18 +57,18 @@ export const useForm = <T>(initialValues: T) => {
   );
 
   const handleClear = useCallback(() => {
-    setFormValues(blankFormValues);
+    setFormValues({} as T);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [setFormValues, blankFormValues]);
+  }, [setFormValues]);
 
   const handleReset = useCallback(() => {
-    setFormValues(initialFormValues);
+    setFormValues(initialValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [initialFormValues, setFormValues]);
+  }, [initialValues, setFormValues]);
 
   const getDefaultFields = useCallback(
     (fieldName: keys) => {
@@ -107,38 +104,34 @@ export const useForm = <T>(initialValues: T) => {
       errors,
       isSaved,
       isProcessing,
+      setFieldValue,
+      getFieldValue,
+      getFieldErrors,
       hasError,
       isFormValid,
-      getFieldErrors,
-      getDefaultFields,
-      setIsProcessing,
       handleChange,
       handleClear,
       handleReset,
-      getFieldValue,
-      setIsSaved,
-      setErrors,
-      setFieldValue,
-      setFormValues,
-      setInitialFormValues,
-      setBlankFormValues,
+      getDefaultFields,
       getDefaultPasswordFields,
+      setErrors,
+      setIsSaved,
+      setIsProcessing,
     }),
     [
       formValues,
       errors,
       isSaved,
       isProcessing,
+      setFieldValue,
+      getFieldValue,
+      getFieldErrors,
       hasError,
       isFormValid,
-      getFieldErrors,
-      getDefaultFields,
       handleChange,
       handleClear,
       handleReset,
-      getFieldValue,
-      setFieldValue,
-      setFormValues,
+      getDefaultFields,
       getDefaultPasswordFields,
     ],
   );

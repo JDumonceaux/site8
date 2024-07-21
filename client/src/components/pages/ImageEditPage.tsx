@@ -1,20 +1,21 @@
-import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import { ModalProcessing } from 'components/common/ModalProcessing';
+import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { ImageSelector } from 'components/custom/ImageSelector/ImageSelector';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import useImageEdit from 'hooks/useImageEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Image } from 'types';
 
 const ImageEditImage = (): JSX.Element => {
   const params = useParams();
-  const [isOpen, setIsOpen] = useState(false);
   const {
     formValues,
     isLoading,
@@ -194,7 +195,6 @@ const ImageEditImage = (): JSX.Element => {
           </LoadingWrapper>
         </StyledMain.Section>
       </StyledMain>
-      <ModalProcessing isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 };

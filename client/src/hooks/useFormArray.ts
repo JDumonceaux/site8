@@ -5,146 +5,92 @@ export type IdType = {
 };
 
 export const useFormArray = <T extends IdType>() => {
-  //const [errors, setErrors] = useState<z.ZodIssue[] | undefined>(undefined);
   const [formValues, setFormValues] = useState<T[]>([]);
-
-  // const [blankFormValues, setBlankFormValues] = useState<T extends IdType[]>(unknown as T[]);
-  type keys = keyof T;
-  // Does the data need to be saved?
   const [isSaved, setIsSaved] = useState<boolean>(true);
-  // // Is the form saving?
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+
+  const findItemIndex = useCallback(
+    (localId: number): number => {
+      return formValues.findIndex((x) => x.localId === localId);
+    },
+    [formValues],
+  );
 
   const setFieldValue = useCallback(
     (
       localId: number,
-      fieldName: keys,
+      fieldName: keyof T,
       value: string | boolean | number | undefined,
     ) => {
-      const i = formValues.findIndex((x) => x.localId === localId);
-      const newFormValues = [...formValues];
-      if (i >= 0) {
-        newFormValues[i] = { ...newFormValues[i], [fieldName]: value };
-      } else {
-        newFormValues.push({ localId, [fieldName]: value } as T);
-      }
-      setFormValues(newFormValues);
+      setFormValues((prev) => {
+        const index = findItemIndex(localId);
+        const newFormValues = [...prev];
+        if (index >= 0) {
+          newFormValues[index] = {
+            ...newFormValues[index],
+            [fieldName]: value,
+          };
+        } else {
+          newFormValues.push({ localId, [fieldName]: value } as T);
+        }
+        return newFormValues;
+      });
       setIsSaved(false);
     },
-    [formValues],
+    [findItemIndex],
   );
 
   const getFieldValue = useCallback(
-    (localId: number, fieldName: keys) => {
-      const rec = formValues.find((x) => x.localId === localId);
-      if (!rec) {
-        return '';
-      }
-      return rec[fieldName] || '';
+    (localId: number, fieldName: keyof T): string | undefined => {
+      const item = formValues.find((x) => x.localId === localId);
+      return item ? (item[fieldName] as string) : '';
     },
     [formValues],
   );
 
-  /**
-   * Updates an item in the form values array.
-   * If an item with the provided localId already exists, it will be updated with the new item.
-   * If no item with the provided localId exists, a new item will be added to the array.
-   * @param localId - The localId of the item to update or add.
-   * @param item - The updated item to set.
-   */
   const setItem = useCallback(
     (localId: number, item: T) => {
-      const i = formValues.findIndex((x) => x.localId === localId);
-      const newFormValues = [...formValues];
-      if (i >= 0) {
-        newFormValues[i] = { ...newFormValues[i], ...item };
-      } else {
-        newFormValues.push({ ...item, localId } as T);
-      }
-      setFormValues(newFormValues);
+      setFormValues((prev) => {
+        const index = findItemIndex(localId);
+        const newFormValues = [...prev];
+        if (index >= 0) {
+          newFormValues[index] = { ...newFormValues[index], ...item };
+        } else {
+          newFormValues.push({ ...item, localId } as T);
+        }
+        return newFormValues;
+      });
       setIsSaved(false);
     },
-    [formValues],
+    [findItemIndex],
   );
 
-  /**
-   * Retrieves an item from the form values array based on its localId.
-   *
-   * @param localId - The localId of the item to retrieve.
-   * @returns The item with the specified localId, or undefined if not found.
-   */
   const getItem = useCallback(
-    (localId: number) => {
-      const i = formValues.findIndex((x) => x.localId === localId);
-      if (i < 0) {
-        return undefined;
-      }
-      return formValues[i] as T;
+    (localId: number): T | undefined => {
+      const index = findItemIndex(localId);
+      return index >= 0 ? formValues[index] : undefined;
     },
-    [formValues],
+    [formValues, findItemIndex],
   );
-
-  // const getFieldErrors = useCallback(
-  //   (fieldName: keys): string | string[] | undefined => {
-  //     const x =
-  //       errors && errors.filter((x) => x.path.includes(fieldName as string));
-  //     return x && x.length > 0 ? x.map((x) => x.message) : undefined;
-  //   },
-  //   [errors],
-  // );
-
-  // const hasError = useCallback(
-  //   (fieldName: keys) => {
-  //     return !getFieldErrors(fieldName);
-  //   },
-  //   [getFieldErrors],
-  // );
-
-  // const isFormValid = useCallback(() => {
-  //   return !errors || errors.length === 0;
-  // }, [errors]);
-
-  // Handle field change
-  // const handleChange = useCallback(
-  //   (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  //     const { name: fieldName, value } = event.target;
-  //     setFieldValue(0, fieldName as keys, value);
-  //   },
-  //   [setFieldValue],
-  // );
 
   const handleChange = useCallback(
     (
       localId: number,
-      fieldName: keys,
-      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      fieldName: keyof T,
+      event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
-      const { value } = event.target;
-      setFieldValue(localId, fieldName as keys, value);
+      setFieldValue(localId, fieldName, event.target.value);
     },
     [setFieldValue],
   );
 
-  // const handleClear = useCallback(() => {
-  //   setFormValues(blankFormValues);
-  //   setIsSaved(true);
-  //   setIsProcessing(false);
-  //   setErrors(undefined);
-  // }, [setFormValues, blankFormValues]);
-
   const getDefaultProps = useCallback(
-    (localId: number, fieldName: keys) => {
-      const field = `${fieldName as string}-${localId}`;
-      return {
-        id: field,
-        value: getFieldValue(localId, fieldName),
-        onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-          handleChange(localId, fieldName, e),
-        // errorText: getFieldErrors(fieldName),
-        // hasError: hasError(fieldName),
-        // value: formValues[fieldName],
-      };
-    },
+    (localId: number, fieldName: keyof T) => ({
+      id: `${fieldName as string}-(${localId})`,
+      value: getFieldValue(localId, fieldName),
+      onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+        handleChange(localId, fieldName, e),
+    }),
     [getFieldValue, handleChange],
   );
 

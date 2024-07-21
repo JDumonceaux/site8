@@ -1,5 +1,5 @@
-import { Meta } from 'components/common/Meta/Meta';
-import { PageTitle } from 'components/common/PageTitle/PageTitle';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const ArtList = (): JSX.Element => {

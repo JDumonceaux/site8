@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
+// TODO: Polish up - handle missing items, keywords
 type MetaProps = {
   readonly title?: string;
   readonly description?: string;
@@ -7,13 +8,18 @@ type MetaProps = {
   readonly type?: 'article' | 'book' | 'profile' | 'website'; // See https://ogp.me/#types for more
 };
 
-// TODO: Polish up - handle missing items, keywords
-export const Meta = ({
-  title,
-  description,
-  name,
-  type,
-}: MetaProps): JSX.Element => {
+/**
+ * Renders the meta tags for the page.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the page.
+ * @param {string} props.description - The description of the page.
+ * @param {string} props.name - The name of the creator.
+ * @param {string} props.type - The type of the page.
+ * @returns {JSX.Element} The rendered Meta component.
+ */
+const Meta = ({ title, description, name, type }: MetaProps): JSX.Element => {
   return (
     <Helmet>
       {/* Standard metadata tags */}
@@ -34,3 +40,5 @@ export const Meta = ({
     </Helmet>
   );
 };
+
+export default Meta;

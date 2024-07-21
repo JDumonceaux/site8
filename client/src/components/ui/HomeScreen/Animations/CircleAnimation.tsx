@@ -1,12 +1,15 @@
-import { styled, keyframes } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 
-export const CircleAnimation = (): JSX.Element => {
+const CircleAnimation = (): JSX.Element => {
   return (
     <CircleWrapper>
       <CircleElement />
     </CircleWrapper>
   );
 };
+
+export default CircleAnimation;
+
 const CIRCLE_DIAM = '200px';
 const CIRCLE_RADI = '100px';
 const Y_MIDDLE = '50dvh';

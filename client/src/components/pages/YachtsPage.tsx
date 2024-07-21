@@ -1,4 +1,5 @@
-import { Meta, PageTitle } from 'components';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { Suspense } from 'react';

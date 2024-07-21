@@ -1,5 +1,8 @@
-import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import MenuAdd from 'components/custom/MenuAdd';
 import { TextInput } from 'components/form/input';

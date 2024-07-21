@@ -1,10 +1,17 @@
-import { LoadingWrapper } from 'components/common/Loading/LoadingWrapper';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import { TextInput } from 'components/form/input';
 import useMenuAdd from 'hooks/useMenuAdd';
 import useSnackbar from 'hooks/useSnackbar';
 import { startTransition, useCallback } from 'react';
 
+/**
+ * Represents a form for adding a single menu item.
+ *
+ * @returns The JSX element representing the MenuAdd component.
+ */
 const MenuAdd = (): JSX.Element => {
+  const { setSnackbarMessage } = useSnackbar();
+
   const {
     handleChange,
     getStandardTextInputAttributes,
@@ -14,7 +21,6 @@ const MenuAdd = (): JSX.Element => {
     error,
     isLoading,
   } = useMenuAdd();
-  const { setSnackbarMessage } = useSnackbar();
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -31,6 +37,26 @@ const MenuAdd = (): JSX.Element => {
     },
     [validateForm, setSnackbarMessage, submitForm, clearForm],
   );
+
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange('name', e.target.value);
+  };
+
+  const handleChangeParent = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange('parent', e.target.value);
+  };
+
+  const handleChangeSeq = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange('seq', e.target.value);
+  };
+
+  const handleChangeSortBy = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange('sortby', e.target.value);
+  };
+
+  const handleChangeType = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange('type', e.target.value);
+  };
 
   return (
     <LoadingWrapper error={error} isLoading={isLoading}>
@@ -52,57 +78,35 @@ const MenuAdd = (): JSX.Element => {
               <TextInput
                 {...getStandardTextInputAttributes('name')}
                 autoCapitalize="off"
-                enterKeyHint="next"
-                // errorText={getFieldErrors(`parentId${item.id}`)}
-                // errorTextShort="Please enter a short title"
-                // hasError={hasError(`parentId${item.id}`)}
                 inputMode="text"
-                onChange={(e) => handleChange('name', e.target.value)}
-                required={true}
-                spellCheck={true}
+                onChange={handleChangeName}
+                required
+                spellCheck
               />
             </td>
             <td>
               <TextInput
                 {...getStandardTextInputAttributes('parent')}
-                autoCapitalize="off"
-                enterKeyHint="next"
-                // errorText={getFieldErrors(`parentId${item.id}`)}
-                // errorTextShort="Please enter a short title"
-                // hasError={hasError(`parentId${item.id}`)}
                 inputMode="numeric"
-                onChange={(e) => handleChange('parent', e.target.value)}
-                required={true}
-                spellCheck={true}
+                onChange={handleChangeParent}
+                required
               />
             </td>
             <td>
               <TextInput
                 {...getStandardTextInputAttributes('seq')}
-                autoCapitalize="off"
-                enterKeyHint="next"
-                // errorText={getFieldErrors(`parentId${item.id}`)}
-                // errorTextShort="Please enter a short title"
-                // hasError={hasError(`parentId${item.id}`)}
                 inputMode="numeric"
-                onChange={(e) => handleChange('seq', e.target.value)}
-                required={true}
-                spellCheck={true}
+                onChange={handleChangeSeq}
+                required
               />
             </td>
             <td>
               <TextInput
                 {...getStandardTextInputAttributes('sortby')}
                 autoCapitalize="off"
-                enterKeyHint="next"
-                // errorText={getFieldErrors(`parentId${item.id}`)}
-                // errorTextShort="Please enter a short title"
-                // hasError={hasError(`parentId${item.id}`)}
-                inputMode="numeric"
+                inputMode="text"
                 list="sortTypes"
-                onChange={(e) => handleChange('sortby', e.target.value)}
-                required={true}
-                spellCheck={true}
+                onChange={handleChangeSortBy}
               />
               <datalist id="sortTypes">
                 <option value="seq" />
@@ -113,15 +117,10 @@ const MenuAdd = (): JSX.Element => {
               <TextInput
                 {...getStandardTextInputAttributes('type')}
                 autoCapitalize="off"
-                enterKeyHint="next"
-                // errorText={getFieldErrors(`parentId${item.id}`)}
-                // errorTextShort="Please enter a short title"
-                // hasError={hasError(`parentId${item.id}`)}
                 inputMode="text"
                 list="menuTypes"
-                onChange={(e) => handleChange('type', e.target.value)}
-                required={true}
-                spellCheck={true}
+                onChange={handleChangeType}
+                required
               />
               <datalist id="menuTypes">
                 <option value="menu" />
@@ -132,7 +131,7 @@ const MenuAdd = (): JSX.Element => {
               <button
                 data-testid="insert-code"
                 onClick={handleSubmit}
-                type="button">
+                type="submit">
                 Save
               </button>
             </td>

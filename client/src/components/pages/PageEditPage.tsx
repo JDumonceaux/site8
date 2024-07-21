@@ -1,6 +1,9 @@
-import { LoadingWrapper, Meta, PageTitle, StyledPlainButton } from 'components';
 import DialogSaving from 'components/common/Dialog/DialogSaving';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import HTMLMenu from 'components/custom/PageEditPage/HTMLMenu';
 import { TextInput } from 'components/form/input';

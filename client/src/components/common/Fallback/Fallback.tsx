@@ -1,14 +1,19 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
-import { PageTitle } from '../PageTitle/PageTitle';
+import PageTitle from '../PageTitle/PageTitle';
 
+/**
+ * Renders a fallback component that displays a loading state.
+ *
+ * @returns The JSX element representing the fallback component.
+ */
 export const Fallback = (): JSX.Element => {
   return (
-    <div aria-busy="true" data-testid="footer" role="alert">
+    <div aria-busy="true" data-testid="footer" role="status">
       <PageTitle title="Loading" />
       {[...Array(5)].map((_, index) => (
         // eslint-disable-next-line react/no-array-index-key
-        <StyledLine key={index} />
+        <LoadingLine key={index} />
       ))}
     </div>
   );
@@ -16,7 +21,7 @@ export const Fallback = (): JSX.Element => {
 
 export default memo(Fallback);
 
-const StyledLine = styled.div`
+const LoadingLine = styled.div`
   background: var(--palette-grey-10);
   height: 20px;
   width: 100%;

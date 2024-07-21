@@ -1,9 +1,9 @@
-import { styled, keyframes } from 'styled-components';
-import { PinkGraphic } from './PinkGraphic';
-import { HomeMenu } from 'components/common/Menu/HomeMenu';
-import { TitleAnimation } from './Animations/TitleAnimation';
+import HomeMenu from 'components/common/Menu/HomeMenu';
+import { keyframes, styled } from 'styled-components';
+import TitleAnimation from './Animations/TitleAnimation';
+import PinkGraphic from './PinkGraphic';
 
-export const HomeScreen4 = (): JSX.Element => {
+const HomeScreen4 = (): JSX.Element => {
   return (
     <>
       <StyledSection>
@@ -22,6 +22,8 @@ export const HomeScreen4 = (): JSX.Element => {
     </>
   );
 };
+
+export default HomeScreen4;
 
 const StyledSection = styled.section`
   height: 100vh;

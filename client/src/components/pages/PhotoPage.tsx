@@ -1,8 +1,9 @@
-import { useDeferredValue, useEffect } from 'react';
-
-import { LoadingWrapper, Meta, PageTitle } from 'components';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { useAxios } from 'hooks/Axios';
+import { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';
 import { ServiceUrl } from 'utils';
 

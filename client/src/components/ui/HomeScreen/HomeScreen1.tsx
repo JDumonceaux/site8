@@ -1,9 +1,9 @@
-import { HomeMenu } from 'components/common/Menu/HomeMenu';
-import { Meta } from 'components';
+import HomeMenu from 'components/common/Menu/HomeMenu';
+import Meta from 'components/common/Meta/Meta';
 import { MatrixBG } from 'components/ui/Animation/MatrixBG';
 import { styled } from 'styled-components';
 
-export const HomeScreen1 = (): JSX.Element => {
+const HomeScreen1 = (): JSX.Element => {
   const title = 'Home';
 
   return (
@@ -38,6 +38,8 @@ export const HomeScreen1 = (): JSX.Element => {
     </>
   );
 };
+
+export default HomeScreen1;
 
 const StyledWrapper = styled.div`
   display: flex;

@@ -1,14 +1,13 @@
-import { Suspense, useDeferredValue, useEffect } from 'react';
-import { Page } from 'types/Page';
-import { ServiceUrl } from 'utils';
-
-import { styled } from 'styled-components';
-
-import { LoadingWrapper, Meta, PageTitle } from 'components';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import TikTokItem from 'components/custom/TikTokItem/TikTokItem';
 import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { useAxios } from 'hooks/Axios';
+import { Suspense, useDeferredValue, useEffect } from 'react';
+import { styled } from 'styled-components';
+import { Page } from 'types/Page';
+import { ServiceUrl } from 'utils';
 
 type TikTokPageProps = {
   readonly title?: string;
@@ -38,9 +37,7 @@ const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
           <LoadingWrapper error={error} isLoading={isLoading}>
             <PageTitle title={pageTitle} />
             <StyledSection>
-              <Suspense fallback="Loading results ...">
-                <TikTokItem />
-              </Suspense>
+              <Suspense fallback="Loading results ..."></Suspense>
             </StyledSection>
           </LoadingWrapper>
         </StyledMain.Article>

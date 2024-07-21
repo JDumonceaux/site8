@@ -1,14 +1,7 @@
-import { Meta } from 'components';
+import Meta from 'components/common/Meta/Meta';
 
-import { APP_NAME } from 'utils/constants';
-import { useEffect } from 'react';
-
-export const PrivacyPolicyPage = (): JSX.Element => {
+const PrivacyPolicyPage = (): JSX.Element => {
   const title = 'Privacy Policy';
-
-  useEffect(() => {
-    document.title = `${APP_NAME} - ${title}`;
-  }, []);
 
   return (
     <>

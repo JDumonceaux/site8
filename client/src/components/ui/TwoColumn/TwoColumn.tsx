@@ -6,7 +6,7 @@ type TwoColumnProps = {
   readonly includeMargin?: boolean;
 };
 
-export const TwoColumn = ({
+const TwoColumn = ({
   children,
   includeGap = false,
   includeMargin = false,
@@ -15,6 +15,8 @@ export const TwoColumn = ({
     {children}
   </StyledDiv>
 );
+
+export default TwoColumn;
 
 const StyledDiv = styled.div<{ $includeGap: boolean; $margin: boolean }>`
   display: flex;

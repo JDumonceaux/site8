@@ -5,69 +5,41 @@ type HTMLMenuProps = {
   readonly onClick: (value: string) => void;
 };
 
+/**
+ * Renders a menu for inserting HTML elements into a page.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.onClick - The click event handler for the menu buttons.
+ * @returns {JSX.Element} The HTMLMenu component.
+ */
 const HTMLMenu = ({ onClick }: HTMLMenuProps): JSX.Element => {
+  const buttons = [
+    { label: 'Code', value: 'code', testId: 'insert-code' },
+    { label: 'H2', value: 'h2', testId: 'insert-h2' },
+    { label: 'Link', value: 'link', testId: 'insert-link' },
+    { label: 'UL', value: 'ul', testId: 'insert-ul' },
+    { label: 'OL', value: 'ol', testId: 'insert-ol' },
+    { label: 'abbr', value: 'abbr', testId: 'insert-abbr' },
+    { label: 'q', value: 'q', testId: 'insert-q' },
+    { label: 's', value: 's', testId: 'insert-s' },
+    { label: 'mark', value: 'mark', testId: 'insert-mark' },
+    { label: 'sup', value: 'sup', testId: 'insert-sup' },
+    { label: 'sub', value: 'sub', testId: 'insert-sub' },
+  ];
+
   return (
     <StyledSubMenu>
-      <button
-        data-testid="insert-code"
-        onClick={() => onClick('code')}
-        type="button">
-        Code
-      </button>
-      <button
-        data-testid="insert-h2"
-        onClick={() => onClick('h2')}
-        type="button">
-        H2
-      </button>
-      <button
-        data-testid="insert-link"
-        onClick={() => onClick('link')}
-        type="button">
-        Link
-      </button>
-      <button
-        data-testid="insert-ul"
-        onClick={() => onClick('ul')}
-        type="button">
-        UL
-      </button>
-      <button
-        data-testid="insert-ol"
-        onClick={() => onClick('ol')}
-        type="button">
-        OL
-      </button>
-      <button
-        data-testid="insert-abbr"
-        onClick={() => onClick('abbr')}
-        type="button">
-        abbr
-      </button>
-      <button data-testid="insert-q" onClick={() => onClick('q')} type="button">
-        q
-      </button>
-      <button data-testid="insert-s" onClick={() => onClick('s')} type="button">
-        s
-      </button>
-      <button
-        data-testid="insert-mark"
-        onClick={() => onClick('mark')}
-        type="button">
-        mark
-      </button>
-      <button
-        data-testid="insert-sup"
-        onClick={() => onClick('sup')}
-        type="button">
-        sup
-      </button>
-      <button
-        data-testid="insert-sub"
-        onClick={() => onClick('sub')}
-        type="button">
-        sub
-      </button>
+      {buttons.map(({ label, value, testId }) => (
+        <button
+          aria-label={`Insert ${label}`}
+          data-testid={testId}
+          key={value}
+          onClick={() => onClick(value)}
+          type="button">
+          {label}
+        </button>
+      ))}
     </StyledSubMenu>
   );
 };

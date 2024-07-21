@@ -1,29 +1,39 @@
-import { REQUIRED_FIELD } from 'utils';
+import {
+  AUTH_CODE_LENGTH,
+  AUTH_ERROR_MESSAGES,
+  MAX_EMAIL_LENGTH,
+  MAX_PASSWORD_LENGTH,
+  MIN_PASSWORD_LENGTH,
+  REQUIRED_FIELD,
+} from 'utils';
 import { z } from 'zod';
 
 export const emailAddress: z.ZodString = z
   .string({
-    required_error: 'eMail Address is required.',
-    invalid_type_error: 'eMail Address must be a string',
+    required_error: AUTH_ERROR_MESSAGES.emailRequired,
+    invalid_type_error: AUTH_ERROR_MESSAGES.emailInvalidType,
   })
   .min(1, REQUIRED_FIELD)
-  .max(250)
+  .max(MAX_EMAIL_LENGTH)
   .trim();
 
 export const password: z.ZodString = z
   .string({
-    required_error: 'Password is required.',
-    invalid_type_error: 'Password must be a string',
+    required_error: AUTH_ERROR_MESSAGES.passwordRequired,
+    invalid_type_error: AUTH_ERROR_MESSAGES.passwordInvalidType,
   })
-  .min(8, REQUIRED_FIELD)
-  .max(60, 'Max length exceeded: 60')
+  .min(MIN_PASSWORD_LENGTH, REQUIRED_FIELD)
+  .max(
+    MAX_PASSWORD_LENGTH,
+    `${AUTH_ERROR_MESSAGES.maxLengthExceeded} ${MAX_PASSWORD_LENGTH}`,
+  )
   .trim();
 
 export const authCode: z.ZodString = z
   .string({
-    required_error: 'Code is required.',
-    invalid_type_error: 'Code must be a number',
+    required_error: AUTH_ERROR_MESSAGES.authCodeRequired,
+    invalid_type_error: AUTH_ERROR_MESSAGES.authCodeInvalidType,
   })
-  .min(6, REQUIRED_FIELD)
-  .max(6)
+  .min(AUTH_CODE_LENGTH, REQUIRED_FIELD)
+  .max(AUTH_CODE_LENGTH)
   .trim();

@@ -58,3 +58,18 @@ export const REQUIRED_FIELD = 'Required Field';
 export const DF_LONG = 'M/d/yyyy h:mm a';
 
 export const IMAGE_BASE = '/images';
+
+export const MAX_EMAIL_LENGTH = 250;
+export const MIN_PASSWORD_LENGTH = 8;
+export const MAX_PASSWORD_LENGTH = 60;
+export const AUTH_CODE_LENGTH = 6;
+
+export const AUTH_ERROR_MESSAGES = {
+  emailRequired: 'eMail Address is required.',
+  emailInvalidType: 'eMail Address must be a string',
+  passwordRequired: 'Password is required.',
+  passwordInvalidType: 'Password must be a string',
+  authCodeRequired: 'Code is required.',
+  authCodeInvalidType: 'Code must be a string of digits',
+  maxLengthExceeded: 'Max length exceeded:',
+};

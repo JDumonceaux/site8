@@ -1,6 +1,7 @@
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import './musicList.css';
 
-import { Meta, PageTitle } from 'components';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 
 const MusicList = (): JSX.Element => {

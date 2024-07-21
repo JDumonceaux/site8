@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { styled } from 'styled-components';
 
 import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
 import useMenu from 'hooks/useMenu';
 import { MenuItem } from 'types/MenuItem';
 
-export const HomeMenu = (): JSX.Element => {
+const HomeMenu = (): JSX.Element => {
   const { data } = useMenu();
 
   const renderWrapper = useCallback(
@@ -50,12 +50,7 @@ export const HomeMenu = (): JSX.Element => {
           item.name,
         );
       };
-      return (
-        <>
-          {menuItem()}
-          {item.items?.map((x) => renderItem(x, level + 1))}
-        </>
-      );
+      return <>{menuItem()}</>;
     },
     [renderWrapper],
   );
@@ -80,6 +75,8 @@ export const HomeMenu = (): JSX.Element => {
     </StyledNav>
   );
 };
+
+export default memo(HomeMenu);
 
 const StyledGrid = styled.div`
   column-count: 6;

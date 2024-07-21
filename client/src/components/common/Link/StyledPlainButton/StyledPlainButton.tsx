@@ -1,16 +1,18 @@
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-export type StyledPlainButtonProps = {
+type StyledPlainButtonProps = {
   readonly children: React.ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const StyledPlainButton = ({
+const StyledPlainButton = ({
   children,
   ...rest
 }: StyledPlainButtonProps): JSX.Element => (
   <StyledElement {...rest}>{children}</StyledElement>
 );
+
+export default StyledPlainButton;
 
 const StyledElement = styled.button`
   display: inline-block;

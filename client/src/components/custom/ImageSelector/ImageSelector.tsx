@@ -1,4 +1,4 @@
-import { LoadingWrapper } from 'components/common/Loading/LoadingWrapper';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import { Switch } from 'components/radix/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
@@ -16,6 +16,14 @@ type ImageSelectorProps = {
   readonly onSelectImage: (image: Image | undefined) => void;
 };
 
+/**
+ * Renders an image selector component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.onSelectImage - The callback function to handle image selection.
+ * @returns {JSX.Element} The rendered ImageSelector component.
+ */
 export const ImageSelector = ({
   onSelectImage,
 }: ImageSelectorProps): JSX.Element => {

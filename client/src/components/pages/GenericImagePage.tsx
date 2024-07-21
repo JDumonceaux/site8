@@ -1,10 +1,11 @@
-import { Suspense, useDeferredValue, useEffect } from 'react';
-import { styled } from 'styled-components';
-
-import { LoadingWrapper, Meta, PageTitle } from 'components';
+import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import Meta from 'components/common/Meta/Meta';
+import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import SubjectMenu from 'components/ui/GenericPage/SubjectMenu';
 import { useAxios } from 'hooks/Axios';
+import { Suspense, useDeferredValue, useEffect } from 'react';
+import { styled } from 'styled-components';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';
 import { ServiceUrl } from 'utils';

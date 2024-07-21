@@ -1,7 +1,7 @@
-import { styled, keyframes } from 'styled-components';
-import { LinkButton } from '../LinkButton';
+import { keyframes, styled } from 'styled-components';
+import LinkButton from '../LinkButton/LinkButton';
 
-export const CircleMenuAnimation = (): JSX.Element => {
+const CircleMenuAnimation = (): JSX.Element => {
   return (
     <>
       <Button1 to="/react">React</Button1>
@@ -17,6 +17,8 @@ export const CircleMenuAnimation = (): JSX.Element => {
     </>
   );
 };
+
+export default CircleMenuAnimation;
 
 const Y_MIDDLE = '50dvh';
 const X_MIDDLE = '50dvw';

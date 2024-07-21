@@ -1,13 +1,12 @@
-import { Meta } from 'components';
-import { Button2 } from 'components/form';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import Meta from 'components/common/Meta/Meta';
+import { Button2 } from 'components/form/Button2';
 import useAuth from 'hooks/useAuth';
 import { useCallback, useEffect } from 'react';
-
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { styled } from 'styled-components';
-import { AuthContainer } from './AuthContainer';
+import AuthContainer from './AuthContainer';
 
-export const SignOutpPage = (): JSX.Element => {
+const SignOutpPage = (): JSX.Element => {
   const title = 'Sign-Out';
 
   const { authFetchAuthSession, authSignOut, isLoading, error, authorized } =

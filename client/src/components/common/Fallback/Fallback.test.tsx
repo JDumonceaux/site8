@@ -1,0 +1,27 @@
+import { render, screen } from '@testing-library/react';
+import Fallback from './Fallback';
+
+describe('Fallback', () => {
+  it('renders the loading message', () => {
+    render(<Fallback />);
+    const loadingMessage = screen.getByText('Loading');
+    expect(loadingMessage).toBeInTheDocument();
+  });
+
+  it('renders the correct number of lines', () => {
+    render(<Fallback />);
+    const lines = screen.getAllByTestId('fallback-line');
+    expect(lines).toHaveLength(5);
+  });
+
+  it('applies the correct styling to each line', () => {
+    render(<Fallback />);
+    const lines = screen.getAllByTestId('fallback-line');
+    lines.forEach((line) => {
+      expect(line).toHaveStyle('background: var(--palette-grey-10)');
+      expect(line).toHaveStyle('height: 20px');
+      expect(line).toHaveStyle('width: 100%');
+      expect(line).toHaveStyle('margin-bottom: 5px');
+    });
+  });
+});

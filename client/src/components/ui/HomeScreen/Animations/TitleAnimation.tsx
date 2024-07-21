@@ -1,8 +1,10 @@
-import { styled, keyframes } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 
-export const TitleAnimation = (): JSX.Element => {
+const TitleAnimation = (): JSX.Element => {
   return <TitleElement>React Notes</TitleElement>;
 };
+
+export default TitleAnimation;
 
 const lpcAnimation = keyframes`
  0% { transform: translateY(800px);}
