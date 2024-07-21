@@ -1,31 +1,31 @@
-import { z, Schema } from 'zod';
+import { Schema, z } from 'zod';
 
-interface ParseResult<T> {
+type SafeParseProps<T> = {
   success: boolean;
   data: T | null;
   error: z.ZodError<T> | null;
-  errorFormatted: z.ZodFormattedError<T> | null;
-}
+  formattedError: z.ZodFormattedError<T> | null;
+};
 
+/**
+ * Safely parses the input data using the provided schema.
+ *
+ * @template T - The type of the schema.
+ * @param {Schema<T>} schema - The schema to use for parsing.
+ * @param {Partial<T>} inputData - The input data to be parsed.
+ * @returns {SafeParseProps<T>} - An object containing the parsing result.
+ */
 export const safeParse = <T>(
   schema: Schema<T>,
   inputData: Partial<T>,
-): ParseResult<T> => {
-  const result: ParseResult<T> = {
-    success: false,
-    data: null,
-    error: null,
-    errorFormatted: null,
+): SafeParseProps<T> => {
+  const parsedResult = schema.safeParse(inputData);
+  const { success, data, error } = parsedResult;
+
+  return {
+    success,
+    data: success ? data : null,
+    error: success ? null : error,
+    formattedError: success ? null : error?.format() || null,
   };
-  const parsedData = schema.safeParse(inputData);
-  result.success = parsedData.success;
-
-  if (parsedData.success === false) {
-    result.error = parsedData.error;
-    result.errorFormatted = parsedData.error.format();
-  } else {
-    result.data = parsedData.data;
-  }
-
-  return result;
 };

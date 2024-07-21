@@ -1,33 +1,31 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { isAxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 
+/**
+ * Handles HTTP errors and returns corresponding error messages.
+ *
+ * @param error - The error object to handle.
+ * @returns The error message based on the type of error.
+ * @throws Error if the error is null.
+ */
 export const httpErrorHandler = (
-  error:
-    | {
-        response: any;
-        request: any;
-        config: any;
-        code: string;
-        message: any;
-      }
-    | null
-    | unknown,
-) => {
+  error: AxiosError | null | unknown,
+): string => {
   if (error === null) throw new Error('Unrecoverable error!! Error is null!');
-  if (isAxiosError(error)) {
-    //here we have a type guard check, error inside this if will be treated as AxiosError
-    const response = error?.response;
-    const request = error?.request;
 
-    if (error.code === 'ERR_NETWORK') {
+  if (isAxiosError(error)) {
+    const { response, request, code } = error;
+
+    if (code === 'ERR_NETWORK') {
       return 'Connection problems..';
-    } else if (error.code === 'ERR_CANCELED') {
+    } else if (code === 'ERR_CANCELED') {
       return 'Connection cancelled..';
     }
+
     if (response) {
-      //The request was made and the server responded with a status code that falls out of the range of 2xx the http status code mentioned above
-      const statusCode = response?.status;
-      switch (statusCode) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      const { status } = response;
+      switch (status) {
         case 408:
           return 'Request timed out';
         case 404:
@@ -38,9 +36,14 @@ export const httpErrorHandler = (
           return 'Unknown error occurred...';
       }
     } else if (request) {
-      //The request was made but no response was received, `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in Node.js
+      // The request was made but no response was received
+      return 'No response received from the server';
     }
   }
-  //Something happened in setting up the request and triggered an Error
+
+  // Log unknown errors for debugging
+  console.error('Unhandled error:', error);
+
+  // Something happened in setting up the request and triggered an Error
   return 'Unknown error occurred..';
 };

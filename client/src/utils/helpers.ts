@@ -1,82 +1,84 @@
 import { IMAGE_BASE } from './constants';
 
-export const getURLPath = (url: string) => {
-  if (!url) {
-    return undefined;
-  }
-  return url.split('/').slice(1);
+/**
+ * Splits the given URL into an array of path segments.
+ *
+ * @param url - The URL to split.
+ * @returns An array of path segments or undefined if the URL is empty.
+ */
+export const getURLPath = (url: string): string[] | undefined => {
+  return url ? url.split('/').slice(1) : undefined;
 };
 
-// Convert the parent array to a string
+/**
+ * Combines the `id` and `seq` properties of an array of objects into a comma-separated string.
+ * If the input array is empty or undefined, the function returns '0,0'.
+ *
+ * @param items - An optional array of objects with `id` and `seq` properties.
+ * @returns A string representing the combined `id` and `seq` values, separated by commas.
+ */
 export const combineParent = (
-  items: { id?: number; seq?: number }[] | undefined,
+  items?: { id?: number; seq?: number }[],
 ): string => {
-  if (!items) {
-    return '';
-  }
-  const ret: string[] = [];
-  if (!Array.isArray(items)) {
-    return '0,0';
-  }
-  items.forEach((x) => {
-    if (x.id != undefined) {
-      ret.push(x.id.toString());
-    }
-    if (x.seq != undefined) {
-      ret.push(x.seq.toString());
-    }
-  });
-  return ret.join(',');
+  if (!items) return '';
+  const ret: string[] = items.flatMap((x) =>
+    [x.id, x.seq].filter((v) => v != undefined).map(String),
+  );
+  return ret.length ? ret.join(',') : '0,0';
 };
 
+/**
+ * Splits a string value into an array of objects with `id` and `seq` properties.
+ * The input string should be in the format "id1,seq1,id2,seq2,...".
+ * Returns an array of objects if the input is valid, otherwise returns undefined.
+ *
+ * @param value - The string value to be split.
+ * @returns An array of objects with `id` and `seq` properties, or undefined if the input is invalid.
+ */
 export const splitParent = (
-  value: string | undefined,
+  value?: string,
 ): { id: number; seq: number }[] | undefined => {
-  if (!value) {
-    return undefined;
+  if (!value) return undefined;
+  const items = value.trim().split(',');
+  if (items.length % 2 !== 0) return undefined;
+
+  const result: { id: number; seq: number }[] = [];
+  for (let i = 0; i < items.length; i += 2) {
+    const id = parseInt(items[i]);
+    const seq = parseInt(items[i + 1]);
+    if (!isNaN(id) && !isNaN(seq)) {
+      result.push({ id, seq });
+    }
   }
-  const x = value.trim().length > 0 ? value.trim().split(',') : undefined;
-  if (!x) {
-    return undefined;
-  }
-  return x
-    .map((item, index) => {
-      if (index % 2 === 0) {
-        const id = parseInt(item);
-        const tempValu = !(typeof x[index + 1] === 'undefined')
-          ? x[index + 1]
-          : 0;
-        const seq = tempValu ? parseInt(tempValu) : 0;
-        if (!isNaN(id) && !isNaN(seq)) {
-          return { id, seq };
-        }
-      }
-      return undefined;
-    })
-    .filter(Boolean) as { id: number; seq: number }[];
+  return result.length ? result : undefined;
 };
 
-// Array.isArray(), checks whether its argument is an array.
+/**
+ * Checks if an array is valid (not empty and of type unknown[]).
+ *
+ * @param arr - The array to be checked.
+ * @returns A boolean indicating whether the array is valid or not.
+ */
+// Array.isValidArray(), checks whether its argument is an array.
 // This weeds out values like null,
 // undefined and anything else that is not an array.
 // arr.length condition checks whether the
 // variable's length property evaluates to a truthy value.
-export const isValidArray = (arr: unknown[] | undefined | null) => {
-  if (!Array.isArray(arr) || !arr.length) {
-    return false;
-  }
-  return true;
+export const isValidArray = (arr: unknown[] | undefined | null): boolean => {
+  return Array.isArray(arr) && arr.length > 0;
 };
 
+/**
+ * Returns the source URL for an image file based on the provided folder and file name.
+ * @param folder - The folder where the image file is located (optional).
+ * @param fileName - The name of the image file.
+ * @returns The source URL of the image file.
+ */
 export const getSRC = (
-  folder: string | undefined,
-  fileName: string | undefined,
+  folder?: string,
+  fileName?: string,
 ): string | undefined => {
-  if (!fileName || fileName.trim().length === 0) {
-    return undefined;
-  }
-  const tempFolder =
-    folder && folder.trim().length > 0 ? '/' + folder.trim() : '';
-
-  return IMAGE_BASE + tempFolder + '/' + fileName.trim();
+  if (!fileName || !fileName.trim().length) return undefined;
+  const tempFolder = folder?.trim() ? `/${folder.trim()}` : '';
+  return `${IMAGE_BASE}${tempFolder}/${fileName.trim()}`;
 };

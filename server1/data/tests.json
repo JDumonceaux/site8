@@ -532,6 +532,33 @@
       "name": "npm prune",
       "text": "Remove unused packages",
       "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "page",
+      "id": 542,
+      "type": "performance",
+      "name": "Cumulative Layout Shift (CLS)",
+      "text": "visual stability of a page as it loads",
+      "goal": "0.1 or lower",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "id": 543,
+      "type": "performance",
+      "name": "Interaction to Next Paint (INP)",
+      "text": "measures user interface responsiveness.  replaces First Input Delay (FID) ",
+      "goal": "200ms or less",
+      "projectType": ["react"]
+    },
+    {
+      "level": "page",
+      "id": 544,
+      "type": "performance",
+      "name": "Largest Contentful Paint (LCP)",
+      "text": "time between the browser starting to load a page and the largest content element appearing",
+      "goal": "2.5 seconds or less",
+      "projectType": ["react"]
     }
   ]
 }

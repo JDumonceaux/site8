@@ -1,16 +1,21 @@
-import type { ReportCallback } from 'web-vitals/dist/modules/types';
+import { MetricType } from 'web-vitals';
 
-const reportWebVitals = (onPerfEntry?: ReportCallback) => {
-  if (onPerfEntry && onPerfEntry instanceof Function) {
-    // eslint-disable-next-line promise/catch-or-return, promise/always-return
-    import('web-vitals').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
+/**
+ * Reports web vitals by importing the 'web-vitals' library and calling the provided callback functions.
+ * @param onPerfEntry - The callback function to be called with the metric data.
+ */
+const reportWebVitals = (onPerfEntry: (metric: MetricType) => void) => {
+  import('web-vitals')
+    .then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
       onCLS(onPerfEntry);
-      onFID(onPerfEntry);
+      onINP(onPerfEntry);
       onFCP(onPerfEntry);
       onLCP(onPerfEntry);
       onTTFB(onPerfEntry);
+    })
+    .catch((error) => {
+      console.error('Error importing web-vitals:', error);
     });
-  }
 };
 
 export default reportWebVitals;
