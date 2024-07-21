@@ -1,66 +1,56 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/appSlice';
 import { AppDispatch, RootState } from 'store/store';
 import { Snackbar } from 'types/Snackbar';
 
+const initialState: Snackbar = {
+  isOpen: false,
+  openDurationMs: 0,
+  contents: null,
+};
+
+/**
+ * Custom hook for managing a snackbar.
+ * @returns An object containing snackbar data, setMessage function, and closeSnackbar function.
+ */
 const useSnackbar = () => {
   const dispatch = useDispatch<AppDispatch>();
-
-  const selector = (state: RootState) => state.snackbar;
-  const data: Snackbar | null = useSelector(selector).data;
-
-  const initialState: Snackbar = useMemo(
-    () => ({
-      isOpen: false,
-      openDurationMs: 0,
-      contents: null,
-    }),
-    [],
-  );
-
-  const updateSnackbarDispatch = useCallback(
-    (data: Snackbar) => {
-      dispatch(save(data));
-    },
-    [dispatch],
+  const data: Snackbar | null = useSelector(
+    (state: RootState) => state.snackbar.data,
   );
 
   const updateSnackbar = useCallback(
     (data: Snackbar) => {
+      dispatch(save(data));
       if (data.isOpen && data.openDurationMs) {
         setTimeout(() => {
-          updateSnackbarDispatch(initialState);
+          dispatch(save(initialState));
         }, data.openDurationMs);
       }
-
-      updateSnackbarDispatch(data);
     },
-    [updateSnackbarDispatch, initialState],
+    [dispatch],
   );
 
-  const setSnackbarMessage = useCallback(
-    (contents: Snackbar['contents']) => {
+  const setMessage = useCallback(
+    (contents: Snackbar['contents'], duration = 5000) => {
       updateSnackbar({
         isOpen: true,
-        openDurationMs: 5000,
+        openDurationMs: duration,
         contents,
       });
     },
     [updateSnackbar],
   );
 
-  const closeSnackbar = () => {
-    updateSnackbarDispatch({
-      isOpen: false,
-      contents: null,
-    });
-  };
+  const close = useCallback(() => {
+    updateSnackbar(initialState);
+  }, [updateSnackbar]);
 
   return {
     snackbarData: data,
-    setSnackbarMessage,
-    closeSnackbar,
+    setMessage,
+    closeSnackbar: close,
   };
 };
 
