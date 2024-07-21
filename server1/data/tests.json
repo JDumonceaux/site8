@@ -491,6 +491,47 @@
       "text": "",
       "goal": "1 per function",
       "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 538,
+      "type": "maintenance",
+      "name": "npm doctor",
+      "text": "Validate npm environment",
+      "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 538,
+      "type": "maintenance",
+      "name": "npm dedupe",
+      "text": "Consolidate package tree",
+      "projectType": ["react", "nodejs"]
+    },
+
+    {
+      "level": "project",
+      "id": 539,
+      "type": "maintenance",
+      "name": "npm audit",
+      "text": "Check for package vulnerabilities",
+      "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 540,
+      "type": "maintenance",
+      "name": "npm outdated",
+      "text": "Check for package updates",
+      "projectType": ["react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 541,
+      "type": "maintenance",
+      "name": "npm prune",
+      "text": "Remove unused packages",
+      "projectType": ["react", "nodejs"]
     }
   ]
 }

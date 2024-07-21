@@ -2740,19 +2740,6 @@
       "hasFile": true
     },
     {
-      "id": 11,
-      "name": "Choosing a CSS Platform",
-      "parentItems": [
-        {
-          "id": 40,
-          "seq": 3
-        }
-      ],
-      "to": "choosing-a-css-platform",
-      "type": "page",
-      "hasFile": true
-    },
-    {
       "id": 118,
       "name": "Standard",
       "parentItems": [
@@ -3680,6 +3667,71 @@
         }
       ],
       "to": "code-smells",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 179,
+      "name": "npm dedupe",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "to": "npm-dedupe",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 180,
+      "name": "npm Dedupe",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "to": "npm-dedupe",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 186,
+      "name": "npm doctor",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "to": "npm-doctor",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 187,
+      "name": "npm prune",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 0
+        }
+      ],
+      "to": "npm-prune",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 11,
+      "name": "Choosing a CSS Platform",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 3
+        }
+      ],
+      "to": "choosing-a-css-platform",
       "type": "page",
       "file": true
     }

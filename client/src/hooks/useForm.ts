@@ -117,6 +117,7 @@ export const useForm = <T>(initialValues: T) => {
       setErrors,
       setIsSaved,
       setIsProcessing,
+      setFormValues,
     }),
     [
       formValues,
@@ -133,6 +134,7 @@ export const useForm = <T>(initialValues: T) => {
       handleReset,
       getDefaultFields,
       getDefaultPasswordFields,
+      setFormValues,
     ],
   );
 };

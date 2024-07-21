@@ -44,16 +44,61 @@ export class MenuService {
     return new PagesService().getItems();
   }
 
+  //  2. Add children to the menu
+  private getPages(
+    items?: ReadonlyArray<MenuItem>,
+    pages?: ReadonlyArray<PageMenu>,
+  ) {
+    try {
+      if (!items || items.length === 0 || !pages || pages.length === 0) {
+        return items;
+      }
+      const ret: MenuItem[] = [];
+      items.forEach((item) => {
+        // Add current parent
+        ret.push(item);
+
+        const p = pages.filter((page) => {
+          page.parentItems?.some((x) => x.id === item.id);
+        });
+
+        const ret2: MenuItem[] = [];
+        // Find the children of the root menu
+        p.forEach((x) => {
+          x.parentItems?.forEach((parent) => {
+            if (item.id === parent.id) {
+              ret2.push(mapPageMenuToMenuItem(x, parent));
+            }
+          });
+        });
+        // Sort items
+        const sorted =
+          item.parentItem?.sortBy === 'seq'
+            ? ret2.toSorted(
+                (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
+              )
+            : ret2.toSorted((a, b) => a.name.localeCompare(b.name));
+        // Add to return
+        ret.push(...sorted);
+      });
+      return ret;
+    } catch (error) {
+      Logger.error(`MenuService: getPages --> Error: ${error}`);
+      throw error;
+    }
+  }
+
   // 1. Get built menu
   private buildMenu(items?: ReadonlyArray<PageMenu>): MenuItem[] | undefined {
     try {
       if (!items) {
         return undefined;
       }
-
+      // Segment the data
       const rootMenus = items.filter((x) => x.type === 'root');
       const menus = items.filter((x) => x.type === 'menu');
       const pages = items.filter((x) => x.type === 'page');
+
       const defaultParent = {
         id: 0,
         seq: 0,
@@ -83,14 +128,17 @@ export class MenuService {
         });
         // Sort the menu items as specified by parent
         const sorted =
-          item.parentItem?.sortBy === 'name'
-            ? ret2.toSorted((a, b) => a.name.localeCompare(b.name))
-            : ret2.toSorted(
+          item.parentItem?.sortBy === 'seq'
+            ? ret2.toSorted(
                 (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
-              );
+              )
+            : ret2.toSorted((a, b) => a.name.localeCompare(b.name));
         // Add the menu items to the return array
-        arr.push(...sorted);
+        arr.push(...(sorted || []));
       });
+
+      // Add the page items to the return array
+      const menusPlusPages = this.getPages(arr, pages) || [];
 
       // Add in orphans
       const menuOrphans = menus
@@ -102,7 +150,10 @@ export class MenuService {
         .map((x) => ({ ...x, issue: 'no parent' }))
         .map((x) => mapPageMenuToMenuItem(x, defaultParent));
 
-      const ret: MenuItem[] = arr.concat(...menuOrphans, ...pageOrphans);
+      const ret: MenuItem[] = menusPlusPages?.concat(
+        ...menuOrphans,
+        ...pageOrphans,
+      );
 
       return ret.length > 0 ? ret : undefined;
     } catch (error) {

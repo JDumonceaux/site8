@@ -71,7 +71,6 @@ const usePageEdit = () => {
     setIsProcessing,
     getFieldErrors,
     setFormValues,
-    setInitialFormValues,
   } = useForm<FormType>(initialFormValues);
 
   // Map page to form type
@@ -101,9 +100,8 @@ const usePageEdit = () => {
     const values = mapPageToFormType(data);
     if (values) {
       setFormValues(values);
-      setInitialFormValues(values);
     }
-  }, [data, mapPageToFormType, setFormValues, setInitialFormValues]);
+  }, [data, mapPageToFormType, setFormValues]);
 
   const fetchItem = useCallback(
     (id: number) => {

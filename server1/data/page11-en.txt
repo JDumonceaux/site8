@@ -1,3 +1,33 @@
+The standard input field or button just doesn't cut it when it comes to style: everyone wants to tweak the style to fit their website.  You have a few of choices in your approach to styling your site:
+
+<ol>
+<li>Component Libraries: Download and use a component library (ex. Material UI/MUI or Bootstrap).   These give you a library of the top 20-30 most commonly used components to drop into your site: Buttons, inputs, accordions, tables, etc.  These are all nicely designed, consistent, and extremely well-tested.  Usually, you have some method to easily change some colors, but not much else. Unfortunately, no one is ever happy with these libraries - especially UI designers.   Inevitably, you spend a lot of effort and time overriding and creating new versions.  (I was on a project that started with Material UI.  By the end, 90% of the code was overridden.)</li>
+<li>Start from scratch: You can create your own component library from basic HTML elements.   This is a lot of work - far more than you would estimate it would take.</li>
+<li>Use Unstyled Component Libraries. This gives you a head-start - especially on more complex components such as accordions and date pickers - without getting into a CSS mess.  I recommend that you slowly create your own component library: don't try to create a complete library - just what you need at the moment. Then add to it as you learn your requirements.</li>  
+</ol>  
+
+<h2>Unstyled Component Libraries</h2>
+
+<h3>Hook Based</h3>
+<ul>
+<li>React ARIA</li>
+<li>Downshift Library</li>
+<li>Base UI - from Material UI (hook and component versions)</li>
+</ul>
+
+
+<h3>Component Based</h3>
+<ul>
+<li>Radix (*)</li>
+<li>React ARIA</li>
+<li>Base UI - from Material UI (hook and component versions)</li>
+<li>Headless UI (by Tailwind)</li>
+<li>Reach UI</li>
+</ul>
+
+Radix allows you to import single elements vs. an entire component library.
+
+
 <h2>Bootstrap</h2>
 
 <ul>
@@ -40,6 +70,16 @@
 <li>Component focused</li>
 </ul>
 
+<h2>Material UI - MUI</h2>
+
+<h2>Matine</h2>
+
+<h2>Chakra</h2>
+
+<h2>React Select Library</h2>
+
+
+<a href="https://www.youtube.com/watch?v=yn6vFCRkC3c">Kyle - Unstyled Components</a>
 
 
 

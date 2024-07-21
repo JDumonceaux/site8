@@ -42,7 +42,7 @@ const PageEditPage = (): JSX.Element => {
   const [currPositionEnd, setCurrPositionEnd] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { setSnackbarMessage } = useSnackbar();
+  const { setMessage } = useSnackbar();
 
   // Set the id from the parameters if present
   useEffect(() => {
@@ -167,7 +167,7 @@ const PageEditPage = (): JSX.Element => {
       e.stopPropagation();
       e.preventDefault();
       if (validateForm()) {
-        setSnackbarMessage('Saving...');
+        setMessage('Saving...');
         setIsModalOpen(true);
         startTransition(() => {
           handleSave();
@@ -175,12 +175,12 @@ const PageEditPage = (): JSX.Element => {
         setIsModalOpen(false);
       }
     },
-    [validateForm, setSnackbarMessage, handleSave],
+    [validateForm, setMessage, handleSave],
   );
 
   useEffect(() => {
-    setSnackbarMessage(!error ? 'Saved' : 'Error');
-  }, [error, setSnackbarMessage]);
+    setMessage(!error ? 'Saved' : 'Error');
+  }, [error, setMessage]);
 
   const handeOnBlur = useCallback(() => {
     if (formValues.name.length > 0 && formValues.to?.length === 0) {

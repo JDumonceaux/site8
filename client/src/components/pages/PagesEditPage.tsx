@@ -94,7 +94,7 @@ const PagesEditPage = (): JSX.Element => {
               ) : null}
             </td>
             <td>
-              {item.type} {item.issue ? 'I' : null}
+              {item.type} {item.issue ? '-I' : null} -{item.localId}
             </td>
           </StyledTr>
         </React.Fragment>
