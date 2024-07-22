@@ -7,7 +7,7 @@ import { useAxios } from 'hooks/Axios';
 import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types/Page';
-import { ServiceUrl } from 'utils';
+import { ServiceUrl } from 'utils/constants';
 
 type TikTokPageProps = {
   readonly title?: string;

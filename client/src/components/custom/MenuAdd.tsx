@@ -10,7 +10,7 @@ import { startTransition, useCallback } from 'react';
  * @returns The JSX element representing the MenuAdd component.
  */
 const MenuAdd = (): JSX.Element => {
-  const { setSnackbarMessage } = useSnackbar();
+  const { setMessage } = useSnackbar();
 
   const {
     handleChange,
@@ -27,15 +27,15 @@ const MenuAdd = (): JSX.Element => {
       e.stopPropagation();
       e.preventDefault();
       if (validateForm()) {
-        setSnackbarMessage('Saving...');
+        setMessage('Saving...');
         startTransition(() => {
           submitForm();
           clearForm();
-          setSnackbarMessage('Saved');
+          setMessage('Saved');
         });
       }
     },
-    [validateForm, setSnackbarMessage, submitForm, clearForm],
+    [validateForm, setMessage, submitForm, clearForm],
   );
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -17,7 +17,7 @@ const initialState: ImageState = {
 
 const controller = new AbortController();
 
-export const fetchImages = createAsyncThunk('image/fetchImages', async () => {
+const fetchImages = createAsyncThunk('image/fetchImages', async () => {
   const response = await axios.get<Images>(ServiceUrl.ENDPOINT_IMAGES_SCAN, {
     responseType: 'json',
     signal: controller.signal,
@@ -46,4 +46,5 @@ const ImageSlice = createSlice({
   },
 });
 
+export { fetchImages };
 export default ImageSlice.reducer;

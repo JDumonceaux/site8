@@ -37,20 +37,6 @@ menuRouter.get('/edit', async (_req: Request, res: Response) => {
   }
 });
 
-menuRouter.get('/abbr', async (_req: Request, res: Response) => {
-  try {
-    const ret = await new MenuService().getMenuAbbr();
-    if (ret) {
-      res.status(200).json(ret);
-    } else {
-      res.status(204).json({ error: Errors.NO_CONTENT });
-    }
-  } catch (error) {
-    Logger.error(`menuRouter: getAbbr -> Error: ${error}`);
-    res.status(500).json({ error: Errors.SERVER_ERROR });
-  }
-});
-
 // Add item
 menuRouter.post('/', async (req: Request, res: Response) => {
   Logger.info(`menuRouter: post ->`);

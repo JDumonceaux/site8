@@ -5,7 +5,6 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import Meta from 'components/common/Meta/Meta';
 import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import HTMLMenu from 'components/custom/PageEditPage/HTMLMenu';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import useMenu from 'hooks/useMenu';
@@ -72,6 +71,20 @@ const PageEditPage = (): JSX.Element => {
     const arr = value.split('\n');
     return arr.map((x) => '<li>' + x + '</li>').join('\n');
   }, []);
+
+  // const htmlTemplates: { [key: string]: string, value: string } = {
+  //   ul: `<ul>\n${parseString(value)}\n</ul>`,
+  //   ol: `<ol>\n${parseString(value)}\n</ol>`,
+  //   code: `<pre><code>${value}\n</code></pre>`,
+  //   h2: `<h2>${value}</h2>\n`,
+  //   link: `<a href="">${value}</a>\n`,
+  //   abbr: `<abbr title="">${value}</abbr>`,
+  //   q: `<q>${value}</q>`,
+  //   s: `<s>${value}</s>`,
+  //   mark: `<mark>${value}</mark>`,
+  //   sup: `<sup>${value}</sup>`,
+  //   sub: `<sub>${value}</sub>`,
+  // };
 
   const handleInsert = useCallback(
     (action: string) => {
@@ -334,20 +347,7 @@ const PageEditPage = (): JSX.Element => {
                 type="text"
                 value={formValues.parent}
               />
-              <StyledLine>
-                <Field>
-                  <label htmlFor="options">Menu</label>
-                  <select>
-                    <option value="">Select a menu</option>
-                    {menuItems.map((value) => (
-                      <option key={value.id} value={value.id}>
-                        {value.name} - {value.id}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <HTMLMenu onClick={handleInsert} />
-              </StyledLine>
+
               <TextArea
                 errorText={getFieldErrors('text')}
                 hasError={hasError('text')}

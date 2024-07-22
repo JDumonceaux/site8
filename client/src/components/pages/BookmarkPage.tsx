@@ -6,7 +6,7 @@ import { BookmarkTags } from 'components/custom/BookmarksTags';
 import { useAxios } from 'hooks/Axios';
 import { useDeferredValue, useEffect } from 'react';
 import { BookmarksTags } from 'types';
-import { ServiceUrl } from 'utils';
+import { ServiceUrl } from 'utils/constants';
 
 const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';

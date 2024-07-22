@@ -1,7 +1,7 @@
 import Meta from 'components/common/Meta/Meta';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import HomeScreen5 from 'components/ui/HomeScreen/HomeScreen5';
-import { APP_NAME } from 'utils';
+import { APP_NAME } from 'utils/constants';
 
 const HomePage = (): JSX.Element => {
   const title = `${APP_NAME} - Home`;

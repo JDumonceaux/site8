@@ -1,6 +1,6 @@
 import axios, { isCancel } from 'axios';
 import { useEffect, useState } from 'react';
-import { AcceptHeader, PreferHeader } from 'utils';
+import { AcceptHeader, PreferHeader } from 'utils/constants';
 import { httpErrorHandler } from 'utils/errorHandler';
 
 export const useGraphQL = <T>(url?: string) => {

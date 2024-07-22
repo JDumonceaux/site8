@@ -10,7 +10,7 @@ import { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Page } from 'types';
-import { ServiceUrl } from 'utils';
+import { ServiceUrl } from 'utils/constants';
 
 type GenericPageProps = {
   readonly title?: string;

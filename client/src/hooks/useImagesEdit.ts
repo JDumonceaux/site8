@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image } from 'types/Image';
-import { ServiceUrl } from 'utils';
-import { z } from 'zod';
-
 import { Images } from 'types';
+import { Image } from 'types/Image';
 import { ImageEdit } from 'types/ImageEdit';
 import { getSRC } from 'utils/helpers';
+import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
+import { ServiceUrl } from 'utils/constants';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -170,8 +169,8 @@ const useImagesEdit = () => {
             : prev?.official_url,
           folder: tempFolder.hasChange ? tempFolder.value : prev?.folder,
           fileName: tempFileName.hasChange
-            ? tempFileName.value ?? ''
-            : prev?.fileName ?? '',
+            ? (tempFileName.value ?? '')
+            : (prev?.fileName ?? ''),
         });
       }
     });

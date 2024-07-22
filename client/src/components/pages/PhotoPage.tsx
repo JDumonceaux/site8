@@ -5,7 +5,7 @@ import StyledMain from 'components/common/StyledMain/StyledMain';
 import { useAxios } from 'hooks/Axios';
 import { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';
-import { ServiceUrl } from 'utils';
+import { ServiceUrl } from 'utils/constants';
 
 const PhotoPage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useAxios<Photos>();

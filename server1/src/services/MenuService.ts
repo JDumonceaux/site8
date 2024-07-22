@@ -221,9 +221,4 @@ export class MenuService {
     // Write to file
     return new PagesService().writeFile(newData);
   }
-
-  // 0 Get Menu Abbr
-  public async getMenuAbbr(): Promise<unknown[] | undefined> {
-    return undefined;
-  }
 }

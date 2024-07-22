@@ -17,7 +17,7 @@ const initialState: MenuState = {
 
 const controller = new AbortController();
 
-export const fetchMenu = createAsyncThunk('menu/fetchMenu', async () => {
+const fetchMenu = createAsyncThunk('menu/fetchMenu', async () => {
   const response = await axios.get<Menu>(ServiceUrl.ENDPOINT_MENUS, {
     responseType: 'json',
     signal: controller.signal,
@@ -46,4 +46,5 @@ const MenuSlice = createSlice({
   },
 });
 
+export { fetchMenu };
 export default MenuSlice.reducer;

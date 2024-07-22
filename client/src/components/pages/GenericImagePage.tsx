@@ -8,7 +8,7 @@ import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';
-import { ServiceUrl } from 'utils';
+import { ServiceUrl } from 'utils/constants';
 import { getSRC } from 'utils/helpers';
 
 const GenericImagePage = (): JSX.Element => {
