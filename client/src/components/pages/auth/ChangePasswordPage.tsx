@@ -8,8 +8,8 @@ import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
+import { AuthContainer } from './AuthContainer';
 import { password } from './ZodStrings';
-import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
 const schema = z

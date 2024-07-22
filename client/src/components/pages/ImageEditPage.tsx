@@ -28,21 +28,21 @@ const ImageEditImage = (): JSX.Element => {
     handleChangeImage,
   } = useImageEdit(params.id);
 
-  const { setSnackbarMessage } = useSnackbar();
+  const { setMessage } = useSnackbar();
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      setSnackbarMessage('Saving...');
+      setMessage('Saving...');
       const result = submitForm();
       if (result) {
-        setSnackbarMessage('Saved');
+        setMessage('Saved');
       } else {
-        setSnackbarMessage(`Error saving ${error}`);
+        setMessage(`Error saving ${error}`);
       }
     },
-    [submitForm, error, setSnackbarMessage],
+    [submitForm, error, setMessage],
   );
 
   const handleSelectImage = useCallback(

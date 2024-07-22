@@ -14,9 +14,10 @@ import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { styled } from 'styled-components';
 
 const ImagesEditPage = (): JSX.Element => {
+  const title = 'Edit Images';
   const [isPending, startTransition] = useTransition();
   const [currFolder, setCurrFolder] = useState<string>('');
-
+  const { setMessage } = useSnackbar();
   const { data: imageFolders } = useImageFolder();
   const {
     data,
@@ -29,46 +30,45 @@ const ImagesEditPage = (): JSX.Element => {
     setFieldValue,
     getFieldValue,
   } = useImagesEdit();
-  const { setSnackbarMessage } = useSnackbar();
 
   useEffect(() => {
     fetchItems();
   }, [fetchItems]);
 
   const handleRefresh = useCallback(() => {
-    setSnackbarMessage('Updating...');
+    setMessage('Updating...');
     startTransition(() => {
       fetchItems();
     });
-    setSnackbarMessage('Done');
-  }, [fetchItems, setSnackbarMessage]);
+    setMessage('Done');
+  }, [fetchItems, setMessage]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      setSnackbarMessage('Saving...');
+      setMessage('Saving...');
 
       const result = submitForm();
       if (result) {
-        setSnackbarMessage('Saved');
+        setMessage('Saved');
       } else {
-        setSnackbarMessage(`Error saving ${error}`);
+        setMessage(`Error saving ${error}`);
       }
       if (result) {
         handleRefresh();
       }
     },
-    [setSnackbarMessage, submitForm, handleRefresh, error],
+    [setMessage, submitForm, handleRefresh, error],
   );
 
   const handleScan = useCallback(() => {
-    setSnackbarMessage('Scanning...');
+    setMessage('Scanning...');
     startTransition(() => {
       scanForNewItems();
     });
-    setSnackbarMessage('Done');
-  }, [scanForNewItems, setSnackbarMessage, startTransition]);
+    setMessage('Done');
+  }, [scanForNewItems, setMessage, startTransition]);
 
   const handleOnClick = useCallback((value: string) => {
     setCurrFolder((prev) => (prev === value ? '' : value));
@@ -88,8 +88,6 @@ const ImagesEditPage = (): JSX.Element => {
     },
     [currFolder, setFieldValue],
   );
-
-  const title = 'Edit Images';
 
   return (
     <>
