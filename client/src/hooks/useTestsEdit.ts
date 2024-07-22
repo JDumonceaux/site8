@@ -25,9 +25,8 @@ type FormType = z.infer<typeof pageSchema>;
 type keys = keyof FormType;
 
 const useTestsEdit = () => {
-  const { data, fetchData, isLoading, error } = useAxios<Tests>();
+  const { data, fetchData, isLoading, error, patchData } = useAxios<Tests>();
   const [localItems, setLocalItems] = useState<Test[] | undefined>();
-  const { patchData } = useAxios<Tests>();
 
   // Create a form
   const {

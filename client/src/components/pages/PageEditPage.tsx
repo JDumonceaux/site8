@@ -5,6 +5,7 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import Meta from 'components/common/Meta/Meta';
 import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import HTMLMenu from 'components/custom/PageEditPage/HTMLMenu';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import useMenu from 'hooks/useMenu';
@@ -347,7 +348,7 @@ const PageEditPage = (): JSX.Element => {
                 type="text"
                 value={formValues.parent}
               />
-
+              <HTMLMenu onClick={handleInsert} />
               <TextArea
                 errorText={getFieldErrors('text')}
                 hasError={hasError('text')}

@@ -58,26 +58,22 @@ export class MenuService {
         // Add current parent
         ret.push(item);
 
-        const p = pages.filter((page) => {
-          page.parentItems?.some((x) => x.id === item.id);
-        });
-
-        const ret2: MenuItem[] = [];
-        // Find the children of the root menu
-        p.forEach((x) => {
+        const p: MenuItem[] = [];
+        pages.forEach((x) => {
           x.parentItems?.forEach((parent) => {
             if (item.id === parent.id) {
-              ret2.push(mapPageMenuToMenuItem(x, parent));
+              p.push(mapPageMenuToMenuItem(x, parent));
             }
           });
         });
+
         // Sort items
         const sorted =
           item.parentItem?.sortBy === 'seq'
-            ? ret2.toSorted(
+            ? p.toSorted(
                 (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
               )
-            : ret2.toSorted((a, b) => a.name.localeCompare(b.name));
+            : p.toSorted((a, b) => a.name.localeCompare(b.name));
         // Add to return
         ret.push(...sorted);
       });

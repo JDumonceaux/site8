@@ -50,4 +50,7 @@ const StyledSubMenu = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: left;
+  button {
+    margin-right: 0.5rem;
+  }
 `;

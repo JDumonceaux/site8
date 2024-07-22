@@ -1,0 +1,24 @@
+So, how do deal with bugs?  Don't create any.  
+
+Bugs are inevitable.  But the good news is that they're getting easier to avoid: there are more and more tools to check and validate the code.
+
+<h2>Causes</h2>
+
+<ul>
+<li>Coding errors</li>
+<li>Requirement errors</li>
+<li>Data</li>
+<li>Outside libraries</li>
+<li>Misunderstanding what something does</li>
+<li>Forgetting "gotcha" rules</li>
+</ul>
+
+<h2>Solutions<h2>
+
+<ul>
+<li>Linters - linters enforce consistency in the code - making it easier to find items that are out-of-place</li>
+<li>Validation tools (code smells) </li>
+<li>Chat GPT - Asking Chat GPT to check code for "code smells" or to improve the code can help bring it to a new level</li>
+<li>Unit testing</li>
+<li>SOLID - keeping code very simple and small helps with testing and re-use</li>
+</ul>

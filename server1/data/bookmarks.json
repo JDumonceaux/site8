@@ -425,6 +425,13 @@
       "description": "Dependency size",
       "url": "https://bundlephobia.com/",
       "tags": ["Utilities"]
+    },
+    {
+      "id": 58,
+      "name": "FakeStore API",
+      "description": "Fake store rest API for your e-commerce or shopping website prototype",
+      "url": "https://fakestoreapi.com/",
+      "tags": ["Mock Data"]
     }
   ]
 }
