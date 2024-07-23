@@ -1,7 +1,7 @@
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import Meta from 'components/common/Meta/Meta';
 import { Button2 } from 'components/form/Button2';
 import { PasswordField } from 'components/form/input/PasswordField';
+import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { useCallback, useId, useMemo } from 'react';
@@ -14,6 +14,7 @@ import { password } from './ZodStrings';
 // Define Zod Shape
 const schema = z
   .object({
+    // eslint-disable-next-line object-shorthand
     password: password,
     newPassword: password,
     confirmPassword: password,

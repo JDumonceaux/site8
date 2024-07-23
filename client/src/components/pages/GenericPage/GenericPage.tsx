@@ -1,9 +1,9 @@
 import Fallback from 'components/common/Fallback/Fallback';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import Meta from 'components/common/Meta/Meta';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import RenderHtml from 'components/pages/GenericPage/RenderHtml';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
+import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios';
 import { Suspense, useDeferredValue, useEffect, useState } from 'react';

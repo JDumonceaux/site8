@@ -1,8 +1,8 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import Meta from 'components/common/Meta/Meta';
-import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
+import Meta from 'components/ui/Meta/Meta';
+import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios';
 import { Suspense, useEffect } from 'react';
 import { styled } from 'styled-components';

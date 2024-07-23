@@ -1,5 +1,5 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import { Switch } from 'components/radix/Switch';
+import { Switch } from 'components/ui/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
 import React, {

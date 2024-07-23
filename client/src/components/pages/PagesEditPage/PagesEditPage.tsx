@@ -1,12 +1,12 @@
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import Meta from 'components/common/Meta/Meta';
-import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
 import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
-import { Switch } from 'components/radix/Switch';
+import Meta from 'components/ui/Meta/Meta';
+import PageTitle from 'components/ui/PageTitle/PageTitle';
+import { Switch } from 'components/ui/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import usePagesEdit from 'hooks/usePagesEdit';
 import React, { useCallback, useEffect } from 'react';

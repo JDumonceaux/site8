@@ -1,4 +1,3 @@
-import Meta from 'components/common/Meta/Meta';
 import { Button2 } from 'components/form/Button2';
 import { EmailField, TextInput } from 'components/form/input';
 import useAuth from 'hooks/useAuth';
@@ -9,6 +8,7 @@ import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import { authCode } from './ZodStrings';
+import Meta from 'components/ui/Meta/Meta';
 
 // Define Zod Shape
 const schema = z.object({

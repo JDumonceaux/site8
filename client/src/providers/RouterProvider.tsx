@@ -30,9 +30,13 @@ const GenericPage = lazy(
 const GenericImagePage = lazy(
   () => import('components/pages/GenericImagePage'),
 );
-const ImageEditPage = lazy(() => import('components/pages/ImageEditPage'));
-const ImagesEditPage = lazy(() => import('components/pages/ImagesEditPage'));
-const Home = lazy(() => import('components/pages/HomePage'));
+const ImageEditPage = lazy(
+  () => import('components/pages/ImageEditPage/ImageEditPage'),
+);
+const ImagesEditPage = lazy(
+  () => import('components/pages/ImagesEditPage/ImagesEditPage'),
+);
+const Home = lazy(() => import('components/pages/HomePage/HomePage'));
 const NotFound = lazy(() => import('components/pages/site/NotFoundPage'));
 const PageEditPage = lazy(
   () => import('components/pages/PageEditPage/PageEditPage'),
@@ -41,12 +45,13 @@ const PagesEditPage = lazy(
   () => import('components/pages/PagesEditPage/PagesEditPage'),
 );
 const PhotoPage = lazy(() => import('components/pages/PhotoPage'));
-
 const Sitemap = lazy(() => import('components/pages/site/SitemapPage'));
 const TikTokPage = lazy(() => import('components/pages/TikTokPage'));
 const YachtsPage = lazy(() => import('components/pages/YachtsPage'));
 const TestsPage = lazy(() => import('components/pages/TestsPage'));
-const TestsEditPage = lazy(() => import('components/pages/TestsEditPage'));
+const TestsEditPage = lazy(
+  () => import('components/pages/TestEditPage/TestsEditPage'),
+);
 // Site Pages
 const TermsOfUsePage = lazy(
   () => import('components/pages/site/TermsOfUsePage'),

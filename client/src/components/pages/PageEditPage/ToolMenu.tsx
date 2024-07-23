@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 
 type ToolMenuProps = {
@@ -13,36 +13,40 @@ type ToolMenuProps = {
  * @param {Function} props.onClick - The click event handler for the menu buttons.
  * @returns {JSX.Element} The ToolMenu component.
  */
-const ToolMenu = ({ onClick }: ToolMenuProps): JSX.Element => {
-  const buttons = [
-    { label: 'Code', value: 'code', testId: 'insert-code' },
-    { label: 'H2', value: 'h2', testId: 'insert-h2' },
-    { label: 'Link', value: 'link', testId: 'insert-link' },
-    { label: 'UL', value: 'ul', testId: 'insert-ul' },
-    { label: 'OL', value: 'ol', testId: 'insert-ol' },
-    { label: 'abbr', value: 'abbr', testId: 'insert-abbr' },
-    { label: 'q', value: 'q', testId: 'insert-q' },
-    { label: 's', value: 's', testId: 'insert-s' },
-    { label: 'mark', value: 'mark', testId: 'insert-mark' },
-    { label: 'sup', value: 'sup', testId: 'insert-sup' },
-    { label: 'sub', value: 'sub', testId: 'insert-sub' },
-  ];
+const ToolMenu = forwardRef<HTMLDivElement, ToolMenuProps>(
+  ({ onClick }, ref): JSX.Element => {
+    const buttons = [
+      { label: 'Code', value: 'code', testId: 'insert-code' },
+      { label: 'H2', value: 'h2', testId: 'insert-h2' },
+      { label: 'Link', value: 'link', testId: 'insert-link' },
+      { label: 'UL', value: 'ul', testId: 'insert-ul' },
+      { label: 'OL', value: 'ol', testId: 'insert-ol' },
+      { label: 'abbr', value: 'abbr', testId: 'insert-abbr' },
+      { label: 'q', value: 'q', testId: 'insert-q' },
+      { label: 's', value: 's', testId: 'insert-s' },
+      { label: 'mark', value: 'mark', testId: 'insert-mark' },
+      { label: 'sup', value: 'sup', testId: 'insert-sup' },
+      { label: 'sub', value: 'sub', testId: 'insert-sub' },
+    ];
 
-  return (
-    <StyledSubMenu>
-      {buttons.map(({ label, value, testId }) => (
-        <button
-          aria-label={`Insert ${label}`}
-          data-testid={testId}
-          key={value}
-          onClick={() => onClick(value)}
-          type="button">
-          {label}
-        </button>
-      ))}
-    </StyledSubMenu>
-  );
-};
+    return (
+      <StyledSubMenu ref={ref}>
+        {buttons.map(({ label, value, testId }) => (
+          <button
+            aria-label={`Insert ${label}`}
+            data-testid={testId}
+            key={value}
+            onClick={() => onClick(value)}
+            type="button">
+            {label}
+          </button>
+        ))}
+      </StyledSubMenu>
+    );
+  },
+);
+
+ToolMenu.displayName = 'ToolMenu';
 
 export default memo(ToolMenu);
 

@@ -1,4 +1,4 @@
-import Meta from 'components/common/Meta/Meta';
+import Meta from 'components/ui/Meta/Meta';
 import { styled } from 'styled-components';
 
 const NotFoundPage = (): JSX.Element => (

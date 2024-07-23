@@ -2,7 +2,7 @@ import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPl
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import usePageEdit from 'hooks/usePageEdit';
-import { useCallback, useState } from 'react';
+import { forwardRef, useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types';
 import { insertHTML } from './textUtils';
@@ -12,117 +12,121 @@ type PageEditFormProps = {
   readonly data?: Page;
 };
 
-const PageEditForm = ({ data }: PageEditFormProps): JSX.Element => {
-  const {
-    formValues,
-    getFieldErrors,
-    getStandardTextInputAttributes,
-    handleChange,
-    handleSave,
-    setFieldValue,
-    isSaved,
-  } = usePageEdit(data);
+const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
+  ({ data }, ref): JSX.Element => {
+    const {
+      formValues,
+      getFieldErrors,
+      getStandardTextInputAttributes,
+      handleChange,
+      handleSave,
+      setFieldValue,
+      isSaved,
+    } = usePageEdit(data);
 
-  const [currPositionStart, setCurrPositionStart] = useState<number>(0);
-  const [currPositionEnd, setCurrPositionEnd] = useState<number>(0);
+    const [currPositionStart, setCurrPositionStart] = useState<number>(0);
+    const [currPositionEnd, setCurrPositionEnd] = useState<number>(0);
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      handleSave();
-    },
-    [handleSave],
-  );
+    const handleSubmit = useCallback(
+      (e: React.FormEvent) => {
+        e.stopPropagation();
+        e.preventDefault();
+        handleSave();
+      },
+      [handleSave],
+    );
 
-  const handeTextInsert = useCallback(
-    (action: string) => {
-      const result = insertHTML(
-        formValues.text,
-        currPositionStart,
-        currPositionEnd,
-        action,
-      );
-      setFieldValue('text', result);
-    },
-    [formValues.text, currPositionStart, currPositionEnd, setFieldValue],
-  );
+    const handeTextInsert = useCallback(
+      (action: string) => {
+        const result = insertHTML(
+          formValues.text,
+          currPositionStart,
+          currPositionEnd,
+          action,
+        );
+        setFieldValue('text', result);
+      },
+      [formValues.text, currPositionStart, currPositionEnd, setFieldValue],
+    );
 
-  const handeNameOnBlur = useCallback(() => {
-    if (formValues.name.length > 0 && formValues.to?.length === 0) {
-      const x = formValues.name.toLowerCase().replaceAll(' ', '-');
-      setFieldValue('to', x);
-    }
-  }, [formValues.name, formValues.to?.length, setFieldValue]);
+    const handeNameOnBlur = useCallback(() => {
+      if (formValues.name.length > 0 && formValues.to?.length === 0) {
+        const x = formValues.name.toLowerCase().replaceAll(' ', '-');
+        setFieldValue('to', x);
+      }
+    }, [formValues.name, formValues.to?.length, setFieldValue]);
 
-  const handeTextAreaBlur = useCallback(
-    (e: React.FocusEvent<HTMLTextAreaElement>) => {
-      setCurrPositionStart(e.currentTarget.selectionStart);
-      setCurrPositionEnd(e.currentTarget.selectionEnd);
-    },
-    [setCurrPositionStart, setCurrPositionEnd],
-  );
+    const handeTextAreaBlur = useCallback(
+      (e: React.FocusEvent<HTMLTextAreaElement>) => {
+        setCurrPositionStart(e.currentTarget.selectionStart);
+        setCurrPositionEnd(e.currentTarget.selectionEnd);
+      },
+      [setCurrPositionStart, setCurrPositionEnd],
+    );
 
-  return (
-    <form noValidate onSubmit={handleSubmit}>
-      <StyledButton>
-        <StyledSaveButton
-          data-testid="button-save"
-          onClick={handleSubmit}
-          type="submit">
-          {isSaved ? 'Saved' : 'Save'}
-        </StyledSaveButton>
-      </StyledButton>
-      <TextInput
-        {...getStandardTextInputAttributes('name')}
-        label="Short Title"
-        layout="horizontal"
-        onBlur={handeNameOnBlur}
-        required
-        spellCheck
-      />
-      <TextInput
-        {...getStandardTextInputAttributes('to')}
-        label="To"
-        layout="horizontal"
-        required
-        spellCheck
-      />
-      <TextInput
-        {...getStandardTextInputAttributes('url')}
-        label="URL"
-        layout="horizontal"
-        onChange={handleChange}
-        required
-        spellCheck
-      />
-      <TextInput
-        {...getStandardTextInputAttributes('parent')}
-        label="Parent"
-        layout="horizontal"
-      />
-      <ToolMenu onClick={handeTextInsert} />
-      <TextArea
-        {...getStandardTextInputAttributes('text')}
-        label="Text"
-        onBlur={handeTextAreaBlur}
-        rows={30}
-        spellCheck
-      />
-      <TextInput
-        {...getStandardTextInputAttributes('reading_time')}
-        errorText={getFieldErrors('reading_time')}
-        label="Reading Time"
-        layout="horizontal"
-      />
-      <TextInput
-        {...getStandardTextInputAttributes('text')}
-        label="Readability Score"
-        layout="horizontal"
-      />
-    </form>
-  );
-};
+    return (
+      <form noValidate onSubmit={handleSubmit} ref={ref}>
+        <StyledButton>
+          <StyledSaveButton
+            data-testid="button-save"
+            onClick={handleSubmit}
+            type="submit">
+            {isSaved ? 'Saved' : 'Save'}
+          </StyledSaveButton>
+        </StyledButton>
+        <TextInput
+          {...getStandardTextInputAttributes('name')}
+          label="Short Title"
+          layout="horizontal"
+          onBlur={handeNameOnBlur}
+          required
+          spellCheck
+        />
+        <TextInput
+          {...getStandardTextInputAttributes('to')}
+          label="To"
+          layout="horizontal"
+          required
+          spellCheck
+        />
+        <TextInput
+          {...getStandardTextInputAttributes('url')}
+          label="URL"
+          layout="horizontal"
+          onChange={handleChange}
+          required
+          spellCheck
+        />
+        <TextInput
+          {...getStandardTextInputAttributes('parent')}
+          label="Parent"
+          layout="horizontal"
+        />
+        <ToolMenu onClick={handeTextInsert} />
+        <TextArea
+          {...getStandardTextInputAttributes('text')}
+          label="Text"
+          onBlur={handeTextAreaBlur}
+          rows={30}
+          spellCheck
+        />
+        <TextInput
+          {...getStandardTextInputAttributes('reading_time')}
+          errorText={getFieldErrors('reading_time')}
+          label="Reading Time"
+          layout="horizontal"
+        />
+        <TextInput
+          {...getStandardTextInputAttributes('text')}
+          label="Readability Score"
+          layout="horizontal"
+        />
+      </form>
+    );
+  },
+);
+
+PageEditForm.displayName = 'PageEditForm';
 
 export default PageEditForm;
 

@@ -1,8 +1,8 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import Meta from 'components/common/Meta/Meta';
-import PageTitle from 'components/common/PageTitle/PageTitle';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { BookmarkTags } from 'components/pages/BookmarkPage/BookmarksTags';
+import Meta from 'components/ui/Meta/Meta';
+import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios';
 import { useDeferredValue, useEffect } from 'react';
 import { BookmarksTags } from 'types';

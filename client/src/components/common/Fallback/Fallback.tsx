@@ -1,6 +1,6 @@
+import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { memo } from 'react';
 import { styled } from 'styled-components';
-import PageTitle from '../PageTitle/PageTitle';
 
 /**
  * Renders a fallback component that displays a loading state.

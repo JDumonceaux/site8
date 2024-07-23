@@ -1,6 +1,5 @@
 import { PasswordField } from '@aws-amplify/ui-react';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import Meta from 'components/common/Meta/Meta';
 import { Button2 } from 'components/form/Button2';
 import { EmailField } from 'components/form/input';
 import useAuth from 'hooks/useAuth';
@@ -11,10 +10,13 @@ import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import { emailAddress, password } from './ZodStrings';
+import Meta from 'components/ui/Meta/Meta';
 
 // Define Zod Shape
 const schema = z.object({
+  // eslint-disable-next-line object-shorthand
   emailAddress: emailAddress,
+  // eslint-disable-next-line object-shorthand
   password: password,
 });
 
