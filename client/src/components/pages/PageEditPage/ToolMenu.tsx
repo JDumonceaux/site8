@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
 
-type HTMLMenuProps = {
+type ToolMenuProps = {
   readonly onClick: (value: string) => void;
 };
 
@@ -11,9 +11,9 @@ type HTMLMenuProps = {
  * @component
  * @param {Object} props - The component props.
  * @param {Function} props.onClick - The click event handler for the menu buttons.
- * @returns {JSX.Element} The HTMLMenu component.
+ * @returns {JSX.Element} The ToolMenu component.
  */
-const HTMLMenu = ({ onClick }: HTMLMenuProps): JSX.Element => {
+const ToolMenu = ({ onClick }: ToolMenuProps): JSX.Element => {
   const buttons = [
     { label: 'Code', value: 'code', testId: 'insert-code' },
     { label: 'H2', value: 'h2', testId: 'insert-h2' },
@@ -44,7 +44,7 @@ const HTMLMenu = ({ onClick }: HTMLMenuProps): JSX.Element => {
   );
 };
 
-export default memo(HTMLMenu);
+export default memo(ToolMenu);
 
 const StyledSubMenu = styled.div`
   display: flex;

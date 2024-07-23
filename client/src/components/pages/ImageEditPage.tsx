@@ -104,8 +104,8 @@ const ImageEditImage = (): JSX.Element => {
                     inputMode="text"
                     label="Short Title"
                     onChange={handleChange}
-                    required={true}
-                    spellCheck={true}
+                    required
+                    spellCheck
                     // {...getStandardTextInputAttributes('name')}
                     //ref={focusElement}
                     {...getDefaultFields('name')}
@@ -117,8 +117,8 @@ const ImageEditImage = (): JSX.Element => {
                     inputMode="text"
                     label="Location"
                     onChange={handleChange}
-                    required={true}
-                    spellCheck={true}
+                    required
+                    spellCheck
                     //ref={focusElement}
                     {...getDefaultFields('location')}
                   />
@@ -129,8 +129,8 @@ const ImageEditImage = (): JSX.Element => {
                     inputMode="text"
                     label="File Name"
                     onChange={handleChange}
-                    required={true}
-                    spellCheck={true}
+                    required
+                    spellCheck
                     {...getDefaultFields('fileName')}
                     //ref={focusElement}
                   />
@@ -141,8 +141,8 @@ const ImageEditImage = (): JSX.Element => {
                     inputMode="text"
                     label="SRC"
                     onChange={handleChange}
-                    required={true}
-                    spellCheck={true}
+                    required
+                    spellCheck
                     {...getDefaultFields('src')}
                     //ref={focusElement}
                   />
@@ -162,7 +162,7 @@ const ImageEditImage = (): JSX.Element => {
                     label="Official URL"
                     onChange={handleChange}
                     required={false}
-                    spellCheck={true}
+                    spellCheck
                     {...getDefaultFields('official_url')}
                     //ref={focusElement}
                   />
@@ -174,7 +174,7 @@ const ImageEditImage = (): JSX.Element => {
                     label="Tags"
                     onChange={handleChange}
                     required={false}
-                    spellCheck={true}
+                    spellCheck
                     {...getDefaultFields('tags')}
                     //ref={focusElement}
                   />
@@ -182,9 +182,9 @@ const ImageEditImage = (): JSX.Element => {
                     label="Description"
                     onChange={handleChange}
                     rows={30}
-                    spellCheck={true}
+                    spellCheck
                     {...getDefaultFields('description')}
-                    // required={true}
+                    // required
                   />
                 </form>
               </FormContainer>

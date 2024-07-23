@@ -36,10 +36,9 @@ const pageSchema = z
 type FormType = z.infer<typeof pageSchema>;
 type keys = keyof FormType;
 
-const usePageEdit = () => {
+const usePageEdit = (data?: Page) => {
   // Use Axios to fetch data
-  const { data, isLoading, error, fetchData, patchData, postData } =
-    useAxios<Page>();
+  const { patchData, postData } = useAxios<Page>();
 
   // Return default form values
   const initialFormValues: FormType = useMemo(
@@ -60,11 +59,7 @@ const usePageEdit = () => {
   const {
     hasError,
     formValues,
-    isSaved,
-    isProcessing,
     handleChange,
-    handleClear,
-    handleReset,
     setFieldValue,
     setErrors,
     setIsSaved,
@@ -77,7 +72,6 @@ const usePageEdit = () => {
   const mapPageToFormType = useCallback(
     (item: Page | undefined | null): FormType | undefined => {
       if (item) {
-        console.log('item', item);
         const ret = {
           id: item.id,
           name: item.name ?? '',
@@ -97,18 +91,10 @@ const usePageEdit = () => {
 
   // Update the form values when the data changes
   useEffect(() => {
-    const values = mapPageToFormType(data);
-    if (values) {
-      setFormValues(values);
+    if (data) {
+      setFormValues(mapPageToFormType(data) ?? initialFormValues);
     }
-  }, [data, mapPageToFormType, setFormValues]);
-
-  const fetchItem = useCallback(
-    (id: number) => {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${id.toString()}`);
-    },
-    [fetchData],
-  );
+  }, [data, initialFormValues, mapPageToFormType, setFormValues]);
 
   // Validate form
   const validateForm = useCallback(() => {
@@ -116,14 +102,6 @@ const usePageEdit = () => {
     setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
-
-  // Handle change action
-  const handleAction = useCallback(
-    (id: number, action: string) => {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${id.toString()}/${action}`);
-    },
-    [fetchData],
-  );
 
   // Handle save
   const submitForm = useCallback(async () => {
@@ -145,9 +123,12 @@ const usePageEdit = () => {
   }, [formValues, patchData, postData, setIsProcessing, setIsSaved]);
 
   const handleSave = useCallback(async () => {
-    const ret = await submitForm();
-    return ret;
-  }, [submitForm]);
+    if (validateForm()) {
+      const ret = await submitForm();
+      return ret;
+    }
+    return false;
+  }, [submitForm, validateForm]);
 
   const getStandardTextInputAttributes = useCallback(
     (fieldName: keys) => {
@@ -156,50 +137,30 @@ const usePageEdit = () => {
         errorText: getFieldErrors(fieldName),
         hasError: hasError(fieldName),
         value: formValues[fieldName],
+        onChange: handleChange,
       };
     },
-    [getFieldErrors, hasError, formValues],
+    [getFieldErrors, hasError, formValues, handleChange],
   );
 
   return useMemo(
     () => ({
-      pageSchema,
       formValues,
-      isProcessing,
-      isLoading,
-      error,
-      isSaved,
       getFieldErrors,
       getStandardTextInputAttributes,
       hasError,
-      setFormValues,
-      setFieldValue,
-      handleAction,
-      handleClear,
       handleChange,
-      handleReset,
       handleSave,
-      fetchItem,
-      validateForm,
+      setFieldValue,
     }),
     [
       formValues,
-      isProcessing,
-      isLoading,
-      error,
-      isSaved,
       getFieldErrors,
       getStandardTextInputAttributes,
       hasError,
-      setFormValues,
       setFieldValue,
-      handleAction,
-      handleClear,
       handleChange,
-      handleReset,
       handleSave,
-      fetchItem,
-      validateForm,
     ],
   );
 };

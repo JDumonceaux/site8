@@ -1,6 +1,20 @@
 import { IMAGE_BASE } from './constants';
 
 /**
+ * Converts the given ID to a string if it is a valid positive integer.
+ * @param id - The ID to convert.
+ * @returns The ID as a string if it is a valid positive integer, otherwise undefined.
+ */
+export const getParamIdAsString = (id?: string): string | undefined => {
+  if (!id || id.trim().length === 0) return undefined;
+  const tempId = parseInt(id ?? '');
+  if (!isNaN(tempId) && tempId > 0) {
+    return tempId.toString();
+  }
+  return undefined;
+};
+
+/**
  * Splits the given URL into an array of path segments.
  *
  * @param url - The URL to split.

@@ -3,7 +3,19 @@ module.exports = {
     node: true,
     'jest/globals': true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:import/recommended', 'plugin:react-hooks/recommended', 'plugin:jsx-a11y/recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-redux/recommended', 'plugin:react/jsx-runtime', 'eslint-config-prettier', 'plugin:css/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:import/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-redux/recommended',
+    'plugin:react/jsx-runtime',
+    'eslint-config-prettier',
+    'plugin:css/recommended',
+    'plugin:storybook/recommended',
+  ],
   plugins: [
     'react-redux',
     'immutable',
@@ -12,7 +24,8 @@ module.exports = {
     'react-refresh',
     'prefer-arrow-functions',
     'eslint-plugin-react-compiler',
-    'css'
+    'simple-import-sort',
+    'css',
   ],
   settings: {
     react: {
@@ -127,6 +140,26 @@ module.exports = {
         singleReturnOnly: false,
       },
     ],
+    // This conflicts with ?
+    // 'simple-import-sort/imports': [
+    //   'warn',
+    //   {
+    //     groups: [
+    //       // React
+    //       ['^react', '^@?\\w'],
+    //       // External packages
+    //       ['^\\w'],
+    //       // Internal files
+    //       ['^\\./'],
+    //       // Styles
+    //       ['^.+\\.s?css$'],
+    //       // ?
+    //       ['^\\u0000'],
+    //       ['^\\w'],
+    //       ['^\\..*'],
+    //     ],
+    //   },
+    // ],
   },
   overrides: [
     {
