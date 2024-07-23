@@ -1,0 +1,295 @@
+{
+  "metadata": {
+    "title": "Pages"
+  },
+  "menus": [
+    { "id": 1, "seq": 1, "sort": "name", "name": "CSS", "url": "css" },
+    {
+      "id": 2,
+      "seq": 2,
+      "sort": "name",
+      "name": "Design Styles",
+      "url": "design"
+    },
+    {
+      "id": 3,
+      "seq": 3,
+      "sort": "name",
+      "name": "Art",
+      "url": "art"
+    },
+    {
+      "id": 4,
+      "seq": 4,
+      "sort": "name",
+      "name": "General",
+      "url": "general"
+    }
+  ],
+  "items": [
+    {
+      "id": 900,
+      "name": "CSS",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 1,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "css",
+      "seq": 0
+    },
+    {
+      "id": 901,
+      "name": "Internationalization",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 0,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "internationalization",
+      "seq": 0
+    },
+    {
+      "id": 1001,
+      "name": "Skeuomorphism",
+      "long_title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "skeuomorphism",
+      "seq": 0
+    },
+    {
+      "id": 1002,
+      "name": "Flat Design",
+      "long_title": "Flat Design: The Art of Simplicity",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "flat-design",
+      "seq": 0
+    },
+    {
+      "id": 1003,
+      "name": "Corporate Memphis Design",
+      "long_title": "Corporate Memphis: Vibrant, Bold, and Flat",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "1 min 37 sec",
+      "readability_score": "22",
+      "url": "corporate-memphis-design",
+      "seq": 0
+    },
+    {
+      "id": 1004,
+      "name": "Glassmorphism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "glassmorphism",
+      "seq": 0
+    },
+    {
+      "id": 1005,
+      "name": "Minimalism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "minimalism",
+      "seq": 0
+    },
+    {
+      "id": 1006,
+      "name": "Neumorphism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "neumorphism",
+      "seq": 0
+    },
+    {
+      "id": 1007,
+      "name": "Retrofuturism",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "retrofuturism",
+      "seq": 0
+    },
+    {
+      "id": 1008,
+      "name": "Swiss Style",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 2,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "swiss-style",
+      "seq": 0
+    },
+    {
+      "id": 2001,
+      "name": "Chrome Extensions",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 0,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "chrome-extensions",
+      "seq": 0
+    },
+    {
+      "id": 2002,
+      "name": "Git",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 0,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "git",
+      "seq": 0
+    },
+    {
+      "id": 2003,
+      "name": "Visual Studio Code",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 0,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "visual-studio-code",
+      "seq": 0
+    },
+    {
+      "id": 2004,
+      "name": "Visual Studio Code: Extensions",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 0,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "visual-studio-code-extensions",
+      "seq": 0
+    },
+    {
+      "id": 3001,
+      "name": "At Last - Pleasantville",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "at-last-pleasantville",
+      "seq": 0
+    },
+    {
+      "id": 3002,
+      "name": "Gallos",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "gallos",
+      "seq": 0
+    },
+    {
+      "id": 3003,
+      "name": "Shoes on the Danube Bank",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "shoes-on-the-danube-bank",
+      "seq": 0
+    },
+    {
+      "id": 5001,
+      "name": "Lazels Puzzles",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "puzzles-lazel",
+      "seq": 0
+    },
+    {
+      "id": 5002,
+      "name": "Puzzle Lab",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "puzzles-the-puzzle-lab",
+      "seq": 0
+    },
+    {
+      "id": 15000,
+      "name": "Yatchs",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 3,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "yachts",
+      "seq": 0
+    },
+    {
+      "id": 15001,
+      "name": "Bookmarks",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 4,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "bookmarks",
+      "seq": 0
+    },
+    {
+      "id": 15001,
+      "name": "Photos",
+      "long_title": "",
+      "edit_date": "01/18/2024",
+      "resources": true,
+      "parentId": 4,
+      "reading_time": "",
+      "readability_score": "",
+      "url": "photos",
+      "seq": 0
+    }
+  ]
+}
