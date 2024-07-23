@@ -59,6 +59,7 @@ const usePageEdit = (data?: Page) => {
   const {
     hasError,
     formValues,
+    isSaved,
     handleChange,
     setFieldValue,
     setErrors,
@@ -152,6 +153,7 @@ const usePageEdit = (data?: Page) => {
       handleChange,
       handleSave,
       setFieldValue,
+      isSaved,
     }),
     [
       formValues,
@@ -161,6 +163,7 @@ const usePageEdit = (data?: Page) => {
       setFieldValue,
       handleChange,
       handleSave,
+      isSaved,
     ],
   );
 };

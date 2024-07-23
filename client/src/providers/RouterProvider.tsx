@@ -24,7 +24,9 @@ const PhotoLayout = lazy(
 const BookmarkPage = lazy(
   () => import('components/pages/BookmarkPage/BookmarkPage'),
 );
-const GenericPage = lazy(() => import('components/pages/GenericPage'));
+const GenericPage = lazy(
+  () => import('components/pages/GenericPage/GenericPage'),
+);
 const GenericImagePage = lazy(
   () => import('components/pages/GenericImagePage'),
 );

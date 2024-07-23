@@ -2,7 +2,7 @@
 import parse, { Element, domToReact } from 'html-react-parser';
 
 import type { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
-import RenderCode from '../RenderCode/RenderCode';
+import RenderCode from './RenderCode';
 
 type RenderHtmlProps = {
   readonly text?: string;

@@ -1,26 +1,28 @@
-import { memo } from 'react';
+import { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 
-const Footer = (): JSX.Element => {
+const Footer = forwardRef<HTMLElement>((_, ref): JSX.Element => {
   const thisYear = new Date().getFullYear();
   return (
-    <StyledFooter data-testid="footer" role="contentinfo">
+    <StyledFooter data-testid="footer" ref={ref}>
       <StyledCopyright aria-label="Copyright Information">
         Copyright &copy; {thisYear}
       </StyledCopyright>
     </StyledFooter>
   );
-};
+});
+
+Footer.displayName = 'Footer';
 
 export default memo(Footer);
 
 const StyledFooter = styled.footer`
-  min-height: 20px;
   background-color: var(--palette-main-color, #000);
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
+  min-height: 20px;
   height: 40px;
 `;
 const StyledCopyright = styled.small`

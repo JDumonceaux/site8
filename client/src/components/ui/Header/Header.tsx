@@ -1,9 +1,9 @@
-import { memo } from 'react';
+import Avatar from 'components/common/Avatar/Avatar';
+import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 import { APP_NAME } from '../../../utils/constants';
 import { MenuIcon } from '../../icons/MenuIcon';
-import Avatar from '../Avatar/Avatar';
-import StyledLink from '../Link/StyledLink/StyledLink';
 
 type HeaderProps = {
   readonly includeMenu?: boolean;
@@ -17,22 +17,26 @@ type HeaderProps = {
  * @param {boolean} props.includeMenu - Determines whether to include the menu icon.
  * @returns {JSX.Element} The rendered header component.
  */
-const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
-  return (
-    <StyledHeader data-testid="header">
-      <div>
-        <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
-        {includeMenu ? <MenuIcon /> : null}
-        <StyledLinkDiv>
-          <StyledLink to="/">
-            <AppName>{APP_NAME}</AppName>
-          </StyledLink>
-        </StyledLinkDiv>
-      </div>
-      <Avatar />
-    </StyledHeader>
-  );
-};
+const Header = forwardRef<HTMLDivElement, HeaderProps>(
+  ({ includeMenu = false }: HeaderProps, ref): JSX.Element => {
+    return (
+      <StyledHeader data-testid="header" ref={ref}>
+        <div>
+          <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
+          {includeMenu ? <MenuIcon /> : null}
+          <StyledLinkDiv>
+            <StyledLink to="/">
+              <AppName>{APP_NAME}</AppName>
+            </StyledLink>
+          </StyledLinkDiv>
+        </div>
+        <Avatar />
+      </StyledHeader>
+    );
+  },
+);
+
+Header.displayName = 'Header';
 
 export default memo(Header);
 

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 
 type PageTitleProps = {
@@ -15,22 +15,26 @@ type PageTitleProps = {
  * @param {ReactNode} props.children - The children elements to be rendered.
  * @returns {JSX.Element | null} The rendered page title component.
  */
-const PageTitle = ({ title, children }: PageTitleProps): JSX.Element | null => {
-  if (!title) {
-    return null;
-  }
+const PageTitle = forwardRef<HTMLDivElement, PageTitleProps>(
+  ({ title, children }: PageTitleProps, ref): JSX.Element | null => {
+    if (!title) {
+      return null;
+    }
 
-  return (
-    <StyledWrapper>
-      {title ? (
-        <div>
-          <StyledElement data-testid="page-title">{title}</StyledElement>
-        </div>
-      ) : null}
-      <StyledChildren>{children}</StyledChildren>
-    </StyledWrapper>
-  );
-};
+    return (
+      <StyledWrapper ref={ref}>
+        {title ? (
+          <div>
+            <StyledElement data-testid="page-title">{title}</StyledElement>
+          </div>
+        ) : null}
+        <StyledChildren>{children}</StyledChildren>
+      </StyledWrapper>
+    );
+  },
+);
+
+PageTitle.displayName = 'PageTitle';
 
 export default memo(PageTitle);
 

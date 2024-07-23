@@ -7,10 +7,12 @@
   "main": "dist/index",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
     "test": "jest",
     "build": "set NODE_ENV=development tsc && vite build",
     "build:prod": "set NODE_ENV=production tsc && vite build",
     "build:analyze": "set NODE_ENV=production tsc && vite build",
+    "fix": "npm run lint && npm run prettier",
     "precommit": "pretty-quick --staged",
     "preview": "vite preview",
     "serve": "vite preview",

@@ -3799,6 +3799,19 @@
       "to": "overview",
       "type": "page",
       "file": true
+    },
+    {
+      "id": 193,
+      "name": "SonarQube",
+      "parentItems": [
+        {
+          "id": 181,
+          "seq": 0
+        }
+      ],
+      "to": "sonarqube",
+      "type": "page",
+      "file": true
     }
   ]
 }

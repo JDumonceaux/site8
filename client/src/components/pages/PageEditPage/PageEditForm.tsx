@@ -20,6 +20,7 @@ const PageEditForm = ({ data }: PageEditFormProps): JSX.Element => {
     handleChange,
     handleSave,
     setFieldValue,
+    isSaved,
   } = usePageEdit(data);
 
   const [currPositionStart, setCurrPositionStart] = useState<number>(0);
@@ -69,7 +70,7 @@ const PageEditForm = ({ data }: PageEditFormProps): JSX.Element => {
           data-testid="button-save"
           onClick={handleSubmit}
           type="submit">
-          Save
+          {isSaved ? 'Saved' : 'Save'}
         </StyledSaveButton>
       </StyledButton>
       <TextInput
@@ -126,7 +127,7 @@ const PageEditForm = ({ data }: PageEditFormProps): JSX.Element => {
 export default PageEditForm;
 
 const StyledSaveButton = styled(StyledPlainButton)`
-  font-weight: bold;
+  font-weight: 400;
 `;
 const StyledButton = styled.div`
   display: flex;

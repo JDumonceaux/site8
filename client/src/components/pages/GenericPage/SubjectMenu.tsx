@@ -1,12 +1,12 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import useMenu from 'hooks/useMenu';
-import { memo, useEffect } from 'react';
+import { forwardRef, memo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { getURLPath } from 'utils/helpers';
 import { ItemRender } from './ItemRender';
 
-const SubjectMenu = memo((): JSX.Element => {
+const SubjectMenu = forwardRef<HTMLElement>((_, ref): JSX.Element => {
   const { getMenu, getOtherMenus, fetchData, isLoading, error } = useMenu();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const SubjectMenu = memo((): JSX.Element => {
   const data2 = getOtherMenus(data?.id);
 
   return (
-    <StyledNav>
+    <StyledNav ref={ref}>
       <StyledContent>
         <LoadingWrapper error={error} isLoading={isLoading}>
           <ItemRender item={data} level={0}>
@@ -41,7 +41,9 @@ const SubjectMenu = memo((): JSX.Element => {
   );
 });
 
-export default SubjectMenu;
+SubjectMenu.displayName = 'SubjectMenu';
+
+export default memo(SubjectMenu);
 
 const StyledNav = styled.nav`
   color: var(--navbar-text);

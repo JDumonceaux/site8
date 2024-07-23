@@ -1,0 +1,9 @@
+<a href="https://www.sonarsource.com/">Download SonarQube Community Edition</a>
+Unzip content to a folder
+<a href="https://www.java.com">If needed, download java.exe</a> (Windows Offline 64 bit)
+Double click jre-8u421-windows-x64.exe to install
+Set java_home to C:\Program Files\Java\jre1.8.0_421
+or setx java_home "C:\Program Files\Java\jre1.8.0_421"
+validate:  echo %java_home%
+Run setx SONAR_JAVA_PATH "C:\Program Files\Java\jre1.8.0_421\bin\java.exe"
+
