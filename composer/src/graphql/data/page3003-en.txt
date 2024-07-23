@@ -1,9 +1,0 @@
-<p>This memorial is a poignant and sad tribute.</p>
-<p>It features 60 bronze shoes, symbolizing the 
-tragic fate of around 3,500 individuals (including 800 Jews) 
-who were executed in Budapest, Hungary, 
-primarily during December 1944 and January 1945.</p>
-<p>Since shoes were valuable and could be resold, 
-the victims were lined up along the river bank 
-and ordered to remove their shoes.  The river carried away the bodies.</p>
-<img src="/images/art/shoes_danube_promenade.jpg" width="250px" />
