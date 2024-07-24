@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { ServiceFactory } from '../../../utils/ServiceFactory.js';
+import { ServiceFactory } from '../../../lib/utils/ServiceFactory.js';
 
-import { Responses } from '../../../utils/Constants.js';
-import { Logger } from '../../../utils/Logger.js';
+import { Responses } from '../../../lib/utils/constants.js';
+import { Logger } from '../../../lib/utils/logger.js';
 
 type Params = {
   filename: string;

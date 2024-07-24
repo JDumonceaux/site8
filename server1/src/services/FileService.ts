@@ -1,6 +1,6 @@
 import { readFile } from 'fs/promises';
-import { Logger } from '../utils/Logger.js';
-import { getFilePath } from '../utils/getFilePath.js';
+import { getFilePath } from '../lib/utils/getFilePath.js';
+import { Logger } from '../lib/utils/logger.js';
 
 export class FileService {
   public async getFile(fileName: string): Promise<string | undefined> {

@@ -1,8 +1,8 @@
+import { ServiceUrl } from 'lib/utils/constants';
+import { getSRC } from 'lib/utils/helpers';
+import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'types/Image';
-import { ServiceUrl } from 'utils/constants';
-import { getSRC } from 'utils/helpers';
-import { safeParse } from 'utils/zodHelper';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
 import { useForm } from './useForm';

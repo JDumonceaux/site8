@@ -2,7 +2,7 @@ import Avatar from 'components/common/Avatar/Avatar';
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
-import { APP_NAME } from '../../../utils/constants';
+import { APP_NAME } from '../../../lib/utils/constants';
 import { MenuIcon } from '../../icons/MenuIcon';
 
 type HeaderProps = {

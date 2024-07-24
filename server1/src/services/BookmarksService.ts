@@ -1,10 +1,10 @@
 import { readFile } from 'fs/promises';
+import { getFilePath } from '../lib/utils/getFilePath.js';
+import { Logger } from '../lib/utils/logger.js';
 import { Bookmark } from '../types/Bookmark.js';
 import { Bookmarks } from '../types/Bookmarks.js';
 import { BookmarksTag } from '../types/BookmarksTag.js';
 import { BookmarksTags } from '../types/BookmarksTags.js';
-import { Logger } from '../utils/Logger.js';
-import { getFilePath } from '../utils/getFilePath.js';
 
 export class BookmarksService {
   private fileName = 'bookmarks.json';

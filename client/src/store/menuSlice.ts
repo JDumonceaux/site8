@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { ServiceUrl } from 'lib/utils/constants';
 import { Menu } from 'types';
-import { ServiceUrl } from 'utils/constants';
 
 type MenuState = {
   data: Menu | null;

@@ -1,9 +1,9 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import useMenu from 'hooks/useMenu';
+import { getURLPath } from 'lib/utils/helpers';
 import { forwardRef, memo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { getURLPath } from 'utils/helpers';
 import { ItemRender } from './ItemRender';
 
 const SubjectMenu = forwardRef<HTMLElement>((_, ref): JSX.Element => {

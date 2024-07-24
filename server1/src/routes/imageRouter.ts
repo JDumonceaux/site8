@@ -1,12 +1,11 @@
 import express, { Request, Response } from 'express';
 
+import { Errors, PreferHeader, Responses } from '../lib/utils/constants.js';
+import { parseRequestId } from '../lib/utils/helperUtils.js';
+import { Logger } from '../lib/utils/logger.js';
 import { ImageService } from '../services/ImageService.js';
 import { ImagesService } from '../services/ImagesService.js';
 import { Image } from '../types/Image.js';
-import { Errors, PreferHeader, Responses } from '../utils/Constants.js';
-import { Logger } from '../utils/Logger.js';
-import { parseRequestId } from '../utils/helperUtils.js';
-
 export const imageRouter = express.Router();
 
 imageRouter.get('/:id', async (req: Request, res: Response) => {

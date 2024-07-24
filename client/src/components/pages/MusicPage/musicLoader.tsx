@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { ServiceUrl } from 'lib/utils/constants';
 import { Music } from 'types/Music';
-import { ServiceUrl } from 'utils/constants';
 
 // Use:  const data = useLoaderData() as IMusic;
 

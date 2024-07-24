@@ -1,10 +1,10 @@
 import { existsSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
+import { FOLDERS_TO_IGNORE, LOCAL_IMAGE_PATH } from '../lib/utils/constants.js';
+import { Logger } from '../lib/utils/logger.js';
 import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
 import { Images } from '../types/Images.js';
-import { FOLDERS_TO_IGNORE, LOCAL_IMAGE_PATH } from '../utils/Constants.js';
-import { Logger } from '../utils/Logger.js';
 import { ImagesService } from './ImagesService.js';
 
 export class ImagesFileService {

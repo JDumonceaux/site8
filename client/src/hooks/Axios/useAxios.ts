@@ -1,7 +1,7 @@
 import axios, { isCancel } from 'axios';
+import { AcceptHeader, PreferHeader } from 'lib/utils/constants';
+import { httpErrorHandler } from 'lib/utils/errorHandler';
 import { useCallback, useState } from 'react';
-import { AcceptHeader, PreferHeader } from 'utils/constants';
-import { httpErrorHandler } from 'utils/errorHandler';
 
 export const useAxios = <T>() => {
   const [data, setData] = useState<T | undefined>(undefined);

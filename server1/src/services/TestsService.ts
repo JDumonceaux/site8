@@ -1,8 +1,8 @@
 import { readFile } from 'fs/promises';
+import { getFilePath } from '../lib/utils/getFilePath.js';
+import { Logger } from '../lib/utils/logger.js';
 import { Test } from '../types/Test.js';
 import { Tests } from '../types/Tests.js';
-import { Logger } from '../utils/Logger.js';
-import { getFilePath } from '../utils/getFilePath.js';
 
 export class TestsService {
   private async sortItems(items: Test[]) {

@@ -4,12 +4,12 @@ import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios';
+import { ServiceUrl } from 'lib/utils/constants';
+import { getSRC } from 'lib/utils/helpers';
 import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';
-import { ServiceUrl } from 'utils/constants';
-import { getSRC } from 'utils/helpers';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useAxios<Images>();

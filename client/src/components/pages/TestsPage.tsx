@@ -4,10 +4,10 @@ import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios';
+import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Tests } from 'types/Tests';
-import { ServiceUrl } from 'utils/constants';
 
 const TestsPage = (): JSX.Element => {
   const { data, isLoading, error, fetchData } = useAxios<Tests>();

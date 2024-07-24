@@ -1,15 +1,15 @@
 import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios';
+import { ServiceUrl } from 'lib/utils/constants';
+import { getParamIdAsString } from 'lib/utils/helpers';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Page } from 'types';
-import { ServiceUrl } from 'utils/constants';
-import { getParamIdAsString } from 'utils/helpers';
 import PageEditForm from './PageEditForm';
-import Meta from 'components/ui/Meta/Meta';
 
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();

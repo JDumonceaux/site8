@@ -2,6 +2,7 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import { Switch } from 'components/ui/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
+import { IMAGE_BASE } from 'lib/utils/constants';
 import React, {
   useCallback,
   useDeferredValue,
@@ -10,7 +11,6 @@ import React, {
 } from 'react';
 import { styled } from 'styled-components';
 import { Image } from 'types';
-import { IMAGE_BASE } from 'utils/constants';
 
 type ImageSelectorProps = {
   readonly onSelectImage: (image: Image | undefined) => void;

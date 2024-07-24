@@ -1,7 +1,7 @@
-import { FileService } from '../services/FileService.js';
-import { MenuService } from '../services/MenuService.js';
-import { PageService } from '../services/PageService.js';
-import { PagesService } from '../services/PagesService.js';
+import { FileService } from '../../services/FileService.js';
+import { MenuService } from '../../services/MenuService.js';
+import { PageService } from '../../services/PageService.js';
+import { PagesService } from '../../services/PagesService.js';
 
 export class ServiceFactory {
   public static getFileService() {

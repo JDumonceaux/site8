@@ -1,5 +1,5 @@
-import { Image } from '../types/Image.js';
-import { FOLDERS_TO_IGNORE } from './Constants.js';
+import { Image } from '../../types/Image.js';
+import { FOLDERS_TO_IGNORE } from './constants.js';
 import { cleanUpData, getNextIdFromPos } from './objectUtil.js';
 
 export function getNewItems(

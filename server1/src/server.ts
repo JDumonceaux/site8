@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express';
 import RateLimit from 'express-rate-limit';
 
 import helmet from 'helmet';
+import { Logger } from './lib/utils/logger.js';
 import { bookmarksRouter } from './routes/bookmarksRouter.js';
 import { filesRouter } from './routes/filesRouter.js';
 import { imageRouter } from './routes/imageRouter.js';
@@ -13,7 +14,6 @@ import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { testsRouter } from './routes/testsRouter.js';
-import { Logger } from './utils/Logger.js';
 
 const app = express();
 

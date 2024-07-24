@@ -1,11 +1,11 @@
 import {
-  AUTH_ERROR_MESSAGES,
-  REQUIRED_FIELD,
-  MAX_EMAIL_LENGTH,
-  MIN_PASSWORD_LENGTH,
-  MAX_PASSWORD_LENGTH,
   AUTH_CODE_LENGTH,
-} from 'utils/constants';
+  AUTH_ERROR_MESSAGES,
+  MAX_EMAIL_LENGTH,
+  MAX_PASSWORD_LENGTH,
+  MIN_PASSWORD_LENGTH,
+  REQUIRED_FIELD,
+} from 'lib/utils/constants';
 import { z } from 'zod';
 
 export const emailAddress: z.ZodString = z
