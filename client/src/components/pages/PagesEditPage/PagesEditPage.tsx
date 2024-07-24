@@ -6,7 +6,7 @@ import { TextInput } from 'components/form/input';
 import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
-import { Switch } from 'components/ui/Switch';
+import { Switch } from 'components/ui/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import usePagesEdit from 'hooks/usePagesEdit';
 import React, { useCallback, useEffect } from 'react';

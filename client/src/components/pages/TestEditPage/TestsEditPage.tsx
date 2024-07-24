@@ -19,7 +19,7 @@ import { TextInput } from 'components/form/input';
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
-import { Switch } from 'components/ui/Switch';
+import { Switch } from 'components/ui/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useTestsEdit from 'hooks/useTestsEdit';
 import { useCallback, useEffect, useState } from 'react';
