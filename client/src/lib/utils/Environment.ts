@@ -31,18 +31,20 @@ export class Environment {
   }
 
   static isLocal() {
-    return this.getEnvironment() === 'local';
+    return Environment.getEnvironment() === 'local';
   }
 
   static isProduction() {
-    return this.getEnvironment() === 'production';
+    return Environment.getEnvironment() === 'production';
   }
 
   static isLowerEnvironment() {
-    return !this.isProduction();
+    return !Environment.isProduction();
   }
 
   static isNearProduction() {
-    return this.isLowerEnvironment() && this.getEnvironment() === 'uat';
+    return (
+      Environment.isLowerEnvironment() && Environment.getEnvironment() === 'uat'
+    );
   }
 }

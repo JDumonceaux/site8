@@ -16,7 +16,7 @@ export const getDateTime = (date?: string, delimiter = '/') => {
     }
 
     const [month, day, year] = datePart.split(delimiter).map(Number);
-    let [hours, minutes] = timePart.split(':').map(Number);
+    const [hours, minutes] = timePart.split(':').map(Number);
 
     if (
       isNaN(month) ||
@@ -31,13 +31,17 @@ export const getDateTime = (date?: string, delimiter = '/') => {
     const isPM = /pm/i.test(date);
     const isAM = /am/i.test(date);
 
-    if (isPM && hours !== 12) {
-      hours += 12;
-    } else if (isAM && hours === 12) {
-      hours = 0;
-    }
+    const hoursRet = () => {
+      if (isPM && hours !== 12) {
+        return hours + 12;
+      } else if (isAM && hours === 12) {
+        return 0;
+      }
+      return hours;
+    };
+    const hoursAMPM = hoursRet();
 
-    return new Date(year, month - 1, day, hours, minutes);
+    return new Date(year, month - 1, day, hoursAMPM, minutes);
   } catch (error) {
     console.error('Error parsing date:', error);
     return null;

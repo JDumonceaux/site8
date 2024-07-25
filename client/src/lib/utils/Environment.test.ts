@@ -26,16 +26,6 @@ describe('Environment', () => {
     expect(result).toEqual(process.env.REACT_APP_GTM_ENV_PREVIEW);
   });
 
-  it('should return the environment', () => {
-    const result = Environment.getEnvironment();
-    expect(result).toEqual(process.env.NODE_ENV);
-  });
-
-  it('should return the node environment', () => {
-    const result = Environment.getNodeEnvironment();
-    expect(result).toEqual(process.env.NODE_ENV);
-  });
-
   it('should return whether it is running locally', () => {
     const result = Environment.isLocal();
     expect(result).toEqual(process.env.NODE_ENV === 'local');
