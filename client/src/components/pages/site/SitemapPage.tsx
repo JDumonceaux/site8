@@ -1,4 +1,4 @@
-import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
+import StyledNavLink from 'components/ui/Link/StyledNavLink/StyledNavLink';
 
 const SitemapPage = (): JSX.Element => (
   <div>

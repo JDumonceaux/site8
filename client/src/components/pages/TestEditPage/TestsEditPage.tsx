@@ -12,11 +12,12 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
+
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
+import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { Switch } from 'components/ui/Switch/Switch';

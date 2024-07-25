@@ -1,10 +1,10 @@
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { ImageSelector } from 'components/custom/ImageSelector/ImageSelector';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
+import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
 import useImageEdit from 'hooks/useImageEdit';

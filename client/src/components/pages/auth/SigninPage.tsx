@@ -1,5 +1,4 @@
 import { PasswordField } from '@aws-amplify/ui-react';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
 import { Button2 } from 'components/form/Button2';
 import { EmailField } from 'components/form/input';
 import Meta from 'components/ui/Meta/Meta';
@@ -11,6 +10,7 @@ import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import { emailAddress, password } from './ZodStrings';
+import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 
 // Define Zod Shape
 const schema = z.object({

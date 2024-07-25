@@ -9,7 +9,7 @@ const Avatar = (): JSX.Element => {
 
   useEffect(() => {
     authFetchAuthSession();
-  }, []);
+  });
 
   useEffect(() => {
     if (authorized) {

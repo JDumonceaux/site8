@@ -21,4 +21,23 @@ describe('Header', () => {
     render(<Header />);
     expect(screen.getByText('YourAppName')).toBeInTheDocument();
   });
+
+  it('renders styles correctly', () => {
+    render(<Header />);
+    const header = screen.getByTestId('header');
+    const styles = getComputedStyle(header);
+
+    expect(styles.backgroundColor).toBe('rgb(0, 0, 0)');
+    expect(styles.display).toBe('flex');
+    expect(styles.flexFlow).toBe('row nowrap');
+    expect(styles.justifyContent).toBe('space-between');
+    expect(styles.alignItems).toBe('center');
+    expect(styles.minHeight).toBe('40px');
+    expect(styles.width).toBe('100%');
+    expect(styles.position).toBe('fixed');
+    expect(styles.zIndex).toBe('100');
+    expect(styles.top).toBe('0');
+    expect(styles.boxShadow).toBe('0 5px 20px -10px #000');
+    expect(styles.marginBottom).toBe('2px');
+  });
 });

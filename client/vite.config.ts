@@ -1,11 +1,11 @@
 import analyze from 'rollup-plugin-analyzer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type PluginOption } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tsconfigPaths(), visualizer() as PluginOption],
+  plugins: [viteTsConfigPaths(), visualizer() as PluginOption],
   // Allow absolute imports from the `src` directory
   resolve: {
     alias: {

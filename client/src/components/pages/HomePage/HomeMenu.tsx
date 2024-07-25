@@ -1,8 +1,7 @@
+import StyledNavLink from 'components/ui/Link/StyledNavLink/StyledNavLink';
+import useMenu from 'hooks/useMenu';
 import React, { memo, useCallback } from 'react';
 import { styled } from 'styled-components';
-
-import StyledNavLink from 'components/common/Link/StyledNavLink/StyledNavLink';
-import useMenu from 'hooks/useMenu';
 import { MenuItem } from 'types/MenuItem';
 
 const HomeMenu = (): JSX.Element => {
@@ -74,7 +73,7 @@ const HomeMenu = (): JSX.Element => {
       ))}
     </StyledNav>
   );
-}
+};
 
 export default memo(HomeMenu);
 

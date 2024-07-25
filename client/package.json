@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "test": "jest",
+    "test": "jest --env=jsdom",
     "build": "set NODE_ENV=development tsc && vite build",
     "build:prod": "set NODE_ENV=production tsc && vite build",
     "build:analyze": "set NODE_ENV=production tsc && vite build",

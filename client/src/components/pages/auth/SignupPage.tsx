@@ -1,8 +1,8 @@
-import { Divider, PasswordField } from '@aws-amplify/ui-react';
-import { AmazonIcon, FacebookIcon, GoogleIcon } from 'components';
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
+import { Divider } from '@aws-amplify/ui-react';
 import { Button2 } from 'components/form/Button2';
-import { EmailField } from 'components/form/input';
+import { EmailField, PasswordField } from 'components/form/input';
+import { AmazonIcon, FacebookIcon, GoogleIcon } from 'components/icons';
+import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth, { SocialProvider } from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';

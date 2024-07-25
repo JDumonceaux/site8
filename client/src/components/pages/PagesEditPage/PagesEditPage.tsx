@@ -1,9 +1,9 @@
-import StyledLink from 'components/common/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { TextInput } from 'components/form/input';
 import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
+import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
 import { Switch } from 'components/ui/Switch/Switch';
@@ -34,7 +34,7 @@ const PagesEditPage = (): JSX.Element => {
         name: item.name,
         parentId: item.parentItem.id ? item.parentItem.id.toString() : '0',
         parentSeq: item.parentItem.seq ? item.parentItem.seq.toString() : '0',
-        parentSortby: item.parentItem.sortby || '',
+        parentSortby: item.parentItem.sortby ?? '',
         type: item.type,
       };
     });
@@ -65,7 +65,7 @@ const PagesEditPage = (): JSX.Element => {
               )}
             </td>
             <td>
-              <StyledLink to={item.toComplete || ''}>
+              <StyledLink to={item.toComplete ?? ''}>
                 {level}
                 {item.name}
               </StyledLink>

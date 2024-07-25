@@ -1,4 +1,3 @@
-import StyledPlainButton from 'components/common/Link/StyledPlainButton/StyledPlainButton';
 import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
 import usePageEdit from 'hooks/usePageEdit';
@@ -7,6 +6,7 @@ import { styled } from 'styled-components';
 import { Page } from 'types';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
+import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 
 type PageEditFormProps = {
   readonly data?: Page;
