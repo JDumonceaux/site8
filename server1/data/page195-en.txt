@@ -1,0 +1,16 @@
+API Composition is providing a single layer, single portal to access APIs.
+
+Often, data comes from multiple systems.  The front-end client should not be required to assemble this data and have information about all these systems.  Instead, we should place an API layer in-between to provide for a consistent, unified view of the data.
+
+<h2>Benefits</h2>
+
+<ul>
+<li>Single Catalog</li>
+<li>Single Security</li>
+<li>Single Endpoint</li>
+<li>Data is normalized. Transformed if needed.</li>
+<li>Errors are handled</li>
+<li>Data can be moved or sourced from alternative systems without impact to the client application.</li>
+</ul>
+
+If needed, a NodeJS layer can implement some of this pattern.

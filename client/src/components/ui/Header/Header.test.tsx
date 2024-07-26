@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { APP_NAME } from '../../../lib/utils/constants';
 import Header from './Header';
 
 describe('Header', () => {
@@ -19,7 +20,7 @@ describe('Header', () => {
 
   it('renders the app name correctly', () => {
     render(<Header />);
-    expect(screen.getByText('YourAppName')).toBeInTheDocument();
+    expect(screen.getByText(APP_NAME)).toBeInTheDocument();
   });
 
   it('renders styles correctly', () => {

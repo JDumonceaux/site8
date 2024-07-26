@@ -3,7 +3,7 @@ import StyledMain from 'components/common/StyledMain/StyledMain';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
-import { useAxios } from 'hooks/Axios';
+import { useFetch } from 'hooks/Axios/useFetch';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getParamIdAsString } from 'lib/utils/helpers';
 import { useEffect } from 'react';
@@ -13,14 +13,19 @@ import PageEditForm from './PageEditForm';
 
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();
-  const { data, isLoading, error, fetchData } = useAxios<Page>();
+  const { data, isLoading, error, fetchData, clearData } = useFetch<Page>();
   const currentId = getParamIdAsString(id);
 
+  console.log('currentId', currentId);
+
   useEffect(() => {
-    if (currentId) {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${currentId}`);
+    console.log('se');
+    if (!currentId) {
+      clearData();
+      return;
     }
-  }, [currentId, fetchData]);
+    fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${currentId}`);
+  }, [currentId]);
 
   const title = 'New Page';
 
@@ -30,16 +35,12 @@ const PageEditPage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            <div>
-              <StyledLink data-testid="nav-list" to="/admin/pages">
-                List
-              </StyledLink>
-            </div>
-            <div>
-              <StyledLink data-testid="nav-new" to="/admin/page/edit">
-                New
-              </StyledLink>
-            </div>
+            <StyledLink data-testid="nav-list" to="/admin/pages">
+              List
+            </StyledLink>
+            <StyledLink data-testid="nav-new" to="/admin/page/edit">
+              New
+            </StyledLink>
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <PageEditForm data={data} />

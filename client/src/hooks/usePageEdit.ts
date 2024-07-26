@@ -92,9 +92,7 @@ const usePageEdit = (data?: Page) => {
 
   // Update the form values when the data changes
   useEffect(() => {
-    if (data) {
-      setFormValues(mapPageToFormType(data) ?? initialFormValues);
-    }
+    setFormValues(mapPageToFormType(data) ?? initialFormValues);
   }, [data, initialFormValues, mapPageToFormType, setFormValues]);
 
   // Validate form

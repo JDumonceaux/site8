@@ -3812,6 +3812,45 @@
       "to": "sonarqube",
       "type": "page",
       "file": true
+    },
+    {
+      "id": 194,
+      "name": "Env vs.Secret Managers",
+      "parentItems": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
+      "to": "env-vs.secret-managers",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 195,
+      "name": "API Composition Pattern",
+      "parentItems": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
+      "to": "api-composition-pattern",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 196,
+      "name": "APi Throttling vs. Rate Limiting",
+      "parentItems": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
+      "to": "api-throttling-vs-rate-limiting",
+      "type": "page",
+      "file": true
     }
   ]
 }

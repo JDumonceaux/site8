@@ -432,6 +432,14 @@
       "description": "Fake store rest API for your e-commerce or shopping website prototype",
       "url": "https://fakestoreapi.com/",
       "tags": ["Mock Data"]
+    },
+
+    {
+      "id": 58,
+      "name": "JSON Placeholder",
+      "description": "Fake API",
+      "url": "https://jsonplaceholder.typicode.com",
+      "tags": ["Mock Data"]
     }
   ]
 }

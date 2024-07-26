@@ -53,11 +53,7 @@ export const insertHTML = (
       case 'sup':
       case 'sub':
         return (
-          textBefore +
-          `<${action}>\n` +
-          textMiddle +
-          `\n</${action}>` +
-          textAfter
+          textBefore + `<${action}>` + textMiddle + `</${action}>` + textAfter
         );
       default:
         return textBefore + textMiddle + textAfter;

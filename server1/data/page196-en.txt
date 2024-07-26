@@ -1,0 +1,13 @@
+Rate Limiting = Restriction on number of request per hour, minute, seconds.
+
+Throttling = Restriction on the total data per user per time. 
+
+Both can be implemented via Node Express.
+
+<h2>Benefits</h2>
+
+<ul>
+<li>Prevention of denial of service attacks</li>
+<li>Equitable access to site/data</li>
+<li>High volume situations</li>
+</ul>

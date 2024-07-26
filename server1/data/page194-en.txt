@@ -1,0 +1,18 @@
+Aws Secret Manager
+GCP Secrets Manager
+Azure Key Vault
+
+<h2>Considerations For</h2>
+
+<ul>
+<li>Difficulty and cost of migration latter</li>
+<li>DevOps responsibility?</li>
+<li>A few secrets vs. 10,000</li>
+</ul>
+
+<h2>Implementation</h2>
+
+<ul>
+<li>Singleton</li>
+<li>Cached</li>
+</ul>
