@@ -10,7 +10,7 @@ export const useFetch = <T>() => {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // Private function to fetch data
-  const fetchData = async (url: string) => {
+  const fetchDataAsync = async (url: string) => {
     setData(undefined);
     setError(undefined);
 
@@ -31,7 +31,6 @@ export const useFetch = <T>() => {
         headers: { Accept: AcceptHeader.JSON },
         signal: abortControllerRef.current.signal,
       });
-
       setData(response.data);
     } catch (err) {
       if (isCancel(err)) {
@@ -55,6 +54,10 @@ export const useFetch = <T>() => {
   const clearData = () => {
     setData(undefined);
     setError(undefined);
+  };
+
+  const fetchData = (url: string) => {
+    fetchDataAsync(url);
   };
 
   return {

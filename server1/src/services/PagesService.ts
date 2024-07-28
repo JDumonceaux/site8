@@ -20,6 +20,7 @@ export class PagesService {
   // Get all data
   public async getItems(): Promise<PagesIndex | undefined> {
     Logger.info(`PagesService: getItems ->`);
+    console.log('filePath:', this.filePath);
 
     let { promise, resolve, reject } = Promise.withResolvers<
       Pages | undefined

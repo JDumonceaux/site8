@@ -16,10 +16,7 @@ const PageEditPage = (): JSX.Element => {
   const { data, isLoading, error, fetchData, clearData } = useFetch<Page>();
   const currentId = getParamIdAsString(id);
 
-  console.log('currentId', currentId);
-
   useEffect(() => {
-    console.log('se');
     if (!currentId) {
       clearData();
       return;

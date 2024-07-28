@@ -433,12 +433,32 @@
       "url": "https://fakestoreapi.com/",
       "tags": ["Mock Data"]
     },
-
     {
-      "id": 58,
+      "id": 59,
       "name": "JSON Placeholder",
-      "description": "Fake API",
+      "description": "Fake API for Blog Posts",
       "url": "https://jsonplaceholder.typicode.com",
+      "tags": ["Mock Data"]
+    },
+    {
+      "id": 60,
+      "name": "Regres",
+      "description": "Fake API for User Data",
+      "url": "https://reqres.in/",
+      "tags": ["Mock Data"]
+    },
+    {
+      "id": 61,
+      "name": "Github",
+      "description": "Public API's",
+      "url": "https://github.com/public-apis/public-apis",
+      "tags": ["Mock Data"]
+    },
+    {
+      "id": 62,
+      "name": "Public APIs",
+      "description": "List of Public API's",
+      "url": "https://publicapis.dev/",
       "tags": ["Mock Data"]
     }
   ]
