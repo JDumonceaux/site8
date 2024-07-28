@@ -11,6 +11,7 @@ import { BookmarksTags } from 'types';
 const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
   const { data, error, isLoading, fetchData } = useAxios<BookmarksTags>();
+
   useEffect(() => {
     fetchData(`${ServiceUrl.ENDPOINT_BOOKMARKS}`);
   }, [fetchData]);
@@ -24,7 +25,6 @@ const BookmarkPage = (): JSX.Element => {
         <PageTitle title={title} />
         <section>
           <p>These are some of my favorite resources.</p>
-
           <LoadingWrapper error={error} isLoading={isLoading}>
             <BookmarkTags data={deferredData} />
           </LoadingWrapper>

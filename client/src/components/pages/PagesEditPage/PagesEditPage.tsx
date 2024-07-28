@@ -103,12 +103,9 @@ const PagesEditPage = (): JSX.Element => {
     [getDefaultProps],
   );
 
-  const onShowPages = useCallback(
-    (checked: boolean) => {
-      setShowPages(checked);
-    },
-    [setShowPages],
-  );
+  const onShowPages = (checked: boolean) => {
+    setShowPages(checked);
+  };
 
   return (
     <>

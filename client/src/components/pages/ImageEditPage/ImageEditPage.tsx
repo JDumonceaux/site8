@@ -45,12 +45,9 @@ const ImageEditImage = (): JSX.Element => {
     [submitForm, error, setMessage],
   );
 
-  const handleSelectImage = useCallback(
-    (item: Image | undefined) => {
-      handleChangeImage(item);
-    },
-    [handleChangeImage],
-  );
+  const handleSelectImage = (item: Image | undefined) => {
+    handleChangeImage(item);
+  };
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
 

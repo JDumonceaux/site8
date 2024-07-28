@@ -10,7 +10,7 @@ import PageTitle from 'components/ui/PageTitle/PageTitle';
 import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import React, { useCallback, useEffect, useState, useTransition } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import { styled } from 'styled-components';
 
 const ImagesEditPage = (): JSX.Element => {
@@ -35,59 +35,50 @@ const ImagesEditPage = (): JSX.Element => {
     fetchItems();
   }, [fetchItems]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     setMessage('Updating...');
     startTransition(() => {
       fetchItems();
     });
     setMessage('Done');
-  }, [fetchItems, setMessage]);
+  };
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      setMessage('Saving...');
+  const handleSubmit = (e: React.FormEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setMessage('Saving...');
 
-      const result = submitForm();
-      if (result) {
-        setMessage('Saved');
-      } else {
-        setMessage(`Error saving ${error}`);
-      }
-      if (result) {
-        handleRefresh();
-      }
-    },
-    [setMessage, submitForm, handleRefresh, error],
-  );
+    const result = submitForm();
+    if (result) {
+      setMessage('Saved');
+    } else {
+      setMessage(`Error saving ${error}`);
+    }
+    if (result) {
+      handleRefresh();
+    }
+  };
 
-  const handleScan = useCallback(() => {
+  const handleScan = () => {
     setMessage('Scanning...');
     startTransition(() => {
       scanForNewItems();
     });
     setMessage('Done');
-  }, [scanForNewItems, setMessage, startTransition]);
+  };
 
-  const handleOnClick = useCallback((value: string) => {
+  const handleOnClick = (value: string) => {
     setCurrFolder((prev) => (prev === value ? '' : value));
-  }, []);
+  };
 
-  const handleOnDelete = useCallback(
-    (localId: number) => {
-      const prev = getFieldValue(localId, 'delete');
-      setFieldValue(localId, 'delete', !prev);
-    },
-    [getFieldValue, setFieldValue],
-  );
+  const handleOnDelete = (localId: number) => {
+    const prev = getFieldValue(localId, 'delete');
+    setFieldValue(localId, 'delete', !prev);
+  };
 
-  const handleFolderClick = useCallback(
-    (localId: number) => {
-      setFieldValue(localId, 'folder', currFolder);
-    },
-    [currFolder, setFieldValue],
-  );
+  const handleFolderClick = (localId: number) => {
+    setFieldValue(localId, 'folder', currFolder);
+  };
 
   return (
     <>
