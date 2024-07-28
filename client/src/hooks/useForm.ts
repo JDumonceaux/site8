@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { z } from 'zod';
 
 export const useForm = <T>(initialValues: T) => {
@@ -29,8 +29,7 @@ export const useForm = <T>(initialValues: T) => {
 
   const getFieldErrors = useCallback(
     (fieldName: keys): string | string[] | undefined => {
-      const x =
-        errors && errors.filter((x) => x.path.includes(fieldName as string));
+      const x = errors?.filter((x) => x.path.includes(fieldName as string));
       return x && x.length > 0 ? x.map((x) => x.message) : undefined;
     },
     [errors],
@@ -43,9 +42,9 @@ export const useForm = <T>(initialValues: T) => {
     [getFieldErrors],
   );
 
-  const isFormValid = useCallback(() => {
+  const isFormValid = () => {
     return !errors || errors.length === 0;
-  }, [errors]);
+  };
 
   // Handle field change
   const handleChange = useCallback(
@@ -56,85 +55,60 @@ export const useForm = <T>(initialValues: T) => {
     [setFieldValue],
   );
 
-  const handleClear = useCallback(() => {
+  const handleClear = () => {
     setFormValues({} as T);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [setFormValues]);
+  };
 
-  const handleReset = useCallback(() => {
+  const handleReset = () => {
     setFormValues(initialValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [initialValues, setFormValues]);
+  };
 
-  const getDefaultFields = useCallback(
-    (fieldName: keys) => {
-      return {
-        id: `${fieldName as string}`,
-        errorText: getFieldErrors(fieldName),
-        hasError: hasError(fieldName),
-        value: formValues[fieldName],
-      };
-    },
-    [getFieldErrors, hasError, formValues],
-  );
+  const getDefaultFields = (fieldName: keys) => {
+    return {
+      id: `${fieldName as string}`,
+      errorText: getFieldErrors(fieldName),
+      hasError: hasError(fieldName),
+      value: formValues[fieldName],
+    };
+  };
 
-  const getDefaultPasswordFields = useCallback(
-    (fieldName: keys, id: string) => {
-      return {
-        id: `${fieldName as string} - ${id}`,
-        errorText: getFieldErrors(fieldName),
-        hasError: hasError(fieldName),
-        value: formValues[fieldName],
-        maxLength: 60,
-        onChange: handleChange,
-        required: true,
-        showCounter: true,
-      };
-    },
-    [getFieldErrors, hasError, formValues, handleChange],
-  );
+  const getDefaultPasswordFields = (fieldName: keys, id: string) => {
+    return {
+      id: `${fieldName as string} - ${id}`,
+      errorText: getFieldErrors(fieldName),
+      hasError: hasError(fieldName),
+      value: formValues[fieldName],
+      maxLength: 60,
+      onChange: handleChange,
+      required: true,
+      showCounter: true,
+    };
+  };
 
-  return useMemo(
-    () => ({
-      formValues,
-      errors,
-      isSaved,
-      isProcessing,
-      setFieldValue,
-      getFieldValue,
-      getFieldErrors,
-      hasError,
-      isFormValid,
-      handleChange,
-      handleClear,
-      handleReset,
-      getDefaultFields,
-      getDefaultPasswordFields,
-      setErrors,
-      setIsSaved,
-      setIsProcessing,
-      setFormValues,
-    }),
-    [
-      formValues,
-      errors,
-      isSaved,
-      isProcessing,
-      setFieldValue,
-      getFieldValue,
-      getFieldErrors,
-      hasError,
-      isFormValid,
-      handleChange,
-      handleClear,
-      handleReset,
-      getDefaultFields,
-      getDefaultPasswordFields,
-      setFormValues,
-    ],
-  );
+  return {
+    formValues,
+    errors,
+    isSaved,
+    isProcessing,
+    setFieldValue,
+    getFieldValue,
+    getFieldErrors,
+    hasError,
+    isFormValid,
+    handleChange,
+    handleClear,
+    handleReset,
+    getDefaultFields,
+    getDefaultPasswordFields,
+    setErrors,
+    setIsSaved,
+    setIsProcessing,
+    setFormValues,
+  };
 };

@@ -83,9 +83,7 @@ const useAuth = () => {
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState<string | undefined>('');
-  const [signInDetails, setSignInDetails] = useState<unknown | undefined>(
-    undefined,
-  );
+  const [signInDetails, setSignInDetails] = useState<unknown>(undefined);
   const navigate = useNavigate();
 
   const handleError = (error: unknown): void => {
@@ -440,7 +438,7 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await signInWithRedirect({
-        provider: provider,
+        provider,
       });
     } catch (error) {
       handleError(error);

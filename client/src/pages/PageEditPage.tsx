@@ -9,7 +9,7 @@ import { getParamIdAsString } from 'lib/utils/helpers';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Page } from 'types';
-import PageEditForm from './PageEditForm';
+import PageEditForm from '../components/pages/PageEditPage/PageEditForm';
 
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();

@@ -138,20 +138,20 @@ const useImageEdit = (id: string | undefined) => {
   }, [formValues, setErrors]);
 
   // Handle clear form
-  const handleClear = useCallback(() => {
+  const handleClear = () => {
     setFormValues(defaultFormValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [defaultFormValues, setErrors, setFormValues]);
+  };
 
   // Handle form reset
-  const handleReset = useCallback(() => {
+  const handleReset = () => {
     updateFormValues(originalValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
-  }, [originalValues, setErrors, updateFormValues]);
+  };
 
   // Handle save
   const saveItem = useCallback(
@@ -173,7 +173,7 @@ const useImageEdit = (id: string | undefined) => {
   );
 
   // Handle form submission
-  const submitForm = useCallback((): boolean => {
+  const submitForm = (): boolean => {
     setIsProcessing(true);
     if (validateForm()) {
       saveItem(formValues);
@@ -182,49 +182,31 @@ const useImageEdit = (id: string | undefined) => {
       return true;
     }
     return false;
-  }, [formValues, saveItem, validateForm]);
+  };
 
-  const handleChangeImage = useCallback(
-    (item: Image | undefined) => {
-      setFormValues((prev) => ({
-        ...prev,
-        fileName: item?.fileName ?? '',
-        folder: item?.folder ?? '',
-      }));
+  const handleChangeImage = (item: Image | undefined) => {
+    setFormValues((prev) => ({
+      ...prev,
+      fileName: item?.fileName ?? '',
+      folder: item?.folder ?? '',
+    }));
 
-      setIsSaved(false);
-    },
-    [setFormValues],
-  );
+    setIsSaved(false);
+  };
 
-  return useMemo(
-    () => ({
-      formValues,
-      isProcessing,
-      isLoading,
-      error,
-      isSaved,
-      handleChange,
-      handleClear,
-      handleReset,
-      getDefaultFields,
-      submitForm,
-      handleChangeImage,
-    }),
-    [
-      formValues,
-      isProcessing,
-      handleClear,
-      handleChange,
-      submitForm,
-      handleReset,
-      isLoading,
-      error,
-      isSaved,
-      handleChangeImage,
-      getDefaultFields,
-    ],
-  );
+  return {
+    formValues,
+    isProcessing,
+    isLoading,
+    error,
+    isSaved,
+    handleChange,
+    handleClear,
+    handleReset,
+    getDefaultFields,
+    submitForm,
+    handleChangeImage,
+  };
 };
 
 export default useImageEdit;

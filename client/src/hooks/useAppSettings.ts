@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/appSlice';
 import { AppDispatch, RootState } from 'store/store';
@@ -6,7 +6,6 @@ import { AppSettings } from 'types/AppSettings';
 
 const useAppSettings = () => {
   const dispatch = useDispatch<AppDispatch>();
-
   const selector = (state: RootState) => state.appSettings;
   const data: AppSettings | null = useSelector(selector).data;
 
@@ -19,54 +18,42 @@ const useAppSettings = () => {
     [],
   );
 
-  const updateAppSettingsDispatch = useCallback(
-    (data: AppSettings) => {
-      dispatch(save(data));
-    },
-    [dispatch],
-  );
+  const updateAppSettingsDispatch = (data: AppSettings) => {
+    dispatch(save(data));
+  };
 
-  const setShowAll = useCallback(
-    (value: boolean) => {
-      updateAppSettingsDispatch({
-        ...data,
-        showAll: value,
-      });
-    },
-    [data, updateAppSettingsDispatch],
-  );
+  const setShowAll = (value: boolean) => {
+    updateAppSettingsDispatch({
+      ...data,
+      showAll: value,
+    });
+  };
 
-  const setShowUnmatched = useCallback(
-    (value: boolean) => {
-      updateAppSettingsDispatch({
-        ...data,
-        showUnmatched: value,
-      });
-    },
-    [data, updateAppSettingsDispatch],
-  );
+  const setShowUnmatched = (value: boolean) => {
+    updateAppSettingsDispatch({
+      ...data,
+      showUnmatched: value,
+    });
+  };
 
-  const setShowPages = useCallback(
-    (value: boolean) => {
-      updateAppSettingsDispatch({
-        ...data,
-        showPages: value,
-      });
-    },
-    [data, updateAppSettingsDispatch],
-  );
+  const setShowPages = (value: boolean) => {
+    updateAppSettingsDispatch({
+      ...data,
+      showPages: value,
+    });
+  };
 
-  const reset = useCallback(() => {
+  const reset = () => {
     updateAppSettingsDispatch({
       ...initialState,
     });
-  }, [initialState, updateAppSettingsDispatch]);
+  };
 
   const showUnmatched = data?.showUnmatched ? data.showUnmatched : false;
   const showPages = data?.showPages ? data.showPages : false;
 
   return {
-    data: data,
+    data,
     setShowAll,
     setShowPages,
     showUnmatched,

@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 
 export type IdType = {
   readonly localId: number;
@@ -65,60 +65,38 @@ export const useFormArray = <T extends IdType>() => {
     [findItemIndex],
   );
 
-  const getItem = useCallback(
-    (localId: number): T | undefined => {
-      const index = findItemIndex(localId);
-      return index >= 0 ? formValues[index] : undefined;
-    },
-    [formValues, findItemIndex],
-  );
+  const getItem = (localId: number): T | undefined => {
+    const index = findItemIndex(localId);
+    return index >= 0 ? formValues[index] : undefined;
+  };
 
-  const handleChange = useCallback(
-    (
-      localId: number,
-      fieldName: keyof T,
-      event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-      setFieldValue(localId, fieldName, event.target.value);
-    },
-    [setFieldValue],
-  );
+  const handleChange = (
+    localId: number,
+    fieldName: keyof T,
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFieldValue(localId, fieldName, event.target.value);
+  };
 
-  const getDefaultProps = useCallback(
-    (localId: number, fieldName: keyof T) => ({
-      id: `${fieldName as string}-(${localId})`,
-      value: getFieldValue(localId, fieldName),
-      onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-        handleChange(localId, fieldName, e),
-    }),
-    [getFieldValue, handleChange],
-  );
+  const getDefaultProps = (localId: number, fieldName: keyof T) => ({
+    id: `${fieldName as string}-(${localId})`,
+    value: getFieldValue(localId, fieldName),
+    onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      handleChange(localId, fieldName, e),
+  });
 
-  return useMemo(
-    () => ({
-      formValues,
-      isSaved,
-      isProcessing,
-      setIsProcessing,
-      handleChange,
-      setIsSaved,
-      getFieldValue,
-      setFieldValue,
-      setFormValues,
-      getDefaultProps,
-      getItem,
-      setItem,
-    }),
-    [
-      formValues,
-      isSaved,
-      isProcessing,
-      handleChange,
-      getFieldValue,
-      setFieldValue,
-      getDefaultProps,
-      getItem,
-      setItem,
-    ],
-  );
+  return {
+    formValues,
+    isSaved,
+    isProcessing,
+    setIsProcessing,
+    handleChange,
+    setIsSaved,
+    getFieldValue,
+    setFieldValue,
+    setFormValues,
+    getDefaultProps,
+    getItem,
+    setItem,
+  };
 };
