@@ -27,7 +27,7 @@ export const fetchFolders = createAsyncThunk('image/fetchFolders', async () => {
   return response.data;
 });
 
-const folderSlice = createSlice({
+const FolderSlice = createSlice({
   name: 'folder',
   initialState,
   reducers: {},
@@ -44,9 +44,9 @@ const folderSlice = createSlice({
       })
       .addCase(fetchFolders.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'An error occurred';
+        state.error = action.error.message ?? 'Unable to fetch folders';
       });
   },
 });
 
-export default folderSlice.reducer;
+export default FolderSlice.reducer;

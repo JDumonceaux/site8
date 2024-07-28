@@ -1,5 +1,5 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-
 import { AppSettings } from 'types';
 
 type AppState = {
@@ -10,15 +10,15 @@ const initialState: AppState = {
   data: null,
 };
 
-const appSlice = createSlice({
+const AppSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    save: (state, action) => {
+    save: (state, action: PayloadAction<AppSettings>) => {
       state.data = action.payload;
     },
   },
 });
 
-export const { save } = appSlice.actions;
-export default appSlice.reducer;
+export const { save } = AppSlice.actions;
+export default AppSlice.reducer;

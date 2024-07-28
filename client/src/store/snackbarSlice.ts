@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { Snackbar } from 'types/Snackbar';
 
@@ -9,15 +10,15 @@ const initialState: SnackbarState = {
   data: null,
 };
 
-const snackbarSlice = createSlice({
+const SnackbarSlice = createSlice({
   name: 'snackbar',
   initialState,
   reducers: {
-    save: (state, action) => {
+    save: (state, action: PayloadAction<Snackbar>) => {
       state.data = action.payload;
     },
   },
 });
 
-export const { save } = snackbarSlice.actions;
-export default snackbarSlice.reducer;
+export const { save } = SnackbarSlice.actions;
+export default SnackbarSlice.reducer;

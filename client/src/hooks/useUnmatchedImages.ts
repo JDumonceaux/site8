@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchImages } from 'store/imageSlice';
+import { fetchImages } from 'store/ImageSlice';
 import { AppDispatch, RootState } from 'store/store';
 
 const useUnmatchedImages = () => {

@@ -41,7 +41,7 @@ const MenuSlice = createSlice({
       })
       .addCase(fetchMenu.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'An error occurred';
+        state.error = action.error.message ?? 'Unable to fetch menu';
       });
   },
 });

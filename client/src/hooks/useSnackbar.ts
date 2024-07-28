@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { save } from 'store/appSlice';
+import { save } from 'store/AppSlice';
 import { AppDispatch, RootState } from 'store/store';
 import { Snackbar } from 'types/Snackbar';
 

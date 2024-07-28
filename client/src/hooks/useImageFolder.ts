@@ -1,7 +1,7 @@
 import { isValidArray } from 'lib/utils/helpers';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchFolders } from 'store/folderSlice';
+import { fetchFolders } from 'store/FolderSlice';
 import { AppDispatch, RootState } from 'store/store';
 
 const useImageFolder = () => {

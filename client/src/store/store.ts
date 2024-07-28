@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import appReducer from './appSlice';
-import folderReducer from './folderSlice';
-import imageReducer from './imageSlice';
-import menuReducer from './menuSlice';
-import snackbarReducer from './snackbarSlice';
+import appReducer from './AppSlice';
+import folderReducer from './FolderSlice';
+import imageReducer from './ImageSlice';
+import menuReducer from './MenuSlice';
+import snackbarReducer from './SnackbarSlice';
 
 export const store = configureStore({
   reducer: {

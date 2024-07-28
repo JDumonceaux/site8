@@ -14,7 +14,6 @@ const initialState: ImageState = {
   isLoading: false,
   error: null,
 };
-
 const controller = new AbortController();
 
 const fetchImages = createAsyncThunk('image/fetchImages', async () => {
@@ -41,7 +40,7 @@ const ImageSlice = createSlice({
       })
       .addCase(fetchImages.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'An error occurred';
+        state.error = action.error.message ?? 'Unable to fetch images';
       });
   },
 });
