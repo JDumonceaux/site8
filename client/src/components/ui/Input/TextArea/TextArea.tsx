@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 
 import { TextareaHTMLAttributes } from 'react';
-import { TextHelp } from '../TextHelp';
-import { TextLabel } from '../TextLabel';
+import { TextHelp } from '../TextHelp/TextHelp';
+import { TextLabel } from '../TextLabel/TextLabel';
 
 type TextAreaProps = {
   readonly id: string;

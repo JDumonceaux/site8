@@ -1,8 +1,7 @@
 import { useCallback, useState } from 'react';
 
-import { TextInput } from '../TextInput';
-import { TextInputProps } from '../TextInput/TextInput';
 import { ShowPasswordButton } from './ShowPasswordButton';
+import TextInput, { TextInputProps } from '../TextInput/TextInput';
 
 type PasswordFieldType = 'password' | 'text';
 

@@ -14,8 +14,8 @@ import {
 } from '@dnd-kit/sortable';
 
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { TextInput } from 'components/form/input';
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
+import { TextInput } from 'components/ui/Input';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';

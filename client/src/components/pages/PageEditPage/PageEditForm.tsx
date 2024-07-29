@@ -1,5 +1,5 @@
-import { TextInput } from 'components/form/input';
 import { TextArea } from 'components/form/input/TextArea';
+import { TextInput } from 'components/ui/Input';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
 import { forwardRef, useCallback, useState } from 'react';

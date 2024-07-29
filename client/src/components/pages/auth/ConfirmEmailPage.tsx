@@ -1,5 +1,5 @@
 import { Button2 } from 'components/form/Button2';
-import { EmailField, TextInput } from 'components/form/input';
+import { EmailField, TextInput } from 'components/ui/Input';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';

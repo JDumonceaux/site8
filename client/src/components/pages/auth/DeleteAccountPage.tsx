@@ -1,5 +1,6 @@
 import { Button2 } from 'components/form/Button2';
-import { TextInput } from 'components/form/input';
+import { TextInput } from 'components/ui/Input';
+import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
@@ -8,7 +9,6 @@ import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 
 // Define Zod Shape
 const schema = z.object({

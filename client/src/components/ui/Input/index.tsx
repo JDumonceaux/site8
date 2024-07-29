@@ -1,3 +1,3 @@
 export * from './EmailField';
 export * from './PasswordField';
-export * from './TextInput';
+export * from './TextInput/TextInput';

@@ -1,8 +1,8 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, memo } from 'react';
 
 import { styled } from 'styled-components';
-import { TextLabel } from '../TextLabel';
-import { TextHelp } from '../TextHelp';
+import { TextHelp } from '../TextHelp/TextHelp';
+import { TextLabel } from '../TextLabel/TextLabel';
 
 export type TextInputProps = {
   readonly id: string;
@@ -26,7 +26,7 @@ export type TextInputProps = {
 // ToDo: Create components for additional input types
 // ToDo: Remove attributes that are not valid for this input type
 
-export const TextInput = ({
+const TextInput = ({
   id,
   label,
   layout = 'vertical',
@@ -82,6 +82,8 @@ export const TextInput = ({
 };
 
 TextInput.displayName = 'TextInput';
+
+export default memo(TextInput);
 
 const StyledWrapper = styled.div<{ $layout: string }>`
   width: 100%;

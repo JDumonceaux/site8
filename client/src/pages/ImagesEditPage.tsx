@@ -1,9 +1,9 @@
 import { Cross2Icon } from '@radix-ui/react-icons';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { TextInput } from 'components/form/input';
 import { IconMenu } from 'components/ui/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/ui/IconMenu/IconMenuItem';
+import { TextInput } from 'components/ui/Input';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
