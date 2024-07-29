@@ -1,7 +1,7 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
-import { TextInput } from 'components/ui/Input';
+import TextInput from 'components/ui/Input/TextInput/TextInput';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';

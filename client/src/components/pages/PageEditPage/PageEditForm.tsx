@@ -1,5 +1,3 @@
-import { TextArea } from 'components/form/input/TextArea';
-import { TextInput } from 'components/ui/Input';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
 import { forwardRef, useCallback, useState } from 'react';
@@ -7,6 +5,8 @@ import { styled } from 'styled-components';
 import { Page } from 'types';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
+import { TextArea } from 'components/ui/Input/TextArea';
+import TextInput from 'components/ui/Input/TextInput/TextInput';
 
 type PageEditFormProps = {
   readonly data?: Page;

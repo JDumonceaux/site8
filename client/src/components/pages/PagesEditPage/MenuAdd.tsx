@@ -1,5 +1,5 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import { TextInput } from 'components/ui/Input';
+import TextInput from 'components/ui/Input/TextInput/TextInput';
 import useMenuAdd from 'hooks/useMenuAdd';
 import useSnackbar from 'hooks/useSnackbar';
 import { startTransition, useCallback } from 'react';
