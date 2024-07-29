@@ -3851,6 +3851,45 @@
       "to": "api-throttling-vs-rate-limiting",
       "type": "page",
       "file": true
+    },
+    {
+      "id": 197,
+      "name": "Accessibility",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "accessibility"
+    },
+    {
+      "id": 198,
+      "name": "Jest-Axe",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "jest-axe",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 199,
+      "name": "Avatars",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "avatars",
+      "type": "page",
+      "file": true
     }
   ]
 }

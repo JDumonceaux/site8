@@ -1,0 +1,22 @@
+Jest-axe is a custom Jest matcher for Axe which provides functions to check rendered code against Axe standards.
+
+npm install --include=dev --save jest-axe
+npm install --include=dev --save @types/jest-axe
+
+npm audit fix
+
+<pre><code>
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { render } from '@testing-library/react';
+
+import App from '../App';
+
+expect.extend(toHaveNoViolations);
+
+it('should have no accessibility violations caught by jest-axe', async () => {
+  const { container } = render(<App />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
+</code></pre>
