@@ -1,5 +1,5 @@
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Menu, MenuEdit, MenuItem } from 'types';
 import { z } from 'zod';
 import { useAxios } from './Axios/useAxios';
@@ -10,7 +10,7 @@ const pageSchema = z.object({
   localId: z.number(),
   id: z.number(),
   name: z.string().optional(),
-  parentId: z.string().min(1, REQUIRED_FIELD),
+  parentId: z.string().min(1, { message: REQUIRED_FIELD }),
   parentSeq: z.string(),
   parentSortby: z.string(),
   type: z.string(),
@@ -51,6 +51,12 @@ const usePagesEdit = () => {
     );
   }, [data?.items, setLocalItems]);
 
+  /**
+   * Maps a FormType item to a MenuEdit object.
+   *
+   * @param item - The FormType item to be mapped.
+   * @returns The mapped MenuEdit object.
+   */
   const mapFormTypeToMenuEdit = useCallback(
     (item: FormType): MenuEdit | undefined => {
       if (!item) {
@@ -70,50 +76,63 @@ const usePagesEdit = () => {
     [],
   );
 
-  const shouldUpdate = useCallback(
-    (
-      originalItem: MenuItem | undefined,
-      newItem: MenuEdit | undefined,
-    ): boolean => {
-      if (!originalItem || !newItem) {
-        return false;
-      }
-      const { parentItem } = originalItem;
-      const { newParent } = newItem;
-      if (!parentItem && !newParent) {
-        return false;
-      }
-      if (parent && !newParent) {
-        return false;
-      }
-      const { id, seq, sortby } = newParent;
-      if (id && Number.isInteger(id) && id > -1) {
-        if (!parentItem.id) {
-          return true;
-        }
-        if (parentItem.id !== id) {
-          return true;
-        }
-      }
-      if (seq && Number.isInteger(seq) && seq > -1) {
-        if (!parentItem.seq) {
-          return true;
-        }
-        if (parentItem.seq !== seq) {
-          return true;
-        }
-      }
-      if (sortby && sortby.length > 0 && parentItem.sortby !== sortby) {
-        return true;
-      }
+  /**
+   * Determines whether the original item should be updated based on the new item.
+   * Returns true if the original item should be updated, false otherwise.
+   *
+   * @param originalItem - The original item to compare.
+   * @param newItem - The new item to compare.
+   * @returns A boolean indicating whether the original item should be updated.
+   */
+  const shouldUpdate = (
+    originalItem: MenuItem | undefined,
+    newItem: MenuEdit | undefined,
+  ): boolean => {
+    if (!originalItem || !newItem) {
       return false;
-    },
-    [],
-  );
+    }
+    const { parentItem } = originalItem;
+    const { newParent } = newItem;
+    if (!parentItem && !newParent) {
+      return false;
+    }
+    if (!newParent) {
+      return false;
+    }
+    const { id, seq, sortby } = newParent;
+    if (
+      id &&
+      Number.isInteger(id) &&
+      id > -1 &&
+      (!parentItem || parentItem.id !== id)
+    ) {
+      return true;
+    }
+    if (
+      seq &&
+      Number.isInteger(seq) &&
+      seq > -1 &&
+      (!parentItem || parentItem.seq !== seq)
+    ) {
+      return true;
+    }
+    if (
+      sortby &&
+      sortby.length > 0 &&
+      parentItem &&
+      parentItem.sortby !== sortby
+    ) {
+      return true;
+    }
+    return false;
+  };
 
-  // Get the updates
+  /**
+   * Retrieves the updates to be made based on the form values and local items.
+   * @returns An array of MenuEdit objects representing the updates, or undefined if there are no local items.
+   */
   // We only want to submit the differences - not every record.
-  const getUpdates = useCallback((): MenuEdit[] | undefined => {
+  const getUpdates = (): MenuEdit[] | undefined => {
     if (!localItems) {
       return undefined;
     }
@@ -122,15 +141,12 @@ const usePagesEdit = () => {
     formValues.forEach((item) => {
       // Map item
       const tempItem = mapFormTypeToMenuEdit(item);
-
       // Find the original item
       const currItem = localItems.find((x) => x.localId === item.localId);
-
       const newItem =
         tempItem && currItem?.parentItem
           ? { ...tempItem, priorParent: { ...currItem?.parentItem } }
           : tempItem;
-
       if (shouldUpdate(currItem, newItem)) {
         if (newItem) {
           ret.push(newItem);
@@ -140,10 +156,13 @@ const usePagesEdit = () => {
 
     // Filter out empty array values
     return ret ? ret.filter((x) => x) : undefined;
-  }, [formValues, localItems, mapFormTypeToMenuEdit, shouldUpdate]);
+  };
 
-  // Handle save
-  const submitForm = useCallback(async () => {
+  /**
+   * Submits the form data to update menus.
+   * @returns A promise that resolves to a boolean indicating whether the form submission was successful.
+   */
+  const submitForm = async () => {
     const data = getUpdates();
     if (!data) {
       return false;
@@ -153,51 +172,41 @@ const usePagesEdit = () => {
     setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [getUpdates, patchData, setIsProcessing, setIsSaved]);
+  };
 
-  const handleChange = useCallback(
-    (id: number, fieldName: keys, value: string) => {
-      setFieldValue(id, fieldName, value);
-    },
-    [setFieldValue],
-  );
+  /**
+   * Handles the change event for a specific field in a page.
+   * @param id - The ID of the page.
+   * @param fieldName - The name of the field being changed.
+   * @param value - The new value for the field.
+   */
+  const handleChange = (id: number, fieldName: keys, value: string) => {
+    setFieldValue(id, fieldName, value);
+  };
 
-  const handleSave = useCallback(async () => {
+  /**
+   * Handles the save operation by submitting the form and returning the result.
+   * @returns {Promise<any>} A promise that resolves to the result of the save operation.
+   */
+  const handleSave = async () => {
     const ret = await submitForm();
     return ret;
-  }, [submitForm]);
+  };
 
-  const filteredData = localItems;
-
-  return useMemo(
-    () => ({
-      data: filteredData,
-      pageSchema,
-      isProcessing,
-      isLoading,
-      error,
-      isSaved,
-      getFieldValue,
-      getDefaultProps,
-      setFieldValue,
-      handleChange,
-      handleSave,
-      setFormValues,
-    }),
-    [
-      filteredData,
-      isProcessing,
-      isLoading,
-      error,
-      isSaved,
-      getFieldValue,
-      getDefaultProps,
-      setFieldValue,
-      handleChange,
-      handleSave,
-      setFormValues,
-    ],
-  );
+  return {
+    data: localItems,
+    pageSchema,
+    isProcessing,
+    isLoading,
+    error,
+    isSaved,
+    getFieldValue,
+    getDefaultProps,
+    setFieldValue,
+    handleChange,
+    handleSave,
+    setFormValues,
+  };
 };
 
 export default usePagesEdit;

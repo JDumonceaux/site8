@@ -6,6 +6,7 @@ import StyledLink from '../Link/StyledLink/StyledLink';
 
 type HeaderProps = {
   readonly includeMenu?: boolean;
+  readonly avatar?: React.ReactNode;
 };
 
 /**
@@ -17,7 +18,7 @@ type HeaderProps = {
  * @returns {JSX.Element} The rendered header component.
  */
 const Header = forwardRef<HTMLDivElement, HeaderProps>(
-  ({ includeMenu = false }: HeaderProps, ref): JSX.Element => {
+  ({ includeMenu = false, avatar }: HeaderProps, ref): JSX.Element => {
     return (
       <StyledHeader data-testid="header" ref={ref}>
         <div>
@@ -29,6 +30,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(
             </StyledLink>
           </StyledLinkDiv>
         </div>
+        <div>{avatar}</div>
       </StyledHeader>
     );
   },

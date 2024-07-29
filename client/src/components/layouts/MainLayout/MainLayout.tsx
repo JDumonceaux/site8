@@ -1,5 +1,6 @@
 import AppInitializer from 'components/common/AppInitializer/AppInitializer';
 import Snackbar from 'components/ui/Snackbar/Snackbar';
+import StyledAvatar from 'components/ui/SytledAvatar/StyledAvatar';
 import { Suspense, lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
@@ -9,7 +10,13 @@ const Header = lazy(() => import('components/ui/Header/Header'));
 export const MainLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <AppInitializer />
-    <Header />
+    <Header
+      avatar={
+        <StyledAvatar alt="Avatar" id="avatar" src="/avatar.jpg">
+          JD
+        </StyledAvatar>
+      }
+    />
     <LayoutDiv>
       <Suspense fallback="Loading ...">
         <Outlet />
