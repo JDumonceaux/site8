@@ -1,8 +1,8 @@
-import { describe, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { getURLPath } from './helpers';
 
 describe('getURLPath', () => {
-  it('should return undefined for an empty URL', () => {
+  test('should return undefined for an empty URL', () => {
     const url = '';
     const expected = undefined;
 
@@ -11,7 +11,7 @@ describe('getURLPath', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should return an array of path segments for a non-empty URL', () => {
+  test('should return an array of path segments for a non-empty URL', () => {
     const url = '/path/to/something';
     const expected = ['path', 'to', 'something'];
 
@@ -20,7 +20,7 @@ describe('getURLPath', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should ignore leading and trailing slashes in the URL', () => {
+  test('should ignore leading and trailing slashes in the URL', () => {
     const url = '/path/to/something/';
     const expected = ['path', 'to', 'something'];
 
@@ -29,7 +29,7 @@ describe('getURLPath', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should return undefined for a URL with only slashes', () => {
+  test('should return undefined for a URL with only slashes', () => {
     const url = '////';
     const expected = undefined;
 

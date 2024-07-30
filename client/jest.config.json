@@ -1,6 +1,0 @@
-{
-  "preset": "ts-jest",
-  "testEnvironment": "jsdom",
-  "setupFilesAfterEnv": ["@testing-library/jest-dom/vitest"],
-  "moduleDirectories": ["node_modules", "src"]
-}

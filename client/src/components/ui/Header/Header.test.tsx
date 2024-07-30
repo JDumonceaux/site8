@@ -1,30 +1,29 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect } from 'vitest';
 import { APP_NAME } from '../../../lib/utils/constants';
 import Header from './Header';
 
 describe('Header', () => {
-  it('renders without errors', () => {
+  test('renders without errors', () => {
     render(<Header />);
     expect(screen.getByTestId('header')).toBeInTheDocument();
   });
 
-  it('includes the menu icon when includeMenu prop is true', () => {
+  test('includes the menu icon when includeMenu prop is true', () => {
     render(<Header includeMenu={true} />);
     expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
   });
 
-  it('does not include the menu icon when includeMenu prop is false', () => {
+  test('does not include the menu icon when includeMenu prop is false', () => {
     render(<Header includeMenu={false} />);
     expect(screen.queryByTestId('menu-icon')).toBeNull();
   });
 
-  it('renders the app name correctly', () => {
+  test('renders the app name correctly', () => {
     render(<Header />);
     expect(screen.getByText(APP_NAME)).toBeInTheDocument();
   });
 
-  it('renders styles correctly', () => {
+  test('renders styles correctly', () => {
     render(<Header />);
     const header = screen.getByTestId('header');
     const styles = getComputedStyle(header);

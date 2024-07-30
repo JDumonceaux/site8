@@ -7,7 +7,7 @@ import {
 } from './objectUtil.js';
 
 describe('removeEmptyAttributes', () => {
-  it('should remove empty attributes from an object', () => {
+  test('should remove empty attributes from an object', () => {
     const obj = {
       name: 'John',
       age: 30,
@@ -26,7 +26,7 @@ describe('removeEmptyAttributes', () => {
 });
 
 describe('trimAttributes', () => {
-  it('should trim string attributes of an object', () => {
+  test('should trim string attributes of an object', () => {
     const obj = {
       name: '   John   ',
       age: 30,
@@ -46,7 +46,7 @@ describe('trimAttributes', () => {
 });
 
 describe('sortObjectKeys', () => {
-  it('should create a new object with sorted keys', () => {
+  test('should create a new object with sorted keys', () => {
     const obj = {
       b: 2,
       a: 1,
@@ -64,7 +64,7 @@ describe('sortObjectKeys', () => {
 });
 
 describe('cleanUpData', () => {
-  it('should remove empty attributes, trim string attributes, and sort object keys', () => {
+  test('should remove empty attributes, trim string attributes, and sort object keys', () => {
     const data = {
       id: 1,
       name: '   John   ',
@@ -86,7 +86,7 @@ describe('cleanUpData', () => {
 });
 
 describe('getNextId', () => {
-  it('should return the next available id', () => {
+  test('should return the next available id', () => {
     const items = [{ id: 1 }, { id: 3 }, { id: 2 }];
 
     const result = getNextId(items);
@@ -94,7 +94,7 @@ describe('getNextId', () => {
     expect(result).toBe(4);
   });
 
-  it('should return undefined if items is undefined', () => {
+  test('should return undefined if items is undefined', () => {
     const items = undefined;
 
     const result = getNextId(items);

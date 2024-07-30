@@ -27,3 +27,51 @@ Note: Babel transpiles ES Modules into CommonJS
 This is a really in-depth article on the current state of Javascript's evolution from CommonJs to ES Modules
 <a href="https://thenewstack.io/how-javascript-is-finally-improving-the-module-experience/">How JavaScript Is Finally Improving the Module Experience
 Multiple long-term proposals collectively known as "module harmony" will complete the features lost when JavaScript move away from CommonJS.</a> 
+
+
+
+CommonJS and ES6 modules are both standards for modularizing JavaScript code, allowing you to split your code into reusable pieces, or modules, that can be imported and exported as needed. Despite their common goal, there are some key differences between them in terms of syntax, design, and behavior:
+
+Syntax:
+
+CommonJS: Uses require to import modules and module.exports to export.
+
+Example:
+
+// Importing 
+const module = require('./module'); 
+// Exporting 
+module.exports = someVariable;
+ES6 Modules: Uses import / export keywords.
+
+Example:
+
+// Importing 
+import module from './module'; 
+// Exporting 
+export default someVariable;
+Loading Behavior:
+
+CommonJS: Modules are loaded synchronously, or blocking, which is more suitable for server-side development. The require function reads the module file, executes it, and then returns the module.exports object.
+
+ES6 Modules: Designed to be static and asynchronous, making it better suited for browsers. The import keyword starts a request to fetch and load the module, but doesn't block other code from running while this happens.
+
+Static vs. Dynamic:
+
+CommonJS: Supports dynamic require. This means you can import modules based on dynamic parameters or conditions at runtime.
+
+ES6 Modules: Static structure; the import and export keywords must be used at the top level of the module (not inside functions or conditional blocks), and can't be used with dynamic parameters. This static structure allows for features like tree shaking, which can help to eliminate unused code and create smaller bundles.
+
+Scope:
+
+CommonJS: Each module creates its own scope, and doesn't leak variables to the global scope.
+
+ES6 Modules: Like CommonJS, each ES6 module also has its own scope, and won't pollute the global scope.
+
+Value Exports:
+
+CommonJS: When importing a value from a CommonJS module, you get a copy of the exported value, not a live reference. If the module changes the exported value later, the change won't be visible to the importing module.
+
+ES6 Modules: Importing a value from an ES6 module gives you a live read-only view on the exported value. If the exporting module changes the value, the importing module will see the updated value.
+
+

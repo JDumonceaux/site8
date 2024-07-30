@@ -1,8 +1,8 @@
-import { describe, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { isValidArray } from './helpers';
 
 describe('isValidArray', () => {
-  it('should return true for a valid non-empty array', () => {
+  test('should return true for a valid non-empty array', () => {
     const arr = [1, 2, 3];
 
     const result = isValidArray(arr);
@@ -10,7 +10,7 @@ describe('isValidArray', () => {
     expect(result).toBe(true);
   });
 
-  it('should return false for an empty array', () => {
+  test('should return false for an empty array', () => {
     const arr: unknown[] = [];
 
     const result = isValidArray(arr);
@@ -18,7 +18,7 @@ describe('isValidArray', () => {
     expect(result).toBe(false);
   });
 
-  it('should return false for undefined', () => {
+  test('should return false for undefined', () => {
     const arr = undefined;
 
     const result = isValidArray(arr);
@@ -26,7 +26,7 @@ describe('isValidArray', () => {
     expect(result).toBe(false);
   });
 
-  it('should return false for null', () => {
+  test('should return false for null', () => {
     const arr = null;
 
     const result = isValidArray(arr);
@@ -34,7 +34,7 @@ describe('isValidArray', () => {
     expect(result).toBe(false);
   });
 
-  // it('should return false for a non-array value', () => {
+  // test('should return false for a non-array value', () => {
   //   const arr = 'not an array';
 
   //   const result = isValidArray(arr);

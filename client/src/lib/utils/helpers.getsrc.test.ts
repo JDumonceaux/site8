@@ -1,8 +1,8 @@
-import { describe, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { getSRC } from './helpers';
 
 describe('getSRC', () => {
-  it('should return the source URL for an image file', () => {
+  test('should return the source URL for an image file', () => {
     const folder = 'images';
     const fileName = 'image.jpg';
 
@@ -11,7 +11,7 @@ describe('getSRC', () => {
     expect(result).toBe('https://example.com/images/image.jpg');
   });
 
-  it('should return undefined if fileName is empty', () => {
+  test('should return undefined if fileName is empty', () => {
     const folder = 'images';
     const fileName = '';
 
@@ -20,7 +20,7 @@ describe('getSRC', () => {
     expect(result).toBeUndefined();
   });
 
-  it('should return undefined if fileName is whitespace', () => {
+  test('should return undefined if fileName is whitespace', () => {
     const folder = 'images';
     const fileName = '   ';
 
@@ -29,7 +29,7 @@ describe('getSRC', () => {
     expect(result).toBeUndefined();
   });
 
-  it('should return undefined if folder is empty', () => {
+  test('should return undefined if folder is empty', () => {
     const folder = '';
     const fileName = 'image.jpg';
 
@@ -38,7 +38,7 @@ describe('getSRC', () => {
     expect(result).toBeUndefined();
   });
 
-  it('should return undefined if folder is whitespace', () => {
+  test('should return undefined if folder is whitespace', () => {
     const folder = '   ';
     const fileName = 'image.jpg';
 
@@ -47,7 +47,7 @@ describe('getSRC', () => {
     expect(result).toBeUndefined();
   });
 
-  it('should return undefined if both folder and fileName are empty', () => {
+  test('should return undefined if both folder and fileName are empty', () => {
     const folder = '';
     const fileName = '';
 

@@ -1,0 +1,14 @@
+<ul>
+<li>Web Content Accessibility Guidelines (WCAG) 2.2 standards</li>
+<li>Section 508 requirements</li>
+<li>Web Accessibility Initiative - Accessible Rich Internet Applications (WAI-ARIA) best practices</li>
+</ul>
+
+<h2>Screen Readers</h2>
+<table>
+<tr><th>Environment</th><th>Tool</th></tr>
+<tr><td>Firefox</td><td>NVDA</td></tr>
+<tr><td>Chrome</td><td>JAWS</td></tr>
+<tr><td>Microsoft Edge</td><td>JAWS</td></tr>
+</table>
+

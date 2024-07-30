@@ -25,7 +25,7 @@
     "knip": "knip --production",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest --typecheck"
+    "test": "jest"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.1.14",
@@ -112,8 +112,7 @@
     "ts-jest": "^29.2.3",
     "typescript": "^5.5.4",
     "vite": "^5.3.5",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "^2.0.4"
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "pre-commit": "lint",
   "license": "UNLICENSED",

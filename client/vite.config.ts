@@ -2,7 +2,6 @@ import analyze from 'rollup-plugin-analyzer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type PluginOption } from 'vite';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
-import 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,8 +22,9 @@ export default defineConfig({
       plugins: [analyze()],
     },
   },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-  },
+  // test: {
+  //   globals: true,
+  //   environment: 'jsdom',
+  //   watch: false,
+  // },
 });

@@ -1,0 +1,11 @@
+WAI-ARIA
+<ul>
+<li>Assures the presence of an alt attribute in a nested img tag inside the Avatar.</li>
+</ul>
+
+Keyboard Shortcuts
+<ul>
+<li>The Avatar does not provide keyboard support as keyboard combinations are not applicable to the component.</li>
+<li></li>
+</ul>
+

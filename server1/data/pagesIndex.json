@@ -1917,20 +1917,6 @@
       "type": "menu"
     },
     {
-      "id": 50,
-      "create_date": "2024-06-16T05:17:00.000Z",
-      "edit_date": "2024-06-16T05:17:00.000Z",
-      "name": "CommonJs vs ES Modules",
-      "parentItems": [
-        {
-          "id": 10009,
-          "seq": 2
-        }
-      ],
-      "to": "commonjs-vs-es-modules",
-      "type": "page"
-    },
-    {
       "id": 51,
       "name": "Tools",
       "parentItems": [
@@ -3866,19 +3852,6 @@
       "file": true
     },
     {
-      "id": 199,
-      "name": "Avatars",
-      "parentItems": [
-        {
-          "id": 197,
-          "seq": 0
-        }
-      ],
-      "to": "avatars",
-      "type": "page",
-      "file": true
-    },
-    {
       "id": 178,
       "name": "Jest",
       "parentItems": [
@@ -3888,6 +3861,134 @@
         }
       ],
       "to": "jest",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 200,
+      "name": "Methodologies",
+      "parentItems": [
+        {
+          "id": 10010,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "methodologies"
+    },
+    {
+      "id": 201,
+      "name": "Agile",
+      "parentItems": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "to": "agile",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 202,
+      "name": "Impact Engineering",
+      "parentItems": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "to": "impact-engineering",
+      "type": "page"
+    },
+    {
+      "id": 203,
+      "name": "Lean Engineering",
+      "parentItems": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "to": "lean-engineering",
+      "type": "page"
+    },
+    {
+      "id": 205,
+      "name": "Avatar",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "avatar",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 204,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 199,
+      "name": "Inclusive Avatars",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "inclusive-avatars",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 207,
+      "name": "Accessible SVGs",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "accessible-svgs",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 206,
+      "name": "Avatar",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "avatar",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 50,
+      "name": "CommonJs vs ES Modules",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 2
+        }
+      ],
+      "to": "commonjs-vs-es-modules",
       "type": "page",
       "file": true
     }

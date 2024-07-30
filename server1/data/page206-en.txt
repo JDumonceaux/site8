@@ -1,0 +1,26 @@
+Note: There are two general uses for an Avatar:  1) an icon representing the user and 2) an icon representing help or customer service.   There may be different accessibility concerns based up the use.
+
+WAI-ARIA
+<ul>
+<li>Assures the presence of an alt attribute in a nested img tag inside the Avatar.</li>
+</ul>
+
+<a href="https://www.deque.com/blog/creating-accessible-svgs/">Creating Accessible SVGs</a>
+
+Keyboard Shortcuts
+<ul>
+<li>The Avatar does not provide keyboard support as keyboard combinations are not applicable to the component.</li>
+<li></li>
+</ul>
+
+Testing
+At a minimum, an avatar should meet the following criteria:
+<ul>
+<li>Users can navigate to the avatar via the screen reader.</li>
+<li>The avatar image has alternative text.</li>
+<li>Any SVGs used are accessible.</li>
+<li>Keyboard users should not be able to interact with the avatar on its own (via Tab and Tab + Shift).</li>
+<li></li>
+</ul>
+
+<a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G193.html">Providing help by an assistant in the Web page</a>
