@@ -1,12 +1,31 @@
+<a href="https://vitest.dev/config/#setupfiles">Vitest</a>
+
+npm install -D vitest
+
+Add to package.json
+<pre><code>
+{
+  "scripts": {
+    "test": "vitest"
+  }
+}
+</code></pre>
+Vitest does not support .json extension
+
+
+
 Install Jest library
 <pre><code>
-npm i jest --include=dev
+npm i jest -D
+npm i @testing-library/jest-dom -D
 </code></pre>
 
 For Jest 28+, install JSDOM
 <pre><code>
-npm i  jest-environment-jsdom --include=dev
+npm i  jest-environment-jsdom -D
 </code></pre>
+
+<a href="https://markus.oberlehner.net/blog/using-testing-library-jest-dom-with-vitest/">Using Testing Library jest-dom with Vitest</a>
 
 In the project root, add a jest.config.json file (for ES6+ format).  
 Note: You can add .js, .cjs, .mjs files instead.  You have to match the module type you're using elsewhere.
