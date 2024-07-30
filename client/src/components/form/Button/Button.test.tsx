@@ -1,13 +1,14 @@
 import { render, screen } from '@testing-library/react';
+import { describe, expect } from 'vitest';
 import Button from './Button';
 
 describe('Button', () => {
-  it('renders without errors', () => {
+  test('renders without errors', () => {
     render(<Button id="test-button">Click me</Button>);
     expect(screen.getByText('Click me')).toBeInTheDocument();
   });
 
-  it('renders with the primary variant by default', () => {
+  test('renders with the primary variant by default', () => {
     render(<Button id="test-button">Click me</Button>);
     expect(screen.getByTestId('test-button')).toHaveStyle({
       color: '#fff',
@@ -16,7 +17,7 @@ describe('Button', () => {
     });
   });
 
-  it('renders with the secondary variant when specified', () => {
+  test('renders with the secondary variant when specified', () => {
     render(
       <Button id="test-button" variant="secondary">
         Click me
@@ -29,7 +30,7 @@ describe('Button', () => {
     });
   });
 
-  it('calls the onClick handler when clicked', () => {
+  test('calls the onClick handler when clicked', () => {
     const handleClick = jest.fn();
     render(
       <Button id="test-button" onClick={handleClick}>

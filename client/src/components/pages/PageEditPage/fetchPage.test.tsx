@@ -1,6 +1,7 @@
 import { useFetch } from 'hooks/Axios/useFetch';
 import { ServiceUrl } from 'lib/utils/constants';
 import { Page } from 'types';
+import { describe, expect, test } from 'vitest';
 
 describe('fetchPage', () => {
   const { data, fetchData } = useFetch<Page>();

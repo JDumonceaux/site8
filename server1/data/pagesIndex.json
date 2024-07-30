@@ -3593,19 +3593,6 @@
       "to": "testing"
     },
     {
-      "id": 178,
-      "name": "Jest",
-      "parentItems": [
-        {
-          "id": 92,
-          "seq": 0
-        }
-      ],
-      "to": "jest",
-      "type": "page",
-      "file": true
-    },
-    {
       "id": 181,
       "name": "Code Quality",
       "parentItems": [
@@ -3888,6 +3875,19 @@
         }
       ],
       "to": "avatars",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 178,
+      "name": "Jest",
+      "parentItems": [
+        {
+          "id": 92,
+          "seq": 0
+        }
+      ],
+      "to": "jest",
       "type": "page",
       "file": true
     }

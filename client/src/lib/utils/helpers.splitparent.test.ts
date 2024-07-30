@@ -1,3 +1,4 @@
+import { describe, expect } from 'vitest';
 import { splitParent } from './helpers';
 
 describe('splitParent', () => {

@@ -1,6 +1,24 @@
 Install Jest library
 <pre><code>
-npm i jest --dev
+npm i jest --include=dev
+</code></pre>
+
+For Jest 28+, install JSDOM
+<pre><code>
+npm i  jest-environment-jsdom --include=dev
+</code></pre>
+
+In the project root, add a jest.config.json file (for ES6+ format).  
+Note: You can add .js, .cjs, .mjs files instead.  You have to match the module type you're using elsewhere.
+Note: This configuration is specific to Vite.
+
+<pre><code>
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["@testing-library/jest-dom/vitest"],
+  "moduleDirectories": ["node_modules", "src"]
+}
 </code></pre>
 
 Add run script to package.json
@@ -13,6 +31,26 @@ Add run script to package.json
 Write some tests
 
 Run npm run test
+
+
+<h2>Troubleshooting</h2>
+Note: @testing-library/jest-dom/extend-expect was removed in jest 6.0
+<a href="https://github.com/testing-library/jest-dom/releases/tag/v6.0.0">Jest 6.0 Release Notes</a>
+
+<q>Removes the extend-expect script. Users should use
+the default import path or one of the new test platform-specific
+paths to automatically extend the appropriate "expect" instance.
+extend-expect was not documented in the Readme, so this change should
+have minimal impact.
+
+Users can now use the following import paths to automatically extend
+"expect" for their chosen test platform:
+
+@testing-library/jest-dom - jest (@types/jest)
+@testing-library/jest-dom/jest-globals - @jest/globals
+@testing-library/jest-dom/vitest - vitest</q>
+
+
 
 
 

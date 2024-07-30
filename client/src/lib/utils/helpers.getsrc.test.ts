@@ -1,3 +1,4 @@
+import { describe, expect } from 'vitest';
 import { getSRC } from './helpers';
 
 describe('getSRC', () => {

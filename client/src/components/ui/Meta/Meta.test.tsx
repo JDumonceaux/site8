@@ -1,13 +1,14 @@
 import { render } from '@testing-library/react';
+import { describe, expect } from 'vitest';
 import Meta from './Meta';
 
 describe('Meta', () => {
-  it('renders the title correctly', () => {
+  test('renders the title correctly', () => {
     render(<Meta title="Test Title" />);
     expect(document.title).toBe('Test Title');
   });
 
-  it('renders the description correctly', () => {
+  test('renders the description correctly', () => {
     render(<Meta description="Test Description" />);
     const metaDescription = document.querySelector('meta[name="description"]');
     expect(metaDescription?.getAttribute('content')).toBe('Test Description');

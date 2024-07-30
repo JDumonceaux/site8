@@ -1,13 +1,14 @@
 import { render, screen } from '@testing-library/react';
+import { describe, expect } from 'vitest';
 import PageTitle from './PageTitle';
 
 describe('PageTitle', () => {
-  it('renders the title correctly', () => {
+  test('renders the title correctly', () => {
     render(<PageTitle title="My Page Title" />);
     expect(screen.getByTestId('page-title')).toHaveTextContent('My Page Title');
   });
 
-  it('renders the children correctly', () => {
+  test('renders the children correctly', () => {
     render(
       <PageTitle title="My Page Title">
         <button type="button">Button 1</button>
@@ -18,7 +19,7 @@ describe('PageTitle', () => {
     expect(screen.getByText('Button 2')).toBeInTheDocument();
   });
 
-  it('does not render anything if title prop is not provided', () => {
+  test('does not render anything if title prop is not provided', () => {
     render(<PageTitle />);
     expect(screen.queryByTestId('page-title')).toBeNull();
   });

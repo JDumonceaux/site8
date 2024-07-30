@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { describe, expect } from 'vitest';
 import { APP_NAME } from '../../../lib/utils/constants';
 import Header from './Header';
 

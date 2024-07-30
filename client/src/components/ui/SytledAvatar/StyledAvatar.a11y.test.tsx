@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { configureAxe } from 'jest-axe';
+import { describe, expect } from 'vitest';
 import StyledAvatar from './StyledAvatar';
 
 const axe = configureAxe({
