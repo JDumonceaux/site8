@@ -1,4 +1,3 @@
-import { describe, expect, test } from 'vitest';
 import { getURLPath } from './helpers';
 
 describe('getURLPath', () => {

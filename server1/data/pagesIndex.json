@@ -3991,6 +3991,19 @@
       "to": "commonjs-vs-es-modules",
       "type": "page",
       "file": true
+    },
+    {
+      "id": 208,
+      "name": "React 19",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 0
+        }
+      ],
+      "to": "react-19",
+      "type": "page",
+      "file": true
     }
   ]
 }

@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react';
 import { configureAxe } from 'jest-axe';
-import { describe, expect, test } from 'vitest';
-import StyledAvatar from './StyledAvatar';
+import Avatar from './Avatar';
 
 const axe = configureAxe({
   rules: {
@@ -10,9 +9,9 @@ const axe = configureAxe({
   },
 });
 
-describe('StyledAvatar', () => {
+describe('Avatar', () => {
   test('no jest-exe accessibility violations', async () => {
-    const { container } = render(<StyledAvatar />);
+    const { container } = render(<Avatar />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
