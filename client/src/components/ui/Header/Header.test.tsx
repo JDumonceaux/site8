@@ -1,10 +1,15 @@
 import { render, screen } from '@testing-library/react';
+import TestPage from 'pages/TestPage';
 import { APP_NAME } from '../../../lib/utils/constants';
 import Header from './Header';
 
 describe('Header', () => {
   test('renders without errors', () => {
-    render(<Header />);
+    render(
+      <TestPage>
+        <Header />
+      </TestPage>,
+    );
     expect(screen.getByTestId('header')).toBeInTheDocument();
   });
 
