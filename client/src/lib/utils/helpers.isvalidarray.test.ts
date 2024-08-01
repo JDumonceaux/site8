@@ -1,4 +1,3 @@
-import { describe, expect, test } from 'vitest';
 import { isValidArray } from './helpers';
 
 describe('isValidArray', () => {

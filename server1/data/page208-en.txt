@@ -1,0 +1,9 @@
+<h2>Deprecated</h2>
+forwardRef - Change to just using a prop
+defaultProps - 
+propTypes - import PropTypes from 'prop-types';
+
+
+
+npx codemod@latest react/19/migration-recipe
+npx codemod@latest react/prop-types-typescript

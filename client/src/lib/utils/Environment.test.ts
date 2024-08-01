@@ -1,4 +1,3 @@
-import { describe, expect, test } from 'vitest';
 import { Environment } from './Environment';
 
 describe('Environment', () => {

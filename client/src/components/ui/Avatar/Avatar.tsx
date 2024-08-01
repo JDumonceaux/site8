@@ -1,4 +1,4 @@
-import * as Avatar from '@radix-ui/react-avatar';
+import * as RadixAvatar from '@radix-ui/react-avatar';
 import { memo } from 'react';
 import { styled } from 'styled-components';
 
@@ -8,7 +8,7 @@ type AvatarProps = {
   readonly delayMs?: number;
   readonly id?: string;
   readonly src?: string;
-} & Avatar.AvatarProps;
+} & RadixAvatar.AvatarProps;
 
 const SytledAvatar = ({
   id,
@@ -27,7 +27,7 @@ SytledAvatar.displayName = 'SytledAvatar';
 
 export default memo(SytledAvatar);
 
-const StyledRoot = styled(Avatar.Root)`
+const StyledRoot = styled(RadixAvatar.Root)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -40,13 +40,13 @@ const StyledRoot = styled(Avatar.Root)`
   background-color: var(--black-a3);
   margin: 5px;
 `;
-const StyledImage = styled(Avatar.Image)`
+const StyledImage = styled(RadixAvatar.Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
 `;
-const StyledFallback = styled(Avatar.AvatarFallback)`
+const StyledFallback = styled(RadixAvatar.AvatarFallback)`
   width: 100%;
   height: 100%;
   display: flex;

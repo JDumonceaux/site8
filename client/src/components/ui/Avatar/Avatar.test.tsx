@@ -1,15 +1,14 @@
 import { render } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
-import StyledAvatar from './StyledAvatar';
+import Avatar from './Avatar';
 
-describe('StyledAvatar', () => {
+describe('Avatar', () => {
   test('renders correctly', () => {
-    const { container } = render(<StyledAvatar />);
+    const { container } = render(<Avatar />);
     expect(container.firstChild).toBeInTheDocument();
   });
 
   test('has the correct styles', () => {
-    const { container } = render(<StyledAvatar />);
+    const { container } = render(<Avatar />);
     expect(container.firstChild).toHaveStyle(`
       display: inline-flex;
       align-items: center;

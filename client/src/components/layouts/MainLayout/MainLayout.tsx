@@ -1,6 +1,6 @@
 import AppInitializer from 'components/common/AppInitializer/AppInitializer';
+import Avatar from 'components/ui/Avatar/Avatar';
 import Snackbar from 'components/ui/Snackbar/Snackbar';
-import StyledAvatar from 'components/ui/SytledAvatar/StyledAvatar';
 import { Suspense, lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
@@ -12,9 +12,9 @@ export const MainLayout = (): JSX.Element => (
     <AppInitializer />
     <Header
       avatar={
-        <StyledAvatar alt="Avatar" id="avatar" src="/avatar.jpg">
+        <Avatar alt="Avatar" id="avatar" src="/avatar.jpg">
           JD
-        </StyledAvatar>
+        </Avatar>
       }
     />
     <LayoutDiv>
