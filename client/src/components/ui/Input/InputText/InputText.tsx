@@ -1,9 +1,11 @@
 import * as Form from '@radix-ui/react-form';
-import { forwardRef, memo } from 'react';
+import React, { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 
 type InputTextProps = {
   readonly id: string;
+  readonly inputRef: React.RefObject<HTMLInputElement>;
+  readonly labelRef: React.RefObject<HTMLLabelElement>;
 };
 
 const InputText = forwardRef<HTMLDivElement, InputTextProps>(
