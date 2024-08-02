@@ -1,3 +1,7 @@
+import * as Form from '@radix-ui/react-form';
+import InputText from 'components/ui/Input/InputText/InputText';
+import { TextArea } from 'components/ui/Input/TextArea';
+import TextInput from 'components/ui/Input/TextInput/TextInput';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
 import { forwardRef, useCallback, useState } from 'react';
@@ -5,8 +9,6 @@ import { styled } from 'styled-components';
 import { Page } from 'types';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
-import { TextArea } from 'components/ui/Input/TextArea';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
 
 type PageEditFormProps = {
   readonly data?: Page;
@@ -65,7 +67,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
     );
 
     return (
-      <form noValidate onSubmit={handleSubmit} ref={ref}>
+      <Form.Root noValidate onSubmit={handleSubmit} ref={ref}>
         <StyledButton>
           <StyledSaveButton
             data-testid="button-save"
@@ -74,14 +76,28 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
             {isSaved ? 'Saved' : 'Save'}
           </StyledSaveButton>
         </StyledButton>
-        <TextInput
+        <InputText
+          {...getStandardTextInputAttributes('name')}
+          errorText={getFieldErrors('name')}
+          id="name"
+          label="Short Title"
+          onBlur={handeNameOnBlur}
+          onChange={handleChange}
+          value={formValues['name']}
+          //hasError={hasError('name')}
+          //layout="horizontal"
+          //onBlur={handeNameOnBlur}
+          //required
+          //spellCheck
+        />
+        {/* <TextInput
           {...getStandardTextInputAttributes('name')}
           label="Short Title"
           layout="horizontal"
           onBlur={handeNameOnBlur}
           required
           spellCheck
-        />
+        /> */}
         <TextInput
           {...getStandardTextInputAttributes('to')}
           label="To"
@@ -121,7 +137,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           label="Readability Score"
           layout="horizontal"
         />
-      </form>
+      </Form.Root>
     );
   },
 );
