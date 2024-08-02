@@ -6,10 +6,13 @@
 
   --input-background: #ffffff;
   --input-color: #212121;
-  --input-error: #ff0000;
+  --input-error: #751c31;
   --input-border-radius: 4px;
-  --input-border-color: rgba(0, 0, 0, 0.23);
+  --input-border-color: #d4d4d4;
+  --input-border-focus-color: #6db144;
+  --input-border-hover-color: #212121;
   --input-label-color: #212121;
+  --input-placeholder-color: #b7b7b7;
 
   --speed: 500ms;
 

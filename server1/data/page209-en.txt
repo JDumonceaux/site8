@@ -1,0 +1,39 @@
+<a href="https://webaim.org/techniques/forms/controls#input">WebAim - Input</a>
+<a href="https://www.a11y-101.com/development/inputs">A11Y - Inputs</a>
+
+
+Matching for and id values associate the label with its form control. Because id attribute values must be unique on each page, a form control can only have one associated <label>
+
+Either format is acceptable:
+
+Format 1
+<pre><code>
+<label for="name">Name:</label>
+<input id="name" type="text" autocomplete="name">
+</code></pre>
+
+Format 2 
+<pre><code>
+<label>Name: <input type="text" autocomplete="name"></label>
+</code></pre>
+
+Note: A benefit of labels is that the user can click on the label to set focus to the form control (with either format 1 or 2). This is useful on small screens and to some people with motor disabilities, particularly when targeting small checkboxes and radio buttons.
+
+Clicking on labels is also an easy way to check for proper form labeling. If clicking the label sets focus to or activates the form control, then that label is programmatically associated.
+
+
+<h2>Auto-complete</h2>
+Names
+
+
+<h2>Style Considerations</h2>
+<ul>
+<li>hover</li>
+<li>focus</li>
+<li>selection</li>
+<li>spelling-error</li>
+<li>grammar</li>
+<li>placeholder</li>
+</ul>
+
+<a href="https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist">WCAG Checklist</a>

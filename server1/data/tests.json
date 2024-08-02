@@ -559,6 +559,88 @@
       "text": "time between the browser starting to load a page and the largest content element appearing",
       "goal": "2.5 seconds or less",
       "projectType": ["react"]
+    },
+    {
+      "level": "field",
+      "id": 545,
+      "type": "test",
+      "name": "Input - Hover",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 546,
+      "type": "test",
+      "name": "Input - Focus",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 547,
+      "type": "test",
+      "name": "Input - Selection",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 548,
+      "type": "test",
+      "name": "Input - Spelling-error",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 549,
+      "type": "test",
+      "name": "Input - Grammar",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 550,
+      "type": "test",
+      "name": "Input - Placeholder",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 551,
+      "type": "test",
+      "name": "Input - Error",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+
+    {
+      "level": "field",
+      "id": 552,
+      "type": "test",
+      "name": "Input - Click on Label",
+      "text": "",
+      "goal": "Clicking the label sets focus to or activates the form control",
+      "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 553,
+      "type": "test",
+      "name": "WCAG Checklist",
+      "text": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist",
+      "goal": "",
+      "projectType": ["web", "react", "acccessibiilty"]
     }
   ]
 }

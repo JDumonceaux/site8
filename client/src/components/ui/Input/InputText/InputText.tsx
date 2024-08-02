@@ -36,7 +36,7 @@ const InputText = ({
       </StyledMessage>
     </div>
     <Form.Control asChild>
-      <StyledInput type={type} {...rest} ref={inputRef} value="W" />
+      <StyledInput type={type} {...rest} ref={inputRef} />
     </Form.Control>
   </Form.Field>
 );
@@ -46,11 +46,9 @@ InputText.displayName = 'InputText';
 export default memo(InputText);
 
 const StyledInput = styled.input`
-  color: var(--input-color, "#ffffff");
-  background-color: var(--input-background, "#00000");
+  color: var(--input-color, '#ffffff');
+  background-color: var(--input-background, '#00000');
   border-radius: var(--input-border-radius, 0);
-  border-color: var(--input-border-color, "#465262");
-  border: 1px solid:
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -59,15 +57,26 @@ const StyledInput = styled.input`
   padding: 0 10px;
   height: 35px;
   font-size: 15px;
- 
-  box-shadow: 0 0 0 1px black;
-  ::hover {
-  box-shadow: 0 0 0 1px black;}
-  ::focus {
-   box-shadow: 0 0 0 2px black;
-   ::selection {
-   background-color: black;
-  } 
+  box-shadow: 0 0 0 1px var(--input-border-color, '#d4d4d4');
+  &:hover {
+    box-shadow: 0 0 0 1px var(--input-border-hover-color);
+  }
+  &:focus {
+    box-shadow: 0 0 0 1px var(--input-border-focus-color);
+  }
+  &:selection {
+    //  Accessibility don't override unless you have a good reason
+  }
+  &:spelling-error {
+    text-decoration: wavy underline var(--input-error);
+  }
+  &:grammar {
+    text-decoration: underline var(--input-error);
+  }
+  &:placeholder {
+    font-size: 0.9rem;
+    color: var(--input-placeholder-color, '#d4d4d4');
+  }
 `;
 const StyledLabel = styled(Form.Label)`
   color: var(---input-label-color, '#ffffff');
