@@ -67,7 +67,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
     );
 
     return (
-      <Form.Root noValidate onSubmit={handleSubmit} ref={ref}>
+      <Form.Root onSubmit={handleSubmit} ref={ref}>
         <StyledButton>
           <StyledSaveButton
             data-testid="button-save"
@@ -80,10 +80,13 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           {...getStandardTextInputAttributes('name')}
           errorText={getFieldErrors('name')}
           id="name"
-          label="Short Title"
+          label="Title"
+          minLength={10}
           onBlur={handeNameOnBlur}
           onChange={handleChange}
+          required
           value={formValues['name']}
+
           //hasError={hasError('name')}
           //layout="horizontal"
           //onBlur={handeNameOnBlur}
