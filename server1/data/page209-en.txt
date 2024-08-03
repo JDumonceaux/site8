@@ -1,8 +1,4 @@
-<a href="https://webaim.org/techniques/forms/controls#input">WebAim - Input</a>
-<a href="https://www.a11y-101.com/development/inputs">A11Y - Inputs</a>
-
-
-Matching for and id values associate the label with its form control. Because id attribute values must be unique on each page, a form control can only have one associated <label>
+An input element is fairly simple when it comes to accessibility:  usually, you will have a label element that either a) encloses the input element or b) has a "for" attribute referencing the input element.  The element becomes more complicated when you include icons, buttons, helper text, and error text.  All these need to be properly labeled so the relationship between the label and input is understood.
 
 Either format is acceptable:
 
@@ -17,14 +13,34 @@ Format 2
 <label>Name: <input type="text" autocomplete="name"></label>
 </code></pre>
 
+<h2>Implicit Aria Roles</h2>
+
+The input element has an implicit aria role.   You should not add additional roles as this would be redundant.
+
+<ul>
+<li>textbox: with no list attribute</li>
+<li>combobox: with list attribute</li>
+</ul>
+
+<a href="https://www.webteacher.ws/2014/07/23/implicit-aria-roles/">What are Implicit ARIA Roles?</a>
+
+
+
+
+<h2>Accessibility Requirements</h2>
+<ol>
+<li>Matching for and id values associate the label with its form control. Because id attribute values must be unique on each page, a form control can only have one associated label</li>
+</ol>
+
 Note: A benefit of labels is that the user can click on the label to set focus to the form control (with either format 1 or 2). This is useful on small screens and to some people with motor disabilities, particularly when targeting small checkboxes and radio buttons.
 
 Clicking on labels is also an easy way to check for proper form labeling. If clicking the label sets focus to or activates the form control, then that label is programmatically associated.
 
+<a href="https://webaim.org/techniques/forms/controls#input">WebAim - Input</a>
+<a href="https://www.a11y-101.com/development/inputs">A11Y - Inputs</a>
 
 <h2>Auto-complete</h2>
-Names
-
+Add more info
 
 <h2>Style Considerations</h2>
 <ul>

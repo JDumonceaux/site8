@@ -1,0 +1,15 @@
+<a href="https://www.w3.org/TR/html-aria/#docconformance">W3 - Implicit Aria Roles</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles>Roles NOT to use</a>
+
+
+An ARIA role attribute can be added to an element to instruct assistive technologies to treat the element as something other than its native HTML element type. For example, an <a> element with role="button" will be treated as a button, not as a link.
+
+When an assistive technology encounters an element whose role attribute has an invalid value, it might ignore the element or respond to it in an unexpected way. As a result, people who use assistive technologies might find the element difficult or impossible to detect or use.
+
+
+<a href="https://www.webteacher.ws/2014/07/23/implicit-aria-roles/">What are Implicit ARIA Roles?</a>
+
+<q>In the case of ARIA roles, the word implicit means that the browser interprets certain HTML elements semantically and treats them as if an ARIA role were assigned to them. In these situations, the web designer does not specifically need to add the role attribute to the element. The addition of the ARIA role is considered redundant in some situations.
+</q>
+
+

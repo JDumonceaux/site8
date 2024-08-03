@@ -84,7 +84,9 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           minLength={10}
           onBlur={handeNameOnBlur}
           onChange={handleChange}
+          placeholder="Enter a title"
           required
+          spellCheck
           value={formValues['name']}
 
           //hasError={hasError('name')}

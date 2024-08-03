@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { styled } from 'styled-components';
 import LabelBase from '../LabelBase/LabelBase';
-import ErrorsBase from '../ErrorsBase/ErrorsBase';
+import ValidityState from '../ValidityState/ValidityState';
 
 export type InputBaseProps = {
   readonly id: string;
@@ -29,7 +29,7 @@ const InputBase = ({
 }: InputBaseProps): JSX.Element => (
   <StyledFormField id={id} name={id}>
     <LabelBase label={label} labelRef={labelRef}>
-      <ErrorsBase />
+      <ValidityState />
     </LabelBase>
     <Form.Control asChild>
       <StyledInput type={type} {...rest} ref={inputRef} />
@@ -77,7 +77,7 @@ const StyledInput = styled.input`
     font-size: 0.9rem;
     color: var(--input-placeholder-color, '#d4d4d4');
   }
-  &:invalid {
+  &:user-invalid {
     color: var(--input-error);
   }
 `;

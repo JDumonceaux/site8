@@ -29,7 +29,7 @@ export const insertHTML = (
           textAfter
         );
       case 'link':
-        return textBefore + `<a href="">\n` + textMiddle + `\n</a>` + textAfter;
+        return textBefore + `<a href="">` + textMiddle + ` </a>` + textAfter;
       case 'code':
         return (
           textBefore +
