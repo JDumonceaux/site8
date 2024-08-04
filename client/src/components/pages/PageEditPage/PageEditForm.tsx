@@ -1,7 +1,6 @@
 import * as Form from '@radix-ui/react-form';
 import InputText from 'components/ui/Input/InputText/InputText';
-import { TextArea } from 'components/ui/Input/TextArea';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
+
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
 import { forwardRef, useCallback, useState } from 'react';
@@ -19,7 +18,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
     const {
       formValues,
       getFieldErrors,
-      getStandardTextInputAttributes,
+      getStandardInputTextAttributes,
       handleChange,
       handleSave,
       setFieldValue,
@@ -77,7 +76,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           </StyledSaveButton>
         </StyledButton>
         <InputText
-          {...getStandardTextInputAttributes('name')}
+          {...getStandardInputTextAttributes('name')}
           errorText={getFieldErrors('name')}
           id="name"
           label="Title"
@@ -89,58 +88,44 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           spellCheck
           value={formValues['name']}
 
-          //hasError={hasError('name')}
           //layout="horizontal"
           //onBlur={handeNameOnBlur}
           //required
           //spellCheck
         />
-        {/* <TextInput
-          {...getStandardTextInputAttributes('name')}
-          label="Short Title"
-          layout="horizontal"
-          onBlur={handeNameOnBlur}
-          required
-          spellCheck
-        /> */}
-        <TextInput
-          {...getStandardTextInputAttributes('to')}
+
+        <InputText
+          {...getStandardInputTextAttributes('to')}
           label="To"
-          layout="horizontal"
-          required
-          spellCheck
+          placeholder="Enter a Route"
         />
-        <TextInput
-          {...getStandardTextInputAttributes('url')}
+        <InputText
+          {...getStandardInputTextAttributes('url')}
           label="URL"
-          layout="horizontal"
           onChange={handleChange}
-          required
-          spellCheck
+          placeholder="Enter a URL"
         />
-        <TextInput
-          {...getStandardTextInputAttributes('parent')}
+        <InputText
+          {...getStandardInputTextAttributes('parent')}
           label="Parent"
-          layout="horizontal"
+          placeholder="Enter a menu id"
         />
         <ToolMenu onClick={handeTextInsert} />
-        <TextArea
-          {...getStandardTextInputAttributes('text')}
+        {/* <TextArea
+          {...getStandardInputTextAttributes('text')}
           label="Text"
           onBlur={handeTextAreaBlur}
           rows={30}
           spellCheck
-        />
-        <TextInput
-          {...getStandardTextInputAttributes('reading_time')}
+        /> */}
+        <InputText
+          {...getStandardInputTextAttributes('reading_time')}
           errorText={getFieldErrors('reading_time')}
           label="Reading Time"
-          layout="horizontal"
         />
-        <TextInput
-          {...getStandardTextInputAttributes('text')}
+        <InputText
+          {...getStandardInputTextAttributes('text')}
           label="Readability Score"
-          layout="horizontal"
         />
       </Form.Root>
     );

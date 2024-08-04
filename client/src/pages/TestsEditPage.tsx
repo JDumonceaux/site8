@@ -15,7 +15,7 @@ import {
 
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
+import InputText from 'components/ui/Input/InputText/InputText';
 
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
@@ -132,36 +132,36 @@ const TestsEditPage = (): JSX.Element => {
                     <SortableItem id={item.localId} key={item.localId}>
                       <td>{item.id}</td>
                       <td>
-                        <TextInput {...getDefaultProps(item.localId, 'name')} />
+                        <InputText {...getDefaultProps(item.localId, 'name')} />
                       </td>
                       <td>
-                        <TextInput {...getDefaultProps(item.localId, 'text')} />
+                        <InputText {...getDefaultProps(item.localId, 'text')} />
                       </td>
                       <td>
-                        <TextInput {...getDefaultProps(item.localId, 'type')} />
+                        <InputText {...getDefaultProps(item.localId, 'type')} />
                       </td>
                       <td>
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'level')}
                         />
                       </td>
                       <td>
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'parentId')}
                         />
                       </td>
                       <td>
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'parentSeq')}
                         />
                       </td>
                       <td>
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'projectType')}
                         />
                       </td>
                       <td>
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'action')}
                         />
                       </td>

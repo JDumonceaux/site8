@@ -1,5 +1,6 @@
 import { Button2 } from 'components/form/Button2';
 import { EmailField } from 'components/ui/Input';
+import InputText from 'components/ui/Input/InputText/InputText';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
@@ -9,7 +10,6 @@ import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import { authCode } from './ZodStrings';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
 
 // Define Zod Shape
 const schema = z.object({
@@ -37,7 +37,7 @@ const ConfirmEmailPage = (): JSX.Element => {
   const {
     formValues,
     getFieldErrors,
-    hasError,
+
     setErrors,
     handleChange,
     getDefaultFields,
@@ -80,11 +80,11 @@ const ConfirmEmailPage = (): JSX.Element => {
     }
   }, [authResendConfirmationCode, formValues.emailAddress]);
 
-  const getStandardTextInputAttributes = (fieldName: keys) => {
+  const getStandardInputTextAttributes = (fieldName: keys) => {
     return {
       id: fieldName,
       errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
+
       value: formValues[fieldName],
     };
   };
@@ -110,7 +110,7 @@ const ConfirmEmailPage = (): JSX.Element => {
             type="email"
             {...getDefaultFields('emailAddress')}
           />
-          <TextInput
+          <InputText
             autoComplete="one-time-code"
             errorTextShort="Please enter an authentication code"
             helpText={['Check your email for the authentication code.']}
@@ -121,7 +121,7 @@ const ConfirmEmailPage = (): JSX.Element => {
             placeholder="Enter Authentication Code"
             showCounter
             spellCheck="false"
-            {...getStandardTextInputAttributes('authenticationCode')}
+            {...getStandardInputTextAttributes('authenticationCode')}
           />
           <Button2 id="login" type="submit">
             {isLoading ? 'Processing' : 'Submit'}

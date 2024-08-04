@@ -1,5 +1,6 @@
 import { Button2 } from 'components/form/Button2';
 
+import InputText from 'components/ui/Input/InputText/InputText';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
@@ -9,7 +10,6 @@ import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
 
 // Define Zod Shape
 const schema = z.object({
@@ -33,7 +33,7 @@ const DeleteAccountPage = (): JSX.Element => {
     [],
   );
 
-  const { formValues, getFieldErrors, hasError, setErrors, handleChange } =
+  const { formValues, getFieldErrors, setErrors, handleChange } =
     useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
@@ -56,11 +56,11 @@ const DeleteAccountPage = (): JSX.Element => {
     [validateForm, authDeleteUser],
   );
 
-  const getStandardTextInputAttributes = (fieldName: keys) => {
+  const getStandardInputTextAttributes = (fieldName: keys) => {
     return {
       id: fieldName,
       errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
+
       value: formValues[fieldName],
     };
   };
@@ -82,7 +82,7 @@ const DeleteAccountPage = (): JSX.Element => {
             Are you sure you want to delete your account? You will lose access
             and all data.
           </div>
-          <TextInput
+          <InputText
             autoComplete="off"
             errorTextShort="Required"
             inputMode="text"
@@ -92,7 +92,7 @@ const DeleteAccountPage = (): JSX.Element => {
             required
             spellCheck="false"
             type="text"
-            {...getStandardTextInputAttributes('deleteCode')}
+            {...getStandardInputTextAttributes('deleteCode')}
           />
 
           <Button2 id="login" type="submit" variant="secondary">

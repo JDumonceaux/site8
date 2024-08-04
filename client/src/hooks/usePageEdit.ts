@@ -129,7 +129,7 @@ const usePageEdit = (data?: Page) => {
     return false;
   }, [submitForm, validateForm]);
 
-  const getStandardTextInputAttributes = useCallback(
+  const getStandardInputTextAttributes = useCallback(
     (fieldName: keys) => {
       return {
         id: fieldName,
@@ -146,7 +146,7 @@ const usePageEdit = (data?: Page) => {
     () => ({
       formValues,
       getFieldErrors,
-      getStandardTextInputAttributes,
+      getStandardInputTextAttributes,
       hasError,
       handleChange,
       handleSave,
@@ -156,7 +156,7 @@ const usePageEdit = (data?: Page) => {
     [
       formValues,
       getFieldErrors,
-      getStandardTextInputAttributes,
+      getStandardInputTextAttributes,
       hasError,
       setFieldValue,
       handleChange,

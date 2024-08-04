@@ -3,8 +3,8 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { IconMenu } from 'components/ui/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/ui/IconMenu/IconMenuItem';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
+import InputText from 'components/ui/Input/InputText/InputText';
+
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
@@ -143,11 +143,11 @@ const ImagesEditPage = (): JSX.Element => {
                         <StyledSubRow>Duplicate Image</StyledSubRow>
                       ) : null}
                       <StyledSubRow>
-                        <TextInput {...getDefaultProps(item.localId, 'name')} />
-                        <TextInput
+                        <InputText {...getDefaultProps(item.localId, 'name')} />
+                        <InputText
                           {...getDefaultProps(item.localId, 'fileName')}
                         />
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'folder')}
                         />
                         <div>
@@ -160,10 +160,10 @@ const ImagesEditPage = (): JSX.Element => {
                         </div>
                       </StyledSubRow>
                       <StyledSubRow>
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'location')}
                         />
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'official_url')}
                         />
                         <IconMenu>
@@ -175,7 +175,7 @@ const ImagesEditPage = (): JSX.Element => {
                         </IconMenu>
                       </StyledSubRow>
                       <StyledSubRow>
-                        <TextInput
+                        <InputText
                           {...getDefaultProps(item.localId, 'description')}
                         />
                       </StyledSubRow>

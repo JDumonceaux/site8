@@ -106,7 +106,7 @@ const useTestEdit = () => {
     return await submitForm();
   }, [submitForm]);
 
-  const getStandardTextInputAttributes = useCallback(
+  const getStandardInputTextAttributes = useCallback(
     (localId: number, fieldName: keys) => {
       const field = fieldName + '-' + localId;
       return {
@@ -144,7 +144,7 @@ const useTestEdit = () => {
       error,
       isSaved,
       getFieldValue,
-      getStandardTextInputAttributes,
+      getStandardInputTextAttributes,
       setFieldValue,
       handleChange,
       handleSave,
@@ -157,7 +157,7 @@ const useTestEdit = () => {
       error,
       isSaved,
       getFieldValue,
-      getStandardTextInputAttributes,
+      getStandardInputTextAttributes,
       setFieldValue,
       handleChange,
       handleSave,

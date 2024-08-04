@@ -51,7 +51,7 @@ type EmailFieldProps = {
 
 export const EmailField = ({
   autoComplete = 'current-password',
-  hasError,
+
   multiple = false,
   type = 'email',
   ...rest
@@ -59,7 +59,6 @@ export const EmailField = ({
   return (
     <TextInput
       autoComplete={autoComplete}
-      hasError={hasError}
       inputMode="text"
       multiple={multiple}
       spellCheck="false"

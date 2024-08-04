@@ -14,7 +14,6 @@ export type InputBaseProps = {
   readonly type?: HTMLInputTypeAttribute | undefined;
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly labelRef?: React.RefObject<HTMLLabelElement>;
-  readonly hasError?: boolean;
   readonly errorText?: React.ReactNode | string[] | string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name'>;
 
@@ -24,11 +23,11 @@ const InputBase = ({
   inputRef,
   labelRef,
   type,
-  // hasError = false,
+
   ...rest
 }: InputBaseProps): JSX.Element => (
   <StyledFormField id={id} name={id}>
-    <LabelBase label={label} labelRef={labelRef}>
+    <LabelBase label={label} ref={labelRef}>
       <ValidityState />
     </LabelBase>
     <Form.Control asChild>

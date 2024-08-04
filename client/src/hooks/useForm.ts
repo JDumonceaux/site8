@@ -73,7 +73,6 @@ export const useForm = <T>(initialValues: T) => {
     return {
       id: `${fieldName as string}`,
       errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
       value: formValues[fieldName],
     };
   };
@@ -82,7 +81,6 @@ export const useForm = <T>(initialValues: T) => {
     return {
       id: `${fieldName as string} - ${id}`,
       errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
       value: formValues[fieldName],
       maxLength: 60,
       onChange: handleChange,

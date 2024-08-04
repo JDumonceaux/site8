@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
-import { ShowPasswordButton } from './ShowPasswordButton';
 import TextInput, { TextInputProps } from '../TextInput/TextInput';
+import { ShowPasswordButton } from './ShowPasswordButton';
 
 type PasswordFieldType = 'password' | 'text';
 
@@ -72,7 +72,7 @@ export const PasswordField = ({
   passwordIsShownLabel,
   showPasswordButtonLabel,
   showPasswordButtonRef,
-  hasError,
+
   type = 'password',
   ...rest
 }: PasswordFieldProps): JSX.Element => {
@@ -89,12 +89,10 @@ export const PasswordField = ({
   return (
     <TextInput
       autoComplete={autoComplete}
-      hasError={hasError}
       inputMode="text"
       outerEndComponent={
         hideShowPassword ? null : (
           <ShowPasswordButton
-            hasError={hasError}
             onClick={showPasswordOnClick}
             passwordIsHiddenLabel={passwordIsHiddenLabel}
             passwordIsShownLabel={passwordIsShownLabel}

@@ -2,7 +2,6 @@ import { InputHTMLAttributes, memo } from 'react';
 
 import { styled } from 'styled-components';
 import { TextHelp } from '../TextHelp/TextHelp';
-import { TextLabel } from '../TextLabel/TextLabel';
 
 export type TextInputProps = {
   readonly id: string;
@@ -11,7 +10,6 @@ export type TextInputProps = {
   readonly showCounter?: boolean;
   readonly characterCount?: number;
   readonly maxLength?: number;
-  readonly hasError?: boolean;
   readonly required?: boolean;
   readonly helpText?: React.ReactNode | string[] | string;
   readonly errorTextShort?: string;
@@ -28,15 +26,12 @@ export type TextInputProps = {
 
 const TextInput = ({
   id,
-  label,
   layout = 'vertical',
   showCounter = false,
   maxLength,
-  hasError = true,
   required = false,
   helpText,
   errorText,
-  errorTextShort,
   value,
   outerEndComponent,
   type = 'text',
@@ -47,16 +42,9 @@ const TextInput = ({
 
   return (
     <StyledWrapper $layout={layout}>
-      {label ? (
-        <TextLabel errorText={errorTextShort} hasError={hasError} htmlFor={id}>
-          {label}
-        </TextLabel>
-      ) : null}
       <StyledFlexGrow>
-        <StyledDivWrapper $hasError={hasError}>
+        <StyledDivWrapper>
           <StyledInput
-            $hasError={hasError}
-            aria-invalid={!hasError}
             aria-required={required}
             id={id}
             maxLength={maxLength}
@@ -71,7 +59,6 @@ const TextInput = ({
         <TextHelp
           characterCount={characterCount}
           errorText={errorText}
-          hasError={hasError}
           helpText={helpText}
           maxLength={maxLength}
           showCounter={showCounter}
@@ -97,9 +84,8 @@ const StyledWrapper = styled.div<{ $layout: string }>`
 const StyledFlexGrow = styled.div`
   flex-grow: 1;
 `;
-const StyledInput = styled.input<{ $hasError: boolean }>`
+const StyledInput = styled.input`
   position: relative;
-  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
   background-color: inherit;
   font-size: 1rem;
   letter-spacing: 0.5px;
@@ -112,24 +98,19 @@ const StyledInput = styled.input<{ $hasError: boolean }>`
     font-size: 0.8rem;
   }
 `;
-const StyledDivWrapper = styled.div<{ $hasError: boolean }>`
+const StyledDivWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
   z-index: 2;
-  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
+
   background-color: #ffffff;
   padding: 0 6px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${(props) =>
-    props.$hasError ? 'rgba(0, 0, 0, 0.23)' : '#ff0000'};
+
   border-radius: 4px;
   &:hover {
     border-color: #63544f;
-  }
-  &:focus {
-    border-color: ${(props) => (props.$hasError ? '#6db144;' : '#ff0000')};
-    border-width: 2px;
   }
 `;

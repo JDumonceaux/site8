@@ -94,7 +94,7 @@ const useMenuEdit = () => {
     [setFieldValue],
   );
 
-  const getStandardTextInputAttributes = useCallback(
+  const getStandardInputTextAttributes = useCallback(
     (fieldName: keys) => {
       return {
         id: fieldName,
@@ -119,7 +119,7 @@ const useMenuEdit = () => {
       error,
       isSaved,
       getFieldValue,
-      getStandardTextInputAttributes,
+      getStandardInputTextAttributes,
       setFormValues,
       setFieldValue,
       handleChange,
@@ -134,7 +134,7 @@ const useMenuEdit = () => {
       error,
       isSaved,
       getFieldValue,
-      getStandardTextInputAttributes,
+      getStandardInputTextAttributes,
       setFormValues,
       setFieldValue,
       clearForm,
