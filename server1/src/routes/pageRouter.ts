@@ -70,10 +70,10 @@ pageRouter.post('/', async (req: Request, res: Response) => {
       res.status(400).json({ error: 'Next Id not found.' });
     }
 
+    const updateFile = typeof item.text === 'string' && item.text.length > 0;
     const promise1 = service.addItem({ ...item, id: idNew });
     const promise2 = fileService.addFile(idNew, item.text);
-    const promises =
-      item.text && item.text.length > 0 ? [promise1, promise2] : [promise1];
+    const promises = updateFile ? [promise1, promise2] : [promise1];
 
     const results = await Promise.allSettled(promises);
     // Use a for loop so you can break out.  You may not be able to break other loops.
@@ -107,10 +107,15 @@ pageRouter.patch('/', async (req: Request, res: Response) => {
     const fileService = new PageFileService();
     const item: PageEdit = req.body;
 
+    const isValid = !Number.isNaN(item.id) && item.id !== 0;
+    if (!isValid) {
+      return res.status(400).json({ error: Responses.INVALID_ID });
+    }
+
+    const updateFile = typeof item.text === 'string' && item.text.length > 0;
     const promise1 = service.updateItem(item);
     const promise2 = fileService.updateFile(item.id, item.text);
-    const promises =
-      item.text && item.text.length > 0 ? [promise1, promise2] : [promise1];
+    const promises = updateFile ? [promise1, promise2] : [promise1];
 
     const results = await Promise.allSettled(promises);
     // Use a for loop so you can break out.  You may not be able to break other loops.

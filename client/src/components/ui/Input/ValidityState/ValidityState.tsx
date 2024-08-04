@@ -2,6 +2,11 @@ import * as Form from '@radix-ui/react-form';
 import { memo } from 'react';
 import { styled } from 'styled-components';
 
+// Notes:  The minlength and maxlength constraints are only checked on
+// user - provided input.
+// They are not checked if a value is set programmatically,
+// even when explicitly calling checkValidity() or reportValidity()
+
 export type ValidityStateProps = {
   readonly errorMissing?: string;
   readonly errorType?: string;
