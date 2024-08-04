@@ -97,13 +97,13 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
         <InputText
           {...getStandardInputTextAttributes('to')}
           label="To"
-          placeholder="Enter a Route"
+          placeholder="Enter a route"
         />
         <InputText
           {...getStandardInputTextAttributes('url')}
           label="URL"
           onChange={handleChange}
-          placeholder="Enter a URL"
+          placeholder="Enter a url"
         />
         <InputText
           {...getStandardInputTextAttributes('parent')}
