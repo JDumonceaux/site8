@@ -18,7 +18,7 @@ const ValidityState = ({
 }: ValidityStateProps): JSX.Element => (
   <>
     <StyledMessage match="badInput">{errorMissing}</StyledMessage>
-    {/* This should be valid */}
+    {/* This should be valid but doesn't seem to be working */}
     {/* <StyledMessage match="customError">{errorType}</StyledMessage> */}
     <StyledMessage match="patternMismatch">{errorType}</StyledMessage>
     <StyledMessage match="rangeOverflow">{errorType}</StyledMessage>

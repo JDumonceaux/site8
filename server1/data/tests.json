@@ -641,6 +641,24 @@
       "text": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist",
       "goal": "",
       "projectType": ["web", "react", "acccessibiilty"]
+    },
+    {
+      "level": "field",
+      "id": 554,
+      "type": "test",
+      "name": "Delete entry",
+      "text": "1. Enter value 2. Save 3. Delete value 4. Save",
+      "goal": "Validates correctly",
+      "projectType": ["web", "react"]
+    },
+    {
+      "level": "field",
+      "id": 555,
+      "type": "test",
+      "name": "",
+      "text": "",
+      "goal": "",
+      "projectType": ["web", "react"]
     }
   ]
 }

@@ -8,6 +8,11 @@ import { styled } from 'styled-components';
 import LabelBase from '../LabelBase/LabelBase';
 import ValidityState from '../ValidityState/ValidityState';
 
+export type ImageProps = 'alt' | 'height' | 'src' | 'width';
+export type FileProps = 'accept' | 'capture' | 'multiple';
+export type DateProps = 'max' | 'min';
+export type NumberProps = 'max' | 'min' | 'step';
+
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
 // attributes impact an input depends on the input type,

@@ -1,12 +1,12 @@
 import { memo } from 'react';
-import InputBase, { InputBaseProps } from '../InputBase/InputBase';
+import InputBase, { ImageProps, InputBaseProps } from '../InputBase/InputBase';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
 // attributes impact an input depends on the input type,
 // impacting different input types in different ways.
 
-type InputTextProps = Omit<InputBaseProps, 'type'>;
+type InputTextProps = Omit<InputBaseProps, 'type' | ImageProps>;
 
 // Props
 // autoComplete
