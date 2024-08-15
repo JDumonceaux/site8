@@ -1,6 +1,6 @@
 import { Button2 } from 'components/form/Button2';
 
-import InputText from 'components/ui/Input/InputText/InputText';
+import InputText from 'components/ui/Input/InputText/InputTele';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';

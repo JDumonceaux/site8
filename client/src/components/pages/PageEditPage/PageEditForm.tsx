@@ -1,5 +1,5 @@
 import * as Form from '@radix-ui/react-form';
-import InputText from 'components/ui/Input/InputText/InputText';
+import InputText from 'components/ui/Input/InputText/InputTele';
 
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';

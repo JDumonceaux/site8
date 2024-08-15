@@ -3,7 +3,7 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { IconMenu } from 'components/ui/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/ui/IconMenu/IconMenuItem';
-import InputText from 'components/ui/Input/InputText/InputText';
+import InputText from 'components/ui/Input/InputText/InputTele';
 
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';

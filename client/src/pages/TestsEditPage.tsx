@@ -15,7 +15,7 @@ import {
 
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
-import InputText from 'components/ui/Input/InputText/InputText';
+import InputText from 'components/ui/Input/InputText/InputTele';
 
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';

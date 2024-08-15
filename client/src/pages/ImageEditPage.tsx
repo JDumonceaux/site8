@@ -1,7 +1,7 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { ImageSelector } from 'components/custom/ImageSelector/ImageSelector';
-import InputText from 'components/ui/Input/InputText/InputText';
+import InputText from 'components/ui/Input/InputText/InputTele';
 import { TextArea } from 'components/ui/Input/TextArea';
 
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
