@@ -1,17 +1,18 @@
 import { memo } from 'react';
+
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
 type InputColorProps = {
   readonly type?: 'color';
 } & Omit<
   InputBaseProps,
-  | 'type'
   | 'autocapitalize'
   | 'multiple'
   | 'pattern'
   | 'readonly'
   | 'src'
   | 'step'
+  | 'type'
   | 'width'
 >;
 

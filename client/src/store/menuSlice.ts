@@ -5,14 +5,14 @@ import { Menu } from 'types';
 
 type MenuState = {
   data: Menu | null;
+  error: null | string;
   isLoading: boolean;
-  error: string | null;
 };
 
 const initialState: MenuState = {
   data: null,
-  isLoading: false,
   error: null,
+  isLoading: false,
 };
 
 const controller = new AbortController();
@@ -26,9 +26,6 @@ const fetchMenu = createAsyncThunk('menu/fetchMenu', async () => {
 });
 
 const MenuSlice = createSlice({
-  name: 'menu',
-  initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchMenu.pending, (state) => {
@@ -44,6 +41,9 @@ const MenuSlice = createSlice({
         state.error = action.error.message ?? 'Unable to fetch menu';
       });
   },
+  initialState,
+  name: 'menu',
+  reducers: {},
 });
 
 export { fetchMenu };

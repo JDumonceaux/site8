@@ -1,11 +1,12 @@
 import { memo } from 'react';
+
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
 type InputEmailProps = {
   readonly type?: 'password';
 } & Omit<
   InputBaseProps,
-  'type' | 'autocapitalize' | 'height' | 'src' | 'step' | 'width'
+  'autocapitalize' | 'height' | 'src' | 'step' | 'type' | 'width'
 >;
 
 // Remove: 'autocapitalize', 'height', 'src', 'step', 'width'

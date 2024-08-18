@@ -1,7 +1,7 @@
 import AppInitializer from 'components/common/AppInitializer/AppInitializer';
 import Avatar from 'components/ui/Avatar/Avatar';
 import Snackbar from 'components/ui/Snackbar/Snackbar';
-import { Suspense, lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';

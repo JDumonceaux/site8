@@ -2,6 +2,7 @@ import { IconVisibility } from 'components/icons/IconVisibility';
 import { IconVisibilityOff } from 'components/icons/IconVisibilityOff';
 import { useState } from 'react';
 import { styled } from 'styled-components';
+
 import { Tooltip } from '../Tooltip/Tooltip';
 
 type EndAdornmentProps = {

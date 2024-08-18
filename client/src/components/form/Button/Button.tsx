@@ -2,8 +2,8 @@ import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
 export type ButtonProps = {
-  readonly id: string;
   readonly children: React.ReactNode;
+  readonly id: string;
   readonly variant?: 'primary' | 'secondary';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
@@ -18,8 +18,8 @@ export type ButtonProps = {
  * @returns {JSX.Element} The rendered Button component.
  */
 const Button = ({
-  id,
   children,
+  id,
   variant = 'primary',
   ...rest
 }: ButtonProps): JSX.Element => (

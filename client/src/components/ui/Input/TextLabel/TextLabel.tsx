@@ -4,8 +4,8 @@ import { styled } from 'styled-components';
 type TextLabelProps = LabelHTMLAttributes<HTMLLabelElement>;
 
 export const TextLabel = ({
-  id,
   children,
+  id,
 
   ...rest
 }: TextLabelProps): JSX.Element => {

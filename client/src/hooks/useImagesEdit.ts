@@ -5,15 +5,19 @@ import { Images } from 'types';
 import { Image } from 'types/Image';
 import { ImageEdit } from 'types/ImageEdit';
 import { z } from 'zod';
+
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
+  delete: z.string().optional(),
+  description: z.string().trim().optional(),
+  duplicate: z.string().optional(),
+  fileName: z.string().trim(),
+  folder: z.string().trim().optional(),
   id: z.number(),
   localId: z.number(),
-  name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
-  fileName: z.string().trim(),
   location: z
     .string({
       invalid_type_error: 'Location must be a string',
@@ -21,18 +25,15 @@ const pageSchema = z.object({
     .max(250, 'Location max length exceeded: 500')
     .trim()
     .optional(),
-  folder: z.string().trim().optional(),
+  name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
   official_url: z.string().trim().optional(),
-  tags: z.string().trim().optional(),
-  description: z.string().trim().optional(),
   src: z.string().optional(),
-  duplicate: z.string().optional(),
-  delete: z.string().optional(),
+  tags: z.string().trim().optional(),
 });
 
 const useImagesEdit = () => {
   // Use Axios to fetch data
-  const { data, isLoading, error, fetchData, patchData } = useAxios<Images>();
+  const { data, error, fetchData, isLoading, patchData } = useAxios<Images>();
   // Create a type from the schema
   type FormType = z.infer<typeof pageSchema>;
 
@@ -48,8 +49,8 @@ const useImagesEdit = () => {
     formValues,
     getDefaultProps,
     getFieldValue,
-    setFormValues,
     setFieldValue,
+    setFormValues,
   } = useFormArray<FormType>();
 
   // Save to local - adding local index
@@ -62,23 +63,23 @@ const useImagesEdit = () => {
   }, [data?.items, setLocalItems]);
 
   useEffect(() => {
-    const ret: FormType[] | undefined = localItems?.map((item) => {
+    const returnValue: FormType[] | undefined = localItems?.map((item) => {
       return {
-        id: item.id || 0,
-        localId: item.localId || 0,
-        name: item.name || '',
+        description: item.description || '',
+        duplicate: String(item.isDuplicate) || 'false',
         fileName: item.fileName || '',
         folder: item.folder || '',
-        official_url: item.official_url || '',
-        description: item.description || '',
+        id: item.id || 0,
+        localId: item.localId || 0,
         location: item.location || '',
-        tags: '',
+        name: item.name || '',
+        official_url: item.official_url || '',
         src: getSRC(item.folder, item.fileName),
-        duplicate: String(item.isDuplicate) || 'false',
+        tags: '',
       };
     });
-    if (ret) {
-      setFormValues(ret);
+    if (returnValue) {
+      setFormValues(returnValue);
     }
   }, [localItems, setFormValues]);
 
@@ -105,23 +106,23 @@ const useImagesEdit = () => {
   }, []);
 
   const getDifference = useCallback(
-    (prev: string | undefined, update: string | undefined) => {
-      const tempPrev =
-        prev && prev?.trim().length > 0 ? prev?.trim() : undefined;
-      const tempUpdate =
+    (previous: string | undefined, update: string | undefined) => {
+      const temporaryPrevious =
+        previous && previous?.trim().length > 0 ? previous?.trim() : undefined;
+      const temporaryUpdate =
         update && update?.trim().length > 0 ? update?.trim() : undefined;
       // No change
-      if (!tempPrev && !tempUpdate) {
+      if (!temporaryPrevious && !temporaryUpdate) {
         return { hasChange: false, value: undefined };
       }
       // No change
-      if (tempPrev === tempUpdate) {
+      if (temporaryPrevious === temporaryUpdate) {
         return { hasChange: false, value: undefined };
       }
-      if (tempUpdate) {
-        return { hasChange: true, value: tempUpdate };
+      if (temporaryUpdate) {
+        return { hasChange: true, value: temporaryUpdate };
       }
-      if (tempPrev && !tempUpdate) {
+      if (temporaryPrevious && !temporaryUpdate) {
         return { hasChange: true, value: undefined };
       }
       return { hasChange: false, value: undefined };
@@ -130,51 +131,59 @@ const useImagesEdit = () => {
   );
 
   const getUpdates = useCallback(() => {
-    const ret: ImageEdit[] = [];
-    formValues.forEach((item) => {
-      const prev = localItems?.find((x) => x.localId === item.localId);
-      const tempName = getDifference(prev?.name, item.name);
-      const tempLocation = getDifference(prev?.location, item.location);
-      const tempDescription = getDifference(
-        prev?.description,
+    const returnValue: ImageEdit[] = [];
+    for (const item of formValues) {
+      const previous = localItems?.find((x) => x.localId === item.localId);
+      const temporaryName = getDifference(previous?.name, item.name);
+      const temporaryLocation = getDifference(
+        previous?.location,
+        item.location,
+      );
+      const temporaryDescription = getDifference(
+        previous?.description,
         item.description,
       );
-      const tempOfficialUrl = getDifference(
-        prev?.official_url,
+      const temporaryOfficialUrl = getDifference(
+        previous?.official_url,
         item.official_url,
       );
-      const tempFolder = getDifference(prev?.folder, item.folder);
-      const tempFileName = getDifference(prev?.fileName, item.fileName);
+      const temporaryFolder = getDifference(previous?.folder, item.folder);
+      const temporaryFileName = getDifference(
+        previous?.fileName,
+        item.fileName,
+      );
       // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
 
       if (
-        tempName.hasChange ||
-        tempLocation.hasChange ||
-        tempDescription.hasChange ||
-        tempOfficialUrl.hasChange ||
-        tempFolder.hasChange ||
-        tempFileName.hasChange
+        temporaryName.hasChange ||
+        temporaryLocation.hasChange ||
+        temporaryDescription.hasChange ||
+        temporaryOfficialUrl.hasChange ||
+        temporaryFolder.hasChange ||
+        temporaryFileName.hasChange
       ) {
-        ret.push({
+        returnValue.push({
+          description: temporaryDescription.hasChange
+            ? temporaryDescription.value
+            : previous?.description,
+          fileName: temporaryFileName.hasChange
+            ? (temporaryFileName.value ?? '')
+            : (previous?.fileName ?? ''),
+          folder: temporaryFolder.hasChange
+            ? temporaryFolder.value
+            : previous?.folder,
           id: item.id,
-          name: tempName.hasChange ? tempName.value : prev?.name,
-          location: tempLocation.hasChange
-            ? tempLocation.value
-            : prev?.location,
-          description: tempDescription.hasChange
-            ? tempDescription.value
-            : prev?.description,
-          official_url: tempOfficialUrl.hasChange
-            ? tempOfficialUrl.value
-            : prev?.official_url,
-          folder: tempFolder.hasChange ? tempFolder.value : prev?.folder,
-          fileName: tempFileName.hasChange
-            ? (tempFileName.value ?? '')
-            : (prev?.fileName ?? ''),
+          location: temporaryLocation.hasChange
+            ? temporaryLocation.value
+            : previous?.location,
+          name: temporaryName.hasChange ? temporaryName.value : previous?.name,
+          official_url: temporaryOfficialUrl.hasChange
+            ? temporaryOfficialUrl.value
+            : previous?.official_url,
         });
       }
-    });
-    return ret;
+    }
+    return returnValue;
   }, [formValues, getDifference, localItems]);
 
   // Handle save
@@ -199,18 +208,18 @@ const useImagesEdit = () => {
   return useMemo(
     () => ({
       data: formValues,
-      fetchData,
-      isProcessing,
-      isLoading,
       error,
-      isSaved,
-      handleClear,
-      submitForm,
-      scanForNewItems,
+      fetchData,
+      fetchItems,
       getDefaultProps,
       getFieldValue,
+      handleClear,
+      isLoading,
+      isProcessing,
+      isSaved,
+      scanForNewItems,
       setFieldValue,
-      fetchItems,
+      submitForm,
     }),
     [
       formValues,

@@ -1,14 +1,14 @@
 export type Snackbar = {
-  contents: React.ReactNode | null;
+  contents: null | React.ReactNode;
   isOpen: boolean;
   openDurationMs?: number;
-  variant?: SnackbarVariant;
   showCloseButton?: boolean;
+  variant?: SnackbarVariant;
 };
 
 export enum SnackbarVariant {
-  SUCCESS = 'success',
-  WARNING = 'warning',
   ERROR = 'error',
   INFO = 'info',
+  SUCCESS = 'success',
+  WARNING = 'warning',
 }

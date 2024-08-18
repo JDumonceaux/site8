@@ -20,7 +20,7 @@ const useMenu = () => {
   const getMenu = useCallback(
     (sec1: string | undefined, sec2: string | undefined) => {
       if (!sec1) {
-        return undefined;
+        return;
       }
       // Get the parent menu
       const menu = data?.items?.find((x) => x.to === sec1);
@@ -36,15 +36,17 @@ const useMenu = () => {
   const getOtherMenus = useCallback(
     (id: number | undefined) => {
       if (!id) {
-        return undefined;
+        return;
       }
       // Get the current menu
-      const currItem = data?.items?.find((x) => x.id === id);
-      if (!currItem) {
+      const currentItem = data?.items?.find((x) => x.id === id);
+      if (!currentItem) {
         return data?.items;
       }
       // Get the parent menu (i.e. Root menu)
-      const parentItem = data?.items?.find((x) => x.id === currItem.parentId);
+      const parentItem = data?.items?.find(
+        (x) => x.id === currentItem.parentId,
+      );
       // Return the other menus
       return parentItem?.items?.filter((x) => x.id !== id);
     },
@@ -53,11 +55,11 @@ const useMenu = () => {
 
   return {
     data,
-    isLoading,
     error,
+    fetchData: dispatchFetchMenu,
     getMenu,
     getOtherMenus,
-    fetchData: dispatchFetchMenu,
+    isLoading,
   };
 };
 

@@ -107,11 +107,11 @@ const YachtsPage = (): JSX.Element => {
                 allow="autoplay; fullscreen; picture-in-picture"
                 src="https://player.vimeo.com/video/290705961?h=9cfff6a399"
                 style={{
+                  height: '100%',
+                  left: 0,
                   position: 'absolute',
                   top: 0,
-                  left: 0,
                   width: '100%',
-                  height: '100%',
                 }}
                 title="Youtube: Art of Life Design"
                 // frameborder={{0}}
@@ -128,11 +128,11 @@ const YachtsPage = (): JSX.Element => {
                 allow="autoplay; fullscreen; picture-in-picture"
                 src="https://player.vimeo.com/video/235907283?h=35a2fec5db"
                 style={{
+                  height: '100%',
+                  left: 0,
                   position: 'absolute',
                   top: 0,
-                  left: 0,
                   width: '100%',
-                  height: '100%',
                 }}
                 title="Youtube: Nature Design"
                 // frameborder={{0}}
@@ -149,11 +149,11 @@ const YachtsPage = (): JSX.Element => {
                 allow="autoplay; fullscreen; picture-in-picture"
                 src="https://player.vimeo.com/video/184474900?h=bef5fe895d"
                 style={{
+                  height: '100%',
+                  left: 0,
                   position: 'absolute',
                   top: 0,
-                  left: 0,
                   width: '100%',
-                  height: '100%',
                 }}
                 title="Youtube: Zen Design"
                 // frameborder={{0}}

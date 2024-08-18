@@ -53,7 +53,7 @@ describe('InputPassword', () => {
         <Form.Field name="test">
           <InputPassword id="test" required />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -69,7 +69,7 @@ describe('InputPassword', () => {
         <Form.Field name="test">
           <InputPassword id="test" minLength={5} />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -85,7 +85,7 @@ describe('InputPassword', () => {
         <Form.Field name="test">
           <InputPassword id="test" maxLength={5} />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -101,7 +101,7 @@ describe('InputPassword', () => {
         <Form.Field name="test">
           <InputPassword id="test" pattern="^[a-zA-Z]*$" />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');

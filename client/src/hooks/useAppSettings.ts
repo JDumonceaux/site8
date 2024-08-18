@@ -12,8 +12,8 @@ const useAppSettings = () => {
   const initialState: AppSettings = useMemo(
     () => ({
       showAll: false,
-      showUnmatched: false,
       showPages: false,
+      showUnmatched: false,
     }),
     [],
   );
@@ -54,12 +54,12 @@ const useAppSettings = () => {
 
   return {
     data,
+    reset,
     setShowAll,
     setShowPages,
-    showUnmatched,
-    showPages,
     setShowUnmatched,
-    reset,
+    showPages,
+    showUnmatched,
   };
 };
 

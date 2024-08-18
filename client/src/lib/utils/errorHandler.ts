@@ -13,7 +13,7 @@ export const httpErrorHandler = (
   if (error === null) throw new Error('Unrecoverable error!! Error is null!');
 
   if (isAxiosError(error)) {
-    const { response, request, code } = error;
+    const { code, request, response } = error;
 
     if (code === 'ERR_NETWORK') {
       return 'Connection problems..';
@@ -26,14 +26,18 @@ export const httpErrorHandler = (
       // that falls out of the range of 2xx
       const { status } = response;
       switch (status) {
-        case 408:
-          return 'Request timed out';
-        case 404:
-          return 'The requested resource does not exist or has been deleted';
-        case 401:
+        case 401: {
           return 'Please login to access this resource';
-        default:
+        }
+        case 404: {
+          return 'The requested resource does not exist or has been deleted';
+        }
+        case 408: {
+          return 'Request timed out';
+        }
+        default: {
           return 'Unknown error occurred...';
+        }
       }
     } else if (request) {
       // The request was made but no response was received

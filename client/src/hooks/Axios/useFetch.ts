@@ -5,9 +5,9 @@ import { httpErrorHandler } from 'lib/utils/errorHandler';
 import { useEffect, useRef, useState } from 'react';
 
 export const useFetch = <T>() => {
-  const [data, setData] = useState<T | undefined>(undefined);
+  const [data, setData] = useState<T | undefined>();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>();
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // Private function to fetch data
@@ -28,17 +28,17 @@ export const useFetch = <T>() => {
 
     try {
       const response = await axios.get<T>(url, {
-        responseType: 'json',
         headers: { Accept: AcceptHeader.JSON },
+        responseType: 'json',
         signal: abortControllerRef.current.signal,
       });
       setData(response.data);
-    } catch (err) {
-      if (isCancel(err)) {
+    } catch (error_) {
+      if (isCancel(error_)) {
         console.log('Request was cancelled');
         return;
       }
-      setError(httpErrorHandler(err));
+      setError(httpErrorHandler(error_));
     } finally {
       setIsLoading(false);
     }
@@ -62,10 +62,10 @@ export const useFetch = <T>() => {
   };
 
   return {
+    clearData,
     data,
-    isLoading,
     error,
     fetchData,
-    clearData,
+    isLoading,
   };
 };

@@ -27,11 +27,9 @@ type ImageSelectorProps = {
 export const ImageSelector = ({
   onSelectImage,
 }: ImageSelectorProps): JSX.Element => {
-  const { showUnmatched, setShowUnmatched } = useAppSettings();
-  const { data, error, isLoading, fetchData } = useUnmatchedImages();
-  const [selectedItem, setSelectedItem] = useState<Image | undefined>(
-    undefined,
-  );
+  const { setShowUnmatched, showUnmatched } = useAppSettings();
+  const { data, error, fetchData, isLoading } = useUnmatchedImages();
+  const [selectedItem, setSelectedItem] = useState<Image | undefined>();
 
   useEffect(() => {
     fetchData();
@@ -78,7 +76,7 @@ export const ImageSelector = ({
 
   const getFilteredData = useCallback(() => {
     if (!data) {
-      return undefined;
+      return;
     }
     if (selectedItem) {
       return data.items?.filter((x) => x.id === selectedItem.id) ?? undefined;
@@ -105,7 +103,7 @@ export const ImageSelector = ({
           checked={showUnmatched}
           id="showUnmatched"
           label={showUnmatched ? 'Hide Unmatched' : 'Show Unmatched'}
-          onCheckedChange={(e) => onShowUnmatched(e)}
+          onCheckedChange={(error_) => onShowUnmatched(error_)}
         />
         <div>{itemCount}</div>
       </StyledButtonRow>

@@ -14,9 +14,10 @@ type TikTokPageProps = {
 };
 
 const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
+  // eslint-disable-next-line unicorn/prevent-abbreviations
   const tempId = 4000;
   //   id && id > 0 ? id : routeParams.id ? parseInt(routeParams.id, 10) : 0;
-  const { data, isLoading, error, fetchData } = useAxios<Page>();
+  const { data, error, fetchData, isLoading } = useAxios<Page>();
   const deferredData = useDeferredValue(data);
 
   useEffect(() => {

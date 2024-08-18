@@ -44,7 +44,12 @@ type InvalidAttributes =
 // value
 
 type PasswordFieldProps = {
-  readonly type?: PasswordFieldType;
+  // Set Autocomplete
+  readonly autoComplete?:
+    | 'current-password'
+    | 'new-password'
+    | 'off'
+    | 'one-time-code';
   // "For password fields, will hide the \\"show password\\" button",
   readonly hideShowPassword?: boolean;
   // "Sets the text read by screen readers when the password is hidden Default: \\"Password is hidden\\"",
@@ -55,13 +60,8 @@ type PasswordFieldProps = {
   readonly showPasswordButtonLabel?: string;
   // "Forwarded ref for access to show password button DOM element",
   readonly showPasswordButtonRef?: React.Ref<HTMLButtonElement>;
-  // Set Autocomplete
-  readonly autoComplete?:
-    | 'current-password'
-    | 'new-password'
-    | 'one-time-code'
-    | 'off';
-} & Omit<TextInputProps, InvalidAttributes | 'autoComplete' | 'type'>;
+  readonly type?: PasswordFieldType;
+} & Omit<TextInputProps, 'autoComplete' | 'type' | InvalidAttributes>;
 
 // Note: autocapitalize is not a valid prop for password, url, email fields
 

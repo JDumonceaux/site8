@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 
 type TooltipProps = {
-  readonly text: string;
   readonly children: React.ReactNode;
+  readonly text: string;
 };
 
-export const Tooltip = ({ text, children }: TooltipProps): JSX.Element => {
+export const Tooltip = ({ children, text }: TooltipProps): JSX.Element => {
   return (
     <StyledDiv>
       {children}

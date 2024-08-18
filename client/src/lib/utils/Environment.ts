@@ -1,50 +1,28 @@
 /**
  * The `Environment` class provides utility methods to access environment variables.
  */
-export class Environment {
-  static getApplicationVersion() {
-    return process.env.REACT_APP_VERSION;
-  }
+export const Environment = {
+  getApplicationVersion: () => process.env.REACT_APP_VERSION,
 
-  static getPublicUrl() {
-    return process.env.PUBLIC_URL;
-  }
+  getEnvironment: () => process.env.REACT_APP_ENVIRONMENT,
 
-  static getGoogleTagManagerId() {
-    return process.env.REACT_APP_GTM_ID;
-  }
+  getGoogleTagManagerEnvironmentAuth: () => process.env.REACT_APP_GTM_ENV_AUTH,
 
-  static getGoogleTagManagerEnvironmentAuth() {
-    return process.env.REACT_APP_GTM_ENV_AUTH;
-  }
+  getGoogleTagManagerEnvironmentPreview: () =>
+    process.env.REACT_APP_GTM_ENV_PREVIEW,
 
-  static getGoogleTagManagerEnvironmentPreview() {
-    return process.env.REACT_APP_GTM_ENV_PREVIEW;
-  }
+  getGoogleTagManagerId: () => process.env.REACT_APP_GTM_ID,
 
-  static getEnvironment() {
-    return process.env.REACT_APP_ENVIRONMENT;
-  }
+  getNodeEnvironment: () => process.env.NODE_ENV,
 
-  static getNodeEnvironment() {
-    return process.env.NODE_ENV;
-  }
+  getPublicUrl: () => process.env.PUBLIC_URL,
 
-  static isLocal() {
-    return Environment.getEnvironment() === 'local';
-  }
+  isLocal: () => Environment.getEnvironment() === 'local',
 
-  static isProduction() {
-    return Environment.getEnvironment() === 'production';
-  }
+  isLowerEnvironment: () => !Environment.isProduction(),
 
-  static isLowerEnvironment() {
-    return !Environment.isProduction();
-  }
+  isNearProduction: () =>
+    Environment.isLowerEnvironment() && Environment.getEnvironment() === 'uat',
 
-  static isNearProduction() {
-    return (
-      Environment.isLowerEnvironment() && Environment.getEnvironment() === 'uat'
-    );
-  }
-}
+  isProduction: () => Environment.getEnvironment() === 'production',
+};

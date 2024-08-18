@@ -2,33 +2,33 @@ import { isValidArray } from './helpers';
 
 describe('isValidArray', () => {
   test('should return true for a valid non-empty array', () => {
-    const arr = [1, 2, 3];
+    const array = [1, 2, 3];
 
-    const result = isValidArray(arr);
+    const result = isValidArray(array);
 
     expect(result).toBe(true);
   });
 
   test('should return false for an empty array', () => {
-    const arr: unknown[] = [];
+    const array: unknown[] = [];
 
-    const result = isValidArray(arr);
+    const result = isValidArray(array);
 
     expect(result).toBe(false);
   });
 
   test('should return false for undefined', () => {
-    const arr = undefined;
+    const array = undefined;
 
-    const result = isValidArray(arr);
+    const result = isValidArray(array);
 
     expect(result).toBe(false);
   });
 
   test('should return false for null', () => {
-    const arr = null;
+    const array = null;
 
-    const result = isValidArray(arr);
+    const result = isValidArray(array);
 
     expect(result).toBe(false);
   });

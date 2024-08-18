@@ -7,9 +7,9 @@ import { IMAGE_BASE } from './constants';
  */
 export const getParamIdAsString = (id?: string): string | undefined => {
   if (!id || id.trim().length === 0) return undefined;
-  const tempId = parseInt(id ?? '');
-  if (!isNaN(tempId) && tempId > 0) {
-    return tempId.toString();
+  const temporaryId = Number.parseInt(id ?? '');
+  if (!Number.isNaN(temporaryId) && temporaryId > 0) {
+    return temporaryId.toString();
   }
   return undefined;
 };
@@ -35,10 +35,10 @@ export const combineParent = (
   items?: { id?: number; seq?: number }[],
 ): string => {
   if (!items) return '';
-  const ret: string[] = items.flatMap((x) =>
+  const returnValue: string[] = items.flatMap((x) =>
     [x.id, x.seq].filter((v) => v != undefined).map(String),
   );
-  return ret.length ? ret.join(',') : '0,0';
+  return returnValue.length > 0 ? returnValue.join(',') : '0,0';
 };
 
 /**
@@ -57,14 +57,14 @@ export const splitParent = (
   if (items.length % 2 !== 0) return undefined;
 
   const result: { id: number; seq: number }[] = [];
-  for (let i = 0; i < items.length; i += 2) {
-    const id = parseInt(items[i]);
-    const seq = parseInt(items[i + 1]);
-    if (!isNaN(id) && !isNaN(seq)) {
+  for (let index = 0; index < items.length; index += 2) {
+    const id = Number.parseInt(items[index]);
+    const seq = Number.parseInt(items[index + 1]);
+    if (!Number.isNaN(id) && !Number.isNaN(seq)) {
       result.push({ id, seq });
     }
   }
-  return result.length ? result : undefined;
+  return result.length > 0 ? result : undefined;
 };
 
 /**
@@ -78,8 +78,8 @@ export const splitParent = (
 // undefined and anything else that is not an array.
 // arr.length condition checks whether the
 // variable's length property evaluates to a truthy value.
-export const isValidArray = (arr: unknown[] | undefined | null): boolean => {
-  return Array.isArray(arr) && arr.length > 0;
+export const isValidArray = (array: null | undefined | unknown[]): boolean => {
+  return Array.isArray(array) && array.length > 0;
 };
 
 /**
@@ -92,7 +92,7 @@ export const getSRC = (
   folder?: string,
   fileName?: string,
 ): string | undefined => {
-  if (!fileName || !fileName.trim().length) return undefined;
-  const tempFolder = folder?.trim() ? `/${folder.trim()}` : '';
-  return `${IMAGE_BASE}${tempFolder}/${fileName.trim()}`;
+  if (!fileName || fileName.trim().length === 0) return undefined;
+  const temporaryFolder = folder?.trim() ? `/${folder.trim()}` : '';
+  return `${IMAGE_BASE}${temporaryFolder}/${fileName.trim()}`;
 };

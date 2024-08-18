@@ -40,13 +40,13 @@ type InvalidAttributes =
 // value
 
 type EmailFieldProps = {
-  readonly type?: EmailFieldType;
-  readonly multiple?: boolean;
   // Set Autocomplete
   readonly autoComplete?: 'email' | 'off' | string;
+  readonly multiple?: boolean;
+  readonly type?: EmailFieldType;
 } & Omit<
   TextInputProps,
-  InvalidAttributes | 'autoComplete' | 'multiple' | 'type'
+  'autoComplete' | 'multiple' | 'type' | InvalidAttributes
 >;
 
 export const EmailField = ({

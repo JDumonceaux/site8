@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+
 import StyledArticle from './StyledArticle';
 import StyledAside from './StyledAside';
 import StyledFullWidth from './StyledFullWidth';

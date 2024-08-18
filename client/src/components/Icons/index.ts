@@ -5,4 +5,7 @@ export * from './FacebookIcon';
 export * from './GoogleIcon';
 export * from './IconVisibility';
 export * from './IconVisibilityOff';
+export * from './MenuIcon';
+export * from './MoreVertIcon';
 export * from './NoteIcon';
+export * from './SelectIcon';

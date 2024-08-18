@@ -10,7 +10,7 @@ import { BookmarksTags } from 'types';
 
 const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
-  const { data, error, isLoading, fetchData } = useAxios<BookmarksTags>();
+  const { data, error, fetchData, isLoading } = useAxios<BookmarksTags>();
 
   useEffect(() => {
     fetchData(`${ServiceUrl.ENDPOINT_BOOKMARKS}`);

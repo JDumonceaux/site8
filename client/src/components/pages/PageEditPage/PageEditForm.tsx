@@ -1,11 +1,11 @@
 import * as Form from '@radix-ui/react-form';
-import InputText from 'components/ui/Input/InputText/InputTele';
-
+import InputText from 'components/ui/Input/InputText/InputText';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
 import { forwardRef, useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types';
+
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
 
@@ -14,24 +14,24 @@ type PageEditFormProps = {
 };
 
 const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
-  ({ data }, ref): JSX.Element => {
+  ({ data }, reference): JSX.Element => {
     const {
       formValues,
       getFieldErrors,
       getStandardInputTextAttributes,
       handleChange,
       handleSave,
-      setFieldValue,
       isSaved,
+      setFieldValue,
     } = usePageEdit(data);
 
-    const [currPositionStart, setCurrPositionStart] = useState<number>(0);
-    const [currPositionEnd, setCurrPositionEnd] = useState<number>(0);
+    const [currentPositionStart, setCurrentPositionStart] = useState<number>(0);
+    const [currentPositionEnd, setCurrentPositionEnd] = useState<number>(0);
 
     const handleSubmit = useCallback(
-      (e: React.FormEvent) => {
-        e.stopPropagation();
-        e.preventDefault();
+      (error: React.FormEvent) => {
+        error.stopPropagation();
+        error.preventDefault();
         handleSave();
       },
       [handleSave],
@@ -41,13 +41,18 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
       (action: string) => {
         const result = insertHTML(
           formValues.text,
-          currPositionStart,
-          currPositionEnd,
+          currentPositionStart,
+          currentPositionEnd,
           action,
         );
         setFieldValue('text', result);
       },
-      [formValues.text, currPositionStart, currPositionEnd, setFieldValue],
+      [
+        formValues.text,
+        currentPositionStart,
+        currentPositionEnd,
+        setFieldValue,
+      ],
     );
 
     const handeNameOnBlur = useCallback(() => {
@@ -58,15 +63,15 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
     }, [formValues.name, formValues.to?.length, setFieldValue]);
 
     const handeTextAreaBlur = useCallback(
-      (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        setCurrPositionStart(e.currentTarget.selectionStart);
-        setCurrPositionEnd(e.currentTarget.selectionEnd);
+      (error: React.FocusEvent<HTMLTextAreaElement>) => {
+        setCurrentPositionStart(error.currentTarget.selectionStart);
+        setCurrentPositionEnd(error.currentTarget.selectionEnd);
       },
-      [setCurrPositionStart, setCurrPositionEnd],
+      [setCurrentPositionStart, setCurrentPositionEnd],
     );
 
     return (
-      <Form.Root onSubmit={handleSubmit} ref={ref}>
+      <Form.Root onSubmit={handleSubmit} ref={reference}>
         <StyledButton>
           <StyledSaveButton
             data-testid="button-save"

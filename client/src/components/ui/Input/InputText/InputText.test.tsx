@@ -1,13 +1,14 @@
 import * as Form from '@radix-ui/react-form';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
-import InputTele from './InputTele';
-describe('InputTele', () => {
+
+import InputText from './InputText';
+describe('InputText', () => {
   test('renders the input correctly', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" />
+          <InputText id="test" />
         </Form.Field>
       </Form.Root>,
     );
@@ -20,7 +21,7 @@ describe('InputTele', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" />
+          <InputText id="test" />
         </Form.Field>
       </Form.Root>,
     );
@@ -34,7 +35,7 @@ describe('InputTele', () => {
   //   render(
   //     <Form.Root>
   //       <Form.Field name="test">
-  //         <InputTele id="test" />
+  //         <InputText id="test" />
   //       </Form.Field>
   //       <button onClick={handleSubmit}>Submit</button>
   //     </Form.Root>,
@@ -51,9 +52,9 @@ describe('InputTele', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" required />
+          <InputText id="test" required />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -67,9 +68,9 @@ describe('InputTele', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" minLength={5} />
+          <InputText id="test" minLength={5} />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -83,9 +84,9 @@ describe('InputTele', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" maxLength={5} />
+          <InputText id="test" maxLength={5} />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -99,9 +100,9 @@ describe('InputTele', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" pattern="^[a-zA-Z]*$" />
+          <InputText id="test" pattern="^[a-zA-Z]*$" />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -112,7 +113,7 @@ describe('InputTele', () => {
 
   // Focus
   // test('handles focus and blur events', () => {
-  //   render(<InputTele id="test" />);
+  //   render(<InputText id="test" />);
   //   const inputElement = screen.getByRole('textbox');
   //   fireEvent.focus(inputElement);
   //   expect(inputElement).toHaveFocus();
@@ -120,7 +121,7 @@ describe('InputTele', () => {
 
   // Blur
   // test('handles focus and blur events', () => {
-  //   render(<InputTele id="test" />);
+  //   render(<InputText id="test" />);
   //   const inputElement = screen.getByRole('textbox');
   //   fireEvent.focus(inputElement);
   //   expect(inputElement).toHaveFocus();
@@ -132,7 +133,7 @@ describe('InputTele', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" />
+          <InputText id="test" />
         </Form.Field>
       </Form.Root>,
     );
@@ -155,7 +156,7 @@ describe('InputTele', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTele id="test" required />
+          <InputText id="test" required />
         </Form.Field>
       </Form.Root>,
     );

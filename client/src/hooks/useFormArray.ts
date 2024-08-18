@@ -20,18 +20,18 @@ export const useFormArray = <T extends IdType>() => {
     (
       localId: number,
       fieldName: keyof T,
-      value: string | boolean | number | undefined,
+      value: boolean | number | string | undefined,
     ) => {
-      setFormValues((prev) => {
+      setFormValues((previous) => {
         const index = findItemIndex(localId);
-        const newFormValues = [...prev];
+        const newFormValues = [...previous];
         if (index >= 0) {
           newFormValues[index] = {
             ...newFormValues[index],
             [fieldName]: value,
           };
         } else {
-          newFormValues.push({ localId, [fieldName]: value } as T);
+          newFormValues.push({ [fieldName]: value, localId } as T);
         }
         return newFormValues;
       });
@@ -50,9 +50,9 @@ export const useFormArray = <T extends IdType>() => {
 
   const setItem = useCallback(
     (localId: number, item: T) => {
-      setFormValues((prev) => {
+      setFormValues((previous) => {
         const index = findItemIndex(localId);
-        const newFormValues = [...prev];
+        const newFormValues = [...previous];
         if (index >= 0) {
           newFormValues[index] = { ...newFormValues[index], ...item };
         } else {
@@ -80,23 +80,23 @@ export const useFormArray = <T extends IdType>() => {
 
   const getDefaultProps = (localId: number, fieldName: keyof T) => ({
     id: `${fieldName as string}-(${localId})`,
+    onChange: (error: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      handleChange(localId, fieldName, error),
     value: getFieldValue(localId, fieldName),
-    onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      handleChange(localId, fieldName, e),
   });
 
   return {
     formValues,
-    isSaved,
-    isProcessing,
-    setIsProcessing,
-    handleChange,
-    setIsSaved,
+    getDefaultProps,
     getFieldValue,
+    getItem,
+    handleChange,
+    isProcessing,
+    isSaved,
     setFieldValue,
     setFormValues,
-    getDefaultProps,
-    getItem,
+    setIsProcessing,
+    setIsSaved,
     setItem,
   };
 };

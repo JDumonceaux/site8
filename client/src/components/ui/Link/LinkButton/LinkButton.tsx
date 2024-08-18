@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, memo } from 'react';
+
 import StyledLink from '../StyledLink/StyledLink';
 
 type LinkButtonProps = {
@@ -14,7 +15,7 @@ type LinkButtonProps = {
  * @param {React.ReactNode} children - The content of the button.
  * @returns {JSX.Element} - The rendered LinkButton component.
  */
-const LinkButton = ({ to, children }: LinkButtonProps): JSX.Element => (
+const LinkButton = ({ children, to }: LinkButtonProps): JSX.Element => (
   <StyledLink to={to}>{children}</StyledLink>
 );
 

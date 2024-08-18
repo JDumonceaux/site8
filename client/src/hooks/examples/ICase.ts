@@ -6,20 +6,20 @@ export interface ICase {
   deliveryDate?: string;
   deliveryWindowEnd?: Date;
   deliveryWindowStart?: Date;
+  invoicedItemNumber?: string;
+  invoicedItemQuantity?: number;
+  invoicedUnit?: string;
   invoiceNumber?: string;
   issueType?: string;
   itemCodes?: string[];
+  pack?: string;
   paperworkType?: string;
-  requestType?: string;
+  quantityReported?: number;
   requesterFirstName?: string;
   requesterLastName?: string;
+  requestType?: string;
   revisedDeliveryWindowEnd?: string;
   revisedDeliveryWindowStart?: string;
   routeNumber?: string;
-  invoicedItemNumber?: string;
-  invoicedItemQuantity?: number;
-  quantityReported?: number;
   unit?: string;
-  invoicedUnit?: string;
-  pack?: string;
 }

@@ -2,24 +2,24 @@ import React, { LabelHTMLAttributes, useCallback } from 'react';
 import { styled } from 'styled-components';
 
 type TextHelpProps = {
-  readonly hasError?: boolean;
-  readonly showCounter?: boolean;
   readonly characterCount?: number;
-  readonly maxLength?: number;
+  readonly errorText?: React.ReactNode | string | string[];
+  readonly hasError?: boolean;
   readonly helpText?: React.ReactNode | string | string[];
-  readonly errorText?: React.ReactNode | string[] | string;
+  readonly maxLength?: number;
+  readonly showCounter?: boolean;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 export const TextHelp = ({
-  hasError = true,
-  showCounter = false,
   characterCount,
-  maxLength,
-  helpText,
   errorText,
+  hasError = true,
+  helpText,
+  maxLength,
+  showCounter = false,
 }: TextHelpProps): JSX.Element => {
   const getHelperText = useCallback(
-    (msg: React.ReactNode | string[] | string | undefined) => {
+    (msg: React.ReactNode | string | string[] | undefined) => {
       if (!msg) return null;
       if (React.isValidElement(msg)) return msg;
       if (!Array.isArray(msg)) return <div>{msg}</div>;

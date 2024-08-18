@@ -12,7 +12,7 @@ import { Image } from 'types/Image';
 import { Images } from 'types/Images';
 
 const GenericImagePage = (): JSX.Element => {
-  const { data, isLoading, error, fetchData } = useAxios<Images>();
+  const { data, error, fetchData, isLoading } = useAxios<Images>();
 
   const deferredData = useDeferredValue<Image[]>(data ? data.items : []);
 

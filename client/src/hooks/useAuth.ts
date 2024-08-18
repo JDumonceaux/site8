@@ -1,10 +1,5 @@
 import {
   AuthError,
-  FetchUserAttributesOutput,
-  JWT,
-  ResetPasswordOutput,
-  SignInOutput,
-  SignUpOutput,
   autoSignIn,
   confirmResetPassword,
   confirmSignUp,
@@ -12,18 +7,22 @@ import {
   fetchAuthSession,
   fetchDevices,
   fetchUserAttributes,
+  FetchUserAttributesOutput,
   forgetDevice,
   getCurrentUser,
+  JWT,
   rememberDevice,
   resendSignUpCode,
   resetPassword,
+  ResetPasswordOutput,
   signIn,
+  SignInOutput,
   signInWithRedirect,
   signOut,
   signUp,
+  SignUpOutput,
   updatePassword,
 } from 'aws-amplify/auth';
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -78,12 +77,12 @@ const useAuth = () => {
   const [error, setError] = useState<{ code: string; message: string } | null>(
     null,
   );
-  const [accessToken, setAccessToken] = useState<JWT | undefined>(undefined);
-  const [idToken, setIdToken] = useState<JWT | undefined>(undefined);
+  const [accessToken, setAccessToken] = useState<JWT | undefined>();
+  const [idToken, setIdToken] = useState<JWT | undefined>();
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState<string | undefined>('');
-  const [signInDetails, setSignInDetails] = useState<unknown>(undefined);
+  const [signInDetails, setSignInDetails] = useState<unknown>();
   const navigate = useNavigate();
 
   const handleError = (error: unknown): void => {
@@ -101,10 +100,11 @@ const useAuth = () => {
     step: ResetPasswordOutput['nextStep'],
   ) => {
     switch (step.resetPasswordStep) {
-      case 'DONE':
+      case 'DONE': {
         // The user has successfully changed their password
         navigate('/');
         break;
+      }
       case 'CONFIRM_RESET_PASSWORD_WITH_CODE': {
         // The user needs to complete the sign-in process with a code
         const codeDeliveryDetails = step.codeDeliveryDetails;
@@ -116,59 +116,70 @@ const useAuth = () => {
 
   const handleSignInStep = (step: SignInOutput['nextStep']) => {
     switch (step.signInStep) {
-      case 'DONE':
+      case 'DONE': {
         // User is signed in
         // The sign in process has been completed.
         navigate('/');
         break;
-      case 'CONFIRM_SIGN_UP':
+      }
+      case 'CONFIRM_SIGN_UP': {
         // Validation code is sent to the user's email during sign-up
         //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
         navigate('/confirm');
         break;
-      case 'RESET_PASSWORD':
+      }
+      case 'RESET_PASSWORD': {
         //  The user must reset their password via resetPassword
         navigate('/password-reset');
         break;
-      case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED':
+      }
+      case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED': {
         // The user was created with a temporary password and must set a new one.
         // Complete the process with confirmSignIn.
         navigate('/password-reset');
         break;
-      case 'CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE':
+      }
+      case 'CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE': {
         // The sign-in must be confirmed with a custom challenge response.
         // Complete the process with confirmSignIn
         break;
-      case 'CONTINUE_SIGN_IN_WITH_MFA_SELECTION':
+      }
+      case 'CONTINUE_SIGN_IN_WITH_MFA_SELECTION': {
         // The user must select their mode of MFA verification before signing in.
         // Complete the process with confirmSignIn
         break;
-      case 'CONFIRM_SIGN_IN_WITH_SMS_CODE':
+      }
+      case 'CONFIRM_SIGN_IN_WITH_SMS_CODE': {
         // The sign-in must be confirmed with a SMS code from the user.
         // Complete the process with confirmSignIn
         break;
-      case 'CONFIRM_SIGN_IN_WITH_TOTP_CODE':
+      }
+      case 'CONFIRM_SIGN_IN_WITH_TOTP_CODE': {
         // ??  Time-based One-Time Password
         // The sign-in must be confirmed with a TOTP code from the user.
         // Complete the process with confirmSignIn.
         break;
-      case 'CONTINUE_SIGN_IN_WITH_TOTP_SETUP':
+      }
+      case 'CONTINUE_SIGN_IN_WITH_TOTP_SETUP': {
         // ??  Time-based One-Time Password
         // The TOTP setup process must be continued.
         // Complete the process with confirmSignIn.
         break;
-      default:
+      }
+      default: {
         break;
+      }
     }
   };
 
   const handleSignUpStep = (step: SignUpOutput['nextStep']) => {
     console.log('step.signUpStep', step.signUpStep);
     switch (step.signUpStep) {
-      case 'DONE':
+      case 'DONE': {
         // The user has been successfully signed up
         navigate('/');
         break;
+      }
       case 'COMPLETE_AUTO_SIGN_IN': {
         // The user needs to complete the sign-in process with a code
         const codeDeliveryDetails = step.codeDeliveryDetails;
@@ -181,13 +192,15 @@ const useAuth = () => {
         }
         break;
       }
-      case 'CONFIRM_SIGN_UP':
+      case 'CONFIRM_SIGN_UP': {
         // Validation code is sent to the user's email during sign-up
         //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
         navigate('/confirm');
         break;
-      default:
+      }
+      default: {
         break;
+      }
     }
   };
 
@@ -216,9 +229,9 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await confirmResetPassword({
-        username: eMailAddress,
         confirmationCode: code,
         newPassword,
+        username: eMailAddress,
       });
     } catch (error: unknown) {
       handleError(error);
@@ -233,8 +246,8 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       const { nextStep } = await confirmSignUp({
-        username: eMailAddress,
         confirmationCode: code,
+        username: eMailAddress,
       });
       console.log(nextStep);
       handleSignUpStep(nextStep);
@@ -269,7 +282,7 @@ const useAuth = () => {
     } finally {
       setIsLoading(false);
     }
-    return undefined;
+    return;
   };
 
   const authRefreshAuthSession = async () => {
@@ -286,7 +299,7 @@ const useAuth = () => {
     } finally {
       setIsLoading(false);
     }
-    return undefined;
+    return;
   };
 
   const authFetchDevices = async () => {
@@ -299,7 +312,7 @@ const useAuth = () => {
     } finally {
       setIsLoading(false);
     }
-    return undefined;
+    return;
   };
 
   const authForgetDevice = async () => {
@@ -328,7 +341,7 @@ const useAuth = () => {
     try {
       setError(null);
       setIsLoading(true);
-      const { username, userId, signInDetails } = await getCurrentUser();
+      const { signInDetails, userId, username } = await getCurrentUser();
       handleGetCurrentUser(username, userId, signInDetails);
     } catch (error: unknown) {
       handleError(error);
@@ -407,8 +420,6 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       const { nextStep } = await signIn({
-        username: eMailAddress,
-        password,
         options: {
           // USER_SRP_AUTH: Default flow type.
           // SRP protocol(Secure Remote Password) where the password never leaves the client
@@ -419,6 +430,8 @@ const useAuth = () => {
           // CUSTOM_WITH_SRP: Custom authentication flow with SRP.
           // CUSTOM_WITHOUT_SRP: Custom authentication flow without SRP.
         },
+        password,
+        username: eMailAddress,
       });
       handleSignInStep(nextStep);
     } catch (error) {
@@ -471,9 +484,6 @@ const useAuth = () => {
         // This is weird, but apparently you have to pass the email as the username
         // however, Congnito doesn't save the email as the auth name, but instead
         // creates a UUID for the username - so the
-        // email can be changed later.
-        username: eMailAddress,
-        password,
         options: {
           userAttributes: {
             // email,
@@ -483,6 +493,9 @@ const useAuth = () => {
           // autoSignIn: true skips the user confirmation code step and signs the user up immediately
           // autoSignIn: true, // or SignInOptions e.g { authFlowType: "USER_SRP_AUTH" }
         },
+        password,
+        // email can be changed later.
+        username: eMailAddress,
       });
       handleSignUpStep(nextStep);
     } catch (error) {
@@ -501,8 +514,8 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await updatePassword({
-        oldPassword,
         newPassword,
+        oldPassword,
       });
     } catch (error: unknown) {
       handleError(error);
@@ -523,20 +536,22 @@ const useAuth = () => {
     }
   };
 
-  const initial = email ? email.substring(0, 1).toUpperCase() : undefined;
+  const initial = email ? email.slice(0, 1).toUpperCase() : undefined;
   const authorized = accessToken;
 
   return {
+    accessToken,
     authAutoSignIn,
     authConfirmResetPassword,
     authConfirmSignUp,
     authDeleteUser,
     authFetchAuthSession,
-    authFetchUserAttributes,
-    authRefreshAuthSession,
     authFetchDevices,
+    authFetchUserAttributes,
     authForgetDevice,
     authGetCurrentUser,
+    authorized,
+    authRefreshAuthSession,
     authRememberDevice,
     authResendConfirmationCode,
     authResetPassword,
@@ -546,16 +561,14 @@ const useAuth = () => {
     authSignUp,
     authUpdatePassword,
     currentAuthenticatedUser,
-    isLoading,
-    error,
-    accessToken,
-    idToken,
-    username,
-    userId,
-    signInDetails,
     email,
+    error,
+    idToken,
     initial,
-    authorized,
+    isLoading,
+    signInDetails,
+    userId,
+    username,
   };
 };
 

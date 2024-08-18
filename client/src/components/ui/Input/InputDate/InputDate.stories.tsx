@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
+
 import InputDate from './InputDate';
 
 const meta = {
-  title: 'Components/Input/InputDate',
-  component: InputDate,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputDate,
+  title: 'Components/Input/InputDate',
 };
 
 export default meta;

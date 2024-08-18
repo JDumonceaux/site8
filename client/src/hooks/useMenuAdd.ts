@@ -3,6 +3,7 @@ import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useMemo } from 'react';
 import { MenuAdd } from 'types';
 import { z } from 'zod';
+
 import { useAxios } from './Axios/useAxios';
 import { useForm } from './useForm';
 
@@ -18,11 +19,11 @@ const pageSchema = z.object({
 // Create a type from the schema
 export type FormType = z.infer<typeof pageSchema>;
 export type keys = keyof FormType;
-export type sortByType = 'seq' | 'name';
+export type sortByType = 'name' | 'seq';
 export type menuType = 'menu' | 'root';
 
 const useMenuEdit = () => {
-  const { postData, isLoading, error } = useAxios<MenuAdd>();
+  const { error, isLoading, postData } = useAxios<MenuAdd>();
   // Return default form values
   const initialFormValues: FormType = useMemo(
     () => ({
@@ -38,16 +39,16 @@ const useMenuEdit = () => {
   // Create a form
   const {
     formValues,
-    isSaved,
+    getFieldErrors,
+    getFieldValue,
+    hasError,
     isProcessing,
-    setIsProcessing,
+    isSaved,
+    setErrors,
     setFieldValue,
     setFormValues,
+    setIsProcessing,
     setIsSaved,
-    setErrors,
-    getFieldValue,
-    getFieldErrors,
-    hasError,
   } = useForm<FormType>(initialFormValues);
 
   //Validate form
@@ -64,13 +65,13 @@ const useMenuEdit = () => {
       name: formValues.name,
       parentItems: [
         {
-          id: parseInt(formValues.parent),
-          seq: parseInt(formValues.seq),
+          id: Number.parseInt(formValues.parent),
+          seq: Number.parseInt(formValues.seq),
           sortby: formValues.sortby as sortByType,
         },
       ],
-      type: formValues.type as menuType,
       to: formValues.name.toLowerCase().replaceAll(' ', '-'),
+      type: formValues.type as menuType,
     };
   }, [formValues]);
 
@@ -97,10 +98,10 @@ const useMenuEdit = () => {
   const getStandardInputTextAttributes = useCallback(
     (fieldName: keys) => {
       return {
-        id: fieldName,
-        value: getFieldValue(fieldName),
         errorText: getFieldErrors(fieldName),
         hasError: hasError(fieldName),
+        id: fieldName,
+        value: getFieldValue(fieldName),
       };
     },
     [getFieldErrors, getFieldValue, hasError],
@@ -112,18 +113,18 @@ const useMenuEdit = () => {
 
   return useMemo(
     () => ({
-      pageSchema,
-      formValues,
-      isProcessing,
-      isLoading,
+      clearForm,
       error,
-      isSaved,
+      formValues,
       getFieldValue,
       getStandardInputTextAttributes,
-      setFormValues,
-      setFieldValue,
       handleChange,
-      clearForm,
+      isLoading,
+      isProcessing,
+      isSaved,
+      pageSchema,
+      setFieldValue,
+      setFormValues,
       submitForm,
       validateForm,
     }),

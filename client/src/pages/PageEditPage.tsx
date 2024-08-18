@@ -9,11 +9,12 @@ import { getParamIdAsString } from 'lib/utils/helpers';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Page } from 'types';
+
 import PageEditForm from '../components/pages/PageEditPage/PageEditForm';
 
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();
-  const { data, isLoading, error, fetchData, clearData } = useFetch<Page>();
+  const { clearData, data, error, fetchData, isLoading } = useFetch<Page>();
   const currentId = getParamIdAsString(id);
 
   useEffect(() => {

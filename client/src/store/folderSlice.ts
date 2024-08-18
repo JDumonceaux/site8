@@ -3,15 +3,15 @@ import axios from 'axios';
 import { ServiceUrl } from 'lib/utils/constants';
 
 type FolderState = {
-  data: string[] | null;
+  data: null | string[];
+  error: null | string;
   isLoading: boolean;
-  error: string | null;
 };
 
 const initialState: FolderState = {
   data: null,
-  isLoading: false,
   error: null,
+  isLoading: false,
 };
 
 const controller = new AbortController();
@@ -28,9 +28,6 @@ export const fetchFolders = createAsyncThunk('image/fetchFolders', async () => {
 });
 
 const FolderSlice = createSlice({
-  name: 'folder',
-  initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchFolders.pending, (state) => {
@@ -47,6 +44,9 @@ const FolderSlice = createSlice({
         state.error = action.error.message ?? 'Unable to fetch folders';
       });
   },
+  initialState,
+  name: 'folder',
+  reducers: {},
 });
 
 export default FolderSlice.reducer;

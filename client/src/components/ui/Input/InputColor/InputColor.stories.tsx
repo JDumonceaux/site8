@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
+
 import InputColor from './InputColor';
 
 const meta = {
-  title: 'Components/Input/InputColor',
-  component: InputColor,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputColor,
+  title: 'Components/Input/InputColor',
 };
 
 export default meta;

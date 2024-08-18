@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from 'store/store';
 const useUnmatchedImages = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { data, isLoading, error } = useSelector(
+  const { data, error, isLoading } = useSelector(
     (state: RootState) => state.image,
   );
   const fetchUnmatchedImages = () => {
@@ -14,9 +14,9 @@ const useUnmatchedImages = () => {
 
   return {
     data,
-    isLoading,
     error,
     fetchData: fetchUnmatchedImages,
+    isLoading,
   };
 };
 

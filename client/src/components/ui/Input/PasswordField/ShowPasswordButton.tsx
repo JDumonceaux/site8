@@ -3,21 +3,21 @@ import { IconVisibilityOff } from 'components/icons/IconVisibilityOff';
 import { styled } from 'styled-components';
 
 type ShowPasswordButtonProps = {
-  readonly type: 'password' | 'text';
+  readonly hasError?: boolean;
   readonly passwordIsHiddenLabel?: string;
   readonly passwordIsShownLabel?: string;
-  readonly showPasswordButtonLabel?: string;
-  readonly hasError?: boolean;
   readonly ref?: React.Ref<HTMLButtonElement>;
+  readonly showPasswordButtonLabel?: string;
+  readonly type: 'password' | 'text';
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
 
 export const ShowPasswordButton = ({
-  type,
+  hasError = false,
   passwordIsHiddenLabel = 'Password is hidden',
   passwordIsShownLabel = 'Password is shown',
-  showPasswordButtonLabel = 'Show password',
-  hasError = false,
   ref,
+  showPasswordButtonLabel = 'Show password',
+  type,
   ...rest
 }: ShowPasswordButtonProps) => {
   const icon =

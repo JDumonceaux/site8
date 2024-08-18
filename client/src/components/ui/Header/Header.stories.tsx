@@ -1,17 +1,18 @@
 import type { StoryObj } from '@storybook/react';
+
 import Header from './Header';
 
 const meta = {
-  title: 'Components/Header',
-  component: Header,
   argTypes: {
     variant: {
       control: {
-        type: 'includeMenu',
         options: ['includeMenu', 'excludeMenu'],
+        type: 'includeMenu',
       },
     },
   },
+  component: Header,
+  title: 'Components/Header',
 };
 
 export default meta;

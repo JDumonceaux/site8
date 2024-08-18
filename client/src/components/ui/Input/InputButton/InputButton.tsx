@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 type InputButtonProps = {
-  readonly type?: 'button' | 'submit' | 'reset';
+  readonly type?: 'button' | 'reset' | 'submit';
 };
 
 const InputButton = ({ type = 'button' }: InputButtonProps): JSX.Element => (

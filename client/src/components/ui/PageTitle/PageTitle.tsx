@@ -2,8 +2,8 @@ import React, { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 
 type PageTitleProps = {
-  readonly title?: React.ReactNode;
   readonly children?: React.ReactNode;
+  readonly title?: React.ReactNode;
 };
 
 /**
@@ -16,7 +16,7 @@ type PageTitleProps = {
  * @returns {JSX.Element | null} The rendered page title component.
  */
 const PageTitle = forwardRef<HTMLDivElement, PageTitleProps>(
-  ({ title, children }: PageTitleProps, ref): JSX.Element | null => {
+  ({ children, title }: PageTitleProps, ref): JSX.Element | null => {
     if (!title) {
       return null;
     }

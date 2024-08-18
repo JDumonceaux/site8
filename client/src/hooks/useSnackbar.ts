@@ -5,9 +5,9 @@ import { AppDispatch, RootState } from 'store/store';
 import { Snackbar } from 'types/Snackbar';
 
 const initialState: Snackbar = {
+  contents: null,
   isOpen: false,
   openDurationMs: 0,
-  contents: null,
 };
 
 /**
@@ -16,7 +16,7 @@ const initialState: Snackbar = {
  */
 const useSnackbar = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const data: Snackbar | null = useSelector(
+  const data: null | Snackbar = useSelector(
     (state: RootState) => state.snackbar.data,
   );
 
@@ -35,9 +35,9 @@ const useSnackbar = () => {
   const setMessage = useCallback(
     (contents: Snackbar['contents'], duration = 5000) => {
       updateSnackbar({
+        contents,
         isOpen: true,
         openDurationMs: duration,
-        contents,
       });
     },
     [updateSnackbar],
@@ -48,9 +48,9 @@ const useSnackbar = () => {
   }, [updateSnackbar]);
 
   return {
-    snackbarData: data,
-    setMessage,
     closeSnackbar: close,
+    setMessage,
+    snackbarData: data,
   };
 };
 

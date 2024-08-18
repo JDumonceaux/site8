@@ -1,6 +1,6 @@
-import { Button2 } from 'components/form/Button2';
+import { Button2 } from 'components/form/Button2/Button2';
 import { EmailField } from 'components/ui/Input';
-import InputText from 'components/ui/Input/InputText/InputTele';
+import InputText from 'components/ui/Input/InputText/InputText';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
@@ -8,19 +8,20 @@ import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
+
 import AuthContainer from './AuthContainer';
 import { authCode } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({
-  emailAddress: z.string().trim(),
   authenticationCode: authCode,
+  emailAddress: z.string().trim(),
 });
 
 const ConfirmEmailPage = (): JSX.Element => {
   const title = 'Confirmation';
 
-  const { authConfirmSignUp, authResendConfirmationCode, isLoading, error } =
+  const { authConfirmSignUp, authResendConfirmationCode, error, isLoading } =
     useAuth();
 
   type FormValues = z.infer<typeof schema>;
@@ -28,19 +29,19 @@ const ConfirmEmailPage = (): JSX.Element => {
 
   const initialFormValues: FormValues = useMemo(
     () => ({
-      emailAddress: '',
       authenticationCode: '',
+      emailAddress: '',
     }),
     [],
   );
 
   const {
     formValues,
-    getFieldErrors,
-
-    setErrors,
-    handleChange,
     getDefaultFields,
+
+    getFieldErrors,
+    handleChange,
+    setErrors,
   } = useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
@@ -60,7 +61,7 @@ const ConfirmEmailPage = (): JSX.Element => {
           );
           // Handle successful sign-up
         } catch (error) {
-          console.log('Error: ', error);
+          console.log('Error:', error);
         }
       }
     },
@@ -76,14 +77,14 @@ const ConfirmEmailPage = (): JSX.Element => {
     try {
       await authResendConfirmationCode(formValues.emailAddress);
     } catch (error) {
-      console.log('Error: ', error);
+      console.log('Error:', error);
     }
   }, [authResendConfirmationCode, formValues.emailAddress]);
 
   const getStandardInputTextAttributes = (fieldName: keys) => {
     return {
-      id: fieldName,
       errorText: getFieldErrors(fieldName),
+      id: fieldName,
 
       value: formValues[fieldName],
     };

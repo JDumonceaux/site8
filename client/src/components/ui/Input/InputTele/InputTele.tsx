@@ -1,11 +1,12 @@
 import { memo } from 'react';
+
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
 type InputTextProps = {
   readonly type?: 'text';
 } & Omit<
   InputBaseProps,
-  'type' | 'height' | 'src' | 'step' | 'width' | 'mozactionhint'
+  'height' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
 >;
 
 // Remove: 'height', 'src', 'step', 'width'

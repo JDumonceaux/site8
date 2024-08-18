@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { styled } from 'styled-components';
+
 import LabelBase, { LabelBaseProps } from '../LabelBase/LabelBase';
 
 export type LabelRowProps = {
@@ -7,9 +8,9 @@ export type LabelRowProps = {
 } & LabelBaseProps;
 
 const LabelRow = ({
+  children,
   label,
   ref,
-  children,
   ...rest
 }: LabelRowProps): JSX.Element => (
   <StyledRow>

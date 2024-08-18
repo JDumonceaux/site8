@@ -1,3 +1,4 @@
+import { ErrorPage } from 'pages/site/ErrorPage';
 import { lazy } from 'react';
 import {
   createBrowserRouter,
@@ -6,7 +7,6 @@ import {
   RouterProvider as Router,
 } from 'react-router-dom';
 
-import { ErrorPage } from 'pages/site/ErrorPage';
 import ProtectedRoute from './ProtectedRoute';
 
 const AuthLayout = lazy(
@@ -22,6 +22,7 @@ const PhotoLayout = lazy(
   () => import('components/layouts/PhotoLayout/PhotoLayout'),
 );
 const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
+const DevelopPage = lazy(() => import('pages/DevelopPage'));
 const GenericPage = lazy(() => import('pages/GenericPage'));
 const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
 const ImageEditPage = lazy(() => import('pages/ImageEditPage'));
@@ -96,14 +97,7 @@ const router = createBrowserRouter(
           </Route>
           <Route element={<YachtsPage />} path="fun/yachts" />
           <Route element={<GenericPage />} path="/:lang?/fun/*" />
-        </Route>
-
-        <Route element={<MainLayout />}>
           <Route element={<GenericPage />} path="/:lang?/web/*" />
-        </Route>
-
-        {/* Test Grid */}
-        <Route element={<MainLayout />}>
           <Route element={<TestsPage />} path="/react/testing/test-grid" />
         </Route>
 
@@ -116,6 +110,7 @@ const router = createBrowserRouter(
           <Route element={<ImageEditPage />} path="image/edit/:id" />
           <Route element={<ImagesEditPage />} path="images/new" />
           <Route element={<TestsEditPage />} path="tests/edit" />
+          <Route element={<DevelopPage />} path="develop" />
         </Route>
 
         {/* Auth */}

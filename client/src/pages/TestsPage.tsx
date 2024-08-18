@@ -10,7 +10,7 @@ import { styled } from 'styled-components';
 import { Tests } from 'types/Tests';
 
 const TestsPage = (): JSX.Element => {
-  const { data, isLoading, error, fetchData } = useAxios<Tests>();
+  const { data, error, fetchData, isLoading } = useAxios<Tests>();
 
   const pageTitle = 'Tests';
 

@@ -11,11 +11,11 @@ const useTheme = () => {
   );
 
   useLayoutEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.dataset.theme = theme;
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  return { theme, setTheme };
+  return { setTheme, theme };
 };
 
 export default useTheme;

@@ -8,7 +8,7 @@ const useImageFolder = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.folders;
-  const data: string[] | null = useSelector(selector).data;
+  const data: null | string[] = useSelector(selector).data;
   const isLoading = useSelector(selector).isLoading;
   const error = useSelector(selector).error;
 
@@ -27,9 +27,9 @@ const useImageFolder = () => {
 
   return {
     data: getData(),
-    isLoading,
     error,
     fetchData: dispatchFetchImageFolder,
+    isLoading,
   };
 };
 

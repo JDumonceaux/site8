@@ -19,19 +19,19 @@ export const getDateTime = (date?: string, delimiter = '/') => {
     const [hours, minutes] = timePart.split(':').map(Number);
 
     if (
-      isNaN(month) ||
-      isNaN(day) ||
-      isNaN(year) ||
-      isNaN(hours) ||
-      isNaN(minutes)
+      Number.isNaN(month) ||
+      Number.isNaN(day) ||
+      Number.isNaN(year) ||
+      Number.isNaN(hours) ||
+      Number.isNaN(minutes)
     ) {
-      throw new Error('Invalid date or time values');
+      throw new TypeError('Invalid date or time values');
     }
 
     const isPM = /pm/i.test(date);
     const isAM = /am/i.test(date);
 
-    const hoursRet = () => {
+    const hoursReturnValue = () => {
       if (isPM && hours !== 12) {
         return hours + 12;
       } else if (isAM && hours === 12) {
@@ -39,7 +39,7 @@ export const getDateTime = (date?: string, delimiter = '/') => {
       }
       return hours;
     };
-    const hoursAMPM = hoursRet();
+    const hoursAMPM = hoursReturnValue();
 
     return new Date(year, month - 1, day, hoursAMPM, minutes);
   } catch (error) {

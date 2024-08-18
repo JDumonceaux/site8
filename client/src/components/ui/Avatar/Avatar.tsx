@@ -11,11 +11,11 @@ type AvatarProps = {
 } & RadixAvatar.AvatarProps;
 
 const SytledAvatar = ({
-  id,
   alt,
-  src,
   children,
   delayMs = 600,
+  id,
+  src,
   ...rest
 }: AvatarProps): JSX.Element => (
   <StyledRoot data-testid={id} id={id} {...rest}>

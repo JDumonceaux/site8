@@ -1,9 +1,9 @@
 export type MusicItem = {
-  readonly id: number;
-  readonly url: string;
-  readonly name?: string;
   readonly description?: string;
-  readonly section?: string;
   readonly display?: string;
+  readonly id: number;
+  readonly name?: string;
+  readonly section?: string;
   readonly tags?: string[];
+  readonly url: string;
 };

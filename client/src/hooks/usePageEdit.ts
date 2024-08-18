@@ -4,6 +4,7 @@ import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useEffect, useMemo } from 'react';
 import { Page } from 'types/Page';
 import { z } from 'zod';
+
 import { useAxios } from './Axios/useAxios';
 import { useForm } from './useForm';
 
@@ -13,19 +14,19 @@ const pageSchema = z
     id: z.number(),
     name: z
       .string({
-        required_error: 'Name is required.',
         invalid_type_error: 'Name must be a string',
+        required_error: 'Name is required.',
       })
       .min(1, REQUIRED_FIELD)
       .max(500, 'Name max length exceeded: 500')
       .trim(),
 
+    parent: z.string().min(1, REQUIRED_FIELD),
+    readability_score: z.string().trim().optional(),
+    reading_time: z.string().trim().optional(),
+    text: z.string().trim(),
     to: z.string().trim().optional(),
     url: z.string().trim().optional(),
-    parent: z.string().min(1, REQUIRED_FIELD),
-    reading_time: z.string().trim().optional(),
-    readability_score: z.string().trim().optional(),
-    text: z.string().trim(),
   })
   .refine(
     (data) => data.to ?? data.url,
@@ -45,45 +46,45 @@ const usePageEdit = (data?: Page) => {
     () => ({
       id: 0,
       name: '',
+      parent: '',
+      readability_score: '',
+      reading_time: '',
+      text: '',
       to: '',
       url: '',
-      text: '',
-      parent: '',
-      reading_time: '',
-      readability_score: '',
     }),
     [],
   );
 
   // Create a form
   const {
-    hasError,
     formValues,
-    isSaved,
-    handleChange,
-    setFieldValue,
-    setErrors,
-    setIsSaved,
-    setIsProcessing,
     getFieldErrors,
+    handleChange,
+    hasError,
+    isSaved,
+    setErrors,
+    setFieldValue,
     setFormValues,
+    setIsProcessing,
+    setIsSaved,
   } = useForm<FormType>(initialFormValues);
 
   // Map page to form type
   const mapPageToFormType = useCallback(
-    (item: Page | undefined | null): FormType | undefined => {
+    (item: null | Page | undefined): FormType | undefined => {
       if (item) {
-        const ret = {
+        const returnValue = {
           id: item.id,
           name: item.name ?? '',
+          parent: combineParent(item.parentItems),
+          readability_score: item.readability_score ?? '',
+          reading_time: item.reading_time ?? '',
+          text: item.text ?? '',
           to: item.to ?? '',
           url: item.url ?? '',
-          text: item.text ?? '',
-          parent: combineParent(item.parentItems),
-          reading_time: item.reading_time ?? '',
-          readability_score: item.readability_score ?? '',
         };
-        return ret;
+        return returnValue;
       }
       return undefined;
     },
@@ -123,8 +124,8 @@ const usePageEdit = (data?: Page) => {
 
   const handleSave = useCallback(async () => {
     if (validateForm()) {
-      const ret = await submitForm();
-      return ret;
+      const returnValue = await submitForm();
+      return returnValue;
     }
     return false;
   }, [submitForm, validateForm]);
@@ -132,11 +133,11 @@ const usePageEdit = (data?: Page) => {
   const getStandardInputTextAttributes = useCallback(
     (fieldName: keys) => {
       return {
-        id: fieldName,
         errorText: getFieldErrors(fieldName),
         hasError: hasError(fieldName),
-        value: formValues[fieldName],
+        id: fieldName,
         onChange: handleChange,
+        value: formValues[fieldName],
       };
     },
     [getFieldErrors, hasError, formValues, handleChange],
@@ -147,11 +148,11 @@ const usePageEdit = (data?: Page) => {
       formValues,
       getFieldErrors,
       getStandardInputTextAttributes,
-      hasError,
       handleChange,
       handleSave,
-      setFieldValue,
+      hasError,
       isSaved,
+      setFieldValue,
     }),
     [
       formValues,

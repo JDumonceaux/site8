@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
+
 import InputFile from './InputFile';
 
 const meta = {
-  title: 'Components/Input/InputFile',
-  component: InputFile,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputFile,
+  title: 'Components/Input/InputFile',
 };
 
 export default meta;

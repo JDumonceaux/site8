@@ -1,9 +1,8 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { ImageSelector } from 'components/custom/ImageSelector/ImageSelector';
-import InputText from 'components/ui/Input/InputText/InputTele';
+import InputText from 'components/ui/Input/InputText/InputText';
 import { TextArea } from 'components/ui/Input/TextArea';
-
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
@@ -16,25 +15,25 @@ import { styled } from 'styled-components';
 import { Image } from 'types';
 
 const ImageEditImage = (): JSX.Element => {
-  const params = useParams();
+  const parameters = useParams();
   const {
-    formValues,
-    isLoading,
     error,
-    isSaved,
-    handleChange,
-    handleReset,
+    formValues,
     getDefaultFields,
-    submitForm,
+    handleChange,
     handleChangeImage,
-  } = useImageEdit(params.id);
+    handleReset,
+    isLoading,
+    isSaved,
+    submitForm,
+  } = useImageEdit(parameters.id);
 
   const { setMessage } = useSnackbar();
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
+    (error_: React.FormEvent) => {
+      error_.stopPropagation();
+      error_.preventDefault();
       setMessage('Saving...');
       const result = submitForm();
       if (result) {
@@ -58,14 +57,14 @@ const ImageEditImage = (): JSX.Element => {
       <StyledMain>
         <StyledMain.Section>
           <PageTitle title={title}>
-            {!isSaved ? (
+            {isSaved ? null : (
               <StyledPlainButton
                 data-testid="button-save"
                 onClick={handleSubmit}
                 type="submit">
                 Save
               </StyledPlainButton>
-            ) : null}
+            )}
             <StyledLink data-testid="nav-new" to="/admin/image/edit">
               New
             </StyledLink>
@@ -175,7 +174,9 @@ const ImageEditImage = (): JSX.Element => {
                 </form>
               </FormContainer>
               <ImageContainer>
-                <ImageSelector onSelectImage={(e) => handleSelectImage(e)} />
+                <ImageSelector
+                  onSelectImage={(error_) => handleSelectImage(error_)}
+                />
               </ImageContainer>
             </StyledContainer>
           </LoadingWrapper>

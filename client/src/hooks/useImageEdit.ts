@@ -4,20 +4,16 @@ import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'types/Image';
 import { z } from 'zod';
+
 import { useAxios } from './Axios/useAxios';
 import { useForm } from './useForm';
 
 // Define Zod Shape
 const pageSchema = z.object({
+  description: z.string().trim().optional(),
+  fileName: z.string().trim(),
+  folder: z.string().trim().optional(),
   id: z.number(),
-  name: z
-    .string({
-      required_error: 'Name is required.',
-      invalid_type_error: 'Name must be a string',
-    })
-    .max(100, 'Name max length exceeded: 100')
-    .trim()
-    .optional(),
   location: z
     .string({
       invalid_type_error: 'Location must be a string',
@@ -25,17 +21,22 @@ const pageSchema = z.object({
     .max(250, 'Location max length exceeded: 500')
     .trim()
     .optional(),
-  fileName: z.string().trim(),
-  src: z.string().trim().optional(),
-  folder: z.string().trim().optional(),
+  name: z
+    .string({
+      invalid_type_error: 'Name must be a string',
+      required_error: 'Name is required.',
+    })
+    .max(100, 'Name max length exceeded: 100')
+    .trim()
+    .optional(),
   official_url: z.string().trim().optional(),
+  src: z.string().trim().optional(),
   tags: z.string().trim().optional(),
-  description: z.string().trim().optional(),
 });
 
 const useImageEdit = (id: string | undefined) => {
   // Use Axios to fetch data
-  const { data, isLoading, error, fetchData, patchData, postData } =
+  const { data, error, fetchData, isLoading, patchData, postData } =
     useAxios<Image>();
   // Create a type from the schema
   type FormValues = z.infer<typeof pageSchema>;
@@ -43,9 +44,7 @@ const useImageEdit = (id: string | undefined) => {
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
   // Current Action
-  const [currentAction, setCurrentAction] = useState<string | undefined>(
-    undefined,
-  );
+  const [currentAction, setCurrentAction] = useState<string | undefined>();
   // Does the data need to be saved?
   const [isSaved, setIsSaved] = useState<boolean>(true);
   // Is the form saving?
@@ -53,13 +52,13 @@ const useImageEdit = (id: string | undefined) => {
   // Return default form values
   const defaultFormValues: FormValues = useMemo(
     () => ({
-      id: 0,
-      name: '',
+      description: '',
       fileName: '',
       folder: '',
-      official_url: '',
-      description: '',
+      id: 0,
       location: '',
+      name: '',
+      official_url: '',
       tags: '',
     }),
     [],
@@ -67,29 +66,27 @@ const useImageEdit = (id: string | undefined) => {
   // Create a form
   const {
     formValues,
-    setFormValues,
     getDefaultFields,
-    setErrors,
     handleChange,
+    setErrors,
+    setFormValues,
   } = useForm<FormValues>(defaultFormValues);
   // Keep a copy of the form values to reset
-  const [originalValues, setOriginalValues] = useState<Image | undefined>(
-    undefined,
-  );
+  const [originalValues, setOriginalValues] = useState<Image | undefined>();
   // Update the form values from the data
   const updateFormValues = useCallback(
-    (items: Image | undefined | null) => {
+    (items: Image | null | undefined) => {
       if (items) {
         const item: FormValues = {
-          id: items.id,
-          name: items.name ?? '',
+          description: items.description ?? '',
           fileName: items.fileName ?? '',
           folder: items.folder ?? '',
-          official_url: items.official_url ?? '',
-          description: items.description ?? '',
+          id: items.id,
           location: items.location ?? '',
-          tags: items.tags?.toString() ?? '',
+          name: items.name ?? '',
+          official_url: items.official_url ?? '',
           src: getSRC(items.folder, items.fileName),
+          tags: items.tags?.toString() ?? '',
         };
         setFormValues(item);
       }
@@ -100,9 +97,9 @@ const useImageEdit = (id: string | undefined) => {
   // Get the data if the params change
   useEffect(() => {
     if (id) {
-      const tempId = parseInt(id ?? '');
-      if (!isNaN(tempId) && tempId > 0) {
-        setCurrentId(tempId);
+      const temporaryId = Number.parseInt(id ?? '');
+      if (!isNaN(temporaryId) && temporaryId > 0) {
+        setCurrentId(temporaryId);
       }
       if (['first', 'last', 'next', 'prev'].includes(id)) {
         setCurrentAction(id);
@@ -162,11 +159,9 @@ const useImageEdit = (id: string | undefined) => {
         id,
         tags: tags?.split(',') ?? [],
       };
-      if (data.id > 0) {
-        await patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`, data);
-      } else {
-        await postData(`${ServiceUrl.ENDPOINT_IMAGE}`, data);
-      }
+      await (data.id > 0
+        ? patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`, data)
+        : postData(`${ServiceUrl.ENDPOINT_IMAGE}`, data));
       return true;
     },
     [patchData, postData],
@@ -185,8 +180,8 @@ const useImageEdit = (id: string | undefined) => {
   };
 
   const handleChangeImage = (item: Image | undefined) => {
-    setFormValues((prev) => ({
-      ...prev,
+    setFormValues((previous) => ({
+      ...previous,
       fileName: item?.fileName ?? '',
       folder: item?.folder ?? '',
     }));
@@ -195,17 +190,17 @@ const useImageEdit = (id: string | undefined) => {
   };
 
   return {
-    formValues,
-    isProcessing,
-    isLoading,
     error,
-    isSaved,
+    formValues,
+    getDefaultFields,
     handleChange,
+    handleChangeImage,
     handleClear,
     handleReset,
-    getDefaultFields,
+    isLoading,
+    isProcessing,
+    isSaved,
     submitForm,
-    handleChangeImage,
   };
 };
 

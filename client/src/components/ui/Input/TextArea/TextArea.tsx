@@ -1,30 +1,29 @@
+import { TextareaHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-import { TextareaHTMLAttributes } from 'react';
 import LabelBase from '../LabelBase/LabelBase';
 import ValidityState from '../ValidityState/ValidityState';
 
 type TextAreaProps = {
-  readonly id: string;
-  readonly label: string;
-  readonly showCounter?: boolean;
   readonly characterCount?: number;
-  readonly maxLength?: number;
-
-  readonly isRequired?: boolean;
-  readonly helpText?: React.ReactNode | string[] | string;
+  readonly errorText?: React.ReactNode | string | string[];
   readonly errorTextShort?: string;
-  readonly errorText?: React.ReactNode | string[] | string;
+  readonly helpText?: React.ReactNode | string | string[];
+  readonly id: string;
   readonly inputRef?: React.RefObject<HTMLInputElement>;
+  readonly isRequired?: boolean;
+  readonly label: string;
   readonly labelRef?: React.RefObject<HTMLLabelElement>;
+  readonly maxLength?: number;
+  readonly showCounter?: boolean;
 } & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'id' | 'name' | 'type'>;
 
 export const TextArea = ({
   id,
-  label,
   isRequired = false,
-  value,
+  label,
   labelRef,
+  value,
   ...rest
 }: TextAreaProps): JSX.Element => {
   return (

@@ -1,12 +1,13 @@
 import { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
+
 import { APP_NAME } from '../../../lib/utils/constants';
 import { MenuIcon } from '../../icons/MenuIcon';
 import StyledLink from '../Link/StyledLink/StyledLink';
 
 type HeaderProps = {
-  readonly includeMenu?: boolean;
   readonly avatar?: React.ReactNode;
+  readonly includeMenu?: boolean;
 };
 
 /**
@@ -18,7 +19,7 @@ type HeaderProps = {
  * @returns {JSX.Element} The rendered header component.
  */
 const Header = forwardRef<HTMLDivElement, HeaderProps>(
-  ({ includeMenu = false, avatar }: HeaderProps, ref): JSX.Element => {
+  ({ avatar, includeMenu = false }: HeaderProps, ref): JSX.Element => {
     return (
       <StyledHeader data-testid="header" ref={ref}>
         <div>

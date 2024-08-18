@@ -3,8 +3,7 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { IconMenu } from 'components/ui/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/ui/IconMenu/IconMenuItem';
-import InputText from 'components/ui/Input/InputText/InputTele';
-
+import InputText from 'components/ui/Input/InputText/InputText';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
@@ -17,19 +16,19 @@ import { styled } from 'styled-components';
 const ImagesEditPage = (): JSX.Element => {
   const title = 'Edit Images';
   const [isPending, startTransition] = useTransition();
-  const [currFolder, setCurrFolder] = useState<string>('');
+  const [currentFolder, setCurrentFolder] = useState<string>('');
   const { setMessage } = useSnackbar();
   const { data: imageFolders } = useImageFolder();
   const {
     data,
-    isLoading,
     error,
-    getDefaultProps,
-    submitForm,
-    scanForNewItems,
     fetchItems,
-    setFieldValue,
+    getDefaultProps,
     getFieldValue,
+    isLoading,
+    scanForNewItems,
+    setFieldValue,
+    submitForm,
   } = useImagesEdit();
 
   useEffect(() => {
@@ -44,9 +43,9 @@ const ImagesEditPage = (): JSX.Element => {
     setMessage('Done');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
+  const handleSubmit = (error_: React.FormEvent) => {
+    error_.stopPropagation();
+    error_.preventDefault();
     setMessage('Saving...');
 
     const result = submitForm();
@@ -69,16 +68,16 @@ const ImagesEditPage = (): JSX.Element => {
   };
 
   const handleOnClick = (value: string) => {
-    setCurrFolder((prev) => (prev === value ? '' : value));
+    setCurrentFolder((previous) => (previous === value ? '' : value));
   };
 
   const handleOnDelete = (localId: number) => {
-    const prev = getFieldValue(localId, 'delete');
-    setFieldValue(localId, 'delete', !prev);
+    const previous = getFieldValue(localId, 'delete');
+    setFieldValue(localId, 'delete', !previous);
   };
 
   const handleFolderClick = (localId: number) => {
-    setFieldValue(localId, 'folder', currFolder);
+    setFieldValue(localId, 'folder', currentFolder);
   };
 
   return (
@@ -190,12 +189,12 @@ const ImagesEditPage = (): JSX.Element => {
           <StickyMenu>
             <StyledHeader>
               <div>
-                {currFolder && currFolder.length > 0 ? (
+                {currentFolder && currentFolder.length > 0 ? (
                   <StyledButton
                     // eslint-disable-next-line react/no-array-index-key
                     onClick={() => handleOnClick('')}
                     type="button">
-                    {currFolder}
+                    {currentFolder}
                   </StyledButton>
                 ) : (
                   <div>Select Folder</div>
@@ -206,7 +205,7 @@ const ImagesEditPage = (): JSX.Element => {
             <hr />
             {imageFolders?.map((folder) => (
               <React.Fragment key={folder.id}>
-                {folder.name === currFolder ? (
+                {folder.name === currentFolder ? (
                   <StyledActiveButton
                     onClick={() => handleOnClick(folder.name)}
                     type="button">
@@ -267,7 +266,7 @@ const StyledImg = styled.img`
   width: 200px;
 `;
 const StyledRow = styled.div<{
-  $deleted?: 'true' | 'false';
+  $deleted?: 'false' | 'true';
 }>`
   display: flex;
   flex-direction: row;

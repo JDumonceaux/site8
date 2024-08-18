@@ -1,7 +1,7 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
-import InputText from 'components/ui/Input/InputText/InputTele';
+import InputText from 'components/ui/Input/InputText/InputText';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
@@ -16,18 +16,18 @@ import { MenuItem } from 'types';
 const PagesEditPage = (): JSX.Element => {
   const {
     data,
-    isSaved,
     error,
-    isLoading,
-    handleSave,
-    setFormValues,
     getDefaultProps,
+    handleSave,
+    isLoading,
+    isSaved,
+    setFormValues,
   } = usePagesEdit();
 
-  const { showPages, setShowPages } = useAppSettings();
+  const { setShowPages, showPages } = useAppSettings();
 
   useEffect(() => {
-    const ret = data?.map((item) => {
+    const returnValue = data?.map((item) => {
       return {
         id: item.id,
         localId: item.localId,
@@ -38,8 +38,8 @@ const PagesEditPage = (): JSX.Element => {
         type: item.type,
       };
     });
-    if (ret) {
-      setFormValues(ret);
+    if (returnValue) {
+      setFormValues(returnValue);
     }
   }, [data, setFormValues]);
 
@@ -71,16 +71,16 @@ const PagesEditPage = (): JSX.Element => {
               </StyledLink>
             </td>
             <td>
-              {item.type !== 'root' ? (
+              {item.type === 'root' ? null : (
                 <InputText {...getDefaultProps(item.localId, 'parentId')} />
-              ) : null}
+              )}
             </td>
             <td>
               <InputText {...getDefaultProps(item.localId, 'parentSeq')} />
             </td>
 
             <td>
-              {item.type !== 'page' ? (
+              {item.type === 'page' ? null : (
                 <>
                   <InputText
                     {...getDefaultProps(item.localId, 'parentSortby')}
@@ -91,7 +91,7 @@ const PagesEditPage = (): JSX.Element => {
                     <option value="name" />
                   </datalist>
                 </>
-              ) : null}
+              )}
             </td>
             <td>
               {item.type} {item.issue ? '-I' : null} -{item.localId}
@@ -117,19 +117,19 @@ const PagesEditPage = (): JSX.Element => {
               checked={showPages}
               id="showPages"
               label={showPages ? 'Hide Pages' : 'Show Pages'}
-              onCheckedChange={(e) => onShowPages(e)}
+              onCheckedChange={(error_) => onShowPages(error_)}
             />
             <StyledLink data-testid="nav-new" to="/admin/page/edit">
               New
             </StyledLink>
-            {!isSaved ? (
+            {isSaved ? null : (
               <StyledSaveButton
                 data-testid="button-save"
                 onClick={handleSave}
                 type="submit">
                 Save
               </StyledSaveButton>
-            ) : null}
+            )}
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <table>

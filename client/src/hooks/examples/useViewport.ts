@@ -12,15 +12,15 @@ const getDevice = (width: number) => {
 
 export const useViewport = () => {
   const [viewport, setViewport] = useState({
-    width: window.innerWidth,
     device: getDevice(window.innerWidth),
+    width: window.innerWidth,
   });
 
   useEffect(() => {
     const handleResize = () =>
       setViewport({
-        width: window.innerWidth,
         device: getDevice(window.innerWidth),
+        width: window.innerWidth,
       });
     window.addEventListener('resize', handleResize);
     return () => {

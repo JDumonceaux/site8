@@ -1,11 +1,12 @@
 import { memo } from 'react';
+
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
-type InputTeleProps = {
+type InputTextProps = {
   readonly type?: 'tele';
 } & Omit<
   InputBaseProps,
-  'type' | 'height' | 'src' | 'step' | 'width' | 'mozactionhint'
+  'height' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
 >;
 
 // Remove: 'height', 'src', 'step', 'width'
@@ -13,10 +14,10 @@ type InputTeleProps = {
 // spellcheck, autocorrect, enterkeyhint
 // Deprecated: mozactionhint - use enterkeyhint
 
-const InputTele = ({ type = 'tele', ...rest }: InputTeleProps): JSX.Element => (
+const InputText = ({ type = 'tele', ...rest }: InputTextProps): JSX.Element => (
   <InputBase type={type} {...rest} />
 );
 
-InputTele.displayName = 'InputTele';
+InputText.displayName = 'InputText';
 
-export default memo(InputTele);
+export default memo(InputText);

@@ -1,5 +1,5 @@
 import { Parent } from './Parent';
 
-export type ParentSortby = Parent & {
-  readonly sortby?: 'seq' | 'name' | undefined;
-};
+export type ParentSortby = {
+  readonly sortby?: 'name' | 'seq' | undefined;
+} & Parent;

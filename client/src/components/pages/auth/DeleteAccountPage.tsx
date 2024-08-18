@@ -1,6 +1,5 @@
-import { Button2 } from 'components/form/Button2';
-
-import InputText from 'components/ui/Input/InputText/InputTele';
+import { Button2 } from 'components/form/Button2/Button2';
+import InputText from 'components/ui/Input/InputText/InputText';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
@@ -9,6 +8,7 @@ import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
+
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
@@ -19,7 +19,7 @@ const schema = z.object({
 const DeleteAccountPage = (): JSX.Element => {
   const title = 'Delete Account';
 
-  const { authDeleteUser, isLoading, error } = useAuth();
+  const { authDeleteUser, error, isLoading } = useAuth();
 
   type FormValues = {
     deleteCode?: string;
@@ -33,7 +33,7 @@ const DeleteAccountPage = (): JSX.Element => {
     [],
   );
 
-  const { formValues, getFieldErrors, setErrors, handleChange } =
+  const { formValues, getFieldErrors, handleChange, setErrors } =
     useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
@@ -48,7 +48,7 @@ const DeleteAccountPage = (): JSX.Element => {
       if (validateForm()) {
         try {
           await authDeleteUser();
-        } catch (error) {
+        } catch {
           // Handle sign-up error
         }
       }
@@ -58,8 +58,8 @@ const DeleteAccountPage = (): JSX.Element => {
 
   const getStandardInputTextAttributes = (fieldName: keys) => {
     return {
-      id: fieldName,
       errorText: getFieldErrors(fieldName),
+      id: fieldName,
 
       value: formValues[fieldName],
     };

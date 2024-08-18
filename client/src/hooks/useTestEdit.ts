@@ -2,15 +2,16 @@ import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { useCallback, useEffect, useMemo } from 'react';
 import { Menu, MenuEdit } from 'types';
 import { z } from 'zod';
+
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
 
-export type sortByType = 'seq' | 'name';
+export type sortByType = 'name' | 'seq';
 
 // Define Zod Shape
 const pageSchema = z.object({
-  localId: z.number(),
   id: z.number(),
+  localId: z.number(),
   name: z.string().optional(),
   parent: z.string().min(1, REQUIRED_FIELD),
   seq: z.string(),
@@ -24,19 +25,19 @@ type FormType = z.infer<typeof pageSchema>;
 type keys = keyof FormType;
 
 const useTestEdit = () => {
-  const { data, fetchData, isLoading, error } = useAxios<Menu>();
+  const { data, error, fetchData, isLoading } = useAxios<Menu>();
   const { patchData } = useAxios<MenuEdit[]>();
 
   // Create a form
   const {
     formValues,
-    isSaved,
-    isProcessing,
-    setIsProcessing,
-    setFieldValue,
     getFieldValue,
-    setIsSaved,
+    isProcessing,
+    isSaved,
+    setFieldValue,
     setFormValues,
+    setIsProcessing,
+    setIsSaved,
   } = useFormArray<FormType>();
 
   // Get the data
@@ -50,29 +51,29 @@ const useTestEdit = () => {
       return undefined;
     }
 
-    const ret: MenuEdit[] = [];
-    formValues.forEach((item) => {
+    const returnValue: MenuEdit[] = [];
+    for (const item of formValues) {
       const originalItem = data?.items?.find((x) => x.localId === item.localId);
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
-          priorParent: {
-            id: parseInt(item.parent),
-            seq: parseInt(item.seq),
-            sortby: item.sortby as sortByType,
-          },
           newParent: {
             id: 0,
             seq: 0,
             sortby: 'name',
           },
+          priorParent: {
+            id: Number.parseInt(item.parent),
+            seq: Number.parseInt(item.seq),
+            sortby: item.sortby as sortByType,
+          },
         };
-        ret.push(x);
+        returnValue.push(x);
       }
-    });
+    }
 
     // Filter out empty array values
-    return ret ? ret.filter((x) => x) : undefined;
+    return returnValue ? returnValue.filter(Boolean) : undefined;
   }, [data?.items, formValues]);
 
   // Validate form
@@ -138,16 +139,16 @@ const useTestEdit = () => {
   return useMemo(
     () => ({
       data: filteredData,
-      pageSchema,
-      isProcessing,
-      isLoading,
       error,
-      isSaved,
       getFieldValue,
       getStandardInputTextAttributes,
-      setFieldValue,
       handleChange,
       handleSave,
+      isLoading,
+      isProcessing,
+      isSaved,
+      pageSchema,
+      setFieldValue,
       setFormValues,
     }),
     [

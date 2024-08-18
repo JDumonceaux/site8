@@ -5,6 +5,7 @@ import React, {
   memo,
 } from 'react';
 import { styled } from 'styled-components';
+
 import LabelBase from '../LabelBase/LabelBase';
 import ValidityState from '../ValidityState/ValidityState';
 
@@ -17,19 +18,20 @@ import ValidityState from '../ValidityState/ValidityState';
 //
 // ACCESSIBILITY: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-readonly
 export type InputBaseProps = {
+  readonly errorText?: React.ReactNode | string | string[];
   readonly id?: string;
-  readonly label?: string;
-  readonly type: HTMLInputTypeAttribute;
   readonly inputRef?: React.RefObject<HTMLInputElement>;
+  readonly label?: string;
   readonly labelRef?: React.RefObject<HTMLLabelElement>;
-  readonly errorText?: React.ReactNode | string[] | string;
-  readonly accesskey: never; // Don't use - not accessible
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'accesskey'>;
+  readonly type: HTMLInputTypeAttribute;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, 'accesskey' | 'id' | 'name'>;
+
+// accesskey: never; // Don't use - not accessible
 
 const InputBase = ({
   id = 'x',
-  label,
   inputRef,
+  label,
   labelRef,
   type,
 

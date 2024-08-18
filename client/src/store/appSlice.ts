@@ -1,4 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
 import { AppSettings } from 'types';
 
@@ -11,8 +12,8 @@ const initialState: AppState = {
 };
 
 const AppSlice = createSlice({
-  name: 'app',
   initialState,
+  name: 'app',
   reducers: {
     save: (state, action: PayloadAction<AppSettings>) => {
       state.data = action.payload;

@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { configureAxe } from 'jest-axe';
+
 import Avatar from './Avatar';
 
 const axe = configureAxe({

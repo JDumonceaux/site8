@@ -2,9 +2,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const useScroll = ({
-  threshold = 450,
   isWindow = false,
   smooth = true,
+  threshold = 450,
 } = {}) => {
   const [isAtBottom, setIsAtBottom] = useState(false);
   const ref = useRef(isWindow ? window : null);
@@ -13,8 +13,8 @@ const useScroll = ({
     const element = ref.current;
     element &&
       element.scrollTo({
-        top: 0,
         behavior: smooth ? 'smooth' : 'auto',
+        top: 0,
       });
   }, [smooth]);
 
@@ -24,8 +24,8 @@ const useScroll = ({
       ref.current instanceof Window ? document.documentElement : ref.current;
     ref.current &&
       ref.current.scrollTo({
-        top: element ? element.scrollHeight : 0,
         behavior: smooth ? 'smooth' : 'auto',
+        top: element ? element.scrollHeight : 0,
       });
   }, [smooth]);
 
@@ -56,7 +56,7 @@ const useScroll = ({
     return () => {};
   }, [isWindow, handleScroll]);
 
-  return { isAtBottom, handleScroll, goTop, goBottom, ref };
+  return { goBottom, goTop, handleScroll, isAtBottom, ref };
 };
 
 export default useScroll;

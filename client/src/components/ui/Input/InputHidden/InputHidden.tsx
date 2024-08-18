@@ -1,11 +1,12 @@
 import { memo } from 'react';
+
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
 type InputHiddenProps = {
   readonly type?: 'password';
 } & Omit<
   InputBaseProps,
-  'type' | 'autocapitalize' | 'height' | 'pattern' | 'src' | 'step' | 'width'
+  'autocapitalize' | 'height' | 'pattern' | 'src' | 'step' | 'type' | 'width'
 >;
 
 // Remove: 'autocapitalize', 'height', 'pattern', 'src', 'step', 'width'

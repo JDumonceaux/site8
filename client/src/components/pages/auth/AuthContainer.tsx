@@ -3,16 +3,16 @@ import { styled } from 'styled-components';
 
 type AuthContainerProps = {
   readonly children: React.ReactNode;
+  readonly error: { code: string; message: string } | null;
   readonly leftImage: React.ReactNode;
   readonly title: string;
-  readonly error: { code: string; message: string } | null;
 };
 
 const AuthContainer = ({
   children,
+  error,
   leftImage,
   title,
-  error,
 }: AuthContainerProps): JSX.Element => {
   return (
     <StyledMain>

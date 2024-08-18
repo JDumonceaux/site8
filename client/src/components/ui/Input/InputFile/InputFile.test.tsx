@@ -1,6 +1,7 @@
 import * as Form from '@radix-ui/react-form';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
+
 import InputFile from './InputFile';
 describe('InputFile', () => {
   test('renders the input correctly', () => {
@@ -53,7 +54,7 @@ describe('InputFile', () => {
         <Form.Field name="test">
           <InputFile id="test" required />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -69,7 +70,7 @@ describe('InputFile', () => {
         <Form.Field name="test">
           <InputFile id="test" minLength={5} />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -85,7 +86,7 @@ describe('InputFile', () => {
         <Form.Field name="test">
           <InputFile id="test" maxLength={5} />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');
@@ -101,7 +102,7 @@ describe('InputFile', () => {
         <Form.Field name="test">
           <InputFile id="test" pattern="^[a-zA-Z]*$" />
         </Form.Field>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </Form.Root>,
     );
     const submitButton = screen.getByText('Submit');

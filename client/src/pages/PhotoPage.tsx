@@ -8,7 +8,7 @@ import { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';
 
 const PhotoPage = (): JSX.Element => {
-  const { data, isLoading, error, fetchData } = useAxios<Photos>();
+  const { data, error, fetchData, isLoading } = useAxios<Photos>();
   const deferredData = useDeferredValue(data);
 
   useEffect(() => {

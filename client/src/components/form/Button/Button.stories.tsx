@@ -1,18 +1,19 @@
 import type { StoryObj } from '@storybook/react';
+
 import Button from './Button';
 
 const meta = {
-  title: 'Components/Button',
-  component: Button,
   argTypes: {
+    onClick: { action: 'clicked' },
     variant: {
       control: {
-        type: 'select',
         options: ['primary', 'secondary'],
+        type: 'select',
       },
     },
-    onClick: { action: 'clicked' },
   },
+  component: Button,
+  title: 'Components/Button',
 };
 
 export default meta;
@@ -20,16 +21,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    variant: 'primary',
     children: 'Primary Button',
     id: 'primary-button',
+    variant: 'primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    id: 'secondary-button',
     children: 'Secondary Button',
+    id: 'secondary-button',
     variant: 'secondary',
   },
 };

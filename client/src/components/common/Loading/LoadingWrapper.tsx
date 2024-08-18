@@ -3,10 +3,10 @@ import { styled } from 'styled-components';
 
 type LoadingWrapperProps = {
   readonly children: ReactNode;
-  readonly loadingText?: ReactNode;
-  readonly isLoading?: boolean;
-  readonly error: string | undefined | null;
+  readonly error: null | string | undefined;
   readonly fallback?: ReactNode;
+  readonly isLoading?: boolean;
+  readonly loadingText?: ReactNode;
 };
 
 // If the progress bar is describing the loading progress of a particular region of a page,
@@ -16,16 +16,16 @@ type LoadingWrapperProps = {
 
 const LoadingWrapper = ({
   children,
-  isLoading,
-  loadingText,
   error,
   fallback,
+  isLoading,
+  loadingText,
 }: LoadingWrapperProps): JSX.Element => {
   if (isLoading)
     return (
       <StyledLoadingDiv>
-        {loadingText ? loadingText : null}
-        {fallback ? fallback : null}
+        {loadingText ?? null}
+        {fallback ?? null}
       </StyledLoadingDiv>
     );
 

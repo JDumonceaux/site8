@@ -3,14 +3,14 @@ import { z } from 'zod';
 
 export const useForm = <T>(initialValues: T) => {
   const [formValues, setFormValues] = useState<T>(initialValues);
-  const [errors, setErrors] = useState<z.ZodIssue[] | undefined>(undefined);
+  const [errors, setErrors] = useState<undefined | z.ZodIssue[]>();
   const [isSaved, setIsSaved] = useState<boolean>(true);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   type keys = keyof T;
 
   const setFieldValue = useCallback(
-    (fieldName: keys, value: string | boolean | number | undefined) => {
+    (fieldName: keys, value: boolean | number | string | undefined) => {
       setFormValues((prev) => ({
         ...prev,
         [fieldName]: value,
@@ -71,42 +71,42 @@ export const useForm = <T>(initialValues: T) => {
 
   const getDefaultFields = (fieldName: keys) => {
     return {
-      id: `${fieldName as string}`,
       errorText: getFieldErrors(fieldName),
+      id: `${fieldName as string}`,
       value: formValues[fieldName],
     };
   };
 
   const getDefaultPasswordFields = (fieldName: keys, id: string) => {
     return {
-      id: `${fieldName as string} - ${id}`,
       errorText: getFieldErrors(fieldName),
-      value: formValues[fieldName],
+      id: `${fieldName as string} - ${id}`,
       maxLength: 60,
       onChange: handleChange,
       required: true,
       showCounter: true,
+      value: formValues[fieldName],
     };
   };
 
   return {
-    formValues,
     errors,
-    isSaved,
-    isProcessing,
-    setFieldValue,
-    getFieldValue,
+    formValues,
+    getDefaultFields,
+    getDefaultPasswordFields,
     getFieldErrors,
-    hasError,
-    isFormValid,
+    getFieldValue,
     handleChange,
     handleClear,
     handleReset,
-    getDefaultFields,
-    getDefaultPasswordFields,
+    hasError,
+    isFormValid,
+    isProcessing,
+    isSaved,
     setErrors,
-    setIsSaved,
-    setIsProcessing,
+    setFieldValue,
     setFormValues,
+    setIsProcessing,
+    setIsSaved,
   };
 };

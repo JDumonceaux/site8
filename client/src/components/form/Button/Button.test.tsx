@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import Button from './Button';
 
 describe('Button', () => {
@@ -10,9 +11,9 @@ describe('Button', () => {
   test('renders with the primary variant by default', () => {
     render(<Button id="test-button">Click me</Button>);
     expect(screen.getByTestId('test-button')).toHaveStyle({
-      color: '#fff',
       backgroundColor: '#6db144',
       border: 'none',
+      color: '#fff',
     });
   });
 
@@ -23,9 +24,9 @@ describe('Button', () => {
       </Button>,
     );
     expect(screen.getByTestId('test-button')).toHaveStyle({
-      color: '#000',
       backgroundColor: '#fff',
       border: '1px solid #6db144',
+      color: '#000',
     });
   });
 

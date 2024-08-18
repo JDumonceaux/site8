@@ -1,4 +1,4 @@
-import { Button2 } from 'components/form/Button2';
+import { Button2 } from 'components/form/Button2/Button2';
 import { EmailField } from 'components/ui/Input';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
@@ -8,6 +8,7 @@ import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
+
 import AuthContainer from './AuthContainer';
 import { emailAddress, password } from './ZodStrings';
 
@@ -25,7 +26,7 @@ const ForgotPasswordPage = (): JSX.Element => {
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
 
-  const { authResetPassword, isLoading, error } = useAuth();
+  const { authResetPassword, error, isLoading } = useAuth();
 
   const defaultFormValues: FormValues = useMemo(
     () => ({
@@ -35,7 +36,7 @@ const ForgotPasswordPage = (): JSX.Element => {
     [],
   );
 
-  const { formValues, setErrors, handleChange, getDefaultFields } =
+  const { formValues, getDefaultFields, handleChange, setErrors } =
     useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
@@ -50,7 +51,7 @@ const ForgotPasswordPage = (): JSX.Element => {
       if (validateForm()) {
         try {
           await authResetPassword(formValues.emailAddress);
-        } catch (error) {
+        } catch {
           // Handle sign-up error
         }
       }

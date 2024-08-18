@@ -5,11 +5,11 @@ type DialogSavingProps = {
   readonly children: React.ReactNode;
   readonly isOpen: boolean;
   readonly role?: 'alertdialog' | 'contentinfo' | 'dialog' | 'none' | 'status';
-} & Omit<DialogHTMLAttributes<HTMLDialogElement>, 'open' | 'tabindex' | 'role'>;
+} & Omit<DialogHTMLAttributes<HTMLDialogElement>, 'open' | 'role' | 'tabindex'>;
 
 const DialogSaving = ({
-  isOpen,
   children,
+  isOpen,
   role = 'contentinfo',
   ...rest
 }: DialogSavingProps): JSX.Element => {

@@ -1,14 +1,14 @@
 import type { StoryObj } from '@storybook/react';
+
 import Avatar from './Avatar';
 
 const meta = {
-  title: 'Components/Avatar',
-  component: Avatar,
   args: {
     alt: 'Avatar',
     id: 'avatar',
     src: '/avatar.jpg',
   },
+  component: Avatar,
   parameters: {
     docs: {
       description: {
@@ -16,6 +16,7 @@ const meta = {
       },
     },
   },
+  title: 'Components/Avatar',
 };
 
 export default meta;

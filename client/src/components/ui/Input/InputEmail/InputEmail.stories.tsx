@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
+
 import InputEmail from './InputEmail';
 
 const meta = {
-  title: 'Components/Input/InputEmail',
-  component: InputEmail,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputEmail,
+  title: 'Components/Input/InputEmail',
 };
 
 export default meta;

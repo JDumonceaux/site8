@@ -2,17 +2,17 @@ import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
 export type Button2Props = {
-  readonly id: string;
   readonly children: React.ReactNode;
   readonly icon?: React.ReactNode;
+  readonly id: string;
   readonly marginBottom?: string;
   readonly variant?: 'primary' | 'secondary';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'>;
 
 export const Button2 = ({
-  id,
   children,
   icon,
+  id,
   marginBottom,
   variant = 'primary',
   ...rest
@@ -36,7 +36,7 @@ const StyledButton = styled.button<{
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-bottom: ${(props) => (props.$margin ? props.$margin : undefined)};
+  margin-bottom: ${(props) => props.$margin ?? undefined};
   background-color: #ffffff;
   color: #424242;
   width: 100%;

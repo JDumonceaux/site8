@@ -1,9 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
 import { Snackbar } from 'types/Snackbar';
 
 type SnackbarState = {
-  data: Snackbar | null;
+  data: null | Snackbar;
 };
 
 const initialState: SnackbarState = {
@@ -11,8 +12,8 @@ const initialState: SnackbarState = {
 };
 
 const SnackbarSlice = createSlice({
-  name: 'snackbar',
   initialState,
+  name: 'snackbar',
   reducers: {
     save: (state, action: PayloadAction<Snackbar>) => {
       state.data = action.payload;

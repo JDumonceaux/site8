@@ -2,13 +2,14 @@ import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { useCallback, useEffect, useState } from 'react';
 import { Menu, MenuEdit, MenuItem } from 'types';
 import { z } from 'zod';
+
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
-  localId: z.number(),
   id: z.number(),
+  localId: z.number(),
   name: z.string().optional(),
   parentId: z.string().min(1, { message: REQUIRED_FIELD }),
   parentSeq: z.string(),
@@ -19,24 +20,24 @@ const pageSchema = z.object({
 // Create a type from the schema
 type FormType = z.infer<typeof pageSchema>;
 type keys = keyof FormType;
-type SortByType = 'seq' | 'name';
+type SortByType = 'name' | 'seq';
 
 const usePagesEdit = () => {
-  const { data, fetchData, isLoading, error } = useAxios<Menu>();
+  const { data, error, fetchData, isLoading } = useAxios<Menu>();
   const [localItems, setLocalItems] = useState<MenuItem[] | undefined>();
   const { patchData } = useAxios<MenuEdit[]>();
 
   // Create a form
   const {
     formValues,
-    isSaved,
-    isProcessing,
     getDefaultProps,
-    setIsProcessing,
-    setFieldValue,
     getFieldValue,
-    setIsSaved,
+    isProcessing,
+    isSaved,
+    setFieldValue,
     setFormValues,
+    setIsProcessing,
+    setIsSaved,
   } = useFormArray<FormType>();
 
   // Get the data
@@ -64,13 +65,13 @@ const usePagesEdit = () => {
       }
       return {
         id: item.id,
-        // Temporary filler
-        priorParent: { id: 0, seq: 0, sortby: 'name' as SortByType },
         newParent: {
           id: Number.isNaN(item.parentId) ? 0 : Number(item.parentId),
           seq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
           sortby: item.parentSortby as SortByType,
         },
+        // Temporary filler
+        priorParent: { id: 0, seq: 0, sortby: 'name' as SortByType },
       };
     },
     [],
@@ -137,25 +138,23 @@ const usePagesEdit = () => {
       return undefined;
     }
 
-    const ret: MenuEdit[] = [];
-    formValues.forEach((item) => {
+    const returnValue: MenuEdit[] = [];
+    for (const item of formValues) {
       // Map item
-      const tempItem = mapFormTypeToMenuEdit(item);
+      const temporaryItem = mapFormTypeToMenuEdit(item);
       // Find the original item
-      const currItem = localItems.find((x) => x.localId === item.localId);
+      const currentItem = localItems.find((x) => x.localId === item.localId);
       const newItem =
-        tempItem && currItem?.parentItem
-          ? { ...tempItem, priorParent: { ...currItem?.parentItem } }
-          : tempItem;
-      if (shouldUpdate(currItem, newItem)) {
-        if (newItem) {
-          ret.push(newItem);
-        }
+        temporaryItem && currentItem?.parentItem
+          ? { ...temporaryItem, priorParent: { ...currentItem?.parentItem } }
+          : temporaryItem;
+      if (shouldUpdate(currentItem, newItem) && newItem) {
+        returnValue.push(newItem);
       }
-    });
+    }
 
     // Filter out empty array values
-    return ret ? ret.filter((x) => x) : undefined;
+    return returnValue ? returnValue.filter(Boolean) : undefined;
   };
 
   /**
@@ -189,22 +188,22 @@ const usePagesEdit = () => {
    * @returns {Promise<any>} A promise that resolves to the result of the save operation.
    */
   const handleSave = async () => {
-    const ret = await submitForm();
-    return ret;
+    const returnValue = await submitForm();
+    return returnValue;
   };
 
   return {
     data: localItems,
-    pageSchema,
-    isProcessing,
-    isLoading,
     error,
-    isSaved,
-    getFieldValue,
     getDefaultProps,
-    setFieldValue,
+    getFieldValue,
     handleChange,
     handleSave,
+    isLoading,
+    isProcessing,
+    isSaved,
+    pageSchema,
+    setFieldValue,
     setFormValues,
   };
 };

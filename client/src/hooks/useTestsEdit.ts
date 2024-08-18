@@ -3,21 +3,22 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Test } from 'types/Test';
 import { Tests } from 'types/Tests';
 import { z } from 'zod';
+
 import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
-  localId: z.number(),
+  action: z.string().optional(),
   id: z.number(),
-  name: z.string().optional(),
-  text: z.string().optional(),
-  type: z.string().optional(),
   level: z.string().optional(),
-  projectType: z.string().optional(),
+  localId: z.number(),
+  name: z.string().optional(),
   parentId: z.string().optional(),
   parentSeq: z.string().optional(),
-  action: z.string().optional(),
+  projectType: z.string().optional(),
+  text: z.string().optional(),
+  type: z.string().optional(),
 });
 
 // Create a type from the schema
@@ -25,20 +26,20 @@ type FormType = z.infer<typeof pageSchema>;
 type keys = keyof FormType;
 
 const useTestsEdit = () => {
-  const { data, fetchData, isLoading, error, patchData } = useAxios<Tests>();
+  const { data, error, fetchData, isLoading, patchData } = useAxios<Tests>();
   const [localItems, setLocalItems] = useState<Test[] | undefined>();
 
   // Create a form
   const {
     formValues,
-    isSaved,
-    isProcessing,
     getDefaultProps,
-    setIsProcessing,
-    setFieldValue,
     getFieldValue,
-    setIsSaved,
+    isProcessing,
+    isSaved,
+    setFieldValue,
     setFormValues,
+    setIsProcessing,
+    setIsSaved,
   } = useFormArray<FormType>();
 
   // Get the data
@@ -57,8 +58,8 @@ const useTestsEdit = () => {
       return undefined;
     }
 
-    const ret: Test[] = [];
-    formValues.forEach((item) => {
+    const returnValue: Test[] = [];
+    for (const item of formValues) {
       // Match on TempId = Id
       const originalItem = data.items?.find((x) => x.id === item.id);
       if (originalItem) {
@@ -70,12 +71,12 @@ const useTestsEdit = () => {
         // };
         // temp.push(x);
       }
-    });
+    }
 
     // Filter out empty array values
     return {
       ...data,
-      items: ret ? ret.filter((x) => x) : undefined,
+      items: returnValue ? returnValue.filter(Boolean) : undefined,
     };
   }, [data, formValues]);
 
@@ -107,23 +108,23 @@ const useTestsEdit = () => {
   );
 
   const handleSave = useCallback(async () => {
-    const ret = await submitForm();
-    return ret;
+    const returnValue = await submitForm();
+    return returnValue;
   }, [submitForm]);
 
   return useMemo(
     () => ({
       data: localItems,
-      pageSchema,
-      isProcessing,
-      isLoading,
       error,
-      isSaved,
       getDefaultProps,
       getFieldValue,
-      setFieldValue,
       handleChange,
       handleSave,
+      isLoading,
+      isProcessing,
+      isSaved,
+      pageSchema,
+      setFieldValue,
       setFormValues,
     }),
     [

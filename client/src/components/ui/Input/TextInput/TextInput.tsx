@@ -1,20 +1,20 @@
 import { InputHTMLAttributes, memo } from 'react';
-
 import { styled } from 'styled-components';
+
 import { TextHelp } from '../TextHelp/TextHelp';
 
 export type TextInputProps = {
+  readonly characterCount?: number;
+  readonly errorText?: React.ReactNode | string | string[];
+  readonly errorTextShort?: string;
+  readonly helpText?: React.ReactNode | string | string[];
   readonly id: string;
   readonly label?: string;
   readonly layout?: 'horizontal' | 'vertical';
-  readonly showCounter?: boolean;
-  readonly characterCount?: number;
   readonly maxLength?: number;
-  readonly required?: boolean;
-  readonly helpText?: React.ReactNode | string[] | string;
-  readonly errorTextShort?: string;
-  readonly errorText?: React.ReactNode | string[] | string;
   readonly outerEndComponent?: React.ReactNode;
+  readonly required?: boolean;
+  readonly showCounter?: boolean;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name'>;
 
 // Input Types:
@@ -25,16 +25,16 @@ export type TextInputProps = {
 // ToDo: Remove attributes that are not valid for this input type
 
 const TextInput = ({
+  errorText,
+  helpText,
   id,
   layout = 'vertical',
-  showCounter = false,
   maxLength,
-  required = false,
-  helpText,
-  errorText,
-  value,
   outerEndComponent,
+  required = false,
+  showCounter = false,
   type = 'text',
+  value,
   ...rest
 }: TextInputProps): JSX.Element => {
   const characterCount =

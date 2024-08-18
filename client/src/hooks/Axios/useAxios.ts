@@ -4,9 +4,9 @@ import { httpErrorHandler } from 'lib/utils/errorHandler';
 import { useCallback, useState } from 'react';
 
 export const useAxios = <T>() => {
-  const [data, setData] = useState<T | undefined>(undefined);
+  const [data, setData] = useState<T | undefined>();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>();
 
   const reset = () => {
     setData(undefined);
@@ -19,18 +19,18 @@ export const useAxios = <T>() => {
     try {
       reset();
       const response = await axios.get<T>(url, {
-        responseType: 'json',
         headers: { Accept: AcceptHeader.JSON },
+        responseType: 'json',
       });
 
       setData(response.data);
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
       setError(httpErrorHandler(error));
     } finally {
       setIsLoading(false);
     }
-    return Promise.resolve(false);
+    return false;
   }, []);
 
   const postDataAsync = async (url: string, data: T) => {
@@ -40,11 +40,11 @@ export const useAxios = <T>() => {
 
     try {
       const response = await axios.post<T>(url, data, {
-        responseType: 'json',
         headers: {
-          Prefer: PreferHeader.REPRESENTATION,
           Accept: AcceptHeader.JSON,
+          Prefer: PreferHeader.REPRESENTATION,
         },
+        responseType: 'json',
       });
       setData(response.data);
       return true;
@@ -67,11 +67,11 @@ export const useAxios = <T>() => {
 
     try {
       const response = await axios.patch<T>(url, data, {
-        responseType: 'json',
         headers: {
-          Prefer: PreferHeader.REPRESENTATION,
           Accept: AcceptHeader.JSON,
+          Prefer: PreferHeader.REPRESENTATION,
         },
+        responseType: 'json',
       });
       setData(response.data);
       return true;
@@ -112,11 +112,11 @@ export const useAxios = <T>() => {
 
   return {
     data,
-    isLoading,
+    deleteData: deleteDataAsync,
     error,
     fetchData: fetchDataAsync,
-    postData: postDataAsync,
+    isLoading,
     patchData: patchDataAsync,
-    deleteData: deleteDataAsync,
+    postData: postDataAsync,
   };
 };

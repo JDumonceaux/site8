@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
-import InputTele from './InputTele';
+
+import InputText from './InputText';
 
 const meta = {
-  title: 'Components/Input/InputTele',
-  component: InputTele,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputText,
+  title: 'Components/Input/InputText',
 };
 
 export default meta;

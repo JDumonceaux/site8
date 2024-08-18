@@ -18,14 +18,14 @@ type GenericPageProps = {
 
 const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
   const x = useLocation();
-  const [id, setId] = useState<string | undefined>(undefined);
-  const { data, isLoading, error, fetchData } = useAxios<Page>();
+  const [id, setId] = useState<string | undefined>();
+  const { data, error, fetchData, isLoading } = useAxios<Page>();
   const deferredData = useDeferredValue(data);
 
   useEffect(() => {
-    const arr = x.pathname.split('/');
-    const tempId = arr[arr.length - 1];
-    setId(tempId);
+    const array = x.pathname.split('/');
+    const temporaryId = array.at(-1);
+    setId(temporaryId);
   }, [x.pathname]);
 
   useEffect(() => {

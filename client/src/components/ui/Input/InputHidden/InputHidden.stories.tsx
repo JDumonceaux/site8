@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
+
 import InputHidden from './InputHidden';
 
 const meta = {
-  title: 'Components/Input/InputHidden',
-  component: InputHidden,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputHidden,
+  title: 'Components/Input/InputHidden',
 };
 
 export default meta;

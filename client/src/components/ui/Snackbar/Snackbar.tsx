@@ -21,7 +21,7 @@ type SnackbarProps = {
 const Snackbar = ({
   variant = SnackbarVariant.INFO,
 }: SnackbarProps): JSX.Element | null => {
-  const { snackbarData, closeSnackbar } = useSnackbar();
+  const { closeSnackbar, snackbarData } = useSnackbar();
 
   const handleOnClose = useCallback(() => {
     closeSnackbar();

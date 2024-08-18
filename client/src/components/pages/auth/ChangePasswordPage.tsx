@@ -1,5 +1,5 @@
 import { PasswordField } from '@aws-amplify/ui-react';
-import { Button2 } from 'components/form/Button2';
+import { Button2 } from 'components/form/Button2/Button2';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
@@ -8,16 +8,17 @@ import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
+
 import AuthContainer from './AuthContainer';
 import { password } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z
   .object({
+    confirmPassword: password,
+    newPassword: password,
     // eslint-disable-next-line object-shorthand
     password: password,
-    newPassword: password,
-    confirmPassword: password,
   })
   .refine((x) => x.newPassword === x.confirmPassword, {
     message: 'Passwords do not match',
@@ -28,26 +29,26 @@ const ChangePasswordPage = (): JSX.Element => {
   const title = 'Change Password';
   const compId = useId();
 
-  const { authUpdatePassword, isLoading, error } = useAuth();
+  const { authUpdatePassword, error, isLoading } = useAuth();
 
   type FormValues = z.infer<typeof schema>;
   type keys = keyof FormValues;
 
   const initialFormValues: FormValues = useMemo(
     () => ({
+      confirmPassword: '',
       id: 0,
       name: '',
+      newPassword: '',
+      password: '',
+      text: '',
       to: '',
       url: '',
-      text: '',
-      password: '',
-      newPassword: '',
-      confirmPassword: '',
     }),
     [],
   );
 
-  const { formValues, setErrors, getDefaultPasswordFields } =
+  const { formValues, getDefaultPasswordFields, setErrors } =
     useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
@@ -62,7 +63,7 @@ const ChangePasswordPage = (): JSX.Element => {
       if (validateForm()) {
         try {
           await authUpdatePassword(formValues.password, formValues.newPassword);
-        } catch (error) {
+        } catch {
           // Handle sign-up error
         }
       }

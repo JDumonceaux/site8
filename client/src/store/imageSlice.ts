@@ -5,14 +5,14 @@ import { Images } from 'types';
 
 type ImageState = {
   data: Images | null;
+  error: null | string;
   isLoading: boolean;
-  error: string | null;
 };
 
 const initialState: ImageState = {
   data: null,
-  isLoading: false,
   error: null,
+  isLoading: false,
 };
 const controller = new AbortController();
 
@@ -25,9 +25,6 @@ const fetchImages = createAsyncThunk('image/fetchImages', async () => {
 });
 
 const ImageSlice = createSlice({
-  name: 'image',
-  initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchImages.pending, (state) => {
@@ -43,6 +40,9 @@ const ImageSlice = createSlice({
         state.error = action.error.message ?? 'Unable to fetch images';
       });
   },
+  initialState,
+  name: 'image',
+  reducers: {},
 });
 
 export { fetchImages };

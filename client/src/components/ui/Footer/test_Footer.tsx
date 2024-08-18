@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
+
 import Footer from './Footer';
 
 describe('Footer component', () => {
   test('renders the copyright information', () => {
-    const { getByTestId, getByLabelText } = render(<Footer />);
+    const { getByLabelText, getByTestId } = render(<Footer />);
     const copyrightElement = getByLabelText('Copyright Information');
     expect(copyrightElement).toBeInTheDocument();
     expect(copyrightElement).toHaveTextContent('Copyright ©');
