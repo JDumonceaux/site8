@@ -7,13 +7,17 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/recommended',
     'plugin:@typescript-eslint/recommended',
-    // Add SonarJS rules
-    // 'plugin:sonarjs/recommended',
-    // This disables the formatting rules in ESLint that Prettier is going to be responsible for handling.
+    'eslint-config-prettier',
     // Make sure it's always the last config, so it gets the chance to override other configs.
     'eslint-config-prettier',
   ],
-  plugins: ['promise', 'prefer-arrow-functions'],
+  plugins: [
+    'promise',
+    'prefer-arrow-functions',
+    'perfectionist',
+    'jest',
+    'immutable',
+  ],
   settings: {
     react: {
       // Tells eslint-plugin-react to automatically detect the version of React to use.

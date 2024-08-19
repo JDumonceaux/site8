@@ -2,7 +2,7 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
-import { useAxios } from 'hooks/Axios';
+import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';

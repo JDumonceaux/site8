@@ -3,9 +3,8 @@
 
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit",
-    "source.fixAll": "explicit",
+    "source.fixAll": "never",
     "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit",
-    "source.addMissingImports": "explicit"
+    "source.addMissingImports": "never"
   }
 }

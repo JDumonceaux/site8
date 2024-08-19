@@ -6,17 +6,17 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:import/recommended',
+    'plugin:react-redux/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-redux/recommended',
-    'plugin:react/jsx-runtime',
-    'eslint-config-prettier',
     'plugin:css/recommended',
     'plugin:storybook/recommended',
     'plugin:perfectionist/recommended-natural-legacy',
     'plugin:unicorn/recommended',
+    // Make sure it's always the last config, so it gets the chance to override other configs.
+    'eslint-config-prettier',
   ],
   overrides: [
     {
@@ -170,6 +170,8 @@ module.exports = {
     'react/self-closing-comp': 'warn',
     // React Compiler
     'react-compiler/react-compiler': 'error',
+    'unicorn/better-regex': ['warn', { sortCharacterClasses: false }],
+
     // override default kebab
     'unicorn/filename-case': [
       'off',
@@ -177,52 +179,7 @@ module.exports = {
         case: 'pascalCase',
       },
     ],
-    'unicorn/prevent-abbreviations': [
-      'off',
-      {
-        replacements: {
-          curr: {
-            properties: false,
-          },
-          e: {
-            event: false,
-          },
-          el: {
-            event: false,
-          },
-          env: {
-            event: false,
-          },
-          err: {
-            event: false,
-          },
-          msg: {
-            properties: false,
-          },
-          param: {
-            properties: false,
-          },
-          prev: {
-            properties: false,
-          },
-          props: {
-            properties: false,
-          },
-          ref: {
-            properties: false,
-          },
-          Ref: {
-            properties: false,
-          },
-          ret: {
-            properties: false,
-          },
-          temp: {
-            properties: false,
-          },
-        },
-      },
-    ],
+    'unicorn/prevent-abbreviations': ['off'],
   },
   settings: {
     // Tells eslint how to resolve imports

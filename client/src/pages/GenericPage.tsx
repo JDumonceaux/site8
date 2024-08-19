@@ -5,7 +5,7 @@ import RenderHtml from 'components/pages/GenericPage/RenderHtml';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
 import Meta from 'components/ui/Meta/Meta';
 import PageTitle from 'components/ui/PageTitle/PageTitle';
-import { useAxios } from 'hooks/Axios';
+import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
