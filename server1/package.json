@@ -30,6 +30,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
@@ -47,12 +48,14 @@
     "eslint-plugin-prefer-arrow-functions": "^3.4.1",
     "eslint-plugin-promise": "^7.1.0",
     "eslint-plugin-unicorn": "^55.0.0",
+    "globals": "^15.9.0",
     "husky": "^9.1.4",
     "knip": "^5.27.2",
     "pre-commit": "^1.2.2",
     "prettier": "^3.3.3",
     "pretty-quick": "^4.0.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
   },
   "keywords": [],
   "author": "",
