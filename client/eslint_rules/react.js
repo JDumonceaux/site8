@@ -1,17 +1,4 @@
-const assign = require('object.assign');
-const baseStyleRules = require('eslint-config-airbnb-base/rules/style').rules;
-
-const dangleRules = baseStyleRules['no-underscore-dangle'];
-
 module.exports = {
-  plugins: ['react'],
-
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-
   // View link below for react rules documentation
   // https://github.com/yannickcr/eslint-plugin-react#list-of-supported-rules
   rules: {
@@ -166,7 +153,7 @@ module.exports = {
     // Enforce props alphabetical sorting
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-sort-props.md
     'react/jsx-sort-props': [
-      'off',
+      'enabled',
       {
         ignoreCase: true,
         callbacksLast: false,

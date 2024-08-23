@@ -7,12 +7,15 @@ describe('InputPassword', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputPassword id="test" />
+          <InputPassword id="test" placeholder="Password" />
         </Form.Field>
       </Form.Root>,
     );
 
-    const inputElement = screen.getByRole('textbox');
+    // type="password" has no role and is therefore not suitable for getByRole
+    // https://github.com/w3c/aria/issues/935
+    // const inputElement = screen.getByRole('textbox');
+    const inputElement = screen.getByPlaceholderText('Password');
     expect(inputElement).toBeInTheDocument();
   });
 
@@ -20,11 +23,11 @@ describe('InputPassword', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputPassword id="test" />
+          <InputPassword id="test" placeholder="Password" />
         </Form.Field>
       </Form.Root>,
     );
-    const inputElement = screen.getByRole('textbox');
+    const inputElement = screen.getByPlaceholderText('Password');
     fireEvent.change(inputElement, { target: { value: 'Hello' } });
     expect(inputElement).toHaveValue('Hello');
   });

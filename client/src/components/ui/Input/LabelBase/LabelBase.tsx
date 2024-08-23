@@ -7,7 +7,7 @@ export type LabelBaseProps = {
   readonly ref?: React.RefObject<HTMLLabelElement>;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
-const LabelBase = ({ label, ref, ...rest }: LabelBaseProps): JSX.Element => (
+const LabelBase = ({ ref, label, ...rest }: LabelBaseProps): JSX.Element => (
   <StyledLabel ref={ref} {...rest}>
     {label}
   </StyledLabel>
