@@ -1,6 +1,6 @@
 import { Divider } from '@aws-amplify/ui-react';
-import { Button2 } from 'components/form/Button2';
-import { AmazonIcon, FacebookIcon, GoogleIcon } from 'components/icons';
+import Button from 'components/form/Button/Button';
+import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 import { EmailField, PasswordField } from 'components/ui/Input';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
@@ -11,7 +11,6 @@ import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import { emailAddress, password } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({
@@ -77,30 +76,24 @@ const SignupPage = (): JSX.Element => {
         error={error}
         leftImage={<img alt="" src="/images/face.png" />}
         title="Sign Up">
-        <Button2
-          icon={<AmazonIcon ariaHidden focusable={false} />}
+        <Button
+          ///  icon={<AmazonIcon ariaHidden focusable={false} />}
           id="login"
-          marginBottom="15px"
-          onClick={() => handleClick(SocialProvider.AMAZON)}
-          type="button">
+          onClick={() => handleClick(SocialProvider.AMAZON)}>
           Sign up with Amazon
-        </Button2>
-        <Button2
-          icon={<FacebookIcon ariaHidden focusable={false} />}
+        </Button>
+        <Button
+          //  icon={<FacebookIcon ariaHidden focusable={false} />}
           id="login"
-          marginBottom="15px"
-          onClick={() => handleClick(SocialProvider.FACEBOOK)}
-          type="button">
+          onClick={() => handleClick(SocialProvider.FACEBOOK)}>
           Sign up with Facebook
-        </Button2>
-        <Button2
-          icon={<GoogleIcon ariaHidden focusable={false} />}
+        </Button>
+        <Button
+          //  icon={<GoogleIcon ariaHidden focusable={false} />}
           id="login"
-          marginBottom="15px"
-          onClick={() => handleClick(SocialProvider.GOOGLE)}
-          type="button">
+          onClick={() => handleClick(SocialProvider.GOOGLE)}>
           Sign up with Google
-        </Button2>
+        </Button>
         <Divider>or</Divider>
         <StyledForm
           noValidate
@@ -131,9 +124,9 @@ const SignupPage = (): JSX.Element => {
             You will be sent a validation code via email to confirm your
             account.
           </InstDiv>
-          <Button2 id="login" type="submit" variant="secondary">
+          <Button id="login" variant="secondary">
             {isLoading ? 'Processing' : 'Submit'}
-          </Button2>
+          </Button>
         </StyledForm>
         <TermsDiv>
           By clicking &quot;Submit&quot; you are agreeing to the{' '}

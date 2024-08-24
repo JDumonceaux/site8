@@ -9,8 +9,8 @@ import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
+import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 import AuthContainer from './AuthContainer';
-import { emailAddress, password } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({

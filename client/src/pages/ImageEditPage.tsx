@@ -2,7 +2,8 @@ import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import { ImageSelector } from 'components/custom/ImageSelector/ImageSelector';
 import InputText from 'components/ui/Input/InputText/InputText';
-import { TextArea } from 'components/ui/Input/TextArea';
+import { TextArea } from 'components/ui/Input/TextArea/TextArea';
+
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
@@ -85,7 +86,7 @@ const ImageEditImage = (): JSX.Element => {
                   <InputText
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorTextShort="Please enter a short title"
+                    //errorTextShort="Please enter a short title"
                     inputMode="text"
                     label="Short Title"
                     onChange={handleChange}
@@ -98,7 +99,7 @@ const ImageEditImage = (): JSX.Element => {
                   <InputText
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorTextShort="Please enter a location"
+                    // errorTextShort="Please enter a location"
                     inputMode="text"
                     label="Location"
                     onChange={handleChange}
@@ -110,7 +111,7 @@ const ImageEditImage = (): JSX.Element => {
                   <InputText
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorTextShort="Please enter a File Name"
+                    //   errorTextShort="Please enter a File Name"
                     inputMode="text"
                     label="File Name"
                     onChange={handleChange}
@@ -122,7 +123,7 @@ const ImageEditImage = (): JSX.Element => {
                   <InputText
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorTextShort="Please enter a image path"
+                    //  errorTextShort="Please enter a image path"
                     inputMode="text"
                     label="SRC"
                     onChange={handleChange}
@@ -132,17 +133,17 @@ const ImageEditImage = (): JSX.Element => {
                     //ref={focusElement}
                   />
                   <InputText
-                    errorTextShort="Please enter a folder"
+                    // errorTextShort="Please enter a folder"
                     label="Folder"
                     onChange={handleChange}
                     required={false}
-                    type="text"
+                    //   type="text"
                     {...getDefaultFields('folder')}
                   />
                   <InputText
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorTextShort="Please enter a official URL"
+                    //    errorTextShort="Please enter a official URL"
                     inputMode="text"
                     label="Official URL"
                     onChange={handleChange}
@@ -154,7 +155,7 @@ const ImageEditImage = (): JSX.Element => {
                   <InputText
                     autoCapitalize="off"
                     enterKeyHint="next"
-                    errorTextShort="Please enter a tag"
+                    //  errorTextShort="Please enter a tag"
                     inputMode="text"
                     label="Tags"
                     onChange={handleChange}

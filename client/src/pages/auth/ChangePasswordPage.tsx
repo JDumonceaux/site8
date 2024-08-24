@@ -1,5 +1,5 @@
 import { PasswordField } from '@aws-amplify/ui-react';
-import { Button2 } from 'components/form/Button2/Button2';
+
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
@@ -9,8 +9,9 @@ import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
+import Button from 'components/form/Button/Button';
+import { password } from 'components/pages/auth/ZodStrings';
 import AuthContainer from './AuthContainer';
-import { password } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z
@@ -85,31 +86,29 @@ const ChangePasswordPage = (): JSX.Element => {
           // noValidate
           onSubmit={handleSubmit}>
           <PasswordField
-            autoComplete="current-password"
-            errorTextShort="Please enter a password"
+            // autoComplete="current-password"
+            // errorTextShort="Please enter a password"
             label="Current Password"
             placeholder="Current password"
             {...getDefaultPasswordFields('password' as keys, compId)}
           />
           <PasswordField
-            autoComplete="new-password"
-            errorTextShort="Please enter a password"
-            helpText={['8 characters minimum']}
+            // autoComplete="new-password"
+            // errorTextShort="Please enter a password"
+            // helpText={['8 characters minimum']}
             label="New Password"
             placeholder="New password"
             {...getDefaultPasswordFields('newPassword' as keys, compId)}
           />
           <PasswordField
-            autoComplete="new-password"
-            errorTextShort="Please enter a password"
-            helpText={['8 characters minimum']}
+            //autoComplete="new-password"
+            //errorTextShort="Please enter a password"
+            //helpText={['8 characters minimum']}
             label="Confirm Password"
             placeholder="Confirm password"
             {...getDefaultPasswordFields('confirmPassword' as keys, compId)}
           />
-          <Button2 id="login" type="submit" variant="secondary">
-            {isLoading ? 'Processing' : 'Submit'}
-          </Button2>
+          <Button id="login">Submit</Button>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/">Cancel</StyledLink>

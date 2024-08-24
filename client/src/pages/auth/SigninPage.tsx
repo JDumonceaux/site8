@@ -1,5 +1,7 @@
 import { PasswordField } from '@aws-amplify/ui-react';
-import { Button2 } from 'components/form/Button2';
+
+import Button from 'components/form/Button/Button';
+import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 import { EmailField } from 'components/ui/Input';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
@@ -10,7 +12,6 @@ import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import { emailAddress, password } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({
@@ -97,9 +98,7 @@ const SigninPage = (): JSX.Element => {
             placeholder="Enter Password"
             {...getDefaultPasswordFields('password' as keys, compId)}
           />
-          <Button2 id="login" type="submit" variant="secondary">
-            {isLoading ? 'Processing' : 'Submit'}
-          </Button2>
+          <Button id="login">{isLoading ? 'Processing' : 'Submit'}</Button>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/signup">Sign up</StyledLink>

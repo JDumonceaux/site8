@@ -42,21 +42,13 @@ const TermsOfUsePage = lazy(() => import('pages/site/TermsOfUsePage'));
 const CookiesUsePage = lazy(() => import('pages/site/CookiesUsePage'));
 const PrivacyPolicyPage = lazy(() => import('pages/site/PrivacyPolicyPage'));
 // Auth Pages
-const SigninPage = lazy(() => import('components/pages/auth/SigninPage'));
-const SignoutPage = lazy(() => import('components/pages/auth/SignoutPage'));
-const SignupPage = lazy(() => import('components/pages/auth/SignupPage'));
-const ConfirmEmailPage = lazy(
-  () => import('components/pages/auth/ConfirmEmailPage'),
-);
-const ForgotPasswordPage = lazy(
-  () => import('components/pages/auth/ForgotPasswordPage'),
-);
-const ChangePasswordPage = lazy(
-  () => import('components/pages/auth/ChangePasswordPage'),
-);
-const DeleteAccountPage = lazy(
-  () => import('components/pages/auth/DeleteAccountPage'),
-);
+const SigninPage = lazy(() => import('pages/auth/SigninPage'));
+const SignoutPage = lazy(() => import('pages/auth/SignoutPage'));
+const SignupPage = lazy(() => import('pages/auth/SignupPage'));
+const ConfirmEmailPage = lazy(() => import('pages/auth/ConfirmEmailPage'));
+const ForgotPasswordPage = lazy(() => import('pages/auth/ForgotPasswordPage'));
+const ChangePasswordPage = lazy(() => import('pages/auth/ChangePasswordPage'));
+const DeleteAccountPage = lazy(() => import('pages/auth/DeleteAccountPage'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(

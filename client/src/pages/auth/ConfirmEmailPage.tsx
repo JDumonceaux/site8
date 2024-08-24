@@ -9,8 +9,8 @@ import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
+import { authCode } from 'components/pages/auth/ZodStrings';
 import AuthContainer from './AuthContainer';
-import { authCode } from './ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({
@@ -113,14 +113,14 @@ const ConfirmEmailPage = (): JSX.Element => {
           />
           <InputText
             autoComplete="one-time-code"
-            errorTextShort="Please enter an authentication code"
-            helpText={['Check your email for the authentication code.']}
+            // errorTextShort="Please enter an authentication code"
+            // helpText={['Check your email for the authentication code.']}
             inputMode="numeric"
             label="Authentication Code"
             maxLength={6}
             onChange={handleChange}
             placeholder="Enter Authentication Code"
-            showCounter
+            // showCounter
             spellCheck="false"
             {...getStandardInputTextAttributes('authenticationCode')}
           />

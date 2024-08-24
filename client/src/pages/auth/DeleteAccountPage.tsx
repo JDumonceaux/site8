@@ -1,4 +1,3 @@
-import { Button2 } from 'components/form/Button2/Button2';
 import InputText from 'components/ui/Input/InputText/InputText';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
@@ -9,6 +8,7 @@ import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
+import Button from 'components/form/Button/Button';
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
@@ -84,22 +84,17 @@ const DeleteAccountPage = (): JSX.Element => {
           </div>
           <InputText
             autoComplete="off"
-            errorTextShort="Required"
+            // errorTextShort="Required"
             inputMode="text"
             label="Please enter 'delete' to confirm"
             onChange={handleChange}
             placeholder="delete"
             required
             spellCheck="false"
-            type="text"
             {...getStandardInputTextAttributes('deleteCode')}
           />
-
-          <Button2 id="login" type="submit" variant="secondary">
-            {isLoading ? 'Processing' : 'Delete Account'}
-          </Button2>
+          <Button id="login">Delete Account</Button>
         </StyledForm>
-
         <StyledBottomMsg>
           <StyledLink to="/">Cancel</StyledLink>
         </StyledBottomMsg>

@@ -54,7 +54,7 @@ describe('InputPassword', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputPassword id="test" required />
+          <InputPassword required id="test" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,

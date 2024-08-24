@@ -1,10 +1,10 @@
-import { Button2 } from 'components/form/Button2';
+import Button from 'components/form/Button/Button';
+import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useCallback, useEffect } from 'react';
 import { styled } from 'styled-components';
 import AuthContainer from './AuthContainer';
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 
 const SignOutpPage = (): JSX.Element => {
   const title = 'Sign-Out';
@@ -43,9 +43,9 @@ const SignOutpPage = (): JSX.Element => {
             // aria-invalid={error ? 'true' : 'false'}
             // noValidate
             onSubmit={handleSubmit}>
-            <Button2 id="login" type="submit" variant="secondary">
+            <Button id="login" variant="secondary">
               {isLoading ? 'Processing' : 'Sign Out'}
-            </Button2>
+            </Button>
           </StyledForm>
         ) : (
           <StyledError>
