@@ -49,7 +49,7 @@
     "eslint-plugin-promise": "^7.1.0",
     "eslint-plugin-unicorn": "^55.0.0",
     "globals": "^15.9.0",
-    "husky": "^9.1.4",
+    "husky": "^9.1.5",
     "knip": "^5.27.2",
     "pre-commit": "^1.2.2",
     "prettier": "^3.3.3",
