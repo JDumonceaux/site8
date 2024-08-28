@@ -9,10 +9,13 @@
   --input-error: #ff0000;
   --input-border-radius: 4px;
   --input-border-color: #bebebe;
+  --input-border-required-color: #be3455;
   --input-border-focus-color: #6db144;
   --input-border-hover-color: #7f7f7f;
   --input-label-color: #212121;
   --input-placeholder-color: #b7b7b7;
+  --input-helper-font-size: '0.6rem';
+  --input-helper-error-color: #ff0000;
 
   --speed: 500ms;
 

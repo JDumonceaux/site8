@@ -20,6 +20,14 @@ const pageSchema = z.object({
     .max(100, 'Name max length exceeded: 100')
     .trim()
     .optional(),
+  title: z
+    .string({
+      invalid_type_error: 'Title must be a string',
+      required_error: 'Title is required.',
+    })
+    .max(100, 'Title max length exceeded: 100')
+    .trim()
+    .optional(),
 });
 
 const DevelopPage = (): JSX.Element => {
@@ -47,39 +55,66 @@ const DevelopPage = (): JSX.Element => {
     //  handleSave();
   }, []);
 
+  const x = getFieldValue('name');
+  console.log('x:', x);
+
+  /// zODwRAPPER
+  /// zodWrapper(pageSchema, initialFormValues, handleSubmit);
+  ////zodWrapper
+
   return (
     <>
       <Meta title={title} />
       <StyledMain>
-        <PageTitle title={title} />
-        <section>
-          <Form.Root onSubmit={handleSubmit}>
-            <StyledButton>
-              <StyledSaveButton
-                data-testid="button-save"
-                onClick={handleSubmit}
-                type="submit">
-                {isSaved ? 'Saved' : 'Save'}
-              </StyledSaveButton>
-            </StyledButton>
-            <InputText
-              id="name"
-              label="Title"
-              minLength={10}
-              // onBlur={handeNameOnBlur}
-              onChange={handleChange}
-              placeholder="Enter a title"
-              required
-              spellCheck
-              value={getFieldValue['name']}
+        <StyledMain.Article>
+          <PageTitle title={title} />
+          <section>
+            <Form.Root onSubmit={handleSubmit}>
+              <StyledButton>
+                <StyledSaveButton
+                  data-testid="button-save"
+                  onClick={handleSubmit}
+                  type="submit">
+                  {isSaved ? 'Saved' : 'Save'}
+                </StyledSaveButton>
+              </StyledButton>
+              <InputText
+                id="title"
+                label="Title"
+                minLength={10}
+                // onBlur={handeNameOnBlur}
+                onChange={handleChange}
+                placeholder="Enter a title"
+                required
+                spellCheck
+                value={getFieldValue('title')}
+                messageProps={{ match: 'tooShort', name: 'x' }}
 
-              //layout="horizontal"
-              //onBlur={handeNameOnBlur}
-              //required
-              //spellCheck
-            />
-          </Form.Root>
-        </section>
+                //layout="horizontal"
+                //onBlur={handeNameOnBlur}
+                //required
+                //spellCheck
+              />
+              <InputText
+                id="name"
+                label="Name"
+                minLength={10}
+                // onBlur={handeNameOnBlur}
+                onChange={handleChange}
+                placeholder="Enter a name"
+                required
+                spellCheck
+                value={getFieldValue('name')}
+                messageProps={{ match: 'tooShort', name: 'x' }}
+
+                //layout="horizontal"
+                //onBlur={handeNameOnBlur}
+                //required
+                //spellCheck
+              />
+            </Form.Root>
+          </section>
+        </StyledMain.Article>
       </StyledMain>
     </>
   );

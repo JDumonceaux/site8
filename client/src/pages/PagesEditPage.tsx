@@ -1,7 +1,7 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
-import InputText from 'components/ui/Input/InputText/InputText';
+import TextInput from 'components/ui/Input/TextInput/TextInput';
 import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
@@ -72,17 +72,17 @@ const PagesEditPage = (): JSX.Element => {
             </td>
             <td>
               {item.type === 'root' ? null : (
-                <InputText {...getDefaultProps(item.localId, 'parentId')} />
+                <TextInput {...getDefaultProps(item.localId, 'parentId')} />
               )}
             </td>
             <td>
-              <InputText {...getDefaultProps(item.localId, 'parentSeq')} />
+              <TextInput {...getDefaultProps(item.localId, 'parentSeq')} />
             </td>
 
             <td>
               {item.type === 'page' ? null : (
                 <>
-                  <InputText
+                  <TextInput
                     {...getDefaultProps(item.localId, 'parentSortby')}
                     list="sortTypes"
                   />

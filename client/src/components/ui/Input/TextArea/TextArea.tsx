@@ -1,9 +1,6 @@
 import { TextareaHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-import LabelBase from '../LabelBase/LabelBase';
-import ValidityState from '../ValidityState/ValidityState';
-
 type TextAreaProps = {
   readonly characterCount?: number;
   readonly errorText?: React.ReactNode | string | string[];
@@ -28,9 +25,6 @@ export const TextArea = ({
 }: TextAreaProps): JSX.Element => {
   return (
     <StyledWrapper>
-      <LabelBase label={label} ref={labelRef}>
-        <ValidityState />
-      </LabelBase>
       <StyledTextArea
         aria-required={isRequired}
         id={id}

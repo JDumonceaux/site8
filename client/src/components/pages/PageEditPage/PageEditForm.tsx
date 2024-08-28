@@ -1,11 +1,12 @@
 import * as Form from '@radix-ui/react-form';
-import InputText from 'components/ui/Input/InputText/InputText';
+import TextInput from 'components/ui/Input/TextInput/TextInput';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
 import { forwardRef, useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types';
 
+import { TextArea } from 'components/ui/Input/TextArea/TextArea';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
 
@@ -80,7 +81,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
             {isSaved ? 'Saved' : 'Save'}
           </StyledSaveButton>
         </StyledButton>
-        <InputText
+        <TextInput
           {...getStandardInputTextAttributes('name')}
           errorText={getFieldErrors('name')}
           id="name"
@@ -99,36 +100,36 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           //spellCheck
         />
 
-        <InputText
+        <TextInput
           {...getStandardInputTextAttributes('to')}
           label="To"
           placeholder="Enter a route"
         />
-        <InputText
+        <TextInput
           {...getStandardInputTextAttributes('url')}
           label="URL"
           onChange={handleChange}
           placeholder="Enter a url"
         />
-        <InputText
+        <TextInput
           {...getStandardInputTextAttributes('parent')}
           label="Parent"
           placeholder="Enter a menu id"
         />
         <ToolMenu onClick={handeTextInsert} />
-        {/* <TextArea
+        <TextArea
           {...getStandardInputTextAttributes('text')}
           label="Text"
           onBlur={handeTextAreaBlur}
           rows={30}
           spellCheck
-        /> */}
-        <InputText
+        />
+        <TextInput
           {...getStandardInputTextAttributes('reading_time')}
           errorText={getFieldErrors('reading_time')}
           label="Reading Time"
         />
-        <InputText
+        <TextInput
           {...getStandardInputTextAttributes('text')}
           label="Readability Score"
         />

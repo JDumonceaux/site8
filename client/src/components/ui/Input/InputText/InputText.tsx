@@ -3,7 +3,7 @@ import { memo } from 'react';
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
 type InputTextProps = {
-  readonly type?: 'tele';
+  readonly type?: 'text';
 } & Omit<
   InputBaseProps,
   'height' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
@@ -14,7 +14,7 @@ type InputTextProps = {
 // spellcheck, autocorrect, enterkeyhint
 // Deprecated: mozactionhint - use enterkeyhint
 
-const InputText = ({ type = 'tele', ...rest }: InputTextProps): JSX.Element => (
+const InputText = ({ type = 'text', ...rest }: InputTextProps): JSX.Element => (
   <InputBase type={type} {...rest} />
 );
 

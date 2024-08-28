@@ -37,7 +37,8 @@ ValidityState.displayName = 'ValidityState';
 export default memo(ValidityState);
 
 const StyledMessage = styled(Form.Message)`
-  color: var(---input-label-color, '#ffffff');
-  font-size: 13px;
+  color: var(--input-helper-error-color, '#ff0000');
+  font-size: 0.8rem;
   opacity: 0.8;
+  padding-top: 7px;
 `;

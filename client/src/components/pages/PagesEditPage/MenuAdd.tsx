@@ -1,5 +1,5 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import InputText from 'components/ui/Input/InputText/InputText';
+import TextInput from 'components/ui/Input/TextInput/TextInput';
 import useMenuAdd from 'hooks/useMenuAdd';
 import useSnackbar from 'hooks/useSnackbar';
 import { startTransition, useCallback } from 'react';
@@ -75,7 +75,7 @@ const MenuAdd = (): JSX.Element => {
         <tbody>
           <tr>
             <td>
-              <InputText
+              <TextInput
                 {...getStandardInputTextAttributes('name')}
                 autoCapitalize="off"
                 inputMode="text"
@@ -85,7 +85,7 @@ const MenuAdd = (): JSX.Element => {
               />
             </td>
             <td>
-              <InputText
+              <TextInput
                 {...getStandardInputTextAttributes('parent')}
                 inputMode="numeric"
                 onChange={handleChangeParent}
@@ -93,7 +93,7 @@ const MenuAdd = (): JSX.Element => {
               />
             </td>
             <td>
-              <InputText
+              <TextInput
                 {...getStandardInputTextAttributes('seq')}
                 inputMode="numeric"
                 onChange={handleChangeSeq}
@@ -101,7 +101,7 @@ const MenuAdd = (): JSX.Element => {
               />
             </td>
             <td>
-              <InputText
+              <TextInput
                 {...getStandardInputTextAttributes('sortby')}
                 autoCapitalize="off"
                 inputMode="text"
@@ -114,7 +114,7 @@ const MenuAdd = (): JSX.Element => {
               </datalist>
             </td>
             <td>
-              <InputText
+              <TextInput
                 {...getStandardInputTextAttributes('type')}
                 autoCapitalize="off"
                 inputMode="text"

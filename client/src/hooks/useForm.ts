@@ -50,6 +50,8 @@ export const useForm = <T>(initialValues: T) => {
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name: fieldName, value } = event.target;
+      console.log('fieldName:', fieldName);
+      console.log('value:', value);
       setFieldValue(fieldName as keys, value);
     },
     [setFieldValue],
