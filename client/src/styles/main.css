@@ -14,8 +14,14 @@
   --input-border-hover-color: #7f7f7f;
   --input-label-color: #212121;
   --input-placeholder-color: #b7b7b7;
-  --input-helper-font-size: '0.6rem';
+  --input-helper-font-size: 0.75rem;
+  --input-helper-font-color: #5d5d5d;
   --input-helper-error-color: #ff0000;
+  --tooltip-label-color: #0f456e;
+  --tooltip-background-color: #e5e5e5;
+  --tooltip-border-color: #0f456e;
+  --tooltip-arrow-color: #0f456e;
+  --palette-white: #ffffff;
 
   --speed: 500ms;
 

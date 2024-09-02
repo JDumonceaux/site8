@@ -22,7 +22,4 @@ const StyledLabel = styled(Form.Label)`
   font-size: 15px;
   font-weight: 500;
   line-height: 35px;
-  &[data-invalid] {
-    color: var(--input-error);
-  }
 `;

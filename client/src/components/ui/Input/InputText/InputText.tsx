@@ -6,13 +6,17 @@ type InputTextProps = {
   readonly type?: 'text';
 } & Omit<
   InputBaseProps,
-  'height' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
+  'height' | 'max' | 'min' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
 >;
 
-// Remove: 'height', 'src', 'step', 'width'
-// Valid: autocomplete, list, maxlength, minlength, pattern, placeholder, readonly, required, size, value,
+// Remove: 'height', max, min, mozactionhint, 'src', 'step', 'width'
+// Valid: autocomplete, maxlength, minlength, pattern, placeholder, readonly, required, size, list, value,
 // spellcheck, autocorrect, enterkeyhint
 // Deprecated: mozactionhint - use enterkeyhint
+
+// Accessibility
+// No aria-role is required. The default, inferred type is 'textbox'.
+// With a list, 'combobox' is inferred.
 
 const InputText = ({ type = 'text', ...rest }: InputTextProps): JSX.Element => (
   <InputBase type={type} {...rest} />

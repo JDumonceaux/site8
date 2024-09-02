@@ -50,8 +50,7 @@ type EmailFieldProps = {
 >;
 
 export const EmailField = ({
-  autoComplete = 'current-password',
-
+  autoComplete = 'email',
   multiple = false,
   type = 'email',
   ...rest

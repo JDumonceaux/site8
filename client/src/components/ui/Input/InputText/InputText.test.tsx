@@ -59,7 +59,7 @@ describe('InputText', () => {
     );
     const submitButton = screen.getByText('Submit');
     fireEvent.click(submitButton);
-    const errorMessage = screen.getByText('This field is required');
+    const errorMessage = screen.getByText('This value is missing');
     expect(errorMessage).toBeInTheDocument();
   });
 

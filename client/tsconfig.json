@@ -92,47 +92,6 @@
     // sourceRoot
     // stripInternal
 
-    /* Type Checking */
-    // Warns is unreachable code is detected
-    "allowUnreachableCode": false,
-    // Warns if a label is declared but not used.  Probably a coding error.
-    "allowUnusedLabels": false,
-    // Improves performance. Files are parsed in the ECMAScript strict mode.
-    "alwaysStrict": true,
-    // Prevents 'undefined' from being assigned to optional variables
-    // 07-2024 JRD: Changed to false as this conflicts with a SonarLint rule
-    // Prevents from assigning undefined => readonly to?: string;
-    "exactOptionalPropertyTypes": false,
-    // Prevents unintended fallthroughs in switch statements.
-    // Must break, return, or throw at the end of each case
-    "noFallthroughCasesInSwitch": true,
-    // Prevents defaulting to 'any' when a type is not specified
-    "noImplicitAny": true,
-    // Warns if inherited class methods do not override parent methods
-    "noImplicitOverride": true,
-    // Warns if a function doesn't have a return
-    "noImplicitReturns": true,
-    // Warns if 'this' is any
-    "noImplicitThis": true,
-    // Prevents access to fields that are not defined
-    // Note: 07-2024 JRD - Code seems simplier with this off
-    // "noPropertyAccessFromIndexSignature": true,
-    // Adds 'undefined' to the type of undefined variables
-    //"noUncheckedIndexedAccess": true,
-    // Warns about unusued local variables
-    //"noUnusedLocals": true,
-    // Warns about unused parameters
-    //"noUnusedParameters": true,
-    // Shorthand for a set of "stict" rules
-    "strict": true,
-    //"strictBindCallApply": true,
-    //"strictFunctionTypes": true,
-    //"strictNullChecks": true,
-    //"strictPropertyInitialization": true,
-    // Changes catch (err: any) to catch (err: unknown)
-    "useUnknownInCatchVariables": true,
-    /* End - Type Checking */
-
     /* Modules */
     // Requires that imports be .js, ts, or have a declaration file
     "allowArbitraryExtensions": false,

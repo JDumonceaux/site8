@@ -1,8 +1,9 @@
+import React from 'react';
 import { styled } from 'styled-components';
 
 type Props = {
   readonly children?: React.ReactNode;
-};
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'data-testid'>;
 
 const StyledFullWidth = ({ children }: Props): JSX.Element => {
   return <StyledElement data-testid="fullWidth">{children}</StyledElement>;

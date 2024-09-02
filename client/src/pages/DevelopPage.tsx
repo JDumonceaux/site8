@@ -1,5 +1,7 @@
 import * as Form from '@radix-ui/react-form';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import InputPassword from 'components/ui/Input/InputPassword/InputPassword';
+import InputTel from 'components/ui/Input/InputTel/InputTel';
 import InputText from 'components/ui/Input/InputText/InputText';
 import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/ui/Meta/Meta';
@@ -28,6 +30,8 @@ const pageSchema = z.object({
     .max(100, 'Title max length exceeded: 100')
     .trim()
     .optional(),
+  phone: z.string().optional(),
+  password: z.string().optional(),
 });
 
 const DevelopPage = (): JSX.Element => {
@@ -55,9 +59,6 @@ const DevelopPage = (): JSX.Element => {
     //  handleSave();
   }, []);
 
-  const x = getFieldValue('name');
-  console.log('x:', x);
-
   /// zODwRAPPER
   /// zodWrapper(pageSchema, initialFormValues, handleSubmit);
   ////zodWrapper
@@ -80,13 +81,17 @@ const DevelopPage = (): JSX.Element => {
               </StyledButton>
               <InputText
                 id="title"
+                helpProps={{ helpText: 'Enter a title' }}
                 label="Title"
                 minLength={10}
+                maxLength={100}
                 // onBlur={handeNameOnBlur}
                 onChange={handleChange}
                 placeholder="Enter a title"
                 required
                 spellCheck
+                showCounter
+                toolTipProps={{ label: 'Enter a title' }}
                 value={getFieldValue('title')}
                 messageProps={{ match: 'tooShort', name: 'x' }}
 
@@ -110,7 +115,21 @@ const DevelopPage = (): JSX.Element => {
                 //layout="horizontal"
                 //onBlur={handeNameOnBlur}
                 //required
-                //spellCheck
+                //spellCheckp\
+              />
+              <InputPassword
+                id="password"
+                label="Password"
+                onChange={handleChange}
+                placeholder="Enter a password"
+                value={getFieldValue('password')}
+              />
+              <InputTel
+                id="phone"
+                label="Phone"
+                onChange={handleChange}
+                placeholder="Enter a phone number"
+                value={getFieldValue('phone')}
               />
             </Form.Root>
           </section>

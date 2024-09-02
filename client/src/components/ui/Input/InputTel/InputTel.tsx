@@ -1,9 +1,10 @@
 import { memo } from 'react';
 
+import PhoneAdornment from '../Adornments/PhoneAdornment';
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
-type InputTextProps = {
-  readonly type?: 'text';
+type InputTelProps = {
+  readonly type?: 'tel';
 } & Omit<
   InputBaseProps,
   'height' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
@@ -14,10 +15,14 @@ type InputTextProps = {
 // spellcheck, autocorrect, enterkeyhint
 // Deprecated: mozactionhint - use enterkeyhint
 
-const InputText = ({ type = 'text', ...rest }: InputTextProps): JSX.Element => (
-  <InputBase type={type} {...rest} />
+const InputTel = ({
+  type = 'tel',
+  autoComplete = 'tel',
+  ...rest
+}: InputTelProps): JSX.Element => (
+  <InputBase type={type} startAdornment={<PhoneAdornment />} {...rest} />
 );
 
-InputText.displayName = 'InputText';
+InputTel.displayName = 'InputTel';
 
-export default memo(InputText);
+export default memo(InputTel);
