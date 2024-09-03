@@ -12,6 +12,7 @@ import InputCounter from '../InputCounter/InputCounter';
 import InputHelp, { InputHelpProps } from '../InputHelp/InputHelp';
 import InputTooltip, { InputTooltipProps } from '../InputTooltip/InputTooltip';
 import LabelBase from '../LabelBase/LabelBase';
+import RequiredLabel from '../RequiredLabel/RequiredLabel';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -51,6 +52,9 @@ type InputBaseProps = {
   readonly showClear?: boolean;
   readonly showError?: boolean;
   readonly showCounter?: boolean;
+  readonly showRequired?: boolean;
+  readonly requiredLabel?: string;
+  readonly requiredLabelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
 } & Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'accesskey' | 'autocorrect' | 'id' | 'name'
@@ -75,11 +79,15 @@ const InputBase = ({
   showClear = true,
   showCounter = false,
   showError = true,
+  showRequired = true,
+  requiredLabel = 'Required',
+  requiredLabelProps,
   ...rest
 }: InputBaseProps): JSX.Element => {
   const { match, name } = messageProps || {};
-  const maxLength = { ...rest }.maxLength;
-  const value = { ...rest }.value;
+  const maxLength = rest.maxLength;
+  const value = rest.value;
+  const required = rest.required;
   const characterCount = (() => {
     if (typeof value === 'string' || value instanceof String) {
       return value.length;
@@ -99,6 +107,11 @@ const InputBase = ({
         <LabelBase label={label} ref={labelRef} {...labelProps}>
           <Form.Message match={match}>{name}</Form.Message>
         </LabelBase>
+        <RequiredLabel
+          {...requiredLabelProps}
+          label={requiredLabel}
+          show={required && showRequired}
+        />
         <InputTooltip {...toolTipProps} />
       </StyledHeader>
       <Form.Control asChild>

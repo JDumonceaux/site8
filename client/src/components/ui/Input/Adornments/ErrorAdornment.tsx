@@ -15,4 +15,3 @@ const ErrorAdornment = ({ ref, ...rest }: ErrorAdornmentProps) => (
 ErrorAdornment.displayName = 'ErrorAdornment';
 
 export default memo(ErrorAdornment);
-export type { ErrorAdornmentProps };

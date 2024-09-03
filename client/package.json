@@ -22,7 +22,7 @@
     "prepare": "husky",
     "pre-commit": "npx lint-staged",
     "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
-    "knip": "knip --production",
+    "knip": "knip --files --exports",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest"

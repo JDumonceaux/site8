@@ -15,4 +15,3 @@ const PasswordAdornment = ({ ref, ...rest }: PasswordAdornmentProps) => (
 PasswordAdornment.displayName = 'PasswordAdornment';
 
 export default memo(PasswordAdornment);
-export type { PasswordAdornmentProps };

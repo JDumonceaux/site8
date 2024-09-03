@@ -2,20 +2,31 @@ import * as Form from '@radix-ui/react-form';
 import React, { LabelHTMLAttributes, memo } from 'react';
 import { styled } from 'styled-components';
 
-type LabelBaseProps = {
+type RequiredLabelProps = {
+  readonly show?: boolean;
   readonly label?: string;
   readonly ref?: React.RefObject<HTMLLabelElement>;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
-const LabelBase = ({ label, ref, ...rest }: LabelBaseProps): JSX.Element => (
-  <StyledLabel ref={ref} {...rest}>
-    {label}
-  </StyledLabel>
-);
+const RequiredLabelBase = ({
+  label,
+  show,
+  ref,
+  ...rest
+}: RequiredLabelProps): JSX.Element => {
+  if (!show) {
+    return <></>;
+  }
+  return (
+    <StyledLabel ref={ref} {...rest}>
+      {label}
+    </StyledLabel>
+  );
+};
 
-LabelBase.displayName = 'LabelBase';
+RequiredLabelBase.displayName = 'RequiredLabelBase';
 
-export default memo(LabelBase);
+export default memo(RequiredLabelBase);
 
 const StyledLabel = styled(Form.Label)`
   color: var(---input-label-color, '#ffffff');

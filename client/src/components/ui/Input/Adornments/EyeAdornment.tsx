@@ -39,4 +39,3 @@ const EyeAdornment = ({
 EyeAdornment.displayName = 'EyeAdornment';
 
 export default memo(EyeAdornment);
-export type { EyeAdornmentProps };

@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-export type ButtonProps = {
+type ButtonProps = {
   readonly children: React.ReactNode;
   readonly id: string;
   readonly variant?: 'primary' | 'secondary';

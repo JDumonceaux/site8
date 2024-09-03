@@ -15,4 +15,3 @@ const EmailAdornment = ({ ref, ...rest }: EmailAdornmentProps) => (
 EmailAdornment.displayName = 'EmailAdornment';
 
 export default memo(EmailAdornment);
-export type { EmailAdornmentProps };

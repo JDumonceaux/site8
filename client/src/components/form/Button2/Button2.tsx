@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-export type Button2Props = {
+type Button2Props = {
   readonly children: React.ReactNode;
   readonly icon?: React.ReactNode;
   readonly id: string;

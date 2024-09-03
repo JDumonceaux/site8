@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { z } from 'zod';
 
 export const useForm = <T>(initialValues: T) => {
@@ -9,53 +9,41 @@ export const useForm = <T>(initialValues: T) => {
 
   type keys = keyof T;
 
-  const setFieldValue = useCallback(
-    (fieldName: keys, value: boolean | number | string | undefined) => {
-      setFormValues((prev) => ({
-        ...prev,
-        [fieldName]: value,
-      }));
-      setIsSaved(false);
-    },
-    [setFormValues],
-  );
+  const setFieldValue = (
+    fieldName: keys,
+    value: boolean | number | string | undefined,
+  ) => {
+    setFormValues((prev) => ({
+      ...prev,
+      [fieldName]: value,
+    }));
+    setIsSaved(false);
+  };
 
-  const getFieldValue = useCallback(
-    (fieldName: keys): string => {
-      return formValues[fieldName] as string;
-    },
-    [formValues],
-  );
+  const getFieldValue = (fieldName: keys): string => {
+    return formValues[fieldName] as string;
+  };
 
-  const getFieldErrors = useCallback(
-    (fieldName: keys): string | string[] | undefined => {
-      const x = errors?.filter((x) => x.path.includes(fieldName as string));
-      return x && x.length > 0 ? x.map((x) => x.message) : undefined;
-    },
-    [errors],
-  );
+  const getFieldErrors = (fieldName: keys): string | string[] | undefined => {
+    const x = errors?.filter((x) => x.path.includes(fieldName as string));
+    return x && x.length > 0 ? x.map((x) => x.message) : undefined;
+  };
 
-  const hasError = useCallback(
-    (fieldName: keys) => {
-      return !getFieldErrors(fieldName);
-    },
-    [getFieldErrors],
-  );
+  const hasError = (fieldName: keys) => {
+    return !getFieldErrors(fieldName);
+  };
 
   const isFormValid = () => {
     return !errors || errors.length === 0;
   };
 
   // Handle field change
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name: fieldName, value } = event.target;
-      console.log('fieldName:', fieldName);
-      console.log('value:', value);
-      setFieldValue(fieldName as keys, value);
-    },
-    [setFieldValue],
-  );
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name: fieldName, value } = event.target;
+    setFieldValue(fieldName as keys, value);
+  };
 
   const handleClear = () => {
     setFormValues({} as T);

@@ -22,4 +22,3 @@ const DeleteAdornment = ({ ref, ...rest }: DeleteAdornmentProps) => {
 DeleteAdornment.displayName = 'DeleteAdornment';
 
 export default memo(DeleteAdornment);
-export type { DeleteAdornmentProps };

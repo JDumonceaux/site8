@@ -15,4 +15,3 @@ const PhoneAdornment = ({ ref, ...rest }: PhoneAdornmentProps) => (
 PhoneAdornment.displayName = 'PhoneAdornment';
 
 export default memo(PhoneAdornment);
-export type { PhoneAdornmentProps };

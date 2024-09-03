@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-export type IconButtonProps = {
+type IconButtonProps = {
   readonly 'aria-label': string;
   readonly children: React.ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'>;

@@ -33,22 +33,17 @@ export const API_ROOT = `http://localhost:3005/api`;
 //const API_ROOT = `https://s12k0iq8o1.execute-api.us-west-2.amazonaws.com/Prod/api`;
 
 export enum ServiceUrl {
-  ENDPOINT_ART = `${API_ROOT}/art`,
   ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
-  ENDPOINT_GRAPHQL_IMAGES = `http://localhost:4000/images`,
   ENDPOINT_IMAGE = `${API_ROOT}/image`,
   ENDPOINT_IMAGES = `${API_ROOT}/images`,
   ENDPOINT_IMAGES_FOLDERS = `${API_ROOT}/images/folders`,
   ENDPOINT_IMAGES_NEW = `${API_ROOT}/images/new`,
   ENDPOINT_IMAGES_SCAN = `${API_ROOT}/images/scan`,
   ENDPOINT_MENUS = `${API_ROOT}/menus`,
-  ENDPOINT_MENUS_ABBR = `${API_ROOT}/menus/abbr`,
   ENDPOINT_MENUS_EDIT = `${API_ROOT}/menus/edit`,
   ENDPOINT_MUSIC = `${API_ROOT}/music`,
   ENDPOINT_PAGE = `${API_ROOT}/page`,
-  ENDPOINT_PAGE_CONTENT = `${API_ROOT}/page/content`,
   ENDPOINT_PAGE_NAME = `${API_ROOT}/page/name`,
-  ENDPOINT_PAGES = `${API_ROOT}/pages`,
   ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
   ENDPOINT_TESTS = `${API_ROOT}/tests`,
 }

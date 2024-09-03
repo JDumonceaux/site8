@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
  *
  * @returns The JSX element representing the fallback component.
  */
-export const Fallback = (): JSX.Element => {
+const Fallback = (): JSX.Element => {
   return (
     <div aria-busy="true" data-testid="footer" role="status">
       <PageTitle title="Loading" />

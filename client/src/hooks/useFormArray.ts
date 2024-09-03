@@ -1,6 +1,6 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-export type IdType = {
+type IdType = {
   readonly localId: number;
 };
 
@@ -9,61 +9,52 @@ export const useFormArray = <T extends IdType>() => {
   const [isSaved, setIsSaved] = useState<boolean>(true);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-  const findItemIndex = useCallback(
-    (localId: number): number => {
-      return formValues.findIndex((x) => x.localId === localId);
-    },
-    [formValues],
-  );
+  const findItemIndex = (localId: number): number => {
+    return formValues.findIndex((x) => x.localId === localId);
+  };
 
-  const setFieldValue = useCallback(
-    (
-      localId: number,
-      fieldName: keyof T,
-      value: boolean | number | string | undefined,
-    ) => {
-      setFormValues((previous) => {
-        const index = findItemIndex(localId);
-        const newFormValues = [...previous];
-        if (index >= 0) {
-          newFormValues[index] = {
-            ...newFormValues[index],
-            [fieldName]: value,
-          };
-        } else {
-          newFormValues.push({ [fieldName]: value, localId } as T);
-        }
-        return newFormValues;
-      });
-      setIsSaved(false);
-    },
-    [findItemIndex],
-  );
+  const setFieldValue = (
+    localId: number,
+    fieldName: keyof T,
+    value: boolean | number | string | undefined,
+  ) => {
+    setFormValues((previous) => {
+      const index = findItemIndex(localId);
+      const newFormValues = [...previous];
+      if (index >= 0) {
+        newFormValues[index] = {
+          ...newFormValues[index],
+          [fieldName]: value,
+        };
+      } else {
+        newFormValues.push({ [fieldName]: value, localId } as T);
+      }
+      return newFormValues;
+    });
+    setIsSaved(false);
+  };
 
-  const getFieldValue = useCallback(
-    (localId: number, fieldName: keyof T): string | undefined => {
-      const item = formValues.find((x) => x.localId === localId);
-      return item ? (item[fieldName] as string) : '';
-    },
-    [formValues],
-  );
+  const getFieldValue = (
+    localId: number,
+    fieldName: keyof T,
+  ): string | undefined => {
+    const item = formValues.find((x) => x.localId === localId);
+    return item ? (item[fieldName] as string) : '';
+  };
 
-  const setItem = useCallback(
-    (localId: number, item: T) => {
-      setFormValues((previous) => {
-        const index = findItemIndex(localId);
-        const newFormValues = [...previous];
-        if (index >= 0) {
-          newFormValues[index] = { ...newFormValues[index], ...item };
-        } else {
-          newFormValues.push({ ...item, localId } as T);
-        }
-        return newFormValues;
-      });
-      setIsSaved(false);
-    },
-    [findItemIndex],
-  );
+  const setItem = (localId: number, item: T) => {
+    setFormValues((previous) => {
+      const index = findItemIndex(localId);
+      const newFormValues = [...previous];
+      if (index >= 0) {
+        newFormValues[index] = { ...newFormValues[index], ...item };
+      } else {
+        newFormValues.push({ ...item, localId } as T);
+      }
+      return newFormValues;
+    });
+    setIsSaved(false);
+  };
 
   const getItem = (localId: number): T | undefined => {
     const index = findItemIndex(localId);

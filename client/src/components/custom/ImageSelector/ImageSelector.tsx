@@ -24,9 +24,7 @@ type ImageSelectorProps = {
  * @param {Function} props.onSelectImage - The callback function to handle image selection.
  * @returns {JSX.Element} The rendered ImageSelector component.
  */
-export const ImageSelector = ({
-  onSelectImage,
-}: ImageSelectorProps): JSX.Element => {
+const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
   const { setShowUnmatched, showUnmatched } = useAppSettings();
   const { data, error, fetchData, isLoading } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();

@@ -11,7 +11,7 @@ type ShowPasswordButtonProps = {
   readonly type: 'password' | 'text';
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
 
-export const ShowPasswordButton = ({
+const ShowPasswordButton = ({
   hasError = false,
   passwordIsHiddenLabel = 'Password is hidden',
   passwordIsShownLabel = 'Password is shown',

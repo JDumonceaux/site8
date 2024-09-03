@@ -17,10 +17,10 @@ const pageSchema = z.object({
 });
 
 // Create a type from the schema
-export type FormType = z.infer<typeof pageSchema>;
-export type keys = keyof FormType;
-export type sortByType = 'name' | 'seq';
-export type menuType = 'menu' | 'root';
+type FormType = z.infer<typeof pageSchema>;
+type keys = keyof FormType;
+type sortByType = 'name' | 'seq';
+type menuType = 'menu' | 'root';
 
 const useMenuEdit = () => {
   const { error, isLoading, postData } = useAxios<MenuAdd>();
