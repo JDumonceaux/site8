@@ -15,7 +15,7 @@
     "precommit": "pretty-quick --staged",
     "preview": "vite preview",
     "serve": "vite preview",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint --inspect-config",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
     "type-check": "tsc",
