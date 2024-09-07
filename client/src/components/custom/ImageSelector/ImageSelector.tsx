@@ -1,5 +1,5 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import { Switch } from 'components/ui/Switch/Switch';
+import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
 import { IMAGE_BASE } from 'lib/utils/constants';

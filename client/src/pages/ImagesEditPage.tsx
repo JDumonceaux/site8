@@ -1,12 +1,12 @@
 import { Cross2Icon } from '@radix-ui/react-icons';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { IconMenu } from 'components/ui/IconMenu/IconMenu';
-import { IconMenuItem } from 'components/ui/IconMenu/IconMenuItem';
-import InputText from 'components/ui/Input/InputText/InputText';
-import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/ui/Meta/Meta';
-import PageTitle from 'components/ui/PageTitle/PageTitle';
+import { IconMenu } from 'components/IconMenu/IconMenu';
+import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
+import InputText from 'components/Input/InputText/InputText';
+import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
+import Meta from 'components/Meta/Meta';
+import PageTitle from 'components/PageTitle/PageTitle';
 import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';

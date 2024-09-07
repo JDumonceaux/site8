@@ -1,8 +1,8 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
-import Meta from 'components/ui/Meta/Meta';
-import PageTitle from 'components/ui/PageTitle/PageTitle';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
+import Meta from 'components/Meta/Meta';
+import PageTitle from 'components/PageTitle/PageTitle';
 import { useFetch } from 'hooks/Axios/useFetch';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getParamIdAsString } from 'lib/utils/helpers';

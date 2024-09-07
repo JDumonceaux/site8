@@ -1,4 +1,4 @@
-import Meta from 'components/ui/Meta/Meta';
+import Meta from 'components/Meta/Meta';
 
 const CookiesUsePage = (): JSX.Element => {
   const title = 'Cookies Use';

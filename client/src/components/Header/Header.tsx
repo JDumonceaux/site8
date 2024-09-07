@@ -1,8 +1,8 @@
 import { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 
-import { APP_NAME } from '../../../lib/utils/constants';
-import { MenuIcon } from '../../icons/MenuIcon';
+import { APP_NAME } from '../../lib/utils/constants';
+import { MenuIcon } from '../icons/MenuIcon';
 import StyledLink from '../Link/StyledLink/StyledLink';
 
 type HeaderProps = {

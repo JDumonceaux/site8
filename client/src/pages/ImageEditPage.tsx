@@ -1,13 +1,14 @@
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import { ImageSelector } from 'components/custom/ImageSelector/ImageSelector';
-import InputText from 'components/ui/Input/InputText/InputText';
-import { TextArea } from 'components/ui/Input/TextArea/TextArea';
+import ImageSelector from 'components/custom/ImageSelector/ImageSelector';
 
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/ui/Meta/Meta';
-import PageTitle from 'components/ui/PageTitle/PageTitle';
+import InputText from 'components/Input/InputText/InputText';
+import { TextArea } from 'components/Input/TextArea/TextArea';
+
+import StyledLink from 'components/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
+import Meta from 'components/Meta/Meta';
+import PageTitle from 'components/PageTitle/PageTitle';
 import useImageEdit from 'hooks/useImageEdit';
 import useSnackbar from 'hooks/useSnackbar';
 import { useCallback } from 'react';

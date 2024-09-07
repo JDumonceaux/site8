@@ -1,10 +1,10 @@
 import Fallback from 'components/common/Fallback/Fallback';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import Meta from 'components/Meta/Meta';
 import RenderHtml from 'components/pages/GenericPage/RenderHtml';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
-import Meta from 'components/ui/Meta/Meta';
-import PageTitle from 'components/ui/PageTitle/PageTitle';
+import PageTitle from 'components/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useDeferredValue, useEffect, useState } from 'react';

@@ -14,14 +14,14 @@ import {
 } from '@dnd-kit/sortable';
 
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import InputText from 'components/Input/InputText/InputText';
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
-import InputText from 'components/ui/Input/InputText/InputText';
 
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/ui/Meta/Meta';
-import PageTitle from 'components/ui/PageTitle/PageTitle';
-import { Switch } from 'components/ui/Switch/Switch';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
+import Meta from 'components/Meta/Meta';
+import PageTitle from 'components/PageTitle/PageTitle';
+import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useTestsEdit from 'hooks/useTestsEdit';
 import { useCallback, useEffect, useState } from 'react';

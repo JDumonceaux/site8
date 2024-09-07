@@ -1,4 +1,4 @@
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 

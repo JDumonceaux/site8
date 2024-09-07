@@ -1,7 +1,7 @@
 import StyledMain from 'components/common/StyledMain/StyledMain';
+import Meta from 'components/Meta/Meta';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
-import Meta from 'components/ui/Meta/Meta';
-import PageTitle from 'components/ui/PageTitle/PageTitle';
+import PageTitle from 'components/PageTitle/PageTitle';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 

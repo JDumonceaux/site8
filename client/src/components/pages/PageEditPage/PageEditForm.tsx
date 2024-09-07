@@ -1,12 +1,12 @@
 import * as Form from '@radix-ui/react-form';
-import TextInput from 'components/ui/Input/TextInput/TextInput';
-import StyledPlainButton from 'components/ui/Link/StyledPlainButton/StyledPlainButton';
+import TextInput from 'components/Input/TextInput/TextInput';
+import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
 import { forwardRef, useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types';
 
-import { TextArea } from 'components/ui/Input/TextArea/TextArea';
+import { TextArea } from 'components/Input/TextArea/TextArea';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
 

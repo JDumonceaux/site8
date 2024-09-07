@@ -1,10 +1,10 @@
 import { PasswordField } from '@aws-amplify/ui-react';
 
 import Button from 'components/form/Button/Button';
+import { EmailField } from 'components/Input';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
+import Meta from 'components/Meta/Meta';
 import { emailAddress, password } from 'components/pages/auth/ZodStrings';
-import { EmailField } from 'components/ui/Input';
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
-import Meta from 'components/ui/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';

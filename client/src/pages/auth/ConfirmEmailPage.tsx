@@ -1,7 +1,7 @@
 import { Button2 } from 'components/form/Button2/Button2';
-import { EmailField } from 'components/ui/Input';
-import InputText from 'components/ui/Input/InputText/InputText';
-import Meta from 'components/ui/Meta/Meta';
+import { EmailField } from 'components/Input';
+import InputText from 'components/Input/InputText/InputText';
+import Meta from 'components/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';

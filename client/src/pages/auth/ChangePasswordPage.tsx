@@ -1,7 +1,7 @@
 import { PasswordField } from '@aws-amplify/ui-react';
 
-import StyledLink from 'components/ui/Link/StyledLink/StyledLink';
-import Meta from 'components/ui/Meta/Meta';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
+import Meta from 'components/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';

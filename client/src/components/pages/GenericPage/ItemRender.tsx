@@ -1,4 +1,4 @@
-import StyledNavLink from 'components/ui/Link/StyledNavLink/StyledNavLink';
+import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
 import React from 'react';
 import { styled } from 'styled-components';
 import { MenuItem } from 'types';
