@@ -6,13 +6,8 @@ import React, {
 } from 'react';
 import { styled } from 'styled-components';
 
-import DeleteAdornment from '../Adornments/DeleteAdornment';
-import ErrorAdornment from '../Adornments/ErrorAdornment';
-import InputCounter from '../InputCounter/InputCounter';
-import InputHelp, { InputHelpProps } from '../InputHelp/InputHelp';
-import InputTooltip, { InputTooltipProps } from '../InputTooltip/InputTooltip';
-import LabelBase from '../LabelBase/LabelBase';
-import RequiredLabel from '../RequiredLabel/RequiredLabel';
+import { InputHelpProps } from '../InputHelp/InputHelp';
+import { InputTooltipProps } from '../InputTooltip/InputTooltip';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -104,31 +99,31 @@ const InputBase = ({
   return (
     <StyledFormField id={id} name={id}>
       <StyledHeader>
-        <LabelBase label={label} ref={labelRef} {...labelProps}>
+        {/* <LabelBase label={label} ref={labelRef} {...labelProps}>
           <Form.Message match={match}>{name}</Form.Message>
-        </LabelBase>
-        <RequiredLabel
+        </LabelBase> */}
+        {/* <RequiredLabel
           {...requiredLabelProps}
           label={requiredLabel}
           show={required && showRequired}
-        />
-        <InputTooltip {...toolTipProps} />
+        /> */}
+        {/* <InputTooltip {...toolTipProps} /> */}
       </StyledHeader>
       <Form.Control asChild>
         <StyledInputWrapper>
-          {startAdornment}
+          {/* {startAdornment} */}
           <StyledInput
             type={type}
             {...rest}
             ref={inputRef}
             aria-describedby={counterId}
           />
-          {showError ? <ErrorAdornment /> : null}
+          {/* {showError ? <ErrorAdornment /> : null}
           {showClear ? <DeleteAdornment /> : null}
-          {endAdornment}
+          {endAdornment} */}
         </StyledInputWrapper>
       </Form.Control>
-      <StyledFoooter>
+      {/* <StyledFoooter>
         <InputHelp {...helpProps} />
         <InputCounter
           id={counterId}
@@ -136,7 +131,7 @@ const InputBase = ({
           showCounter={showCounter}
           characterCount={characterCount}
         />
-      </StyledFoooter>
+      </StyledFoooter> */}
     </StyledFormField>
   );
 };

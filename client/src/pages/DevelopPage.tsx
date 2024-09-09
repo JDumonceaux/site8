@@ -1,6 +1,7 @@
 import * as Form from '@radix-ui/react-form';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import InputText from 'components/Input/InputText/InputText';
+import Dialog from 'components/Dialog/Dialog';
+import { useDialog } from 'components/Dialog/useDialog';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
@@ -60,19 +61,17 @@ const DevelopPage = (): JSX.Element => {
 
   const getTitleErrors = useCallback(() => {
     const z = formValues.title;
-    console.log('z', z);
-
     const y = pageSchema.shape.title.safeParse(formValues.title);
     return y;
   }, [formValues.title]);
 
   const x = getTitleErrors();
-  console.log('x', x);
-  console.log('p', pageSchema.shape.title.minLength);
 
   /// zODwRAPPER
   /// zodWrapper(pageSchema, initialFormValues, handleSubmit);
   ////zodWrapper
+
+  const { onDialogOpen, onDialogClose, ...dialogProps } = useDialog();
 
   return (
     <>
@@ -82,35 +81,44 @@ const DevelopPage = (): JSX.Element => {
           <PageTitle title={title} />
           <section>
             <Form.Root onSubmit={handleSubmit}>
-              <StyledButton>
+              {/* <StyledButton>
                 <StyledSaveButton
                   data-testid="button-save"
                   onClick={handleSubmit}
                   type="submit">
                   {isSaved ? 'Saved' : 'Save'}
                 </StyledSaveButton>
-              </StyledButton>
-              <InputText
+              </StyledButton>*/}
+              <input
                 id="title"
-                helpProps={{ helpText: 'Enter a title' }}
+                type="text"
+                value={getFieldValue('title')}
+                onChange={handleChange}
+              />
+              {/*   <InputText
+                id="title"
+                //   helpProps={{ helpText: 'Enter a title' }}
                 label="Title"
-                minLength={10}
-                maxLength={100}
+                //minLength={10}
+                //maxLength={100}
                 // onBlur={handeNameOnBlur}
                 onChange={handleChange}
-                placeholder="Enter a title"
-                required
-                spellCheck
-                showCounter
-                toolTipProps={{ label: 'Enter a title' }}
-                value={getFieldValue('title')}
+                //placeholder="Enter a title"
+                //required
+                //spellCheck
+                //showCounter
+                //toolTipProps={{ label: 'Enter a title' }}
+                //      value={getFieldValue('title')}
 
                 //layout="horizontal"
                 //onBlur={handeNameOnBlur}
                 //required
                 //spellCheck
               />
-              <div>Title Issues</div>
+              {/* <div>Title Issues</div> */}
+              <button type="button" onClick={onDialogOpen}>
+                Open Dialog
+              </button>
 
               {/* <InputText
                 id="name"
@@ -154,6 +162,9 @@ const DevelopPage = (): JSX.Element => {
           </section>
         </StyledMain.Article>
       </StyledMain>
+      <Dialog label="Test" onClose={onDialogClose} {...dialogProps}>
+        Children
+      </Dialog>
     </>
   );
 };
