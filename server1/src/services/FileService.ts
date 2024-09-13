@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { readFile } from 'fs/promises';
 import { getFilePath } from '../lib/utils/getFilePath.js';
 import { Logger } from '../lib/utils/logger.js';
@@ -8,11 +9,15 @@ export class FileService {
 
     try {
       const filePath = getFilePath(fileName);
+
       // GOOD: Verify that the file path is under the root directory
-      // const tempFilePath = fs.realpathSync(path.resolve(this.ROOT, filePath));
-      // if (!tempFilePath.startsWith(this.ROOT)) {
-      //   return undefined;
-      // }
+      const tempFilePath = fs.realpathSync(filePath);
+      if (!tempFilePath.startsWith(__dirname)) {
+        Logger.error(
+          `FileService: getFile: ${fileName} --> Invalid file path: ${filePath}`,
+        );
+        return undefined;
+      }
 
       return readFile(filePath, { encoding: 'utf8' });
     } catch (error) {
