@@ -1,7 +1,7 @@
 import * as Form from '@radix-ui/react-form';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import Dialog from 'components/Dialog/Dialog';
-import { useDialog } from 'components/Dialog/useDialog';
+import Dialog from 'components/core/Dialog/Dialog';
+import { useDialog } from 'components/core/Dialog/useDialog';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';

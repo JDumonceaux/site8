@@ -1,25 +1,31 @@
+import * as DialogUI from '@radix-ui/react-dialog';
 import React, {
   ButtonHTMLAttributes,
   DialogHTMLAttributes,
   memo,
   useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-const VARIANTS = {
+// ToDo
+// Move
+// Resize
+// Scroll
+const VARIANTS = Object.freeze({
   info: 'info',
   success: 'success',
   warning: 'warning',
   error: 'error',
   default: 'default',
-};
+} as const);
 
-const SIZES = {
+const SIZES = Object.freeze({
   sm: 'sm',
   md: 'md',
   lg: 'lg',
-};
+} as const);
 
 type DialogProps = {
   readonly label: React.ReactNode;
@@ -27,11 +33,12 @@ type DialogProps = {
   readonly isModal?: boolean;
   readonly isAutofocusClose?: boolean;
   readonly children: React.ReactNode;
-  readonly size?: 'sm' | 'md' | 'lg';
-  readonly variant?: 'info' | 'success' | 'warning' | 'error' | 'default';
+  readonly size?: keyof typeof SIZES;
+  readonly variant?: keyof typeof VARIANTS;
   readonly footer?: React.ReactNode;
   readonly buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
   readonly labelProps?: React.HTMLAttributes<HTMLLabelElement>;
+  readonly footerProps?: React.HTMLAttributes<HTMLDivElement>;
   readonly onClose: () => void;
 } & DialogHTMLAttributes<HTMLDialogElement>;
 
@@ -76,13 +83,14 @@ const Dialog = ({
   footer,
   buttonProps,
   labelProps,
+  footerProps,
   onClose,
   ...rest
 }: DialogProps) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const ref = useRef<HTMLDialogElement>(null);
 
   useLayoutEffect(() => {
-    const { current: el } = dialogRef;
+    const { current: el } = ref;
     if (isOpen && el !== null) {
       isModal ? el.showModal() : el.show();
     } else if (el !== null) {
@@ -90,9 +98,52 @@ const Dialog = ({
     }
   }, [isOpen]);
 
+  // Resize events
+  const [drag, setDrag] = useState({
+    active: false,
+    x: '',
+    y: '',
+  });
+
+  const startResize = (e) => {
+    setDrag({
+      active: true,
+      x: e.clientX,
+      y: e.clientY,
+    });
+  };
+
+  const [dims, setDims] = useState({
+    w: 200,
+    h: 200,
+  });
+
+  const resizeFrame = (e) => {
+    const { active, x, y } = drag;
+    if (active) {
+      const xDiff = Math.abs(x - e.clientX);
+      const yDiff = Math.abs(y - e.clientY);
+      const newW = x > e.clientX ? dims.w - xDiff : dims.w + xDiff;
+      const newH = y > e.clientY ? dims.h + yDiff : dims.h - yDiff;
+
+      setDrag({ ...drag, x: e.clientX, y: e.clientY });
+      setDims({ w: newW, h: newH });
+    }
+  };
+
+  const stopResize = (e) => {
+    setDrag({ ...drag, active: false });
+  };
+
+  const boxStyle = {
+    width: `${dims.x}px`,
+    height: `${dims.y}px`,
+  };
+
   return (
     <StyledDialog
-      ref={dialogRef}
+      ref={ref}
+      draggable
       data-testid="Dialog"
       role="dialog"
       aria-labelledby="label"
@@ -109,7 +160,7 @@ const Dialog = ({
           </LabelRow>
           <div id="contents">{children}</div>
         </div>
-        <Footer>{footer}</Footer>
+        <Footer {...footerProps}>{footer}</Footer>
       </Content>
       <CloseButton
         onClick={onClose}
@@ -143,7 +194,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const StyledDialog = styled.dialog<{
+const StyledDialog = styled(DialogUI.Portal)<{
   $variant?: keyof typeof VARIANTS;
   $size?: keyof typeof SIZES;
 }>`
@@ -154,24 +205,24 @@ const StyledDialog = styled.dialog<{
     switch (props.$variant) {
       case VARIANTS.info:
         return css`
-          bordertop: 8px solid #0052ff;
+          border-top: 8px solid var(--status-info, #0052ff);
         `;
       case VARIANTS.success:
         return css`
-          bordertop: 8px solid #21a67a;
+          border-top: 8px solid var(--status-success, #21a67a);
         `;
       case VARIANTS.warning:
         return css`
-          bordertop: 8px solid #ff000f;
+          border-top: 8px solid var(--status-warning, #ff000f);
         `;
       case VARIANTS.error:
         return css`
-          bordertop: 8px solid #ef3934;
+          border-top: 8px solid var(--status-error, #ef3934);
         `;
       case VARIANTS.default:
       default:
         return css`
-          bordertop: 8px solid #000000;
+          border-top: 8px solid var(-text-primary, #1f1f1f);
         `;
     }
   }}
@@ -202,14 +253,14 @@ const StyledDialog = styled.dialog<{
   min-width: 320px;
   width: calc(100% - 32px);
   ::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--backdrop, rgba(0, 0, 0, 0.5));
   }
   [open] {
     animation: fadeIn 0.7s ease-out;
   }
 `;
 
-const Content = styled.div`
+const Content = styled(DialogUI.Content)`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -220,14 +271,14 @@ const Content = styled.div`
   width: calc(100% - 32px);
 `;
 
-const LabelRow = styled.div`
+const LabelRow = styled(DialogUI.Title)`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled(DialogUI.Close)`
   font-size: 24px;
   font-weight: bold;
   border: none;
@@ -250,24 +301,24 @@ const StyledIcon = styled.i<{
     switch (props.$variant) {
       case VARIANTS.info:
         return css`
-          color: #0052ff;
+          color: var(--status-info, #0052ff);
         `;
       case VARIANTS.success:
         return css`
-          color: #21a67a;
+          color: var(--status-info, #21a67a);
         `;
       case VARIANTS.warning:
         return css`
-          color: #ff000f;
+          color: var(--status-warning, #ff000f);
         `;
       case VARIANTS.error:
         return css`
-          color: #ef3934;
+          color: var(--status-error, #ef3934);
         `;
       case VARIANTS.default:
       default:
         return css`
-          color: #ffffff;
+          color: var(-text-primary, #1f1f1f);
         `;
     }
   }}

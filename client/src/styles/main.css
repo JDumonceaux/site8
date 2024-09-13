@@ -22,6 +22,11 @@
   --tooltip-border-color: #0f456e;
   --tooltip-arrow-color: #0f456e;
   --palette-white: #ffffff;
+  --status-info: #2196f3;
+  --status-success: #21a67a;
+  --status-warning: #ff000f;
+  --status-error: #ef3934;
+  -text-primary: #1f1f1f;
 
   --speed: 500ms;
 
