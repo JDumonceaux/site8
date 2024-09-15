@@ -1,7 +1,10 @@
-import * as Form from '@radix-ui/react-form';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
+import InputEmail from 'components/Input/InputEmail/InputEmail';
+import InputPassword from 'components/Input/InputPassword/InputPassword';
+import InputTel from 'components/Input/InputTel/InputTel';
+import InputText from 'components/Input/InputText/InputText';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
@@ -29,6 +32,11 @@ const pageSchema = z.object({
     .min(10, 'Title min length not met: 10')
     .max(100, 'Title max length exceeded: 100')
     .describe('Enter a title'),
+  phone: z.string().optional(),
+  password: z.string().optional(),
+  tel: z.string().optional(),
+  email: z.string().email().optional(),
+  name: z.string().min(10).optional(),
 });
 
 const DevelopPage = (): JSX.Element => {
@@ -80,7 +88,7 @@ const DevelopPage = (): JSX.Element => {
         <StyledMain.Article>
           <PageTitle title={title} />
           <section>
-            <Form.Root onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               {/* <StyledButton>
                 <StyledSaveButton
                   data-testid="button-save"
@@ -89,38 +97,36 @@ const DevelopPage = (): JSX.Element => {
                   {isSaved ? 'Saved' : 'Save'}
                 </StyledSaveButton>
               </StyledButton>*/}
-              <input
+              {/* <input
                 id="title"
                 type="text"
                 value={getFieldValue('title')}
                 onChange={handleChange}
-              />
-              {/*   <InputText
+              /> */}
+              <InputText
                 id="title"
                 //   helpProps={{ helpText: 'Enter a title' }}
                 label="Title"
                 //minLength={10}
-                //maxLength={100}
+                maxLength={100}
                 // onBlur={handeNameOnBlur}
                 onChange={handleChange}
-                //placeholder="Enter a title"
-                //required
+                placeholder="Enter a title"
+                required
                 //spellCheck
-                //showCounter
-                //toolTipProps={{ label: 'Enter a title' }}
+                showCounter
+                toolTipProps={{ label: 'Enter a title' }}
                 //      value={getFieldValue('title')}
 
                 //layout="horizontal"
-                //onBlur={handeNameOnBlur}
-                //required
-                //spellCheck
+                startAdornment={'x:'}
               />
               {/* <div>Title Issues</div> */}
               <button type="button" onClick={onDialogOpen}>
                 Open Dialog
               </button>
 
-              {/* <InputText
+              <InputText
                 id="name"
                 label="Name"
                 minLength={10}
@@ -130,14 +136,9 @@ const DevelopPage = (): JSX.Element => {
                 required
                 spellCheck
                 value={getFieldValue('name')}
-                messageProps={{ match: 'tooShort', name: 'x' }} */}
-
-              {/* //layout="horizontal"
-                //onBlur={handeNameOnBlur}
-                //required
-                //spellCheckp\
-              /> */}
-              {/* <InputPassword
+                messageProps={{ match: 'tooShort', name: 'x' }}
+              />
+              <InputPassword
                 id="password"
                 label="Password"
                 onChange={handleChange}
@@ -156,9 +157,9 @@ const DevelopPage = (): JSX.Element => {
                 label="Email"
                 onChange={handleChange}
                 placeholder="Enter an Email"
-                value={getFieldValue('email')} */}
-              {/* /> */}
-            </Form.Root>
+                value={getFieldValue('email')}
+              />
+            </form>
           </section>
         </StyledMain.Article>
       </StyledMain>

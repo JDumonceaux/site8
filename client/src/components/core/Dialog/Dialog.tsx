@@ -141,34 +141,35 @@ const Dialog = ({
   };
 
   return (
-    <StyledDialog
-      ref={ref}
-      draggable
-      data-testid="Dialog"
-      role="dialog"
-      aria-labelledby="label"
-      {...rest}
-      $variant={variant}
-      $size={size}>
-      <Content>
-        <div>
-          <LabelRow>
-            {getIcon(variant)}
-            <StyledLabel id="label" {...labelProps} htmlFor="contents">
-              {label}
-            </StyledLabel>
-          </LabelRow>
-          <div id="contents">{children}</div>
-        </div>
-        <Footer {...footerProps}>{footer}</Footer>
-      </Content>
-      <CloseButton
-        onClick={onClose}
-        autoFocus={isAutofocusClose}
-        aria-label={buttonProps?.['aria-label']}>
-        X
-      </CloseButton>
-    </StyledDialog>
+    <DialogUI.Root>
+      <StyledDialog
+        draggable
+        data-testid="Dialog"
+        role="dialog"
+        aria-labelledby="label"
+        {...rest}
+        $variant={variant}
+        $size={size}>
+        <Content>
+          <div>
+            <LabelRow>
+              {getIcon(variant)}
+              <StyledLabel id="label" {...labelProps} htmlFor="contents">
+                {label}
+              </StyledLabel>
+            </LabelRow>
+            <div id="contents">{children}</div>
+          </div>
+          <Footer {...footerProps}>{footer}</Footer>
+        </Content>
+        <CloseButton
+          onClick={onClose}
+          autoFocus={isAutofocusClose}
+          aria-label={buttonProps?.['aria-label']}>
+          X
+        </CloseButton>
+      </StyledDialog>
+    </DialogUI.Root>
   );
 };
 

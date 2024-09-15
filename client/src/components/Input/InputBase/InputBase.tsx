@@ -1,4 +1,3 @@
-import * as Form from '@radix-ui/react-form';
 import React, {
   HTMLInputTypeAttribute,
   InputHTMLAttributes,
@@ -6,8 +5,11 @@ import React, {
 } from 'react';
 import { styled } from 'styled-components';
 
-import { InputHelpProps } from '../InputHelp/InputHelp';
-import { InputTooltipProps } from '../InputTooltip/InputTooltip';
+import StartAdornment from '../Adornments/StartAdornment';
+import InputCounter from '../InputCounter/InputCounter';
+import InputHelp, { InputHelpProps } from '../InputHelp/InputHelp';
+import InputTooltip, { InputTooltipProps } from '../InputTooltip/InputTooltip';
+import LabelBase from '../LabelBase/LabelBase';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -32,15 +34,15 @@ declare const validityMatchers: readonly [
 ];
 
 type InputBaseProps = {
-  readonly errorText?: React.ReactNode | string | string[];
   readonly id?: string;
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly label?: string;
   readonly labelRef?: React.RefObject<HTMLLabelElement>;
   readonly labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   readonly type: HTMLInputTypeAttribute;
-  readonly messageProps?: Form.FormMessageProps;
+  readonly messageProps?: any;
   readonly helpProps?: InputHelpProps;
+  readonly errorText?: React.ReactNode | string | string[];
   readonly toolTipProps?: InputTooltipProps;
   readonly endAdornment?: React.ReactNode;
   readonly startAdornment?: React.ReactNode;
@@ -97,33 +99,31 @@ const InputBase = ({
   const counterId = 'counter-' + id;
 
   return (
-    <StyledFormField id={id} name={id}>
+    <StyledFormField id={id}>
       <StyledHeader>
-        {/* <LabelBase label={label} ref={labelRef} {...labelProps}>
-          <Form.Message match={match}>{name}</Form.Message>
-        </LabelBase> */}
+        <LabelBase label={label} ref={labelRef} {...labelProps}>
+          {/* <Form.Message match={match}>{name}</Form.Message> */}
+        </LabelBase>
         {/* <RequiredLabel
           {...requiredLabelProps}
           label={requiredLabel}
           show={required && showRequired}
         /> */}
-        {/* <InputTooltip {...toolTipProps} /> */}
+        <InputTooltip {...toolTipProps} />
       </StyledHeader>
-      <Form.Control asChild>
-        <StyledInputWrapper>
-          {/* {startAdornment} */}
-          <StyledInput
-            type={type}
-            {...rest}
-            ref={inputRef}
-            aria-describedby={counterId}
-          />
-          {/* {showError ? <ErrorAdornment /> : null}
+      <StyledInputWrapper>
+        <StartAdornment>{startAdornment}</StartAdornment>
+        <StyledInput
+          type={type}
+          {...rest}
+          ref={inputRef}
+          aria-describedby={counterId}
+        />
+        {/* {showError ? <ErrorAdornment /> : null}
           {showClear ? <DeleteAdornment /> : null}
           {endAdornment} */}
-        </StyledInputWrapper>
-      </Form.Control>
-      {/* <StyledFoooter>
+      </StyledInputWrapper>
+      <StyledFoooter>
         <InputHelp {...helpProps} />
         <InputCounter
           id={counterId}
@@ -131,7 +131,7 @@ const InputBase = ({
           showCounter={showCounter}
           characterCount={characterCount}
         />
-      </StyledFoooter> */}
+      </StyledFoooter>
     </StyledFormField>
   );
 };
@@ -142,7 +142,7 @@ export default memo(InputBase);
 
 export type { InputBaseProps };
 
-const StyledFormField = styled(Form.Field)`
+const StyledFormField = styled.div`
   display: grid;
   margin-bottom: 10px;
 `;
@@ -151,11 +151,12 @@ const StyledInputWrapper = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  justify-content: flex-start;
   color: var(--input-color, '#ffffff');
   background-color: var(--input-background, '#00000');
   border-radius: var(--input-border-radius, 0);
+  border: 1px solid var(--input-border-color, '#d4d4d4');
   width: 100%;
+  height: 32px;
   &:focus:within {
     box-shadow: 0 0 0 1px var(--input-border-focus-color);
   }
@@ -166,9 +167,7 @@ const StyledInput = styled.input`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
-  padding: 0 10px;
-  height: 35px;
+  padding: 0 8px;
   font-size: 15px;
   border: none;
   //box-shadow: 0 0 0 1px var(--input-border-color, '#d4d4d4');
@@ -214,4 +213,13 @@ const StyledFoooter = styled.div`
     flex-grow: 1;
   }
 `;
-const StyledHeader = StyledFoooter;
+const StyledHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding: 4px 0px;
+  > div:first-child {
+    flex-grow: 1;
+  }
+`;

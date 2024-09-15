@@ -1,4 +1,3 @@
-import * as Form from '@radix-ui/react-form';
 import React, { LabelHTMLAttributes, memo } from 'react';
 import { styled } from 'styled-components';
 
@@ -17,9 +16,8 @@ LabelBase.displayName = 'LabelBase';
 
 export default memo(LabelBase);
 
-const StyledLabel = styled(Form.Label)`
+const StyledLabel = styled.label`
   color: var(---input-label-color, '#ffffff');
   font-size: 15px;
   font-weight: 500;
-  line-height: 35px;
 `;

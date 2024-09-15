@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify';
+//import DOMPurify from 'dompurify';
 import express, { Request, Response } from 'express';
 import PageController from '../controllers/pageController.js';
 import { Errors, RegEx, Responses } from '../lib/utils/constants.js';
@@ -51,7 +51,7 @@ pageRouter.get('/name/:name', async (req: Request, res: Response) => {
     if (ret) {
       res.status(200).json(ret);
     } else {
-      res.status(404).json({ message: `Item not found: ${id}` });
+      res.status(404).json({ message: `Item not found.` });
     }
   } catch (error) {
     Logger.error(`pageRouter: get name -> ${error}`);
@@ -69,15 +69,15 @@ pageRouter.post('/', async (req: Request, res: Response) => {
     const fileService = new PageFileService();
     const item: PageEdit = req.body;
 
-    const itemClean: PageEdit = {
-      ...item,
-      id: item.id,
-      name: DOMPurify.sanitize(item.name),
-      title: DOMPurify.sanitize(item.title),
-      text: DOMPurify.sanitize(item.text, { USE_PROFILES: { html: true } }),
-      to: DOMPurify.sanitize(item.to),
-      url: DOMPurify.sanitize(item.url),
-    };
+    // const itemClean: PageEdit = {
+    //   ...item,
+    //   id: item.id,
+    //   name: DOMPurify.sanitize(item.name),
+    //   title: DOMPurify.sanitize(item.title),
+    //   text: DOMPurify.sanitize(item.text, { USE_PROFILES: { html: true } }),
+    //   to: DOMPurify.sanitize(item.to),
+    //   url: DOMPurify.sanitize(item.url),
+    // };
 
     // Get next id
     const idNew = (await service2.getNextId()) ?? 0;
@@ -85,10 +85,9 @@ pageRouter.post('/', async (req: Request, res: Response) => {
       res.status(400).json({ error: 'Next Id not found.' });
     }
 
-    const updateFile =
-      typeof itemClean.text === 'string' && itemClean.text.length > 0;
-    const promise1 = service.addItem({ ...itemClean, id: idNew });
-    const promise2 = fileService.addFile(idNew, itemClean.text);
+    const updateFile = typeof item.text === 'string' && item.text.length > 0;
+    const promise1 = service.addItem({ ...item, id: idNew });
+    const promise2 = fileService.addFile(idNew, item.text);
     const promises = updateFile ? [promise1, promise2] : [promise1];
 
     const results = await Promise.allSettled(promises);
