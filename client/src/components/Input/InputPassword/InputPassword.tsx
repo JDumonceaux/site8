@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
-import PasswordAdornment from '../Adornments/EyeAdornment';
 import PasswordStartAdornment from '../Adornments/PasswordAdornment';
+import PasswordAdornment from '../Adornments/ShowAdornment';
 import InputBase, { InputBaseProps } from '../InputBase/InputBase';
 
 type InputPasswordProps = {

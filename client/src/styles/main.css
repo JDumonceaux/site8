@@ -4,12 +4,16 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --input-background: #ffffff;
+  --color-error: #ff0000;
+  --color-required: #be3455;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --input-background: var(--color-white);
   --input-color: #212121;
-  --input-error: #ff0000;
+  --input-error: var(--color-error);
   --input-border-radius: 4px;
   --input-border-color: #bebebe;
-  --input-border-required-color: #be3455;
+  --input-border-required-color: var(--color-required);
   --input-border-focus-color: #6db144;
   --input-border-hover-color: #7f7f7f;
   --input-label-color: #212121;
@@ -17,17 +21,18 @@
   --input-adornment-color: #838383;
   --input-helper-font-size: 0.75rem;
   --input-helper-font-color: #5d5d5d;
-  --input-helper-error-color: #ff0000;
+  --input-helper-error-color: var(--color-error);
+  --input-icon-color: #5d5d5d;
   --tooltip-label-color: #0f456e;
   --tooltip-background-color: #e5e5e5;
   --tooltip-border-color: #0f456e;
   --tooltip-arrow-color: #0f456e;
-  --palette-white: #ffffff;
   --status-info: #2196f3;
   --status-success: #21a67a;
   --status-warning: #ff000f;
-  --status-error: #ef3934;
-  -text-primary: #1f1f1f;
+  --status-error: var(--color-error);
+  --text-primary: #1f1f1f;
+  --text-primary-muted: #5d5d5d;
 
   --speed: 500ms;
 

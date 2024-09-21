@@ -1,10 +1,9 @@
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
-import InputEmail from 'components/Input/InputEmail/InputEmail';
-import InputPassword from 'components/Input/InputPassword/InputPassword';
-import InputTel from 'components/Input/InputTel/InputTel';
-import InputText from 'components/Input/InputText/InputText';
+import EmailAdornment from 'components/Input/Adornments/EmailAdornment';
+import ShowAdornment from 'components/Input/Adornments/ShowAdornment';
+import Input from 'components/Input/Input';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
@@ -88,6 +87,12 @@ const DevelopPage = (): JSX.Element => {
         <StyledMain.Article>
           <PageTitle title={title} />
           <section>
+            {/* <div>Title Issues</div> */}
+            <button type="button" onClick={onDialogOpen}>
+              Open Dialog
+            </button>
+            <br />
+            <br />
             <form onSubmit={handleSubmit}>
               {/* <StyledButton>
                 <StyledSaveButton
@@ -103,7 +108,7 @@ const DevelopPage = (): JSX.Element => {
                 value={getFieldValue('title')}
                 onChange={handleChange}
               /> */}
-              <InputText
+              <Input.Text
                 id="title"
                 //   helpProps={{ helpText: 'Enter a title' }}
                 label="Title"
@@ -115,18 +120,21 @@ const DevelopPage = (): JSX.Element => {
                 required
                 //spellCheck
                 showCounter
-                toolTipProps={{ label: 'Enter a title' }}
+                toolTipProps={{ content: 'Enter a title' }}
                 //      value={getFieldValue('title')}
 
                 //layout="horizontal"
                 startAdornment={'x:'}
+                endAdornments={[
+                  'mm',
+                  <div>
+                    <button type="button">+</button>{' '}
+                    <button type="button">-</button>
+                  </div>,
+                ]}
               />
-              {/* <div>Title Issues</div> */}
-              <button type="button" onClick={onDialogOpen}>
-                Open Dialog
-              </button>
 
-              <InputText
+              <Input.Text
                 id="name"
                 label="Name"
                 minLength={10}
@@ -138,26 +146,28 @@ const DevelopPage = (): JSX.Element => {
                 value={getFieldValue('name')}
                 messageProps={{ match: 'tooShort', name: 'x' }}
               />
-              <InputPassword
+              <Input.Password
                 id="password"
                 label="Password"
                 onChange={handleChange}
                 placeholder="Enter a password"
                 value={getFieldValue('password')}
+                endAdornments={<ShowAdornment />}
               />
-              <InputTel
+              <Input.Tel
                 id="phone"
                 label="Phone"
                 onChange={handleChange}
                 placeholder="Enter a phone number"
                 value={getFieldValue('phone')}
               />
-              <InputEmail
+              <Input.Email
                 id="email"
                 label="Email"
                 onChange={handleChange}
                 placeholder="Enter an Email"
                 value={getFieldValue('email')}
+                startAdornment={<EmailAdornment />}
               />
             </form>
           </section>

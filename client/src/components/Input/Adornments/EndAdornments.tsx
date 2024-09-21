@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
-type StartAdornmentProps = {
+type EndAdornmentsProps = {
   readonly children?: React.ReactNode | string | number | boolean;
 };
 
-const StartAdornment = ({ children }: StartAdornmentProps) => {
+const EndAdornments = ({ children }: EndAdornmentsProps) => {
   if (!children) return null;
 
   const isString = (value) =>
@@ -35,19 +35,17 @@ const StartAdornment = ({ children }: StartAdornmentProps) => {
   throw new Error('Invalid type passed as child.');
 };
 
-StartAdornment.displayName = 'StartAdornment';
+EndAdornments.displayName = 'EndAdornments';
 
-export default memo(StartAdornment);
+export default memo(EndAdornments);
 
 const StyledDiv = styled.div`
   color: var(--input-adornment-color);
   margin-left: 8px;
   margin-right: 8px;
-  user-select: none;
 `;
 const StyledVLine = styled.div`
   background-color: var(--input-adornment-color);
   width: 1px;
   height: 60%;
-  user-select: none;
 `;

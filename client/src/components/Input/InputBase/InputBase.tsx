@@ -5,11 +5,15 @@ import React, {
 } from 'react';
 import { styled } from 'styled-components';
 
+import DeleteAdornment from '../Adornments/DeleteAdornment';
+import EndAdornments from '../Adornments/EndAdornments';
 import StartAdornment from '../Adornments/StartAdornment';
 import InputCounter from '../InputCounter/InputCounter';
 import InputHelp, { InputHelpProps } from '../InputHelp/InputHelp';
-import InputTooltip, { InputTooltipProps } from '../InputTooltip/InputTooltip';
+
 import LabelBase from '../LabelBase/LabelBase';
+import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
+import QuestionMark from '../Tooltip/Tooltips/QuestionMark';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -43,9 +47,14 @@ type InputBaseProps = {
   readonly messageProps?: any;
   readonly helpProps?: InputHelpProps;
   readonly errorText?: React.ReactNode | string | string[];
-  readonly toolTipProps?: InputTooltipProps;
-  readonly endAdornment?: React.ReactNode;
-  readonly startAdornment?: React.ReactNode;
+  readonly toolTipProps?: TooltipProps;
+  readonly endAdornments?:
+    | (React.ReactNode | string | number | boolean)[]
+    | React.ReactNode
+    | string
+    | number
+    | boolean;
+  readonly startAdornment?: React.ReactNode | string | number | boolean;
   readonly showClear?: boolean;
   readonly showError?: boolean;
   readonly showCounter?: boolean;
@@ -71,7 +80,7 @@ const InputBase = ({
   messageProps,
   helpProps,
   toolTipProps,
-  endAdornment,
+  endAdornments,
   startAdornment,
   showClear = true,
   showCounter = false,
@@ -101,15 +110,13 @@ const InputBase = ({
   return (
     <StyledFormField id={id}>
       <StyledHeader>
-        <LabelBase label={label} ref={labelRef} {...labelProps}>
-          {/* <Form.Message match={match}>{name}</Form.Message> */}
-        </LabelBase>
-        {/* <RequiredLabel
-          {...requiredLabelProps}
-          label={requiredLabel}
-          show={required && showRequired}
-        /> */}
-        <InputTooltip {...toolTipProps} />
+        <LabelBase
+          label={label}
+          ref={labelRef}
+          {...labelProps}
+          required={required}
+        />
+        <Tooltip {...toolTipProps} trigger={<QuestionMark />} />
       </StyledHeader>
       <StyledInputWrapper>
         <StartAdornment>{startAdornment}</StartAdornment>
@@ -119,9 +126,8 @@ const InputBase = ({
           ref={inputRef}
           aria-describedby={counterId}
         />
-        {/* {showError ? <ErrorAdornment /> : null}
-          {showClear ? <DeleteAdornment /> : null}
-          {endAdornment} */}
+        {showClear ? <DeleteAdornment /> : null}
+        <EndAdornments>{endAdornments}</EndAdornments>
       </StyledInputWrapper>
       <StyledFoooter>
         <InputHelp {...helpProps} />
@@ -159,6 +165,9 @@ const StyledInputWrapper = styled.div`
   height: 32px;
   &:focus:within {
     box-shadow: 0 0 0 1px var(--input-border-focus-color);
+  }
+  &:has(input[required]) {
+    border-left: 3px solid var(--input-border-required-color, '#ff0000');
   }
 `;
 const StyledInput = styled.input`

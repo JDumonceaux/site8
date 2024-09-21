@@ -1,71 +1,47 @@
-import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
-import * as Tooltip from '@radix-ui/react-tooltip';
-import { memo } from 'react';
+import * as TooltipRadix from '@radix-ui/react-tooltip';
+import React, { memo } from 'react';
 import { keyframes, styled } from 'styled-components';
 
-type InputTooltipProps = {
+type TooltipProps = {
   // This should be translated
-  readonly label?: string | undefined;
-  readonly tooltipProps?: Tooltip.TooltipProps;
-  readonly triggerProps?: Tooltip.TooltipTriggerProps;
-  readonly arrowProps?: Tooltip.TooltipArrowProps;
+  readonly content: React.ReactNode;
+  readonly trigger?: React.ReactNode;
+  readonly tooltipProps?: TooltipRadix.TooltipProps;
+  readonly triggerProps?: TooltipRadix.TooltipTriggerProps;
+  readonly arrowProps?: TooltipRadix.TooltipArrowProps;
+  readonly children?: never;
 };
 
-const InputTooltip = ({
-  label,
+const Tooltip = ({
+  content,
+  trigger,
   tooltipProps,
   triggerProps,
   arrowProps,
-}: InputTooltipProps): JSX.Element => {
-  if (!label) {
+}: TooltipProps): JSX.Element => {
+  if (!content) {
     return <></>;
   }
 
   return (
-    <Tooltip.Provider>
-      <Tooltip.Root {...tooltipProps}>
-        <Tooltip.Trigger {...triggerProps}>
-          <QuestionMarkCircledIcon />
-          {/* <StyledButton type="button">
-            <HelpIcon />
-          </StyledButton> */}
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <StyledContent>
-            <StyledArrow {...arrowProps} />
-            {label}
-          </StyledContent>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+    <TooltipRadix.Provider>
+      <TooltipRadix.Root {...tooltipProps}>
+        <TooltipRadix.Trigger {...triggerProps}>{trigger}</TooltipRadix.Trigger>
+        <StyledContent>
+          <StyledArrow {...arrowProps} />
+          {content}
+        </StyledContent>
+      </TooltipRadix.Root>
+    </TooltipRadix.Provider>
   );
 };
 
-InputTooltip.displayName = 'InputTooltip';
+Tooltip.displayName = 'Tooltip';
 
-export default memo(InputTooltip);
-export type { InputTooltipProps };
+export default memo(Tooltip);
+export type { TooltipProps };
 
-const StyledButton = styled.button`
-  font-family: inherit;
-  border-radius: 100%;
-  height: 35px;
-  width: 35px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--palette-white);
-  background-color: inherit;
-  box-shadow: 0 2px 10px var(--tooltip-border-color);
-  user-select: none;
-  :hover {
-    background-color: var(--tooltip-border-color);
-  }
-  :focus {
-    box-shadow: 0 0 0 2px black;
-  }
-`;
-const StyledArrow = styled(Tooltip.Arrow)`
+const StyledArrow = styled(TooltipRadix.Arrow)`
   fill: var(--tooltip-arrow-color);
 `;
 const scaleIn = keyframes`
@@ -133,7 +109,7 @@ const slideLeftAndFade = keyframes`
     opacity: 1;
     transform: translateX(0);
   }`;
-const StyledContent = styled(Tooltip.Content)`
+const StyledContent = styled(TooltipRadix.Content)`
   border-radius: 18px;
   border: 1px solid var(--tooltip-border-color);
   padding: 6px 18px;
