@@ -48,7 +48,7 @@ type InputBaseProps = {
   readonly helpProps?: InputHelpProps;
   readonly errorText?: React.ReactNode | string | string[];
   readonly toolTipProps?: TooltipProps;
-  readonly endAdornments?:
+  readonly endAdornment?:
     | (React.ReactNode | string | number | boolean)[]
     | React.ReactNode
     | string
@@ -80,7 +80,7 @@ const InputBase = ({
   messageProps,
   helpProps,
   toolTipProps,
-  endAdornments,
+  endAdornment,
   startAdornment,
   showClear = true,
   showCounter = false,
@@ -127,7 +127,7 @@ const InputBase = ({
           aria-describedby={counterId}
         />
         {showClear ? <DeleteAdornment /> : null}
-        <EndAdornments>{endAdornments}</EndAdornments>
+        <EndAdornments>{endAdornment}</EndAdornments>
       </StyledInputWrapper>
       <StyledFoooter>
         <InputHelp {...helpProps} />

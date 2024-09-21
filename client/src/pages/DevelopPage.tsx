@@ -125,7 +125,7 @@ const DevelopPage = (): JSX.Element => {
 
                 //layout="horizontal"
                 startAdornment={'x:'}
-                endAdornments={[
+                endAdornment={[
                   'mm',
                   <div>
                     <button type="button">+</button>{' '}
@@ -152,7 +152,8 @@ const DevelopPage = (): JSX.Element => {
                 onChange={handleChange}
                 placeholder="Enter a password"
                 value={getFieldValue('password')}
-                endAdornments={<ShowAdornment />}
+                endAdornment={<ShowAdornment />}
+                helpProps={{ helpText: 'Enter a password' }}
               />
               <Input.Tel
                 id="phone"
