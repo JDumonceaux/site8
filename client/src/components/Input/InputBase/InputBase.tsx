@@ -3,14 +3,14 @@ import React, {
   InputHTMLAttributes,
   memo,
 } from 'react';
-import { styled } from 'styled-components';
 
-import DeleteAdornment from '../Adornments/DeleteAdornment';
-import EndAdornments from '../Adornments/EndAdornments';
+import ClearAdornment from '../Adornments/ClearAdornment';
 import StartAdornment from '../Adornments/StartAdornment';
 import InputCounter from '../InputCounter/InputCounter';
 import InputHelp, { InputHelpProps } from '../InputHelp/InputHelp';
 
+import styled from 'styled-components';
+import EndAdornment from '../Adornments/EndAdornment';
 import LabelBase from '../LabelBase/LabelBase';
 import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
 import QuestionMark from '../Tooltip/Tooltips/QuestionMark';
@@ -38,7 +38,8 @@ declare const validityMatchers: readonly [
 ];
 
 type InputBaseProps = {
-  readonly id?: string;
+  readonly id: string;
+  readonly value: string | number | string[];
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly label?: string;
   readonly labelRef?: React.RefObject<HTMLLabelElement>;
@@ -59,11 +60,13 @@ type InputBaseProps = {
   readonly showError?: boolean;
   readonly showCounter?: boolean;
   readonly showRequired?: boolean;
+  readonly allowedCharacters?: RegExp;
   readonly requiredLabel?: string;
   readonly requiredLabelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
+  readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
 } & Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'accesskey' | 'autocorrect' | 'id' | 'name'
+  'accesskey' | 'autocorrect' | 'id' | 'name' | 'onChange' | 'value'
 >;
 
 // Input Attributes
@@ -71,7 +74,8 @@ type InputBaseProps = {
 // autocorrect: a non-standard Safari attribute
 
 const InputBase = ({
-  id = 'x',
+  id,
+  value,
   inputRef,
   label,
   labelRef,
@@ -88,11 +92,11 @@ const InputBase = ({
   showRequired = true,
   requiredLabel = 'Required',
   requiredLabelProps,
+  onChange,
   ...rest
 }: InputBaseProps): JSX.Element => {
   const { match, name } = messageProps || {};
   const maxLength = rest.maxLength;
-  const value = rest.value;
   const required = rest.required;
   const characterCount = (() => {
     if (typeof value === 'string' || value instanceof String) {
@@ -106,6 +110,21 @@ const InputBase = ({
     }
   })();
   const counterId = 'counter-' + id;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('e: ', e);
+    onChange(e);
+  };
+
+  const handleClear = (e) => {
+    console.log('eee', e);
+    console.log('clear');
+    e.preventDefault();
+    onChange({
+      ...e,
+      target: { id: 'title', value: '' },
+    } as React.ChangeEvent<HTMLInputElement>);
+  };
 
   return (
     <StyledFormField id={id}>
@@ -121,13 +140,16 @@ const InputBase = ({
       <StyledInputWrapper>
         <StartAdornment>{startAdornment}</StartAdornment>
         <StyledInput
+          id={id}
+          value={value}
           type={type}
           {...rest}
           ref={inputRef}
           aria-describedby={counterId}
+          onChange={handleChange}
         />
-        {showClear ? <DeleteAdornment /> : null}
-        <EndAdornments>{endAdornment}</EndAdornments>
+        {showClear ? <ClearAdornment onClick={handleClear} /> : null}
+        <EndAdornment>{endAdornment}</EndAdornment>
       </StyledInputWrapper>
       <StyledFoooter>
         <InputHelp {...helpProps}>{helpProps?.children}</InputHelp>

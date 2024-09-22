@@ -1,4 +1,4 @@
-import { IconButton } from 'components/form/IconButton';
+import { IconButton } from 'components/form/IconButton/IconButton';
 import { CloseIcon } from 'components/icons/CloseIcon';
 import useSnackbar from 'hooks/useSnackbar';
 import { memo, useCallback } from 'react';

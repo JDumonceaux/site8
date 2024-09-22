@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon as Icon } from '@radix-ui/react-icons';
@@ -6,35 +6,47 @@ import { IconProps } from '@radix-ui/react-icons/dist/types';
 import { styled } from 'styled-components';
 import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
 
-type DeleteAdornmentProps = {
+type ClearAdornmentProps = {
   readonly ref?: React.Ref<HTMLButtonElement>;
   readonly label?: string;
   readonly iconProps?: IconProps;
+  readonly icon?: React.ReactNode;
+  readonly onClick: React.MouseEventHandler<HTMLButtonElement>;
+  readonly ariaLabel?: string;
 } & Omit<TooltipProps, 'content' | 'trigger'>;
 
-const DeleteAdornment = ({
+const ClearAdornment = ({
   ref,
   label = 'Clear contents',
+  ariaLabel = 'clear contents',
   iconProps,
+  icon,
+  onClick,
   ...rest
-}: DeleteAdornmentProps) => {
+}: ClearAdornmentProps) => {
   return (
     <Tooltip
-      content="Clear contents"
+      content={label}
       trigger={
         <StyledTrigger>
-          <AccessibleIcon label={label}>
-            <Icon {...iconProps} />
-          </AccessibleIcon>
+          <StyledButton
+            aria-label={ariaLabel}
+            type="button"
+            {...rest}
+            onClick={onClick}>
+            <AccessibleIcon label={label}>
+              {icon ? icon : <Icon {...iconProps} />}
+            </AccessibleIcon>
+          </StyledButton>
         </StyledTrigger>
       }
     />
   );
 };
 
-DeleteAdornment.displayName = 'DeleteAdornment';
+ClearAdornment.displayName = 'ClearAdornment';
 
-export default memo(DeleteAdornment);
+export default memo(ClearAdornment);
 
 const StyledTrigger = styled.div`
   margin: 0 8px;
@@ -47,5 +59,9 @@ const StyledTrigger = styled.div`
   }
   svg {
     margin: auto;
+  }
+`;
+const StyledButton = styled.button`
+  > svg {
   }
 `;

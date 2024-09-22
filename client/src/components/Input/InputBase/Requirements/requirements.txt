@@ -1,0 +1,66 @@
+1. Light mode / Dark mode
+2. Shrink / Expand
+3. Hide or change elements on very small
+4. Test with accessibility tools
+    Color contrast
+    Audio
+    Aria-rules
+5. Microinteractions
+    Unlock password
+    Open email envelop
+6. Animations
+    Focus / leave
+7. Help expansion field
+8. Form validation
+9. List elements 
+    Styling
+    Selection
+    Animation
+10. Multirows?
+11. Character limit
+12. Variants
+    Default
+    Discreet
+    Readonly
+        Cascade readonly to all elements
+13. Orientation
+    Vertical
+    Horizontal
+    Tight?  Label shrinks into top border
+14. Sizes
+    Small
+    Medium
+    Large
+15. Input scenarios
+    First name
+    Last name
+    Middle name
+    Prefix
+    Suffix
+    Name as shown on card
+    Preferred name
+    Address1
+    Address2
+    City
+    State
+    Postal Code
+    County
+    SSN
+    ID
+    Credit card
+    Birthdate
+    Sex
+    Preferred Sex
+
+16. Testing
+    Browser Input
+17. Mobile
+    Inputmode (keyboard)    
+18. Css options
+    User-select: none
+19. Required vs. * 
+    Allow display of required
+20. Structured Input
+    (   )     -    
+
+

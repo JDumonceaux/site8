@@ -1,5 +1,5 @@
 import { Button2 } from 'components/form/Button2/Button2';
-import { EmailField } from 'components/Input';
+
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/Meta/Meta';
 import useAuth from 'hooks/useAuth';
@@ -9,6 +9,7 @@ import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
+import Input from 'components/Input/Input';
 import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 import AuthContainer from './AuthContainer';
 
@@ -71,9 +72,9 @@ const ForgotPasswordPage = (): JSX.Element => {
           // aria-invalid={error ? 'true' : 'false'}
           noValidate
           onSubmit={handleSubmit}>
-          <EmailField
+          <Input.Email
             autoComplete="email"
-            errorTextShort="Please enter an email address"
+            //   errorTextShort="Please enter an email address"
             inputMode="email"
             label="Email Address"
             multiple={false}
@@ -81,7 +82,6 @@ const ForgotPasswordPage = (): JSX.Element => {
             placeholder="Enter Email Address"
             required
             spellCheck="false"
-            type="email"
             {...getDefaultFields('emailAddress' as keys)}
           />
           <InstDiv>

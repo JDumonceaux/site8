@@ -1,16 +1,14 @@
-import { PasswordField } from '@aws-amplify/ui-react';
-
+import Button from 'components/form/Button/Button';
+import { PasswordField } from 'components/Input/PasswordField';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/Meta/Meta';
+import { password } from 'components/pages/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
-
-import Button from 'components/form/Button/Button';
-import { password } from 'components/pages/auth/ZodStrings';
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape

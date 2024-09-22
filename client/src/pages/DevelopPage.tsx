@@ -4,12 +4,10 @@ import { useDialog } from 'components/core/Dialog/useDialog';
 import EmailAdornment from 'components/Input/Adornments/EmailAdornment';
 import ShowAdornment from 'components/Input/Adornments/ShowAdornment';
 import Input from 'components/Input/Input';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
 import { useForm } from 'hooks/useForm';
 import { useCallback, useMemo } from 'react';
-import { styled } from 'styled-components';
 import { z } from 'zod';
 
 // Define Zod Shape
@@ -241,38 +239,54 @@ const DevelopPage = (): JSX.Element => {
                     toolTipProps={{ content: 'Enter a title' }}
                     //      value={getFieldValue('title')}
 
-                    //layout="horizontal"
-                    startAdornment={'x:'}
-                    endAdornment={[
-                      'mm',
-                      <div>
-                        <button type="button">+</button>{' '}
-                        <button type="button">-</button>
-                      </div>,
-                    ]}
-                  />
-                  <Input.Text
-                    id="name"
-                    label="Name"
-                    minLength={10}
-                    // onBlur={handeNameOnBlur}
-                    onChange={handleChange}
-                    placeholder="Enter a name"
-                    required
-                    spellCheck
-                    value={getFieldValue('name')}
-                    messageProps={{ match: 'tooShort', name: 'x' }}
-                  />
+                //layout="horizontal"
+                value={getFieldValue('title')}
+                startAdornment={'x:'}
+                endAdornment={[
+                  'mm',
+                  <div>
+                    <button type="button">+</button>{' '}
+                    <button type="button">-</button>
+                  </div>,
+                ]}
+              />
 
-                  <Input.Tel
-                    id="phone"
-                    label="Phone"
-                    onChange={handleChange}
-                    placeholder="Enter a phone number"
-                    value={getFieldValue('phone')}
-                  />
-                </div>
-              </Grid>
+              <Input.Text
+                id="name"
+                label="Name"
+                minLength={10}
+                // onBlur={handeNameOnBlur}
+                onChange={handleChange}
+                placeholder="Enter a name"
+                required
+                spellCheck
+                value={getFieldValue('name')}
+                messageProps={{ match: 'tooShort', name: 'x' }}
+              />
+              <Input.Password
+                id="password"
+                label="Password"
+                onChange={handleChange}
+                placeholder="Enter a password"
+                value={getFieldValue('password')}
+                endAdornment={<ShowAdornment />}
+                helpProps={{ helpText: 'Enter a password' }}
+              />
+              <Input.Tel
+                id="phone"
+                label="Phone"
+                onChange={handleChange}
+                placeholder="Enter a phone number"
+                value={getFieldValue('phone')}
+              />
+              <Input.Email
+                id="email"
+                label="Email"
+                onChange={handleChange}
+                placeholder="Enter an Email"
+                value={getFieldValue('email')}
+                startAdornment={<EmailAdornment />}
+              />
             </form>
           </section>
         </StyledMain.Article>
