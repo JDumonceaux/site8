@@ -1,6 +1,6 @@
 import { Divider } from '@aws-amplify/ui-react';
 import Button from 'components/form/Button/Button';
-import { EmailField, PasswordField } from 'components/Input';
+import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/Meta/Meta';
 import { emailAddress, password } from 'components/pages/auth/ZodStrings';
@@ -101,20 +101,18 @@ const SignupPage = (): JSX.Element => {
           // aria-invalid={error ? 'true' : 'false'}
           // noValidate
           onSubmit={handleSubmit}>
-          <EmailField
+          <Input.Email
             autoComplete="email"
-            errorTextShort="Please enter an email address"
-            inputMode="email"
+            //errorTextShort="Please enter an email address"
             label="Email Address"
             multiple={false}
             onChange={handleChange}
             placeholder="Enter your email"
             required
             spellCheck="false"
-            type="email"
             {...getDefaultFields('emailAddress' as keys)}
           />
-          <PasswordField
+          <Input.Password
             autoComplete="new-password"
             label="Password"
             placeholder="Enter your password"

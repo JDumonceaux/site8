@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
-type EndAdornmentsProps = {
+type EndAdornmentProps = {
   readonly children?: React.ReactNode | string | number | boolean;
 };
 
-const EndAdornments = ({ children }: EndAdornmentsProps) => {
+const EndAdornment = ({ children }: EndAdornmentProps) => {
   if (!children) return null;
 
   const isString = (value) =>
@@ -35,9 +35,9 @@ const EndAdornments = ({ children }: EndAdornmentsProps) => {
   throw new Error('Invalid type passed as child.');
 };
 
-EndAdornments.displayName = 'EndAdornments';
+EndAdornment.displayName = 'EndAdornments';
 
-export default memo(EndAdornments);
+export default memo(EndAdornment);
 
 const StyledDiv = styled.div`
   color: var(--input-adornment-color);

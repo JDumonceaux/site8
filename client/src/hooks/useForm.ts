@@ -41,6 +41,7 @@ export const useForm = <T>(initialValues: T) => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
+    console.log('handleChange event: ', event);
     const { id: fieldName, value } = event.target;
     if (!fieldName) {
       console.warn('No id found in event target');

@@ -124,6 +124,7 @@ const DevelopPage = (): JSX.Element => {
                 //      value={getFieldValue('title')}
 
                 //layout="horizontal"
+                value={getFieldValue('title')}
                 startAdornment={'x:'}
                 endAdornment={[
                   'mm',

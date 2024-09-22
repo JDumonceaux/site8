@@ -1,6 +1,4 @@
 import { Button2 } from 'components/form/Button2/Button2';
-import { EmailField } from 'components/Input';
-import InputText from 'components/Input/InputText/InputText';
 import Meta from 'components/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
@@ -9,6 +7,7 @@ import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
+import Input from 'components/Input/Input';
 import { authCode } from 'components/pages/auth/ZodStrings';
 import AuthContainer from './AuthContainer';
 
@@ -98,9 +97,9 @@ const ConfirmEmailPage = (): JSX.Element => {
         leftImage={<img alt="" src="/images/bowler.jpg" />}
         title="Confirm Email">
         <StyledForm noValidate onSubmit={handleSubmit}>
-          <EmailField
+          <Input.Email
             autoComplete="email"
-            errorTextShort="Please enter an email address"
+            //   errorTextShort="Please enter an email address"
             inputMode="email"
             label="Email Address"
             multiple={false}
@@ -108,10 +107,9 @@ const ConfirmEmailPage = (): JSX.Element => {
             placeholder="Enter Email Address"
             required
             spellCheck="false"
-            type="email"
             {...getDefaultFields('emailAddress')}
           />
-          <InputText
+          <Input.Number
             autoComplete="one-time-code"
             // errorTextShort="Please enter an authentication code"
             // helpText={['Check your email for the authentication code.']}
