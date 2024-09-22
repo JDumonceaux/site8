@@ -146,8 +146,10 @@ const DevelopPage = (): JSX.Element => {
                       spellCheck
                       value={getFieldValue('name')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
+                      helpProps={{
+                        children: 'Examples: Sr., Jr., IV',
+                      }}
                     />
-                    <span>Examples: Sr., Jr., IV</span>
                   </Grid>
                   <span>Date of Birth</span>
                   <div style={{ display: 'flex' }}>
@@ -203,7 +205,7 @@ const DevelopPage = (): JSX.Element => {
                     placeholder="Enter a password"
                     value={getFieldValue('password')}
                     endAdornment={<ShowAdornment />}
-                    helpProps={{ helpText: 'Enter a password' }}
+                    helpProps={{ children: 'Enter a password' }}
                   />
                   <Input.Text
                     id="name"
@@ -216,8 +218,12 @@ const DevelopPage = (): JSX.Element => {
                     spellCheck
                     value={getFieldValue('name')}
                     messageProps={{ match: 'tooShort', name: 'x' }}
+                    helpProps={{
+                      children: (
+                        <span>? Where do I find this? (Expansion section)</span>
+                      ),
+                    }}
                   />
-                  <span>? Where do I find this? (Expansion section)</span>
                 </div>
                 <div>
                   <Input.Text

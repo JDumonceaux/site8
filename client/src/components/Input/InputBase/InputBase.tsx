@@ -130,7 +130,7 @@ const InputBase = ({
         <EndAdornments>{endAdornment}</EndAdornments>
       </StyledInputWrapper>
       <StyledFoooter>
-        <InputHelp {...helpProps} />
+        <InputHelp {...helpProps}>{helpProps?.children}</InputHelp>
         <InputCounter
           id={counterId}
           maxLength={maxLength}
@@ -150,7 +150,6 @@ export type { InputBaseProps };
 
 const StyledFormField = styled.div`
   display: grid;
-  margin-bottom: 10px;
 `;
 const StyledInputWrapper = styled.div`
   display: flex;
@@ -217,7 +216,6 @@ const StyledFoooter = styled.div`
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
-  padding: 6px 0px;
   > div:first-child {
     flex-grow: 1;
   }

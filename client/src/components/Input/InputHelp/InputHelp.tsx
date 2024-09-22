@@ -1,44 +1,50 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
 type InputHelpProps = {
-  readonly helpText?: React.ReactNode | string | string[];
+  readonly children: React.ReactNode | string | string[];
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'id'>;
 
-const InputHelp = ({ helpText }: InputHelpProps): JSX.Element => {
-  const getHelperText = useCallback(
-    (msg: React.ReactNode | string | string[] | undefined) => {
-      // if (!msg) return null;
-      // if (React.isValidElement(msg)) return msg;
-      // if (!Array.isArray(msg)) return <div>{msg}</div>;
+const InputHelp = ({ children, ...rest }: InputHelpProps): JSX.Element => {
+  if (!children) return null;
+
+  const isString = (children) =>
+    typeof children === 'string' || children instanceof String;
+  const isNumber = (children) =>
+    typeof children === 'number' || children instanceof Number;
+  const isBoolean = (children) =>
+    typeof children === 'boolean' || children instanceof Boolean;
+  const isArray = Array.isArray(children);
+
+  if (isString || isNumber || isBoolean) {
+    return (
+      <StyledDiv data-testid="input-help" {...rest}>
+        {children}
+      </StyledDiv>
+    );
+  }
+
+  if (isArray) {
+    if (children.length > 1) {
+      return <StyledDiv data-testid="input-help" {...rest}></StyledDiv>;
+    } else {
       return (
-        <ul>
-          <li className="invalid">Minimum 8 characters</li>
-          <li className="invalid">Lowercase letter</li>
-          <li className="valid">Uppercase letter</li>
-          <li className="invalid">Number</li>
-        </ul>
+        <StyledDiv data-testid="input-help" {...rest}>
+          <ul>
+            {children.map((item, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={`item-${index}`}>{item}</li>
+            ))}
+          </ul>
+        </StyledDiv>
       );
+    }
+  }
 
-      // if (msg.length > 1) {
-      //   return (
-      //     <ul>
-      //       {msg.map((item, index) => (
-      //         // eslint-disable-next-line react/no-array-index-key
-      //         <li key={`item-${index}`}>{item}</li>
-      //       ))}
-      //     </ul>
-      //   );
-      // } else {
-      //   return <div>{msg[0]}</div>;
-      // }
-    },
-    [],
-  );
-
-  return (
-    <StyledDiv data-testid="input-help">{getHelperText(helpText)}</StyledDiv>
-  );
+  if (React.isValidElement(children)) {
+    return <div {...rest}>{children}</div>;
+  }
+  throw new Error('Invalid type passed as child.');
 };
 
 InputHelp.displayName = 'InputHelp';
