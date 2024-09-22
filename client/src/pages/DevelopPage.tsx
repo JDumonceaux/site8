@@ -94,82 +94,179 @@ const DevelopPage = (): JSX.Element => {
             <br />
             <br />
             <form onSubmit={handleSubmit}>
-              {/* <StyledButton>
-                <StyledSaveButton
-                  data-testid="button-save"
-                  onClick={handleSubmit}
-                  type="submit">
-                  {isSaved ? 'Saved' : 'Save'}
-                </StyledSaveButton>
-              </StyledButton>*/}
-              {/* <input
-                id="title"
-                type="text"
-                value={getFieldValue('title')}
-                onChange={handleChange}
-              /> */}
-              <Input.Text
-                id="title"
-                //   helpProps={{ helpText: 'Enter a title' }}
-                label="Title"
-                //minLength={10}
-                maxLength={100}
-                // onBlur={handeNameOnBlur}
-                onChange={handleChange}
-                placeholder="Enter a title"
-                required
-                //spellCheck
-                showCounter
-                toolTipProps={{ content: 'Enter a title' }}
-                //      value={getFieldValue('title')}
+              <Grid>
+                <div>
+                  <Grid>
+                    <Input.Text
+                      id="name"
+                      label="First Name"
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
+                      placeholder="Enter a name"
+                      required
+                      spellCheck
+                      value={getFieldValue('name')}
+                      messageProps={{ match: 'tooShort', name: 'x' }}
+                    />
+                    <Input.Text
+                      id="name"
+                      label="Last Name"
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
+                      placeholder="Enter a name"
+                      required
+                      spellCheck
+                      value={getFieldValue('name')}
+                      messageProps={{ match: 'tooShort', name: 'x' }}
+                    />
+                  </Grid>
+                  <Grid>
+                    <Input.Text
+                      id="name"
+                      label="Middle Name (optional)"
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
+                      placeholder="Enter a name"
+                      required
+                      spellCheck
+                      value={getFieldValue('name')}
+                      messageProps={{ match: 'tooShort', name: 'x' }}
+                    />
+                    <Input.Text
+                      id="name"
+                      label="Suffix (optional)"
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
+                      placeholder="Enter a name"
+                      required
+                      spellCheck
+                      value={getFieldValue('name')}
+                      messageProps={{ match: 'tooShort', name: 'x' }}
+                    />
+                    <span>Examples: Sr., Jr., IV</span>
+                  </Grid>
+                  <span>Date of Birth</span>
+                  <div style={{ display: 'flex' }}>
+                    <Input.Number
+                      id="name"
+                      label="Month"
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
+                      placeholder="Enter a name"
+                      required
+                      spellCheck
+                      value={getFieldValue('name')}
+                      messageProps={{ match: 'tooShort', name: 'x' }}
+                    />
+                    <Input.Number
+                      id="name"
+                      label="Day"
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
+                      placeholder="Enter a name"
+                      required
+                      spellCheck
+                      value={getFieldValue('name')}
+                      messageProps={{ match: 'tooShort', name: 'x' }}
+                    />
+                    <Input.Number
+                      id="name"
+                      label="Year"
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
+                      placeholder="Enter a name"
+                      required
+                      spellCheck
+                      value={getFieldValue('name')}
+                      messageProps={{ match: 'tooShort', name: 'x' }}
+                    />
+                  </div>
+                  <Input.Email
+                    id="email"
+                    label="Email"
+                    onChange={handleChange}
+                    placeholder="Enter an Email"
+                    value={getFieldValue('email')}
+                    startAdornment={<EmailAdornment />}
+                  />
+                  <Input.Password
+                    id="password"
+                    label="Password"
+                    onChange={handleChange}
+                    placeholder="Enter a password"
+                    value={getFieldValue('password')}
+                    endAdornment={<ShowAdornment />}
+                    helpProps={{ helpText: 'Enter a password' }}
+                  />
+                  <Input.Text
+                    id="name"
+                    label="Id"
+                    minLength={10}
+                    // onBlur={handeNameOnBlur}
+                    onChange={handleChange}
+                    placeholder="Enter a name"
+                    required
+                    spellCheck
+                    value={getFieldValue('name')}
+                    messageProps={{ match: 'tooShort', name: 'x' }}
+                  />
+                  <span>? Where do I find this? (Expansion section)</span>
+                </div>
+                <div>
+                  <Input.Text
+                    id="title"
+                    //   helpProps={{ helpText: 'Enter a title' }}
+                    label="Title"
+                    //minLength={10}
+                    maxLength={100}
+                    // onBlur={handeNameOnBlur}
+                    onChange={handleChange}
+                    placeholder="Enter a title"
+                    required
+                    //spellCheck
+                    showCounter
+                    toolTipProps={{ content: 'Enter a title' }}
+                    //      value={getFieldValue('title')}
 
-                //layout="horizontal"
-                startAdornment={'x:'}
-                endAdornment={[
-                  'mm',
-                  <div>
-                    <button type="button">+</button>{' '}
-                    <button type="button">-</button>
-                  </div>,
-                ]}
-              />
+                    //layout="horizontal"
+                    startAdornment={'x:'}
+                    endAdornment={[
+                      'mm',
+                      <div>
+                        <button type="button">+</button>{' '}
+                        <button type="button">-</button>
+                      </div>,
+                    ]}
+                  />
+                  <Input.Text
+                    id="name"
+                    label="Name"
+                    minLength={10}
+                    // onBlur={handeNameOnBlur}
+                    onChange={handleChange}
+                    placeholder="Enter a name"
+                    required
+                    spellCheck
+                    value={getFieldValue('name')}
+                    messageProps={{ match: 'tooShort', name: 'x' }}
+                  />
 
-              <Input.Text
-                id="name"
-                label="Name"
-                minLength={10}
-                // onBlur={handeNameOnBlur}
-                onChange={handleChange}
-                placeholder="Enter a name"
-                required
-                spellCheck
-                value={getFieldValue('name')}
-                messageProps={{ match: 'tooShort', name: 'x' }}
-              />
-              <Input.Password
-                id="password"
-                label="Password"
-                onChange={handleChange}
-                placeholder="Enter a password"
-                value={getFieldValue('password')}
-                endAdornment={<ShowAdornment />}
-                helpProps={{ helpText: 'Enter a password' }}
-              />
-              <Input.Tel
-                id="phone"
-                label="Phone"
-                onChange={handleChange}
-                placeholder="Enter a phone number"
-                value={getFieldValue('phone')}
-              />
-              <Input.Email
-                id="email"
-                label="Email"
-                onChange={handleChange}
-                placeholder="Enter an Email"
-                value={getFieldValue('email')}
-                startAdornment={<EmailAdornment />}
-              />
+                  <Input.Tel
+                    id="phone"
+                    label="Phone"
+                    onChange={handleChange}
+                    placeholder="Enter a phone number"
+                    value={getFieldValue('phone')}
+                  />
+                </div>
+              </Grid>
             </form>
           </section>
         </StyledMain.Article>
@@ -190,4 +287,9 @@ const StyledButton = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
+`;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 `;
