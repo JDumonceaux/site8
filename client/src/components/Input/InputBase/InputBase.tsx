@@ -9,7 +9,9 @@ import { InputHelpProps } from '../InputHelp/InputHelp';
 
 import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
-import { TooltipProps } from '../Tooltip/Tooltip';
+import LabelBase from '../LabelBase/LabelBase';
+import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
+import QuestionMark from '../Tooltip/Tooltips/QuestionMark';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -128,7 +130,7 @@ const InputBase = ({
 
   return (
     <StyledFormField id={id}>
-      {/* <StyledHeader>
+      <StyledHeader>
         <LabelBase
           htmlFor={id}
           label={label}
@@ -137,22 +139,25 @@ const InputBase = ({
           required={required}
         />
         <Tooltip {...toolTipProps} trigger={<QuestionMark />} />
-      </StyledHeader>*/}
-      <StyledInputWrapper>
-        {/*   <StartAdornment>{startAdornment}</StartAdornment> */}
-        <StyledInput
-          id={id}
-          key={id}
-          value={value}
-          type={type}
-          {...rest}
-          ref={inputRefLocal}
-          aria-describedby={counterId}
-          onChange={handleChange}
-        />
-        {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
-        {/* <EndAdornment>{endAdornment}</EndAdornment> */}
-      </StyledInputWrapper>
+      </StyledHeader>
+      <label>
+        Test
+        <StyledInputWrapper>
+          {/*   <StartAdornment>{startAdornment}</StartAdornment> */}
+          <StyledInput
+            id={id}
+            key={id}
+            value={value}
+            type={type}
+            {...rest}
+            ref={inputRefLocal}
+            aria-describedby={counterId}
+            onChange={handleChange}
+          />
+          {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
+          {/* <EndAdornment>{endAdornment}</EndAdornment> */}
+        </StyledInputWrapper>
+      </label>
       {/* <StyledFoooter>
         <InputHelp helpText={helpText} {...helpProps} />
         <InputCounter
@@ -180,21 +185,22 @@ const StyledInputWrapper = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  color: var(--input, '#ffffff');
+  color: var(--input-color);
   background-color: var(--input-background-color);
   border-radius: var(--input-border-radius, 0);
-  border: 1px solid var(--input-border);
+  border: 1px solid var(--input-border-color);
   width: 100%;
 
   :focus {
-    background-color: var(--input-background-color-focus);
+    background-color: var(--input-background-focus-color);
+    border-bottom: 1.5px solid var(--input-border-focus-color);
   }
 
-  &:focus:within {
-    box-shadow: 0 0 0 1px var(--input-border-focus);
-  }
+  // &:focus:within {
+  //   box-shadow: 0 0 0 1px var(--input-border-focus-color);
+  // }
   &:has(input[required]) {
-    border-left: 3px solid var(--input-border-required);
+    border-left: 3px solid var(--input-border-required-color);
   }
 `;
 const StyledInput = styled.input`
