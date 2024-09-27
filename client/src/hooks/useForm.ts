@@ -49,7 +49,12 @@ export const useForm = <T>(initialValues: T) => {
     setFieldValue(fieldName as keys, value);
   };
 
-  const handleClear = () => {
+  const handleClearField = (fieldName: keys) => {
+    console.log('handleClearField fieldName: ', fieldName);
+    setFieldValue(fieldName as keys, '');
+  };
+
+  const handleClearAll = () => {
     setFormValues({} as T);
     setIsSaved(true);
     setIsProcessing(false);
@@ -91,7 +96,8 @@ export const useForm = <T>(initialValues: T) => {
     getFieldErrors,
     getFieldValue,
     handleChange,
-    handleClear,
+    handleClearField,
+    handleClearAll,
     handleReset,
     hasError,
     isFormValid,

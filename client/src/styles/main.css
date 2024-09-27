@@ -8,9 +8,10 @@
   --color-required: #be3455;
   --color-white: #ffffff;
   --color-black: #000000;
-  --input-background: var(--color-white);
+  --input-background-color: var(--color-white);
+  --input-background-color-focus: #d1d1d1;
   --input-color: #212121;
-  --input-error: var(--color-error);
+  --input-error-color: var(--color-error);
   --input-border-radius: 4px;
   --input-border-color: #bebebe;
   --input-border-required-color: var(--color-required);

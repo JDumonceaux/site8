@@ -2,18 +2,14 @@ import React, {
   HTMLInputTypeAttribute,
   InputHTMLAttributes,
   memo,
+  useRef,
 } from 'react';
 
-import ClearAdornment from '../Adornments/ClearAdornment';
-import StartAdornment from '../Adornments/StartAdornment';
-import InputCounter from '../InputCounter/InputCounter';
-import InputHelp, { InputHelpProps } from '../InputHelp/InputHelp';
+import { InputHelpProps } from '../InputHelp/InputHelp';
 
 import styled from 'styled-components';
-import EndAdornment from '../Adornments/EndAdornment';
-import LabelBase from '../LabelBase/LabelBase';
-import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
-import QuestionMark from '../Tooltip/Tooltips/QuestionMark';
+import ClearAdornment from '../Adornments/ClearAdornment';
+import { TooltipProps } from '../Tooltip/Tooltip';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -46,6 +42,7 @@ type InputBaseProps = {
   readonly labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   readonly type: HTMLInputTypeAttribute;
   readonly messageProps?: any;
+  readonly helpText?: React.ReactNode | string | string[];
   readonly helpProps?: InputHelpProps;
   readonly errorText?: React.ReactNode | string | string[];
   readonly toolTipProps?: TooltipProps;
@@ -64,6 +61,7 @@ type InputBaseProps = {
   readonly requiredLabel?: string;
   readonly requiredLabelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  readonly onClear?: (id: string) => void;
 } & Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'accesskey' | 'autocorrect' | 'id' | 'name' | 'onChange' | 'value'
@@ -82,6 +80,7 @@ const InputBase = ({
   type,
   labelProps,
   messageProps,
+  helpText,
   helpProps,
   toolTipProps,
   endAdornment,
@@ -93,6 +92,8 @@ const InputBase = ({
   requiredLabel = 'Required',
   requiredLabelProps,
   onChange,
+  onClear,
+
   ...rest
 }: InputBaseProps): JSX.Element => {
   const { match, name } = messageProps || {};
@@ -112,54 +113,55 @@ const InputBase = ({
   const counterId = 'counter-' + id;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('e: ', e);
-    onChange(e);
+    onChange && onChange(e);
+    e.preventDefault();
   };
 
-  const handleClear = (e) => {
-    console.log('eee', e);
-    console.log('clear');
-    e.preventDefault();
-    onChange({
-      ...e,
-      target: { id: 'title', value: '' },
-    } as React.ChangeEvent<HTMLInputElement>);
+  const inputRefLocal = inputRef || useRef<HTMLInputElement>();
+
+  const handleClear = () => {
+    onClear && onClear(id);
+    inputRefLocal.current?.focus();
   };
+
+  const showClearButton = showClear && characterCount > 0 && onClear;
 
   return (
     <StyledFormField id={id}>
-      <StyledHeader>
+      {/* <StyledHeader>
         <LabelBase
+          htmlFor={id}
           label={label}
           ref={labelRef}
           {...labelProps}
           required={required}
         />
         <Tooltip {...toolTipProps} trigger={<QuestionMark />} />
-      </StyledHeader>
+      </StyledHeader>*/}
       <StyledInputWrapper>
-        <StartAdornment>{startAdornment}</StartAdornment>
+        {/*   <StartAdornment>{startAdornment}</StartAdornment> */}
         <StyledInput
           id={id}
+          key={id}
           value={value}
           type={type}
           {...rest}
-          ref={inputRef}
+          ref={inputRefLocal}
           aria-describedby={counterId}
           onChange={handleChange}
         />
-        {showClear ? <ClearAdornment onClick={handleClear} /> : null}
-        <EndAdornment>{endAdornment}</EndAdornment>
+        {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
+        {/* <EndAdornment>{endAdornment}</EndAdornment> */}
       </StyledInputWrapper>
-      <StyledFoooter>
-        <InputHelp {...helpProps}>{helpProps?.children}</InputHelp>
+      {/* <StyledFoooter>
+        <InputHelp helpText={helpText} {...helpProps} />
         <InputCounter
           id={counterId}
           maxLength={maxLength}
           showCounter={showCounter}
           characterCount={characterCount}
         />
-      </StyledFoooter>
+      </StyledFoooter> */}
     </StyledFormField>
   );
 };
@@ -178,17 +180,21 @@ const StyledInputWrapper = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  color: var(--input-color, '#ffffff');
-  background-color: var(--input-background, '#00000');
+  color: var(--input, '#ffffff');
+  background-color: var(--input-background-color);
   border-radius: var(--input-border-radius, 0);
-  border: 1px solid var(--input-border-color, '#d4d4d4');
+  border: 1px solid var(--input-border);
   width: 100%;
-  height: 32px;
+
+  :focus {
+    background-color: var(--input-background-color-focus);
+  }
+
   &:focus:within {
-    box-shadow: 0 0 0 1px var(--input-border-focus-color);
+    box-shadow: 0 0 0 1px var(--input-border-focus);
   }
   &:has(input[required]) {
-    border-left: 3px solid var(--input-border-required-color, '#ff0000');
+    border-left: 3px solid var(--input-border-required);
   }
 `;
 const StyledInput = styled.input`
@@ -198,11 +204,12 @@ const StyledInput = styled.input`
   align-items: center;
   justify-content: center;
   padding: 0 8px;
-  font-size: 15px;
+  //font-size: 15px;
   border: none;
-  //box-shadow: 0 0 0 1px var(--input-border-color, '#d4d4d4');
+  height: 32px;
+  //box-shadow: 0 0 0 1px var(--input-border);
   // &:hover {
-  //   box-shadow: 0 0 0 1px var(--input-border-hover-color);
+  //   box-shadow: 0 0 0 1px var(--input-border-hover);
   // }
 
   // &::selection {
@@ -216,13 +223,13 @@ const StyledInput = styled.input`
   // }
   // &::placeholder {
   //   font-size: 0.9rem;
-  //   color: var(--input-placeholder-color, '#d4d4d4');
+  //   color: var(--input-placeholder);
   // }
   // &:invalid {
   //   color: var(--input-error);
   // }
   // &[required] {
-  //   border-left: 3px solid var(--input-border-required-color, '#ff0000');
+  //   border-left: 3px solid var(--input-border-required);
   // }
   // @supports not selector(:user-invalid) {
   //   input:invalid {

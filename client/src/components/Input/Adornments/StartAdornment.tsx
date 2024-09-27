@@ -40,13 +40,13 @@ StartAdornment.displayName = 'StartAdornment';
 export default memo(StartAdornment);
 
 const StyledDiv = styled.div`
-  color: var(--input-adornment-color);
+  color: var(--input-adornment);
   margin-left: 8px;
   margin-right: 8px;
   user-select: none;
 `;
 const StyledVLine = styled.div`
-  background-color: var(--input-adornment-color);
+  background-color: var(--input-adornment);
   width: 1px;
   height: 60%;
   user-select: none;

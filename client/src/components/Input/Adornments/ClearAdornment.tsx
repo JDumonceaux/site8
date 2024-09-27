@@ -11,7 +11,7 @@ type ClearAdornmentProps = {
   readonly label?: string;
   readonly iconProps?: IconProps;
   readonly icon?: React.ReactNode;
-  readonly onClick: React.MouseEventHandler<HTMLButtonElement>;
+  readonly onClick: () => void;
   readonly ariaLabel?: string;
 } & Omit<TooltipProps, 'content' | 'trigger'>;
 
@@ -22,22 +22,15 @@ const ClearAdornment = ({
   iconProps,
   icon,
   onClick,
-  ...rest
 }: ClearAdornmentProps) => {
   return (
     <Tooltip
       content={label}
       trigger={
-        <StyledTrigger>
-          <StyledButton
-            aria-label={ariaLabel}
-            type="button"
-            {...rest}
-            onClick={onClick}>
-            <AccessibleIcon label={label}>
-              {icon ? icon : <Icon {...iconProps} />}
-            </AccessibleIcon>
-          </StyledButton>
+        <StyledTrigger onClick={onClick}>
+          <AccessibleIcon label={label}>
+            {icon ? icon : <Icon {...iconProps} />}
+          </AccessibleIcon>
         </StyledTrigger>
       }
     />
@@ -59,9 +52,5 @@ const StyledTrigger = styled.div`
   }
   svg {
     margin: auto;
-  }
-`;
-const StyledButton = styled.button`
-  > svg {
   }
 `;

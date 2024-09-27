@@ -26,7 +26,8 @@
 13. Orientation
     Vertical
     Horizontal
-    Tight?  Label shrinks into top border
+    Compact?  Label shrinks into top border
+    Animated underline
 14. Sizes
     Small
     Medium
@@ -62,5 +63,16 @@
     Allow display of required
 20. Structured Input
     (   )     -    
+21. zod wrapper
+22. Suggest field names
+23. Tooltip.Help / Tooltip.Default
+24. Validate tabstops
+25. Lazy load
+
+
+Document:
+Microinteractions
+https://react.fluentui.dev/
+https://tigeroakes.com/posts/react-focus-on-render/
 
 

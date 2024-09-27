@@ -1,13 +1,11 @@
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
-import EmailAdornment from 'components/Input/Adornments/EmailAdornment';
-import ShowAdornment from 'components/Input/Adornments/ShowAdornment';
 import Input from 'components/Input/Input';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
 import { useForm } from 'hooks/useForm';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { z } from 'zod';
 
@@ -35,6 +33,23 @@ const pageSchema = z.object({
   tel: z.string().optional(),
   email: z.string().email().optional(),
   name: z.string().min(10).optional(),
+  given_name: z.string().min(10).optional(),
+  family_name: z.string().min(10).optional(),
+  middle_name: z.string().min(10).optional(),
+  honorific_prefix: z.string().min(10).optional(),
+  honorific_suffix: z.string().min(10).optional(),
+  nickname: z.string().min(10).optional(),
+  address_line1: z.string().min(10).optional(),
+  address_line2: z.string().min(10).optional(),
+  country: z.string().min(10).optional(),
+  state: z.string().min(10).optional(),
+  postal_code: z.string().min(10).optional(),
+  cc_number: z.string().min(10).optional(),
+  cc_name: z.string().min(10).optional(),
+  day: z.string().min(10).optional(),
+  month: z.string().min(10).optional(),
+  year: z.string().min(10).optional(),
+  name2: z.string().min(10).optional(),
 });
 
 const DevelopPage = (): JSX.Element => {
@@ -49,17 +64,37 @@ const DevelopPage = (): JSX.Element => {
       //id: 0,
       //name: '',
       title: '',
-      // phone: '',
-      // password: '',
-      // email: '',
+      phone: '',
+      password: '',
+      tel: '',
+      email: '',
+      name: '',
+      given_name: '',
+      family_name: '',
+      middle_name: '',
+      honorific_prefix: '',
+      honorific_suffix: '',
+      nickname: '',
+      address_line1: '',
+      address_line2: '',
+      country: '',
+      state: '',
+      postal_code: '',
+      cc_number: '',
+      cc_name: '',
+      day: '',
+      month: '',
+      year: '',
+      name2: '',
     }),
     [],
   );
 
-  const { formValues, getFieldValue, isSaved, handleChange } =
+  const { formValues, getFieldValue, isSaved, handleChange, handleClearField } =
     useForm<FormType>(initialFormValues);
 
   const handleSubmit = useCallback((error: React.FormEvent) => {
+    console.log('handleSubmit');
     error.stopPropagation();
     error.preventDefault();
     //  handleSave();
@@ -79,6 +114,12 @@ const DevelopPage = (): JSX.Element => {
 
   const { onDialogOpen, onDialogClose, ...dialogProps } = useDialog();
 
+  const firstFieldRef = useRef(null);
+
+  useEffect(() => {
+    firstFieldRef.current?.focus();
+  }, []);
+
   return (
     <>
       <Meta title={title} />
@@ -97,33 +138,37 @@ const DevelopPage = (): JSX.Element => {
                 <div>
                   <Grid>
                     <Input.Text
-                      id="name"
+                      id="given_name"
                       label="First Name"
+                      autoComplete="given-name"
                       minLength={10}
+                      inputRef={firstFieldRef}
                       // onBlur={handeNameOnBlur}
                       onChange={handleChange}
-                      placeholder="Enter a name"
+                      placeholder="Enter a first name"
                       required
                       spellCheck
-                      value={getFieldValue('name')}
+                      value={getFieldValue('given_name')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
                     />
                     <Input.Text
-                      id="name"
+                      id="family_name"
                       label="Last Name"
+                      autoComplete="family-name"
                       minLength={10}
                       // onBlur={handeNameOnBlur}
                       onChange={handleChange}
-                      placeholder="Enter a name"
+                      onClear={handleClearField}
+                      placeholder="Enter a last name"
                       required
                       spellCheck
-                      value={getFieldValue('name')}
+                      value={getFieldValue('family_name')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
                     />
                   </Grid>
-                  <Grid>
+                  {/* <Grid>
                     <Input.Text
-                      id="name"
+                      id="middle_name"
                       label="Middle Name (optional)"
                       minLength={10}
                       // onBlur={handeNameOnBlur}
@@ -131,29 +176,27 @@ const DevelopPage = (): JSX.Element => {
                       placeholder="Enter a name"
                       required
                       spellCheck
-                      value={getFieldValue('name')}
+                      value={getFieldValue('middle_name')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
                     />
                     <Input.Text
-                      id="name"
+                      id="honorific_suffix"
                       label="Suffix (optional)"
                       minLength={10}
                       // onBlur={handeNameOnBlur}
                       onChange={handleChange}
-                      placeholder="Enter a name"
+                      placeholder="Enter a suffix"
                       required
                       spellCheck
-                      value={getFieldValue('name')}
+                      value={getFieldValue('honorific_suffix')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
-                      helpProps={{
-                        children: 'Examples: Sr., Jr., IV',
-                      }}
+                      helpText={'Examples: Sr., Jr., IV'}
                     />
                   </Grid>
                   <span>Date of Birth</span>
                   <div style={{ display: 'flex' }}>
                     <Input.Number
-                      id="name"
+                      id="month"
                       label="Month"
                       minLength={10}
                       // onBlur={handeNameOnBlur}
@@ -161,11 +204,11 @@ const DevelopPage = (): JSX.Element => {
                       placeholder="Enter a name"
                       required
                       spellCheck
-                      value={getFieldValue('name')}
+                      value={getFieldValue('month')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
                     />
                     <Input.Number
-                      id="name"
+                      id="day"
                       label="Day"
                       minLength={10}
                       // onBlur={handeNameOnBlur}
@@ -173,11 +216,11 @@ const DevelopPage = (): JSX.Element => {
                       placeholder="Enter a name"
                       required
                       spellCheck
-                      value={getFieldValue('name')}
+                      value={getFieldValue('day')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
                     />
                     <Input.Number
-                      id="name"
+                      id="year"
                       label="Year"
                       minLength={10}
                       // onBlur={handeNameOnBlur}
@@ -185,7 +228,7 @@ const DevelopPage = (): JSX.Element => {
                       placeholder="Enter a name"
                       required
                       spellCheck
-                      value={getFieldValue('name')}
+                      value={getFieldValue('year')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
                     />
                   </div>
@@ -204,10 +247,60 @@ const DevelopPage = (): JSX.Element => {
                     placeholder="Enter a password"
                     value={getFieldValue('password')}
                     endAdornment={<ShowAdornment />}
-                    helpProps={{ children: 'Enter a password' }}
+                    helpText={'Enter a password'}
                   />
                   <Input.Text
-                    id="name"
+                    id="address_line1"
+                    label="Address"
+                    onChange={handleChange}
+                    placeholder="Enter an address"
+                    value={getFieldValue('address_line1')}
+                  />
+                  <Input.Text
+                    id="address_line2"
+                    label="Address (optional)"
+                    onChange={handleChange}
+                    placeholder="Enter an address 2"
+                    value={getFieldValue('address_line2')}
+                  />
+                  <Input.Text
+                    id="country"
+                    label="Country"
+                    onChange={handleChange}
+                    placeholder="Enter an country"
+                    value={getFieldValue('country')}
+                  />
+                  <Input.Text
+                    id="state"
+                    label="State"
+                    onChange={handleChange}
+                    placeholder="Enter an state"
+                    value={getFieldValue('state')}
+                  />
+                  <Input.Text
+                    id="postal_code"
+                    label="Postal Code"
+                    onChange={handleChange}
+                    placeholder="Enter an postal code"
+                    value={getFieldValue('postal_code')}
+                  />
+                  <Input.Text
+                    id="cc_name"
+                    label="Name on Card"
+                    onChange={handleChange}
+                    placeholder="Enter name on card"
+                    value={getFieldValue('cc_name')}
+                  />
+                  <Input.Text
+                    id="cc_number"
+                    label="Card Number"
+                    onChange={handleChange}
+                    placeholder="Enter an card number"
+                    value={getFieldValue('cc_number')}
+                  />
+
+                  <Input.Text
+                    id="name2"
                     label="Id"
                     minLength={10}
                     // onBlur={handeNameOnBlur}
@@ -217,11 +310,9 @@ const DevelopPage = (): JSX.Element => {
                     spellCheck
                     value={getFieldValue('name')}
                     messageProps={{ match: 'tooShort', name: 'x' }}
-                    helpProps={{
-                      children: (
-                        <span>? Where do I find this? (Expansion section)</span>
-                      ),
-                    }}
+                    helpText={
+                      '<span>? Where do I find this? (Expansion section)</span>'
+                    }
                   />
                 </div>
                 <div>
@@ -250,9 +341,9 @@ const DevelopPage = (): JSX.Element => {
                         <button type="button">-</button>
                       </div>,
                     ]}
-                  />
+                  /> */}
 
-                  <Input.Text
+                  {/* <Input.Text
                     id="name"
                     label="Name"
                     minLength={10}
@@ -271,7 +362,7 @@ const DevelopPage = (): JSX.Element => {
                     placeholder="Enter a password"
                     value={getFieldValue('password')}
                     endAdornment={<ShowAdornment />}
-                    helpProps={{ children: 'Enter a password' }}
+                    helpText={'Enter a password'}
                   />
                   <Input.Tel
                     id="phone"
@@ -287,7 +378,7 @@ const DevelopPage = (): JSX.Element => {
                     placeholder="Enter an Email"
                     value={getFieldValue('email')}
                     startAdornment={<EmailAdornment />}
-                  />
+                  />*/}
                 </div>
               </Grid>
             </form>

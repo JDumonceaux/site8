@@ -1,8 +1,8 @@
 import * as Label from '@radix-ui/react-label';
+import * as Tooltip from '@radix-ui/react-tooltip';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import React, { LabelHTMLAttributes, memo } from 'react';
 import { styled } from 'styled-components';
-import Tooltip from '../Tooltip/Tooltip';
 
 type LabelBaseProps = {
   readonly label?: string;
@@ -19,8 +19,15 @@ const LabelBase = ({
   <StyledLabel ref={ref} {...rest}>
     {label} {required && <VisuallyHidden.Root>required</VisuallyHidden.Root>}
     {required && (
-      <StyledRequired aria-hidden="true">
-        <Tooltip content="Required" trigger="*"></Tooltip>
+      <StyledRequired>
+        <Tooltip.Provider>
+          <Tooltip.Root>
+            <Tooltip.Trigger asChild>
+              <button className="IconButton">SS</button>
+            </Tooltip.Trigger>
+            <Tooltip.Content>Required</Tooltip.Content>
+          </Tooltip.Root>
+        </Tooltip.Provider>
       </StyledRequired>
     )}
   </StyledLabel>

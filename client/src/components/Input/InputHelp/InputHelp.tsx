@@ -2,36 +2,37 @@ import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
 type InputHelpProps = {
-  readonly children: React.ReactNode | string | string[];
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'id'>;
+  readonly helpText: React.ReactNode | string | string[];
+  readonly children?: never;
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'id' | 'children'>;
 
-const InputHelp = ({ children, ...rest }: InputHelpProps): JSX.Element => {
-  if (!children) return null;
+const InputHelp = ({ helpText, ...rest }: InputHelpProps): JSX.Element => {
+  if (!helpText) return null;
 
-  const isString = (children) =>
-    typeof children === 'string' || children instanceof String;
-  const isNumber = (children) =>
-    typeof children === 'number' || children instanceof Number;
-  const isBoolean = (children) =>
-    typeof children === 'boolean' || children instanceof Boolean;
-  const isArray = Array.isArray(children);
+  const isString = (helpText) =>
+    typeof helpText === 'string' || helpText instanceof String;
+  const isNumber = (helpText) =>
+    typeof helpText === 'number' || helpText instanceof Number;
+  const isBoolean = (helpText) =>
+    typeof helpText === 'boolean' || helpText instanceof Boolean;
+  const isArray = Array.isArray(helpText);
 
   if (isString || isNumber || isBoolean) {
     return (
       <StyledDiv data-testid="input-help" {...rest}>
-        {children}
+        {helpText}
       </StyledDiv>
     );
   }
 
   if (isArray) {
-    if (children.length > 1) {
+    if (helpText.length > 1) {
       return <StyledDiv data-testid="input-help" {...rest}></StyledDiv>;
     } else {
       return (
         <StyledDiv data-testid="input-help" {...rest}>
           <ul>
-            {children.map((item, index) => (
+            {helpText.map((item, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <li key={`item-${index}`}>{item}</li>
             ))}
@@ -41,8 +42,8 @@ const InputHelp = ({ children, ...rest }: InputHelpProps): JSX.Element => {
     }
   }
 
-  if (React.isValidElement(children)) {
-    return <div {...rest}>{children}</div>;
+  if (React.isValidElement(helpText)) {
+    return <div {...rest}>{helpText}</div>;
   }
   throw new Error('Invalid type passed as child.');
 };
