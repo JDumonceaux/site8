@@ -1,6 +1,4 @@
 import * as Label from '@radix-ui/react-label';
-import * as Tooltip from '@radix-ui/react-tooltip';
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import React, { LabelHTMLAttributes, memo } from 'react';
 import { styled } from 'styled-components';
 
@@ -8,17 +6,20 @@ type LabelBaseProps = {
   readonly label?: string;
   readonly ref?: React.RefObject<HTMLLabelElement>;
   readonly required?: boolean;
+  readonly children?: React.ReactNode;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 const LabelBase = ({
   label,
   required = false,
   ref,
+  children,
   ...rest
 }: LabelBaseProps): JSX.Element => (
   <StyledLabel ref={ref} {...rest}>
-    {label} {required && <VisuallyHidden.Root>required</VisuallyHidden.Root>}
-    {required && (
+    {label}
+    {/* {label}  {required && <VisuallyHidden.Root>required</VisuallyHidden.Root>} */}
+    {/* {required && (
       <StyledRequired>
         <Tooltip.Provider>
           <Tooltip.Root>
@@ -29,7 +30,8 @@ const LabelBase = ({
           </Tooltip.Root>
         </Tooltip.Provider>
       </StyledRequired>
-    )}
+    )} */}
+    {children}
   </StyledLabel>
 );
 

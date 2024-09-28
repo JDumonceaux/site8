@@ -9,9 +9,7 @@ import { InputHelpProps } from '../InputHelp/InputHelp';
 
 import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
-import LabelBase from '../LabelBase/LabelBase';
-import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
-import QuestionMark from '../Tooltip/Tooltips/QuestionMark';
+import { TooltipProps } from '../Tooltip/Tooltip';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -130,18 +128,20 @@ const InputBase = ({
 
   return (
     <StyledFormField id={id}>
-      <StyledHeader>
-        <LabelBase
-          htmlFor={id}
-          label={label}
-          ref={labelRef}
-          {...labelProps}
-          required={required}
-        />
-        <Tooltip {...toolTipProps} trigger={<QuestionMark />} />
-      </StyledHeader>
+      {/* <LabelBase
+        htmlFor={id}
+        label={label}
+        ref={labelRef}
+        {...labelProps}
+        required={required}>
+        <Tooltip {...toolTipProps} trigger={<QuestionMark />} /> */}
+
+      {/* Note: htmlFor doesn't work since the input is in a div
+      a label cannot be associated with a div.
+      Wrapping the label like this allows the label to be 
+      used as a focus method (hit-area) for the input.  */}
       <label>
-        Test
+        First Name
         <StyledInputWrapper>
           {/*   <StartAdornment>{startAdornment}</StartAdornment> */}
           <StyledInput
@@ -158,6 +158,8 @@ const InputBase = ({
           {/* <EndAdornment>{endAdornment}</EndAdornment> */}
         </StyledInputWrapper>
       </label>
+      {/* </LabelBase> */}
+
       {/* <StyledFoooter>
         <InputHelp helpText={helpText} {...helpProps} />
         <InputCounter
