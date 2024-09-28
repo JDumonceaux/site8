@@ -68,11 +68,19 @@
 23. Tooltip.Help / Tooltip.Default
 24. Validate tabstops
 25. Lazy load
+26. Search - debounce
+27. Numbers -
+    Rotate -  7,8,9,1,2,3  if limited to a select
+    Increment by 1, increment by 10
 
 
 Document:
 Microinteractions
 https://react.fluentui.dev/
 https://tigeroakes.com/posts/react-focus-on-render/
+
+Roadmaps
+https://roadmap.sh/react?utm_source=importreact.beehiiv.com&utm_medium=newsletter&utm_campaign=infinite-queries&_bhlid=af119422dd9728002164853afc1492114aeba618
+
 
 

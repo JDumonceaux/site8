@@ -4,7 +4,7 @@ import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon as Icon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
 import { styled } from 'styled-components';
-import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
+import Tooltip, { TooltipProps } from '../Tooltip/TooltipBase';
 
 type ClearAdornmentProps = {
   readonly ref?: React.Ref<HTMLButtonElement>;

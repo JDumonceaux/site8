@@ -1,16 +1,14 @@
-import InputBase from './InputBase/InputBase';
+import InputBase, { InputBaseProps } from './InputBase/InputBase';
 import InputEmail from './InputEmail/InputEmail';
 import InputNumber from './InputNumber/InputNumber';
 import InputPassword from './InputPassword/InputPassword';
 import InputTel from './InputTel/InputTel';
 import InputText from './InputText/InputText';
 
-type Props = {
-  readonly children: React.ReactNode;
-};
+type Props = InputBaseProps;
 
 const Input = ({ ...rest }: Props): JSX.Element => {
-  return <InputBase type={'number'} {...rest} />;
+  return <InputBase id={''} value={''} type={'number'} {...rest} />;
 };
 
 Input.Email = InputEmail;

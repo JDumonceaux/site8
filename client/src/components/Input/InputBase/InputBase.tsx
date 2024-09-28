@@ -9,7 +9,8 @@ import { InputHelpProps } from '../InputHelp/InputHelp';
 
 import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
-import { TooltipProps } from '../Tooltip/Tooltip';
+import LabelBase from '../LabelBase/LabelBase';
+import { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -45,7 +46,7 @@ type InputBaseProps = {
   readonly helpText?: React.ReactNode | string | string[];
   readonly helpProps?: InputHelpProps;
   readonly errorText?: React.ReactNode | string | string[];
-  readonly toolTipProps?: TooltipProps;
+  readonly toolTipProps?: TooltipBaseProps;
   readonly endAdornment?:
     | (React.ReactNode | string | number | boolean)[]
     | React.ReactNode
@@ -128,20 +129,13 @@ const InputBase = ({
 
   return (
     <StyledFormField id={id}>
-      {/* <LabelBase
-        htmlFor={id}
+      <LabelBase
         label={label}
         ref={labelRef}
         {...labelProps}
         required={required}>
-        <Tooltip {...toolTipProps} trigger={<QuestionMark />} /> */}
+        {/* <Tooltip {...toolTipProps} trigger={<QuestionMark />} /> */}
 
-      {/* Note: htmlFor doesn't work since the input is in a div
-      a label cannot be associated with a div.
-      Wrapping the label like this allows the label to be 
-      used as a focus method (hit-area) for the input.  */}
-      <label>
-        First Name
         <StyledInputWrapper>
           {/*   <StartAdornment>{startAdornment}</StartAdornment> */}
           <StyledInput
@@ -157,8 +151,7 @@ const InputBase = ({
           {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
           {/* <EndAdornment>{endAdornment}</EndAdornment> */}
         </StyledInputWrapper>
-      </label>
-      {/* </LabelBase> */}
+      </LabelBase>
 
       {/* <StyledFoooter>
         <InputHelp helpText={helpText} {...helpProps} />
@@ -253,16 +246,6 @@ const StyledFoooter = styled.div`
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
-  > div:first-child {
-    flex-grow: 1;
-  }
-`;
-const StyledHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: space-between;
-  padding: 4px 0px;
   > div:first-child {
     flex-grow: 1;
   }
