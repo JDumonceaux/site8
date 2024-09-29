@@ -83,4 +83,6 @@ Roadmaps
 https://roadmap.sh/react?utm_source=importreact.beehiiv.com&utm_medium=newsletter&utm_campaign=infinite-queries&_bhlid=af119422dd9728002164853afc1492114aeba618
 
 
-
+eslint file:
+https://www.raulmelo.me/en/blog/migration-eslint-to-flat-config
+https://github.com/alan2207/bulletproof-react/blob/master/apps/react-vite/.eslintrc.cjs

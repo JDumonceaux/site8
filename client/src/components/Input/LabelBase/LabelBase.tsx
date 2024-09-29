@@ -3,13 +3,17 @@ import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
 import React, { LabelHTMLAttributes, memo } from 'react';
 import { styled } from 'styled-components';
-import TooltipAsterix from '../Tooltip/Tooltips/TooltipAsterix';
+import Tooltip from '../Tooltip/Tooltip';
+import { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
 type LabelBaseProps = {
   readonly label?: string;
   readonly ref?: React.RefObject<HTMLLabelElement>;
   readonly required?: boolean;
   readonly children?: React.ReactNode;
+  readonly tooltipProps?: TooltipBaseProps;
+  readonly description?: string;
+  readonly endAdornment?: React.ReactNode;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 /* Note: If you use htmlfor(or for) attribute, 
@@ -20,19 +24,27 @@ const LabelBase = ({
   required = false,
   ref,
   children,
+  tooltipProps,
+  description,
+  endAdornment,
   ...rest
 }: LabelBaseProps): JSX.Element => (
   <Label.Root ref={ref} {...rest}>
     <StyledRow>
       <StyledLabel>
-        {label}{' '}
+        {label}
         {required && <VisuallyHidden.Root>required</VisuallyHidden.Root>}
-        <StyledTooltip tabIndex={-1} inert={true}>
-          <TooltipAsterix content="Required" />
-        </StyledTooltip>
+        {required && (
+          <Tooltip.Asterix
+            content="Required"
+            triggerColor="var(--color-required)"
+            {...tooltipProps}
+          />
+        )}
       </StyledLabel>
+      {description && <Tooltip.QuestionMark content={description} />}
+      {endAdornment}
     </StyledRow>
-
     {children}
   </Label.Root>
 );

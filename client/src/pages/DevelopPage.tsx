@@ -1,6 +1,7 @@
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
+import EmailAdornment from 'components/Input/Adornments/EmailAdornment';
 import Input from 'components/Input/Input';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
@@ -150,6 +151,7 @@ const DevelopPage = (): JSX.Element => {
                       spellCheck
                       value={getFieldValue('given_name')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
+                      description="Given name"
                     />
                     <Input.Text
                       id="family_name"
@@ -231,7 +233,7 @@ const DevelopPage = (): JSX.Element => {
                       value={getFieldValue('year')}
                       messageProps={{ match: 'tooShort', name: 'x' }}
                     />
-                  </div>
+                  </div> */}
                   <Input.Email
                     id="email"
                     label="Email"
@@ -240,7 +242,8 @@ const DevelopPage = (): JSX.Element => {
                     value={getFieldValue('email')}
                     startAdornment={<EmailAdornment />}
                   />
-                  <Input.Password
+                  {/*
+                                    <Input.Password
                     id="password"
                     label="Password"
                     onChange={handleChange}

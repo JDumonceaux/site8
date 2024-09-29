@@ -1,5 +1,5 @@
 import * as TooltipRadix from '@radix-ui/react-tooltip';
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { keyframes, styled } from 'styled-components';
 
 type TooltipBaseProps = {
@@ -10,6 +10,9 @@ type TooltipBaseProps = {
   readonly triggerProps?: TooltipRadix.TooltipTriggerProps;
   readonly arrowProps?: TooltipRadix.TooltipArrowProps;
   readonly children?: never;
+  readonly ref?: React.RefObject<HTMLElement>;
+  readonly triggerColor?: string;
+  readonly tabStop?: boolean;
 };
 
 const TooltipBase = ({
@@ -18,7 +21,22 @@ const TooltipBase = ({
   tooltipProps,
   triggerProps,
   arrowProps,
+  triggerColor,
+  tabStop = false,
+  ref,
 }: TooltipBaseProps): JSX.Element => {
+  const elementRef = useRef(null);
+
+  // React doesn't support inert - so you have to do it this way
+  useEffect(() => {
+    if (elementRef.current) {
+      if (!tabStop) {
+        //    elementRef.current.inert = true;
+        elementRef.current.setAttribute('tabindex', '-1');
+      }
+    }
+  }, []);
+
   if (!content) {
     return <></>;
   }
@@ -26,9 +44,9 @@ const TooltipBase = ({
   return (
     <TooltipRadix.Provider>
       <TooltipRadix.Root {...tooltipProps}>
-        <TooltipRadix.Trigger {...triggerProps} tabIndex={-1}>
+        <StyledTrigger $color={triggerColor} {...triggerProps} ref={elementRef}>
           {trigger}
-        </TooltipRadix.Trigger>
+        </StyledTrigger>
         <StyledContent>
           <StyledArrow {...arrowProps} />
           {content}
@@ -43,6 +61,12 @@ TooltipBase.displayName = 'TooltipBase';
 export default memo(TooltipBase);
 export type { TooltipBaseProps };
 
+const StyledTrigger = styled(TooltipRadix.Trigger)<{
+  $color?: string;
+}>`
+  color: ${(props) =>
+    props.$color ? props.$color : 'var(--text-primary-color)'};
+`;
 const StyledArrow = styled(TooltipRadix.Arrow)`
   fill: var(--tooltip-arrow-color);
 `;

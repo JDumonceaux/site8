@@ -9,7 +9,9 @@ import { InputHelpProps } from '../InputHelp/InputHelp';
 
 import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
+import StartAdornment from '../Adornments/StartAdornment';
 import LabelBase from '../LabelBase/LabelBase';
+import Tooltip from '../Tooltip/Tooltip';
 import { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
 // Most attributes have an effect on only
@@ -38,6 +40,7 @@ type InputBaseProps = {
   readonly id: string;
   readonly value: string | number | string[];
   readonly inputRef?: React.RefObject<HTMLInputElement>;
+  readonly description?: string;
   readonly label?: string;
   readonly labelRef?: React.RefObject<HTMLLabelElement>;
   readonly labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
@@ -79,6 +82,7 @@ const InputBase = ({
   label,
   labelRef,
   type,
+  description,
   labelProps,
   messageProps,
   helpText,
@@ -133,11 +137,11 @@ const InputBase = ({
         label={label}
         ref={labelRef}
         {...labelProps}
-        required={required}>
-        {/* <Tooltip {...toolTipProps} trigger={<QuestionMark />} /> */}
-
+        required={required}
+        description={description}
+        endAdornment={<Tooltip.QuestionMark {...toolTipProps} />}>
         <StyledInputWrapper>
-          {/*   <StartAdornment>{startAdornment}</StartAdornment> */}
+          <StartAdornment>{startAdornment}</StartAdornment>
           <StyledInput
             id={id}
             key={id}
