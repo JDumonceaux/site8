@@ -1,9 +1,14 @@
 // @ts-check
+
+// JavaScript rules (formerly included in ESLint core)
 import js from '@eslint/js';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import pluginImport from 'eslint-plugin-import';
-import a11y from 'eslint-plugin-jsx-a11y';
-import reactHooks from 'eslint-plugin-react-hooks';
+import globals from 'globals';
+import pluginReact from 'eslint-plugin-react';
+import pluginHooks from 'eslint-plugin-react-hooks';
+import pluginA11y from 'eslint-plugin-jsx-a11y';
+// Typescript specific rules
+import typescriptParser from '@typescript-eslint/parser';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
 
 export default [
   {
@@ -18,24 +23,39 @@ export default [
       parser: 'eslintParse',
       // globals:
       // parserOptions:
+      globals: {
+        ...globals.browser,
+      },
     },
     linterOptions: {
       reportUnusedDisableDirectives: 'error',
     },
     plugins: {
-      a11y,
-      reactHooks,
+      '@eslint/js': js,
+      react: pluginReact,
+      'react-hooks': pluginHooks,
+      'jsx-a11y': pluginA11y,
+
+      // flatConfigs,
+
+      //  pluginPerfectionist,
     },
     rules: {
       ...js.configs.recommended.rules,
-      ...a11y.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
+      //...pluginReact.configs.flat.recommended,
+
+      // ...js.configs.recommended.rules,
+      ...pluginA11y.configs.recommended.rules,
+      // ...pluginHooks.configs.recommended.rules,
+      // ...pluginPerfectionist.configs['recommended-natural'].rules,
+      // ...flatConfigs.recommended.rules,
       // 'eslint/accessor-pairs': 'error',
       // 'eslint/array-callback-return': 'error',
       // 'eslint/arrow-body-style': 'error',
       // 'eslint/block-scoped-var': 'error',
       // 'eslint/camelcase': 'error',
       // 'eslint/capitalized-comments': 'error',
+      // 'pluginPerfectionist/sort-jsx-props': 'error',
       // 'eslint/class-methods-use-this': 'error',
       // 'eslint/complexity': 'error',
       // 'eslint/consistent-return': 'error',
@@ -172,31 +192,59 @@ export default [
   },
 
   {
+    name: 'Site8-typescript',
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      parser: '@typescript-eslint/parser',
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parser: typescriptParser,
+      parserOptions: {
+        project: './tsconfig.json',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
     },
     plugins: {
-      pluginImport,
+      '@typescript-eslint': typescriptEslint,
+
+      pluginReact,
+      'react-hooks': pluginHooks,
     },
 
     rules: {
-      //
-      ...tseslint.configs.recommended,
-      ...pluginImport.configs.recommended,
+      ...typescriptEslint.configs['recommended'].rules,
+      ...typescriptEslint.configs['recommended-requiring-type-checking'].rules,
+      ...pluginReact.configs['recommended'].rules,
+      ...pluginHooks.configs.recommended.rules,
+
+      // suppress errors for missing 'import React' in files
+      'react/react-in-jsx-scope': 'off',
+
+      // ...pluginImportTypescript,
+
+      // 'tseslint/no-unused-vars': ['error'],
+      // 'tseslint/explicit-function-return-type': ['off'],
+      // 'tseslint/explicit-module-boundary-types': ['off'],
+      // 'tseslint/no-empty-function': ['off'],
+      // 'tseslint/no-explicit-any': ['off'],
+
       // ...tseslint.configs.strict,
       // ...tseslint.configs.stylistic,
 
       // React Rules
       // ...react.configs.recommended.rules,
       // 'react/boolean-prop-naming': 'error',
-      // 'react/button-has-type': 'error',
-      // 'react/checked-requires-onchange-or-readonly': 'error',
+      'pluginReact/button-has-type': 'error',
+      //'react/checked-requires-onchange-or-readonly': 'error',
       // 'react/default-props-match-prop-types': 'error',
       // 'react/destructuring-assignment': 'error',
-      // 'react/forbid-component-props': 'error',
-      // 'react/forbid-dom-props': 'error',
-      'react/forbid-elements': [
+      'pluginReact/forbid-component-props': 'error',
+      'pluginReact/forbid-dom-props': 'error',
+      'pluginReact/forbid-elements': [
         'error',
         {
           forbid: [
@@ -313,20 +361,22 @@ export default [
       // 'react/static-property-placement': 'error',
       // 'react/style-prop-object': 'error',
       // 'react/void-dom-elements-no-children': 'error',
-      // Hook rules
-      ...reactHooks.configs.recommended.rules,
-      // A11y rules
-      ...a11y.configs.recommended.rules,
     },
-  },
-  {
-    files: ['**/*.test.js', '**/*.spec.js'],
-    languageOptions: {
-      globals: {
-        it: 'readonly',
-        expect: 'readonly',
-        describe: 'readonly',
+    settings: {
+      react: {
+        version: 'detect',
       },
     },
   },
+  // {
+  //   name: 'Site8- test files',
+  //   files: ['**/*.test.js', '**/*.spec.js'],
+  //   languageOptions: {
+  //     globals: {
+  //       it: 'readonly',
+  //       expect: 'readonly',
+  //       describe: 'readonly',
+  //     },
+  //   },
+  // },
 ];

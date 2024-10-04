@@ -1,3 +1,4 @@
+import React, { useCallback, useEffect, useMemo, useRef, JSX } from 'react';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
@@ -6,7 +7,6 @@ import Input from 'components/Input/Input';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
 import { useForm } from 'hooks/useForm';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { z } from 'zod';
 
@@ -91,7 +91,7 @@ const DevelopPage = (): JSX.Element => {
     [],
   );
 
-  const { formValues, getFieldValue, isSaved, handleChange, handleClearField } =
+  const { formValues, getFieldValue, handleChange, handleClearField } =
     useForm<FormType>(initialFormValues);
 
   const handleSubmit = useCallback((error: React.FormEvent) => {
@@ -115,7 +115,7 @@ const DevelopPage = (): JSX.Element => {
 
   const { onDialogOpen, onDialogClose, ...dialogProps } = useDialog();
 
-  const firstFieldRef = useRef(null);
+  const firstFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     firstFieldRef.current?.focus();
@@ -123,15 +123,13 @@ const DevelopPage = (): JSX.Element => {
 
   return (
     <>
-      <Meta title={title} />
+      <Meta title={title} /> 
       <StyledMain>
         <StyledMain.Article>
           <PageTitle title={title} />
           <section>
             {/* <div>Title Issues</div> */}
-            <button type="button" onClick={onDialogOpen}>
-              Open Dialog
-            </button>
+            <button type="button" onClick={onDialogOpen}>Open Dialog</button>
             <br />
             <br />
             <form onSubmit={handleSubmit}>

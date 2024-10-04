@@ -3,7 +3,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
+  /* Add Property */
   --color-error: #ff0000;
   --color-required: #be3455;
   --color-white: #ffffff;
@@ -169,4 +169,25 @@ table tbody tr:last-of-type {
 table tbody tr.active-row {
   font-weight: bold;
   color: #009879;
+}
+
+@property --color-error {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: red;
+}
+@property --color-required {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: red;
+}
+@property --color-white {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: white;
+}
+@property --color-black {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: black;
 }

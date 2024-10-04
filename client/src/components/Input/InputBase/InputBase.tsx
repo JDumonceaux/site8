@@ -58,7 +58,7 @@ type InputBaseProps = {
     | boolean;
   readonly startAdornment?: React.ReactNode | string | number | boolean;
   readonly showClear?: boolean;
-  readonly showError?: boolean;
+  readonly showError?: boolean;  
   readonly showCounter?: boolean;
   readonly showRequired?: boolean;
   readonly allowedCharacters?: RegExp;

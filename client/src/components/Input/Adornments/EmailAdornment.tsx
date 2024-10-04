@@ -9,9 +9,7 @@ type EmailAdornmentProps = {
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'data-testid'>;
 
 const EmailAdornment = ({ ref, iconProps, ...rest }: EmailAdornmentProps) => (
-  <div data-testid="Email icon" ref={ref} {...rest}>
-    <Icon {...iconProps} />
-  </div>
+  <Icon {...iconProps} data-testid="Email icon" />
 );
 
 EmailAdornment.displayName = 'EmailAdornment';

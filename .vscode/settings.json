@@ -1,10 +1,10 @@
 {
-  "prettier.singleAttributePerLine": false,
-
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit",
+
+    "source.organizeImports": "never",
     "source.fixAll": "never",
     "source.fixAll.eslint": "explicit",
     "source.addMissingImports": "never"
-  }
+  },
+  "eslint.useFlatConfig": true
 }
