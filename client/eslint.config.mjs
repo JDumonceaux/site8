@@ -12,7 +12,7 @@ import typescriptEslint from '@typescript-eslint/eslint-plugin';
 
 export default [
   {
-    name: 'Site8- eslint',
+    name: 'Site8-js',
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
     ignores: ['dist/**', 'node_modules/**', 'bin/**'],
     languageOptions: {
@@ -42,11 +42,76 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
-      //...pluginReact.configs.flat.recommended,
-
-      // ...js.configs.recommended.rules,
+      ...pluginReact.configs['recommended'].rules,
+      ...pluginHooks.configs.recommended.rules,
       ...pluginA11y.configs.recommended.rules,
-      // ...pluginHooks.configs.recommended.rules,
+
+      // Trying out
+      'react/jsx-props-no-multi-spaces': 'error',
+      'react/jsx-props-no-spread-multi': 'error',
+
+      // There is a conflict somewhere with this rule
+      'react/jsx-sort-props': 'error',
+
+
+      // suppress errors for missing 'import React' in files
+      'react/react-in-jsx-scope': 'off',
+
+      // Discourage use of deprecated elements
+      'react/forbid-elements': [
+        'error',
+        {
+          forbid: [
+            { element: 'applet', message: 'use <object> instead' },
+            { element: 'acronym', message: 'use <abbr> instead' },
+            { element: 'basefont', message: 'use <font> instead' },
+            { element: 'bgsound' },
+            { element: 'big', message: 'use font-size instead' },
+            { element: 'blink', message: 'use css instead' },
+            { element: 'center', message: 'use text-align instead' },
+            { element: 'dir' },
+            { element: 'embed', message: 'use <object> instead' },
+            {
+              element: 'font',
+              message: 'use font-family and font-size instead',
+            },
+            { element: 'frameset', message: 'use <iframe> instead' },
+            { element: 'isindex' },
+            { element: 'ilayer' },
+            { element: 'keygen' },
+            { element: 'frameset', message: 'use <iframe> instead' },
+            { element: 'layer' },
+            { element: 'menu' },
+            { element: 'menuitem' },
+            { element: 'menu' },
+            { element: 'multicol' },
+            { element: 'nobr' },
+            { element: 'noembed' },
+            { element: 'noframes' },
+            { element: 'frameset' },
+            { element: 'plaintext', message: 'use <pre> instead' },
+            { element: 'frameset', message: 'use <iframe> instead' },
+            { element: 'param' },
+            { element: 's', message: 'use text-decoration instead' },
+            { element: 'strike', message: 'use text-decoration instead' },
+            { element: 'spacer', message: 'use <pre> & <br> instead' },
+            { element: 'tt', message: 'use <pre> & <kbd> instead' },
+            { element: 'u', message: 'use <pre> & <kbd> instead' },
+            { element: 'xmp', message: 'use text-decoration instead' },
+            { element: 'frame' },
+            { element: 'marquee', message: 'use CDD instead' },
+          ],
+        },
+      ],
+
+
+      // We want to encourage the use of the spread operator
+      // 'react/jsx-props-no-spreading': 'off',
+
+      // Deprecated rules
+      // 'react/jsx-sort-default-props': 'error',
+       'jsx-a11y/label-has-for': 'off',
+
       // ...pluginPerfectionist.configs['recommended-natural'].rules,
       // ...flatConfigs.recommended.rules,
       // 'eslint/accessor-pairs': 'error',
@@ -210,19 +275,11 @@ export default [
     },
     plugins: {
       '@typescript-eslint': typescriptEslint,
-
-      pluginReact,
-      'react-hooks': pluginHooks,
     },
 
     rules: {
       ...typescriptEslint.configs['recommended'].rules,
       ...typescriptEslint.configs['recommended-requiring-type-checking'].rules,
-      ...pluginReact.configs['recommended'].rules,
-      ...pluginHooks.configs.recommended.rules,
-
-      // suppress errors for missing 'import React' in files
-      'react/react-in-jsx-scope': 'off',
 
       // ...pluginImportTypescript,
 
@@ -238,57 +295,13 @@ export default [
       // React Rules
       // ...react.configs.recommended.rules,
       // 'react/boolean-prop-naming': 'error',
-      'pluginReact/button-has-type': 'error',
+      //'pluginReact/button-has-type': 'error',
       //'react/checked-requires-onchange-or-readonly': 'error',
       // 'react/default-props-match-prop-types': 'error',
       // 'react/destructuring-assignment': 'error',
-      'pluginReact/forbid-component-props': 'error',
-      'pluginReact/forbid-dom-props': 'error',
-      'pluginReact/forbid-elements': [
-        'error',
-        {
-          forbid: [
-            { element: 'applet', message: 'use <object> instead' },
-            { element: ' acronym', message: 'use <abbr> instead' },
-            { element: 'basefont', message: 'use <font> instead' },
-            { element: 'bgsound' },
-            { element: 'big', message: 'use font-size instead' },
-            { element: 'blink', message: 'use css instead' },
-            { element: 'center', message: 'use text-align instead' },
-            { element: 'dir' },
-            { element: 'embed', message: 'use <object> instead' },
-            {
-              element: 'font',
-              message: 'use font-family and font-size instead',
-            },
-            { element: 'frameset', message: 'use <iframe> instead' },
-            { element: 'isindex' },
-            { element: 'ilayer' },
-            { element: 'keygen' },
-            { element: 'frameset', message: 'use <iframe> instead' },
-            { element: 'layer' },
-            { element: 'menu' },
-            { element: 'menuitem' },
-            { element: 'menu' },
-            { element: 'multicol' },
-            { element: 'nobr' },
-            { element: 'noembed' },
-            { element: 'noframes' },
-            { element: 'frameset' },
-            { element: 'plaintext', message: 'use <pre> instead' },
-            { element: 'frameset', message: 'use <iframe> instead' },
-            { element: 'param' },
-            { element: 's', message: 'use text-decoration instead' },
-            { element: 'strike', message: 'use text-decoration instead' },
-            { element: 'spacer', message: 'use <pre> & <br> instead' },
-            { element: 'tt', message: 'use <pre> & <kbd> instead' },
-            { element: 'u', message: 'use <pre> & <kbd> instead' },
-            { element: 'xmp', message: 'use text-decoration instead' },
-            { element: 'frame' },
-            { element: 'marquee', message: 'use CDD instead' },
-          ],
-        },
-      ],
+      // 'pluginReact/forbid-component-props': 'error',
+      // 'pluginReact/forbid-dom-props': 'error',
+
       // 'react/forbid-foreign-prop-types': 'error',
       // 'react/forbid-prop-types': 'error',
       // 'react/function-component-definition': 'error',

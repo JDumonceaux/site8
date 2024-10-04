@@ -129,7 +129,7 @@ const DevelopPage = (): JSX.Element => {
           <PageTitle title={title} />
           <section>
             {/* <div>Title Issues</div> */}
-            <button type="button" onClick={onDialogOpen}>Open Dialog</button>
+            <button onClick={onDialogOpen} type="button">Open Dialog</button>
             <br />
             <br />
             <form onSubmit={handleSubmit}>
@@ -137,33 +137,33 @@ const DevelopPage = (): JSX.Element => {
                 <div>
                   <Grid>
                     <Input.Text
+                      autoComplete="given-name"
+                      description="Given name"
                       id="given_name"
                       label="First Name"
-                      autoComplete="given-name"
+                      messageProps={{ match: 'tooShort', name: 'x' }}
                       minLength={10}
-                      inputRef={firstFieldRef}
-                      // onBlur={handeNameOnBlur}
-                      onChange={handleChange}
                       placeholder="Enter a first name"
                       required
                       spellCheck
                       value={getFieldValue('given_name')}
-                      messageProps={{ match: 'tooShort', name: 'x' }}
-                      description="Given name"
-                    />
-                    <Input.Text
-                      id="family_name"
-                      label="Last Name"
-                      autoComplete="family-name"
-                      minLength={10}
+                      inputRef={firstFieldRef}
                       // onBlur={handeNameOnBlur}
                       onChange={handleChange}
+                    />
+                    <Input.Text
+                      autoComplete="family-name"
+                      id="family_name"
+                      label="Last Name"
+                      messageProps={{ match: 'tooShort', name: 'x' }}
                       onClear={handleClearField}
                       placeholder="Enter a last name"
                       required
                       spellCheck
                       value={getFieldValue('family_name')}
-                      messageProps={{ match: 'tooShort', name: 'x' }}
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
                     />
                   </Grid>
                   {/* <Grid>
@@ -237,8 +237,8 @@ const DevelopPage = (): JSX.Element => {
                     label="Email"
                     onChange={handleChange}
                     placeholder="Enter an Email"
-                    value={getFieldValue('email')}
                     startAdornment={<EmailAdornment />}
+                    value={getFieldValue('email')}
                   />
                   {/*
                                     <Input.Password
