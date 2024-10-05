@@ -51,9 +51,9 @@ const pageSchema = z.object({
     .max(100, 'Title max length exceeded: 100')
     .describe('Enter a title'),
   year: z.string().min(10).optional(),
-});
+}),
 
-const DevelopPage = (): JSX.Element => {
+ DevelopPage = (): JSX.Element => {
   const title = 'Develop';
 
   // Create a type from the schema
@@ -89,33 +89,33 @@ const DevelopPage = (): JSX.Element => {
       year: '',
     }),
     [],
-  );
+  ),
 
-  const { formValues, getFieldValue, handleChange, handleClearField } =
-    useForm<FormType>(initialFormValues);
+   { formValues, getFieldValue, handleChange, handleClearField } =
+    useForm<FormType>(initialFormValues),
 
-  const handleSubmit = useCallback((error: React.FormEvent) => {
+   handleSubmit = useCallback((error: React.FormEvent) => {
     console.log('handleSubmit');
     error.stopPropagation();
     error.preventDefault();
     //  handleSave();
-  }, []);
+  }, []),
 
-  const getTitleErrors = useCallback(() => {
-    const z = formValues.title;
-    const y = pageSchema.shape.title.safeParse(formValues.title);
+   getTitleErrors = useCallback(() => {
+    const z = formValues.title,
+     y = pageSchema.shape.title.safeParse(formValues.title);
     return y;
-  }, [formValues.title]);
+  }, [formValues.title]),
 
-  const x = getTitleErrors();
+   x = getTitleErrors(),
 
   /// zODwRAPPER
   /// zodWrapper(pageSchema, initialFormValues, handleSubmit);
   ////zodWrapper
 
-  const { onDialogClose, onDialogOpen, ...dialogProps } = useDialog();
+   { onDialogClose, onDialogOpen, ...dialogProps } = useDialog(),
 
-  const firstFieldRef = useRef<HTMLInputElement>(null);
+   firstFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     firstFieldRef.current?.focus();
