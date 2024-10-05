@@ -6,9 +6,19 @@ import globals from 'globals';
 import pluginReact from 'eslint-plugin-react';
 import pluginHooks from 'eslint-plugin-react-hooks';
 import pluginA11y from 'eslint-plugin-jsx-a11y';
+import pluginArrow from 'eslint-plugin-prefer-arrow-functions';
+import pluginPromise from 'eslint-plugin-promise';
+import pluginRedux from 'eslint-plugin-react-redux';
+import pluginJest from 'eslint-plugin-jest';
+import pluginSonar from 'eslint-plugin-sonarjs';
+import pluginReactCompiler from 'eslint-plugin-react-compiler';
+import pluginPerfectionist from 'eslint-plugin-perfectionist';
+
+// No default export
+import * as pluginStorybook from 'eslint-plugin-storybook';
 // Typescript specific rules
 import typescriptParser from '@typescript-eslint/parser';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import pluginTypescript from '@typescript-eslint/eslint-plugin';
 
 export default [
   {
@@ -35,6 +45,12 @@ export default [
       react: pluginReact,
       'react-hooks': pluginHooks,
       'jsx-a11y': pluginA11y,
+      'prefer-arrow-functions': pluginArrow,
+      promise: pluginPromise,
+      'react-redux': pluginRedux,
+      sonarjs: pluginSonar,
+      'react-compiler': pluginReactCompiler,
+      perfectionist: pluginPerfectionist,
 
       // flatConfigs,
 
@@ -44,15 +60,116 @@ export default [
       ...js.configs.recommended.rules,
       ...pluginReact.configs['recommended'].rules,
       ...pluginHooks.configs.recommended.rules,
+      ...pluginRedux.configs.recommended.rules,
       ...pluginA11y.configs.recommended.rules,
+      // There is no config for this plugin
+      // ...pluginReactCompiler.configs.recommended.rules,
+      // Evaluate: Too many and conflicting rules
+      // ...pluginSonar.configs.recommended.rules,
 
       // Trying out
       'react/jsx-props-no-multi-spaces': 'error',
       'react/jsx-props-no-spread-multi': 'error',
+      'prefer-arrow-functions/prefer-arrow-functions': [
+        'warn',
+        {
+          allowNamedFunctions: false,
+          classPropertiesAllowed: false,
+          disallowPrototype: false,
+          returnStyle: 'unchanged',
+          singleReturnOnly: false,
+        },
+      ],
+
+      // Promise rules
+      'promise/always-return': 'error',
+      'promise/avoid-new': 'warn',
+      'promise/catch-or-return': 'error',
+      'promise/no-callback-in-promise': 'warn',
+      'promise/no-native': 'off',
+      'promise/no-nesting': 'warn',
+      'promise/no-new-statics': 'error',
+      'promise/no-promise-in-callback': 'warn',
+      'promise/no-return-in-finally': 'warn',
+      'promise/no-return-wrap': 'error',
+      'promise/param-names': 'error',
+      'promise/valid-params': 'warn',
+
+      // A11Y rules
+      'jsx-a11y/anchor-is-valid': [
+        'error',
+        {
+          aspects: ['invalidHref', 'preferButton'],
+          components: ['Link'],
+          specialLink: ['hrefLeft', 'hrefRight'],
+        },
+      ],
+
+      // React compiler rules
+      'react-compiler/react-compiler': 'error',
+
+      // Perfectionist rules
+      'perfectionist/sort-array-includes': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
+      'perfectionist/sort-enums': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
+      'perfectionist/sort-jsx-props': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
+      'perfectionist/sort-object-types': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
+      // Big Fix
+      'perfectionist/sort-objects': [
+        'warn',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
+      'perfectionist/sort-sets': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
+      'perfectionist/sort-switch-case': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
+      'perfectionist/sort-union-types': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+        },
+      ],
 
       // There is a conflict somewhere with this rule
-      'react/jsx-sort-props': 'error',
-
+      // conflicts with perfectionist/sort-jsx-props
+      // 'react/jsx-sort-props': 'warn',
 
       // suppress errors for missing 'import React' in files
       'react/react-in-jsx-scope': 'off',
@@ -104,13 +221,12 @@ export default [
         },
       ],
 
-
       // We want to encourage the use of the spread operator
       // 'react/jsx-props-no-spreading': 'off',
 
       // Deprecated rules
       // 'react/jsx-sort-default-props': 'error',
-       'jsx-a11y/label-has-for': 'off',
+      'jsx-a11y/label-has-for': 'off',
 
       // ...pluginPerfectionist.configs['recommended-natural'].rules,
       // ...flatConfigs.recommended.rules,
@@ -274,12 +390,12 @@ export default [
       reportUnusedDisableDirectives: 'error',
     },
     plugins: {
-      '@typescript-eslint': typescriptEslint,
+      '@typescript-eslint': pluginTypescript,
     },
 
     rules: {
-      ...typescriptEslint.configs['recommended'].rules,
-      ...typescriptEslint.configs['recommended-requiring-type-checking'].rules,
+      ...pluginTypescript.configs['recommended'].rules,
+      ...pluginTypescript.configs['recommended-requiring-type-checking'].rules,
 
       // ...pluginImportTypescript,
 
@@ -381,15 +497,54 @@ export default [
       },
     },
   },
-  // {
-  //   name: 'Site8- test files',
-  //   files: ['**/*.test.js', '**/*.spec.js'],
-  //   languageOptions: {
-  //     globals: {
-  //       it: 'readonly',
-  //       expect: 'readonly',
-  //       describe: 'readonly',
-  //     },
-  //   },
-  // },
+  {
+    name: 'Site8-test files',
+    files: ['**/*.test.js', '**/*.spec.js'],
+    languageOptions: {
+      globals: {
+        it: 'readonly',
+        expect: 'readonly',
+        describe: 'readonly',
+      },
+    },
+    plugins: {
+      jest: pluginJest,
+    },
+    rules: {
+      ...pluginJest.configs.recommended.rules,
+      // Jest rules
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
+      'jest/prefer-to-have-length': 'warn',
+      'jest/valid-expect': 'error',
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+  {
+    name: 'Site8-Storybook files',
+    files: ['**/*.stories.(jsx,tsx)'],
+    languageOptions: {
+      globals: {
+        it: 'readonly',
+        expect: 'readonly',
+        describe: 'readonly',
+      },
+    },
+    plugins: {
+      storybook: pluginStorybook,
+    },
+    rules: {
+      ...pluginStorybook.configs['flat/recommended'],
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
 ];

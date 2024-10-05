@@ -1,7 +1,7 @@
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
-import React, { LabelHTMLAttributes, memo } from 'react';
+import React, { LabelHTMLAttributes, memo, JSX } from 'react';
 import { styled } from 'styled-components';
 import Tooltip from '../Tooltip/Tooltip';
 import { TooltipBaseProps } from '../Tooltip/TooltipBase';
@@ -57,9 +57,6 @@ const StyledLabel = styled.div`
   color: var(--input-label-color, '#ffffff');
   font-size: 15px;
   font-weight: 500;
-`;
-const StyledTooltip = styled.span`
-  color: var(--color-required);
 `;
 const StyledRow = styled.div`
   display: flex;

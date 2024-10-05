@@ -12,6 +12,27 @@ import { z } from 'zod';
 
 // Define Zod Shape
 const pageSchema = z.object({
+  address_line1: z.string().min(10).optional(),
+  address_line2: z.string().min(10).optional(),
+  cc_name: z.string().min(10).optional(),
+  cc_number: z.string().min(10).optional(),
+  country: z.string().min(10).optional(),
+  day: z.string().min(10).optional(),
+  email: z.string().email().optional(),
+  family_name: z.string().min(10).optional(),
+  given_name: z.string().min(10).optional(),
+  honorific_prefix: z.string().min(10).optional(),
+  honorific_suffix: z.string().min(10).optional(),
+  middle_name: z.string().min(10).optional(),
+  month: z.string().min(10).optional(),
+  name: z.string().min(10).optional(),
+  name2: z.string().min(10).optional(),
+  nickname: z.string().min(10).optional(),
+  password: z.string().optional(),
+  phone: z.string().optional(),
+  postal_code: z.string().min(10).optional(),
+  state: z.string().min(10).optional(),
+  tel: z.string().optional(),
   // id: z.number(),
   // name: z
   //   .string({
@@ -29,28 +50,7 @@ const pageSchema = z.object({
     .min(10, 'Title min length not met: 10')
     .max(100, 'Title max length exceeded: 100')
     .describe('Enter a title'),
-  phone: z.string().optional(),
-  password: z.string().optional(),
-  tel: z.string().optional(),
-  email: z.string().email().optional(),
-  name: z.string().min(10).optional(),
-  given_name: z.string().min(10).optional(),
-  family_name: z.string().min(10).optional(),
-  middle_name: z.string().min(10).optional(),
-  honorific_prefix: z.string().min(10).optional(),
-  honorific_suffix: z.string().min(10).optional(),
-  nickname: z.string().min(10).optional(),
-  address_line1: z.string().min(10).optional(),
-  address_line2: z.string().min(10).optional(),
-  country: z.string().min(10).optional(),
-  state: z.string().min(10).optional(),
-  postal_code: z.string().min(10).optional(),
-  cc_number: z.string().min(10).optional(),
-  cc_name: z.string().min(10).optional(),
-  day: z.string().min(10).optional(),
-  month: z.string().min(10).optional(),
   year: z.string().min(10).optional(),
-  name2: z.string().min(10).optional(),
 });
 
 const DevelopPage = (): JSX.Element => {
@@ -62,31 +62,31 @@ const DevelopPage = (): JSX.Element => {
 
   const initialFormValues: FormType = useMemo(
     () => ({
+      address_line1: '',
+      address_line2: '',
+      cc_name: '',
+      cc_number: '',
+      country: '',
+      day: '',
+      email: '',
+      family_name: '',
+      given_name: '',
+      honorific_prefix: '',
+      honorific_suffix: '',
+      middle_name: '',
+      month: '',
+      name: '',
+      name2: '',
+      nickname: '',
+      password: '',
+      phone: '',
+      postal_code: '',
+      state: '',
+      tel: '',
       //id: 0,
       //name: '',
       title: '',
-      phone: '',
-      password: '',
-      tel: '',
-      email: '',
-      name: '',
-      given_name: '',
-      family_name: '',
-      middle_name: '',
-      honorific_prefix: '',
-      honorific_suffix: '',
-      nickname: '',
-      address_line1: '',
-      address_line2: '',
-      country: '',
-      state: '',
-      postal_code: '',
-      cc_number: '',
-      cc_name: '',
-      day: '',
-      month: '',
       year: '',
-      name2: '',
     }),
     [],
   );
@@ -113,7 +113,7 @@ const DevelopPage = (): JSX.Element => {
   /// zodWrapper(pageSchema, initialFormValues, handleSubmit);
   ////zodWrapper
 
-  const { onDialogOpen, onDialogClose, ...dialogProps } = useDialog();
+  const { onDialogClose, onDialogOpen, ...dialogProps } = useDialog();
 
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
@@ -140,30 +140,30 @@ const DevelopPage = (): JSX.Element => {
                       autoComplete="given-name"
                       description="Given name"
                       id="given_name"
+                      inputRef={firstFieldRef}
                       label="First Name"
                       messageProps={{ match: 'tooShort', name: 'x' }}
                       minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
                       placeholder="Enter a first name"
                       required
                       spellCheck
                       value={getFieldValue('given_name')}
-                      inputRef={firstFieldRef}
-                      // onBlur={handeNameOnBlur}
-                      onChange={handleChange}
                     />
                     <Input.Text
                       autoComplete="family-name"
                       id="family_name"
                       label="Last Name"
                       messageProps={{ match: 'tooShort', name: 'x' }}
+                      minLength={10}
+                      // onBlur={handeNameOnBlur}
+                      onChange={handleChange}
                       onClear={handleClearField}
                       placeholder="Enter a last name"
                       required
                       spellCheck
                       value={getFieldValue('family_name')}
-                      minLength={10}
-                      // onBlur={handeNameOnBlur}
-                      onChange={handleChange}
                     />
                   </Grid>
                   {/* <Grid>

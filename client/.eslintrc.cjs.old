@@ -60,22 +60,8 @@ module.exports = {
   rules: {
     'immutable/no-let': 'warn',
     'immutable/no-this': 'warn',
-    // Jest rules
-    'jest/no-disabled-tests': 'warn',
-    'jest/no-focused-tests': 'error',
-    'jest/no-identical-title': 'error',
-    'jest/prefer-to-have-length': 'warn',
-    'jest/valid-expect': 'error',
     //'immutable/no-mutation': 'warn',
     // Accessibility rules
-    'jsx-a11y/anchor-is-valid': [
-      'error',
-      {
-        aspects: ['invalidHref', 'preferButton'],
-        components: ['Link'],
-        specialLink: ['hrefLeft', 'hrefRight'],
-      },
-    ],
     'object-shorthand': 'warn',
     'perfectionist/sort-exports': [
       'error',
@@ -92,29 +78,7 @@ module.exports = {
       },
     ],
     //'import/no-default-export': 'error',
-    'prefer-arrow-functions/prefer-arrow-functions': [
-      'warn',
-      {
-        allowNamedFunctions: false,
-        classPropertiesAllowed: false,
-        disallowPrototype: false,
-        returnStyle: 'unchanged',
-        singleReturnOnly: false,
-      },
-    ],
-    // Promise rules
-    'promise/always-return': 'error',
-    'promise/avoid-new': 'warn',
-    'promise/catch-or-return': 'error',
-    'promise/no-callback-in-promise': 'warn',
-    'promise/no-native': 'off',
-    'promise/no-nesting': 'warn',
-    'promise/no-new-statics': 'error',
-    'promise/no-promise-in-callback': 'warn',
-    'promise/no-return-in-finally': 'warn',
-    'promise/no-return-wrap': 'error',
-    'promise/param-names': 'error',
-    'promise/valid-params': 'warn',
+ 
     'react/button-has-type': 'error',
     // react refresh
     //'react-refresh/only-export-components': 'warn',
