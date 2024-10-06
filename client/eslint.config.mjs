@@ -396,7 +396,8 @@ export default [
       'no-sequences': 'error',
       'no-shadow': 'error',
       'no-template-curly-in-string': 'error',
-      'no-ternary': 'error',
+      // Too restrictive
+      // 'no-ternary': 'error',
       'no-throw-literal': 'error',
       'no-undefined': 'error',
       'no-undef-init': 'error',

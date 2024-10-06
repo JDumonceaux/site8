@@ -2,11 +2,13 @@ import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
 type StartAdornmentProps = {
-  readonly children?: boolean | number | React.ReactNode | string;
+  readonly children?: React.ReactNode;
 };
 
 const StartAdornment = ({ children }: StartAdornmentProps) => {
-  if (!children) {return null;}
+  if (!children) {
+    return null;
+  }
 
   const isString = (value) =>
     typeof value === 'string' || value instanceof String;

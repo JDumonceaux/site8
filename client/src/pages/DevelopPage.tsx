@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useMemo, useRef, JSX } from 'react';
 import StyledMain from 'components/common/StyledMain/StyledMain';
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
-import EmailAdornment from 'components/Input/Adornments/EmailAdornment';
 import Input from 'components/Input/Input';
 import Meta from 'components/Meta/Meta';
 import PageTitle from 'components/PageTitle/PageTitle';
 import { useForm } from 'hooks/useForm';
 import styled from 'styled-components';
 import { z } from 'zod';
+import EmailAdornment from 'components/Input/Core/Adornments/EmailAdornment';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -142,7 +142,7 @@ const pageSchema = z.object({
                       id="given_name"
                       inputRef={firstFieldRef}
                       label="First Name"
-                      messageProps={{ match: 'tooShort', name: 'x' }}
+                      //messageProps={{ match: 'tooShort', name: 'x' }}
                       minLength={10}
                       // onBlur={handeNameOnBlur}
                       onChange={handleChange}
@@ -155,7 +155,7 @@ const pageSchema = z.object({
                       autoComplete="family-name"
                       id="family_name"
                       label="Last Name"
-                      messageProps={{ match: 'tooShort', name: 'x' }}
+                     // messageProps={{ match: 'tooShort', name: 'x' }}
                       minLength={10}
                       // onBlur={handeNameOnBlur}
                       onChange={handleChange}

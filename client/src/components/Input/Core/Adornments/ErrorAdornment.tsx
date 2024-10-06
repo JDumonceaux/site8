@@ -1,17 +1,16 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 
 import { ExclamationTriangleIcon as Icon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
 
-type ErrorAdornmentProps = {
-  readonly ref?: React.Ref<HTMLDivElement>;
+type Props = {
+  readonly children?: never;
   readonly iconProps?: IconProps;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'data-testid'>;
+  readonly ref?: React.Ref<SVGSVGElement>;
+} & Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'data-testid'>;
 
-const ErrorAdornment = ({ ref, iconProps, ...rest }: ErrorAdornmentProps) => (
-  <div data-testid="Email icon" ref={ref} {...rest}>
-    <Icon {...iconProps} />
-  </div>
+const ErrorAdornment = ({ ref, ...rest }: Props) => (
+  <Icon data-testid="Error icon" ref={ref} {...rest} />
 );
 
 ErrorAdornment.displayName = 'ErrorAdornment';

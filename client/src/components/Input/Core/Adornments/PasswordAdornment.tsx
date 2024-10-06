@@ -1,21 +1,18 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 
 import { LockClosedIcon as Icon } from '@radix-ui/react-icons';
-import { IconProps } from '@radix-ui/react-icons/dist/types';
 
-type PasswordAdornmentProps = {
-  readonly ref?: React.Ref<HTMLDivElement>;
-  readonly iconProps?: IconProps;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'data-testid'>;
+
+type Props = {
+  readonly children?: never;
+  readonly ref?: React.Ref<SVGSVGElement>;
+} & Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'data-testid'>;
 
 const PasswordAdornment = ({
   ref,
-  iconProps,
   ...rest
-}: PasswordAdornmentProps) => (
-  <div data-testid="Lock icon" ref={ref} {...rest}>
-    <Icon {...iconProps} />
-  </div>
+}: Props) => (
+  <Icon data-testid="Lock icon" ref={ref} {...rest} />
 );
 
 PasswordAdornment.displayName = 'PasswordAdornment';

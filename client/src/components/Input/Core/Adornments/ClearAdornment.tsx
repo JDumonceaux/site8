@@ -4,38 +4,39 @@ import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon as Icon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
 import { styled } from 'styled-components';
-import Tooltip, { TooltipProps } from '../Tooltip/TooltipBase';
+import Tooltip from '../Tooltip/TooltipBase';
 
-type ClearAdornmentProps = {
-  readonly ref?: React.Ref<HTMLButtonElement>;
-  readonly label?: string;
-  readonly iconProps?: IconProps;
-  readonly icon?: React.ReactNode;
-  readonly onClick: () => void;
+type Props = {
   readonly ariaLabel?: string;
-} & Omit<TooltipProps, 'content' | 'trigger'>;
+  readonly icon?: React.ReactNode;
+  readonly iconProps?: IconProps;
+  readonly label?: string;
+  readonly onClick: () => void;
+  readonly ref?: React.Ref<SVGSVGElement>;
+};
 
 const ClearAdornment = ({
-  ref,
-  label = 'Clear contents',
   ariaLabel = 'clear contents',
-  iconProps,
   icon,
+  iconProps,
+  label = 'Clear contents',
   onClick,
-}: ClearAdornmentProps) => {
-  return (
-    <Tooltip
-      content={label}
-      trigger={
-        <StyledTrigger onClick={onClick}>
-          <AccessibleIcon label={label}>
-            {icon ? icon : <Icon {...iconProps} />}
-          </AccessibleIcon>
-        </StyledTrigger>
-      }
-    />
-  );
-};
+  ref,
+  ...rest
+}: Props) => (
+  <Tooltip
+    aria-label={ariaLabel}
+    content={label}
+    {...rest}
+    trigger={
+      <StyledTrigger onClick={onClick}>
+        <AccessibleIcon label={label}>
+          {icon ? icon : <Icon {...iconProps} ref={ref} />}
+        </AccessibleIcon>
+      </StyledTrigger>
+    }
+  />
+);
 
 ClearAdornment.displayName = 'ClearAdornment';
 

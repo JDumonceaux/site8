@@ -1,14 +1,12 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { styled } from 'styled-components';
-
 import { PhoneIcon as Icon } from 'components/icons/PhoneIcon';
 
-type PhoneAdornmentProps = {
+type Props = {
   readonly ref?: React.Ref<HTMLDivElement>;
-  //readonly iconProps?: IconProps;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'data-testid'>;
 
-const PhoneAdornment = ({ ref, ...rest }: PhoneAdornmentProps) => (
+const PhoneAdornment = ({ ref, ...rest }: Props) => (
   <div data-testid="Phone icon" ref={ref} {...rest}>
     <StyledIcon />
   </div>

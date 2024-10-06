@@ -1,5 +1,4 @@
-import { memo } from 'react';
-
+import React, { memo } from 'react';
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { EyeNoneIcon, EyeOpenIcon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
@@ -7,20 +6,20 @@ import * as Toggle from '@radix-ui/react-toggle';
 import { ToggleProps } from '@radix-ui/react-toggle';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
-type ShowAdornmentProps = {
+type Props = {
   readonly hideLabel?: string;
-  readonly showLabel?: string;
-  readonly ref?: React.Ref<HTMLButtonElement>;
   readonly iconProps?: IconProps;
+  readonly ref?: React.Ref<HTMLButtonElement>;
+  readonly showLabel?: string;
 } & ToggleProps;
 
 const ShowAdornment = ({
   hideLabel = 'Hide password',
-  showLabel = 'Show password',
-  ref,
   iconProps,
+  ref,
+  showLabel = 'Show password',
   ...rest
-}: ShowAdornmentProps) => {
+}: Props) => {
   const show = rest.pressed ?? false;
 
   return (

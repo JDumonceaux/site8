@@ -1,5 +1,4 @@
 import Button from 'components/form/Button/Button';
-import { PasswordField } from 'components/Input/PasswordField';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/Meta/Meta';
 import { password } from 'components/pages/auth/ZodStrings';
@@ -10,6 +9,8 @@ import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
+import Input from 'components/Input/Input';
+import React from 'react';
 
 // Define Zod Shape
 const schema = z
@@ -24,7 +25,7 @@ const schema = z
     path: ['confirmPassword'],
   });
 
-const ChangePasswordPage = (): JSX.Element => {
+const ChangePasswordPage = (): React.JSX.Element => {
   const title = 'Change Password';
   const compId = useId();
 
@@ -83,14 +84,14 @@ const ChangePasswordPage = (): JSX.Element => {
           // aria-invalid={error ? 'true' : 'false'}
           // noValidate
           onSubmit={handleSubmit}>
-          <PasswordField
+          <Input.Password
             // autoComplete="current-password"
             // errorTextShort="Please enter a password"
             label="Current Password"
             placeholder="Current password"
             {...getDefaultPasswordFields('password' as keys, compId)}
           />
-          <PasswordField
+          <Input.Password
             // autoComplete="new-password"
             // errorTextShort="Please enter a password"
             // helpText={['8 characters minimum']}
@@ -98,7 +99,7 @@ const ChangePasswordPage = (): JSX.Element => {
             placeholder="New password"
             {...getDefaultPasswordFields('newPassword' as keys, compId)}
           />
-          <PasswordField
+          <Input.Password
             //autoComplete="new-password"
             //errorTextShort="Please enter a password"
             //helpText={['8 characters minimum']}

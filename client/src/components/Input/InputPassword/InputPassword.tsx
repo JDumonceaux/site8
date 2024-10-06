@@ -1,32 +1,32 @@
-import { memo, useCallback, useState } from 'react';
-import PasswordStartAdornment from '../Adornments/PasswordAdornment';
-import PasswordAdornment from '../Adornments/ShowAdornment';
+import React,{ memo, useCallback, useState } from 'react';
 import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
+import PasswordAdornment from '../Core/Adornments/PasswordAdornment';
+import ShowAdornment from '../Core/Adornments/ShowAdornment';
+
 
 type InputPasswordProps = {
-  readonly type?: 'password';
   readonly autoComplete?: 'current-password' | 'new-password' | 'off';
+  readonly type?: 'password';
 } & Omit<
   InputBaseProps,
-  | 'type'
   | 'autocapitalize'
+  | 'autoComplete'
   | 'height'
   | 'max'
   | 'min'
   | 'src'
   | 'step'
+  | 'type'
   | 'width'
-  | 'autoComplete'
 >;
 
 // Remove: 'autocapitalize', 'height', 'src', 'step', 'width'
 // Valid: pattern, value
 
 const InputPassword = ({
-  type = 'password',
   autoComplete = 'off',
   ...rest
-}: InputPasswordProps): JSX.Element => {
+}: InputPasswordProps): React.JSX.Element => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handlePress = useCallback((value: boolean) => {
@@ -35,16 +35,16 @@ const InputPassword = ({
 
   return (
     <InputBase
-      type={showPassword ? 'text' : 'password'}
       autoComplete={autoComplete}
+      type={showPassword ? 'text' : 'password'}
       {...rest}
       endAdornment={
-        <PasswordAdornment
-          pressed={showPassword}
+        <ShowAdornment
           onPressedChange={handlePress}
+          pressed={showPassword}
         />
       }
-      startAdornment={<PasswordStartAdornment />}
+      startAdornment={<PasswordAdornment />}
     />
   );
 };

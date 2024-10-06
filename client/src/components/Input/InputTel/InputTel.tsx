@@ -1,7 +1,6 @@
-import { memo } from 'react';
-
-import PhoneAdornment from '../Adornments/PhoneAdornment';
+import React, { memo } from 'react';
 import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
+import PhoneAdornment from '../Core/Adornments/PhoneAdornment';
 
 type InputTelProps = {
   readonly type?: 'tel';
@@ -16,11 +15,11 @@ type InputTelProps = {
 // Deprecated: mozactionhint - use enterkeyhint
 
 const InputTel = ({
-  type = 'tel',
   autoComplete = 'tel',
+  type = 'tel',
   ...rest
-}: InputTelProps): JSX.Element => (
-  <InputBase type={type} startAdornment={<PhoneAdornment />} {...rest} />
+}: InputTelProps): React.JSX.Element => (
+  <InputBase autoComplete={autoComplete} startAdornment={<PhoneAdornment />} type={type} {...rest} />
 );
 
 InputTel.displayName = 'InputTel';

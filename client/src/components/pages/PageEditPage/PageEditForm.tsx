@@ -1,21 +1,20 @@
+import  React, { forwardRef, useCallback, useState } from 'react';
 import * as Form from '@radix-ui/react-form';
-import TextInput from 'components/Input/TextInput/TextInput';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'hooks/usePageEdit';
-import { forwardRef, useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types';
-
 import { TextArea } from 'components/Input/TextArea/TextArea';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
+import Input from 'components/Input/Input';
 
 type PageEditFormProps = {
   readonly data?: Page;
 };
 
 const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
-  ({ data }, reference): JSX.Element => {
+  ({ data }, reference): React.JSX.Element => {
     const {
       formValues,
       getFieldErrors,
@@ -81,9 +80,9 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
             {isSaved ? 'Saved' : 'Save'}
           </StyledSaveButton>
         </StyledButton>
-        <TextInput
+        <Input.Text
           {...getStandardInputTextAttributes('name')}
-          errorText={getFieldErrors('name')}
+         // errorText={getFieldErrors('name')}
           id="name"
           label="Title"
           minLength={10}
@@ -92,7 +91,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           placeholder="Enter a title"
           required
           spellCheck
-          value={formValues['name']}
+          value={formValues.name}
 
           //layout="horizontal"
           //onBlur={handeNameOnBlur}
@@ -100,18 +99,18 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           //spellCheck
         />
 
-        <TextInput
+        <Input.Text
           {...getStandardInputTextAttributes('to')}
           label="To"
           placeholder="Enter a route"
         />
-        <TextInput
+        <Input.Text
           {...getStandardInputTextAttributes('url')}
           label="URL"
           onChange={handleChange}
           placeholder="Enter a url"
         />
-        <TextInput
+        <Input.Text
           {...getStandardInputTextAttributes('parent')}
           label="Parent"
           placeholder="Enter a menu id"
@@ -124,12 +123,12 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           rows={30}
           spellCheck
         />
-        <TextInput
+        <Input.Text
           {...getStandardInputTextAttributes('reading_time')}
-          errorText={getFieldErrors('reading_time')}
+        // errorText={getFieldErrors('reading_time')}
           label="Reading Time"
         />
-        <TextInput
+        <Input.Text
           {...getStandardInputTextAttributes('text')}
           label="Readability Score"
         />

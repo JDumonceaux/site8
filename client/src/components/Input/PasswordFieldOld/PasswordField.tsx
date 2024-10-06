@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import TextInput, { TextInputProps } from '../TextInput/TextInput';
+import Input.Text, { TextInputProps } from '../Input.Text/Input.Text';
 import ShowPasswordButton from './ShowPasswordButton';
 
 type PasswordFieldType = 'password' | 'text';
@@ -65,7 +65,7 @@ type PasswordFieldProps = {
 
 // Note: autocapitalize is not a valid prop for password, url, email fields
 
-export const PasswordField = ({
+export const Input.Password = ({
   autoComplete = 'current-password',
   hideShowPassword = false,
   passwordIsHiddenLabel,
@@ -87,7 +87,7 @@ export const PasswordField = ({
   }, [localType]);
 
   return (
-    <TextInput
+    <Input.Text
       autoComplete={autoComplete}
       inputMode="text"
       outerEndComponent={
@@ -109,4 +109,4 @@ export const PasswordField = ({
   );
 };
 
-PasswordField.displayName = 'PasswordField';
+Input.Password.displayName = 'Input.Password';

@@ -1,5 +1,5 @@
+import React, { memo } from 'react';
 import * as Form from '@radix-ui/react-form';
-import { memo } from 'react';
 import { styled } from 'styled-components';
 
 // Notes:  The minlength and maxlength constraints are only checked on
@@ -15,7 +15,7 @@ export type ValidityStateProps = {
 const ValidityState = ({
   errorMissing,
   errorType,
-}: ValidityStateProps): JSX.Element => (
+}: ValidityStateProps): React.JSX.Element => (
   <>
     <StyledMessage match="badInput">{errorMissing}</StyledMessage>
     {/* This should be valid but doesn't seem to be working */}

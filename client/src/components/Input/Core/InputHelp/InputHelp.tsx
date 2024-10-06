@@ -2,18 +2,21 @@ import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
 type InputHelpProps = {
-  readonly helpText: React.ReactNode | string | string[];
   readonly children?: never;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'id' | 'children'>;
+  readonly helpText: React.ReactNode | string | string[];
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'id'>;
 
-const InputHelp = ({ helpText, ...rest }: InputHelpProps): JSX.Element => {
-  if (!helpText) return null;
+const InputHelp = ({
+  helpText,
+  ...rest
+}: InputHelpProps): React.JSX.Element => {
+  if (!helpText) {
+    return null;
+  }
 
-  const isString = (helpText) =>
-    typeof helpText === 'string' || helpText instanceof String;
-  const isNumber = (helpText) =>
-    typeof helpText === 'number' || helpText instanceof Number;
-  const isBoolean = (helpText) =>
+  const isString = typeof helpText === 'string' || helpText instanceof String;
+  const isNumber = typeof helpText === 'number' || helpText instanceof Number;
+  const isBoolean =
     typeof helpText === 'boolean' || helpText instanceof Boolean;
   const isArray = Array.isArray(helpText);
 
@@ -28,18 +31,16 @@ const InputHelp = ({ helpText, ...rest }: InputHelpProps): JSX.Element => {
   if (isArray) {
     if (helpText.length > 1) {
       return <StyledDiv data-testid="input-help" {...rest}></StyledDiv>;
-    } else {
-      return (
-        <StyledDiv data-testid="input-help" {...rest}>
-          <ul>
-            {helpText.map((item, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={`item-${index}`}>{item}</li>
-            ))}
-          </ul>
-        </StyledDiv>
-      );
     }
+    return (
+      <StyledDiv data-testid="input-help" {...rest}>
+        <ul>
+          {helpText.map((item, index) => (
+            <li key={`item-${index}`}>{item}</li>
+          ))}
+        </ul>
+      </StyledDiv>
+    );
   }
 
   if (React.isValidElement(helpText)) {

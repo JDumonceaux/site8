@@ -1,3 +1,4 @@
+import React from 'react';
 import InputBase, { InputBaseProps } from './Core/InputBase/InputBase';
 import InputEmail from './InputEmail/InputEmail';
 import InputNumber from './InputNumber/InputNumber';
@@ -8,7 +9,7 @@ import { TextArea } from './TextArea/TextArea';
 
 type Props = InputBaseProps;
 
-const Input = ({ ...rest }: Props): JSX.Element => <InputBase id={''} type={'number'} value={''} {...rest} />;
+const Input = ({ ...rest }: Props): React.JSX.Element => <InputBase id={''} type={'number'} value={''} {...rest} />;
 
 Input.Email = InputEmail;
 Input.Number = InputNumber;

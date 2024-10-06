@@ -1,6 +1,7 @@
+import React, { useCallback, useEffect } from 'react';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
 import StyledMain from 'components/common/StyledMain/StyledMain';
-import TextInput from 'components/Input/TextInput/TextInput';
+import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/Meta/Meta';
@@ -9,11 +10,10 @@ import PageTitle from 'components/PageTitle/PageTitle';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import usePagesEdit from 'hooks/usePagesEdit';
-import React, { useCallback, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { MenuItem } from 'types';
 
-const PagesEditPage = (): JSX.Element => {
+const PagesEditPage = (): React.JSX.Element => {
   const {
     data,
     error,
@@ -27,8 +27,7 @@ const PagesEditPage = (): JSX.Element => {
   const { setShowPages, showPages } = useAppSettings();
 
   useEffect(() => {
-    const returnValue = data?.map((item) => {
-      return {
+    const returnValue = data?.map((item) => ({
         id: item.id,
         localId: item.localId,
         name: item.name,
@@ -36,8 +35,7 @@ const PagesEditPage = (): JSX.Element => {
         parentSeq: item.parentItem.seq ? item.parentItem.seq.toString() : '0',
         parentSortby: item.parentItem.sortby ?? '',
         type: item.type,
-      };
-    });
+      }));
     if (returnValue) {
       setFormValues(returnValue);
     }
@@ -72,17 +70,17 @@ const PagesEditPage = (): JSX.Element => {
             </td>
             <td>
               {item.type === 'root' ? null : (
-                <TextInput {...getDefaultProps(item.localId, 'parentId')} />
+                <Input.Text {...getDefaultProps(item.localId, 'parentId')} />
               )}
             </td>
             <td>
-              <TextInput {...getDefaultProps(item.localId, 'parentSeq')} />
+              <Input.Text {...getDefaultProps(item.localId, 'parentSeq')} />
             </td>
 
             <td>
               {item.type === 'page' ? null : (
                 <>
-                  <TextInput
+                  <Input.Text
                     {...getDefaultProps(item.localId, 'parentSortby')}
                     list="sortTypes"
                   />

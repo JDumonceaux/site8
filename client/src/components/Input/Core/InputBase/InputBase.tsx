@@ -4,15 +4,11 @@ import React, {
   memo,
   useRef,
 } from 'react';
-
-import { InputHelpProps } from '../../InputHelp/InputHelp';
-
 import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
 import StartAdornment from '../Adornments/StartAdornment';
-import LabelBase from '../LabelBase/LabelBase';
-import Tooltip from '../Tooltip/Tooltip';
 import { TooltipBaseProps } from '../Tooltip/TooltipBase';
+import FieldWrapper, { FieldWrapperProps } from '../FieldWrapper/FieldWrapper';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -41,24 +37,12 @@ type InputBaseProps = {
   readonly value: string | number | string[];
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly description?: string;
-  readonly label?: string;
-  readonly labelRef?: React.RefObject<HTMLLabelElement>;
-  readonly labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   readonly type: HTMLInputTypeAttribute;
-  readonly messageProps?: any;
-  readonly helpText?: React.ReactNode | string | string[];
-  readonly helpProps?: InputHelpProps;
-  readonly errorText?: React.ReactNode | string | string[];
   readonly toolTipProps?: TooltipBaseProps;
-  readonly endAdornment?:
-    | (React.ReactNode | string | number | boolean)[]
-    | React.ReactNode
-    | string
-    | number
-    | boolean;
-  readonly startAdornment?: React.ReactNode | string | number | boolean;
+  readonly endAdornment?: React.ReactNode;
+  readonly startAdornment?: React.ReactNode;
   readonly showClear?: boolean;
-  readonly showError?: boolean;  
+  readonly showError?: boolean;
   readonly showCounter?: boolean;
   readonly showRequired?: boolean;
   readonly allowedCharacters?: RegExp;
@@ -66,10 +50,11 @@ type InputBaseProps = {
   readonly requiredLabelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
-} & Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  'accesskey' | 'autocorrect' | 'id' | 'name' | 'onChange' | 'value'
->;
+} & Omit<FieldWrapperProps, 'children'> &
+  Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'accesskey' | 'autocorrect' | 'id' | 'name' | 'onChange' | 'value'
+  >;
 
 // Input Attributes
 // accesskey: never; // Don't use - not accessible
@@ -84,9 +69,6 @@ const InputBase = ({
   type,
   description,
   labelProps,
-  messageProps,
-  helpText,
-  helpProps,
   toolTipProps,
   endAdornment,
   startAdornment,
@@ -101,7 +83,6 @@ const InputBase = ({
 
   ...rest
 }: InputBaseProps): JSX.Element => {
-  const { match, name } = messageProps || {};
   const maxLength = rest.maxLength;
   const required = rest.required;
   const characterCount = (() => {
@@ -132,41 +113,58 @@ const InputBase = ({
   const showClearButton = showClear && characterCount > 0 && onClear;
 
   return (
-    <StyledFormField id={id}>
-      <LabelBase
-        label={label}
-        ref={labelRef}
-        {...labelProps}
-        required={required}
-        description={description}
-        endAdornment={<Tooltip.QuestionMark {...toolTipProps} />}>
-        <StyledInputWrapper>
-          <StartAdornment>{startAdornment}</StartAdornment>
-          <StyledInput
-            id={id}
-            key={id}
-            value={value}
-            type={type}
-            {...rest}
-            ref={inputRefLocal}
-            aria-describedby={counterId}
-            onChange={handleChange}
-          />
-          {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
-          {/* <EndAdornment>{endAdornment}</EndAdornment> */}
-        </StyledInputWrapper>
-      </LabelBase>
-
-      {/* <StyledFoooter>
-        <InputHelp helpText={helpText} {...helpProps} />
-        <InputCounter
-          id={counterId}
-          maxLength={maxLength}
-          showCounter={showCounter}
-          characterCount={characterCount}
+    <FieldWrapper id={id} {...rest}>
+      <StyledInputWrapper>
+        <StartAdornment>{startAdornment}</StartAdornment>
+        <StyledInput
+          id={id}
+          key={id}
+          value={value}
+          type={type}
+          {...rest}
+          ref={inputRefLocal}
+          aria-describedby={counterId}
+          onChange={handleChange}
         />
-      </StyledFoooter> */}
-    </StyledFormField>
+        {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
+        {/* <EndAdornment>{endAdornment}</EndAdornment> */}
+      </StyledInputWrapper>
+    </FieldWrapper>
+    // <StyledFormField id={id}>
+    //   <LabelBase
+    //     label={label}
+    //     ref={labelRef}
+    //     {...labelProps}
+    //     required={required}
+    //     description={description}
+    //     endAdornment={<Tooltip.QuestionMark {...toolTipProps} />}>
+    //     <StyledInputWrapper>
+    //       <StartAdornment>{startAdornment}</StartAdornment>
+    //       <StyledInput
+    //         id={id}
+    //         key={id}
+    //         value={value}
+    //         type={type}
+    //         {...rest}
+    //         ref={inputRefLocal}
+    //         aria-describedby={counterId}
+    //         onChange={handleChange}
+    //       />
+    //       {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
+    //       {/* <EndAdornment>{endAdornment}</EndAdornment> */}
+    //     </StyledInputWrapper>
+    //   </LabelBase>
+
+    //   {/* <StyledFoooter>
+    //     <InputHelp helpText={helpText} {...helpProps} />
+    //     <InputCounter
+    //       id={counterId}
+    //       maxLength={maxLength}
+    //       showCounter={showCounter}
+    //       characterCount={characterCount}
+    //     />
+    //   </StyledFoooter> */}
+    // </StyledFormField>
   );
 };
 
@@ -176,10 +174,6 @@ export default memo(InputBase);
 
 export type { InputBaseProps };
 
-const StyledFormField = styled.div`
-  display: grid;
-  margin-bottom: 16px;
-`;
 const StyledInputWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -246,12 +240,4 @@ const StyledInput = styled.input`
   //   }
   // }
 `;
-const StyledFoooter = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: space-between;
-  > div:first-child {
-    flex-grow: 1;
-  }
-`;
+

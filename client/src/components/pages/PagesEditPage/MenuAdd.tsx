@@ -1,25 +1,26 @@
+import React from 'react';
 import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import TextInput from 'components/Input/TextInput/TextInput';
 import useMenuAdd from 'hooks/useMenuAdd';
 import useSnackbar from 'hooks/useSnackbar';
 import { startTransition, useCallback } from 'react';
+import Input from 'components/Input/Input';
 
 /**
  * Represents a form for adding a single menu item.
  *
  * @returns The JSX element representing the MenuAdd component.
  */
-const MenuAdd = (): JSX.Element => {
+const MenuAdd = (): React.JSX.Element => {
   const { setMessage } = useSnackbar();
 
   const {
-    handleChange,
-    getStandardInputTextAttributes,
-    submitForm,
-    validateForm,
     clearForm,
     error,
+    getStandardInputTextAttributes,
+    handleChange,
     isLoading,
+    submitForm,
+    validateForm,
   } = useMenuAdd();
 
   const handleSubmit = useCallback(
@@ -75,7 +76,7 @@ const MenuAdd = (): JSX.Element => {
         <tbody>
           <tr>
             <td>
-              <TextInput
+              <Input.Text
                 {...getStandardInputTextAttributes('name')}
                 autoCapitalize="off"
                 inputMode="text"
@@ -85,7 +86,7 @@ const MenuAdd = (): JSX.Element => {
               />
             </td>
             <td>
-              <TextInput
+              <Input.Text
                 {...getStandardInputTextAttributes('parent')}
                 inputMode="numeric"
                 onChange={handleChangeParent}
@@ -93,7 +94,7 @@ const MenuAdd = (): JSX.Element => {
               />
             </td>
             <td>
-              <TextInput
+              <Input.Text
                 {...getStandardInputTextAttributes('seq')}
                 inputMode="numeric"
                 onChange={handleChangeSeq}
@@ -101,7 +102,7 @@ const MenuAdd = (): JSX.Element => {
               />
             </td>
             <td>
-              <TextInput
+              <Input.Text
                 {...getStandardInputTextAttributes('sortby')}
                 autoCapitalize="off"
                 inputMode="text"
@@ -114,7 +115,7 @@ const MenuAdd = (): JSX.Element => {
               </datalist>
             </td>
             <td>
-              <TextInput
+              <Input.Text
                 {...getStandardInputTextAttributes('type')}
                 autoCapitalize="off"
                 inputMode="text"
