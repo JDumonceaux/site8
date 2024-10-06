@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import InputBase, { InputBaseProps } from '../InputBase/InputBase';
+import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputUrlProps = {
   readonly type?: 'password';

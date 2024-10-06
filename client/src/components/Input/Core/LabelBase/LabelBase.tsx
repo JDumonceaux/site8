@@ -7,26 +7,26 @@ import Tooltip from '../Tooltip/Tooltip';
 import { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
 type LabelBaseProps = {
+  readonly children?: React.ReactNode;
+  readonly description?: string;
+  readonly endAdornment?: React.ReactNode;
   readonly label?: string;
   readonly ref?: React.RefObject<HTMLLabelElement>;
   readonly required?: boolean;
-  readonly children?: React.ReactNode;
   readonly tooltipProps?: TooltipBaseProps;
-  readonly description?: string;
-  readonly endAdornment?: React.ReactNode;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 /* Note: If you use htmlfor(or for) attribute, 
   clicking on the label doesn't seem to select the input */
 
 const LabelBase = ({
-  label,
-  required = false,
-  ref,
   children,
-  tooltipProps,
   description,
   endAdornment,
+  label,
+  ref,
+  required = false,
+  tooltipProps,
   ...rest
 }: LabelBaseProps): JSX.Element => (
   <Label.Root ref={ref} {...rest}>
@@ -52,6 +52,8 @@ const LabelBase = ({
 LabelBase.displayName = 'LabelBase';
 
 export default memo(LabelBase);
+
+export type { LabelBaseProps };
 
 const StyledLabel = styled.div`
   color: var(--input-label-color, '#ffffff');

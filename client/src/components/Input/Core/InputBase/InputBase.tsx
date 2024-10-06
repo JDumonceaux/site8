@@ -5,7 +5,7 @@ import React, {
   useRef,
 } from 'react';
 
-import { InputHelpProps } from '../InputHelp/InputHelp';
+import { InputHelpProps } from '../../InputHelp/InputHelp';
 
 import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
@@ -178,6 +178,7 @@ export type { InputBaseProps };
 
 const StyledFormField = styled.div`
   display: grid;
+  margin-bottom: 16px;
 `;
 const StyledInputWrapper = styled.div`
   display: flex;

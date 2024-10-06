@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import InputBase, { InputBaseProps } from '../InputBase/InputBase';
+import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputImageProps = {
   readonly type?: 'color';

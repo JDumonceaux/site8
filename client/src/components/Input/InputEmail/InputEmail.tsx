@@ -1,9 +1,9 @@
 import { memo } from 'react';
 
-import InputBase, { InputBaseProps } from '../InputBase/InputBase';
+import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputEmailProps = {
-  readonly type?: 'password';
+  readonly type?: 'email';
 } & Omit<
   InputBaseProps,
   'autocapitalize' | 'height' | 'src' | 'step' | 'type' | 'width'
@@ -13,7 +13,7 @@ type InputEmailProps = {
 // Valid: multiple, pattern, value
 
 const InputEmail = ({
-  type = 'password',
+  type = 'email',
   ...rest
 }: InputEmailProps): JSX.Element => <InputBase type={type} {...rest} />;
 

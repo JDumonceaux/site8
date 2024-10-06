@@ -2,11 +2,11 @@ import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
 type StartAdornmentProps = {
-  readonly children?: React.ReactNode | string | number | boolean;
+  readonly children?: boolean | number | React.ReactNode | string;
 };
 
 const StartAdornment = ({ children }: StartAdornmentProps) => {
-  if (!children) return null;
+  if (!children) {return null;}
 
   const isString = (value) =>
     typeof value === 'string' || value instanceof String;
@@ -40,14 +40,14 @@ StartAdornment.displayName = 'StartAdornment';
 export default memo(StartAdornment);
 
 const StyledDiv = styled.div`
-  color: var(--input-adornment);
+  color: var(--input-adornment-color);
   margin-left: 8px;
   margin-right: 8px;
   user-select: none;
 `;
 const StyledVLine = styled.div`
-  background-color: var(--input-adornment);
+  background-color: var(--input-adornment-color);
   width: 1px;
-  height: 60%;
+  height: 18px;
   user-select: none;
 `;
