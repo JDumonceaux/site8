@@ -18,7 +18,7 @@ type FieldWrapperProps = {
   readonly showError?: boolean;
   readonly showRequired?: boolean;
   readonly toolTipProps?: TooltipBaseProps;
-} & Omit<LabelBaseProps, 'onChange'>;
+} & Omit<LabelBaseProps, 'onChange' | 'ref'>;
 
 const FieldWrapper = ({
   children,

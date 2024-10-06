@@ -42,12 +42,7 @@ type InputBaseProps = {
   readonly endAdornment?: React.ReactNode;
   readonly startAdornment?: React.ReactNode;
   readonly showClear?: boolean;
-  readonly showError?: boolean;
-  readonly showCounter?: boolean;
-  readonly showRequired?: boolean;
   readonly allowedCharacters?: RegExp;
-  readonly requiredLabel?: string;
-  readonly requiredLabelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
 } & Omit<FieldWrapperProps, 'children'> &
@@ -113,7 +108,7 @@ const InputBase = ({
   const showClearButton = showClear && characterCount > 0 && onClear;
 
   return (
-    <FieldWrapper id={id} {...rest}>
+    <FieldWrapper id={id} {...rest} label={label}>
       <StyledInputWrapper>
         <StartAdornment>{startAdornment}</StartAdornment>
         <StyledInput

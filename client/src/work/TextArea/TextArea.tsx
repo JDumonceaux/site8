@@ -1,14 +1,13 @@
 import React, { TextareaHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
-import FieldWrapper, {
-  FieldWrapperProps,
-} from '../Core/FieldWrapper/FieldWrapper';
+import FieldLabel, { FieldLabelProps } from './FieldLabel/FieldLabel';
+
 
 type TextAreaProps = {
   readonly id: string;
   readonly rows: number;
   readonly textareaRef?: React.RefObject<HTMLTextAreaElement>;
-} & Omit<FieldWrapperProps, 'children' | 'ref'> &
+} & Omit<FieldLabelProps, 'children' | 'ref'> &
   Omit<
     TextareaHTMLAttributes<HTMLTextAreaElement>,
     'id' | 'name' | 'ref' | 'rows'
@@ -20,9 +19,9 @@ export const TextArea = ({
   textareaRef,
   ...rest
 }: TextAreaProps): React.JSX.Element => (
-  <FieldWrapper id={id} {...rest} label={rest.label}>
+  <FieldLabel id={id} {...rest} label={rest.label}>
     <StyledTextArea id={id} name={id} ref={textareaRef} rows={rows} {...rest} />
-  </FieldWrapper>
+  </FieldLabel>
 );
 
 const StyledTextArea = styled.textarea`
