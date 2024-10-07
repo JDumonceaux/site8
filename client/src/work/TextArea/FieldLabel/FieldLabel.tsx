@@ -6,17 +6,27 @@ type FieldLabelProps = {
   readonly description?: string;
   readonly label?: string;
   readonly ref?: React.RefObject<HTMLLabelElement>;
+  readonly required?: boolean;
+  readonly requiredIcon?: React.ReactNode;
+  readonly requiredText?: string;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
 const FieldLabel = ({
   children,
   label,
   ref,
+  required = false,
+  requiredIcon = "*",
+  requiredText = 'required'  ,
   ...rest
 }: FieldLabelProps): JSX.Element => (
   <label ref={ref} {...rest}>
     <StyledRow>
       <StyledLabel>{label}</StyledLabel>
+      {required && <VisuallyHidden>{requiredText}</VisuallyHidden>}
+      {required && (
+          <RequiredSpan>{ requiredIcon}</RequiredSpan>
+        )}
     </StyledRow>
     {children}
   </label>
@@ -42,4 +52,16 @@ const StyledRow = styled.div`
   > div:first-child {
     flex-grow: 1;
   }
+`;
+const RequiredSpan = styled.span`
+ color: red;
+`;
+const VisuallyHidden = styled.span`
+ clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 `;

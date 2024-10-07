@@ -13,6 +13,7 @@ type LabelBaseProps = {
   readonly label?: string;
   readonly ref?: React.RefObject<HTMLLabelElement>;
   readonly required?: boolean;
+  readonly requiredText?: string;
   readonly tooltipProps?: TooltipBaseProps;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
@@ -26,6 +27,7 @@ const LabelBase = ({
   label,
   ref,
   required = false,
+  requiredText,
   tooltipProps,
   ...rest
 }: LabelBaseProps): JSX.Element => (
@@ -33,7 +35,7 @@ const LabelBase = ({
     <StyledRow>
       <StyledLabel>
         {label}
-        {required && <VisuallyHidden.Root>required</VisuallyHidden.Root>}
+        {required && <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>}
         {required && (
           <Tooltip.Asterix
             content="Required"
