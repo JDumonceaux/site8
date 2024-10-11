@@ -1,13 +1,14 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import Layout from 'components/layouts/Layout/Layout';
+
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
-import { useDeferredValue, useEffect } from 'react';
+import React, { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';
 
-const PhotoPage = (): JSX.Element => {
+const PhotoPage = (): React.JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Photos>();
   const deferredData = useDeferredValue(data);
 
@@ -18,13 +19,12 @@ const PhotoPage = (): JSX.Element => {
   return (
     <>
       <Meta title="Photos" />
-      <StyledMain>
+      <Layout.Main>
         <PageTitle title="Photos" />
-        <StyledMain.Article>
+        <Layout.Article>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <ul>
-              {deferredData?.items?.map((item) => {
-                return (
+              {deferredData?.items?.map((item) => (
                   <li key={item.id}>
                     <a
                       data-caption={item.description}
@@ -37,12 +37,11 @@ const PhotoPage = (): JSX.Element => {
                       />
                     </a>
                   </li>
-                );
-              })}
+                ))}
             </ul>
           </LoadingWrapper>
-        </StyledMain.Article>
-      </StyledMain>
+        </Layout.Article>
+      </Layout.Main>
     </>
   );
 };

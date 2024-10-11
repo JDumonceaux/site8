@@ -1,19 +1,17 @@
-import { Cross2Icon } from '@radix-ui/react-icons';
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import { IconMenu } from 'components/IconMenu/IconMenu';
-import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
-import InputText from 'components/Input/InputText/InputText';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
+import React, { useEffect, useState, useTransition } from 'react';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import Layout from 'components/layouts/Layout/Layout';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import React, { useEffect, useState, useTransition } from 'react';
 import { styled } from 'styled-components';
+import MenuBar from './ImagesEditPage/MenuBar';
+import RightMenu from './ImagesEditPage/RightMenu';
+import ImageItem from './ImagesEditPage/ImageItem';
 
-const ImagesEditPage = (): JSX.Element => {
+const ImagesEditPage = (): React.JSX.Element => {
   const title = 'Edit Images';
   const [isPending, startTransition] = useTransition();
   const [currentFolder, setCurrentFolder] = useState<string>('');
@@ -23,7 +21,6 @@ const ImagesEditPage = (): JSX.Element => {
     data,
     error,
     fetchItems,
-    getDefaultProps,
     getFieldValue,
     isLoading,
     scanForNewItems,
@@ -76,153 +73,45 @@ const ImagesEditPage = (): JSX.Element => {
     setFieldValue(localId, 'delete', !previous);
   };
 
-  const handleFolderClick = (localId: number) => {
+  const handleFolderSelect = (localId: number) => {
     setFieldValue(localId, 'folder', currentFolder);
   };
 
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
-        <StyledMain.Section>
+      <Layout.Main>
+        <Layout.Section>
           <PageTitle title={title}>
-            <IconMenu>
-              <IconMenuItem onClick={handleScan}>Scan for New</IconMenuItem>
-              <IconMenuItem>
-                <a
-                  href="http://localhost:3005/api/images/list-duplicates"
-                  rel="noreferrer"
-                  target="_blank">
-                  List Duplicates
-                </a>
-              </IconMenuItem>
-              <IconMenuItem>
-                <a
-                  href="http://localhost:3005/api/images/fix-index"
-                  rel="noreferrer"
-                  target="_blank">
-                  Fix Index
-                </a>
-              </IconMenuItem>
-              <IconMenuItem>
-                <a
-                  href="http://localhost:3005/api/images/fix-file-names"
-                  rel="noreferrer"
-                  target="_blank">
-                  Fix Names
-                </a>
-              </IconMenuItem>
-            </IconMenu>
-            <StyledPlainButton
-              data-testid="button-refresh"
-              onClick={handleRefresh}
-              type="submit">
-              Refresh
-            </StyledPlainButton>
-            <StyledPlainButton
-              data-testid="button-save"
-              onClick={handleSubmit}
-              type="submit">
-              Save
-            </StyledPlainButton>
+            <MenuBar
+              handleScan={handleScan}
+              handleRefresh={handleRefresh}
+              handleSubmit={() => handleSubmit}
+            />
           </PageTitle>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <StyledContainer>
               {isPending ? <div>Looking ...</div> : null}
               <StyledForm noValidate onSubmit={handleSubmit}>
                 {data?.map((item) => (
-                  <StyledRow
-                    $deleted={item.delete ? 'true' : 'false'}
-                    key={item.localId}>
-                    <StyledImgContainer>
-                      <StyledImg alt={item.name} src={item.src} />
-                    </StyledImgContainer>
-                    <StyledOuterRow>
-                      {item.duplicate === 'true' ? (
-                        <StyledSubRow>Duplicate Image</StyledSubRow>
-                      ) : null}
-                      <StyledSubRow>
-                        <InputText {...getDefaultProps(item.localId, 'name')} />
-                        <InputText
-                          {...getDefaultProps(item.localId, 'fileName')}
-                        />
-                        <InputText
-                          {...getDefaultProps(item.localId, 'folder')}
-                        />
-                        <div>
-                          <StyledButton2
-                            onClick={() => handleFolderClick(item.localId)}
-                            type="button">
-                            <Cross2Icon />
-                            {/* <CheckIcon /> */}
-                          </StyledButton2>
-                        </div>
-                      </StyledSubRow>
-                      <StyledSubRow>
-                        <InputText
-                          {...getDefaultProps(item.localId, 'location')}
-                        />
-                        <InputText
-                          {...getDefaultProps(item.localId, 'official_url')}
-                        />
-                        <IconMenu>
-                          <IconMenuItem
-                            onClick={() => handleOnDelete(item.localId)}>
-                            Delete
-                          </IconMenuItem>
-                          <IconMenuItem>{item.id}</IconMenuItem>
-                        </IconMenu>
-                      </StyledSubRow>
-                      <StyledSubRow>
-                        <InputText
-                          {...getDefaultProps(item.localId, 'description')}
-                        />
-                      </StyledSubRow>
-                    </StyledOuterRow>
-                  </StyledRow>
+                  <ImageItem
+                    item={item}
+                    onFolderSelect={handleFolderSelect}
+                    onDelete={handleOnDelete}
+                  />
                 ))}
               </StyledForm>
             </StyledContainer>
           </LoadingWrapper>
-        </StyledMain.Section>
-        <StyledMain.Aside>
-          <StickyMenu>
-            <StyledHeader>
-              <div>
-                {currentFolder && currentFolder.length > 0 ? (
-                  <StyledButton
-                    // eslint-disable-next-line react/no-array-index-key
-                    onClick={() => handleOnClick('')}
-                    type="button">
-                    {currentFolder}
-                  </StyledButton>
-                ) : (
-                  <div>Select Folder</div>
-                )}
-              </div>
-              <div>{data.length}</div>
-            </StyledHeader>
-            <hr />
-            {imageFolders?.map((folder) => (
-              <React.Fragment key={folder.id}>
-                {folder.name === currentFolder ? (
-                  <StyledActiveButton
-                    onClick={() => handleOnClick(folder.name)}
-                    type="button">
-                    {folder.name}
-                  </StyledActiveButton>
-                ) : (
-                  <StyledButton
-                    onClick={() => handleOnClick(folder.name)}
-                    type="button">
-                    {folder.name}
-                  </StyledButton>
-                )}
-              </React.Fragment>
-            ))}
-          </StickyMenu>
-        </StyledMain.Aside>
-      </StyledMain>
+        </Layout.Section>
+        <Layout.Aside>
+          <RightMenu
+            data={imageFolders}
+            currentFolder={currentFolder}
+            handleOnClick={handleOnClick}
+          />
+        </Layout.Aside>
+      </Layout.Main>
     </>
   );
 };
@@ -233,67 +122,6 @@ const StyledContainer = styled.div`
   display: flex;
   column-gap: 20px;
 `;
-const StyledButton = styled.button`
-  display: block;
-  width: 100%;
-  padding: 5px 0;
-  text-align: left;
-`;
-const StyledActiveButton = styled.button`
-  display: block;
-  width: 100%;
-  padding: 5px 0;
-  color: var(--navbar-dark-primary);
-  background-color: var(--palette-samp);
-  text-align: left;
-`;
-const StyledButton2 = styled.button`
-  padding: 0 5px;
-  width: 30px;
-  height: 35px;
-`;
 const StyledForm = styled.form`
   width: 100%;
-`;
-const StyledImgContainer = styled.div`
-  display: flex;
-  align-items: left;
-  justify-content: top;
-  margin-right: 20px;
-  width: 250px;
-`;
-const StyledImg = styled.img`
-  width: 200px;
-`;
-const StyledRow = styled.div<{
-  $deleted?: 'false' | 'true';
-}>`
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  width: 100%;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--palette-samp);
-  border: ${(props) =>
-    props.$deleted === 'true' ? `1px solid var(--navbar-dark-3)` : undefined};
-`;
-const StyledOuterRow = styled.div`
-  flex-grow: 1;
-`;
-const StyledSubRow = styled.div`
-  display: flex;
-  width: 100%;
-`;
-const StyledHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  column-gap: 10px;
-  align-items: baseline;
-`;
-const StickyMenu = styled.div`
-  position: sticky;
-  top: 80px;
-  max-height: calc(100vh - 80px);
-  overflow-y: auto;
-  padding-bottom: 20px;
 `;

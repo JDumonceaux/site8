@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useRef, JSX } from 'react';
-import StyledMain from 'components/common/StyledMain/StyledMain';
+
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
 import Input from 'components/Input/Input';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useForm } from 'hooks/useForm';
 import styled from 'styled-components';
 import { z } from 'zod';
 import EmailAdornment from 'components/Input/Core/Adornments/EmailAdornment';
+import Layout from 'components/layouts/Layout/Layout';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -119,8 +120,8 @@ const pageSchema = z.object({
     return (
       <>
         <Meta title={title} />
-        <StyledMain>
-          <StyledMain.Article>
+        <Layout.Main>
+          <Layout.Article>
             <PageTitle title={title} />
             <section>
               {/* <div>Title Issues</div> */}
@@ -391,8 +392,8 @@ const pageSchema = z.object({
                 </Grid>
               </form>
             </section>
-          </StyledMain.Article>
-        </StyledMain>
+          </Layout.Article>
+        </Layout.Main>
         <Dialog label="Test" onClose={onDialogClose} {...dialogProps}>
           Children
         </Dialog>

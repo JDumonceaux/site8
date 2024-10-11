@@ -1,8 +1,8 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+
+import Meta from 'components/core/Meta/Meta';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
-import PageTitle from 'components/PageTitle/PageTitle';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useEffect } from 'react';
@@ -21,14 +21,14 @@ const TestsPage = (): JSX.Element => {
   return (
     <>
       <Meta title={pageTitle} />
-      <StyledMain>
-        <StyledMain.Menu>
+      <Layout.Main>
+        <Layout.Menu>
           <SubjectMenu />
-        </StyledMain.Menu>
-        <StyledMain.Article>
+        </Layout.Menu>
+        <Layout.Article>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <PageTitle title={pageTitle} />
-            <StyledMain.Section>
+            <Layout.Section>
               <table>
                 <thead>
                   <tr>
@@ -63,10 +63,10 @@ const TestsPage = (): JSX.Element => {
                   </tbody>
                 </Suspense>
               </table>
-            </StyledMain.Section>
+            </Layout.Section>
           </LoadingWrapper>
-        </StyledMain.Article>
-      </StyledMain>
+        </Layout.Article>
+      </Layout.Main>
     </>
   );
 };

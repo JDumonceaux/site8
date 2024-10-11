@@ -1,14 +1,13 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+
 import ImageSelector from 'components/custom/ImageSelector/ImageSelector';
-
-import InputText from 'components/Input/InputText/InputText';
+import Input from 'components/Input/Input';
 import { TextArea } from 'components/Input/TextArea/TextArea';
-
+import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import useImageEdit from 'hooks/useImageEdit';
 import useSnackbar from 'hooks/useSnackbar';
 import { useCallback } from 'react';
@@ -56,8 +55,8 @@ const ImageEditImage = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
-        <StyledMain.Section>
+      <Layout.Main>
+        <Layout.Section>
           <PageTitle title={title}>
             {isSaved ? null : (
               <StyledPlainButton
@@ -84,7 +83,7 @@ const ImageEditImage = (): JSX.Element => {
             <StyledContainer>
               <FormContainer>
                 <form noValidate onSubmit={handleSubmit}>
-                  <InputText
+                  <Input.Text
                     autoCapitalize="off"
                     enterKeyHint="next"
                     //errorTextShort="Please enter a short title"
@@ -97,7 +96,7 @@ const ImageEditImage = (): JSX.Element => {
                     //ref={focusElement}
                     {...getDefaultFields('name')}
                   />
-                  <InputText
+                  <Input.Text
                     autoCapitalize="off"
                     enterKeyHint="next"
                     // errorTextShort="Please enter a location"
@@ -109,7 +108,7 @@ const ImageEditImage = (): JSX.Element => {
                     //ref={focusElement}
                     {...getDefaultFields('location')}
                   />
-                  <InputText
+                  <Input.Text
                     autoCapitalize="off"
                     enterKeyHint="next"
                     //   errorTextShort="Please enter a File Name"
@@ -121,7 +120,7 @@ const ImageEditImage = (): JSX.Element => {
                     {...getDefaultFields('fileName')}
                     //ref={focusElement}
                   />
-                  <InputText
+                  <Input.Text
                     autoCapitalize="off"
                     enterKeyHint="next"
                     //  errorTextShort="Please enter a image path"
@@ -133,7 +132,7 @@ const ImageEditImage = (): JSX.Element => {
                     {...getDefaultFields('src')}
                     //ref={focusElement}
                   />
-                  <InputText
+                  <Input.Text
                     // errorTextShort="Please enter a folder"
                     label="Folder"
                     onChange={handleChange}
@@ -141,7 +140,7 @@ const ImageEditImage = (): JSX.Element => {
                     //   type="text"
                     {...getDefaultFields('folder')}
                   />
-                  <InputText
+                  <Input.Text
                     autoCapitalize="off"
                     enterKeyHint="next"
                     //    errorTextShort="Please enter a official URL"
@@ -153,7 +152,7 @@ const ImageEditImage = (): JSX.Element => {
                     {...getDefaultFields('official_url')}
                     //ref={focusElement}
                   />
-                  <InputText
+                  <Input.Text
                     autoCapitalize="off"
                     enterKeyHint="next"
                     //  errorTextShort="Please enter a tag"
@@ -182,8 +181,8 @@ const ImageEditImage = (): JSX.Element => {
               </ImageContainer>
             </StyledContainer>
           </LoadingWrapper>
-        </StyledMain.Section>
-      </StyledMain>
+        </Layout.Section>
+      </Layout.Main>
     </>
   );
 };

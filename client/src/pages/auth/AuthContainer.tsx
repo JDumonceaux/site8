@@ -1,4 +1,4 @@
-import StyledMain from 'components/common/StyledMain/StyledMain';
+
 import { styled } from 'styled-components';
 
 type AuthContainerProps = {
@@ -15,7 +15,7 @@ const AuthContainer = ({
   title,
 }: AuthContainerProps): JSX.Element => {
   return (
-    <StyledMain>
+    <Layout.Main>
       <StyledGrid>
         <StyledLeft aria-hidden="true">{leftImage}</StyledLeft>
         <StyledRight>
@@ -29,7 +29,7 @@ const AuthContainer = ({
           {children}
         </StyledRight>
       </StyledGrid>
-    </StyledMain>
+    </Layout.Main>
   );
 };
 

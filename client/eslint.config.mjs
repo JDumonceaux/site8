@@ -308,7 +308,8 @@ export default [
       // js Rules
       'accessor-pairs': 'error',
       'array-callback-return': 'error',
-      'arrow-body-style': 'error',
+      // a little too aggressive
+      'arrow-body-style': 'never',
       'block-scoped-var': 'error',
       //'camelcase': 'error',
       //'capitalized-comments': 'error',
@@ -399,6 +400,8 @@ export default [
       // Too restrictive
       // 'no-ternary': 'error',
       'no-throw-literal': 'error',
+      // Don't use on Typescript projects
+      'no-undef': 'off',
       'no-undefined': 'error',
       'no-undef-init': 'error',
       'no-underscore-dangle': 'error',

@@ -1,4 +1,4 @@
-import AppInitializer from 'components/common/AppInitializer/AppInitializer';
+import AppInitializer from 'components/core/AppInitializer/AppInitializer';
 import Header from 'components/Header/Header';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';

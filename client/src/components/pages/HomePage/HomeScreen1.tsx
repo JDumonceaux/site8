@@ -10,7 +10,7 @@ const HomeScreen1 = (): JSX.Element => {
     <>
       <Meta title={title} />
       <StyledWrapper>
-        <StyledMain>
+        <Layout.Main>
           <StyledSection>
             <p>Welcome!</p>
             <p>
@@ -32,7 +32,7 @@ const HomeScreen1 = (): JSX.Element => {
             <p>“Three may keep a secret, if two of them are dead.”</p>
             <p>― Benjamin Franklin, Poor Richard&#39;s Almanack</p>
           </StyledAside>
-        </StyledMain>
+        </Layout.Main>
         <HomeMenu />
       </StyledWrapper>
     </>
@@ -47,7 +47,7 @@ const StyledWrapper = styled.div`
   flex-grow: 1;
   margin-top: 40px;
 `;
-const StyledMain = styled.main`
+const Layout = styled.main`
   display: flex;
   flex-direction: column;
   width: 360px;

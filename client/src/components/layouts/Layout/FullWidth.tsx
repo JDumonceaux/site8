@@ -5,11 +5,9 @@ type Props = {
   readonly children?: React.ReactNode;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'data-testid'>;
 
-const StyledFullWidth = ({ children }: Props): JSX.Element => {
-  return <StyledElement data-testid="fullWidth">{children}</StyledElement>;
-};
+const FullWidth = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="fullWidth">{children}</StyledElement>;
 
-export default StyledFullWidth;
+export default FullWidth;
 
 const StyledElement = styled.div`
   background-color: var(--palette-dark-background);

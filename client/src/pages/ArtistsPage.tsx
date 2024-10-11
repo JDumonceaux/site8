@@ -1,6 +1,6 @@
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
+
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 
 const ArtistsPage = (): JSX.Element => {
   const title = 'Art';
@@ -8,7 +8,7 @@ const ArtistsPage = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
+      <Layout.Main>
         <PageTitle title={title} />
         <section>
           <div>
@@ -54,7 +54,7 @@ const ArtistsPage = (): JSX.Element => {
             <div />
           </div>
         </section>
-      </StyledMain>
+      </Layout.Main>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import useMenuAdd from 'hooks/useMenuAdd';
 import useSnackbar from 'hooks/useSnackbar';
 import { startTransition, useCallback } from 'react';

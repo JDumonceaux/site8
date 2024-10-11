@@ -1,8 +1,8 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+
+import Meta from 'components/core/Meta/Meta';
 import { BookmarkTags } from 'components/pages/BookmarkPage/BookmarksTags';
-import PageTitle from 'components/PageTitle/PageTitle';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { useDeferredValue, useEffect } from 'react';
@@ -21,7 +21,7 @@ const BookmarkPage = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
+      <Layout.Main>
         <PageTitle title={title} />
         <section>
           <p>These are some of my favorite resources.</p>
@@ -29,7 +29,7 @@ const BookmarkPage = (): JSX.Element => {
             <BookmarkTags data={deferredData} />
           </LoadingWrapper>
         </section>
-      </StyledMain>
+      </Layout.Main>
     </>
   );
 };

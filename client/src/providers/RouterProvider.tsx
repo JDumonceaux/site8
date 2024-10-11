@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
+import InputPage from 'pages/design/InputPage';
 
 const AuthLayout = lazy(
   () => import('components/layouts/AuthLayout/AuthLayout'),
@@ -77,6 +78,12 @@ const router = createBrowserRouter(
         {/* 14 = AWS */}
         <Route element={<MainLayout />}>
           <Route element={<GenericPage />} path="/:lang?/aws/*" />
+        </Route>
+
+                {/* Design */}
+                <Route element={<MainLayout />} path="design">
+          <Route element={<InputPage />} path="input" />
+
         </Route>
 
         <Route element={<MainLayout />}>

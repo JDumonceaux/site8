@@ -1,14 +1,16 @@
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
 
-const MusicPage = (): JSX.Element => {
+import Layout from 'components/layouts/Layout/Layout';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
+import React from 'react';
+
+const MusicPage = (): React.JSX.Element => {
   const title = 'YouTube Videos';
 
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
+      <Layout.Main>
         <PageTitle title={title} />
         <section>
           <p>These are some of my favorite YouTube videos.</p>
@@ -25,7 +27,7 @@ const MusicPage = (): JSX.Element => {
 
           </LoadingWrapper> */}
         </section>
-      </StyledMain>
+      </Layout.Main>
     </>
   );
 };

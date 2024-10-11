@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect } from 'react';
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
 import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
-import PageTitle from 'components/PageTitle/PageTitle';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import usePagesEdit from 'hooks/usePagesEdit';
 import { styled } from 'styled-components';
 import { MenuItem } from 'types';
+import Layout from 'components/layouts/Layout/Layout';
 
 const PagesEditPage = (): React.JSX.Element => {
   const {
@@ -108,8 +109,8 @@ const PagesEditPage = (): React.JSX.Element => {
   return (
     <>
       <Meta title="Pages" />
-      <StyledMain>
-        <StyledMain.Section>
+      <Layout.Main>
+        <Layout.Section>
           <PageTitle title="Pages">
             <Switch
               checked={showPages}
@@ -146,8 +147,8 @@ const PagesEditPage = (): React.JSX.Element => {
             </table>
           </LoadingWrapper>
           <MenuAdd />
-        </StyledMain.Section>
-      </StyledMain>
+        </Layout.Section>
+      </Layout.Main>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import PageTitle from 'components/PageTitle/PageTitle';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { memo } from 'react';
 import { styled } from 'styled-components';
 

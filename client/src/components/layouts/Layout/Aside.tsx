@@ -1,0 +1,14 @@
+import React from 'react';
+import { styled } from 'styled-components';
+
+type Props = {
+  readonly children?: React.ReactNode;
+};
+
+const Aside = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="aside">{children}</StyledElement>;
+
+export default Aside;
+
+const StyledElement = styled.div`
+  flex: 0 0 200px;
+`;

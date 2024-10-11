@@ -1,6 +1,6 @@
 import InputText from 'components/Input/InputText/InputText';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
@@ -82,7 +82,7 @@ const DeleteAccountPage = (): JSX.Element => {
             Are you sure you want to delete your account? You will lose access
             and all data.
           </div>
-          <InputText
+          <Input.Text
             autoComplete="off"
             // errorTextShort="Required"
             inputMode="text"

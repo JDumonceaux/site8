@@ -3,57 +3,55 @@ import React, { ButtonHTMLAttributes, memo } from 'react';
 import styled, { css } from 'styled-components';
 
 const VARIANTS = Object.freeze({
+  discreet: 'discreet',
+  ghost: 'ghost',
   primary: 'primary',
   secondary: 'secondary',
-  ghost: 'ghost',
-  discreet: 'discreet',
 } as const);
 
 const SIZES = Object.freeze({
-  xs: 'xs',
-  sm: 'sm',
-  md: 'md',
   lg: 'lg',
+  md: 'md',
+  sm: 'sm',
   xl: 'xl',
+  xs: 'xs',
 } as const);
 
 type ButtonProps = {
   readonly children: React.ReactNode;
-  readonly size?: keyof typeof SIZES;
-  readonly variant?: keyof typeof VARIANTS;
-  readonly type?: 'button' | 'submit' | 'reset';
-  readonly startAdornment?: React.ReactNode;
   readonly endAdornment?: React.ReactNode;
+  readonly size?: keyof typeof SIZES;
+  readonly startAdornment?: React.ReactNode;
+  readonly type?: 'button' | 'reset' | 'submit';
+  readonly variant?: keyof typeof VARIANTS;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
 
 const Button = ({
   children,
-  size = 'md',
-  variant = 'primary',
-  type = 'button',
-  startAdornment,
   endAdornment,
+  size = 'md',
+  startAdornment,
+  type = 'button',
+  variant = 'primary',
   ...rest
-}: ButtonProps) => {
-  return (
+}: ButtonProps) => (
     <StyledButton
       data-testid="Button"
       type={type}
       {...rest}
-      $variant={variant}
-      $size={size}>
+      $size={size}
+      $variant={variant}>
       {children}
     </StyledButton>
   );
-};
 
 Button.displayName = 'Button';
 
 export default memo(Button);
 
 const StyledButton = styled.button<{
-  $variant?: keyof typeof VARIANTS;
   $size?: keyof typeof SIZES;
+  $variant?: keyof typeof VARIANTS;
 }>`
   border-radius: 50%;
   ${(props) => {

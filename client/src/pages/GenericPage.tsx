@@ -1,10 +1,10 @@
-import Fallback from 'components/common/Fallback/Fallback';
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
+import Fallback from 'components/core/Fallback/Fallback';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+
+import Meta from 'components/core/Meta/Meta';
 import RenderHtml from 'components/pages/GenericPage/RenderHtml';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
-import PageTitle from 'components/PageTitle/PageTitle';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useDeferredValue, useEffect, useState } from 'react';
@@ -39,27 +39,27 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
   return (
     <>
       <Meta title={pageTitle} />
-      <StyledMain>
-        <StyledMain.Menu>
+      <Layout.Main>
+        <Layout.Menu>
           <SubjectMenu />
-        </StyledMain.Menu>
+        </Layout.Menu>
         <LoadingWrapper
           error={error}
           fallback={<Fallback />}
           isLoading={isLoading}>
           <Suspense fallback="Loading ...">
-            <StyledMain.Article>
+            <Layout.Article>
               <PageTitle title={pageTitle}>
                 <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
               </PageTitle>
               <StyledSection>
                 <RenderHtml text={deferredData?.text} />
               </StyledSection>
-            </StyledMain.Article>
+            </Layout.Article>
           </Suspense>
         </LoadingWrapper>
-        <StyledMain.Aside />
-      </StyledMain>
+        <Layout.Aside />
+      </Layout.Main>
     </>
   );
 };

@@ -1,7 +1,7 @@
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
+
+import Meta from 'components/core/Meta/Meta';
 import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
-import PageTitle from 'components/PageTitle/PageTitle';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 
@@ -13,13 +13,13 @@ const YachtsPage = (): JSX.Element => {
   return (
     <>
       <Meta title={pageTitle} />
-      <StyledMain>
-        <StyledMain.Menu>
+      <Layout.Main>
+        <Layout.Menu>
           <SubjectMenu />
-        </StyledMain.Menu>
-        <StyledMain.Article>
+        </Layout.Menu>
+        <Layout.Article>
           <PageTitle title={pageTitle} />
-          <StyledMain.Section>
+          <Layout.Section>
             <Suspense fallback="Loading results ...">
               <p>
                 The design of this yacht is called <em>Nature</em>.
@@ -95,10 +95,10 @@ const YachtsPage = (): JSX.Element => {
                 <img alt="" src="/images/yachts/sinot-aqua-owners-suite.png" />
               </div>
             </Suspense>
-          </StyledMain.Section>
-        </StyledMain.Article>
+          </Layout.Section>
+        </Layout.Article>
 
-        <StyledMain.Aside>
+        <Layout.Aside>
           {/* Art of Life */}
           <div>
             <StyledTitle>Art of Life Design</StyledTitle>
@@ -162,8 +162,8 @@ const YachtsPage = (): JSX.Element => {
             </div>
             <script src="https://player.vimeo.com/api/player.js" />
           </div>
-        </StyledMain.Aside>
-      </StyledMain>
+        </Layout.Aside>
+      </Layout.Main>
     </>
   );
 };

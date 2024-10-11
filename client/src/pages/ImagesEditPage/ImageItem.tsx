@@ -1,0 +1,124 @@
+import React from 'react';
+import { IconMenu } from 'components/IconMenu/IconMenu';
+import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
+import { styled } from 'styled-components';
+import { Image } from 'types/Image';
+import Input from 'components/Input/Input';
+import useImagesEdit from 'hooks/useImagesEdit';
+import { Cross2Icon } from '@radix-ui/react-icons';
+
+type Props = {
+  readonly item: Image;
+  readonly onFolderSelect: (localId: number) => void;
+  readonly onDelete: (localId: number) => void;
+};
+
+const ImageItem = ({
+  item,
+  onFolderSelect,
+  onDelete,
+}: Props): React.JSX.Element => {
+  const { getDefaultProps } = useImagesEdit();
+
+  const handleFolderSelect = (localId: number) => {
+    onFolderSelect(localId);
+  };
+  const handleOnDelete = (localId: number) => {
+    onDelete(localId);
+  };
+
+  return (
+    <StyledRow $deleted={item.delete ? 'true' : 'false'} key={item.localId}>
+      <StyledImgContainer>
+        <StyledImg alt={item.name} src={item.src} />
+      </StyledImgContainer>
+      <StyledOuterRow>
+        {item.duplicate === 'true' ? (
+          <StyledSubRow>Duplicate Image</StyledSubRow>
+        ) : null}
+        <StyledSubRow>
+          <Input.Text
+            {...getDefaultProps(item.localId, 'name')}
+            placeholder="Name"
+          />
+          <Input.Text
+            {...getDefaultProps(item.localId, 'fileName')}
+            placeholder="File Name"
+          />
+          <Input.Text
+            {...getDefaultProps(item.localId, 'folder')}
+            placeholder="Folder"
+          />
+          <div>
+            <StyledButton2
+              onClick={() => handleFolderSelect(item.localId)}
+              type="button">
+              <Cross2Icon />
+              Select
+              {/* <CheckIcon /> */}
+            </StyledButton2>
+          </div>
+        </StyledSubRow>
+        <StyledSubRow>
+          <Input.Text
+            {...getDefaultProps(item.localId, 'location')}
+            placeholder="Location"
+          />
+          <Input.Text
+            {...getDefaultProps(item.localId, 'official_url')}
+            placeholder="Official URL"
+          />
+          <IconMenu>
+            <IconMenuItem onClick={() => handleOnDelete(item.localId)}>
+              Delete
+            </IconMenuItem>
+            <IconMenuItem>{item.id}</IconMenuItem>
+          </IconMenu>
+        </StyledSubRow>
+        <StyledSubRow>
+          <Input.Text
+            {...getDefaultProps(item.localId, 'description')}
+            placeholder="Description"
+          />
+        </StyledSubRow>
+      </StyledOuterRow>
+    </StyledRow>
+  );
+};
+
+export default ImageItem;
+
+const StyledButton2 = styled.button`
+  padding: 0 5px;
+  width: 30px;
+  height: 35px;
+`;
+const StyledImgContainer = styled.div`
+  display: flex;
+  align-items: left;
+  justify-content: top;
+  margin-right: 20px;
+  width: 250px;
+`;
+const StyledImg = styled.img`
+  width: 200px;
+`;
+const StyledRow = styled.div<{
+  $deleted?: 'false' | 'true';
+}>`
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--palette-samp);
+  border: ${(props) =>
+    props.$deleted === 'true' ? `1px solid var(--navbar-dark-3)` : undefined};
+`;
+const StyledOuterRow = styled.div`
+  flex-grow: 1;
+`;
+const StyledSubRow = styled.div`
+  display: flex;
+  width: 100%;
+`;

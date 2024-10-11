@@ -10,7 +10,7 @@ import { useAxios } from './Axios/useAxios';
 import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
-const pageSchema = z.object({
+const schema = z.object({
   delete: z.string().optional(),
   description: z.string().trim().optional(),
   duplicate: z.string().optional(),
@@ -35,7 +35,7 @@ const useImagesEdit = () => {
   // Use Axios to fetch data
   const { data, error, fetchData, isLoading, patchData } = useAxios<Images>();
   // Create a type from the schema
-  type FormType = z.infer<typeof pageSchema>;
+  type FormType = z.infer<typeof schema>;
 
   const [localItems, setLocalItems] = useState<Image[] | undefined>();
 
@@ -94,7 +94,7 @@ const useImagesEdit = () => {
 
   // Validate  form
   // const validateForm = useCallback(() => {
-  //   const result = safeParse<FormType>(pageSchema, formValues);
+  //   const result = safeParse<FormType>(schema, formValues);
   //   setErrors(result.error?.issues);
   //   return result.success;
   // }, [formValues, setErrors]);

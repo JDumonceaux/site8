@@ -1,6 +1,6 @@
 import Button from 'components/form/Button/Button';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
 import { password } from 'components/pages/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';

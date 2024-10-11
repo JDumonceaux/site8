@@ -4,9 +4,7 @@ type StyledTableProps = {
   readonly children?: React.ReactNode;
 };
 
-const StyledTable = ({ children }: StyledTableProps): JSX.Element => {
-  return <STable>{children}</STable>;
-};
+const StyledTable = ({ children }: StyledTableProps): JSX.Element => <Table>{children}</Table>;
 
 const StyledTableHead = styled.thead``;
 
@@ -17,7 +15,7 @@ StyledTable.Row = StyledTableRow;
 
 export default StyledTable;
 
-const STable = styled.table`
+const Table = styled.table`
   color: black;
   background-color: white;
   input {

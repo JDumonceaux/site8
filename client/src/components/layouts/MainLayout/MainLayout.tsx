@@ -1,11 +1,11 @@
-import Avatar from 'components/Avatar/Avatar';
-import AppInitializer from 'components/common/AppInitializer/AppInitializer';
-import Snackbar from 'components/Snackbar/Snackbar';
+import Avatar from 'components/core/Avatar/Avatar';
+import AppInitializer from 'components/core/AppInitializer/AppInitializer';
+import Snackbar from 'components/core/Snackbar/Snackbar';
 import { lazy, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
-const Header = lazy(() => import('components/Header/Header'));
+const Header = lazy(() => import('components/core/Header/Header'));
 
 const MainLayout = (): JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>

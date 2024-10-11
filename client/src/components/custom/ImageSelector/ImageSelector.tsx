@@ -1,4 +1,4 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
@@ -24,7 +24,7 @@ type ImageSelectorProps = {
  * @param {Function} props.onSelectImage - The callback function to handle image selection.
  * @returns {JSX.Element} The rendered ImageSelector component.
  */
-const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
+const ImageSelector = ({ onSelectImage }: ImageSelectorProps): React.JSX.Element => {
   const { setShowUnmatched, showUnmatched } = useAppSettings();
   const { data, error, fetchData, isLoading } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();
@@ -109,7 +109,7 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
         {filteredData?.map((item) => (
           <React.Fragment key={item.id}>
             <button
-              id={item.id.toString()}
+              id={item.id?.toString()}
               onClick={onSelect}
               onKeyDown={onKeyboardSelect}
               type="button">

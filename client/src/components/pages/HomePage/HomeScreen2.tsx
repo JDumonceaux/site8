@@ -1,5 +1,5 @@
 import Meta from 'components/common/Meta/Meta';
-import StyledMain from 'components/common/StyledMain/StyledMain';
+
 import { keyframes, styled } from 'styled-components';
 
 const HomeScreen2 = (): JSX.Element => {
@@ -8,7 +8,7 @@ const HomeScreen2 = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
+      <Layout.Main>
         <section>
           <R1C1 />
           <R1C2 />
@@ -19,7 +19,7 @@ const HomeScreen2 = (): JSX.Element => {
           <R1C7 />
           <R1C8 />
         </section>
-      </StyledMain>
+      </Layout.Main>
     </>
   );
 };

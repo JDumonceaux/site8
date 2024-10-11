@@ -1,4 +1,4 @@
-import Meta from 'components/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
 
 const TermsOfUsePage = (): JSX.Element => {
   const title = 'Terms of Use';

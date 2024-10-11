@@ -1,4 +1,4 @@
-import AppInitializer from 'components/common/AppInitializer/AppInitializer';
+import AppInitializer from 'components/core/AppInitializer/AppInitializer';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';

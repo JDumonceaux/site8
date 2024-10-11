@@ -1,7 +1,7 @@
 import { Button2 } from 'components/form/Button2/Button2';
 
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';

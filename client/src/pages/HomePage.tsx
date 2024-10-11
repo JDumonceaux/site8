@@ -1,5 +1,5 @@
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import Meta from 'components/Meta/Meta';
+
+import Meta from 'components/core/Meta/Meta';
 import HomeScreen5 from 'components/pages/HomePage/HomeScreen5';
 import { APP_NAME } from 'lib/utils/constants';
 
@@ -9,9 +9,9 @@ const HomePage = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
+      <Layout.Main>
         <HomeScreen5 />
-      </StyledMain>
+      </Layout.Main>
     </>
   );
 };

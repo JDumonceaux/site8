@@ -1,4 +1,4 @@
-import Meta from 'components/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
 
 const PrivacyPolicyPage = (): JSX.Element => {
   const title = 'Privacy Policy';

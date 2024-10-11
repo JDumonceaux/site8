@@ -13,22 +13,23 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
-import StyledMain from 'components/common/StyledMain/StyledMain';
-import InputText from 'components/Input/InputText/InputText';
+
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
 
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useTestsEdit from 'hooks/useTestsEdit';
 import { useCallback, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import Layout from 'components/layouts/Layout/Layout';
+import Input from 'components/Input/Input';
 
 const TestsEditPage = (): JSX.Element => {
-  const { data, isSaved, handleSave, setFormValues, getDefaultProps } =
+  const { data, getDefaultProps, handleSave, isSaved, setFormValues } =
     useTestsEdit();
 
   const [items, setItems] = useState([1, 2, 3]);
@@ -39,23 +40,21 @@ const TestsEditPage = (): JSX.Element => {
     }),
   );
 
-  const { showPages, setShowPages } = useAppSettings();
+  const { setShowPages, showPages } = useAppSettings();
 
   useEffect(() => {
-    const ret = data?.map((item) => {
-      return {
+    const ret = data?.map((item) => ({
+        action: '',
         id: item.id,
+        level: item.level?.toString(),
         localId: item.localId,
         name: item.name,
-        text: item.text,
-        type: item.type?.toString(),
-        level: item.level?.toString(),
-        projectType: item.projectType?.toString(),
         parentId: item.parent?.id.toString(),
         parentSeq: item.parent?.seq.toString(),
-        action: '',
-      };
-    });
+        projectType: item.projectType?.toString(),
+        text: item.text,
+        type: item.type?.toString(),
+      }));
     if (ret) {
       setFormValues(ret);
     }
@@ -84,8 +83,8 @@ const TestsEditPage = (): JSX.Element => {
   return (
     <>
       <Meta title="Tests" />
-      <StyledMain>
-        <StyledMain.Section>
+      <Layout.Main>
+        <Layout.Section>
           <PageTitle title="Tests">
             <Switch
               checked={showPages}
@@ -132,36 +131,36 @@ const TestsEditPage = (): JSX.Element => {
                     <SortableItem id={item.localId} key={item.localId}>
                       <td>{item.id}</td>
                       <td>
-                        <InputText {...getDefaultProps(item.localId, 'name')} />
+                        <Input.Text {...getDefaultProps(item.localId, 'name')} />
                       </td>
                       <td>
-                        <InputText {...getDefaultProps(item.localId, 'text')} />
+                        <Input.Text {...getDefaultProps(item.localId, 'text')} />
                       </td>
                       <td>
-                        <InputText {...getDefaultProps(item.localId, 'type')} />
+                        <Input.Text {...getDefaultProps(item.localId, 'type')} />
                       </td>
                       <td>
-                        <InputText
+                        <Input.Text
                           {...getDefaultProps(item.localId, 'level')}
                         />
                       </td>
                       <td>
-                        <InputText
+                        <Input.Text
                           {...getDefaultProps(item.localId, 'parentId')}
                         />
                       </td>
                       <td>
-                        <InputText
+                        <Input.Text
                           {...getDefaultProps(item.localId, 'parentSeq')}
                         />
                       </td>
                       <td>
-                        <InputText
+                        <Input.Text
                           {...getDefaultProps(item.localId, 'projectType')}
                         />
                       </td>
                       <td>
-                        <InputText
+                        <Input.Text
                           {...getDefaultProps(item.localId, 'action')}
                         />
                       </td>
@@ -171,8 +170,8 @@ const TestsEditPage = (): JSX.Element => {
               </SortableContext>
             </DndContext>
           </table>
-        </StyledMain.Section>
-      </StyledMain>
+        </Layout.Section>
+      </Layout.Main>
     </>
   );
 };

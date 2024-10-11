@@ -1,4 +1,4 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import useMenu from 'hooks/useMenu';
 import { getURLPath } from 'lib/utils/helpers';
 import { forwardRef, memo, useEffect } from 'react';

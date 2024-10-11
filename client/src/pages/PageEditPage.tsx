@@ -1,8 +1,8 @@
-import LoadingWrapper from 'components/common/Loading/LoadingWrapper';
-import StyledMain from 'components/common/StyledMain/StyledMain';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/Meta/Meta';
-import PageTitle from 'components/PageTitle/PageTitle';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useFetch } from 'hooks/Axios/useFetch';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getParamIdAsString } from 'lib/utils/helpers';
@@ -30,8 +30,8 @@ const PageEditPage = (): JSX.Element => {
   return (
     <>
       <Meta title={title} />
-      <StyledMain>
-        <StyledMain.Section>
+      <Layout.Main>
+        <Layout.Section>
           <PageTitle title={title}>
             <StyledLink data-testid="nav-list" to="/admin/pages">
               List
@@ -43,8 +43,8 @@ const PageEditPage = (): JSX.Element => {
           <LoadingWrapper error={error} isLoading={isLoading}>
             <PageEditForm data={data} />
           </LoadingWrapper>
-        </StyledMain.Section>
-      </StyledMain>
+        </Layout.Section>
+      </Layout.Main>
     </>
   );
 };

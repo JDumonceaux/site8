@@ -2,7 +2,7 @@ import { Divider } from '@aws-amplify/ui-react';
 import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
 import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 import useAuth, { SocialProvider } from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
