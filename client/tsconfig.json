@@ -33,13 +33,9 @@
       "components/*": ["./src/components/*"],
       "hooks/*": ["./src/hooks/*"],
       "providers/*": ["./src/providers/*"],
-      "services/*": ["./src/services/*"],
       "store/*": ["./src/store/*"],
       "styles/*": ["./src/styles/*"],
       "types/*": ["./src/types/*"],
-      "utils/*": ["./src/utils/*"],
-      "graphql/*": ["./src/graphql/*"],
-      "content/*": ["./src/content/*"]
     },
 
     /* Resolve JSON */
