@@ -308,6 +308,13 @@ export default [
       // js Rules
       'accessor-pairs': 'error',
       'array-callback-return': 'error',
+      // Allows you to use _VarName to ignore unused variables
+      'no-unused-vars': 'off',
+
+      '@typescript-esling/no-unused-vars': 
+      [ 'error', { "argsIgnorePattern": "^_" } ],
+  
+  
       // a little too aggressive
       'arrow-body-style': 'never',
       'block-scoped-var': 'error',

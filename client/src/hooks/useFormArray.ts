@@ -7,7 +7,7 @@ type IdType = {
 export const useFormArray = <T extends IdType>() => {
   const [formValues, setFormValues] = useState<T[]>([]);
   const [isSaved, setIsSaved] = useState<boolean>(true);
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+
 
   const findItemIndex = (localId: number): number => {
     return formValues.findIndex((x) => x.localId === localId);
@@ -37,7 +37,7 @@ export const useFormArray = <T extends IdType>() => {
   const getFieldValue = (
     localId: number,
     fieldName: keyof T,
-  ): string | undefined => {
+  ): string => {
     const item = formValues.find((x) => x.localId === localId);
     return item ? (item[fieldName] as string) : '';
   };
@@ -82,11 +82,9 @@ export const useFormArray = <T extends IdType>() => {
     getFieldValue,
     getItem,
     handleChange,
-    isProcessing,
     isSaved,
     setFieldValue,
     setFormValues,
-    setIsProcessing,
     setIsSaved,
     setItem,
   };

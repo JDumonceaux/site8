@@ -4,9 +4,22 @@ import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { styled } from 'styled-components';
 import Input from 'components/Input/Input';
+import { useForm } from 'hooks/useForm';
+
+type fields = {
+  [key: string]: string;
+};
 
 const InputPage = (): React.JSX.Element => {
   const title = 'Design - Input';
+
+  const items: fields = {};
+
+  Object.keys(items).forEach((key) => {
+    items[key] = '';
+  });
+
+  const { getFieldValue, setFieldValue } = useForm<fields>(items);
 
   return (
     <>
@@ -18,29 +31,41 @@ const InputPage = (): React.JSX.Element => {
             <GridItem>
               <Input.Text
                 label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value=""
+                id="field1"
+                value={getFieldValue('field1')}
+                onChange={(e) => setFieldValue('field1', e.target.value)}
               />
-              Bare bones Input
+              Bare bones
             </GridItem>
             <GridItem>
               <Input.Text
                 label="First Name"
-                id="firstName"
+                id="field2"
                 placeholder="Enter your first name"
-                value=""
+                value={getFieldValue('field2')}
+                onChange={(e) => setFieldValue('field2', e.target.value)}
               />
-              Bare bones Input
+              - Placeholder
+            </GridItem>
+            <GridItem>
+              <Input.Text
+                id="field3"
+                placeholder="Enter your first name"
+                value={getFieldValue('field3')}
+                onChange={(e) => setFieldValue('field3', e.target.value)}
+              />
+              - No label
             </GridItem>
             <GridItem>
               <Input.Text
                 label="First Name"
-                id="firstName"
+                id="field4"
                 placeholder="Enter your first name"
-                value=""
+                required
+                value={getFieldValue('field4')}
+                onChange={(e) => setFieldValue('field4', e.target.value)}
               />
-              Bare bones Input
+              - Required
             </GridItem>
             <GridItem>
               <Input.Text
@@ -220,6 +245,12 @@ const InputPage = (): React.JSX.Element => {
               </ul>
             </li>
           </ol>
+        </Layout.Section>
+        <Layout.Section>
+          <div>
+            W3.org: Labels :
+            https://www.w3.org/TR/2008/WD-WCAG20-TECHS-20080430/H44.html
+          </div>
         </Layout.Section>
       </Layout.Main>
     </>

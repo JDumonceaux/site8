@@ -27,7 +27,7 @@ const DevelopPage = lazy(() => import('pages/DevelopPage'));
 const GenericPage = lazy(() => import('pages/GenericPage'));
 const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
 const ImageEditPage = lazy(() => import('pages/ImageEditPage'));
-const ImagesEditPage = lazy(() => import('pages/ImagesEditPage'));
+const ImagesEditPage = lazy(() => import('pages/ImagesEditPage/ImagesEditPage'));
 const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/site/NotFoundPage'));
 const PageEditPage = lazy(() => import('pages/PageEditPage'));
@@ -107,6 +107,7 @@ const router = createBrowserRouter(
           <Route element={<PageEditPage />} path="page/edit/:id" />
           <Route element={<ImageEditPage />} path="image/edit" />
           <Route element={<ImageEditPage />} path="image/edit/:id" />
+          <Route element={<ImagesEditPage />} path="images" />
           <Route element={<ImagesEditPage />} path="images/new" />
           <Route element={<TestsEditPage />} path="tests/edit" />
           <Route element={<DevelopPage />} path="develop" />

@@ -1,0 +1,267 @@
+import { useFormArray } from 'hooks/useFormArray';
+import useImageFolder from 'hooks/useImageFolder';
+import useImagesEdit from 'hooks/useImagesEdit';
+import useSnackbar from 'hooks/useSnackbar';
+import { useCallback, useEffect, useState, useTransition } from 'react';
+import {  z } from 'zod';
+import { Image } from 'types/Image';
+import { ImageEdit } from 'types/ImageEdit';
+import { getSRC } from 'lib/utils/helpers';
+
+// Define Zod Shape
+const schema = z.object({
+  description: z.string().trim().optional(),
+  fileName: z.string().trim(),
+  folder: z.string().trim().optional(),
+  id: z.number(),
+  location: z
+    .string({
+      invalid_type_error: 'Location must be a string',
+    })
+    .max(250, 'Location max length exceeded: 500')
+    .trim()
+    .optional(),
+  name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
+  official_url: z.string().trim().optional(),
+  src: z.string().optional(),
+  tags: z.string().trim().optional(),
+});
+
+// Create a type from the schema
+type ImageItemForm = z.infer<typeof schema> & { delete?: boolean, isDuplicate?: boolean, localId: number };
+
+const useImagesEditPage = () => {
+  const [filter, setFilter] = useState<string>('sort');
+  const [currentFolder, setCurrentFolder] = useState<string>('');
+  const [localData, setLocalData] = useState<Image[] | undefined>();
+
+  // move to useImagesEdit?// Is the form saving?
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [isPending, startTransition] = useTransition();
+  const { setMessage } = useSnackbar();
+
+  // Create a form
+  const {
+    formValues,
+    isSaved,
+    setIsSaved,
+    getFieldValue,
+    setFieldValue,
+    setFormValues,
+  } = useFormArray<ImageItemForm>();
+
+  const {} = useImageFolder();
+  const { data, error, fetchItems, saveItems, isLoading, scanForNewItems } =
+    useImagesEdit();
+
+  // Get all data
+  useEffect(() => {
+    fetchItems();
+  }, [fetchItems]);
+
+  // Save to local
+  useEffect(() => {
+    setLocalData(data?.items);
+  }, [data]);
+
+  // Save to form
+  useEffect(() => {
+    setFormValues(mapDataToForm(data?.items));
+  }, [data]);
+
+  const mapDataToForm = (items: Image[] | undefined) => {
+    if (!items) {
+      return [];
+    }
+    const ret: ImageItemForm[] | undefined = items?.map((x, index) => {
+      return {
+        localId: index + 1,
+        description: x.description || '',
+        isDuplicate: x.isDuplicate || false,
+        fileName: x.fileName || '',
+        folder: x.folder || '',
+        id: x.id || 0,
+        location: x.location || '',
+        name: x.name || '',
+        official_url: x.official_url || '',
+        src: getSRC(x.folder, x.fileName),
+        tags: '',
+      };
+    });
+
+    return ret;
+  };
+
+  // Filter if needed
+  const getFilteredData = useCallback(() => {
+    if (!filter) {
+      return formValues;
+    }
+    const filteredData = formValues?.filter((x) => x.folder === filter).sort((a, b) => b.id - a.id);
+    return filteredData;
+  }, [formValues, filter]);
+
+  const filteredData = getFilteredData();
+
+  const handleRefresh = () => {
+    setMessage('Updating...');
+    startTransition(() => {
+      fetchItems();
+    });
+    setMessage('Done');
+  };
+
+  const submitForm = () => {
+    setIsProcessing(true);
+    // if (validateForm()) {
+    //   saveItems();
+    setIsProcessing(false);
+    setIsSaved(true);
+    return true;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setMessage('Saving...');
+
+    const result = submitForm();
+    if (result) {
+      setMessage('Saved');
+    } else {
+      setMessage(`Error saving ${error}`);
+    }
+    if (result) {
+      handleRefresh();
+    }
+  };
+
+  const handleScan = () => {
+    setMessage('Scanning...');
+    startTransition(() => {
+      scanForNewItems();
+    });
+    setMessage('Done');
+  };
+
+  const handleOnClick = (value: string) => {
+    setCurrentFolder((previous) => (previous === value ? '' : value));
+  };
+
+  const handleOnDelete = (localId: number) => {
+    const previous = getFieldValue(localId, 'delete');
+    setFieldValue(localId, 'delete', !previous);
+  };
+
+  const handleFolderSelect = (localId: number) => {
+    setFieldValue(localId, 'folder', currentFolder);
+  };
+
+  const handleClear = () => {
+    setIsSaved(true);
+    setIsProcessing(false);
+  };
+
+  const getDifference = (
+    previous: string | undefined,
+    update: string | undefined,
+  ) => {
+    const temporaryPrevious =
+      previous && previous?.trim().length > 0 ? previous?.trim() : undefined;
+    const temporaryUpdate =
+      update && update?.trim().length > 0 ? update?.trim() : undefined;
+    // No change
+    if (!temporaryPrevious && !temporaryUpdate) {
+      return { hasChange: false, value: undefined };
+    }
+    // No change
+    if (temporaryPrevious === temporaryUpdate) {
+      return { hasChange: false, value: undefined };
+    }
+    if (temporaryUpdate) {
+      return { hasChange: true, value: temporaryUpdate };
+    }
+    if (temporaryPrevious && !temporaryUpdate) {
+      return { hasChange: true, value: undefined };
+    }
+    return { hasChange: false, value: undefined };
+  };
+
+  const getUpdates = () => {
+    const returnValue: ImageEdit[] = [];
+    //   for (const item of formValues) {
+    //     const previous = localItems?.find((x) => x.localId === item.localId);
+    //     const temporaryName = getDifference(previous?.name, item.name);
+    //     const temporaryLocation = getDifference(
+    //       previous?.location,
+    //       item.location,
+    //     );
+    //     const temporaryDescription = getDifference(
+    //       previous?.description,
+    //       item.description,
+    //     );
+    //     const temporaryOfficialUrl = getDifference(
+    //       previous?.official_url,
+    //       item.official_url,
+    //     );
+    //     const temporaryFolder = getDifference(previous?.folder, item.folder);
+    //     const temporaryFileName = getDifference(
+    //       previous?.fileName,
+    //       item.fileName,
+    //     );
+    //     // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
+
+    //     if (
+    //       temporaryName.hasChange ||
+    //       temporaryLocation.hasChange ||
+    //       temporaryDescription.hasChange ||
+    //       temporaryOfficialUrl.hasChange ||
+    //       temporaryFolder.hasChange ||
+    //       temporaryFileName.hasChange
+    //     ) {
+    //       returnValue.push({
+    //         description: temporaryDescription.hasChange
+    //           ? temporaryDescription.value
+    //           : previous?.description,
+    //         fileName: temporaryFileName.hasChange
+    //           ? (temporaryFileName.value ?? '')
+    //           : (previous?.fileName ?? ''),
+    //         folder: temporaryFolder.hasChange
+    //           ? temporaryFolder.value
+    //           : previous?.folder,
+    //         id: item.id,
+    //         location: temporaryLocation.hasChange
+    //           ? temporaryLocation.value
+    //           : previous?.location,
+    //         name: temporaryName.hasChange ? temporaryName.value : previous?.name,
+    //         official_url: temporaryOfficialUrl.hasChange
+    //           ? temporaryOfficialUrl.value
+    //           : previous?.official_url,
+    //       });
+    //     }
+    //   }
+    return returnValue;
+  };
+
+  return {
+    currentFolder,
+    filter,
+    data: filteredData,
+    imageFolders: [],
+    error,
+    isPending,
+    isLoading,
+    getFieldValue,
+    setFieldValue,
+    handleOnClick,
+    handleOnDelete,
+    handleFolderSelect,
+    handleRefresh,
+    handleScan,
+    handleSubmit,
+  };
+};
+
+export default useImagesEditPage;
+
+export type { ImageItemForm };

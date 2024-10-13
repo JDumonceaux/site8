@@ -1,4 +1,5 @@
 export type ImageEdit = {
+  readonly localId: number;
   readonly description?: string;
   readonly fileName: string;
   readonly folder?: string;
@@ -7,4 +8,8 @@ export type ImageEdit = {
   readonly name?: string;
   readonly official_url?: string;
   readonly tags?: string[];
+  readonly src?: string;
+  readonly isDuplicate?: boolean;
+  readonly delete?: boolean;
+
 };

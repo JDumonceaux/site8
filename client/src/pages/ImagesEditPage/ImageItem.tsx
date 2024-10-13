@@ -2,24 +2,25 @@ import React from 'react';
 import { IconMenu } from 'components/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import { styled } from 'styled-components';
-import { Image } from 'types/Image';
 import Input from 'components/Input/Input';
-import useImagesEdit from 'hooks/useImagesEdit';
 import { Cross2Icon } from '@radix-ui/react-icons';
+import { ImageItemForm } from './useImagesEditPage';
 
 type Props = {
-  readonly item: Image;
+  readonly item: ImageItemForm;
   readonly onFolderSelect: (localId: number) => void;
   readonly onDelete: (localId: number) => void;
+  readonly getFieldValue: (localId: number, fieldName: keyof ImageItemForm) => string;
+  readonly onChange: (localId: number, fieldName: keyof ImageItemForm, e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
 const ImageItem = ({
   item,
   onFolderSelect,
   onDelete,
+  getFieldValue,
+  onChange,
 }: Props): React.JSX.Element => {
-  const { getDefaultProps } = useImagesEdit();
-
   const handleFolderSelect = (localId: number) => {
     onFolderSelect(localId);
   };
@@ -27,22 +28,30 @@ const ImageItem = ({
     onDelete(localId);
   };
 
+  const getDefaultProps = (localId: number, fieldName: keyof ImageItemForm) => ({
+    id: `${fieldName as string}-(${localId})`,
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      onChange(localId, fieldName, e),
+    value: getFieldValue(localId, fieldName),
+  });
+
+
   return (
     <StyledRow $deleted={item.delete ? 'true' : 'false'} key={item.localId}>
       <StyledImgContainer>
         <StyledImg alt={item.name} src={item.src} />
       </StyledImgContainer>
       <StyledOuterRow>
-        {item.duplicate === 'true' ? (
+        {item.isDuplicate ? (
           <StyledSubRow>Duplicate Image</StyledSubRow>
         ) : null}
         <StyledSubRow>
           <Input.Text
-            {...getDefaultProps(item.localId, 'name')}
+          {...getDefaultProps(item.localId, 'name')}
             placeholder="Name"
           />
           <Input.Text
-            {...getDefaultProps(item.localId, 'fileName')}
+          {...getDefaultProps(item.localId, 'fileName')}
             placeholder="File Name"
           />
           <Input.Text

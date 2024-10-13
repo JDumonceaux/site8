@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 import { Page } from 'types';
 
 import PageEditForm from '../components/pages/PageEditPage/PageEditForm';
+import Layout from 'components/layouts/Layout/Layout';
 
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();

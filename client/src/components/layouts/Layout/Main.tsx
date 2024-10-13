@@ -11,6 +11,5 @@ export default Main;
 
 const StyledElement = styled.main`
   display: flex;
-  flex-direction: row;
-  column-gap: 12px;
+  flex-direction: column;
 `;

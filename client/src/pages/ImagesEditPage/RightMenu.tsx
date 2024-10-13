@@ -25,7 +25,7 @@ const RightMenu = ({
               <div>Select Folder</div>
             )}
           </div>
-          <div>{data.length}</div>
+          <div>{data?.length}</div>
         </StyledHeader>
         <hr />
         {data?.map((item) => (

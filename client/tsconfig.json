@@ -5,6 +5,7 @@
 
   "compilerOptions": {
     // https://www.typescriptlang.org/tsconfig/
+    "strict": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
     // ESNext.Array: Adds in support for the ECMAScript 2023: toSortedArray() method, etc.

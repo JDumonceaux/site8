@@ -25,7 +25,6 @@ menuRouter.get('/', async (_req: Request, res: Response) => {
 menuRouter.get('/edit', async (_req: Request, res: Response) => {
   try {
     const ret = await new MenuService().getMenu();
-
     if (ret) {
       res.status(200).json(ret);
     } else {

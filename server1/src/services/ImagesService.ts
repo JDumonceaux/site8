@@ -58,6 +58,17 @@ export class ImagesService {
     return { ...prev, items };
   }
 
+  // Yes, this is a duplicate of getItems.  It's here for clarity and in case
+  // we need to add additional logic to getItems in the future.
+  public async getEditItems(): Promise<Images | undefined> {
+    // Get current items
+    const items = await this.readFile();
+    if (!items) {
+      throw new Error('getItems > Index file not loaded');
+    }
+    return { ...items };
+  }
+
   /**
    * Retrieves new items from the /images directory and updates the existing items.
    * @returns A Promise that resolves to the updated Images object, or undefined if an error occurs.
@@ -324,8 +335,8 @@ export class ImagesService {
         .map((x) => {
           const foundItem = updatedItems.find((y) => y.id === x.id);
           const addItem = () => {
-            if (foundItem) {
-              const { originalFolder, ...rest } = foundItem;
+            if (foundItem) {              
+              const { originalFolder : _unused, ...rest } = foundItem;
               return cleanUpData<Image>({ ...rest });
             }
             return undefined;
