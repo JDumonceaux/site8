@@ -61,27 +61,10 @@ export const useFormArray = <T extends IdType>() => {
     return index >= 0 ? formValues[index] : undefined;
   };
 
-  const handleChange = (
-    localId: number,
-    fieldName: keyof T,
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFieldValue(localId, fieldName, event.target.value);
-  };
-
-  const getDefaultProps = (localId: number, fieldName: keyof T) => ({
-    id: `${fieldName as string}-(${localId})`,
-    onChange: (error: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      handleChange(localId, fieldName, error),
-    value: getFieldValue(localId, fieldName),
-  });
-
   return {
     formValues,
-    getDefaultProps,
     getFieldValue,
     getItem,
-    handleChange,
     isSaved,
     setFieldValue,
     setFormValues,

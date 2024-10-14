@@ -8,6 +8,7 @@ import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types/Page';
+import Layout from 'components/layouts/Layout/Layout';
 
 type TikTokPageProps = {
   readonly title?: string;

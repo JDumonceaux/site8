@@ -10,6 +10,7 @@ import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';
+import Layout from 'components/layouts/Layout/Layout';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Images>();

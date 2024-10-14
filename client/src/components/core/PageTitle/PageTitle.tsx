@@ -49,6 +49,7 @@ const StyledWrapper = styled.div`
   padding-bottom: 6px;
   margin-bottom: 18px;
   font-size: 0.75rem;
+  background-color: var(--page-background-color);
 `;
 const StyledElement = styled.h1`
   color: var(--palette-page-title);

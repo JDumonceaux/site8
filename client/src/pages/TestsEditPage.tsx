@@ -13,7 +13,6 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
-
 import SortableItem from 'components/pages/TestEditPage/SortableItem';
 
 import StyledLink from 'components/Link/StyledLink/StyledLink';
@@ -44,17 +43,17 @@ const TestsEditPage = (): JSX.Element => {
 
   useEffect(() => {
     const ret = data?.map((item) => ({
-        action: '',
-        id: item.id,
-        level: item.level?.toString(),
-        localId: item.localId,
-        name: item.name,
-        parentId: item.parent?.id.toString(),
-        parentSeq: item.parent?.seq.toString(),
-        projectType: item.projectType?.toString(),
-        text: item.text,
-        type: item.type?.toString(),
-      }));
+      action: '',
+      id: item.id,
+      level: item.level?.toString(),
+      localId: item.localId,
+      name: item.name,
+      parentId: item.parent?.id.toString(),
+      parentSeq: item.parent?.seq.toString(),
+      projectType: item.projectType?.toString(),
+      text: item.text,
+      type: item.type?.toString(),
+    }));
     if (ret) {
       setFormValues(ret);
     }
@@ -131,13 +130,19 @@ const TestsEditPage = (): JSX.Element => {
                     <SortableItem id={item.localId} key={item.localId}>
                       <td>{item.id}</td>
                       <td>
-                        <Input.Text {...getDefaultProps(item.localId, 'name')} />
+                        <Input.Text
+                          {...getDefaultProps(item.localId, 'name')}
+                        />
                       </td>
                       <td>
-                        <Input.Text {...getDefaultProps(item.localId, 'text')} />
+                        <Input.Text
+                          {...getDefaultProps(item.localId, 'text')}
+                        />
                       </td>
                       <td>
-                        <Input.Text {...getDefaultProps(item.localId, 'type')} />
+                        <Input.Text
+                          {...getDefaultProps(item.localId, 'type')}
+                        />
                       </td>
                       <td>
                         <Input.Text

@@ -103,6 +103,14 @@ const useImagesEditPage = () => {
 
   const filteredData = getFilteredData();
 
+  const handleChange = (
+    localId: number,
+    fieldName: keyof ImageItemForm,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFieldValue(localId, fieldName, event.target.value);
+  };
+
   const handleRefresh = () => {
     setMessage('Updating...');
     startTransition(() => {
@@ -259,6 +267,7 @@ const useImagesEditPage = () => {
     handleRefresh,
     handleScan,
     handleSubmit,
+    handleChange
   };
 };
 

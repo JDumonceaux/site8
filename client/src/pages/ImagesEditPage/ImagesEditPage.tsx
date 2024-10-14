@@ -30,28 +30,29 @@ const ImagesEditPage = (): React.JSX.Element => {
     handleSubmit,
   } = useImagesEditPage();
 
-console.log ('data', data);
-
+  console.log('data', data);
 
   return (
     <>
       <Meta title={title} />
-      <Layout.Main>
-        <Layout.Section>
-          <PageTitle title={title}>
-            <MenuBar
-              handleScan={handleScan}
-              handleRefresh={handleRefresh}
-              handleSubmit={() => handleSubmit}
-            />
-          </PageTitle>
+      <Layout.TitleFixed>
+        <PageTitle title={title}>
+          <MenuBar
+            handleScan={handleScan}
+            handleRefresh={handleRefresh}
+            handleSubmit={() => handleSubmit}
+          />
+        </PageTitle>
+      </Layout.TitleFixed>
+      <Layout.Flex>
+        <Layout.Main>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <StyledContainer>
               {isPending ? <div>Loading ...</div> : null}
               <StyledForm noValidate onSubmit={handleSubmit}>
                 {data?.map((item) => (
                   <ImageItem
-                  key={item.localId}
+                    key={item.localId}
                     item={item}
                     onFolderSelect={handleFolderSelect}
                     onDelete={handleOnDelete}
@@ -62,7 +63,7 @@ console.log ('data', data);
               </StyledForm>
             </StyledContainer>
           </LoadingWrapper>
-        </Layout.Section>
+        </Layout.Main>
         <Layout.Aside>
           <RightMenu
             data={imageFolders}
@@ -70,7 +71,7 @@ console.log ('data', data);
             handleOnClick={handleOnClick}
           />
         </Layout.Aside>
-      </Layout.Main>
+      </Layout.Flex>
     </>
   );
 };

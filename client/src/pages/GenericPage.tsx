@@ -11,6 +11,7 @@ import { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Page } from 'types';
+import Layout from 'components/layouts/Layout/Layout';
 
 type GenericPageProps = {
   readonly title?: string;

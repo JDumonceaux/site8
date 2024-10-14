@@ -13,12 +13,18 @@ import pluginJest from 'eslint-plugin-jest';
 import pluginSonar from 'eslint-plugin-sonarjs';
 import pluginReactCompiler from 'eslint-plugin-react-compiler';
 import pluginPerfectionist from 'eslint-plugin-perfectionist';
+import pluginUnicorn from 'eslint-plugin-unicorn';
+import pluginCheckFile from 'eslint-plugin-check-file';
+// @ts-ignore
+import importPlugin from 'eslint-plugin-import';
+import configPrettier from 'eslint-config-prettier';
 
-// No default export
-import * as pluginStorybook from 'eslint-plugin-storybook';
 // Typescript specific rules
 import typescriptParser from '@typescript-eslint/parser';
 import pluginTypescript from '@typescript-eslint/eslint-plugin';
+
+// No default export
+import * as pluginStorybook from 'eslint-plugin-storybook';
 
 export default [
   {
@@ -51,6 +57,9 @@ export default [
       sonarjs: pluginSonar,
       'react-compiler': pluginReactCompiler,
       perfectionist: pluginPerfectionist,
+      unicorn: pluginUnicorn,
+      import: importPlugin,
+      'check-file': pluginCheckFile,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -58,13 +67,15 @@ export default [
       ...pluginHooks.configs.recommended.rules,
       ...pluginRedux.configs.recommended.rules,
       ...pluginA11y.configs.recommended.rules,
+      ...pluginUnicorn.configs.recommended.rules,
+      // ...importPlugin.flatconfig.recommended.rules,
+
       // There is no config for this plugin
       // ...pluginReactCompiler.configs.recommended.rules,
       // Evaluate: Too many and conflicting rules
       // ...pluginSonar.configs.recommended.rules,
 
       // Trying out
-      'react/jsx-props-no-multi-spaces': 'error',
       'react/jsx-props-no-spread-multi': 'error',
 
       // Prefer arrow functions
@@ -102,8 +113,6 @@ export default [
           specialLink: ['hrefLeft', 'hrefRight'],
         },
       ],
-      // Deprected
-      'jsx-a11y/label-has-for': 'off',
 
       // React compiler rules
       'react-compiler/react-compiler': 'error',
@@ -310,11 +319,6 @@ export default [
       'array-callback-return': 'error',
       // Allows you to use _VarName to ignore unused variables
       'no-unused-vars': 'off',
-
-      '@typescript-esling/no-unused-vars': 
-      [ 'error', { "argsIgnorePattern": "^_" } ],
-  
-  
       // a little too aggressive
       'arrow-body-style': 'never',
       'block-scoped-var': 'error',
@@ -324,7 +328,6 @@ export default [
       complexity: 'error',
       'consistent-return': 'error',
       'consistent-this': 'error',
-      curly: 'error',
       'default-case': 'error',
       'default-case-last': 'error',
       'default-param-last': 'error',
@@ -458,6 +461,154 @@ export default [
       'unicode-bom': 'error',
       'vars-on-top': 'error',
       yoda: 'error',
+
+      // Import Rules
+      'import/no-dynamic-require': 'warn',
+      'import/no-nodejs-modules': 'warn',
+      'import/default': 'off',
+      'import/no-named-as-default-member': 'off',
+      'import/no-named-as-default': 'off',
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            'object',
+          ],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+      'import/no-cycle': 'error',
+      'import/no-restricted-paths': [
+        'error',
+        {
+          zones: [
+            // disables cross-feature imports:
+            // eg. src/features/discussions should not import from src/features/comments, etc.
+            {
+              target: './src/features/auth',
+              from: './src/features',
+              except: ['./auth'],
+            },
+            {
+              target: './src/features/users',
+              from: './src/features',
+              except: ['./users'],
+            },
+            // enforce unidirectional codebase:
+
+            // e.g. src/app can import from src/features but not the other way around
+            {
+              target: './src/features',
+              from: './src/app',
+            },
+
+            // e.g src/features and src/app can import from these shared modules but not the other way around
+            {
+              target: [
+                './src/components',
+                './src/hooks',
+                './src/lib',
+                './src/types',
+                './src/utils',
+              ],
+              from: ['./src/features', './src/app'],
+            },
+          ],
+        },
+      ],
+
+      // Deprected
+      'array-bracket-newline': 'off',
+      'array-bracket-spacing': 'off',
+      'array-element-newline': 'off',
+      'arrow-parens': 'off',
+      'arrow-spacing': 'off',
+      'block-spacing': 'off',
+      'brace-style': 'off',
+      'comma-dangle': 'off',
+      'comma-spacing': 'off',
+      'comma-style': 'off',
+      'computed-property-spacing': 'off',
+      'dot-location': 'off',
+      'eol-last': 'off',
+      'func-call-spacing': 'off',
+      'function-call-argument-newline': 'off',
+      'function-paren-newline': 'off',
+      'generator-star-spacing': 'off',
+      'implicit-arrow-linebreak': 'off',
+      indent: 'off',
+      'indent-legacy': 'off',
+      'jsx-quotes': 'off',
+      'key-spacing': 'off',
+      'keyword-spacing': 'off',
+      'linebreak-style': 'off',
+      'lines-around-comment': 'off',
+      'max-len': 'off',
+      'max-lines-per-line': 'off',
+      'multiline-ternary': 'off',
+      'new-parens': 'off',
+      'newline-per-chained-call': 'off',
+      'no-confusing-arrow': 'off',
+      'no-extra-parens': 'off',
+      'no-extra-semi': 'off',
+      'no-floating-decimal': 'off',
+      'no-mixed-operators': 'off',
+      'no-mixed-spaces-and-tabs': 'off',
+      'no-multi-spaces': 'off',
+      'no-multiple-empty-lines': 'off',
+      'no-spaced-func': 'off',
+      'no-tabs': 'off',
+      'no-trailing-spaces': 'off',
+      'no-whitespace-before-property': 'off',
+      'nonblock-statement-body-position': 'off',
+      'object-curly-newline': 'off',
+      'object-curly-spacing': 'off',
+      'object-property-newline': 'off',
+      'one-var-declaration-per-line': 'off',
+      'operator-linebreak': 'off',
+      'padded-blocks': 'off',
+      'quote-props': 'off',
+      quotes: 'off',
+      'rest-spread-spacing': 'off',
+      semi: 'off',
+      'semi-spacing': 'off',
+      'semi-style': 'off',
+      'space-before-blocks': 'off',
+      'space-before-function-paren': 'off',
+      'space-in-parens': 'off',
+      'space-infix-ops': 'off',
+      'space-unary-ops': 'off',
+      'switch-colon-spacing': 'off',
+      'template-curly-spacing': 'off',
+      'template-tag-spacing': 'off',
+      'wrap-iife': 'off',
+      'wrap-regex': 'off',
+      'yield-star-spacing': 'off',
+      'react/jsx-space-before-closing': 'off',
+      'jsx-a11y/label-has-for': 'off',
+
+      // Prettier Rules
+      // Needs to be last- It overrides other rules
+      ...configPrettier.rules,
+
+      'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+
+      'check-file/filename-naming-convention': [
+        'error',
+        {
+          '**/*.{js,jsx}': 'KEBAB_CASE',
+        },
+        {
+          ignoreMiddleExtensions: true,
+        },
+      ],
     },
   },
 
@@ -480,6 +631,7 @@ export default [
     },
     plugins: {
       '@typescript-eslint': pluginTypescript,
+      'check-file': pluginCheckFile,
     },
 
     rules: {
@@ -496,6 +648,26 @@ export default [
 
       // ...tseslint.configs.strict,
       // ...tseslint.configs.stylistic,
+
+      // Typescript rules
+      '@typescript-esling/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
+      '@typescript-eslint/explicit-function-return-type': ['off'],
+      '@typescript-eslint/explicit-module-boundary-types': ['off'],
+      '@typescript-eslint/no-empty-function': ['off'],
+      '@typescript-eslint/no-explicit-any': ['off'],
+
+      'check-file/filename-naming-convention': [
+        'error',
+        {
+          '**/*.{ts,tsx}': 'KEBAB_CASE',
+        },
+        {
+          ignoreMiddleExtensions: true,
+        },
+      ],
     },
     settings: {
       react: {
@@ -515,6 +687,7 @@ export default [
     },
     plugins: {
       jest: pluginJest,
+      'check-file': pluginCheckFile,
     },
     rules: {
       ...pluginJest.configs.recommended.rules,
@@ -551,6 +724,12 @@ export default [
       react: {
         version: 'detect',
       },
+      'check-file/folder-naming-convention': [
+        'error',
+        {
+          '**/*': 'KEBAB_CASE',
+        },
+      ],
     },
   },
 ];

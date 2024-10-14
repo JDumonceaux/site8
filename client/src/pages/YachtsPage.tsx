@@ -4,6 +4,7 @@ import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
+import Layout from 'components/layouts/Layout/Layout';
 
 const boxStyle = '56.25% 0 0 0';
 

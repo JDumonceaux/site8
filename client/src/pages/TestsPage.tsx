@@ -8,6 +8,7 @@ import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Tests } from 'types/Tests';
+import Layout from 'components/layouts/Layout/Layout';
 
 const TestsPage = (): JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Tests>();

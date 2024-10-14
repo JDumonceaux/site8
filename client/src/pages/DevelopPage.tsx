@@ -120,8 +120,8 @@ const pageSchema = z.object({
     return (
       <>
         <Meta title={title} />
-        <Layout.Main>
-          <Layout.Article>
+        <Layout.Flex>
+          <Layout.Main>
             <PageTitle title={title} />
             <section>
               {/* <div>Title Issues</div> */}
@@ -157,7 +157,6 @@ const pageSchema = z.object({
                         minLength={10}
                         // onBlur={handeNameOnBlur}
                         onChange={handleChange}
-                        onClear={handleClearField}
                         placeholder="Enter a last name"
                         required
                         spellCheck
@@ -392,8 +391,8 @@ const pageSchema = z.object({
                 </Grid>
               </form>
             </section>
-          </Layout.Article>
-        </Layout.Main>
+          </Layout.Main>
+        </Layout.Flex>
         <Dialog label="Test" onClose={onDialogClose} {...dialogProps}>
           Children
         </Dialog>

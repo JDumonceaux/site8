@@ -12,4 +12,5 @@ export default Main;
 const StyledElement = styled.main`
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;
