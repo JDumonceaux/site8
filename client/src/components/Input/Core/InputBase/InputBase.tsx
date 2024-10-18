@@ -45,10 +45,16 @@ type InputBaseProps = {
   readonly allowedCharacters?: RegExp;
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
-} & Omit<FieldWrapperProps, 'children'> &
+} & Omit<FieldWrapperProps, 'children' | 'onClick'> &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    'accesskey' | 'autocorrect' | 'id' | 'name' | 'onChange' | 'value'
+    | 'accesskey'
+    | 'autocorrect'
+    | 'id'
+    | 'name'
+    | 'onChange'
+    | 'value'
+    | 'onClick'
   >;
 
 // Input Attributes
@@ -235,4 +241,3 @@ const StyledInput = styled.input`
   //   }
   // }
 `;
-

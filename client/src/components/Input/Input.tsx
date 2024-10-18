@@ -6,10 +6,14 @@ import InputPassword from './InputPassword/InputPassword';
 import InputTel from './InputTel/InputTel';
 import InputText from './InputText/InputText';
 import { TextArea } from './TextArea/TextArea';
+import InputCheckbox from './InputCheckbox/InputCheckbox';
+import InputToggle from './InputToggle/InputToggle';
 
 type Props = InputBaseProps;
 
-const Input = ({ ...rest }: Props): React.JSX.Element => <InputBase id={''} type={'number'} value={''} {...rest} />;
+const Input = ({ ...rest }: Props): React.JSX.Element => (
+  <InputBase {...rest} />
+);
 
 Input.Email = InputEmail;
 Input.Number = InputNumber;
@@ -17,5 +21,7 @@ Input.Password = InputPassword;
 Input.Tel = InputTel;
 Input.Text = InputText;
 Input.TextArea = TextArea;
+Input.Checkbox = InputCheckbox;
+Input.Toggle = InputToggle;
 
 export default Input;

@@ -10,5 +10,6 @@ const Aside = ({ children }: Props): React.JSX.Element => <StyledElement data-te
 export default Aside;
 
 const StyledElement = styled.div`
-  flex: 0 0 200px;
+  flex: 0 0 250px;
+  padding: 0 20px;
 `;

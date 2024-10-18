@@ -19,7 +19,8 @@ const InputPage = (): React.JSX.Element => {
     items[key] = '';
   });
 
-  const { getFieldValue, setFieldValue } = useForm<fields>(items);
+  const { getFieldValue, setFieldValue, getFieldValueBoolean } =
+    useForm<fields>(items);
 
   return (
     <>
@@ -104,13 +105,76 @@ const InputPage = (): React.JSX.Element => {
               Bare bones Input
             </GridItem>
             <GridItem>
-              <Input.Text
+              <Input.Checkbox
                 label="First Name"
                 id="firstName"
                 placeholder="Enter your first name"
-                value=""
+                value="firstName"
+                checked={getFieldValueBoolean('field20')}
+                //indeterminate={true}
+                onChange={(e) => setFieldValue('field20', e.target.checked)}
               />
-              Bare bones Input
+              Checkbox
+            </GridItem>
+            <GridItem>
+              <Input.Checkbox
+                label="First Name"
+                id="firstName"
+                placeholder="Enter your first name"
+                value="firstName"
+                checked={getFieldValueBoolean('field15')}
+                //indeterminate={true}
+                onChange={(e) => setFieldValue('field15', e.target.checked)}
+              />
+              Checkbox - Intermediate
+            </GridItem>
+            <GridItem>
+              <Input.Toggle
+                label="First Name"
+                id="firstName"
+                placeholder="Enter your first name"
+                value="firstName"
+                checked={getFieldValueBoolean('field16')}
+                //indeterminate={true}
+                onChange={(e) => setFieldValue('field16', e.target.checked)}
+              />
+              Toggle
+            </GridItem>
+            <GridItem>
+              <Input.Checkbox
+                label="First Name"
+                id="firstName"
+                placeholder="Enter your first name"
+                value="firstName"
+                checked={getFieldValueBoolean('field17')}
+                //indeterminate={true}
+                onChange={(e) => setFieldValue('field17', e.target.checked)}
+              />
+              Radio
+            </GridItem>
+            <GridItem>
+              <Input.Checkbox
+                label="First Name"
+                id="firstName"
+                placeholder="Enter your first name"
+                value="firstName"
+                checked={getFieldValueBoolean('field18')}
+                //indeterminate={true}
+                onChange={(e) => setFieldValue('field18', e.target.checked)}
+              />
+              Radio
+            </GridItem>
+            <GridItem>
+              <Input.Checkbox
+                label="First Name"
+                id="firstName"
+                placeholder="Enter your first name"
+                value="firstName"
+                checked={getFieldValueBoolean('field21')}
+                //indeterminate={true}
+                onChange={(e) => setFieldValue('field21', e.target.value)}
+              />
+              Phone with Flags
             </GridItem>
           </Grid>
 

@@ -48,6 +48,8 @@ const StyledWrapper = styled.div`
   border-bottom: 1px solid #888;
   padding-bottom: 6px;
   margin-bottom: 18px;
+  padding-left: 12px;
+  padding-right: 12px;
   font-size: 0.75rem;
   background-color: var(--page-background-color);
 `;

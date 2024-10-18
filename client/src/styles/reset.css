@@ -112,16 +112,6 @@ textarea {
   /* turn off scroll bars in IE unless needed */
   overflow: auto;
 }
-/* reset checkbox and radio style */
-[type='checkbox'],
-[type='radio'] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  &:focus {
-    outline: 0;
-  }
-}
 /* remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {

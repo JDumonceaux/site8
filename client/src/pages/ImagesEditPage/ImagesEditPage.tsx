@@ -8,7 +8,6 @@ import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
 import ImageItem from './ImageItem';
 import useImagesEditPage from './useImagesEditPage';
-import { getFips } from 'crypto';
 
 const ImagesEditPage = (): React.JSX.Element => {
   const title = 'Edit Images';
@@ -18,16 +17,16 @@ const ImagesEditPage = (): React.JSX.Element => {
     isPending,
     data,
     error,
-    imageFolders,
     currentFolder,
+    currentFilter,
     getFieldValue,
     handleChange,
-    handleOnClick,
+    handleOnFolderClick,
     handleScan,
-    handleFolderSelect,
     handleOnDelete,
     handleRefresh,
     handleSubmit,
+    handleFilterSelect,
   } = useImagesEditPage();
 
   console.log('data', data);
@@ -47,28 +46,26 @@ const ImagesEditPage = (): React.JSX.Element => {
       <Layout.Flex>
         <Layout.Main>
           <LoadingWrapper error={error} isLoading={isLoading}>
-            <StyledContainer>
-              {isPending ? <div>Loading ...</div> : null}
-              <StyledForm noValidate onSubmit={handleSubmit}>
-                {data?.map((item) => (
-                  <ImageItem
-                    key={item.localId}
-                    item={item}
-                    onFolderSelect={handleFolderSelect}
-                    onDelete={handleOnDelete}
-                    getFieldValue={getFieldValue}
-                    onChange={handleChange}
-                  />
-                ))}
-              </StyledForm>
-            </StyledContainer>
+            {isPending ? <div>Loading ...</div> : null}
+            <StyledForm noValidate onSubmit={handleSubmit}>
+              {data?.map((item) => (
+                <ImageItem
+                  key={item.localId}
+                  item={item}
+                  onDelete={handleOnDelete}
+                  getFieldValue={getFieldValue}
+                  onChange={handleChange}
+                />
+              ))}
+            </StyledForm>
           </LoadingWrapper>
         </Layout.Main>
         <Layout.Aside>
           <RightMenu
-            data={imageFolders}
+            currentFilter={currentFilter}
             currentFolder={currentFolder}
-            handleOnClick={handleOnClick}
+            onClick={handleOnFolderClick}
+            onFilterSelect={handleFilterSelect}
           />
         </Layout.Aside>
       </Layout.Flex>

@@ -1,15 +1,12 @@
 import React, { memo } from 'react';
 import { styled } from 'styled-components';
 
-type InputHelpProps = {
+type Props = {
   readonly children?: never;
   readonly helpText: React.ReactNode | string | string[];
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'id'>;
 
-const InputHelp = ({
-  helpText,
-  ...rest
-}: InputHelpProps): React.JSX.Element => {
+const InputHelp = ({ helpText, ...rest }: Props): React.JSX.Element => {
   if (!helpText) {
     return null;
   }

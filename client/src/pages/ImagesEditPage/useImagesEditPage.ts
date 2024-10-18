@@ -1,9 +1,8 @@
 import { useFormArray } from 'hooks/useFormArray';
-import useImageFolder from 'hooks/useImageFolder';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
 import { useCallback, useEffect, useState, useTransition } from 'react';
-import {  z } from 'zod';
+import { z } from 'zod';
 import { Image } from 'types/Image';
 import { ImageEdit } from 'types/ImageEdit';
 import { getSRC } from 'lib/utils/helpers';
@@ -28,12 +27,16 @@ const schema = z.object({
 });
 
 // Create a type from the schema
-type ImageItemForm = z.infer<typeof schema> & { delete?: boolean, isDuplicate?: boolean, localId: number };
+export type ImageItemForm = z.infer<typeof schema> & {
+  delete?: boolean;
+  isDuplicate?: boolean;
+  localId: number;
+  isSelected: boolean;
+};
 
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
-  const [localData, setLocalData] = useState<Image[] | undefined>();
 
   // move to useImagesEdit?// Is the form saving?
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -50,24 +53,28 @@ const useImagesEditPage = () => {
     setFormValues,
   } = useFormArray<ImageItemForm>();
 
-  const {} = useImageFolder();
-  const { data, error, fetchItems, saveItems, isLoading, scanForNewItems } =
+  const { data, error, fetchData, saveItems, isLoading, scanForNewItems } =
     useImagesEdit();
 
   // Get all data
   useEffect(() => {
-    fetchItems();
-  }, [fetchItems]);
+    fetchData();
+  }, [fetchData]);
 
-  // Save to local
-  useEffect(() => {
-    setLocalData(data?.items);
-  }, [data]);
+  // Set form values
+  // useEffect(() => {
+  //   // The full set of items
+  //   setFormValues(mapDataToForm(data?.items) || []);
+  // }, [data?.items]);
 
-  // Save to form
   useEffect(() => {
-    setFormValues(mapDataToForm(data?.items));
-  }, [data]);
+    const filteredData =
+      filter && filter.length > 0
+        ? data?.items.filter((x) => x.folder === filter)
+        : data?.items;
+    // The full set of items
+    setFormValues(mapDataToForm(filteredData) || []);
+  }, [filter, data?.items]);
 
   const mapDataToForm = (items: Image[] | undefined) => {
     if (!items) {
@@ -77,7 +84,6 @@ const useImagesEditPage = () => {
       return {
         localId: index + 1,
         description: x.description || '',
-        isDuplicate: x.isDuplicate || false,
         fileName: x.fileName || '',
         folder: x.folder || '',
         id: x.id || 0,
@@ -86,35 +92,34 @@ const useImagesEditPage = () => {
         official_url: x.official_url || '',
         src: getSRC(x.folder, x.fileName),
         tags: '',
+        isSelected: false,
+        isDuplicate: x.isDuplicate || false,
       };
     });
-
-    return ret;
+    return ret.toSorted((a, b) => b.id - a.id);
   };
-
-  // Filter if needed
-  const getFilteredData = useCallback(() => {
-    if (!filter) {
-      return formValues;
-    }
-    const filteredData = formValues?.filter((x) => x.folder === filter).sort((a, b) => b.id - a.id);
-    return filteredData;
-  }, [formValues, filter]);
-
-  const filteredData = getFilteredData();
 
   const handleChange = (
     localId: number,
     fieldName: keyof ImageItemForm,
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFieldValue(localId, fieldName, event.target.value);
+    const value = event.target.value;
+    const ischecked = (<HTMLInputElement>event.target).checked;
+    setFieldValue(localId, fieldName, value || ischecked);
+    if (fieldName === 'isSelected') {
+      if (ischecked) {
+        setFieldValue(localId, 'folder', currentFolder);
+      } else {
+        setFieldValue(localId, 'folder', '');
+      }
+    }
   };
 
   const handleRefresh = () => {
     setMessage('Updating...');
     startTransition(() => {
-      fetchItems();
+      fetchData();
     });
     setMessage('Done');
   };
@@ -152,7 +157,7 @@ const useImagesEditPage = () => {
     setMessage('Done');
   };
 
-  const handleOnClick = (value: string) => {
+  const handleOnFolderClick = (value: string) => {
     setCurrentFolder((previous) => (previous === value ? '' : value));
   };
 
@@ -163,6 +168,11 @@ const useImagesEditPage = () => {
 
   const handleFolderSelect = (localId: number) => {
     setFieldValue(localId, 'folder', currentFolder);
+  };
+
+  const handleFilterSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setFilter(value === 'all' ? '' : value);
   };
 
   const handleClear = () => {
@@ -253,24 +263,22 @@ const useImagesEditPage = () => {
 
   return {
     currentFolder,
-    filter,
-    data: filteredData,
-    imageFolders: [],
+    currentFilter: filter,
+    data: formValues,
     error,
     isPending,
     isLoading,
     getFieldValue,
     setFieldValue,
-    handleOnClick,
+    handleOnFolderClick,
     handleOnDelete,
+    handleFilterSelect,
     handleFolderSelect,
     handleRefresh,
     handleScan,
     handleSubmit,
-    handleChange
+    handleChange,
   };
 };
 
 export default useImagesEditPage;
-
-export type { ImageItemForm };

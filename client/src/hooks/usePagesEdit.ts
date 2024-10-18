@@ -32,11 +32,9 @@ const usePagesEdit = () => {
     formValues,
     getDefaultProps,
     getFieldValue,
-    isProcessing,
     isSaved,
     setFieldValue,
     setFormValues,
-    setIsProcessing,
     setIsSaved,
   } = useFormArray<FormType>();
 
@@ -166,9 +164,9 @@ const usePagesEdit = () => {
     if (!data) {
       return false;
     }
-    setIsProcessing(true);
+    // setIsProcessing(true);
     const result = await patchData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
-    setIsProcessing(false);
+    // setIsProcessing(false);
     setIsSaved(result);
     return result;
   };
@@ -200,7 +198,6 @@ const usePagesEdit = () => {
     handleChange,
     handleSave,
     isLoading,
-    isProcessing,
     isSaved,
     pageSchema,
     setFieldValue,

@@ -1,5 +1,5 @@
 import { ServiceUrl } from 'lib/utils/constants';
-import { useCallback} from 'react';
+import { useCallback } from 'react';
 import { Images } from 'types';
 import { ImageEdit } from 'types/ImageEdit';
 import { useAxios } from './Axios/useAxios';
@@ -11,9 +11,6 @@ const useImagesEdit = () => {
   const fetchItems = useCallback(() => {
     fetchData(ServiceUrl.ENDPOINT_IMAGES_EDIT);
   }, [fetchData]);
-
-
-
 
   // Save to local - adding local index
   // useEffect(() => {
@@ -50,16 +47,12 @@ const useImagesEdit = () => {
     fetchData(ServiceUrl.ENDPOINT_IMAGES_SCAN);
   }, [fetchData]);
 
-
   // Validate  form
   // const validateForm = useCallback(() => {
   //   const result = safeParse<FormType>(schema, formValues);
   //   setErrors(result.error?.issues);
   //   return result.success;
   // }, [formValues, setErrors]);
-
-  
-
 
   // Handle save
   const saveItems = async (updates: ImageEdit[]) => {
@@ -69,11 +62,10 @@ const useImagesEdit = () => {
     await patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, { items: updates });
   };
 
-
   return {
     data,
     error,
-    fetchItems,
+    fetchData: fetchItems,
     saveItems,
     isLoading,
     scanForNewItems,

@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
 
-type InputTextProps = {
+type Props = {
   readonly type?: 'text';
 } & Omit<
   InputBaseProps,
@@ -18,7 +18,7 @@ type InputTextProps = {
 // No aria-role is required. The default, inferred type is 'textbox'.
 // With a list, 'combobox' is inferred.
 
-const InputText = ({ type = 'text', ...rest }: InputTextProps): JSX.Element => (
+const InputText = ({ type = 'text', ...rest }: Props): JSX.Element => (
   <InputBase type={type} {...rest} />
 );
 

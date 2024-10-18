@@ -1,20 +1,44 @@
-import React from 'react';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import { on } from 'events';
+import useImageFolder from 'hooks/useImageFolder';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 
 type Props = {
-  readonly data: { id: number; name: string }[];
-  readonly currentFolder?: string;
-  readonly handleOnClick: (val: string) => void;
+  readonly currentFolder: string;
+  readonly currentFilter: string;
+  readonly onClick: (val: string) => void;
+  readonly onFilterSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const RightMenu = ({
-  data,
   currentFolder,
-  handleOnClick,
+  currentFilter,
+  onClick,
+  onFilterSelect,
 }: Props): React.JSX.Element => {
+  const { data, fetchData, isLoading, error } = useImageFolder();
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const handleOnClick = onClick;
+
   return (
     <>
       <StickyMenu>
+        <FilterDiv>
+          <label htmlFor="select">Filter</label>
+          <select id="select" onChange={onFilterSelect} value={currentFilter}>
+            <option value="all">All</option>
+            {data?.map((item) => (
+              <option key={item.id} value={item.value}>
+                {item.value}
+              </option>
+            ))}
+          </select>
+        </FilterDiv>
         <StyledHeader>
           <div>
             {currentFolder && currentFolder.length > 0 ? (
@@ -22,29 +46,30 @@ const RightMenu = ({
                 {currentFolder}
               </StyledButton>
             ) : (
-              <div>Select Folder</div>
+              <div>Select Folder ({data?.length})</div>
             )}
           </div>
-          <div>{data?.length}</div>
         </StyledHeader>
         <hr />
-        {data?.map((item) => (
-          <React.Fragment key={item.id}>
-            {item.name === currentFolder ? (
-              <StyledActiveButton
-                onClick={() => handleOnClick(item.name)}
-                type="button">
-                {item.name}
-              </StyledActiveButton>
-            ) : (
-              <StyledButton
-                onClick={() => handleOnClick(item.name)}
-                type="button">
-                {item.name}
-              </StyledButton>
-            )}
-          </React.Fragment>
-        ))}
+        <LoadingWrapper error={error} isLoading={isLoading}>
+          {data?.map((item) => (
+            <React.Fragment key={item.id}>
+              {item.value === currentFolder ? (
+                <StyledActiveButton
+                  onClick={() => handleOnClick(item.value)}
+                  type="button">
+                  {item.value}
+                </StyledActiveButton>
+              ) : (
+                <StyledButton
+                  onClick={() => handleOnClick(item.value)}
+                  type="button">
+                  {item.value}
+                </StyledButton>
+              )}
+            </React.Fragment>
+          ))}
+        </LoadingWrapper>
       </StickyMenu>
     </>
   );
@@ -78,4 +103,10 @@ const StickyMenu = styled.div`
   max-height: calc(100vh - 80px);
   overflow-y: auto;
   padding-bottom: 20px;
+`;
+const FilterDiv = styled.div`
+  margin-bottom: 18px;
+  select {
+    border: 1px solid #ccc;
+  }
 `;

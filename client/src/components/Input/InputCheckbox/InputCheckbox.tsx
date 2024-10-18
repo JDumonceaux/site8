@@ -1,15 +1,41 @@
 import { memo } from 'react';
+import { InputBaseProps } from '../Core/InputBase/InputBase';
+import styled from 'styled-components';
 
-type InputCheckboxProps = {
+type Props = {
   readonly type?: 'checkbox';
-};
+} & Omit<
+  InputBaseProps,
+  'height' | 'max' | 'min' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
+>;
 
+// Checked
+// Value
+
+// Implicit aria-role => 'checkbox'
 const InputCheckbox = ({
   type = 'checkbox',
-}: InputCheckboxProps): JSX.Element => (
-  <input type={type}>Not implemeneted - use checkbox element</input>
-);
+  ...rest
+}: Props): React.JSX.Element => {
+  const { id, label } = rest;
+
+  return (
+    <StyledDiv>
+      <label htmlFor={id}>
+        <input type={type} name={id} {...rest} />
+        {label}
+      </label>
+    </StyledDiv>
+  );
+};
 
 InputCheckbox.displayName = 'InputCheckbox';
 
 export default memo(InputCheckbox);
+
+const StyledDiv = styled.div`
+  margin-bottom: 16px;
+  input {
+    margin-right: 6px;
+  }
+`;

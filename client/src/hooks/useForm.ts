@@ -24,6 +24,14 @@ export const useForm = <T>(initialValues: T) => {
     return formValues[fieldName] as string;
   };
 
+  const getFieldValueBoolean = (fieldName: keys): boolean => {
+    return formValues[fieldName] as boolean;
+  };
+
+  const getFieldValueNumber = (fieldName: keys): number => {
+    return formValues[fieldName] as number;
+  };
+
   const getFieldErrors = (fieldName: keys): string | string[] | undefined => {
     const x = errors?.filter((x) => x.path.includes(fieldName as string));
     return x && x.length > 0 ? x.map((x) => x.message) : undefined;
@@ -41,7 +49,6 @@ export const useForm = <T>(initialValues: T) => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    console.log('handleChange event: ', event);
     const { id: fieldName, value } = event.target;
     if (!fieldName) {
       console.warn('No id found in event target');
@@ -50,7 +57,6 @@ export const useForm = <T>(initialValues: T) => {
   };
 
   const handleClearField = (fieldName: keys) => {
-    console.log('handleClearField fieldName: ', fieldName);
     setFieldValue(fieldName as keys, '');
   };
 
@@ -95,6 +101,8 @@ export const useForm = <T>(initialValues: T) => {
     getDefaultPasswordFields,
     getFieldErrors,
     getFieldValue,
+    getFieldValueBoolean,
+    getFieldValueNumber,
     handleChange,
     handleClearField,
     handleClearAll,
