@@ -1,13 +1,24 @@
 import { existsSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
-import { FOLDERS_TO_IGNORE, LOCAL_IMAGE_PATH } from '../lib/utils/constants.js';
+import { FOLDERS_TO_IGNORE } from '../lib/utils/constants.js';
 import { Logger } from '../lib/utils/logger.js';
 import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
 import { Images } from '../types/Images.js';
 import { ImagesService } from './ImagesService.js';
+import {
+  getAppRoot,
+  getAppRootAbsolute,
+  getImageDirAbsolute,
+} from '../lib/utils/getFilePath.js';
 
 export class ImagesFileService {
+  private imageDir = '';
+
+  constructor() {
+    this.imageDir = getImageDirAbsolute();
+  }
+
   // Get all data
   public async getMatchedItems(): Promise<Images | undefined> {
     try {
@@ -36,19 +47,25 @@ export class ImagesFileService {
    */
   public getFolders() {
     try {
+      Logger.info(`ImagesFileServiceRoot: ${getAppRoot()}`);
+      Logger.info(`ImagesFileServiceRootA: ${getAppRootAbsolute()}`);
+      Logger.info(`ImagesFileServiceImages4: ${getImageDirAbsolute()}`);
+
+      // Logger.info(`ImagesFileServiceImages: ${getFileName()}`);
+      // Logger.info(`ImagesFileServiceImages: ${getDirName()}`);
       Logger.info(`ImagesFileService: getFolders ->`);
 
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
       // NOTE: path is deprecated, but replacement - parentPath - isn't working
-      const items = readdirSync(LOCAL_IMAGE_PATH, {
+      const items = readdirSync(this.imageDir, {
         encoding: 'utf8',
         recursive: true,
         withFileTypes: true,
       })
         .filter((x) => x.isDirectory())
         .map((x) => x.path + '\\' + x.name)
-        .map((x) => x.substring(LOCAL_IMAGE_PATH.length + 1).trim())
+        .map((x) => x.substring(this.imageDir.length + 1).trim())
         .filter((x) => !FOLDERS_TO_IGNORE.some((y) => x.startsWith(y)))
         .toSorted((a, b) => a.localeCompare(b));
       return items;
@@ -105,12 +122,12 @@ export class ImagesFileService {
 
   // Get "items" from 'sort' directory
   public async getItemsFromSortDirectory(): Promise<Image[] | undefined> {
-    return this.getItemsFromDirectory(LOCAL_IMAGE_PATH, 'sort');
+    return this.getItemsFromDirectory(this.imageDir, 'sort');
   }
 
   // Get all data
   public async getItemsFromBaseDirectory(): Promise<Image[] | undefined> {
-    return this.getItemsFromDirectory(LOCAL_IMAGE_PATH);
+    return this.getItemsFromDirectory(this.imageDir);
   }
 
   private async matchItems(
@@ -156,12 +173,12 @@ export class ImagesFileService {
       }
       items.forEach((item) => {
         const path1 = path.join(
-          LOCAL_IMAGE_PATH,
+          this.imageDir,
           item.originalFolder ?? '',
           item.fileName,
         );
         const path2 = path.join(
-          LOCAL_IMAGE_PATH,
+          this.imageDir,
           item.folder ?? '',
           item.fileName,
         );
@@ -182,13 +199,13 @@ export class ImagesFileService {
     try {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
-      const items = readdirSync(LOCAL_IMAGE_PATH, {
+      const items = readdirSync(this.imageDir, {
         encoding: 'utf8',
         recursive: true,
       });
 
       items.forEach((item) => {
-        const itemPath = path.join(LOCAL_IMAGE_PATH, item);
+        const itemPath = path.join(this.imageDir, item);
         const stats = statSync(itemPath);
         if (stats.isFile()) {
           renameSync(itemPath, itemPath.toLowerCase());
