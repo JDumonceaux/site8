@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises';
-import { getFilePath } from '../lib/utils/getFilePath.js';
+import { getDataDir } from '../lib/utils/FilePath.js';
 import { Logger } from '../lib/utils/logger.js';
 import { Test } from '../types/Test.js';
 import { Tests } from '../types/Tests.js';
@@ -25,7 +25,7 @@ export class TestsService {
   public async getItems(): Promise<Tests | undefined> {
     try {
       const fileName = 'tests.json';
-      const filePath = getFilePath(fileName);
+      const filePath = getDataDir(fileName);
 
       const data = await readFile(filePath, { encoding: 'utf8' });
 

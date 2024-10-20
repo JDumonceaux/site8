@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { readFile } from 'fs/promises';
-import { getFilePath } from '../lib/utils/getFilePath.js';
+import { getDataDir } from '../lib/utils/FilePath.js';
 import { Logger } from '../lib/utils/logger.js';
 
 export class FileService {
@@ -8,7 +8,7 @@ export class FileService {
     Logger.info(`FileService: getFile -> ${fileName}`);
 
     try {
-      const filePath = getFilePath(fileName);
+      const filePath = getDataDir(fileName);
 
       // GOOD: Verify that the file path is under the root directory
       const tempFilePath = fs.realpathSync(filePath);

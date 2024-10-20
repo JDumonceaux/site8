@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises';
-import { getFilePath } from '../lib/utils/getFilePath.js';
+import { getDataDir } from '../lib/utils/FilePath.js';
 import { Logger } from '../lib/utils/logger.js';
 import { Bookmark } from '../types/Bookmark.js';
 import { Bookmarks } from '../types/Bookmarks.js';
@@ -11,7 +11,7 @@ export class BookmarksService {
   private filePath = '';
 
   constructor() {
-    this.filePath = getFilePath(this.fileName);
+    this.filePath = getDataDir(this.fileName);
   }
 
   public async getAllItems(): Promise<Bookmarks | undefined> {

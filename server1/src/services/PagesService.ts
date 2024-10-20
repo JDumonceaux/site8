@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getFilePath } from '../lib/utils/getFilePath.js';
+import { getDataDir } from '../lib/utils/FilePath.js';
 import { isValidArray } from '../lib/utils/helperUtils.js';
 import { Logger } from '../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../lib/utils/objectUtil.js';
@@ -14,7 +14,7 @@ export class PagesService {
   private filePath = '';
 
   constructor() {
-    this.filePath = getFilePath(this.fileName);
+    this.filePath = getDataDir(this.fileName);
   }
 
   // Get all data

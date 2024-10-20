@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getFilePath } from '../lib/utils/getFilePath.js';
+import { getDataDir } from '../lib/utils/FilePath.js';
 import { getNewIds, getNewItems } from '../lib/utils/imagesUtil.js';
 import { Logger } from '../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../lib/utils/objectUtil.js';
@@ -13,7 +13,7 @@ export class ImagesService {
   private filePath = '';
 
   constructor() {
-    this.filePath = getFilePath(this.fileName);
+    this.filePath = getDataDir(this.fileName);
   }
 
   // Get all data
@@ -335,8 +335,8 @@ export class ImagesService {
         .map((x) => {
           const foundItem = updatedItems.find((y) => y.id === x.id);
           const addItem = () => {
-            if (foundItem) {              
-              const { originalFolder : _unused, ...rest } = foundItem;
+            if (foundItem) {
+              const { originalFolder: _unused, ...rest } = foundItem;
               return cleanUpData<Image>({ ...rest });
             }
             return undefined;

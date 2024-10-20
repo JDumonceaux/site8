@@ -10,7 +10,7 @@ import {
   getAppRoot,
   getAppRootAbsolute,
   getImageDirAbsolute,
-} from '../lib/utils/getFilePath.js';
+} from '../lib/utils/FilePath.js';
 
 export class ImagesFileService {
   private imageDir = '';
@@ -47,14 +47,6 @@ export class ImagesFileService {
    */
   public getFolders() {
     try {
-      Logger.info(`ImagesFileServiceRoot: ${getAppRoot()}`);
-      Logger.info(`ImagesFileServiceRootA: ${getAppRootAbsolute()}`);
-      Logger.info(`ImagesFileServiceImages4: ${getImageDirAbsolute()}`);
-
-      // Logger.info(`ImagesFileServiceImages: ${getFileName()}`);
-      // Logger.info(`ImagesFileServiceImages: ${getDirName()}`);
-      Logger.info(`ImagesFileService: getFolders ->`);
-
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
       // NOTE: path is deprecated, but replacement - parentPath - isn't working
