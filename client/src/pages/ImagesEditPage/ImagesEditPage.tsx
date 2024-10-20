@@ -41,7 +41,7 @@ const ImagesEditPage = (): React.JSX.Element => {
           <MenuBar
             handleScan={handleScan}
             handleRefresh={handleRefresh}
-            handleSubmit={() => handleSubmit}
+            handleSubmit={handleSubmit}
           />
         </PageTitle>
       </Layout.TitleFixed>

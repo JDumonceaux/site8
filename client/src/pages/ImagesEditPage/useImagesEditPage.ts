@@ -61,12 +61,6 @@ const useImagesEditPage = () => {
     fetchData();
   }, [fetchData]);
 
-  // Set form values
-  // useEffect(() => {
-  //   // The full set of items
-  //   setFormValues(mapDataToForm(data?.items) || []);
-  // }, [data?.items]);
-
   useEffect(() => {
     const filteredData =
       filter && filter.length > 0
@@ -125,28 +119,34 @@ const useImagesEditPage = () => {
   };
 
   const submitForm = () => {
-    setIsProcessing(true);
-    // if (validateForm()) {
-    //   saveItems();
-    setIsProcessing(false);
-    setIsSaved(true);
-    return true;
+    const updates = getUpdates();
+    console.log('updates', updates);
+    //return saveItems(updates);
+    return Promise.resolve;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
+  const handleSubmit = () => {
+    console.log('Here');
+    // e.stopPropagation();
+    // e.preventDefault();
     setMessage('Saving...');
+    setIsProcessing(true);
 
-    const result = submitForm();
-    if (result) {
+    try {
+      const result = submitForm();
+      //if (result) {
       setMessage('Saved');
-    } else {
-      setMessage(`Error saving ${error}`);
+      // } else {
+      //   setMessage(`Error saving ${error}`);
+      // }
+    } catch (err) {
+      setMessage(`An unexpected error occurred: ${err.message}`);
+    } finally {
+      setIsProcessing(false);
     }
-    if (result) {
-      handleRefresh();
-    }
+    // if (result) {
+    //   handleRefresh();
+    // }
   };
 
   const handleScan = () => {
@@ -205,8 +205,56 @@ const useImagesEditPage = () => {
     return { hasChange: false, value: undefined };
   };
 
+  // Only submit updated records
   const getUpdates = () => {
     const returnValue: ImageEdit[] = [];
+    if (data?.items) {
+      for (const item of data?.items) {
+        const rec = formValues.find((x) => x.id === item.id);
+        if (rec) {
+          const previous = item;
+          const temporaryName = getDifference(previous.name, rec.name);
+          const temporaryLocation = getDifference(
+            previous.location,
+            rec.location,
+          );
+          const temporaryDescription = getDifference(
+            previous.description,
+            rec.description,
+          );
+          const temporaryOfficialUrl = getDifference(
+            previous.official_url,
+            rec.official_url,
+          );
+          const temporaryFolder = getDifference(previous.folder, rec.folder);
+          const temporaryFileName = getDifference(
+            previous.fileName,
+            rec.fileName,
+          );
+          // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
+
+          if (
+            temporaryName.hasChange ||
+            temporaryLocation.hasChange ||
+            temporaryDescription.hasChange ||
+            temporaryOfficialUrl.hasChange ||
+            temporaryFolder.hasChange ||
+            temporaryFileName.hasChange
+          ) {
+            returnValue.push({
+              id: rec.id,
+              description: temporaryDescription.value,
+              fileName: temporaryFileName.value || rec.fileName,
+              folder: temporaryFolder.value,
+              location: temporaryLocation.value,
+              name: temporaryName.value,
+              official_url: temporaryOfficialUrl.value,
+            });
+          }
+        }
+      }
+    }
+
     //   for (const item of formValues) {
     //     const previous = localItems?.find((x) => x.localId === item.localId);
     //     const temporaryName = getDifference(previous?.name, item.name);
