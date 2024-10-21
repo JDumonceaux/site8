@@ -3,9 +3,10 @@ import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
 import { useCallback, useEffect, useState, useTransition } from 'react';
 import { z } from 'zod';
-import { Image } from 'types/Image';
+import { Image as LocalImage } from 'types/Image';
 import { ImageEdit } from 'types/ImageEdit';
 import { getSRC } from 'lib/utils/helpers';
+import { set } from 'date-fns';
 
 // Define Zod Shape
 const schema = z.object({
@@ -37,6 +38,7 @@ export type ImageItemForm = z.infer<typeof schema> & {
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
+  const [filteredData, setFilteredData] = useState<LocalImage[]>([]);
 
   // move to useImagesEdit?// Is the form saving?
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -66,11 +68,19 @@ const useImagesEditPage = () => {
       filter && filter.length > 0
         ? data?.items.filter((x) => x.folder === filter)
         : data?.items;
-    // The full set of items
-    setFormValues(mapDataToForm(filteredData) || []);
+    const sortedData = filteredData?.toSorted((a, b) => b.id - a.id);
+    const trimmedData = sortedData?.slice(0, 10);
+    setFilteredData(trimmedData || []);
   }, [filter, data?.items]);
 
-  const mapDataToForm = (items: Image[] | undefined) => {
+  console.log('filteredData', filteredData);
+
+  useEffect(() => {
+    // The full set of items
+    setFormValues(mapDataToForm(filteredData) || []);
+  }, [filter, filteredData]);
+
+  const mapDataToForm = (items: LocalImage[] | undefined) => {
     if (!items) {
       return [];
     }
@@ -90,7 +100,7 @@ const useImagesEditPage = () => {
         isDuplicate: x.isDuplicate || false,
       };
     });
-    return ret.toSorted((a, b) => b.id - a.id);
+    return ret;
   };
 
   const handleChange = (
@@ -140,7 +150,11 @@ const useImagesEditPage = () => {
       //   setMessage(`Error saving ${error}`);
       // }
     } catch (err) {
-      setMessage(`An unexpected error occurred: ${err.message}`);
+      if (err instanceof Error) {
+        setMessage(`An unexpected error occurred: ${err.message}`);
+      } else {
+        setMessage('An unexpected error occurred');
+      }
     } finally {
       setIsProcessing(false);
     }
@@ -180,132 +194,91 @@ const useImagesEditPage = () => {
     setIsProcessing(false);
   };
 
-  const getDifference = (
-    previous: string | undefined,
-    update: string | undefined,
-  ) => {
-    const temporaryPrevious =
-      previous && previous?.trim().length > 0 ? previous?.trim() : undefined;
-    const temporaryUpdate =
-      update && update?.trim().length > 0 ? update?.trim() : undefined;
-    // No change
-    if (!temporaryPrevious && !temporaryUpdate) {
-      return { hasChange: false, value: undefined };
+  const getDifferenceString = (value?: string, update?: string) => {
+    const normalizedUpdate = update
+      ? update.trim() === ''
+        ? undefined
+        : update
+      : undefined;
+    if (value !== normalizedUpdate) {
+      return {
+        hasChange: true,
+        value: normalizedUpdate,
+      };
     }
-    // No change
-    if (temporaryPrevious === temporaryUpdate) {
-      return { hasChange: false, value: undefined };
-    }
-    if (temporaryUpdate) {
-      return { hasChange: true, value: temporaryUpdate };
-    }
-    if (temporaryPrevious && !temporaryUpdate) {
-      return { hasChange: true, value: undefined };
-    }
-    return { hasChange: false, value: undefined };
+    return {
+      hasChange: false,
+      value: value,
+    };
   };
+
+  const getDifferenceNumber = (value?: number, update?: string) => ({
+    hasChange: value !== Number(update),
+    value: update ?? value,
+  });
 
   // Only submit updated records
   const getUpdates = () => {
     const returnValue: ImageEdit[] = [];
-    if (data?.items) {
-      for (const item of data?.items) {
-        const rec = formValues.find((x) => x.id === item.id);
-        if (rec) {
-          const previous = item;
-          const temporaryName = getDifference(previous.name, rec.name);
-          const temporaryLocation = getDifference(
-            previous.location,
-            rec.location,
+    if (filteredData) {
+      for (const item of filteredData) {
+        const items = formValues.filter((x) => x.id === item.id);
+        if (items.length > 1) {
+          console.error('Duplicate items found.  Please correct index');
+        }
+        const current = items[0];
+        if (current) {
+          const tempName = getDifferenceString(item.name, current.name);
+
+          const tempLocation = getDifferenceString(
+            item.location,
+            current.location,
           );
-          const temporaryDescription = getDifference(
-            previous.description,
-            rec.description,
+          const tempDescription = getDifferenceString(
+            item.description,
+            current.description,
           );
-          const temporaryOfficialUrl = getDifference(
-            previous.official_url,
-            rec.official_url,
+          const tempOfficialUrl = getDifferenceString(
+            item.official_url,
+            current.official_url,
           );
-          const temporaryFolder = getDifference(previous.folder, rec.folder);
-          const temporaryFileName = getDifference(
-            previous.fileName,
-            rec.fileName,
+          const tempFolder = getDifferenceString(item.folder, current.folder);
+          const tempFileName = getDifferenceString(
+            item.fileName,
+            current.fileName,
           );
           // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
+          console.log('tempName', tempName);
+          console.log('tempLocation', tempLocation);
+          console.log('tempDescription', tempDescription);
+          console.log('tempOfficialUrl', tempOfficialUrl);
+          console.log('tempFolder', tempFolder);
+          console.log('tempFileName', tempFileName);
 
-          if (
-            temporaryName.hasChange ||
-            temporaryLocation.hasChange ||
-            temporaryDescription.hasChange ||
-            temporaryOfficialUrl.hasChange ||
-            temporaryFolder.hasChange ||
-            temporaryFileName.hasChange
-          ) {
+          const hasChanges = [
+            tempName.hasChange,
+            tempLocation.hasChange,
+            tempDescription.hasChange,
+            tempOfficialUrl.hasChange,
+            tempFolder.hasChange,
+            tempFileName.hasChange,
+          ].some(Boolean);
+
+          if (hasChanges) {
             returnValue.push({
               id: rec.id,
-              description: temporaryDescription.value,
-              fileName: temporaryFileName.value || rec.fileName,
-              folder: temporaryFolder.value,
-              location: temporaryLocation.value,
-              name: temporaryName.value,
-              official_url: temporaryOfficialUrl.value,
+              description: tempDescription.value,
+              fileName: tempFileName.value || rec.fileName,
+              folder: tempFolder.value,
+              location: tempLocation.value,
+              name: tempName.value,
+              official_url: tempOfficialUrl.value,
             });
           }
         }
       }
     }
 
-    //   for (const item of formValues) {
-    //     const previous = localItems?.find((x) => x.localId === item.localId);
-    //     const temporaryName = getDifference(previous?.name, item.name);
-    //     const temporaryLocation = getDifference(
-    //       previous?.location,
-    //       item.location,
-    //     );
-    //     const temporaryDescription = getDifference(
-    //       previous?.description,
-    //       item.description,
-    //     );
-    //     const temporaryOfficialUrl = getDifference(
-    //       previous?.official_url,
-    //       item.official_url,
-    //     );
-    //     const temporaryFolder = getDifference(previous?.folder, item.folder);
-    //     const temporaryFileName = getDifference(
-    //       previous?.fileName,
-    //       item.fileName,
-    //     );
-    //     // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
-
-    //     if (
-    //       temporaryName.hasChange ||
-    //       temporaryLocation.hasChange ||
-    //       temporaryDescription.hasChange ||
-    //       temporaryOfficialUrl.hasChange ||
-    //       temporaryFolder.hasChange ||
-    //       temporaryFileName.hasChange
-    //     ) {
-    //       returnValue.push({
-    //         description: temporaryDescription.hasChange
-    //           ? temporaryDescription.value
-    //           : previous?.description,
-    //         fileName: temporaryFileName.hasChange
-    //           ? (temporaryFileName.value ?? '')
-    //           : (previous?.fileName ?? ''),
-    //         folder: temporaryFolder.hasChange
-    //           ? temporaryFolder.value
-    //           : previous?.folder,
-    //         id: item.id,
-    //         location: temporaryLocation.hasChange
-    //           ? temporaryLocation.value
-    //           : previous?.location,
-    //         name: temporaryName.hasChange ? temporaryName.value : previous?.name,
-    //         official_url: temporaryOfficialUrl.hasChange
-    //           ? temporaryOfficialUrl.value
-    //           : previous?.official_url,
-    //       });
-    //     }
-    //   }
     return returnValue;
   };
 

@@ -31,8 +31,6 @@ const ImagesEditPage = (): React.JSX.Element => {
 
   console.log('data', data);
 
-  const filteredData = data?.slice(0, 10);
-
   return (
     <>
       <Meta title={title} />
@@ -50,7 +48,7 @@ const ImagesEditPage = (): React.JSX.Element => {
           <LoadingWrapper error={error} isLoading={isLoading}>
             {isPending ? <div>Loading ...</div> : null}
             <StyledForm noValidate onSubmit={handleSubmit}>
-              {filteredData?.map((item) => (
+              {data?.map((item) => (
                 <ImageItem
                   key={item.localId}
                   item={item}

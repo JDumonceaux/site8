@@ -110,149 +110,6 @@ export class ImagesService {
     return Promise.reject(false);
   }
 
-  // public async loadNewItems(): Promise<Images | undefined> {
-  //   try {
-  //     // Get new images from 'sort' directory
-  //     const images = await new ImagesFileService().getItemsFromSortDirectory();
-  //     // Get current items
-  //     const prev = await this.readFile();
-  //     if (!prev) {
-  //       throw new Error('loadNewItems > Index file not loaded');
-  //     }
-
-  //     const items = prev.items;
-  //     // Make sure item isn't already in the list
-  //     const newItems = items?.filter(
-  //       (x) => !items?.find((y) => y.fileName === x.fileName),
-  //     );
-  //     // Get duplicate items
-  //     const duplicateImages = images?.filter((x) =>
-  //       items?.find((y) => y.fileName === x.fileName),
-  //     );
-  //     // Get the next id - assume there are no gaps in the id sequence
-  //     // that we want to fill in.  If there are gaps, we can fill
-  //     // these in when we add a single image.
-  //     const nextId =
-  //       items?.sort((a, b) => a.id - b.id)[items?.length - 1].id ?? 0;
-
-  //     // One time clean up of the data
-  //     // const cleanedItems: Image[] | undefined = prev.items?.map((item) => {
-  //     //   return cleanUpData<Image>({
-  //     //     ...item,
-  //     //     edit_date: new Date(),
-  //     //     create_date: new Date(),
-  //     //   });
-  //     // });
-
-  //     // Update the data
-  //     let id = nextId;
-  //     const updatedItems: Image[] | undefined = newItems?.map((item) => {
-  //       return cleanUpData<Image>({
-  //         ...item,
-  //         id: id++,
-  //         edit_date: new Date(),
-  //         create_date: new Date(),
-  //       });
-  //     });
-
-  //     // Add new items to existing
-  //     const combinedItems = updatedItems ? items?.concat(updatedItems) : items;
-
-  //     const sortedData = combinedItems?.sort((a, b) => a.id - b.id);
-  //     // Write back file
-  //     const data = { ...prev, items: sortedData };
-  //     await this.writeFile(data);
-  //     // Return items + duplicates
-  //     return { ...data, duplicateImages };
-  //   } catch (error) {
-  //     Logger.error(`ImagesService: loadNewItems -> ${error}`);
-  //   }
-  //   return undefined;
-  // }
-
-  // public async syncItems(): Promise<ImageSync | undefined> {
-  //   try {
-  //     // Get all images directory
-  //     const images = await new ImagesFileService().getItemsFromBaseDirectory();
-  //     // Get current items
-  //     const prev = await this.readFile();
-  //     if (!prev) {
-  //       throw new Error('syncItems > Index file not loaded');
-  //     }
-
-  //     const ret: Image[] = [];
-  //     const issues: Image[] = [];
-  //     let recordsUpdated = 0;
-
-  //     // Match the index file to the images directory
-  //     prev.items?.forEach((item) => {
-  //       const matchedItems = images?.filter(
-  //         (x) => x.fileName.length > 0 && x.fileName === item.fileName,
-  //       );
-  //       if (matchedItems) {
-  //         switch (matchedItems.length) {
-  //           case 0:
-  //             ret.push(item);
-  //             issues.push({ ...item, issue: 'Image not found' });
-  //             break;
-  //           case 1:
-  //             // Automatically update folder if it's different
-  //             if (item.folder !== matchedItems[0].folder) {
-  //               ret.push({ ...item, folder: matchedItems[0].folder });
-  //               recordsUpdated++;
-  //             } else {
-  //               ret.push(item);
-  //             }
-  //             break;
-  //           case 2:
-  //             ret.push(item);
-  //             issues.push({ ...item, issue: 'Duplicate found' });
-  //             break;
-  //           default:
-  //             ret.push(item);
-  //             issues.push({
-  //               ...item,
-  //               issue: matchedItems.length + ' found',
-  //             });
-  //             break;
-  //         }
-  //       } else {
-  //         ret.push(item);
-  //         issues.push({ ...item, issue: 'No match found' });
-  //       }
-  //     });
-
-  //     if (prev.items?.length !== ret.length) {
-  //       Logger.info(
-  //         `ImagesService: syncItems -> ${issues.length} issues found`,
-  //       );
-  //       return;
-  //     }
-
-  //     // Write back file
-  //     const data = { ...prev, items: ret };
-  //     await this.writeFile(data);
-
-  //     // Trim down the data for display
-  //     const issuesTemp = issues
-  //       .sort((a, b) => a.fileName?.localeCompare(b.fileName))
-  //       .map((x) => ({
-  //         id: x.id,
-  //         fileName: x.fileName,
-  //         issue: x.issue,
-  //         folder: x.folder,
-  //       }));
-  //     return {
-  //       fileCount: ret.length,
-  //       recordsUpdated: recordsUpdated,
-  //       issues: issuesTemp,
-  //     };
-  //   } catch (error) {
-  //     Logger.error(`ImagesService: syncItems -> ${error}`);
-  //   }
-  //   return undefined;
-  // }
-
   public async getNextId(): Promise<number | undefined> {
     try {
       const data = await this.readFile();
@@ -281,6 +138,28 @@ export class ImagesService {
       return true;
     } catch (error) {
       Logger.error(`ImagesService: fixNames -> ${error}`);
+      return false;
+    }
+  }
+
+  public async fixIndex(): Promise<boolean> {
+    try {
+      const item = await this.readFile();
+
+      const fixedItems = item?.items?.map((x, index) => ({
+        ...x,
+        id: index + 1,
+      }));
+
+      const data: Images = {
+        metadata: item?.metadata ?? { title: 'Images' },
+        items: fixedItems,
+      };
+
+      await this.writeFile(data);
+      return true;
+    } catch (error) {
+      Logger.error(`ImagesService: fixIndex -> ${error}`);
       return false;
     }
   }

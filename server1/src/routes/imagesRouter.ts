@@ -36,8 +36,6 @@ imagesRouter.get('/edit', async (_req: Request, res: Response) => {
   }
 });
 
-
-
 // Get all images from the 'sort' folder that need to be categorized
 imagesRouter.get('/new', async (_req: Request, res: Response) => {
   try {
@@ -122,9 +120,9 @@ imagesRouter.get('/fix-file-names', async (_req: Request, res: Response) => {
   }
 });
 
-imagesRouter.get('/fix-index', async (_req: Request, res: Response) => {
+imagesRouter.get('/reindex', async (_req: Request, res: Response) => {
   try {
-    const ret = await new ImagesService().fixNames();
+    const ret = await new ImagesService().fixIndex();
     if (ret) {
       res.status(200).send('Done');
     } else {
