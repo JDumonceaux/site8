@@ -11,4 +11,6 @@ export type Image = {
   readonly name?: string;
   readonly official_url?: string;
   readonly tags?: string[];
+  readonly artist?: string;
+  readonly year?: string;
 };

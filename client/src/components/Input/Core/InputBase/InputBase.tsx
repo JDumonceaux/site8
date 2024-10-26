@@ -3,6 +3,7 @@ import React, {
   InputHTMLAttributes,
   memo,
   useRef,
+  useId,
 } from 'react';
 import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
@@ -33,7 +34,6 @@ declare const validityMatchers: readonly [
 ];
 
 type InputBaseProps = {
-  readonly id: string;
   readonly value: string | number | string[];
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly description?: string;
@@ -62,7 +62,6 @@ type InputBaseProps = {
 // autocorrect: a non-standard Safari attribute
 
 const InputBase = ({
-  id,
   value,
   inputRef,
   label,
@@ -86,6 +85,7 @@ const InputBase = ({
 }: InputBaseProps): JSX.Element => {
   const maxLength = rest.maxLength;
   const required = rest.required;
+  const tempId = rest.id || useId();
   const characterCount = (() => {
     if (typeof value === 'string' || value instanceof String) {
       return value.length;
@@ -97,7 +97,7 @@ const InputBase = ({
       return 0;
     }
   })();
-  const counterId = 'counter-' + id;
+  const counterId = 'counter-' + tempId;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(e);
@@ -107,22 +107,22 @@ const InputBase = ({
   const inputRefLocal = inputRef || useRef<HTMLInputElement>();
 
   const handleClear = () => {
-    onClear && onClear(id);
+    onClear && onClear(tempId);
     inputRefLocal.current?.focus();
   };
 
   const showClearButton = showClear && characterCount > 0 && onClear;
 
   return (
-    <FieldWrapper id={id} {...rest} label={label}>
+    <FieldWrapper {...rest} id={tempId} label={label}>
       <StyledInputWrapper>
         <StartAdornment>{startAdornment}</StartAdornment>
         <StyledInput
-          id={id}
-          key={id}
+          key={tempId}
           value={value}
           type={type}
           {...rest}
+          id={tempId}
           ref={inputRefLocal}
           aria-describedby={counterId}
           onChange={handleChange}

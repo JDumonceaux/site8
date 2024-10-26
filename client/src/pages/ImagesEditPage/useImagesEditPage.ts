@@ -1,12 +1,11 @@
 import { useFormArray } from 'hooks/useFormArray';
 import useImagesEdit from 'hooks/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback, useEffect, useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { z } from 'zod';
 import { Image as LocalImage } from 'types/Image';
 import { ImageEdit } from 'types/ImageEdit';
 import { getSRC } from 'lib/utils/helpers';
-import { set } from 'date-fns';
 
 // Define Zod Shape
 const schema = z.object({
@@ -24,6 +23,8 @@ const schema = z.object({
   name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
   official_url: z.string().trim().optional(),
   src: z.string().optional(),
+  artist: z.string().trim().optional(),
+  year: z.string().trim().optional(),
   tags: z.string().trim().optional(),
 });
 
@@ -73,8 +74,6 @@ const useImagesEditPage = () => {
     setFilteredData(trimmedData || []);
   }, [filter, data?.items]);
 
-  console.log('filteredData', filteredData);
-
   useEffect(() => {
     // The full set of items
     setFormValues(mapDataToForm(filteredData) || []);
@@ -95,7 +94,9 @@ const useImagesEditPage = () => {
         name: x.name || '',
         official_url: x.official_url || '',
         src: getSRC(x.folder, x.fileName),
-        tags: '',
+        artist: x.artist || '',
+        year: x.year || '',
+        tags: x.tags?.join(',') || '',
         isSelected: false,
         isDuplicate: x.isDuplicate || false,
       };
@@ -128,27 +129,27 @@ const useImagesEditPage = () => {
     setMessage('Done');
   };
 
-  const submitForm = () => {
+  const handleSubmit = async () => {
     const updates = getUpdates();
-    console.log('updates', updates);
-    //return saveItems(updates);
-    return Promise.resolve;
-  };
-
-  const handleSubmit = () => {
-    console.log('Here');
-    // e.stopPropagation();
-    // e.preventDefault();
+    if (!updates) {
+      setMessage('No changes to save');
+      setIsProcessing(false);
+      return;
+    }
+    if (updates.length > 1) {
+      setMessage('Too many changes to save');
+      setIsProcessing(false);
+      return;
+    }
     setMessage('Saving...');
     setIsProcessing(true);
-
     try {
-      const result = submitForm();
-      //if (result) {
-      setMessage('Saved');
-      // } else {
-      //   setMessage(`Error saving ${error}`);
-      // }
+      const result = await saveItems(updates);
+      if (result) {
+        setMessage('Saved');
+      } else {
+        setMessage(`Error saving ${error}`);
+      }
     } catch (err) {
       if (err instanceof Error) {
         setMessage(`An unexpected error occurred: ${err.message}`);
@@ -224,7 +225,7 @@ const useImagesEditPage = () => {
       for (const item of filteredData) {
         const items = formValues.filter((x) => x.id === item.id);
         if (items.length > 1) {
-          console.error('Duplicate items found.  Please correct index');
+          console.warn('Duplicate items found.  Please correct index');
         }
         const current = items[0];
         if (current) {
@@ -247,13 +248,13 @@ const useImagesEditPage = () => {
             item.fileName,
             current.fileName,
           );
-          // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
-          console.log('tempName', tempName);
-          console.log('tempLocation', tempLocation);
-          console.log('tempDescription', tempDescription);
-          console.log('tempOfficialUrl', tempOfficialUrl);
-          console.log('tempFolder', tempFolder);
-          console.log('tempFileName', tempFileName);
+          const tempArtist = getDifferenceString(item.artist, current.artist);
+
+          const tempYear = getDifferenceString(item.year, current.year);
+          const tempTags = getDifferenceString(
+            item.tags?.join(','),
+            current.tags,
+          );
 
           const hasChanges = [
             tempName.hasChange,
@@ -262,24 +263,37 @@ const useImagesEditPage = () => {
             tempOfficialUrl.hasChange,
             tempFolder.hasChange,
             tempFileName.hasChange,
+            tempArtist.hasChange,
+            tempYear.hasChange,
+            tempTags.hasChange,
           ].some(Boolean);
+          // const tempTags = getDifference(prev?.tags?.join(','), item.tags);
+          // console.log('tempName', tempName);
+          // console.log('tempFileName', tempFileName);
+          // console.log('tempFolder', tempFolder);
+          // console.log('tempLocation', tempLocation);
+          // console.log('tempDescription', tempDescription);
+          // console.log('tempOfficialUrl', tempOfficialUrl);
+          //  console.log('hasChanges', hasChanges);
 
           if (hasChanges) {
             returnValue.push({
-              id: rec.id,
+              id: item.id,
               description: tempDescription.value,
-              fileName: tempFileName.value || rec.fileName,
+              fileName: tempFileName.value || item.fileName,
               folder: tempFolder.value,
               location: tempLocation.value,
               name: tempName.value,
               official_url: tempOfficialUrl.value,
+              artist: tempArtist.value,
+              year: tempYear.value,
+              tags: tempTags.value?.split(',').map((x) => x.trim()),
             });
           }
         }
       }
     }
-
-    return returnValue;
+    return returnValue && returnValue.length > 0 ? returnValue : undefined;
   };
 
   return {

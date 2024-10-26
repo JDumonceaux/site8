@@ -64,7 +64,7 @@ export class ImagesService {
     // Get current items
     const items = await this.readFile();
     if (!items) {
-      throw new Error('getItems > Index file not loaded');
+      throw new Error('getEditItems > Index file not loaded');
     }
     return { ...items };
   }
@@ -187,20 +187,40 @@ export class ImagesService {
   ): Promise<boolean> {
     try {
       if (!items || !Array.isArray(items) || items.length === 0) {
-        return false;
+        Logger.info(`ImagesService: updateItems -> no items to update`);
+        return true;
       }
+
       const images = await this.readFile();
       if (!images?.items) {
+        Logger.error(`ImagesService: updateItems -> file not loaded`);
         return false;
       }
 
       // Get the updated records
       const updatedItems: ImageEdit[] = items.map((item) => {
-        const currItem = images.items?.find((x) => x.id === item.id);
+        const currItems = images.items?.filter((x) => x.id === item.id);
+
+        if (!currItems) {
+          Logger.error(
+            `ImagesService: updateItems -> item not found: ${item.id}`,
+          );
+          return false;
+        }
+
+        if (currItems && currItems?.length > 1) {
+          Logger.error(
+            `ImagesService: updateItems -> Duplicate items found.  Please correct index`,
+          );
+          return false;
+        }
+        // Create a replacement item
+        const currItem = currItems[0];
         if (currItem) {
           return {
             ...currItem,
             ...item,
+            isNewItem: false,
             originalFolder: currItem.folder,
           };
         }
@@ -209,6 +229,7 @@ export class ImagesService {
       // Move the files to a new directory
       await new ImagesFileService().moveItems(updatedItems);
 
+      Logger.info(`ImagesService: step 1`);
       // Replace the changed records in the original data
       const data: Image[] = images.items
         .map((x) => {
@@ -227,7 +248,7 @@ export class ImagesService {
 
       await this.writeFile({ ...images, items: data });
     } catch (error) {
-      Logger.error(`ImagesService: updateItem -> ${error}`);
+      Logger.error(`ImagesService: updateItems -> ${error}`);
     }
     return false;
   }

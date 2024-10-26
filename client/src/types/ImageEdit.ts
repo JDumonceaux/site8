@@ -7,5 +7,6 @@ export type ImageEdit = {
   readonly name?: string;
   readonly official_url?: string;
   readonly tags?: string[];
-  readonly src?: string;
+  readonly artist?: string;
+  readonly year?: string;
 };

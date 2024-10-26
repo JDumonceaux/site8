@@ -56,10 +56,7 @@ const useImagesEdit = () => {
 
   // Handle save
   const saveItems = async (updates: ImageEdit[]) => {
-    if (!updates) {
-      return;
-    }
-    await patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, { items: updates });
+    return patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, { items: updates });
   };
 
   return {

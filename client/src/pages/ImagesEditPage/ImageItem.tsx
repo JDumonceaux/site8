@@ -45,56 +45,55 @@ const ImageItem = ({
         <StyledImg alt={item.name} src={item.src} />
       </StyledImgContainer>
       <StyledOuterRow>
-        {item.isDuplicate ? <StyledSubRow>Duplicate Image</StyledSubRow> : null}
-        <StyledSubRow>
-          <Input.Text
-            {...getDefaultProps(item.localId, 'name')}
-            placeholder="Name"
-          />
-          <Input.Text
-            {...getDefaultProps(item.localId, 'fileName')}
-            placeholder="File Name"
-          />
-          <Input.Text
-            {...getDefaultProps(item.localId, 'folder')}
-            placeholder="Folder"
-          />
-          <Input.Checkbox
-            id="selected"
-            value={getFieldValue(item.localId, 'isSelected')}
-            onChange={(e) => onChange(item.localId, 'isSelected', e)}
-          />
-          {/* <div>
-            <StyledButton2
-              onClick={() => handleFolderSelect(item.localId)}
-              type="button">
-              <Cross2Icon />
-              Select
-             </StyledButton2>
-          </div> */}
-        </StyledSubRow>
-        <StyledSubRow>
-          <Input.Text
-            {...getDefaultProps(item.localId, 'location')}
-            placeholder="Location"
-          />
-          <Input.Text
-            {...getDefaultProps(item.localId, 'official_url')}
-            placeholder="Official URL"
-          />
-          <IconMenu>
-            <IconMenuItem onClick={() => handleOnDelete(item.localId)}>
-              Delete
-            </IconMenuItem>
-            <IconMenuItem>{item.id}</IconMenuItem>
-          </IconMenu>
-        </StyledSubRow>
-        <StyledSubRow>
-          <Input.Text
-            {...getDefaultProps(item.localId, 'description')}
-            placeholder="Description"
-          />
-        </StyledSubRow>
+        {item.isDuplicate ? <div>Duplicate Image</div> : null}
+
+        <Input.Text
+          {...getDefaultProps(item.localId, 'name')}
+          placeholder="Name"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'fileName')}
+          placeholder="File Name"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'folder')}
+          placeholder="Folder"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'location')}
+          placeholder="Location"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'official_url')}
+          placeholder="Official URL"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'description')}
+          placeholder="Description"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'artist')}
+          placeholder="Artist"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'year')}
+          placeholder="Year"
+        />
+        <Input.Text
+          {...getDefaultProps(item.localId, 'tags')}
+          placeholder="Tags"
+        />
+        <IconMenu>
+          <IconMenuItem onClick={() => handleOnDelete(item.localId)}>
+            Delete
+          </IconMenuItem>
+          <IconMenuItem>{item.id}</IconMenuItem>
+        </IconMenu>
+        <Input.Checkbox
+          id="selected"
+          value={getFieldValue(item.localId, 'isSelected')}
+          onChange={(e) => onChange(item.localId, 'isSelected', e)}
+        />
       </StyledOuterRow>
     </StyledRow>
   );
@@ -102,11 +101,6 @@ const ImageItem = ({
 
 export default ImageItem;
 
-const StyledButton2 = styled.button`
-  padding: 0 5px;
-  width: 30px;
-  height: 35px;
-`;
 const StyledImgContainer = styled.div`
   display: flex;
   align-items: left;
@@ -131,8 +125,4 @@ const StyledRow = styled.div<{
 `;
 const StyledOuterRow = styled.div`
   flex-grow: 1;
-`;
-const StyledSubRow = styled.div`
-  display: flex;
-  width: 100%;
 `;

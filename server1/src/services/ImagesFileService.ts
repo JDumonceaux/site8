@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, renameSync, statSync } from 'fs';
+import { mkdirSync, existsSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 import { FOLDERS_TO_IGNORE } from '../lib/utils/constants.js';
 import { Logger } from '../lib/utils/logger.js';
@@ -6,11 +6,7 @@ import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
 import { Images } from '../types/Images.js';
 import { ImagesService } from './ImagesService.js';
-import {
-  getAppRoot,
-  getAppRootAbsolute,
-  getImageDirAbsolute,
-} from '../lib/utils/FilePath.js';
+import { getImageDirAbsolute } from '../lib/utils/FilePath.js';
 
 export class ImagesFileService {
   private imageDir = '';
@@ -155,29 +151,54 @@ export class ImagesFileService {
    * @param items - An array of ImageEdit objects representing the items to be moved.
    * @returns A Promise that resolves to a boolean indicating whether the move operation was successful.
    */
-  public async moveItems(items: ImageEdit[] | undefined): Promise<boolean> {
+  public async moveItems(
+    items: ReadonlyArray<ImageEdit> | undefined,
+  ): Promise<boolean> {
     try {
       Logger.info(
         `ImagesFileService: moveItems. -> (${items ? items?.length : 0}) to move.`,
       );
-      if (!items) {
+
+      const updates = items?.filter((x) => x.originalFolder !== x.folder);
+
+      if (!updates) {
+        Logger.info(`ImagesFileService: moveItems. -> no items to update`);
         return true;
       }
-      items.forEach((item) => {
-        const path1 = path.join(
+
+      updates.forEach((item) => {
+        if (!item.fileName || !item.folder) {
+          Logger.error(
+            `ImagesFileService: moveItems -> fileName or folder is missing.`,
+          );
+          return false;
+        }
+
+        const currLocation = path.join(
           this.imageDir,
           item.originalFolder ?? '',
           item.fileName,
         );
-        const path2 = path.join(
-          this.imageDir,
-          item.folder ?? '',
-          item.fileName,
-        );
-        if (existsSync(path2)) {
-          Logger.error(`ImagesFileService: moveItems -> ${path2} exists.`);
+        const moveTo = path.join(this.imageDir, item.folder, item.fileName);
+        const moveToPath = path.join(this.imageDir, item.folder);
+
+        // Create the folder if needed
+        try {
+          if (!existsSync(moveToPath)) {
+            Logger.info(`ImagesFileService: creating folder -> ${moveToPath}.`);
+            mkdirSync(moveToPath);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+
+        if (existsSync(moveTo)) {
+          Logger.warn(
+            `ImagesFileService: Unable to move file -> ${moveTo} already exists.`,
+          );
+          return false;
         } else {
-          renameSync(path1, path2);
+          renameSync(currLocation, moveTo);
         }
       });
       return true;

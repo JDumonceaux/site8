@@ -13136,15 +13136,16 @@
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8370.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art\\claude_monet",
+      "isNewItem": true,
+      "name": "Poppies at Argenteuil"
     },
     {
       "id": 1643,
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8371.JPG",
-      "folder": "sort",
+      "folder": "architecture\\castles",
       "isNewItem": true
     },
     {
@@ -13216,8 +13217,12 @@
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "yogibear.jpg",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "cartoons",
+      "isNewItem": false,
+      "name": "Yogi Bear",
+      "tags": [
+        "cartoons"
+      ]
     }
   ]
 }
