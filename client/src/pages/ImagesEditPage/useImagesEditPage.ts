@@ -69,8 +69,11 @@ const useImagesEditPage = () => {
       filter && filter.length > 0
         ? data?.items.filter((x) => x.folder === filter)
         : data?.items;
-    const sortedData = filteredData?.toSorted((a, b) => b.id - a.id);
-    const trimmedData = sortedData?.slice(0, 10);
+    const filteredImageType = filteredData?.filter(
+      (x) => !x.fileName.includes('.heic'),
+    );
+    const sortedData = filteredImageType?.toSorted((a, b) => b.id - a.id);
+    const trimmedData = sortedData?.slice(0, 100);
     setFilteredData(trimmedData || []);
   }, [filter, data?.items]);
 
@@ -147,6 +150,7 @@ const useImagesEditPage = () => {
       const result = await saveItems(updates);
       if (result) {
         setMessage('Saved');
+        handleRefresh();
       } else {
         setMessage(`Error saving ${error}`);
       }

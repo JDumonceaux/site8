@@ -29,8 +29,6 @@ const ImagesEditPage = (): React.JSX.Element => {
     handleFilterSelect,
   } = useImagesEditPage();
 
-  console.log('data', data);
-
   return (
     <>
       <Meta title={title} />

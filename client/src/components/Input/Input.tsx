@@ -8,6 +8,7 @@ import InputText from './InputText/InputText';
 import { TextArea } from './TextArea/TextArea';
 import InputCheckbox from './InputCheckbox/InputCheckbox';
 import InputToggle from './InputToggle/InputToggle';
+import InputSelect from './InputSelect/InputSelect';
 
 type Props = InputBaseProps;
 
@@ -23,5 +24,6 @@ Input.Text = InputText;
 Input.TextArea = TextArea;
 Input.Checkbox = InputCheckbox;
 Input.Toggle = InputToggle;
+Input.Select = InputSelect;
 
 export default Input;

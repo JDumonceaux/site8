@@ -1,8 +1,10 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import Input from 'components/Input/Input';
 import { on } from 'events';
 import useImageFolder from 'hooks/useImageFolder';
 import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
+import { ListItem } from 'types/ListItem';
 
 type Props = {
   readonly currentFolder: string;
@@ -23,13 +25,24 @@ const RightMenu = ({
     fetchData();
   }, [fetchData]);
 
+  const filterData: ListItem[] | undefined = data?.map((x) => ({
+    key: x.id,
+    value: x.value,
+  }));
+
   const handleOnClick = onClick;
 
   return (
     <>
       <StickyMenu>
         <FilterDiv>
-          <label htmlFor="select">Filter</label>
+          <Input.Select
+            label="Filter"
+            data={filterData}
+            onChange={onFilterSelect}
+            value={currentFilter}
+          />
+          {/* <label htmlFor="select">Filter</label>
           <select id="select" onChange={onFilterSelect} value={currentFilter}>
             <option value="all">All</option>
             {data?.map((item) => (
@@ -37,7 +50,7 @@ const RightMenu = ({
                 {item.value}
               </option>
             ))}
-          </select>
+          </select> */}
         </FilterDiv>
         <StyledHeader>
           <div>
@@ -99,7 +112,7 @@ const StyledHeader = styled.div`
 `;
 const StickyMenu = styled.div`
   position: sticky;
-  top: 80px;
+  top: 100px;
   max-height: calc(100vh - 80px);
   overflow-y: auto;
   padding-bottom: 20px;

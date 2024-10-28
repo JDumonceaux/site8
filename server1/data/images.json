@@ -13193,16 +13193,18 @@
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "the_great_gatsby.jpg",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "books",
+      "isNewItem": true,
+      "name": "The Great Gatsby"
     },
     {
       "id": 1650,
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "tomandjerry.jpg",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "cartoons",
+      "isNewItem": false,
+      "name": "Tom and Jerrry"
     },
     {
       "id": 1651,

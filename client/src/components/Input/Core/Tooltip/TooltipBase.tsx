@@ -4,7 +4,7 @@ import { keyframes, styled } from 'styled-components';
 
 type TooltipBaseProps = {
   // This should be translated
-  readonly content: React.ReactNode;
+  readonly content?: React.ReactNode;
   readonly trigger?: React.ReactNode;
   readonly tooltipProps?: TooltipRadix.TooltipProps;
   readonly triggerProps?: TooltipRadix.TooltipTriggerProps;
@@ -25,7 +25,7 @@ const TooltipBase = ({
   tabStop = false,
   ref,
 }: TooltipBaseProps): JSX.Element => {
-  const elementRef = useRef(null);
+  const elementRef: React.RefObject<React.ReactNode> = useRef(null);
 
   // React doesn't support inert - so you have to do it this way
   useEffect(() => {

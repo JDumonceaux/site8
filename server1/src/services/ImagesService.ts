@@ -7,6 +7,7 @@ import { Image } from '../types/Image.js';
 import { ImageEdit } from '../types/ImageEdit.js';
 import { Images } from '../types/Images.js';
 import { ImagesFileService } from './ImagesFileService.js';
+import { error } from 'console';
 
 export class ImagesService {
   private fileName = 'images.json';
@@ -193,8 +194,7 @@ export class ImagesService {
 
       const images = await this.readFile();
       if (!images?.items) {
-        Logger.error(`ImagesService: updateItems -> file not loaded`);
-        return false;
+        throw new Error('ImagesService: updateItems -> Unable to load index');
       }
 
       // Get the updated records
@@ -202,18 +202,17 @@ export class ImagesService {
         const currItems = images.items?.filter((x) => x.id === item.id);
 
         if (!currItems) {
-          Logger.error(
-            `ImagesService: updateItems -> item not found: ${item.id}`,
+          throw new Error(
+            `ImagesService: updateItems -> item not found in index: ${item.id}`,
           );
-          return false;
         }
 
         if (currItems && currItems?.length > 1) {
-          Logger.error(
-            `ImagesService: updateItems -> Duplicate items found.  Please correct index`,
+          throw new Error(
+            `ImagesService: updateItems -> Duplicate items found: ${item.id}.  Please correct index`,
           );
-          return false;
         }
+
         // Create a replacement item
         const currItem = currItems[0];
         if (currItem) {
@@ -227,9 +226,13 @@ export class ImagesService {
       });
 
       // Move the files to a new directory
-      await new ImagesFileService().moveItems(updatedItems);
+      const fileMoved = await new ImagesFileService().moveItems(updatedItems);
+      if (!fileMoved) {
+        throw new Error(
+          'ImagesService: updateItems -> Unable to move file: ${item.fileName}',
+        );
+      }
 
-      Logger.info(`ImagesService: step 1`);
       // Replace the changed records in the original data
       const data: Image[] = images.items
         .map((x) => {
@@ -246,10 +249,15 @@ export class ImagesService {
         })
         .filter(Boolean);
 
-      await this.writeFile({ ...images, items: data });
+      const results = await this.writeFile({ ...images, items: data });
+      if (!results) {
+        throw new Error(
+          'ImagesService: updateItems -> Failed to update index.',
+        );
+      }
     } catch (error) {
-      Logger.error(`ImagesService: updateItems -> ${error}`);
+      throw error;
     }
-    return false;
+    return true;
   }
 }
