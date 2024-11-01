@@ -30,36 +30,10 @@ object {
   display: block;
   max-width: 100%;
 }
-/* inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-  line-height: inherit;
-  color: inherit;
-}
 /* collapse table */
 /* table {
   border-collapse: collapse;
   border-spacing: 0;
-} */
-/* assign button hover state */
-button,
-[role='button'] {
-  cursor: pointer;
-  background-color: transparent;
-  -webkit-tap-highlight-color: transparent;
-  &:focus {
-    outline: 0;
-  }
-}
-/* reset anchor style */
-/* a {
-  cursor: pointer;
-  color: inherit;
-  text-decoration: inherit;
-  -webkit-tap-highlight-color: transparent;
 } */
 /* reset heading style */
 h1,
@@ -71,35 +45,6 @@ h6 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
-}
-/* reset list style */
-/* ol,
-ul {
-  list-style: none;
-} */
-/* reset text input style */
-[type='date'],
-[type='datetime'],
-[type='datetime-local'],
-[type='email'],
-[type='month'],
-[type='number'],
-[type='password'],
-[type='search'],
-[type='tel'],
-[type='text'],
-[type='time'],
-[type='url'],
-[type='week'],
-textarea,
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 100%;
-  &:focus {
-    outline: 0;
-  }
 }
 /* reset firefox placeholder opacity */
 ::-moz-placeholder {

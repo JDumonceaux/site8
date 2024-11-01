@@ -1,32 +1,25 @@
 import { memo, SelectHTMLAttributes, useId } from 'react';
 import styled from 'styled-components';
-import FieldWrapper, {
-  FieldWrapperProps,
-} from '../Core/FieldWrapper/FieldWrapper';
 import { ListItem } from 'types/ListItem';
 
 type Props = {
   readonly data?: ListItem[];
-} & SelectHTMLAttributes<HTMLSelectElement> &
-  Omit<FieldWrapperProps, 'children'>;
+} & SelectHTMLAttributes<HTMLSelectElement>;
 
 // Implicit aria-role => 'combobox' or 'listbox'
 // https://www.w3.org/TR/html-aria/#docconformance
 const InputSelect = ({ data, ...rest }: Props): React.JSX.Element => {
-  const { id } = rest;
-  const tempId = id || useId();
+  const tempId = rest.id || useId();
   const props = { ...rest, id: tempId };
 
   return (
-    <FieldWrapper {...rest} id={tempId}>
-      <StyledSelect {...props}>
-        {data?.map((item) => (
-          <option key={item.key} value={item.value}>
-            {item.display || item.value}
-          </option>
-        ))}
-      </StyledSelect>
-    </FieldWrapper>
+    <StyledSelect {...props}>
+      {data?.map((item) => (
+        <option key={item.key} value={item.value}>
+          {item.display || item.value}
+        </option>
+      ))}
+    </StyledSelect>
   );
 };
 

@@ -5,14 +5,15 @@ import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/core/Meta/Meta';
-import MenuAdd from 'components/pages/PagesEditPage/MenuAdd';
+import MenuAdd from 'feature/pagesEdit/MenuAdd';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
-import usePagesEdit from 'hooks/usePagesEdit';
+
 import { styled } from 'styled-components';
 import { MenuItem } from 'types';
 import Layout from 'components/layouts/Layout/Layout';
+import usePagesEdit from './usePagesEdit';
 
 const PagesEditPage = (): React.JSX.Element => {
   const {
@@ -29,14 +30,14 @@ const PagesEditPage = (): React.JSX.Element => {
 
   useEffect(() => {
     const returnValue = data?.map((item) => ({
-        id: item.id,
-        localId: item.localId,
-        name: item.name,
-        parentId: item.parentItem.id ? item.parentItem.id.toString() : '0',
-        parentSeq: item.parentItem.seq ? item.parentItem.seq.toString() : '0',
-        parentSortby: item.parentItem.sortby ?? '',
-        type: item.type,
-      }));
+      id: item.id,
+      localId: item.localId,
+      name: item.name,
+      parentId: item.parentItem.id ? item.parentItem.id.toString() : '0',
+      parentSeq: item.parentItem.seq ? item.parentItem.seq.toString() : '0',
+      parentSortby: item.parentItem.sortby ?? '',
+      type: item.type,
+    }));
     if (returnValue) {
       setFormValues(returnValue);
     }

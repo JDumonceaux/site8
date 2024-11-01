@@ -2,7 +2,7 @@ import { ServiceUrl } from 'lib/utils/constants';
 import { useCallback } from 'react';
 import { Images } from 'types';
 import { ImageEdit } from 'types/ImageEdit';
-import { useAxios } from './Axios/useAxios';
+import { useAxios } from '../../hooks/Axios/useAxios';
 
 const useImagesEdit = () => {
   // Use Axios to fetch data

@@ -1,13 +1,14 @@
-import  React, { forwardRef, useCallback, useState } from 'react';
+import React, { forwardRef, useCallback, useState } from 'react';
 import * as Form from '@radix-ui/react-form';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import usePageEdit from 'hooks/usePageEdit';
+import usePageEdit from 'feature/pageEdit/usePageEdit';
 import { styled } from 'styled-components';
 import { Page } from 'types';
 import { TextArea } from 'components/Input/TextArea/TextArea';
+
+import Input from 'components/Input/Input';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
-import Input from 'components/Input/Input';
 
 type PageEditFormProps = {
   readonly data?: Page;
@@ -82,7 +83,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
         </StyledButton>
         <Input.Text
           {...getStandardInputTextAttributes('name')}
-         // errorText={getFieldErrors('name')}
+          // errorText={getFieldErrors('name')}
           id="name"
           label="Title"
           minLength={10}
@@ -125,7 +126,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
         />
         <Input.Text
           {...getStandardInputTextAttributes('reading_time')}
-        // errorText={getFieldErrors('reading_time')}
+          // errorText={getFieldErrors('reading_time')}
           label="Reading Time"
         />
         <Input.Text

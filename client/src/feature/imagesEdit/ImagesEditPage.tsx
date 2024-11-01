@@ -73,10 +73,6 @@ const ImagesEditPage = (): React.JSX.Element => {
 
 export default ImagesEditPage;
 
-const StyledContainer = styled.div`
-  display: flex;
-  column-gap: 20px;
-`;
 const StyledForm = styled.form`
   width: 100%;
 `;

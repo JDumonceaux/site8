@@ -34,7 +34,7 @@ const ImageItem = ({
     fieldName: keyof ImageItemForm,
   ) => ({
     id: `${fieldName as string}-(${localId})`,
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
       onChange(localId, fieldName, e),
     value: getFieldValue(localId, fieldName),
   });
@@ -92,7 +92,9 @@ const ImageItem = ({
         <Input.Checkbox
           id="selected"
           value={getFieldValue(item.localId, 'isSelected')}
-          onChange={(e) => onChange(item.localId, 'isSelected', e)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange(item.localId, 'isSelected', e)
+          }
         />
       </StyledOuterRow>
     </StyledRow>
@@ -103,13 +105,14 @@ export default ImageItem;
 
 const StyledImgContainer = styled.div`
   display: flex;
-  align-items: left;
-  justify-content: top;
   margin-right: 20px;
   width: 250px;
 `;
 const StyledImg = styled.img`
-  width: 200px;
+  max-width: 250px;
+  max-height: 250px;
+  width: auto;
+  height: auto;
 `;
 const StyledRow = styled.div<{
   $deleted?: 'false' | 'true';

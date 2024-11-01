@@ -34,7 +34,9 @@ const InputPage = (): React.JSX.Element => {
                 label="First Name"
                 id="field1"
                 value={getFieldValue('field1')}
-                onChange={(e) => setFieldValue('field1', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue('field1', e.target.value)
+                }
               />
               Bare bones
             </GridItem>
@@ -44,11 +46,13 @@ const InputPage = (): React.JSX.Element => {
                 id="field2"
                 placeholder="Enter your first name"
                 value={getFieldValue('field2')}
-                onChange={(e) => setFieldValue('field2', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue('field2', e.target.value)
+                }
               />
               - Placeholder
             </GridItem>
-            <GridItem>
+            {/* <GridItem>
               <Input.Text
                 id="field3"
                 placeholder="Enter your first name"
@@ -175,7 +179,41 @@ const InputPage = (): React.JSX.Element => {
                 onChange={(e) => setFieldValue('field21', e.target.value)}
               />
               Phone with Flags
+            </GridItem> */}
+          </Grid>
+
+          <Grid>
+            <GridItem>
+              <Input.Select
+                // label="Select"
+                id="select150"
+                //placeholder="Enter your first name"
+                value={getFieldValue('field150')}
+                data={[
+                  { key: '1', value: 'One' },
+                  { key: '2', value: 'Two' },
+                  { key: '3', value: 'Three' },
+                ]}
+                onChange={(e) => setFieldValue('field150', e.target.value)}
+              />
+              Select
             </GridItem>
+            {/* <GridItem>
+              <Input.Select
+                label="Select"
+                id="select151"
+                //placeholder="Enter your first name"
+                value={getFieldValue('field151')}
+                data={[
+                  { key: '1', value: 'One' },
+                  { key: '2', value: 'Two' },
+                  { key: '3', value: 'Three' },
+                ]}
+                onChange={(e) => setFieldValue('field151', e.target.value)}
+                required
+              />
+              Select - Required
+            </GridItem> */}
           </Grid>
 
           <ol>

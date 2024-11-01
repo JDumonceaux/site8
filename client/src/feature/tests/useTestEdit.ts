@@ -3,8 +3,8 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { Menu, MenuEdit } from 'types';
 import { z } from 'zod';
 
-import { useAxios } from './Axios/useAxios';
-import { useFormArray } from './useFormArray';
+import { useAxios } from '../../hooks/Axios/useAxios';
+import { useFormArray } from '../../hooks/useFormArray';
 
 export type sortByType = 'name' | 'seq';
 
@@ -32,11 +32,9 @@ const useTestEdit = () => {
   const {
     formValues,
     getFieldValue,
-    isProcessing,
     isSaved,
     setFieldValue,
     setFormValues,
-    setIsProcessing,
     setIsSaved,
   } = useFormArray<FormType>();
 
@@ -89,12 +87,12 @@ const useTestEdit = () => {
     if (!data) {
       return false;
     }
-    setIsProcessing(true);
+    // setIsProcessing(true);
     const result = await patchData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
-    setIsProcessing(false);
+    // setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [getUpdates, patchData, setIsProcessing, setIsSaved]);
+  }, [getUpdates, patchData, setIsSaved]);
 
   const handleChange = useCallback(
     (id: number, fieldName: keys, value: string) => {
@@ -145,7 +143,6 @@ const useTestEdit = () => {
       handleChange,
       handleSave,
       isLoading,
-      isProcessing,
       isSaved,
       pageSchema,
       setFieldValue,
@@ -153,7 +150,6 @@ const useTestEdit = () => {
     }),
     [
       filteredData,
-      isProcessing,
       isLoading,
       error,
       isSaved,

@@ -9,7 +9,8 @@ import styled from 'styled-components';
 import ClearAdornment from '../Adornments/ClearAdornment';
 import StartAdornment from '../Adornments/StartAdornment';
 import { TooltipBaseProps } from '../Tooltip/TooltipBase';
-import FieldWrapper, { FieldWrapperProps } from '../FieldWrapper/FieldWrapper';
+import LabelRow, { LabelProps } from '../LabelRow/LabelRow';
+import FooterRow from '../FooterRow/FooterRow';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -38,6 +39,7 @@ type InputBaseProps = {
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly description?: string;
   readonly type: HTMLInputTypeAttribute;
+  readonly labelProps?: LabelProps;
   readonly toolTipProps?: TooltipBaseProps;
   readonly endAdornment?: React.ReactNode;
   readonly startAdornment?: React.ReactNode;
@@ -45,12 +47,13 @@ type InputBaseProps = {
   readonly allowedCharacters?: RegExp;
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
-} & Omit<FieldWrapperProps, 'children' | 'onClick'> &
+} & Omit<LabelProps, 'ref' | 'onClick' | 'onChange'> &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | 'accesskey'
     | 'autocorrect'
     | 'id'
+    | 'ref'
     | 'name'
     | 'onChange'
     | 'value'
@@ -65,7 +68,7 @@ const InputBase = ({
   value,
   inputRef,
   label,
-  labelRef,
+  // labelRef,
   type,
   description,
   labelProps,
@@ -73,11 +76,11 @@ const InputBase = ({
   endAdornment,
   startAdornment,
   showClear = true,
-  showCounter = false,
-  showError = true,
-  showRequired = true,
-  requiredLabel = 'Required',
-  requiredLabelProps,
+  // showCounter = false,
+  // showError = true,
+  // showRequired = true,
+  // requiredLabel = 'Required',
+  // requiredLabelProps,
   onChange,
   onClear,
 
@@ -112,25 +115,27 @@ const InputBase = ({
   };
 
   const showClearButton = showClear && characterCount > 0 && onClear;
+  const props = { ...rest, id: tempId };
 
   return (
-    <FieldWrapper {...rest} id={tempId} label={label}>
+    <div id={tempId}>
+      <LabelRow htmlFor={tempId} label={label} {...labelProps} />
       <StyledInputWrapper>
         <StartAdornment>{startAdornment}</StartAdornment>
         <StyledInput
           key={tempId}
           value={value}
           type={type}
-          {...rest}
-          id={tempId}
-          ref={inputRefLocal}
+          {...props}
+          //  ref={inputRefLocal}
           aria-describedby={counterId}
           onChange={handleChange}
         />
         {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
         {/* <EndAdornment>{endAdornment}</EndAdornment> */}
       </StyledInputWrapper>
-    </FieldWrapper>
+      <FooterRow {...rest} />
+    </div>
     // <StyledFormField id={id}>
     //   <LabelBase
     //     label={label}
@@ -208,6 +213,7 @@ const StyledInput = styled.input`
   //font-size: 15px;
   border: none;
   height: 32px;
+  width: 100%;
   //box-shadow: 0 0 0 1px var(--input-border);
   // &:hover {
   //   box-shadow: 0 0 0 1px var(--input-border-hover);

@@ -8,7 +8,7 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import useImageEdit from 'hooks/useImageEdit';
+import useImageEdit from 'feature/imageEdit/useImageEdit';
 import useSnackbar from 'hooks/useSnackbar';
 import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';

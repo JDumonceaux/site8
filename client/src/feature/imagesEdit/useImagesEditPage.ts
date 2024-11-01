@@ -1,5 +1,5 @@
 import { useFormArray } from 'hooks/useFormArray';
-import useImagesEdit from 'hooks/useImagesEdit';
+import useImagesEdit from 'feature/imagesEdit/useImagesEdit';
 import useSnackbar from 'hooks/useSnackbar';
 import { useEffect, useState, useTransition } from 'react';
 import { z } from 'zod';
@@ -139,11 +139,11 @@ const useImagesEditPage = () => {
       setIsProcessing(false);
       return;
     }
-    if (updates.length > 1) {
-      setMessage('Too many changes to save');
-      setIsProcessing(false);
-      return;
-    }
+    // if (updates.length > 1) {
+    //   setMessage('Too many changes to save');
+    //   setIsProcessing(false);
+    //   return;
+    // }
     setMessage('Saving...');
     setIsProcessing(true);
     try {

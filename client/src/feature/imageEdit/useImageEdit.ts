@@ -5,8 +5,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'types/Image';
 import { z } from 'zod';
 
-import { useAxios } from './Axios/useAxios';
-import { useForm } from './useForm';
+import { useAxios } from '../../hooks/Axios/useAxios';
+import { useForm } from '../../hooks/useForm';
 
 // Define Zod Shape
 const pageSchema = z.object({

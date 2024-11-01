@@ -4,8 +4,8 @@ import { Test } from 'types/Test';
 import { Tests } from 'types/Tests';
 import { z } from 'zod';
 
-import { useAxios } from './Axios/useAxios';
-import { useFormArray } from './useFormArray';
+import { useAxios } from '../../hooks/Axios/useAxios';
+import { useFormArray } from '../../hooks/useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({

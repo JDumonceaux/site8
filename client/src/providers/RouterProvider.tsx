@@ -1,4 +1,4 @@
-import { ErrorPage } from 'pages/site/ErrorPage';
+import { ErrorPage } from 'feature/site/ErrorPage';
 import { lazy } from 'react';
 import {
   createBrowserRouter,
@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
-import InputPage from 'pages/design/InputPage';
+import InputPage from 'feature/design/InputPage';
 
 const AuthLayout = lazy(
   () => import('components/layouts/AuthLayout/AuthLayout'),
@@ -22,34 +22,38 @@ const MainLayout = lazy(
 const PhotoLayout = lazy(
   () => import('components/layouts/PhotoLayout/PhotoLayout'),
 );
-const BookmarkPage = lazy(() => import('pages/BookmarkPage'));
+const BookmarkPage = lazy(() => import('feature/bookmarks/BookmarkPage'));
 const DevelopPage = lazy(() => import('pages/DevelopPage'));
-const GenericPage = lazy(() => import('pages/GenericPage'));
+const GenericPage = lazy(() => import('feature/generic/GenericPage'));
 const GenericImagePage = lazy(() => import('pages/GenericImagePage'));
-const ImageEditPage = lazy(() => import('pages/ImageEditPage'));
-const ImagesEditPage = lazy(() => import('pages/ImagesEditPage/ImagesEditPage'));
-const Home = lazy(() => import('pages/HomePage'));
-const NotFound = lazy(() => import('pages/site/NotFoundPage'));
-const PageEditPage = lazy(() => import('pages/PageEditPage'));
-const PagesEditPage = lazy(() => import('pages/PagesEditPage'));
-const PhotoPage = lazy(() => import('pages/PhotoPage'));
-const Sitemap = lazy(() => import('pages/site/SitemapPage'));
+const ImageEditPage = lazy(() => import('feature/imageEdit/ImageEditPage'));
+const ImagesEditPage = lazy(() => import('feature/imagesEdit/ImagesEditPage'));
+const Home = lazy(() => import('feature/home/HomePage'));
+const NotFound = lazy(() => import('feature/site/NotFoundPage'));
+const PageEditPage = lazy(() => import('feature/pageEdit/PageEditPage'));
+const PagesEditPage = lazy(() => import('feature/pagesEdit/PagesEditPage'));
+const PhotoPage = lazy(() => import('feature/photos/PhotoPage'));
+const Sitemap = lazy(() => import('feature/site/SitemapPage'));
 const TikTokPage = lazy(() => import('pages/TikTokPage'));
 const YachtsPage = lazy(() => import('pages/YachtsPage'));
-const TestsPage = lazy(() => import('pages/TestsPage'));
-const TestsEditPage = lazy(() => import('pages/TestsEditPage'));
+const TestsPage = lazy(() => import('feature/tests/TestsPage'));
+const TestsEditPage = lazy(() => import('feature/tests/TestsEditPage'));
 // Site Pages
-const TermsOfUsePage = lazy(() => import('pages/site/TermsOfUsePage'));
-const CookiesUsePage = lazy(() => import('pages/site/CookiesUsePage'));
-const PrivacyPolicyPage = lazy(() => import('pages/site/PrivacyPolicyPage'));
+const TermsOfUsePage = lazy(() => import('feature/site/TermsOfUsePage'));
+const CookiesUsePage = lazy(() => import('feature/site/CookiesUsePage'));
+const PrivacyPolicyPage = lazy(() => import('feature/site/PrivacyPolicyPage'));
 // Auth Pages
-const SigninPage = lazy(() => import('pages/auth/SigninPage'));
-const SignoutPage = lazy(() => import('pages/auth/SignoutPage'));
-const SignupPage = lazy(() => import('pages/auth/SignupPage'));
-const ConfirmEmailPage = lazy(() => import('pages/auth/ConfirmEmailPage'));
-const ForgotPasswordPage = lazy(() => import('pages/auth/ForgotPasswordPage'));
-const ChangePasswordPage = lazy(() => import('pages/auth/ChangePasswordPage'));
-const DeleteAccountPage = lazy(() => import('pages/auth/DeleteAccountPage'));
+const SigninPage = lazy(() => import('feature/auth/SigninPage'));
+const SignoutPage = lazy(() => import('feature/auth/SignoutPage'));
+const SignupPage = lazy(() => import('feature/auth/SignupPage'));
+const ConfirmEmailPage = lazy(() => import('feature/auth/ConfirmEmailPage'));
+const ForgotPasswordPage = lazy(
+  () => import('feature/auth/ForgotPasswordPage'),
+);
+const ChangePasswordPage = lazy(
+  () => import('feature/auth/ChangePasswordPage'),
+);
+const DeleteAccountPage = lazy(() => import('feature/auth/DeleteAccountPage'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -80,10 +84,9 @@ const router = createBrowserRouter(
           <Route element={<GenericPage />} path="/:lang?/aws/*" />
         </Route>
 
-                {/* Design */}
-                <Route element={<MainLayout />} path="design">
+        {/* Design */}
+        <Route element={<MainLayout />} path="design">
           <Route element={<InputPage />} path="input" />
-
         </Route>
 
         <Route element={<MainLayout />}>

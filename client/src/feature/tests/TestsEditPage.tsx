@@ -13,7 +13,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
-import SortableItem from 'components/pages/TestEditPage/SortableItem';
+import SortableItem from 'feature/tests/SortableItem';
 
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
@@ -21,7 +21,7 @@ import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
-import useTestsEdit from 'hooks/useTestsEdit';
+import useTestsEdit from 'feature/tests/useTestsEdit';
 import { useCallback, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import Layout from 'components/layouts/Layout/Layout';

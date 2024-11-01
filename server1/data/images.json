@@ -12781,11 +12781,17 @@
     },
     {
       "id": 1598,
+      "artist": "Henri Matisse",
       "create_date": "2024-10-08T02:02:09.583Z",
+      "description": "https://www.henrimatisse.org/paintings.jsp",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8326.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "location": "MOMA, New York, New York",
+      "name": "Nu Bleu II (Blue Nude II)",
+      "official_url": "https://www.moma.org/audio/playlist/6/316",
+      "year": "1952"
     },
     {
       "id": 1599,
@@ -12981,11 +12987,13 @@
     },
     {
       "id": 1623,
+      "artist": "Van Gogh",
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8351.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "name": "A Meadow"
     },
     {
       "id": 1624,
@@ -13109,19 +13117,29 @@
     },
     {
       "id": 1639,
+      "artist": "Marc Chagall",
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8367.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "name": "La famille Ukrainienne",
+      "year": "1940"
     },
     {
       "id": 1640,
+      "artist": "René Magritte",
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8368.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "location": "Art Institute of Chicago",
+      "name": "La durée poignardée (Time Transfixed)",
+      "tags": [
+        "Surrealism"
+      ],
+      "year": "1938"
     },
     {
       "id": 1641,
@@ -13158,27 +13176,37 @@
     },
     {
       "id": 1645,
+      "artist": "Henri Matisse",
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8373.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "location": "Centre Georges Pompidou, Paris, France",
+      "name": "Les poissons rouges (Interior with a Goldfish Bowl)",
+      "official_url": "https://en.wikipedia.org/wiki/Henri_Matisse_and_goldfish",
+      "year": "1914"
     },
     {
       "id": 1646,
+      "artist": "Hanna-Barbera",
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "jetsons.jpg",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "cartoons",
+      "isNewItem": false,
+      "name": "The Jetsons",
+      "year": "1962"
     },
     {
       "id": 1647,
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "MashMovie.jpg",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "movie-poster",
+      "isNewItem": false,
+      "name": "M.A.S.H.",
+      "year": "1970"
     },
     {
       "id": 1648,
