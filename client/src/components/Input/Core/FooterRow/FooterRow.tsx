@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 type FooterRowProps = {};
 
 const FooterRow = ({ ...rest }: FooterRowProps): JSX.Element => (
-  <RowDiv>Footer</RowDiv>
+  <RowDiv></RowDiv>
 );
 
 FooterRow.displayName = 'FooterRow';
