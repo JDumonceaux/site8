@@ -2,7 +2,6 @@ import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { useCallback, useEffect, useMemo } from 'react';
 import { Menu, MenuEdit } from 'types';
 import { z } from 'zod';
-
 import { useAxios } from '../../hooks/Axios/useAxios';
 import { useFormArray } from '../../hooks/useFormArray';
 
@@ -22,7 +21,7 @@ const pageSchema = z.object({
 
 // Create a type from the schema
 type FormType = z.infer<typeof pageSchema>;
-type keys = keyof FormType;
+type FormKeys = keyof FormType;
 
 const useTestEdit = () => {
   const { data, error, fetchData, isLoading } = useAxios<Menu>();
@@ -95,7 +94,7 @@ const useTestEdit = () => {
   }, [getUpdates, patchData, setIsSaved]);
 
   const handleChange = useCallback(
-    (id: number, fieldName: keys, value: string) => {
+    (id: number, fieldName: FormKeys, value: string) => {
       setFieldValue(id, fieldName, value);
     },
     [setFieldValue],
@@ -106,7 +105,7 @@ const useTestEdit = () => {
   }, [submitForm]);
 
   const getStandardInputTextAttributes = useCallback(
-    (localId: number, fieldName: keys) => {
+    (localId: number, fieldName: FormKeys) => {
       const field = fieldName + '-' + localId;
       return {
         id: field,
@@ -134,33 +133,19 @@ const useTestEdit = () => {
 
   const filteredData = data?.items;
 
-  return useMemo(
-    () => ({
-      data: filteredData,
-      error,
-      getFieldValue,
-      getStandardInputTextAttributes,
-      handleChange,
-      handleSave,
-      isLoading,
-      isSaved,
-      pageSchema,
-      setFieldValue,
-      setFormValues,
-    }),
-    [
-      filteredData,
-      isLoading,
-      error,
-      isSaved,
-      getFieldValue,
-      getStandardInputTextAttributes,
-      setFieldValue,
-      handleChange,
-      handleSave,
-      setFormValues,
-    ],
-  );
+  return {
+    data: filteredData,
+    error,
+    getFieldValue,
+    getStandardInputTextAttributes,
+    handleChange,
+    handleSave,
+    isLoading,
+    isSaved,
+    pageSchema,
+    setFieldValue,
+    setFormValues,
+  };
 };
 
 export default useTestEdit;

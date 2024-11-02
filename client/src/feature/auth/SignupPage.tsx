@@ -3,7 +3,6 @@ import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/core/Meta/Meta';
-import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 import useAuth, { SocialProvider } from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
@@ -11,6 +10,7 @@ import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
+import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({
@@ -25,7 +25,7 @@ const SignupPage = (): JSX.Element => {
   const compId = useId();
 
   type FormValues = z.infer<typeof schema>;
-  type keys = keyof FormValues;
+  type FormKeys = keyof FormValues;
 
   const { authSignUp, authSignInWithRedirect, isLoading, error } = useAuth();
 
@@ -110,13 +110,13 @@ const SignupPage = (): JSX.Element => {
             placeholder="Enter your email"
             required
             spellCheck="false"
-            {...getDefaultFields('emailAddress' as keys)}
+            {...getDefaultFields('emailAddress' as FormKeys)}
           />
           <Input.Password
             autoComplete="new-password"
             label="Password"
             placeholder="Enter your password"
-            {...getDefaultPasswordFields('password' as keys, compId)}
+            {...getDefaultPasswordFields('password' as FormKeys, compId)}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your

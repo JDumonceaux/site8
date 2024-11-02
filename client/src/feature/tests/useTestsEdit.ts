@@ -23,7 +23,7 @@ const pageSchema = z.object({
 
 // Create a type from the schema
 type FormType = z.infer<typeof pageSchema>;
-type keys = keyof FormType;
+type FormKeys = keyof FormType;
 
 const useTestsEdit = () => {
   const { data, error, fetchData, isLoading, patchData } = useAxios<Tests>();
@@ -32,13 +32,10 @@ const useTestsEdit = () => {
   // Create a form
   const {
     formValues,
-    getDefaultProps,
     getFieldValue,
-    isProcessing,
-    isSaved,
+   isSaved,
     setFieldValue,
     setFormValues,
-    setIsProcessing,
     setIsSaved,
   } = useFormArray<FormType>();
 
@@ -51,6 +48,18 @@ const useTestsEdit = () => {
   useEffect(() => {
     setLocalItems(data?.items?.map((x, index) => ({ ...x, localId: index })));
   }, [data?.items, setLocalItems]);
+
+
+  const getDefaultProps = (
+    localId: number,
+    fieldName: FormKeys,
+  ) => ({
+    id: `${fieldName as string}-(${localId})`,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+      setFieldValue(localId, fieldName, e.target.value),
+    value: getFieldValue(localId, fieldName),
+  });
+
 
   // Get the updates
   const getUpdates = useCallback((): Tests | undefined => {
@@ -93,15 +102,15 @@ const useTestsEdit = () => {
     if (!data) {
       return false;
     }
-    setIsProcessing(true);
+    //setIsProcessing(true);
     const result = await patchData(`${ServiceUrl.ENDPOINT_TESTS}`, data);
-    setIsProcessing(false);
+    //setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [getUpdates, patchData, setIsProcessing, setIsSaved]);
+  }, [getUpdates, patchData,  setIsSaved]);
 
   const handleChange = useCallback(
-    (id: number, fieldName: keys, value: string) => {
+    (id: number, fieldName: FormKeys, value: string) => {
       setFieldValue(id, fieldName, value);
     },
     [setFieldValue],
@@ -112,35 +121,19 @@ const useTestsEdit = () => {
     return returnValue;
   }, [submitForm]);
 
-  return useMemo(
-    () => ({
-      data: localItems,
-      error,
-      getDefaultProps,
-      getFieldValue,
-      handleChange,
-      handleSave,
-      isLoading,
-      isProcessing,
-      isSaved,
-      pageSchema,
-      setFieldValue,
-      setFormValues,
-    }),
-    [
-      localItems,
-      isProcessing,
-      isLoading,
-      error,
-      isSaved,
-      getDefaultProps,
-      getFieldValue,
-      setFieldValue,
-      handleChange,
-      handleSave,
-      setFormValues,
-    ],
-  );
+  return {
+    data: localItems,
+    error,
+    getDefaultProps,
+    getFieldValue,
+    handleChange,
+    handleSave,
+    isLoading,
+    isSaved,
+    pageSchema,
+    setFieldValue,
+    setFormValues,
+  };
 };
 
 export default useTestsEdit;

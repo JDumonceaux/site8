@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
@@ -9,7 +8,6 @@ import MenuAdd from 'feature/pagesEdit/MenuAdd';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
-
 import { styled } from 'styled-components';
 import { MenuItem } from 'types';
 import Layout from 'components/layouts/Layout/Layout';
@@ -19,8 +17,8 @@ const PagesEditPage = (): React.JSX.Element => {
   const {
     data,
     error,
-    getDefaultProps,
     handleSave,
+    getDefaultProps,
     isLoading,
     isSaved,
     setFormValues,
@@ -42,6 +40,8 @@ const PagesEditPage = (): React.JSX.Element => {
       setFormValues(returnValue);
     }
   }, [data, setFormValues]);
+
+
 
   const renderItem = useCallback(
     (item: MenuItem | undefined): JSX.Element | null => {

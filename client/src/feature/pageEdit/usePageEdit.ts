@@ -35,7 +35,7 @@ const pageSchema = z
 
 // Create a type from the schema
 type FormType = z.infer<typeof pageSchema>;
-type keys = keyof FormType;
+type FormKeys = keyof FormType;
 
 const usePageEdit = (data?: Page) => {
   // Use Axios to fetch data
@@ -131,7 +131,7 @@ const usePageEdit = (data?: Page) => {
   }, [submitForm, validateForm]);
 
   const getStandardInputTextAttributes = useCallback(
-    (fieldName: keys) => {
+    (fieldName: FormKeys) => {
       return {
         errorText: getFieldErrors(fieldName),
         hasError: hasError(fieldName),

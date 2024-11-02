@@ -1,6 +1,6 @@
 import { MatrixBG } from 'components/Animation/MatrixBG';
 import Meta from 'components/common/Meta/Meta';
-import HomeMenu from 'components/pages/HomePage/HomeMenu';
+import HomeMenu from 'feature/home/HomeMenu';
 import { styled } from 'styled-components';
 
 const HomeScreen1 = (): JSX.Element => {

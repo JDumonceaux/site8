@@ -24,7 +24,7 @@ const ConfirmEmailPage = (): JSX.Element => {
     useAuth();
 
   type FormValues = z.infer<typeof schema>;
-  type keys = keyof FormValues;
+  type FormKeys = keyof FormValues;
 
   const initialFormValues: FormValues = useMemo(
     () => ({
@@ -80,7 +80,7 @@ const ConfirmEmailPage = (): JSX.Element => {
     }
   }, [authResendConfirmationCode, formValues.emailAddress]);
 
-  const getStandardInputTextAttributes = (fieldName: keys) => {
+  const getStandardInputTextAttributes = (fieldName: FormKeys) => {
     return {
       errorText: getFieldErrors(fieldName),
       id: fieldName,

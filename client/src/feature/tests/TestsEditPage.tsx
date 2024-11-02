@@ -12,9 +12,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-
 import SortableItem from 'feature/tests/SortableItem';
-
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/core/Meta/Meta';
@@ -28,7 +26,7 @@ import Layout from 'components/layouts/Layout/Layout';
 import Input from 'components/Input/Input';
 
 const TestsEditPage = (): JSX.Element => {
-  const { data, getDefaultProps, handleSave, isSaved, setFormValues } =
+  const { data, handleSave, isSaved, setFormValues, getDefaultProps } =
     useTestsEdit();
 
   const [items, setItems] = useState([1, 2, 3]);
@@ -78,6 +76,7 @@ const TestsEditPage = (): JSX.Element => {
       });
     }
   };
+
 
   return (
     <>

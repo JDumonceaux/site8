@@ -7,10 +7,10 @@ export const useForm = <T>(initialValues: T) => {
   const [isSaved, setIsSaved] = useState<boolean>(true);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-  type keys = keyof T;
+  type FormKeys = keyof T;
 
   const setFieldValue = (
-    fieldName: keys,
+    fieldName: FormKeys,
     value: boolean | number | string | undefined,
   ) => {
     setFormValues((prev) => ({
@@ -20,24 +20,24 @@ export const useForm = <T>(initialValues: T) => {
     setIsSaved(false);
   };
 
-  const getFieldValue = (fieldName: keys): string => {
+  const getFieldValue = (fieldName: FormKeys): string => {
     return formValues[fieldName] as string;
   };
 
-  const getFieldValueBoolean = (fieldName: keys): boolean => {
+  const getFieldValueBoolean = (fieldName: FormKeys): boolean => {
     return formValues[fieldName] as boolean;
   };
 
-  const getFieldValueNumber = (fieldName: keys): number => {
+  const getFieldValueNumber = (fieldName: FormKeys): number => {
     return formValues[fieldName] as number;
   };
 
-  const getFieldErrors = (fieldName: keys): string | string[] | undefined => {
+  const getFieldErrors = (fieldName: FormKeys): string | string[] | undefined => {
     const x = errors?.filter((x) => x.path.includes(fieldName as string));
     return x && x.length > 0 ? x.map((x) => x.message) : undefined;
   };
 
-  const hasError = (fieldName: keys) => {
+  const hasError = (fieldName: FormKeys) => {
     return !getFieldErrors(fieldName);
   };
 
@@ -53,11 +53,11 @@ export const useForm = <T>(initialValues: T) => {
     if (!fieldName) {
       console.warn('No id found in event target');
     }
-    setFieldValue(fieldName as keys, value);
+    setFieldValue(fieldName as FormKeys, value);
   };
 
-  const handleClearField = (fieldName: keys) => {
-    setFieldValue(fieldName as keys, '');
+  const handleClearField = (fieldName: FormKeys) => {
+    setFieldValue(fieldName as FormKeys, '');
   };
 
   const handleClearAll = () => {
@@ -74,7 +74,7 @@ export const useForm = <T>(initialValues: T) => {
     setErrors(undefined);
   };
 
-  const getDefaultFields = (fieldName: keys) => {
+  const getDefaultFields = (fieldName: FormKeys) => {
     return {
       errorText: getFieldErrors(fieldName),
       id: `${fieldName as string}`,
@@ -82,7 +82,7 @@ export const useForm = <T>(initialValues: T) => {
     };
   };
 
-  const getDefaultPasswordFields = (fieldName: keys, id: string) => {
+  const getDefaultPasswordFields = (fieldName: FormKeys, id: string) => {
     return {
       errorText: getFieldErrors(fieldName),
       id: `${fieldName as string} - ${id}`,

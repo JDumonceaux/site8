@@ -1,7 +1,5 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-
 import Meta from 'components/core/Meta/Meta';
-import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
@@ -11,6 +9,7 @@ import { styled } from 'styled-components';
 import { Image } from 'types/Image';
 import { Images } from 'types/Images';
 import Layout from 'components/layouts/Layout/Layout';
+import SubjectMenu from 'feature/generic/SubjectMenu';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Images>();

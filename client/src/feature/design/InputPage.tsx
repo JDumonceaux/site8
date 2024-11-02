@@ -181,11 +181,11 @@ const InputPage = (): React.JSX.Element => {
               Phone with Flags
             </GridItem> */}
           </Grid>
-
+<br/><br/><br/><br/>
           <Grid>
             <GridItem>
               <Input.Select
-                // label="Select"
+                 label="Select"
                 id="select150"
                 //placeholder="Enter your first name"
                 value={getFieldValue('field150')}
@@ -215,6 +215,13 @@ const InputPage = (): React.JSX.Element => {
               Select - Required
             </GridItem> */}
           </Grid>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
           <ol>
             <li>Light mode / Dark mode</li>

@@ -1,5 +1,5 @@
 
-import HomeMenu from 'components/pages/HomePage/HomeMenu';
+import HomeMenu from 'feature/home/HomeMenu';
 import CircleAnimation from './Animations/CircleAnimation';
 import CircleMenuAnimation from './Animations/CircleMenuAnimation';
 import TitleAnimation from './Animations/TitleAnimation';

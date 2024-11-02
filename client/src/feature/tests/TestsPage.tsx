@@ -1,7 +1,5 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-
 import Meta from 'components/core/Meta/Meta';
-import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
@@ -9,6 +7,7 @@ import { Suspense, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Tests } from 'types/Tests';
 import Layout from 'components/layouts/Layout/Layout';
+import SubjectMenu from 'feature/generic/SubjectMenu';
 
 const TestsPage = (): JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Tests>();

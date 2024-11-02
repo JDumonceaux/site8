@@ -18,7 +18,7 @@ const pageSchema = z.object({
 
 // Create a type from the schema
 type FormType = z.infer<typeof pageSchema>;
-type keys = keyof FormType;
+type FormKeys = keyof FormType;
 type sortByType = 'name' | 'seq';
 type menuType = 'menu' | 'root';
 
@@ -89,14 +89,14 @@ const useMenuEdit = () => {
   }, [getUpdates, postData, setIsProcessing, setIsSaved]);
 
   const handleChange = useCallback(
-    (fieldName: keys, value: string) => {
+    (fieldName: FormKeys, value: string) => {
       setFieldValue(fieldName, value);
     },
     [setFieldValue],
   );
 
   const getStandardInputTextAttributes = useCallback(
-    (fieldName: keys) => {
+    (fieldName: FormKeys) => {
       return {
         errorText: getFieldErrors(fieldName),
         hasError: hasError(fieldName),

@@ -1,4 +1,3 @@
-import InputText from 'components/Input/InputText/InputText';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/core/Meta/Meta';
 import useAuth from 'hooks/useAuth';
@@ -10,6 +9,7 @@ import { z } from 'zod';
 
 import Button from 'components/form/Button/Button';
 import AuthContainer from './AuthContainer';
+import Input from 'components/Input/Input';
 
 // Define Zod Shape
 const schema = z.object({
@@ -24,7 +24,7 @@ const DeleteAccountPage = (): JSX.Element => {
   type FormValues = {
     deleteCode?: string;
   };
-  type keys = keyof FormValues;
+  type FormKeys = keyof FormValues;
 
   const initialFormValues: FormValues = useMemo(
     () => ({
@@ -56,7 +56,7 @@ const DeleteAccountPage = (): JSX.Element => {
     [validateForm, authDeleteUser],
   );
 
-  const getStandardInputTextAttributes = (fieldName: keys) => {
+  const getStandardInputTextAttributes = (fieldName: FormKeys) => {
     return {
       errorText: getFieldErrors(fieldName),
       id: fieldName,
@@ -91,6 +91,7 @@ const DeleteAccountPage = (): JSX.Element => {
             placeholder="delete"
             required
             spellCheck="false"
+            value=""
             {...getStandardInputTextAttributes('deleteCode')}
           />
           <Button id="login">Delete Account</Button>

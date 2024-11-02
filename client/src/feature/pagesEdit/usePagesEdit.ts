@@ -1,10 +1,10 @@
+import { useAxios } from 'hooks/Axios/useAxios';
+import { useFormArray } from 'hooks/useFormArray';
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { useCallback, useEffect, useState } from 'react';
 import { Menu, MenuEdit, MenuItem } from 'types';
 import { z } from 'zod';
 
-import { useAxios } from './Axios/useAxios';
-import { useFormArray } from './useFormArray';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -19,7 +19,7 @@ const pageSchema = z.object({
 
 // Create a type from the schema
 type FormType = z.infer<typeof pageSchema>;
-type keys = keyof FormType;
+type FormKeys = keyof FormType;
 type SortByType = 'name' | 'seq';
 
 const usePagesEdit = () => {
@@ -30,7 +30,6 @@ const usePagesEdit = () => {
   // Create a form
   const {
     formValues,
-    getDefaultProps,
     getFieldValue,
     isSaved,
     setFieldValue,
@@ -177,7 +176,7 @@ const usePagesEdit = () => {
    * @param fieldName - The name of the field being changed.
    * @param value - The new value for the field.
    */
-  const handleChange = (id: number, fieldName: keys, value: string) => {
+  const handleChange = (id: number, fieldName: FormKeys, value: string) => {
     setFieldValue(id, fieldName, value);
   };
 
@@ -190,11 +189,21 @@ const usePagesEdit = () => {
     return returnValue;
   };
 
+  const getDefaultProps = (
+    localId: number,
+    fieldName: FormKeys,
+  ) => ({
+    id: `${fieldName as string}-(${localId})`,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+      setFieldValue(localId, fieldName, e.target.value),
+    value: getFieldValue(localId, fieldName),
+  });
+
   return {
     data: localItems,
     error,
-    getDefaultProps,
     getFieldValue,
+    getDefaultProps,
     handleChange,
     handleSave,
     isLoading,

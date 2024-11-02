@@ -25,7 +25,7 @@ const ForgotPasswordPage = (): JSX.Element => {
   const title = 'Forgot Password';
 
   type FormValues = z.infer<typeof schema>;
-  type keys = keyof FormValues;
+  type FormKeys = keyof FormValues;
 
   const { authResetPassword, error, isLoading } = useAuth();
 
@@ -82,7 +82,7 @@ const ForgotPasswordPage = (): JSX.Element => {
             placeholder="Enter Email Address"
             required
             spellCheck="false"
-            {...getDefaultFields('emailAddress' as keys)}
+            {...getDefaultFields('emailAddress' as FormKeys)}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your

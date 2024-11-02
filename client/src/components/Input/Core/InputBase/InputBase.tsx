@@ -120,7 +120,7 @@ const InputBase = ({
   return (
     <div id={tempId}>
       <LabelRow htmlFor={tempId} label={label} {...labelProps} />
-      <StyledInputWrapper>
+      <FieldWrapper>
         <StartAdornment>{startAdornment}</StartAdornment>
         <StyledInput
           key={tempId}
@@ -133,7 +133,7 @@ const InputBase = ({
         />
         {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
         {/* <EndAdornment>{endAdornment}</EndAdornment> */}
-      </StyledInputWrapper>
+      </FieldWrapper>
       <FooterRow {...rest} />
     </div>
     // <StyledFormField id={id}>
@@ -144,7 +144,7 @@ const InputBase = ({
     //     required={required}
     //     description={description}
     //     endAdornment={<Tooltip.QuestionMark {...toolTipProps} />}>
-    //     <StyledInputWrapper>
+    //     <FieldWrapper>
     //       <StartAdornment>{startAdornment}</StartAdornment>
     //       <StyledInput
     //         id={id}
@@ -158,7 +158,7 @@ const InputBase = ({
     //       />
     //       {showClearButton ? <ClearAdornment onClick={handleClear} /> : null}
     //       {/* <EndAdornment>{endAdornment}</EndAdornment> */}
-    //     </StyledInputWrapper>
+    //     </FieldWrapper>
     //   </LabelBase>
 
     //   {/* <StyledFoooter>
@@ -180,7 +180,7 @@ export default memo(InputBase);
 
 export type { InputBaseProps };
 
-const StyledInputWrapper = styled.div`
+const FieldWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -210,15 +210,12 @@ const StyledInput = styled.input`
   align-items: center;
   justify-content: center;
   padding: 0 8px;
-  //font-size: 15px;
   border: none;
   height: 32px;
   width: 100%;
-  //box-shadow: 0 0 0 1px var(--input-border);
   // &:hover {
   //   box-shadow: 0 0 0 1px var(--input-border-hover);
   // }
-
   // &::selection {
   //   //  Accessibility don't override unless you have a good reason
   // }

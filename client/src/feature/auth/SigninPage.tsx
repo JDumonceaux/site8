@@ -24,7 +24,7 @@ const SigninPage = (): JSX.Element => {
   const compId = useId();
 
   type FormValues = z.infer<typeof schema>;
-  type keys = keyof FormValues;
+  type FormKeys = keyof FormValues;
 
   const { authSignIn, isLoading, error } = useAuth();
 
@@ -86,14 +86,14 @@ const SigninPage = (): JSX.Element => {
             placeholder="Enter Email Address"
             required
             spellCheck="false"
-            {...getDefaultFields('emailAddress' as keys)}
+            {...getDefaultFields('emailAddress' as FormKeys)}
           />
           <Input.Password
             autoComplete="current-password"
             //   errorTextShort="Please enter a password"
             label="Password"
             placeholder="Enter Password"
-            {...getDefaultPasswordFields('password' as keys, compId)}
+            {...getDefaultPasswordFields('password' as FormKeys, compId)}
           />
           <Button id="login">{isLoading ? 'Processing' : 'Submit'}</Button>
         </StyledForm>

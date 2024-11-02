@@ -32,7 +32,7 @@ const ChangePasswordPage = (): React.JSX.Element => {
   const { authUpdatePassword, error, isLoading } = useAuth();
 
   type FormValues = z.infer<typeof schema>;
-  type keys = keyof FormValues;
+  type FormKeys = keyof FormValues;
 
   const initialFormValues: FormValues = useMemo(
     () => ({
@@ -89,7 +89,7 @@ const ChangePasswordPage = (): React.JSX.Element => {
             // errorTextShort="Please enter a password"
             label="Current Password"
             placeholder="Current password"
-            {...getDefaultPasswordFields('password' as keys, compId)}
+            {...getDefaultPasswordFields('password' as FormKeys, compId)}
           />
           <Input.Password
             // autoComplete="new-password"
@@ -97,7 +97,7 @@ const ChangePasswordPage = (): React.JSX.Element => {
             // helpText={['8 characters minimum']}
             label="New Password"
             placeholder="New password"
-            {...getDefaultPasswordFields('newPassword' as keys, compId)}
+            {...getDefaultPasswordFields('newPassword' as FormKeys, compId)}
           />
           <Input.Password
             //autoComplete="new-password"
@@ -105,7 +105,7 @@ const ChangePasswordPage = (): React.JSX.Element => {
             //helpText={['8 characters minimum']}
             label="Confirm Password"
             placeholder="Confirm password"
-            {...getDefaultPasswordFields('confirmPassword' as keys, compId)}
+            {...getDefaultPasswordFields('confirmPassword' as FormKeys, compId)}
           />
           <Button id="login">Submit</Button>
         </StyledForm>

@@ -59,7 +59,7 @@ const pageSchema = z.object({
 
     // Create a type from the schema
     type FormType = z.infer<typeof pageSchema>;
-    type keys = keyof FormType;
+    type FormKeys = keyof FormType;
 
     const initialFormValues: FormType = useMemo(
         () => ({
