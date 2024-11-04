@@ -76,6 +76,8 @@ const InputBase = ({
   endAdornment,
   startAdornment,
   showClear = true,
+  required,
+
   // showCounter = false,
   // showError = true,
   // showRequired = true,
@@ -87,7 +89,6 @@ const InputBase = ({
   ...rest
 }: InputBaseProps): JSX.Element => {
   const maxLength = rest.maxLength;
-  const required = rest.required;
   const tempId = rest.id || useId();
   const characterCount = (() => {
     if (typeof value === 'string' || value instanceof String) {
@@ -115,11 +116,16 @@ const InputBase = ({
   };
 
   const showClearButton = showClear && characterCount > 0 && onClear;
-  const props = { ...rest, id: tempId };
+  const props = { ...rest, id: tempId, required: required };
 
   return (
     <div id={tempId}>
-      <LabelRow htmlFor={tempId} label={label} {...labelProps} />
+      <LabelRow
+        htmlFor={tempId}
+        label={label}
+        {...labelProps}
+        required={required}
+      />
       <FieldWrapper>
         <StartAdornment>{startAdornment}</StartAdornment>
         <StyledInput
@@ -204,6 +210,8 @@ const FieldWrapper = styled.div`
   }
 `;
 const StyledInput = styled.input`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   color: inherit;
   background-color: inherit;
   display: inline-flex;

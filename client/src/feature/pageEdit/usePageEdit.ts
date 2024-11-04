@@ -59,6 +59,7 @@ const usePageEdit = (data?: Page) => {
   // Create a form
   const {
     formValues,
+    getFieldValue,
     getFieldErrors,
     handleChange,
     hasError,
@@ -143,11 +144,18 @@ const usePageEdit = (data?: Page) => {
     [getFieldErrors, hasError, formValues, handleChange],
   );
 
+  const getDefaultProps = (fieldName: FormKeys) => ({
+    id: `${fieldName as string}`,
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setFieldValue(fieldName, e.target.value),
+    value: getFieldValue(fieldName),
+  });
+
   return useMemo(
     () => ({
       formValues,
       getFieldErrors,
-      getStandardInputTextAttributes,
+      getDefaultProps,
       handleChange,
       handleSave,
       hasError,

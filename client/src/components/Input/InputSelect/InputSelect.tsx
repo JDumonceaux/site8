@@ -9,34 +9,46 @@ type Props = {
   readonly value: string | number | string[];
   readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly description?: string;
- 
+
   readonly labelProps?: LabelProps;
   readonly toolTipProps?: TooltipBaseProps;
   readonly endAdornment?: React.ReactNode;
   readonly startAdornment?: React.ReactNode;
   readonly showClear?: boolean;
   readonly allowedCharacters?: RegExp;
-   
-} & Omit<LabelProps, 'ref' | 'onClick' | 'onChange'> & SelectHTMLAttributes<HTMLSelectElement>;
+} & Omit<LabelProps, 'ref' | 'onClick' | 'onChange'> &
+  SelectHTMLAttributes<HTMLSelectElement>;
 
 // Implicit aria-role => 'combobox' or 'listbox'
 // https://www.w3.org/TR/html-aria/#docconformance
-const InputSelect = ({ data, label,labelProps, ...rest }: Props): React.JSX.Element => {
-  const tempId = rest.id || useId();
-  const props = { ...rest, id: tempId };
+const InputSelect = ({
+  data,
+  id,
+  label,
+  labelProps,
+  required,
+  ...rest
+}: Props): React.JSX.Element => {
+  const tempId = id || useId();
+  const props = { ...rest, id: tempId, required: required };
 
   return (
     <div id={tempId}>
-      <LabelRow htmlFor={tempId} label={label} {...labelProps} />
+      <LabelRow
+        htmlFor={tempId}
+        label={label}
+        {...labelProps}
+        required={required}
+      />
       <FieldWrapper>
-    <StyledSelect {...props}>
-      {data?.map((item) => (
-        <option key={item.key} value={item.value}>
-          {item.display || item.value}
-        </option>
-      ))}
-    </StyledSelect>
-    </FieldWrapper>
+        <StyledSelect {...props}>
+          {data?.map((item) => (
+            <option key={item.key} value={item.value}>
+              {item.display || item.value}
+            </option>
+          ))}
+        </StyledSelect>
+      </FieldWrapper>
     </div>
   );
 };
@@ -55,7 +67,9 @@ const FieldWrapper = styled.div`
   border-radius: var(--input-border-radius, 0);
   border: 1px solid var(--input-border-color);
   width: 100%;
-
+  &:has(select[required]) {
+    border-left: 3px solid var(--input-border-required-color);
+  }
   :focus {
     background-color: var(--input-background-focus-color);
     border-bottom: 1.5px solid var(--input-border-focus-color);
@@ -64,12 +78,11 @@ const FieldWrapper = styled.div`
   // &:focus:within {
   //   box-shadow: 0 0 0 1px var(--input-border-focus-color);
   // }
-  &:has(input[required]) {
-    border-left: 3px solid var(--input-border-required-color);
-  }
 `;
 
 const StyledSelect = styled.select`
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   color: inherit;
   background-color: inherit;
   display: inline-flex;

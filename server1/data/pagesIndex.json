@@ -4095,6 +4095,45 @@
       "reading_time": "I think the McDonald's app is the most frustrating - simply because they have the resources to do better.",
       "to": "design-problems",
       "type": "page"
+    },
+    {
+      "id": 216,
+      "name": "Best React Repos",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "best-react-",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 217,
+      "name": "Meta",
+      "parentItems": [
+        {
+          "id": 142,
+          "seq": 0
+        }
+      ],
+      "to": "meta",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 218,
+      "name": "React Compiler",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 0
+        }
+      ],
+      "to": "react-compiler",
+      "type": "page",
+      "file": true
     }
   ]
 }

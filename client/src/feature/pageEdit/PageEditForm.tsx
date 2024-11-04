@@ -5,7 +5,6 @@ import usePageEdit from 'feature/pageEdit/usePageEdit';
 import { styled } from 'styled-components';
 import { Page } from 'types';
 import { TextArea } from 'components/Input/TextArea/TextArea';
-
 import Input from 'components/Input/Input';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
@@ -18,8 +17,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
   ({ data }, reference): React.JSX.Element => {
     const {
       formValues,
-      getFieldErrors,
-      getStandardInputTextAttributes,
+      getDefaultProps,
       handleChange,
       handleSave,
       isSaved,
@@ -82,7 +80,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           </StyledSaveButton>
         </StyledButton>
         <Input.Text
-          {...getStandardInputTextAttributes('name')}
+          {...getDefaultProps('name')}
           // errorText={getFieldErrors('name')}
           id="name"
           label="Title"
@@ -101,36 +99,36 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
         />
 
         <Input.Text
-          {...getStandardInputTextAttributes('to')}
+          {...getDefaultProps('to')}
           label="To"
           placeholder="Enter a route"
         />
         <Input.Text
-          {...getStandardInputTextAttributes('url')}
+          {...getDefaultProps('url')}
           label="URL"
           onChange={handleChange}
           placeholder="Enter a url"
         />
         <Input.Text
-          {...getStandardInputTextAttributes('parent')}
+          {...getDefaultProps('parent')}
           label="Parent"
           placeholder="Enter a menu id"
         />
         <ToolMenu onClick={handeTextInsert} />
         <TextArea
-          {...getStandardInputTextAttributes('text')}
+          {...getDefaultProps('text')}
           label="Text"
           onBlur={handeTextAreaBlur}
           rows={30}
           spellCheck
         />
         <Input.Text
-          {...getStandardInputTextAttributes('reading_time')}
+          {...getDefaultProps('reading_time')}
           // errorText={getFieldErrors('reading_time')}
           label="Reading Time"
         />
         <Input.Text
-          {...getStandardInputTextAttributes('text')}
+          {...getDefaultProps('readability_score')}
           label="Readability Score"
         />
       </Form.Root>

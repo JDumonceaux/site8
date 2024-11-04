@@ -1,0 +1,2 @@
+A mobile phone will attempt to create a link from telephone numbers. You can turn this feature off with this meta tag, but I recommend you keep it enabled.
+<meta name="format-detection" content="telephone=no">

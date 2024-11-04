@@ -38,7 +38,7 @@ const InputPage = (): React.JSX.Element => {
                   setFieldValue('field1', e.target.value)
                 }
               />
-              Bare bones
+              {/* Bare bones */}
             </GridItem>
             <GridItem>
               <Input.Text
@@ -50,142 +50,30 @@ const InputPage = (): React.JSX.Element => {
                   setFieldValue('field2', e.target.value)
                 }
               />
-              - Placeholder
+              {/* - Placeholder */}
             </GridItem>
-            {/* <GridItem>
+            <GridItem>
               <Input.Text
+                label="First Name"
                 id="field3"
                 placeholder="Enter your first name"
                 value={getFieldValue('field3')}
-                onChange={(e) => setFieldValue('field3', e.target.value)}
-              />
-              - No label
-            </GridItem>
-            <GridItem>
-              <Input.Text
-                label="First Name"
-                id="field4"
-                placeholder="Enter your first name"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue('field3', e.target.value)
+                }
                 required
-                value={getFieldValue('field4')}
-                onChange={(e) => setFieldValue('field4', e.target.value)}
               />
-              - Required
+              {/* - Required */}
             </GridItem>
-            <GridItem>
-              <Input.Text
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value=""
-              />
-              Bare bones Input
-            </GridItem>
-            <GridItem>
-              <Input.Text
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value=""
-              />
-              Bare bones Input
-            </GridItem>
-            <GridItem>
-              <Input.Text
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value=""
-              />
-              Bare bones Input
-            </GridItem>
-            <GridItem>
-              <Input.Text
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value=""
-              />
-              Bare bones Input
-            </GridItem>
-            <GridItem>
-              <Input.Checkbox
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value="firstName"
-                checked={getFieldValueBoolean('field20')}
-                //indeterminate={true}
-                onChange={(e) => setFieldValue('field20', e.target.checked)}
-              />
-              Checkbox
-            </GridItem>
-            <GridItem>
-              <Input.Checkbox
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value="firstName"
-                checked={getFieldValueBoolean('field15')}
-                //indeterminate={true}
-                onChange={(e) => setFieldValue('field15', e.target.checked)}
-              />
-              Checkbox - Intermediate
-            </GridItem>
-            <GridItem>
-              <Input.Toggle
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value="firstName"
-                checked={getFieldValueBoolean('field16')}
-                //indeterminate={true}
-                onChange={(e) => setFieldValue('field16', e.target.checked)}
-              />
-              Toggle
-            </GridItem>
-            <GridItem>
-              <Input.Checkbox
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value="firstName"
-                checked={getFieldValueBoolean('field17')}
-                //indeterminate={true}
-                onChange={(e) => setFieldValue('field17', e.target.checked)}
-              />
-              Radio
-            </GridItem>
-            <GridItem>
-              <Input.Checkbox
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value="firstName"
-                checked={getFieldValueBoolean('field18')}
-                //indeterminate={true}
-                onChange={(e) => setFieldValue('field18', e.target.checked)}
-              />
-              Radio
-            </GridItem>
-            <GridItem>
-              <Input.Checkbox
-                label="First Name"
-                id="firstName"
-                placeholder="Enter your first name"
-                value="firstName"
-                checked={getFieldValueBoolean('field21')}
-                //indeterminate={true}
-                onChange={(e) => setFieldValue('field21', e.target.value)}
-              />
-              Phone with Flags
-            </GridItem> */}
           </Grid>
-<br/><br/><br/><br/>
+          <br />
+          <br />
+          <br />
+          <br />
           <Grid>
             <GridItem>
               <Input.Select
-                 label="Select"
+                label="Select"
                 id="select150"
                 //placeholder="Enter your first name"
                 value={getFieldValue('field150')}
@@ -196,13 +84,12 @@ const InputPage = (): React.JSX.Element => {
                 ]}
                 onChange={(e) => setFieldValue('field150', e.target.value)}
               />
-              Select
             </GridItem>
-            {/* <GridItem>
+            <GridItem>
               <Input.Select
                 label="Select"
                 id="select151"
-                //placeholder="Enter your first name"
+                placeholder="Enter your first name"
                 value={getFieldValue('field151')}
                 data={[
                   { key: '1', value: 'One' },
@@ -210,18 +97,71 @@ const InputPage = (): React.JSX.Element => {
                   { key: '3', value: 'Three' },
                 ]}
                 onChange={(e) => setFieldValue('field151', e.target.value)}
-                required
               />
-              Select - Required
-            </GridItem> */}
+            </GridItem>
+            <GridItem>
+              <Input.Select
+                label="Select"
+                id="select152"
+                //placeholder="Enter your first name"
+                value={getFieldValue('field152')}
+                required
+                data={[
+                  { key: '1', value: 'One' },
+                  { key: '2', value: 'Two' },
+                  { key: '3', value: 'Three' },
+                ]}
+                onChange={(e) => setFieldValue('field152', e.target.value)}
+              />
+            </GridItem>
           </Grid>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Grid>
+            <GridItem>
+              <Input.TextArea
+                label="TextArea"
+                id="select250"
+                rows={10}
+                //placeholder="Enter your first name"
+                value={getFieldValue('field250')}
+                onChange={(e) => setFieldValue('field250', e.target.value)}
+              />
+            </GridItem>
+
+            <GridItem>
+              <Input.TextArea
+                label="TextArea"
+                id="select251"
+                rows={10}
+                placeholder="Enter text"
+                value={getFieldValue('field251')}
+                onChange={(e) => setFieldValue('field251', e.target.value)}
+              />
+            </GridItem>
+
+            <GridItem>
+              <Input.TextArea
+                label="TextArea"
+                id="select252"
+                rows={10}
+                placeholder="Enter text"
+                required
+                value={getFieldValue('field252')}
+                onChange={(e) => setFieldValue('field252', e.target.value)}
+              />
+            </GridItem>
+          </Grid>
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
 
           <ol>
             <li>Light mode / Dark mode</li>

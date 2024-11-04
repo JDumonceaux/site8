@@ -1,0 +1,27 @@
+Jira Clone: github.com/oldboyxx/jira_clone
+
+Conduit: github.com/gothinkster/react-redux-realworld-example-app
+
+Real World App by Cypress: github.com/cypress-io/cypress-realworld-app
+
+Simorgh by BBC: github.com/bbc/simorgh
+
+AST Explorer: github.com/fkling/astexplorer
+
+Excalidraw: github.com/excalidraw/excalidraw/
+
+Spectrum: github.com/withspectrum/spectrum
+
+Sentry: github.com/getsentry/sentry
+
+Grafana: github.com/grafana/grafana
+
+GoAlert by Target: github.com/target/goalert
+
+CodeSandbox: github.com/codesandbox/codesandbox-client
+
+Calypso by Automattic: github.com/Automattic/wp-calypso
+
+Mattermost: github.com/mattermost/mattermost
+
+Webamp: github.com/captbaritone/webamp

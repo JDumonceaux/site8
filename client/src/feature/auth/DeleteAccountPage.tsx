@@ -56,12 +56,11 @@ const DeleteAccountPage = (): JSX.Element => {
     [validateForm, authDeleteUser],
   );
 
-  const getStandardInputTextAttributes = (fieldName: FormKeys) => {
+  const getDefaultProps = (fieldName: FormKeys) => {
     return {
       errorText: getFieldErrors(fieldName),
       id: fieldName,
-
-      value: formValues[fieldName],
+      value: formValues[fieldName] || '',
     };
   };
 
@@ -91,8 +90,7 @@ const DeleteAccountPage = (): JSX.Element => {
             placeholder="delete"
             required
             spellCheck="false"
-            value=""
-            {...getStandardInputTextAttributes('deleteCode')}
+            {...getDefaultProps('deleteCode')}
           />
           <Button id="login">Delete Account</Button>
         </StyledForm>
