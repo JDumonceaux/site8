@@ -65,6 +65,19 @@ const InputPage = (): React.JSX.Element => {
               />
               {/* - Required */}
             </GridItem>
+            <GridItem>
+              <Input.Text
+                label="First Name"
+                id="field4"
+                placeholder="Enter your first name"
+                value={getFieldValue('field4')}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setFieldValue('field4', e.target.value)
+                }
+                required
+                description={'This is a required field'}
+              />
+            </GridItem>
           </Grid>
           <br />
           <br />
@@ -75,7 +88,7 @@ const InputPage = (): React.JSX.Element => {
               <Input.Select
                 label="Select"
                 id="select150"
-                //placeholder="Enter your first name"
+                showBlankOption
                 value={getFieldValue('field150')}
                 data={[
                   { key: '1', value: 'One' },
@@ -114,6 +127,22 @@ const InputPage = (): React.JSX.Element => {
                 onChange={(e) => setFieldValue('field152', e.target.value)}
               />
             </GridItem>
+            <GridItem>
+              <Input.Select
+                label="Select"
+                id="select153"
+                //placeholder="Enter your first name"
+                value={getFieldValue('field153')}
+                required
+                data={[
+                  { key: '1', value: 'One' },
+                  { key: '2', value: 'Two' },
+                  { key: '3', value: 'Three' },
+                ]}
+                onChange={(e) => setFieldValue('field153', e.target.value)}
+                description={'This is a required field'}
+              />
+            </GridItem>
           </Grid>
           <br />
           <br />
@@ -141,7 +170,6 @@ const InputPage = (): React.JSX.Element => {
                 onChange={(e) => setFieldValue('field251', e.target.value)}
               />
             </GridItem>
-
             <GridItem>
               <Input.TextArea
                 label="TextArea"
@@ -151,6 +179,18 @@ const InputPage = (): React.JSX.Element => {
                 required
                 value={getFieldValue('field252')}
                 onChange={(e) => setFieldValue('field252', e.target.value)}
+              />
+            </GridItem>
+            <GridItem>
+              <Input.TextArea
+                label="TextArea"
+                id="select252"
+                rows={10}
+                placeholder="Enter text"
+                required
+                value={getFieldValue('field252')}
+                onChange={(e) => setFieldValue('field252', e.target.value)}
+                description={'This is a required field'}
               />
             </GridItem>
           </Grid>

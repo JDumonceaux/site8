@@ -12384,8 +12384,8 @@
       "create_date": "2024-10-08T02:02:09.582Z",
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8276.PNG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "memes",
+      "isNewItem": false
     },
     {
       "id": 1549,
@@ -12405,11 +12405,16 @@
     },
     {
       "id": 1551,
+      "artist": "Vincent van Gogh",
       "create_date": "2024-10-08T02:02:09.582Z",
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8279.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "location": "Musée d'Orsay, Paris, France",
+      "name": "The Siesta (in French, La méridienne or La sieste)",
+      "official_url": "https://en.wikipedia.org/wiki/The_Siesta_(Van_Gogh)",
+      "year": "1890"
     },
     {
       "id": 1552,
@@ -12680,8 +12685,8 @@
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8313.PNG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "memes\\political",
+      "isNewItem": false
     },
     {
       "id": 1586,
@@ -13085,19 +13090,27 @@
     },
     {
       "id": 1635,
+      "artist": "Vincent van Gogh",
       "create_date": "2024-10-08T02:02:09.583Z",
+      "description": "In 1890, Vincent reproduced The Good Samaritan by Delacroix.",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8363.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "name": "The Good Samaritan (after Delacroix)",
+      "official_url": "https://krollermuller.nl/en/vincent-van-gogh-the-good-samaritan-after-delacroix",
+      "year": "1890"
     },
     {
       "id": 1636,
+      "artist": "Vincent van Gogh",
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8364.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "name": "Vase with Red Gladioli",
+      "year": "1886"
     },
     {
       "id": 1637,
@@ -13109,11 +13122,17 @@
     },
     {
       "id": 1638,
+      "artist": "Pablo Picasso",
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8366.JPG",
-      "folder": "sort",
-      "isNewItem": true
+      "folder": "art",
+      "isNewItem": false,
+      "name": "Woman in Blue",
+      "tags": [
+        "Cubism"
+      ],
+      "year": "1944"
     },
     {
       "id": 1639,

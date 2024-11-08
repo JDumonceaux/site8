@@ -815,7 +815,7 @@ export default [
       storybook: pluginStorybook,
     },
     rules: {
-      ...pluginStorybook.configs['flat/recommended'],
+      //  ...pluginStorybook.configs['flat/recommended'],
     },
     settings: {
       react: {

@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 import Tooltip from '../Tooltip/Tooltip';
 import { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
-type LabelProps = {
+type LabelRowProps = {
   readonly children?: React.ReactNode;
   readonly description?: string;
   readonly endAdornment?: React.ReactNode;
@@ -15,13 +15,14 @@ type LabelProps = {
   readonly required?: boolean;
   readonly requiredText?: string;
   readonly tooltipProps?: TooltipBaseProps;
-} & LabelHTMLAttributes<HTMLLabelElement>;
+} & Omit<LabelHTMLAttributes<HTMLLabelElement>, 'onChange' | 'onClick'>;
 
 /* Note: If you use htmlfor(or for) attribute, 
   clicking on the label doesn't seem to select the input */
 
 const LabelRow = ({
   children,
+  id,
   description,
   endAdornment,
   label,
@@ -30,8 +31,8 @@ const LabelRow = ({
   requiredText,
   tooltipProps,
   ...rest
-}: LabelProps): JSX.Element => (
-  <Label.Root ref={ref} {...rest}>
+}: LabelRowProps): JSX.Element => (
+  <Label.Root htmlFor={id} ref={ref} {...rest}>
     <StyledRow>
       <StyledLabel>
         {label}
@@ -55,7 +56,7 @@ LabelRow.displayName = 'LabelRow';
 
 export default memo(LabelRow);
 
-export type { LabelProps };
+export type { LabelRowProps };
 
 const StyledLabel = styled.div`
   color: var(--input-label-color, '#ffffff');
