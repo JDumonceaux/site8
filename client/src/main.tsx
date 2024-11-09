@@ -1,4 +1,4 @@
-import ReduxProvider from 'providers/ReduxProvider';
+import ReduxProvider from './providers/ReduxProvider';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
