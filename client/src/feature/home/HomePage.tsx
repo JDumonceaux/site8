@@ -1,7 +1,6 @@
-
 import Meta from 'components/core/Meta/Meta';
 import Layout from 'components/layouts/Layout/Layout';
-import HomeScreen5 from 'feature/home/HomeScreen5';
+import HomeScreen5 from './HomeScreen5';
 import { APP_NAME } from 'lib/utils/constants';
 
 const HomePage = (): JSX.Element => {

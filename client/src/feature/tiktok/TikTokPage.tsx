@@ -1,7 +1,6 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-
 import Meta from 'components/core/Meta/Meta';
-import SubjectMenu from 'components/pages/GenericPage/SubjectMenu';
+import SubjectMenu from 'feature/generic/SubjectMenu';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';

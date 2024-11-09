@@ -32,6 +32,7 @@
     "paths": {
       "*": ["./src/*"],
       "components/*": ["./src/components/*"],
+      "feature/*": ["./src/feature/*"],
       "hooks/*": ["./src/hooks/*"],
       "providers/*": ["./src/providers/*"],
       "store/*": ["./src/store/*"],
