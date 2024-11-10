@@ -1,35 +1,33 @@
-import { LabelProps } from '@radix-ui/react-label';
-import React, { TextareaHTMLAttributes, useId, useRef } from 'react';
+import type { TextareaHTMLAttributes } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
-import LabelRow from '../Core/LabelRow/LabelRow';
-import FooterRow from '../Core/FooterRow/FooterRow';
-import FieldWrapper, {
-  FieldWrapperProps,
-} from '../Core/FieldWrapper/FieldWrapper';
 
-type TextAreaProps = {
+import type { FieldWrapperProps as FieldWrapperProperties } from '../Core/FieldWrapper/FieldWrapper';
+import FieldWrapper from '../Core/FieldWrapper/FieldWrapper';
+
+type TextAreaProperties = {
   readonly rows: number;
   readonly textareaRef?: React.RefObject<HTMLTextAreaElement>;
-} & FieldWrapperProps &
+} & FieldWrapperProperties &
   Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name' | 'ref' | 'rows'>;
 
-export const TextArea = ({
+export function TextArea({
   id,
   rows,
   textareaRef,
   required,
   ...rest
-}: TextAreaProps): React.JSX.Element => {
-  const tempId = id || useId();
-  const props = { ...rest, id: tempId, required: required };
-  const localRef = textareaRef || useRef<HTMLTextAreaElement>(null);
+}: TextAreaProperties): React.JSX.Element {
+  const temporaryId = id || useId();
+  const props = { ...rest, id: temporaryId, required };
+  const localReference = textareaRef || useRef<HTMLTextAreaElement>(null);
 
   return (
     <FieldWrapper {...props}>
-      <StyledTextArea ref={localRef} rows={rows} {...props} />
+      <StyledTextArea ref={localReference} rows={rows} {...props} />
     </FieldWrapper>
   );
-};
+}
 const StyledTextArea = styled.textarea`
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;

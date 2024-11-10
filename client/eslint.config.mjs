@@ -36,7 +36,7 @@ export default [
       ecmaVersion: 'latest',
       // default
       sourceType: 'module',
-      parser: 'eslintParse',
+      // parser: 'eslintParse',
       // globals:
       // parserOptions:
       globals: {
@@ -609,12 +609,16 @@ export default [
       'check-file/filename-naming-convention': [
         'error',
         {
-          '**/*.{js,jsx}': 'KEBAB_CASE',
+          '**/*.{js,jsx}': 'PASCAL_CASE',
         },
         {
           ignoreMiddleExtensions: true,
         },
       ],
+
+      // Unicorn
+      'unicorn/filename-case': 'off',
+      'unicorn/pr'
     },
   },
 
@@ -701,7 +705,6 @@ export default [
         { argsIgnorePattern: '^_' },
       ],
       '@typescript-eslint/no-use-before-define': 'error',
-      '@typescript-eslint/no-use-before-defines': 'error',
       '@typescript-eslint/no-useless-constructor': 'error',
       '@typescript-eslint/no-useless-empty-export': 'error',
       '@typescript-eslint/non-nullable-type-assertion-style': 'error',
@@ -729,23 +732,17 @@ export default [
       '@typescript-eslint/typedef': 'error',
       '@typescript-eslint/unified-signatures': 'error',
       '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
-      '@typescript-eslint/max-params': ['error', 5],
+      '@typescript-eslint/max-params': ['error', { max: 5 }],
       // Check File
       'check-file/filename-naming-convention': [
         'error',
         {
-          '**/*.{ts,tsx}': 'KEBAB_CASE',
+          '**/*.{ts,tsx}': 'PASCAL_CASE',
         },
         {
           ignoreMiddleExtensions: true,
         },
       ],
-      // Jest rules
-      'jest/no-disabled-tests': 'warn',
-      'jest/no-focused-tests': 'error',
-      'jest/no-identical-title': 'error',
-      'jest/prefer-to-have-length': 'warn',
-      'jest/valid-expect': 'error',
     },
     settings: {
       react: {
@@ -782,6 +779,13 @@ export default [
       'jest/padding-around-before-all-blocks': 'error',
       'jest/padding-around-before-each-blocks': 'error',
       'jest/padding-around-describe-blocks': 'error',
+
+      // Jest rules
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
+      'jest/prefer-to-have-length': 'warn',
+      'jest/valid-expect': 'error',
     },
     settings: {
       react: {
