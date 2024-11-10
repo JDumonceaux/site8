@@ -1,11 +1,11 @@
 import React from 'react';
-import { BookmarksTags } from 'types';
+import { BookmarksTags } from 'types/BookmarksTags';
 
 type BookmarksTagsProps = {
   readonly data: BookmarksTags | undefined;
 };
 
-export const BookmarkTags = ({ data }: BookmarksTagsProps): JSX.Element => {
+const BookmarkTags = ({ data }: BookmarksTagsProps): JSX.Element => {
   return (
     <table>
       <thead>
@@ -33,3 +33,5 @@ export const BookmarkTags = ({ data }: BookmarksTagsProps): JSX.Element => {
     </table>
   );
 };
+
+export default BookmarkTags;

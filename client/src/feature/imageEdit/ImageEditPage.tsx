@@ -8,20 +8,19 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import useImageEdit from 'feature/imageEdit/useImageEdit';
+import useImageEdit from './useImageEdit';
 import useSnackbar from 'hooks/useSnackbar';
 import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { Image } from 'types';
+import { Image } from 'types/Image';
 
 const ImageEditImage = (): JSX.Element => {
   const parameters = useParams();
   const {
     error,
     formValues,
-    getDefaultFields,
-    handleChange,
+    getDefaultProps,
     handleChangeImage,
     handleReset,
     isLoading,
@@ -89,12 +88,11 @@ const ImageEditImage = (): JSX.Element => {
                     //errorTextShort="Please enter a short title"
                     inputMode="text"
                     label="Short Title"
-                    onChange={handleChange}
                     required
                     spellCheck
                     // {...getStandardInputTextAttributes('name')}
                     //ref={focusElement}
-                    {...getDefaultFields('name')}
+                    {...getDefaultProps('name')}
                   />
                   <Input.Text
                     autoCapitalize="off"
@@ -102,11 +100,10 @@ const ImageEditImage = (): JSX.Element => {
                     // errorTextShort="Please enter a location"
                     inputMode="text"
                     label="Location"
-                    onChange={handleChange}
                     required
                     spellCheck
                     //ref={focusElement}
-                    {...getDefaultFields('location')}
+                    {...getDefaultProps('location')}
                   />
                   <Input.Text
                     autoCapitalize="off"
@@ -114,10 +111,9 @@ const ImageEditImage = (): JSX.Element => {
                     //   errorTextShort="Please enter a File Name"
                     inputMode="text"
                     label="File Name"
-                    onChange={handleChange}
                     required
                     spellCheck
-                    {...getDefaultFields('fileName')}
+                    {...getDefaultProps('fileName')}
                     //ref={focusElement}
                   />
                   <Input.Text
@@ -126,19 +122,17 @@ const ImageEditImage = (): JSX.Element => {
                     //  errorTextShort="Please enter a image path"
                     inputMode="text"
                     label="SRC"
-                    onChange={handleChange}
                     required
                     spellCheck
-                    {...getDefaultFields('src')}
+                    {...getDefaultProps('src')}
                     //ref={focusElement}
                   />
                   <Input.Text
                     // errorTextShort="Please enter a folder"
                     label="Folder"
-                    onChange={handleChange}
                     required={false}
                     //   type="text"
-                    {...getDefaultFields('folder')}
+                    {...getDefaultProps('folder')}
                   />
                   <Input.Text
                     autoCapitalize="off"
@@ -146,10 +140,9 @@ const ImageEditImage = (): JSX.Element => {
                     //    errorTextShort="Please enter a official URL"
                     inputMode="text"
                     label="Official URL"
-                    onChange={handleChange}
                     required={false}
                     spellCheck
-                    {...getDefaultFields('official_url')}
+                    {...getDefaultProps('official_url')}
                     //ref={focusElement}
                   />
                   <Input.Text
@@ -158,18 +151,16 @@ const ImageEditImage = (): JSX.Element => {
                     //  errorTextShort="Please enter a tag"
                     inputMode="text"
                     label="Tags"
-                    onChange={handleChange}
                     required={false}
                     spellCheck
-                    {...getDefaultFields('tags')}
+                    {...getDefaultProps('tags')}
                     //ref={focusElement}
                   />
                   <TextArea
                     label="Description"
-                    onChange={handleChange}
                     rows={30}
                     spellCheck
-                    {...getDefaultFields('description')}
+                    {...getDefaultProps('description')}
                     // required
                   />
                 </form>

@@ -32,7 +32,9 @@ export const useForm = <T>(initialValues: T) => {
     return formValues[fieldName] as number;
   };
 
-  const getFieldErrors = (fieldName: FormKeys): string | string[] | undefined => {
+  const getFieldErrors = (
+    fieldName: FormKeys,
+  ): string | string[] | undefined => {
     const x = errors?.filter((x) => x.path.includes(fieldName as string));
     return x && x.length > 0 ? x.map((x) => x.message) : undefined;
   };
@@ -97,8 +99,6 @@ export const useForm = <T>(initialValues: T) => {
   return {
     errors,
     formValues,
-    getDefaultFields,
-    getDefaultPasswordFields,
     getFieldErrors,
     getFieldValue,
     getFieldValueBoolean,

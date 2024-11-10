@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import Store from '../store/Store';
+import Store from 'store/Store';
 
 type ReduxProviderProps = {
   readonly children: ReactNode;

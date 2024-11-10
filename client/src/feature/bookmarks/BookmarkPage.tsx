@@ -1,12 +1,12 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
-import { BookmarkTags } from 'feature/bookmarks/BookmarksTags';
+import BookmarkTags from './BookmarkTags';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from 'lib/utils/constants';
 import { useDeferredValue, useEffect } from 'react';
-import { BookmarksTags } from 'types';
 import Layout from 'components/layouts/Layout/Layout';
+import { BookmarksTags } from 'types/BookmarksTags';
+import { ServiceUrl } from '../lib/utils/constants';
 
 const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';

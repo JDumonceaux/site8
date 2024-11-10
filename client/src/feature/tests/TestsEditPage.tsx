@@ -77,7 +77,6 @@ const TestsEditPage = (): JSX.Element => {
     }
   };
 
-
   return (
     <>
       <Meta title="Tests" />

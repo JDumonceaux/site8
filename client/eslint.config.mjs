@@ -332,7 +332,7 @@ export default [
       // Allows you to use _VarName to ignore unused variables
       'no-unused-vars': 'off',
       // a little too aggressive
-      'arrow-body-style': 'never',
+      'arrow-body-style': 'off',
       'block-scoped-var': 'error',
       //'camelcase': 'error',
       //'capitalized-comments': 'error',
@@ -605,12 +605,6 @@ export default [
       'yield-star-spacing': 'off',
       'react/jsx-space-before-closing': 'off',
       'jsx-a11y/label-has-for': 'off',
-
-      // Prettier Rules
-      // Needs to be last- It overrides other rules
-      ...configPrettier.rules,
-
-      'prettier/prettier': ['error', {}, { usePrettierrc: true }],
 
       'check-file/filename-naming-convention': [
         'error',

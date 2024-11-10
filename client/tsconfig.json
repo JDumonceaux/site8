@@ -29,15 +29,17 @@
 
     /* Paths */
     // lets you declare how TypeScript should resolve an import
+    // Used???  See vite.config.mts file
     "paths": {
-      "*": ["./src/*"],
-      "components/*": ["./src/components/*"],
-      "feature/*": ["./src/feature/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "providers/*": ["./src/providers/*"],
-      "store/*": ["./src/store/*"],
-      "styles/*": ["./src/styles/*"],
-      "types/*": ["./src/types/*"],
+      "*" : ["./src/*"],
+      // "components/*": ["./src/components/*"],
+      // "feature/*": ["./src/feature/*"],
+      // // "hooks/*": ["./src/hooks/*"],
+      // // "lib/*": ["./src/lib/*"],
+      // "providers/*": ["./src/providers/*"],
+      // "store/*": ["./src/store/*"],
+      // "styles/*": ["./src/styles/*"],
+      // "types/*": ["./src/types/*"],
     },
 
     /* Resolve JSON */

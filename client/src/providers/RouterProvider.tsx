@@ -5,7 +5,6 @@ import {
   Route,
   RouterProvider as Router,
 } from 'react-router-dom';
-
 import ProtectedRoute from './ProtectedRoute';
 import InputPage from '../feature/design/InputPage';
 import ErrorPage from '../feature/site/ErrorPage';

@@ -6,7 +6,7 @@ import imageReducer from './ImageSlice';
 import menuReducer from './MenuSlice';
 import snackbarReducer from './SnackbarSlice';
 
-export const Store = configureStore({
+const Store = configureStore({
   reducer: {
     menu: menuReducer,
     snackbar: snackbarReducer,
@@ -16,6 +16,7 @@ export const Store = configureStore({
   },
 });
 
+export default Store;
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof Store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}

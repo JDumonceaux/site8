@@ -4,7 +4,7 @@ import Layout from 'components/layouts/Layout/Layout';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl } from '../lib/utils/constants';
 import React, { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';
 
@@ -25,19 +25,15 @@ const PhotoPage = (): React.JSX.Element => {
           <LoadingWrapper error={error} isLoading={isLoading}>
             <ul>
               {deferredData?.items?.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      data-caption={item.description}
-                      data-fancybox
-                      href={item.url}>
-                      <img
-                        alt={item.description}
-                        loading="lazy"
-                        src={item.url}
-                      />
-                    </a>
-                  </li>
-                ))}
+                <li key={item.id}>
+                  <a
+                    data-caption={item.description}
+                    data-fancybox
+                    href={item.url}>
+                    <img alt={item.description} loading="lazy" src={item.url} />
+                  </a>
+                </li>
+              ))}
             </ul>
           </LoadingWrapper>
         </Layout.Article>

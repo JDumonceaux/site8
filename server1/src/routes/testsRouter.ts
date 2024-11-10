@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 
+import { TestsService } from '../services/TestsService.js';
 import { Responses } from '../lib/utils/constants.js';
 import { Logger } from '../lib/utils/logger.js';
-import { TestsService } from '../services/TestsService.js';
 
 export const testsRouter = express.Router();
 

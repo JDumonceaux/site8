@@ -1,6 +1,6 @@
-import { ServiceUrl } from 'lib/utils/constants';
-import { getSRC } from 'lib/utils/helpers';
-import { safeParse } from 'lib/utils/zodHelper';
+import { ServiceUrl } from '../lib/utils/constants';
+import { getSRC } from '../lib/utils/helpers';
+import { safeParse } from '../lib/utils/zodHelper';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'types/Image';
 import { z } from 'zod';
@@ -39,7 +39,15 @@ const useImageEdit = (id: string | undefined) => {
   const { data, error, fetchData, isLoading, patchData, postData } =
     useAxios<Image>();
   // Create a type from the schema
-  type FormValues = z.infer<typeof pageSchema>;
+  type FormType = z.infer<typeof pageSchema>;
+  type FormKeys = keyof FormType;
+
+  const getDefaultProps = (fieldName: FormKeys) => ({
+    id: `${fieldName as string}`,
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setFieldValue(fieldName, e.target.value),
+    value: getFieldValue(fieldName),
+  });
 
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
@@ -50,7 +58,7 @@ const useImageEdit = (id: string | undefined) => {
   // Is the form saving?
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   // Return default form values
-  const defaultFormValues: FormValues = useMemo(
+  const defaultFormType: FormType = useMemo(
     () => ({
       description: '',
       fileName: '',
@@ -66,18 +74,21 @@ const useImageEdit = (id: string | undefined) => {
   // Create a form
   const {
     formValues,
-    getDefaultFields,
+    getFieldValue,
+    setFieldValue,
     handleChange,
     setErrors,
     setFormValues,
-  } = useForm<FormValues>(defaultFormValues);
+  } = useForm<FormType>(defaultFormType);
+
   // Keep a copy of the form values to reset
   const [originalValues, setOriginalValues] = useState<Image | undefined>();
+
   // Update the form values from the data
-  const updateFormValues = useCallback(
+  const updateFormType = useCallback(
     (items: Image | null | undefined) => {
       if (items) {
-        const item: FormValues = {
+        const item: FormType = {
           description: items.description ?? '',
           fileName: items.fileName ?? '',
           folder: items.folder ?? '',
@@ -123,20 +134,20 @@ const useImageEdit = (id: string | undefined) => {
 
   // Update the form values when the data changes
   useEffect(() => {
-    updateFormValues(data);
+    updateFormType(data);
     setOriginalValues(data);
-  }, [data, updateFormValues]);
+  }, [data, updateFormType]);
 
   // Validate  form
   const validateForm = useCallback(() => {
-    const result = safeParse<FormValues>(pageSchema, formValues);
+    const result = safeParse<FormType>(pageSchema, formValues);
     setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
 
   // Handle clear form
   const handleClear = () => {
-    setFormValues(defaultFormValues);
+    setFormValues(defaultFormType);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
@@ -144,7 +155,7 @@ const useImageEdit = (id: string | undefined) => {
 
   // Handle form reset
   const handleReset = () => {
-    updateFormValues(originalValues);
+    updateFormType(originalValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(undefined);
@@ -152,7 +163,7 @@ const useImageEdit = (id: string | undefined) => {
 
   // Handle save
   const saveItem = useCallback(
-    async (items: FormValues) => {
+    async (items: FormType) => {
       const { id, tags, ...rest } = items;
       const data: Image = {
         ...rest,
@@ -192,7 +203,9 @@ const useImageEdit = (id: string | undefined) => {
   return {
     error,
     formValues,
-    getDefaultFields,
+    getFieldValue,
+    setFieldValue,
+    getDefaultProps,
     handleChange,
     handleChangeImage,
     handleClear,

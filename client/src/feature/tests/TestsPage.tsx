@@ -2,7 +2,7 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl } from '../lib/utils/constants';
 import { Suspense, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Tests } from 'types/Tests';

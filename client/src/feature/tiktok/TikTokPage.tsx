@@ -3,7 +3,7 @@ import Meta from 'components/core/Meta/Meta';
 import SubjectMenu from 'feature/generic/SubjectMenu';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl } from '../lib/utils/constants';
 import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types/Page';

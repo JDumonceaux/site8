@@ -5,7 +5,7 @@ import {
   MAX_PASSWORD_LENGTH,
   MIN_PASSWORD_LENGTH,
   REQUIRED_FIELD,
-} from 'lib/utils/constants';
+} from '../lib/utils/constants';
 import { z } from 'zod';
 
 export const emailAddress: z.ZodString = z

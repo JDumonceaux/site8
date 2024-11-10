@@ -17,11 +17,13 @@
     "paths": {
       "*": ["./src/*"],
       "apis/*": ["./src/apis/*"],
+      "controllers/*": ["./src/controllers/*"],
+      "lib/*": ["./src/lib/*"],
       "middleware/*": ["./src/middleware/*"],
       "routes/*": ["./src/routes/*"],
       "services/*": ["./src/services/*"],
       "types/*": ["./src/types/*"],
-      "utils/*": ["./src/utils/*"]
+  
     }
   },
   "include": ["src"],

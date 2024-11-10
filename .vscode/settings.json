@@ -6,5 +6,6 @@
     "source.fixAll.eslint": "explicit",
     "source.addMissingImports": "never"
   },
-  "eslint.useFlatConfig": true
+  "eslint.useFlatConfig": true,
+  "workbench.settings.openDefaultSettings": true
 }

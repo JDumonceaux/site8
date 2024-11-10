@@ -1,4 +1,4 @@
-import { ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl } from '../lib/utils/constants';
 import { useCallback } from 'react';
 import { Images } from 'types';
 import { ImageEdit } from 'types/ImageEdit';

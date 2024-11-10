@@ -1,11 +1,10 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useFetch } from 'hooks/Axios/useFetch';
-import { ServiceUrl } from 'lib/utils/constants';
-import { getParamIdAsString } from 'lib/utils/helpers';
+import { ServiceUrl } from '../lib/utils/constants';
+import { getParamIdAsString } from '../lib/utils/helpers';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Page } from 'types';

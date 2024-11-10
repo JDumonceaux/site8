@@ -41,8 +41,6 @@ const PagesEditPage = (): React.JSX.Element => {
     }
   }, [data, setFormValues]);
 
-
-
   const renderItem = useCallback(
     (item: MenuItem | undefined): JSX.Element | null => {
       if (!item) {

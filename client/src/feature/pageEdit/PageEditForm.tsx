@@ -3,11 +3,11 @@ import * as Form from '@radix-ui/react-form';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'feature/pageEdit/usePageEdit';
 import { styled } from 'styled-components';
-import { Page } from 'types';
 import { TextArea } from 'components/Input/TextArea/TextArea';
 import Input from 'components/Input/Input';
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
+import { Page } from 'types/Page';
 
 type PageEditFormProps = {
   readonly data?: Page;
@@ -118,7 +118,7 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
         <TextArea
           {...getDefaultProps('text')}
           label="Text"
-          onBlur={handeTextAreaBlur}
+          //  onBlur={handeTextAreaBlur}
           rows={30}
           spellCheck
         />

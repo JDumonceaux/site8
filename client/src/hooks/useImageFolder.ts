@@ -1,4 +1,4 @@
-import { isValidArray } from 'lib/utils/helpers';
+import { isValidArray } from '../lib/utils/helpers';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFolders } from 'store/FolderSlice';
