@@ -18,7 +18,7 @@ type Props = {
 // No aria-role is required. The default, inferred type is 'textbox'.
 // With a list, 'combobox' is inferred.
 
-const InputText = ({ type = 'text', ...rest }: Props): JSX.Element => (
+const InputText = ({ type = 'text', ...rest }: Props): React.JSX.Element => (
   <InputBase type={type} {...rest} />
 );
 

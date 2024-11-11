@@ -19,7 +19,7 @@ const StyledLink = ({
   className,
   to,
   variant = 'light',
-}: StyledLinkProps): JSX.Element => {
+}: StyledLinkProps): React.JSX.Element => {
   return (
     <StyledElement
       $variant={variant}

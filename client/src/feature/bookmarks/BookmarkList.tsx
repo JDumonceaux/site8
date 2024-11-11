@@ -8,7 +8,7 @@ type BookmarksProps = {
 export const BookmarkList = ({
   id,
   data,
-}: BookmarksProps): JSX.Element | null => {
+}: BookmarksProps): React.JSX.Element | null => {
   if (!data) {
     return null;
   }

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const MenuIcon = (): JSX.Element => {
+export const MenuIcon = (): React.JSX.Element => {
   return (
     <WrapperSpan>
       <TitleSpan>Menu</TitleSpan>

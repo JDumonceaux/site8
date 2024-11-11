@@ -15,7 +15,7 @@ type InputHiddenProps = {
 const InputHidden = ({
   type = 'password',
   ...rest
-}: InputHiddenProps): JSX.Element => <InputBase type={type} {...rest} />;
+}: InputHiddenProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputHidden.displayName = 'InputHidden';
 

@@ -4,7 +4,7 @@ import React, { memo, useCallback } from 'react';
 import { styled } from 'styled-components';
 import { MenuItem } from 'types/MenuItem';
 
-const HomeMenu = (): JSX.Element => {
+const HomeMenu = (): React.JSX.Element => {
   const { data } = useMenu();
 
   const renderWrapper = useCallback(
@@ -14,7 +14,7 @@ const HomeMenu = (): JSX.Element => {
       toComplete: string,
       level: number,
       children: React.ReactNode,
-    ): JSX.Element | null => {
+    ): React.JSX.Element | null => {
       if (itemType === 'menu') {
         return (
           <StyledMenuTitle $level={level} key={id} to={`/${toComplete}`}>
@@ -35,7 +35,7 @@ const HomeMenu = (): JSX.Element => {
   );
 
   const renderItem = useCallback(
-    (item: MenuItem | undefined, level: number): JSX.Element | null => {
+    (item: MenuItem | undefined, level: number): React.JSX.Element | null => {
       if (!item) {
         return null;
       }

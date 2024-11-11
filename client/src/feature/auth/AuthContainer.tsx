@@ -1,4 +1,3 @@
-
 import { styled } from 'styled-components';
 
 type AuthContainerProps = {
@@ -13,7 +12,7 @@ const AuthContainer = ({
   error,
   leftImage,
   title,
-}: AuthContainerProps): JSX.Element => {
+}: AuthContainerProps): React.JSX.Element => {
   return (
     <Layout.Main>
       <StyledGrid>

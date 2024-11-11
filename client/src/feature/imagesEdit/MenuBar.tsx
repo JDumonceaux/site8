@@ -13,7 +13,7 @@ const MenuBar = ({
   handleScan,
   handleRefresh,
   handleSubmit,
-}: Props): React.JSX.Element => {
+}: Props): React.React.JSX.Element => {
   return (
     <>
       <IconMenu>

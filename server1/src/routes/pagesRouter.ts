@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import { Errors, Responses } from '../lib/utils/constants.js';
-import { Logger } from '../lib/utils/logger.js';
+import { Errors, Responses } from 'lib/utils/constants.js';
+import { Logger } from 'lib/utils/logger.js';
 import { PagesService } from '../services/PagesService.js';
 import { MenuItem } from '../types/MenuItem.js';
 

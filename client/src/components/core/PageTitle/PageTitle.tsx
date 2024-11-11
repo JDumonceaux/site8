@@ -13,10 +13,10 @@ type PageTitleProps = {
  * @param {Object} props - The component props.
  * @param {string} props.title - The title to be displayed.
  * @param {ReactNode} props.children - The children elements to be rendered.
- * @returns {JSX.Element | null} The rendered page title component.
+ * @returns {React.JSX.Element | null} The rendered page title component.
  */
 const PageTitle = forwardRef<HTMLDivElement, PageTitleProps>(
-  ({ children, title }: PageTitleProps, ref): JSX.Element | null => {
+  ({ children, title }: PageTitleProps, ref): React.JSX.Element | null => {
     if (!title) {
       return null;
     }

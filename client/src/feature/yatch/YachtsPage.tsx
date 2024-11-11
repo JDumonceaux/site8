@@ -8,7 +8,7 @@ import SubjectMenu from 'feature/generic/SubjectMenu';
 
 const boxStyle = '56.25% 0 0 0';
 
-const YachtsPage = (): JSX.Element => {
+const YachtsPage = (): React.JSX.Element => {
   const pageTitle = 'Yachts';
 
   return (

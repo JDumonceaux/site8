@@ -1,9 +1,8 @@
-
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
 
-const ArtistsPage = (): JSX.Element => {
+const ArtistsPage = (): React.JSX.Element => {
   const title = 'Art';
 
   return (

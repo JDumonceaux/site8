@@ -1,4 +1,4 @@
-export const InputContent = (): JSX.Element => {
+export const InputContent = (): React.JSX.Element => {
   const obj = `
   <label>Current Password
     <input

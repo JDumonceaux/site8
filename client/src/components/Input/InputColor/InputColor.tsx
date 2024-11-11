@@ -22,7 +22,7 @@ type InputColorProps = {
 const InputColor = ({
   type = 'color',
   ...rest
-}: InputColorProps): JSX.Element => <InputBase type={type} {...rest} />;
+}: InputColorProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputColor.displayName = 'InputColor';
 

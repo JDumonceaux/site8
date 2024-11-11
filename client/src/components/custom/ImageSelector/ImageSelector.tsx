@@ -2,7 +2,7 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'hooks/useAppSettings';
 import useUnmatchedImages from 'hooks/useUnmatchedImages';
-import { IMAGE_BASE } from '../lib/utils/constants';
+import { IMAGE_BASE } from 'lib/utils/constants';
 import React, {
   useCallback,
   useDeferredValue,
@@ -22,11 +22,11 @@ type ImageSelectorProps = {
  * @component
  * @param {Object} props - The component props.
  * @param {Function} props.onSelectImage - The callback function to handle image selection.
- * @returns {JSX.Element} The rendered ImageSelector component.
+ * @returns {React.JSX.Element} The rendered ImageSelector component.
  */
 const ImageSelector = ({
   onSelectImage,
-}: ImageSelectorProps): React.JSX.Element => {
+}: ImageSelectorProps): React.React.JSX.Element => {
   const { setShowUnmatched, showUnmatched } = useAppSettings();
   const { data, error, fetchData, isLoading } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();

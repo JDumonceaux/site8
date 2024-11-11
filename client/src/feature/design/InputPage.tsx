@@ -1,25 +1,24 @@
 import React from 'react';
-import Layout from 'components/layouts/Layout/Layout';
+
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import { styled } from 'styled-components';
 import Input from 'components/Input/Input';
+import Layout from 'components/layouts/Layout/Layout';
 import { useForm } from 'hooks/useForm';
+import { styled } from 'styled-components';
 
-type fields = {
-  [key: string]: string;
-};
+type fields = Record<string, string>;
 
 const InputPage = (): React.JSX.Element => {
   const title = 'Design - Input';
 
   const items: fields = {};
 
-  Object.keys(items).forEach((key) => {
+  for (const key of Object.keys(items)) {
     items[key] = '';
-  });
+  }
 
-  const { getFieldValue, setFieldValue, getFieldValueBoolean } =
+  const { getFieldValue, getFieldValueBoolean, setFieldValue } =
     useForm<fields>(items);
 
   return (
@@ -31,51 +30,51 @@ const InputPage = (): React.JSX.Element => {
           <Grid>
             <GridItem>
               <Input.Text
-                label="First Name"
                 id="field1"
+                label="First Name"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFieldValue('field1', e.target.value);
+                }}
                 value={getFieldValue('field1')}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue('field1', e.target.value)
-                }
               />
               {/* Bare bones */}
             </GridItem>
             <GridItem>
               <Input.Text
-                label="First Name"
                 id="field2"
+                label="First Name"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFieldValue('field2', e.target.value);
+                }}
                 placeholder="Enter your first name"
                 value={getFieldValue('field2')}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue('field2', e.target.value)
-                }
               />
               {/* - Placeholder */}
             </GridItem>
             <GridItem>
               <Input.Text
-                label="First Name"
                 id="field3"
+                label="First Name"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFieldValue('field3', e.target.value);
+                }}
                 placeholder="Enter your first name"
-                value={getFieldValue('field3')}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue('field3', e.target.value)
-                }
                 required
+                value={getFieldValue('field3')}
               />
               {/* - Required */}
             </GridItem>
             <GridItem>
               <Input.Text
-                label="First Name"
+                description="This is a required field"
                 id="field4"
+                label="First Name"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFieldValue('field4', e.target.value);
+                }}
                 placeholder="Enter your first name"
-                value={getFieldValue('field4')}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue('field4', e.target.value)
-                }
                 required
-                description={'This is a required field'}
+                value={getFieldValue('field4')}
               />
             </GridItem>
           </Grid>
@@ -86,61 +85,69 @@ const InputPage = (): React.JSX.Element => {
           <Grid>
             <GridItem>
               <Input.Select
-                label="Select"
+                data={[
+                  { key: '1', value: 'One' },
+                  { key: '2', value: 'Two' },
+                  { key: '3', value: 'Three' },
+                ]}
                 id="select150"
+                label="Select"
+                onChange={(e) => {
+                  setFieldValue('field150', e.target.value);
+                }}
                 showBlankOption
                 value={getFieldValue('field150')}
+              />
+            </GridItem>
+            <GridItem>
+              <Input.Select
                 data={[
                   { key: '1', value: 'One' },
                   { key: '2', value: 'Two' },
                   { key: '3', value: 'Three' },
                 ]}
-                onChange={(e) => setFieldValue('field150', e.target.value)}
-              />
-            </GridItem>
-            <GridItem>
-              <Input.Select
-                label="Select"
                 id="select151"
+                label="Select"
+                onChange={(e) => {
+                  setFieldValue('field151', e.target.value);
+                }}
                 placeholder="Enter your first name"
                 value={getFieldValue('field151')}
+              />
+            </GridItem>
+            <GridItem>
+              <Input.Select
                 data={[
                   { key: '1', value: 'One' },
                   { key: '2', value: 'Two' },
                   { key: '3', value: 'Three' },
                 ]}
-                onChange={(e) => setFieldValue('field151', e.target.value)}
-              />
-            </GridItem>
-            <GridItem>
-              <Input.Select
-                label="Select"
                 id="select152"
+                label="Select"
+                onChange={(e) => {
+                  setFieldValue('field152', e.target.value);
+                }}
+                required
                 //placeholder="Enter your first name"
                 value={getFieldValue('field152')}
-                required
-                data={[
-                  { key: '1', value: 'One' },
-                  { key: '2', value: 'Two' },
-                  { key: '3', value: 'Three' },
-                ]}
-                onChange={(e) => setFieldValue('field152', e.target.value)}
               />
             </GridItem>
             <GridItem>
               <Input.Select
-                label="Select"
-                id="select153"
-                //placeholder="Enter your first name"
-                value={getFieldValue('field153')}
-                required
                 data={[
                   { key: '1', value: 'One' },
                   { key: '2', value: 'Two' },
                   { key: '3', value: 'Three' },
                 ]}
-                onChange={(e) => setFieldValue('field153', e.target.value)}
-                description={'This is a required field'}
+                description="This is a required field"
+                id="select153"
+                label="Select"
+                onChange={(e) => {
+                  setFieldValue('field153', e.target.value);
+                }}
+                required
+                //placeholder="Enter your first name"
+                value={getFieldValue('field153')}
               />
             </GridItem>
           </Grid>
@@ -151,46 +158,54 @@ const InputPage = (): React.JSX.Element => {
           <Grid>
             <GridItem>
               <Input.TextArea
-                label="TextArea"
                 id="select250"
+                label="TextArea"
+                onChange={(e) => {
+                  setFieldValue('field250', e.target.value);
+                }}
                 rows={10}
                 //placeholder="Enter your first name"
                 value={getFieldValue('field250')}
-                onChange={(e) => setFieldValue('field250', e.target.value)}
               />
             </GridItem>
 
             <GridItem>
               <Input.TextArea
-                label="TextArea"
                 id="select251"
-                rows={10}
+                label="TextArea"
+                onChange={(e) => {
+                  setFieldValue('field251', e.target.value);
+                }}
                 placeholder="Enter text"
+                rows={10}
                 value={getFieldValue('field251')}
-                onChange={(e) => setFieldValue('field251', e.target.value)}
               />
             </GridItem>
             <GridItem>
               <Input.TextArea
-                label="TextArea"
                 id="select252"
-                rows={10}
+                label="TextArea"
+                onChange={(e) => {
+                  setFieldValue('field252', e.target.value);
+                }}
                 placeholder="Enter text"
                 required
+                rows={10}
                 value={getFieldValue('field252')}
-                onChange={(e) => setFieldValue('field252', e.target.value)}
               />
             </GridItem>
             <GridItem>
               <Input.TextArea
-                label="TextArea"
+                description="This is a required field"
                 id="select252"
-                rows={10}
+                label="TextArea"
+                onChange={(e) => {
+                  setFieldValue('field252', e.target.value);
+                }}
                 placeholder="Enter text"
                 required
+                rows={10}
                 value={getFieldValue('field252')}
-                onChange={(e) => setFieldValue('field252', e.target.value)}
-                description={'This is a required field'}
               />
             </GridItem>
           </Grid>

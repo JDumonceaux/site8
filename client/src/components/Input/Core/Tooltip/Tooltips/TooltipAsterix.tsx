@@ -1,9 +1,13 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo } from 'react';
-import Tooltip, { TooltipBaseProps } from '../TooltipBase';
+
+import Tooltip, { type TooltipBaseProps } from '../TooltipBase';
 
 type Props = TooltipBaseProps;
 
-const TooltipAsterix = ({ ...rest }: Props): React.JSX.Element => <Tooltip trigger="*" {...rest} />;
+const TooltipAsterix = ({ ...rest }: Props): React.JSX.Element => (
+  <Tooltip trigger="*" {...rest} />
+);
 
 TooltipAsterix.displayName = 'TooltipAsterix';
 

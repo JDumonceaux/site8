@@ -4,11 +4,11 @@ import Layout from 'components/layouts/Layout/Layout';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from '../lib/utils/constants';
+import { ServiceUrl } from 'lib/utils/constants';
 import React, { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';
 
-const PhotoPage = (): React.JSX.Element => {
+const PhotoPage = (): React.React.JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Photos>();
   const deferredData = useDeferredValue(data);
 

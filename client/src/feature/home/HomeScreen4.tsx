@@ -3,7 +3,7 @@ import { keyframes, styled } from 'styled-components';
 import TitleAnimation from './Animations/TitleAnimation';
 import PinkGraphic from './PinkGraphic';
 
-const HomeScreen4 = (): JSX.Element => {
+const HomeScreen4 = (): React.JSX.Element => {
   return (
     <>
       <StyledSection>

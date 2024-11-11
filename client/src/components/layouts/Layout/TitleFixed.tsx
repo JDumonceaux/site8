@@ -5,9 +5,11 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const TitleFixed = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="title">{children}</StyledElement>;
+const TitleFixed = ({ children }: Props): React.JSX.Element => (
+  <StyledElement data-testid="title">{children}</StyledElement>
+);
 
-export default TitleFixed ;
+export default TitleFixed;
 
 const StyledElement = styled.div`
   position: sticky;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, JSX } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
@@ -54,7 +54,7 @@ const pageSchema = z.object({
       .describe('Enter a title'),
     year: z.string().min(10).optional(),
   }),
-  DevelopPage = (): JSX.Element => {
+  DevelopPage = (): React.JSX.Element => {
     const title = 'Develop';
 
     // Create a type from the schema

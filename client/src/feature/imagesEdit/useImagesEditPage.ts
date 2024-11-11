@@ -5,7 +5,7 @@ import { useEffect, useState, useTransition } from 'react';
 import { z } from 'zod';
 import { Image as LocalImage } from 'types/Image';
 import { ImageEdit } from 'types/ImageEdit';
-import { getSRC } from '../lib/utils/helpers';
+import { getSRC } from 'lib/utils/helpers';
 
 // Define Zod Shape
 const schema = z.object({

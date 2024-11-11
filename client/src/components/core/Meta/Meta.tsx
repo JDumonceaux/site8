@@ -17,9 +17,14 @@ type MetaProps = {
  * @param {string} props.description - The description of the page.
  * @param {string} props.name - The name of the creator.
  * @param {string} props.type - The type of the page.
- * @returns {JSX.Element} The rendered Meta component.
+ * @returns {React.JSX.Element} The rendered Meta component.
  */
-const Meta = ({ description, name, title, type }: MetaProps): JSX.Element => {
+const Meta = ({
+  description,
+  name,
+  title,
+  type,
+}: MetaProps): React.JSX.Element => {
   return (
     <Helmet>
       {/* Standard metadata tags */}

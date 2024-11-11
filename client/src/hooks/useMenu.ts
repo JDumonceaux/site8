@@ -1,19 +1,19 @@
 import { useCallback } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenu } from 'store/MenuSlice';
-import { AppDispatch, RootState } from 'store/Store';
-import { Menu } from 'types';
+import type { AppDispatch, RootState } from 'store/Store';
 
 const useMenu = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.menu;
-  const data: Menu | null = useSelector(selector).data;
-  const isLoading = useSelector(selector).isLoading;
-  const error = useSelector(selector).error;
+  const { data } = useSelector(selector);
+  const { isLoading } = useSelector(selector);
+  const { error } = useSelector(selector);
 
   const dispatchFetchMenu = useCallback(
-    () => dispatch(fetchMenu()),
+    async () => dispatch(fetchMenu()),
     [dispatch],
   );
 

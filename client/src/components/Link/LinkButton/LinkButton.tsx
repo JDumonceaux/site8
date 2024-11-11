@@ -13,9 +13,9 @@ type LinkButtonProps = {
  * @component
  * @param {string} to - The URL to navigate to when the button is clicked.
  * @param {React.ReactNode} children - The content of the button.
- * @returns {JSX.Element} - The rendered LinkButton component.
+ * @returns {React.JSX.Element} - The rendered LinkButton component.
  */
-const LinkButton = ({ children, to }: LinkButtonProps): JSX.Element => (
+const LinkButton = ({ children, to }: LinkButtonProps): React.JSX.Element => (
   <StyledLink to={to}>{children}</StyledLink>
 );
 

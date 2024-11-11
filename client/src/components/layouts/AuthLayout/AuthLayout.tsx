@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-const AuthLayout = (): JSX.Element => (
+const AuthLayout = (): React.JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <Header includeMenu={false} />
     <LayoutDiv>

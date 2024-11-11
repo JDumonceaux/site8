@@ -1,6 +1,6 @@
 import Meta from 'components/core/Meta/Meta';
 
-const PrivacyPolicyPage = (): JSX.Element => {
+const PrivacyPolicyPage = (): React.JSX.Element => {
   const title = 'Privacy Policy';
 
   return (

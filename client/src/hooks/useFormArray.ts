@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
 type IdType = {
   readonly localId: number;
@@ -7,7 +7,6 @@ type IdType = {
 export const useFormArray = <T extends IdType>() => {
   const [formValues, setFormValues] = useState<T[]>([]);
   const [isSaved, setIsSaved] = useState<boolean>(true);
-
 
   const findItemIndex = (localId: number): number => {
     return formValues.findIndex((x) => x.localId === localId);
@@ -34,10 +33,7 @@ export const useFormArray = <T extends IdType>() => {
     setIsSaved(false);
   };
 
-  const getFieldValue = (
-    localId: number,
-    fieldName: keyof T,
-  ): string => {
+  const getFieldValue = (localId: number, fieldName: keyof T): string => {
     const item = formValues.find((x) => x.localId === localId);
     return item ? (item[fieldName] as string) : '';
   };

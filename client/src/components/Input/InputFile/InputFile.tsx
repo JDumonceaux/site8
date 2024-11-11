@@ -17,9 +17,10 @@ type InputFileProps = {
 //      microphone, video, or camera
 // multiple - email, file - Boolean. Whether to allow multiple values
 
-const InputFile = ({ type = 'file', ...rest }: InputFileProps): JSX.Element => (
-  <InputBase type={type} {...rest} />
-);
+const InputFile = ({
+  type = 'file',
+  ...rest
+}: InputFileProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputFile.displayName = 'InputFile';
 

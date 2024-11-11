@@ -6,7 +6,7 @@ type Props = {
   readonly children?: React.ReactNode;
 };
 
-export const IconMenu = ({ children }: Props): JSX.Element => {
+export const IconMenu = ({ children }: Props): React.JSX.Element => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>

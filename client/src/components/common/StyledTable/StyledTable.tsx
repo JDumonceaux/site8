@@ -4,7 +4,9 @@ type StyledTableProps = {
   readonly children?: React.ReactNode;
 };
 
-const StyledTable = ({ children }: StyledTableProps): JSX.Element => <Table>{children}</Table>;
+const StyledTable = ({ children }: StyledTableProps): React.JSX.Element => (
+  <Table>{children}</Table>
+);
 
 const StyledTableHead = styled.thead``;
 

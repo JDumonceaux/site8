@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ServiceUrl } from '../lib/utils/constants';
+import { ServiceUrl } from 'lib/utils/constants';
 
 type FolderState = {
   data: null | string[];

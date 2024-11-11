@@ -4,7 +4,7 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/core/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
-import { safeParse } from '../lib/utils/zodHelper';
+import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
@@ -21,7 +21,7 @@ const schema = z.object({
   password: password,
 });
 
-const ForgotPasswordPage = (): JSX.Element => {
+const ForgotPasswordPage = (): React.JSX.Element => {
   const title = 'Forgot Password';
 
   type FormValues = z.infer<typeof schema>;

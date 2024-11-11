@@ -13,7 +13,7 @@ import { MenuItem } from 'types';
 import Layout from 'components/layouts/Layout/Layout';
 import usePagesEdit from './usePagesEdit';
 
-const PagesEditPage = (): React.JSX.Element => {
+const PagesEditPage = (): React.React.JSX.Element => {
   const {
     data,
     error,
@@ -42,7 +42,7 @@ const PagesEditPage = (): React.JSX.Element => {
   }, [data, setFormValues]);
 
   const renderItem = useCallback(
-    (item: MenuItem | undefined): JSX.Element | null => {
+    (item: MenuItem | undefined): React.JSX.Element | null => {
       if (!item) {
         return null;
       }

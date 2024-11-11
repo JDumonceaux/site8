@@ -16,17 +16,15 @@ const FieldLabel = ({
   label,
   ref,
   required = false,
-  requiredIcon = "*",
-  requiredText = 'required'  ,
+  requiredIcon = '*',
+  requiredText = 'required',
   ...rest
-}: FieldLabelProps): JSX.Element => (
+}: FieldLabelProps): React.JSX.Element => (
   <label ref={ref} {...rest}>
     <StyledRow>
       <StyledLabel>{label}</StyledLabel>
       {required && <VisuallyHidden>{requiredText}</VisuallyHidden>}
-      {required && (
-          <RequiredSpan>{ requiredIcon}</RequiredSpan>
-        )}
+      {required && <RequiredSpan>{requiredIcon}</RequiredSpan>}
     </StyledRow>
     {children}
   </label>
@@ -54,10 +52,10 @@ const StyledRow = styled.div`
   }
 `;
 const RequiredSpan = styled.span`
- color: red;
+  color: red;
 `;
 const VisuallyHidden = styled.span`
- clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
   overflow: hidden;

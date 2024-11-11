@@ -75,7 +75,7 @@ export const Input.Password = ({
 
   type = 'password',
   ...rest
-}: PasswordFieldProps): JSX.Element => {
+}: PasswordFieldProps): React.JSX.Element => {
   const [localType, setLocalType] = useState<PasswordFieldType>(type);
 
   const showPasswordOnClick = useCallback(() => {

@@ -1,6 +1,6 @@
 import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
 
-const SitemapPage = (): JSX.Element => (
+const SitemapPage = (): React.JSX.Element => (
   <div>
     <h1>Sitemap</h1>
     <div />

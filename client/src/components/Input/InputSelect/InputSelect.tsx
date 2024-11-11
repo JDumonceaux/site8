@@ -1,18 +1,20 @@
-import { memo, SelectHTMLAttributes, useId, useRef } from 'react';
+import type { SelectHTMLAttributes } from 'react';
+import { memo, useId, useRef } from 'react';
+
 import styled from 'styled-components';
-import { ListItem } from 'types/ListItem';
-import FieldWrapper, {
-  FieldWrapperProps,
-} from '../Core/FieldWrapper/FieldWrapper';
+import type { ListItem } from 'types/ListItem';
+
+import type { FieldWrapperProps } from '../Core/FieldWrapper/FieldWrapper';
+import FieldWrapper from '../Core/FieldWrapper/FieldWrapper';
 
 type Props = {
-  readonly data?: ListItem[];
-  readonly value: string | number | string[];
-  readonly selectRef?: React.RefObject<HTMLSelectElement>;
-  readonly description?: string;
   readonly allowedCharacters?: RegExp;
+  readonly data?: ListItem[];
+  readonly description?: string;
   readonly placeholder?: string;
+  readonly selectRef?: React.RefObject<HTMLSelectElement>;
   readonly showBlankOption?: boolean;
+  readonly value: number | string | string[];
 } & FieldWrapperProps &
   SelectHTMLAttributes<HTMLSelectElement>;
 
@@ -21,21 +23,23 @@ type Props = {
 const InputSelect = ({
   data,
   id,
+  placeholder,
   required,
   selectRef,
-  placeholder,
   showBlankOption = false,
   ...rest
 }: Props): React.JSX.Element => {
   const tempId = id || useId();
-  const props = { ...rest, id: tempId, required: required };
+  const props = { ...rest, id: tempId, required };
   const localRef = selectRef || useRef<HTMLSelectElement>(null);
 
   return (
     <FieldWrapper {...props}>
       <StyledSelect {...props} ref={localRef}>
-        {showBlankOption && <option value=""></option>}
-        {placeholder && <option value="placeholder">{placeholder}</option>}
+        {showBlankOption ? <option value="" /> : null}
+        {placeholder ? (
+          <option value="placeholder">{placeholder}</option>
+        ) : null}
         {data?.map((item) => (
           <option key={item.key} value={item.value}>
             {item.display || item.value}

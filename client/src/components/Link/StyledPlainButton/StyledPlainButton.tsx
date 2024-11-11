@@ -8,7 +8,7 @@ type StyledPlainButtonProps = {
 const StyledPlainButton = ({
   children,
   ...rest
-}: StyledPlainButtonProps): JSX.Element => (
+}: StyledPlainButtonProps): React.JSX.Element => (
   <StyledElement {...rest}>{children}</StyledElement>
 );
 

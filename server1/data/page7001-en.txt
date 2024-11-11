@@ -12,9 +12,9 @@ const <var>MyComponent</var> = ({ name }: { name: string }) => {
         return <h1>Hello, {name}</h1>;
     }
 }
-// I prefer to also define the return (i.e. JSX.Element).  
+// I prefer to also define the return (i.e. React.JSX.Element).  
 // Some may consider this excess, but it has caught issues for me.
-const <var>MyComponent</var> = ({ name }: { name: string }) : JSX.Element => {
+const <var>MyComponent</var> = ({ name }: { name: string }) : React.JSX.Element => {
     render() {
         return <h1>Hello, {name}</h1>;
     }

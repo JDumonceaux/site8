@@ -12,7 +12,7 @@ const DialogSaving = ({
   isOpen,
   role = 'contentinfo',
   ...rest
-}: DialogSavingProps): JSX.Element => {
+}: DialogSavingProps): React.JSX.Element => {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   useLayoutEffect(() => {

@@ -11,10 +11,10 @@ type ToolMenuProps = {
  * @component
  * @param {Object} props - The component props.
  * @param {Function} props.onClick - The click event handler for the menu buttons.
- * @returns {JSX.Element} The ToolMenu component.
+ * @returns {React.JSX.Element} The ToolMenu component.
  */
 const ToolMenu = forwardRef<HTMLDivElement, ToolMenuProps>(
-  ({ onClick }, ref): JSX.Element => {
+  ({ onClick }, ref): React.JSX.Element => {
     const buttons = [
       { label: 'Code', value: 'code', testId: 'insert-code' },
       { label: 'H2', value: 'h2', testId: 'insert-h2' },

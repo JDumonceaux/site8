@@ -5,7 +5,10 @@ type Props = {
   readonly children?: React.ReactNode;
 } & DropdownMenu.DropdownMenuItemProps;
 
-export const IconMenuItem = ({ children, ...rest }: Props): JSX.Element => {
+export const IconMenuItem = ({
+  children,
+  ...rest
+}: Props): React.JSX.Element => {
   return <StyledMenuItem {...rest}>{children}</StyledMenuItem>;
 };
 const StyledMenuItem = styled(DropdownMenu.Item)`

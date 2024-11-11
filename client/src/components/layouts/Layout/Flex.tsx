@@ -5,7 +5,9 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const Flex = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="layout">{children}</StyledElement>;
+const Flex = ({ children }: Props): React.JSX.Element => (
+  <StyledElement data-testid="layout">{children}</StyledElement>
+);
 
 export default Flex;
 

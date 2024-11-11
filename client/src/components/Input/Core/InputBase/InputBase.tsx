@@ -1,12 +1,17 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, {
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
+  type HTMLInputTypeAttribute,
+  type InputHTMLAttributes,
   memo,
   useRef,
   useId,
 } from 'react';
+
 import styled from 'styled-components';
-import FieldWrapper, { FieldWrapperProps } from '../FieldWrapper/FieldWrapper';
+
+import FieldWrapper, {
+  type FieldWrapperProps,
+} from '../FieldWrapper/FieldWrapper';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some
@@ -31,23 +36,23 @@ declare const validityMatchers: readonly [
 ];
 
 type InputBaseProps = {
-  readonly value: string | number | string[];
-  readonly inputRef?: React.RefObject<HTMLInputElement>;
-  readonly type: HTMLInputTypeAttribute;
   readonly allowedCharacters?: RegExp;
+  readonly inputRef?: React.RefObject<HTMLInputElement>;
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
+  readonly type: HTMLInputTypeAttribute;
+  readonly value: number | string | string[];
 } & FieldWrapperProps &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
     | 'accesskey'
     | 'autocorrect'
     | 'id'
-    | 'ref'
     | 'name'
     | 'onChange'
-    | 'value'
     | 'onClick'
+    | 'ref'
+    | 'value'
   >;
 
 // Input Attributes
@@ -55,15 +60,9 @@ type InputBaseProps = {
 // autocorrect: a non-standard Safari attribute
 
 const InputBase = ({
-  value,
-  inputRef,
-  type,
-
   endAdornment,
-  startAdornment,
-  showClear = true,
-  required,
   id,
+  inputRef,
   // showCounter = false,
   // showError = true,
   // showRequired = true,
@@ -71,11 +70,16 @@ const InputBase = ({
   // requiredLabelProps,
   onChange,
   onClear,
+  required,
+  showClear = true,
+  startAdornment,
+  type,
+  value,
 
   ...rest
-}: InputBaseProps): JSX.Element => {
+}: InputBaseProps): React.JSX.Element => {
   const tempId = id || useId();
-  const props = { ...rest, id: tempId, required: required };
+  const props = { ...rest, id: tempId, required };
   const localRef = inputRef || useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,12 +91,12 @@ const InputBase = ({
     <FieldWrapper {...props}>
       <StyledInput
         key={tempId}
-        value={value}
         type={type}
+        value={value}
         {...props}
-        ref={localRef}
         // aria-describedby={counterId}
         onChange={handleChange}
+        ref={localRef}
       />
     </FieldWrapper>
   );

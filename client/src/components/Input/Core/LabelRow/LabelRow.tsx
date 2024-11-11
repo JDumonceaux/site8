@@ -1,10 +1,12 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { memo, type LabelHTMLAttributes } from 'react';
+
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-
-import React, { LabelHTMLAttributes, memo, JSX } from 'react';
 import { styled } from 'styled-components';
+
 import Tooltip from '../Tooltip/Tooltip';
-import { TooltipBaseProps } from '../Tooltip/TooltipBase';
+import type { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
 type LabelRowProps = {
   readonly children?: React.ReactNode;
@@ -22,30 +24,32 @@ type LabelRowProps = {
 
 const LabelRow = ({
   children,
-  id,
   description,
   endAdornment,
+  id,
   label,
   ref,
   required = false,
   requiredText,
   tooltipProps,
   ...rest
-}: LabelRowProps): JSX.Element => (
+}: LabelRowProps): React.JSX.Element => (
   <Label.Root htmlFor={id} ref={ref} {...rest}>
     <StyledRow>
       <StyledLabel>
         {label}
-        {required && <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>}
-        {required && (
+        {required ? (
+          <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
+        ) : null}
+        {required ? (
           <Tooltip.Asterix
             content="Required"
             triggerColor="var(--color-required)"
             {...tooltipProps}
           />
-        )}
+        ) : null}
       </StyledLabel>
-      {description && <Tooltip.QuestionMark content={description} />}
+      {description ? <Tooltip.QuestionMark content={description} /> : null}
       {endAdornment}
     </StyledRow>
     {children}

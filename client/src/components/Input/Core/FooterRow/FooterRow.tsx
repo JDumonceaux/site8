@@ -1,17 +1,12 @@
-import { memo, JSX } from 'react';
+import { memo } from 'react';
+
 import { styled } from 'styled-components';
 
-type FooterRowProps = {};
-
-const FooterRow = ({ ...rest }: FooterRowProps): JSX.Element => (
-  <RowDiv></RowDiv>
-);
+const FooterRow = (): React.JSX.Element => <RowDiv />;
 
 FooterRow.displayName = 'FooterRow';
 
 export default memo(FooterRow);
-
-export type { FooterRowProps };
 
 const RowDiv = styled.div`
   display: flex;

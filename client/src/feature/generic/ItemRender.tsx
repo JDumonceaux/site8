@@ -13,7 +13,7 @@ export const ItemRender = ({
   item,
   level,
   children,
-}: ItemRenderProps): JSX.Element | null => {
+}: ItemRenderProps): React.JSX.Element | null => {
   if (!item) {
     return null;
   }

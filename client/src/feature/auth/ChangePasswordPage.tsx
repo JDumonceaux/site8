@@ -4,7 +4,7 @@ import Meta from 'components/core/Meta/Meta';
 import { password } from 'components/pages/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
-import { safeParse } from '../lib/utils/zodHelper';
+import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
@@ -25,7 +25,7 @@ const schema = z
     path: ['confirmPassword'],
   });
 
-const ChangePasswordPage = (): React.JSX.Element => {
+const ChangePasswordPage = (): React.React.JSX.Element => {
   const title = 'Change Password';
   const compId = useId();
 

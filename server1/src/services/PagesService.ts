@@ -1,8 +1,8 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from '../lib/utils/FilePath.js';
-import { isValidArray } from '../lib/utils/helperUtils.js';
-import { Logger } from '../lib/utils/logger.js';
-import { cleanUpData, getNextId } from '../lib/utils/objectUtil.js';
+import { getDataDir } from 'lib/utils/FilePath.js';
+import { isValidArray } from 'lib/utils/helperUtils.js';
+import { Logger } from 'lib/utils/logger.js';
+import { cleanUpData, getNextId } from 'lib/utils/objectUtil.js';
 import { MenuEdit } from '../types/MenuEdit.js';
 import { PageMenu } from '../types/PageMenu.js';
 import { Pages } from '../types/Pages.js';

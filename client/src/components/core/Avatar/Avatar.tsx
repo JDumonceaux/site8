@@ -17,7 +17,7 @@ const SytledAvatar = ({
   id,
   src,
   ...rest
-}: AvatarProps): JSX.Element => (
+}: AvatarProps): React.JSX.Element => (
   <StyledRoot data-testid={id} id={id} {...rest}>
     <StyledImage alt={alt} src={src} />
     <StyledFallback delayMs={delayMs}>{children}</StyledFallback>

@@ -3,7 +3,7 @@ import Meta from 'components/core/Meta/Meta';
 import SubjectMenu from 'feature/generic/SubjectMenu';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from '../lib/utils/constants';
+import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Page } from 'types/Page';
@@ -13,7 +13,7 @@ type TikTokPageProps = {
   readonly title?: string;
 };
 
-const TikTokPage = ({ title }: TikTokPageProps): JSX.Element => {
+const TikTokPage = ({ title }: TikTokPageProps): React.JSX.Element => {
   const tempId = 4000;
   //   id && id > 0 ? id : routeParams.id ? parseInt(routeParams.id, 10) : 0;
   const { data, error, fetchData, isLoading } = useAxios<Page>();

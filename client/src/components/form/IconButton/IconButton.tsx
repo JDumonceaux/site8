@@ -10,7 +10,7 @@ export const IconButton = ({
   'aria-label': ariaLabel,
   children,
   ...rest
-}: IconButtonProps): JSX.Element => (
+}: IconButtonProps): React.JSX.Element => (
   <StyledButton aria-label={ariaLabel} type="button" {...rest}>
     {children}
   </StyledButton>

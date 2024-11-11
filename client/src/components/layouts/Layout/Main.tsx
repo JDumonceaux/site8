@@ -5,7 +5,9 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const Main = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="main">{children}</StyledElement>;
+const Main = ({ children }: Props): React.JSX.Element => (
+  <StyledElement data-testid="main">{children}</StyledElement>
+);
 
 export default Main;
 

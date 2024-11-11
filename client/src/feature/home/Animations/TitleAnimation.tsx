@@ -1,6 +1,6 @@
 import { keyframes, styled } from 'styled-components';
 
-const TitleAnimation = (): JSX.Element => {
+const TitleAnimation = (): React.JSX.Element => {
   return <TitleElement>React Notes</TitleElement>;
 };
 

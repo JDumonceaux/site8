@@ -18,7 +18,7 @@ type InputImageProps = {
 const InputImage = ({
   type = 'color',
   ...rest
-}: InputImageProps): JSX.Element => <InputBase type={type} {...rest} />;
+}: InputImageProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputImage.displayName = 'InputImage';
 

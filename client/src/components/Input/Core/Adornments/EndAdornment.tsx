@@ -6,33 +6,35 @@ type EndAdornmentProps = {
 };
 
 const EndAdornment = ({ children }: EndAdornmentProps) => {
-  if (!children) {return null;}
-
-  const isString = (value) =>
-    typeof value === 'string' || value instanceof String;
-  const isNumber = (value) =>
-    typeof value === 'number' || value instanceof Number;
-  const isBoolean = (value) =>
-    typeof value === 'boolean' || value instanceof Boolean;
-
-  if (isString || isNumber || isBoolean) {
-    return (
-      <>
-        <StyledDiv>{children}</StyledDiv>
-        <StyledVLine />
-      </>
-    );
+  if (!children) {
+    return null;
   }
 
-  if (React.isValidElement(children)) {
-    return (
-      <>
-        {children}
-        <StyledVLine />
-      </>
-    );
-  }
-  throw new Error('Invalid type passed as child.');
+  // const isString = (value) =>
+  //   typeof value === 'string' || value instanceof String;
+  // const isNumber = (value) =>
+  //   typeof value === 'number' || value instanceof Number;
+  // const isBoolean = (value) =>
+  //   typeof value === 'boolean' || value instanceof Boolean;
+
+  // if (isString || isNumber || isBoolean) {
+  return (
+    <>
+      <StyledDiv>{children}</StyledDiv>
+      <StyledVLine />
+    </>
+  );
+  // }
+
+  // if (React.isValidElement(children)) {
+  //   return (
+  //     <>
+  //       {children}
+  //       <StyledVLine />
+  //     </>
+  //   );
+  // }
+  // throw new Error('Invalid type passed as child.');
 };
 
 EndAdornment.displayName = 'EndAdornments';

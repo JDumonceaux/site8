@@ -1,6 +1,6 @@
 import Meta from 'components/core/Meta/Meta';
 
-const CookiesUsePage = (): JSX.Element => {
+const CookiesUsePage = (): React.JSX.Element => {
   const title = 'Cookies Use';
 
   return (

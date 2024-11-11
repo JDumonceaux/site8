@@ -25,7 +25,7 @@ import { styled } from 'styled-components';
 import Layout from 'components/layouts/Layout/Layout';
 import Input from 'components/Input/Input';
 
-const TestsEditPage = (): JSX.Element => {
+const TestsEditPage = (): React.JSX.Element => {
   const { data, handleSave, isSaved, setFormValues, getDefaultProps } =
     useTestsEdit();
 

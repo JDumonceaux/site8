@@ -13,7 +13,7 @@ type RenderCodeProps = {
  * @component
  * @param {Object} props - The component props.
  * @param {React.ReactNode} props.children - The code to be rendered.
- * @returns {JSX.Element} The rendered code block.
+ * @returns {React.JSX.Element} The rendered code block.
  */
 const RenderCode = ({ children }: RenderCodeProps) => {
   const ref = useRef<HTMLElement>(null);

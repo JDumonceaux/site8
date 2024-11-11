@@ -3,15 +3,15 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useFetch } from 'hooks/Axios/useFetch';
-import { ServiceUrl } from '../lib/utils/constants';
-import { getParamIdAsString } from '../lib/utils/helpers';
+import { ServiceUrl } from 'lib/utils/constants';
+import { getParamIdAsString } from 'lib/utils/helpers';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Page } from 'types';
 import Layout from 'components/layouts/Layout/Layout';
 import PageEditForm from './PageEditForm';
 
-const PageEditPage = (): JSX.Element => {
+const PageEditPage = (): React.JSX.Element => {
   const { id } = useParams();
   const { clearData, data, error, fetchData, isLoading } = useFetch<Page>();
   const currentId = getParamIdAsString(id);

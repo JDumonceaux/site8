@@ -20,7 +20,7 @@ const InputCounter = ({
   maxLength,
   align = 'right',
   ...rest
-}: InputCounterProps): JSX.Element => {
+}: InputCounterProps): React.JSX.Element => {
   if (!showCounter) {
     return <></>;
   }

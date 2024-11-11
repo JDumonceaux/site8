@@ -1,10 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo } from 'react';
+
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
-import Tooltip, { TooltipBaseProps } from '../TooltipBase';
+
+import Tooltip, { type TooltipBaseProps } from '../TooltipBase';
 
 type Props = TooltipBaseProps;
 
-const TooltipQuestionMark = ({ ...rest }: Props): React.JSX.Element => <Tooltip trigger={<QuestionMarkCircledIcon />} {...rest} />;
+const TooltipQuestionMark = ({ ...rest }: Props): React.JSX.Element => (
+  <Tooltip trigger={<QuestionMarkCircledIcon />} {...rest} />
+);
 
 TooltipQuestionMark.displayName = 'TooltipQuestionMark';
 

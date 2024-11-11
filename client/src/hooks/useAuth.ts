@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   AuthError,
   autoSignIn,
@@ -7,23 +9,22 @@ import {
   fetchAuthSession,
   fetchDevices,
   fetchUserAttributes,
-  FetchUserAttributesOutput,
   forgetDevice,
   getCurrentUser,
-  JWT,
   rememberDevice,
   resendSignUpCode,
   resetPassword,
-  ResetPasswordOutput,
   signIn,
-  SignInOutput,
   signInWithRedirect,
   signOut,
   signUp,
-  SignUpOutput,
   updatePassword,
+  type FetchUserAttributesOutput,
+  type JWT,
+  type ResetPasswordOutput,
+  type SignInOutput,
+  type SignUpOutput,
 } from 'aws-amplify/auth';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const enum SocialProvider {
@@ -100,15 +101,15 @@ const useAuth = () => {
     step: ResetPasswordOutput['nextStep'],
   ) => {
     switch (step.resetPasswordStep) {
+      case 'CONFIRM_RESET_PASSWORD_WITH_CODE': {
+        // The user needs to complete the sign-in process with a code
+        const { codeDeliveryDetails } = step;
+        console.log('Code sent to :', codeDeliveryDetails.deliveryMedium);
+        break;
+      }
       case 'DONE': {
         // The user has successfully changed their password
         navigate('/');
-        break;
-      }
-      case 'CONFIRM_RESET_PASSWORD_WITH_CODE': {
-        // The user needs to complete the sign-in process with a code
-        const codeDeliveryDetails = step.codeDeliveryDetails;
-        console.log('Code sent to :', codeDeliveryDetails.deliveryMedium);
         break;
       }
     }
@@ -116,37 +117,15 @@ const useAuth = () => {
 
   const handleSignInStep = (step: SignInOutput['nextStep']) => {
     switch (step.signInStep) {
-      case 'DONE': {
-        // User is signed in
-        // The sign in process has been completed.
-        navigate('/');
-        break;
-      }
-      case 'CONFIRM_SIGN_UP': {
-        // Validation code is sent to the user's email during sign-up
-        //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
-        navigate('/confirm');
-        break;
-      }
-      case 'RESET_PASSWORD': {
-        //  The user must reset their password via resetPassword
-        navigate('/password-reset');
+      case 'CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE': {
+        // The sign-in must be confirmed with a custom challenge response.
+        // Complete the process with confirmSignIn
         break;
       }
       case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED': {
         // The user was created with a temporary password and must set a new one.
         // Complete the process with confirmSignIn.
         navigate('/password-reset');
-        break;
-      }
-      case 'CONFIRM_SIGN_IN_WITH_CUSTOM_CHALLENGE': {
-        // The sign-in must be confirmed with a custom challenge response.
-        // Complete the process with confirmSignIn
-        break;
-      }
-      case 'CONTINUE_SIGN_IN_WITH_MFA_SELECTION': {
-        // The user must select their mode of MFA verification before signing in.
-        // Complete the process with confirmSignIn
         break;
       }
       case 'CONFIRM_SIGN_IN_WITH_SMS_CODE': {
@@ -160,10 +139,32 @@ const useAuth = () => {
         // Complete the process with confirmSignIn.
         break;
       }
+      case 'CONFIRM_SIGN_UP': {
+        // Validation code is sent to the user's email during sign-up
+        //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
+        navigate('/confirm');
+        break;
+      }
+      case 'CONTINUE_SIGN_IN_WITH_MFA_SELECTION': {
+        // The user must select their mode of MFA verification before signing in.
+        // Complete the process with confirmSignIn
+        break;
+      }
       case 'CONTINUE_SIGN_IN_WITH_TOTP_SETUP': {
         // ??  Time-based One-Time Password
         // The TOTP setup process must be continued.
         // Complete the process with confirmSignIn.
+        break;
+      }
+      case 'DONE': {
+        // User is signed in
+        // The sign in process has been completed.
+        navigate('/');
+        break;
+      }
+      case 'RESET_PASSWORD': {
+        //  The user must reset their password via resetPassword
+        navigate('/password-reset');
         break;
       }
       default: {
@@ -175,14 +176,9 @@ const useAuth = () => {
   const handleSignUpStep = (step: SignUpOutput['nextStep']) => {
     console.log('step.signUpStep', step.signUpStep);
     switch (step.signUpStep) {
-      case 'DONE': {
-        // The user has been successfully signed up
-        navigate('/');
-        break;
-      }
       case 'COMPLETE_AUTO_SIGN_IN': {
         // The user needs to complete the sign-in process with a code
-        const codeDeliveryDetails = step.codeDeliveryDetails;
+        const { codeDeliveryDetails } = step;
         if (codeDeliveryDetails) {
           // Redirect user to confirm-sign-up with link screen.
           navigate('/confirm');
@@ -196,6 +192,11 @@ const useAuth = () => {
         // Validation code is sent to the user's email during sign-up
         //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
         navigate('/confirm');
+        break;
+      }
+      case 'DONE': {
+        // The user has been successfully signed up
+        navigate('/');
         break;
       }
       default: {
@@ -282,7 +283,6 @@ const useAuth = () => {
     } finally {
       setIsLoading(false);
     }
-    return;
   };
 
   const authRefreshAuthSession = async () => {
@@ -299,7 +299,6 @@ const useAuth = () => {
     } finally {
       setIsLoading(false);
     }
-    return;
   };
 
   const authFetchDevices = async () => {
@@ -312,7 +311,6 @@ const useAuth = () => {
     } finally {
       setIsLoading(false);
     }
-    return;
   };
 
   const authForgetDevice = async () => {

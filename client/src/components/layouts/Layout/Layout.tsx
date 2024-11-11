@@ -1,4 +1,3 @@
-
 import FullWidth from './FullWidth';
 import Menu from './Menu';
 import Section from './Section';
@@ -20,4 +19,3 @@ Layout.FullWidth = FullWidth;
 Layout.TitleFixed = TitleFixed;
 
 export default Layout;
-

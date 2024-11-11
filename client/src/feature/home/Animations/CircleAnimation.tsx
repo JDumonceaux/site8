@@ -1,6 +1,6 @@
 import { keyframes, styled } from 'styled-components';
 
-const CircleAnimation = (): JSX.Element => {
+const CircleAnimation = (): React.JSX.Element => {
   return (
     <CircleWrapper>
       <CircleElement />

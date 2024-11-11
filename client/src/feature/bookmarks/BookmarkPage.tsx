@@ -6,9 +6,9 @@ import { useAxios } from 'hooks/Axios/useAxios';
 import { useDeferredValue, useEffect } from 'react';
 import Layout from 'components/layouts/Layout/Layout';
 import { BookmarksTags } from 'types/BookmarksTags';
-import { ServiceUrl } from '../lib/utils/constants';
+import { ServiceUrl } from 'lib/utils/constants';
 
-const BookmarkPage = (): JSX.Element => {
+const BookmarkPage = (): React.JSX.Element => {
   const title = 'Bookmarks';
   const { data, error, fetchData, isLoading } = useAxios<BookmarksTags>();
 

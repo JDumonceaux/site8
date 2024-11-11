@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-
 import { ExclamationTriangleIcon as Icon } from '@radix-ui/react-icons';
 import { IconProps } from '@radix-ui/react-icons/dist/types';
 

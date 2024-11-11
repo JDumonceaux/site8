@@ -1,8 +1,8 @@
-import Meta from 'components/common/Meta/Meta';
-
+import Meta from 'components/core/Meta/Meta';
+import Layout from 'components/layouts/Layout/Layout';
 import { keyframes, styled } from 'styled-components';
 
-const HomeScreen2 = (): JSX.Element => {
+const HomeScreen2 = (): React.JSX.Element => {
   const title = 'Home';
 
   return (

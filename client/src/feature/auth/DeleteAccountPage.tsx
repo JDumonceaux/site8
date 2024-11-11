@@ -2,7 +2,7 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Meta from 'components/core/Meta/Meta';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
-import { safeParse } from '../lib/utils/zodHelper';
+import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
@@ -16,7 +16,7 @@ const schema = z.object({
   deleteCode: z.literal('delete'),
 });
 
-const DeleteAccountPage = (): JSX.Element => {
+const DeleteAccountPage = (): React.JSX.Element => {
   const title = 'Delete Account';
 
   const { authDeleteUser, error, isLoading } = useAuth();

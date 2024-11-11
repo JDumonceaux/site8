@@ -5,7 +5,9 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const Article = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="article">{children}</StyledElement>;
+const Article = ({ children }: Props): React.JSX.Element => (
+  <StyledElement data-testid="article">{children}</StyledElement>
+);
 
 export default Article;
 

@@ -18,9 +18,10 @@ type InputDateProps = {
 // Remove: 'autocapitalize', 'height', 'multiple', 'pattern', 'src', 'width'
 // Valid: 'value'
 
-const InputDate = ({ type = 'date', ...rest }: InputDateProps): JSX.Element => (
-  <InputBase type={type} {...rest} />
-);
+const InputDate = ({
+  type = 'date',
+  ...rest
+}: InputDateProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputDate.displayName = 'InputDate';
 

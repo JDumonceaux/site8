@@ -1,6 +1,6 @@
 import Meta from 'components/core/Meta/Meta';
 
-const TermsOfUsePage = (): JSX.Element => {
+const TermsOfUsePage = (): React.JSX.Element => {
   const title = 'Terms of Use';
   return (
     <>

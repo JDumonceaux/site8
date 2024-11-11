@@ -1,6 +1,6 @@
 import { readFile } from 'fs/promises';
-import { getDataDir } from '../lib/utils/FilePath.js';
-import { Logger } from '../lib/utils/logger.js';
+import { getDataDir } from 'lib/utils/FilePath.js';
+import { Logger } from 'lib/utils/logger.js';
 import { Test } from '../types/Test.js';
 import { Tests } from '../types/Tests.js';
 

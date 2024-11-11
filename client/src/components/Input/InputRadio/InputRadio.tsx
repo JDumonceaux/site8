@@ -4,7 +4,7 @@ type InputRadioProps = {
   readonly type?: 'radio';
 };
 
-const InputRadio = ({ type = 'radio' }: InputRadioProps): JSX.Element => (
+const InputRadio = ({ type = 'radio' }: InputRadioProps): React.JSX.Element => (
   <input type={type}>Not implemeneted - use radio element</input>
 );
 

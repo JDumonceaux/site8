@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputEmailProps = {
   readonly type?: 'email';
@@ -15,7 +15,8 @@ type InputEmailProps = {
 const InputEmail = ({
   type = 'email',
   ...rest
-}: InputEmailProps): JSX.Element => <InputBase type={type} {...rest} />;
+  // eslint-disable-next-line react/jsx-props-no-spreading
+}: InputEmailProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputEmail.displayName = 'InputEmail';
 

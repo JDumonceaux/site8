@@ -20,7 +20,7 @@ const LoadingWrapper = ({
   fallback,
   isLoading,
   loadingText,
-}: LoadingWrapperProps): JSX.Element => {
+}: LoadingWrapperProps): React.JSX.Element => {
   if (isLoading)
     return (
       <StyledLoadingDiv>

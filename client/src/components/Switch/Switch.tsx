@@ -11,7 +11,7 @@ export const Switch = ({
   id,
   label,
   onCheckedChange,
-}: SwitchProps): JSX.Element => (
+}: SwitchProps): React.JSX.Element => (
   <StyledWrapper>
     <StyledLabel htmlFor={id} style={{ paddingRight: 15 }}>
       {label}

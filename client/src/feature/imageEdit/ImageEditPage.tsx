@@ -1,5 +1,4 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-
 import ImageSelector from 'components/custom/ImageSelector/ImageSelector';
 import Input from 'components/Input/Input';
 import { TextArea } from 'components/Input/TextArea/TextArea';
@@ -15,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Image } from 'types/Image';
 
-const ImageEditImage = (): JSX.Element => {
+const ImageEditImage = (): React.JSX.Element => {
   const parameters = useParams();
   const {
     error,

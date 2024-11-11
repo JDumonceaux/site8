@@ -1,4 +1,4 @@
-import React, { LabelHTMLAttributes, useCallback } from 'react';
+import React, { type LabelHTMLAttributes, useCallback } from 'react';
 import { styled } from 'styled-components';
 
 type TextHelpProps = {
@@ -17,7 +17,7 @@ export const TextHelp = ({
   helpText,
   maxLength,
   showCounter = false,
-}: TextHelpProps): JSX.Element => {
+}: TextHelpProps): React.JSX.Element => {
   const getHelperText = useCallback(
     (msg: React.ReactNode | string | string[] | undefined) => {
       if (!msg) return null;

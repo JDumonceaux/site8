@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { z } from 'zod';
+
+import type { z } from 'zod';
 
 export const useForm = <T>(initialValues: T) => {
   const [formValues, setFormValues] = useState<T>(initialValues);
@@ -59,7 +60,7 @@ export const useForm = <T>(initialValues: T) => {
   };
 
   const handleClearField = (fieldName: FormKeys) => {
-    setFieldValue(fieldName as FormKeys, '');
+    setFieldValue(fieldName, '');
   };
 
   const handleClearAll = () => {
@@ -76,26 +77,6 @@ export const useForm = <T>(initialValues: T) => {
     setErrors(undefined);
   };
 
-  const getDefaultFields = (fieldName: FormKeys) => {
-    return {
-      errorText: getFieldErrors(fieldName),
-      id: `${fieldName as string}`,
-      value: formValues[fieldName],
-    };
-  };
-
-  const getDefaultPasswordFields = (fieldName: FormKeys, id: string) => {
-    return {
-      errorText: getFieldErrors(fieldName),
-      id: `${fieldName as string} - ${id}`,
-      maxLength: 60,
-      onChange: handleChange,
-      required: true,
-      showCounter: true,
-      value: formValues[fieldName],
-    };
-  };
-
   return {
     errors,
     formValues,
@@ -104,8 +85,8 @@ export const useForm = <T>(initialValues: T) => {
     getFieldValueBoolean,
     getFieldValueNumber,
     handleChange,
-    handleClearField,
     handleClearAll,
+    handleClearField,
     handleReset,
     hasError,
     isFormValid,

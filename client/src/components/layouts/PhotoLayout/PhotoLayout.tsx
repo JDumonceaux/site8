@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-const PhotoLayout = (): JSX.Element => (
+const PhotoLayout = (): React.JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <AppInitializer />
     <Suspense fallback="Loading ...">

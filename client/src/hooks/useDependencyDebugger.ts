@@ -2,9 +2,7 @@ import { useMemo, useRef } from 'react';
 
 //https://stackoverflow.com/questions/55187563/determine-which-dependency-array-variable-caused-useeffect-hook-to-fire
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const compareInputs = (inputKeys: any, oldInputs: any, newInputs: any) => {
-  //eslint-disable-next-line
   inputKeys.forEach((key: any) => {
     const oldInput = oldInputs[key];
     const newInput = newInputs[key];
@@ -14,7 +12,6 @@ const compareInputs = (inputKeys: any, oldInputs: any, newInputs: any) => {
   });
 };
 
-//eslint-disable-next-line
 export const useDependencyDebugger = (inputs: any) => {
   const oldInputsRef = useRef(inputs);
   const inputValuesArray = Object.values(inputs);

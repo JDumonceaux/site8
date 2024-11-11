@@ -3,19 +3,20 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from '../lib/utils/constants';
+import { ServiceUrl } from 'lib/utils/constants';
 import { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Page } from 'types';
 import Layout from 'components/layouts/Layout/Layout';
 import SubjectMenu from './SubjectMenu';
+import RenderHtml from './RenderHtml';
 
 type GenericPageProps = {
   readonly title?: string;
 };
 
-const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
+const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
   const x = useLocation();
   const [id, setId] = useState<string | undefined>();
   const { data, error, fetchData, isLoading } = useAxios<Page>();

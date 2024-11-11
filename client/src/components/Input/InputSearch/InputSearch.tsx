@@ -12,7 +12,7 @@ type InputSearchProps = {
 const InputSearch = ({
   type = 'text',
   ...rest
-}: InputSearchProps): JSX.Element => <InputBase type={type} {...rest} />;
+}: InputSearchProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputSearch.displayName = 'InputSearch';
 

@@ -4,7 +4,7 @@ type DividerProps = {
   readonly children: React.ReactNode;
 };
 
-export const Divider = ({ children }: DividerProps): JSX.Element => {
+export const Divider = ({ children }: DividerProps): React.JSX.Element => {
   return (
     <StyledDiv>
       <StyledLine />

@@ -9,7 +9,7 @@ import RightMenu from './RightMenu';
 import ImageItem from './ImageItem';
 import useImagesEditPage from './useImagesEditPage';
 
-const ImagesEditPage = (): React.JSX.Element => {
+const ImagesEditPage = (): React.React.JSX.Element => {
   const title = 'Edit Images';
 
   const {

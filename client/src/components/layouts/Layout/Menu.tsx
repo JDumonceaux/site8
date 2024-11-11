@@ -5,7 +5,9 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const Menu = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="menu">{children}</StyledElement>;
+const Menu = ({ children }: Props): React.JSX.Element => (
+  <StyledElement data-testid="menu">{children}</StyledElement>
+);
 
 export default Menu;
 

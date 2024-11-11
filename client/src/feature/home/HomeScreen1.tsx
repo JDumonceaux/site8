@@ -1,9 +1,10 @@
 import { MatrixBG } from 'components/Animation/MatrixBG';
-import Meta from 'components/common/Meta/Meta';
+import Meta from 'components/core/Meta/Meta';
+import Layout from 'components/layouts/Layout/Layout';
 import HomeMenu from 'feature/home/HomeMenu';
 import { styled } from 'styled-components';
 
-const HomeScreen1 = (): JSX.Element => {
+const HomeScreen1 = (): React.JSX.Element => {
   const title = 'Home';
 
   return (
@@ -46,16 +47,6 @@ const StyledWrapper = styled.div`
   flex-direction: row;
   flex-grow: 1;
   margin-top: 40px;
-`;
-const Layout = styled.main`
-  display: flex;
-  flex-direction: column;
-  width: 360px;
-  height: calc(100vh - 80px);
-  background-color: darkkhaki;
-  padding: 16px;
-  font-size: 1.1rem;
-  padding-left: 12px;
 `;
 const StyledSection = styled.section`
   flex-grow: 1;

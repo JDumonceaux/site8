@@ -6,7 +6,7 @@ import { useCallback, useEffect } from 'react';
 import { styled } from 'styled-components';
 import AuthContainer from './AuthContainer';
 
-const SignOutpPage = (): JSX.Element => {
+const SignOutpPage = (): React.JSX.Element => {
   const title = 'Sign-Out';
 
   const { authFetchAuthSession, authSignOut, isLoading, error, authorized } =

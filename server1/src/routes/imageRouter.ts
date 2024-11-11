@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 
-import { Errors, PreferHeader, Responses } from '../lib/utils/constants.js';
-import { parseRequestId } from '../lib/utils/helperUtils.js';
-import { Logger } from '../lib/utils/logger.js';
+import { Errors, PreferHeader, Responses } from 'lib/utils/constants.js';
+import { parseRequestId } from 'lib/utils/helperUtils.js';
+import { Logger } from 'lib/utils/logger.js';
 import { ImageService } from '../services/ImageService.js';
 import { ImagesService } from '../services/ImagesService.js';
 import { Image } from '../types/Image.js';

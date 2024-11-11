@@ -1,8 +1,7 @@
-import React,{ memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
 import PasswordAdornment from '../Core/Adornments/PasswordAdornment';
 import ShowAdornment from '../Core/Adornments/ShowAdornment';
-
 
 type InputPasswordProps = {
   readonly autoComplete?: 'current-password' | 'new-password' | 'off';
@@ -39,10 +38,7 @@ const InputPassword = ({
       type={showPassword ? 'text' : 'password'}
       {...rest}
       endAdornment={
-        <ShowAdornment
-          onPressedChange={handlePress}
-          pressed={showPassword}
-        />
+        <ShowAdornment onPressedChange={handlePress} pressed={showPassword} />
       }
       startAdornment={<PasswordAdornment />}
     />

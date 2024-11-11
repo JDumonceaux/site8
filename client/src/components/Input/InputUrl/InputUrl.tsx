@@ -15,7 +15,7 @@ type InputUrlProps = {
 const InputUrl = ({
   type = 'password',
   ...rest
-}: InputUrlProps): JSX.Element => <InputBase type={type} {...rest} />;
+}: InputUrlProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputUrl.displayName = 'InputUrl';
 

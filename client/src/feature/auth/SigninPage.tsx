@@ -5,7 +5,7 @@ import Meta from 'components/core/Meta/Meta';
 import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
-import { safeParse } from '../lib/utils/zodHelper';
+import { safeParse } from 'lib/utils/zodHelper';
 import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
@@ -19,7 +19,7 @@ const schema = z.object({
   password: password,
 });
 
-const SigninPage = (): JSX.Element => {
+const SigninPage = (): React.JSX.Element => {
   const title = 'Sign-In';
   const compId = useId();
 

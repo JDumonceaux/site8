@@ -14,7 +14,7 @@ type InputNumberProps = {
 const InputNumber = ({
   type = 'password',
   ...rest
-}: InputNumberProps): JSX.Element => <InputBase type={type} {...rest} />;
+}: InputNumberProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputNumber.displayName = 'InputNumber';
 

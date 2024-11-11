@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 const Header = lazy(() => import('components/core/Header/Header'));
 
-const MainLayout = (): JSX.Element => (
+const MainLayout = (): React.JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
     <AppInitializer />
     <Header

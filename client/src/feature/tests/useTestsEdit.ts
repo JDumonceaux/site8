@@ -1,4 +1,4 @@
-import { ServiceUrl } from '../lib/utils/constants';
+import { ServiceUrl } from 'lib/utils/constants';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Test } from 'types/Test';
 import { Tests } from 'types/Tests';

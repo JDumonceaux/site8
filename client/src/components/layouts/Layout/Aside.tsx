@@ -5,7 +5,9 @@ type Props = {
   readonly children?: React.ReactNode;
 };
 
-const Aside = ({ children }: Props): React.JSX.Element => <StyledElement data-testid="aside">{children}</StyledElement>;
+const Aside = ({ children }: Props): React.JSX.Element => (
+  <StyledElement data-testid="aside">{children}</StyledElement>
+);
 
 export default Aside;
 

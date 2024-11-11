@@ -16,7 +16,7 @@ export const Button2 = ({
   marginBottom,
   variant = 'primary',
   ...rest
-}: Button2Props): JSX.Element => (
+}: Button2Props): React.JSX.Element => (
   <StyledButton
     $margin={marginBottom}
     $variant={variant}

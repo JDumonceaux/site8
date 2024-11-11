@@ -19,7 +19,12 @@ const InputTel = ({
   type = 'tel',
   ...rest
 }: InputTelProps): React.JSX.Element => (
-  <InputBase autoComplete={autoComplete} startAdornment={<PhoneAdornment />} type={type} {...rest} />
+  <InputBase
+    autoComplete={autoComplete}
+    startAdornment={<PhoneAdornment />}
+    type={type}
+    {...rest}
+  />
 );
 
 InputTel.displayName = 'InputTel';

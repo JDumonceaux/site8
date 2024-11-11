@@ -1,7 +1,7 @@
 // 07-2024 Subset imports not supported by Axios
 import axios, { isCancel } from 'axios';
-import { AcceptHeader } from '../lib/utils/constants';
-import { httpErrorHandler } from '../lib/utils/errorHandler';
+import { AcceptHeader } from 'lib/utils/constants';
+import { httpErrorHandler } from 'lib/utils/errorHandler';
 import { useEffect, useRef, useState } from 'react';
 
 export const useFetch = <T>() => {

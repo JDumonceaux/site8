@@ -1,40 +1,39 @@
-import * as TooltipRadix from '@radix-ui/react-tooltip';
 import React, { memo, useEffect, useRef } from 'react';
+
+import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
 
-type TooltipBaseProps = {
-  // This should be translated
-  readonly content?: React.ReactNode;
-  readonly trigger?: React.ReactNode;
-  readonly tooltipProps?: TooltipRadix.TooltipProps;
-  readonly triggerProps?: TooltipRadix.TooltipTriggerProps;
+type TooltipBaseProps {
   readonly arrowProps?: TooltipRadix.TooltipArrowProps;
   readonly children?: never;
+  // This should be translated
+  readonly content?: React.ReactNode;
   readonly ref?: React.RefObject<HTMLElement>;
-  readonly triggerColor?: string;
   readonly tabStop?: boolean;
-};
+  readonly tooltipProps?: TooltipRadix.TooltipProps;
+  readonly trigger?: React.ReactNode;
+  readonly triggerColor?: string;
+  readonly triggerProps?: TooltipRadix.TooltipTriggerProps;
+}
 
 const TooltipBase = ({
-  content,
-  trigger,
-  tooltipProps,
-  triggerProps,
   arrowProps,
-  triggerColor,
-  tabStop = false,
+  content,
   ref,
-}: TooltipBaseProps): JSX.Element => {
+  tabStop = false,
+  tooltipProps,
+  trigger,
+  triggerColor,
+  triggerProps,
+}: TooltipBaseProps): React.JSX.Element => {
   const elementRef: React.RefObject<React.ReactNode> = useRef(null);
 
   // React doesn't support inert - so you have to do it this way
   useEffect(() => {
-    if (elementRef.current) {
-      if (!tabStop) {
+    if (elementRef.current && !tabStop) {
         //    elementRef.current.inert = true;
         elementRef.current.setAttribute('tabindex', '-1');
       }
-    }
   }, []);
 
   if (!content) {

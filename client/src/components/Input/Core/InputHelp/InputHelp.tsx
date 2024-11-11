@@ -1,15 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo } from 'react';
+
 import { styled } from 'styled-components';
 
-type Props = {
+type InputHelpProps = {
   readonly children?: never;
-  readonly helpText: React.ReactNode | string | string[];
+  readonly helpText?: React.ReactNode | string | string[];
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'id'>;
 
-const InputHelp = ({ helpText, ...rest }: Props): React.JSX.Element => {
-  if (!helpText) {
-    return null;
-  }
+const InputHelp = ({ helpText, ...rest }: InputHelpProps): React.ReactNode => {
+  if (!helpText) return null;
 
   const isString = typeof helpText === 'string' || helpText instanceof String;
   const isNumber = typeof helpText === 'number' || helpText instanceof Number;
@@ -27,7 +27,7 @@ const InputHelp = ({ helpText, ...rest }: Props): React.JSX.Element => {
 
   if (isArray) {
     if (helpText.length > 1) {
-      return <StyledDiv data-testid="input-help" {...rest}></StyledDiv>;
+      return <StyledDiv data-testid="input-help" {...rest} />;
     }
     return (
       <StyledDiv data-testid="input-help" {...rest}>

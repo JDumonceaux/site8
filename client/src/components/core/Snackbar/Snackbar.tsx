@@ -16,11 +16,11 @@ type SnackbarProps = {
  *
  * @param {Object} props - The component props.
  * @param {SnackbarVariant} props.variant - The variant of the snackbar. Defaults to SnackbarVariant.INFO.
- * @returns {JSX.Element | null} The rendered Snackbar component.
+ * @returns {React.JSX.Element | null} The rendered Snackbar component.
  */
 const Snackbar = ({
   variant = SnackbarVariant.INFO,
-}: SnackbarProps): JSX.Element | null => {
+}: SnackbarProps): React.JSX.Element | null => {
   const { closeSnackbar, snackbarData } = useSnackbar();
 
   const handleOnClose = useCallback(() => {

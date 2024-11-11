@@ -15,14 +15,14 @@ type ButtonProps = {
  * @param {ReactNode} children - The content of the button.
  * @param {string} variant - The variant of the button (default: 'primary').
  * @param {ButtonProps} rest - Additional props for the button.
- * @returns {JSX.Element} The rendered Button component.
+ * @returns {React.JSX.Element} The rendered Button component.
  */
 const Button = ({
   children,
   id,
   variant = 'primary',
   ...rest
-}: ButtonProps): JSX.Element => (
+}: ButtonProps): React.JSX.Element => (
   <StyledButton id={id} name={id} variant={variant} {...rest} type="button">
     {children}
   </StyledButton>

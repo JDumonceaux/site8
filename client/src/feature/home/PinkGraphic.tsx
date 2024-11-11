@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { keyframes, styled } from 'styled-components';
 
-const PinkGraphic = (): JSX.Element => {
+const PinkGraphic = (): React.JSX.Element => {
   const myArr20 = Array.from({ length: 20 }, (_, index) => index + 1);
   const myArr36 = Array.from({ length: 36 }, (_, index) => index + 1);
 

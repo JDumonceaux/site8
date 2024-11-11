@@ -1,10 +1,9 @@
-
 import Layout from 'components/layouts/Layout/Layout';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import React from 'react';
 
-const MusicPage = (): React.JSX.Element => {
+const MusicPage = (): React.React.JSX.Element => {
   const title = 'YouTube Videos';
 
   return (

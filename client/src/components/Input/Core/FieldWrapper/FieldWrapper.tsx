@@ -1,36 +1,35 @@
-import React, {
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-  memo,
-  useId,
-} from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { memo, useId } from 'react';
+
 import styled from 'styled-components';
-import ClearAdornment from '../Adornments/ClearAdornment';
+
 import StartAdornment from '../Adornments/StartAdornment';
-import { TooltipBaseProps } from '../Tooltip/TooltipBase';
-import LabelRow, { LabelRowProps } from '../LabelRow/LabelRow';
 import FooterRow from '../FooterRow/FooterRow';
+import LabelRow,  { type LabelRowProps } from '../LabelRow/LabelRow';
 
 type FieldWrapperProps = {
-  readonly endAdornment?: React.ReactNode;
-  readonly startAdornment?: React.ReactNode;
-  readonly showClear?: boolean;
   readonly allowedCharacters?: RegExp;
-} & LabelRowProps;
+  readonly endAdornment?: React.ReactNode;
+  readonly showClear?: boolean;
+  readonly startAdornment?: React.ReactNode;
+} &  LabelRowProps;
 
 const FieldWrapper = ({
-  endAdornment,
-  startAdornment,
-  showClear = false,
+ children, 
+  endAdornment,  
+  id,
   required,
-  children,
+  showClear = false,
+  startAdornment,
   ...rest
-}: FieldWrapperProps): JSX.Element => {
-  const tempId = rest.id || useId();
-  const props = { ...rest, id: tempId, required: required };
+}:  FieldWrapperProps) =>  {
+  const tempId  = useId();
+  const currId = (id !== null)  || tempId
+  const props = { ...rest, id: currId, required };
 
-  return (
-    <div id={tempId}>
+
+return (
+<div id={tempId}>
       <LabelRow {...props} />
       <StyledDiv>
         <StartAdornment>{startAdornment}</StartAdornment>
@@ -39,9 +38,9 @@ const FieldWrapper = ({
         {/* <EndAdornment>{endAdornment}</EndAdornment> */}
       </StyledDiv>
       <FooterRow {...rest} />
-    </div>
-  );
-};
+    </div>)
+    ;
+}
 
 FieldWrapper.displayName = 'FieldWrapper';
 

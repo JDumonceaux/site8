@@ -1,7 +1,7 @@
 import Meta from 'components/core/Meta/Meta';
 import { styled } from 'styled-components';
 
-const NotFoundPage = (): JSX.Element => (
+const NotFoundPage = (): React.JSX.Element => (
   <>
     <Meta title="Page not found" />
     <StyledDiv>

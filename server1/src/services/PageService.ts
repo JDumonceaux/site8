@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 import { mapPageMenuToPageText } from '../apis/page/mappers/mapPageMenuToPageText.js';
-import { Logger } from '../lib/utils/logger.js';
-import { cleanUpData } from '../lib/utils/objectUtil.js';
-import { safeParse } from '../lib/utils/zodHelper.js';
+import { Logger } from 'lib/utils/logger.js';
+import { cleanUpData } from 'lib/utils/objectUtil.js';
+import { safeParse } from 'lib/utils/zodHelper.js';
 import { PageEdit } from '../types/PageEdit.js';
 import { PageMenu } from '../types/PageMenu.js';
 import { Pages } from '../types/Pages.js';
