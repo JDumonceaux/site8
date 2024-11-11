@@ -1,12 +1,13 @@
-import { memo, ReactNode } from 'react';
+import { memo } from 'react';
+
 import { styled } from 'styled-components';
 
 type LoadingWrapperProps = {
-  readonly children: ReactNode;
+  readonly children: React.ReactNode;
   readonly error: null | string | undefined;
-  readonly fallback?: ReactNode;
+  readonly fallback?: React.ReactNode;
   readonly isLoading?: boolean;
-  readonly loadingText?: ReactNode;
+  readonly loadingText?: React.ReactNode;
 };
 
 // If the progress bar is describing the loading progress of a particular region of a page,

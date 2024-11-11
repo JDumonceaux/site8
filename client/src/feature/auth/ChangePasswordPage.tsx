@@ -25,7 +25,7 @@ const schema = z
     path: ['confirmPassword'],
   });
 
-const ChangePasswordPage = (): React.React.JSX.Element => {
+const ChangePasswordPage = (): React.JSX.Element => {
   const title = 'Change Password';
   const compId = useId();
 

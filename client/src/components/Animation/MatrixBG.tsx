@@ -1,15 +1,16 @@
 import { useState } from 'react';
+
 import { Canvas3 } from './Canvas3';
 
 // https://medium.com/@ruse.marshall/converting-a-vanilla-js-canvas-animation-to-react-78443bad6d7b
-export function MatrixBG(): React.JSX.Element {
+export const MatrixBG = (): React.JSX.Element => {
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
-  const [canvasWidth, setCanvasWidth] = useState<number | null>(null);
+  const [canvasWidth, setCanvasWidth] = useState<null | number>(null);
 
   // Setting up the letters
   const chars =
     'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
-  const letters = chars.split('');
+  const letters = [...chars];
   // Font-size remains constant, so similarly move outside draw
   const fontSize = 10;
   // Setting up the columns
@@ -30,7 +31,7 @@ export function MatrixBG(): React.JSX.Element {
         const text = letters[Math.floor(Math.random() * letters.length)];
         ctx.fillStyle = '#0f0';
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        drops[i]++;
+        drops[i] += 1;
         if (drops[i] * fontSize > ctx.canvas.height && Math.random() > 0.95) {
           drops[i] = 0;
         }
@@ -49,8 +50,8 @@ export function MatrixBG(): React.JSX.Element {
   return (
     <Canvas3
       draw={draw}
-      establishContext={establishContext}
       establishCanvasWidth={establishCanvasWidth}
+      establishContext={establishContext}
     />
   );
-}
+};

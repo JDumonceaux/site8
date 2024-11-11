@@ -700,7 +700,8 @@ export default [
       '@typescript-eslint/no-invalid-this': 'error',
       '@typescript-eslint/no-invalid-void-type': 'error',
       '@typescript-eslint/no-loop-func': 'error',
-      '@typescript-eslint/no-magic-numbers': 'warn',
+      // Too aggressive
+      '@typescript-eslint/no-magic-numbers': 'off',
       '@typescript-eslint/no-meaningless-void-operator': 'error',
       '@typescript-eslint/no-mixed-enums': 'error',
       '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',

@@ -1,90 +1,95 @@
-import * as DialogUI from '@radix-ui/react-dialog';
 import React, {
-  ButtonHTMLAttributes,
-  DialogHTMLAttributes,
   memo,
   useLayoutEffect,
   useRef,
   useState,
+  type ButtonHTMLAttributes,
+  type DialogHTMLAttributes,
 } from 'react';
+
+import * as DialogUI from '@radix-ui/react-dialog';
 import styled, { css, keyframes } from 'styled-components';
 
-// ToDo
 // Move
 // Resize
 // Scroll
 const VARIANTS = Object.freeze({
+  default: 'default',
+  error: 'error',
   info: 'info',
   success: 'success',
   warning: 'warning',
-  error: 'error',
-  default: 'default',
 } as const);
 
 const SIZES = Object.freeze({
-  sm: 'sm',
-  md: 'md',
   lg: 'lg',
+  md: 'md',
+  sm: 'sm',
 } as const);
 
 type DialogProps = {
-  readonly label: React.ReactNode;
-  readonly isOpen: boolean;
-  readonly isModal?: boolean;
-  readonly isAutofocusClose?: boolean;
+  readonly buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
   readonly children: React.ReactNode;
+  readonly footer?: React.ReactNode;
+  readonly footerProps?: React.HTMLAttributes<HTMLDivElement>;
+  readonly isAutofocusClose?: boolean;
+  readonly isModal?: boolean;
+  readonly isOpen: boolean;
+  readonly label: React.ReactNode;
+  readonly labelProps?: React.HTMLAttributes<HTMLLabelElement>;
+  readonly onClose: () => void;
   readonly size?: keyof typeof SIZES;
   readonly variant?: keyof typeof VARIANTS;
-  readonly footer?: React.ReactNode;
-  readonly buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
-  readonly labelProps?: React.HTMLAttributes<HTMLLabelElement>;
-  readonly footerProps?: React.HTMLAttributes<HTMLDivElement>;
-  readonly onClose: () => void;
 } & DialogHTMLAttributes<HTMLDialogElement>;
 
 const getIcon = (variant: keyof typeof VARIANTS) => {
   switch (variant) {
-    case VARIANTS.info:
+    case VARIANTS.error: {
+      return (
+        <StyledIcon $variant={variant} className="fa-solid fa-circle-xmark" />
+      );
+    }
+    case VARIANTS.info: {
       return (
         <StyledIcon
           $variant={variant}
           className="fa-solid fa-circle-exclamation"
         />
       );
-    case VARIANTS.success:
+    }
+    case VARIANTS.success: {
       return (
         <StyledIcon $variant={variant} className="fa-solid fa-circle-check" />
       );
-    case VARIANTS.warning:
+    }
+    case VARIANTS.warning: {
       return (
         <StyledIcon
           $variant={variant}
           className="fa-solid fa-triangle-exclamation"
         />
       );
-    case VARIANTS.error:
-      return (
-        <StyledIcon $variant={variant} className="fa-solid fa-circle-xmark" />
-      );
+    }
     case VARIANTS.default:
-    default:
+    default: {
       return null;
+    }
   }
 };
 
 const Dialog = ({
-  label,
-  isOpen,
-  isModal = true,
-  isAutofocusClose = true,
+  buttonProps,
   children,
+  footer,
+  footerProps,
+  isAutofocusClose = true,
+  isModal = true,
+  isOpen,
+  label,
+  labelProps,
+  onClose,
   size = 'md',
   variant = 'default',
-  footer,
-  buttonProps,
-  labelProps,
-  footerProps,
-  onClose,
   ...rest
 }: DialogProps) => {
   const ref = useRef<HTMLDialogElement>(null);
@@ -96,7 +101,7 @@ const Dialog = ({
     } else if (el !== null) {
       el.close();
     }
-  }, [isOpen]);
+  }, [isModal, isOpen]);
 
   // Resize events
   const [drag, setDrag] = useState({
@@ -114,8 +119,8 @@ const Dialog = ({
   };
 
   const [dims, setDims] = useState({
-    w: 200,
     h: 200,
+    w: 200,
   });
 
   const resizeFrame = (e) => {
@@ -127,7 +132,7 @@ const Dialog = ({
       const newH = y > e.clientY ? dims.h + yDiff : dims.h - yDiff;
 
       setDrag({ ...drag, x: e.clientX, y: e.clientY });
-      setDims({ w: newW, h: newH });
+      setDims({ h: newH, w: newW });
     }
   };
 
@@ -136,20 +141,20 @@ const Dialog = ({
   };
 
   const boxStyle = {
-    width: `${dims.x}px`,
     height: `${dims.y}px`,
+    width: `${dims.x}px`,
   };
 
   return (
     <DialogUI.Root>
       <StyledDialog
-        draggable
-        data-testid="Dialog"
-        role="dialog"
         aria-labelledby="label"
+        data-testid="Dialog"
+        draggable
+        role="dialog"
         {...rest}
-        $variant={variant}
-        $size={size}>
+        $size={size}
+        $variant={variant}>
         <Content>
           <div>
             <LabelRow>
@@ -163,9 +168,9 @@ const Dialog = ({
           <Footer {...footerProps}>{footer}</Footer>
         </Content>
         <CloseButton
-          onClick={onClose}
+          aria-label={buttonProps?.['aria-label']}
           autoFocus={isAutofocusClose}
-          aria-label={buttonProps?.['aria-label']}>
+          onClick={onClose}>
           X
         </CloseButton>
       </StyledDialog>
@@ -196,55 +201,64 @@ const fadeIn = keyframes`
 `;
 
 const StyledDialog = styled(DialogUI.Portal)<{
-  $variant?: keyof typeof VARIANTS;
   $size?: keyof typeof SIZES;
+  $variant?: keyof typeof VARIANTS;
 }>`
   all: revert;
   box-sizing: border-box;
   border: unset;
   ${(props) => {
     switch (props.$variant) {
-      case VARIANTS.info:
-        return css`
-          border-top: 8px solid var(--status-info, #0052ff);
-        `;
-      case VARIANTS.success:
-        return css`
-          border-top: 8px solid var(--status-success, #21a67a);
-        `;
-      case VARIANTS.warning:
-        return css`
-          border-top: 8px solid var(--status-warning, #ff000f);
-        `;
-      case VARIANTS.error:
+      case VARIANTS.error: {
         return css`
           border-top: 8px solid var(--status-error, #ef3934);
         `;
+      }
+      case VARIANTS.info: {
+        return css`
+          border-top: 8px solid var(--status-info, #0052ff);
+        `;
+      }
+      case VARIANTS.success: {
+        return css`
+          border-top: 8px solid var(--status-success, #21a67a);
+        `;
+      }
+      case VARIANTS.warning: {
+        return css`
+          border-top: 8px solid var(--status-warning, #ff000f);
+        `;
+      }
       case VARIANTS.default:
-      default:
+      default: {
         return css`
           border-top: 8px solid var(-text-primary, #1f1f1f);
         `;
+      }
     }
   }}
   ${(props) => {
     switch (props.$size) {
-      case SIZES.sm:
-        return css`
-          max-width: 320px;
-        `;
-      case SIZES.md:
-        return css`
-          max-width: 480px;
-        `;
-      case SIZES.lg:
+      case SIZES.lg: {
         return css`
           max-width: 640px;
         `;
-      default:
+      }
+      case SIZES.md: {
         return css`
           max-width: 480px;
         `;
+      }
+      case SIZES.sm: {
+        return css`
+          max-width: 320px;
+        `;
+      }
+      default: {
+        return css`
+          max-width: 480px;
+        `;
+      }
     }
   }}
   border-radius: 10px;
@@ -300,27 +314,32 @@ const StyledIcon = styled.i<{
   margin-right: 8px;
   ${(props) => {
     switch (props.$variant) {
-      case VARIANTS.info:
-        return css`
-          color: var(--status-info, #0052ff);
-        `;
-      case VARIANTS.success:
-        return css`
-          color: var(--status-info, #21a67a);
-        `;
-      case VARIANTS.warning:
-        return css`
-          color: var(--status-warning, #ff000f);
-        `;
-      case VARIANTS.error:
+      case VARIANTS.error: {
         return css`
           color: var(--status-error, #ef3934);
         `;
+      }
+      case VARIANTS.info: {
+        return css`
+          color: var(--status-info, #0052ff);
+        `;
+      }
+      case VARIANTS.success: {
+        return css`
+          color: var(--status-info, #21a67a);
+        `;
+      }
+      case VARIANTS.warning: {
+        return css`
+          color: var(--status-warning, #ff000f);
+        `;
+      }
       case VARIANTS.default:
-      default:
+      default: {
         return css`
           color: var(-text-primary, #1f1f1f);
         `;
+      }
     }
   }}
 `;

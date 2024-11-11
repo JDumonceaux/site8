@@ -1,7 +1,8 @@
+import { memo, useCallback } from 'react';
+
 import { IconButton } from 'components/form/IconButton/IconButton';
 import { CloseIcon } from 'components/icons/CloseIcon';
 import useSnackbar from 'hooks/useSnackbar';
-import { memo, useCallback } from 'react';
 import { styled } from 'styled-components';
 import { SnackbarVariant } from 'types';
 
@@ -20,7 +21,7 @@ type SnackbarProps = {
  */
 const Snackbar = ({
   variant = SnackbarVariant.INFO,
-}: SnackbarProps): React.JSX.Element | null => {
+}: SnackbarProps): null | React.JSX.Element => {
   const { closeSnackbar, snackbarData } = useSnackbar();
 
   const handleOnClose = useCallback(() => {
@@ -35,9 +36,9 @@ const Snackbar = ({
     <StyledDialog
       data-testid="snackbar"
       onClose={handleOnClose}
-      open={snackbarData?.isOpen}
+      open={snackbarData.isOpen}
       variant={variant}>
-      <div>{snackbarData?.contents}</div>
+      <div>{snackbarData.contents}</div>
       <IconButton aria-label="close" onClick={handleOnClose}>
         <CloseIcon ariaHidden focusable={false} />
       </IconButton>

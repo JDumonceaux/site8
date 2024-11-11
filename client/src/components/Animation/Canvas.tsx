@@ -1,10 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 // https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
 
 import useCanvas from './useCanvas';
 
 type CanvasProps = {
   // Define the props for the Canvas component here
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 };
 
 const Canvas = ({ ...rest }: CanvasProps) => {
@@ -27,12 +27,7 @@ const Canvas = ({ ...rest }: CanvasProps) => {
 
   const canvasRef = useCanvas(draw);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      {...rest}
-    />
-  );
+  return <canvas ref={canvasRef} {...rest} />;
 };
 
 export default Canvas;

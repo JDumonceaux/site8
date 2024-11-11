@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useCanvas = (draw: any) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -11,14 +10,14 @@ const useCanvas = (draw: any) => {
     let animationFrameId: number;
 
     const render = () => {
-      frameCount++;
+      frameCount += 1;
       draw(context, frameCount);
-      animationFrameId = window.requestAnimationFrame(render);
+      animationFrameId = globalThis.requestAnimationFrame(render);
     };
     render();
 
     return () => {
-      window.cancelAnimationFrame(animationFrameId);
+      globalThis.cancelAnimationFrame(animationFrameId);
     };
   }, [draw]);
 

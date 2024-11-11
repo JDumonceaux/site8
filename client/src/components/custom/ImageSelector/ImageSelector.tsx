@@ -26,7 +26,7 @@ type ImageSelectorProps = {
  */
 const ImageSelector = ({
   onSelectImage,
-}: ImageSelectorProps): React.React.JSX.Element => {
+}: ImageSelectorProps): React.JSX.Element => {
   const { setShowUnmatched, showUnmatched } = useAppSettings();
   const { data, error, fetchData, isLoading } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();

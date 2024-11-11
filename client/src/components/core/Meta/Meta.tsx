@@ -1,10 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 
+// eslint-disable-next-line no-warning-comments
 // TODO: Polish up - handle missing items, keywords
 type MetaProps = {
   readonly description?: string;
   readonly name?: string;
   readonly title?: string;
+  // eslint-disable-next-line no-inline-comments
   readonly type?: 'article' | 'book' | 'profile' | 'website'; // See https://ogp.me/#types for more
 };
 

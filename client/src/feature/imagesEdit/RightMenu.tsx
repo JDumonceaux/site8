@@ -18,7 +18,7 @@ const RightMenu = ({
   currentFilter,
   onClick,
   onFilterSelect,
-}: Props): React.React.JSX.Element => {
+}: Props): React.JSX.Element => {
   const { data, fetchData, isLoading, error } = useImageFolder();
 
   useEffect(() => {

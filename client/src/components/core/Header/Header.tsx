@@ -1,7 +1,7 @@
+import React from 'react';
 import { MenuIcon } from 'components/icons/MenuIcon';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import { APP_NAME } from 'lib/utils/constants';
-import React from 'react';
 import { forwardRef, memo } from 'react';
 import { styled } from 'styled-components';
 
@@ -19,10 +19,7 @@ type HeaderProps = {
  * @returns {React.JSX.Element} The rendered header component.
  */
 const Header = forwardRef<HTMLDivElement, HeaderProps>(
-  (
-    { avatar, includeMenu = false }: HeaderProps,
-    ref,
-  ): React.React.JSX.Element => {
+  ({ avatar, includeMenu = false }: HeaderProps, ref): React.JSX.Element => {
     return (
       <StyledHeader data-testid="header" ref={ref}>
         <div>

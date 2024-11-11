@@ -13,7 +13,7 @@ import { MenuItem } from 'types';
 import Layout from 'components/layouts/Layout/Layout';
 import usePagesEdit from './usePagesEdit';
 
-const PagesEditPage = (): React.React.JSX.Element => {
+const PagesEditPage = (): React.JSX.Element => {
   const {
     data,
     error,

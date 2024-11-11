@@ -10,7 +10,7 @@ type TextAreaProps = {
 export const TextArea = ({
   ref,
   ...rest
-}: TextAreaProps): React.React.JSX.Element => {
+}: TextAreaProps): React.JSX.Element => {
   const tempId = rest.id || 'text-area';
   return (
     <FieldLabel id={tempId} {...rest} label={rest.label}>

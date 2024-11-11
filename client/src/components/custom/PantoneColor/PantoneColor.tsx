@@ -7,7 +7,7 @@ const PANTONE_LINK = 'https://www.pantone.com/color-of-the-year/2023';
  *
  * @returns The JSX element representing the PantoneColor component.
  */
-const PantoneColor = (): React.React.JSX.Element => (
+const PantoneColor = (): React.JSX.Element => (
   <WrapperDiv>
     This page is inspired by the{' '}
     <a href={PANTONE_LINK}>2023 Pantone&#174; Color of the Year</a>

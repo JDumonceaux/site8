@@ -1,9 +1,11 @@
 import './text3D.css';
 
-export default function () {
+const Text3D = () => {
   return (
     <div className="stage">
       <div className="text3D">Chicago</div>
     </div>
   );
-}
+};
+
+export default Text3D;

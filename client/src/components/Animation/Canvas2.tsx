@@ -10,20 +10,19 @@ export const Canvas2 = ({
   backgroundColor = '#000',
   height = '100%',
   width = '100%',
-}: Canvas2Props): React.React.JSX.Element => {
+}: Canvas2Props): React.JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
   const resizeCanvas = (context: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     canvas: any;
     scale: (arg0: number, arg1: number) => void;
   }) => {
-    const canvas = context.canvas;
-    const { width, height } = canvas.getBoundingClientRect();
+    const { canvas } = context;
+    const { height, width } = canvas.getBoundingClientRect();
 
     if (canvas.width !== width || canvas.height !== height) {
-      const { devicePixelRatio: ratio = 1 } = window;
+      const { devicePixelRatio: ratio = 1 } = globalThis;
       canvas.width = width * ratio;
       canvas.height = height * ratio;
       context.scale(ratio, ratio);
@@ -59,19 +58,19 @@ export const Canvas2 = ({
       //Our draw came here
       const render = () => {
         resizeCanvas(context);
-        frameCount++;
+        frameCount += 1;
         draw(frameCount);
-        animationFrameId = window.requestAnimationFrame(render);
+        animationFrameId = globalThis.requestAnimationFrame(render);
       };
       render();
     }
     return () => {
-      window.cancelAnimationFrame(animationFrameId);
+      globalThis.cancelAnimationFrame(animationFrameId);
     };
   }, [draw, context]);
 
   return (
-    <canvas ref={canvasRef} style={{ width, height, backgroundColor }}>
+    <canvas ref={canvasRef} style={{ backgroundColor, height, width }}>
       Canvas not supported
     </canvas>
   );

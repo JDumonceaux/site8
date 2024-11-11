@@ -14,7 +14,7 @@ type PageEditFormProps = {
 };
 
 const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
-  ({ data }, reference): React.React.JSX.Element => {
+  ({ data }, reference): React.JSX.Element => {
     const {
       formValues,
       getDefaultProps,

@@ -8,7 +8,7 @@ import { ServiceUrl } from 'lib/utils/constants';
 import React, { useDeferredValue, useEffect } from 'react';
 import { Photos } from 'types';
 
-const PhotoPage = (): React.React.JSX.Element => {
+const PhotoPage = (): React.JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Photos>();
   const deferredData = useDeferredValue(data);
 

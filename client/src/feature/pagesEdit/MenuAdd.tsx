@@ -10,7 +10,7 @@ import Input from 'components/Input/Input';
  *
  * @returns The JSX element representing the MenuAdd component.
  */
-const MenuAdd = (): React.React.JSX.Element => {
+const MenuAdd = (): React.JSX.Element => {
   const { setMessage } = useSnackbar();
 
   const {

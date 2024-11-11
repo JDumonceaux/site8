@@ -1,5 +1,6 @@
-import * as RadixAvatar from '@radix-ui/react-avatar';
 import { memo } from 'react';
+
+import * as RadixAvatar from '@radix-ui/react-avatar';
 import { styled } from 'styled-components';
 
 type AvatarProps = {
@@ -18,6 +19,7 @@ const SytledAvatar = ({
   src,
   ...rest
 }: AvatarProps): React.JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <StyledRoot data-testid={id} id={id} {...rest}>
     <StyledImage alt={alt} src={src} />
     <StyledFallback delayMs={delayMs}>{children}</StyledFallback>

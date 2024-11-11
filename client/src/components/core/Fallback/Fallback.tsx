@@ -1,5 +1,6 @@
-import PageTitle from 'components/core/PageTitle/PageTitle';
 import { memo } from 'react';
+
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import { styled } from 'styled-components';
 
 /**
@@ -9,13 +10,13 @@ import { styled } from 'styled-components';
  */
 const Fallback = (): React.JSX.Element => {
   return (
-    <div aria-busy="true" data-testid="footer" role="status">
+    <output aria-busy="true" data-testid="footer">
       <PageTitle title="Loading" />
-      {[...Array(5)].map((_, index) => (
+      {Array.from({ length: 5 }).map((_, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <LoadingLine key={index} />
       ))}
-    </div>
+    </output>
   );
 };
 

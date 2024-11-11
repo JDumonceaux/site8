@@ -1,5 +1,6 @@
 import 'components/modals/core/main.css';
-import React, { ButtonHTMLAttributes, memo } from 'react';
+import React, { type ButtonHTMLAttributes, memo } from 'react';
+
 import styled, { css } from 'styled-components';
 
 const VARIANTS = Object.freeze({
@@ -35,15 +36,15 @@ const Button = ({
   variant = 'primary',
   ...rest
 }: ButtonProps) => (
-    <StyledButton
-      data-testid="Button"
-      type={type}
-      {...rest}
-      $size={size}
-      $variant={variant}>
-      {children}
-    </StyledButton>
-  );
+  <StyledButton
+    data-testid="Button"
+    type={type}
+    {...rest}
+    $size={size}
+    $variant={variant}>
+    {children}
+  </StyledButton>
+);
 
 Button.displayName = 'Button';
 
@@ -56,50 +57,61 @@ const StyledButton = styled.button<{
   border-radius: 50%;
   ${(props) => {
     switch (props.$variant) {
-      case VARIANTS.secondary:
+      case VARIANTS.discreet: {
+        return css`
+          background-color: var(--background-color-discreet, #ffffff);
+        `;
+      }
+      case VARIANTS.ghost: {
+        return css`
+          background-color: var(--background-color-ghost, #ffffff);
+        `;
+      }
+      case VARIANTS.primary: {
+        throw new Error('Not implemented yet: undefined case');
+      }
+      case VARIANTS.secondary: {
         return css`
           color: var(--text-color-secondary, #000000);
           background-color: var(--background-color-secondary, #000014);
         `;
-      case VARIANTS.ghost:
-        return css`
-          background-color: var(--background-color-ghost, #ffffff);
-        `;
-      case VARIANTS.discreet:
-        return css`
-          background-color: var(--background-color-discreet, #ffffff);
-        `;
-      case VARIANTS.primary:
-      default:
+      }
+      default: {
         return css`
           color: var(--text-color-primary, #ffffff);
           background-color: var(--background-color-primary, #000000);
         `;
+      }
     }
   }}
   ${(props) => {
     switch (props.$size) {
-      case SIZES.xs:
-        return css`
-          max-height: 24px;
-        `;
-      case SIZES.sm:
-        return css`
-          max-height: 32px;
-        `;
-      case SIZES.lg:
+      case SIZES.lg: {
         return css`
           max-height: 48px;
         `;
-      case SIZES.xl:
+      }
+      case SIZES.sm: {
+        return css`
+          max-height: 32px;
+        `;
+      }
+      case SIZES.xl: {
         return css`
           max-height: 56px;
         `;
+      }
+      case SIZES.xs: {
+        return css`
+          max-height: 24px;
+        `;
+      }
       case SIZES.md:
-      default:
+      default: {
         return css`
           max-height: 40px;
         `;
+      }
     }
   }}
 `;
