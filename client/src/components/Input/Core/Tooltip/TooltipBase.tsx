@@ -1,9 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo, useEffect, useRef } from 'react';
 
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
 
-type TooltipBaseProps {
+type TooltipBaseProps = {
   readonly arrowProps?: TooltipRadix.TooltipArrowProps;
   readonly children?: never;
   // This should be translated
@@ -14,7 +15,7 @@ type TooltipBaseProps {
   readonly trigger?: React.ReactNode;
   readonly triggerColor?: string;
   readonly triggerProps?: TooltipRadix.TooltipTriggerProps;
-}
+};
 
 const TooltipBase = ({
   arrowProps,
@@ -25,19 +26,19 @@ const TooltipBase = ({
   trigger,
   triggerColor,
   triggerProps,
-}: TooltipBaseProps): React.JSX.Element => {
+}: TooltipBaseProps): React.ReactNode => {
   const elementRef: React.RefObject<React.ReactNode> = useRef(null);
 
   // React doesn't support inert - so you have to do it this way
   useEffect(() => {
     if (elementRef.current && !tabStop) {
-        //    elementRef.current.inert = true;
-        elementRef.current.setAttribute('tabindex', '-1');
-      }
+      //    elementRef.current.inert = true;
+      elementRef.current.setAttribute('tabindex', '-1');
+    }
   }, []);
 
   if (!content) {
-    return <></>;
+    return null;
   }
 
   return (

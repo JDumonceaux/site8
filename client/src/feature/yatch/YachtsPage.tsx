@@ -1,10 +1,10 @@
-import Meta from 'components/core/Meta/Meta';
-
-import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Suspense } from 'react';
-import { styled } from 'styled-components';
+
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
 import SubjectMenu from 'feature/generic/SubjectMenu';
+import { styled } from 'styled-components';
 
 const boxStyle = '56.25% 0 0 0';
 
@@ -103,7 +103,7 @@ const YachtsPage = (): React.JSX.Element => {
           {/* Art of Life */}
           <div>
             <StyledTitle>Art of Life Design</StyledTitle>
-            <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
+            <div style={{ padding: boxStyle, position: 'relative' }}>
               <iframe
                 allow="autoplay; fullscreen; picture-in-picture"
                 src="https://player.vimeo.com/video/290705961?h=9cfff6a399"
@@ -124,7 +124,7 @@ const YachtsPage = (): React.JSX.Element => {
           {/* Nature */}
           <div>
             <StyledTitle>Nature Design</StyledTitle>
-            <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
+            <div style={{ padding: boxStyle, position: 'relative' }}>
               <iframe
                 allow="autoplay; fullscreen; picture-in-picture"
                 src="https://player.vimeo.com/video/235907283?h=35a2fec5db"
@@ -145,7 +145,7 @@ const YachtsPage = (): React.JSX.Element => {
           {/* Zen */}
           <div>
             <StyledTitle>Zen Design</StyledTitle>
-            <div style={{ padding: `${boxStyle}`, position: 'relative' }}>
+            <div style={{ padding: boxStyle, position: 'relative' }}>
               <iframe
                 allow="autoplay; fullscreen; picture-in-picture"
                 src="https://player.vimeo.com/video/184474900?h=bef5fe895d"

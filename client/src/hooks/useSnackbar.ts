@@ -1,8 +1,11 @@
 import { useCallback } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/AppSlice';
-import { AppDispatch, RootState } from 'store/Store';
-import { Snackbar } from 'types/Snackbar';
+import type { AppDispatch, RootState } from 'store/Store';
+import type { Snackbar } from 'types/Snackbar';
+
+const DEFAULT_DURATION = 5000;
 
 const initialState: Snackbar = {
   contents: null,
@@ -33,7 +36,7 @@ const useSnackbar = () => {
   );
 
   const setMessage = useCallback(
-    (contents: Snackbar['contents'], duration = 5000) => {
+    (contents: Snackbar['contents'], duration = DEFAULT_DURATION) => {
       updateSnackbar({
         contents,
         isOpen: true,

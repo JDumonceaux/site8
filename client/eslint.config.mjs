@@ -532,7 +532,8 @@ export default [
       'react/jsx-no-constructed-context-values': 'error',
 
       'react/jsx-no-leaked-render': 'error',
-      'react/jsx-no-literals': 'error',
+      // This is helpful if you're using I18n for translations, but not necessary
+      'react/jsx-no-literals': 'off',
       'react/jsx-no-script-url': 'error',
       'react/jsx-no-useless-fragment': 'error',
       // 'react/jsx-one-expression-per-line': 'error',
