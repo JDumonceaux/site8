@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo, type LabelHTMLAttributes } from 'react';
 
 import * as Label from '@radix-ui/react-label';

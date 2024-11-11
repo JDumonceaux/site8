@@ -1,29 +1,33 @@
 import React from 'react';
+
 import { IconMenu } from 'components/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
-import { styled } from 'styled-components';
 import Input from 'components/Input/Input';
-import { ImageItemForm } from './useImagesEditPage';
+import { styled } from 'styled-components';
+
+import type { ImageItemForm } from './useImagesEditPage';
 
 type Props = {
-  readonly item: ImageItemForm;
-  readonly onDelete: (localId: number) => void;
+  readonly artistData: string[];
   readonly getFieldValue: (
     localId: number,
     fieldName: keyof ImageItemForm,
   ) => string;
+  readonly item: ImageItemForm;
   readonly onChange: (
     localId: number,
     fieldName: keyof ImageItemForm,
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
+  readonly onDelete: (localId: number) => void;
 };
 
 const ImageItem = ({
-  item,
-  onDelete,
+  artistData,
   getFieldValue,
+  item,
   onChange,
+  onDelete,
 }: Props): React.JSX.Element => {
   const handleOnDelete = (localId: number) => {
     onDelete(localId);
@@ -34,8 +38,9 @@ const ImageItem = ({
     fieldName: keyof ImageItemForm,
   ) => ({
     id: `${fieldName as string}-(${localId})`,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-      onChange(localId, fieldName, e),
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange(localId, fieldName, e);
+    },
     value: getFieldValue(localId, fieldName),
   });
 
@@ -73,8 +78,17 @@ const ImageItem = ({
         />
         <Input.Text
           {...getDefaultProps(item.localId, 'artist')}
+          list="artists"
           placeholder="Artist"
         />
+        {artistData.length > 0 ? (
+          <datalist id="artists">
+            {artistData.map((artist) => (
+              <option key={artist} value={artist} />
+            ))}
+          </datalist>
+        ) : null}
+
         <Input.Text
           {...getDefaultProps(item.localId, 'year')}
           placeholder="Year"
@@ -84,17 +98,20 @@ const ImageItem = ({
           placeholder="Tags"
         />
         <IconMenu>
-          <IconMenuItem onClick={() => handleOnDelete(item.localId)}>
+          <IconMenuItem
+            onClick={() => {
+              handleOnDelete(item.localId);
+            }}>
             Delete
           </IconMenuItem>
           <IconMenuItem>{item.id}</IconMenuItem>
         </IconMenu>
         <Input.Checkbox
           id="selected"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onChange(item.localId, 'isSelected', e);
+          }}
           value={getFieldValue(item.localId, 'isSelected')}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            onChange(item.localId, 'isSelected', e)
-          }
         />
       </StyledOuterRow>
     </StyledRow>

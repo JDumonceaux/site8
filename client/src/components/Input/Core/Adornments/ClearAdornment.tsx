@@ -7,15 +7,14 @@ import { styled } from 'styled-components';
 
 import Tooltip from '../Tooltip/TooltipBase';
 
-
-interface Props {
+type Props = {
   readonly ariaLabel?: string;
   readonly icon?: React.ReactNode;
   readonly iconProps?: IconProps;
   readonly label?: string;
   readonly onClick: () => void;
   readonly ref?: React.Ref<SVGSVGElement>;
-}
+};
 
 const ClearAdornment = ({
   ariaLabel = 'clear contents',
@@ -33,7 +32,7 @@ const ClearAdornment = ({
     trigger={
       <StyledTrigger onClick={onClick}>
         <AccessibleIcon label={label}>
-          {icon ? icon : <Icon {...iconProps} ref={ref} />}
+          {icon ?? <Icon {...iconProps} ref={ref} />}
         </AccessibleIcon>
       </StyledTrigger>
     }

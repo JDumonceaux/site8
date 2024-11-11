@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
+
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { EyeNoneIcon, EyeOpenIcon } from '@radix-ui/react-icons';
-import { IconProps } from '@radix-ui/react-icons/dist/types';
+import type { IconProps } from '@radix-ui/react-icons/dist/types';
 import * as Toggle from '@radix-ui/react-toggle';
-import { ToggleProps } from '@radix-ui/react-toggle';
+import type { ToggleProps } from '@radix-ui/react-toggle';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 type Props = {

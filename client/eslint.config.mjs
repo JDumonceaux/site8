@@ -5,7 +5,8 @@ import pluginTypescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import configPrettier from 'eslint-config-prettier';
 import pluginCheckFile from 'eslint-plugin-check-file';
-import importPlugin from 'eslint-plugin-import';
+// There is no default export for this plug-in, so import it this way.
+import * as  importPlugin from 'eslint-plugin-import';
 import pluginJest from 'eslint-plugin-jest';
 import pluginA11y from 'eslint-plugin-jsx-a11y';
 import pluginPerfectionist from 'eslint-plugin-perfectionist';
@@ -256,7 +257,9 @@ export default [
       'no-extra-parens': 'off',
       'no-extra-semi': 'off',
       'no-floating-decimal': 'off',
-      'no-implicit-coercion': 'error',
+
+      // Too restrictive
+      'no-implicit-coercion': 'off',
 
       'no-implicit-globals': 'error',
 
@@ -542,9 +545,10 @@ export default [
       'react/jsx-props-no-spread-multi': 'error',
       // 'react/jsx-props-no-multi-spaces': 'error',
       // 'react/jsx-props-no-spread-multi': 'error',
+      // Too restrictive
       // This is an anit-pattern and can cause unneeded re-renders
       // However, it is useful for passing large numbers of props to children
-      'react/jsx-props-no-spreading': 'warn',
+      'react/jsx-props-no-spreading': 'off',
       // 'react/jsx-sort-default-props': 'error',
       'react/jsx-sort-props': 'error',
       'react/jsx-space-before-closing': 'off',
@@ -625,6 +629,7 @@ export default [
       'unicorn/filename-case': 'off',
       // Incorrectly prevents the use of null as a component return (i.e. render nothing)
       'unicorn/no-null': 'off',
+      'unicorn/prefer-spread': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'vars-on-top': 'error',
       'wrap-iife': 'off',
@@ -634,8 +639,12 @@ export default [
       'yield-star-spacing': 'off',
       yoda: 'error',
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
   },
-
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {

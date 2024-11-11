@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo } from 'react';
 
 import Tooltip, { type TooltipBaseProps } from '../TooltipBase';

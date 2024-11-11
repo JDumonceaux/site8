@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, {
   type HTMLInputTypeAttribute,
   type InputHTMLAttributes,
@@ -7,6 +6,7 @@ import React, {
   useId,
 } from 'react';
 
+import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
 
 import FieldWrapper, {
@@ -78,8 +78,8 @@ const InputBase = ({
 
   ...rest
 }: InputBaseProps): React.JSX.Element => {
-  const tempId = id || useId();
-  const props = { ...rest, id: tempId, required };
+  const currId = useGetId(id);
+  const props = { ...rest, id: currId, required };
   const localRef = inputRef || useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,7 +90,7 @@ const InputBase = ({
   return (
     <FieldWrapper {...props}>
       <StyledInput
-        key={tempId}
+        key={currId}
         type={type}
         value={value}
         {...props}

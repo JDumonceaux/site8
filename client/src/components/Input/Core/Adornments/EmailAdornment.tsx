@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
+
 import { EnvelopeClosedIcon as Icon } from '@radix-ui/react-icons';
-import { IconProps } from '@radix-ui/react-icons/dist/types';
+import type { IconProps } from '@radix-ui/react-icons/dist/types';
 
 type Props = {
   readonly children?: never;

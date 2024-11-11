@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo, useEffect, useRef } from 'react';
 
 import * as TooltipRadix from '@radix-ui/react-tooltip';

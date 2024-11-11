@@ -1,35 +1,33 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { memo, useId } from 'react';
+import React, { memo } from 'react';
 
+import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
 
 import StartAdornment from '../Adornments/StartAdornment';
 import FooterRow from '../FooterRow/FooterRow';
-import LabelRow,  { type LabelRowProps } from '../LabelRow/LabelRow';
+import LabelRow, { type LabelRowProps } from '../LabelRow/LabelRow';
 
 type FieldWrapperProps = {
   readonly allowedCharacters?: RegExp;
   readonly endAdornment?: React.ReactNode;
   readonly showClear?: boolean;
   readonly startAdornment?: React.ReactNode;
-} &  LabelRowProps;
+} & LabelRowProps;
 
 const FieldWrapper = ({
- children, 
-  endAdornment,  
+  children,
+  endAdornment,
   id,
   required,
   showClear = false,
   startAdornment,
   ...rest
-}:  FieldWrapperProps) =>  {
-  const tempId  = useId();
-  const currId = (id !== null)  || tempId
+}: FieldWrapperProps) => {
+  const currId = useGetId(id);
   const props = { ...rest, id: currId, required };
 
-
-return (
-<div id={tempId}>
+  return (
+    <div id={currId}>
       <LabelRow {...props} />
       <StyledDiv>
         <StartAdornment>{startAdornment}</StartAdornment>
@@ -38,9 +36,9 @@ return (
         {/* <EndAdornment>{endAdornment}</EndAdornment> */}
       </StyledDiv>
       <FooterRow {...rest} />
-    </div>)
-    ;
-}
+    </div>
+  );
+};
 
 FieldWrapper.displayName = 'FieldWrapper';
 

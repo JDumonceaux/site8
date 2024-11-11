@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { memo } from 'react';
 
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
