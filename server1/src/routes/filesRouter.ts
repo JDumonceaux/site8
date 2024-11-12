@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getFile } from '../apis/files/controllers/getFile.js';
+import { getFile } from '../feature/files/controllers/getFile.js';
 import { requireFileName } from '../middleware/requireFileName.js';
 
 export const filesRouter = express.Router();

@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
-import { Errors, Responses } from 'lib/utils/constants.js';
-import { Logger } from 'lib/utils/logger.js';
-import { MenuService } from '../services/MenuService.js';
-import { PagesService } from '../services/PagesService.js';
+import { Errors, Responses } from '../lib/utils/constants.js';
+import { Logger } from '../lib/utils/logger.js';
+import { MenuService } from '../feature/menu/services/MenuService.js';
+
 import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuEdit } from '../types/MenuEdit.js';
+import { PagesService } from '../feature/pages/services/PagesService.js';
 
 export const menuRouter = express.Router();
 

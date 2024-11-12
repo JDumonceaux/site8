@@ -1,7 +1,7 @@
 import { readFile } from 'fs/promises';
-import { getDataDir } from 'lib/utils/FilePath.js';
-import { Logger } from 'lib/utils/logger.js';
-import { Photos } from '../types/Photos.js';
+import { getDataDir } from '../../../lib/utils/FilePath.js';
+import { Logger } from '../../../lib/utils/logger.js';
+import { Photos } from '../../../types/Photos.js';
 
 export class PhotosService {
   private fileName = 'photos.json';

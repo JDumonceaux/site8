@@ -1,11 +1,11 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from 'lib/utils/FilePath.js';
-import { getNewIds, getNewItems } from 'lib/utils/imagesUtil.js';
-import { Logger } from 'lib/utils/logger.js';
-import { cleanUpData, getNextId } from 'lib/utils/objectUtil.js';
-import { Image } from '../types/Image.js';
-import { ImageEdit } from '../types/ImageEdit.js';
-import { Images } from '../types/Images.js';
+import { getDataDir } from '../../../lib/utils/FilePath.js';
+import { getNewIds, getNewItems } from '../../../lib/utils/imagesUtil.js';
+import { Logger } from '../../../lib/utils/logger.js';
+import { cleanUpData, getNextId } from '../../../lib/utils/objectUtil.js';
+import { Image } from '../../../types/Image.js';
+import { ImageEdit } from '../../../types/ImageEdit.js';
+import { Images } from '../../../types/Images.js';
 import { ImagesFileService } from './ImagesFileService.js';
 
 export class ImagesService {
@@ -185,78 +185,73 @@ export class ImagesService {
   public async updateItems(
     items: ReadonlyArray<ImageEdit> | undefined,
   ): Promise<boolean> {
-    try {
-      if (!items || !Array.isArray(items) || items.length === 0) {
-        Logger.info(`ImagesService: updateItems -> no items to update`);
-        return true;
-      }
-
-      const images = await this.readFile();
-      if (!images?.items) {
-        throw new Error('ImagesService: updateItems -> Unable to load index');
-      }
-
-      // Get the updated records
-      const updatedItems: ImageEdit[] = items.map((item) => {
-        const currItems = images.items?.filter((x) => x.id === item.id);
-
-        if (!currItems) {
-          throw new Error(
-            `ImagesService: updateItems -> item not found in index: ${item.id}`,
-          );
-        }
-
-        if (currItems && currItems?.length > 1) {
-          throw new Error(
-            `ImagesService: updateItems -> Duplicate items found: ${item.id}.  Please correct index`,
-          );
-        }
-
-        // Create a replacement item
-        const currItem = currItems[0];
-        if (currItem) {
-          return {
-            ...currItem,
-            ...item,
-            isNewItem: false,
-            originalFolder: currItem.folder,
-          };
-        }
-      });
-
-      // Move the files to a new directory
-      const fileMoved = await new ImagesFileService().moveItems(updatedItems);
-      if (!fileMoved) {
-        throw new Error(
-          'ImagesService: updateItems -> Unable to move file: ${item.fileName}',
-        );
-      }
-
-      // Replace the changed records in the original data
-      const data: Image[] = images.items
-        .map((x) => {
-          const foundItem = updatedItems.find((y) => y.id === x.id);
-          const addItem = () => {
-            if (foundItem) {
-              const { originalFolder: _unused, ...rest } = foundItem;
-              return cleanUpData<Image>({ ...rest });
-            }
-            return undefined;
-          };
-          const newItem = addItem();
-          return newItem || x;
-        })
-        .filter(Boolean);
-
-      const results = await this.writeFile({ ...images, items: data });
-      if (!results) {
-        throw new Error(
-          'ImagesService: updateItems -> Failed to update index.',
-        );
-      }
-    } catch (error) {
-      throw error;
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      Logger.info(`ImagesService: updateItems -> no items to update`);
+      return true;
     }
+
+    const images = await this.readFile();
+    if (!images?.items) {
+      throw new Error('ImagesService: updateItems -> Unable to load index');
+    }
+
+    // Get the updated records
+    const updatedItems: ImageEdit[] = items.map((item) => {
+      const currItems = images.items?.filter((x) => x.id === item.id);
+
+      if (!currItems) {
+        throw new Error(
+          `ImagesService: updateItems -> item not found in index: ${item.id}`,
+        );
+      }
+
+      if (currItems && currItems?.length > 1) {
+        throw new Error(
+          `ImagesService: updateItems -> Duplicate items found: ${item.id}.  Please correct index`,
+        );
+      }
+
+      // Create a replacement item
+      const currItem = currItems[0];
+      if (currItem) {
+        return {
+          ...currItem,
+          ...item,
+          isNewItem: false,
+          originalFolder: currItem.folder,
+        };
+      }
+    });
+
+    // Move the files to a new directory
+    const fileMoved = await new ImagesFileService().moveItems(updatedItems);
+    if (!fileMoved) {
+      throw new Error(
+        'ImagesService: updateItems -> Unable to move file: ${item.fileName}',
+      );
+    }
+
+    // Replace the changed records in the original data
+    const data: Image[] = images.items
+      .map((x) => {
+        const foundItem = updatedItems.find((y) => y.id === x.id);
+        const addItem = () => {
+          if (foundItem) {
+            const { originalFolder: _unused, ...rest } = foundItem;
+            return cleanUpData<Image>({ ...rest });
+          }
+          return undefined;
+        };
+        const newItem = addItem();
+        return newItem || x;
+      })
+      .filter(Boolean);
+
+    const results = await this.writeFile({ ...images, items: data });
+    if (!results) {
+      throw new Error('ImagesService: updateItems -> Failed to update index.');
+    }
+
     return true;
   }
 }

@@ -1,8 +1,8 @@
-import { Logger } from 'lib/utils/logger.js';
-import { cleanUpData } from 'lib/utils/objectUtil.js';
-import { Image } from '../types/Image.js';
-import { Images } from '../types/Images.js';
-import { ImagesService } from './ImagesService.js';
+import { Logger } from '../../../lib/utils/logger.js';
+import { cleanUpData } from '../../../lib/utils/objectUtil.js';
+import { Image } from '../../../types/Image.js';
+import { Images } from '../../../types/Images.js';
+import { ImagesService } from '../../../feature/images/services/ImagesService.js';
 
 export class ImageService {
   public async getItem(id: number): Promise<Image | undefined> {

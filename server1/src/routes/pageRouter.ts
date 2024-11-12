@@ -1,13 +1,13 @@
 //import DOMPurify from 'dompurify';
 import express, { Request, Response } from 'express';
-import PageController from '../controllers/pageController.js';
-import { Errors, RegEx, Responses } from 'lib/utils/constants.js';
-import { parseRequestId } from 'lib/utils/helperUtils.js';
-import { Logger } from 'lib/utils/logger.js';
-import { PageFileService } from '../services/PageFileService.js';
-import { PageService } from '../services/PageService.js';
-import { PagesService } from '../services/PagesService.js';
+import PageController from '../feature/pages/controllers/pageController.js';
+import { Errors, RegEx, Responses } from '../lib/utils/constants.js';
+import { parseRequestId } from '../lib/utils/helperUtils.js';
+import { Logger } from '../lib/utils/logger.js';
 import { PageEdit } from '../types/PageEdit.js';
+import { PageFileService } from '../feature/page/services/PageFileService.js';
+import { PageService } from '../feature/page/services/PageService.js';
+import { PagesService } from '../feature/pages/services/PagesService.js';
 
 export const pageRouter = express.Router();
 

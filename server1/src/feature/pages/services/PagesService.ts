@@ -1,13 +1,13 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from 'lib/utils/FilePath.js';
-import { isValidArray } from 'lib/utils/helperUtils.js';
-import { Logger } from 'lib/utils/logger.js';
-import { cleanUpData, getNextId } from 'lib/utils/objectUtil.js';
-import { MenuEdit } from '../types/MenuEdit.js';
-import { PageMenu } from '../types/PageMenu.js';
-import { Pages } from '../types/Pages.js';
-import { PagesIndex } from '../types/PagesIndex.js';
-import { ParentSortby } from '../types/ParentSortby.js';
+import { getDataDir } from '../../../lib/utils/FilePath.js';
+import { isValidArray } from '../../../lib/utils/helperUtils.js';
+import { Logger } from '../../../lib/utils/logger.js';
+import { cleanUpData, getNextId } from '../../../lib/utils/objectUtil.js';
+import { MenuEdit } from '../../../types/MenuEdit.js';
+import { PageMenu } from '../../../types/PageMenu.js';
+import { Pages } from '../../../types/Pages.js';
+import { PagesIndex } from '../../../types/PagesIndex.js';
+import { ParentSortby } from '../../../types/ParentSortby.js';
 
 export class PagesService {
   private fileName = 'pagesIndex.json';
@@ -21,7 +21,7 @@ export class PagesService {
   public async getItems(): Promise<PagesIndex | undefined> {
     Logger.info(`PagesService: getItems ->`);
 
-    let { promise, resolve, reject } = Promise.withResolvers<
+    const { promise, resolve, reject } = Promise.withResolvers<
       Pages | undefined
     >();
 
