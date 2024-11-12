@@ -1,4 +1,5 @@
-import { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
+
 import { styled } from 'styled-components';
 
 type IconButtonProps = {

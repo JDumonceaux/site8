@@ -1,8 +1,9 @@
+import React, { memo, useCallback } from 'react';
+
 import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
 import useMenu from 'hooks/useMenu';
-import React, { memo, useCallback } from 'react';
 import { styled } from 'styled-components';
-import { MenuItem } from 'types/MenuItem';
+import type { MenuItem } from 'types/MenuItem';
 
 const HomeMenu = (): React.JSX.Element => {
   const { data } = useMenu();
@@ -14,7 +15,7 @@ const HomeMenu = (): React.JSX.Element => {
       toComplete: string,
       level: number,
       children: React.ReactNode,
-    ): React.JSX.Element | null => {
+    ): null | React.JSX.Element => {
       if (itemType === 'menu') {
         return (
           <StyledMenuTitle $level={level} key={id} to={`/${toComplete}`}>
@@ -35,7 +36,7 @@ const HomeMenu = (): React.JSX.Element => {
   );
 
   const renderItem = useCallback(
-    (item: MenuItem | undefined, level: number): React.JSX.Element | null => {
+    (item: MenuItem | undefined, level: number): null | React.JSX.Element => {
       if (!item) {
         return null;
       }
@@ -99,7 +100,7 @@ const StyledSection = styled.div`
   break-inside: avoid;
 `;
 const StyledMenuLink = styled(StyledNavLink)<{ $level: number }>`
-  --left: ${(props) => props.$level * 10 + 'px'};
+  --left: ${(props) => `${props.$level * 10}px`};
   color: var(--palette-text);
   font-size: 0.8rem;
   &:link,
@@ -118,7 +119,7 @@ const StyledMenuLink = styled(StyledNavLink)<{ $level: number }>`
 `;
 
 const StyledMenuTitle = styled(StyledMenuLink)<{ $level: number }>`
-  --left: ${(props) => props.$level * 10 + 'px'};
+  --left: ${(props) => `${props.$level * 10}px`};
   color: var(--palette-text);
   //  padding: 12px;
   font-weight: 700;

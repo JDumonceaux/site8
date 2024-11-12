@@ -528,7 +528,7 @@ export default [
       'react/jsx-handler-names': 'error',
       // 'react/jsx-indent': 'error',
       // 'react/jsx-indent-props': 'error',
-      'react/jsx-max-depth': ['error', { 'max': 7 }],
+      'react/jsx-max-depth': ['error', { 'max': 8 }],
       // 'react/jsx-max-props-per-line': 'error',
       // 'react/jsx-newline': 'error',
       'react/jsx-no-bind': 'error',
@@ -629,6 +629,7 @@ export default [
       'unicorn/filename-case': 'off',
       // Incorrectly prevents the use of null as a component return (i.e. render nothing)
       'unicorn/no-null': 'off',
+      'unicorn/prefer-node-protocol': 'off',
       'unicorn/prefer-spread': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'vars-on-top': 'error',
@@ -684,7 +685,8 @@ export default [
       // change to type from interface
       '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
       '@typescript-eslint/consistent-type-exports': 'error',
-      '@typescript-eslint/consistent-type-imports': 'error',
+      // Altered to correct the automatic fix
+      '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports', prefer: 'type-imports' }],
       '@typescript-eslint/default-param-last': 'error',
       '@typescript-eslint/dot-notation': 'error',
       '@typescript-eslint/explicit-function-return-type': ['off'],

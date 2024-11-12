@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/AppSlice';
-import { AppDispatch, RootState } from 'store/Store';
-import { AppSettings } from 'types/AppSettings';
+import type { AppDispatch, RootState } from 'store/store';
+import type { AppSettings } from 'types/AppSettings';
 
 const useAppSettings = () => {
   const dispatch = useDispatch<AppDispatch>();
   const selector = (state: RootState) => state.appSettings;
-  const data: AppSettings | null = useSelector(selector).data;
+  const { data } = useSelector(selector);
 
   const initialState: AppSettings = useMemo(
     () => ({

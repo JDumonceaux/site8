@@ -1,16 +1,18 @@
+import { Suspense, useDeferredValue, useEffect, useState } from 'react';
+
 import Fallback from 'components/core/Fallback/Fallback';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
+import Layout from 'components/layouts/Layout/Layout';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
-import { Suspense, useDeferredValue, useEffect, useState } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { Page } from 'types';
-import Layout from 'components/layouts/Layout/Layout';
-import SubjectMenu from './SubjectMenu';
+import type { Page } from 'types';
+
 import RenderHtml from './RenderHtml';
+import SubjectMenu from './SubjectMenu';
 
 type GenericPageProps = {
   readonly title?: string;

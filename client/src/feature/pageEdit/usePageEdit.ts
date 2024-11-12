@@ -1,8 +1,9 @@
+import { useCallback, useEffect, useMemo } from 'react';
+
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { combineParent, splitParent } from 'lib/utils/helpers';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useEffect, useMemo } from 'react';
-import { Page } from 'types/Page';
+import type { Page } from 'types/Page';
 import { z } from 'zod';
 
 import { useAxios } from '../../hooks/Axios/useAxios';
@@ -59,8 +60,8 @@ const usePageEdit = (data?: Page) => {
   // Create a form
   const {
     formValues,
-    getFieldValue,
     getFieldErrors,
+    getFieldValue,
     handleChange,
     hasError,
     isSaved,
@@ -73,11 +74,11 @@ const usePageEdit = (data?: Page) => {
 
   // Map page to form type
   const mapPageToFormType = useCallback(
-    (item: null | Page | undefined): FormType | undefined => {
+    (item: null | Page | undefined): FormType | null => {
       if (item) {
         const returnValue = {
           id: item.id,
-          name: item.name ?? '',
+          name: item.name,
           parent: combineParent(item.parentItems),
           readability_score: item.readability_score ?? '',
           reading_time: item.reading_time ?? '',
@@ -87,7 +88,7 @@ const usePageEdit = (data?: Page) => {
         };
         return returnValue;
       }
-      return undefined;
+      return null;
     },
     [],
   );
@@ -108,16 +109,16 @@ const usePageEdit = (data?: Page) => {
   const submitForm = useCallback(async () => {
     setIsProcessing(true);
     const { id, parent, ...rest } = formValues;
-    const data: Page = {
+    const updateItem: Page = {
       ...rest,
       id,
       parentItems: splitParent(parent),
       type: 'page',
     };
     const result =
-      data.id > 0
-        ? await patchData(`${ServiceUrl.ENDPOINT_PAGE}`, data)
-        : await postData(`${ServiceUrl.ENDPOINT_PAGE}`, data);
+      updateItem.id > 0
+        ? await patchData(ServiceUrl.ENDPOINT_PAGE, updateItem)
+        : await postData(ServiceUrl.ENDPOINT_PAGE, updateItem);
     setIsProcessing(false);
     setIsSaved(result);
     return result;
@@ -131,48 +132,26 @@ const usePageEdit = (data?: Page) => {
     return false;
   }, [submitForm, validateForm]);
 
-  const getStandardInputTextAttributes = useCallback(
-    (fieldName: FormKeys) => {
-      return {
-        errorText: getFieldErrors(fieldName),
-        hasError: hasError(fieldName),
-        id: fieldName,
-        onChange: handleChange,
-        value: formValues[fieldName],
-      };
-    },
-    [getFieldErrors, hasError, formValues, handleChange],
-  );
-
   const getDefaultProps = (fieldName: FormKeys) => ({
-    id: `${fieldName as string}`,
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setFieldValue(fieldName, e.target.value),
+    id: fieldName as string,
+    onChange: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      setFieldValue(fieldName, e.target.value);
+    },
     value: getFieldValue(fieldName),
   });
 
-  return useMemo(
-    () => ({
-      formValues,
-      getFieldErrors,
-      getDefaultProps,
-      handleChange,
-      handleSave,
-      hasError,
-      isSaved,
-      setFieldValue,
-    }),
-    [
-      formValues,
-      getFieldErrors,
-      getStandardInputTextAttributes,
-      hasError,
-      setFieldValue,
-      handleChange,
-      handleSave,
-      isSaved,
-    ],
-  );
+  return {
+    formValues,
+    getDefaultProps,
+    getFieldErrors,
+    handleChange,
+    handleSave,
+    hasError,
+    isSaved,
+    setFieldValue,
+  };
 };
 
 export default usePageEdit;

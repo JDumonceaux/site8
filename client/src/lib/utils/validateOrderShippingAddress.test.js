@@ -5,16 +5,11 @@ import validateOrderShippingAddress from './validateOrderShippingAddress.js';
 test('Valid shipping address', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -27,14 +22,10 @@ test('Valid shipping address', () => {
 test('Missing AddressLine1', () => {
   const shippingAddress = {
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -47,14 +38,10 @@ test('Missing AddressLine1', () => {
 test('Missing City', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -67,14 +54,10 @@ test('Missing City', () => {
 test('Missing State', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -87,14 +70,10 @@ test('Missing State', () => {
 test('Missing PostalCode', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
     CompanyName: 'ABC Company',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -107,14 +86,10 @@ test('Missing PostalCode', () => {
 test('Missing CompanyName', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
     PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -127,16 +102,11 @@ test('Missing CompanyName', () => {
 test('Valid shipping address - non-printable character Alt 1', () => {
   const shippingAddress = {
     AddressLine1: '123☺Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -149,16 +119,11 @@ test('Valid shipping address - non-printable character Alt 1', () => {
 test('Valid shipping address - Null', () => {
   const shippingAddress = {
     AddressLine1: null,
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -171,16 +136,11 @@ test('Valid shipping address - Null', () => {
 test('Valid shipping address - zero length', () => {
   const shippingAddress = {
     AddressLine1: '',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -193,16 +153,11 @@ test('Valid shipping address - zero length', () => {
 test('Valid shipping address 2 - non-printable character Alt 1', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt☺4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -215,16 +170,11 @@ test('Valid shipping address 2 - non-printable character Alt 1', () => {
 test('Valid shipping address 2 - Null', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: null,
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -237,16 +187,11 @@ test('Valid shipping address 2 - Null', () => {
 test('Valid shipping address 2 - zero length', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: '',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -259,16 +204,11 @@ test('Valid shipping address 2 - zero length', () => {
 test('Valid shipping city - non-printable character Alt 1', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New☺York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -281,16 +221,11 @@ test('Valid shipping city - non-printable character Alt 1', () => {
 test('Valid shipping city - Null', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: null,
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -303,16 +238,11 @@ test('Valid shipping city - Null', () => {
 test('Valid shipping city - zero length', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: '',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -325,16 +255,11 @@ test('Valid shipping city - zero length', () => {
 test('Valid shipping postal code - non-printable character Alt 1', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -347,16 +272,11 @@ test('Valid shipping postal code - non-printable character Alt 1', () => {
 test('Valid shipping postal code - Null', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: null,
-
     CompanyName: 'ABC Company',
+    PostalCode: null,
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -369,16 +289,11 @@ test('Valid shipping postal code - Null', () => {
 test('Valid shipping postal code - zero length', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '',
-
     CompanyName: 'ABC Company',
+    PostalCode: '',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -391,16 +306,11 @@ test('Valid shipping postal code - zero length', () => {
 test('Valid shipping company name - non-printable character Alt 1', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: 'ABC Company',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -413,16 +323,11 @@ test('Valid shipping company name - non-printable character Alt 1', () => {
 test('Valid shipping company name - Null', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: null,
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);
@@ -435,16 +340,11 @@ test('Valid shipping company name - Null', () => {
 test('Valid shipping company name - zero length', () => {
   const shippingAddress = {
     AddressLine1: '123 Main St',
-
     AddressLine2: 'Apt 4B',
-
     City: 'New York',
-
-    State: 'NY',
-
-    PostalCode: '10001',
-
     CompanyName: '',
+    PostalCode: '10001',
+    State: 'NY',
   };
 
   const validationIssues = validateOrderShippingAddress(shippingAddress);

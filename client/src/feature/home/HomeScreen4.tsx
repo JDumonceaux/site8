@@ -1,5 +1,6 @@
 import HomeMenu from 'feature/home/HomeMenu';
 import { keyframes, styled } from 'styled-components';
+
 import TitleAnimation from './Animations/TitleAnimation';
 import PinkGraphic from './PinkGraphic';
 

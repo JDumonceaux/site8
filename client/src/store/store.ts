@@ -8,11 +8,11 @@ import snackbarReducer from './SnackbarSlice';
 
 const Store = configureStore({
   reducer: {
-    menu: menuReducer,
-    snackbar: snackbarReducer,
-    image: imageReducer,
     appSettings: appReducer,
     folders: folderReducer,
+    image: imageReducer,
+    menu: menuReducer,
+    snackbar: snackbarReducer,
   },
 });
 

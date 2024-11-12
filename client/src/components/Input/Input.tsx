@@ -1,14 +1,15 @@
 import React from 'react';
-import InputBase, { InputBaseProps } from './Core/InputBase/InputBase';
+
+import InputBase, { type InputBaseProps } from './Core/InputBase/InputBase';
+import InputCheckbox from './InputCheckbox/InputCheckbox';
 import InputEmail from './InputEmail/InputEmail';
 import InputNumber from './InputNumber/InputNumber';
 import InputPassword from './InputPassword/InputPassword';
+import InputSelect from './InputSelect/InputSelect';
 import InputTel from './InputTel/InputTel';
 import InputText from './InputText/InputText';
-import { TextArea } from './TextArea/TextArea';
-import InputCheckbox from './InputCheckbox/InputCheckbox';
 import InputToggle from './InputToggle/InputToggle';
-import InputSelect from './InputSelect/InputSelect';
+import { TextArea } from './TextArea/TextArea';
 
 type Props = InputBaseProps;
 

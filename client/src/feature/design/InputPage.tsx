@@ -18,8 +18,7 @@ const InputPage = (): React.JSX.Element => {
     items[key] = '';
   }
 
-  const { getFieldValue, getFieldValueBoolean, setFieldValue } =
-    useForm<fields>(items);
+  const { getFieldValue, setFieldValue } = useForm<fields>(items);
 
   return (
     <>

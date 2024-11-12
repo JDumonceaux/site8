@@ -1,24 +1,26 @@
 import React, { useCallback, useEffect } from 'react';
+
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import Input from 'components/Input/Input';
+import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/core/Meta/Meta';
-import MenuAdd from 'feature/pagesEdit/MenuAdd';
-import PageTitle from 'components/core/PageTitle/PageTitle';
 import { Switch } from 'components/Switch/Switch';
+import MenuAdd from 'feature/pagesEdit/MenuAdd';
 import useAppSettings from 'hooks/useAppSettings';
 import { styled } from 'styled-components';
-import { MenuItem } from 'types';
-import Layout from 'components/layouts/Layout/Layout';
+import type { MenuItem } from 'types';
+
 import usePagesEdit from './usePagesEdit';
 
 const PagesEditPage = (): React.JSX.Element => {
   const {
     data,
     error,
-    handleSave,
     getDefaultProps,
+    handleSave,
     isLoading,
     isSaved,
     setFormValues,
@@ -42,13 +44,24 @@ const PagesEditPage = (): React.JSX.Element => {
   }, [data, setFormValues]);
 
   const renderItem = useCallback(
-    (item: MenuItem | undefined): React.JSX.Element | null => {
+    (item: MenuItem | undefined): null | React.JSX.Element => {
       if (!item) {
         return null;
       }
 
-      const level =
-        item.type === 'page' ? ' ---- ' : item.type === 'menu' ? ' -- ' : '';
+      const level = (() => {
+        switch (item.type) {
+          case 'menu': {
+            return ' -- ';
+          }
+          case 'page': {
+            return ' ---- ';
+          }
+          default: {
+            return '';
+          }
+        }
+      })();
 
       return (
         <React.Fragment key={item.localId}>
@@ -115,7 +128,9 @@ const PagesEditPage = (): React.JSX.Element => {
               checked={showPages}
               id="showPages"
               label={showPages ? 'Hide Pages' : 'Show Pages'}
-              onCheckedChange={(error_) => onShowPages(error_)}
+              onCheckedChange={(error_) => {
+                onShowPages(error_);
+              }}
             />
             <StyledLink data-testid="nav-new" to="/admin/page/edit">
               New

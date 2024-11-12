@@ -1,9 +1,11 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image } from 'types/Image';
+import type { Image } from 'types/Image';
 import { z } from 'zod';
+
 import { useAxios } from '../../hooks/Axios/useAxios';
 import { useForm } from '../../hooks/useForm';
 
@@ -33,7 +35,7 @@ const pageSchema = z.object({
   tags: z.string().trim().optional(),
 });
 
-const useImageEdit = (id: string | undefined) => {
+const useImageEdit = (id: null | string) => {
   // Use Axios to fetch data
   const { data, error, fetchData, isLoading, patchData, postData } =
     useAxios<Image>();
@@ -42,16 +44,19 @@ const useImageEdit = (id: string | undefined) => {
   type FormKeys = keyof FormType;
 
   const getDefaultProps = (fieldName: FormKeys) => ({
-    id: `${fieldName as string}`,
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setFieldValue(fieldName, e.target.value),
+    id: fieldName as string,
+    onChange: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      setFieldValue(fieldName, e.target.value);
+    },
     value: getFieldValue(fieldName),
   });
 
   // Current Item
   const [currentId, setCurrentId] = useState<number>(0);
   // Current Action
-  const [currentAction, setCurrentAction] = useState<string | undefined>();
+  const [currentAction, setCurrentAction] = useState<null | string>();
   // Does the data need to be saved?
   const [isSaved, setIsSaved] = useState<boolean>(true);
   // Is the form saving?
@@ -74,18 +79,18 @@ const useImageEdit = (id: string | undefined) => {
   const {
     formValues,
     getFieldValue,
-    setFieldValue,
     handleChange,
     setErrors,
+    setFieldValue,
     setFormValues,
   } = useForm<FormType>(defaultFormType);
 
   // Keep a copy of the form values to reset
-  const [originalValues, setOriginalValues] = useState<Image | undefined>();
+  const [originalValues, setOriginalValues] = useState<Image | null>();
 
   // Update the form values from the data
   const updateFormType = useCallback(
-    (items: Image | null | undefined) => {
+    (items: Image | null) => {
       if (items) {
         const item: FormType = {
           description: items.description ?? '',
@@ -149,7 +154,7 @@ const useImageEdit = (id: string | undefined) => {
     setFormValues(defaultFormType);
     setIsSaved(true);
     setIsProcessing(false);
-    setErrors(undefined);
+    setErrors(null);
   };
 
   // Handle form reset
@@ -157,7 +162,7 @@ const useImageEdit = (id: string | undefined) => {
     updateFormType(originalValues);
     setIsSaved(true);
     setIsProcessing(false);
-    setErrors(undefined);
+    setErrors(null);
   };
 
   // Handle save
@@ -171,7 +176,7 @@ const useImageEdit = (id: string | undefined) => {
       };
       await (data.id > 0
         ? patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`, data)
-        : postData(`${ServiceUrl.ENDPOINT_IMAGE}`, data));
+        : postData(ServiceUrl.ENDPOINT_IMAGE, data));
       return true;
     },
     [patchData, postData],
@@ -189,7 +194,7 @@ const useImageEdit = (id: string | undefined) => {
     return false;
   };
 
-  const handleChangeImage = (item: Image | undefined) => {
+  const handleChangeImage = (item: Image | null) => {
     setFormValues((previous) => ({
       ...previous,
       fileName: item?.fileName ?? '',
@@ -202,9 +207,8 @@ const useImageEdit = (id: string | undefined) => {
   return {
     error,
     formValues,
-    getFieldValue,
-    setFieldValue,
     getDefaultProps,
+    getFieldValue,
     handleChange,
     handleChangeImage,
     handleClear,
@@ -212,6 +216,7 @@ const useImageEdit = (id: string | undefined) => {
     isLoading,
     isProcessing,
     isSaved,
+    setFieldValue,
     submitForm,
   };
 };

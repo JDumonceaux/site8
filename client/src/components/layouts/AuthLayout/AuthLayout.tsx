@@ -1,5 +1,6 @@
-import Header from 'components/core/Header/Header';
 import { Suspense } from 'react';
+
+import Header from 'components/core/Header/Header';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';

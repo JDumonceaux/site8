@@ -1,7 +1,8 @@
+import { useCallback, useMemo } from 'react';
+
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useMemo } from 'react';
-import { MenuAdd } from 'types';
+import type { MenuAdd } from 'types';
 import { z } from 'zod';
 
 import { useAxios } from './Axios/useAxios';
@@ -82,7 +83,7 @@ const useMenuEdit = () => {
       return false;
     }
     setIsProcessing(true);
-    const result = await postData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
+    const result = await postData(ServiceUrl.ENDPOINT_MENUS, data);
     setIsProcessing(false);
     setIsSaved(result);
     return result;

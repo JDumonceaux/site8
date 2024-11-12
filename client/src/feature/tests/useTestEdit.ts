@@ -1,7 +1,9 @@
+import { useCallback, useEffect } from 'react';
+
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
-import { useCallback, useEffect, useMemo } from 'react';
-import { Menu, MenuEdit } from 'types';
+import type { Menu, MenuEdit } from 'types';
 import { z } from 'zod';
+
 import { useAxios } from '../../hooks/Axios/useAxios';
 import { useFormArray } from '../../hooks/useFormArray';
 
@@ -43,14 +45,14 @@ const useTestEdit = () => {
   }, [fetchData]);
 
   // Get the updates
-  const getUpdates = useCallback((): MenuEdit[] | undefined => {
+  const getUpdates = useCallback((): MenuEdit[] | null => {
     if (!data?.items) {
-      return undefined;
+      return null;
     }
 
     const returnValue: MenuEdit[] = [];
     for (const item of formValues) {
-      const originalItem = data?.items?.find((x) => x.localId === item.localId);
+      const originalItem = data.items.find((x) => x.localId === item.localId);
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
@@ -70,7 +72,7 @@ const useTestEdit = () => {
     }
 
     // Filter out empty array values
-    return returnValue ? returnValue.filter(Boolean) : undefined;
+    return returnValue.filter(Boolean);
   }, [data?.items, formValues]);
 
   // Validate form
@@ -82,12 +84,12 @@ const useTestEdit = () => {
 
   // Handle save
   const submitForm = useCallback(async () => {
-    const data = getUpdates();
-    if (!data) {
+    const updates = getUpdates();
+    if (!updates) {
       return false;
     }
     // setIsProcessing(true);
-    const result = await patchData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
+    const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
     // setIsProcessing(false);
     setIsSaved(result);
     return result;
@@ -101,12 +103,12 @@ const useTestEdit = () => {
   );
 
   const handleSave = useCallback(async () => {
-    return await submitForm();
+    return submitForm();
   }, [submitForm]);
 
   const getStandardInputTextAttributes = useCallback(
     (localId: number, fieldName: FormKeys) => {
-      const field = fieldName + '-' + localId;
+      const field = `${fieldName}-${localId}`;
       return {
         id: field,
         value: getFieldValue(localId, fieldName),
@@ -118,7 +120,7 @@ const useTestEdit = () => {
     [getFieldValue],
   );
 
-  // const filter = (arr: MenuItem[] | undefined) => {
+  // const filter = (arr: MenuItem[] | null) => {
   //   const matches: MenuItem[] = [];
   //   if (!Array.isArray(arr)) return matches;
   //   arr.forEach((i) => {

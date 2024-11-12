@@ -1,15 +1,17 @@
+import { useCallback, useEffect } from 'react';
+
+import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/core/Meta/Meta';
 import useAuth from 'hooks/useAuth';
-import { useCallback, useEffect } from 'react';
 import { styled } from 'styled-components';
+
 import AuthContainer from './AuthContainer';
 
 const SignOutpPage = (): React.JSX.Element => {
   const title = 'Sign-Out';
 
-  const { authFetchAuthSession, authSignOut, isLoading, error, authorized } =
+  const { authFetchAuthSession, authorized, authSignOut, error, isLoading } =
     useAuth();
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const SignOutpPage = (): React.JSX.Element => {
 
       try {
         await authSignOut();
-      } catch (error) {
+      } catch {
         // Handle sign-up error
       }
     },
@@ -36,7 +38,12 @@ const SignOutpPage = (): React.JSX.Element => {
         error={error}
         leftImage={<img alt="" src="/images/face.png" />}
         title="Sign Out">
-        {!authorized ? (
+        {authorized ? (
+          <StyledError>
+            Oops! It looks like you are already signed out. Would you like to{' '}
+            <StyledLink to="/signin">Sign In</StyledLink>?
+          </StyledError>
+        ) : (
           <StyledForm
             noValidate
             // aria-errormessage={error ? 'error' : undefined}
@@ -47,11 +54,6 @@ const SignOutpPage = (): React.JSX.Element => {
               {isLoading ? 'Processing' : 'Sign Out'}
             </Button>
           </StyledForm>
-        ) : (
-          <StyledError>
-            Oops! It looks like you are already signed out. Would you like to{' '}
-            <StyledLink to="/signin">Sign In</StyledLink>?
-          </StyledError>
         )}
       </AuthContainer>
     </>

@@ -1,14 +1,16 @@
+import { useCallback, useId, useMemo } from 'react';
+
+import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/core/Meta/Meta';
-import { emailAddress, password } from 'components/pages/auth/ZodStrings';
+import { emailAddress, password } from 'feature/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
+
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
@@ -26,7 +28,7 @@ const SigninPage = (): React.JSX.Element => {
   type FormValues = z.infer<typeof schema>;
   type FormKeys = keyof FormValues;
 
-  const { authSignIn, isLoading, error } = useAuth();
+  const { authSignIn, error, isLoading } = useAuth();
 
   const defaultFormValues: FormValues = useMemo(
     () => ({
@@ -38,10 +40,10 @@ const SigninPage = (): React.JSX.Element => {
 
   const {
     formValues,
-    getDefaultPasswordFields,
-    setErrors,
-    handleChange,
     getDefaultFields,
+    getDefaultPasswordFields,
+    handleChange,
+    setErrors,
   } = useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
@@ -56,7 +58,7 @@ const SigninPage = (): React.JSX.Element => {
       if (validateForm()) {
         try {
           await authSignIn(formValues.emailAddress, formValues.password);
-        } catch (error) {
+        } catch {
           // Handle sign-up error
         }
       }

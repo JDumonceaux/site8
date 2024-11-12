@@ -7,7 +7,7 @@ type InputButtonProps = {
 const InputButton = ({
   type = 'button',
 }: InputButtonProps): React.JSX.Element => (
-  <input type={type}>Not implemeneted - use button element</input>
+  <input type={type} value="Not implemeneted - use button element" />
 );
 
 InputButton.displayName = 'InputButton';

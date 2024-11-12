@@ -1,15 +1,16 @@
-import StyledLink from 'components/Link/StyledLink/StyledLink';
+import { useCallback, useMemo } from 'react';
+
 import Meta from 'components/core/Meta/Meta';
+import Button from 'components/form/Button/Button';
+import Input from 'components/Input/Input';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
-import Button from 'components/form/Button/Button';
 import AuthContainer from './AuthContainer';
-import Input from 'components/Input/Input';
 
 // Define Zod Shape
 const schema = z.object({
@@ -19,7 +20,7 @@ const schema = z.object({
 const DeleteAccountPage = (): React.JSX.Element => {
   const title = 'Delete Account';
 
-  const { authDeleteUser, error, isLoading } = useAuth();
+  const { authDeleteUser, error } = useAuth();
 
   type FormValues = {
     deleteCode?: string;

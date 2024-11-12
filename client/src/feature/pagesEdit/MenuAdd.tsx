@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { startTransition, useCallback } from 'react';
+
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import Input from 'components/Input/Input';
 import useMenuAdd from 'hooks/useMenuAdd';
 import useSnackbar from 'hooks/useSnackbar';
-import { startTransition, useCallback } from 'react';
-import Input from 'components/Input/Input';
-
 /**
  * Represents a form for adding a single menu item.
  *

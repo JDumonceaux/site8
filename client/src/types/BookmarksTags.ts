@@ -1,5 +1,5 @@
-import { BookmarksTag } from './BookmarksTag';
-import { Metadata } from './Metadata';
+import type { BookmarksTag } from './BookmarksTag';
+import type { Metadata } from './Metadata';
 
 export type BookmarksTags = {
   readonly items?: BookmarksTag[];

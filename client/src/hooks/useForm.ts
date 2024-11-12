@@ -4,7 +4,7 @@ import type { z } from 'zod';
 
 export const useForm = <T>(initialValues: T) => {
   const [formValues, setFormValues] = useState<T>(initialValues);
-  const [errors, setErrors] = useState<undefined | z.ZodIssue[]>();
+  const [errors, setErrors] = useState<null | z.ZodIssue[]>();
   const [isSaved, setIsSaved] = useState<boolean>(true);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
@@ -12,7 +12,7 @@ export const useForm = <T>(initialValues: T) => {
 
   const setFieldValue = (
     fieldName: FormKeys,
-    value: boolean | number | string | undefined,
+    value: boolean | null | number | string,
   ) => {
     setFormValues((prev) => ({
       ...prev,
@@ -33,11 +33,13 @@ export const useForm = <T>(initialValues: T) => {
     return formValues[fieldName] as number;
   };
 
-  const getFieldErrors = (
-    fieldName: FormKeys,
-  ): string | string[] | undefined => {
-    const x = errors?.filter((x) => x.path.includes(fieldName as string));
-    return x && x.length > 0 ? x.map((x) => x.message) : undefined;
+  const getFieldErrors = (fieldName: FormKeys): null | string | string[] => {
+    const filteredErrors = errors?.filter((x) =>
+      x.path.includes(fieldName as string),
+    );
+    return filteredErrors && filteredErrors.length > 0
+      ? x.map((x) => x.message)
+      : null;
   };
 
   const hasError = (fieldName: FormKeys) => {
@@ -54,6 +56,7 @@ export const useForm = <T>(initialValues: T) => {
   ) => {
     const { id: fieldName, value } = event.target;
     if (!fieldName) {
+      // eslint-disable-next-line no-console
       console.warn('No id found in event target');
     }
     setFieldValue(fieldName as FormKeys, value);
@@ -67,14 +70,14 @@ export const useForm = <T>(initialValues: T) => {
     setFormValues({} as T);
     setIsSaved(true);
     setIsProcessing(false);
-    setErrors(undefined);
+    setErrors(null);
   };
 
   const handleReset = () => {
     setFormValues(initialValues);
     setIsSaved(true);
     setIsProcessing(false);
-    setErrors(undefined);
+    setErrors(null);
   };
 
   return {

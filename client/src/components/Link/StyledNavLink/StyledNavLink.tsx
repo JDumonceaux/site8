@@ -1,13 +1,14 @@
-import type { NavLinkProps as BaseNavLinkProps } from 'react-router-dom';
-
 import React from 'react';
-import { NavLink as BaseLink } from 'react-router-dom';
+
+import {
+  NavLink as BaseLink,
+  type NavLinkProps as BaseNavLinkProps,
+} from 'react-router-dom';
 import { styled } from 'styled-components';
 
 type StyledNavLinkProps = {
   readonly ariaLabel?: string;
   readonly children: React.ReactNode;
-  readonly className?: string;
   readonly to: string;
   readonly variant?: 'dark' | 'light';
 } & BaseNavLinkProps &
@@ -16,7 +17,6 @@ type StyledNavLinkProps = {
 const StyledNavLink = ({
   ariaLabel,
   children,
-  className,
   to,
   variant = 'light',
 }: StyledNavLinkProps): React.JSX.Element => {
@@ -25,7 +25,6 @@ const StyledNavLink = ({
       $variant={variant}
       aria-current="page"
       aria-label={ariaLabel ?? children?.toString()}
-      className={className}
       to={to}>
       {children}
     </StyledElement>

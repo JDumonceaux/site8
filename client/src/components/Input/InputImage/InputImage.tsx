@@ -1,11 +1,12 @@
 import { memo } from 'react';
-import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
+
+import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputImageProps = {
   readonly type?: 'color';
 } & Omit<
   InputBaseProps,
-  'type' | 'autocapitalize' | 'pattern' | 'required' | 'step' | 'value'
+  'autocapitalize' | 'pattern' | 'required' | 'step' | 'type' | 'value'
 >;
 
 // Remove: 'autocapitalize', 'pattern', 'required', 'step', 'value'

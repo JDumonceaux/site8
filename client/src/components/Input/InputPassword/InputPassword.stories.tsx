@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
+
 import InputPassword from './InputPassword';
 
 const meta = {
-  title: 'Components/Input/InputPassword',
-  component: InputPassword,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputPassword,
+  title: 'Components/Input/InputPassword',
 };
 
 export default meta;

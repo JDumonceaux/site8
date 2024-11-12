@@ -1,6 +1,6 @@
-import { Metadata } from './Metadata';
-import { Photo } from './Photo';
-import { PhotoSet } from './PhotoSet';
+import type { Metadata } from './Metadata';
+import type { Photo } from './Photo';
+import type { PhotoSet } from './PhotoSet';
 
 export type Photos = {
   readonly items: Photo[];

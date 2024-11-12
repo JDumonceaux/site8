@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, memo } from 'react';
+import { type ButtonHTMLAttributes, memo } from 'react';
 
 import StyledLink from '../StyledLink/StyledLink';
 

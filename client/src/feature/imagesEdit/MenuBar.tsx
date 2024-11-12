@@ -1,17 +1,18 @@
 import React from 'react';
+
 import { IconMenu } from 'components/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 
 type Props = {
-  readonly handleScan: () => void;
   readonly handleRefresh: () => void;
+  readonly handleScan: () => void;
   readonly handleSubmit: () => void;
 };
 
 const MenuBar = ({
-  handleScan,
   handleRefresh,
+  handleScan,
   handleSubmit,
 }: Props): React.JSX.Element => {
   return (

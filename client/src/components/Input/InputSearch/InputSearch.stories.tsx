@@ -1,9 +1,8 @@
 import type { StoryObj } from '@storybook/react';
+
 import InputSearch from './InputSearch';
 
 const meta = {
-  title: 'Components/Input/InputSearch',
-  component: InputSearch,
   argTypes: {
     variant: {
       control: {
@@ -11,6 +10,8 @@ const meta = {
       },
     },
   },
+  component: InputSearch,
+  title: 'Components/Input/InputSearch',
 };
 
 export default meta;

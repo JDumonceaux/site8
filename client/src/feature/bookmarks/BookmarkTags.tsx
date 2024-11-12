@@ -1,5 +1,6 @@
 import React from 'react';
-import { BookmarksTags } from 'types/BookmarksTags';
+
+import type { BookmarksTags } from 'types/BookmarksTags';
 
 type BookmarksTagsProps = {
   readonly data: BookmarksTags | undefined;
@@ -21,7 +22,7 @@ const BookmarkTags = ({ data }: BookmarksTagsProps): React.JSX.Element => {
               <td>{item.tag}</td>
               <td />
             </tr>
-            {item.items?.map((item) => (
+            {item.items.map((item) => (
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>{item.description}</td>

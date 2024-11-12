@@ -1,4 +1,4 @@
-import { ParentSortby } from './ParentSortby';
+import type { ParentSortby } from './ParentSortby';
 
 // Returned to front end
 export type MenuItem = {

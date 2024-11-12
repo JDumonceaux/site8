@@ -1,10 +1,10 @@
-import { Schema, z } from 'zod';
+import type { Schema, z } from 'zod';
 
 type SafeParseProps<T> = {
+  data: null | T;
+  error: null | z.ZodError<T>;
+  formattedError: null | z.ZodFormattedError<T>;
   success: boolean;
-  data: T | null;
-  error: z.ZodError<T> | null;
-  formattedError: z.ZodFormattedError<T> | null;
 };
 
 /**
@@ -20,12 +20,12 @@ export const safeParse = <T>(
   inputData: Partial<T>,
 ): SafeParseProps<T> => {
   const parsedResult = schema.safeParse(inputData);
-  const { success, data, error } = parsedResult;
+  const { data, error, success } = parsedResult;
 
   return {
-    success,
     data: success ? data : null,
     error: success ? null : error,
-    formattedError: success ? null : error?.format() || null,
+    formattedError: success ? null : error.format(),
+    success,
   };
 };

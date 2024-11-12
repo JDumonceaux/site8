@@ -5,7 +5,7 @@ type InputRadioProps = {
 };
 
 const InputRadio = ({ type = 'radio' }: InputRadioProps): React.JSX.Element => (
-  <input type={type}>Not implemeneted - use radio element</input>
+  <input type={type} value="Not implemeneted - use radio element" />
 );
 
 InputRadio.displayName = 'InputRadio';

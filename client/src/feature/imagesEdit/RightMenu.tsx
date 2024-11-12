@@ -1,25 +1,25 @@
+import React, { useEffect } from 'react';
+
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
-import { on } from 'events';
 import useImageFolder from 'hooks/useImageFolder';
-import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
-import { ListItem } from 'types/ListItem';
+import type { ListItem } from 'types/ListItem';
 
 type Props = {
-  readonly currentFolder: string;
   readonly currentFilter: string;
+  readonly currentFolder: string;
   readonly onClick: (val: string) => void;
   readonly onFilterSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const RightMenu = ({
-  currentFolder,
   currentFilter,
+  currentFolder,
   onClick,
   onFilterSelect,
 }: Props): React.JSX.Element => {
-  const { data, fetchData, isLoading, error } = useImageFolder();
+  const { data, error, fetchData, isLoading } = useImageFolder();
 
   useEffect(() => {
     fetchData();
@@ -33,16 +33,15 @@ const RightMenu = ({
   const handleOnClick = onClick;
 
   return (
-    <>
-      <StickyMenu>
-        <FilterDiv>
-          <Input.Select
-            label="Filter"
-            data={filterData}
-            onChange={onFilterSelect}
-            value={currentFilter}
-          />
-          {/* <label htmlFor="select">Filter</label>
+    <StickyMenu>
+      <FilterDiv>
+        <Input.Select
+          data={filterData}
+          label="Filter"
+          onChange={onFilterSelect}
+          value={currentFilter}
+        />
+        {/* <label htmlFor="select">Filter</label>
           <select id="select" onChange={onFilterSelect} value={currentFilter}>
             <option value="all">All</option>
             {data?.map((item) => (
@@ -51,40 +50,47 @@ const RightMenu = ({
               </option>
             ))}
           </select> */}
-        </FilterDiv>
-        <StyledHeader>
-          <div>
-            {currentFolder && currentFolder.length > 0 ? (
-              <StyledButton onClick={() => handleOnClick('')} type="button">
-                {currentFolder}
-              </StyledButton>
+      </FilterDiv>
+      <StyledHeader>
+        <div>
+          {currentFolder && currentFolder.length > 0 ? (
+            <StyledButton
+              onClick={() => {
+                handleOnClick('');
+              }}
+              type="button">
+              {currentFolder}
+            </StyledButton>
+          ) : (
+            <div>Select Folder ({data?.length})</div>
+          )}
+        </div>
+      </StyledHeader>
+      <hr />
+      <LoadingWrapper error={error} isLoading={isLoading}>
+        {data?.map((item) => (
+          <React.Fragment key={item.id}>
+            {item.value === currentFolder ? (
+              <StyledActiveButton
+                onClick={() => {
+                  handleOnClick(item.value);
+                }}
+                type="button">
+                {item.value}
+              </StyledActiveButton>
             ) : (
-              <div>Select Folder ({data?.length})</div>
+              <StyledButton
+                onClick={() => {
+                  handleOnClick(item.value);
+                }}
+                type="button">
+                {item.value}
+              </StyledButton>
             )}
-          </div>
-        </StyledHeader>
-        <hr />
-        <LoadingWrapper error={error} isLoading={isLoading}>
-          {data?.map((item) => (
-            <React.Fragment key={item.id}>
-              {item.value === currentFolder ? (
-                <StyledActiveButton
-                  onClick={() => handleOnClick(item.value)}
-                  type="button">
-                  {item.value}
-                </StyledActiveButton>
-              ) : (
-                <StyledButton
-                  onClick={() => handleOnClick(item.value)}
-                  type="button">
-                  {item.value}
-                </StyledButton>
-              )}
-            </React.Fragment>
-          ))}
-        </LoadingWrapper>
-      </StickyMenu>
-    </>
+          </React.Fragment>
+        ))}
+      </LoadingWrapper>
+    </StickyMenu>
   );
 };
 

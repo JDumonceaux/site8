@@ -1,4 +1,4 @@
-import { ParentSortby } from './ParentSortby';
+import type { ParentSortby } from './ParentSortby';
 
 export type MenuAdd = {
   readonly id: number;

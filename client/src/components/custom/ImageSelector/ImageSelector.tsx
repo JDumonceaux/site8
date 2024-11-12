@@ -1,16 +1,17 @@
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import { Switch } from 'components/Switch/Switch';
-import useAppSettings from 'hooks/useAppSettings';
-import useUnmatchedImages from 'hooks/useUnmatchedImages';
-import { IMAGE_BASE } from 'lib/utils/constants';
 import React, {
   useCallback,
   useDeferredValue,
   useEffect,
   useState,
 } from 'react';
+
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import { Switch } from 'components/Switch/Switch';
+import useAppSettings from 'hooks/useAppSettings';
+import useUnmatchedImages from 'hooks/useUnmatchedImages';
+import { IMAGE_BASE } from 'lib/utils/constants';
 import { styled } from 'styled-components';
-import { Image } from 'types';
+import type { Image } from 'types';
 
 type ImageSelectorProps = {
   readonly onSelectImage: (image: Image | undefined) => void;
@@ -51,11 +52,11 @@ const ImageSelector = ({
   );
 
   const onSelect = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       event.stopPropagation();
       const id = Number(event.currentTarget.id);
-      const item = data?.items?.find((x) => x.id === id) ?? undefined;
+      const item = data?.items.find((x) => x.id === id) ?? undefined;
       setSelectedItem(item);
       onSelectImage(item);
     },
@@ -68,7 +69,7 @@ const ImageSelector = ({
         event.preventDefault();
         event.stopPropagation();
         const id = Number(event.currentTarget.id);
-        setSelectedItem(data?.items?.find((x) => x.id === id) ?? undefined);
+        setSelectedItem(data?.items.find((x) => x.id === id) ?? undefined);
       }
     },
     [data?.items],
@@ -79,9 +80,9 @@ const ImageSelector = ({
       return;
     }
     if (selectedItem) {
-      return data.items?.filter((x) => x.id === selectedItem.id) ?? undefined;
+      return data.items.filter((x) => x.id === selectedItem.id) ?? undefined;
     } else if (showUnmatched) {
-      return data.items?.filter((x) => !x.isMatched);
+      return data.items.filter((x) => !x.isMatched);
     }
     return data.items;
   }, [data, selectedItem, showUnmatched]);
@@ -103,7 +104,9 @@ const ImageSelector = ({
           checked={showUnmatched}
           id="showUnmatched"
           label={showUnmatched ? 'Hide Unmatched' : 'Show Unmatched'}
-          onCheckedChange={(error_) => onShowUnmatched(error_)}
+          onCheckedChange={(error_) => {
+            onShowUnmatched(error_);
+          }}
         />
         <div>{itemCount}</div>
       </StyledButtonRow>
@@ -111,7 +114,7 @@ const ImageSelector = ({
         {filteredData?.map((item) => (
           <React.Fragment key={item.id}>
             <button
-              id={item.id?.toString()}
+              id={item.id.toString()}
               onClick={onSelect}
               onKeyDown={onKeyboardSelect}
               type="button">

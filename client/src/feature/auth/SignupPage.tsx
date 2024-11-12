@@ -1,23 +1,25 @@
+import { useCallback, useId, useMemo } from 'react';
+
 import { Divider } from '@aws-amplify/ui-react';
+import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import Meta from 'components/core/Meta/Meta';
+import { emailAddress, password } from 'feature/auth/ZodStrings';
 import useAuth, { SocialProvider } from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
+
 import AuthContainer from './AuthContainer';
-import { emailAddress, password } from 'components/pages/auth/ZodStrings';
 
 // Define Zod Shape
 const schema = z.object({
   // eslint-disable-next-line object-shorthand
-  password: password,
-  // eslint-disable-next-line object-shorthand
   emailAddress: emailAddress,
+  // eslint-disable-next-line object-shorthand
+  password: password,
 });
 
 const SignupPage = (): React.JSX.Element => {
@@ -27,7 +29,7 @@ const SignupPage = (): React.JSX.Element => {
   type FormValues = z.infer<typeof schema>;
   type FormKeys = keyof FormValues;
 
-  const { authSignUp, authSignInWithRedirect, isLoading, error } = useAuth();
+  const { authSignInWithRedirect, authSignUp, error, isLoading } = useAuth();
 
   const defaultFormValues: FormValues = useMemo(
     () => ({
@@ -39,10 +41,10 @@ const SignupPage = (): React.JSX.Element => {
 
   const {
     formValues,
-    setErrors,
-    handleChange,
     getDefaultFields,
     getDefaultPasswordFields,
+    handleChange,
+    setErrors,
   } = useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
@@ -57,7 +59,7 @@ const SignupPage = (): React.JSX.Element => {
       if (validateForm()) {
         try {
           await authSignUp(formValues.emailAddress, formValues.password);
-        } catch (error) {
+        } catch {
           // Handle sign-up error
         }
       }
@@ -79,19 +81,25 @@ const SignupPage = (): React.JSX.Element => {
         <Button
           ///  icon={<AmazonIcon ariaHidden focusable={false} />}
           id="login"
-          onClick={() => handleClick(SocialProvider.AMAZON)}>
+          onClick={() => {
+            handleClick(SocialProvider.AMAZON);
+          }}>
           Sign up with Amazon
         </Button>
         <Button
           //  icon={<FacebookIcon ariaHidden focusable={false} />}
           id="login"
-          onClick={() => handleClick(SocialProvider.FACEBOOK)}>
+          onClick={() => {
+            handleClick(SocialProvider.FACEBOOK);
+          }}>
           Sign up with Facebook
         </Button>
         <Button
           //  icon={<GoogleIcon ariaHidden focusable={false} />}
           id="login"
-          onClick={() => handleClick(SocialProvider.GOOGLE)}>
+          onClick={() => {
+            handleClick(SocialProvider.GOOGLE);
+          }}>
           Sign up with Google
         </Button>
         <Divider>or</Divider>

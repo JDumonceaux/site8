@@ -14,7 +14,7 @@ describe('LoadingWrapper', () => {
 
   test('renders loading text when isLoading is true', () => {
     render(
-      <LoadingWrapper error={null} isLoading={true} loadingText="Loading...">
+      <LoadingWrapper error={null} isLoading loadingText="Loading...">
         <div>Child Component</div>
       </LoadingWrapper>,
     );
@@ -23,10 +23,7 @@ describe('LoadingWrapper', () => {
 
   test('renders fallback when isLoading is true and loadingText is not provided', () => {
     render(
-      <LoadingWrapper
-        error={null}
-        fallback={<div>Loading...</div>}
-        isLoading={true}>
+      <LoadingWrapper error={null} fallback={<div>Loading...</div>} isLoading>
         <div>Child Component</div>
       </LoadingWrapper>,
     );

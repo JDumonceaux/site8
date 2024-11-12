@@ -1,14 +1,15 @@
-import { Button2 } from 'components/form/Button2/Button2';
+import { useCallback, useMemo } from 'react';
+
 import Meta from 'components/core/Meta/Meta';
+import { Button2 } from 'components/form/Button2/Button2';
+import Input from 'components/Input/Input';
+import { authCode } from 'feature/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
 
-import Input from 'components/Input/Input';
-import { authCode } from 'components/pages/auth/ZodStrings';
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
@@ -34,14 +35,8 @@ const ConfirmEmailPage = (): React.JSX.Element => {
     [],
   );
 
-  const {
-    formValues,
-    getDefaultFields,
-
-    getFieldErrors,
-    handleChange,
-    setErrors,
-  } = useForm<FormValues>(initialFormValues);
+  const { formValues, getFieldErrors, handleChange, setErrors } =
+    useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);

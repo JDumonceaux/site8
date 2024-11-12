@@ -1,19 +1,20 @@
 // 07-2024 Subset imports not supported by Axios
+import { useEffect, useRef, useState } from 'react';
+
 import axios, { isCancel } from 'axios';
 import { AcceptHeader } from 'lib/utils/constants';
 import { httpErrorHandler } from 'lib/utils/errorHandler';
-import { useEffect, useRef, useState } from 'react';
 
 export const useFetch = <T>() => {
-  const [data, setData] = useState<T | undefined>();
+  const [data, setData] = useState<null | T>();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>();
+  const [error, setError] = useState<null | string>();
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // Private function to fetch data
   const fetchDataAsync = async (url: string) => {
-    setData(undefined);
-    setError(undefined);
+    setData(null);
+    setError(null);
 
     // Abort Controller is recommended for cancelling fetch requests
     // and avoiding memory leaks and race conditions.
@@ -35,6 +36,7 @@ export const useFetch = <T>() => {
       setData(response.data);
     } catch (error_) {
       if (isCancel(error_)) {
+        // eslint-disable-next-line no-console
         console.log('Request was cancelled');
         return;
       }
@@ -53,8 +55,8 @@ export const useFetch = <T>() => {
   }, []);
 
   const clearData = () => {
-    setData(undefined);
-    setError(undefined);
+    setData(null);
+    setError(null);
   };
 
   const fetchData = (url: string) => {

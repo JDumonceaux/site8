@@ -1,11 +1,11 @@
-import type { SelectHTMLAttributes } from 'react';
-import { memo, useId, useRef } from 'react';
+import { memo, useId, useRef, type SelectHTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 import type { ListItem } from 'types/ListItem';
 
-import type { FieldWrapperProps } from '../Core/FieldWrapper/FieldWrapper';
-import FieldWrapper from '../Core/FieldWrapper/FieldWrapper';
+import FieldWrapper, {
+  type FieldWrapperProps,
+} from '../Core/FieldWrapper/FieldWrapper';
 
 type Props = {
   readonly allowedCharacters?: RegExp;
@@ -42,7 +42,7 @@ const InputSelect = ({
         ) : null}
         {data?.map((item) => (
           <option key={item.key} value={item.value}>
-            {item.display || item.value}
+            {item.display ?? item.value}
           </option>
         ))}
       </StyledSelect>

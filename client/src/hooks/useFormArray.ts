@@ -15,7 +15,7 @@ export const useFormArray = <T extends IdType>() => {
   const setFieldValue = (
     localId: number,
     fieldName: keyof T,
-    value: boolean | number | string | undefined,
+    value: boolean | null | number | string,
   ) => {
     setFormValues((previous) => {
       const index = findItemIndex(localId);
@@ -52,9 +52,9 @@ export const useFormArray = <T extends IdType>() => {
     setIsSaved(false);
   };
 
-  const getItem = (localId: number): T | undefined => {
+  const getItem = (localId: number): null | T => {
     const index = findItemIndex(localId);
-    return index >= 0 ? formValues[index] : undefined;
+    return index >= 0 ? formValues[index] : null;
   };
 
   return {

@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/cognitive-complexity */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const useScroll = ({
@@ -7,7 +6,7 @@ const useScroll = ({
   threshold = 450,
 } = {}) => {
   const [isAtBottom, setIsAtBottom] = useState(false);
-  const ref = useRef(isWindow ? window : null);
+  const ref = useRef(isWindow ? globalThis : null);
 
   const goTop = useCallback(() => {
     const element = ref.current;
@@ -19,7 +18,6 @@ const useScroll = ({
   }, [smooth]);
 
   const goBottom = useCallback(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const element =
       ref.current instanceof Window ? document.documentElement : ref.current;
     ref.current &&

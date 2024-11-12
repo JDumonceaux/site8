@@ -19,7 +19,6 @@ const SytledAvatar = ({
   src,
   ...rest
 }: AvatarProps): React.JSX.Element => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <StyledRoot data-testid={id} id={id} {...rest}>
     <StyledImage alt={alt} src={src} />
     <StyledFallback delayMs={delayMs}>{children}</StyledFallback>

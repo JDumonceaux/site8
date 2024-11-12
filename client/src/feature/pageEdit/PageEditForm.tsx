@@ -1,13 +1,15 @@
 import React, { forwardRef, useCallback, useState } from 'react';
+
 import * as Form from '@radix-ui/react-form';
+import Input from 'components/Input/Input';
+import { TextArea } from 'components/Input/TextArea/TextArea';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'feature/pageEdit/usePageEdit';
 import { styled } from 'styled-components';
-import { TextArea } from 'components/Input/TextArea/TextArea';
-import Input from 'components/Input/Input';
+import type { Page } from 'types/Page';
+
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
-import { Page } from 'types/Page';
 
 type PageEditFormProps = {
   readonly data?: Page;

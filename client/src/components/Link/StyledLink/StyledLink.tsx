@@ -1,13 +1,14 @@
-import type { LinkProps as BaseLinkProps } from 'react-router-dom';
-
 import React from 'react';
-import { Link as BaseLink } from 'react-router-dom';
+
+import {
+  Link as BaseLink,
+  type LinkProps as BaseLinkProps,
+} from 'react-router-dom';
 import { styled } from 'styled-components';
 
 type StyledLinkProps = {
   readonly ariaLabel?: string;
   readonly children: React.ReactNode;
-  readonly className?: string;
   readonly to: string;
   readonly variant?: 'dark' | 'light';
 } & BaseLinkProps &
@@ -16,7 +17,6 @@ type StyledLinkProps = {
 const StyledLink = ({
   ariaLabel,
   children,
-  className,
   to,
   variant = 'light',
 }: StyledLinkProps): React.JSX.Element => {
@@ -25,7 +25,6 @@ const StyledLink = ({
       $variant={variant}
       aria-current="page"
       aria-label={ariaLabel ?? children?.toString()}
-      className={className}
       to={to}>
       {children}
     </StyledElement>

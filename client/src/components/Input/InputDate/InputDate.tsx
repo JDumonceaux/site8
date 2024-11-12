@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputDateProps = {
   readonly type?: 'date' | 'datetime-local' | 'month' | 'time' | 'week';

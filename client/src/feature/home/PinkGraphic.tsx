@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { keyframes, styled } from 'styled-components';
 
 const PinkGraphic = (): React.JSX.Element => {
@@ -22,7 +23,7 @@ const PinkGraphic = (): React.JSX.Element => {
         y += 1;
       }
       return (
-        <Dot color={color} left={x * xOffset} top={y * yOffset} key={item} />
+        <Dot color={color} key={item} left={x * xOffset} top={y * yOffset} />
       );
     });
   };
@@ -146,7 +147,7 @@ const StyledDiv = styled.div`
   perspective: 100px;
 `;
 const WhiteLine = styled.div<{ index: number }>`
-  --space: ${(props) => props.index * 12 + 'px'};
+  --space: ${(props) => `${props.index * 12}px`};
   position: fixed;
   top: calc(${CENTER_TOP} - 60px);
   left: calc(${CENTER_LEFT} - 150px - var(--space));
@@ -191,19 +192,19 @@ const LargeGrayTriangle = styled.div`
 `;
 
 const GenLine = styled.div<{
+  boxShadow?: boolean;
+  color: string;
+  height: number;
   left: number;
   top: number;
-  height: number;
   width: number;
-  color: string;
   z: number;
-  boxShadow?: boolean;
 }>`
   position: fixed;
-  top: calc(${CENTER_TOP} + ${(props) => props.top + 'px'});
-  left: calc(${CENTER_LEFT} + ${(props) => props.left + 'px'});
-  height: ${(props) => props.height + 'px'};
-  width: ${(props) => props.width + 'px'};
+  top: calc(${CENTER_TOP} + ${(props) => `${props.top}px`});
+  left: calc(${CENTER_LEFT} + ${(props) => `${props.left}px`});
+  height: ${(props) => `${props.height}px`};
+  width: ${(props) => `${props.width}px`};
   background-color: ${(props) => props.color};
   z-index: ${(props) => props.z};
   box-shadow: ${(props) =>

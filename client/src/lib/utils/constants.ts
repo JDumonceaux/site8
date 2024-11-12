@@ -7,8 +7,8 @@ export enum SortOrder {
 
 export enum AcceptHeader {
   ANY = 'application/json, text/plain, */*',
-  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   CSV = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   EXCEL = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   GENERAL = '*/*',
   JSON = 'application/json',
@@ -32,14 +32,26 @@ export enum FileType {
 export const API_ROOT = `http://localhost:3005/api`;
 //const API_ROOT = `https://s12k0iq8o1.execute-api.us-west-2.amazonaws.com/Prod/api`;
 
+// internal
+export const ROUTE_ROOT = '/';
+
+// Route /react
+export const ROUTE_REACT = `${ROUTE_ROOT}react`;
+
+// Route /web
+export const ROUTE_WEB = `${ROUTE_ROOT}web`;
+export const ROUTE_WEB_HTML = `${ROUTE_WEB}/html`;
+export const ROUTE_WEB_CSS = `${ROUTE_WEB}/css`;
+export const ROUTE_WEB_TEST_GRID = `${ROUTE_WEB}/test-grid`;
+
 export enum ServiceUrl {
   ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
   ENDPOINT_IMAGE = `${API_ROOT}/image`,
   ENDPOINT_IMAGES = `${API_ROOT}/images`,
+  ENDPOINT_IMAGES_EDIT = `${API_ROOT}/images/edit`,
   ENDPOINT_IMAGES_FOLDERS = `${API_ROOT}/images/folders`,
   ENDPOINT_IMAGES_NEW = `${API_ROOT}/images/new`,
   ENDPOINT_IMAGES_SCAN = `${API_ROOT}/images/scan`,
-  ENDPOINT_IMAGES_EDIT = `${API_ROOT}/images/edit`,  
   ENDPOINT_MENUS = `${API_ROOT}/menus`,
   ENDPOINT_MENUS_EDIT = `${API_ROOT}/menus/edit`,
   ENDPOINT_MUSIC = `${API_ROOT}/music`,

@@ -2,11 +2,11 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 type SortableItemProps = {
-  readonly id: number;
   readonly children?: React.ReactNode;
+  readonly id: number;
 };
 
-const SortableItem = ({ id, children }: SortableItemProps) => {
+const SortableItem = ({ children, id }: SortableItemProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 

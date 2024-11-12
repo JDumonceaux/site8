@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/AppSlice';
-import type { AppDispatch, RootState } from 'store/Store';
+import type { AppDispatch, RootState } from 'store/store';
 import type { Snackbar } from 'types/Snackbar';
 
 const DEFAULT_DURATION = 5000;

@@ -1,4 +1,4 @@
-import { MetricType } from 'web-vitals';
+import type { MetricType } from 'web-vitals';
 
 /**
  * Reports web vitals by importing the 'web-vitals' library and calling the provided callback functions.
@@ -6,7 +6,7 @@ import { MetricType } from 'web-vitals';
  */
 const reportWebVitals = (onPerfEntry: (metric: MetricType) => void) => {
   import('web-vitals')
-    .then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+    .then(({ onCLS, onFCP, onINP, onLCP, onTTFB }) => {
       onCLS(onPerfEntry);
       onINP(onPerfEntry);
       onFCP(onPerfEntry);

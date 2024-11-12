@@ -7,7 +7,7 @@ export const DESKTOP = 'DESKTOP';
 const getDevice = (width: number) => {
   if (width < 768) return MOBILE;
   else if (width < 992) return TABLET;
-  else return DESKTOP;
+  return DESKTOP;
 };
 
 export const useViewport = () => {
@@ -17,11 +17,12 @@ export const useViewport = () => {
   });
 
   useEffect(() => {
-    const handleResize = () =>
+    const handleResize = () => {
       setViewport({
         device: getDevice(window.innerWidth),
         width: window.innerWidth,
       });
+    };
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);

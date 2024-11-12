@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
-import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
+
 import PhoneAdornment from '../Core/Adornments/PhoneAdornment';
+import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputTelProps = {
   readonly type?: 'tel';

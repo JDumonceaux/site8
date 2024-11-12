@@ -1,4 +1,5 @@
 import React, { type LabelHTMLAttributes, useCallback } from 'react';
+
 import { styled } from 'styled-components';
 
 type TextHelpProps = {
@@ -33,9 +34,8 @@ export const TextHelp = ({
             ))}
           </ul>
         );
-      } else {
-        return <div>{msg[0]}</div>;
       }
+      return <div>{msg[0]}</div>;
     },
     [],
   );

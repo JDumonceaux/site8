@@ -1,7 +1,5 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-
-import { createSlice } from '@reduxjs/toolkit';
-import { AppSettings } from 'types';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { AppSettings } from 'types';
 
 type AppState = {
   data: AppSettings | null;

@@ -1,5 +1,5 @@
-import { Bookmark } from './Bookmark';
-import { Metadata } from './Metadata';
+import type { Bookmark } from './Bookmark';
+import type { Metadata } from './Metadata';
 
 export type Bookmarks = {
   readonly items: Bookmark[];

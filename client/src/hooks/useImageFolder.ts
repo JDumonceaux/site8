@@ -1,19 +1,20 @@
-import { isValidArray } from 'lib/utils/helpers';
 import { useCallback } from 'react';
+
+import { isValidArray } from 'lib/utils/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFolders } from 'store/FolderSlice';
-import { AppDispatch, RootState } from 'store/Store';
+import type { AppDispatch, RootState } from 'store/store';
 
 const useImageFolder = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const selector = (state: RootState) => state.folders;
-  const data: null | string[] = useSelector(selector).data;
-  const isLoading = useSelector(selector).isLoading;
-  const error = useSelector(selector).error;
+  const { data } = useSelector(selector);
+  const { isLoading } = useSelector(selector);
+  const { error } = useSelector(selector);
 
   const dispatchFetchImageFolder = useCallback(
-    () => dispatch(fetchFolders()),
+    async () => dispatch(fetchFolders()),
     [dispatch],
   );
 

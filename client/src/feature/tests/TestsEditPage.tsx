@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useState } from 'react';
+
 import {
   DndContext,
   KeyboardSensor,
@@ -12,21 +14,20 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import SortableItem from 'feature/tests/SortableItem';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import { Switch } from 'components/Switch/Switch';
-import useAppSettings from 'hooks/useAppSettings';
-import useTestsEdit from 'feature/tests/useTestsEdit';
-import { useCallback, useEffect, useState } from 'react';
-import { styled } from 'styled-components';
-import Layout from 'components/layouts/Layout/Layout';
 import Input from 'components/Input/Input';
+import Layout from 'components/layouts/Layout/Layout';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
+import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
+import { Switch } from 'components/Switch/Switch';
+import SortableItem from 'feature/tests/SortableItem';
+import useTestsEdit from 'feature/tests/useTestsEdit';
+import useAppSettings from 'hooks/useAppSettings';
+import { styled } from 'styled-components';
 
 const TestsEditPage = (): React.JSX.Element => {
-  const { data, handleSave, isSaved, setFormValues, getDefaultProps } =
+  const { data, getDefaultProps, handleSave, isSaved, setFormValues } =
     useTestsEdit();
 
   const [items, setItems] = useState([1, 2, 3]);
@@ -46,8 +47,8 @@ const TestsEditPage = (): React.JSX.Element => {
       level: item.level?.toString(),
       localId: item.localId,
       name: item.name,
-      parentId: item.parent?.id.toString(),
-      parentSeq: item.parent?.seq.toString(),
+      parentId: item.parent.id.toString(),
+      parentSeq: item.parent.seq.toString(),
       projectType: item.projectType?.toString(),
       text: item.text,
       type: item.type?.toString(),
@@ -64,7 +65,6 @@ const TestsEditPage = (): React.JSX.Element => {
     [setShowPages],
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
 
@@ -87,19 +87,21 @@ const TestsEditPage = (): React.JSX.Element => {
               checked={showPages}
               id="showPages"
               label={showPages ? 'Hide Pages' : 'Show Pages'}
-              onCheckedChange={(e) => onShowPages(e)}
+              onCheckedChange={(e) => {
+                onShowPages(e);
+              }}
             />
             <StyledLink data-testid="nav-new" to="/admin/page/edit">
               New
             </StyledLink>
-            {!isSaved ? (
+            {isSaved ? null : (
               <StyledSaveButton
                 data-testid="button-save"
                 onClick={handleSave}
                 type="submit">
                 Save
               </StyledSaveButton>
-            ) : null}
+            )}
           </PageTitle>
           <table>
             <thead>

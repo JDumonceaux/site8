@@ -1,7 +1,8 @@
+import { useCallback, useEffect, useState } from 'react';
+
 import { ServiceUrl } from 'lib/utils/constants';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Test } from 'types/Test';
-import { Tests } from 'types/Tests';
+import type { Test } from 'types/Test';
+import type { Tests } from 'types/Tests';
 import { z } from 'zod';
 
 import { useAxios } from '../../hooks/Axios/useAxios';
@@ -27,7 +28,7 @@ type FormKeys = keyof FormType;
 
 const useTestsEdit = () => {
   const { data, error, fetchData, isLoading, patchData } = useAxios<Tests>();
-  const [localItems, setLocalItems] = useState<Test[] | undefined>();
+  const [localItems, setLocalItems] = useState<null | Test[]>();
 
   // Create a form
   const {
@@ -51,21 +52,22 @@ const useTestsEdit = () => {
 
   const getDefaultProps = (localId: number, fieldName: FormKeys) => ({
     id: `${fieldName as string}-(${localId})`,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-      setFieldValue(localId, fieldName, e.target.value),
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFieldValue(localId, fieldName, e.target.value);
+    },
     value: getFieldValue(localId, fieldName),
   });
 
   // Get the updates
-  const getUpdates = useCallback((): Tests | undefined => {
+  const getUpdates = useCallback((): null | Tests => {
     if (!data?.items) {
-      return undefined;
+      return null;
     }
 
     const returnValue: Test[] = [];
     for (const item of formValues) {
       // Match on TempId = Id
-      const originalItem = data.items?.find((x) => x.id === item.id);
+      const originalItem = data.items.find((x) => x.id === item.id);
       if (originalItem) {
         // const x: Test = {
         //   ...originalItem,
@@ -80,7 +82,7 @@ const useTestsEdit = () => {
     // Filter out empty array values
     return {
       ...data,
-      items: returnValue ? returnValue.filter(Boolean) : undefined,
+      items: returnValue.filter(Boolean),
     };
   }, [data, formValues]);
 
@@ -98,7 +100,7 @@ const useTestsEdit = () => {
       return false;
     }
     //setIsProcessing(true);
-    const result = await patchData(`${ServiceUrl.ENDPOINT_TESTS}`, data);
+    const result = await patchData(ServiceUrl.ENDPOINT_TESTS, data);
     //setIsProcessing(false);
     setIsSaved(result);
     return result;

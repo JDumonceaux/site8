@@ -1,4 +1,4 @@
-import { Bookmark } from './Bookmark';
+import type { Bookmark } from './Bookmark';
 
 export type BookmarksTag = {
   readonly items: Bookmark[];

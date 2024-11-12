@@ -1,7 +1,5 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-
-import { createSlice } from '@reduxjs/toolkit';
-import { Snackbar } from 'types/Snackbar';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { Snackbar } from 'types/Snackbar';
 
 type SnackbarState = {
   data: null | Snackbar;

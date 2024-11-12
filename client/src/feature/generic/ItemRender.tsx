@@ -1,61 +1,73 @@
-import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
 import React from 'react';
+
+import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
 import { styled } from 'styled-components';
-import { MenuItem } from 'types';
+import type { MenuItem } from 'types';
 
 type ItemRenderProps = {
+  readonly children?: React.ReactNode;
   readonly item: MenuItem | undefined;
   readonly level: number;
-  readonly children?: React.ReactNode;
 };
 
 export const ItemRender = ({
+  children,
   item,
   level,
-  children,
-}: ItemRenderProps): React.JSX.Element | null => {
+}: ItemRenderProps): null | React.JSX.Element => {
   if (!item) {
     return null;
   }
 
   const renderItem = () => {
     switch (item.type || 'menu') {
-      case 'menu':
+      case 'menu': {
         switch (level) {
-          case 0:
+          case 0: {
             return (
               <StyledMenu0 to={`${item.toComplete}`}>{item.name}</StyledMenu0>
             );
-          case 1:
+          }
+          case 1: {
             return (
               <StyledMenu1 to={`${item.toComplete}`}>{item.name}</StyledMenu1>
             );
-          case 2:
+          }
+          case 2: {
             return (
               <StyledMenu2 to={`${item.toComplete}`}>{item.name}</StyledMenu2>
             );
-          default:
+          }
+          default: {
             return null;
+          }
         }
-      case 'page':
+      }
+      case 'page': {
         switch (level) {
-          case 0:
+          case 0: {
             return (
               <StyledPage0 to={`${item.toComplete}`}>{item.name}</StyledPage0>
             );
-          case 1:
+          }
+          case 1: {
             return (
               <StyledPage1 to={`${item.toComplete}`}>{item.name}</StyledPage1>
             );
-          case 2:
+          }
+          case 2: {
             return (
               <StyledPage2 to={`${item.toComplete}`}>{item.name}</StyledPage2>
             );
-          default:
+          }
+          default: {
             return <div>{item.name}</div>;
+          }
         }
-      default:
+      }
+      default: {
         return <div>{item.name}</div>;
+      }
     }
   };
 

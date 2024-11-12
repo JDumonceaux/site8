@@ -1,10 +1,10 @@
+import Article from './Article';
+import Aside from './Aside';
+import Flex from './Flex';
 import FullWidth from './FullWidth';
+import Main from './Main';
 import Menu from './Menu';
 import Section from './Section';
-import Main from './Main';
-import Aside from './Aside';
-import Article from './Article';
-import Flex from './Flex';
 import TitleFixed from './TitleFixed';
 
 const Layout = (): React.JSX.Element => <>Not defined</>;

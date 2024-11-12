@@ -1,7 +1,7 @@
 //import DOMPurify from 'dompurify';
 import parse, { Element, domToReact } from 'html-react-parser';
-
 import type { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
+
 import RenderCode from './RenderCode';
 
 type RenderHtmlProps = {
@@ -18,7 +18,6 @@ const options: HTMLReactParserOptions = {
         </RenderCode>
       );
     }
-    return undefined;
   },
 };
 

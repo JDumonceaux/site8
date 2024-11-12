@@ -15,7 +15,6 @@ type InputEmailProps = {
 const InputEmail = ({
   type = 'email',
   ...rest
-  // eslint-disable-next-line react/jsx-props-no-spreading
 }: InputEmailProps): React.JSX.Element => <InputBase type={type} {...rest} />;
 
 InputEmail.displayName = 'InputEmail';

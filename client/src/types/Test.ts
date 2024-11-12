@@ -1,4 +1,4 @@
-import { Parent } from './Parent';
+import type { Parent } from './Parent';
 
 export type Test = {
   readonly action?: 'add' | 'delete' | 'edit';

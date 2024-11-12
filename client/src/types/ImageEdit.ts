@@ -1,4 +1,5 @@
 export type ImageEdit = {
+  readonly artist?: string;
   readonly description?: string;
   readonly fileName: string;
   readonly folder?: string;
@@ -7,6 +8,5 @@ export type ImageEdit = {
   readonly name?: string;
   readonly official_url?: string;
   readonly tags?: string[];
-  readonly artist?: string;
   readonly year?: string;
 };

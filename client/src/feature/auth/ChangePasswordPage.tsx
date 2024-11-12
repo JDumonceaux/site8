@@ -1,16 +1,18 @@
-import Button from 'components/form/Button/Button';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
+import { useCallback, useId, useMemo } from 'react';
+import React from 'react';
+
 import Meta from 'components/core/Meta/Meta';
-import { password } from 'components/pages/auth/ZodStrings';
+import Button from 'components/form/Button/Button';
+import Input from 'components/Input/Input';
+import StyledLink from 'components/Link/StyledLink/StyledLink';
+import { password } from 'feature/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
 import { useForm } from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
-import { useCallback, useId, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { z } from 'zod';
+
 import AuthContainer from './AuthContainer';
-import Input from 'components/Input/Input';
-import React from 'react';
 
 // Define Zod Shape
 const schema = z

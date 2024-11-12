@@ -1,5 +1,5 @@
-import { Metadata } from './Metadata';
-import { Page } from './Page';
+import type { Metadata } from './Metadata';
+import type { Page } from './Page';
 
 export type Pages = {
   readonly items?: Page[];

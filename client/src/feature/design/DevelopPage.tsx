@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
-import Input from 'components/Input/Input';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
+import EmailAdornment from 'components/Input/Core/Adornments/EmailAdornment';
+import Input from 'components/Input/Input';
+import Layout from 'components/layouts/Layout/Layout';
 import { useForm } from 'hooks/useForm';
 import styled from 'styled-components';
 import { z } from 'zod';
-import EmailAdornment from 'components/Input/Core/Adornments/EmailAdornment';
-import Layout from 'components/layouts/Layout/Layout';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -92,7 +92,7 @@ const pageSchema = z.object({
         }),
         [],
       ),
-      { formValues, getFieldValue, handleChange, handleClearField } =
+      { formValues, getFieldValue, handleChange } =
         useForm<FormType>(initialFormValues),
       handleSubmit = useCallback((error: React.FormEvent) => {
         console.log('handleSubmit');
@@ -243,7 +243,7 @@ const pageSchema = z.object({
                       label="Text Area"
                       onChange={handleChange}
                       placeholder="Enter text"
-                      required={true}
+                      required
                       rows={10}
                       value={getFieldValue('textarea')}
                     />

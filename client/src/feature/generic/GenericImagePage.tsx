@@ -1,15 +1,16 @@
+import { Suspense, useDeferredValue, useEffect } from 'react';
+
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
+import Layout from 'components/layouts/Layout/Layout';
+import SubjectMenu from 'feature/generic/SubjectMenu';
 import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
-import { Suspense, useDeferredValue, useEffect } from 'react';
 import { styled } from 'styled-components';
-import { Image } from 'types/Image';
-import { Images } from 'types/Images';
-import Layout from 'components/layouts/Layout/Layout';
-import SubjectMenu from 'feature/generic/SubjectMenu';
+import type { Image } from 'types/Image';
+import type { Images } from 'types/Images';
 
 const GenericImagePage = (): React.JSX.Element => {
   const { data, error, fetchData, isLoading } = useAxios<Images>();
@@ -17,7 +18,7 @@ const GenericImagePage = (): React.JSX.Element => {
   const deferredData = useDeferredValue<Image[]>(data ? data.items : []);
 
   useEffect(() => {
-    fetchData(`${ServiceUrl.ENDPOINT_IMAGES}`);
+    fetchData(ServiceUrl.ENDPOINT_IMAGES);
   }, [fetchData]);
 
   const pageTitle = 'Images';
@@ -36,7 +37,7 @@ const GenericImagePage = (): React.JSX.Element => {
             <PageTitle title={pageTitle} />
             <Layout.Section>
               <Suspense fallback="Loading results ...">
-                {deferredData?.map((item, index) => (
+                {deferredData.map((item, index) => (
                   <div key={index}>
                     <StyledImage
                       alt={item.name}

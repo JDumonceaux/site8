@@ -1,4 +1,4 @@
-export interface ICase {
+export type ICase = {
   caseNumber: string;
   caseStatus?: string;
   dateTimeOpened?: Date;
@@ -22,4 +22,4 @@ export interface ICase {
   revisedDeliveryWindowStart?: string;
   routeNumber?: string;
   unit?: string;
-}
+};

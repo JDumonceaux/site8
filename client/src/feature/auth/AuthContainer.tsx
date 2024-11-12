@@ -1,3 +1,4 @@
+import Layout from 'components/layouts/Layout/Layout';
 import { styled } from 'styled-components';
 
 type AuthContainerProps = {

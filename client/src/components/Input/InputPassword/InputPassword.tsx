@@ -1,7 +1,8 @@
 import React, { memo, useCallback, useState } from 'react';
-import InputBase, { InputBaseProps } from '../Core/InputBase/InputBase';
+
 import PasswordAdornment from '../Core/Adornments/PasswordAdornment';
 import ShowAdornment from '../Core/Adornments/ShowAdornment';
+import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputPasswordProps = {
   readonly autoComplete?: 'current-password' | 'new-password' | 'off';

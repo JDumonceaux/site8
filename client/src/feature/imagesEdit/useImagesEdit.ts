@@ -1,7 +1,9 @@
-import { ServiceUrl } from 'lib/utils/constants';
 import { useCallback } from 'react';
-import { Images } from 'types';
-import { ImageEdit } from 'types/ImageEdit';
+
+import { ServiceUrl } from 'lib/utils/constants';
+import type { Images } from 'types';
+import type { ImageEdit } from 'types/ImageEdit';
+
 import { useAxios } from '../../hooks/Axios/useAxios';
 
 const useImagesEdit = () => {
@@ -56,15 +58,15 @@ const useImagesEdit = () => {
 
   // Handle save
   const saveItems = async (updates: ImageEdit[]) => {
-    return patchData(`${ServiceUrl.ENDPOINT_IMAGES}`, { items: updates });
+    return patchData(ServiceUrl.ENDPOINT_IMAGES, { items: updates });
   };
 
   return {
     data,
     error,
     fetchData: fetchItems,
-    saveItems,
     isLoading,
+    saveItems,
     scanForNewItems,
   };
 };

@@ -1,6 +1,8 @@
 import { memo } from 'react';
-import { InputBaseProps } from '../Core/InputBase/InputBase';
+
 import styled from 'styled-components';
+
+import type { InputBaseProps } from '../Core/InputBase/InputBase';
 
 type Props = {
   readonly type?: 'checkbox';
@@ -22,7 +24,7 @@ const InputCheckbox = ({
   return (
     <StyledDiv>
       <label htmlFor={id}>
-        <input type={type} name={id} {...rest} />
+        <input name={id} type={type} {...rest} />
         {label}
       </label>
     </StyledDiv>

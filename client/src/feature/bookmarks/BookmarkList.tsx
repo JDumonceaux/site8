@@ -1,14 +1,14 @@
-import { Bookmarks } from 'types/Bookmarks';
+import type { Bookmarks } from 'types/Bookmarks';
 
 type BookmarksProps = {
-  readonly id?: number;
   readonly data?: Bookmarks | null;
+  readonly id?: number;
 };
 
 export const BookmarkList = ({
-  id,
   data,
-}: BookmarksProps): React.JSX.Element | null => {
+  id,
+}: BookmarksProps): null | React.JSX.Element => {
   if (!data) {
     return null;
   }
@@ -16,10 +16,10 @@ export const BookmarkList = ({
   return (
     <>
       {id ? <div>{id}</div> : null}
-      {data?.items?.map((item) => (
+      {data.items.map((item) => (
         <div key={item.id}>
           <h3>
-            <a href={`${item.url}`}>{item.name}</a>
+            <a href={item.url}>{item.name}</a>
           </h3>
           <p>{item.description}</p>
         </div>
