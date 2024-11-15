@@ -64,7 +64,7 @@ const useImagesEditPage = () => {
   // Get all data
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   // Filter and sort data
   useEffect(() => {
@@ -80,16 +80,16 @@ const useImagesEditPage = () => {
     setDisplayData(trimmedData ?? []);
   }, [filter, data?.items]);
 
-  // Get artsit data
-  useEffect(() => {
-    if (data?.items) {
-      const artists = data.items
-        .map((item) => item.artist)
-        .filter((artist): artist is string => !!artist);
-      const uniqueArtists = Array.from(new Set(artists));
-      setArtistData(uniqueArtists);
-    }
-  }, [data?.items]);
+  // // Get artsit data
+  // useEffect(() => {
+  //   if (data?.items) {
+  //     const artists = data.items
+  //       .map((item) => item.artist)
+  //       .filter((artist): artist is string => !!artist);
+  //     const uniqueArtists = Array.from(new Set(artists));
+  //     setArtistData(uniqueArtists);
+  //   }
+  // }, [data?.items]);
 
   useEffect(() => {
     // The full set of items
@@ -151,7 +151,6 @@ const useImagesEditPage = () => {
     if (!updates) {
       setMessage('No changes to save');
       setIsProcessing(false);
-      return;
     }
     // if (updates.length > 1) {
     //   setMessage('Too many changes to save');

@@ -94,7 +94,7 @@ const useImageEdit = (id: null | string) => {
       if (items) {
         const item: FormType = {
           description: items.description ?? '',
-          fileName: items.fileName ?? '',
+          fileName: items.fileName,
           folder: items.folder ?? '',
           id: items.id,
           location: items.location ?? '',
@@ -113,7 +113,7 @@ const useImageEdit = (id: null | string) => {
   useEffect(() => {
     if (id) {
       const temporaryId = Number.parseInt(id ?? '');
-      if (!isNaN(temporaryId) && temporaryId > 0) {
+      if (!Number.isNaN(temporaryId) && temporaryId > 0) {
         setCurrentId(temporaryId);
       }
       if (['first', 'last', 'next', 'prev'].includes(id)) {
@@ -127,14 +127,14 @@ const useImageEdit = (id: null | string) => {
     if (currentId > 0) {
       fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}`);
     }
-  }, [currentId, fetchData]);
+  }, [currentId]);
 
   // Fetch data when currentAction changes
   useEffect(() => {
     if (currentAction) {
       fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}/${currentAction}`);
     }
-  }, [currentAction, currentId, fetchData]);
+  }, [currentAction, currentId]);
 
   // Update the form values when the data changes
   useEffect(() => {
@@ -183,10 +183,10 @@ const useImageEdit = (id: null | string) => {
   );
 
   // Handle form submission
-  const submitForm = (): boolean => {
+  const submitForm = async (): Promise<boolean> => {
     setIsProcessing(true);
     if (validateForm()) {
-      saveItem(formValues);
+      await saveItem(formValues);
       setIsProcessing(false);
       setIsSaved(true);
       return true;

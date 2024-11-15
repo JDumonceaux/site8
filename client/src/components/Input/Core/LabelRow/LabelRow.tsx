@@ -16,7 +16,10 @@ type LabelRowProps = {
   readonly required?: boolean;
   readonly requiredText?: string;
   readonly tooltipProps?: TooltipBaseProps;
-} & Omit<LabelHTMLAttributes<HTMLLabelElement>, 'onChange' | 'onClick'>;
+} & Omit<
+  LabelHTMLAttributes<HTMLLabelElement>,
+  'onBlur' | 'onChange' | 'onClick'
+>;
 
 /* Note: If you use htmlfor(or for) attribute, 
   clicking on the label doesn't seem to select the input */

@@ -5,7 +5,7 @@ import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import { useFetch } from 'hooks/Axios/useFetch';
+import { useAxios } from 'hooks/Axios/useAxios';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getParamIdAsString } from 'lib/utils/helpers';
 import { useParams } from 'react-router-dom';
@@ -15,12 +15,11 @@ import PageEditForm from './PageEditForm';
 
 const PageEditPage = (): React.JSX.Element => {
   const { id } = useParams();
-  const { clearData, data, error, fetchData, isLoading } = useFetch<Page>();
+  const { data, error, fetchData, isLoading } = useAxios<Page>();
   const currentId = getParamIdAsString(id);
 
   useEffect(() => {
     if (!currentId) {
-      clearData();
       return;
     }
     fetchData(`${ServiceUrl.ENDPOINT_PAGE}/${currentId}`);

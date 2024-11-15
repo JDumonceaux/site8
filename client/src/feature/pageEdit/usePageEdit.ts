@@ -38,7 +38,7 @@ const pageSchema = z
 type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
-const usePageEdit = (data?: Page) => {
+const usePageEdit = (data?: null | Page) => {
   // Use Axios to fetch data
   const { patchData, postData } = useAxios<Page>();
 

@@ -3,7 +3,7 @@ import console from 'console';
 const textToListItem = (value: string) => {
   return value
     .split('\n')
-    .map((x) => '<li>' + x + '</li>')
+    .map((x) => `<li>${x}</li>`)
     .join('\n');
 };
 
@@ -14,52 +14,44 @@ export const insertHTML = (
   action: string,
 ) => {
   try {
-    const textBefore = value.substring(0, startPosition);
-    const textAfter = value.substring(endPosition);
+    const textBefore = value.slice(0, Math.max(0, startPosition));
+    const textAfter = value.slice(Math.max(0, endPosition));
     const textMiddle = value.substring(startPosition, endPosition);
 
     switch (action) {
-      case 'ol':
-      case 'ul':
-        return (
-          textBefore +
-          `<${action}>\n` +
-          textToListItem(textMiddle) +
-          `\n</${action}>` +
+      case 'abbr': {
+        return `${textBefore}<${action} title="">\n${textMiddle}\n</${action}>${
           textAfter
-        );
-      case 'link':
-        return textBefore + `<a href="">` + textMiddle + ` </a>` + textAfter;
-      case 'code':
-        return (
-          textBefore +
-          `<pre><code>\n` +
-          textMiddle +
-          `\n</code></pre>` +
+        }`;
+      }
+      case 'code': {
+        return `${textBefore}<pre><code>\n${textMiddle}\n</code></pre>${
           textAfter
-        );
-      case 'abbr':
-        return (
-          textBefore +
-          `<${action} title="">\n` +
-          textMiddle +
-          `\n</${action}>` +
-          textAfter
-        );
+        }`;
+      }
       case 'h2':
+      case 'mark':
       case 'q':
       case 's':
-      case 'mark':
-      case 'sup':
       case 'sub':
-        return (
-          textBefore + `<${action}>` + textMiddle + `</${action}>` + textAfter
-        );
-      default:
+      case 'sup': {
+        return `${textBefore}<${action}>${textMiddle}</${action}>${textAfter}`;
+      }
+      case 'link': {
+        return `${textBefore}<a href="">${textMiddle} </a>${textAfter}`;
+      }
+      case 'ol':
+      case 'ul': {
+        return `${textBefore}<${action}>\n${textToListItem(
+          textMiddle,
+        )}\n</${action}>${textAfter}`;
+      }
+      default: {
         return textBefore + textMiddle + textAfter;
+      }
     }
   } catch (error) {
     console.error('Error parsing date:', error);
-    return undefined;
+    return null;
   }
 };

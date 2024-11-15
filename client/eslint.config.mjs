@@ -706,6 +706,8 @@ export default [
       '@typescript-eslint/no-empty-function': ['off'],
       '@typescript-eslint/no-explicit-any': ['off'],
       '@typescript-eslint/no-extraneous-class': 'error',
+      // Too confusing
+      '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-import-type-side-effects': 'error',
       '@typescript-eslint/no-inferrable-types': 'error',
       '@typescript-eslint/no-invalid-this': 'error',

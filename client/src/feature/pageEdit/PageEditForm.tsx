@@ -2,7 +2,6 @@ import React, { forwardRef, useCallback, useState } from 'react';
 
 import * as Form from '@radix-ui/react-form';
 import Input from 'components/Input/Input';
-import { TextArea } from 'components/Input/TextArea/TextArea';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'feature/pageEdit/usePageEdit';
 import { styled } from 'styled-components';
@@ -12,7 +11,7 @@ import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
 
 type PageEditFormProps = {
-  readonly data?: Page;
+  readonly data?: null | Page;
 };
 
 const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
@@ -95,9 +94,6 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           value={formValues.name}
 
           //layout="horizontal"
-          //onBlur={handeNameOnBlur}
-          //required
-          //spellCheck
         />
 
         <Input.Text
@@ -117,10 +113,10 @@ const PageEditForm = forwardRef<HTMLFormElement, PageEditFormProps>(
           placeholder="Enter a menu id"
         />
         <ToolMenu onClick={handeTextInsert} />
-        <TextArea
+        <Input.TextArea
           {...getDefaultProps('text')}
           label="Text"
-          //  onBlur={handeTextAreaBlur}
+          onBlur={handeTextAreaBlur}
           rows={30}
           spellCheck
         />
