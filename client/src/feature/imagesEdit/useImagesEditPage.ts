@@ -1,17 +1,15 @@
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
 import useImagesEdit from 'feature/imagesEdit/useImagesEdit';
 import { useFormArray } from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
+import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
 import type { Image as LocalImage } from 'types/Image';
 import type { ImageEdit } from 'types/ImageEdit';
 import { z } from 'zod';
-import axios, { isCancel } from 'axios';
-import { ServiceUrl } from 'lib/utils/constants';
-import { Images } from 'types';
-import useImagesApi from './useImagesApi';
-import { cleanup } from '@testing-library/react';
+
+import useServerApi from './useServerApi';
 
 // Define Zod Shape
 const schema = z.object({
@@ -48,8 +46,6 @@ const useImagesEditPage = () => {
   const [displayData, setDisplayData] = useState<LocalImage[]>([]);
   const [artistData, setArtistData] = useState<string[]>([]);
 
-  // move to useImagesEdit?// Is the form saving?
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
 
@@ -65,17 +61,16 @@ const useImagesEditPage = () => {
 
   const { saveItems, scanForNewItems } = useImagesEdit();
 
-  const { data, isLoading, error, fetchData, cleanup } = useImagesApi<Images>();
+  const { cleanup, data, error, fetchData, isLoading } = useServerApi<T>();
 
   // Get all data
   useEffect(() => {
-    const fetch = fetchData;
-    fetch(ServiceUrl.ENDPOINT_IMAGES_EDIT);
+    fetchData(ServiceUrl.ENDPOINT_IMAGES_EDIT);
     // Clean up if component unmounts
     return () => {
       cleanup();
     };
-  }, []);
+  }, [cleanup, fetchData]);
 
   // Filter and sort data
   useEffect(() => {
@@ -118,15 +113,15 @@ const useImagesEditPage = () => {
         fileName: x.fileName || '',
         folder: x.folder ?? '',
         id: x.id || 0,
-        isDuplicate: x.isDuplicate || false,
+        isDuplicate: x.isDuplicate ?? false,
         isSelected: false,
         localId: index + 1,
-        location: x.location || '',
-        name: x.name || '',
-        official_url: x.official_url || '',
+        location: x.location ?? '',
+        name: x.name ?? '',
+        official_url: x.official_url ?? '',
         src: getSRC(x.folder, x.fileName),
-        tags: x.tags?.join(',') || '',
-        year: x.year || '',
+        tags: x.tags?.join(',') ?? '',
+        year: x.year ?? '',
       };
     });
     return ret;
@@ -253,6 +248,7 @@ const useImagesEditPage = () => {
     for (const item of displayData) {
       const items = formValues.filter((x) => x.id === item.id);
       if (items.length > 1) {
+        // eslint-disable-next-line no-console
         console.warn('Duplicate items found.  Please correct index');
       }
       const current = items[0];
@@ -308,7 +304,7 @@ const useImagesEditPage = () => {
           returnValue.push({
             artist: tempArtist.value,
             description: tempDescription.value,
-            fileName: tempFileName.value || item.fileName,
+            fileName: tempFileName.value ?? item.fileName,
             folder: tempFolder.value,
             id: item.id,
             location: tempLocation.value,

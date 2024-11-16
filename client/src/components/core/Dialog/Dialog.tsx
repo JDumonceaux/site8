@@ -44,6 +44,9 @@ type DialogProps = {
 
 const getIcon = (variant: keyof typeof VARIANTS) => {
   switch (variant) {
+    case VARIANTS.default: {
+      return null;
+    }
     case VARIANTS.error: {
       return (
         <StyledIcon $variant={variant} className="fa-solid fa-circle-xmark" />
@@ -70,7 +73,6 @@ const getIcon = (variant: keyof typeof VARIANTS) => {
         />
       );
     }
-    case VARIANTS.default:
     default: {
       return null;
     }

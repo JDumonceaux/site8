@@ -29,9 +29,16 @@ const ImageItem = ({
   onChange,
   onDelete,
 }: Props): React.JSX.Element => {
-  const handleOnDelete = (localId: number) => {
-    onDelete(localId);
-  };
+  const handleOnDelete = React.useCallback(() => {
+    onDelete(item.localId);
+  }, [item.localId, onDelete]);
+
+  const handleOnChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      onChange(item.localId, 'isSelected', e);
+    },
+    [item.localId, onChange],
+  );
 
   const getDefaultProps = (
     localId: number,
@@ -98,19 +105,12 @@ const ImageItem = ({
           placeholder="Tags"
         />
         <IconMenu>
-          <IconMenuItem
-            onClick={() => {
-              handleOnDelete(item.localId);
-            }}>
-            Delete
-          </IconMenuItem>
+          <IconMenuItem onClick={handleOnDelete}>Delete</IconMenuItem>
           <IconMenuItem>{item.id}</IconMenuItem>
         </IconMenu>
         <Input.Checkbox
           id="selected"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            onChange(item.localId, 'isSelected', e);
-          }}
+          onChange={handleOnChange}
           value={getFieldValue(item.localId, 'isSelected')}
         />
       </StyledOuterRow>
