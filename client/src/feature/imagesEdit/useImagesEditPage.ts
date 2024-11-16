@@ -1,15 +1,15 @@
 import { useEffect, useState, useTransition } from 'react';
 
 import useImagesEdit from 'feature/imagesEdit/useImagesEdit';
+import useServerApi from 'hooks/Axios/useServerApi';
 import { useFormArray } from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
+import type { Images } from 'types';
 import type { Image as LocalImage } from 'types/Image';
 import type { ImageEdit } from 'types/ImageEdit';
 import { z } from 'zod';
-
-import useServerApi from './useServerApi';
 
 // Define Zod Shape
 const schema = z.object({
@@ -61,7 +61,7 @@ const useImagesEditPage = () => {
 
   const { saveItems, scanForNewItems } = useImagesEdit();
 
-  const { cleanup, data, error, fetchData, isLoading } = useServerApi<T>();
+  const { cleanup, data, error, fetchData, isLoading } = useServerApi<Images>();
 
   // Get all data
   useEffect(() => {
