@@ -66,8 +66,8 @@ const useMenuEdit = () => {
       name: formValues.name,
       parentItems: [
         {
-          id: Number.parseInt(formValues.parent),
-          seq: Number.parseInt(formValues.seq),
+          id: Number.parseInt(formValues.parent, 10),
+          seq: Number.parseInt(formValues.seq, 10),
           sortby: formValues.sortby as sortByType,
         },
       ],
@@ -79,9 +79,6 @@ const useMenuEdit = () => {
   // Handle save
   const submitForm = useCallback(async () => {
     const data = getUpdates();
-    if (!data) {
-      return false;
-    }
     setIsProcessing(true);
     const result = await postData(ServiceUrl.ENDPOINT_MENUS, data);
     setIsProcessing(false);
@@ -89,9 +86,10 @@ const useMenuEdit = () => {
     return result;
   }, [getUpdates, postData, setIsProcessing, setIsSaved]);
 
-  const handleChange = useCallback(
-    (fieldName: FormKeys, value: string) => {
-      setFieldValue(fieldName, value);
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setFieldValue(name as FormKeys, value);
     },
     [setFieldValue],
   );
@@ -119,7 +117,7 @@ const useMenuEdit = () => {
       formValues,
       getFieldValue,
       getStandardInputTextAttributes,
-      handleChange,
+      handleInputChange,
       isLoading,
       isProcessing,
       isSaved,
@@ -140,7 +138,7 @@ const useMenuEdit = () => {
       setFormValues,
       setFieldValue,
       clearForm,
-      handleChange,
+      handleInputChange,
       submitForm,
       validateForm,
     ],

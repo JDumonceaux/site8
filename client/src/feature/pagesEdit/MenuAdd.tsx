@@ -16,7 +16,7 @@ const MenuAdd = (): React.JSX.Element => {
     clearForm,
     error,
     getStandardInputTextAttributes,
-    handleChange,
+    handleInputChange,
     isLoading,
     submitForm,
     validateForm,
@@ -37,26 +37,6 @@ const MenuAdd = (): React.JSX.Element => {
     },
     [validateForm, setMessage, submitForm, clearForm],
   );
-
-  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange('name', e.target.value);
-  };
-
-  const handleChangeParent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange('parent', e.target.value);
-  };
-
-  const handleChangeSeq = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange('seq', e.target.value);
-  };
-
-  const handleChangeSortBy = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange('sortby', e.target.value);
-  };
-
-  const handleChangeType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange('type', e.target.value);
-  };
 
   return (
     <LoadingWrapper error={error} isLoading={isLoading}>
@@ -79,7 +59,7 @@ const MenuAdd = (): React.JSX.Element => {
                 {...getStandardInputTextAttributes('name')}
                 autoCapitalize="off"
                 inputMode="text"
-                onChange={handleChangeName}
+                onChange={handleInputChange}
                 required
                 spellCheck
               />
@@ -88,7 +68,7 @@ const MenuAdd = (): React.JSX.Element => {
               <Input.Text
                 {...getStandardInputTextAttributes('parent')}
                 inputMode="numeric"
-                onChange={handleChangeParent}
+                onChange={handleInputChange}
                 required
               />
             </td>
@@ -96,7 +76,7 @@ const MenuAdd = (): React.JSX.Element => {
               <Input.Text
                 {...getStandardInputTextAttributes('seq')}
                 inputMode="numeric"
-                onChange={handleChangeSeq}
+                onChange={handleInputChange}
                 required
               />
             </td>
@@ -106,7 +86,7 @@ const MenuAdd = (): React.JSX.Element => {
                 autoCapitalize="off"
                 inputMode="text"
                 list="sortTypes"
-                onChange={handleChangeSortBy}
+                onChange={handleInputChange}
               />
               <datalist id="sortTypes">
                 <option value="seq" />
@@ -119,7 +99,7 @@ const MenuAdd = (): React.JSX.Element => {
                 autoCapitalize="off"
                 inputMode="text"
                 list="menuTypes"
-                onChange={handleChangeType}
+                onChange={handleInputChange}
                 required
               />
               <datalist id="menuTypes">
