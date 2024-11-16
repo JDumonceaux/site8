@@ -23,9 +23,9 @@ const useImagesApi = <T>() => {
       if (!isCancel(error_)) {
         if (error_ instanceof Error) {
           setError(error_.message);
+        } else {
+          setError('An unexpected error occurred');
         }
-      } else {
-        setError('An unexpected error occurred');
       }
     } finally {
       setIsLoading(false);
