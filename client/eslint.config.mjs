@@ -314,7 +314,8 @@ export default [
       // Don't use on Typescript projects
       'no-undef': 'off',
       'no-undef-init': 'error',
-      'no-undefined': 'error',
+      // no restictive
+      'no-undefined': 'off',
       'no-underscore-dangle': 'error',
       'no-unmodified-loop-condition': 'error',
       'no-unneeded-ternary': 'error',
@@ -763,7 +764,8 @@ export default [
       '@typescript-eslint/return-await': 'error',
       // This is too restrictive
       '@typescript-eslint/strict-boolean-expressions': 'off',
-      '@typescript-eslint/switch-exhaustiveness-check': 'error',
+      // This is too restrictive
+      '@typescript-eslint/switch-exhaustiveness-check': 'off',
       '@typescript-eslint/typedef': 'error',
       '@typescript-eslint/unified-signatures': 'error',
       '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',

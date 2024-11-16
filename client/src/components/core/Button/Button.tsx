@@ -10,6 +10,8 @@ const VARIANTS = Object.freeze({
   secondary: 'secondary',
 } as const);
 
+type Variant = keyof typeof VARIANTS;
+
 const SIZES = Object.freeze({
   lg: 'lg',
   md: 'md',
@@ -18,20 +20,18 @@ const SIZES = Object.freeze({
   xs: 'xs',
 } as const);
 
+type Size = keyof typeof SIZES;
+
 type ButtonProps = {
   readonly children: React.ReactNode;
-  readonly endAdornment?: React.ReactNode;
-  readonly size?: keyof typeof SIZES;
-  readonly startAdornment?: React.ReactNode;
+  readonly size?: Size;
   readonly type?: 'button' | 'reset' | 'submit';
-  readonly variant?: keyof typeof VARIANTS;
+  readonly variant?: Variant;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
 
 const Button = ({
   children,
-  endAdornment,
   size = 'md',
-  startAdornment,
   type = 'button',
   variant = 'primary',
   ...rest
@@ -51,8 +51,8 @@ Button.displayName = 'Button';
 export default memo(Button);
 
 const StyledButton = styled.button<{
-  $size?: keyof typeof SIZES;
-  $variant?: keyof typeof VARIANTS;
+  $size?: Size;
+  $variant?: Variant;
 }>`
   border-radius: 50%;
   ${(props) => {
@@ -91,6 +91,11 @@ const StyledButton = styled.button<{
           max-height: 48px;
         `;
       }
+      case SIZES.md: {
+        return css`
+          max-height: 40px;
+        `;
+      }
       case SIZES.sm: {
         return css`
           max-height: 32px;
@@ -106,7 +111,6 @@ const StyledButton = styled.button<{
           max-height: 24px;
         `;
       }
-      case SIZES.md:
       default: {
         return css`
           max-height: 40px;
