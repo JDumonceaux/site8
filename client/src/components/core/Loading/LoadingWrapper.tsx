@@ -22,24 +22,23 @@ const LoadingWrapper = ({
   isLoading,
   loadingText,
 }: LoadingWrapperProps): React.JSX.Element => {
-  if (isLoading)
+  if (isLoading) {
     return (
       <StyledLoadingDiv>
         {loadingText ?? null}
         {fallback ?? null}
       </StyledLoadingDiv>
     );
-
-  if (error)
+  } else if (error) {
     return (
       <>
         <StyledErrorDiv>{error}</StyledErrorDiv>
         {children}
       </>
     );
-
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{children}</>;
+  } else {
+    return <>{children}</>;
+  }
 };
 
 export default memo(LoadingWrapper);

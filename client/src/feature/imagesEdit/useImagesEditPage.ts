@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useRef, useState, useTransition } from 'react';
 
 import useImagesEdit from 'feature/imagesEdit/useImagesEdit';
 import { useFormArray } from 'hooks/useFormArray';
@@ -7,6 +7,11 @@ import { getSRC } from 'lib/utils/helpers';
 import type { Image as LocalImage } from 'types/Image';
 import type { ImageEdit } from 'types/ImageEdit';
 import { z } from 'zod';
+import axios, { isCancel } from 'axios';
+import { ServiceUrl } from 'lib/utils/constants';
+import { Images } from 'types';
+import useImagesApi from './useImagesApi';
+import { cleanup } from '@testing-library/react';
 
 // Define Zod Shape
 const schema = z.object({
@@ -58,12 +63,18 @@ const useImagesEditPage = () => {
     setIsSaved,
   } = useFormArray<ImageItemForm>();
 
-  const { data, error, fetchData, isLoading, saveItems, scanForNewItems } =
-    useImagesEdit();
+  const { saveItems, scanForNewItems } = useImagesEdit();
+
+  const { data, isLoading, error, fetchData, cleanup } = useImagesApi<Images>();
 
   // Get all data
   useEffect(() => {
-    fetchData();
+    const fetch = fetchData;
+    fetch(ServiceUrl.ENDPOINT_IMAGES_EDIT);
+    // Clean up if component unmounts
+    return () => {
+      cleanup();
+    };
   }, []);
 
   // Filter and sort data
@@ -80,16 +91,16 @@ const useImagesEditPage = () => {
     setDisplayData(trimmedData ?? []);
   }, [filter, data?.items]);
 
-  // // Get artsit data
-  // useEffect(() => {
-  //   if (data?.items) {
-  //     const artists = data.items
-  //       .map((item) => item.artist)
-  //       .filter((artist): artist is string => !!artist);
-  //     const uniqueArtists = Array.from(new Set(artists));
-  //     setArtistData(uniqueArtists);
-  //   }
-  // }, [data?.items]);
+  // Get artsit data
+  useEffect(() => {
+    if (data?.items) {
+      const artists = data.items
+        .map((item) => item.artist)
+        .filter((artist): artist is string => !!artist);
+      const uniqueArtists = Array.from(new Set(artists));
+      setArtistData(uniqueArtists);
+    }
+  }, [data?.items]);
 
   useEffect(() => {
     // The full set of items
@@ -141,7 +152,7 @@ const useImagesEditPage = () => {
   const handleRefresh = () => {
     setMessage('Updating...');
     startTransition(() => {
-      fetchData();
+      // fetchData();
     });
     setMessage('Done');
   };
