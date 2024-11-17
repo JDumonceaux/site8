@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { IconMenu } from 'components/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
+import { ServiceUrl } from 'lib/utils/constants';
 
 type Props = {
   readonly handleRefresh: () => void;
@@ -18,26 +19,28 @@ const MenuBar = ({
   return (
     <>
       <IconMenu>
-        <IconMenuItem onClick={handleScan}>Scan for New</IconMenuItem>
-        <IconMenuItem>
+        <IconMenuItem key="scan" onClick={handleScan}>
+          Scan for New
+        </IconMenuItem>
+        <IconMenuItem key="list-duplicates">
           <a
-            href="http://localhost:3005/api/images/list-duplicates"
+            href={ServiceUrl.ENDPOINT_IMAGES_LIST_DUPLICATES}
             rel="noreferrer"
             target="_blank">
             List Duplicates
           </a>
         </IconMenuItem>
-        <IconMenuItem>
+        <IconMenuItem key="fix-index">
           <a
-            href="http://localhost:3005/api/images/fix-index"
+            href={ServiceUrl.ENDPOINT_IMAGES_FIX_INDEX}
             rel="noreferrer"
             target="_blank">
             Fix Index
           </a>
         </IconMenuItem>
-        <IconMenuItem>
+        <IconMenuItem key="fix-names">
           <a
-            href="http://localhost:3005/api/images/fix-file-names"
+            href={ServiceUrl.ENDPOINT_IMAGES_FIX_FILE_NAMES}
             rel="noreferrer"
             target="_blank">
             Fix Names
@@ -60,4 +63,4 @@ const MenuBar = ({
   );
 };
 
-export default MenuBar;
+export default memo(MenuBar);

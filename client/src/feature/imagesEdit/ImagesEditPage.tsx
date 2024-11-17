@@ -23,13 +23,12 @@ const ImagesEditPage = (): React.JSX.Element => {
     getFieldValue,
     handleChange,
     handleFilterSelect,
-    handleOnDelete,
-    handleOnFolderClick,
+    handleDelete,
+    handleFolderClick,
     handleRefresh,
     handleScan,
     handleSubmit,
     isLoading,
-    isPending,
   } = useImagesEditPage();
 
   return (
@@ -47,16 +46,15 @@ const ImagesEditPage = (): React.JSX.Element => {
       <Layout.Flex>
         <Layout.Main>
           <LoadingWrapper error={error} isLoading={isLoading}>
-            {isPending ? <div>Loading ...</div> : null}
             <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
                 <ImageItem
                   artistData={artistData}
                   getFieldValue={getFieldValue}
                   item={item}
-                  key={item.localId}
+                  key={item.lineId}
                   onChange={handleChange}
-                  onDelete={handleOnDelete}
+                  onDelete={handleDelete}
                 />
               ))}
             </StyledForm>
@@ -66,7 +64,7 @@ const ImagesEditPage = (): React.JSX.Element => {
           <RightMenu
             currentFilter={currentFilter}
             currentFolder={currentFolder}
-            onClick={handleOnFolderClick}
+            onClick={handleFolderClick}
             onFilterSelect={handleFilterSelect}
           />
         </Layout.Aside>

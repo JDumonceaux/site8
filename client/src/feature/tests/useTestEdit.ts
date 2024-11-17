@@ -12,7 +12,7 @@ export type sortByType = 'name' | 'seq';
 // Define Zod Shape
 const pageSchema = z.object({
   id: z.number(),
-  localId: z.number(),
+  lineId: z.number(),
   name: z.string().optional(),
   parent: z.string().min(1, REQUIRED_FIELD),
   seq: z.string(),
@@ -52,7 +52,7 @@ const useTestEdit = () => {
 
     const returnValue: MenuEdit[] = [];
     for (const item of formValues) {
-      const originalItem = data.items.find((x) => x.localId === item.localId);
+      const originalItem = data.items.find((x) => x.lineId === item.lineId);
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
@@ -107,11 +107,11 @@ const useTestEdit = () => {
   }, [submitForm]);
 
   const getStandardInputTextAttributes = useCallback(
-    (localId: number, fieldName: FormKeys) => {
-      const field = `${fieldName}-${localId}`;
+    (lineId: number, fieldName: FormKeys) => {
+      const field = `${fieldName}-${lineId}`;
       return {
         id: field,
-        value: getFieldValue(localId, fieldName),
+        value: getFieldValue(lineId, fieldName),
         // errorText: getFieldErrors(fieldName),
         // hasError: hasError(fieldName),
         // value: formValues[fieldName],

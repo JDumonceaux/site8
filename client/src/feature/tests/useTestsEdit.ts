@@ -13,7 +13,7 @@ const pageSchema = z.object({
   action: z.string().optional(),
   id: z.number(),
   level: z.string().optional(),
-  localId: z.number(),
+  lineId: z.number(),
   name: z.string().optional(),
   parentId: z.string().optional(),
   parentSeq: z.string().optional(),
@@ -47,15 +47,16 @@ const useTestsEdit = () => {
 
   // Save to local - adding local index
   useEffect(() => {
-    setLocalItems(data?.items?.map((x, index) => ({ ...x, localId: index })));
+    setLocalItems(data?.items?.map((x, index) => ({ ...x, lineId: index })));
   }, [data?.items, setLocalItems]);
 
-  const getDefaultProps = (localId: number, fieldName: FormKeys) => ({
-    id: `${fieldName as string}-(${localId})`,
+  const getDefaultProps = (lineId: number, fieldName: FormKeys) => ({
+    'data-id': fieldName,
+    'data-line': lineId,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFieldValue(localId, fieldName, e.target.value);
+      setFieldValue(lineId, fieldName, e.target.value);
     },
-    value: getFieldValue(localId, fieldName),
+    value: getFieldValue(lineId, fieldName),
   });
 
   // Get the updates

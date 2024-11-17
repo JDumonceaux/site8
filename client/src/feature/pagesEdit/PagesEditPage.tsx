@@ -31,7 +31,7 @@ const PagesEditPage = (): React.JSX.Element => {
   useEffect(() => {
     const returnValue = data?.map((item) => ({
       id: item.id,
-      localId: item.localId,
+      lineId: item.lineId,
       name: item.name,
       parentId: item.parentItem.id ? item.parentItem.id.toString() : '0',
       parentSeq: item.parentItem.seq ? item.parentItem.seq.toString() : '0',
@@ -64,7 +64,7 @@ const PagesEditPage = (): React.JSX.Element => {
       })();
 
       return (
-        <React.Fragment key={item.localId}>
+        <React.Fragment key={item.lineId}>
           <StyledTr>
             <td>
               {item.type === 'page' ? (
@@ -83,18 +83,18 @@ const PagesEditPage = (): React.JSX.Element => {
             </td>
             <td>
               {item.type === 'root' ? null : (
-                <Input.Text {...getDefaultProps(item.localId, 'parentId')} />
+                <Input.Text {...getDefaultProps(item.lineId, 'parentId')} />
               )}
             </td>
             <td>
-              <Input.Text {...getDefaultProps(item.localId, 'parentSeq')} />
+              <Input.Text {...getDefaultProps(item.lineId, 'parentSeq')} />
             </td>
 
             <td>
               {item.type === 'page' ? null : (
                 <>
                   <Input.Text
-                    {...getDefaultProps(item.localId, 'parentSortby')}
+                    {...getDefaultProps(item.lineId, 'parentSortby')}
                     list="sortTypes"
                   />
                   <datalist id="sortTypes">
@@ -105,7 +105,7 @@ const PagesEditPage = (): React.JSX.Element => {
               )}
             </td>
             <td>
-              {item.type} {item.issue ? '-I' : null} -{item.localId}
+              {item.type} {item.issue ? '-I' : null} -{item.lineId}
             </td>
           </StyledTr>
         </React.Fragment>

@@ -4,7 +4,7 @@ export type Test = {
   readonly action?: 'add' | 'delete' | 'edit';
   readonly id: number;
   readonly level?: 'page' | 'project';
-  readonly localId: number;
+  readonly lineId: number;
   readonly name: string;
   readonly parent: Parent;
   readonly projectType?: ['react', 'nodejs'];

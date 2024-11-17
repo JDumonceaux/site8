@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
-import useImageFolder from 'hooks/useImageFolder';
+import useImageFolder from 'feature/imagesEdit/useImageFolder';
 import { styled } from 'styled-components';
 import type { ListItem } from 'types/ListItem';
 
@@ -19,11 +19,7 @@ const RightMenu = ({
   onClick,
   onFilterSelect,
 }: Props): React.JSX.Element => {
-  const { data, error, fetchData, isLoading } = useImageFolder();
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const { data, error, isLoading } = useImageFolder();
 
   const filterData: ListItem[] | undefined = data?.map((x) => ({
     key: x.id,
@@ -41,15 +37,6 @@ const RightMenu = ({
           onChange={onFilterSelect}
           value={currentFilter}
         />
-        {/* <label htmlFor="select">Filter</label>
-          <select id="select" onChange={onFilterSelect} value={currentFilter}>
-            <option value="all">All</option>
-            {data?.map((item) => (
-              <option key={item.id} value={item.value}>
-                {item.value}
-              </option>
-            ))}
-          </select> */}
       </FilterDiv>
       <StyledHeader>
         <div>

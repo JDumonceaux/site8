@@ -45,7 +45,7 @@ const TestsEditPage = (): React.JSX.Element => {
       action: '',
       id: item.id,
       level: item.level?.toString(),
-      localId: item.localId,
+      lineId: item.lineId,
       name: item.name,
       parentId: item.parent.id.toString(),
       parentSeq: item.parent.seq.toString(),
@@ -127,46 +127,40 @@ const TestsEditPage = (): React.JSX.Element => {
                 strategy={verticalListSortingStrategy}>
                 <tbody>
                   {data?.map((item) => (
-                    <SortableItem id={item.localId} key={item.localId}>
+                    <SortableItem id={item.lineId} key={item.lineId}>
                       <td>{item.id}</td>
                       <td>
+                        <Input.Text {...getDefaultProps(item.lineId, 'name')} />
+                      </td>
+                      <td>
+                        <Input.Text {...getDefaultProps(item.lineId, 'text')} />
+                      </td>
+                      <td>
+                        <Input.Text {...getDefaultProps(item.lineId, 'type')} />
+                      </td>
+                      <td>
                         <Input.Text
-                          {...getDefaultProps(item.localId, 'name')}
+                          {...getDefaultProps(item.lineId, 'level')}
                         />
                       </td>
                       <td>
                         <Input.Text
-                          {...getDefaultProps(item.localId, 'text')}
+                          {...getDefaultProps(item.lineId, 'parentId')}
                         />
                       </td>
                       <td>
                         <Input.Text
-                          {...getDefaultProps(item.localId, 'type')}
+                          {...getDefaultProps(item.lineId, 'parentSeq')}
                         />
                       </td>
                       <td>
                         <Input.Text
-                          {...getDefaultProps(item.localId, 'level')}
+                          {...getDefaultProps(item.lineId, 'projectType')}
                         />
                       </td>
                       <td>
                         <Input.Text
-                          {...getDefaultProps(item.localId, 'parentId')}
-                        />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.localId, 'parentSeq')}
-                        />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.localId, 'projectType')}
-                        />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.localId, 'action')}
+                          {...getDefaultProps(item.lineId, 'action')}
                         />
                       </td>
                     </SortableItem>

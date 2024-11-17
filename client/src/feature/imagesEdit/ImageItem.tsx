@@ -10,16 +10,14 @@ import type { ImageItemForm } from './useImagesEditPage';
 type Props = {
   readonly artistData: string[];
   readonly getFieldValue: (
-    localId: number,
+    lineId: number,
     fieldName: keyof ImageItemForm,
   ) => string;
   readonly item: ImageItemForm;
   readonly onChange: (
-    localId: number,
-    fieldName: keyof ImageItemForm,
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
-  readonly onDelete: (localId: number) => void;
+  readonly onDelete: (lineId: number) => void;
 };
 
 const ImageItem = ({
@@ -30,61 +28,54 @@ const ImageItem = ({
   onDelete,
 }: Props): React.JSX.Element => {
   const handleOnDelete = React.useCallback(() => {
-    onDelete(item.localId);
-  }, [item.localId, onDelete]);
+    onDelete(item.lineId);
+  }, [item.lineId, onDelete]);
 
-  const handleOnChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      onChange(item.localId, 'isSelected', e);
-    },
-    [item.localId, onChange],
+  const getDefaultProps = React.useCallback(
+    (lineId: number, fieldName: keyof ImageItemForm) => ({
+      'data-id': fieldName,
+      'data-line': lineId,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(e);
+      },
+      value: getFieldValue(lineId, fieldName),
+    }),
+    [getFieldValue, onChange],
   );
 
-  const getDefaultProps = (
-    localId: number,
-    fieldName: keyof ImageItemForm,
-  ) => ({
-    id: `${fieldName as string}-(${localId})`,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(localId, fieldName, e);
-    },
-    value: getFieldValue(localId, fieldName),
-  });
-
   return (
-    <StyledRow $deleted={item.delete ? 'true' : 'false'} key={item.localId}>
+    <StyledRow $deleted={item.delete ? 'true' : 'false'} key={item.lineId}>
       <StyledImgContainer>
         <StyledImg alt={item.name} src={item.src} />
       </StyledImgContainer>
       <StyledOuterRow>
         {item.isDuplicate ? <div>Duplicate Image</div> : null}
-
         <Input.Text
-          {...getDefaultProps(item.localId, 'name')}
+          {...getDefaultProps(item.lineId, 'name')}
           placeholder="Name"
         />
         <Input.Text
-          {...getDefaultProps(item.localId, 'fileName')}
+          {...getDefaultProps(item.lineId, 'fileName')}
           placeholder="File Name"
         />
         <Input.Text
-          {...getDefaultProps(item.localId, 'folder')}
+          {...getDefaultProps(item.lineId, 'folder')}
           placeholder="Folder"
         />
         <Input.Text
-          {...getDefaultProps(item.localId, 'location')}
+          {...getDefaultProps(item.lineId, 'location')}
           placeholder="Location"
         />
         <Input.Text
-          {...getDefaultProps(item.localId, 'official_url')}
+          {...getDefaultProps(item.lineId, 'official_url')}
           placeholder="Official URL"
         />
         <Input.Text
-          {...getDefaultProps(item.localId, 'description')}
+          {...getDefaultProps(item.lineId, 'description')}
           placeholder="Description"
         />
         <Input.Text
-          {...getDefaultProps(item.localId, 'artist')}
+          {...getDefaultProps(item.lineId, 'artist')}
           list="artists"
           placeholder="Artist"
         />
@@ -97,11 +88,11 @@ const ImageItem = ({
         ) : null}
 
         <Input.Text
-          {...getDefaultProps(item.localId, 'year')}
+          {...getDefaultProps(item.lineId, 'year')}
           placeholder="Year"
         />
         <Input.Text
-          {...getDefaultProps(item.localId, 'tags')}
+          {...getDefaultProps(item.lineId, 'tags')}
           placeholder="Tags"
         />
         <IconMenu>
@@ -109,9 +100,11 @@ const ImageItem = ({
           <IconMenuItem>{item.id}</IconMenuItem>
         </IconMenu>
         <Input.Checkbox
-          id="selected"
-          onChange={handleOnChange}
-          value={getFieldValue(item.localId, 'isSelected')}
+          data-id="isSelected"
+          data-line={item.lineId}
+          onChange={onChange}
+          checked={getFieldValue(item.lineId, 'isSelected') === 'true'}
+          value="x"
         />
       </StyledOuterRow>
     </StyledRow>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from 'react';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 
 import useImagesEdit from 'feature/imagesEdit/useImagesEdit';
 import useServerApi from 'hooks/Axios/useServerApi';
@@ -37,7 +37,7 @@ export type ImageItemForm = z.infer<typeof schema> & {
   delete?: boolean;
   isDuplicate?: boolean;
   isSelected: boolean;
-  localId: number;
+  lineId: number;
 };
 
 const useImagesEditPage = () => {
@@ -73,7 +73,7 @@ const useImagesEditPage = () => {
   }, [cleanup, fetchData]);
 
   // Filter and sort data
-  useEffect(() => {
+  const filterAndSortData = useCallback(() => {
     const temp =
       filter && filter.length > 0
         ? data?.items.filter((x) => x.folder === filter)
@@ -85,6 +85,10 @@ const useImagesEditPage = () => {
     const trimmedData = sortedData?.slice(0, 100);
     setDisplayData(trimmedData ?? []);
   }, [filter, data?.items]);
+
+  useEffect(() => {
+    filterAndSortData();
+  }, [filterAndSortData]);
 
   // Get artsit data
   useEffect(() => {
@@ -115,7 +119,7 @@ const useImagesEditPage = () => {
         id: x.id || 0,
         isDuplicate: x.isDuplicate ?? false,
         isSelected: false,
-        localId: index + 1,
+        lineId: index + 1,
         location: x.location ?? '',
         name: x.name ?? '',
         official_url: x.official_url ?? '',
@@ -128,18 +132,19 @@ const useImagesEditPage = () => {
   };
 
   const handleChange = (
-    localId: number,
-    fieldName: keyof ImageItemForm,
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { value } = event.target;
-    const ischecked = (event.target as HTMLInputElement).checked;
-    setFieldValue(localId, fieldName, value || ischecked);
-    if (fieldName === 'isSelected') {
-      if (ischecked) {
-        setFieldValue(localId, 'folder', currentFolder);
-      } else {
-        setFieldValue(localId, 'folder', '');
+    const { value, type, dataset } = event.target;
+    const { id, line } = dataset;
+    const lineNum = Number(line);
+    //  const fieldValue = type === 'checkbox' ? checked : value;
+    if (!id) {
+      throw new Error('No id found');
+    } else {
+      setFieldValue(lineNum, id as keyof ImageItemForm, value);
+
+      if (id === 'isSelected') {
+        //    setFieldValue(lineNum, 'folder', checked ? currentFolder : '');
       }
     }
   };
@@ -195,17 +200,17 @@ const useImagesEditPage = () => {
     setMessage('Done');
   };
 
-  const handleOnFolderClick = (value: string) => {
+  const handleFolderClick = (value: string) => {
     setCurrentFolder((previous) => (previous === value ? '' : value));
   };
 
-  const handleOnDelete = (localId: number) => {
-    const previous = getFieldValue(localId, 'delete');
-    setFieldValue(localId, 'delete', !previous);
+  const handleDelete = (lineId: number) => {
+    const previous = getFieldValue(lineId, 'delete');
+    setFieldValue(lineId, 'delete', !previous);
   };
 
-  const handleFolderSelect = (localId: number) => {
-    setFieldValue(localId, 'folder', currentFolder);
+  const handleFolderSelect = (lineId: number) => {
+    setFieldValue(lineId, 'folder', currentFolder);
   };
 
   const handleFilterSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -330,8 +335,8 @@ const useImagesEditPage = () => {
     handleChange,
     handleFilterSelect,
     handleFolderSelect,
-    handleOnDelete,
-    handleOnFolderClick,
+    handleDelete,
+    handleFolderClick,
     handleRefresh,
     handleScan,
     handleSubmit,

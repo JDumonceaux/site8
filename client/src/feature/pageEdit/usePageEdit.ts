@@ -133,7 +133,8 @@ const usePageEdit = (data?: null | Page) => {
   }, [submitForm, validateForm]);
 
   const getDefaultProps = (fieldName: FormKeys) => ({
-    id: fieldName as string,
+    'data-id': fieldName,
+    'data-line': 0,
     onChange: (
       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {

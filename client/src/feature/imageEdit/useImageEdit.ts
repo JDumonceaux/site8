@@ -44,7 +44,8 @@ const useImageEdit = (id: null | string) => {
   type FormKeys = keyof FormType;
 
   const getDefaultProps = (fieldName: FormKeys) => ({
-    id: fieldName as string,
+    'data-id': fieldName,
+    'data-line': 0,
     onChange: (
       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {

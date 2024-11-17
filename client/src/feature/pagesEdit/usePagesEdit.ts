@@ -8,7 +8,7 @@ import { z } from 'zod';
 // Define Zod Shape
 const pageSchema = z.object({
   id: z.number(),
-  localId: z.number(),
+  lineId: z.number(),
   name: z.string().optional(),
   parentId: z.string().min(1, { message: REQUIRED_FIELD }),
   parentSeq: z.string(),
@@ -44,7 +44,7 @@ const usePagesEdit = () => {
   // Save to local - adding local index
   useEffect(() => {
     setLocalItems(
-      data?.items?.map((x, index) => ({ ...x, localId: index + 1 })),
+      data?.items?.map((x, index) => ({ ...x, lineId: index + 1 })),
     );
   }, [data?.items, setLocalItems]);
 
@@ -139,7 +139,7 @@ const usePagesEdit = () => {
       // Map item
       const temporaryItem = mapFormTypeToMenuEdit(item);
       // Find the original item
-      const currentItem = localItems.find((x) => x.localId === item.localId);
+      const currentItem = localItems.find((x) => x.lineId === item.lineId);
       const newItem =
         temporaryItem && currentItem?.parentItem
           ? { ...temporaryItem, priorParent: { ...currentItem?.parentItem } }
@@ -188,11 +188,12 @@ const usePagesEdit = () => {
     return returnValue;
   };
 
-  const getDefaultProps = (localId: number, fieldName: FormKeys) => ({
-    id: `${fieldName as string}-(${localId})`,
+  const getDefaultProps = (lineId: number, fieldName: FormKeys) => ({
+    'data-id': fieldName,
+    'data-line': lineId,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-      setFieldValue(localId, fieldName, e.target.value),
-    value: getFieldValue(localId, fieldName),
+      setFieldValue(lineId, fieldName, e.target.value),
+    value: getFieldValue(lineId, fieldName),
   });
 
   return {

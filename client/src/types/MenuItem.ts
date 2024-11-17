@@ -5,7 +5,7 @@ export type MenuItem = {
   readonly file?: boolean;
   readonly id: number;
   readonly issue?: boolean;
-  readonly localId: number;
+  readonly lineId: number;
   readonly name: string;
   readonly parentItem: ParentSortby;
   readonly to?: string;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import useImageFolder from './useImageFolder';
+import useImageFolder from '../feature/imagesEdit/useImageFolder';
 import useMenu from './useMenu';
 
 const useAppInitializer = () => {

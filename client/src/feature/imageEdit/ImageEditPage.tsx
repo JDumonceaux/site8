@@ -1,7 +1,5 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import ImageSelector from 'components/custom/ImageSelector/ImageSelector';
-import Input from 'components/Input/Input';
-import { TextArea } from 'components/Input/TextArea/TextArea';
 import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
@@ -9,10 +7,12 @@ import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import useImageEdit from './useImageEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Image } from 'types/Image';
+import React from 'react';
+import Input from 'components/Input/Input';
 
 const ImageEditImage = (): React.JSX.Element => {
   const parameters = useParams();
@@ -49,6 +49,12 @@ const ImageEditImage = (): React.JSX.Element => {
   };
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
+
+  const inputTitleRef = React.useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputTitleRef.current?.focus();
+  });
 
   return (
     <>
@@ -89,6 +95,7 @@ const ImageEditImage = (): React.JSX.Element => {
                     label="Short Title"
                     required
                     spellCheck
+                    ref={inputTitleRef}
                     // {...getStandardInputTextAttributes('name')}
                     //ref={focusElement}
                     {...getDefaultProps('name')}
@@ -155,7 +162,7 @@ const ImageEditImage = (): React.JSX.Element => {
                     {...getDefaultProps('tags')}
                     //ref={focusElement}
                   />
-                  <TextArea
+                  <Input.TextArea
                     label="Description"
                     rows={30}
                     spellCheck

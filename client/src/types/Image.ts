@@ -6,7 +6,7 @@ export type Image = {
   readonly id: number;
   readonly isDuplicate?: boolean;
   readonly isMatched?: boolean;
-  readonly localId?: number;
+  readonly lineId?: number;
   readonly location?: string;
   readonly matchedId?: number;
   readonly name?: string;

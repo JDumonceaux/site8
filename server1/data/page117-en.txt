@@ -197,7 +197,7 @@ Benefits:
 const data = getUpdates();
 
 formValues.forEach((item) => {
-    data?.items?.find((x) => x.localId === item.localId);
+    data?.items?.find((x) => x.lineId === item.lineId);
 
 const result = await patchData(`${ServiceUrl.ENDPOINT_MENUS}`, data);
 
