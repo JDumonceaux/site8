@@ -12,7 +12,7 @@ type LabelRowProps = {
   readonly description?: string;
   readonly endAdornment?: React.ReactNode;
   readonly label?: string;
-  readonly ref?: React.RefObject<HTMLLabelElement>;
+  readonly labelRef?: React.RefObject<HTMLLabelElement>;
   readonly required?: boolean;
   readonly requiredText?: string;
   readonly tooltipProps?: TooltipBaseProps;
@@ -30,13 +30,13 @@ const LabelRow = ({
   endAdornment,
   id,
   label,
-  ref,
+  labelRef,
   required = false,
   requiredText,
   tooltipProps,
   ...rest
 }: LabelRowProps): React.JSX.Element => (
-  <Label.Root htmlFor={id} ref={ref} {...rest}>
+  <Label.Root htmlFor={id} ref={labelRef} {...rest}>
     <StyledRow>
       <StyledLabel>
         {label}

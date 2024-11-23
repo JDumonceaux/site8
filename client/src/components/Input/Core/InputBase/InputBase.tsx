@@ -37,6 +37,7 @@ declare const validityMatchers: readonly [
 
 type InputBaseProps = {
   readonly allowedCharacters?: RegExp;
+  readonly ref?: React.Ref<HTMLInputElement>;
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
   readonly type: HTMLInputTypeAttribute;
@@ -60,7 +61,7 @@ type InputBaseProps = {
 const InputBase = ({
   endAdornment,
   id,
-  inputRef,
+  ref,
   // showCounter = false,
   // showError = true,
   // showRequired = true,
@@ -78,7 +79,7 @@ const InputBase = ({
 }: InputBaseProps): React.JSX.Element => {
   const currId = useGetId(id);
   const props = { ...rest, id: currId, required };
-  const localRef = inputRef || useRef<HTMLInputElement>(null);
+  const localRef = ref || useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(e);
