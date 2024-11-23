@@ -34,7 +34,7 @@ const schema = z.object({
 });
 
 // Create a type from the schema
-export type ImageItemForm = z.infer<typeof schema> & {
+export type ImageExt = z.infer<typeof schema> & {
   delete?: boolean;
   isDuplicate?: boolean;
   isSelected: boolean;
@@ -51,7 +51,7 @@ const useImagesEditPage = () => {
 
   // Create a form
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
-    useFormArray<ImageItemForm>();
+    useFormArray<ImageExt>();
 
   const { saveItems, scanForNewItems } = useImagesEdit();
 
@@ -104,7 +104,7 @@ const useImagesEditPage = () => {
     if (!items) {
       return [];
     }
-    const ret: ImageItemForm[] | undefined = items.map((x, index) => {
+    const ret: ImageExt[] | undefined = items.map((x, index) => {
       return {
         artist: x.artist ?? '',
         description: x.description ?? '',
@@ -133,7 +133,7 @@ const useImagesEditPage = () => {
     const lineNum = Number(line);
     //  const fieldValue = type === 'checkbox' ? checked : value;
     if (id) {
-      setFieldValue(lineNum, id as keyof ImageItemForm, value);
+      setFieldValue(lineNum, id as keyof ImageExt, value);
 
       if (type === 'checkbox' && id === 'isSelected') {
         const { checked } = event.target as HTMLInputElement;

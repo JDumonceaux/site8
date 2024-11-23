@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-literal-enum-member */
 export const APP_NAME = 'ReactTotal.io';
 
 export enum SortOrder {
@@ -49,12 +50,14 @@ export enum ServiceUrl {
   ENDPOINT_IMAGE = `${API_ROOT}/image`,
   ENDPOINT_IMAGES = `${API_ROOT}/images`,
   ENDPOINT_IMAGES_EDIT = `${API_ROOT}/images/edit`,
+  ENDPOINT_IMAGES_FIX_FILE_NAMES = `${API_ROOT}/images/fix-file-names`,
+  ENDPOINT_IMAGES_FIX_INDEX = `${API_ROOT}/images/fix-index`,
   ENDPOINT_IMAGES_FOLDERS = `${API_ROOT}/images/folders`,
+  ENDPOINT_IMAGES_LIST_DUPLICATES = `${API_ROOT}/images/list-duplicates`,
   ENDPOINT_IMAGES_NEW = `${API_ROOT}/images/new`,
   ENDPOINT_IMAGES_SCAN = `${API_ROOT}/images/scan`,
-  ENDPOINT_IMAGES_LIST_DUPLICATES = `${API_ROOT}/images/list-duplicates`,
-  ENDPOINT_IMAGES_FIX_INDEX = `${API_ROOT}/images/fix-index`,
-  ENDPOINT_IMAGES_FIX_FILE_NAMES = `${API_ROOT}/images/fix-file-names`,
+  ENDPOINT_ITEMS = `${API_ROOT}/items`,
+  ENDPOINT_ITEMS_EDIT = `${API_ROOT}/items/edit`,
   ENDPOINT_MENUS = `${API_ROOT}/menus`,
   ENDPOINT_MENUS_EDIT = `${API_ROOT}/menus/edit`,
   ENDPOINT_MUSIC = `${API_ROOT}/music`,

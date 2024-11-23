@@ -1,4 +1,4 @@
-import Reactfrom 'react';
+import React from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -6,44 +6,34 @@ import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
 import { styled } from 'styled-components';
 
-import ImageItem from './Item';
-import useItemEditPage from './useItemsEditPage';
+import ItemDetail from './ItemDetail';
+import useItemsEditPage from './useItemsEditPage';
 
 const ItemEditPage = (): React.JSX.Element => {
-  const title = 'Edit Images';
+  const title = 'Edit Items';
 
   const {
-    artistData,
-    currentFilter,
-    currentFolder,
     data,
     error,
     getFieldValue,
     handleChange,
     handleDelete,
-    handleFilterSelect,
-    handleFolderChange,
-    handleRefresh,
-    handleScan,
     handleSubmit,
     isLoading,
-  } = useItemEditPage();
+  } = useItemsEditPage();
 
   return (
     <>
       <Meta title={title} />
       <Layout.TitleFixed>
-        <PageTitle title={title}>
-
-        </PageTitle>
+        <PageTitle title={title} />
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Main>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
-                <ImageItem
-                  artistData={artistData}
+                <ItemDetail
                   getFieldValue={getFieldValue}
                   item={item}
                   key={item.lineId}
@@ -54,7 +44,6 @@ const ItemEditPage = (): React.JSX.Element => {
             </StyledForm>
           </LoadingWrapper>
         </Layout.Main>
-
       </Layout.Flex>
     </>
   );

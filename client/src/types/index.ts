@@ -31,3 +31,7 @@ export type * from './PhotoSet';
 export * from './Snackbar';
 export type * from './Test';
 export type * from './Tests';
+export type * from './ItemsEdit';
+export type * from './ItemEdit';
+export type * from './Item';
+export type * from './Items';

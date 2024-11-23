@@ -1,10 +1,10 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from '../../../lib/utils/FilePath.js';
-import { Logger } from '../../../lib/utils/logger.js';
-import { cleanUpData, getNextId } from '../../../lib/utils/objectUtil.js';
-import { Item } from '../../../types/Item.js';
-import { ItemEdit } from '../../../types/ItemEdit.js';
-import { Items } from '../../../types/Items.js';
+import { getDataDir } from '../../lib/utils/FilePath.js';
+import { Logger } from '../../lib/utils/logger.js';
+import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
+import { Item } from '../../types/Item.js';
+import { ItemEdit } from '../../types/ItemEdit.js';
+import { Items } from '../../types/Items.js';
 
 export class ItemsService {
   private fileName = 'items.json';
@@ -74,14 +74,14 @@ export class ItemsService {
       return true;
     }
 
-    const items = await this.readFile();
-    if (!items?.items) {
+    const itemsTemp = await this.readFile();
+    if (!itemsTemp?.items) {
       throw new Error('ItemsService: updateItems -> Unable to load index');
     }
 
     // Get the updated records
     const updatedItems: ItemEdit[] = items.map((item) => {
-      const currItems = items.items?.filter((x) => x.id === item.id);
+      const currItems = itemsTemp.items?.filter((x) => x.id === item.id);
 
       if (!currItems) {
         throw new Error(
@@ -102,18 +102,17 @@ export class ItemsService {
           ...currItem,
           ...item,
           isNewItem: false,
-          originalFolder: currItem.folder,
         };
       }
     });
 
     // Replace the changed records in the original data
-    const data: Item[] = items.items
+    const data: Item[] = itemsTemp.items
       .map((x) => {
         const foundItem = updatedItems.find((y) => y.id === x.id);
         const addItem = () => {
           if (foundItem) {
-            const { originalFolder: _unused, ...rest } = foundItem;
+            const { ...rest } = foundItem;
             return cleanUpData<Item>({ ...rest });
           }
           return undefined;
@@ -123,7 +122,7 @@ export class ItemsService {
       })
       .filter(Boolean);
 
-    const results = await this.writeFile({ ...items, items: data });
+    const results = await this.writeFile({ ...itemsTemp, items: data });
     if (!results) {
       throw new Error('ItemsService: updateItems -> Failed to update index.');
     }

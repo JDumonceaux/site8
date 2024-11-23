@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { Errors } from '../lib/utils/constants.js';
 import { Logger } from '../lib/utils/logger.js';
-import { ItemsService } from '../feature/items/services/ItemsService.js';
+import { ItemsService } from '../feature/items/ItemsService.js';
 import { ItemsEdit } from '../types/ItemsEdit.js';
 
 export const itemsRouter = express.Router();

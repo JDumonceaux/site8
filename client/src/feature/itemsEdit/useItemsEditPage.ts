@@ -1,14 +1,12 @@
-import { useCallback, useEffect, useState, useTransition } from 'react';
+import { useCallback, useEffect } from 'react';
 
-import useItemsEdit from 'feature/ItemsEdit/useItemsEdit';
 import useServerApi from 'hooks/Axios/useServerApi';
 import { useFormArray } from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
-import { getSRC } from 'lib/utils/helpers';
-import type { Items } from 'types';
-import type { Item as LocalItem } from 'types/Item';
-import type { ItemEdit } from 'types/ItemsEdit';
+import type { ItemEdit } from 'types';
+import type { Item } from 'types/Item';
+import type { Items } from 'types/Items';
 import { z } from 'zod';
 
 // Define Zod Shape
@@ -16,8 +14,6 @@ import { z } from 'zod';
 const schema = z.object({
   artist: z.string().trim().optional(),
   description: z.string().trim().optional(),
-  fileName: z.string().trim(),
-  folder: z.string().trim().optional(),
   id: z.number(),
   location: z
     .string({
@@ -28,33 +24,26 @@ const schema = z.object({
     .optional(),
   name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
   official_url: z.string().trim().optional(),
-  src: z.string().optional(),
   tags: z.string().trim().optional(),
   year: z.string().trim().optional(),
 });
 
 // Create a type from the schema
-export type ItemItemForm = z.infer<typeof schema> & {
+export type ItemExt = z.infer<typeof schema> & {
   delete?: boolean;
-  isDuplicate?: boolean;
   isSelected: boolean;
   lineId: number;
 };
 
 const useItemsEditPage = () => {
-  const [filter, setFilter] = useState<string>('sort');
-  const [currentFolder, setCurrentFolder] = useState<string>('');
-  const [displayData, setDisplayData] = useState<LocalItem[]>([]);
-  const [artistData, setArtistData] = useState<string[]>([]);
-  const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
 
   // Create a form
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
-    useFormArray<ItemItemForm>();
+    useFormArray<ItemExt>();
 
-
-  const { cleanup, data, error, fetchData, isLoading } = useServerApi<Items>();
+  const { cleanup, data, error, fetchData, isLoading, patchData } =
+    useServerApi<Items>();
 
   // Get all data
   useEffect(() => {
@@ -65,60 +54,33 @@ const useItemsEditPage = () => {
     };
   }, [cleanup, fetchData]);
 
-  // Filter and sort data
-  const filterAndSortData = useCallback(() => {
-    const temp =
-      filter && filter.length > 0
-        ? data?.items.filter((x) => x.folder === filter)
-        : data?.items;
-    const filteredItemType = temp?.filter(
-      (x) => !x.fileName.toLowerCase().includes('.heic'),
-    );
-    const sortedData = filteredItemType?.toSorted((a, b) => b.id - a.id);
-    const trimmedData = sortedData?.slice(0, 100);
-    setDisplayData(trimmedData ?? []);
-  }, [filter, data?.items]);
-
   useEffect(() => {
-    filterAndSortData();
-  }, [filterAndSortData]);
+    setFormValues(mapDataToForm(data?.items));
+  }, [data, setFormValues]);
 
-  // Get artsit data
-  useEffect(() => {
-    if (data?.items) {
-      const artists = data.items
-        .map((item) => item.artist)
-        .filter((artist): artist is string => !!artist);
-      const uniqueArtists = Array.from(new Set(artists));
-      setArtistData(uniqueArtists);
-    }
-  }, [data?.items]);
+  // Handle save
+  const saveItems = useCallback(
+    async (updates: ItemEdit[]) => {
+      return patchData(ServiceUrl.ENDPOINT_ITEMS, { items: updates });
+    },
+    [patchData],
+  );
 
-  useEffect(() => {
-    // The full set of items
-    setFormValues(mapDataToForm(displayData));
-  }, [filter, displayData, setFormValues]);
-
-  const mapDataToForm = (items: LocalItem[] | undefined) => {
+  // Map database to form
+  const mapDataToForm = (items: Item[] | undefined) => {
     if (!items) {
       return [];
     }
-    const ret: ItemItemForm[] | undefined = items.map((x, index) => {
+    const ret: ItemExt[] | undefined = items.map((x, index) => {
       return {
         artist: x.artist ?? '',
         description: x.description ?? '',
-        fileName: x.fileName || '',
-        folder: x.folder ?? '',
         id: x.id || 0,
-        isDuplicate: x.isDuplicate ?? false,
         isSelected: false,
         lineId: index + 1,
         location: x.location ?? '',
-        name: x.name ?? '',
         official_url: x.official_url ?? '',
-        src: getSRC(x.folder, x.fileName),
         tags: x.tags?.join(',') ?? '',
-        year: x.year ?? '',
       };
     });
     return ret;
@@ -127,100 +89,74 @@ const useItemsEditPage = () => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { dataset, type, value } = event.target;
+    const { dataset, value } = event.target;
     const { id, line } = dataset;
     const lineNum = Number(line);
-    //  const fieldValue = type === 'checkbox' ? checked : value;
     if (id) {
-      setFieldValue(lineNum, id as keyof ItemItemForm, value);
-
-      if (type === 'checkbox' && id === 'isSelected') {
-        const { checked } = event.target as HTMLInputElement;
-        setFieldValue(lineNum, 'folder', checked ? currentFolder : '');
-      }
+      setFieldValue(lineNum, id as keyof ItemExt, value);
     } else {
       throw new Error('No id found');
     }
   };
 
-  const handleRefresh = useCallback(() => {
-    setMessage('Updating...');
-    startTransition(() => {
-      // fetchData();
-    });
-    setMessage('Done');
-  }, [setMessage, startTransition]);
-
   // Only submit updated records
   const getUpdates = useCallback(() => {
     const returnValue: ItemEdit[] = [];
 
-    for (const item of displayData) {
-      const items = formValues.filter((x) => x.id === item.id);
-      if (items.length > 1) {
-        // eslint-disable-next-line no-console
-        console.warn('Duplicate items found.  Please correct index');
-      }
-      const current = formValues.find((x) => x.id === item.id);
-      if (current) {
-        const tempName = getDifferenceString(item.name, current.name);
+    if (data?.items) {
+      for (const item of data.items) {
+        const items = formValues.filter((x) => x.id === item.id);
+        if (items.length > 1) {
+          // eslint-disable-next-line no-console
+          console.warn('Duplicate items found.  Please correct index');
+        }
+        const current = formValues.find((x) => x.id === item.id);
+        if (current) {
+          const tempLocation = getDifferenceString(
+            item.location,
+            current.location,
+          );
+          const tempDescription = getDifferenceString(
+            item.description,
+            current.description,
+          );
+          const tempOfficialUrl = getDifferenceString(
+            item.official_url,
+            current.official_url,
+          );
+          const tempArtist = getDifferenceString(item.artist, current.artist);
 
-        const tempLocation = getDifferenceString(
-          item.location,
-          current.location,
-        );
-        const tempDescription = getDifferenceString(
-          item.description,
-          current.description,
-        );
-        const tempOfficialUrl = getDifferenceString(
-          item.official_url,
-          current.official_url,
-        );
-        const tempFolder = getDifferenceString(item.folder, current.folder);
-        const tempFileName = getDifferenceString(
-          item.fileName,
-          current.fileName,
-        );
-        const tempArtist = getDifferenceString(item.artist, current.artist);
+          const tempTags = getDifferenceString(
+            item.tags?.join(','),
+            current.tags,
+          );
 
-        const tempYear = getDifferenceString(item.year, current.year);
-        const tempTags = getDifferenceString(
-          item.tags?.join(','),
-          current.tags,
-        );
+          const hasChanges = [
+            tempLocation.hasChange,
+            tempDescription.hasChange,
+            tempOfficialUrl.hasChange,
 
-        const hasChanges = [
-          tempName.hasChange,
-          tempLocation.hasChange,
-          tempDescription.hasChange,
-          tempOfficialUrl.hasChange,
-          tempFolder.hasChange,
-          tempFileName.hasChange,
-          tempArtist.hasChange,
-          tempYear.hasChange,
-          tempTags.hasChange,
-        ].some(Boolean);
+            tempArtist.hasChange,
+            tempTags.hasChange,
+          ].some(Boolean);
 
-        if (hasChanges) {
-          returnValue.push({
-            artist: tempArtist.value,
-            description: tempDescription.value,
-            fileName: tempFileName.value ?? item.fileName,
-            folder: tempFolder.value,
-            id: item.id,
-            location: tempLocation.value,
-            name: tempName.value,
-            official_url: tempOfficialUrl.value,
-            tags: tempTags.value?.split(',').map((x) => x.trim()),
-            year: tempYear.value,
-          });
+          if (hasChanges) {
+            returnValue.push({
+              artist: tempArtist.value,
+              description: tempDescription.value,
+
+              id: item.id,
+              location: tempLocation.value,
+              official_url: tempOfficialUrl.value,
+              tags: tempTags.value?.split(',').map((x) => x.trim()),
+            });
+          }
         }
       }
     }
 
     return returnValue.length > 0 ? returnValue : undefined;
-  }, [displayData, formValues]);
+  }, [data, formValues]);
 
   const handleSubmit = useCallback(() => {
     const updates = getUpdates();
@@ -237,7 +173,7 @@ const useItemsEditPage = () => {
         // eslint-disable-next-line promise/always-return
         if (result) {
           setMessage('Saved');
-          handleRefresh();
+          //handleRefresh();
         } else {
           setMessage(`Error saving ${error}`);
         }
@@ -254,29 +190,11 @@ const useItemsEditPage = () => {
       .finally(() => {
         //   setIsProcessing(false);
       });
-  }, [getUpdates, saveItems, setMessage, handleRefresh, error]);
-
-
-  };
-
-  const handleFolderChange = (value: string | undefined) => {
-    if (value) {
-      setCurrentFolder((previous) => (previous === value ? '' : value));
-    }
-  };
+  }, [getUpdates, saveItems, setMessage, error]);
 
   const handleDelete = (lineId: number) => {
     const previous = getFieldValue(lineId, 'delete');
     setFieldValue(lineId, 'delete', !previous);
-  };
-
-  const handleFolderSelect = (lineId: number) => {
-    setFieldValue(lineId, 'folder', currentFolder);
-  };
-
-  const handleFilterSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target;
-    setFilter(value === 'all' ? '' : value);
   };
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
@@ -296,22 +214,13 @@ const useItemsEditPage = () => {
   };
 
   return {
-    artistData,
-    currentFilter: filter,
-    currentFolder,
     data: formValues,
     error,
     getFieldValue,
     handleChange,
     handleDelete,
-    handleFilterSelect,
-    handleFolderChange,
-    handleFolderSelect,
-    handleRefresh,
-    handleScan,
     handleSubmit,
     isLoading,
-    isPending,
     setFieldValue,
   };
 };

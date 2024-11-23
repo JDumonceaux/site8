@@ -11,8 +11,6 @@ import { PagesService } from '../feature/pages/services/PagesService.js';
 
 export const pageRouter = express.Router();
 
-pageRouter.get('/welcome/hello-world', PageController.helloWorld);
-
 // Get item
 pageRouter.get('/:id', async (req: Request, res: Response) => {
   Logger.info(`pageRouter: get by Id -> `);

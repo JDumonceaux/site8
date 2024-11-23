@@ -93,17 +93,17 @@ app.use('/api/files', filesRouter, limiter);
 app.use('/api/photos', photosRouter);
 app.use('/api/tests', testsRouter, limiter);
 app.use('/api/bookmarks', bookmarksRouter);
-app.use((_req, res, next) => {
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-  );
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type',
-  );
-  next();
-});
+// app.use((_req, res, next) => {
+//   res.setHeader(
+//     'Access-Control-Allow-Methods',
+//     'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+//   );
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'X-Requested-With,content-type',
+//   );
+//   next();
+// });
 app.use('/api/image', imageRouter);
 app.use('/api/images', imagesRouter);
 app.use('/api/items', itemsRouter);

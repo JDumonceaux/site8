@@ -8,12 +8,12 @@ bookmarksRouter.get('/page/:id', async (req: Request, res: Response) => {
   res.json(item);
 });
 
-bookmarksRouter.get('/', async (req: Request, res: Response) => {
+bookmarksRouter.get('/', async (_req: Request, res: Response) => {
   const item = await new BookmarksService().getAllItems();
   res.json(item);
 });
 
-bookmarksRouter.get('/tags', async (req: Request, res: Response) => {
+bookmarksRouter.get('/tags', async (_req: Request, res: Response) => {
   const item = await new BookmarksService().getAllItemsByTag();
   res.json(item);
 });

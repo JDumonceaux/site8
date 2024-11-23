@@ -1,11 +1,11 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from '../../../lib/utils/FilePath.js';
-import { getNewIds, getNewItems } from '../../../lib/utils/imagesUtil.js';
-import { Logger } from '../../../lib/utils/logger.js';
-import { cleanUpData, getNextId } from '../../../lib/utils/objectUtil.js';
-import { Image } from '../../../types/Image.js';
-import { ImageEdit } from '../../../types/ImageEdit.js';
-import { Images } from '../../../types/Images.js';
+import { getDataDir } from '../../lib/utils/FilePath.js';
+import { getNewIds, getNewItems } from '../../lib/utils/imagesUtil.js';
+import { Logger } from '../../lib/utils/logger.js';
+import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
+import { Image } from '../../types/Image.js';
+import { ImageEdit } from '../../types/ImageEdit.js';
+import { Images } from '../../types/Images.js';
 import { ImagesFileService } from './ImagesFileService.js';
 
 export class ImagesService {
