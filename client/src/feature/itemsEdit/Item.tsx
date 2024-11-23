@@ -5,22 +5,19 @@ import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
 import { styled } from 'styled-components';
 
-import type { ImageItemForm } from './useImagesEditPage';
+import type { ItemForm } from './useItemsEditPage';
 
 type Props = {
   readonly artistData: string[];
-  readonly getFieldValue: (
-    lineId: number,
-    fieldName: keyof ImageItemForm,
-  ) => string;
-  readonly item: ImageItemForm;
+  readonly getFieldValue: (lineId: number, fieldName: keyof ItemForm) => string;
+  readonly item: ItemForm;
   readonly onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   readonly onDelete: (lineId: number) => void;
 };
 
-const ImageItem = ({
+const Item = ({
   artistData,
   getFieldValue,
   item,
@@ -32,7 +29,7 @@ const ImageItem = ({
   }, [item.lineId, onDelete]);
 
   const getDefaultProps = React.useCallback(
-    (lineId: number, fieldName: keyof ImageItemForm) => ({
+    (lineId: number, fieldName: keyof ItemForm) => ({
       'data-id': fieldName,
       'data-line': lineId,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,7 +110,7 @@ const ImageItem = ({
   );
 };
 
-export default ImageItem;
+export default Item;
 
 const StyledImgContainer = styled.div`
   display: flex;

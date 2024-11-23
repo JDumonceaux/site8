@@ -9,6 +9,7 @@ import { bookmarksRouter } from './routes/bookmarksRouter.js';
 import { filesRouter } from './routes/filesRouter.js';
 import { imageRouter } from './routes/imageRouter.js';
 import { imagesRouter } from './routes/imagesRouter.js';
+import { itemsRouter } from './routes/itemsRouter.js';
 import { menuRouter } from './routes/menuRouter.js';
 import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
@@ -105,6 +106,7 @@ app.use((_req, res, next) => {
 });
 app.use('/api/image', imageRouter);
 app.use('/api/images', imagesRouter);
+app.use('/api/items', itemsRouter);
 app.use('/api/menus', menuRouter);
 app.use('/api/page', pageRouter, limiter);
 app.use('/api/pages', pagesRouter);

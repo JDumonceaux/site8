@@ -732,6 +732,10 @@ export default [
       '@typescript-eslint/no-unnecessary-template-expression': 'error',
       '@typescript-eslint/no-unnecessary-type-arguments': 'error',
       '@typescript-eslint/no-unnecessary-type-parameters': 'error',
+      // Rule is not working correctly.  Requires cast to number for numbers
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      // Rule is not working correctly.  Requires cast to number for numbers
+      '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
         { argsIgnorePattern: '^_' },

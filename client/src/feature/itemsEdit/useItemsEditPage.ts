@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState, useTransition } from 'react';
 
-import useImagesEdit from 'feature/imagesEdit/useImagesEdit';
+import useItemsEdit from 'feature/ItemsEdit/useItemsEdit';
 import useServerApi from 'hooks/Axios/useServerApi';
 import { useFormArray } from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
-import type { Images } from 'types';
-import type { Image as LocalImage } from 'types/Image';
-import type { ImageEdit } from 'types/ImageEdit';
+import type { Items } from 'types';
+import type { Item as LocalItem } from 'types/Item';
+import type { ItemEdit } from 'types/ItemsEdit';
 import { z } from 'zod';
 
 // Define Zod Shape
@@ -34,32 +34,31 @@ const schema = z.object({
 });
 
 // Create a type from the schema
-export type ImageItemForm = z.infer<typeof schema> & {
+export type ItemItemForm = z.infer<typeof schema> & {
   delete?: boolean;
   isDuplicate?: boolean;
   isSelected: boolean;
   lineId: number;
 };
 
-const useImagesEditPage = () => {
+const useItemsEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
-  const [displayData, setDisplayData] = useState<LocalImage[]>([]);
+  const [displayData, setDisplayData] = useState<LocalItem[]>([]);
   const [artistData, setArtistData] = useState<string[]>([]);
   const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
 
   // Create a form
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
-    useFormArray<ImageItemForm>();
+    useFormArray<ItemItemForm>();
 
-  const { saveItems, scanForNewItems } = useImagesEdit();
 
-  const { cleanup, data, error, fetchData, isLoading } = useServerApi<Images>();
+  const { cleanup, data, error, fetchData, isLoading } = useServerApi<Items>();
 
   // Get all data
   useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_EDIT);
+    fetchData(ServiceUrl.ENDPOINT_ITEMS_EDIT);
     // Clean up if component unmounts
     return () => {
       cleanup();
@@ -72,10 +71,10 @@ const useImagesEditPage = () => {
       filter && filter.length > 0
         ? data?.items.filter((x) => x.folder === filter)
         : data?.items;
-    const filteredImageType = temp?.filter(
+    const filteredItemType = temp?.filter(
       (x) => !x.fileName.toLowerCase().includes('.heic'),
     );
-    const sortedData = filteredImageType?.toSorted((a, b) => b.id - a.id);
+    const sortedData = filteredItemType?.toSorted((a, b) => b.id - a.id);
     const trimmedData = sortedData?.slice(0, 100);
     setDisplayData(trimmedData ?? []);
   }, [filter, data?.items]);
@@ -100,11 +99,11 @@ const useImagesEditPage = () => {
     setFormValues(mapDataToForm(displayData));
   }, [filter, displayData, setFormValues]);
 
-  const mapDataToForm = (items: LocalImage[] | undefined) => {
+  const mapDataToForm = (items: LocalItem[] | undefined) => {
     if (!items) {
       return [];
     }
-    const ret: ImageItemForm[] | undefined = items.map((x, index) => {
+    const ret: ItemItemForm[] | undefined = items.map((x, index) => {
       return {
         artist: x.artist ?? '',
         description: x.description ?? '',
@@ -133,7 +132,7 @@ const useImagesEditPage = () => {
     const lineNum = Number(line);
     //  const fieldValue = type === 'checkbox' ? checked : value;
     if (id) {
-      setFieldValue(lineNum, id as keyof ImageItemForm, value);
+      setFieldValue(lineNum, id as keyof ItemItemForm, value);
 
       if (type === 'checkbox' && id === 'isSelected') {
         const { checked } = event.target as HTMLInputElement;
@@ -154,7 +153,7 @@ const useImagesEditPage = () => {
 
   // Only submit updated records
   const getUpdates = useCallback(() => {
-    const returnValue: ImageEdit[] = [];
+    const returnValue: ItemEdit[] = [];
 
     for (const item of displayData) {
       const items = formValues.filter((x) => x.id === item.id);
@@ -257,12 +256,7 @@ const useImagesEditPage = () => {
       });
   }, [getUpdates, saveItems, setMessage, handleRefresh, error]);
 
-  const handleScan = () => {
-    setMessage('Scanning...');
-    startTransition(() => {
-      scanForNewItems();
-    });
-    setMessage('Done');
+
   };
 
   const handleFolderChange = (value: string | undefined) => {
@@ -322,4 +316,4 @@ const useImagesEditPage = () => {
   };
 };
 
-export default useImagesEditPage;
+export default useItemsEditPage;

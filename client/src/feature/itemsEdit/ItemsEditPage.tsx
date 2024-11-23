@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import Reactfrom 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -6,12 +6,10 @@ import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
 import { styled } from 'styled-components';
 
-import ImageItem from './ImageItem';
-import MenuBar from './MenuBar';
-import RightMenu from './RightMenu';
-import useImagesEditPage from './useImagesEditPage';
+import ImageItem from './Item';
+import useItemEditPage from './useItemsEditPage';
 
-const ImagesEditPage = (): React.JSX.Element => {
+const ItemEditPage = (): React.JSX.Element => {
   const title = 'Edit Images';
 
   const {
@@ -29,18 +27,14 @@ const ImagesEditPage = (): React.JSX.Element => {
     handleScan,
     handleSubmit,
     isLoading,
-  } = useImagesEditPage();
+  } = useItemEditPage();
 
   return (
     <>
       <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
-          <MenuBar
-            handleRefresh={handleRefresh}
-            handleScan={handleScan}
-            handleSubmit={handleSubmit}
-          />
+
         </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>
@@ -60,22 +54,13 @@ const ImagesEditPage = (): React.JSX.Element => {
             </StyledForm>
           </LoadingWrapper>
         </Layout.Main>
-        <Layout.Aside>
-          <Suspense fallback={<div>Loading...</div>}>
-            <RightMenu
-              currentFilter={currentFilter}
-              currentFolder={currentFolder}
-              onClick={handleFolderChange}
-              onFilterSelect={handleFilterSelect}
-            />
-          </Suspense>
-        </Layout.Aside>
+
       </Layout.Flex>
     </>
   );
 };
 
-export default ImagesEditPage;
+export default ItemEditPage;
 
 const StyledForm = styled.form`
   width: 100%;

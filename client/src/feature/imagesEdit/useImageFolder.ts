@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchFolders } from 'store/FolderSlice';
 import type { AppDispatch, RootState } from 'store/store';
 
+const selector = (state: RootState) => state.folders;
+
 const useImageFolder = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const selector = (state: RootState) => state.folders;
   const { data } = useSelector(selector);
   const { isLoading } = useSelector(selector);
   const { error } = useSelector(selector);

@@ -16,7 +16,7 @@ const SubjectMenu = forwardRef<HTMLElement>((_, ref): React.JSX.Element => {
   }, [fetchData]);
 
   const { pathname } = useLocation();
-  const [pn1, pn2] = getURLPath(pathname) || [];
+  const [pn1, pn2] = getURLPath(pathname) ?? [];
   const data = getMenu(pn1, pn2);
   const data2 = getOtherMenus(data?.id);
 

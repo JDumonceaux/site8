@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "title": "quotes"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "The Private Life of Books",
+      "author": "Henry Wessells",
+      "tags": ["Poem"],
+      "text": "In silence between writer and reader\r\nA memory of words and hands takes form.\r\nWe learn substance and worth through others’ eyes :\r\nCloth, flesh, ink, skin, paper, dust — these are but\r\nMaterial forms in which ideas dwell.\r\nIn the roar of a crowded shelf of books\r\nDesert sun and arctic night, distant seas\r\nOf thought awaken, mingle, and are still.\r\nMinds meet where the reading hand grasps the void\r\nAnd inks its passage in empty margins.\r\nLost, forgotten, thumbed, split : we bear the scars\r\nOf patient decades and centuries’ dreams.\r\n\r\nWhose hands will next hold me I do not know —\r\nThe book, too, reads its readers in real time."
+    }
+  ]
+}

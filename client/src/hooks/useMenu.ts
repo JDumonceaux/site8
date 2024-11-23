@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenu } from 'store/MenuSlice';
 import type { AppDispatch, RootState } from 'store/store';
 
+const selector = (state: RootState) => state.menu;
+
 const useMenu = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const selector = (state: RootState) => state.menu;
   const { data } = useSelector(selector);
   const { isLoading } = useSelector(selector);
   const { error } = useSelector(selector);
@@ -23,12 +24,12 @@ const useMenu = () => {
         return;
       }
       // Get the parent menu
-      const menu = data?.items?.find((x) => x.to === sec1);
+      const menu = data?.items?.find((x: MenuItem) => x.to === sec1);
       if (!sec2) {
         return menu;
       }
       // Get the child menu
-      return menu?.items?.find((x) => x.to === sec2);
+      return menu?.items?.find((x: MenuItem) => x.to === sec2);
     },
     [data],
   );

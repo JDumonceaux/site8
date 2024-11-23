@@ -91,7 +91,7 @@ const useImageEdit = (id: null | string) => {
 
   // Update the form values from the data
   const updateFormType = useCallback(
-    (items: Image | null) => {
+    (items: Image | null | undefined) => {
       if (items) {
         const item: FormType = {
           description: items.description ?? '',
@@ -113,7 +113,7 @@ const useImageEdit = (id: null | string) => {
   // Get the data if the params change
   useEffect(() => {
     if (id) {
-      const temporaryId = Number.parseInt(id ?? '');
+      const temporaryId = Number.parseInt(id, 10);
       if (!Number.isNaN(temporaryId) && temporaryId > 0) {
         setCurrentId(temporaryId);
       }
@@ -169,15 +169,18 @@ const useImageEdit = (id: null | string) => {
   // Handle save
   const saveItem = useCallback(
     async (items: FormType) => {
-      const { id, tags, ...rest } = items;
-      const data: Image = {
-        ...rest,
-        id,
-        tags: tags?.split(',') ?? [],
+      // RETHINK THIS
+      const updatedItem: Image = {
+        ...items,
+        tags: items.tags?.split(',') ?? [],
       };
-      await (data.id > 0
-        ? patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${data.id}`, data)
-        : postData(ServiceUrl.ENDPOINT_IMAGE, data));
+
+      await (updatedItem.id > 0
+        ? patchData(
+            `${ServiceUrl.ENDPOINT_IMAGE}/${updatedItem.id}`,
+            updatedItem,
+          )
+        : postData(ServiceUrl.ENDPOINT_IMAGE, updatedItem));
       return true;
     },
     [patchData, postData],

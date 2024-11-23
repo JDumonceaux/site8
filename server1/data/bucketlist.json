@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "bucket list"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "Unesco World Heritage Sites",
+      "location": "",
+      "tags": [],
+      "text": "",
+      "official_site": "https://whc.unesco.org/en/list/"
+    },
+    {
+      "id": 2,
+      "name": "Colonna Palace",
+      "location": "Rome, Italy",
+      "tags": ["Palace"],
+      "text": "",
+      "official_site": "https://www.galleriacolonna.it/en/"
+    },
+    {
+      "id": 3,
+      "name": "Margravial Opera House",
+      "location": "Bayreuth, Germany",
+      "tags": ["Opera"],
+      "text": "",
+      "official_site": "https://www.bayreuth-wilhelmine.de/en/margravial-opera-house/"
+    }
+  ]
+}

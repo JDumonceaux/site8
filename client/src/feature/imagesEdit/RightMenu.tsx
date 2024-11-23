@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
@@ -9,7 +9,7 @@ import type { ListItem } from 'types/ListItem';
 type Props = {
   readonly currentFilter: string;
   readonly currentFolder: string;
-  readonly onClick: (val: string) => void;
+  readonly onClick: (val: string | undefined) => void;
   readonly onFilterSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
@@ -26,7 +26,18 @@ const RightMenu = ({
     value: x.value,
   }));
 
-  const handleOnClick = onClick;
+  const handleButton = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      const { dataset } = event.currentTarget;
+      const { id } = dataset;
+      if (id) {
+        const tempId = Number(id);
+        const item = data?.find((x) => x.id === tempId);
+        onClick(item?.value);
+      }
+    },
+    [data, onClick],
+  );
 
   return (
     <StickyMenu>
@@ -42,9 +53,8 @@ const RightMenu = ({
         <div>
           {currentFolder && currentFolder.length > 0 ? (
             <StyledButton
-              onClick={() => {
-                handleOnClick('');
-              }}
+              data-id={currentFolder}
+              onClick={handleButton}
               type="button">
               {currentFolder}
             </StyledButton>
@@ -59,17 +69,15 @@ const RightMenu = ({
           <React.Fragment key={item.id}>
             {item.value === currentFolder ? (
               <StyledActiveButton
-                onClick={() => {
-                  handleOnClick(item.value);
-                }}
+                data-id={item.id}
+                onClick={handleButton}
                 type="button">
                 {item.value}
               </StyledActiveButton>
             ) : (
               <StyledButton
-                onClick={() => {
-                  handleOnClick(item.value);
-                }}
+                data-id={item.id}
+                onClick={handleButton}
                 type="button">
                 {item.value}
               </StyledButton>
@@ -81,13 +89,17 @@ const RightMenu = ({
   );
 };
 
-export default RightMenu;
+export default memo(RightMenu);
 
 const StyledButton = styled.button`
   display: block;
   width: 100%;
   padding: 5px 0;
   text-align: left;
+  cursor: pointer;
+  &:hover {
+    background-color: #dcdcdc;
+  }
 `;
 const StyledActiveButton = styled.button`
   display: block;

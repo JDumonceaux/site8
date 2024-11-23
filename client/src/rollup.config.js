@@ -1,3 +1,4 @@
+import { terser } from 'rollup-plugin-terser';
 
 export default {
   build: {
@@ -15,5 +16,8 @@ export default {
   dest: 'dist/main.min.js',
   entry: 'src/scripts/main.js',
   format: 'iife',
-  sourceMap: 'inline'
+  // minifier
+  plugins: [terser()],
+  sourceMap: 'inline',
+  treeshake: true,
 };
