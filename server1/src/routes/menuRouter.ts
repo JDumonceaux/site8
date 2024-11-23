@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { Errors, Responses } from '../lib/utils/constants.js';
 import { Logger } from '../lib/utils/logger.js';
-import { MenuService } from '../feature/menu/services/MenuService.js';
+import { MenuService } from '../feature/menu/MenuService.js';
 
 import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuEdit } from '../types/MenuEdit.js';
@@ -68,7 +68,7 @@ menuRouter.post('/', async (req: Request, res: Response) => {
 });
 
 // Update Item
-menuRouter.patch('/', async (req: Request, res: Response) => {
+menuRouter.patch('/', async (req: Request<{ body: any }>, res: Response) => {
   Logger.info(`menuRouter: patch ->`);
 
   try {

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { Responses } from '../../../lib/utils/constants.js';
-import { Logger } from '../../../lib/utils/logger.js';
-import { ServiceFactory } from '../../../lib/utils/ServiceFactory.js';
+import { Responses } from '..//../lib/utils/constants.js';
+import { Logger } from '../../lib/utils/logger.js';
+import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 type Params = {
   filename: string;
 };
@@ -18,7 +18,7 @@ export const getFile = async (
 
   await service
     .getFile(filename.trim() + '.json')
-    .then((response) => {
+    .then((response: unknown) => {
       if (!response) {
         res.status(404).json({ message: Responses.NOT_FOUND });
       }

@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
-import { mapPageMenuToPageText } from '../../../feature/page/mappers/mapPageMenuToPageText.js';
-import { Logger } from '../../../lib/utils/logger.js';
-import { cleanUpData } from '../../../lib/utils/objectUtil.js';
-import { safeParse } from '../../../lib/utils/zodHelper.js';
-import { PageEdit } from '../../../types/PageEdit.js';
-import { PageMenu } from '../../../types/PageMenu.js';
-import { Pages } from '../../../types/Pages.js';
-import { PageText } from '../../../types/PageText.js';
+import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
+import { Logger } from '../../lib/utils/logger.js';
+import { cleanUpData } from '../../lib/utils/objectUtil.js';
+import { safeParse } from '../../lib/utils/zodHelper.js';
+import { PageEdit } from '../../types/PageEdit.js';
+import { PageMenu } from '../../types/PageMenu.js';
+import { Pages } from '../../types/Pages.js';
+import { PageText } from '../../types/PageText.js';
 import { PageFileService } from './PageFileService.js';
-import { PagesService } from '../../../feature/pages/services/PagesService.js';
+import { PagesService } from '../pages/PagesService.js';
 
 const pageAddSchema = z
   .object({
@@ -115,6 +115,7 @@ export class PageService {
       }
 
       // Remove id and text from item
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { text, id, ...rest } = updatedItem;
       const newItem = { id: id, ...rest };
       if (updatedItem.text && updatedItem.text.length > 0) {
@@ -157,6 +158,7 @@ export class PageService {
       const ret = pages?.items?.filter((x) => x.id !== item.id) || [];
 
       // We don't want to update the text field and create_date so we'll remove them
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { text, create_date, ...rest } = updatedItem;
       const newItem = { ...rest };
       if (updatedItem.text && updatedItem.text.length > 0) {

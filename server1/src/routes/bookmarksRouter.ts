@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { BookmarksService } from '../feature/bookmarks/services/BookmarksService.js';
+import { BookmarksService } from '../feature/bookmarks/BookmarksService.js';
 
 export const bookmarksRouter = express.Router();
 

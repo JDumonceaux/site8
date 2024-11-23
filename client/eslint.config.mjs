@@ -89,12 +89,12 @@ export default [
       'check-file/filename-naming-convention': [
         'error',
         {
+          '**/*.config.{mjs}': 'FLAT_CASE',
           '**/*.{html}': 'FLAT_CASE',
-          '**/*.{js}': 'CAMEL_CASE',
           '**/*.{json}': 'KEBAB_CASE',
           '**/*.{jsx}': 'PASCAL_CASE',
+          '**/*.{js}': 'CAMEL_CASE',
           '**/*.{md}': 'SCREAMING_SNAKE_CASE',
-          '**/*.config.{mjs}': 'FLAT_CASE',
         },
         {
           ignoreMiddleExtensions: true,
@@ -450,6 +450,10 @@ export default [
       'quote-props': 'off',
       quotes: 'off',
       radix: 'error',
+      // React compiler rules
+      'react-compiler/react-compiler': 'error',
+      // Redux rules
+      'react-redux/mapStateToProps-prefer-selectors': 'error',
       // React Rules
       'react/boolean-prop-naming': 'error',
       'react/button-has-type': 'error',
@@ -509,9 +513,9 @@ export default [
       'react/forward-ref-uses-ref': 'error',
       // Confusing as to waht is the best practice for component definition
       'react/function-component-definition': 'off',
+
       'react/hook-use-state': 'error',
       'react/iframe-missing-sandbox': 'error',
-
       'react/jsx-boolean-value': 'error',
       // 'react/jsx-child-element-spacing': 'error',
       // 'react/jsx-closing-bracket-location': 'error',
@@ -530,11 +534,11 @@ export default [
       // 'react/jsx-indent': 'error',
       // 'react/jsx-indent-props': 'error',
       'react/jsx-max-depth': ['error', { 'max': 8 }],
+
       // 'react/jsx-max-props-per-line': 'error',
       // 'react/jsx-newline': 'error',
       'react/jsx-no-bind': 'error',
       'react/jsx-no-constructed-context-values': 'error',
-
       'react/jsx-no-leaked-render': 'error',
       // This is helpful if you're using I18n for translations, but not necessary
       'react/jsx-no-literals': 'off',
@@ -576,9 +580,9 @@ export default [
       'react/no-unused-prop-types': 'error',
       'react/no-unused-state': 'error',
       'react/no-will-update-set-state': 'error',
+
       'react/prefer-es6-class': 'error',
       'react/prefer-exact-props': 'error',
-
       'react/prefer-read-only-props': 'off',
       'react/prefer-stateless-function': 'error',
       // We want to encourage the use of the spread operator
@@ -601,10 +605,6 @@ export default [
       'react/static-property-placement': 'error',
       'react/style-prop-object': 'error',
       'react/void-dom-elements-no-children': 'error',
-      // React compiler rules
-      'react-compiler/react-compiler': 'error',
-      // Redux rules
-      'react-redux/mapStateToProps-prefer-selectors': 'error',
       'require-atomic-updates': 'error',
       'require-await': 'error',
       'require-unicode-regexp': 'error',
@@ -777,8 +777,8 @@ export default [
       'check-file/filename-naming-convention': [
         'error',
         {
-          '**/*.{ts}': 'CAMEL_CASE',
           '**/*.{tsx}': 'PASCAL_CASE',
+          '**/*.{ts}': 'CAMEL_CASE',
         },
         {
           ignoreMiddleExtensions: true,

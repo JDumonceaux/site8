@@ -1,13 +1,13 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from '../../../lib/utils/FilePath.js';
-import { isValidArray } from '../../../lib/utils/helperUtils.js';
-import { Logger } from '../../../lib/utils/logger.js';
-import { cleanUpData, getNextId } from '../../../lib/utils/objectUtil.js';
-import { MenuEdit } from '../../../types/MenuEdit.js';
-import { PageMenu } from '../../../types/PageMenu.js';
-import { Pages } from '../../../types/Pages.js';
-import { PagesIndex } from '../../../types/PagesIndex.js';
-import { ParentSortby } from '../../../types/ParentSortby.js';
+import { getDataDir } from '../../lib/utils/FilePath.js';
+import { isValidArray } from '../../lib/utils/helperUtils.js';
+import { Logger } from '../../lib/utils/logger.js';
+import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
+import { MenuEdit } from '../../types/MenuEdit.js';
+import { PageMenu } from '../../types/PageMenu.js';
+import { Pages } from '../../types/Pages.js';
+import { PagesIndex } from '../../types/PagesIndex.js';
+import { ParentSortby } from '../../types/ParentSortby.js';
 
 export class PagesService {
   private fileName = 'pagesIndex.json';
@@ -130,9 +130,6 @@ export class PagesService {
         return Promise.reject(new Error('No items found'));
       }
 
-      let countUpdate = 0;
-      let countTotal = 0;
-
       // Loop through items from pagesIndex.json
       pages.items.map((item) => {
         // Get the updates from the incoming records - could be more than one update per entry.
@@ -143,8 +140,6 @@ export class PagesService {
         const updatedItem =
           hasContent && this.getUpdatedParent(updateItems, item);
 
-        countUpdate += updatedItem ? 1 : 0;
-        countTotal++;
         // Add update (if there is one) or original
         return updatedItem ?? item;
       });
@@ -155,7 +150,7 @@ export class PagesService {
   }
 
   // Standardize all entries in pagesIndex.json
-  public async fixAllEntries(): Promise<any> {
+  public async fixAllEntries(): Promise<unknown> {
     Logger.info(`PagesService: fixAllEntries -> `);
 
     try {
@@ -178,7 +173,7 @@ export class PagesService {
   }
 
   // List duplicates Ids
-  public async listDuplicates(): Promise<any> {
+  public async listDuplicates(): Promise<unknown> {
     Logger.info(`PagesService: listDuplicates -> `);
 
     try {

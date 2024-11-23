@@ -1,16 +1,16 @@
 import { z } from 'zod';
-import { mapPageMenuToMenuItem } from '../mappers/mapPageMenuToMenuItem.js';
-import { Logger } from '../../../lib/utils/logger.js';
-import { cleanUpData } from '../../../lib/utils/objectUtil.js';
-import { safeParse } from '../../../lib/utils/zodHelper.js';
-import { MenuAdd } from '../../../types/MenuAdd.js';
-import { MenuItem } from '../../../types/MenuItem.js';
-import { Menus } from '../../../types/Menus.js';
-import { PageMenu } from '../../../types/PageMenu.js';
-import { Pages } from '../../../types/Pages.js';
-import { PagesIndex } from '../../../types/PagesIndex.js';
-import { Parent } from '../../../types/Parent.js';
-import { PagesService } from '../../../feature/pages/services/PagesService.js';
+import { mapPageMenuToMenuItem } from './mapPageMenuToMenuItem.js';
+import { Logger } from '../../lib/utils/logger.js';
+import { cleanUpData } from '../../lib/utils/objectUtil.js';
+import { safeParse } from '../../lib/utils/zodHelper.js';
+import { MenuAdd } from '../../types/MenuAdd.js';
+import { MenuItem } from '../../types/MenuItem.js';
+import { Menus } from '../../types/Menus.js';
+import { PageMenu } from '../../types/PageMenu.js';
+import { Pages } from '../../types/Pages.js';
+import { PagesIndex } from '../../types/PagesIndex.js';
+import { Parent } from '../../types/Parent.js';
+import { PagesService } from '../../feature/pages/PagesService.js';
 
 const menuAddSchema = z
   .object({
