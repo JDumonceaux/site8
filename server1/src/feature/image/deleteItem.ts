@@ -3,7 +3,6 @@ import { NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { ImageService } from './ImageService.js';
-import { Image } from '../../types/Image.js';
 
 interface IRequestParams {
   id: string;
@@ -11,18 +10,18 @@ interface IRequestParams {
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface IRequestQuery {}
 
-export const getItem = async (
+export const deleteItem = async (
   req: Express.Request,
   res: Express.Response,
   next: NextFunction,
 ) => {
   const { id } = req.params;
 
-  Logger.info(`Image: Get Item called: ${id}`);
+  Logger.info(`Image: Delete Item called: ${id}`);
 
   const { id: idNum, isValid } = parseRequestId(id.trim());
   if (!isValid || !idNum) {
-    Logger.info(`Image: Get by id -> invalid param: ${id}`);
+    Logger.info(`Image: Delete by id -> invalid param: ${id}`);
     //res.status(400).json({ error: Responses.INVALID_ID });
     return res.end();
   }

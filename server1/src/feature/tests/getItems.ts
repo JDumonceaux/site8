@@ -14,7 +14,7 @@ export const getItems = async (
   res: Response<Tests>,
   next: NextFunction,
 ) => {
-  Logger.info(`Tests: Get Items controller called`);
+  Logger.info(`Tests: Get Items called`);
 
   const service = new TestsService();
 

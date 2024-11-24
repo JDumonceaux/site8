@@ -13,7 +13,7 @@ export const listDuplicates = async (
   res: Response<unknown>,
   next: NextFunction,
 ) => {
-  Logger.info(`Pages: List Duplicates controller called`);
+  Logger.info(`Pages: List Duplicates called`);
 
   const service = new PagesService();
 

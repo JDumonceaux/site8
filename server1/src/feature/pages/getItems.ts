@@ -17,7 +17,7 @@ export const getItems = async (
   // const { requestConfig } = res.locals;
   // const { includeArriveDetails, onlyConventionalAccounts } =      req.query ;
 
-  Logger.info(`Pages: Get Items controller called`);
+  Logger.info(`Pages: Get Items called`);
 
   const service = new PagesService();
 

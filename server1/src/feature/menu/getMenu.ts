@@ -14,7 +14,7 @@ export const getMenu = async (
   res: Response<unknown>,
   next: NextFunction,
 ) => {
-  Logger.debug(`Get Menu controller called`);
+  Logger.debug(`Get Menu called`);
 
   await service
     .getMenu()

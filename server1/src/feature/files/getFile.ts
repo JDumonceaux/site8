@@ -13,7 +13,7 @@ export const getFile = async (
   res: Response<unknown>,
   next: NextFunction,
 ) => {
-  Logger.debug(`Get File controller called`);
+  Logger.debug(`Get File called`);
   const { filename } = req.params;
 
   await service

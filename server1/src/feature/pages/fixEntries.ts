@@ -13,7 +13,7 @@ export const fixEntries = async (
   res: Response<unknown>,
   next: NextFunction,
 ) => {
-  Logger.info(`Pages: Fix Entries controller called`);
+  Logger.info(`Pages: Fix Entries called`);
 
   const service = new PagesService();
 

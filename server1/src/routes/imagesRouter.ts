@@ -4,8 +4,11 @@ import { Logger } from '../lib/utils/logger.js';
 import { ImagesFileService } from '../feature/images/ImagesFileService.js';
 import { ImagesService } from '../feature/images/ImagesService.js';
 import { ImagesEdit } from '../types/ImagesEdit.js';
+import { patchItems } from '../feature/images/patchItems.js';
 
 export const imagesRouter = express.Router();
+
+imagesRouter.patch('/', patchItems);
 
 imagesRouter.get('/', async (_req: Request, res: Response) => {
   try {

@@ -18,7 +18,7 @@ export const getItems = async (
 ) => {
   const { id } = req.params;
 
-  Logger.info(`Page: Get Item controller called: ${id}`);
+  Logger.info(`Page: Get Item called: ${id}`);
 
   const { id: idNum, isValid } = parseRequestId(id.trim());
   if (!isValid || !idNum) {
