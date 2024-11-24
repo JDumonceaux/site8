@@ -5,7 +5,7 @@ import { MenuService } from '../feature/menu/MenuService.js';
 
 import { MenuAdd } from '../types/MenuAdd.js';
 import { MenuEdit } from '../types/MenuEdit.js';
-import { PagesService } from '../feature/pages/services/PagesService.js';
+import { PagesService } from '../feature/pages/PagesService.js';
 
 export const menuRouter = express.Router();
 
