@@ -1,19 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
-import { PagesService } from './PagesService.js';
+import { Menus } from '../../types/Menus.js';
+import { MenuService } from './MenuService.js';
 
-export const listDuplicates = async (
+export const getItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<unknown>,
+  res: Response<Menus>,
   next: NextFunction,
 ) => {
-  Logger.info(`Pages: List Duplicates called`);
+  Logger.info(`Menu: Get Items called: `);
 
-  const service = new PagesService();
+  const service = new MenuService();
 
   await service
-    .listDuplicates()
+    .getMenu()
     .then((response) => {
       if (response) {
         res.status(200).json(response);

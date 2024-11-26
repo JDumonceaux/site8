@@ -6,20 +6,14 @@ import { ImagesService } from './ImagesService.js';
 
 //import { PreferHeader } from '.../../../lib/utils/constants.js';
 
-interface IRequestParams {
-  id: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
-
 export const patchItems = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
+  req: Request<{ id: string }, unknown, unknown, unknown>,
   res: Response<Images>,
   next: NextFunction,
 ) => {
   //const Prefer = req.get('Prefer');
   //const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const data: Images | unknown = req.body;
+  const data = req.body as Images;
 
   Logger.info(`Images: Patch Images called: `);
 
@@ -28,7 +22,7 @@ export const patchItems = async (
   } else {
     const service = new ImagesService();
 
-    const ret = await service
+    await service
       .updateItems(data.items)
       .then((_response) => {
         // if (response) {

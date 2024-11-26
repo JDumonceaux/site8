@@ -13,4 +13,4 @@ const validationStack = [requireId];
 pageRouter.get('/id', validationStack, getItem);
 pageRouter.delete('/id', validationStack, deleteItem);
 pageRouter.put('/', putItem);
-pageRouter.patch('/id', patchItem);
+pageRouter.patch('/', patchItem);

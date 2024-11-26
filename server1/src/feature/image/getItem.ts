@@ -1,19 +1,24 @@
-import { NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { ImageService } from './ImageService.js';
 import { Image } from '../../types/Image.js';
+import { Responses } from '../../lib/utils/constants.js';
 
-interface IRequestParams {
-  id: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
+//import { Responses } from '../../lib/utils/constants.js';
+
+// app.get('/users/:id', (req: Request<
+//   { id: string }, // ParamsDictionary
+//   any,            // req.body
+//   any,            // req.locals
+//   { page?: string }, // QueryString.ParsedQs
+//   Record<string, any> // req.headers
+// >, res: Response) => {
 
 export const getItem = async (
-  req: Express.Request,
-  res: Express.Response,
+  req: Request<{ id: string }, unknown, unknown, unknown>,
+  res: Response<Image>,
   next: NextFunction,
 ) => {
   const { id } = req.params;
@@ -22,13 +27,12 @@ export const getItem = async (
 
   const { id: idNum, isValid } = parseRequestId(id.trim());
   if (!isValid || !idNum) {
-    Logger.info(`Image: Get by id -> invalid param: ${id}`);
-    //res.status(400).json({ error: Responses.INVALID_ID });
-    return res.end();
+    Logger.info(`Image: Get Item -> invalid param id: ${id}`);
+    next({ message: Responses.INVALID_ID });
+    return;
   }
 
   const service = new ImageService();
-
   await service
     .getItem(idNum)
     .then((response) => {

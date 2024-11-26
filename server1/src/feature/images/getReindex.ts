@@ -1,24 +1,23 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
-import { PagesService } from './PagesService.js';
+import { ImagesService } from './ImagesService.js';
 
-export const listDuplicates = async (
+export const getReindex = async (
   req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<unknown>,
+  res: Response<boolean>,
   next: NextFunction,
 ) => {
-  Logger.info(`Pages: List Duplicates called`);
+  Logger.info(`Images: Get Reindex called:`);
 
-  const service = new PagesService();
-
+  const service = new ImagesService();
   await service
-    .listDuplicates()
+    .fixIndex()
     .then((response) => {
       if (response) {
         res.status(200).json(response);
       } else {
-        res.json(response);
+        // res.status(204).json({ error: Errors.NO_CONTENT });
       }
     })
     .catch((error: Error) => {

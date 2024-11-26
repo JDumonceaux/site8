@@ -1,13 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
-interface IRequestParams {
-  id: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
-
 export const putItem = async (
-  _req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
+  _req: Request<unknown, unknown, unknown, unknown>,
   _res: Response<unknown>,
   _next: NextFunction,
 ) => {

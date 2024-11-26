@@ -47,8 +47,19 @@ export class ImagesService {
     return this.readFile();
   }
 
+  // Yes, this is a duplicate of getItems.  It's here for clarity and in case
+  // we need to add additional logic to getItems in the future.
+  public async getItemsEdit(): Promise<Images | undefined> {
+    // Get current items
+    const items = await this.readFile();
+    if (!items) {
+      throw new Error('getItemsEdit > Index file not loaded');
+    }
+    return { ...items };
+  }
+
   // Get Items to sort into folders
-  public async getNewItems(): Promise<Images | undefined> {
+  private async getNewItems(): Promise<Images | undefined> {
     // Get current items
     const prev = await this.readFile();
     if (!prev) {
@@ -56,17 +67,6 @@ export class ImagesService {
     }
     const items = prev.items?.filter((x) => x.isNewItem === true);
     return { ...prev, items };
-  }
-
-  // Yes, this is a duplicate of getItems.  It's here for clarity and in case
-  // we need to add additional logic to getItems in the future.
-  public async getEditItems(): Promise<Images | undefined> {
-    // Get current items
-    const items = await this.readFile();
-    if (!items) {
-      throw new Error('getEditItems > Index file not loaded');
-    }
-    return { ...items };
   }
 
   /**
@@ -237,7 +237,7 @@ export class ImagesService {
         const foundItem = updatedItems.find((y) => y.id === x.id);
         const addItem = () => {
           if (foundItem) {
-            const { originalFolder: _unused, ...rest } = foundItem;
+            const { ...rest } = foundItem;
             return cleanUpData<Image>({ ...rest });
           }
           return undefined;

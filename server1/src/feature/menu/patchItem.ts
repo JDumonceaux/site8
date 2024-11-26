@@ -1,30 +1,27 @@
 import { Request, Response, NextFunction } from 'express';
-
+import { MenuEdit } from '../../types/MenuEdit.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { ItemsService } from './ItemsService.js';
-import { ItemsEdit } from '../../types/ItemsEdit.js';
+import { PagesService } from '../../feature/pages/PagesService.js';
 
-export const putItems = async (
+export const patchItem = async (
   req: Request<unknown, unknown, unknown, unknown>,
   res: Response<boolean>,
   next: NextFunction,
 ) => {
-  const data = req.body as ItemsEdit;
+  const data = req.body as MenuEdit[];
 
-  Logger.info(`Items: Put Items called: `);
+  Logger.info(`Menu: Put Items called: `);
 
   if (!data) {
     res.status(500);
   } else {
-    const service = new ItemsService();
+    const service = new PagesService();
 
     await service
-      .addItems(data?.items)
+      .updateItems(data)
       .then((_response) => {
         // if (response) {
         //   res.status(200).json(response);
-        // } else {
-        //   res.json(response);
         // }
       })
       .catch((error: Error) => {

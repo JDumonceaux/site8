@@ -10,7 +10,7 @@ export const imageRouter = express.Router();
 
 const validationStack = [requireId];
 
-imageRouter.get('/', validationStack, getItem);
+imageRouter.get('/:id', validationStack, getItem);
 imageRouter.put('/', putItem);
 imageRouter.patch('/', patchItem);
-imageRouter.delete('/', deleteItem);
+imageRouter.delete('/:id', validationStack, deleteItem);

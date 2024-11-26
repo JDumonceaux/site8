@@ -1,19 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
-import { PagesService } from './PagesService.js';
+import { BookmarksService } from './BookmarksService.js';
+import { Bookmarks } from '../../types/Bookmarks.js';
 
-export const listDuplicates = async (
+export const getItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<unknown>,
+  res: Response<Bookmarks>,
   next: NextFunction,
 ) => {
-  Logger.info(`Pages: List Duplicates called`);
+  Logger.info(`Bookmarks: Get Items called: `);
 
-  const service = new PagesService();
-
+  const service = new BookmarksService();
   await service
-    .listDuplicates()
+    .getAllItems()
     .then((response) => {
       if (response) {
         res.status(200).json(response);

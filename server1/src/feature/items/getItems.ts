@@ -4,13 +4,8 @@ import { Logger } from '../../lib/utils/logger.js';
 import { ItemsService } from './ItemsService.js';
 import { Items } from '../../types/Items.js';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestParams {}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
-
 export const getItems = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
+  req: Request<unknown, unknown, unknown, unknown>,
   res: Response<Items>,
   next: NextFunction,
 ) => {

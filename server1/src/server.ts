@@ -94,10 +94,7 @@ app.use('/api/photos', photosRouter);
 app.use('/api/tests', testsRouter, limiter);
 app.use('/api/bookmarks', bookmarksRouter);
 app.use((_req, res, next) => {
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET,  OPTIONS, PUT, PATCH, DELETE',
-  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, PATCH, DELETE');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-Requested-With,content-type',

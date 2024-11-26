@@ -3,31 +3,25 @@ import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { ImageService } from './ImageService.js';
 import { Image } from '../../types/Image.js';
-//import { PreferHeader } from '.../../../lib/utils/constants.js';
-
-interface IRequestParams {
-  id: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
+import { PreferHeader } from '.../../../lib/utils/constants.js';
 
 export const putItem = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
+  req: Request<unknown, unknown, unknown, unknown>,
   res: Response<Image>,
   next: NextFunction,
 ) => {
-  //const Prefer = req.get('Prefer');
-  //const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const data: Image | unknown = req.body;
+  const Prefer = req.get('Prefer');
+  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
+  const data: Image = req.body as Image;
 
-  Logger.info(`Image: Put Item controller called: `);
+  Logger.info(`Image: Put Item called: `);
 
   if (!data) {
     res.status(500);
   } else {
     const service = new ImageService();
 
-    const id = await service
+    await service
       .addItem(data)
       .then((_response) => {
         // if (response) {
@@ -41,11 +35,8 @@ export const putItem = async (
       });
   }
 
-  // if (returnRepresentation) {
-  //   const ret = await service.getItem(id);
-  //   // 201 Created
-  //   res.status(201).json(ret);
-  // } else {
-  //   res.status(201).json({ results: Responses.SUCCESS });
-  // }
+  if (returnRepresentation) {
+    next(`/image/${data.id}`);
+  }
+  next();
 };

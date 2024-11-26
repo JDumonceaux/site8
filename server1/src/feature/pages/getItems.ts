@@ -4,19 +4,11 @@ import { Logger } from '../../lib/utils/logger.js';
 import { PagesService } from './PagesService.js';
 import { Pages } from '../../types/Pages.js';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestParams {}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
-
 export const getItems = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
+  req: Request<unknown, unknown, unknown, unknown>,
   res: Response<Pages>,
   next: NextFunction,
 ) => {
-  // const { requestConfig } = res.locals;
-  // const { includeArriveDetails, onlyConventionalAccounts } =      req.query ;
-
   Logger.info(`Pages: Get Items called`);
 
   const service = new PagesService();

@@ -5,14 +5,8 @@ import { Logger } from '../../lib/utils/logger.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { PageText } from '../../types/PageText.js';
 
-interface IRequestParams {
-  id: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
-
 export const getItem = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
+  req: Request<{ id: string }, unknown, unknown, unknown>,
   res: Response<PageText>,
   next: NextFunction,
 ) => {
@@ -23,8 +17,8 @@ export const getItem = async (
   const { id: idNum, isValid } = parseRequestId(id.trim());
   if (!isValid || !idNum) {
     Logger.info(`pageRouter: get by id -> invalid param: ${id}`);
-    //res.status(400).json({ error: Responses.INVALID_ID });
-    return res.end();
+    // res.status(400).json({ error: Responses.INVALID_ID });
+    return;
   }
 
   const service = new PageService();

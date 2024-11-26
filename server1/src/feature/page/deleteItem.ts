@@ -5,15 +5,9 @@ import { Logger } from '../../lib/utils/logger.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { PageFileService } from './PageFileService.js';
 
-interface IRequestParams {
-  id: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
-
 export const deleteItem = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
-  res: Response<unknown>,
+  req: Request<{ id: string }, unknown, unknown, unknown>,
+  res: Response<boolean>,
   next: NextFunction,
 ) => {
   const { id } = req.params;
@@ -32,7 +26,7 @@ export const deleteItem = async (
   await Promise.all([service.deleteItem(idNum), fileService.deleteFile(idNum)])
     .then((response) => {
       if (response) {
-        res.status(200).json(response);
+        //res.status(200).json(response);
       } else {
         res.json(response);
       }

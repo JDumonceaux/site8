@@ -1,19 +1,13 @@
-import express, { Request, Response } from 'express';
-import { BookmarksService } from '../feature/bookmarks/BookmarksService.js';
+import express from 'express';
+import { getItems } from '../feature/bookmarks/getItems.js';
+import { getTags } from '../feature/bookmarks/getTags.js';
+import { getItemsPage } from '../feature/bookmarks/getItemsPage.js';
+import { requireId } from '../middleware/requireId.js';
 
 export const bookmarksRouter = express.Router();
 
-bookmarksRouter.get('/page/:id', async (req: Request, res: Response) => {
-  const item = await new BookmarksService().getBookmarksForPage(req.params.id);
-  res.json(item);
-});
+const validationStack = [requireId];
 
-bookmarksRouter.get('/', async (_req: Request, res: Response) => {
-  const item = await new BookmarksService().getAllItems();
-  res.json(item);
-});
-
-bookmarksRouter.get('/tags', async (_req: Request, res: Response) => {
-  const item = await new BookmarksService().getAllItemsByTag();
-  res.json(item);
-});
+bookmarksRouter.get('/page/:id', validationStack, getItemsPage);
+bookmarksRouter.get('/', getItems);
+bookmarksRouter.get('/tags', getTags);

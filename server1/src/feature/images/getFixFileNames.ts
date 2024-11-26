@@ -1,24 +1,23 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
-import { PagesService } from './PagesService.js';
+import { ImagesFileService } from './ImagesFileService.js';
 
-export const listDuplicates = async (
+export const getFixFileNames = async (
   req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<unknown>,
+  res: Response<boolean>,
   next: NextFunction,
 ) => {
-  Logger.info(`Pages: List Duplicates called`);
+  Logger.info(`Images: Get Fix File Names called:`);
 
-  const service = new PagesService();
-
+  const service = new ImagesFileService();
   await service
-    .listDuplicates()
+    .fixNames()
     .then((response) => {
       if (response) {
         res.status(200).json(response);
       } else {
-        res.json(response);
+        // res.status(204).json({ error: Errors.NO_CONTENT });
       }
     })
     .catch((error: Error) => {

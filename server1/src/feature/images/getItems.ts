@@ -1,41 +1,24 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { PageService } from './PageService.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { parseRequestId } from '../../lib/utils/helperUtils.js';
-import { PageText } from '../../types/PageText.js';
-
-interface IRequestParams {
-  id: string;
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
+import { Images } from '../../types/Images.js';
+import { ImagesService } from './ImagesService.js';
 
 export const getItems = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
-  res: Response<PageText>,
+  req: Request<unknown, unknown, unknown, unknown>,
+  res: Response<Images>,
   next: NextFunction,
 ) => {
-  const { id } = req.params;
+  Logger.info(`Images: Get Items called:`);
 
-  Logger.info(`Page: Get Item called: ${id}`);
-
-  const { id: idNum, isValid } = parseRequestId(id.trim());
-  if (!isValid || !idNum) {
-    Logger.info(`pageRouter: get by id -> invalid param: ${id}`);
-    //res.status(400).json({ error: Responses.INVALID_ID });
-    return res.end();
-  }
-
-  const service = new PageService();
-
+  const service = new ImagesService();
   await service
-    .getItemCompleteById(idNum)
+    .getItems()
     .then((response) => {
       if (response) {
         res.status(200).json(response);
       } else {
-        res.json(response);
+        // res.status(204).json({ error: Errors.NO_CONTENT });
       }
     })
     .catch((error: Error) => {

@@ -129,4 +129,19 @@ export class ItemsService {
 
     return true;
   }
+
+  public async addItems(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    items: ReadonlyArray<ItemEdit> | undefined,
+  ): Promise<boolean> {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const data = await this.readFile();
+      return Promise.resolve(true);
+    } catch (error) {
+      Logger.error(`ItemsService: Add Items -> ${error}`);
+      Promise.resolve(false);
+    }
+    return Promise.resolve(false);
+  }
 }
