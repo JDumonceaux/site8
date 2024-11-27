@@ -1,6 +1,6 @@
 import compression from 'compression';
 import cors from 'cors';
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import RateLimit from 'express-rate-limit';
 
 import helmet from 'helmet';
@@ -93,14 +93,14 @@ app.use('/api/files', filesRouter, limiter);
 app.use('/api/photos', photosRouter);
 app.use('/api/tests', testsRouter, limiter);
 app.use('/api/bookmarks', bookmarksRouter);
-app.use((_req, res, next) => {
-  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, PATCH, DELETE');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type',
-  );
-  next();
-});
+// app.use((_req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, PATCH, DELETE');
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'X-Requested-With,content-type',
+//   );
+//   next();
+// });
 app.use('/api/image', imageRouter);
 app.use('/api/images', imagesRouter);
 app.use('/api/items', itemsRouter);
@@ -110,6 +110,15 @@ app.use('/api/pages', pagesRouter);
 
 app.use('*', (_req: Request, res: Response) => {
   res.status(404).send('API Not Found');
+});
+
+// error handler
+app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
+  Logger.error(`Error: ${err.message}`);
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500).json({ error: err.message });
 });
 
 app.listen(port, () => {

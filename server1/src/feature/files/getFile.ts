@@ -19,10 +19,11 @@ export const getFile = async (
   await service
     .getFile(filename.trim() + '.json')
     .then((response: unknown) => {
-      if (!response) {
-        res.status(404).json({ message: Responses.NOT_FOUND });
+      if (response) {
+        res.status(200).json(response);
+      } else {
+        res.status(204).send();
       }
-      res.status(200).json(response);
     })
     .catch((error: unknown) => {
       next(error);

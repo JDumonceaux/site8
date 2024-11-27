@@ -17,7 +17,7 @@ export const getFixFileNames = async (
       if (response) {
         res.status(200).json(response);
       } else {
-        // res.status(204).json({ error: Errors.NO_CONTENT });
+        res.status(204).send();
       }
     })
     .catch((error: Error) => {

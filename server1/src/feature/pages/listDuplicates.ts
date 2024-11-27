@@ -18,7 +18,7 @@ export const listDuplicates = async (
       if (response) {
         res.status(200).json(response);
       } else {
-        res.json(response);
+        res.status(204).send();
       }
     })
     .catch((error: Error) => {

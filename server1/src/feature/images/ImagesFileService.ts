@@ -41,7 +41,7 @@ export class ImagesFileService {
    *
    * @returns An array of folder names.
    */
-  public getFolders() {
+  public async getFolders() {
     try {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings

@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { ImageService } from './ImageService.js';
 import { Image } from '../../types/Image.js';
-import { PreferHeader } from '.../../../lib/utils/constants.js';
+import { PreferHeader } from '../../lib/utils/constants.js';
 
 export const patchItem = async (
   req: Request<unknown, unknown, unknown, unknown>,
