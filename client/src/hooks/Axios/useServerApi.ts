@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import axios, { isCancel } from 'axios';
+import axios from 'axios';
 import { AcceptHeader, PreferHeader } from 'lib/utils/constants';
 import { httpErrorHandler } from 'lib/utils/errorHandler';
 
@@ -25,14 +25,7 @@ const useServerApi = <T>() => {
       });
       setData(response.data);
     } catch (error_) {
-      // Ignore cancelation errors
-      if (!isCancel(error_)) {
-        if (error_ instanceof Error) {
-          setError(error_.message);
-        } else {
-          setError('An unexpected error occurred');
-        }
-      }
+      setError(httpErrorHandler(error_));
     } finally {
       setIsLoading(false);
     }
@@ -42,10 +35,10 @@ const useServerApi = <T>() => {
     abortControllerRef.current?.abort();
   }, []);
 
-  const postDataAsync = useCallback(async (url: string, item: T) => {
+  const putDataAsync = useCallback(async (url: string, item: T) => {
     try {
       reset();
-      const response = await axios.post<T>(url, item, {
+      const response = await axios.put<T>(url, item, {
         headers: {
           Accept: AcceptHeader.JSON,
           Prefer: PreferHeader.REPRESENTATION,
@@ -55,9 +48,7 @@ const useServerApi = <T>() => {
       setData(response.data);
       return true;
     } catch (error_) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+      setError(httpErrorHandler(error_));
     } finally {
       setIsLoading(false);
     }
@@ -77,9 +68,7 @@ const useServerApi = <T>() => {
       setData(response.data);
       return true;
     } catch (error_) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+      setError(httpErrorHandler(error_));
     } finally {
       setIsLoading(false);
     }
@@ -94,9 +83,7 @@ const useServerApi = <T>() => {
       setData(response.data);
       return true;
     } catch (error_) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+      setError(httpErrorHandler(error_));
     } finally {
       setIsLoading(false);
     }
@@ -111,7 +98,7 @@ const useServerApi = <T>() => {
     fetchData: fetchDataAsync,
     isLoading,
     patchData: patchDataAsync,
-    postData: postDataAsync,
+    putData: putDataAsync,
   };
 };
 

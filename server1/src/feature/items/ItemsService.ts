@@ -47,11 +47,11 @@ export class ItemsService {
 
   // Yes, this is a duplicate of getItems.  It's here for clarity and in case
   // we need to add additional logic to getItems in the future.
-  public async getEditItems(): Promise<Items | undefined> {
+  public async getItemsEdit(): Promise<Items | undefined> {
     // Get current items
     const items = await this.readFile();
     if (!items) {
-      throw new Error('getEditItems > Index file not loaded');
+      throw new Error('Item file not loaded');
     }
     return { ...items };
   }

@@ -40,7 +40,7 @@ type FormKeys = keyof FormType;
 
 const usePageEdit = (data?: null | Page) => {
   // Use Axios to fetch data
-  const { patchData, postData } = useAxios<Page>();
+  const { patchData, putData } = useAxios<Page>();
 
   // Return default form values
   const initialFormValues: FormType = useMemo(
@@ -118,11 +118,11 @@ const usePageEdit = (data?: null | Page) => {
     const result =
       updateItem.id > 0
         ? await patchData(ServiceUrl.ENDPOINT_PAGE, updateItem)
-        : await postData(ServiceUrl.ENDPOINT_PAGE, updateItem);
+        : await putData(ServiceUrl.ENDPOINT_PAGE, updateItem);
     setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [formValues, patchData, postData, setIsProcessing, setIsSaved]);
+  }, [formValues, patchData, putData, setIsProcessing, setIsSaved]);
 
   const handleSave = useCallback(async () => {
     if (validateForm()) {

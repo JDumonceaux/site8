@@ -37,7 +37,7 @@ const pageSchema = z.object({
 
 const useImageEdit = (id: null | string) => {
   // Use Axios to fetch data
-  const { data, error, fetchData, isLoading, patchData, postData } =
+  const { data, error, fetchData, isLoading, patchData, putData } =
     useAxios<Image>();
   // Create a type from the schema
   type FormType = z.infer<typeof pageSchema>;
@@ -180,10 +180,10 @@ const useImageEdit = (id: null | string) => {
             `${ServiceUrl.ENDPOINT_IMAGE}/${updatedItem.id}`,
             updatedItem,
           )
-        : postData(ServiceUrl.ENDPOINT_IMAGE, updatedItem));
+        : putData(ServiceUrl.ENDPOINT_IMAGE, updatedItem));
       return true;
     },
-    [patchData, postData],
+    [patchData, putData],
   );
 
   // Handle form submission

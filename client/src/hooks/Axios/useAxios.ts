@@ -66,10 +66,10 @@ export const useAxios = <T>() => {
     }
   };
 
-  const postDataAsync = async (url: string, item: T) => {
+  const putDataAsync = async (url: string, item: T) => {
     try {
       reset();
-      const response = await axios.post<T>(url, item, {
+      const response = await axios.put<T>(url, item, {
         headers: {
           Accept: AcceptHeader.JSON,
           Prefer: PreferHeader.REPRESENTATION,
@@ -135,6 +135,6 @@ export const useAxios = <T>() => {
     fetchData: fetchDataAsync,
     isLoading,
     patchData: patchDataAsync,
-    postData: postDataAsync,
+    putData: putDataAsync,
   };
 };

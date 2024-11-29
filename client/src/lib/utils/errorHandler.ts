@@ -1,4 +1,4 @@
-import { AxiosError, isAxiosError } from 'axios';
+import { isAxiosError, isCancel } from 'axios';
 
 /**
  * Handles HTTP errors and returns corresponding error messages.
@@ -7,47 +7,44 @@ import { AxiosError, isAxiosError } from 'axios';
  * @returns The error message based on the type of error.
  * @throws Error if the error is null.
  */
-export const httpErrorHandler = (
-  error: AxiosError | null | unknown,
-): string => {
-  if (error === null) throw new Error('Unrecoverable error!! Error is null!');
-
-  if (isAxiosError(error)) {
-    const { code, request, response } = error;
-
-    if (code === 'ERR_NETWORK') {
-      return 'Connection problems..';
-    } else if (code === 'ERR_CANCELED') {
-      return 'Connection cancelled..';
-    }
-
-    if (response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      const { status } = response;
-      switch (status) {
-        case 401: {
-          return 'Please login to access this resource';
-        }
-        case 404: {
-          return 'The requested resource does not exist or has been deleted';
-        }
-        case 408: {
-          return 'Request timed out';
-        }
-        default: {
-          return 'Unknown error occurred...';
-        }
-      }
-    } else if (request) {
-      // The request was made but no response was received
-      return 'No response received from the server';
-    }
+export const httpErrorHandler = (error: unknown): null | string => {
+  if (isCancel(error)) {
+    return null;
   }
 
-  // Log unknown errors for debugging
-  console.error('Unhandled error:', error);
+  if (!isAxiosError(error) || !(error instanceof Error)) {
+    return null;
+  }
 
+  if (isAxiosError(error)) {
+    const { status } = error;
+
+    console.log('error', error);
+
+    switch (status) {
+      case 401: {
+        return 'Please login.';
+      }
+      case 404: {
+        return 'Request failed with 404 (not found).';
+      }
+      case 408: {
+        return 'Request timed out.';
+      }
+      case 500: {
+        return 'Server error: ';
+      }
+      // case 'ERR_CANCELLED': {
+      //   return 'Request cancelled.';
+      // }
+      // case 'ERR_NETWORK': {
+      //   return 'Connection problems.';
+      // }
+      default: {
+        return `Unknown error ${status}`;
+      }
+    }
+  }
   // Something happened in setting up the request and triggered an Error
-  return 'Unknown error occurred..';
+  return 'Unknown error ...';
 };

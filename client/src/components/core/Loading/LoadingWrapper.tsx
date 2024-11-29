@@ -21,7 +21,7 @@ const LoadingWrapper = ({
   fallback,
   isLoading,
   loadingText,
-}: LoadingWrapperProps): React.JSX.Element => {
+}: LoadingWrapperProps): React.ReactNode => {
   if (isLoading) {
     return (
       <StyledLoadingDiv>
@@ -36,9 +36,8 @@ const LoadingWrapper = ({
         {children}
       </>
     );
-  } else {
-    return <>{children}</>;
   }
+  return children;
 };
 
 export default memo(LoadingWrapper);

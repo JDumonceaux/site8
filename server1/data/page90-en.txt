@@ -33,7 +33,7 @@ function BlogPost({ post }) {
 // Fetch post data for server-side rendering
 export async function getServerSideProps(context) {
   const { slug } = context.params;
-  const post = await fetchPostData(slug);  // Implement this function based on your backend/API
+  const post = await fetchputData(slug);  // Implement this function based on your backend/API
   return { props: { post } };
 }
 

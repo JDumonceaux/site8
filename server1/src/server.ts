@@ -114,6 +114,7 @@ app.use('*', (_req: Request, res: Response) => {
 
 // error handler
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
+  console.log('ApUseError', err);
   Logger.error(`Error: ${err.message}`);
   if (res.headersSent) {
     return next(err);

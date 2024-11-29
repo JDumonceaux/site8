@@ -24,7 +24,7 @@ type sortByType = 'name' | 'seq';
 type menuType = 'menu' | 'root';
 
 const useMenuEdit = () => {
-  const { error, isLoading, postData } = useAxios<MenuAdd>();
+  const { error, isLoading, putData } = useAxios<MenuAdd>();
   // Return default form values
   const initialFormValues: FormType = useMemo(
     () => ({
@@ -80,11 +80,11 @@ const useMenuEdit = () => {
   const submitForm = useCallback(async () => {
     const data = getUpdates();
     setIsProcessing(true);
-    const result = await postData(ServiceUrl.ENDPOINT_MENUS, data);
+    const result = await putData(ServiceUrl.ENDPOINT_MENUS, data);
     setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [getUpdates, postData, setIsProcessing, setIsSaved]);
+  }, [getUpdates, putData, setIsProcessing, setIsSaved]);
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
