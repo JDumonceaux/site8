@@ -114,12 +114,11 @@ app.use('*', (_req: Request, res: Response) => {
 
 // error handler
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
-  console.log('ApUseError', err);
   Logger.error(`Error: ${err.message}`);
   if (res.headersSent) {
     return next(err);
   }
-  res.status(500).json({ error: err.message });
+  res.status(500).json(err.message);
 });
 
 app.listen(port, () => {

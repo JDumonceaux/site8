@@ -7,9 +7,9 @@ import Layout from 'components/layouts/Layout/Layout';
 import { styled } from 'styled-components';
 
 import ItemDetail from './ItemDetail';
-import useItemsEditPage from './useItemsEditPage';
+import useItemsEditPage from './useItemsAddPage';
 
-const ItemsditPage = (): React.JSX.Element => {
+const ItemsAddPage = (): React.JSX.Element => {
   const title = 'Edit Items';
 
   const {
@@ -49,7 +49,7 @@ const ItemsditPage = (): React.JSX.Element => {
   );
 };
 
-export default ItemsditPage;
+export default ItemsAddPage;
 
 const StyledForm = styled.form`
   width: 100%;

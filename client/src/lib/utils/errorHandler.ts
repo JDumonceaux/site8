@@ -17,9 +17,8 @@ export const httpErrorHandler = (error: unknown): null | string => {
   }
 
   if (isAxiosError(error)) {
-    const { status } = error;
-
-    console.log('error', error);
+    const { response, status } = error;
+    const data = response?.data || null;
 
     switch (status) {
       case 401: {
@@ -32,7 +31,7 @@ export const httpErrorHandler = (error: unknown): null | string => {
         return 'Request timed out.';
       }
       case 500: {
-        return 'Server error: ';
+        return `Server error: ${data}`;
       }
       // case 'ERR_CANCELLED': {
       //   return 'Request cancelled.';

@@ -16,7 +16,6 @@ export const getItemsEdit = async (
   await service
     .getItemsEdit()
     .then((response) => {
-      console.log('resp', response);
       if (response) {
         res.status(200).json(response);
       } else {
@@ -24,7 +23,6 @@ export const getItemsEdit = async (
       }
     })
     .catch((error: Error) => {
-      console.log('error', error);
       next(error);
     });
 };

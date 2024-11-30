@@ -40,6 +40,9 @@ const ImagesEditPage = lazy(
 const ItemsEditPage = lazy(
   async () => import('../feature/itemsEdit/ItemsEditPage'),
 );
+const ItemsAddPage = lazy(
+  async () => import('../feature/itemsAdd/ItemsAddPage'),
+);
 const Home = lazy(async () => import('../feature/home/HomePage'));
 const NotFound = lazy(async () => import('../feature/site/NotFoundPage'));
 const PageEditPage = lazy(
@@ -141,6 +144,8 @@ const router = createBrowserRouter(
           <Route element={<ImagesEditPage />} path="images" />
           <Route element={<ImagesEditPage />} path="images/new" />
           <Route element={<ItemsEditPage />} path="items" />
+          <Route element={<ItemsEditPage />} path="items/edit" />
+          <Route element={<ItemsAddPage />} path="items/add" />
           <Route element={<TestsEditPage />} path="tests/edit" />
           <Route element={<DevelopPage />} path="develop" />
         </Route>
