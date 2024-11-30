@@ -10,7 +10,7 @@ import ItemDetail from './ItemDetail';
 import useItemsEditPage from './useItemsAddPage';
 
 const ItemsAddPage = (): React.JSX.Element => {
-  const title = 'Edit Items';
+  const title = 'Add Items';
 
   const {
     data,
