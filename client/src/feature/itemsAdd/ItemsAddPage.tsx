@@ -4,10 +4,11 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
+import MenuBar from 'feature/imagesEdit/MenuBar';
 import { styled } from 'styled-components';
 
 import ItemDetail from './ItemDetail';
-import useItemsEditPage from './useItemsAddPage';
+import useItemsAddPage from './useItemsAddPage';
 
 const ItemsAddPage = (): React.JSX.Element => {
   const title = 'Add Items';
@@ -20,29 +21,31 @@ const ItemsAddPage = (): React.JSX.Element => {
     handleDelete,
     handleSubmit,
     isLoading,
-  } = useItemsEditPage();
+  } = useItemsAddPage();
 
   return (
     <>
       <Meta title={title} />
       <Layout.TitleFixed>
-        <PageTitle title={title} />
+        <PageTitle title={title}>
+          <MenuBar handleSubmit={handleSubmit} />
+        </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Main>
-          <LoadingWrapper error={error} isLoading={isLoading}>
-            <StyledForm noValidate onSubmit={handleSubmit}>
-              {data.map((item) => (
-                <ItemDetail
-                  getFieldValue={getFieldValue}
-                  item={item}
-                  key={item.lineId}
-                  onChange={handleChange}
-                  onDelete={handleDelete}
-                />
-              ))}
-            </StyledForm>
-          </LoadingWrapper>
+          {/* <LoadingWrapper error={error} isLoading={isLoading}> */}
+          <StyledForm noValidate onSubmit={handleSubmit}>
+            {data.map((item) => (
+              <ItemDetail
+                getFieldValue={getFieldValue}
+                item={item}
+                key={item.lineId}
+                onChange={handleChange}
+                onDelete={handleDelete}
+              />
+            ))}
+          </StyledForm>
+          {/* </LoadingWrapper> */}
         </Layout.Main>
       </Layout.Flex>
     </>

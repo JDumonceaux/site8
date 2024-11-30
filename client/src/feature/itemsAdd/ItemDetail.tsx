@@ -22,6 +22,8 @@ const ItemDetail = ({
   onChange,
   onDelete,
 }: Props): React.JSX.Element => {
+  console.log('item', item);
+
   const handleOnDelete = React.useCallback(() => {
     onDelete(item.lineId);
   }, [item.lineId, onDelete]);

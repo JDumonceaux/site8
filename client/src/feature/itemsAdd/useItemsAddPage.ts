@@ -4,8 +4,7 @@ import useServerApi from 'hooks/Axios/useServerApi';
 import { useFormArray } from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
-import type { ItemEdit } from 'types';
-import type { Items } from 'types/Items';
+import type { ItemAdd } from 'types/ItemAdd';
 import { z } from 'zod';
 
 // Define Zod Shape
@@ -29,7 +28,6 @@ const schema = z.object({
 
 // Create a type from the schema
 export type ItemExt = z.infer<typeof schema> & {
-  delete?: boolean;
   isSelected: boolean;
   lineId: number;
 };
@@ -40,19 +38,25 @@ const useItemsAddPage = () => {
   const { setMessage } = useSnackbar();
 
   // Create a form
-  const { formValues, getFieldValue, setFieldValue, setFormValues } =
-    useFormArray<ItemExt>();
+  const {
+    formValues,
+    getFieldValue,
+    getIndex,
+    getItem,
+    setFieldValue,
+    setFormValues,
+  } = useFormArray<ItemExt>();
 
-  const { data, error, isLoading, patchData } = useServerApi<Items>();
+  const { error, isLoading, patchData } = useServerApi<ItemAdd[]>();
 
   useEffect(() => {
     setFormValues(mapDataToForm());
-  }, [data, setFormValues]);
+  }, [setFormValues]);
 
   // Handle save
   const saveItems = useCallback(
-    async (updates: ItemEdit[]) => {
-      return patchData(ServiceUrl.ENDPOINT_ITEMS, { items: updates });
+    async (updates: ItemAdd[]) => {
+      return patchData(ServiceUrl.ENDPOINT_ITEMS, updates);
     },
     [patchData],
   );
@@ -90,62 +94,20 @@ const useItemsAddPage = () => {
 
   // Only submit updated records
   const getUpdates = useCallback(() => {
-    const returnValue: ItemEdit[] = [];
+    const ret: ItemAdd[] = [];
 
-    if (data?.items) {
-      for (const item of data.items) {
-        const items = formValues.filter((x) => x.id === item.id);
-        if (items.length > 1) {
-          // eslint-disable-next-line no-console
-          console.warn('Duplicate items found.  Please correct index');
-        }
-        const current = formValues.find((x) => x.id === item.id);
-        if (current) {
-          const tempLocation = getDifferenceString(
-            item.location,
-            current.location,
-          );
-          const tempDescription = getDifferenceString(
-            item.description,
-            current.description,
-          );
-          const tempOfficialUrl = getDifferenceString(
-            item.official_url,
-            current.official_url,
-          );
-          const tempArtist = getDifferenceString(item.artist, current.artist);
-
-          const tempTags = getDifferenceString(
-            item.tags?.join(','),
-            current.tags,
-          );
-
-          const hasChanges = [
-            tempLocation.hasChange,
-            tempDescription.hasChange,
-            tempOfficialUrl.hasChange,
-
-            tempArtist.hasChange,
-            tempTags.hasChange,
-          ].some(Boolean);
-
-          if (hasChanges) {
-            returnValue.push({
-              artist: tempArtist.value,
-              description: tempDescription.value,
-
-              id: item.id,
-              location: tempLocation.value,
-              official_url: tempOfficialUrl.value,
-              tags: tempTags.value?.split(',').map((x) => x.trim()),
-            });
-          }
-        }
+    for (const i of getIndex()) {
+      const item = getItem(i.lineId);
+      if (item && (item.name?.trim().length ?? 0) > 0) {
+        ret.push({
+          artist: item.artist,
+          description: item.description,
+        });
       }
     }
 
-    return returnValue.length > 0 ? returnValue : undefined;
-  }, [data, formValues]);
+    return ret.length > 0 ? ret : undefined;
+  }, [getIndex, getItem]);
 
   const handleSubmit = useCallback(() => {
     const updates = getUpdates();
@@ -181,33 +143,11 @@ const useItemsAddPage = () => {
       });
   }, [getUpdates, saveItems, setMessage, error]);
 
-  const handleDelete = (lineId: number) => {
-    const previous = getFieldValue(lineId, 'delete');
-    setFieldValue(lineId, 'delete', !previous);
-  };
-
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  const getDifferenceString = (value?: string, update?: string) => {
-    const normalizedUpdate = update?.trim() ?? undefined;
-
-    if (value !== normalizedUpdate) {
-      return {
-        hasChange: true,
-        value: normalizedUpdate,
-      };
-    }
-    return {
-      hasChange: false,
-      value,
-    };
-  };
-
   return {
     data: formValues,
     error,
     getFieldValue,
     handleChange,
-    handleDelete,
     handleSubmit,
     isLoading,
     setFieldValue,

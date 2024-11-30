@@ -2,34 +2,35 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { ItemsService } from './ItemsService.js';
-import { ItemsEdit } from '../../types/ItemsEdit.js';
+import { ItemAdd } from '../../types/ItemAdd.js';
 export const patchItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<boolean>,
+  res: Response<boolean | string>,
   next: NextFunction,
 ) => {
-  const data = req.body as ItemsEdit;
+  const data = req.body as ItemAdd[];
 
   Logger.info(`Items: Patch Items called: `);
 
-  if (!data) {
-    res.status(500);
-  } else {
-    const service = new ItemsService();
+  console.log('data', data);
 
-    await service
-      .updateItems(data?.items)
-      .then((_response) => {
-        // if (response) {
-        //   res.status(200).json(response);
-        // } else {
-        //   res.json(response);
-        // }
-      })
-      .catch((error: Error) => {
-        next(error);
-      });
+  if (!data) {
+    throw new Error('No data to add.');
   }
+  const service = new ItemsService();
+
+  await service
+    .addItems(data)
+    .then((response) => {
+      if (response) {
+        res.status(200).send();
+      } else {
+        throw new Error(`Add failed `);
+      }
+    })
+    .catch((error: Error) => {
+      next(error);
+    });
 
   // if (returnRepresentation) {
   //   const ret = await service.getItem(id);

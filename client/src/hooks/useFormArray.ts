@@ -57,9 +57,14 @@ export const useFormArray = <T extends IdType>() => {
     return index >= 0 ? formValues[index] : null;
   };
 
+  const getIndex = (): IdType[] => {
+    return formValues.filter((x) => x.lineId);
+  };
+
   return {
     formValues,
     getFieldValue,
+    getIndex,
     getItem,
     isSaved,
     setFieldValue,

@@ -1,3 +1,4 @@
+// import { scan } from 'react-scan';
 import React from 'react';
 
 import ReactDOM from 'react-dom/client';
@@ -14,8 +15,13 @@ import './styles/reset.css';
 // import config from './amplifyconfiguration.json';
 // Amplify.configure(config);
 
-const rootElement = document.getElementById('root');
+const rootElement = document.querySelector('#root');
 if (rootElement) {
+  // scan({
+  //   enabled: true,
+  //   log: true,
+  // });
+
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <ReduxProvider>

@@ -5,6 +5,7 @@ import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
 import { Item } from '../../types/Item.js';
 import { ItemEdit } from '../../types/ItemEdit.js';
 import { Items } from '../../types/Items.js';
+import { ItemAdd } from '../../types/ItemAdd.js';
 
 export class ItemsService {
   private fileName = 'items.json';
@@ -132,7 +133,7 @@ export class ItemsService {
 
   public async addItems(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    items: ReadonlyArray<ItemEdit> | undefined,
+    items: ReadonlyArray<ItemAdd> | undefined,
   ): Promise<boolean> {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

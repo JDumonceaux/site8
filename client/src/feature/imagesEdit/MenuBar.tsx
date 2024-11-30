@@ -6,9 +6,9 @@ import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButt
 import { ServiceUrl } from 'lib/utils/constants';
 
 type Props = {
-  readonly handleRefresh: () => void;
-  readonly handleScan: () => void;
-  readonly handleSubmit: () => void;
+  readonly handleRefresh?: () => void;
+  readonly handleScan?: () => void;
+  readonly handleSubmit?: () => void;
 };
 
 const MenuBar = ({
@@ -19,9 +19,11 @@ const MenuBar = ({
   return (
     <>
       <IconMenu>
-        <IconMenuItem key="scan" onClick={handleScan}>
-          Scan for New
-        </IconMenuItem>
+        {handleScan ? (
+          <IconMenuItem key="scan" onClick={handleScan}>
+            Scan for New
+          </IconMenuItem>
+        ) : null}
         <IconMenuItem key="list-duplicates">
           <a
             href={ServiceUrl.ENDPOINT_IMAGES_LIST_DUPLICATES}
@@ -47,18 +49,22 @@ const MenuBar = ({
           </a>
         </IconMenuItem>
       </IconMenu>
-      <StyledPlainButton
-        data-testid="button-refresh"
-        onClick={handleRefresh}
-        type="submit">
-        Refresh
-      </StyledPlainButton>
-      <StyledPlainButton
-        data-testid="button-save"
-        onClick={handleSubmit}
-        type="submit">
-        Save
-      </StyledPlainButton>
+      {handleRefresh ? (
+        <StyledPlainButton
+          data-testid="button-refresh"
+          onClick={handleRefresh}
+          type="submit">
+          Refresh
+        </StyledPlainButton>
+      ) : null}
+      {handleSubmit ? (
+        <StyledPlainButton
+          data-testid="button-save"
+          onClick={handleSubmit}
+          type="submit">
+          Save
+        </StyledPlainButton>
+      ) : null}
     </>
   );
 };
