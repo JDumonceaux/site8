@@ -6,12 +6,14 @@ import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButt
 import { ServiceUrl } from 'lib/utils/constants';
 
 type Props = {
+  readonly handleClear?: () => void;
   readonly handleRefresh?: () => void;
   readonly handleScan?: () => void;
   readonly handleSubmit?: () => void;
 };
 
 const MenuBar = ({
+  handleClear,
   handleRefresh,
   handleScan,
   handleSubmit,
@@ -53,8 +55,16 @@ const MenuBar = ({
         <StyledPlainButton
           data-testid="button-refresh"
           onClick={handleRefresh}
-          type="submit">
+          type="button">
           Refresh
+        </StyledPlainButton>
+      ) : null}
+      {handleClear ? (
+        <StyledPlainButton
+          data-testid="button-clear"
+          onClick={handleClear}
+          type="button">
+          Clear
         </StyledPlainButton>
       ) : null}
       {handleSubmit ? (

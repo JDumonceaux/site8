@@ -2,34 +2,33 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { ItemsService } from './ItemsService.js';
-import { ItemsEdit } from '../../types/ItemsEdit.js';
+import { ItemAdd } from '../../types/ItemAdd.js';
 
 export const putItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
   res: Response<boolean>,
   next: NextFunction,
 ) => {
-  const data = req.body as ItemsEdit;
+  const data = req.body as ItemAdd[];
 
   Logger.info(`Items: Put Items called: `);
 
   if (!data) {
-    res.status(500);
-  } else {
-    const service = new ItemsService();
-
-    await service
-      .addItems(data?.items)
-      .then((_response) => {
-        // if (response) {
-        //   res.status(200).json(response);
-        // } else {
-        //   res.json(response);
-        // }
-      })
-      .catch((error: Error) => {
-        next(error);
-      });
+    throw new Error('No data to change.');
   }
-  next();
+
+  const service = new ItemsService();
+
+  await service
+    .putItems(data)
+    .then((response) => {
+      if (response) {
+        res.status(200).json(response);
+      } else {
+        res.json(response);
+      }
+    })
+    .catch((error: Error) => {
+      next(error);
+    });
 };

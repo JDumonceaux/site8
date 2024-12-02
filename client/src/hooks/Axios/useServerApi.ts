@@ -6,13 +6,13 @@ import { httpErrorHandler } from 'lib/utils/errorHandler';
 
 const useServerApi = <T>() => {
   const [data, setData] = useState<null | T>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<null | string>();
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const reset = () => {
     setData(null);
-    setIsLoading(true);
+    setIsLoading(false);
     setError(null);
   };
 

@@ -5,9 +5,10 @@ import { save } from 'store/AppSlice';
 import type { AppDispatch, RootState } from 'store/store';
 import type { AppSettings } from 'types/AppSettings';
 
+const selector = (state: RootState) => state.appSettings;
+
 const useAppSettings = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const selector = (state: RootState) => state.appSettings;
   const { data } = useSelector(selector);
 
   const initialState: AppSettings = useMemo(
@@ -19,8 +20,8 @@ const useAppSettings = () => {
     [],
   );
 
-  const updateAppSettingsDispatch = (data: AppSettings) => {
-    dispatch(save(data));
+  const updateAppSettingsDispatch = (updates: AppSettings) => {
+    dispatch(save(updates));
   };
 
   const setShowAll = (value: boolean) => {
@@ -50,8 +51,8 @@ const useAppSettings = () => {
     });
   };
 
-  const showUnmatched = data?.showUnmatched ? data.showUnmatched : false;
-  const showPages = data?.showPages ? data.showPages : false;
+  const showUnmatched = data?.showUnmatched ?? false;
+  const showPages = data?.showPages ?? false;
 
   return {
     data,

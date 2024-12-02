@@ -67,82 +67,85 @@ export class ItemsService {
     }
   }
 
-  public async updateItems(
-    items: ReadonlyArray<ItemEdit> | undefined,
-  ): Promise<boolean> {
-    if (!items || !Array.isArray(items) || items.length === 0) {
-      Logger.info(`ItemsService: updateItems -> no items to update`);
-      return true;
-    }
-
-    const itemsTemp = await this.readFile();
-    if (!itemsTemp?.items) {
-      throw new Error('ItemsService: updateItems -> Unable to load index');
-    }
+  public async patchItems(items: ReadonlyArray<ItemEdit>): Promise<boolean> {
+    //    const itemsTemp = await this.readFile();
 
     // Get the updated records
-    const updatedItems: ItemEdit[] = items.map((item) => {
-      const currItems = itemsTemp.items?.filter((x) => x.id === item.id);
+    // const updatedItems: ItemEdit[] = items.map((item) => {
+    //   const currItems = itemsTemp.items?.filter((x) => x.id === item.id);
 
-      if (!currItems) {
-        throw new Error(
-          `ItemsService: updateItems -> item not found in index: ${item.id}`,
-        );
-      }
+    //   if (!currItems) {
+    //     throw new Error(
+    //       `ItemsService: updateItems -> item not found in index: ${item.id}`,
+    //     );
+    //   }
 
-      if (currItems && currItems?.length > 1) {
-        throw new Error(
-          `ItemsService: updateItems -> Duplicate items found: ${item.id}.  Please correct index`,
-        );
-      }
+    //   if (currItems && currItems?.length > 1) {
+    //     throw new Error(
+    //       `ItemsService: updateItems -> Duplicate items found: ${item.id}.  Please correct index`,
+    //     );
+    //   }
 
-      // Create a replacement item
-      const currItem = currItems[0];
-      if (currItem) {
-        return {
-          ...currItem,
-          ...item,
-          isNewItem: false,
-        };
-      }
-    });
+    //   // Create a replacement item
+    //   const currItem = currItems[0];
+    //   if (currItem) {
+    //     return {
+    //       ...currItem,
+    //       ...item,
+    //       isNewItem: false,
+    //     };
+    //   }
+    // });
 
-    // Replace the changed records in the original data
-    const data: Item[] = itemsTemp.items
-      .map((x) => {
-        const foundItem = updatedItems.find((y) => y.id === x.id);
-        const addItem = () => {
-          if (foundItem) {
-            const { ...rest } = foundItem;
-            return cleanUpData<Item>({ ...rest });
-          }
-          return undefined;
-        };
-        const newItem = addItem();
-        return newItem || x;
-      })
-      .filter(Boolean);
+    // // Replace the changed records in the original data
+    // const data: Item[] = itemsTemp.items
+    //   .map((x) => {
+    //     const foundItem = updatedItems.find((y) => y.id === x.id);
+    //     const addItem = () => {
+    //       if (foundItem) {
+    //         const { ...rest } = foundItem;
+    //         return cleanUpData<Item>({ ...rest });
+    //       }
+    //       return undefined;
+    //     };
+    //     const newItem = addItem();
+    //     return newItem || x;
+    //   })
+    //   .filter(Boolean);
 
-    const results = await this.writeFile({ ...itemsTemp, items: data });
-    if (!results) {
-      throw new Error('ItemsService: updateItems -> Failed to update index.');
-    }
+    // const results = await this.writeFile({ ...itemsTemp, items: data });
+    // if (!results) {
+    //   throw new Error('ItemsService: updateItems -> Failed to update index.');
+    // }
 
     return true;
   }
 
-  public async addItems(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    items: ReadonlyArray<ItemAdd> | undefined,
-  ): Promise<boolean> {
+  public async putItems(items: ReadonlyArray<ItemAdd>) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const data = await this.readFile();
-      return Promise.resolve(true);
+      const updates: Item[] = data?.items || [];
+
+      console.log('items', items);
+
+      for (const item of items) {
+        console.log('item', item);
+        const id = getNextId(updates) || 1;
+        console.log('id', id);
+        updates.push({
+          ...item,
+          id,
+        });
+      }
+
+      const ret = await this.writeFile({
+        metadata: { title: 'Items' },
+        items: updates,
+      });
+      return ret;
     } catch (error) {
-      Logger.error(`ItemsService: Add Items -> ${error}`);
-      Promise.resolve(false);
+      Logger.error(`ItemsService: Put Items -> ${error}`);
     }
-    return Promise.resolve(false);
+    return false;
   }
 }

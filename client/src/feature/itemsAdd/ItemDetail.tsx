@@ -13,7 +13,7 @@ type Props = {
   readonly onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
-  readonly onDelete: (lineId: number) => void;
+  readonly onDelete?: (lineId: number) => void;
 };
 
 const ItemDetail = ({
@@ -22,10 +22,10 @@ const ItemDetail = ({
   onChange,
   onDelete,
 }: Props): React.JSX.Element => {
-  console.log('item', item);
-
   const handleOnDelete = React.useCallback(() => {
-    onDelete(item.lineId);
+    if (onDelete) {
+      onDelete(item.lineId);
+    }
   }, [item.lineId, onDelete]);
 
   const getDefaultProps = React.useCallback(
@@ -41,9 +41,7 @@ const ItemDetail = ({
   );
 
   return (
-    <StyledRow
-      $deleted={item.delete === true ? 'true' : 'false'}
-      key={item.lineId}>
+    <StyledRow key={item.lineId}>
       <StyledOuterRow>
         <Input.Text
           {...getDefaultProps(item.lineId, 'name')}
@@ -85,17 +83,13 @@ const ItemDetail = ({
 
 export default ItemDetail;
 
-const StyledRow = styled.div<{
-  $deleted?: 'false' | 'true';
-}>`
+const StyledRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
   width: 100%;
   padding: 10px 0;
   border-bottom: 1px solid var(--palette-samp);
-  border: ${(props) =>
-    props.$deleted === 'true' ? `1px solid var(--navbar-dark-3)` : undefined};
 `;
 const StyledOuterRow = styled.div`
   flex-grow: 1;

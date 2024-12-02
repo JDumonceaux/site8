@@ -47,7 +47,7 @@ const useItemsAddPage = () => {
     setFormValues,
   } = useFormArray<ItemExt>();
 
-  const { error, isLoading, patchData } = useServerApi<ItemAdd[]>();
+  const { error, isLoading, putData } = useServerApi<ItemAdd[]>();
 
   useEffect(() => {
     setFormValues(mapDataToForm());
@@ -56,9 +56,9 @@ const useItemsAddPage = () => {
   // Handle save
   const saveItems = useCallback(
     async (updates: ItemAdd[]) => {
-      return patchData(ServiceUrl.ENDPOINT_ITEMS, updates);
+      return putData(ServiceUrl.ENDPOINT_ITEMS, updates);
     },
-    [patchData],
+    [putData],
   );
 
   // Map database to form
@@ -90,6 +90,10 @@ const useItemsAddPage = () => {
     } else {
       throw new Error('No id found');
     }
+  };
+
+  const handleClear = () => {
+    setFormValues(mapDataToForm());
   };
 
   // Only submit updated records
@@ -148,6 +152,7 @@ const useItemsAddPage = () => {
     error,
     getFieldValue,
     handleChange,
+    handleClear,
     handleSubmit,
     isLoading,
     setFieldValue,

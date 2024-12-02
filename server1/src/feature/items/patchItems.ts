@@ -2,30 +2,30 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { ItemsService } from './ItemsService.js';
-import { ItemAdd } from '../../types/ItemAdd.js';
+import { ItemEdit } from '../../types/ItemEdit.js';
+
 export const patchItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
   res: Response<boolean | string>,
   next: NextFunction,
 ) => {
-  const data = req.body as ItemAdd[];
+  const data = req.body as ItemEdit[];
 
   Logger.info(`Items: Patch Items called: `);
 
-  console.log('data', data);
-
   if (!data) {
-    throw new Error('No data to add.');
+    throw new Error('No data to change.');
   }
+
   const service = new ItemsService();
 
   await service
-    .addItems(data)
+    .patchItems(data)
     .then((response) => {
       if (response) {
         res.status(200).send();
       } else {
-        throw new Error(`Add failed `);
+        throw new Error(`Edit failed `);
       }
     })
     .catch((error: Error) => {

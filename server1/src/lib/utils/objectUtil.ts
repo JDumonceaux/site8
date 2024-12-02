@@ -57,10 +57,10 @@ export function sortObjectKeys<T>(obj: T | any): T | any {
 }
 
 /**
- * Represents a CleanupType object.
- * CleanupType objects must have an id attribute.
+ * Represents a IdType object.
+ * IdType objects must have an id attribute.
  */
-export type CleanupType = {
+export type IdType = {
   readonly id: number;
 };
 
@@ -72,7 +72,7 @@ export type CleanupType = {
  * @param {T} data - The data to clean up.
  * @returns {T} - The cleaned up data.
  */
-export function cleanUpData<T extends CleanupType>(data: T): T {
+export function cleanUpData<T extends IdType>(data: T): T {
   const cleanedData: T = removeEmptyAttributes<T>(data);
   const sortedData: T = sortObjectKeys<T>(cleanedData);
   const trimmedData: T = trimAttributes<T>(sortedData);
@@ -86,25 +86,28 @@ export function cleanUpData<T extends CleanupType>(data: T): T {
  * @param items - The array of items to search for the next ID.
  * @returns The next available ID or undefined if the array is empty.
  */
-export function getNextId<T extends CleanupType>(
+export function getNextId<T extends IdType>(
   items: ReadonlyArray<T> | undefined,
 ): number | undefined {
   if (!items) {
     return undefined;
   }
-  const sortedArray = items.toSorted((a, b) => a.id - b.id);
-  // Start with the first id in the sorted array
-  let nextId = sortedArray[0].id;
-  // Iterate through the array to find the missing id
-  for (let i = 0; i < sortedArray.length; i++) {
-    const y = sortedArray.find((x) => x.id === nextId);
-    if (!y) {
-      return nextId;
+  if (items.length > 0) {
+    const sortedArray = items.toSorted((a, b) => a.id - b.id);
+    // Start with the first id in the sorted array
+    let nextId = sortedArray[0].id;
+    // Iterate through the array to find the missing id
+    for (let i = 0; i < sortedArray.length; i++) {
+      const y = sortedArray.find((x) => x.id === nextId);
+      if (!y) {
+        return nextId;
+      }
+      nextId++; // Move to the next expected id
     }
-    nextId++; // Move to the next expected id
+    // If no gaps were found, the next free id is one greater than the last object's id
+    return nextId;
   }
-  // If no gaps were found, the next free id is one greater than the last object's id
-  return nextId;
+  return undefined;
 }
 
 /**
@@ -116,7 +119,7 @@ export function getNextId<T extends CleanupType>(
  * @param start - The starting position to search for the next ID.
  * @returns The next available ID or `undefined` if no IDs are available.
  */
-export function getNextIdFromPos<T extends CleanupType>(
+export function getNextIdFromPos<T extends IdType>(
   items: ReadonlyArray<T> | undefined,
   start: number,
 ): { value: number; index: number } | undefined {

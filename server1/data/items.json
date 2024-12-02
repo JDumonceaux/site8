@@ -2,5 +2,11 @@
   "metadata": {
     "title": "Items"
   },
-  "items": []
+  "items": [
+    {
+      "artist": "Réne Magritte",
+      "description": "",
+      "id": 1
+    }
+  ]
 }

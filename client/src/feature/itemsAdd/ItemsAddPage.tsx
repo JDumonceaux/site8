@@ -18,7 +18,7 @@ const ItemsAddPage = (): React.JSX.Element => {
     error,
     getFieldValue,
     handleChange,
-    handleDelete,
+    handleClear,
     handleSubmit,
     isLoading,
   } = useItemsAddPage();
@@ -28,24 +28,23 @@ const ItemsAddPage = (): React.JSX.Element => {
       <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
-          <MenuBar handleSubmit={handleSubmit} />
+          <MenuBar handleClear={handleClear} handleSubmit={handleSubmit} />
         </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Main>
-          {/* <LoadingWrapper error={error} isLoading={isLoading}> */}
-          <StyledForm noValidate onSubmit={handleSubmit}>
-            {data.map((item) => (
-              <ItemDetail
-                getFieldValue={getFieldValue}
-                item={item}
-                key={item.lineId}
-                onChange={handleChange}
-                onDelete={handleDelete}
-              />
-            ))}
-          </StyledForm>
-          {/* </LoadingWrapper> */}
+          <LoadingWrapper error={error} isLoading={isLoading}>
+            <StyledForm noValidate onSubmit={handleSubmit}>
+              {data.map((item) => (
+                <ItemDetail
+                  getFieldValue={getFieldValue}
+                  item={item}
+                  key={item.lineId}
+                  onChange={handleChange}
+                />
+              ))}
+            </StyledForm>
+          </LoadingWrapper>
         </Layout.Main>
       </Layout.Flex>
     </>

@@ -2,9 +2,8 @@ import { memo, useCallback } from 'react';
 
 import { IconButton } from 'components/form/IconButton/IconButton';
 import { CloseIcon } from 'components/icons/CloseIcon';
-import useSnackbar from 'hooks/useSnackbar';
+import useSnackbar, { SnackbarVariant } from 'hooks/useSnackbar';
 import { styled } from 'styled-components';
-import { SnackbarVariant } from 'types';
 
 // Note: Snackbars or Toast Snackbars are not recommended
 // https://www.magentaa11y.com/checklist-web/toast-snackbar/
@@ -22,13 +21,13 @@ type SnackbarProps = {
 const Snackbar = ({
   variant = SnackbarVariant.INFO,
 }: SnackbarProps): null | React.JSX.Element => {
-  const { closeSnackbar, snackbarData } = useSnackbar();
+  const { closeSnackbar, data } = useSnackbar();
 
   const handleOnClose = useCallback(() => {
     closeSnackbar();
   }, [closeSnackbar]);
 
-  if (!snackbarData?.isOpen) {
+  if (!data?.isOpen) {
     return null;
   }
 
@@ -36,9 +35,9 @@ const Snackbar = ({
     <StyledDialog
       data-testid="snackbar"
       onClose={handleOnClose}
-      open={snackbarData.isOpen}
+      open
       variant={variant}>
-      <div>{snackbarData.contents}</div>
+      <div>{data.contents}xxxxx</div>
       <IconButton aria-label="close" onClick={handleOnClose}>
         <CloseIcon ariaHidden focusable={false} />
       </IconButton>
@@ -53,7 +52,7 @@ const Snackbar = ({
 
 export default memo(Snackbar);
 
-const StyledDialog = styled.dialog<{ variant: string }>`
+const StyledDialog = styled.dialog<{ variant: SnackbarVariant }>`
   background: var(--snackbar-background);
   color: ${(props) =>
     props.variant === SnackbarVariant.INFO
@@ -67,6 +66,7 @@ const StyledDialog = styled.dialog<{ variant: string }>`
   radius: 12px;
   padding: 0 20px;
   position: fixed;
-  right: 0;
-  bottom: 0;
+  //right: 0;
+  //bottom: ;
+  top: 100px;
 `;
