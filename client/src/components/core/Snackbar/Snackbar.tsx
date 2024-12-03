@@ -27,9 +27,9 @@ const Snackbar = ({
     closeSnackbar();
   }, [closeSnackbar]);
 
-  if (!data?.isOpen) {
-    return null;
-  }
+  // if (!data?.isOpen) {
+  //   return null;
+  // }
 
   return (
     <StyledDialog
@@ -37,7 +37,7 @@ const Snackbar = ({
       onClose={handleOnClose}
       open
       variant={variant}>
-      <div>{data.contents}xxxxx</div>
+      <div>{data?.contents}xxxxx</div>
       <IconButton aria-label="close" onClick={handleOnClose}>
         <CloseIcon ariaHidden focusable={false} />
       </IconButton>
@@ -67,6 +67,6 @@ const StyledDialog = styled.dialog<{ variant: SnackbarVariant }>`
   padding: 0 20px;
   position: fixed;
   //right: 0;
-  //bottom: ;
-  top: 100px;
+  bottom: 0;
+  // top: 100px;
 `;

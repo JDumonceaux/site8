@@ -5,7 +5,7 @@ import { ItemsService } from './ItemsService.js';
 import { Items } from '../../types/Items.js';
 
 export const getItemsEdit = async (
-  req: Request<unknown, unknown, unknown, unknown>,
+  _req: Request<unknown, unknown, unknown, unknown>,
   res: Response<Items>,
   next: NextFunction,
 ) => {
