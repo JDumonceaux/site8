@@ -18,6 +18,6 @@ export const IconButton = ({
 );
 
 const StyledButton = styled.button`
-  > svg {
-  }
+  background: inherit;
+  color: white;
 `;

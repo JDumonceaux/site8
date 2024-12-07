@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/SnackbarSlice';
 import type { AppDispatch, RootState } from 'store/store';
 
-const DEFAULT_DURATION = 5000;
+const DEFAULT_DURATION = 500;
 
 export type Snackbar = {
   contents: null | React.ReactNode;
@@ -56,6 +56,21 @@ const useSnackbar = () => {
         contents,
         isOpen: true,
         openDurationMs: duration,
+        showCloseButton: true,
+        variant: SnackbarVariant.INFO,
+      });
+    },
+    [updateSnackbar],
+  );
+
+  const setErrorMessage = useCallback(
+    (contents: Snackbar['contents'], duration = DEFAULT_DURATION) => {
+      updateSnackbar({
+        contents,
+        isOpen: true,
+        openDurationMs: duration,
+        showCloseButton: true,
+        variant: SnackbarVariant.ERROR,
       });
     },
     [updateSnackbar],
@@ -68,6 +83,7 @@ const useSnackbar = () => {
   return {
     closeSnackbar: close,
     data,
+    setErrorMessage,
     setMessage,
   };
 };
