@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -8,6 +8,7 @@ import MenuBar from 'feature/imagesEdit/MenuBar';
 import { styled } from 'styled-components';
 
 import ItemDetail from './ItemDetail';
+import RightMenu from './RightMenu';
 import useItemsAddPage from './useItemsAddPage';
 
 const ItemsAddPage = (): React.JSX.Element => {
@@ -46,6 +47,12 @@ const ItemsAddPage = (): React.JSX.Element => {
             </StyledForm>
           </LoadingWrapper>
         </Layout.Main>
+
+        <Layout.Aside>
+          <Suspense fallback={<div>Loading...</div>}>
+            <RightMenu currentFilter={currentFilter} />
+          </Suspense>
+        </Layout.Aside>
       </Layout.Flex>
     </>
   );

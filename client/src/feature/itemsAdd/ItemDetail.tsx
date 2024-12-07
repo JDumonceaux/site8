@@ -4,12 +4,14 @@ import { IconMenu } from 'components/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
 import { styled } from 'styled-components';
-
-import type { ItemExt } from './useItemsAddPage';
+import type { ItemAddExt } from 'types/ItemAdd';
 
 type Props = {
-  readonly getFieldValue: (lineId: number, fieldName: keyof ItemExt) => string;
-  readonly item: ItemExt;
+  readonly getFieldValue: (
+    lineId: number,
+    fieldName: keyof ItemAddExt,
+  ) => string;
+  readonly item: ItemAddExt;
   readonly onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
@@ -29,10 +31,12 @@ const ItemDetail = ({
   }, [item.lineId, onDelete]);
 
   const getDefaultProps = React.useCallback(
-    (lineId: number, fieldName: keyof ItemExt) => ({
+    (lineId: number, fieldName: keyof ItemAddExt) => ({
       'data-id': fieldName,
       'data-line': lineId,
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange: (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      ) => {
         onChange(e);
       },
       value: getFieldValue(lineId, fieldName),
@@ -55,9 +59,10 @@ const ItemDetail = ({
           {...getDefaultProps(item.lineId, 'official_url')}
           placeholder="Official URL"
         />
-        <Input.Text
+        <Input.TextArea
           {...getDefaultProps(item.lineId, 'description')}
           placeholder="Description"
+          rows={5}
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'artist')}
@@ -69,12 +74,16 @@ const ItemDetail = ({
           placeholder="Year"
         />
         <Input.Text
+          {...getDefaultProps(item.lineId, 'period')}
+          placeholder="Period"
+        />
+        <Input.Text
           {...getDefaultProps(item.lineId, 'tags')}
           placeholder="Tags"
         />
         <IconMenu>
           <IconMenuItem onClick={handleOnDelete}>Delete</IconMenuItem>
-          <IconMenuItem>{item.id}</IconMenuItem>
+          <IconMenuItem>{item.lineId}</IconMenuItem>
         </IconMenu>
       </StyledOuterRow>
     </StyledRow>

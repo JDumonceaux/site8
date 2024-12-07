@@ -4,33 +4,7 @@ import useServerApi from 'hooks/Axios/useServerApi';
 import { useFormArray } from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
-import type { ItemAdd } from 'types/ItemAdd';
-import { z } from 'zod';
-
-// Define Zod Shape
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const schema = z.object({
-  artist: z.string().trim().optional(),
-  description: z.string().trim().optional(),
-  id: z.number(),
-  location: z
-    .string({
-      invalid_type_error: 'Location must be a string',
-    })
-    .max(250, 'Location max length exceeded: 500')
-    .trim()
-    .optional(),
-  name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
-  official_url: z.string().trim().optional(),
-  tags: z.string().trim().optional(),
-  year: z.string().trim().optional(),
-});
-
-// Create a type from the schema
-export type ItemExt = z.infer<typeof schema> & {
-  isSelected: boolean;
-  lineId: number;
-};
+import type { ItemAdd, ItemAddExt } from 'types/ItemAdd';
 
 const ITEM_COUNT = 10;
 
@@ -45,7 +19,7 @@ const useItemsAddPage = () => {
     getItem,
     setFieldValue,
     setFormValues,
-  } = useFormArray<ItemExt>();
+  } = useFormArray<ItemAddExt>();
 
   const { error, isLoading, putData } = useServerApi<ItemAdd[]>();
 
@@ -63,16 +37,16 @@ const useItemsAddPage = () => {
 
   // Map database to form
   const mapDataToForm = () => {
-    const ret: ItemExt[] | undefined = Array.from(
+    const ret: ItemAddExt[] | undefined = Array.from(
       { length: ITEM_COUNT },
       (_, index) => ({
         artist: '',
         description: '',
-        id: 0,
         isSelected: false,
         lineId: index + 1,
         location: '',
         official_url: '',
+        period: '',
         tags: '',
       }),
     );
@@ -86,7 +60,7 @@ const useItemsAddPage = () => {
     const { id, line } = dataset;
     const lineNum = Number(line);
     if (id) {
-      setFieldValue(lineNum, id as keyof ItemExt, value);
+      setFieldValue(lineNum, id as keyof ItemAddExt, value);
     } else {
       throw new Error('No id found');
     }
@@ -120,7 +94,7 @@ const useItemsAddPage = () => {
       return;
     }
     setMessage('Saving...');
-    // setIsProcessing(true);
+
     // eslint-disable-next-line promise/catch-or-return
     saveItems(updates)
       // eslint-disable-next-line promise/prefer-await-to-then
