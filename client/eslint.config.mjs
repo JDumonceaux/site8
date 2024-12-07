@@ -736,6 +736,10 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'off',
       // Rule is not working correctly.  Requires cast to number for numbers
       '@typescript-eslint/no-unsafe-assignment': 'off',
+      // Rules is not working correctly.  Claims "'error' typed value when type is defined"
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      // Rules is not working correctly.  Claims return type is any when it is not
+      '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
         { argsIgnorePattern: '^_' },

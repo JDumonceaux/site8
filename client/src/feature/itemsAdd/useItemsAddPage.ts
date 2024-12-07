@@ -76,7 +76,7 @@ const useItemsAddPage = () => {
 
     for (const i of getIndex()) {
       const item = getItem(i.lineId);
-      if (item && (item.name?.trim().length ?? 0) > 0) {
+      if (item) {
         ret.push({
           artist: item.artist,
           description: item.description,
