@@ -35,7 +35,7 @@ export type ItemExt = z.infer<typeof schema> & {
 const ITEM_COUNT = 10;
 
 const useItemsAddPage = () => {
-  const { setMessage } = useSnackbar();
+  const { setErrorMessage, setMessage } = useSnackbar();
 
   // Create a form
   const {
@@ -116,7 +116,7 @@ const useItemsAddPage = () => {
   const handleSubmit = useCallback(() => {
     const updates = getUpdates();
     if (!updates) {
-      setMessage('No changes to save');
+      setErrorMessage('No changes to save');
       return;
     }
     setMessage('Saving...');
@@ -145,7 +145,7 @@ const useItemsAddPage = () => {
       .finally(() => {
         //   setIsProcessing(false);
       });
-  }, [getUpdates, saveItems, setMessage, error]);
+  }, [getUpdates, setMessage, saveItems, setErrorMessage, error]);
 
   return {
     data: formValues,

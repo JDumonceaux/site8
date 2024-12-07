@@ -1,4 +1,3 @@
-import 'components/modals/core/main.css';
 import React, { type ButtonHTMLAttributes, memo } from 'react';
 
 import styled, { css } from 'styled-components';
@@ -59,16 +58,13 @@ const StyledButton = styled.button<{
     switch (props.$variant) {
       case VARIANTS.discreet: {
         return css`
-          background-color: var(--background-color-discreet, #ffffff);
+          background-color: var(--background-color-discreet);
         `;
       }
       case VARIANTS.ghost: {
         return css`
           background-color: var(--background-color-ghost, #ffffff);
         `;
-      }
-      case VARIANTS.primary: {
-        throw new Error('Not implemented yet: undefined case');
       }
       case VARIANTS.secondary: {
         return css`
