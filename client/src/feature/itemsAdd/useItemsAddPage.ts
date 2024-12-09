@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import useServerApi from 'hooks/Axios/useServerApi';
 import { useFormArray } from 'hooks/useFormArray';
@@ -10,6 +10,7 @@ const ITEM_COUNT = 10;
 
 const useItemsAddPage = () => {
   const { setErrorMessage, setMessage } = useSnackbar();
+  const [currentFilter, setCurrentFilter] = useState('');
 
   // Create a form
   const {
@@ -70,6 +71,10 @@ const useItemsAddPage = () => {
     setFormValues(mapDataToForm());
   };
 
+  const handleSetFilter = () => {
+    setCurrentFilter(getFieldValue(1, 'artist'));
+  };
+
   // Only submit updated records
   const getUpdates = useCallback(() => {
     const ret: ItemAdd[] = [];
@@ -122,11 +127,13 @@ const useItemsAddPage = () => {
   }, [getUpdates, setMessage, saveItems, setErrorMessage, error]);
 
   return {
+    currentFilter,
     data: formValues,
     error,
     getFieldValue,
     handleChange,
     handleClear,
+    handleSetFilter,
     handleSubmit,
     isLoading,
     setFieldValue,

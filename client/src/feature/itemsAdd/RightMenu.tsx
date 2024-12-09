@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import useImageFolder from 'feature/imagesEdit/useImageFolder';
+import useItems from 'feature/itemsAdd/useItems';
 import { styled } from 'styled-components';
 
 type Props = {
@@ -9,12 +9,20 @@ type Props = {
 };
 
 const RightMenu = ({ currentFilter }: Props): React.JSX.Element => {
-  const { data, error, isLoading } = useImageFolder();
+  const { data, error, isLoading } = useItems();
+
+  const filteredData = useCallback(() => {
+    return data?.items.filter((x) => x.artist === currentFilter);
+  }, [data, currentFilter]);
 
   return (
     <StickyMenu>
       <LoadingWrapper error={error} isLoading={isLoading}>
-        <ul>{data?.map((item) => <li key={item.id}>{item.value}</li>)}</ul>
+        <ul>
+          {filteredData()?.map((item) => (
+            <li key={item.id}>{item.name ?? 'Missing'}</li>
+          ))}
+        </ul>
       </LoadingWrapper>
     </StickyMenu>
   );

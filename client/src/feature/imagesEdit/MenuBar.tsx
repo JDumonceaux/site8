@@ -6,6 +6,7 @@ import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButt
 import { ServiceUrl } from 'lib/utils/constants';
 
 type Props = {
+  readonly children?: React.ReactNode;
   readonly handleClear?: () => void;
   readonly handleRefresh?: () => void;
   readonly handleScan?: () => void;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const MenuBar = ({
+  children,
   handleClear,
   handleRefresh,
   handleScan,
@@ -50,6 +52,7 @@ const MenuBar = ({
             Fix Names
           </a>
         </IconMenuItem>
+        {children}
       </IconMenu>
       {handleRefresh ? (
         <StyledPlainButton
