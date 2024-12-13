@@ -14,8 +14,8 @@ const initialState: ItemsState = {
   error: null,
   isLoading: false,
 };
-const controller = new AbortController();
 
+const abortController = new AbortController();
 
 const ItemsSlice = createSlice({
   extraReducers: (builder) => {
@@ -38,17 +38,14 @@ const ItemsSlice = createSlice({
   reducers: {
     getItems: (state, action) => {
       state.data = action.payload;
-    }
-
-
+    },
   },
 });
-
 
 const fetchItems = createAsyncThunk('image/fetchItems', async () => {
   const response = await axios.get<Items>(ServiceUrl.ENDPOINT_ITEMS, {
     responseType: 'json',
-    signal: controller.signal,
+    signal: abortController.signal,
   });
   return response.data;
 });

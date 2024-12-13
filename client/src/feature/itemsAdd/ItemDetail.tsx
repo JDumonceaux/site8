@@ -7,22 +7,28 @@ import { styled } from 'styled-components';
 import type { ItemAddExt } from 'types/ItemAdd';
 
 type Props = {
+  readonly artists?: string[];
   readonly getFieldValue: (
     lineId: number,
     fieldName: keyof ItemAddExt,
   ) => string;
   readonly item: ItemAddExt;
+  readonly locations?: string[];
   readonly onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   readonly onDelete?: (lineId: number) => void;
+  readonly periods?: string[];
 };
 
 const ItemDetail = ({
+  artists,
   getFieldValue,
   item,
+  locations,
   onChange,
   onDelete,
+  periods,
 }: Props): React.JSX.Element => {
   const handleOnDelete = React.useCallback(() => {
     if (onDelete) {
@@ -53,6 +59,7 @@ const ItemDetail = ({
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'location')}
+          dataList={{ data: locations, id: 'locations' }}
           placeholder="Location"
         />
         <Input.Text
@@ -66,7 +73,7 @@ const ItemDetail = ({
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'artist')}
-          list="artists"
+          dataList={{ data: artists, id: 'artists' }}
           placeholder="Artist"
         />
         <Input.Text
@@ -75,8 +82,10 @@ const ItemDetail = ({
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'period')}
+          dataList={{ data: periods, id: 'periods' }}
           placeholder="Period"
         />
+
         <Input.Text
           {...getDefaultProps(item.lineId, 'tags')}
           placeholder="Tags"

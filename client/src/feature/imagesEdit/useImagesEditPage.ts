@@ -45,7 +45,7 @@ const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
   const [displayData, setDisplayData] = useState<LocalImage[]>([]);
-  const [artistData, setArtistData] = useState<string[]>([]);
+  const [artists, setartists] = useState<string[]>([]);
   const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
 
@@ -91,7 +91,7 @@ const useImagesEditPage = () => {
         .map((item) => item.artist)
         .filter((artist): artist is string => !!artist);
       const uniqueArtists = Array.from(new Set(artists));
-      setArtistData(uniqueArtists);
+      setartists(uniqueArtists);
     }
   }, [data?.items]);
 
@@ -302,7 +302,7 @@ const useImagesEditPage = () => {
   };
 
   return {
-    artistData,
+    artists,
     currentFilter: filter,
     currentFolder,
     data: formValues,

@@ -15,7 +15,7 @@ const ImagesEditPage = (): React.JSX.Element => {
   const title = 'Edit Images';
 
   const {
-    artistData,
+    artists,
     currentFilter,
     currentFolder,
     data,
@@ -49,7 +49,7 @@ const ImagesEditPage = (): React.JSX.Element => {
             <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
                 <ImageItem
-                  artistData={artistData}
+                  artists={artists}
                   getFieldValue={getFieldValue}
                   item={item}
                   key={item.lineId}

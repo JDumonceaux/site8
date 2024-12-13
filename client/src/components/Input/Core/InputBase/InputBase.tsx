@@ -3,7 +3,6 @@ import React, {
   type InputHTMLAttributes,
   memo,
   useRef,
-  useId,
 } from 'react';
 
 import useGetId from 'hooks/useGetId';
@@ -22,21 +21,22 @@ import FieldWrapper, {
 //
 // ACCESSIBILITY: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-readonly
 
-declare const validityMatchers: readonly [
-  'badInput',
-  'patternMismatch',
-  'rangeOverflow',
-  'rangeUnderflow',
-  'stepMismatch',
-  'tooLong',
-  'tooShort',
-  'typeMismatch',
-  'valid',
-  'valueMissing',
-];
+// declare const validityMatchers: readonly [
+//   'badInput',
+//   'patternMismatch',
+//   'rangeOverflow',
+//   'rangeUnderflow',
+//   'stepMismatch',
+//   'tooLong',
+//   'tooShort',
+//   'typeMismatch',
+//   'valid',
+//   'valueMissing',
+// ];
 
 type InputBaseProps = {
   readonly allowedCharacters?: RegExp;
+  readonly dataList?: { readonly data?: string[]; readonly id: string };
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
   readonly ref?: React.Ref<HTMLInputElement>;
@@ -59,6 +59,7 @@ type InputBaseProps = {
 // autocorrect: a non-standard Safari attribute
 
 const InputBase = ({
+  dataList,
   endAdornment,
   id,
   // showCounter = false,
@@ -74,7 +75,6 @@ const InputBase = ({
   startAdornment,
   type,
   value,
-
   ...rest
 }: InputBaseProps): React.JSX.Element => {
   const currId = useGetId(id);
@@ -82,22 +82,34 @@ const InputBase = ({
   const tempRef = useRef<HTMLInputElement>(null);
   const localRef = ref ?? tempRef;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange && onChange(e);
-    e.preventDefault();
-  };
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (onChange) {
+        onChange(e);
+      }
+      e.preventDefault();
+    },
+    [onChange],
+  );
 
   return (
     <FieldWrapper {...props}>
       <StyledInput
         key={currId}
+        list={dataList?.id}
         type={type}
         value={value}
         {...props}
-        // aria-describedby={counterId}
         onChange={handleChange}
         ref={localRef}
       />
+      {dataList?.data ? (
+        <datalist id={dataList.id}>
+          {dataList.data.map((x) => (
+            <option key={x} value={x} />
+          ))}
+        </datalist>
+      ) : null}
     </FieldWrapper>
   );
 };

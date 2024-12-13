@@ -8,7 +8,7 @@ import { styled } from 'styled-components';
 import type { ImageExt } from './useImagesEditPage';
 
 type Props = {
-  readonly artistData: string[];
+  readonly artists?: string[];
   readonly getFieldValue: (lineId: number, fieldName: keyof ImageExt) => string;
   readonly item: ImageExt;
   readonly onChange: (
@@ -18,7 +18,7 @@ type Props = {
 };
 
 const ImageItem = ({
-  artistData,
+  artists,
   getFieldValue,
   item,
   onChange,
@@ -75,16 +75,9 @@ const ImageItem = ({
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'artist')}
-          list="artists"
+          dataList={{ data: artists, id: 'artists' }}
           placeholder="Artist"
         />
-        {artistData.length > 0 ? (
-          <datalist id="artists">
-            {artistData.map((artist) => (
-              <option key={artist} value={artist} />
-            ))}
-          </datalist>
-        ) : null}
 
         <Input.Text
           {...getDefaultProps(item.lineId, 'year')}

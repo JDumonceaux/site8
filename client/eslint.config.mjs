@@ -16,7 +16,6 @@ import pluginReact from 'eslint-plugin-react';
 import pluginReactCompiler from 'eslint-plugin-react-compiler';
 import pluginHooks from 'eslint-plugin-react-hooks';
 import pluginRedux from 'eslint-plugin-react-redux';
-import pluginSonar from 'eslint-plugin-sonarjs';
 import pluginStorybook from 'eslint-plugin-storybook';
 import pluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
@@ -53,7 +52,6 @@ export default [
       'react-compiler': pluginReactCompiler,
       'react-hooks': pluginHooks,
       'react-redux': pluginRedux,
-      sonarjs: pluginSonar,
       unicorn: pluginUnicorn,
     },
     rules: {
