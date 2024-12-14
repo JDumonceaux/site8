@@ -45,6 +45,7 @@ const useItemsAddPage = () => {
         description: '',
         lineId: index + 1,
         location: '',
+        name: '',
         official_url: '',
         period: '',
         tags: '',
