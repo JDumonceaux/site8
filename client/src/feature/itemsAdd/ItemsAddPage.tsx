@@ -26,7 +26,8 @@ const ItemsAddPage = (): React.JSX.Element => {
     isLoading,
   } = useItemsAddPage();
 
-  const { artists, locations, names, periods, works } = useItems();
+  const { artistsIndexed, locationsIndexed, namesIndexed, periodsIndexed } =
+    useItems();
 
   const title = 'Add Items';
 
@@ -48,14 +49,14 @@ const ItemsAddPage = (): React.JSX.Element => {
             <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
                 <ItemDetail
-                  artists={artists}
+                  artists={artistsIndexed}
                   getFieldValue={getFieldValue}
                   item={item}
                   key={item.lineId}
-                  locations={locations}
-                  names={names}
+                  locations={locationsIndexed}
+                  names={namesIndexed}
                   onChange={handleChange}
-                  periods={periods}
+                  periods={periodsIndexed}
                 />
               ))}
             </StyledForm>

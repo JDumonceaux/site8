@@ -43,7 +43,6 @@ const useItemsAddPage = () => {
       (_, index) => ({
         artist: '',
         description: '',
-        isSelected: false,
         lineId: index + 1,
         location: '',
         official_url: '',
@@ -78,30 +77,19 @@ const useItemsAddPage = () => {
   // Only submit updated records
   const getUpdates = useCallback(() => {
     const ret: ItemAdd[] = [];
-
     for (const i of getIndex()) {
-      const item = getItem(i.lineId);
+      const item: ItemAddExt | null = getItem(i.lineId);
       if (item) {
-        console.log('item', item);
-        const ee: ItemAdd = { ...item };
-        console.log('ee', ee);
-
-        // Copy ItemAddExt to ItemAdd
-        const newItem: ItemAdd = {};
-        for (const key of Object.keys(newItem as (keyof ItemAdd)[])) {
-          newItem[key as keyof ItemAdd] = String(item[key as keyof ItemAddExt]);
-        }
-        console.log('newItem', newItem);
-
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { lineId, ...rest } = item;
+        const newItem: ItemAdd = { ...rest };
         // Check for empty objects
         const isEmpty = Object.values(newItem).every((x) => x === '');
-        console.log('isEmpty', isEmpty);
         if (!isEmpty) {
           ret.push(newItem);
         }
       }
     }
-
     return ret.length > 0 ? ret : undefined;
   }, [getIndex, getItem]);
 

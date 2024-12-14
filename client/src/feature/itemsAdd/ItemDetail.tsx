@@ -5,21 +5,22 @@ import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
 import { styled } from 'styled-components';
 import type { ItemAddExt } from 'types/ItemAdd';
+import type { KeyValue } from 'types/KeyValue';
 
 type Props = {
-  readonly artists?: string[];
+  readonly artists?: KeyValue[];
   readonly getFieldValue: (
     lineId: number,
     fieldName: keyof ItemAddExt,
   ) => string;
   readonly item: ItemAddExt;
-  readonly locations?: string[];
-  readonly names?: string[];
+  readonly locations?: KeyValue[];
+  readonly names?: KeyValue[];
   readonly onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   readonly onDelete?: (lineId: number) => void;
-  readonly periods?: string[];
+  readonly periods?: KeyValue[];
 };
 
 const ItemDetail = ({

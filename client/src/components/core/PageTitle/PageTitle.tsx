@@ -4,27 +4,14 @@ import { styled } from 'styled-components';
 
 type PageTitleProps = {
   readonly children?: React.ReactNode;
+  readonly ref?: React.Ref<HTMLDivElement>;
   readonly title?: React.ReactNode;
 };
-
-/**
- * Renders a page title component.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {string} props.title - The title to be displayed.
- * @param {ReactNode} props.children - The children elements to be rendered.
- * @returns {React.JSX.Element | null} The rendered page title component.
- */
-const PageTitle = (
-  {
-    ref,
-    children,
-    title
-  }: PageTitleProps & {
-    ref: React.RefObject<HTMLDivElement>;
-  }
-): null | React.JSX.Element => {
+const PageTitle = ({
+  children,
+  ref,
+  title,
+}: PageTitleProps): null | React.JSX.Element => {
   if (!title) {
     return null;
   }

@@ -1,4 +1,5 @@
-import React, {
+import * as React from 'react';
+import {
   type HTMLInputTypeAttribute,
   type InputHTMLAttributes,
   memo,
@@ -7,6 +8,7 @@ import React, {
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
+import type { KeyValue } from 'types/KeyValue';
 
 import FieldWrapper, {
   type FieldWrapperProps,
@@ -36,7 +38,7 @@ import FieldWrapper, {
 
 type InputBaseProps = {
   readonly allowedCharacters?: RegExp;
-  readonly dataList?: { readonly data?: string[]; readonly id: string };
+  readonly dataList?: { readonly data?: KeyValue[]; readonly id: string };
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
   readonly onClear?: (id: string) => void;
   readonly ref?: React.Ref<HTMLInputElement>;
@@ -106,7 +108,7 @@ const InputBase = ({
       {dataList?.data ? (
         <datalist id={dataList.id}>
           {dataList.data.map((x) => (
-            <option key={x} value={x} />
+            <option key={x.key} value={x.value} />
           ))}
         </datalist>
       ) : null}

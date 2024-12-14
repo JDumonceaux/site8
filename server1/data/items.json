@@ -12,6 +12,17 @@
       "artist": "Vincent van Gogh",
       "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh, painted in June 1889. It depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village. Widely regarded as Van Gogh's magnum opus, The Starry Night is one of the most recognizable paintings in Western art.",
       "id": 2
+    },
+    {
+      "artist": "Réne Magritte",
+      "description": "",
+      "location": "",
+      "official_url": "",
+      "period": "",
+      "tags": "",
+      "name": "Golconda",
+      "year": "1953",
+      "id": 3
     }
   ]
 }
