@@ -1,8 +1,13 @@
-import React, { forwardRef, memo } from 'react';
+import React, { memo } from 'react';
 
 import { styled } from 'styled-components';
 
-const Footer = forwardRef<HTMLElement>((_, ref): React.JSX.Element => {
+const Footer = (
+  {
+    ref,
+    ..._
+  }
+): React.JSX.Element => {
   const thisYear = new Date().getFullYear();
   return (
     <StyledFooter data-testid="footer" ref={ref}>
@@ -11,7 +16,7 @@ const Footer = forwardRef<HTMLElement>((_, ref): React.JSX.Element => {
       </StyledCopyright>
     </StyledFooter>
   );
-});
+};
 
 Footer.displayName = 'Footer';
 

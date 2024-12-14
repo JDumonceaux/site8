@@ -1,4 +1,4 @@
-import { forwardRef, memo, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import useMenu from 'hooks/useMenu';
@@ -8,7 +8,12 @@ import { styled } from 'styled-components';
 
 import { ItemRender } from './ItemRender';
 
-const SubjectMenu = forwardRef<HTMLElement>((_, ref): React.JSX.Element => {
+const SubjectMenu = (
+  {
+    ref,
+    ..._
+  }
+): React.JSX.Element => {
   const { error, fetchData, getMenu, getOtherMenus, isLoading } = useMenu();
 
   useEffect(() => {
@@ -41,7 +46,7 @@ const SubjectMenu = forwardRef<HTMLElement>((_, ref): React.JSX.Element => {
       </StyledContent>
     </StyledNav>
   );
-});
+};
 
 SubjectMenu.displayName = 'SubjectMenu';
 
