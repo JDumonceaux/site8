@@ -14,6 +14,7 @@ type Props = {
   ) => string;
   readonly item: ItemAddExt;
   readonly locations?: string[];
+  readonly names?: string[];
   readonly onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
@@ -26,6 +27,7 @@ const ItemDetail = ({
   getFieldValue,
   item,
   locations,
+  names,
   onChange,
   onDelete,
   periods,
@@ -55,6 +57,7 @@ const ItemDetail = ({
       <StyledOuterRow>
         <Input.Text
           {...getDefaultProps(item.lineId, 'name')}
+          dataList={{ data: names, id: 'names' }}
           placeholder="Name"
         />
         <Input.Text
@@ -85,7 +88,6 @@ const ItemDetail = ({
           dataList={{ data: periods, id: 'periods' }}
           placeholder="Period"
         />
-
         <Input.Text
           {...getDefaultProps(item.lineId, 'tags')}
           placeholder="Tags"

@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 
 import Button from 'components/core/Button/Button';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Layout from 'components/layouts/Layout/Layout';
@@ -15,8 +14,6 @@ import useItems from './useItems';
 import useItemsAddPage from './useItemsAddPage';
 
 const ItemsAddPage = (): React.JSX.Element => {
-  const title = 'Add Items';
-
   const {
     currentFilter,
     data,
@@ -29,11 +26,13 @@ const ItemsAddPage = (): React.JSX.Element => {
     isLoading,
   } = useItemsAddPage();
 
-  const { artists, locations, names, packages, works } = useItems();
+  const { artists, locations, names, periods, works } = useItems();
+
+  const title = 'Add Items';
 
   return (
     <>
-      <Meta title={title} />
+      <title>{title}</title>
       <Layout.TitleFixed>
         <PageTitle title={title}>
           <MenuBar handleClear={handleClear} handleSubmit={handleSubmit}>
@@ -56,6 +55,7 @@ const ItemsAddPage = (): React.JSX.Element => {
                   locations={locations}
                   names={names}
                   onChange={handleChange}
+                  periods={periods}
                 />
               ))}
             </StyledForm>

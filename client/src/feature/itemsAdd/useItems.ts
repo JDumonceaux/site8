@@ -46,8 +46,7 @@ const useItems = () => {
     isLoading,
     locations: getLocations(),
     names: getNames(),
-    packages: getPeriod(),
-    works: getNames(),
+    periods: getPeriod(),
   };
 };
 
