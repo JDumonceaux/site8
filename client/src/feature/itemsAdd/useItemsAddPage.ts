@@ -82,10 +82,23 @@ const useItemsAddPage = () => {
     for (const i of getIndex()) {
       const item = getItem(i.lineId);
       if (item) {
-        ret.push({
-          artist: item.artist,
-          description: item.description,
-        });
+        console.log('item', item);
+        const ee: ItemAdd = { ...item };
+        console.log('ee', ee);
+
+        // Copy ItemAddExt to ItemAdd
+        const newItem: ItemAdd = {};
+        for (const key of Object.keys(newItem as (keyof ItemAdd)[])) {
+          newItem[key as keyof ItemAdd] = String(item[key as keyof ItemAddExt]);
+        }
+        console.log('newItem', newItem);
+
+        // Check for empty objects
+        const isEmpty = Object.values(newItem).every((x) => x === '');
+        console.log('isEmpty', isEmpty);
+        if (!isEmpty) {
+          ret.push(newItem);
+        }
       }
     }
 
