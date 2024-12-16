@@ -4,6 +4,7 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
+import useItems from 'feature/itemsAdd/useItems';
 import { styled } from 'styled-components';
 
 import ImageDetail from './ImageDetail';
@@ -15,7 +16,6 @@ const ImagesEditPage = (): React.JSX.Element => {
   const title = 'Edit Images';
 
   const {
-    artists,
     currentFilter,
     currentFolder,
     data,
@@ -30,6 +30,8 @@ const ImagesEditPage = (): React.JSX.Element => {
     handleSubmit,
     isLoading,
   } = useImagesEditPage();
+
+  const { artistsNamesIndexed } = useItems();
 
   return (
     <>
@@ -49,10 +51,10 @@ const ImagesEditPage = (): React.JSX.Element => {
             <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
                 <ImageDetail
-                  artists={artists}
                   getFieldValue={getFieldValue}
                   item={item}
                   key={item.lineId}
+                  names={artistsNamesIndexed}
                   onChange={handleChange}
                   onDelete={handleDelete}
                 />

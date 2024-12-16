@@ -3,7 +3,6 @@ import { useCallback, useEffect } from 'react';
 import useServerApi from 'hooks/Axios/useServerApi';
 import { ServiceUrl } from 'lib/utils/constants';
 import type { ImageAdd, Images } from 'types';
-import type { KeyValue } from 'types/KeyValue';
 
 const useImages = () => {
   const { data, error, fetchData, isLoading, patchData } =

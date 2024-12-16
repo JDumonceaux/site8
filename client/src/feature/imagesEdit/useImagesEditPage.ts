@@ -1,19 +1,19 @@
 import { useCallback, useEffect, useState, useTransition } from 'react';
 
-import useImagesEdit from 'feature/imagesEdit/useImagesEdit';
 import useServerApi from 'hooks/Axios/useServerApi';
-import { useFormArray } from 'hooks/useFormArray';
+import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
 import type { ImageAddExt, Images } from 'types';
-import type { Image as LocalImage } from 'types/Image';
+
+import useImages from './useImages';
 
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
   const [displayData, setDisplayData] = useState<LocalImage[]>([]);
-  const [artists, setartists] = useState<string[]>([]);
+
   const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
 
@@ -21,7 +21,7 @@ const useImagesEditPage = () => {
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
     useFormArray<ImageAddExt>();
 
-  const { saveItems, scanForNewItems } = useImagesEdit();
+  const { saveItems, scanForNewItems } = useImages();
 
   const { cleanup, data, error, fetchData, isLoading } = useServerApi<Images>();
 
@@ -51,17 +51,6 @@ const useImagesEditPage = () => {
   useEffect(() => {
     filterAndSortData();
   }, [filterAndSortData]);
-
-  // Get artsit data
-  useEffect(() => {
-    if (data?.items) {
-      const artists = data.items
-        .map((item) => item.artist)
-        .filter((artist): artist is string => !!artist);
-      const uniqueArtists = Array.from(new Set(artists));
-      setartists(uniqueArtists);
-    }
-  }, [data?.items]);
 
   useEffect(() => {
     // The full set of items
@@ -270,7 +259,6 @@ const useImagesEditPage = () => {
   };
 
   return {
-    artists,
     currentFilter: filter,
     currentFolder,
     data: formValues,

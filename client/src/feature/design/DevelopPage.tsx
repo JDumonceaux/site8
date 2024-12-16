@@ -7,7 +7,7 @@ import PageTitle from 'components/core/PageTitle/PageTitle';
 import EmailAdornment from 'components/Input/Core/Adornments/EmailAdornment';
 import Input from 'components/Input/Input';
 import Layout from 'components/layouts/Layout/Layout';
-import { useForm } from 'hooks/useForm';
+import useForm from 'hooks/useForm';
 import styled from 'styled-components';
 import { z } from 'zod';
 

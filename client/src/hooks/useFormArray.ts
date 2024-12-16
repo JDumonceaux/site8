@@ -4,7 +4,7 @@ type IdType = {
   readonly lineId: number;
 };
 
-export const useFormArray = <T extends IdType>() => {
+const useFormArray = <T extends IdType>() => {
   const [formValues, setFormValues] = useState<T[]>([]);
   const [isSaved, setIsSaved] = useState<boolean>(true);
 
@@ -73,3 +73,5 @@ export const useFormArray = <T extends IdType>() => {
     setItem,
   };
 };
+
+export default useFormArray;

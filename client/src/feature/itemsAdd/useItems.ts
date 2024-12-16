@@ -48,9 +48,20 @@ const useItems = () => {
       .toSorted((a, b) => a.localeCompare(b));
   }, [data]);
 
+  const getArtistsNames = useCallback(() => {
+    // Remove duplicates and sort and remove undefined
+    return [...new Set(data?.items.map((x) => x.artist))]
+      .filter((x) => x !== undefined)
+      .toSorted((a, b) => a.localeCompare(b));
+  }, [data]);
+
   const artistsIndexed: KeyValue[] | undefined = useCallback(() => {
     return getArtists().map((x, index) => ({ key: index, value: x }));
   }, [getArtists])();
+
+  const artistsNamesIndexed: KeyValue[] | undefined = useCallback(() => {
+    return getArtistsNames().map((x, index) => ({ key: index, value: x }));
+  }, [getArtistsNames])();
 
   const locationsIndexed: KeyValue[] | undefined = useCallback(() => {
     return getLocations().map((x, index) => ({ key: index, value: x }));
@@ -67,6 +78,7 @@ const useItems = () => {
   return {
     artists: getArtists(),
     artistsIndexed,
+    artistsNamesIndexed,
     data,
     error,
     getNamesFiltered,

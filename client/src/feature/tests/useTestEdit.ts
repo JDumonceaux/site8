@@ -5,7 +5,7 @@ import type { Menu, MenuEdit } from 'types';
 import { z } from 'zod';
 
 import { useAxios } from '../../hooks/Axios/useAxios';
-import { useFormArray } from '../../hooks/useFormArray';
+import useFormArray from '../../hooks/useFormArray';
 
 export type sortByType = 'name' | 'seq';
 

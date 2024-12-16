@@ -1,5 +1,5 @@
 import { useAxios } from 'hooks/Axios/useAxios';
-import { useFormArray } from 'hooks/useFormArray';
+import useFormArray from 'hooks/useFormArray';
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { useCallback, useEffect, useState } from 'react';
 import { Menu, MenuEdit, MenuItem } from 'types';

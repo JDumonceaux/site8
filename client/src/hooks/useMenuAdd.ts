@@ -6,7 +6,7 @@ import type { MenuAdd } from 'types';
 import { z } from 'zod';
 
 import { useAxios } from './Axios/useAxios';
-import { useForm } from './useForm';
+import useForm from './useForm';
 
 // Define Zod Shape
 const pageSchema = z.object({

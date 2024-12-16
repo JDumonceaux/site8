@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { z } from 'zod';
 
-export const useForm = <T>(initialValues: T) => {
+const useForm = <T>(initialValues: T) => {
   const [formValues, setFormValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<null | z.ZodIssue[]>();
   const [isSaved, setIsSaved] = useState<boolean>(true);
@@ -102,3 +102,5 @@ export const useForm = <T>(initialValues: T) => {
     setIsSaved,
   };
 };
+
+export default useForm;

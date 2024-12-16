@@ -7,7 +7,7 @@ import type { Image } from 'types/Image';
 import { z } from 'zod';
 
 import { useAxios } from '../../hooks/Axios/useAxios';
-import { useForm } from '../../hooks/useForm';
+import useForm from '../../hooks/useForm';
 
 // Define Zod Shape
 const pageSchema = z.object({

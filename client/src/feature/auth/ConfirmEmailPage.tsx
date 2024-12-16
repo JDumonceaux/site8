@@ -5,7 +5,7 @@ import { Button2 } from 'components/form/Button2/Button2';
 import Input from 'components/Input/Input';
 import { authCode } from 'feature/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
-import { useForm } from 'hooks/useForm';
+import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import { styled } from 'styled-components';
 import { z } from 'zod';

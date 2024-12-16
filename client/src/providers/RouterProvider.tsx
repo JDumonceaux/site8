@@ -144,6 +144,7 @@ const router = createBrowserRouter(
           <Route element={<ImageEditPage />} path="image/edit/:id" />
           <Route element={<ImagesEditPage />} path="images" />
           <Route element={<ImagesEditPage />} path="images/new" />
+          <Route element={<ImagesEditPage />} path="images/edit" />
           <Route element={<ItemsAddPage />} path="items/add" />
           <Route element={<TestsEditPage />} path="tests/edit" />
           <Route element={<DevelopPage />} path="develop" />

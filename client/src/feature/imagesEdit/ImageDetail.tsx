@@ -4,13 +4,16 @@ import { IconMenu } from 'components/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
 import { styled } from 'styled-components';
-
-import type { ImageExt } from './useImagesEditPage';
+import type { ImageAddExt } from 'types';
+import type { KeyValue } from 'types/KeyValue';
 
 type Props = {
-  readonly artists?: string[];
-  readonly getFieldValue: (lineId: number, fieldName: keyof ImageExt) => string;
-  readonly item: ImageExt;
+  readonly getFieldValue: (
+    lineId: number,
+    fieldName: keyof ImageAddExt,
+  ) => string;
+  readonly item: ImageAddExt;
+  readonly names?: KeyValue[];
   readonly onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
@@ -18,9 +21,9 @@ type Props = {
 };
 
 const ImageDetail = ({
-  artists,
   getFieldValue,
   item,
+  names,
   onChange,
   onDelete,
 }: Props): React.JSX.Element => {
@@ -29,7 +32,7 @@ const ImageDetail = ({
   }, [item.lineId, onDelete]);
 
   const getDefaultProps = React.useCallback(
-    (lineId: number, fieldName: keyof ImageExt) => ({
+    (lineId: number, fieldName: keyof ImageAddExt) => ({
       'data-id': fieldName,
       'data-line': lineId,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +54,7 @@ const ImageDetail = ({
         {item.isDuplicate ? <div>Duplicate Image</div> : null}
         <Input.Text
           {...getDefaultProps(item.lineId, 'name')}
+          dataList={{ data: names, id: 'names' }}
           placeholder="Name"
         />
         <Input.Text
@@ -60,32 +64,6 @@ const ImageDetail = ({
         <Input.Text
           {...getDefaultProps(item.lineId, 'folder')}
           placeholder="Folder"
-        />
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'location')}
-          placeholder="Location"
-        />
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'official_url')}
-          placeholder="Official URL"
-        />
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'description')}
-          placeholder="Description"
-        />
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'artist')}
-          dataList={{ data: artists, id: 'artists' }}
-          placeholder="Artist"
-        />
-
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'year')}
-          placeholder="Year"
-        />
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'tags')}
-          placeholder="Tags"
         />
         <IconMenu>
           <IconMenuItem onClick={handleOnDelete}>Delete</IconMenuItem>
