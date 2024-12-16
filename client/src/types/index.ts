@@ -8,7 +8,7 @@ export type * from './BookmarksTags';
 export type * from './Folder';
 export type * from './IdValue';
 export type * from './Image';
-export type * from './ImageEdit';
+export type * from '../feature/imagesEdit/ImageAdd';
 export type * from './Images';
 export type * from './ImagesEdit';
 export type * from './ListItem';

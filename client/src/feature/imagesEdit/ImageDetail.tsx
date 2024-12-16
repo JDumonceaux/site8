@@ -17,7 +17,7 @@ type Props = {
   readonly onDelete: (lineId: number) => void;
 };
 
-const ImageItem = ({
+const ImageDetail = ({
   artists,
   getFieldValue,
   item,
@@ -103,7 +103,7 @@ const ImageItem = ({
   );
 };
 
-export default ImageItem;
+export default ImageDetail;
 
 const StyledImgContainer = styled.div`
   display: flex;

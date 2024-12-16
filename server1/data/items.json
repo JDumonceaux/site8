@@ -2,27 +2,282 @@
   "metadata": {
     "title": "Items"
   },
-  "items": [
+  "artists": [
     {
-      "artist": "Réne Magritte",
-      "description": "",
+      "name": "René Magritte",
+      "born": "November 21, 1898, Lessines, Belgium",
+      "died": "August 15, 1967, Brussels, Belgium",
       "id": 1
     },
     {
-      "artist": "Vincent van Gogh",
-      "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh, painted in June 1889. It depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village. Widely regarded as Van Gogh's magnum opus, The Starry Night is one of the most recognizable paintings in Western art.",
+      "name": "Salvador Dalí",
       "id": 2
     },
     {
-      "artist": "Réne Magritte",
-      "description": "",
-      "location": "",
-      "official_url": "",
-      "period": "",
-      "tags": "",
+      "name": "Pablo Picasso",
+      "id": 3
+    },
+    {
+      "name": "Vincent van Gogh",
+      "id": 4
+    },
+    {
+      "name": "Leonardo da Vinci",
+      "id": 5
+    },
+    {
+      "name": "Michelangelo",
+      "id": 6
+    },
+    {
+      "name": "Claude Monet",
+      "id": 7
+    },
+    {
+      "name": "Edvard Munch",
+      "id": 8
+    },
+    {
+      "name": "Edgar Degas",
+      "id": 9
+    },
+    {
+      "name": "Paul Cézanne",
+      "id": 10
+    },
+    {
+      "name": "Auguste Rodin",
+      "id": 11
+    },
+    {
+      "name": "Henri Matisse",
+      "id": 12
+    },
+    {
+      "name": "Rembrandt",
+      "id": 13
+    },
+    {
+      "name": "Jackson Pollock",
+      "id": 14
+    },
+    {
+      "name": "Andy Warhol",
+      "id": 15
+    },
+    {
+      "name": "Georgia O'Keeffe",
+      "id": 16
+    },
+    {
+      "name": "Frida Kahlo",
+      "id": 17
+    },
+    {
+      "name": "Diego Rivera",
+      "id": 18
+    },
+    {
+      "name": "Joan Miró",
+      "id": 19
+    },
+    {
+      "name": "Paul Gauguin",
+      "id": 20
+    },
+    {
+      "name": "Henri de Toulouse-Lautrec",
+      "id": 21
+    },
+    {
+      "name": "Gustav Klimt",
+      "id": 22
+    },
+    {
+      "name": "Marc Chagall",
+      "id": 23
+    },
+    {
+      "name": "Piet Mondrian",
+      "id": 24
+    },
+    {
+      "name": "Caravaggio",
+      "id": 25
+    },
+    {
+      "name": "Sandro Botticelli",
+      "id": 26
+    },
+    {
+      "name": "Titian",
+      "id": 27
+    },
+    {
+      "name": "Raphael",
+      "id": 28
+    },
+    {
+      "name": "Peter Paul Rubens",
+      "id": 29
+    },
+    {
+      "name": "El Greco",
+      "id": 30
+    },
+    {
+      "name": "Albrecht Dürer",
+      "id": 31
+    },
+    {
+      "name": "Pieter Bruegel the Elder",
+      "id": 32
+    },
+    {
+      "name": "Hieronymus Bosch",
+      "id": 33
+    },
+    {
+      "name": "Jan van Eyck",
+      "id": 34
+    },
+    {
+      "name": "Johannes Vermeer",
+      "id": 35
+    }
+  ],
+  "items": [
+    {
+      "artist": "René Magritte",
       "name": "Golconda",
       "year": "1953",
+      "id": 1
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Son of Man (Le fils de l'homme)",
+      "year": "1964",
+      "id": 2
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Enchanted Pose",
+      "year": "1927",
       "id": 3
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Lovers",
+      "year": "1928",
+      "id": 4
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Treachery of Images (This is not a pipe)",
+      "year": "1929",
+      "id": 5
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Human Condition",
+      "year": "1933",
+      "id": 6
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The False Mirror",
+      "year": "1928",
+      "id": 7
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Menaced Assassin",
+      "year": "1927",
+      "id": 8
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Red Model",
+      "year": "1935",
+      "id": 9
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Voice of Space",
+      "year": "1931",
+      "id": 10
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Blank Signature",
+      "year": "1965",
+      "id": 11
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Banquet",
+      "year": "1958",
+      "id": 12
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Empire of Light",
+      "year": "1954",
+      "id": 13
+    },
+    {
+      "artist": "René Magritte",
+      "name": "Time Transfixed",
+      "year": "1938",
+      "id": 14
+    },
+    {
+      "artist": "René Magritte",
+      "name": "Personal Values",
+      "year": "1952",
+      "id": 15
+    },
+    {
+      "artist": "René Magritte",
+      "name": "Man in a Bowler Hat",
+      "year": "1964",
+      "id": 16
+    },
+    {
+      "artist": "René Magritte",
+      "name": "Decalcomania",
+      "year": "1966",
+      "id": 17
+    },
+    {
+      "artist": "René Magritte",
+      "name": "La voix du sang (The Voice of Blood)",
+      "year": "1961",
+      "id": 18
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Art of Conversation",
+      "year": "1963",
+      "id": 19
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Therapist",
+      "year": "1937",
+      "id": 20
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Ready-Made Bouquet",
+      "year": "1957",
+      "id": 21
+    },
+    {
+      "artist": "René Magritte",
+      "name": "The Mysteries of the Horizon",
+      "year": "1955",
+      "id": 22
     }
   ]
 }

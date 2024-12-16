@@ -37,9 +37,6 @@ const ImageEditPage = lazy(
 const ImagesEditPage = lazy(
   async () => import('../feature/imagesEdit/ImagesEditPage'),
 );
-const ItemsEditPage = lazy(
-  async () => import('../feature/itemsEdit/ItemsEditPage'),
-);
 const ItemsAddPage = lazy(
   async () => import('../feature/itemsAdd/ItemsAddPage'),
 );
@@ -120,9 +117,13 @@ const router = createBrowserRouter(
           <Route element={<InputPage />} path="input" />
         </Route>
 
+        {/* Bookmarks */}
+        <Route element={<MainLayout />} path="bookmarks">
+          <Route element={<BookmarkPage />} />
+        </Route>
+
         <Route element={<MainLayout />}>
           <Route element={<TikTokPage />} path="fun/tiktock" />
-          <Route element={<BookmarkPage />} path="fun/bookmarks" />
           <Route element={<YachtsPage />} path="fun/yachts" />
           <Route element={<GenericImagePage />} path="fun/images" />
           <Route element={<PhotoLayout />}>
@@ -143,8 +144,6 @@ const router = createBrowserRouter(
           <Route element={<ImageEditPage />} path="image/edit/:id" />
           <Route element={<ImagesEditPage />} path="images" />
           <Route element={<ImagesEditPage />} path="images/new" />
-          <Route element={<ItemsEditPage />} path="items" />
-          <Route element={<ItemsEditPage />} path="items/edit" />
           <Route element={<ItemsAddPage />} path="items/add" />
           <Route element={<TestsEditPage />} path="tests/edit" />
           <Route element={<DevelopPage />} path="develop" />

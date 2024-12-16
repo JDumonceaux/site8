@@ -6,40 +6,8 @@ import { useFormArray } from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
-import type { Images } from 'types';
+import type { ImageAddExt, Images } from 'types';
 import type { Image as LocalImage } from 'types/Image';
-import type { ImageEdit } from 'types/ImageEdit';
-import { z } from 'zod';
-
-// Define Zod Shape
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const schema = z.object({
-  artist: z.string().trim().optional(),
-  description: z.string().trim().optional(),
-  fileName: z.string().trim(),
-  folder: z.string().trim().optional(),
-  id: z.number(),
-  location: z
-    .string({
-      invalid_type_error: 'Location must be a string',
-    })
-    .max(250, 'Location max length exceeded: 500')
-    .trim()
-    .optional(),
-  name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
-  official_url: z.string().trim().optional(),
-  src: z.string().optional(),
-  tags: z.string().trim().optional(),
-  year: z.string().trim().optional(),
-});
-
-// Create a type from the schema
-export type ImageExt = z.infer<typeof schema> & {
-  delete?: boolean;
-  isDuplicate?: boolean;
-  isSelected: boolean;
-  lineId: number;
-};
 
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
@@ -51,7 +19,7 @@ const useImagesEditPage = () => {
 
   // Create a form
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
-    useFormArray<ImageExt>();
+    useFormArray<ImageAddExt>();
 
   const { saveItems, scanForNewItems } = useImagesEdit();
 
@@ -104,7 +72,7 @@ const useImagesEditPage = () => {
     if (!items) {
       return [];
     }
-    const ret: ImageExt[] | undefined = items.map((x, index) => {
+    const ret: ImageAddExt[] | undefined = items.map((x, index) => {
       return {
         artist: x.artist ?? '',
         description: x.description ?? '',
@@ -154,7 +122,7 @@ const useImagesEditPage = () => {
 
   // Only submit updated records
   const getUpdates = useCallback(() => {
-    const returnValue: ImageEdit[] = [];
+    const returnValue: ImageAddEdit[] = [];
 
     for (const item of displayData) {
       const items = formValues.filter((x) => x.id === item.id);

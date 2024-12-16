@@ -6,7 +6,7 @@ import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
 import { styled } from 'styled-components';
 
-import ImageItem from './ImageItem';
+import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
 import useImagesEditPage from './useImagesEditPage';
@@ -48,7 +48,7 @@ const ImagesEditPage = (): React.JSX.Element => {
           <LoadingWrapper error={error} isLoading={isLoading}>
             <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
-                <ImageItem
+                <ImageDetail
                   artists={artists}
                   getFieldValue={getFieldValue}
                   item={item}

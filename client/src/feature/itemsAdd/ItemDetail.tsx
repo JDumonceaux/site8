@@ -41,6 +41,7 @@ const ItemDetail = ({
 
   const getDefaultProps = React.useCallback(
     (lineId: number, fieldName: keyof ItemAddExt) => ({
+      autocomplete: 'off',
       'data-id': fieldName,
       'data-line': lineId,
       onChange: (
