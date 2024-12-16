@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import { getDataDir } from '../../lib/utils/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
+import { getNextId } from '../../lib/utils/objectUtil.js';
 import { Item } from '../../types/Item.js';
 import { ItemEdit } from '../../types/ItemEdit.js';
 import { Items } from '../../types/Items.js';
@@ -67,7 +67,7 @@ export class ItemsService {
     }
   }
 
-  public async patchItems(items: ReadonlyArray<ItemEdit>): Promise<boolean> {
+  public async patchItems(_items: ReadonlyArray<ItemEdit>): Promise<boolean> {
     //    const itemsTemp = await this.readFile();
 
     // Get the updated records
@@ -126,12 +126,8 @@ export class ItemsService {
       const data = await this.readFile();
       const updates: Item[] = data?.items || [];
 
-      console.log('items', items);
-
       for (const item of items) {
-        console.log('item', item);
         const id = getNextId(updates) || 1;
-        console.log('id', id);
         updates.push({
           ...item,
           id,
@@ -139,7 +135,8 @@ export class ItemsService {
       }
 
       const ret = await this.writeFile({
-        metadata: { title: 'Items' },
+        ...data,
+        metadata: data?.metadata || { title: 'Items' },
         items: updates,
       });
       return ret;
