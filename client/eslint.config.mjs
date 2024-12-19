@@ -734,6 +734,8 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'off',
       // Rule is not working correctly.  Requires cast to number for numbers
       '@typescript-eslint/no-unsafe-assignment': 'off',
+      // Rule is not working correctly.  Possibly due to the use of zod
+      '@typescript-eslint/no-unsafe-call': 'off',
       // Rules is not working correctly.  Claims "'error' typed value when type is defined"
       '@typescript-eslint/no-unsafe-member-access': 'off',
       // Rules is not working correctly.  Claims return type is any when it is not
