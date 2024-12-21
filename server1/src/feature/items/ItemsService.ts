@@ -3,8 +3,10 @@ import { getDataDir } from '../../lib/utils/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { getNextId } from '../../lib/utils/objectUtil.js';
 import { Item } from '../../types/Item.js';
-import { ItemEdit } from '../../types/ItemEdit.js';
+import { ItemsFile } from '../../types/ItemsFile.js';
 import { Items } from '../../types/Items.js';
+import { ItemsArtists } from '../../types/ItemsArtists.js';
+import { ItemArtist } from '../../types/ItemArtist.js';
 import { ItemAdd } from '../../types/ItemAdd.js';
 
 export class ItemsService {
@@ -16,10 +18,10 @@ export class ItemsService {
   }
 
   // Get all data
-  private async readFile(): Promise<Items | undefined> {
+  private async readFile(): Promise<ItemsFile | undefined> {
     try {
       const results = await readFile(this.filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as Items;
+      return JSON.parse(results) as ItemsFile;
     } catch (error) {
       Logger.error(`ItemsService: readFile -> ${error}`);
     }
@@ -27,7 +29,7 @@ export class ItemsService {
   }
 
   // Write to file
-  public async writeFile(data: Readonly<Items>): Promise<boolean> {
+  public async writeFile(data: Readonly<ItemsFile>): Promise<boolean> {
     Logger.info(`ItemsService: writeFile -> `);
 
     try {
@@ -43,18 +45,32 @@ export class ItemsService {
 
   // Get all data
   public async getItems(): Promise<Items | undefined> {
-    return this.readFile();
+    const ret = await this.readFile();
+    return { metadata: ret?.metadata || { title: 'items' }, items: ret?.items };
   }
 
-  // Yes, this is a duplicate of getItems.  It's here for clarity and in case
-  // we need to add additional logic to getItems in the future.
-  public async getItemsEdit(): Promise<Items | undefined> {
+  public async getItemsArtists(): Promise<ItemsArtists | undefined> {
     // Get current items
     const items = await this.readFile();
     if (!items) {
       throw new Error('Item file not loaded');
     }
-    return { ...items };
+
+    const ret: ItemArtist[] | undefined = items.artists?.map((x) => {
+      const currItem = items.items?.filter((y) => x.id === y.id);
+
+      if (currItem && currItem.length > 0) {
+        currItem?.forEach((y) => {
+          return {
+            ...y,
+            ...x,
+            artistsId: x.id,
+          };
+        });
+      }
+    }, []);
+
+    return { metadata: items.metadata || { title: 'items' }, items: ret };
   }
 
   public async getNextId(): Promise<number | undefined> {
@@ -67,7 +83,7 @@ export class ItemsService {
     }
   }
 
-  public async patchItems(_items: ReadonlyArray<ItemEdit>): Promise<boolean> {
+  public async patchItems(_items: ReadonlyArray<Item>): Promise<boolean> {
     //    const itemsTemp = await this.readFile();
 
     // Get the updated records

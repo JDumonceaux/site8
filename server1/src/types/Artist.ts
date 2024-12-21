@@ -1,4 +1,4 @@
-export type Item = {
+export type Artist = {
   readonly id: number;
   readonly name: string;
   readonly surname?: string;

@@ -5,6 +5,7 @@
   "artists": [
     {
       "name": "René Magritte",
+      "surname": "Magritte",
       "born": "November 21, 1898, Lessines, Belgium",
       "died": "August 15, 1967, Brussels, Belgium",
       "id": 1
@@ -148,133 +149,133 @@
   ],
   "items": [
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "Golconda",
       "year": "1953",
       "id": 1
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Son of Man (Le fils de l'homme)",
       "year": "1964",
       "id": 2
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Enchanted Pose",
       "year": "1927",
       "id": 3
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Lovers",
       "year": "1928",
       "id": 4
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Treachery of Images (This is not a pipe)",
       "year": "1929",
       "id": 5
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Human Condition",
       "year": "1933",
       "id": 6
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The False Mirror",
       "year": "1928",
       "id": 7
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Menaced Assassin",
       "year": "1927",
       "id": 8
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Red Model",
       "year": "1935",
       "id": 9
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Voice of Space",
       "year": "1931",
       "id": 10
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Blank Signature",
       "year": "1965",
       "id": 11
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Banquet",
       "year": "1958",
       "id": 12
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Empire of Light",
       "year": "1954",
       "id": 13
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "Time Transfixed",
       "year": "1938",
       "id": 14
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "Personal Values",
       "year": "1952",
       "id": 15
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "Man in a Bowler Hat",
       "year": "1964",
       "id": 16
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "Decalcomania",
       "year": "1966",
       "id": 17
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "La voix du sang (The Voice of Blood)",
       "year": "1961",
       "id": 18
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Art of Conversation",
       "year": "1963",
       "id": 19
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Therapist",
       "year": "1937",
       "id": 20
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Ready-Made Bouquet",
       "year": "1957",
       "id": 21
     },
     {
-      "artist": "René Magritte",
+      "artistId": 1,
       "name": "The Mysteries of the Horizon",
       "year": "1955",
       "id": 22

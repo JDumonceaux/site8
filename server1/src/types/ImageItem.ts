@@ -1,4 +1,4 @@
-export type Image = {
+export type ImageItem = {
   readonly fileName: string;
   readonly folder?: string;
   readonly id: number;
