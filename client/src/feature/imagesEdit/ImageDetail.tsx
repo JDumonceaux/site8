@@ -4,8 +4,7 @@ import { IconMenu } from 'components/IconMenu/IconMenu';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
 import { styled } from 'styled-components';
-import type { ImageAddExt } from 'types';
-import type { KeyValue } from 'types/KeyValue';
+import type { ImageAddExt, ListItem } from 'types';
 
 type Props = {
   readonly getFieldValue: (
@@ -13,9 +12,11 @@ type Props = {
     fieldName: keyof ImageAddExt,
   ) => string;
   readonly item: ImageAddExt;
-  readonly names?: KeyValue[];
+  readonly names?: ListItem[];
   readonly onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) => void;
   readonly onDelete: (lineId: number) => void;
 };
@@ -43,19 +44,31 @@ const ImageDetail = ({
     [getFieldValue, onChange],
   );
 
+  const getDefaultPropsSelect = React.useCallback(
+    (lineId: number, fieldName: keyof ImageAddExt) => ({
+      'data-id': fieldName,
+      'data-line': lineId,
+      onChange: (e: React.ChangeEvent<HTMLSelectElement>) => {
+        onChange(e);
+      },
+      value: getFieldValue(lineId, fieldName),
+    }),
+    [getFieldValue, onChange],
+  );
+
   return (
     <StyledRow
       $deleted={item.delete === true ? 'true' : 'false'}
       key={item.lineId}>
       <StyledImgContainer>
-        <StyledImg alt={item.name} src={item.src} />
+        <StyledImg alt="unknown" src={item.src} />
       </StyledImgContainer>
       <StyledOuterRow>
         {item.isDuplicate ? <div>Duplicate Image</div> : null}
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'name')}
-          dataList={{ data: names, id: 'names' }}
-          placeholder="Name"
+        <Input.Select
+          {...getDefaultPropsSelect(item.lineId, 'itemId')}
+          dataList={names}
+          placeholder="itemId"
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'fileName')}

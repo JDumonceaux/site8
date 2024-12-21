@@ -1,5 +1,5 @@
 export type Item = {
-  readonly artist?: string;
+  readonly artistId: number;
   readonly description?: string;
   readonly id: number;
   readonly location?: string;

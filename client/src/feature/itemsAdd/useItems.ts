@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems } from 'store/ItemsSlice';
 import type { AppDispatch, RootState } from 'store/store';
+import type { ListItem } from 'types';
 import type { KeyValue } from 'types/KeyValue';
 
 const selector = (state: RootState) => state.items;
@@ -49,18 +50,21 @@ const useItems = () => {
   }, [data]);
 
   const getArtistsNames = useCallback(() => {
-    // Remove duplicates and sort and remove undefined
-    return [...new Set(data?.items.map((x) => x.artist))]
-      .filter((x) => x !== undefined)
-      .toSorted((a, b) => a.localeCompare(b));
+    return data?.items.toSorted((a, b) =>
+      (a.artist ?? '').localeCompare(b.artist ?? ''),
+    );
   }, [data]);
 
   const artistsIndexed: KeyValue[] | undefined = useCallback(() => {
     return getArtists().map((x, index) => ({ key: index, value: x }));
   }, [getArtists])();
 
-  const artistsNamesIndexed: KeyValue[] | undefined = useCallback(() => {
-    return getArtistsNames().map((x, index) => ({ key: index, value: x }));
+  const artistsNamesIndexed: ListItem[] | undefined = useCallback(() => {
+    return getArtistsNames()?.map((x, index) => ({
+      display: `${x.artist} - ${x.name} (${x.year})`,
+      key: index,
+      value: x.id,
+    }));
   }, [getArtistsNames])();
 
   const locationsIndexed: KeyValue[] | undefined = useCallback(() => {

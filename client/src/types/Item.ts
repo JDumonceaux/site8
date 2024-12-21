@@ -8,4 +8,6 @@ export type Item = {
   readonly official_url?: string;
   readonly period?: string;
   readonly tags?: string[];
+  readonly year?: string;
+  readonly yearDisplay?: string;
 };

@@ -1,5 +1,6 @@
-import { memo, useId, useRef, type SelectHTMLAttributes } from 'react';
+import { memo, useRef, type SelectHTMLAttributes } from 'react';
 
+import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
 import type { ListItem } from 'types/ListItem';
 
@@ -9,10 +10,9 @@ import FieldWrapper, {
 
 type Props = {
   readonly allowedCharacters?: RegExp;
-  readonly data?: ListItem[];
-  readonly description?: string;
+  readonly dataList?: ListItem[];
   readonly placeholder?: string;
-  readonly selectRef?: React.RefObject<HTMLSelectElement>;
+  readonly ref?: React.Ref<HTMLSelectElement>;
   readonly showBlankOption?: boolean;
   readonly value: number | string | string[];
 } & FieldWrapperProps &
@@ -21,17 +21,18 @@ type Props = {
 // Implicit aria-role => 'combobox' or 'listbox'
 // https://www.w3.org/TR/html-aria/#docconformance
 const InputSelect = ({
-  data,
+  dataList,
   id,
   placeholder,
+  ref,
   required,
-  selectRef,
   showBlankOption = false,
   ...rest
 }: Props): React.JSX.Element => {
-  const tempId = id || useId();
-  const props = { ...rest, id: tempId, required };
-  const localRef = selectRef || useRef<HTMLSelectElement>(null);
+  const currId = useGetId(id);
+  const props = { ...rest, id: currId, required };
+  const tempRef = useRef<HTMLSelectElement>(null);
+  const localRef = ref ?? tempRef;
 
   return (
     <FieldWrapper {...props}>
@@ -40,7 +41,7 @@ const InputSelect = ({
         {placeholder ? (
           <option value="placeholder">{placeholder}</option>
         ) : null}
-        {data?.map((item) => (
+        {dataList?.map((item) => (
           <option key={item.key} value={item.value}>
             {item.display ?? item.value}
           </option>

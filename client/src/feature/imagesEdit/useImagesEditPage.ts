@@ -5,14 +5,15 @@ import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
-import type { ImageAddExt, Images } from 'types';
+import type { Image, Images } from 'types';
 
+import type { ImageAdd, ImageAddExt } from './ImageAdd';
 import useImages from './useImages';
 
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
-  const [displayData, setDisplayData] = useState<LocalImage[]>([]);
+  const [displayData, setDisplayData] = useState<Image[]>([]);
 
   const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
@@ -57,40 +58,37 @@ const useImagesEditPage = () => {
     setFormValues(mapDataToForm(displayData));
   }, [filter, displayData, setFormValues]);
 
-  const mapDataToForm = (items: LocalImage[] | undefined) => {
+  const mapDataToForm = (items: ImageAddExt[] | undefined) => {
     if (!items) {
       return [];
     }
     const ret: ImageAddExt[] | undefined = items.map((x, index) => {
       return {
-        artist: x.artist ?? '',
-        description: x.description ?? '',
         fileName: x.fileName || '',
         folder: x.folder ?? '',
         id: x.id || 0,
         isDuplicate: x.isDuplicate ?? false,
         isSelected: false,
+        itemId: x.itemId || 0,
         lineId: index + 1,
-        location: x.location ?? '',
-        name: x.name ?? '',
         official_url: x.official_url ?? '',
         src: getSRC(x.folder, x.fileName),
-        tags: x.tags?.join(',') ?? '',
-        year: x.year ?? '',
       };
     });
     return ret;
   };
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) => {
     const { dataset, type, value } = event.target;
     const { id, line } = dataset;
     const lineNum = Number(line);
     //  const fieldValue = type === 'checkbox' ? checked : value;
     if (id) {
-      setFieldValue(lineNum, id as keyof ImageExt, value);
+      setFieldValue(lineNum, id as keyof ImageAddExt, value);
 
       if (type === 'checkbox' && id === 'isSelected') {
         const { checked } = event.target as HTMLInputElement;
@@ -111,7 +109,7 @@ const useImagesEditPage = () => {
 
   // Only submit updated records
   const getUpdates = useCallback(() => {
-    const returnValue: ImageAddEdit[] = [];
+    const returnValue: ImageAdd[] = [];
 
     for (const item of displayData) {
       const items = formValues.filter((x) => x.id === item.id);
@@ -121,16 +119,6 @@ const useImagesEditPage = () => {
       }
       const current = formValues.find((x) => x.id === item.id);
       if (current) {
-        const tempName = getDifferenceString(item.name, current.name);
-
-        const tempLocation = getDifferenceString(
-          item.location,
-          current.location,
-        );
-        const tempDescription = getDifferenceString(
-          item.description,
-          current.description,
-        );
         const tempOfficialUrl = getDifferenceString(
           item.official_url,
           current.official_url,
@@ -140,38 +128,20 @@ const useImagesEditPage = () => {
           item.fileName,
           current.fileName,
         );
-        const tempArtist = getDifferenceString(item.artist, current.artist);
-
-        const tempYear = getDifferenceString(item.year, current.year);
-        const tempTags = getDifferenceString(
-          item.tags?.join(','),
-          current.tags,
-        );
 
         const hasChanges = [
-          tempName.hasChange,
-          tempLocation.hasChange,
-          tempDescription.hasChange,
           tempOfficialUrl.hasChange,
           tempFolder.hasChange,
           tempFileName.hasChange,
-          tempArtist.hasChange,
-          tempYear.hasChange,
-          tempTags.hasChange,
         ].some(Boolean);
 
         if (hasChanges) {
           returnValue.push({
-            artist: tempArtist.value,
-            description: tempDescription.value,
             fileName: tempFileName.value ?? item.fileName,
             folder: tempFolder.value,
             id: item.id,
-            location: tempLocation.value,
-            name: tempName.value,
+            itemId: item.itemId,
             official_url: tempOfficialUrl.value,
-            tags: tempTags.value?.split(',').map((x) => x.trim()),
-            year: tempYear.value,
           });
         }
       }
