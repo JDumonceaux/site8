@@ -1,10 +1,10 @@
 import express from 'express';
 
-import { getItem } from '../feature/page/getItem.js';
-import { deleteItem } from '../feature/page/deleteItem.js';
+import { getItem } from '../features/page/getItem.js';
+import { deleteItem } from '../features/page/deleteItem.js';
 import { requireId } from '../middleware/requireId.js';
-import { putItem } from '../feature/page/putItem.js';
-import { patchItem } from '../feature/page/patchItem.js';
+import { putItem } from '../features/page/putItem.js';
+import { patchItem } from '../features/page/patchItem.js';
 
 export const pageRouter = express.Router();
 

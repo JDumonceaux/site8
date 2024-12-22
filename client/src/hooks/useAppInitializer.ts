@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import useMenu from './useMenu';
-import useImageFolder from '../feature/imagesEdit/useImageFolder';
+import useImageFolder from '../features/imagesEdit/useImageFolder';
 
 const useAppInitializer = () => {
   const { fetchData: fetchMenu } = useMenu();

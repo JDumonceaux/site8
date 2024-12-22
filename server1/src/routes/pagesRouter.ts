@@ -1,7 +1,7 @@
 import express from 'express';
-import { getItems } from '../feature/photos/getItems.js';
-import { fixEntries } from '../feature/pages/fixEntries.js';
-import { listDuplicates } from '../feature/pages/listDuplicates.js';
+import { getItems } from '../features/photos/getItems.js';
+import { fixEntries } from '../features/pages/fixEntries.js';
+import { listDuplicates } from '../features/pages/listDuplicates.js';
 
 export const pagesRouter = express.Router();
 

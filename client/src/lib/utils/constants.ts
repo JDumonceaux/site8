@@ -46,6 +46,8 @@ export const ROUTE_WEB_CSS = `${ROUTE_WEB}/css`;
 export const ROUTE_WEB_TEST_GRID = `${ROUTE_WEB}/test-grid`;
 
 export enum ServiceUrl {
+  ENDPOINT_ARTISTS = `${API_ROOT}/artists`,
+
   ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
   ENDPOINT_IMAGE = `${API_ROOT}/image`,
   ENDPOINT_IMAGES = `${API_ROOT}/images`,

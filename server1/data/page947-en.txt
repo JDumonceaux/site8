@@ -1021,8 +1021,8 @@ Lazy loading is a strategy that defers the loading of non-critical resources at 
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-const TodoList = React.lazy(() => import('./routes/TodoList'))
-const NewTodo = React.lazy(() => import('./routes/NewTodo'))
+const TodoList = React.lazy(() => import('#routes/TodoList'))
+const NewTodo = React.lazy(() => import('#routes/NewTodo'))
 
 const App = () => (
   <BrowserRouter>

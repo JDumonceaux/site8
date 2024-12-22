@@ -1,9 +1,9 @@
 import express from 'express';
 
-import { getItems } from '../feature/items/getItems.js';
-import { patchItems } from '../feature/items/patchItems.js';
-import { putItems } from '../feature/items/putItems.js';
-import { getItemsArtists } from '../feature/items/getItemsArtists.js';
+import { getItems } from '../features/items/getItems.js';
+import { patchItems } from '../features/items/patchItems.js';
+import { putItems } from '../features/items/putItems.js';
+import { getItemsArtists } from '../features/items/getItemsArtists.js';
 
 export const itemsRouter = express.Router();
 

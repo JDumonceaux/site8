@@ -8,8 +8,8 @@ import {
 } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
-import InputPage from '../feature/design/InputPage';
-import ErrorPage from '../feature/site/ErrorPage';
+import InputPage from '../features/design/InputPage';
+import ErrorPage from '../features/site/ErrorPage';
 
 const AuthLayout = lazy(
   async () => import('components/layouts/AuthLayout/AuthLayout'),
@@ -24,63 +24,63 @@ const PhotoLayout = lazy(
   async () => import('components/layouts/PhotoLayout/PhotoLayout'),
 );
 const BookmarkPage = lazy(
-  async () => import('../feature/bookmarks/BookmarkPage'),
+  async () => import('../features/bookmarks/BookmarkPage'),
 );
-const DevelopPage = lazy(async () => import('../feature/design/DevelopPage'));
-const GenericPage = lazy(async () => import('../feature/generic/GenericPage'));
+const DevelopPage = lazy(async () => import('../features/design/DevelopPage'));
+const GenericPage = lazy(async () => import('../features/generic/GenericPage'));
 const GenericImagePage = lazy(
-  async () => import('../feature/generic/GenericImagePage'),
+  async () => import('../features/generic/GenericImagePage'),
 );
 const ImageEditPage = lazy(
-  async () => import('../feature/imageEdit/ImageEditPage'),
+  async () => import('../features/imageEdit/ImageEditPage'),
 );
 const ImagesEditPage = lazy(
-  async () => import('../feature/imagesEdit/ImagesEditPage'),
+  async () => import('../features/imagesEdit/ImagesEditPage'),
 );
 const ItemsAddPage = lazy(
-  async () => import('../feature/itemsAdd/ItemsAddPage'),
+  async () => import('../features/itemsAdd/ItemsAddPage'),
 );
-const Home = lazy(async () => import('../feature/home/HomePage'));
-const NotFound = lazy(async () => import('../feature/site/NotFoundPage'));
+const Home = lazy(async () => import('../features/home/HomePage'));
+const NotFound = lazy(async () => import('../features/site/NotFoundPage'));
 const PageEditPage = lazy(
-  async () => import('../feature/pageEdit/PageEditPage'),
+  async () => import('../features/pageEdit/PageEditPage'),
 );
 const PagesEditPage = lazy(
-  async () => import('../feature/pagesEdit/PagesEditPage'),
+  async () => import('../features/pagesEdit/PagesEditPage'),
 );
-const PhotoPage = lazy(async () => import('../feature/photos/PhotoPage'));
-const Sitemap = lazy(async () => import('../feature/site/SitemapPage'));
-const TikTokPage = lazy(async () => import('../feature/tiktok/TikTokPage'));
-const YachtsPage = lazy(async () => import('../feature/yatch/YachtsPage'));
-const TestsPage = lazy(async () => import('../feature/tests/TestsPage'));
+const PhotoPage = lazy(async () => import('../features/photos/PhotoPage'));
+const Sitemap = lazy(async () => import('../features/site/SitemapPage'));
+const TikTokPage = lazy(async () => import('../features/tiktok/TikTokPage'));
+const YachtsPage = lazy(async () => import('../features/yatch/YachtsPage'));
+const TestsPage = lazy(async () => import('../features/tests/TestsPage'));
 const TestsEditPage = lazy(
-  async () => import('../feature/tests/TestsEditPage'),
+  async () => import('../features/tests/TestsEditPage'),
 );
 // Site Pages
 const TermsOfUsePage = lazy(
-  async () => import('../feature/site/TermsOfUsePage'),
+  async () => import('../features/site/TermsOfUsePage'),
 );
 const CookiesUsePage = lazy(
-  async () => import('../feature/site/CookiesUsePage'),
+  async () => import('../features/site/CookiesUsePage'),
 );
 const PrivacyPolicyPage = lazy(
-  async () => import('../feature/site/PrivacyPolicyPage'),
+  async () => import('../features/site/PrivacyPolicyPage'),
 );
 // Auth Pages
-const SigninPage = lazy(async () => import('../feature/auth/SigninPage'));
-const SignoutPage = lazy(async () => import('../feature/auth/SignoutPage'));
-const SignupPage = lazy(async () => import('../feature/auth/SignupPage'));
+const SigninPage = lazy(async () => import('../features/auth/SigninPage'));
+const SignoutPage = lazy(async () => import('../features/auth/SignoutPage'));
+const SignupPage = lazy(async () => import('../features/auth/SignupPage'));
 const ConfirmEmailPage = lazy(
-  async () => import('../feature/auth/ConfirmEmailPage'),
+  async () => import('../features/auth/ConfirmEmailPage'),
 );
 const ForgotPasswordPage = lazy(
-  async () => import('../feature/auth/ForgotPasswordPage'),
+  async () => import('../features/auth/ForgotPasswordPage'),
 );
 const ChangePasswordPage = lazy(
-  async () => import('../feature/auth/ChangePasswordPage'),
+  async () => import('../features/auth/ChangePasswordPage'),
 );
 const DeleteAccountPage = lazy(
-  async () => import('../feature/auth/DeleteAccountPage'),
+  async () => import('../features/auth/DeleteAccountPage'),
 );
 
 const router = createBrowserRouter(

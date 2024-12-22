@@ -1,13 +1,13 @@
 import express from 'express';
 
-import { patchItems } from '../feature/images/patchItems.js';
-import { getItems } from '../feature/images/getItems.js';
-import { getItemsEdit } from '../feature/images/getItemsEdit.js';
-import { getFolders } from '../feature/images/getFolders.js';
-import { getFixFileNames } from '../feature/images/getFixFileNames.js';
-import { getReindex } from '../feature/images/getReindex.js';
-import { getScan } from '../feature/images/getScan.js';
-import { getListDuplicates } from '../feature/images/getListDuplicates.js';
+import { patchItems } from '../features/images/patchItems.js';
+import { getItems } from '../features/images/getItems.js';
+import { getItemsEdit } from '../features/images/getItemsEdit.js';
+import { getFolders } from '../features/images/getFolders.js';
+import { getFixFileNames } from '../features/images/getFixFileNames.js';
+import { getReindex } from '../features/images/getReindex.js';
+import { getScan } from '../features/images/getScan.js';
+import { getListDuplicates } from '../features/images/getListDuplicates.js';
 
 export const imagesRouter = express.Router();
 

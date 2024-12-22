@@ -1,9 +1,9 @@
 import express from 'express';
 
-import { getItems } from '../feature/menu/getItems.js';
-import { putItem } from '../feature/image/putItem.js';
-import { patchItem } from '../feature/menu/patchItem.js';
-import { getItemsEdit } from '../feature/menu/getItemsEdit.js';
+import { getItems } from '../features/menu/getItems.js';
+import { putItem } from '../features/image/putItem.js';
+import { patchItem } from '../features/menu/patchItem.js';
+import { getItemsEdit } from '../features/menu/getItemsEdit.js';
 
 export const menuRouter = express.Router();
 

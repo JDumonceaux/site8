@@ -58,5 +58,6 @@
   "keywords": [],
   "author": "",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "imports": {}
 }

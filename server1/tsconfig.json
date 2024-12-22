@@ -12,19 +12,8 @@
     "strict": true,
     "outDir": "dist",
     // Allow absolute imports from the `src` directory
-    "baseUrl": "src",
-
-    "paths": {
-      "*": ["./src/*"],
-      "apis/*": ["./src/apis/*"],
-      "controllers/*": ["./src/controllers/*"],
-      "lib/*": ["./src/lib/*"],
-      "middleware/*": ["./src/middleware/*"],
-      "routes/*": ["./src/routes/*"],
-      "services/*": ["./src/services/*"],
-      "types/*": ["./src/types/*"],
-  
-    }
+    "baseUrl": ".",
+    "rootDir": "./src",
   },
   "include": ["src"],
   "exclude": ["node_modules", "./*.ts", "__test__"]
