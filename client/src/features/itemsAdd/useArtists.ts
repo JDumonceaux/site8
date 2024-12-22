@@ -13,11 +13,13 @@ const useArtists = () => {
   }, [fetchData]);
 
   const artistsAsListItem: ListItem[] | undefined = useCallback(() => {
-    return data?.items?.map((x, index) => ({
-      display: x.name,
-      key: index,
-      value: x.id,
-    }));
+    return data?.items
+      ?.toSorted((a, b) => a.sortName.localeCompare(b.sortName))
+      .map((x, index) => ({
+        display: x.name,
+        key: index,
+        value: x.id,
+      }));
   }, [data])();
 
   return {

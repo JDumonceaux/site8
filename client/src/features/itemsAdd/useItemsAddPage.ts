@@ -41,14 +41,14 @@ const useItemsAddPage = () => {
     const ret: ItemAddExt[] | undefined = Array.from(
       { length: ITEM_COUNT },
       (_, index) => ({
-        artist: '',
+        artisticPeriod: '',
+        artistId: 0,
         description: '',
         lineId: index + 1,
         location: '',
-        name: '',
-        official_url: '',
-        period: '',
+        officialWebAddress: '',
         tags: '',
+        title: '',
       }),
     );
     return ret;

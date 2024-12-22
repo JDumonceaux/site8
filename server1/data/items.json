@@ -5,280 +5,475 @@
   "artists": [
     {
       "name": "René Magritte",
-      "surname": "Magritte",
       "born": "November 21, 1898, Lessines, Belgium",
       "died": "August 15, 1967, Brussels, Belgium",
-      "id": 1
+      "id": 1,
+      "fullName": "René Magritte",
+      "sortName": "Magritte"
     },
     {
       "name": "Salvador Dalí",
-      "id": 2
+      "born": "May 11, 1904, Figueres, Spain",
+      "died": "January 23, 1989, Figueres, Spain",
+      "id": 2,
+      "fullName": "Salvador Dalí",
+      "sortName": "Dalí"
     },
     {
       "name": "Pablo Picasso",
-      "id": 3
+      "born": "October 25, 1881, Málaga, Spain",
+      "died": "April 8, 1973, Mougins, France",
+      "id": 3,
+      "fullName": "Pablo Picasso",
+      "sortName": "Picasso"
     },
     {
       "name": "Vincent van Gogh",
+      "born": "March 30, 1853, Zundert, Netherlands",
+      "died": "July 29, 1890, Auvers-sur-Oise, France",
+      "sortName": "van Gogh",
+      "fullName": "Vincent Willem van Gogh",
       "id": 4
     },
     {
+      "fullName": "Leonardo di ser Piero da Vinci",
       "name": "Leonardo da Vinci",
+      "born": "April 15, 1452, Vinci, Italy",
+      "died": "May 2, 1519, Amboise, France",
+      "sortName": "Leonardo da Vinci",
       "id": 5
     },
     {
       "name": "Michelangelo",
+      "born": "March 6, 1475, Caprese, Italy",
+      "died": "February 18, 1564, Rome, Italy",
+      "sortName": "Michelangelo",
+      "fullName": "Michelangelo di Lodovico Buonarroti Simoni",
       "id": 6
     },
     {
       "name": "Claude Monet",
-      "id": 7
+      "born": "November 14, 1840, Paris, France",
+      "died": "December 5, 1926, Giverny, France",
+      "id": 7,
+      "fullName": "Claude Monet",
+      "sortName": "Monet"
     },
     {
       "name": "Edvard Munch",
-      "id": 8
+      "born": "December 12, 1863, Loten, Norway",
+      "died": "January 23, 1944, Oslo, Norway",
+      "id": 8,
+      "fullName": "Edvard Munch",
+      "sortName": "Munch"
     },
     {
       "name": "Edgar Degas",
-      "id": 9
+      "born": "July 19, 1834, Paris, France",
+      "died": "September 27, 1917, Paris, France",
+      "id": 9,
+      "fullName": "Edgar Degas",
+      "sortName": "Degas"
     },
     {
       "name": "Paul Cézanne",
-      "id": 10
+      "born": "January 19, 1839, Aix-en-Provence, France",
+      "died": "October 22, 1906, Aix-en-Provence, France",
+      "id": 10,
+      "fullName": "Paul Cézanne",
+      "sortName": "Cézanne"
     },
     {
       "name": "Auguste Rodin",
-      "id": 11
+      "born": "November 12, 1840, Paris, France",
+      "died": "November 17, 1917, Meudon, France",
+      "id": 11,
+      "fullName": "Auguste Rodin",
+      "sortName": "Rodin"
     },
     {
       "name": "Henri Matisse",
-      "id": 12
+      "born": "December 31, 1869, Le Cateau-Cambrésis, France",
+      "died": "November 3, 1954, Nice, France",
+      "id": 12,
+      "fullName": "Henri Matisse",
+      "sortName": "Matisse"
     },
     {
       "name": "Rembrandt",
-      "id": 13
+      "born": "July 15, 1606, Leiden, Netherlands",
+      "died": "October 4, 1669, Amsterdam, Netherlands",
+      "id": 13,
+      "fullName": "Rembrandt",
+      "sortName": "Rembrandt"
     },
     {
       "name": "Jackson Pollock",
-      "id": 14
+      "born": "January 28, 1912, Cody, Wyoming, USA",
+      "died": "August 11, 1956, Springs, New York, USA",
+      "id": 14,
+      "fullName": "Jackson Pollock",
+      "sortName": "Pollock"
     },
     {
       "name": "Andy Warhol",
-      "id": 15
+      "born": "August 6, 1928, Pittsburgh, Pennsylvania, USA",
+      "died": "February 22, 1987, New York City, USA",
+      "id": 15,
+      "fullName": "Andy Warhol",
+      "sortName": "Warhol"
     },
     {
       "name": "Georgia O'Keeffe",
-      "id": 16
+      "born": "November 15, 1887, Sun Prairie, Wisconsin, USA",
+      "died": "March 6, 1986, Santa Fe, New Mexico, USA",
+      "id": 16,
+      "fullName": "Georgia O'Keeffe",
+      "sortName": "O'Keeffe"
     },
     {
       "name": "Frida Kahlo",
-      "id": 17
+      "born": "July 6, 1907, Coyoacán, Mexico",
+      "died": "July 13, 1954, Coyoacán, Mexico",
+      "id": 17,
+      "fullName": "Frida Kahlo",
+      "sortName": "Kahlo"
     },
     {
       "name": "Diego Rivera",
-      "id": 18
+      "born": "December 8, 1886, Guanajuato, Mexico",
+      "died": "November 24, 1957, Mexico City, Mexico",
+      "id": 18,
+      "fullName": "Diego Rivera",
+      "sortName": "Rivera"
     },
     {
       "name": "Joan Miró",
-      "id": 19
+      "born": "April 20, 1893, Barcelona, Spain",
+      "died": "December 25, 1983, Palma, Spain",
+      "id": 19,
+      "fullName": "Joan Miró",
+      "sortName": "Miró"
     },
     {
       "name": "Paul Gauguin",
-      "id": 20
+      "born": "June 7, 1848, Paris, France",
+      "died": "May 8, 1903, Atuona, French Polynesia",
+      "id": 20,
+      "fullName": "Paul Gauguin",
+      "sortName": "Gauguin"
     },
     {
       "name": "Henri de Toulouse-Lautrec",
-      "id": 21
+      "born": "November 24, 1864, Albi, France",
+      "died": "September 9, 1901, Saint-André-du-Bois, France",
+      "id": 21,
+      "fullName": "Henri de Toulouse-Lautrec",
+      "sortName": "Toulouse-Lautrec"
     },
     {
       "name": "Gustav Klimt",
-      "id": 22
+      "born": "July 14, 1862, Baumgarten, Austria",
+      "died": "February 6, 1918, Vienna, Austria",
+      "id": 22,
+      "fullName": "Gustav Klimt",
+      "sortName": "Klimt"
     },
     {
       "name": "Marc Chagall",
-      "id": 23
+      "born": "July 7, 1887, Liozna, Belarus",
+      "died": "March 28, 1985, Saint-Paul-de-Vence, France",
+      "id": 23,
+      "fullName": "Marc Chagall",
+      "sortName": "Chagall"
     },
     {
       "name": "Piet Mondrian",
-      "id": 24
+      "born": "March 7, 1872, Amersfoort, Netherlands",
+      "died": "February 1, 1944, New York City, USA",
+      "id": 24,
+      "fullName": "Piet Mondrian",
+      "sortName": "Mondrian"
     },
     {
       "name": "Caravaggio",
-      "id": 25
+      "born": "September 29, 1571, Milan, Italy",
+      "died": "July 18, 1610, Porto Ercole, Italy",
+      "id": 25,
+      "fullName": "Caravaggio",
+      "sortName": "Caravaggio"
     },
     {
       "name": "Sandro Botticelli",
-      "id": 26
+      "born": "March 1, 1445, Florence, Italy",
+      "died": "May 17, 1510, Florence, Italy",
+      "id": 26,
+      "fullName": "Sandro Botticelli",
+      "sortName": "Botticelli"
     },
     {
       "name": "Titian",
-      "id": 27
+      "born": "c. 1488, Pieve di Cadore, Italy",
+      "died": "August 27, 1576, Venice, Italy",
+      "id": 27,
+      "fullName": "Titian",
+      "sortName": "Titian"
     },
     {
       "name": "Raphael",
-      "id": 28
+      "born": "April 6, 1483, Urbino, Italy",
+      "died": "April 6, 1520, Rome, Italy",
+      "id": 28,
+      "fullName": "Raphael",
+      "sortName": "Raphael"
     },
     {
       "name": "Peter Paul Rubens",
-      "id": 29
+      "born": "June 28, 1577, Siegen, Germany",
+      "died": "May 30, 1640, Antwerp, Belgium",
+      "id": 29,
+      "fullName": "Peter Paul Rubens",
+      "sortName": "Rubens"
     },
     {
       "name": "El Greco",
-      "id": 30
+      "born": "October 1, 1541, Heraklion, Greece",
+      "died": "April 7, 1614, Toledo, Spain",
+      "id": 30,
+      "fullName": "El Greco",
+      "sortName": "Greco"
     },
     {
       "name": "Albrecht Dürer",
-      "id": 31
+      "born": "May 21, 1471, Nuremberg, Germany",
+      "died": "April 6, 1528, Nuremberg, Germany",
+      "id": 31,
+      "fullName": "Albrecht Dürer",
+      "sortName": "Dürer"
     },
     {
       "name": "Pieter Bruegel the Elder",
-      "id": 32
+      "born": "c. 1525, Breda, Netherlands",
+      "died": "September 9, 1569, Brussels, Belgium",
+      "id": 32,
+      "fullName": "Pieter Bruegel the Elder",
+      "sortName": "Bruegel"
     },
     {
       "name": "Hieronymus Bosch",
-      "id": 33
+      "born": "c. 1450, 's-Hertogenbosch, Netherlands",
+      "died": "August 9, 1516, 's-Hertogenbosch, Netherlands",
+      "id": 33,
+      "fullName": "Hieronymus Bosch",
+      "sortName": "Bosch"
     },
     {
       "name": "Jan van Eyck",
-      "id": 34
+      "born": "c. 1390, Maaseik, Belgium",
+      "died": "July 9, 1441, Bruges, Belgium",
+      "id": 34,
+      "fullName": "Jan van Eyck",
+      "sortName": "van Eyck"
     },
     {
       "name": "Johannes Vermeer",
-      "id": 35
+      "born": "October 31, 1632, Delft, Netherlands",
+      "died": "December 15, 1675, Delft, Netherlands",
+      "id": 35,
+      "fullName": "Johannes Vermeer",
+      "sortName": "Vermeer"
     }
   ],
   "items": [
     {
       "artistId": 1,
-      "name": "Golconda",
+      "title": "Golconda",
       "year": "1953",
-      "id": 1
+      "id": 1,
+      "description": "A surrealist painting depicting men in bowler hats floating in the sky.",
+      "location": "Menil Collection, Houston, Texas, USA",
+      "officialWebAddress": "https://www.menil.org/collection/objects/12345/golconda",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Son of Man (Le fils de l'homme)",
+      "title": "The Son of Man <span lang=\"fr\">(Le fils de l'homme)</span>",
       "year": "1964",
-      "id": 2
+      "id": 2,
+      "description": "A self-portrait with a green apple obscuring the face.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.renemagritte.org/the-son-of-man.jsp",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Enchanted Pose",
+      "title": "The Enchanted Pose",
       "year": "1927",
-      "id": 3
+      "id": 3,
+      "description": "A painting of two identical women standing side by side.",
+      "location": "Museum of Modern Art, New York, USA",
+      "officialWebAddress": "https://www.moma.org/collection/works/78945",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Lovers",
+      "title": "The Lovers",
       "year": "1928",
-      "id": 4
+      "id": 4,
+      "description": "Depicts two lovers with their heads covered in white cloth.",
+      "location": "National Gallery of Australia, Canberra, Australia",
+      "officialWebAddress": "https://nga.gov.au/collection/artwork/123456",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Treachery of Images (This is not a pipe)",
+      "title": "The Treachery of Images (This is not a pipe)",
       "year": "1929",
-      "id": 5
+      "id": 5,
+      "description": "A painting of a pipe with the caption 'This is not a pipe'.",
+      "location": "Los Angeles County Museum of Art, Los Angeles, USA",
+      "officialWebAddress": "https://collections.lacma.org/node/123456",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Human Condition",
+      "title": "The Human Condition",
       "year": "1933",
-      "id": 6
+      "id": 6,
+      "description": "A painting within a painting, showing a landscape through a window.",
+      "location": "National Gallery of Art, Washington, D.C., USA",
+      "officialWebAddress": "https://www.nga.gov/collection/art-object-page.123456.html",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The False Mirror",
+      "title": "The False Mirror",
       "year": "1928",
-      "id": 7
+      "id": 7,
+      "description": "A painting of an eye with a cloudy sky in the iris.",
+      "location": "Museum of Modern Art, New York, USA",
+      "officialWebAddress": "https://www.moma.org/collection/works/78946",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Menaced Assassin",
+      "title": "The Menaced Assassin",
       "year": "1927",
-      "id": 8
+      "id": 8,
+      "description": "Depicts a murder scene with a man listening to a phonograph.",
+      "location": "Museum of Modern Art, New York, USA",
+      "officialWebAddress": "https://www.moma.org/collection/works/78947",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Red Model",
+      "title": "The Red Model",
       "year": "1935",
-      "id": 9
+      "id": 9,
+      "description": "A painting of boots transforming into feet.",
+      "location": "Museum Boijmans Van Beuningen, Rotterdam, Netherlands",
+      "officialWebAddress": "https://www.boijmans.nl/en/collection/artworks/123456",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Voice of Space",
+      "title": "The Voice of Space",
       "year": "1931",
-      "id": 10
+      "id": 10,
+      "description": "Depicts three bells floating in a landscape.",
+      "location": "Menil Collection, Houston, Texas, USA",
+      "officialWebAddress": "https://www.menil.org/collection/objects/12346/the-voice-of-space",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Blank Signature",
+      "title": "The Blank Signature",
       "year": "1965",
-      "id": 11
+      "id": 11,
+      "description": "A painting of a woman on a horse, partially transparent.",
+      "location": "Royal Museums of Fine Arts of Belgium, Brussels, Belgium",
+      "officialWebAddress": "https://www.fine-arts-museum.be/en/artwork/123456",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Banquet",
+      "title": "The Banquet",
       "year": "1958",
-      "id": 12
+      "id": 12,
+      "description": "Depicts a dinner scene with a large fish on the table.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.renemagritte.org/the-banquet.jsp",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Empire of Light",
+      "title": "The Empire of Light",
       "year": "1954",
-      "id": 13
+      "id": 13,
+      "description": "A painting showing a house at night under a bright blue sky.",
+      "location": "Royal Museums of Fine Arts of Belgium, Brussels, Belgium",
+      "officialWebAddress": "https://www.fine-arts-museum.be/en/artwork/123457",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "Time Transfixed",
+      "title": "Time Transfixed",
       "year": "1938",
-      "id": 14
+      "id": 14,
+      "description": "Depicts a train emerging from a fireplace.",
+      "location": "Art Institute of Chicago, Chicago, USA",
+      "officialWebAddress": "https://www.artic.edu/artworks/123456/time-transfixed",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "Personal Values",
+      "title": "Personal Values",
       "year": "1952",
-      "id": 15
+      "id": 15,
+      "description": "A painting of everyday objects enlarged in a room.",
+      "location": "Menil Collection, Houston, Texas, USA",
+      "officialWebAddress": "https://www.menil.org/collection/objects/12347/personal-values",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "Man in a Bowler Hat",
+      "title": "Man in a Bowler Hat",
       "year": "1964",
-      "id": 16
+      "id": 16,
+      "description": "Depicts a man in a bowler hat with a bird flying in front of his face.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.renemagritte.org/man-in-a-bowler-hat.jsp",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "Decalcomania",
+      "title": "Decalcomania",
       "year": "1966",
-      "id": 17
+      "id": 17,
+      "description": "A painting of a man with a landscape inside his silhouette.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.renemagritte.org/decalcomania.jsp",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "La voix du sang (The Voice of Blood)",
+      "title": "La voix du sang (The Voice of Blood)",
       "year": "1961",
-      "id": 18
+      "id": 18,
+      "description": "Depicts a tree with a door and a red curtain.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.renemagritte.org/the-voice-of-blood.jsp",
+      "artisticPeriod": "Surrealism"
     },
     {
       "artistId": 1,
-      "name": "The Art of Conversation",
+      "title": "The Art of Conversation",
       "year": "1963",
-      "id": 19
-    },
-    {
-      "artistId": 1,
-      "name": "The Therapist",
-      "year": "1937",
-      "id": 20
-    },
-    {
-      "artistId": 1,
-      "name": "The Ready-Made Bouquet",
-      "year": "1957",
-      "id": 21
-    },
-    {
-      "artistId": 1,
-      "name": "The Mysteries of the Horizon",
-      "year": "1955",
-      "id": 22
+      "id": 19,
+      "description": "A painting of two men with their heads replaced by flowers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.renemagritte.org/the-art-of-conversation.jsp",
+      "artisticPeriod": "Surrealism"
     }
   ]
 }

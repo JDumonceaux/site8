@@ -3,7 +3,8 @@ import { z } from 'zod';
 // Define Zod Shape
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const schema = z.object({
-  artist: z.string().trim().optional(),
+  artisticPeriod: z.string().trim().optional(),
+  artistId: z.number().int().positive(),
   description: z.string().trim().optional(),
   location: z
     .string({
@@ -12,10 +13,9 @@ const schema = z.object({
     .max(250, 'Location max length exceeded: 500')
     .trim()
     .optional(),
-  name: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
-  official_url: z.string().trim().optional(),
-  period: z.string().trim().optional(),
+  officialWebAddress: z.string().trim().optional(),
   tags: z.string().trim().optional(),
+  title: z.string().max(100, 'Name max length exceeded: 100').trim().optional(),
   year: z.string().trim().optional(),
 });
 

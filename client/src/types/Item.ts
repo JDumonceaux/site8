@@ -1,13 +1,14 @@
 export type Item = {
   readonly artist?: string;
+  readonly artisticPeriod?: string;
+  readonly artistId: number;
   readonly description?: string;
   readonly id: number;
   readonly lineId?: number;
   readonly location?: string;
-  readonly name?: string;
-  readonly official_url?: string;
-  readonly period?: string;
+  readonly officialWebAddress?: string;
   readonly tags?: string[];
+  readonly title: string;
   readonly year?: string;
   readonly yearDisplay?: string;
 };

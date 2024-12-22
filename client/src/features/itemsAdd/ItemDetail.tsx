@@ -25,7 +25,6 @@ type Props = {
 };
 
 const ItemDetail = ({
-  artists,
   getFieldValue,
   item,
   locations,
@@ -59,9 +58,9 @@ const ItemDetail = ({
     <StyledRow key={item.lineId}>
       <StyledOuterRow>
         <Input.Text
-          {...getDefaultProps(item.lineId, 'name')}
-          dataList={{ data: names, id: 'names' }}
-          placeholder="Name"
+          {...getDefaultProps(item.lineId, 'title')}
+          dataList={{ data: names, id: 'title' }}
+          placeholder="Title"
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'location')}
@@ -69,8 +68,8 @@ const ItemDetail = ({
           placeholder="Location"
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'official_url')}
-          placeholder="Official URL"
+          {...getDefaultProps(item.lineId, 'officialWebAddress')}
+          placeholder="Official Web Address"
         />
         <Input.TextArea
           {...getDefaultProps(item.lineId, 'description')}
@@ -78,16 +77,11 @@ const ItemDetail = ({
           rows={5}
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'artist')}
-          dataList={{ data: artists, id: 'artists' }}
-          placeholder="Artist"
-        />
-        <Input.Text
           {...getDefaultProps(item.lineId, 'year')}
           placeholder="Year"
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'period')}
+          {...getDefaultProps(item.lineId, 'artisticPeriod')}
           dataList={{ data: periods, id: 'periods' }}
           placeholder="Period"
         />
