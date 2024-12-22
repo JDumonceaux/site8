@@ -18,7 +18,7 @@ type LabelRowProps = {
   readonly tooltipProps?: TooltipBaseProps;
 } & Omit<
   LabelHTMLAttributes<HTMLLabelElement>,
-  'onBlur' | 'onChange' | 'onClick' | 'ref'
+  'autoComplete' | 'onBlur' | 'onChange' | 'onClick' | 'ref'
 >;
 
 /* Note: If you use htmlfor(or for) attribute, 

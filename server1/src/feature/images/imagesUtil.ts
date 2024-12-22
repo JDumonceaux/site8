@@ -1,6 +1,6 @@
 import { Image } from '../../types/Image.js';
-import { FOLDERS_TO_IGNORE } from './constants.js';
-import { cleanUpData, getNextIdFromPos } from './objectUtil.js';
+import { FOLDERS_TO_IGNORE } from '../../lib/utils/constants.js';
+import { cleanUpData, getNextIdFromPos } from '../../lib/utils/objectUtil.js';
 
 export function getNewItems(
   prevItems: Image[] | undefined,
@@ -28,8 +28,6 @@ export function getNewItems(
       cleanUpData<Image>({
         ...x,
         isNewItem: true,
-        edit_date: new Date(),
-        create_date: new Date(),
       }),
     )
     .sort((a, b) => a.fileName.localeCompare(b.fileName));

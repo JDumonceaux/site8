@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import { getDataDir } from '../../lib/utils/FilePath.js';
-import { getNewIds, getNewItems } from '../../lib/utils/imagesUtil.js';
+import { getNewIds, getNewItems } from './imagesUtil.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
 import { Image } from '../../types/Image.js';
@@ -61,12 +61,12 @@ export class ImagesService {
   // Get Items to sort into folders
   private async getNewItems(): Promise<Images | undefined> {
     // Get current items
-    const prev = await this.readFile();
-    if (!prev) {
+    const ret = await this.readFile();
+    if (!ret) {
       throw new Error('getNewItems > Index file not loaded');
     }
-    const items = prev.items?.filter((x) => x.isNewItem === true);
-    return { ...prev, items };
+    const items = ret.items?.filter((x) => x.isNewItem === true);
+    return { ...ret, items };
   }
 
   /**

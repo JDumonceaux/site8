@@ -8,6 +8,7 @@ import { Items } from '../../types/Items.js';
 import { ItemsArtists } from '../../types/ItemsArtists.js';
 import { ItemArtist } from '../../types/ItemArtist.js';
 import { ItemAdd } from '../../types/ItemAdd.js';
+import { ItemEdit } from '../../types/ItemEdit.js';
 
 export class ItemsService {
   private fileName = 'items.json';
@@ -56,20 +57,21 @@ export class ItemsService {
       throw new Error('Item file not loaded');
     }
 
-    const ret: ItemArtist[] | undefined = items.artists?.map((x) => {
-      const currItem = items.items?.filter((y) => x.id === y.id);
-
-      if (currItem && currItem.length > 0) {
-        currItem?.forEach((y) => {
-          return {
-            ...y,
-            ...x,
-            artistsId: x.id,
-          };
+    const ret: ItemArtist[] = [];
+    items.items?.forEach((x) => {
+      const matchingArtist = items.artists?.find((y) => x.id === y.id);
+      if (matchingArtist) {
+        ret.push({
+          ...x,
+          ...matchingArtist,
+        });
+      } else {
+        ret.push({
+          ...x,
+          name: 'unknown',
         });
       }
-    }, []);
-
+    });
     return { metadata: items.metadata || { title: 'items' }, items: ret };
   }
 
@@ -83,7 +85,7 @@ export class ItemsService {
     }
   }
 
-  public async patchItems(_items: ReadonlyArray<Item>): Promise<boolean> {
+  public async patchItems(_items: ReadonlyArray<ItemEdit>): Promise<boolean> {
     //    const itemsTemp = await this.readFile();
 
     // Get the updated records
