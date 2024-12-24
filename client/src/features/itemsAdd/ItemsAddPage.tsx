@@ -1,7 +1,8 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 
 import Button from 'components/core/Button/Button';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
@@ -17,7 +18,6 @@ import useItemsAddPage from './useItemsAddPage';
 
 const ItemsAddPage = (): React.JSX.Element => {
   const {
-    currentFilter,
     data,
     error,
     getFieldValue,
@@ -27,17 +27,25 @@ const ItemsAddPage = (): React.JSX.Element => {
     handleSubmit,
     isLoading,
   } = useItemsAddPage();
+  const [artistId, setArtistId] = useState('');
 
   const { artistsIndexed, locationsIndexed, namesIndexed, periodsIndexed } =
     useItems();
 
   const { artistsAsListItem } = useArtists();
 
+  const handleFilterChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setArtistId(event.target.value);
+    },
+    [],
+  );
+
   const title = 'Add Items';
 
   return (
     <>
-      <title>{title}</title>
+      <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
           <MenuBar handleClear={handleClear} handleSubmit={handleSubmit}>
@@ -50,7 +58,12 @@ const ItemsAddPage = (): React.JSX.Element => {
       <Layout.Flex>
         <Layout.Main>
           <LoadingWrapper error={error} isLoading={isLoading}>
-            <Input.Select dataList={artistsAsListItem} placeholder="Artist" />
+            <Input.Select
+              dataList={artistsAsListItem}
+              onChange={handleFilterChange}
+              placeholder="Artist"
+              value={artistId}
+            />
             <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
                 <ItemDetail
@@ -70,7 +83,7 @@ const ItemsAddPage = (): React.JSX.Element => {
 
         <Layout.Aside>
           <Suspense fallback={<div>Loading...</div>}>
-            <RightMenu currentFilter={currentFilter} />
+            <RightMenu artistId={artistId} />
           </Suspense>
         </Layout.Aside>
       </Layout.Flex>

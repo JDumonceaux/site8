@@ -1,26 +1,27 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import useItems from 'features/itemsAdd/useItems';
 import { styled } from 'styled-components';
 
+import useArtistItems from './useArtistItems';
+
 type Props = {
-  readonly currentFilter: string;
+  readonly artistId?: string;
 };
 
-const RightMenu = ({ currentFilter }: Props): React.JSX.Element => {
-  const { data, error, isLoading } = useItems();
+const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
+  const { error, fetch, isLoading, itemsAsListItem } = useArtistItems();
 
-  const filteredData = useCallback(() => {
-    return data?.items.filter((x) => x.artist === currentFilter);
-  }, [data, currentFilter]);
+  useEffect(() => {
+    fetch(artistId);
+  }, [artistId, fetch]);
 
   return (
     <StickyMenu>
       <LoadingWrapper error={error} isLoading={isLoading}>
         <ul>
-          {filteredData()?.map((item) => (
-            <li key={item.id}>{item.name ?? 'Missing'}</li>
+          {itemsAsListItem?.map((item) => (
+            <li key={item.key}>{item.display ?? 'Missing'}</li>
           ))}
         </ul>
       </LoadingWrapper>

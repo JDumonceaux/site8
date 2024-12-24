@@ -16,6 +16,7 @@ import { pagesRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { testsRouter } from './routes/testsRouter.js';
 import { artistsRouter } from './routes/artistsRouter.js';
+import { artistRouter } from './routes/artistRouter.js';
 
 const app = express();
 
@@ -102,6 +103,7 @@ app.use('/api/bookmarks', bookmarksRouter);
 //   );
 //   next();
 // });
+app.use('/api/artist', artistRouter);
 app.use('/api/artists', artistsRouter);
 app.use('/api/image', imageRouter);
 app.use('/api/images', imagesRouter);

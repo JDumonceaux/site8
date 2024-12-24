@@ -30,3 +30,5 @@ export * from './Photos.js';
 export * from './SortBy.js';
 export * from './Test.js';
 export * from './Tests.js';
+export * from './ArtistItems.js';
+export * from './ArtistsItems.js';

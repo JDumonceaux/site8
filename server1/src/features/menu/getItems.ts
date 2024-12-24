@@ -5,7 +5,7 @@ import { Menus } from '../../types/Menus.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
 export const getItems = async (
-  req: Request<unknown, unknown, unknown, unknown>,
+  _req: Request<unknown, unknown, unknown, unknown>,
   res: Response<Menus>,
   next: NextFunction,
 ) => {

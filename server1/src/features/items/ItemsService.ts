@@ -69,6 +69,7 @@ export class ItemsService {
         ret.push({
           ...x,
           name: 'unknown',
+          sortName: 'unknown',
         });
       }
     });

@@ -31,3 +31,5 @@ export type * from './Test';
 export type * from './Tests';
 export type * from './Item';
 export type * from './Items';
+export type * from './ArtistsItems';
+export type * from './ArtistItems';

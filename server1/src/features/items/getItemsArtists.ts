@@ -5,7 +5,7 @@ import { Items } from '../../types/Items.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
 export const getItemsArtists = async (
-  req: Request<unknown, unknown, unknown, unknown>,
+  _req: Request<unknown, unknown, unknown, unknown>,
   res: Response<Items>,
   next: NextFunction,
 ) => {

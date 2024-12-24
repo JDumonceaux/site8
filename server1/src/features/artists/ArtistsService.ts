@@ -3,6 +3,8 @@ import { getDataDir } from '../../lib/utils/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { Artists } from '../../types/Artists.js';
 import { ItemsFile } from '../../types/ItemsFile.js';
+import { ArtistItems } from 'src/types/ArtistItems.js';
+import { ArtistsItems } from 'src/types/ArtistsItems.js';
 
 export class ArtistsService {
   private fileName = 'items.json';
@@ -44,6 +46,58 @@ export class ArtistsService {
     return {
       metadata: ret?.metadata || { title: 'items' },
       items: ret?.artists,
+    };
+  }
+
+  public async getArtistItems(
+    artistId: number,
+  ): Promise<ArtistItems | undefined> {
+    const ret = await this.readFile();
+
+    const artist = ret?.artists?.find((a) => a.id === artistId);
+
+    if (!artist) {
+      return undefined;
+    }
+
+    const items =
+      artist && ret
+        ? ret.items?.filter((x) => x.artistId === artistId)
+        : undefined;
+
+    const itemsSorted = items?.toSorted((a, b) =>
+      a.title.localeCompare(b.title),
+    );
+
+    return {
+      artist: artist,
+      items: itemsSorted,
+    };
+  }
+
+  public async getArtistsItems(): Promise<ArtistsItems | undefined> {
+    const ret = await this.readFile();
+
+    if (!ret || !ret.artists) {
+      return undefined;
+    }
+
+    const artistsSorted = ret.artists.toSorted((a, b) =>
+      a.sortName.localeCompare(b.sortName),
+    );
+
+    const retItems: ArtistItems[] = [];
+    artistsSorted.forEach((artist) => {
+      const items = ret.items?.filter((x) => x.artistId === artist.id);
+      const itemsSorted = items?.toSorted((a, b) =>
+        a.title.localeCompare(b.title),
+      );
+      retItems.push({ artist, items: itemsSorted });
+    });
+
+    return {
+      metadata: ret?.metadata || { title: 'artist items' },
+      items: retItems,
     };
   }
 }
