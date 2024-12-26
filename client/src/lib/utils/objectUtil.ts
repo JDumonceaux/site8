@@ -1,8 +1,9 @@
-export function getDefaultObject<T>(obj: T | unknown): T | unknown {
+export const getDefaultObject = <T>(): T => {
   const ret: Record<string, unknown> = {};
+  const obj = {} as T;
   if (typeof obj === 'object' && obj !== null) {
     for (const key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      if (Object.hasOwn(obj, key)) {
         const value = (obj as Record<string, unknown>)[key];
         if (typeof value === 'string') {
           ret[key] = '';
@@ -20,10 +21,10 @@ export function getDefaultObject<T>(obj: T | unknown): T | unknown {
       }
     }
   }
-  return ret;
-}
+  return ret as T;
+};
 
-export function removeEmptyAttributes<T>(obj: T | unknown): T | unknown {
+export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
   // Remove null and undefined attributes
   const temp = Object.fromEntries(
     Object.entries(obj as Record<string, unknown>)
@@ -42,66 +43,63 @@ export function removeEmptyAttributes<T>(obj: T | unknown): T | unknown {
     }
   }
   return temp;
-}
+};
 
-export function trimAttributes<T>(obj: T | unknown): T | unknown {
+export const trimAttributes = <T>(obj: T): T => {
   const trimmedObj: Record<string, unknown> =
     typeof obj === 'object' && obj !== null ? { ...obj } : {};
-  Object.keys(trimmedObj).forEach((key: string) => {
+  for (const key of Object.keys(trimmedObj)) {
     if (typeof trimmedObj[key] === 'string') {
-      trimmedObj[key] = (trimmedObj[key] as string).trim();
+      trimmedObj[key] = trimmedObj[key].trim();
     }
-  });
-  return trimmedObj;
-}
+  }
+  return trimmedObj as T;
+};
 
-export function sortObjectKeys<T>(obj: T | unknown): T | unknown {
+export const sortObjectKeys = <T>(obj: T): T => {
   const sortedKeys: string[] = Object.keys(
     obj as Record<string, unknown>,
   ).sort();
-  return sortedKeys.reduce((acc: Record<string, unknown>, key: string) => {
-    return {
-      ...acc,
-      [key]: (obj as Record<string, unknown>)[key],
-    };
-  }, {});
-}
+  const result: Record<string, unknown> = {};
+  for (const key of sortedKeys) {
+    result[key] = (obj as Record<string, unknown>)[key];
+  }
+  return result as T;
+};
 
 export type IdType = {
   readonly id: number;
 };
 
-export function cleanUpData<T extends IdType>(data: T): T {
+export const cleanUpData = <T extends IdType>(data: T): T => {
   const cleanedData = removeEmptyAttributes<T>(data) as T;
-  const sortedData = sortObjectKeys<T>(cleanedData) as T;
-  const trimmedData = trimAttributes<T>(sortedData) as T;
+  const sortedData = sortObjectKeys<T>(cleanedData);
+  const trimmedData = trimAttributes<T>(sortedData);
   const { id, ...rest } = trimmedData;
   return { id, ...rest } as T;
-}
+};
 
-export function getNextId<T extends IdType>(
-  items: ReadonlyArray<T> | undefined,
-): number | undefined {
+export const getNextId = <T extends IdType>(
+  items: readonly T[] | undefined,
+): number | undefined => {
   if (!items) {
     return undefined;
   }
   if (items.length > 0) {
     const sortedArray = items.toSorted((a, b) => a.id - b.id);
-    // Start with the first id in the sorted array
-    let nextId = sortedArray[0].id;
     // Iterate through the array to find the missing id
     for (let i = 0; i < sortedArray.length; i++) {
+      const nextId = sortedArray[0].id + i;
       const y = sortedArray.find((x) => x.id === nextId);
       if (!y) {
         return nextId;
       }
-      nextId++; // Move to the next expected id
     }
     // If no gaps were found, the next free id is one greater than the last object's id
-    return nextId;
+    return sortedArray ? sortedArray.at(-1).id + 1 : undefined;
   }
   return undefined;
-}
+};
 
 /**
  * Returns the next available ID from a given position in an array of objects.
@@ -112,10 +110,10 @@ export function getNextId<T extends IdType>(
  * @param start - The starting position to search for the next ID.
  * @returns The next available ID or `undefined` if no IDs are available.
  */
-export function getNextIdFromPos<T extends IdType>(
-  items: ReadonlyArray<T> | undefined,
+export const getNextIdFromPos = <T extends IdType>(
+  items: readonly T[] | undefined,
   start: number,
-): { value: number; index: number } | undefined {
+): undefined | { index: number; value: number } => {
   if (!items) {
     return undefined;
   }
@@ -126,10 +124,10 @@ export function getNextIdFromPos<T extends IdType>(
   for (let i = start; i < sortedArray.length; i++) {
     const y = sortedArray.find((x) => x.id === nextId);
     if (!y) {
-      return { value: nextId, index: i };
+      return { index: i, value: nextId };
     }
     nextId++; // Move to the next expected id
   }
   // If no gaps were found, the next free id is one greater than the last object's id
-  return { value: nextId, index: 0 };
-}
+  return { index: 0, value: nextId };
+};

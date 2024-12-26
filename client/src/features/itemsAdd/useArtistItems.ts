@@ -8,9 +8,12 @@ import type { ArtistItems } from 'types/ArtistItems';
 const useArtistItems = () => {
   const { data, error, fetchData, isLoading } = useServerApi<ArtistItems>();
 
-  const fetch = (artistId: string) => {
-    fetchData((ServiceUrl.ENDPOINT_ARTISTS_ITEMS, artistId));
-  };
+  const fetch = useCallback(
+    (artistId: string) => {
+      fetchData(ServiceUrl.ENDPOINT_ARTIST_ITEMS.replace('{0}', artistId));
+    },
+    [fetchData],
+  );
 
   const itemsAsListItem: ListItem[] | undefined = useCallback(() => {
     return data?.items

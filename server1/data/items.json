@@ -200,7 +200,7 @@
       "born": "September 29, 1571, Milan, Italy",
       "died": "July 18, 1610, Porto Ercole, Italy",
       "id": 25,
-      "fullName": "Caravaggio",
+      "fullName": "Michelangelo Merisi da Caravaggio",
       "sortName": "Caravaggio"
     },
     {
@@ -474,6 +474,49 @@
       "location": "Private Collection",
       "officialWebAddress": "https://www.renemagritte.org/the-art-of-conversation.jsp",
       "artisticPeriod": "Surrealism"
+    },
+    {
+      "title": "David with the Head of Goliath",
+      "artisticPeriod": "Italian Baroque",
+      "year": "1609",
+      "artistId": 25,
+      "id": 20
+    },
+    {
+      "artistId": null,
+      "id": 21
+    },
+    {
+      "artistId": null,
+      "id": 22
+    },
+    {
+      "artistId": null,
+      "id": 23
+    },
+    {
+      "artistId": null,
+      "id": 24
+    },
+    {
+      "artistId": null,
+      "id": 25
+    },
+    {
+      "artistId": null,
+      "id": 26
+    },
+    {
+      "artistId": null,
+      "id": 27
+    },
+    {
+      "artistId": null,
+      "id": 28
+    },
+    {
+      "artistId": null,
+      "id": 29
     }
   ]
 }

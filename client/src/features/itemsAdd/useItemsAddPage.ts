@@ -1,16 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type { ItemAdd, ItemAddExt } from 'features/itemsAdd/ItemAdd';
 import useServerApi from 'hooks/Axios/useServerApi';
 import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
+import { getDefaultObject, removeEmptyAttributes } from 'lib/utils/objectUtil';
 
 const ITEM_COUNT = 10;
 
 const useItemsAddPage = () => {
   const { setErrorMessage, setMessage } = useSnackbar();
-  const [currentFilter, setCurrentFilter] = useState('');
+  const [artistId, setArtistId] = useState('');
 
   // Create a form
   const {
@@ -22,37 +23,38 @@ const useItemsAddPage = () => {
     setFormValues,
   } = useFormArray<ItemAddExt>();
 
-  const { error, isLoading, putData } = useServerApi<ItemAdd[]>();
+  const { error, isLoading, putData } = useServerApi<unknown>();
+
+  const handleFilterChange = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setArtistId(event.target.value);
+    },
+    [],
+  );
+
+  const defaultObject = useMemo(() => getDefaultObject<ItemAddExt>(), []);
+
+  // Map database to form
+  const mapDataToForm = useCallback(() => {
+    const ret: ItemAddExt[] = Array.from(
+      { length: ITEM_COUNT },
+      (_, index) => ({ ...defaultObject, lineId: index + 1 }),
+    );
+    return ret;
+  }, [defaultObject]);
 
   useEffect(() => {
     setFormValues(mapDataToForm());
-  }, [setFormValues]);
+  }, [mapDataToForm, setFormValues]);
 
   // Handle save
   const saveItems = useCallback(
     async (updates: ItemAdd[]) => {
-      return putData(ServiceUrl.ENDPOINT_ITEMS, updates);
+      const cleanedData = removeEmptyAttributes(updates);
+      return putData(ServiceUrl.ENDPOINT_ITEMS, cleanedData);
     },
     [putData],
   );
-
-  // Map database to form
-  const mapDataToForm = () => {
-    const ret: ItemAddExt[] | undefined = Array.from(
-      { length: ITEM_COUNT },
-      (_, index) => ({
-        artisticPeriod: '',
-        artistId: 0,
-        description: '',
-        lineId: index + 1,
-        location: '',
-        officialWebAddress: '',
-        tags: '',
-        title: '',
-      }),
-    );
-    return ret;
-  };
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -71,19 +73,16 @@ const useItemsAddPage = () => {
     setFormValues(mapDataToForm());
   };
 
-  const handleSetFilter = () => {
-    setCurrentFilter(getFieldValue(1, 'artist'));
-  };
-
   // Only submit updated records
   const getUpdates = useCallback(() => {
     const ret: ItemAdd[] = [];
+    const artistIdNum = Number(artistId);
     for (const i of getIndex()) {
       const item: ItemAddExt | null = getItem(i.lineId);
       if (item) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { lineId, ...rest } = item;
-        const newItem: ItemAdd = { ...rest };
+        const newItem: ItemAdd = { ...rest, artistId: artistIdNum };
         // Check for empty objects
         const isEmpty = Object.values(newItem).every((x) => x === '');
         if (!isEmpty) {
@@ -91,11 +90,14 @@ const useItemsAddPage = () => {
         }
       }
     }
-    return ret.length > 0 ? ret : undefined;
-  }, [getIndex, getItem]);
+    // Remove empty titles
+    const filtered = ret.filter((x) => x.title && x.title.trim() !== '');
+    return filtered.length > 0 ? filtered : null;
+  }, [artistId, getIndex, getItem]);
 
   const handleSubmit = useCallback(() => {
     const updates = getUpdates();
+
     if (!updates) {
       setErrorMessage('No changes to save');
       return;
@@ -129,13 +131,13 @@ const useItemsAddPage = () => {
   }, [getUpdates, setMessage, saveItems, setErrorMessage, error]);
 
   return {
-    currentFilter,
+    artistId,
     data: formValues,
     error,
     getFieldValue,
     handleChange,
     handleClear,
-    handleSetFilter,
+    handleFilterChange,
     handleSubmit,
     isLoading,
     setFieldValue,

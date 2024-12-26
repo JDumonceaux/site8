@@ -13,8 +13,11 @@ const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
   const { error, fetch, isLoading, itemsAsListItem } = useArtistItems();
 
   useEffect(() => {
+    if (!artistId || artistId === '') {
+      return;
+    }
     fetch(artistId);
-  }, [artistId, fetch]);
+  }, [artistId]);
 
   return (
     <StickyMenu>

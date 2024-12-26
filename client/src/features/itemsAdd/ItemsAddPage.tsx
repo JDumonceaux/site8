@@ -1,10 +1,8 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
 
-import Button from 'components/core/Button/Button';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import { IconMenuItem } from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
 import Layout from 'components/layouts/Layout/Layout';
 import MenuBar from 'features/imagesEdit/MenuBar';
@@ -18,28 +16,21 @@ import useItemsAddPage from './useItemsAddPage';
 
 const ItemsAddPage = (): React.JSX.Element => {
   const {
+    artistId,
     data,
     error,
     getFieldValue,
     handleChange,
     handleClear,
-    handleSetFilter,
+    handleFilterChange,
     handleSubmit,
     isLoading,
   } = useItemsAddPage();
-  const [artistId, setArtistId] = useState('');
 
   const { artistsIndexed, locationsIndexed, namesIndexed, periodsIndexed } =
     useItems();
 
   const { artistsAsListItem } = useArtists();
-
-  const handleFilterChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setArtistId(event.target.value);
-    },
-    [],
-  );
 
   const title = 'Add Items';
 
@@ -48,11 +39,7 @@ const ItemsAddPage = (): React.JSX.Element => {
       <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
-          <MenuBar handleClear={handleClear} handleSubmit={handleSubmit}>
-            <IconMenuItem key="set-filter">
-              <Button onClick={handleSetFilter}>handleSetFilter</Button>
-            </IconMenuItem>
-          </MenuBar>
+          <MenuBar handleClear={handleClear} handleSubmit={handleSubmit} />
         </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>

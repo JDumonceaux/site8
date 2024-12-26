@@ -63,6 +63,10 @@ const ItemDetail = ({
           placeholder="Title"
         />
         <Input.Text
+          {...getDefaultProps(item.lineId, 'year')}
+          placeholder="Year"
+        />
+        <Input.Text
           {...getDefaultProps(item.lineId, 'location')}
           dataList={{ data: locations, id: 'locations' }}
           placeholder="Location"
@@ -77,13 +81,9 @@ const ItemDetail = ({
           rows={5}
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'year')}
-          placeholder="Year"
-        />
-        <Input.Text
           {...getDefaultProps(item.lineId, 'artisticPeriod')}
           dataList={{ data: periods, id: 'periods' }}
-          placeholder="Period"
+          placeholder="Artistic Period"
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'tags')}
