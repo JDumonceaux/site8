@@ -70,7 +70,7 @@ const ImageDetail = ({
         <Input.Select
           {...getDefaultPropsSelect(item.lineId, 'itemId')}
           dataList={names}
-          placeholder="itemId"
+          placeholder="Item"
         />
         <Input.Text
           {...getDefaultProps(item.lineId, 'fileName')}
