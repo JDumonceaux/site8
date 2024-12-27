@@ -4,7 +4,7 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
-import useItems from 'features/itemsAdd/useItems';
+import useArtistsItems from 'features/itemsAdd/useArtistsItems';
 import { styled } from 'styled-components';
 
 import ImageDetail from './ImageDetail';
@@ -31,7 +31,7 @@ const ImagesEditPage = (): React.JSX.Element => {
     isLoading,
   } = useImagesEditPage();
 
-  const { artistsNamesIndexed } = useItems();
+  const { itemsAsListItem } = useArtistsItems();
 
   return (
     <>
@@ -54,7 +54,7 @@ const ImagesEditPage = (): React.JSX.Element => {
                   getFieldValue={getFieldValue}
                   item={item}
                   key={item.lineId}
-                  names={artistsNamesIndexed}
+                  names={itemsAsListItem}
                   onChange={handleChange}
                   onDelete={handleDelete}
                 />

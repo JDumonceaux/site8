@@ -5,7 +5,11 @@ import useServerApi from 'hooks/Axios/useServerApi';
 import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
-import { getDefaultObject, removeEmptyAttributes } from 'lib/utils/objectUtil';
+import {
+  getDefaultObject,
+  removeEmptyAttributes,
+  removeEmptyAttributesArray,
+} from 'lib/utils/objectUtil';
 
 const ITEM_COUNT = 10;
 
@@ -50,7 +54,7 @@ const useItemsAddPage = () => {
   // Handle save
   const saveItems = useCallback(
     async (updates: ItemAdd[]) => {
-      const cleanedData = removeEmptyAttributes(updates);
+      const cleanedData = removeEmptyAttributesArray(updates);
       return putData(ServiceUrl.ENDPOINT_ITEMS, cleanedData);
     },
     [putData],

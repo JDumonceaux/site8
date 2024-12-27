@@ -142,11 +142,16 @@ export class ItemsService {
 
   public async putItems(items: ReadonlyArray<ItemAdd>) {
     try {
-      const data = await this.readFile();
-      const updates: Item[] = data?.items || [];
+      if (!Array.isArray(items)) {
+        return Promise.reject(
+          new Error(`Put Items failed. Data is not an array`),
+        );
+      }
 
+      const data = await this.readFile();
+      const updates: Item[] = data?.items ? [...data.items] : [];
       for (const item of items) {
-        const id = getNextId(updates) || 1;
+        const id = (await this.getNextId()) || 1;
         updates.push({
           ...item,
           id,
@@ -158,10 +163,10 @@ export class ItemsService {
         metadata: data?.metadata || { title: 'Items' },
         items: updates,
       });
-      return ret;
+      return Promise.resolve(ret);
     } catch (error) {
       Logger.error(`ItemsService: Put Items -> ${error}`);
     }
-    return false;
+    return Promise.reject(new Error(`Put Items failed. Error: unknown`));
   }
 }

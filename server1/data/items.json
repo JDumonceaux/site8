@@ -480,43 +480,30 @@
       "artisticPeriod": "Italian Baroque",
       "year": "1609",
       "artistId": 25,
-      "id": 20
+      "id": 20,
+      "description": "A dramatic painting depicting David holding the severed head of Goliath.",
+      "location": "Galleria Borghese, Rome, Italy",
+      "officialWebAddress": "https://www.galleriaborghese.beniculturali.it/en/opera/david-with-the-head-of-goliath"
     },
     {
-      "artistId": null,
-      "id": 21
+      "title": "Bacchus",
+      "artistId": 25,
+      "id": 21,
+      "artisticPeriod": "Italian Baroque",
+      "description": "A painting depicting Bacchus, the Roman god of wine, in a relaxed pose.",
+      "location": "Uffizi Gallery, Florence, Italy",
+      "officialWebAddress": "https://www.uffizi.it/en/artworks/bacchus",
+      "year": "1595"
     },
     {
-      "artistId": null,
-      "id": 22
-    },
-    {
-      "artistId": null,
-      "id": 23
-    },
-    {
-      "artistId": null,
-      "id": 24
-    },
-    {
-      "artistId": null,
-      "id": 25
-    },
-    {
-      "artistId": null,
-      "id": 26
-    },
-    {
-      "artistId": null,
-      "id": 27
-    },
-    {
-      "artistId": null,
-      "id": 28
-    },
-    {
-      "artistId": null,
-      "id": 29
+      "title": "The Calling of Saint Matthew",
+      "artistId": 25,
+      "id": 22,
+      "artisticPeriod": "Italian Baroque",
+      "description": "A painting depicting Jesus calling Matthew to follow him.",
+      "location": "Contarelli Chapel, San Luigi dei Francesi, Rome, Italy",
+      "officialWebAddress": "https://www.churches-of-rome.info/CoR_Info/San_Luigi_dei_Francesi.html",
+      "year": "1599-1600"
     }
   ]
 }

@@ -24,11 +24,21 @@ export const getDefaultObject = <T>(): T => {
   return ret as T;
 };
 
+export const removeEmptyAttributesArray = <T>(
+  obj: T[],
+): null | Partial<T>[] => {
+  if (!Array.isArray(obj) || obj.length === 0) {
+    return null;
+  }
+
+  return obj.map((x) => removeEmptyAttributes<T>(x));
+};
+
 export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
   // Remove null and undefined attributes
   const temp = Object.fromEntries(
     Object.entries(obj as Record<string, unknown>)
-      .filter(([_, v]) => v != null)
+      .filter(([_, v]) => v !== null)
       .filter(([_, v]) => v !== undefined),
   );
   for (const k in temp) {
@@ -88,6 +98,7 @@ export const getNextId = <T extends IdType>(
   if (items.length > 0) {
     const sortedArray = items.toSorted((a, b) => a.id - b.id);
     // Iterate through the array to find the missing id
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < sortedArray.length; i++) {
       const nextId = sortedArray[0].id + i;
       const y = sortedArray.find((x) => x.id === nextId);
@@ -121,6 +132,7 @@ export const getNextIdFromPos = <T extends IdType>(
   // Start with the first id in the sorted array
   let nextId = sortedArray.length > start ? sortedArray[start].id : 1;
   // Iterate through the array to find the missing id
+  // eslint-disable-next-line no-plusplus
   for (let i = start; i < sortedArray.length; i++) {
     const y = sortedArray.find((x) => x.id === nextId);
     if (!y) {
