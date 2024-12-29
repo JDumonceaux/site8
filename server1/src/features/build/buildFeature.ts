@@ -1,22 +1,18 @@
 import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
-type Params = {
-  filename: string;
-};
 
-const service = ServiceFactory.getFileService();
+const service = ServiceFactory.getBuildService();
 
-export const getFile = async (
-  req: Request<Params>,
+export const buildFeature = async (
+  _req: Request<unknown>,
   res: Response<unknown>,
   next: NextFunction,
 ) => {
-  Logger.debug(`Get File called`);
-  const { filename } = req.params;
+  Logger.debug(`Build Feature called`);
 
   await service
-    .getFile(filename.trim() + '.json')
+    .build('artist')
     .then((response: unknown) => {
       if (response) {
         res.status(200).json(response);

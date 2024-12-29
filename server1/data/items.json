@@ -504,6 +504,56 @@
       "location": "Contarelli Chapel, San Luigi dei Francesi, Rome, Italy",
       "officialWebAddress": "https://www.churches-of-rome.info/CoR_Info/San_Luigi_dei_Francesi.html",
       "year": "1599-1600"
+    },
+    {
+      "artistId": 4,
+      "title": "Starry Night",
+      "year": "1889",
+      "id": 23,
+      "description": "A famous painting depicting a swirling night sky over a small town.",
+      "location": "Museum of Modern Art, New York, USA",
+      "officialWebAddress": "https://www.moma.org/collection/works/79802",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Sunflowers",
+      "year": "1888",
+      "id": 24,
+      "description": "A series of paintings depicting sunflowers in a vase.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0031V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Bedroom",
+      "year": "1888",
+      "id": 25,
+      "description": "A painting of Van Gogh's bedroom in Arles.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0032V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Irises",
+      "year": "1889",
+      "id": 26,
+      "description": "A painting of blooming irises.",
+      "location": "J. Paul Getty Museum, Los Angeles, USA",
+      "officialWebAddress": "https://www.getty.edu/art/collection/objects/1297/",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Wheatfield with Crows",
+      "year": "1890",
+      "id": 27,
+      "description": "A dramatic painting of a wheat field under a stormy sky with crows.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0033V1962",
+      "artisticPeriod": "Post-Impressionism"
     }
   ]
 }

@@ -17,6 +17,7 @@ import { photosRouter } from './routes/photosRouter.js';
 import { testsRouter } from './routes/testsRouter.js';
 import { artistsRouter } from './routes/artistsRouter.js';
 import { artistRouter } from './routes/artistRouter.js';
+import { buildRouter } from './routes/buildRouter.js';
 
 const app = express();
 
@@ -111,6 +112,8 @@ app.use('/api/items', itemsRouter);
 app.use('/api/menus', menuRouter);
 app.use('/api/page', pageRouter, limiter);
 app.use('/api/pages', pagesRouter);
+
+app.use('/api/build', buildRouter);
 
 app.use('*', (_req: Request, res: Response) => {
   res.status(404).send('API Not Found');

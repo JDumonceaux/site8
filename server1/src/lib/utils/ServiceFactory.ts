@@ -11,6 +11,7 @@ import { PageService } from '../../features/page/PageService.js';
 import { PagesService } from '../../features/pages/PagesService.js';
 import { PhotosService } from '../../features/photos/PhotosService.js';
 import { TestsService } from '../../features/tests/TestsService.js';
+import { BuildService } from 'src/features/build/BuildService.js';
 
 export class ServiceFactory {
   public static getArtistsService() {
@@ -19,7 +20,9 @@ export class ServiceFactory {
   public static getBookmarksService() {
     return new BookmarksService();
   }
-
+  public static getBuildService() {
+    return new BuildService();
+  }
   public static getFileService() {
     return new FileService();
   }

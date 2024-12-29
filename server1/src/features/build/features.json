@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "artist",
+      "description": "Single page application for artist",
+      "types": [
+        {
+          "name": "Artist",
+          "fields": [
+            {
+              "name": "name",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "image",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

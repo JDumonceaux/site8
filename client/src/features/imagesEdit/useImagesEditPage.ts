@@ -5,6 +5,7 @@ import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
+import { getDefaultObject, isDeepEqual } from 'lib/utils/objectUtil';
 import type { Image, Images } from 'types';
 
 import type { ImageAdd, ImageAddExt } from './ImageAdd';
@@ -14,6 +15,7 @@ const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
   const [displayData, setDisplayData] = useState<Image[]>([]);
+  const [originalValues, setOriginalValues] = useState<ImageAddExt[]>([]);
 
   const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
@@ -55,23 +57,21 @@ const useImagesEditPage = () => {
 
   useEffect(() => {
     // The full set of items
-    setFormValues(mapDataToForm(displayData));
-  }, [filter, displayData, setFormValues]);
+    const temp = mapDataToForm(displayData);
+    setFormValues(temp);
+    setOriginalValues(temp);
+  }, [displayData, setFormValues]);
 
-  const mapDataToForm = (items: ImageAddExt[] | undefined) => {
+  const mapDataToForm = (items: Image[] | undefined) => {
     if (!items) {
       return [];
     }
     const ret: ImageAddExt[] | undefined = items.map((x, index) => {
+      const temp = getDefaultObject<ImageAddExt>();
       return {
-        fileName: x.fileName || '',
-        folder: x.folder ?? '',
-        id: x.id || 0,
-        isDuplicate: x.isDuplicate ?? false,
-        isSelected: false,
-        itemId: x.itemId || 0,
+        ...temp,
+        ...x,
         lineId: index + 1,
-        official_url: x.official_url ?? '',
         src: getSRC(x.folder, x.fileName),
       };
     });
@@ -111,44 +111,26 @@ const useImagesEditPage = () => {
   const getUpdates = useCallback(() => {
     const returnValue: ImageAdd[] = [];
 
-    for (const item of displayData) {
-      const items = formValues.filter((x) => x.id === item.id);
-      if (items.length > 1) {
-        // eslint-disable-next-line no-console
-        console.warn('Duplicate items found.  Please correct index');
-      }
+    // loop through originals
+    for (const item of originalValues) {
       const current = formValues.find((x) => x.id === item.id);
+
       if (current) {
-        const tempOfficialUrl = getDifferenceString(
-          item.official_url,
-          current.official_url,
-        );
-        const tempFolder = getDifferenceString(item.folder, current.folder);
-        const tempFileName = getDifferenceString(
-          item.fileName,
-          current.fileName,
-        );
-
-        const hasChanges = [
-          tempOfficialUrl.hasChange,
-          tempFolder.hasChange,
-          tempFileName.hasChange,
-        ].some(Boolean);
-
-        if (hasChanges) {
+        const isEqual = isDeepEqual(item, current);
+        if (!isEqual) {
           returnValue.push({
-            fileName: tempFileName.value ?? item.fileName,
-            folder: tempFolder.value,
+            fileName: item.fileName,
+            folder: item.folder,
             id: item.id,
             itemId: item.itemId,
-            official_url: tempOfficialUrl.value,
+            official_url: item.official_url,
           });
         }
       }
     }
 
     return returnValue.length > 0 ? returnValue : undefined;
-  }, [displayData, formValues]);
+  }, [formValues, originalValues]);
 
   const handleSubmit = useCallback(() => {
     const updates = getUpdates();

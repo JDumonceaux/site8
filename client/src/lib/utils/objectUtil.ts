@@ -1,6 +1,6 @@
-export const getDefaultObject = <T>(): T => {
+export const getDefaultObject = (): unknown => {
   const ret: Record<string, unknown> = {};
-  const obj = {} as T;
+  const obj = {} as unknown;
   if (typeof obj === 'object' && obj !== null) {
     for (const key in obj) {
       if (Object.hasOwn(obj, key)) {
@@ -21,7 +21,37 @@ export const getDefaultObject = <T>(): T => {
       }
     }
   }
-  return ret as T;
+  return ret as unknown;
+};
+
+export const isDeepEqual = (
+  object1: Record<string, unknown>,
+  object2: Record<string, unknown>,
+) => {
+  const objKeys1 = Object.keys(object1);
+  const objKeys2 = Object.keys(object2);
+
+  if (objKeys1.length !== objKeys2.length) return false;
+
+  for (const key of objKeys1) {
+    const value1 = object1[key];
+    const value2 = object2[key];
+
+    const isObjects = typeof value1 === 'object' && typeof value2 === 'object';
+
+    if (
+      (isObjects &&
+        value1 !== null &&
+        !isDeepEqual(
+          value1 as Record<string, unknown>,
+          value2 as Record<string, unknown>,
+        )) ||
+      (!isObjects && value1 !== value2)
+    ) {
+      return false;
+    }
+  }
+  return true;
 };
 
 export const removeEmptyAttributesArray = <T>(

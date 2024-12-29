@@ -1,5 +1,3 @@
-import console from 'console';
-
 const textToListItem = (value: string) => {
   return value
     .split('\n')
@@ -50,8 +48,7 @@ export const insertHTML = (
         return textBefore + textMiddle + textAfter;
       }
     }
-  } catch (error) {
-    console.error('Error parsing date:', error);
+  } catch {
     return null;
   }
 };

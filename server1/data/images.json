@@ -12169,7 +12169,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8249.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1522,
@@ -12177,7 +12178,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8250.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1523,
@@ -12185,7 +12187,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8251.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1524,
@@ -12193,7 +12196,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8252.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1525,
@@ -12201,7 +12205,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8253.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1526,
@@ -12209,7 +12214,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8254.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1527,
@@ -12217,7 +12223,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8255.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1528,
@@ -12225,7 +12232,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8256.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1529,
@@ -12233,7 +12241,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8257.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1530,
@@ -12241,7 +12250,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8258.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1531,
@@ -12249,7 +12259,8 @@
       "edit_date": "2024-10-08T02:02:09.582Z",
       "fileName": "IMG_8259.JPG",
       "folder": "sort",
-      "isNewItem": true
+      "isNewItem": false,
+      "originalFolder": "sort"
     },
     {
       "id": 1532,
@@ -12258,6 +12269,7 @@
       "fileName": "IMG_8260.PNG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12269,6 +12281,7 @@
       "fileName": "IMG_8261.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12280,6 +12293,7 @@
       "fileName": "IMG_8262.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12291,6 +12305,7 @@
       "fileName": "IMG_8263.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12324,6 +12339,7 @@
       "fileName": "IMG_8266.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12335,6 +12351,7 @@
       "fileName": "IMG_8267.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12379,6 +12396,7 @@
       "fileName": "IMG_8271.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12390,6 +12408,7 @@
       "fileName": "IMG_8272.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12401,6 +12420,7 @@
       "fileName": "IMG_8273.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12412,6 +12432,7 @@
       "fileName": "IMG_8274.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12423,6 +12444,7 @@
       "fileName": "IMG_8275.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12442,6 +12464,7 @@
       "fileName": "IMG_8277.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12453,6 +12476,7 @@
       "fileName": "IMG_8278.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12477,6 +12501,7 @@
       "fileName": "IMG_8280.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12488,6 +12513,7 @@
       "fileName": "IMG_8281.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12499,6 +12525,7 @@
       "fileName": "IMG_8282.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12510,6 +12537,7 @@
       "fileName": "IMG_8283.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12521,6 +12549,7 @@
       "fileName": "IMG_8284.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12532,6 +12561,7 @@
       "fileName": "IMG_8285.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12543,6 +12573,7 @@
       "fileName": "IMG_8286.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12554,6 +12585,7 @@
       "fileName": "IMG_8287.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12565,6 +12597,7 @@
       "fileName": "IMG_8288.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12587,6 +12620,7 @@
       "fileName": "IMG_8290.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12598,6 +12632,7 @@
       "fileName": "IMG_8291.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12620,6 +12655,7 @@
       "fileName": "IMG_8293.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12631,6 +12667,7 @@
       "fileName": "IMG_8294.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12642,6 +12679,7 @@
       "fileName": "IMG_8295.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12653,6 +12691,7 @@
       "fileName": "IMG_8296.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12664,6 +12703,7 @@
       "fileName": "IMG_8297.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12675,6 +12715,7 @@
       "fileName": "IMG_8298.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12686,6 +12727,7 @@
       "fileName": "IMG_8299.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12697,6 +12739,7 @@
       "fileName": "IMG_8300.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12708,6 +12751,7 @@
       "fileName": "IMG_8301.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12719,6 +12763,7 @@
       "fileName": "IMG_8302.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12730,6 +12775,7 @@
       "fileName": "IMG_8303.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12741,6 +12787,7 @@
       "fileName": "IMG_8304.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12752,6 +12799,7 @@
       "fileName": "IMG_8305.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12763,6 +12811,7 @@
       "fileName": "IMG_8306.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12774,6 +12823,7 @@
       "fileName": "IMG_8307.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12785,6 +12835,7 @@
       "fileName": "IMG_8308.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12796,6 +12847,7 @@
       "fileName": "IMG_8309.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12807,6 +12859,7 @@
       "fileName": "IMG_8310.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12818,6 +12871,7 @@
       "fileName": "IMG_8311.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12829,6 +12883,7 @@
       "fileName": "IMG_8312.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12848,6 +12903,7 @@
       "fileName": "IMG_8314.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12859,6 +12915,7 @@
       "fileName": "IMG_8315.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12870,6 +12927,7 @@
       "fileName": "IMG_8316.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12881,6 +12939,7 @@
       "fileName": "IMG_8317.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12892,6 +12951,7 @@
       "fileName": "IMG_8318.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12925,6 +12985,7 @@
       "fileName": "IMG_8321.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12936,6 +12997,7 @@
       "fileName": "IMG_8322.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12947,6 +13009,7 @@
       "fileName": "IMG_8323.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12958,6 +13021,7 @@
       "fileName": "IMG_8324.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -12994,6 +13058,7 @@
       "fileName": "IMG_8327.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13014,8 +13079,9 @@
       "create_date": "2024-10-08T02:02:09.583Z",
       "edit_date": "2024-10-08T02:02:09.583Z",
       "fileName": "IMG_8329.JPG",
-      "folder": "sort",
+      "folder": "art",
       "isNewItem": false,
+      "originalFolder": "art",
       "tags": [
         ""
       ]
@@ -13035,6 +13101,7 @@
       "fileName": "IMG_8331.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13046,6 +13113,7 @@
       "fileName": "IMG_8332.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13057,6 +13125,7 @@
       "fileName": "IMG_8333.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13068,6 +13137,7 @@
       "fileName": "IMG_8334.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13079,6 +13149,7 @@
       "fileName": "IMG_8335.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13090,6 +13161,7 @@
       "fileName": "IMG_8336.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13101,6 +13173,7 @@
       "fileName": "IMG_8337.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13112,6 +13185,7 @@
       "fileName": "IMG_8338.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13123,6 +13197,7 @@
       "fileName": "IMG_8339.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13134,6 +13209,7 @@
       "fileName": "IMG_8340.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13145,6 +13221,7 @@
       "fileName": "IMG_8341.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13156,6 +13233,7 @@
       "fileName": "IMG_8342.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13167,6 +13245,7 @@
       "fileName": "IMG_8343.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13178,6 +13257,7 @@
       "fileName": "IMG_8344.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13189,6 +13269,7 @@
       "fileName": "IMG_8345.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13200,6 +13281,7 @@
       "fileName": "IMG_8346.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13211,6 +13293,7 @@
       "fileName": "IMG_8347.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13222,6 +13305,7 @@
       "fileName": "IMG_8348.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13233,6 +13317,7 @@
       "fileName": "IMG_8349.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13244,6 +13329,7 @@
       "fileName": "IMG_8350.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13265,6 +13351,7 @@
       "fileName": "IMG_8352.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13276,6 +13363,7 @@
       "fileName": "IMG_8353.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13287,6 +13375,7 @@
       "fileName": "IMG_8354.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13298,6 +13387,7 @@
       "fileName": "IMG_8355.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13309,6 +13399,7 @@
       "fileName": "IMG_8356.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13320,6 +13411,7 @@
       "fileName": "IMG_8357.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13331,6 +13423,7 @@
       "fileName": "IMG_8358.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13342,6 +13435,7 @@
       "fileName": "IMG_8359.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13366,6 +13460,7 @@
       "fileName": "IMG_8361.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13377,6 +13472,7 @@
       "fileName": "IMG_8362.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13412,6 +13508,7 @@
       "fileName": "IMG_8365.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13463,6 +13560,7 @@
       "fileName": "IMG_8369.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13491,6 +13589,7 @@
       "fileName": "IMG_8372.JPG",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]
@@ -13562,6 +13661,7 @@
       "fileName": "USBankTeam.webp",
       "folder": "sort",
       "isNewItem": false,
+      "originalFolder": "sort",
       "tags": [
         ""
       ]

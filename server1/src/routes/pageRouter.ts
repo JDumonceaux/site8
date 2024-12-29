@@ -10,7 +10,7 @@ export const pageRouter = express.Router();
 
 const validationStack = [requireId];
 
-pageRouter.get('/id', validationStack, getItem);
-pageRouter.delete('/id', validationStack, deleteItem);
+pageRouter.get('/:id', validationStack, getItem);
+pageRouter.delete('/:id', validationStack, deleteItem);
 pageRouter.put('/', putItem);
 pageRouter.patch('/', patchItem);
