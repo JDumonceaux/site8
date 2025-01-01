@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { readFile, writeFile } from 'fs/promises';
 import { Logger } from '../../lib/utils/logger.js';
-import FilePath from 'src/lib/utils/FilePath.js';
+import FilePath from '../../lib/utils/FilePath.js';
 
 export class FileService {
   public async getDataFile(fileName: string): Promise<string | undefined> {

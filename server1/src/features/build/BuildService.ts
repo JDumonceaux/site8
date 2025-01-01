@@ -1,8 +1,8 @@
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from 'src/lib/utils/ServiceFactory.js';
+import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 import { Features } from './Features.js';
 import { buildServerType } from './buildServerType.js';
-import FilePath from 'src/lib/utils/FilePath.js';
+import FilePath from '../../lib/utils/FilePath.js';
 import path from 'path';
 
 export class BuildService {

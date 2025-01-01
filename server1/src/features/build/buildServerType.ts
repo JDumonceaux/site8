@@ -2,10 +2,10 @@ import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 import { Feature } from './Features.js';
 
-const service = ServiceFactory.getFileService();
-
 export const buildServerType = async (data: Feature, path: string) => {
   Logger.debug(`Build Feature called`);
+
+  const service = ServiceFactory.getFileService();
 
   const ret: string[] = [];
   const fields = data?.types?.[0]?.fields?.toSorted((a, b) =>

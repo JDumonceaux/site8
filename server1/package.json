@@ -1,10 +1,10 @@
 {
   "name": "server1",
   "version": "0.1.0",
-  "description": "api service for the application",
+  "description": "API service for the application",
   "type": "module",
   "engines": {
-    "node": ">= 20.11"
+    "node": ">=20.11.0"
   },
   "scripts": {
     "start": "npm run build && node dist/server.js",
@@ -13,8 +13,8 @@
     "precommit": "pretty-quick --staged",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
-    "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
-    "prepare": "husky",
+    "lint:format": "prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
+    "prepare": "husky install",
     "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
     "knip": "knip --production"
   },
@@ -33,7 +33,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
-    "@types/express": "4.17.21",
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.3",
     "@types/validator": "^13.12.1",
@@ -55,8 +55,21 @@
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.19.0"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "api",
+    "express",
+    "typescript",
+    "nodejs"
+  ],
+  "author": "John Doe <john.doe@example.com>",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/repository.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/repository/issues"
+  },
+  "homepage": "https://github.com/username/repository#readme"
 }
