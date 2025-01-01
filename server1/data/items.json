@@ -554,6 +554,1336 @@
       "location": "Van Gogh Museum, Amsterdam, Netherlands",
       "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0033V1962",
       "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Almond Blossom",
+      "year": "1890",
+      "id": 28,
+      "description": "A painting of almond tree branches in bloom against a blue sky.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0034V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Bridge at Arles",
+      "year": "1888",
+      "id": 29,
+      "description": "A painting of a bridge over the Rhône River in Arles.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0035V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Café Terrace at Night",
+      "year": "1888",
+      "id": 30,
+      "description": "A painting of a café terrace at night in Arles.",
+      "location": "Kröller-Müller Museum, Otterlo, Netherlands",
+      "officialWebAddress": "https://krollermuller.nl/en/vincent-van-gogh-cafe-terrace-at-night",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Chrysanthemums",
+      "year": "1887",
+      "id": 31,
+      "description": "A painting of a vase of chrysanthemums.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0036V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Cottages in Auvers",
+      "year": "1890",
+      "id": 32,
+      "description": "A painting of cottages in Auvers-sur-Oise.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0037V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Cypress Trees",
+      "year": "1889",
+      "id": 33,
+      "description": "A painting of cypress trees in a field.",
+      "location": "Metropolitan Museum of Art, New York, USA",
+      "officialWebAddress": "https://www.metmuseum.org/art/collection/search/436535",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Farmhouses in Auvers",
+      "year": "1890",
+      "id": 34,
+      "description": "A painting of farmhouses in Auvers-sur-Oise.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0038V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Farms near Auvers",
+      "year": "1889",
+      "id": 35,
+      "description": "A painting of farms near Auvers-sur-Oise.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0039V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Field with Poppies",
+      "year": "1889",
+      "id": 36,
+      "description": "A painting of a field with poppies.",
+      "location": "Kunstmuseum, Basel, Switzerland",
+      "officialWebAddress": "https://kunstmuseumbasel.ch/en/collection/objects/123456",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Garden of the Asylum",
+      "year": "1889",
+      "id": 37,
+      "description": "A painting of the garden of the asylum in Saint-Rémy.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0040V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Harvest at La Crau",
+      "year": "1888",
+      "id": 38,
+      "description": "A painting of the harvest at La Crau.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0041V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Irises",
+      "year": "1887",
+      "id": 39,
+      "description": "A painting of irises in a garden.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0042V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Irises",
+      "year": "1889",
+      "id": 40,
+      "description": "A painting of irises in a garden.",
+      "location": "J. Paul Getty Museum, Los Angeles, USA",
+      "officialWebAddress": "https://www.getty.edu/art/collection/objects/1297/",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "L'Arlésienne (Madame Ginoux)",
+      "year": "1888–89",
+      "id": 41,
+      "description": "A portrait of Madame Ginoux, an Arlesienne.",
+      "location": "Musée d'Orsay, Paris, France",
+      "officialWebAddress": "https://www.musee-orsay.fr/en/collections/works-in-focus/painting/commentaire_id/larlesienne-madame-ginoux-11052.html",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "La Berceuse",
+      "year": "1889",
+      "id": 42,
+      "description": "A painting of a woman rocking a cradle.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0043V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "La Mousmé",
+      "year": "1888",
+      "id": 43,
+      "description": "A painting of a young Provençal girl.",
+      "location": "National Gallery of Art, Washington, D.C., USA",
+      "officialWebAddress": "https://www.nga.gov/collection/art-object-page.123456.html",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Landscape at Saint-Rémy",
+      "year": "1889",
+      "id": 44,
+      "description": "A painting of the landscape at Saint-Rémy.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0044V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Landscape with a Carriage and a Train",
+      "year": "1890",
+      "id": 45,
+      "description": "A painting of a landscape with a carriage and a train.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0045V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Olive Trees",
+      "year": "1889",
+      "id": 46,
+      "description": "A painting of olive trees in a field.",
+      "location": "Museum of Modern Art, New York, USA",
+      "officialWebAddress": "https://www.moma.org/collection/works/79803",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Olive Trees with the Alpilles in the Background",
+      "year": "1889",
+      "id": 47,
+      "description": "A painting of olive trees with the Alpilles mountains in the background.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0046V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Peasant Woman Against a Background of Wheat",
+      "year": "1890",
+      "id": 48,
+      "description": "A painting of a peasant woman standing against a background of wheat.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0047V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Peasant Woman with a Child",
+      "year": "1883",
+      "id": 49,
+      "description": "A painting of a peasant woman holding a child.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0048V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Peasant Woman with a Spade",
+      "year": "1883",
+      "id": 50,
+      "description": "A painting of a peasant woman holding a spade.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0049V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Peasant Woman with a Straw Hat",
+      "year": "1884",
+      "id": 51,
+      "description": "A painting of a peasant woman wearing a straw hat.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0050V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Pietà (after Delacroix)",
+      "year": "1889",
+      "id": 52,
+      "description": "A painting of the Pietà, inspired by Delacroix.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0051V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Poppy Flowers",
+      "year": "1886",
+      "id": 53,
+      "description": "A painting of poppy flowers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0052V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of Adeline Ravoux",
+      "year": "1887",
+      "id": 54,
+      "description": "A portrait of Adeline Ravoux.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0053V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of Dr. Gachet",
+      "year": "1889",
+      "id": 55,
+      "description": "A portrait of Dr. Gachet.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0054V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of Dr. Gachet",
+      "year": "1890",
+      "id": 56,
+      "description": "A portrait of Dr. Gachet.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0055V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of Eugène Boch",
+      "year": "1888",
+      "id": 57,
+      "description": "A portrait of Eugène Boch.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0056V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of Joseph Roulin",
+      "year": "1888",
+      "id": 58,
+      "description": "A portrait of Joseph Roulin.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0057V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of Pere Tanguy",
+      "year": "1887",
+      "id": 59,
+      "description": "A portrait of Pere Tanguy.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0058V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of a Woman in the Sunlight",
+      "year": "1883",
+      "id": 60,
+      "description": "A portrait of a woman in the sunlight.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0059V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Portrait of the Artist's Mother",
+      "year": "1889",
+      "id": 61,
+      "description": "A portrait of Van Gogh's mother.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0060V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Road with Cypress and Star",
+      "year": "1890",
+      "id": 62,
+      "description": "A painting of a road with a cypress tree and a star.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0061V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Roses",
+      "year": "1889",
+      "id": 63,
+      "description": "A painting of roses.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0062V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Roses",
+      "year": "1890",
+      "id": 64,
+      "description": "A painting of roses.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0063V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Seascape at Scheveningen",
+      "year": "1882",
+      "id": 65,
+      "description": "A painting of the sea at Scheveningen.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0064V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait",
+      "year": "1887",
+      "id": 66,
+      "description": "A self-portrait of Vincent van Gogh.",
+      "location": "Art Institute of Chicago, Chicago, USA",
+      "officialWebAddress": "https://www.artic.edu/artworks/123457/self-portrait",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait",
+      "year": "1889",
+      "id": 67,
+      "description": "A self-portrait of Vincent van Gogh.",
+      "location": "Musée d'Orsay, Paris, France",
+      "officialWebAddress": "https://www.musee-orsay.fr/en/collections/works-in-focus/painting/commentaire_id/self-portrait-11053.html",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait Dedicated to Paul Gauguin",
+      "year": "1888",
+      "id": 68,
+      "description": "A self-portrait dedicated to Paul Gauguin.",
+      "location": "Fogg Art Museum, Cambridge, USA",
+      "officialWebAddress": "https://www.harvardartmuseums.org/collections/object/123456",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait as a Painter",
+      "year": "1888",
+      "id": 69,
+      "description": "A self-portrait of Vincent van Gogh as a painter.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0065V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait with Bandaged Ear",
+      "year": "1889",
+      "id": 70,
+      "description": "A self-portrait of Vincent van Gogh with a bandaged ear.",
+      "location": "Courtauld Gallery, London, UK",
+      "officialWebAddress": "https://courtauld.ac.uk/gallery/collection/self-portrait-with-bandaged-ear/",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait with Pipe",
+      "year": "1889",
+      "id": 71,
+      "description": "A self-portrait of Vincent van Gogh with a pipe.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0066V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait with a Pipe",
+      "year": "1886",
+      "id": 72,
+      "description": "A self-portrait of Vincent van Gogh with a pipe.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0067V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait with a Straw Hat",
+      "year": "1883",
+      "id": 73,
+      "description": "A self-portrait of Vincent van Gogh with a straw hat.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0068V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Self-Portrait with a Straw Hat",
+      "year": "1887",
+      "id": 74,
+      "description": "A self-portrait of Vincent van Gogh with a straw hat.",
+      "location": "Metropolitan Museum of Art, New York, USA",
+      "officialWebAddress": "https://www.metmuseum.org/art/collection/search/436536",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Skull of a Skeleton with a Burning Cigarette",
+      "year": "1886",
+      "id": 75,
+      "description": "A painting of a skull with a burning cigarette.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0069V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Starry Night",
+      "year": "1889",
+      "id": 76,
+      "description": "A famous painting depicting a swirling night sky over a small town.",
+      "location": "Museum of Modern Art, New York, USA",
+      "officialWebAddress": "https://www.moma.org/collection/works/79802",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Starry Night Over the Rhône",
+      "year": "1888",
+      "id": 77,
+      "description": "A painting depicting a starry night over the Rhône River.",
+      "location": "Musée d'Orsay, Paris, France",
+      "officialWebAddress": "https://www.musee-orsay.fr/en/collections/works-in-focus/painting/commentaire_id/starry-night-over-the-rhone-11054.html",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life with Absinthe",
+      "year": "1887",
+      "id": 78,
+      "description": "A painting of a still life with absinthe.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0070V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life with Apples and a Pot of Primroses",
+      "year": "1884",
+      "id": 79,
+      "description": "A painting of apples and a pot of primroses.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0071V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life with Bible",
+      "year": "1889",
+      "id": 80,
+      "description": "A painting of a Bible.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0072V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life with a Basket of Apples",
+      "year": "1888",
+      "id": 81,
+      "description": "A painting of a basket of apples.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0073V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life with a Bible",
+      "year": "1885",
+      "id": 82,
+      "description": "A painting of a Bible.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0074V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life with a Straw Hat",
+      "year": "1887",
+      "id": 83,
+      "description": "A painting of a straw hat.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0075V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life: Vase with Five Sunflowers",
+      "year": "1890",
+      "id": 84,
+      "description": "A painting of a vase with five sunflowers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0076V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Still Life: Vase with Twelve Sunflowers",
+      "year": "1887",
+      "id": 85,
+      "description": "A painting of a vase with twelve sunflowers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0077V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Study of a Man with a Hat",
+      "year": "1883",
+      "id": 86,
+      "description": "A study of a man with a hat.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0078V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Study of a Saint-Remy Tree",
+      "year": "1889",
+      "id": 87,
+      "description": "A study of a tree in Saint-Remy.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0079V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Sunflowers",
+      "year": "1888",
+      "id": 88,
+      "description": "A painting of sunflowers.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0080V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Artist’s Room in the Rue Lepic",
+      "year": "1890",
+      "id": 89,
+      "description": "A painting of the artist's room in the Rue Lepic.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0081V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Avenue of Poplars in Autumn",
+      "year": "1884",
+      "id": 90,
+      "description": "A painting of an avenue of poplars in autumn.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0082V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Beach at Scheveningen",
+      "year": "1882",
+      "id": 91,
+      "description": "A painting of the beach at Scheveningen.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0083V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Bedroom",
+      "year": "1888",
+      "id": 92,
+      "description": "A painting of Van Gogh's bedroom in Arles.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0084V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Bedroom",
+      "year": "1889",
+      "id": 93,
+      "description": "A painting of Van Gogh's bedroom in Arles.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0085V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Blacksmith's Shop",
+      "year": "1890",
+      "id": 94,
+      "description": "A painting of a blacksmith's shop.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0086V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Blue Cart",
+      "year": "1888",
+      "id": 95,
+      "description": "A painting of a blue cart.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0087V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Bridge at Langlois",
+      "year": "1888",
+      "id": 96,
+      "description": "A painting of the bridge at Langlois.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0088V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Church at Auvers",
+      "year": "1890",
+      "id": 97,
+      "description": "A painting of the church at Auvers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0089V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Cottage at the Foot of a Hill",
+      "year": "1883",
+      "id": 98,
+      "description": "A painting of a cottage at the foot of a hill.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0090V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Cottage at the Foot of a Hill",
+      "year": "1890",
+      "id": 99,
+      "description": "A painting of a cottage at the foot of a hill.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0091V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Cottage in Drenthe",
+      "year": "1883",
+      "id": 100,
+      "description": "A painting of a cottage in Drenthe.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0092V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Courtyard of the Asylum",
+      "year": "1884",
+      "id": 101,
+      "description": "A painting of the courtyard of the asylum.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0093V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Courtyard of the Asylum",
+      "year": "1889",
+      "id": 102,
+      "description": "A painting of the courtyard of the asylum.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0094V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Crows Over the Wheatfield",
+      "year": "1890",
+      "id": 103,
+      "description": "A painting of crows over a wheatfield.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0095V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Garden of the Asylum",
+      "year": "1887",
+      "id": 104,
+      "description": "A painting of the garden of the asylum.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0096V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Garden of the Asylum",
+      "year": "1890",
+      "id": 105,
+      "description": "A painting of the garden of the asylum.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0097V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Good Samaritan (after Delacroix)",
+      "year": "1890",
+      "id": 106,
+      "description": "A painting of the Good Samaritan, inspired by Delacroix.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0098V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Hague, Street Scene",
+      "year": "1883",
+      "id": 107,
+      "description": "A painting of a street scene in The Hague.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0099V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Harvest",
+      "year": "1888",
+      "id": 108,
+      "description": "A painting of the harvest.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0100V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Harvest",
+      "year": "1890",
+      "id": 109,
+      "description": "A painting of the harvest.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0101V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Kitchen at Nuenen",
+      "year": "1885",
+      "id": 110,
+      "description": "A painting of the kitchen at Nuenen.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0102V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Large Plane Trees",
+      "year": "1889",
+      "id": 111,
+      "description": "A painting of large plane trees.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0103V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Lovers",
+      "year": "1890",
+      "id": 112,
+      "description": "A painting of lovers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0104V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Man with the Hoe",
+      "year": "1890",
+      "id": 113,
+      "description": "A painting of a man with a hoe.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0105V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Night Café",
+      "year": "1888",
+      "id": 114,
+      "description": "A painting of a night café.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0106V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Night Café in Arles",
+      "year": "1888",
+      "id": 115,
+      "description": "A painting of a night café in Arles.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0107V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Old Beggar",
+      "year": "1883",
+      "id": 116,
+      "description": "A painting of an old beggar.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0108V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Old Guitarist",
+      "year": "1886",
+      "id": 117,
+      "description": "A painting of an old guitarist.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0109V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Old Man in the Wheelchair",
+      "year": "1884",
+      "id": 118,
+      "description": "A painting of an old man in a wheelchair.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0110V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Old Mill",
+      "year": "1888",
+      "id": 119,
+      "description": "A painting of an old mill.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0111V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Olive Trees",
+      "year": "1889",
+      "id": 120,
+      "description": "A painting of olive trees.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0112V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Peasant Family",
+      "year": "1883",
+      "id": 121,
+      "description": "A painting of a peasant family.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0113V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Plain of Auvers",
+      "year": "1890",
+      "id": 122,
+      "description": "A painting of the plain of Auvers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0114V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Poet's Garden",
+      "year": "1888",
+      "id": 123,
+      "description": "A painting of the poet's garden.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0115V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Pond with the Water Lilies",
+      "year": "1889",
+      "id": 124,
+      "description": "A painting of a pond with water lilies.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0116V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Potato Eaters",
+      "year": "1885",
+      "id": 125,
+      "description": "A painting of a peasant family eating potatoes.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0117V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Potato Eaters (Study)",
+      "year": "1884",
+      "id": 126,
+      "description": "A study of a peasant family eating potatoes.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0118V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Ravine",
+      "year": "1890",
+      "id": 127,
+      "description": "A painting of a ravine.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0119V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Red Cabbage and Onions",
+      "year": "1887",
+      "id": 128,
+      "description": "A painting of red cabbage and onions.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0120V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Red Vineyard",
+      "year": "1888",
+      "id": 129,
+      "description": "A painting of a red vineyard.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0121V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Red Vineyard",
+      "year": "1890",
+      "id": 130,
+      "description": "A painting of a red vineyard.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0122V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Red Vineyards",
+      "year": "1884",
+      "id": 131,
+      "description": "A painting of red vineyards.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0123V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Road Menders",
+      "year": "1888",
+      "id": 132,
+      "description": "A painting of road menders.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0124V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Road Menders",
+      "year": "1889",
+      "id": 133,
+      "description": "A painting of road menders.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0125V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Road to the Village",
+      "year": "1890",
+      "id": 134,
+      "description": "A painting of the road to the village.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0126V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Sower",
+      "year": "1888",
+      "id": 135,
+      "description": "A painting of a sower in a field.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0127V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Sower (Study)",
+      "year": "1883",
+      "id": 136,
+      "description": "A study of a sower in a field.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0128V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Starry Night",
+      "year": "1889",
+      "id": 137,
+      "description": "A famous painting depicting a swirling night sky over a small town.",
+      "location": "Museum of Modern Art, New York, USA",
+      "officialWebAddress": "https://www.moma.org/collection/works/79802",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Stone Bench in the Garden of Saint-Paul-de-Mausole",
+      "year": "1889",
+      "id": 138,
+      "description": "A painting of a stone bench in the garden of Saint-Paul-de-Mausole.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0129V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Weaver's Cottage",
+      "year": "1884",
+      "id": 139,
+      "description": "A painting of a weaver's cottage.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0130V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Wheatfield",
+      "year": "1889",
+      "id": 140,
+      "description": "A painting of a wheatfield.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0131V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Wheatfield",
+      "year": "1890",
+      "id": 141,
+      "description": "A painting of a wheatfield.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0132V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The White House at Night",
+      "year": "1887",
+      "id": 142,
+      "description": "A painting of a white house at night.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0133V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The White House at Night",
+      "year": "1889",
+      "id": 143,
+      "description": "A painting of a white house at night.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0134V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Yellow House",
+      "year": "1888",
+      "id": 144,
+      "description": "A painting of the yellow house.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0135V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "The Zouave",
+      "year": "1886",
+      "id": 145,
+      "description": "A painting of a Zouave.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0136V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Tree Roots",
+      "year": "1890",
+      "id": 146,
+      "description": "A painting of tree roots.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0137V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Trees in the Garden of the Asylum",
+      "year": "1889",
+      "id": 147,
+      "description": "A painting of trees in the garden of the asylum.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0138V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Vase with Cornflowers",
+      "year": "1887",
+      "id": 148,
+      "description": "A painting of a vase with cornflowers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0139V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Vase with Fifteen Sunflowers",
+      "year": "1889",
+      "id": 149,
+      "description": "A painting of a vase with fifteen sunflowers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0140V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Vase with Gladioli",
+      "year": "1886",
+      "id": 150,
+      "description": "A painting of a vase with gladioli.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0141V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Vase with Poppies",
+      "year": "1890",
+      "id": 151,
+      "description": "A painting of a vase with poppies.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0142V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Vase with Red Poppies",
+      "year": "1886",
+      "id": 152,
+      "description": "A painting of a vase with red poppies.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0143V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Vase with Twelve Sunflowers",
+      "year": "1888",
+      "id": 153,
+      "description": "A painting of a vase with twelve sunflowers.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0144V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "View of Arles with Irises",
+      "year": "1888",
+      "id": 154,
+      "description": "A painting of a view of Arles with irises.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0145V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "View of Auvers with the Church",
+      "year": "1890",
+      "id": 155,
+      "description": "A painting of a view of Auvers with the church.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0146V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "View of Saint-Rémy-de-Provence",
+      "year": "1889",
+      "id": 156,
+      "description": "A painting of a view of Saint-Rémy-de-Provence.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0147V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Wheatfield Under Thunderclouds",
+      "year": "1890",
+      "id": 157,
+      "description": "A painting of a wheatfield under thunderclouds.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0148V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Wheatfield with Crows",
+      "year": "1890",
+      "id": 158,
+      "description": "A dramatic painting of a wheat field under a stormy sky with crows.",
+      "location": "Van Gogh Museum, Amsterdam, Netherlands",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0033V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Wheatfield with a Reaper",
+      "year": "1889",
+      "id": 159,
+      "description": "A painting of a wheatfield with a reaper.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0149V1962",
+      "artisticPeriod": "Post-Impressionism"
+    },
+    {
+      "artistId": 4,
+      "title": "Woman with a Parasol",
+      "year": "1885",
+      "id": 160,
+      "description": "A painting of a woman with a parasol.",
+      "location": "Private Collection",
+      "officialWebAddress": "https://www.vangoghmuseum.nl/en/collection/s0150V1962",
+      "artisticPeriod": "Post-Impressionism"
     }
   ]
 }
