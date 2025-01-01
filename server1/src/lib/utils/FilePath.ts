@@ -1,19 +1,60 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-export const getAppRoot = () => path.dirname('/src/server.ts');
+class FilePath {
+  static getAppRoot() {
+    return path.dirname('/src/server.ts');
+  }
 
-export const getAppRootAbsolute = () => {
-  const currPath = fileURLToPath(import.meta.url);
-  const iPos = currPath.indexOf('server1');
-  return currPath.substring(0, iPos);
-};
+  static getAppRootAbsolute() {
+    const currPath = fileURLToPath(import.meta.url);
+    const iPos = currPath.indexOf('server1');
+    return currPath.substring(0, iPos);
+  }
 
-export const getImageDirAbsolute = () =>
-  path.join(getAppRootAbsolute(), 'client', 'public', 'images');
+  static getImageDirAbsolute() {
+    return path.join(this.getAppRootAbsolute(), 'client', 'public', 'images');
+  }
 
-export const getDataDirAbsolute = () =>
-  path.join(getAppRootAbsolute(), 'server1', 'data');
+  static getDataDirAbsolute() {
+    return path.join(this.getAppRootAbsolute(), 'server1', 'data');
+  }
 
-export const getDataDir = (fileName: string) =>
-  path.join(getDataDirAbsolute(), fileName);
+  static getDataDir(fileName: string) {
+    return path.join(this.getDataDirAbsolute(), fileName);
+  }
+
+  static getClientRoot() {
+    return path.join(this.getAppRootAbsolute(), 'client');
+  }
+
+  static getServerRoot() {
+    return path.join(this.getAppRootAbsolute(), 'server1');
+  }
+
+  static getClientSrc() {
+    return path.join(this.getAppRootAbsolute(), 'client', 'src');
+  }
+
+  static getServerSrc() {
+    return path.join(this.getAppRootAbsolute(), 'server1', 'src');
+  }
+
+  static getClientTypes() {
+    return path.join(this.getAppRootAbsolute(), 'client', 'src', 'types');
+  }
+
+  static getServerTypes() {
+    return path.join(this.getAppRootAbsolute(), 'server1', 'src', 'types');
+  }
+
+  static getClientFeatures() {
+    return path.join(this.getAppRootAbsolute(), 'client', 'src', 'features');
+  }
+
+  static getServerFeatures() {
+    return path.join(this.getAppRootAbsolute(), 'server1', 'src', 'features');
+  }
+}
+
+export default FilePath;

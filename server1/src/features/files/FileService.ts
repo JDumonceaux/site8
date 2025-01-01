@@ -1,14 +1,14 @@
 import fs from 'fs';
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from '../../lib/utils/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
+import FilePath from 'src/lib/utils/FilePath.js';
 
 export class FileService {
   public async getDataFile(fileName: string): Promise<string | undefined> {
     Logger.info(`FileService: getDataFile -> ${fileName}`);
 
     try {
-      const filePath = getDataDir(fileName);
+      const filePath = FilePath.getDataDir(fileName);
 
       // Verify that the file path is under the root directory
       const tempFilePath = fs.realpathSync(filePath);
@@ -56,6 +56,30 @@ export class FileService {
     } catch (error) {
       Logger.error(`FileService: writeFile. Error -> ${error}`);
       return Promise.reject(new Error(`Write file failed. Error: ${error}`));
+    }
+  }
+
+  public async createFolder(path: string): Promise<boolean> {
+    Logger.info(`FileService: createFolder -> ${path}`);
+
+    try {
+      if (fs.existsSync(path)) {
+        return Promise.resolve(true);
+      }
+
+      // Verify that the file path is under the root directory
+      const tempFilePath = fs.realpathSync(path);
+      if (!tempFilePath.startsWith(__dirname)) {
+        Logger.error(
+          `FileService: createFolder: ${path} --> Invalid file path.`,
+        );
+      }
+      fs.mkdirSync(path, { recursive: true });
+
+      return Promise.resolve(true);
+    } catch (error) {
+      Logger.error(`FileService: createFolder: ${path} --> Error: ${error}`);
+      return Promise.reject(new Error(`Create Folder failed. Error: ${error}`));
     }
   }
 }

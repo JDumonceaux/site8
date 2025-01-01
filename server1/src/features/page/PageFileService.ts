@@ -1,11 +1,11 @@
 import { existsSync } from 'fs';
 import { readFile, unlink, writeFile } from 'fs/promises';
-import { getDataDir } from '../../lib/utils/FilePath.js';
+import FilePath from '../../lib/utils/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
 
 export class PageFileService {
   private getFileName(id: number): string {
-    return getDataDir(`page${id.toString()}-en.txt`);
+    return FilePath.getDataDir(`page${id.toString()}-en.txt`);
   }
 
   public async getFile(id: number): Promise<string> {

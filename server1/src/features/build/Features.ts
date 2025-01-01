@@ -3,7 +3,7 @@ export type Features = {
 };
 
 export type Feature = {
-  readonly name?: string;
+  readonly name: string;
   readonly description?: string;
   readonly types?: FieldType[];
 };

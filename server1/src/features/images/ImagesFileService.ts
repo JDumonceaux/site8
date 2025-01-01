@@ -5,14 +5,14 @@ import { Logger } from '../../lib/utils/logger.js';
 import { Image } from '../../types/Image.js';
 import { Images } from '../../types/Images.js';
 import { ImagesService } from './ImagesService.js';
-import { getImageDirAbsolute } from '../../lib/utils/FilePath.js';
+import FilePath from '../../lib/utils/FilePath.js';
 import { ImageEdit } from '../../types/ImageEdit.js';
 
 export class ImagesFileService {
   private imageDir = '';
 
   constructor() {
-    this.imageDir = getImageDirAbsolute();
+    this.imageDir = FilePath.getImageDirAbsolute();
   }
 
   // Get all data
@@ -63,12 +63,6 @@ export class ImagesFileService {
     return undefined;
   }
 
-  /**
-   * Retrieves a list of images from a directory.
-   * @param basePath - The base path of the directory.
-   * @param addPath - An optional additional path to append to the base path.
-   * @returns A Promise that resolves to an object containing the metadata and items of the images.
-   */
   private async getItemsFromDirectory(
     basePath: string,
     addPath?: string,

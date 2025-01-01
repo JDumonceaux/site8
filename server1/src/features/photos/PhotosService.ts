@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises';
-import { getDataDir } from '../../lib/utils/FilePath.js';
+import FilePath from '../../lib/utils/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { Photos } from '../../types/Photos.js';
 
@@ -8,7 +8,7 @@ export class PhotosService {
   private filePath = '';
 
   constructor() {
-    this.filePath = getDataDir(this.fileName);
+    this.filePath = FilePath.getDataDir(this.fileName);
   }
 
   // Get all data

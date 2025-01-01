@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import { getDataDir } from '../../lib/utils/FilePath.js';
+import FilePath from '../../lib/utils/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { Artists } from '../../types/Artists.js';
 import { ItemsFile } from '../../types/ItemsFile.js';
@@ -11,7 +11,7 @@ export class ArtistsService {
   private filePath = '';
 
   constructor() {
-    this.filePath = getDataDir(this.fileName);
+    this.filePath = FilePath.getDataDir(this.fileName);
   }
 
   // Get all data

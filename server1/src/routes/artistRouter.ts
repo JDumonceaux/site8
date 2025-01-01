@@ -1,6 +1,6 @@
 import express from 'express';
 import { getArtistItems } from '../features/artists/getArtistItems.js';
-import { requireId } from 'src/middleware/requireId.js';
+import { requireId } from '../middleware/requireId.js';
 
 export const artistRouter = express.Router();
 
