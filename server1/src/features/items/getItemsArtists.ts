@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
 import { Items } from '../../types/Items.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
@@ -9,20 +8,23 @@ export const getItemsArtists = async (
   res: Response<Items>,
   next: NextFunction,
 ) => {
-  Logger.info(`Items: Get Items Artists called: `);
+  try {
+    Logger.info('Fetching items and artists from the service.');
 
-  const service = ServiceFactory.getItemsService();
+    const service = ServiceFactory.getItemsService();
+    const response = await service.getItems();
 
-  await service
-    .getItems()
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      next(error);
-    });
+    if (response) {
+      Logger.info('Successfully retrieved items.');
+      res.status(200).json(response);
+    } else {
+      Logger.info('No items found.');
+      res.status(204).send();
+    }
+  } catch (error: unknown) {
+    Logger.error(
+      `Error fetching items and artists: ${(error as Error).message}`,
+    );
+    next(error);
+  }
 };

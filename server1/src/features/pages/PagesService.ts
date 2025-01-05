@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import FilePath from '../../lib/utils/FilePath.js';
+import FilePath from '../files/FilePath.js';
 import { isValidArray } from '../../lib/utils/helperUtils.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';

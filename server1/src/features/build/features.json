@@ -5,7 +5,7 @@
       "description": "Single page application for artist",
       "types": [
         {
-          "name": "Artist",
+          "name": "Artists2",
           "fields": [
             {
               "name": "name",

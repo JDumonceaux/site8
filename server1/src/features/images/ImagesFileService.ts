@@ -5,7 +5,7 @@ import { Logger } from '../../lib/utils/logger.js';
 import { Image } from '../../types/Image.js';
 import { Images } from '../../types/Images.js';
 import { ImagesService } from './ImagesService.js';
-import FilePath from '../../lib/utils/FilePath.js';
+import FilePath from '../files/FilePath.js';
 import { ImageEdit } from '../../types/ImageEdit.js';
 
 export class ImagesFileService {

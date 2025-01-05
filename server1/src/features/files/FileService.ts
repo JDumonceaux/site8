@@ -1,7 +1,8 @@
 import fs from 'fs';
 import { readFile, writeFile } from 'fs/promises';
+import { writeFileSync } from 'fs';
 import { Logger } from '../../lib/utils/logger.js';
-import FilePath from '../../lib/utils/FilePath.js';
+import FilePath from './FilePath.js';
 
 export class FileService {
   public async getDataFile(fileName: string): Promise<string | undefined> {
@@ -49,12 +50,27 @@ export class FileService {
 
   public async writeFile<T>(data: T, filePath: string): Promise<boolean> {
     try {
+      Logger.info(`FileService: writeFile -> ${filePath}`);
       await writeFile(filePath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
       });
       return Promise.resolve(true);
     } catch (error) {
       Logger.error(`FileService: writeFile. Error -> ${error}`);
+      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
+    }
+  }
+
+  public async writeFileSync<T>(data: T, filePath: string): Promise<boolean> {
+    try {
+      Logger.info(`FileService: writeFileSync -> ${filePath}`);
+      await writeFileSync(filePath, JSON.stringify(data, null, 2), {
+        encoding: 'utf8',
+        flag: 'w',
+      });
+      return Promise.resolve(true);
+    } catch (error) {
+      Logger.error(`FileService: writeFileSyce. Error -> ${error}`);
       return Promise.reject(new Error(`Write file failed. Error: ${error}`));
     }
   }
@@ -68,12 +84,12 @@ export class FileService {
       }
 
       // Verify that the file path is under the root directory
-      const tempFilePath = fs.realpathSync(path);
-      if (!tempFilePath.startsWith(__dirname)) {
-        Logger.error(
-          `FileService: createFolder: ${path} --> Invalid file path.`,
-        );
-      }
+      // const tempFilePath = fs.realpathSync(path);
+      // if (!tempFilePath.startsWith(__dirname)) {
+      //   Logger.error(
+      //     `FileService: createFolder: ${path} --> Invalid file path.`,
+      //   );
+      // }
       fs.mkdirSync(path, { recursive: true });
 
       return Promise.resolve(true);

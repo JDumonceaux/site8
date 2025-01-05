@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises';
-import FilePath from '../../lib/utils/FilePath.js';
+import FilePath from '../files/FilePath.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { Bookmark } from '../../types/Bookmark.js';
 import { Bookmarks } from '../../types/Bookmarks.js';

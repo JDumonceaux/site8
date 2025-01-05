@@ -3,4 +3,4 @@ import { buildFeature } from '../features/build/buildFeature.js';
 
 export const buildRouter = express.Router();
 
-buildRouter.get('/:id', buildFeature);
+buildRouter.get('/', buildFeature);

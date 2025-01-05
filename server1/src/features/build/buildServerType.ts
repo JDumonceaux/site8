@@ -1,23 +1,34 @@
 import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
-import { Feature } from './Features.js';
+import path from 'path';
+import { FieldType } from './Features.js';
 
-export const buildServerType = async (data: Feature, path: string) => {
-  Logger.debug(`Build Feature called`);
+export const buildServerType = async (data: FieldType, targetPath: string) => {
+  Logger.debug(`Build Server Type called`);
 
   const service = ServiceFactory.getFileService();
-
+  const prettierService = ServiceFactory.getPrettierService();
   const ret: string[] = [];
-  const fields = data?.types?.[0]?.fields?.toSorted((a, b) =>
-    a.name.localeCompare(b.name),
-  );
+
+  // Start
+  ret.push(`export type ${data.name} = {`);
+
+  const fields = data?.fields?.toSorted((a, b) => a.name.localeCompare(b.name));
 
   fields?.forEach((field) => {
     ret.push(`readonly '${field.name}: ${field.type};`);
   });
 
-  service.writeFile(
-    `${path}\${data?.description}\${data?.types?.[0].name}.ts`,
-    ret.join('\n'),
-  );
+  // End
+
+  ret.push(`};`);
+
+  // src/types/
+  const filePath = path.join(targetPath, data.name + '.ts');
+
+  Logger.debug(`Build Server Type: ${filePath}`);
+
+  const formatted = await prettierService.formatCode(ret.join('\n'), filePath);
+
+  service.writeFileSync(formatted, filePath);
 };

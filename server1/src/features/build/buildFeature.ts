@@ -12,7 +12,7 @@ export const buildFeature = async (
   Logger.debug(`Build Feature called`);
 
   await service
-    .build('artist')
+    .build('artist2')
     .then((response: unknown) => {
       if (response) {
         res.status(200).json(response);
@@ -22,5 +22,6 @@ export const buildFeature = async (
     })
     .catch((error: unknown) => {
       next(error);
+      res.status(500).send('Error building feature');
     });
 };

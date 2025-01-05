@@ -10,6 +10,7 @@ import { MenuService } from '../../features/menu/MenuService.js';
 import { PageService } from '../../features/page/PageService.js';
 import { PagesService } from '../../features/pages/PagesService.js';
 import { PhotosService } from '../../features/photos/PhotosService.js';
+import { PrettierService } from '../../features/prettier/PrettierService.js';
 import { TestsService } from '../../features/tests/TestsService.js';
 import { BuildService } from '../../features/build/BuildService.js';
 
@@ -52,6 +53,9 @@ export class ServiceFactory {
   }
   public static getPhotosService() {
     return new PhotosService();
+  }
+  public static getPrettierService() {
+    return new PrettierService();
   }
   public static getTestsService() {
     return new TestsService();

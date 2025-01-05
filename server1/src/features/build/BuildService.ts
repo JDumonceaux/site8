@@ -2,7 +2,7 @@ import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 import { Features } from './Features.js';
 import { buildServerType } from './buildServerType.js';
-import FilePath from '../../lib/utils/FilePath.js';
+import FilePath from '../files/FilePath.js';
 import path from 'path';
 
 export class BuildService {
@@ -10,7 +10,11 @@ export class BuildService {
   private filePath = '';
 
   constructor() {
-    this.filePath = FilePath.getDataDir(this.fileName);
+    this.filePath = path.join(
+      FilePath.getServerFeatures(),
+      'build',
+      this.fileName,
+    );
   }
 
   public async build(feature: string) {
@@ -31,7 +35,9 @@ export class BuildService {
 
     service.createFolder(path.join(FilePath.getClientFeatures(), curr.name));
 
-    buildServerType(curr, FilePath.getServerTypes());
-    buildServerType(curr, FilePath.getClientTypes());
+    curr.types?.forEach((type) => {
+      buildServerType(type, FilePath.getServerTypes());
+    });
+    //    buildServerType(curr, FilePath.getClientTypes());
   }
 }

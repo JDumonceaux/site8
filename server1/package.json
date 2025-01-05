@@ -14,7 +14,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint:format": "prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
-    "prepare": "husky init",
+    "prepare": "husky",
     "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
     "knip": "knip --production"
   },
@@ -22,6 +22,7 @@
     "compression": "^1.7.5",
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.0.0",
     "validator": "^13.12.0",
