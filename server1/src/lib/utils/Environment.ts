@@ -1,27 +1,39 @@
 export class Environment {
-  static readonly getNodeEnv = (): string => {
-    let nodeEnv = process.env.NODE_ENV;
+  private static nodeEnv: string = process.env.NODE_ENV ?? 'production';
+  private static applicationName: string = process.env.APPLICATION_NAME ?? '';
 
-    if (!nodeEnv) {
-      nodeEnv = 'production';
-    }
+  /**
+   * Get the current Node environment.
+   */
+  static getNodeEnv(): string {
+    return this.nodeEnv;
+  }
 
-    return nodeEnv;
-  };
+  /**
+   * Get the application name from the environment variables.
+   */
+  static getApplicationName(): string {
+    return this.applicationName;
+  }
 
-  static readonly getApplicationName = (): string => {
-    return process.env.APPLICATION_NAME ?? '';
-  };
+  /**
+   * Check if the environment is 'local'.
+   */
+  static isLocal(): boolean {
+    return this.nodeEnv === 'local';
+  }
 
-  static readonly isLocal = (): boolean => {
-    return Environment.getNodeEnv() === 'local';
-  };
+  /**
+   * Check if the environment is 'production'.
+   */
+  static isProduction(): boolean {
+    return this.nodeEnv === 'production';
+  }
 
-  static readonly isProduction = (): boolean => {
-    return Environment.getNodeEnv() === 'production';
-  };
-
-  static readonly isLowerEnvironment = () => {
+  /**
+   * Check if the environment is non-production (e.g., staging, development, local).
+   */
+  static isNonProduction(): boolean {
     return !this.isProduction();
-  };
+  }
 }

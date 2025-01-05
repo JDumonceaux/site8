@@ -1,33 +1,35 @@
 import { Request, Response, NextFunction } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
-import { Tests } from '../../types/Tests.js';
+import { Tests } from '../../types/Tests.js'; // Ensure Tests is an array type
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestParams {}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface IRequestQuery {}
-
 export const getItems = async (
-  req: Request<IRequestParams, unknown, unknown, IRequestQuery>,
+  req: Request<
+    Record<string, unknown>,
+    unknown,
+    unknown,
+    Record<string, unknown>
+  >,
   res: Response<Tests>,
   next: NextFunction,
-) => {
-  Logger.info(`Tests: Get Items called`);
+): Promise<void> => {
+  try {
+    Logger.info(
+      `Tests: Fetching items for request: ${JSON.stringify(req.query)}`,
+    );
 
-  const service = ServiceFactory.getTestsService();
+    const service = ServiceFactory.getTestsService();
+    const items = await service.getItems();
 
-  await service
-    .getItems()
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      next(error);
+    if (items) {
+      res.status(200).json(items);
+    } else {
+      res.status(204).send();
+    }
+  } catch (error) {
+    Logger.error(`Error fetching items: ${(error as Error).message}`, {
+      error,
     });
+    next(error);
+  }
 };

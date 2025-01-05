@@ -1,103 +1,79 @@
-import { readFile, writeFile } from 'fs/promises';
 import FilePath from '../files/FilePath.js';
-import { Logger } from '../../lib/utils/logger.js';
+import { ArtistItems } from '../../types/ArtistItems.js';
 import { Artists } from '../../types/Artists.js';
+import { ArtistsItems } from '../../types/ArtistsItems.js';
 import { ItemsFile } from '../../types/ItemsFile.js';
-import { ArtistItems } from 'src/types/ArtistItems.js';
-import { ArtistsItems } from 'src/types/ArtistsItems.js';
+import { ServiceFactory } from 'src/lib/utils/ServiceFactory.js';
 
 export class ArtistsService {
-  private fileName = 'items.json';
-  private filePath = '';
+  private filePath: string;
 
-  constructor() {
-    this.filePath = FilePath.getDataDir(this.fileName);
+  constructor(fileName: string = 'items.json') {
+    this.filePath = FilePath.getDataDir(fileName);
   }
 
-  // Get all data
   private async readFile(): Promise<ItemsFile | undefined> {
-    try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as ItemsFile;
-    } catch (error) {
-      Logger.error(`ArtistsService: readFile -> ${error}`);
+    const service = ServiceFactory.getFileService();
+    return await service.readFile<ItemsFile>(this.filePath);
+  }
+
+  // Write data to file with error handling
+  public async writeFile(data: ItemsFile): Promise<void> {
+    const service = ServiceFactory.getFileService();
+    await service.writeFile<ItemsFile>(data, this.filePath);
+  }
+
+  // Get all artists
+  public async getArtists(): Promise<Artists> {
+    const data = await this.readFile();
+    if (data) {
+      return {
+        metadata: data.metadata || { title: 'items' },
+        items: data.artists,
+      };
+    } else {
+      throw new Error('No artists found');
     }
-    return undefined;
   }
 
-  // Write to file
-  public async writeFile(data: Readonly<ItemsFile>): Promise<boolean> {
-    Logger.info(`ArtistsService: writeFile -> `);
-
-    try {
-      await writeFile(this.filePath, JSON.stringify(data, null, 2), {
-        encoding: 'utf8',
-      });
-      return Promise.resolve(true);
-    } catch (error) {
-      Logger.error(`ArtistsService: writeFile. Error -> ${error}`);
-      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
-    }
-  }
-
-  // Get all data
-  public async getArtists(): Promise<Artists | undefined> {
-    const ret = await this.readFile();
-    return {
-      metadata: ret?.metadata || { title: 'items' },
-      items: ret?.artists,
-    };
-  }
-
-  public async getArtistItems(
-    artistId: number,
-  ): Promise<ArtistItems | undefined> {
-    const ret = await this.readFile();
-
-    const artist = ret?.artists?.find((a) => a.id === artistId);
+  // Get items for a specific artist
+  public async getArtistItems(artistId: number): Promise<ArtistItems> {
+    const data = await this.readFile();
+    const artist = data?.artists?.find((a) => a.id === artistId);
 
     if (!artist) {
-      return undefined;
+      throw new Error(`Artist with ID ${artistId} not found`);
     }
 
     const items =
-      artist && ret
-        ? ret.items?.filter((x) => x.artistId === artistId)
-        : undefined;
+      data?.items?.filter((item) => item.artistId === artistId) || [];
+    const sortedItems = items.sort((a, b) => a.title.localeCompare(b.title));
 
-    const itemsSorted = items?.toSorted((a, b) =>
-      a.title.localeCompare(b.title),
-    );
-
-    return {
-      artist: artist,
-      items: itemsSorted,
-    };
+    return { artist, items: sortedItems };
   }
 
-  public async getArtistsItems(): Promise<ArtistsItems | undefined> {
-    const ret = await this.readFile();
+  // Get all artists and their items
+  public async getArtistsItems(): Promise<ArtistsItems> {
+    const data = await this.readFile();
 
-    if (!ret || !ret.artists) {
-      return undefined;
+    if (!data?.artists) {
+      throw new Error('No artists found');
     }
 
-    const artistsSorted = ret.artists.toSorted((a, b) =>
+    const sortedArtists = [...data.artists].sort((a, b) =>
       a.sortName.localeCompare(b.sortName),
     );
 
-    const retItems: ArtistItems[] = [];
-    artistsSorted.forEach((artist) => {
-      const items = ret.items?.filter((x) => x.artistId === artist.id);
-      const itemsSorted = items?.toSorted((a, b) =>
-        a.title.localeCompare(b.title),
-      );
-      retItems.push({ artist, items: itemsSorted });
+    const artistsItems = sortedArtists.map((artist) => {
+      const items =
+        data.items?.filter((item) => item.artistId === artist.id) || [];
+      const sortedItems = items.sort((a, b) => a.title.localeCompare(b.title));
+      return { artist, items: sortedItems };
     });
 
     return {
-      metadata: ret?.metadata || { title: 'artist items' },
-      items: retItems,
+      metadata: data.metadata || { title: 'artist items' },
+      items: artistsItems,
     };
   }
 }
