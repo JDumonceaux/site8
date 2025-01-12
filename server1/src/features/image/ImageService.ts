@@ -6,17 +6,29 @@ import { ImagesService } from '../images/ImagesService.js';
 
 export class ImageService {
   public async getItem(id: number): Promise<Image | undefined> {
-    Logger.info(`ImageService: getItem -> ${id}`);
+    Logger.info(`ImageService: Fetching item with ID -> ${id}`);
 
     try {
-      const ret = await new ImagesService().getItems();
-      if (!ret) {
-        return Promise.reject(new Error('getItem -> No data found'));
+      const response = await new ImagesService().getItems();
+      if (!response?.items) {
+        Logger.warn(
+          `ImageService: No data found while fetching item with ID -> ${id}`,
+        );
+        throw new Error('No data found');
       }
-      return ret.items?.find((x) => x.id === id);
+
+      const item = response.items.find((x) => x.id === id);
+      if (!item) {
+        Logger.warn(`ImageService: Item with ID -> ${id} not found`);
+      }
+      return item;
     } catch (error) {
-      Logger.error(`ImageService: getItem -> ${id} ${error}`);
-      return undefined;
+      const errorMessage = (error as Error).message;
+      Logger.error(
+        `ImageService: Error fetching item with ID -> ${id}. Details: ${errorMessage}`,
+        error,
+      );
+      throw error;
     }
   }
 

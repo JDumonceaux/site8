@@ -1,7 +1,7 @@
 import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 import { Features } from './Features.js';
-import { buildServerType } from './buildServerType.js';
+import { buildServerType } from './functions/server/bServerType.js';
 import FilePath from '../files/FilePath.js';
 import path from 'path';
 
