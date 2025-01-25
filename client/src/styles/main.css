@@ -81,6 +81,7 @@
   --palette-label: rgb(102, 102, 102);
 }
 
+/* Do not set a root font size - work off browser font-size = default 16px */
 html,
 body {
   font-family: 'Inter', sans-serif;
