@@ -3,8 +3,7 @@ import { ArtistItems } from '../../types/ArtistItems.js';
 import { Artists } from '../../types/Artists.js';
 import { ArtistsItems } from '../../types/ArtistsItems.js';
 import { ItemsFile } from '../../types/ItemsFile.js';
-import { ServiceFactory } from 'src/lib/utils/ServiceFactory.js';
-
+import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 export class ArtistsService {
   private filePath: string;
 
