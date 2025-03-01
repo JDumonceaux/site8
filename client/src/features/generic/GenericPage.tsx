@@ -32,9 +32,9 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
 
   useEffect(() => {
     if (id) {
-      fetchData(`${ServiceUrl.ENDPOINT_PAGE_NAME}/${id}`);
+      //    fetchData(`${ServiceUrl.ENDPOINT_PAGE_NAME}/${id}`);
     }
-  }, [fetchData, id]);
+  }, [id]);
 
   const pageTitle = deferredData?.name ?? title;
 

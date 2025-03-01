@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -6,8 +6,10 @@ type Props = {
   readonly children?: React.ReactNode;
 };
 
-const Aside = ({ children }: Props): React.JSX.Element => (
-  <StyledElement data-testid="aside">{children}</StyledElement>
+const Aside = memo(
+  ({ children }: Props): React.JSX.Element => (
+    <StyledElement data-testid="aside">{children}</StyledElement>
+  ),
 );
 
 export default Aside;

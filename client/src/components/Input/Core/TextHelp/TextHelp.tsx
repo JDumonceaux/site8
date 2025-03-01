@@ -48,8 +48,7 @@ export const TextHelp = ({
     ) => {
       return helperTextShowCounter ? (
         <div>
-          {helperTextCharacterCount ? helperTextCharacterCount : 0}/
-          {helperTextMaxLength ? helperTextMaxLength : 0}
+          {helperTextCharacterCount ?? 0}/{helperTextMaxLength ?? 0}
         </div>
       ) : null;
     },

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useCallback, useMemo } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -34,34 +34,80 @@ const ItemsAddPage = (): React.JSX.Element => {
 
   const title = 'Add Items';
 
+  const memoArtistsAsListItem = useMemo(
+    () => artistsAsListItem,
+    [artistsAsListItem],
+  );
+
+  const memoHandleFilterChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      handleFilterChange(event);
+    },
+    [handleFilterChange],
+  );
+
+  const memoHandleClear = useCallback(() => {
+    handleClear();
+  }, [handleClear]);
+
+  const memoHandleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      handleSubmit(event);
+    },
+    [handleSubmit],
+  );
+
+  const memoGetFieldValue = useCallback(
+    (field: string) => getFieldValue(field),
+    [getFieldValue],
+  );
+
+  const memoHandleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      handleChange(event);
+    },
+    [handleChange],
+  );
+
+  const memoArtistsIndexed = useMemo(() => artistsIndexed, [artistsIndexed]);
+  const memoLocationsIndexed = useMemo(
+    () => locationsIndexed,
+    [locationsIndexed],
+  );
+  const memoNamesIndexed = useMemo(() => namesIndexed, [namesIndexed]);
+  const memoPeriodsIndexed = useMemo(() => periodsIndexed, [periodsIndexed]);
+
   return (
     <>
       <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
-          <MenuBar handleClear={handleClear} handleSubmit={handleSubmit} />
+          <MenuBar
+            handleClear={memoHandleClear}
+            handleSubmit={memoHandleSubmit}
+          />
         </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Main>
           <LoadingWrapper error={error} isLoading={isLoading}>
             <Input.Select
-              dataList={artistsAsListItem}
-              onChange={handleFilterChange}
+              dataList={memoArtistsAsListItem}
+              onChange={memoHandleFilterChange}
               placeholder="Artist"
               value={artistId}
             />
-            <StyledForm noValidate onSubmit={handleSubmit}>
+            <StyledForm noValidate onSubmit={memoHandleSubmit}>
               {data.map((item) => (
                 <ItemDetail
-                  artists={artistsIndexed}
-                  getFieldValue={getFieldValue}
+                  artists={memoArtistsIndexed}
+                  getFieldValue={memoGetFieldValue}
                   item={item}
                   key={item.lineId}
-                  locations={locationsIndexed}
-                  names={namesIndexed}
-                  onChange={handleChange}
-                  periods={periodsIndexed}
+                  locations={memoLocationsIndexed}
+                  names={memoNamesIndexed}
+                  onChange={memoHandleChange}
+                  periods={memoPeriodsIndexed}
                 />
               ))}
             </StyledForm>

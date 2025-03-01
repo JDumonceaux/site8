@@ -63,8 +63,7 @@ export type { TooltipBaseProps };
 const StyledTrigger = styled(TooltipRadix.Trigger)<{
   $color?: string;
 }>`
-  color: ${(props) =>
-    props.$color ? props.$color : 'var(--text-primary-color)'};
+  color: ${(props) => props.$color ?? 'var(--text-primary-color)'};
 `;
 const StyledArrow = styled(TooltipRadix.Arrow)`
   fill: var(--tooltip-arrow-color);

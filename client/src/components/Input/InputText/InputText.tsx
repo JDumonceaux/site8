@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo, useCallback } from 'react';
 
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
@@ -24,17 +24,14 @@ const InputText = ({
   fieldName,
   onChange,
   ...rest
-}: Props): React.JSX.Element =>
-  useMemo(
-    () => (
-      <InputBase
-        type={type}
-        onChange={(e) => onChange(lineId, fieldName, e)}
-        {...rest}
-      />
-    ),
-    [type, lineId, fieldName, onChange, rest],
+}: Props): React.JSX.Element => {
+  const handleChange = useCallback(
+    (e) => onChange(lineId, fieldName, e),
+    [onChange, lineId, fieldName],
   );
+
+  return <InputBase type={type} onChange={handleChange} {...rest} />;
+};
 
 InputText.displayName = 'InputText';
 

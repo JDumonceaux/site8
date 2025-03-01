@@ -1,4 +1,4 @@
-import React, { useRef, type TextareaHTMLAttributes } from 'react';
+import React, { useRef, useCallback, type TextareaHTMLAttributes } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import { styled } from 'styled-components';
@@ -18,16 +18,24 @@ export const TextArea = ({
   ref,
   required,
   rows,
+  onChange,
   ...rest
 }: TextAreaProperties): React.JSX.Element => {
   const currId = useGetId(id);
-  const props = { ...rest, id: currId, required };
+
+  const handleChange = useCallback(onChange, [onChange]);
+
   const tempRef = useRef<HTMLTextAreaElement>(null);
   const localRef = ref ?? tempRef;
 
   return (
-    <FieldWrapper {...props}>
-      <StyledTextArea ref={localRef} rows={rows} {...props} />
+    <FieldWrapper id={currId} required={required} onChange={handleChange}>
+      <StyledTextArea
+        ref={localRef}
+        rows={rows}
+        onChange={handleChange}
+        {...rest}
+      />
     </FieldWrapper>
   );
 };
