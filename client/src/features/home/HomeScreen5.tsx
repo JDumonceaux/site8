@@ -4,8 +4,9 @@ import HomeMenu from 'features/home/HomeMenu';
 import CircleAnimation from './Animations/CircleAnimation';
 import CircleMenuAnimation from './Animations/CircleMenuAnimation';
 import TitleAnimation from './Animations/TitleAnimation';
+import React, { memo } from 'react';
 
-const HomeScreen5 = (): React.JSX.Element => {
+const HomeScreen5 = memo((): React.JSX.Element => {
   return (
     <Layout.FullWidth>
       <TitleAnimation />
@@ -14,6 +15,6 @@ const HomeScreen5 = (): React.JSX.Element => {
       <HomeMenu />
     </Layout.FullWidth>
   );
-};
+});
 
 export default HomeScreen5;

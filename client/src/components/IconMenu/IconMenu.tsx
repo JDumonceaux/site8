@@ -1,3 +1,4 @@
+import React, { memo, useMemo } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DotsVerticalIcon } from '@radix-ui/react-icons';
 import { styled } from 'styled-components';
@@ -6,22 +7,27 @@ type Props = {
   readonly children?: React.ReactNode;
 };
 
-export const IconMenu = ({ children }: Props): React.JSX.Element => {
-  return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <StyledButton aria-label="Customise options" type="button">
-          <DotsVerticalIcon />
-        </StyledButton>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <StyledMenuContent align="start" side="right" sideOffset={5}>
-          {children}
-        </StyledMenuContent>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
+export const IconMenu = memo(({ children }: Props): React.JSX.Element => {
+  const memoizedDropdownMenu = useMemo(
+    () => (
+      <DropdownMenu.Root>
+        <DropdownMenu.Trigger asChild>
+          <StyledButton aria-label="Customise options" type="button">
+            <DotsVerticalIcon />
+          </StyledButton>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Portal>
+          <StyledMenuContent align="start" side="right" sideOffset={5}>
+            {children}
+          </StyledMenuContent>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
+    ),
+    [children],
   );
-};
+
+  return memoizedDropdownMenu;
+});
 
 const StyledButton = styled.button`
   font-family: inherit;

@@ -58,6 +58,27 @@ const ImageDetail = ({
     [getFieldValue, onChange],
   );
 
+  // Memoize the props objects to ensure stable references
+  const fileNameProps = React.useMemo(
+    () => getDefaultProps(item.lineId, 'fileName'),
+    [getDefaultProps, item.lineId],
+  );
+
+  const folderProps = React.useMemo(
+    () => getDefaultProps(item.lineId, 'folder'),
+    [getDefaultProps, item.lineId],
+  );
+
+  const itemIdProps = React.useMemo(
+    () => getDefaultPropsSelect(item.lineId, 'itemId'),
+    [getDefaultPropsSelect, item.lineId],
+  );
+
+  const memoizedInputSelect = React.useMemo(
+    () => <Input.Select {...itemIdProps} dataList={names} placeholder="Item" />,
+    [itemIdProps, names],
+  );
+
   return (
     <StyledRow
       $deleted={item.delete === true ? 'true' : 'false'}
@@ -67,19 +88,9 @@ const ImageDetail = ({
       </StyledImgContainer>
       <StyledOuterRow>
         {item.isDuplicate ? <div>Duplicate Image</div> : null}
-        <Input.Select
-          {...getDefaultPropsSelect(item.lineId, 'itemId')}
-          dataList={names}
-          placeholder="Item"
-        />
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'fileName')}
-          placeholder="File Name"
-        />
-        <Input.Text
-          {...getDefaultProps(item.lineId, 'folder')}
-          placeholder="Folder"
-        />
+        {memoizedInputSelect}
+        <Input.Text {...fileNameProps} placeholder="File Name" />
+        <Input.Text {...folderProps} placeholder="Folder" />
         <IconMenu>
           <IconMenuItem onClick={handleOnDelete}>Delete</IconMenuItem>
           <IconMenuItem>{item.id}</IconMenuItem>

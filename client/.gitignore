@@ -52,3 +52,5 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 
 *storybook.log
+# Million Lint
+.million

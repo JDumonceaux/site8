@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import {
   type HTMLInputTypeAttribute,
   type InputHTMLAttributes,
@@ -60,61 +61,63 @@ type InputBaseProps = {
 // accesskey: never; // Don't use - not accessible
 // autocorrect: a non-standard Safari attribute
 
-const InputBase = ({
-  dataList,
-  endAdornment,
-  id,
-  // showCounter = false,
-  // showError = true,
-  // showRequired = true,
-  // requiredLabel = 'Required',
-  // requiredLabelProps,
-  onChange,
-  onClear,
-  ref,
-  required,
-  showClear = true,
-  startAdornment,
-  type,
-  value,
-  ...rest
-}: InputBaseProps): React.JSX.Element => {
-  const currId = useGetId(id);
-  const props = { ...rest, id: currId, required };
-  const tempRef = useRef<HTMLInputElement>(null);
-  const localRef = ref ?? tempRef;
+const InputBase = memo(
+  ({
+    dataList,
+    endAdornment,
+    id,
+    // showCounter = false,
+    // showError = true,
+    // showRequired = true,
+    // requiredLabel = 'Required',
+    // requiredLabelProps,
+    onChange,
+    onClear,
+    ref,
+    required,
+    showClear = true,
+    startAdornment,
+    type,
+    value,
+    ...rest
+  }: InputBaseProps): React.JSX.Element => {
+    const currId = useGetId(id);
+    const props = { ...rest, id: currId, required };
+    const tempRef = useRef<HTMLInputElement>(null);
+    const localRef = ref ?? tempRef;
 
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (onChange) {
-        onChange(e);
-      }
-      e.preventDefault();
-    },
-    [onChange],
-  );
+    const handleChange = React.useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (onChange) {
+          onChange(e);
+        }
+        e.preventDefault();
+      },
+      [onChange],
+    );
 
-  return (
-    <FieldWrapper {...props}>
-      <StyledInput
-        key={currId}
-        list={dataList?.id}
-        type={type}
-        value={value}
-        {...props}
-        onChange={handleChange}
-        ref={localRef}
-      />
-      {dataList?.data ? (
-        <datalist id={dataList.id}>
-          {dataList.data.map((x) => (
-            <option key={x.key} value={x.value} />
-          ))}
-        </datalist>
-      ) : null}
-    </FieldWrapper>
-  );
-};
+    return (
+      <FieldWrapper {...props}>
+        <StyledInput
+          key={currId}
+          list={dataList?.id}
+          type={type}
+          value={value}
+          {...props}
+          onChange={handleChange}
+          ref={localRef}
+        />
+        {dataList?.data ? (
+          <datalist id={dataList.id}>
+            {dataList.data.map((x) => (
+              <option key={x.key} value={x.value} />
+            ))}
+          </datalist>
+        ) : null}
+      </FieldWrapper>
+    );
+  },
+);
 
 InputBase.displayName = 'InputBase';
 

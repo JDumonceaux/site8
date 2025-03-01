@@ -1,3 +1,4 @@
+import React, { memo } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { styled } from 'styled-components';
 
@@ -5,12 +6,11 @@ type Props = {
   readonly children?: React.ReactNode;
 } & DropdownMenu.DropdownMenuItemProps;
 
-export const IconMenuItem = ({
-  children,
-  ...rest
-}: Props): React.JSX.Element => {
-  return <StyledMenuItem {...rest}>{children}</StyledMenuItem>;
-};
+export const IconMenuItem = React.memo(
+  ({ children, ...rest }: Props): React.JSX.Element => {
+    return <StyledMenuItem {...rest}>{children}</StyledMenuItem>;
+  },
+);
 const StyledMenuItem = styled(DropdownMenu.Item)`
   font-size: 13px;
   line-height: 1;

@@ -1,12 +1,13 @@
+import React, { memo } from 'react';
 import { keyframes, styled } from 'styled-components';
 
-const CircleAnimation = (): React.JSX.Element => {
+const CircleAnimation = memo((): React.JSX.Element => {
   return (
     <CircleWrapper>
       <CircleElement />
     </CircleWrapper>
   );
-};
+});
 
 export default CircleAnimation;
 

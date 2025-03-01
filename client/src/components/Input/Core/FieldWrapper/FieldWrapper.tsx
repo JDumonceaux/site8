@@ -14,31 +14,33 @@ type FieldWrapperProps = {
   readonly startAdornment?: React.ReactNode;
 } & LabelRowProps;
 
-const FieldWrapper = ({
-  children,
-  endAdornment,
-  id,
-  required,
-  showClear = false,
-  startAdornment,
-  ...rest
-}: FieldWrapperProps) => {
-  const currId = useGetId(id);
-  const props = { ...rest, id: currId, required };
+const FieldWrapper = memo(
+  ({
+    children,
+    endAdornment,
+    id,
+    required,
+    showClear = false,
+    startAdornment,
+    ...rest
+  }: FieldWrapperProps) => {
+    const currId = useGetId(id);
+    const props = { ...rest, id: currId, required };
 
-  return (
-    <div id={currId}>
-      <LabelRow {...props} />
-      <StyledDiv>
-        <StartAdornment>{startAdornment}</StartAdornment>
-        {children}
-        {/* {showClear ? <ClearAdornment onClick={handleClear} /> : null} */}
-        {/* <EndAdornment>{endAdornment}</EndAdornment> */}
-      </StyledDiv>
-      <FooterRow {...rest} />
-    </div>
-  );
-};
+    return (
+      <div id={currId}>
+        <LabelRow {...props} />
+        <StyledDiv>
+          <StartAdornment>{startAdornment}</StartAdornment>
+          {children}
+          {/* {showClear ? <ClearAdornment onClick={handleClear} /> : null} */}
+          {/* <EndAdornment>{endAdornment}</EndAdornment> */}
+        </StyledDiv>
+        <FooterRow {...rest} />
+      </div>
+    );
+  },
+);
 
 FieldWrapper.displayName = 'FieldWrapper';
 

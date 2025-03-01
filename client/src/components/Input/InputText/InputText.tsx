@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
@@ -18,9 +18,23 @@ type Props = {
 // No aria-role is required. The default, inferred type is 'textbox'.
 // With a list, 'combobox' is inferred.
 
-const InputText = ({ type = 'text', ...rest }: Props): React.JSX.Element => (
-  <InputBase type={type} {...rest} />
-);
+const InputText = ({
+  type = 'text',
+  lineId,
+  fieldName,
+  onChange,
+  ...rest
+}: Props): React.JSX.Element =>
+  useMemo(
+    () => (
+      <InputBase
+        type={type}
+        onChange={(e) => onChange(lineId, fieldName, e)}
+        {...rest}
+      />
+    ),
+    [type, lineId, fieldName, onChange, rest],
+  );
 
 InputText.displayName = 'InputText';
 

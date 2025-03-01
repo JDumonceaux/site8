@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import {
   Link as BaseLink,
@@ -20,14 +20,17 @@ const StyledLink = ({
   to,
   variant = 'light',
 }: StyledLinkProps): React.JSX.Element => {
-  return (
-    <StyledElement
-      $variant={variant}
-      aria-current="page"
-      aria-label={ariaLabel ?? children?.toString()}
-      to={to}>
-      {children}
-    </StyledElement>
+  return useMemo(
+    () => (
+      <StyledElement
+        $variant={variant}
+        aria-current="page"
+        aria-label={ariaLabel ?? children?.toString()}
+        to={to}>
+        {children}
+      </StyledElement>
+    ),
+    [variant, ariaLabel, children, to],
   );
 };
 

@@ -1,11 +1,11 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 
 import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
 import useMenu from 'hooks/useMenu';
 import { styled } from 'styled-components';
 import type { MenuItem } from 'types/MenuItem';
 
-const HomeMenu = (): React.JSX.Element => {
+const HomeMenu = memo((): React.JSX.Element => {
   const { data } = useMenu();
 
   const renderWrapper = useCallback(
@@ -74,7 +74,7 @@ const HomeMenu = (): React.JSX.Element => {
       ))}
     </StyledNav>
   );
-};
+});
 
 export default memo(HomeMenu);
 

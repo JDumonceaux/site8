@@ -1,4 +1,4 @@
-import React, { memo, type LabelHTMLAttributes } from 'react';
+import React, { memo, useMemo, type LabelHTMLAttributes } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
@@ -35,28 +35,43 @@ const LabelRow = ({
   requiredText,
   tooltipProps,
   ...rest
-}: LabelRowProps): React.JSX.Element => (
-  <Label.Root htmlFor={id} ref={labelRef} {...rest}>
-    <StyledRow>
-      <StyledLabel>
-        {label}
-        {required ? (
-          <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
-        ) : null}
-        {required ? (
-          <Tooltip.Asterix
-            content="Required"
-            triggerColor="var(--color-required)"
-            {...tooltipProps}
-          />
-        ) : null}
-      </StyledLabel>
-      {description ? <Tooltip.QuestionMark content={description} /> : null}
-      {endAdornment}
-    </StyledRow>
-    {children}
-  </Label.Root>
-);
+}: LabelRowProps): React.JSX.Element =>
+  useMemo(
+    () => (
+      <Label.Root htmlFor={id} ref={labelRef} {...rest}>
+        <StyledRow>
+          <StyledLabel>
+            {label}
+            {required ? (
+              <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
+            ) : null}
+            {required ? (
+              <Tooltip.Asterix
+                content="Required"
+                triggerColor="var(--color-required)"
+                {...tooltipProps}
+              />
+            ) : null}
+          </StyledLabel>
+          {description ? <Tooltip.QuestionMark content={description} /> : null}
+          {endAdornment}
+        </StyledRow>
+        {children}
+      </Label.Root>
+    ),
+    [
+      children,
+      description,
+      endAdornment,
+      id,
+      label,
+      labelRef,
+      required,
+      requiredText,
+      tooltipProps,
+      rest,
+    ],
+  );
 
 LabelRow.displayName = 'LabelRow';
 

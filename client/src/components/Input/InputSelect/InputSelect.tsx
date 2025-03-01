@@ -1,4 +1,4 @@
-import { memo, useRef, type SelectHTMLAttributes } from 'react';
+import { memo, useRef, useMemo, type SelectHTMLAttributes } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
@@ -20,36 +20,41 @@ type Props = {
 
 // Implicit aria-role => 'combobox' or 'listbox'
 // https://www.w3.org/TR/html-aria/#docconformance
-const InputSelect = ({
-  dataList,
-  id,
-  placeholder,
-  ref,
-  required,
-  showBlankOption = false,
-  ...rest
-}: Props): React.JSX.Element => {
-  const currId = useGetId(id);
-  const props = { ...rest, id: currId, required };
-  const tempRef = useRef<HTMLSelectElement>(null);
-  const localRef = ref ?? tempRef;
+const InputSelect = memo(
+  ({
+    dataList,
+    id,
+    placeholder,
+    ref,
+    required,
+    showBlankOption = false,
+    ...rest
+  }: Props): React.JSX.Element => {
+    const currId = useGetId(id);
+    const props = { ...rest, id: currId, required };
+    const tempRef = useRef<HTMLSelectElement>(null);
+    const localRef = ref ?? tempRef;
 
-  return (
-    <FieldWrapper {...props}>
-      <StyledSelect {...props} ref={localRef}>
-        {showBlankOption ? <option value="" /> : null}
-        {placeholder ? (
-          <option value="placeholder">{placeholder}</option>
-        ) : null}
-        {dataList?.map((item) => (
-          <option key={item.key} value={item.value}>
-            {item.display ?? item.value}
-          </option>
-        ))}
-      </StyledSelect>
-    </FieldWrapper>
-  );
-};
+    return useMemo(
+      () => (
+        <FieldWrapper {...props}>
+          <StyledSelect {...props} ref={localRef}>
+            {showBlankOption ? <option value="" /> : null}
+            {placeholder ? (
+              <option value="placeholder">{placeholder}</option>
+            ) : null}
+            {dataList?.map((item) => (
+              <option key={item.key} value={item.value}>
+                {item.display ?? item.value}
+              </option>
+            ))}
+          </StyledSelect>
+        </FieldWrapper>
+      ),
+      [props, showBlankOption, placeholder, dataList, localRef],
+    );
+  },
+);
 
 InputSelect.displayName = 'InputSelect';
 
