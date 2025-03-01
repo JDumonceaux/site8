@@ -11,7 +11,6 @@ import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
 import useImagesEditPage from './useImagesEditPage';
-import { useCallback, useMemo } from 'react';
 
 const ImagesEditPage = (): React.JSX.Element => {
   const title = 'Edit Images';
@@ -35,16 +34,20 @@ const ImagesEditPage = (): React.JSX.Element => {
   const { itemsAsListItem } = useArtistsItems();
 
   // Memoize handlers to ensure stable references
-  const memoizedGetFieldValue = useCallback(getFieldValue, []);
-  const memoizedHandleChange = useCallback(handleChange, []);
-  const memoizedHandleDelete = useCallback(handleDelete, []);
+  const memoizedGetFieldValue = useCallback(getFieldValue, [getFieldValue]);
+  const memoizedHandleChange = useCallback(handleChange, [handleChange]);
+  const memoizedHandleDelete = useCallback(handleDelete, [handleDelete]);
 
-  const memoizedHandleFolderChange = useCallback(handleFolderChange, []);
-  const memoizedHandleFilterSelect = useCallback(handleFilterSelect, []);
+  const memoizedHandleFolderChange = useCallback(handleFolderChange, [
+    handleFolderChange,
+  ]);
+  const memoizedHandleFilterSelect = useCallback(handleFilterSelect, [
+    handleFilterSelect,
+  ]);
 
-  const memoizedHandleScan = useCallback(handleScan, []);
-  const memoizedHandleRefresh = useCallback(handleRefresh, []);
-  const memoizedHandleSubmit = useCallback(handleSubmit, []);
+  const memoizedHandleScan = useCallback(handleScan, [handleScan]);
+  const memoizedHandleRefresh = useCallback(handleRefresh, [handleRefresh]);
+  const memoizedHandleSubmit = useCallback(handleSubmit, [handleSubmit]);
 
   // Memoize itemsAsListItem to ensure a stable reference
   const memoizedItemsAsListItem = useMemo(

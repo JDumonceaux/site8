@@ -1,18 +1,18 @@
+import { useCallback, useEffect } from 'react';
+
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import Meta from 'components/core/Meta/Meta';
+import PageTitle from 'components/core/PageTitle/PageTitle';
 import ImageSelector from 'components/custom/ImageSelector/ImageSelector';
+import Input from 'components/Input/Input';
 import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import useImageEdit from './useImageEdit';
 import useSnackbar from 'hooks/useSnackbar';
-import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { Image } from 'types/Image';
-import React from 'react';
-import Input from 'components/Input/Input';
+
+import useImageEdit from './useImageEdit';
 
 const ImageEditImage = (): React.JSX.Element => {
   const parameters = useParams();
@@ -89,12 +89,12 @@ const ImageEditImage = (): React.JSX.Element => {
                 <form noValidate onSubmit={handleSubmit}>
                   <Input.Text
                     autoCapitalize="off"
-                    enterKeyHint="next"
-                    //errorTextShort="Please enter a short title"
-                    inputMode="text"
                     label="Short Title"
                     required
                     spellCheck
+                    enterKeyHint="next"
+                    //errorTextShort="Please enter a short title"
+                    inputMode="text"
                     ref={inputTitleRef}
                     // {...getStandardInputTextAttributes('name')}
                     //ref={focusElement}
@@ -173,7 +173,9 @@ const ImageEditImage = (): React.JSX.Element => {
               </FormContainer>
               <ImageContainer>
                 <ImageSelector
-                  onSelectImage={(error_) => handleSelectImage(error_)}
+                  onSelectImage={(error_) => {
+                    handleSelectImage(error_);
+                  }}
                 />
               </ImageContainer>
             </StyledContainer>
