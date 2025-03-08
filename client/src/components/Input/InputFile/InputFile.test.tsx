@@ -8,7 +8,7 @@ describe('InputFile', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputFile id="test" />
+          <InputFile id="test" value="" />
         </Form.Field>
       </Form.Root>,
     );

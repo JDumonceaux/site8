@@ -17,14 +17,6 @@ type ImageSelectorProps = {
   readonly onSelectImage: (image: Image | undefined) => void;
 };
 
-/**
- * Renders an image selector component.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {Function} props.onSelectImage - The callback function to handle image selection.
- * @returns {React.JSX.Element} The rendered ImageSelector component.
- */
 const ImageSelector = ({
   onSelectImage,
 }: ImageSelectorProps): React.JSX.Element => {
@@ -75,12 +67,12 @@ const ImageSelector = ({
     [data?.items],
   );
 
-  const getFilteredData = useCallback(() => {
+  const getFilteredData = useCallback((): Image[] => {
     if (!data) {
-      return;
+      return [];
     }
     if (selectedItem) {
-      return data.items.filter((x) => x.id === selectedItem.id) ?? undefined;
+      return data.items.filter((x) => x.id === selectedItem.id);
     } else if (showUnmatched) {
       return data.items.filter((x) => !x.isMatched);
     }
@@ -89,7 +81,7 @@ const ImageSelector = ({
 
   const filteredData = getFilteredData();
 
-  const itemCount = useDeferredValue(filteredData?.length ?? 0);
+  const itemCount = useDeferredValue(filteredData.length);
 
   return (
     <>
@@ -111,7 +103,7 @@ const ImageSelector = ({
         <div>{itemCount}</div>
       </StyledButtonRow>
       <LoadingWrapper error={error} isLoading={isLoading}>
-        {filteredData?.map((item) => (
+        {filteredData.map((item) => (
           <React.Fragment key={item.id}>
             <button
               id={item.id.toString()}
@@ -126,6 +118,8 @@ const ImageSelector = ({
     </>
   );
 };
+
+ImageSelector.displayName = 'ImageSelector';
 
 export default ImageSelector;
 

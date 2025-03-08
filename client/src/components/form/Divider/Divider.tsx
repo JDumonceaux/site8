@@ -1,10 +1,12 @@
+import { memo } from 'react';
+
 import { styled } from 'styled-components';
 
 type DividerProps = {
   readonly children: React.ReactNode;
 };
 
-export const Divider = ({ children }: DividerProps): React.JSX.Element => {
+const Divider = ({ children }: DividerProps): React.JSX.Element => {
   return (
     <StyledDiv>
       <StyledLine />
@@ -13,6 +15,10 @@ export const Divider = ({ children }: DividerProps): React.JSX.Element => {
     </StyledDiv>
   );
 };
+
+Divider.displayName = 'Divider';
+
+export default memo(Divider);
 
 const StyledDiv = styled.div`
   display: flex;

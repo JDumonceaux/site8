@@ -40,6 +40,8 @@ const LoadingWrapper = ({
   return children;
 };
 
+LoadingWrapper.displayName = 'LoadingWrapper';
+
 export default memo(LoadingWrapper);
 
 const StyledLoadingDiv = styled.div`

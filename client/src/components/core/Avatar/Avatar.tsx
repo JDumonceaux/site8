@@ -24,6 +24,7 @@ const SytledAvatar = ({
     <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
   </StyledRoot>
 );
+
 SytledAvatar.displayName = 'SytledAvatar';
 
 export default memo(SytledAvatar);

@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import { memo, type ButtonHTMLAttributes } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -10,7 +10,7 @@ type Button2Props = {
   readonly variant?: 'primary' | 'secondary';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'>;
 
-export const Button2 = ({
+const Button2 = ({
   children,
   icon,
   id,
@@ -28,6 +28,10 @@ export const Button2 = ({
     {children}
   </StyledButton>
 );
+
+Button2.displayName = 'Button2';
+
+export default memo(Button2);
 
 const StyledButton = styled.button<{
   $margin?: string;

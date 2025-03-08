@@ -1,16 +1,12 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { styled } from 'styled-components';
 
-const Footer = (
-  {
-    ref,
-    ..._
-  }
-): React.JSX.Element => {
+const Footer = (): React.JSX.Element => {
   const thisYear = new Date().getFullYear();
+
   return (
-    <StyledFooter data-testid="footer" ref={ref}>
+    <StyledFooter data-testid="footer">
       <StyledCopyright aria-label="Copyright Information">
         Copyright &copy; {thisYear}
       </StyledCopyright>

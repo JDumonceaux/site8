@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
@@ -19,7 +19,6 @@ type TooltipBaseProps = {
 const TooltipBase = ({
   arrowProps,
   content,
-  ref,
   tabStop = false,
   tooltipProps,
   trigger,
@@ -58,6 +57,7 @@ const TooltipBase = ({
 TooltipBase.displayName = 'TooltipBase';
 
 export default memo(TooltipBase);
+
 export type { TooltipBaseProps };
 
 const StyledTrigger = styled(TooltipRadix.Trigger)<{

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import Tooltip, { type TooltipBaseProps } from '../TooltipBase';
 

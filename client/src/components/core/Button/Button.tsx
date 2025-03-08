@@ -1,4 +1,4 @@
-import React, { type ButtonHTMLAttributes, memo } from 'react';
+import { type ButtonHTMLAttributes, memo } from 'react';
 
 import styled, { css } from 'styled-components';
 

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo, isValidElement } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -39,7 +39,7 @@ const InputHelp = ({ helpText, ...rest }: InputHelpProps): React.ReactNode => {
     );
   }
 
-  if (React.isValidElement(helpText)) {
+  if (isValidElement(helpText)) {
     return <div {...rest}>{helpText}</div>;
   }
   throw new Error('Invalid type passed as child.');
@@ -48,6 +48,7 @@ const InputHelp = ({ helpText, ...rest }: InputHelpProps): React.ReactNode => {
 InputHelp.displayName = 'InputHelp';
 
 export default memo(InputHelp);
+
 export type { InputHelpProps };
 
 const StyledDiv = styled.div`

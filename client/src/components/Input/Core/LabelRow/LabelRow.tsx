@@ -1,4 +1,4 @@
-import React, { memo, useMemo, type LabelHTMLAttributes } from 'react';
+import { memo, useMemo, type LabelHTMLAttributes } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';

@@ -1,4 +1,9 @@
-import React, { type LabelHTMLAttributes, useCallback } from 'react';
+import {
+  type LabelHTMLAttributes,
+  isValidElement,
+  memo,
+  useCallback,
+} from 'react';
 
 import { styled } from 'styled-components';
 
@@ -11,7 +16,7 @@ type TextHelpProps = {
   readonly showCounter?: boolean;
 } & LabelHTMLAttributes<HTMLLabelElement>;
 
-export const TextHelp = ({
+const TextHelp = ({
   characterCount,
   errorText,
   hasError = true,
@@ -22,7 +27,7 @@ export const TextHelp = ({
   const getHelperText = useCallback(
     (msg: React.ReactNode | string | string[] | undefined) => {
       if (!msg) return null;
-      if (React.isValidElement(msg)) return msg;
+      if (isValidElement(msg)) return msg;
       if (!Array.isArray(msg)) return <div>{msg}</div>;
 
       if (msg.length > 1) {
@@ -64,6 +69,10 @@ export const TextHelp = ({
     </StyledDivWrapper>
   );
 };
+
+TextHelp.displayName = 'TextHelp';
+
+export default memo(TextHelp);
 
 const StyledDivWrapper = styled.div`
   font-size: 0.75rem;
