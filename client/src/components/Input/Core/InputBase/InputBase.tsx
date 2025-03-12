@@ -1,4 +1,4 @@
-import {
+import React, {
   type HTMLInputTypeAttribute,
   type InputHTMLAttributes,
   memo,

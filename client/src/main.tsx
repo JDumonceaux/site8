@@ -1,6 +1,7 @@
 // import { scan } from 'react-scan';
 import React from 'react';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -15,6 +16,9 @@ import './styles/reset.css';
 // import config from './amplifyconfiguration.json';
 // Amplify.configure(config);
 
+// Create a client
+const queryClient = new QueryClient();
+
 const rootElement = document.querySelector('#root');
 if (rootElement) {
   // scan({
@@ -25,9 +29,11 @@ if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <ReduxProvider>
-        <HelmetProvider>
-          <RouterProvider />
-        </HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <HelmetProvider>
+            <RouterProvider />
+          </HelmetProvider>
+        </QueryClientProvider>
       </ReduxProvider>
     </React.StrictMode>,
   );

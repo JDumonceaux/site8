@@ -1,6 +1,7 @@
 // @ts-check
 // JavaScript rules (formerly included in ESLint core)
 import js from '@eslint/js';
+import pluginReactQuery from '@tanstack/eslint-plugin-query';
 import pluginTypescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import configPrettier from 'eslint-config-prettier';
@@ -42,6 +43,7 @@ export default [
     name: 'Site8-js',
     plugins: {
       '@eslint/js': js,
+      '@tanstack/query': pluginReactQuery,
       'check-file': pluginCheckFile,
       import: importPlugin,
       'jsx-a11y': pluginA11y,
@@ -56,6 +58,7 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
+      ...pluginReactQuery.configs.recommended.rules,
       ...pluginReact.configs.recommended.rules,
       ...pluginHooks.configs.recommended.rules,
       ...pluginRedux.configs.recommended.rules,

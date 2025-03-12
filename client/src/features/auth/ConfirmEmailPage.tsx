@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
-import { Button2 } from 'components/form/Button2/Button2';
+import Button2 from 'components/form/Button2/Button2';
 import Input from 'components/Input/Input';
 import { authCode } from 'features/auth/ZodStrings';
 import useAuth from 'hooks/useAuth';
