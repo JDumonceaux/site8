@@ -8,7 +8,7 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" />
+          <InputEmail id="test" value="" />
         </Form.Field>
       </Form.Root>,
     );
@@ -21,7 +21,7 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" />
+          <InputEmail id="test" value="" />
         </Form.Field>
       </Form.Root>,
     );
@@ -52,7 +52,7 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" required />
+          <InputEmail id="test" required value="" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -68,7 +68,7 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" minLength={5} />
+          <InputEmail id="test" minLength={5} value="" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -84,7 +84,7 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" maxLength={5} />
+          <InputEmail id="test" maxLength={5} value="" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -100,7 +100,7 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" pattern="^[a-zA-Z]*$" />
+          <InputEmail id="test" pattern="^[a-zA-Z]*$" value="" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -133,7 +133,7 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" />
+          <InputEmail id="test" value="" />
         </Form.Field>
       </Form.Root>,
     );
@@ -145,18 +145,20 @@ describe('InputEmail', () => {
 
     // Simulate focus
     fireEvent.focus(inputElement);
-    expect(inputElement).toHaveStyle('border-color: blue'); // Replace with the expected style when focused
+    expect(inputElement).toHaveStyle('border-color: blue');
+    // Replace with the expected style when focused
 
     // Simulate blur
     fireEvent.blur(inputElement);
-    expect(inputElement).toHaveStyle('border-color: #ccc'); // Back to default style
+    expect(inputElement).toHaveStyle('border-color: #ccc');
+    // Back to default style
   });
 
   test('applies error style when input is invalid', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" required />
+          <InputEmail id="test" required value="" />
         </Form.Field>
       </Form.Root>,
     );

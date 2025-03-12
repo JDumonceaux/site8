@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/prefer-tag-over-role */
 /* eslint-disable react/forbid-component-props */
-import React, {
+import {
   memo,
   useLayoutEffect,
   useRef,

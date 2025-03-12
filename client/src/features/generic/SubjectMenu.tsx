@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import useMenu from 'hooks/useMenu';
@@ -8,12 +8,7 @@ import { styled } from 'styled-components';
 
 import { ItemRender } from './ItemRender';
 
-const SubjectMenu = (
-  {
-    ref,
-    ..._
-  }
-): React.JSX.Element => {
+const SubjectMenu = memo(({ ref, ..._ }: any): React.JSX.Element => {
   const { error, fetchData, getMenu, getOtherMenus, isLoading } = useMenu();
 
   useEffect(() => {
@@ -46,7 +41,7 @@ const SubjectMenu = (
       </StyledContent>
     </StyledNav>
   );
-};
+});
 
 SubjectMenu.displayName = 'SubjectMenu';
 

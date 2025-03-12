@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { memo } from 'react';
 import {
   type HTMLInputTypeAttribute,
   type InputHTMLAttributes,

@@ -1,14 +1,9 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { styled } from 'styled-components';
 
-/**
- * Renders a fallback component that displays a loading state.
- *
- * @returns The JSX element representing the fallback component.
- */
-const Fallback = memo((): React.JSX.Element => {
+const Fallback = (): React.JSX.Element => {
   return (
     <output aria-busy="true" data-testid="footer">
       <PageTitle title="Loading" />
@@ -18,7 +13,9 @@ const Fallback = memo((): React.JSX.Element => {
       ))}
     </output>
   );
-});
+};
+
+Fallback.displayName = 'Fallback';
 
 export default memo(Fallback);
 

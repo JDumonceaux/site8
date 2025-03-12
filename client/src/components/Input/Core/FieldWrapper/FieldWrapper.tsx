@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo, useMemo } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
@@ -25,7 +25,12 @@ const FieldWrapper = memo(
     ...rest
   }: FieldWrapperProps) => {
     const currId = useGetId(id);
-    const props = { ...rest, id: currId, required };
+
+    const props = useMemo(
+      () => ({ ...rest, id: currId, required }),
+      [rest, currId, required],
+    );
+    const memoizedRest = useMemo(() => rest, [rest]);
 
     return (
       <div id={currId}>
@@ -33,10 +38,8 @@ const FieldWrapper = memo(
         <StyledDiv>
           <StartAdornment>{startAdornment}</StartAdornment>
           {children}
-          {/* {showClear ? <ClearAdornment onClick={handleClear} /> : null} */}
-          {/* <EndAdornment>{endAdornment}</EndAdornment> */}
         </StyledDiv>
-        <FooterRow {...rest} />
+        <FooterRow {...memoizedRest} />
       </div>
     );
   },

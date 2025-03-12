@@ -33,6 +33,8 @@ const Snackbar = (): null | React.JSX.Element => {
   );
 };
 
+Snackbar.displayName = 'Snackbar';
+
 export default memo(Snackbar);
 
 const StyledDialog = styled.dialog<{ $variant: SnackbarVariant }>`

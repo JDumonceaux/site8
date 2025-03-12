@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { EyeNoneIcon, EyeOpenIcon } from '@radix-ui/react-icons';

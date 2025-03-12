@@ -8,7 +8,7 @@ describe('InputDate', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputDate id="test" />
+          <InputDate id="test" value="" />
         </Form.Field>
       </Form.Root>,
     );

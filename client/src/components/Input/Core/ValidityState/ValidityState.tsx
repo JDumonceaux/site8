@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import * as Form from '@radix-ui/react-form';
 import { styled } from 'styled-components';
@@ -7,8 +7,7 @@ import { styled } from 'styled-components';
 // user - provided input.
 // They are not checked if a value is set programmatically,
 // even when explicitly calling checkValidity() or reportValidity()
-
-export type ValidityStateProps = {
+type ValidityStateProps = {
   readonly errorMissing?: string;
   readonly errorType?: string;
 };

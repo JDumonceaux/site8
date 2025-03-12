@@ -8,7 +8,7 @@ describe('InputColor', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputColor id="test" />
+          <InputColor id="test" value="" />
         </Form.Field>
       </Form.Root>,
     );

@@ -3,7 +3,7 @@ import { keyframes, styled } from 'styled-components';
 import LinkButton from '../LinkButton2/LinkButton';
 import { memo, useMemo } from 'react';
 
-const CircleMenuAnimation = (): React.JSX.Element => {
+const CircleMenuAnimation = memo((): React.JSX.Element => {
   return (
     <>
       {useMemo(
@@ -68,7 +68,7 @@ const CircleMenuAnimation = (): React.JSX.Element => {
       )}
     </>
   );
-};
+});
 
 export default memo(CircleMenuAnimation);
 

@@ -627,6 +627,7 @@ export default [
       // Unicorn
       'unicorn/filename-case': 'off',
       // Incorrectly prevents the use of null as a component return (i.e. render nothing)
+      'unicorn/no-instanceof-builtins': 'off',
       'unicorn/no-null': 'off',
       'unicorn/prefer-node-protocol': 'off',
       'unicorn/prefer-spread': 'off',

@@ -28,8 +28,8 @@ export const getDateTime = (date?: string, delimiter = '/') => {
       throw new TypeError('Invalid date or time values');
     }
 
-    const isPM = /pm/i.test(date);
-    const isAM = /am/i.test(date);
+    const isPM = /pm/iu.test(date);
+    const isAM = /am/iu.test(date);
 
     const hoursReturnValue = () => {
       if (isPM && hours !== 12) {
@@ -43,6 +43,7 @@ export const getDateTime = (date?: string, delimiter = '/') => {
 
     return new Date(year, month - 1, day, hoursAMPM, minutes);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error parsing date:', error);
     return null;
   }

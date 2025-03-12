@@ -1,4 +1,5 @@
-import React, { memo, useMemo } from 'react';
+import { memo, useMemo } from 'react';
+
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DotsVerticalIcon } from '@radix-ui/react-icons';
 import { styled } from 'styled-components';
@@ -7,7 +8,7 @@ type Props = {
   readonly children?: React.ReactNode;
 };
 
-export const IconMenu = memo(({ children }: Props): React.JSX.Element => {
+const IconMenu = ({ children }: Props): React.JSX.Element => {
   const memoizedDropdownMenu = useMemo(
     () => (
       <DropdownMenu.Root>
@@ -27,7 +28,11 @@ export const IconMenu = memo(({ children }: Props): React.JSX.Element => {
   );
 
   return memoizedDropdownMenu;
-});
+};
+
+IconMenu.displayName = 'IconMenu';
+
+export default memo(IconMenu);
 
 const StyledButton = styled.button`
   font-family: inherit;

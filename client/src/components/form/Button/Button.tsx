@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import { memo, type ButtonHTMLAttributes } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -8,16 +8,6 @@ type ButtonProps = {
   readonly variant?: 'primary' | 'secondary';
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
-/**
- * Button component.
- *
- * @component
- * @param {string} id - The ID of the button.
- * @param {ReactNode} children - The content of the button.
- * @param {string} variant - The variant of the button (default: 'primary').
- * @param {ButtonProps} rest - Additional props for the button.
- * @returns {React.JSX.Element} The rendered Button component.
- */
 const Button = ({
   children,
   id,
@@ -29,7 +19,9 @@ const Button = ({
   </StyledButton>
 );
 
-export default Button;
+Button.displayName = 'Button';
+
+export default memo(Button);
 
 const StyledButton = styled.button<{
   variant: 'primary' | 'secondary' | undefined;

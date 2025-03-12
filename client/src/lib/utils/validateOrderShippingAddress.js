@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 
 const validateOrderShippingAddress = (shippingAddress) => {
-  const re = /^\w$/;
+  const re = /^\w$/u;
 
   const shippingAddressSchema = z.object({
     AddressLine1: z

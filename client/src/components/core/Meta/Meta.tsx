@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 // eslint-disable-next-line no-warning-comments
 // TODO: Polish up - handle missing items, keywords
 type MetaProps = {
@@ -39,4 +41,6 @@ const Meta = ({
   );
 };
 
-export default Meta;
+Meta.displayName = 'Meta';
+
+export default memo(Meta);

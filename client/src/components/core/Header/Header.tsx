@@ -1,4 +1,3 @@
-import React from 'react';
 import { forwardRef, memo } from 'react';
 
 import { MenuIcon } from 'components/icons/MenuIcon';
@@ -11,14 +10,6 @@ type HeaderProps = {
   readonly includeMenu?: boolean;
 };
 
-/**
- * Renders the header component.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {boolean} props.includeMenu - Determines whether to include the menu icon.
- * @returns {React.JSX.Element} The rendered header component.
- */
 const Header = forwardRef<HTMLDivElement, HeaderProps>(
   ({ avatar, includeMenu = false }: HeaderProps, ref): React.JSX.Element => {
     return (

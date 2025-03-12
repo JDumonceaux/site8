@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { PhoneIcon as Icon } from 'components/icons/PhoneIcon';
 import { styled } from 'styled-components';

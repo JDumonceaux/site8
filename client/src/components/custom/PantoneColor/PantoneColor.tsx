@@ -1,13 +1,9 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { styled } from 'styled-components';
 
 const PANTONE_LINK = 'https://www.pantone.com/color-of-the-year/2023';
-/**
- * Renders a component inspired by the 2023 Pantone® Color of the Year.
- *
- * @returns The JSX element representing the PantoneColor component.
- */
+
 const PantoneColor = (): React.JSX.Element => (
   <WrapperDiv>
     This page is inspired by the{' '}
@@ -18,6 +14,8 @@ const PantoneColor = (): React.JSX.Element => (
     </ColorDiv>
   </WrapperDiv>
 );
+
+PantoneColor.displayName = 'PantoneColor';
 
 export default memo(PantoneColor);
 

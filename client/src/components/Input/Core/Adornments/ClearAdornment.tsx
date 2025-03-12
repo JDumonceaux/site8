@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon as Icon } from '@radix-ui/react-icons';

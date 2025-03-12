@@ -1,12 +1,11 @@
+import { memo } from 'react';
+
 type IconProps = {
   readonly ariaHidden?: boolean;
   readonly focusable?: boolean;
 };
 
-export const AmazonIcon = ({
-  ariaHidden = false,
-  focusable = true,
-}: IconProps) => {
+const AmazonIcon = ({ ariaHidden = false, focusable = true }: IconProps) => {
   return (
     <svg
       aria-hidden={ariaHidden}
@@ -43,3 +42,5 @@ export const AmazonIcon = ({
     </svg>
   );
 };
+
+export default memo(AmazonIcon);

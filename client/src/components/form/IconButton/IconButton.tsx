@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import { memo, type ButtonHTMLAttributes } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -7,7 +7,7 @@ type IconButtonProps = {
   readonly children: React.ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label'>;
 
-export const IconButton = ({
+const IconButton = ({
   'aria-label': ariaLabel,
   children,
   ...rest
@@ -16,6 +16,10 @@ export const IconButton = ({
     {children}
   </StyledButton>
 );
+
+IconButton.displayName = 'IconButton';
+
+export default memo(IconButton);
 
 const StyledButton = styled.button`
   background: inherit;

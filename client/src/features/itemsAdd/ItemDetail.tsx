@@ -39,54 +39,67 @@ const ItemDetail = ({
     }
   }, [item.lineId, onDelete]);
 
-  const getDefaultProps = React.useCallback(
-    (lineId: number, fieldName: keyof ItemAddExt) => ({
-      autoComplete: 'off',
-      'data-id': fieldName,
-      'data-line': lineId,
-      onChange: (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-      ) => {
-        onChange(e);
-      },
-      value: getFieldValue(lineId, fieldName),
-    }),
-    [getFieldValue, onChange],
+  const handleFieldChange = React.useCallback(
+    (
+      lineId: number,
+      fieldName: keyof ItemAddExt,
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      onChange(e, lineId, fieldName);
+    },
+    [onChange],
   );
 
   return (
     <StyledRow key={item.lineId}>
       <StyledOuterRow>
         <Input.Text
-          {...getDefaultProps(item.lineId, 'title')}
-          dataList={{ data: names, id: 'title' }}
+          data={names}
+          fieldName="title"
+          id="title"
+          lineId={item.lineId}
+          onChange={handleFieldChange}
           placeholder="Title"
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'year')}
+          fieldName="year"
+          lineId={item.lineId}
+          onChange={handleFieldChange}
           placeholder="Year"
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'location')}
-          dataList={{ data: locations, id: 'locations' }}
+          data={locations}
+          fieldName="location"
+          id="locations"
+          lineId={item.lineId}
+          onChange={handleFieldChange}
           placeholder="Location"
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'officialWebAddress')}
+          fieldName="officialWebAddress"
+          lineId={item.lineId}
+          onChange={handleFieldChange}
           placeholder="Official Web Address"
         />
         <Input.TextArea
-          {...getDefaultProps(item.lineId, 'description')}
+          fieldName="description"
+          lineId={item.lineId}
+          onChange={handleFieldChange}
           placeholder="Description"
           rows={5}
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'artisticPeriod')}
-          dataList={{ data: periods, id: 'periods' }}
+          data={periods}
+          fieldName="artisticPeriod"
+          id="periods"
+          lineId={item.lineId}
+          onChange={handleFieldChange}
           placeholder="Artistic Period"
         />
         <Input.Text
-          {...getDefaultProps(item.lineId, 'tags')}
+          fieldName="tags"
+          lineId={item.lineId}
+          onChange={handleFieldChange}
           placeholder="Tags"
         />
         <IconMenu>

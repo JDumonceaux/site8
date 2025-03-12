@@ -8,7 +8,7 @@ describe('InputHidden', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputHidden id="test" />
+          <InputHidden id="test" value="" />
         </Form.Field>
       </Form.Root>,
     );
