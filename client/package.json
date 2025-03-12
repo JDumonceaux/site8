@@ -59,14 +59,23 @@
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.3.0",
-    "react-scan": "^0.2.12",
+    "react-scan": "^0.2.14",
     "react-window": "^1.8.11",
     "styled-components": "^6.1.15",
     "web-vitals": "^4.2.4",
     "zod": "^3.24.2"
   },
+  "overrides": {
+    "@million/lint": {
+      "esbuild": "0.25.1"
+    },
+    "react-scan": {
+      "esbuild": "0.25.1"
+    },
+    "esbuild": "0.25.1"
+  },
   "devDependencies": {
-    "@babel/core": "^7.26.9",
+    "@babel/core": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-typescript": "^7.26.0",
     "@chromatic-com/storybook": "^3.2.5",
@@ -97,16 +106,16 @@
     "babel-jest": "^29.7.0",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
-    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-import-resolver-typescript": "^3.8.5",
     "eslint-plugin-check-file": "^3.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-perfectionist": "^4.10.0",
+    "eslint-plugin-perfectionist": "^4.10.1",
     "eslint-plugin-prefer-arrow-functions": "^3.6.2",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-40c6c23-20250301",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-bafa41b-20250307",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-redux": "^4.2.0",
     "eslint-plugin-storybook": "^0.11.4",
@@ -124,7 +133,7 @@
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.0",
+    "typescript-eslint": "^8.26.1",
     "vite": "^6.2.1",
     "vite-tsconfig-paths": "^5.1.4"
   },
