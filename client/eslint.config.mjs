@@ -231,7 +231,7 @@ export default [
       'max-lines-per-line': 'off',
       //'max-lines-per-function': 'error',
       'max-nested-callbacks': 'error',
-      'max-params': 'error',
+      'max-params': ['error', 5],
       'multiline-ternary': 'off',
       //'max-statements': 'error',
       'new-cap': 'error',
