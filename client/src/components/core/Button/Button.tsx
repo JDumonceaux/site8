@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, memo } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 import styled, { css } from 'styled-components';
 
@@ -47,7 +47,7 @@ const Button = ({
 
 Button.displayName = 'Button';
 
-export default memo(Button);
+export default Button;
 
 const StyledButton = styled.button<{
   $size?: Size;

@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 type InputButtonProps = {
   readonly type?: 'button' | 'reset' | 'submit';
 };
@@ -12,4 +10,4 @@ const InputButton = ({
 
 InputButton.displayName = 'InputButton';
 
-export default memo(InputButton);
+export default InputButton;

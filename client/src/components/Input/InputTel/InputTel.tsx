@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import PhoneAdornment from '../Core/Adornments/PhoneAdornment';
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
@@ -30,4 +30,4 @@ const InputTel = ({
 
 InputTel.displayName = 'InputTel';
 
-export default memo(InputTel);
+export default InputTel;

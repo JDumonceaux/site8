@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import IconMenu from 'components/IconMenu/IconMenu';
 import IconMenuItem from 'components/IconMenu/IconMenuItem';
@@ -23,89 +23,93 @@ type Props = {
   readonly onDelete: (lineId: number) => void;
 };
 
-const ImageDetail = ({
-  getFieldValue,
-  item,
-  names,
-  onChange,
-  onDelete,
-}: Props): React.JSX.Element => {
-  const handleOnDelete = React.useCallback(() => {
-    onDelete(item.lineId);
-  }, [item.lineId, onDelete]);
+const ImageDetail = React.memo(
+  ({
+    getFieldValue,
+    item,
+    names,
+    onChange,
+    onDelete,
+  }: Props): React.JSX.Element => {
+    const handleOnDelete = React.useCallback(() => {
+      onDelete(item.lineId);
+    }, [item.lineId, onDelete]);
 
-  const getDefaultProps = React.useCallback(
-    (lineId: number, fieldName: keyof ImageAddExt) => ({
-      'data-id': fieldName,
-      'data-line': lineId,
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(e);
-      },
-      value: getFieldValue(lineId, fieldName),
-    }),
-    [getFieldValue, onChange],
-  );
+    const getDefaultProps = React.useCallback(
+      (lineId: number, fieldName: keyof ImageAddExt) => ({
+        'data-id': fieldName,
+        'data-line': lineId,
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange(e);
+        },
+        value: getFieldValue(lineId, fieldName),
+      }),
+      [getFieldValue, onChange],
+    );
 
-  const getDefaultPropsSelect = React.useCallback(
-    (lineId: number, fieldName: keyof ImageAddExt) => ({
-      'data-id': fieldName,
-      'data-line': lineId,
-      onChange: (e: React.ChangeEvent<HTMLSelectElement>) => {
-        onChange(e);
-      },
-      value: getFieldValue(lineId, fieldName),
-    }),
-    [getFieldValue, onChange],
-  );
+    const getDefaultPropsSelect = React.useCallback(
+      (lineId: number, fieldName: keyof ImageAddExt) => ({
+        'data-id': fieldName,
+        'data-line': lineId,
+        onChange: (e: React.ChangeEvent<HTMLSelectElement>) => {
+          onChange(e);
+        },
+        value: getFieldValue(lineId, fieldName),
+      }),
+      [getFieldValue, onChange],
+    );
 
-  // Memoize the props objects to ensure stable references
-  const fileNameProps = React.useMemo(
-    () => getDefaultProps(item.lineId, 'fileName'),
-    [getDefaultProps, item.lineId],
-  );
+    // Memoize the props objects to ensure stable references
+    const fileNameProps = React.useMemo(
+      () => getDefaultProps(item.lineId, 'fileName'),
+      [getDefaultProps, item.lineId],
+    );
 
-  const folderProps = React.useMemo(
-    () => getDefaultProps(item.lineId, 'folder'),
-    [getDefaultProps, item.lineId],
-  );
+    const folderProps = React.useMemo(
+      () => getDefaultProps(item.lineId, 'folder'),
+      [getDefaultProps, item.lineId],
+    );
 
-  const itemIdProps = React.useMemo(
-    () => getDefaultPropsSelect(item.lineId, 'itemId'),
-    [getDefaultPropsSelect, item.lineId],
-  );
+    const itemIdProps = React.useMemo(
+      () => getDefaultPropsSelect(item.lineId, 'itemId'),
+      [getDefaultPropsSelect, item.lineId],
+    );
 
-  const memoizedInputSelect = React.useMemo(
-    () => <Input.Select {...itemIdProps} dataList={names} placeholder="Item" />,
-    [itemIdProps, names],
-  );
+    const memoizedInputSelect = React.useMemo(
+      () => (
+        <Input.Select {...itemIdProps} dataList={names} placeholder="Item" />
+      ),
+      [itemIdProps, names],
+    );
 
-  return (
-    <StyledRow
-      $deleted={item.delete === true ? 'true' : 'false'}
-      key={item.lineId}>
-      <StyledImgContainer>
-        <StyledImg alt="unknown" src={item.src} />
-      </StyledImgContainer>
-      <StyledOuterRow>
-        {item.isDuplicate ? <div>Duplicate Image</div> : null}
-        {memoizedInputSelect}
-        <Input.Text {...fileNameProps} placeholder="File Name" />
-        <Input.Text {...folderProps} placeholder="Folder" />
-        <IconMenu>
-          <IconMenuItem onClick={handleOnDelete}>Delete</IconMenuItem>
-          <IconMenuItem>{item.id}</IconMenuItem>
-        </IconMenu>
-        <Input.Checkbox
-          checked={getFieldValue(item.lineId, 'isSelected') === 'true'}
-          data-id="isSelected"
-          data-line={item.lineId}
-          onChange={onChange}
-          value="x"
-        />
-      </StyledOuterRow>
-    </StyledRow>
-  );
-};
+    return (
+      <StyledRow
+        $deleted={item.delete === true ? 'true' : 'false'}
+        key={item.lineId}>
+        <StyledImgContainer>
+          <StyledImg alt="unknown" src={item.src} />
+        </StyledImgContainer>
+        <StyledOuterRow>
+          {item.isDuplicate ? <div>Duplicate Image</div> : null}
+          {memoizedInputSelect}
+          <Input.Text {...fileNameProps} placeholder="File Name" />
+          <Input.Text {...folderProps} placeholder="Folder" />
+          <IconMenu>
+            <IconMenuItem onClick={handleOnDelete}>Delete</IconMenuItem>
+            <IconMenuItem>{item.id}</IconMenuItem>
+          </IconMenu>
+          <Input.Checkbox
+            checked={getFieldValue(item.lineId, 'isSelected') === 'true'}
+            data-id="isSelected"
+            data-line={item.lineId}
+            onChange={onChange}
+            value="x"
+          />
+        </StyledOuterRow>
+      </StyledRow>
+    );
+  },
+);
 
 export default ImageDetail;
 

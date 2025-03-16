@@ -1,4 +1,4 @@
-import { forwardRef, memo } from 'react';
+import { forwardRef } from 'react';
 
 import { MenuIcon } from 'components/icons/MenuIcon';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
@@ -31,7 +31,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(
 
 Header.displayName = 'Header';
 
-export default memo(Header);
+export default Header;
 
 const StyledHeader = styled.header`
   background-color: var(--palette-main-color, #000);

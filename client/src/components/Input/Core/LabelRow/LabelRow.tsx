@@ -1,4 +1,4 @@
-import { memo, useMemo, type LabelHTMLAttributes } from 'react';
+import { useMemo, type LabelHTMLAttributes } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
@@ -75,7 +75,7 @@ const LabelRow = ({
 
 LabelRow.displayName = 'LabelRow';
 
-export default memo(LabelRow);
+export default LabelRow;
 
 export type { LabelRowProps };
 

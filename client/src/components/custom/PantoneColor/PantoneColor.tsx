@@ -1,6 +1,4 @@
-import { memo } from 'react';
-
-import { styled } from 'styled-components';
+d-components';
 
 const PANTONE_LINK = 'https://www.pantone.com/color-of-the-year/2023';
 
@@ -17,7 +15,7 @@ const PantoneColor = (): React.JSX.Element => (
 
 PantoneColor.displayName = 'PantoneColor';
 
-export default memo(PantoneColor);
+export default PantoneColor;
 
 const WrapperDiv = styled.div`
   width: 100%;

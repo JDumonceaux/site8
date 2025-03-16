@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputEmailProps = {
@@ -19,4 +17,4 @@ const InputEmail = ({
 
 InputEmail.displayName = 'InputEmail';
 
-export default memo(InputEmail);
+export default InputEmail;

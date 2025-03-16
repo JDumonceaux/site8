@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import * as RadixAvatar from '@radix-ui/react-avatar';
 import { styled } from 'styled-components';
 
@@ -27,7 +25,7 @@ const SytledAvatar = ({
 
 SytledAvatar.displayName = 'SytledAvatar';
 
-export default memo(SytledAvatar);
+export default SytledAvatar;
 
 const StyledRoot = styled(RadixAvatar.Root)`
   display: inline-flex;

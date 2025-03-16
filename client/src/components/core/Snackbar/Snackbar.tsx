@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import useSnackbar, { SnackbarVariant } from 'hooks/useSnackbar';
 import { styled } from 'styled-components';
@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 // Note: Snackbars or Toast Snackbars are not recommended
 // https://www.magentaa11y.com/checklist-web/toast-snackbar/
 
-const Snackbar = (): null | React.JSX.Element => {
+const Snackbar = memo((): null | React.JSX.Element => {
   const { closeSnackbar, data } = useSnackbar();
 
   const handleOnClose = useCallback(() => {
@@ -31,11 +31,11 @@ const Snackbar = (): null | React.JSX.Element => {
       </Button>
     </StyledDialog>
   );
-};
+});
 
 Snackbar.displayName = 'Snackbar';
 
-export default memo(Snackbar);
+export default Snackbar;
 
 const StyledDialog = styled.dialog<{ $variant: SnackbarVariant }>`
   background: var(--snackbar-background);

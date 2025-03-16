@@ -1,20 +1,20 @@
-import { useEffect } from 'react';
-
-import useServerApi from 'hooks/Axios/useServerApi';
+import { useQuery } from '@tanstack/react-query';
 import { ServiceUrl } from 'lib/utils/constants';
 import type { Bookmarks } from 'types';
 
 const useBookmarks = () => {
-  const { data, error, fetchData, isLoading } = useServerApi<Bookmarks>();
-
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_BOOKMARKS);
-  }, [fetchData]);
+  const { data, isError, isPending } = useQuery({
+    queryFn: async () => {
+      const response = await fetch(ServiceUrl.ENDPOINT_IMAGES);
+      return (await response.json()) as Bookmarks;
+    },
+    queryKey: ['bookmarks'],
+  });
 
   return {
     data,
-    error,
-    isLoading,
+    isError,
+    isPending,
   };
 };
 

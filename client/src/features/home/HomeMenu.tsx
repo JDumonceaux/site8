@@ -76,7 +76,7 @@ const HomeMenu = memo((): React.JSX.Element => {
   );
 });
 
-export default memo(HomeMenu);
+export default HomeMenu);
 
 const StyledGrid = styled.div`
   column-count: 6;

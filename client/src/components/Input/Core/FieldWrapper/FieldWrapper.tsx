@@ -47,7 +47,7 @@ const FieldWrapper = memo(
 
 FieldWrapper.displayName = 'FieldWrapper';
 
-export default memo(FieldWrapper);
+export default FieldWrapper;
 
 export type { FieldWrapperProps };
 

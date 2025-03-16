@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { LockClosedIcon as Icon } from '@radix-ui/react-icons';
 
 type Props = {
@@ -13,4 +11,4 @@ const PasswordAdornment = ({ ref, ...rest }: Props) => (
 
 PasswordAdornment.displayName = 'PasswordAdornment';
 
-export default memo(PasswordAdornment);
+export default PasswordAdornment;

@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputFileProps = {
@@ -24,4 +22,4 @@ const InputFile = ({
 
 InputFile.displayName = 'InputFile';
 
-export default memo(InputFile);
+export default InputFile;

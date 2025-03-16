@@ -9,7 +9,7 @@ import InputSelect from './InputSelect/InputSelect';
 import InputTel from './InputTel/InputTel';
 import InputText from './InputText/InputText';
 import InputToggle from './InputToggle/InputToggle';
-import { TextArea } from './TextArea/TextArea';
+import TextArea from './TextArea/TextArea';
 
 type Props = InputBaseProps;
 

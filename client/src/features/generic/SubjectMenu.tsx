@@ -45,7 +45,7 @@ const SubjectMenu = memo(({ ref, ..._ }: any): React.JSX.Element => {
 
 SubjectMenu.displayName = 'SubjectMenu';
 
-export default memo(SubjectMenu);
+export default SubjectMenu;
 
 const StyledNav = styled.nav`
   color: var(--navbar-text);

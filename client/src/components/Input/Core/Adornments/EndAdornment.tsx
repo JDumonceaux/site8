@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { styled } from 'styled-components';
 
 type EndAdornmentProps = {
@@ -40,7 +38,7 @@ const EndAdornment = ({ children }: EndAdornmentProps) => {
 
 EndAdornment.displayName = 'EndAdornments';
 
-export default memo(EndAdornment);
+export default EndAdornment;
 
 const StyledDiv = styled.div`
   color: var(--input-adornment);

@@ -1,12 +1,12 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 
 import { styled } from 'styled-components';
 
-const FooterRow = (): React.JSX.Element => <RowDiv />;
+const FooterRow = memo((): React.JSX.Element => <RowDiv />);
 
 FooterRow.displayName = 'FooterRow';
 
-export default memo(FooterRow);
+export default FooterRow;
 
 const RowDiv = styled.div`
   display: flex;

@@ -1,9 +1,4 @@
-import {
-  type LabelHTMLAttributes,
-  isValidElement,
-  memo,
-  useCallback,
-} from 'react';
+import { type LabelHTMLAttributes, isValidElement, useCallback } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -72,7 +67,7 @@ const TextHelp = ({
 
 TextHelp.displayName = 'TextHelp';
 
-export default memo(TextHelp);
+export default TextHelp;
 
 const StyledDivWrapper = styled.div`
   font-size: 0.75rem;

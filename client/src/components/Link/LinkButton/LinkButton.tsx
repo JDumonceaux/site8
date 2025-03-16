@@ -19,4 +19,4 @@ const LinkButton = ({ children, to }: LinkButtonProps): React.JSX.Element => (
   <StyledLink to={to}>{children}</StyledLink>
 );
 
-export default memo(LinkButton);
+export default LinkButton);

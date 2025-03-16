@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputUrlProps = {
@@ -19,4 +17,4 @@ const InputUrl = ({
 
 InputUrl.displayName = 'InputUrl';
 
-export default memo(InputUrl);
+export default InputUrl;

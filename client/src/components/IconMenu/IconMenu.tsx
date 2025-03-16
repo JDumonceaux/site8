@@ -8,7 +8,7 @@ type Props = {
   readonly children?: React.ReactNode;
 };
 
-const IconMenu = ({ children }: Props): React.JSX.Element => {
+const IconMenu = memo(({ children }: Props): React.JSX.Element => {
   const memoizedDropdownMenu = useMemo(
     () => (
       <DropdownMenu.Root>
@@ -28,11 +28,11 @@ const IconMenu = ({ children }: Props): React.JSX.Element => {
   );
 
   return memoizedDropdownMenu;
-};
+});
 
 IconMenu.displayName = 'IconMenu';
 
-export default memo(IconMenu);
+export default IconMenu;
 
 const StyledButton = styled.button`
   font-family: inherit;

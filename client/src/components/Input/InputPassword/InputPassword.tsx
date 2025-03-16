@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import PasswordAdornment from '../Core/Adornments/PasswordAdornment';
 import ShowAdornment from '../Core/Adornments/ShowAdornment';
@@ -48,4 +48,4 @@ const InputPassword = ({
 
 InputPassword.displayName = 'InputPassword';
 
-export default memo(InputPassword);
+export default InputPassword;

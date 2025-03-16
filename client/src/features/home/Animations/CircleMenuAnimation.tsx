@@ -70,7 +70,7 @@ const CircleMenuAnimation = memo((): React.JSX.Element => {
   );
 });
 
-export default memo(CircleMenuAnimation);
+export default CircleMenuAnimation);
 
 const Y_MIDDLE = '50dvh';
 const X_MIDDLE = '50dvw';

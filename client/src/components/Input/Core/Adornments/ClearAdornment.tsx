@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
@@ -41,7 +39,7 @@ const ClearAdornment = ({
 
 ClearAdornment.displayName = 'ClearAdornment';
 
-export default memo(ClearAdornment);
+export default ClearAdornment;
 
 const StyledTrigger = styled.div`
   margin: 0 8px;

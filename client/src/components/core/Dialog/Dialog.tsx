@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/prefer-tag-over-role */
 /* eslint-disable react/forbid-component-props */
 import {
-  memo,
   useLayoutEffect,
   useRef,
   useState,
@@ -184,7 +183,7 @@ const Dialog = ({
 
 Dialog.displayName = 'Dialog';
 
-export default memo(Dialog);
+export default Dialog;
 
 const StyledLabel = styled.label`
   font-size: 18px;

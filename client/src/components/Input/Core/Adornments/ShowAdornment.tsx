@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { EyeNoneIcon, EyeOpenIcon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
@@ -41,4 +39,4 @@ const ShowAdornment = ({
 
 ShowAdornment.displayName = 'ShowAdornment';
 
-export default memo(ShowAdornment);
+export default ShowAdornment;

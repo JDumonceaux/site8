@@ -13,12 +13,12 @@ type TextAreaProperties = {
 } & FieldWrapperProperties &
   Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name' | 'ref' | 'rows'>;
 
-export const TextArea = ({
+const TextArea = ({
   id,
+  onChange,
   ref,
   required,
   rows,
-  onChange,
   ...rest
 }: TextAreaProperties): React.JSX.Element => {
   const currId = useGetId(id);
@@ -29,16 +29,21 @@ export const TextArea = ({
   const localRef = ref ?? tempRef;
 
   return (
-    <FieldWrapper id={currId} required={required} onChange={handleChange}>
+    <FieldWrapper id={currId} onChange={handleChange} required={required}>
       <StyledTextArea
+        onChange={handleChange}
         ref={localRef}
         rows={rows}
-        onChange={handleChange}
         {...rest}
       />
     </FieldWrapper>
   );
 };
+
+TextArea.displayName = 'TextArea';
+
+export default TextArea;
+
 const StyledTextArea = styled.textarea`
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;

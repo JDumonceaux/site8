@@ -32,7 +32,7 @@ const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
   );
 };
 
-export default memo(RightMenu);
+export default RightMenu);
 
 const StickyMenu = styled.div`
   position: sticky;

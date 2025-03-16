@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputColorProps = {
@@ -26,4 +24,4 @@ const InputColor = ({
 
 InputColor.displayName = 'InputColor';
 
-export default memo(InputColor);
+export default InputColor;

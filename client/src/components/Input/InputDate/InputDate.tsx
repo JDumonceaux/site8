@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputDateProps = {
@@ -25,4 +23,4 @@ const InputDate = ({
 
 InputDate.displayName = 'InputDate';
 
-export default memo(InputDate);
+export default InputDate;

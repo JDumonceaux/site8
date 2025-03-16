@@ -58,7 +58,7 @@ const InputSelect = memo(
 
 InputSelect.displayName = 'InputSelect';
 
-export default memo(InputSelect);
+export default InputSelect;
 
 const StyledSelect = styled.select`
   font-family: 'Inter', sans-serif;

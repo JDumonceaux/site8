@@ -1,4 +1,4 @@
-import { memo, type ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -31,7 +31,7 @@ const Button2 = ({
 
 Button2.displayName = 'Button2';
 
-export default memo(Button2);
+export default Button2;
 
 const StyledButton = styled.button<{
   $margin?: string;

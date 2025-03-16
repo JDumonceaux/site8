@@ -1,4 +1,4 @@
-import { memo, type ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -19,7 +19,7 @@ const IconButton = ({
 
 IconButton.displayName = 'IconButton';
 
-export default memo(IconButton);
+export default IconButton;
 
 const StyledButton = styled.button`
   background: inherit;

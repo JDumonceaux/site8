@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { PhoneIcon as Icon } from 'components/icons/PhoneIcon';
 import { styled } from 'styled-components';
 
@@ -15,7 +13,7 @@ const PhoneAdornment = ({ ref, ...rest }: Props) => (
 
 PhoneAdornment.displayName = 'PhoneAdornment';
 
-export default memo(PhoneAdornment);
+export default PhoneAdornment;
 
 const StyledIcon = styled(Icon)`
   height: 15px;

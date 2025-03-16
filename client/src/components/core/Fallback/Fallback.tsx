@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import { styled } from 'styled-components';
 
@@ -17,7 +15,7 @@ const Fallback = (): React.JSX.Element => {
 
 Fallback.displayName = 'Fallback';
 
-export default memo(Fallback);
+export default Fallback;
 
 const LoadingLine = styled.div`
   background: var(--palette-grey-10);

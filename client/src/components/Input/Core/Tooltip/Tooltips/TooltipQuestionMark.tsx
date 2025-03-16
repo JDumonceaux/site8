@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 
 import Tooltip, { type TooltipBaseProps } from '../TooltipBase';
@@ -12,4 +10,4 @@ const TooltipQuestionMark = ({ ...rest }: Props): React.JSX.Element => (
 
 TooltipQuestionMark.displayName = 'TooltipQuestionMark';
 
-export default memo(TooltipQuestionMark);
+export default TooltipQuestionMark;

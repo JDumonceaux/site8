@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import Tooltip, { type TooltipBaseProps } from '../TooltipBase';
 
 type Props = TooltipBaseProps;
@@ -10,4 +8,4 @@ const TooltipAsterix = ({ ...rest }: Props): React.JSX.Element => (
 
 TooltipAsterix.displayName = 'TooltipAsterix';
 
-export default memo(TooltipAsterix);
+export default TooltipAsterix;

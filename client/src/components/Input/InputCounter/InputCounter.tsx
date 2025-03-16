@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { styled } from 'styled-components';
 
@@ -41,7 +39,7 @@ const InputCounter = ({
 
 InputCounter.displayName = 'InputCounter';
 
-export default memo(InputCounter);
+export default InputCounter;
 
 const StyledDivWrapper = styled.div<{ $align?: 'left' | 'right' }>`
   font-size: 0.75rem;

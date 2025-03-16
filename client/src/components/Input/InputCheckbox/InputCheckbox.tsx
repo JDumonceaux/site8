@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import styled from 'styled-components';
 
 import type { InputBaseProps } from '../Core/InputBase/InputBase';
@@ -16,10 +14,10 @@ type Props = {
 
 // Implicit aria-role => 'checkbox'
 const InputCheckbox = ({
-  type = 'checkbox',
-  lineId,
   fieldName,
+  lineId,
   onChange,
+  type = 'checkbox',
   ...rest
 }: Props): React.JSX.Element => {
   const { id, label } = rest;
@@ -31,7 +29,7 @@ const InputCheckbox = ({
   return (
     <StyledDiv>
       <label htmlFor={id}>
-        <input name={id} type={type} onChange={handleChange} {...rest} />
+        <input name={id} onChange={handleChange} type={type} {...rest} />
         {label}
       </label>
     </StyledDiv>
@@ -40,7 +38,7 @@ const InputCheckbox = ({
 
 InputCheckbox.displayName = 'InputCheckbox';
 
-export default memo(InputCheckbox);
+export default InputCheckbox;
 
 const StyledDiv = styled.div`
   margin-bottom: 16px;

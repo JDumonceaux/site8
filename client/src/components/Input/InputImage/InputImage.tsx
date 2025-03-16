@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputImageProps = {
@@ -23,4 +21,4 @@ const InputImage = ({
 
 InputImage.displayName = 'InputImage';
 
-export default memo(InputImage);
+export default InputImage;

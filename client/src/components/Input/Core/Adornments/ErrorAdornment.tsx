@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { ExclamationTriangleIcon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
 
@@ -15,4 +13,4 @@ const ErrorAdornment = ({ ref, ...rest }: Props) => (
 
 ErrorAdornment.displayName = 'ErrorAdornment';
 
-export default memo(ErrorAdornment);
+export default ErrorAdornment;

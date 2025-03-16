@@ -119,7 +119,7 @@ const InputBase = memo(
 
 InputBase.displayName = 'InputBase';
 
-export default memo(InputBase);
+export default InputBase;
 
 export type { InputBaseProps };
 

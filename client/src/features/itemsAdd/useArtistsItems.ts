@@ -1,15 +1,17 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
-import useServerApi from 'hooks/Axios/useServerApi';
+import { useQuery } from '@tanstack/react-query';
 import { ServiceUrl } from 'lib/utils/constants';
 import type { ArtistsItems, ListItem } from 'types';
 
 const useArtistsItems = () => {
-  const { data, error, fetchData, isLoading } = useServerApi<ArtistsItems>();
-
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_ARTISTS_ITEMS);
-  }, [fetchData]);
+  const { data, isError, isPending } = useQuery({
+    queryFn: async () => {
+      const response = await fetch(ServiceUrl.ENDPOINT_ARTISTS_ITEMS);
+      return (await response.json()) as ArtistsItems;
+    },
+    queryKey: ['artistsItems'],
+  });
 
   const itemsAsListItem = useCallback(() => {
     const sortedItems = data?.items?.toSorted((a, b) =>
@@ -28,7 +30,6 @@ const useArtistsItems = () => {
           for (const y of items) {
             ret.push({
               display: `${artist.artist.sortName} - ${y.title}`,
-              // eslint-disable-next-line no-plusplus
               key: i++,
               value: y.id,
             });
@@ -40,8 +41,8 @@ const useArtistsItems = () => {
 
   return {
     data,
-    error,
-    isLoading,
+    isError,
+    isPending,
     itemsAsListItem: itemsAsListItem(),
   };
 };

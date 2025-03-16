@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputSearchProps = {
@@ -16,4 +14,4 @@ const InputSearch = ({
 
 InputSearch.displayName = 'InputSearch';
 
-export default memo(InputSearch);
+export default InputSearch;

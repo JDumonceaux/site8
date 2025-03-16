@@ -1,4 +1,4 @@
-import { memo, type ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -21,7 +21,7 @@ const Button = ({
 
 Button.displayName = 'Button';
 
-export default memo(Button);
+export default Button;
 
 const StyledButton = styled.button<{
   variant: 'primary' | 'secondary' | undefined;

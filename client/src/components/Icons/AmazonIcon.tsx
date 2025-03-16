@@ -1,6 +1,4 @@
-import { memo } from 'react';
 
-type IconProps = {
   readonly ariaHidden?: boolean;
   readonly focusable?: boolean;
 };
@@ -43,4 +41,4 @@ const AmazonIcon = ({ ariaHidden = false, focusable = true }: IconProps) => {
   );
 };
 
-export default memo(AmazonIcon);
+export default AmazonIcon;

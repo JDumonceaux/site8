@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { EnvelopeClosedIcon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
 
@@ -15,4 +13,4 @@ const EmailAdornment = ({ iconProps, ref, ...rest }: Props) => (
 
 EmailAdornment.displayName = 'EmailAdornment';
 
-export default memo(EmailAdornment);
+export default EmailAdornment;

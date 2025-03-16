@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -6,8 +6,10 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const Flex = ({ children }: Props): React.JSX.Element => (
-  <StyledElement data-testid="layout">{children}</StyledElement>
+const Flex = memo(
+  ({ children }: Props): React.JSX.Element => (
+    <StyledElement data-testid="layout">{children}</StyledElement>
+  ),
 );
 
 export default Flex;

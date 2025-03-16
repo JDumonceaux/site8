@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 type InputRadioProps = {
   readonly type?: 'radio';
 };
@@ -10,4 +8,4 @@ const InputRadio = ({ type = 'radio' }: InputRadioProps): React.JSX.Element => (
 
 InputRadio.displayName = 'InputRadio';
 
-export default memo(InputRadio);
+export default InputRadio;

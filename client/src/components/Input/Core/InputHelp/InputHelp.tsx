@@ -1,4 +1,4 @@
-import { memo, isValidElement } from 'react';
+import { isValidElement } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -47,7 +47,7 @@ const InputHelp = ({ helpText, ...rest }: InputHelpProps): React.ReactNode => {
 
 InputHelp.displayName = 'InputHelp';
 
-export default memo(InputHelp);
+export default InputHelp;
 
 export type { InputHelpProps };
 

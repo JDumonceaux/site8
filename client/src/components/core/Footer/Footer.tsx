@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { styled } from 'styled-components';
 
 const Footer = (): React.JSX.Element => {
@@ -16,7 +14,7 @@ const Footer = (): React.JSX.Element => {
 
 Footer.displayName = 'Footer';
 
-export default memo(Footer);
+export default Footer;
 
 const StyledFooter = styled.footer`
   background-color: var(--palette-main-color, #000);

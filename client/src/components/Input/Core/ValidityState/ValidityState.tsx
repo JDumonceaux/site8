@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import * as Form from '@radix-ui/react-form';
 import { styled } from 'styled-components';
 
@@ -34,7 +32,7 @@ const ValidityState = ({
 
 ValidityState.displayName = 'ValidityState';
 
-export default memo(ValidityState);
+export default ValidityState;
 
 const StyledMessage = styled(Form.Message)`
   color: var(--input-helper-error-color, '#ff0000');

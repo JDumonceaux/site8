@@ -1,19 +1,20 @@
-import { memo } from 'react';
-
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { styled } from 'styled-components';
+import React from 'react';
 
 type Props = {
   readonly children?: React.ReactNode;
 } & DropdownMenu.DropdownMenuItemProps;
 
-const IconMenuItem = ({ children, ...rest }: Props): React.JSX.Element => {
-  return <StyledMenuItem {...rest}>{children}</StyledMenuItem>;
-};
+const IconMenuItem = React.memo(
+  ({ children, ...rest }: Props): React.JSX.Element => {
+    return <StyledMenuItem {...rest}>{children}</StyledMenuItem>;
+  },
+);
 
 IconMenuItem.displayName = 'IconMenuItem';
 
-export default memo(IconMenuItem);
+export default IconMenuItem;
 
 const StyledMenuItem = styled(DropdownMenu.Item)`
   font-size: 13px;

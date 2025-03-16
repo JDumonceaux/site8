@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, useTransition } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import useServerApi from 'hooks/Axios/useServerApi';
+
 import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
@@ -26,16 +27,16 @@ const useImagesEditPage = () => {
 
   const { saveItems, scanForNewItems } = useImages();
 
-  const { cleanup, data, error, fetchData, isLoading } = useServerApi<Images>();
 
-  // Get all data
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_EDIT);
-    // Clean up if component unmounts
-    return () => {
-      cleanup();
-    };
-  }, [cleanup, fetchData]);
+    const { data, isError, isPending } = useQuery({
+      queryFn: async () => {
+        const response = await fetch(
+          ServiceUrl.ENDPOINT_IMAGES_EDIT),
+        );
+        return (await response.json()) as Images;
+      },
+      queryKey: ['images-edit'],
+    });
 
   // Filter and sort data
   const filterAndSortData = useCallback(() => {
@@ -214,8 +215,10 @@ const useImagesEditPage = () => {
     currentFilter: filter,
     currentFolder,
     data: formValues,
-    error,
-    getFieldValue,
+    // data,
+    // isError,
+    // isPending,
+     getFieldValue,
     handleChange,
     handleDelete,
     handleFilterSelect,

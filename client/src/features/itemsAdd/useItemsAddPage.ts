@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
 import type { ItemAdd, ItemAddExt } from 'features/itemsAdd/ItemAdd';
 import useServerApi from 'hooks/Axios/useServerApi';
 import useFormArray from 'hooks/useFormArray';
@@ -137,13 +138,15 @@ const useItemsAddPage = () => {
   return {
     artistId,
     data: formValues,
-    error,
     getFieldValue,
     handleChange,
+
     handleClear,
     handleFilterChange,
     handleSubmit,
-    isLoading,
+    //  data,
+    isError,
+    isPending,
     setFieldValue,
   };
 };

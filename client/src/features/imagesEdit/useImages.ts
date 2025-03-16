@@ -1,33 +1,30 @@
-import { useCallback, useEffect } from 'react';
-
-import useServerApi from 'hooks/Axios/useServerApi';
+import { useQuery } from '@tanstack/react-query';
 import { ServiceUrl } from 'lib/utils/constants';
-import type { ImageAdd, Images } from 'types';
+import type { Images } from 'types';
 
 const useImages = () => {
-  const { data, error, fetchData, isLoading, patchData } =
-    useServerApi<Images>();
-
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES);
-  }, [fetchData]);
+  const { data, isError, isPending } = useQuery({
+    queryFn: async () => {
+      const response = await fetch(ServiceUrl.ENDPOINT_IMAGES);
+      return (await response.json()) as Images;
+    },
+    queryKey: ['images'],
+  });
 
   // Scan the 'sort' directory for new items
-  const scanForNewItems = useCallback(() => {
-    fetchData(ServiceUrl.ENDPOINT_IMAGES_SCAN);
-  }, [fetchData]);
+  // const scanForNewItems = useCallback(() => {
+  //   fetchData(ServiceUrl.ENDPOINT_IMAGES_SCAN);
+  // }, [fetchData]);
 
-  // Handle save
-  const saveItems = async (updates: ImageAdd[]) => {
-    return patchData(ServiceUrl.ENDPOINT_IMAGES, { items: updates });
-  };
+  // // Handle save
+  // const saveItems = async (updates: ImageAdd[]) => {
+  //   return patchData(ServiceUrl.ENDPOINT_IMAGES, { items: updates });
+  // };
 
   return {
     data,
-    error,
-    isLoading,
-    saveItems,
-    scanForNewItems,
+    isError,
+    isPending,
   };
 };
 

@@ -265,8 +265,8 @@ export default [
       'no-implicit-globals': 'error',
 
       'no-implied-eval': 'error',
-
-      'no-inline-comments': 'error',
+      // Too restrictive
+      'no-inline-comments': 'off',
       'no-inner-declarations': 'error',
       'no-invalid-this': 'error',
       'no-iterator': 'error',
@@ -292,12 +292,20 @@ export default [
       'no-object-constructor': 'error',
       'no-octal-escape': 'error',
       'no-param-reassign': 'error',
-      'no-plusplus': 'error',
+      // Too aggressive
+      'no-plusplus': 'off',
       'no-promise-executor-return': 'error',
       'no-proto': 'error',
       'no-restricted-exports': 'error',
       'no-restricted-globals': 'error',
-      'no-restricted-imports': 'error',
+      // Added to prevent use of react-router instead of react-router-dom
+      'no-restricted-imports': [
+        'error', {
+          'paths': [
+            { importNames: ["useLocation"], message: "Make sure you are importing useLocation from react-router-dom instead of react-router.", name: "react-router" }]
+        }
+      ],
+
       'no-restricted-properties': 'error',
       'no-restricted-syntax': 'error',
       'no-return-assign': 'error',

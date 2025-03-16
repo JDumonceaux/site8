@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { styled } from 'styled-components';
 
 type DividerProps = {
@@ -18,7 +16,7 @@ const Divider = ({ children }: DividerProps): React.JSX.Element => {
 
 Divider.displayName = 'Divider';
 
-export default memo(Divider);
+export default Divider;
 
 const StyledDiv = styled.div`
   display: flex;

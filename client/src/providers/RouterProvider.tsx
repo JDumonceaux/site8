@@ -93,12 +93,9 @@ const router = createBrowserRouter(
           <Route element={<Home />} index />
         </Route>
 
-        <Route element={<HomeLayout />}>
-          <Route element={<Home />} index />
-        </Route>
-
         {/* 1 - PROGRAMMING */}
         <Route element={<MainLayout />}>
+          <Route element={<GenericPage />} path="/programming/*" />
           <Route element={<GenericPage />} path="/:lang?/programming/*" />
         </Route>
 

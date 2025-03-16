@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
@@ -19,20 +19,22 @@ type Props = {
 // With a list, 'combobox' is inferred.
 
 const InputText = ({
-  type = 'text',
-  lineId,
   fieldName,
+  lineId,
   onChange,
+  type = 'text',
   ...rest
 }: Props): React.JSX.Element => {
   const handleChange = useCallback(
-    (e) => onChange(lineId, fieldName, e),
+    (e) => {
+      onChange(lineId, fieldName, e);
+    },
     [onChange, lineId, fieldName],
   );
 
-  return <InputBase type={type} onChange={handleChange} {...rest} />;
+  return <InputBase onChange={handleChange} type={type} {...rest} />;
 };
 
 InputText.displayName = 'InputText';
 
-export default memo(InputText);
+export default InputText;

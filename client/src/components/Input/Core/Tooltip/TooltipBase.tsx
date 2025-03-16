@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
@@ -25,7 +25,7 @@ const TooltipBase = ({
   triggerColor,
   triggerProps,
 }: TooltipBaseProps): React.ReactNode => {
-  const elementRef: React.RefObject<React.ReactNode> = useRef(null);
+  const elementRef: React.RefObject<HTMLElement> = useRef(null);
 
   // React doesn't support inert - so you have to do it this way
   useEffect(() => {
@@ -33,7 +33,7 @@ const TooltipBase = ({
       //    elementRef.current.inert = true;
       elementRef.current.setAttribute('tabindex', '-1');
     }
-  }, []);
+  }, [tabStop]);
 
   if (!content) {
     return null;
@@ -56,7 +56,7 @@ const TooltipBase = ({
 
 TooltipBase.displayName = 'TooltipBase';
 
-export default memo(TooltipBase);
+export default TooltipBase;
 
 export type { TooltipBaseProps };
 

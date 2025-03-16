@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputNumberProps = {
@@ -19,4 +17,4 @@ const InputNumber = ({
 
 InputNumber.displayName = 'InputNumber';
 
-export default memo(InputNumber);
+export default InputNumber;

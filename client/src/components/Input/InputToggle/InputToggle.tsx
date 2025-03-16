@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import styled from 'styled-components';
 
 import type { InputBaseProps } from '../Core/InputBase/InputBase';
@@ -34,7 +32,7 @@ const InputToggle = ({
 
 InputToggle.displayName = 'InputToggle';
 
-export default memo(InputToggle);
+export default InputToggle;
 
 const StyledDiv = styled.div`
   margin-bottom: 16px;

@@ -12,6 +12,8 @@ const Article = memo(
   ),
 );
 
+Article.displayName = 'Article';
+
 export default Article;
 
 const StyledElement = styled.article`

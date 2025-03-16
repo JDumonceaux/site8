@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputHiddenProps = {
@@ -19,4 +17,4 @@ const InputHidden = ({
 
 InputHidden.displayName = 'InputHidden';
 
-export default memo(InputHidden);
+export default InputHidden;
