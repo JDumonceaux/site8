@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 
 import AppInitializer from 'components/core/AppInitializer/AppInitializer';
 import Avatar from 'components/core/Avatar/Avatar';
@@ -10,7 +10,12 @@ const Header = lazy(async () => import('components/core/Header/Header'));
 
 const MainLayout = (): React.JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
-    <AppInitializer />
+    {useMemo(
+      () => (
+        <AppInitializer />
+      ),
+      [],
+    )}
     <Header
       avatar={
         <Avatar alt="Avatar" id="avatar" src="/avatar.jpg">

@@ -156,7 +156,6 @@ const PagesEditPage = (): React.JSX.Element => {
                   <th>Type</th>
                 </tr>
               </thead>
-
               <tbody>{data?.map((item) => renderItem(item))}</tbody>
             </table>
           </LoadingWrapper>

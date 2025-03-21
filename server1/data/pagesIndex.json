@@ -3954,19 +3954,6 @@
       "file": true
     },
     {
-      "id": 207,
-      "name": "Accessible SVGs",
-      "parentItems": [
-        {
-          "id": 197,
-          "seq": 0
-        }
-      ],
-      "to": "accessible-svgs",
-      "type": "page",
-      "file": true
-    },
-    {
       "id": 206,
       "name": "Avatar",
       "parentItems": [
@@ -4132,6 +4119,19 @@
         }
       ],
       "to": "react-compiler",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 207,
+      "name": "Accessible SVGs",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "accessible-svgs",
       "type": "page",
       "file": true
     }

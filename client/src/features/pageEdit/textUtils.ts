@@ -14,7 +14,7 @@ export const insertHTML = (
   try {
     const textBefore = value.slice(0, Math.max(0, startPosition));
     const textAfter = value.slice(Math.max(0, endPosition));
-    const textMiddle = value.substring(startPosition, endPosition);
+    const textMiddle = value.slice(startPosition, endPosition);
 
     switch (action) {
       case 'abbr': {

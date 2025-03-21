@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { Provider } from 'react-redux';
 import Store from 'store/store';
 
@@ -6,7 +8,10 @@ type ReduxProviderProps = {
 };
 
 const ReduxProvider = ({ children }: ReduxProviderProps) => {
-  return <Provider store={Store}>{children}</Provider>;
+  return useMemo(
+    () => <Provider store={Store}>{children}</Provider>,
+    [children],
+  );
 };
 
 export default ReduxProvider;

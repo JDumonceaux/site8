@@ -546,7 +546,8 @@ export default [
 
       // 'react/jsx-max-props-per-line': 'error',
       // 'react/jsx-newline': 'error',
-      'react/jsx-no-bind': 'error',
+      // This is out-of-date: https://reacttraining.com/blog/react-inline-functions-and-performance
+      'react/jsx-no-bind': 'off',
       'react/jsx-no-constructed-context-values': 'error',
       'react/jsx-no-leaked-render': 'error',
       // This is helpful if you're using I18n for translations, but not necessary

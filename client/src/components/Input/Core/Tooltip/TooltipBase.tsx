@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo } from 'react';
 
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
@@ -16,43 +16,48 @@ type TooltipBaseProps = {
   readonly triggerProps?: TooltipRadix.TooltipTriggerProps;
 };
 
-const TooltipBase = ({
-  arrowProps,
-  content,
-  tabStop = false,
-  tooltipProps,
-  trigger,
-  triggerColor,
-  triggerProps,
-}: TooltipBaseProps): React.ReactNode => {
-  const elementRef: React.RefObject<HTMLElement> = useRef(null);
+const TooltipBase = memo(
+  ({
+    arrowProps,
+    content,
+    tabStop = false,
+    tooltipProps,
+    trigger,
+    triggerColor,
+    triggerProps,
+  }: TooltipBaseProps): React.ReactNode => {
+    const elementRef: React.RefObject<HTMLElement> = useRef(null);
 
-  // React doesn't support inert - so you have to do it this way
-  useEffect(() => {
-    if (elementRef.current && !tabStop) {
-      //    elementRef.current.inert = true;
-      elementRef.current.setAttribute('tabindex', '-1');
+    // React doesn't support inert - so you have to do it this way
+    useEffect(() => {
+      if (elementRef.current && !tabStop) {
+        //    elementRef.current.inert = true;
+        elementRef.current.setAttribute('tabindex', '-1');
+      }
+    }, [tabStop]);
+
+    if (!content) {
+      return null;
     }
-  }, [tabStop]);
 
-  if (!content) {
-    return null;
-  }
-
-  return (
-    <TooltipRadix.Provider>
-      <TooltipRadix.Root {...tooltipProps}>
-        <StyledTrigger $color={triggerColor} {...triggerProps} ref={elementRef}>
-          {trigger}
-        </StyledTrigger>
-        <StyledContent>
-          <StyledArrow {...arrowProps} />
-          {content}
-        </StyledContent>
-      </TooltipRadix.Root>
-    </TooltipRadix.Provider>
-  );
-};
+    return (
+      <TooltipRadix.Provider>
+        <TooltipRadix.Root {...tooltipProps}>
+          <StyledTrigger
+            $color={triggerColor}
+            {...triggerProps}
+            ref={elementRef}>
+            {trigger}
+          </StyledTrigger>
+          <StyledContent>
+            <StyledArrow {...arrowProps} />
+            {content}
+          </StyledContent>
+        </TooltipRadix.Root>
+      </TooltipRadix.Provider>
+    );
+  },
+);
 
 TooltipBase.displayName = 'TooltipBase';
 

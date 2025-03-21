@@ -4,20 +4,7 @@ type ToolMenuProps = {
   readonly onClick: (value: string) => void;
 };
 
-/**
- * Renders a menu for inserting HTML elements into a page.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {Function} props.onClick - The click event handler for the menu buttons.
- * @returns {React.JSX.Element} The ToolMenu component.
- */
-const ToolMenu = ({
-  onClick,
-  ref,
-}: ToolMenuProps & {
-  ref: React.RefObject<HTMLDivElement>;
-}): React.JSX.Element => {
+const ToolMenu = ({ onClick }: ToolMenuProps): React.JSX.Element => {
   const buttons = [
     { label: 'Code', testId: 'insert-code', value: 'code' },
     { label: 'H2', testId: 'insert-h2', value: 'h2' },
@@ -33,7 +20,7 @@ const ToolMenu = ({
   ];
 
   return (
-    <StyledSubMenu ref={ref}>
+    <StyledSubMenu>
       {buttons.map(({ label, testId, value }) => (
         <button
           aria-label={`Insert ${label}`}

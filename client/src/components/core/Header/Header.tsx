@@ -1,5 +1,3 @@
-import { forwardRef } from 'react';
-
 import { MenuIcon } from 'components/icons/MenuIcon';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import { APP_NAME } from 'lib/utils/constants';
@@ -10,24 +8,25 @@ type HeaderProps = {
   readonly includeMenu?: boolean;
 };
 
-const Header = forwardRef<HTMLDivElement, HeaderProps>(
-  ({ avatar, includeMenu = false }: HeaderProps, ref): React.JSX.Element => {
-    return (
-      <StyledHeader data-testid="header" ref={ref}>
-        <div>
-          <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
-          {includeMenu ? <MenuIcon /> : null}
-          <StyledLinkDiv>
-            <StyledLink to="/">
-              <AppName>{APP_NAME}</AppName>
-            </StyledLink>
-          </StyledLinkDiv>
-        </div>
-        <div>{avatar}</div>
-      </StyledHeader>
-    );
-  },
-);
+const Header = ({
+  avatar,
+  includeMenu = false,
+}: HeaderProps): React.JSX.Element => {
+  return (
+    <StyledHeader data-testid="header">
+      <div>
+        <StyledSkipLink href="#main">Skip to main content</StyledSkipLink>
+        {includeMenu ? <MenuIcon /> : null}
+        <StyledLinkDiv>
+          <StyledLink to="/">
+            <AppName>{APP_NAME}</AppName>
+          </StyledLink>
+        </StyledLinkDiv>
+      </div>
+      <div>{avatar}</div>
+    </StyledHeader>
+  );
+};
 
 Header.displayName = 'Header';
 

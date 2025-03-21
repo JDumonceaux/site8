@@ -29,10 +29,6 @@ const initialState: Snackbar = {
 
 const selectSnackbarData = (state: RootState) => state.snackbar.data;
 
-/**
- * Custom hook for managing a snackbar.
- * @returns An object containing snackbar data, setMessage function, and closeSnackbar function.
- */
 const useSnackbar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const data: null | Snackbar = useSelector(selectSnackbarData);

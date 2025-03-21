@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import * as RadixAvatar from '@radix-ui/react-avatar';
 import { styled } from 'styled-components';
 
@@ -16,12 +18,16 @@ const SytledAvatar = ({
   id,
   src,
   ...rest
-}: AvatarProps): React.JSX.Element => (
-  <StyledRoot data-testid={id} id={id} {...rest}>
-    <StyledImage alt={alt} src={src} />
-    <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
-  </StyledRoot>
-);
+}: AvatarProps): React.JSX.Element =>
+  useMemo(
+    () => (
+      <StyledRoot data-testid={id} id={id} {...rest}>
+        <StyledImage alt={alt} src={src} />
+        <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
+      </StyledRoot>
+    ),
+    [alt, children, delayMs, id, src, rest],
+  );
 
 SytledAvatar.displayName = 'SytledAvatar';
 

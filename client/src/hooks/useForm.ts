@@ -37,8 +37,9 @@ const useForm = <T>(initialValues: T) => {
     const filteredErrors = errors?.filter((x) =>
       x.path.includes(fieldName as string),
     );
+
     return filteredErrors && filteredErrors.length > 0
-      ? x.map((x) => x.message)
+      ? filteredErrors.map((x) => x.message)
       : null;
   };
 

@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useMemo } from 'react';
 
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import { combineParent, splitParent } from 'lib/utils/helpers';
 import { safeParse } from 'lib/utils/zodHelper';
 import type { Page } from 'types/Page';
 import { z } from 'zod';
 
-import { useAxios } from '../../hooks/Axios/useAxios';
+//import { useAxios } from '../../hooks/Axios/useAxios';
 import useForm from '../../hooks/useForm';
 
 // Define Zod Shape
@@ -38,9 +40,22 @@ const pageSchema = z
 type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
+const patchData = async (updateItem: Page) => {
+  const response = await axios.patch(ServiceUrl.ENDPOINT_PAGE, updateItem);
+  return await response.data;
+};
+
+// const postData = async (data: Page) => {
+//   const response = await axios.post(ServiceUrl.ENDPOINT_PAGE, data);
+//   return response.data;
+// };
+
 const usePageEdit = (data?: null | Page) => {
   // Use Axios to fetch data
-  const { patchData, putData } = useAxios<Page>();
+  //const { patchData, putData } = useAxios<Page>();
+  const { mutate } = useMutation({
+    mutationFn: patchData,
+  });
 
   // Return default form values
   const initialFormValues: FormType = useMemo(
@@ -68,9 +83,22 @@ const usePageEdit = (data?: null | Page) => {
     setErrors,
     setFieldValue,
     setFormValues,
-    setIsProcessing,
-    setIsSaved,
   } = useForm<FormType>(initialFormValues);
+
+  // Handle save
+  const handleSubmit = useCallback(async () => {
+    const { id, parent, ...rest } = formValues;
+    const updateItem: Page = {
+      ...rest,
+      id,
+      parentItems: splitParent(parent),
+      type: 'page',
+    };
+    // eslint-disable-next-line promise/avoid-new
+    await new Promise((resolve) => {
+      mutate(updateItem, { onSuccess: resolve });
+    });
+  }, [formValues, mutate]);
 
   // Map page to form type
   const mapPageToFormType = useCallback(
@@ -105,32 +133,12 @@ const usePageEdit = (data?: null | Page) => {
     return result.success;
   }, [formValues, setErrors]);
 
-  // Handle save
-  const submitForm = useCallback(async () => {
-    setIsProcessing(true);
-    const { id, parent, ...rest } = formValues;
-    const updateItem: Page = {
-      ...rest,
-      id,
-      parentItems: splitParent(parent),
-      type: 'page',
-    };
-    const result =
-      updateItem.id > 0
-        ? await patchData(ServiceUrl.ENDPOINT_PAGE, updateItem)
-        : await putData(ServiceUrl.ENDPOINT_PAGE, updateItem);
-    setIsProcessing(false);
-    setIsSaved(result);
-    return result;
-  }, [formValues, patchData, putData, setIsProcessing, setIsSaved]);
-
   const handleSave = useCallback(async () => {
     if (validateForm()) {
-      const returnValue = await submitForm();
-      return returnValue;
+      await handleSubmit();
     }
     return false;
-  }, [submitForm, validateForm]);
+  }, [handleSubmit, validateForm]);
 
   const getDefaultProps = (fieldName: FormKeys) => ({
     'data-id': fieldName,

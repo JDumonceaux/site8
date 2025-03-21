@@ -14,12 +14,7 @@ type PageEditFormProps = {
   readonly data?: null | Page;
 };
 
-const PageEditForm = ({
-  ref: reference,
-  data,
-}: PageEditFormProps & {
-  ref: React.RefObject<HTMLFormElement>;
-}): React.JSX.Element => {
+const PageEditForm = ({ data }: PageEditFormProps): React.JSX.Element => {
   const {
     formValues,
     getDefaultProps,
@@ -70,7 +65,7 @@ const PageEditForm = ({
   );
 
   return (
-    <Form.Root onSubmit={handleSubmit} ref={reference}>
+    <Form.Root onSubmit={handleSubmit}>
       <StyledButton>
         <StyledSaveButton
           data-testid="button-save"
@@ -91,10 +86,7 @@ const PageEditForm = ({
         required
         spellCheck
         value={formValues.name}
-
-        //layout="horizontal"
       />
-
       <Input.Text
         {...getDefaultProps('to')}
         label="To"

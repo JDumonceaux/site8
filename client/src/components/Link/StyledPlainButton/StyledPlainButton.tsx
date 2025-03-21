@@ -1,5 +1,4 @@
-import React, { memo } from 'react';
-import type { ButtonHTMLAttributes } from 'react';
+import { memo, type ButtonHTMLAttributes } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -12,6 +11,8 @@ const StyledPlainButton = memo(
     <StyledElement {...rest}>{children}</StyledElement>
   ),
 );
+
+StyledPlainButton.displayName = 'StyledPlainButton';
 
 export default StyledPlainButton;
 

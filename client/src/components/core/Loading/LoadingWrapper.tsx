@@ -2,9 +2,11 @@ import { styled } from 'styled-components';
 
 type LoadingWrapperProps = {
   readonly children: React.ReactNode;
-  readonly error: null | string | undefined;
+  readonly error?: null | string | undefined;
   readonly fallback?: React.ReactNode;
+  readonly isError?: boolean;
   readonly isLoading?: boolean;
+  readonly isPending?: boolean;
   readonly loadingText?: React.ReactNode;
 };
 
@@ -17,17 +19,19 @@ const LoadingWrapper = ({
   children,
   error,
   fallback,
+  isError,
   isLoading,
+  isPending,
   loadingText,
 }: LoadingWrapperProps): React.ReactNode => {
-  if (isLoading) {
+  if (isLoading || isPending) {
     return (
       <StyledLoadingDiv>
         {loadingText ?? null}
         {fallback ?? null}
       </StyledLoadingDiv>
     );
-  } else if (error) {
+  } else if (error || isError) {
     return (
       <>
         <StyledErrorDiv>{error}</StyledErrorDiv>

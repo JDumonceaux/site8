@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -6,9 +6,13 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const Section = ({ children }: Props): React.JSX.Element => (
-  <StyledElement data-testid="section">{children}</StyledElement>
+const Section = memo(
+  ({ children }: Props): React.JSX.Element => (
+    <StyledElement data-testid="section">{children}</StyledElement>
+  ),
 );
+
+Section.displayName = 'Section';
 
 export default Section;
 
