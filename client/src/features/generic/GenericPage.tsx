@@ -5,14 +5,12 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
-import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from 'lib/utils/constants';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
-import type { Page } from 'types';
 
 import RenderHtml from './RenderHtml';
 import SubjectMenu from './SubjectMenu';
+import useGenericPage from './useGenericPage';
 
 type GenericPageProps = {
   readonly title?: string;
@@ -21,8 +19,6 @@ type GenericPageProps = {
 const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
   const x = useLocation();
   const [id, setId] = useState<string | undefined>();
-  const { data, error, fetchData, isLoading } = useAxios<Page>();
-  const deferredData = useDeferredValue(data);
 
   useEffect(() => {
     const array = x.pathname.split('/');
@@ -30,11 +26,8 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
     setId(temporaryId);
   }, [x.pathname]);
 
-  useEffect(() => {
-    if (id) {
-      //    fetchData(`${ServiceUrl.ENDPOINT_PAGE_NAME}/${id}`);
-    }
-  }, [id]);
+  const { data, isError, isPending } = useGenericPage(id);
+  const deferredData = useDeferredValue(data);
 
   const pageTitle = deferredData?.name ?? title;
 
@@ -45,10 +38,8 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
         <Layout.Menu>
           <SubjectMenu />
         </Layout.Menu>
-        <LoadingWrapper
-          error={error}
-          fallback={<Fallback />}
-          isLoading={isLoading}>
+        <LoadingWrapper isError={isError} isPending={isPending}>
+          <Fallback />
           <Suspense fallback="Loading ...">
             <Layout.Article>
               <PageTitle title={pageTitle}>

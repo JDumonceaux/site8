@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
+
 import { keyframes, styled } from 'styled-components';
 
 const CircleAnimation = memo((): React.JSX.Element => {
@@ -8,6 +9,8 @@ const CircleAnimation = memo((): React.JSX.Element => {
     </CircleWrapper>
   );
 });
+
+CircleAnimation.displayName = 'CircleAnimation';
 
 export default CircleAnimation;
 

@@ -20,14 +20,13 @@ const HomeScreen3 = () => {
   }, [semiCircles]);
 
   useEffect(() => {
-    const semiCircles: React.ReactNode[] = [];
-    // eslint-disable-next-line immutable/no-let
+    const items: React.ReactNode[] = [];
     let i = 0;
 
     while (i * 150 < window.innerWidth) {
-      semiCircles.push(
+      items.push(
         <Fragment key={i}>
-          <Spacer className="spacer" />
+          <Spacer />
           <SemiCircle />
         </Fragment>,
       );
@@ -35,7 +34,7 @@ const HomeScreen3 = () => {
       i += 1;
     }
 
-    setSemiCircles(semiCircles);
+    setSemiCircles(items);
   }, [setSemiCircles]);
 
   return (

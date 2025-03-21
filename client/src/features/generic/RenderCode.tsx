@@ -8,39 +8,33 @@ type RenderCodeProps = {
   readonly children?: React.ReactNode;
 };
 
-/**
- * Renders a secton of code with a copy button for the generic page.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {React.ReactNode} props.children - The code to be rendered.
- * @returns {React.JSX.Element} The rendered code block.
- */
+const copyToClipboard = async (text: string) => {
+  try {
+    const permissionStatus = await navigator.permissions.query({
+      name: 'clipboard-write' as PermissionName,
+    });
+    if (
+      permissionStatus.state === 'granted' ||
+      permissionStatus.state === 'prompt'
+    ) {
+      await navigator.clipboard.writeText(text);
+      // eslint-disable-next-line no-alert
+      alert('Copied.');
+    } else {
+      // eslint-disable-next-line no-alert
+      alert('Copy to clipboard is not supported.');
+    }
+  } catch {
+    // eslint-disable-next-line no-alert
+    alert('Failed to copy.');
+  }
+};
+
 const RenderCode = ({ children }: RenderCodeProps) => {
   const ref = useRef<HTMLElement>(null);
 
-  const copyToClipboard = async (text: string) => {
-    try {
-      const permissionStatus = await navigator.permissions.query({
-        name: 'clipboard-write' as PermissionName,
-      });
-      if (
-        permissionStatus.state === 'granted' ||
-        permissionStatus.state === 'prompt'
-      ) {
-        await navigator.clipboard.writeText(text);
-        alert('Copied.');
-      } else {
-        alert('Copy to clipboard is not supported.');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('Failed to copy.');
-    }
-  };
-
   const handleCopy = () => {
-    const text = ref.current?.innerText;
+    const text = ref.current?.textContent;
     if (text) {
       copyToClipboard(text);
     }

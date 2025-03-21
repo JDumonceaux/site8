@@ -22,10 +22,10 @@ const BookmarkTags = ({ data }: BookmarksTagsProps): React.JSX.Element => {
               <td>{item.tag}</td>
               <td />
             </tr>
-            {item.items.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.description}</td>
+            {item.items.map((x) => (
+              <tr key={x.id}>
+                <td>{x.name}</td>
+                <td>{x.description}</td>
               </tr>
             ))}
           </React.Fragment>

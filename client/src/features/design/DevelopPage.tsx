@@ -95,7 +95,6 @@ const pageSchema = z.object({
       { formValues, getFieldValue, handleChange } =
         useForm<FormType>(initialFormValues),
       handleSubmit = useCallback((error: React.FormEvent) => {
-        console.log('handleSubmit');
         error.stopPropagation();
         error.preventDefault();
         //  handleSave();
@@ -138,7 +137,6 @@ const pageSchema = z.object({
                         autoComplete="given-name"
                         description="Given name"
                         id="given_name"
-                        inputRef={firstFieldRef}
                         label="First Name"
                         //messageProps={{ match: 'tooShort', name: 'x' }}
                         minLength={10}

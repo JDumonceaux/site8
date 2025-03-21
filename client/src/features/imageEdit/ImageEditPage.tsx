@@ -11,11 +11,13 @@ import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButt
 import useSnackbar from 'hooks/useSnackbar';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
+import type { Image } from 'types';
 
 import useImageEdit from './useImageEdit';
 
 const ImageEditImage = (): React.JSX.Element => {
   const parameters = useParams();
+  const { id } = parameters as { id: string };
   const {
     error,
     formValues,
@@ -25,7 +27,7 @@ const ImageEditImage = (): React.JSX.Element => {
     isLoading,
     isSaved,
     submitForm,
-  } = useImageEdit(parameters.id);
+  } = useImageEdit(id);
 
   const { setMessage } = useSnackbar();
 
@@ -34,17 +36,12 @@ const ImageEditImage = (): React.JSX.Element => {
       error_.stopPropagation();
       error_.preventDefault();
       setMessage('Saving...');
-      const result = submitForm();
-      if (result) {
-        setMessage('Saved');
-      } else {
-        setMessage(`Error saving ${error}`);
-      }
+      submitForm();
     },
-    [submitForm, error, setMessage],
+    [submitForm, setMessage],
   );
 
-  const handleSelectImage = (item: Image | undefined) => {
+  const handleSelectImage = (item: Image | null | undefined) => {
     handleChangeImage(item);
   };
 

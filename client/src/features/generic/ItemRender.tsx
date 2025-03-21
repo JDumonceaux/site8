@@ -20,7 +20,7 @@ export const ItemRender = ({
   }
 
   const renderItem = () => {
-    switch (item.type || 'menu') {
+    switch (item.type) {
       case 'menu': {
         switch (level) {
           case 0: {

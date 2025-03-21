@@ -198,7 +198,7 @@ const useImageEdit = (id: null | string) => {
     return false;
   };
 
-  const handleChangeImage = (item: Image | null) => {
+  const handleChangeImage = (item: Image | null | undefined) => {
     setFormValues((previous) => ({
       ...previous,
       fileName: item?.fileName ?? '',

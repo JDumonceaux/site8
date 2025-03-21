@@ -1,6 +1,9 @@
-//import DOMPurify from 'dompurify';
-import parse, { Element, domToReact } from 'html-react-parser';
-import type { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
+import parse, {
+  Element,
+  domToReact,
+  type DOMNode,
+  type HTMLReactParserOptions,
+} from 'html-react-parser';
 
 import RenderCode from './RenderCode';
 
@@ -18,17 +21,18 @@ const options: HTMLReactParserOptions = {
         </RenderCode>
       );
     }
+    return null;
   },
 };
 
-const RenderHtml = ({ text }: RenderHtmlProps) => {
-  const parseHtml = (htmlText?: string) => {
-    if (!htmlText) {
-      return null;
-    }
-    return parse(htmlText, options);
-  };
+const parseHtml = (htmlText?: string) => {
+  if (!htmlText) {
+    return null;
+  }
+  return parse(htmlText, options);
+};
 
+const RenderHtml = ({ text }: RenderHtmlProps) => {
   return <>{parseHtml(text)}</>;
 };
 

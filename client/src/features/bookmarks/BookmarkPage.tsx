@@ -8,7 +8,7 @@ import useBookmarks from './useBookmarks';
 
 const BookmarkPage = (): React.JSX.Element => {
   const title = 'Bookmarks';
-  const { data, error, isLoading } = useBookmarks();
+  const { data, isError, isPending } = useBookmarks();
 
   return (
     <>
@@ -17,7 +17,7 @@ const BookmarkPage = (): React.JSX.Element => {
         <PageTitle title={title} />
         <section>
           <p>These are some of my favorite resources.</p>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          <LoadingWrapper isError={isError} isPending={isPending}>
             <BookmarkList data={data} />
           </LoadingWrapper>
         </section>

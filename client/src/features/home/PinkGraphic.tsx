@@ -1,32 +1,28 @@
-import { useState } from 'react';
-
 import { keyframes, styled } from 'styled-components';
+
+const generateDots = (
+  arr: number[],
+  color: string,
+  xOffset: number,
+  yOffset: number,
+) => {
+  let x = -1;
+  let y = 0;
+  return arr.map((item) => {
+    x += 1;
+    if (x > 5) {
+      x = 0;
+      y += 1;
+    }
+    return (
+      <Dot color={color} key={item} left={x * xOffset} top={y * yOffset} />
+    );
+  });
+};
 
 const PinkGraphic = (): React.JSX.Element => {
   const myArr20 = Array.from({ length: 20 }, (_, index) => index + 1);
   const myArr36 = Array.from({ length: 36 }, (_, index) => index + 1);
-
-  const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 });
-
-  const generateDots = (
-    arr: number[],
-    color: string,
-    xOffset: number,
-    yOffset: number,
-  ) => {
-    let x = -1;
-    let y = 0;
-    return arr.map((item) => {
-      x += 1;
-      if (x > 5) {
-        x = 0;
-        y += 1;
-      }
-      return (
-        <Dot color={color} key={item} left={x * xOffset} top={y * yOffset} />
-      );
-    });
-  };
 
   return (
     <StyledDiv>
