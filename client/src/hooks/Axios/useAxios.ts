@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-import axios, { isCancel } from 'axios';
+import axios from 'axios';
 import { AcceptHeader, PreferHeader } from 'lib/utils/constants';
-import { httpErrorHandler } from 'lib/utils/errorHandler';
+//import { httpErrorHandler } from 'lib/utils/errorHandler';
 
 export const useAxios = <T>() => {
   const [data, setData] = useState<null | T>();
@@ -31,13 +31,13 @@ export const useAxios = <T>() => {
       const ret = await axios.get<T>(url, {
         headers: { Accept: AcceptHeader.JSON },
         responseType: 'json',
-        signal: abortControllerRef.current.signal,
+        //  signal: abortControllerRef.current.signal,
       });
       return ret.data;
-    } catch (error_: unknown) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+    } catch {
+      // if (!Axios.isCancel(error_)) {
+      //   setError(httpErrorHandler(error_));
+      // }
     } finally {
       setIsLoading(false);
     }
@@ -57,10 +57,10 @@ export const useAxios = <T>() => {
       reset();
       const ret = await fetchData(url);
       setData(ret);
-    } catch (error_) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+    } catch {
+      // if (!isCancel(error_)) {
+      //   setError(httpErrorHandler(error_));
+      // }
     } finally {
       setIsLoading(false);
     }
@@ -78,10 +78,10 @@ export const useAxios = <T>() => {
       });
       setData(response.data);
       return true;
-    } catch (error_) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+    } catch {
+      // if (!isCancel(error_)) {
+      //   setError(httpErrorHandler(error_));
+      // }
     } finally {
       setIsLoading(false);
     }
@@ -100,10 +100,10 @@ export const useAxios = <T>() => {
       });
       setData(response.data);
       return true;
-    } catch (error_) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+    } catch {
+      // if (!isCancel(error_)) {
+      //   setError(httpErrorHandler(error_));
+      // }
     } finally {
       setIsLoading(false);
     }
@@ -118,10 +118,10 @@ export const useAxios = <T>() => {
       });
       setData(response.data);
       return true;
-    } catch (error_) {
-      if (!isCancel(error_)) {
-        setError(httpErrorHandler(error_));
-      }
+    } catch {
+      // if (!isCancel(error_)) {
+      //   setError(httpErrorHandler(error_));
+      // }
     } finally {
       setIsLoading(false);
     }
