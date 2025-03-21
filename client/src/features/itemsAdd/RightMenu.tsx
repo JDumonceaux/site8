@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import { styled } from 'styled-components';
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
-  const { error, fetch, isLoading, itemsAsListItem } = useArtistItems();
+  const { data, isError, isPending } = useArtistItems();
 
   useEffect(() => {
     if (!artistId || artistId === '') {
@@ -21,9 +21,9 @@ const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
 
   return (
     <StickyMenu>
-      <LoadingWrapper error={error} isLoading={isLoading}>
+      <LoadingWrapper isError={isError} isPending={isPending}>
         <ul>
-          {itemsAsListItem?.map((item) => (
+          {data?.items?.map((item) => (
             <li key={item.key}>{item.display ?? 'Missing'}</li>
           ))}
         </ul>
@@ -32,7 +32,9 @@ const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
   );
 };
 
-export default RightMenu);
+RightMenu.displayName = 'RightMenu';
+
+export default RightMenu;
 
 const StickyMenu = styled.div`
   position: sticky;

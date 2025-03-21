@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState, useTransition } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
-
-
 import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
@@ -10,7 +9,6 @@ import { getDefaultObject, isDeepEqual } from 'lib/utils/objectUtil';
 import type { Image, Images } from 'types';
 
 import type { ImageAdd, ImageAddExt } from './ImageAdd';
-import useImages from './useImages';
 
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
@@ -25,18 +23,13 @@ const useImagesEditPage = () => {
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
     useFormArray<ImageAddExt>();
 
-  const { saveItems, scanForNewItems } = useImages();
-
-
-    const { data, isError, isPending } = useQuery({
-      queryFn: async () => {
-        const response = await fetch(
-          ServiceUrl.ENDPOINT_IMAGES_EDIT),
-        );
-        return (await response.json()) as Images;
-      },
-      queryKey: ['images-edit'],
-    });
+  const { data } = useQuery({
+    queryFn: async () => {
+      const response = await fetch(ServiceUrl.ENDPOINT_IMAGES_EDIT);
+      return (await response.json()) as Images;
+    },
+    queryKey: ['images-edit'],
+  });
 
   // Filter and sort data
   const filterAndSortData = useCallback(() => {
@@ -165,7 +158,7 @@ const useImagesEditPage = () => {
       .finally(() => {
         //   setIsProcessing(false);
       });
-  }, [getUpdates, saveItems, setMessage, handleRefresh, error]);
+  }, [getUpdates, saveItems, setMessage, handleRefresh]);
 
   const handleScan = () => {
     setMessage('Scanning...');
@@ -218,7 +211,7 @@ const useImagesEditPage = () => {
     // data,
     // isError,
     // isPending,
-     getFieldValue,
+    getFieldValue,
     handleChange,
     handleDelete,
     handleFilterSelect,
@@ -227,7 +220,6 @@ const useImagesEditPage = () => {
     handleRefresh,
     handleScan,
     handleSubmit,
-    isLoading,
     isPending,
     setFieldValue,
   };
