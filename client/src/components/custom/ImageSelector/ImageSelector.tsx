@@ -7,8 +7,8 @@ import React, {
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import { Switch } from 'components/Switch/Switch';
-import useAppSettings from 'hooks/useAppSettings';
-import useUnmatchedImages from 'hooks/useUnmatchedImages';
+import useAppSettings from 'features/app/useAppSettings';
+import useUnmatchedImages from 'features/itemsAdd/useUnmatchedImages';
 import { IMAGE_BASE } from 'lib/utils/constants';
 import { styled } from 'styled-components';
 import type { Image } from 'types';

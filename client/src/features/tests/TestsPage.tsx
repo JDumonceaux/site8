@@ -1,23 +1,18 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
 import SubjectMenu from 'features/generic/SubjectMenu';
-import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from 'lib/utils/constants';
 import { styled } from 'styled-components';
-import type { Tests } from 'types/Tests';
+
+import useTests from './useTests';
 
 const TestsPage = (): React.JSX.Element => {
-  const { data, error, fetchData, isLoading } = useAxios<Tests>();
+  const { data, isError, isPending } = useTests();
 
   const pageTitle = 'Tests';
-
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_TESTS);
-  }, [fetchData]);
 
   return (
     <>
@@ -27,7 +22,7 @@ const TestsPage = (): React.JSX.Element => {
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Article>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          <LoadingWrapper isError={isError} isPending={isPending}>
             <PageTitle title={pageTitle} />
             <Layout.Section>
               <table>

@@ -1,12 +1,11 @@
 import { useCallback, useId, useMemo } from 'react';
-import React from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
+import useAuth from 'features/auth/useAuth';
 import { password } from 'features/auth/ZodStrings';
-import useAuth from 'hooks/useAuth';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import { styled } from 'styled-components';
@@ -31,7 +30,7 @@ const ChangePasswordPage = (): React.JSX.Element => {
   const title = 'Change Password';
   const compId = useId();
 
-  const { authUpdatePassword, error, isLoading } = useAuth();
+  const { authUpdatePassword, error } = useAuth();
 
   type FormValues = z.infer<typeof schema>;
   type FormKeys = keyof FormValues;

@@ -1,9 +1,10 @@
-import useAppInitializer from 'hooks/useAppInitializer';
 // Single Responsibility Principle (SRP): Adhered to, as it performs only the initialization.
 // Cyclomatic Complexity: 1 (very low).
 // Cognitive Complexity: Very low, as it’s straightforward and easy to understand.
 // Maintainability Index: High, inferred from simplicity and low complexity.
 // Code smells: None found.
+
+import useAppInitializer from './useAppInitializer';
 
 /**
  * Initializes the app.

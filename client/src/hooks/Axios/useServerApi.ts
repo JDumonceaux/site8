@@ -21,7 +21,7 @@ const useServerApi = <T>() => {
     abortControllerRef.current = new AbortController();
     try {
       const response = await axios.get<T>(url, {
-        signal: abortControllerRef.current.signal,
+        signal: AbortSignal.timeout(5000),
       });
       setData(response.data);
     } catch (error_) {

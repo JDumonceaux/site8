@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 
-import useSnackbar, { SnackbarVariant } from 'hooks/useSnackbar';
+import useSnackbar, { SnackbarVariant } from 'features/app/useSnackbar';
 import { styled } from 'styled-components';
 
 import Button from '../Button/Button';

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import type { ItemAdd, ItemAddExt } from 'features/itemsAdd/ItemAdd';
 import useServerApi from 'hooks/Axios/useServerApi';
 import useFormArray from 'hooks/useFormArray';
-import useSnackbar from 'hooks/useSnackbar';
+import useSnackbar from 'features/app/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import {
   getDefaultObject,

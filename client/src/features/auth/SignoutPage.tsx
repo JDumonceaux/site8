@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import useAuth from 'hooks/useAuth';
+import useAuth from 'features/auth/useAuth';
 import { styled } from 'styled-components';
 
 import AuthContainer from './AuthContainer';

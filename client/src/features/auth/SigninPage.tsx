@@ -5,7 +5,7 @@ import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import { emailAddress, password } from 'features/auth/ZodStrings';
-import useAuth from 'hooks/useAuth';
+import useAuth from 'features/auth/useAuth';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import { styled } from 'styled-components';

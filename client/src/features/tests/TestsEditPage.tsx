@@ -23,7 +23,7 @@ import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButt
 import { Switch } from 'components/Switch/Switch';
 import SortableItem from 'features/tests/SortableItem';
 import useTestsEdit from 'features/tests/useTestsEdit';
-import useAppSettings from 'hooks/useAppSettings';
+import useAppSettings from 'features/app/useAppSettings';
 import { styled } from 'styled-components';
 
 const TestsEditPage = (): React.JSX.Element => {

@@ -1,6 +1,6 @@
 import { lazy, Suspense, useMemo } from 'react';
 
-import AppInitializer from 'components/core/AppInitializer/AppInitializer';
+import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import Avatar from 'components/core/Avatar/Avatar';
 import Snackbar from 'components/core/Snackbar/Snackbar';
 import { ErrorBoundary } from 'react-error-boundary';

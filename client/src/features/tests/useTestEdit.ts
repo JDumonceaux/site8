@@ -1,9 +1,10 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
-import type { Menu, MenuEdit } from 'types';
+import type { MenuEdit } from 'types';
 import { z } from 'zod';
 
+import useTestMenus from './useTestMenus';
 import { useAxios } from '../../hooks/Axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
 
@@ -26,7 +27,8 @@ type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
 const useTestEdit = () => {
-  const { data, error, fetchData, isLoading } = useAxios<Menu>();
+  const { data, isError, isPending } = useTestMenus();
+
   const { patchData } = useAxios<MenuEdit[]>();
 
   // Create a form
@@ -38,11 +40,6 @@ const useTestEdit = () => {
     setFormValues,
     setIsSaved,
   } = useFormArray<FormType>();
-
-  // Get the data
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_MENUS_EDIT);
-  }, [fetchData]);
 
   // Get the updates
   const getUpdates = useCallback((): MenuEdit[] | null => {
@@ -62,8 +59,8 @@ const useTestEdit = () => {
             sortby: 'name',
           },
           priorParent: {
-            id: Number.parseInt(item.parent),
-            seq: Number.parseInt(item.seq),
+            id: Number.parseInt(item.parent, 10),
+            seq: Number.parseInt(item.seq, 10),
             sortby: item.sortby as sortByType,
           },
         };
@@ -137,12 +134,12 @@ const useTestEdit = () => {
 
   return {
     data: filteredData,
-    error,
     getFieldValue,
     getStandardInputTextAttributes,
     handleChange,
     handleSave,
-    isLoading,
+    isError,
+    isPending,
     isSaved,
     pageSchema,
     setFieldValue,

@@ -1,21 +1,18 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchItems } from 'store/ItemsSlice';
-import type { AppDispatch, RootState } from 'store/store';
-import type { ListItem } from 'types';
+import { useQuery } from '@tanstack/react-query';
+import { ServiceUrl } from 'lib/utils';
+import type { Items, ListItem } from 'types';
 import type { KeyValue } from 'types/KeyValue';
 
-const selector = (state: RootState) => state.items;
-
 const useItems = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const { data, error, isLoading } = useSelector(selector);
-
-  useEffect(() => {
-    dispatch(fetchItems());
-  }, [dispatch]);
+  const { data, isError, isPending } = useQuery({
+    queryFn: async () => {
+      const response = await fetch(ServiceUrl.ENDPOINT_ITEMS);
+      return (await response.json()) as Items;
+    },
+    queryKey: ['images'],
+  });
 
   const getArtists = useCallback(() => {
     // Remove duplicates and sort and remove undefined
@@ -84,9 +81,9 @@ const useItems = () => {
     artistsIndexed,
     artistsNamesIndexed,
     data,
-    error,
     getNamesFiltered,
-    isLoading,
+    isError,
+    isPending,
     locations: getLocations(),
     locationsIndexed,
     names: getNames(),

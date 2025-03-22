@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import useMenu from 'hooks/useMenu';
+import useMenu from 'features/app/useMenu';
 import { styled } from 'styled-components';
 
 const HomeMenu = memo((): React.JSX.Element => {

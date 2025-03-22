@@ -4,7 +4,7 @@ import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import useAuth from 'hooks/useAuth';
+import useAuth from 'features/auth/useAuth';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import { styled } from 'styled-components';

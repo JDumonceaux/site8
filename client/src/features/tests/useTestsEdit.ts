@@ -5,6 +5,7 @@ import type { Test } from 'types/Test';
 import type { Tests } from 'types/Tests';
 import { z } from 'zod';
 
+import useTests from './useTests';
 import { useAxios } from '../../hooks/Axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
 
@@ -27,8 +28,10 @@ type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
 const useTestsEdit = () => {
-  const { data, error, fetchData, isLoading, patchData } = useAxios<Tests>();
+  const { patchData } = useAxios<Tests>();
   const [localItems, setLocalItems] = useState<null | Test[]>();
+
+  const { data, isError, isPending } = useTests();
 
   // Create a form
   const {
@@ -39,11 +42,6 @@ const useTestsEdit = () => {
     setFormValues,
     setIsSaved,
   } = useFormArray<FormType>();
-
-  // Get the data
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_TESTS);
-  }, [fetchData]);
 
   // Save to local - adding local index
   useEffect(() => {
@@ -121,12 +119,12 @@ const useTestsEdit = () => {
 
   return {
     data: localItems,
-    error,
     getDefaultProps,
     getFieldValue,
     handleChange,
     handleSave,
-    isLoading,
+    isError,
+    isPending,
     isSaved,
     pageSchema,
     setFieldValue,

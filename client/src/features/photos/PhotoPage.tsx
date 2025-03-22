@@ -1,20 +1,16 @@
-import React, { useDeferredValue, useEffect } from 'react';
+import React, { useDeferredValue } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'components/layouts/Layout/Layout';
-import { useAxios } from 'hooks/Axios/useAxios';
-import { ServiceUrl } from 'lib/utils/constants';
-import type { Photos } from 'types';
+
+import usePhotos from './usePhotos';
 
 const PhotoPage = (): React.JSX.Element => {
-  const { data, error, fetchData, isLoading } = useAxios<Photos>();
-  const deferredData = useDeferredValue(data);
+  const { data, isError, isPending } = usePhotos();
 
-  useEffect(() => {
-    fetchData(ServiceUrl.ENDPOINT_PHOTOS);
-  }, [fetchData]);
+  const deferredData = useDeferredValue(data);
 
   return (
     <>
@@ -22,7 +18,7 @@ const PhotoPage = (): React.JSX.Element => {
       <Layout.Main>
         <PageTitle title="Photos" />
         <Layout.Article>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          <LoadingWrapper isError={isError} isPending={isPending}>
             <ul>
               {deferredData?.items.map((item) => (
                 <li key={item.id}>

@@ -21,7 +21,7 @@ export const getItem = async (
 
   Logger.info(`Image: Get Item called: ${id}`);
 
-  const tempId = Number.parseInt(id);
+  const tempId = Number.parseInt(id, 10);
 
   const service = ServiceFactory.getImageService();
   await service

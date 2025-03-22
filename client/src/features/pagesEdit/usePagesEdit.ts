@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useAxios } from 'hooks/Axios/useAxios';
 import useFormArray from 'hooks/useFormArray';
-import { AcceptHeader, REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
-import type { Menu, MenuEdit, MenuItem } from 'types';
+import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
+import type { MenuEdit, MenuItem } from 'types';
 import { z } from 'zod';
+
+import useMenusEdit from './useMenusEdit';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -25,9 +25,10 @@ type FormKeys = keyof FormType;
 type SortByType = 'name' | 'seq';
 
 const usePagesEdit = () => {
-  // const { data, error, fetchData, isLoading } = useAxios<Menu>();
   const [localItems, setLocalItems] = useState<MenuItem[] | undefined>();
   const { patchData } = useAxios<MenuEdit[]>();
+
+  const { data, isError, isPending } = useMenusEdit();
 
   // Create a form
   const {
@@ -38,23 +39,6 @@ const usePagesEdit = () => {
     setFormValues,
     setIsSaved,
   } = useFormArray<FormType>();
-
-  const { data, isError, isPending } = useQuery({
-    queryFn: async () => {
-      const response = await axios.get<Menu>(ServiceUrl.ENDPOINT_MENUS_EDIT, {
-        headers: { Accept: AcceptHeader.JSON },
-        responseType: 'json',
-        //signal: abortControllerRef.current.signal,
-      });
-      return response.data;
-    },
-    queryKey: ['menus'],
-  });
-
-  // // Get the data
-  // useEffect(() => {
-  //   fetchData(ServiceUrl.ENDPOINT_MENUS_EDIT);
-  // }, [fetchData]);
 
   // Save to local - adding local index
   useEffect(() => {

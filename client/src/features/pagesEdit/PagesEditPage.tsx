@@ -9,7 +9,7 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import { Switch } from 'components/Switch/Switch';
 import MenuAdd from 'features/pagesEdit/MenuAdd';
-import useAppSettings from 'hooks/useAppSettings';
+import useAppSettings from 'features/app/useAppSettings';
 import { styled } from 'styled-components';
 import type { MenuItem } from 'types';
 

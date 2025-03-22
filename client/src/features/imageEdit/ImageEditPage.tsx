@@ -8,7 +8,7 @@ import Input from 'components/Input/Input';
 import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import useSnackbar from 'hooks/useSnackbar';
+import useSnackbar from 'features/app/useSnackbar';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import type { Image } from 'types';

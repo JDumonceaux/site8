@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { Snackbar } from 'hooks/useSnackbar';
+import type { Snackbar } from 'features/app/useSnackbar';
 
 type SnackbarState = {
   data: null | Snackbar;
