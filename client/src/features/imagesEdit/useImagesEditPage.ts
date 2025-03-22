@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useState, useTransition } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
 import useFormArray from 'hooks/useFormArray';
 import useSnackbar from 'hooks/useSnackbar';
-import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
 import { getDefaultObject, isDeepEqual } from 'lib/utils/objectUtil';
-import type { Image, Images } from 'types';
+import type { Image } from 'types';
 
 import type { ImageAdd, ImageAddExt } from './ImageAdd';
+import useImagesEdit from './useImagesEdit';
 
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
@@ -23,13 +22,7 @@ const useImagesEditPage = () => {
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
     useFormArray<ImageAddExt>();
 
-  const { data } = useQuery({
-    queryFn: async () => {
-      const response = await fetch(ServiceUrl.ENDPOINT_IMAGES_EDIT);
-      return (await response.json()) as Images;
-    },
-    queryKey: ['images-edit'],
-  });
+  const { data, isError } = useImagesEdit();
 
   // Filter and sort data
   const filterAndSortData = useCallback(() => {
@@ -61,7 +54,7 @@ const useImagesEditPage = () => {
       return [];
     }
     const ret: ImageAddExt[] | undefined = items.map((x, index) => {
-      const temp = getDefaultObject<ImageAddExt>();
+      const temp = getDefaultObject() as ImageAddExt;
       return {
         ...temp,
         ...x,
@@ -134,36 +127,36 @@ const useImagesEditPage = () => {
     }
     setMessage('Saving...');
     // setIsProcessing(true);
-    // eslint-disable-next-line promise/catch-or-return
-    saveItems(updates)
-      // eslint-disable-next-line promise/prefer-await-to-then
-      .then((result) => {
-        // eslint-disable-next-line promise/always-return
-        if (result) {
-          setMessage('Saved');
-          handleRefresh();
-        } else {
-          setMessage(`Error saving ${error}`);
-        }
-      })
-      // eslint-disable-next-line promise/prefer-await-to-then
-      .catch((error_: unknown) => {
-        if (error_ instanceof Error) {
-          setMessage(`An unexpected error occurred: ${error_.message}`);
-        } else {
-          setMessage('An unexpected error occurred');
-        }
-      })
-      // eslint-disable-next-line promise/prefer-await-to-then
-      .finally(() => {
-        //   setIsProcessing(false);
-      });
-  }, [getUpdates, saveItems, setMessage, handleRefresh]);
+
+    // saveItems(updates)
+    //   // eslint-disable-next-line promise/prefer-await-to-then
+    //   .then((result) => {
+    //     // eslint-disable-next-line promise/always-return
+    //     if (result) {
+    //       setMessage('Saved');
+    //       handleRefresh();
+    //     } else {
+    //       setMessage(`Error saving ${error}`);
+    //     }
+    //   })
+    //   // eslint-disable-next-line promise/prefer-await-to-then
+    //   .catch((error_: unknown) => {
+    //     if (error_ instanceof Error) {
+    //       setMessage(`An unexpected error occurred: ${error_.message}`);
+    //     } else {
+    //       setMessage('An unexpected error occurred');
+    //     }
+    //   })
+    //   // eslint-disable-next-line promise/prefer-await-to-then
+    //   .finally(() => {
+    //     //   setIsProcessing(false);
+    //   });
+  }, [getUpdates, setMessage]);
 
   const handleScan = () => {
     setMessage('Scanning...');
     startTransition(() => {
-      scanForNewItems();
+      //  scanForNewItems();
     });
     setMessage('Done');
   };
@@ -188,28 +181,25 @@ const useImagesEditPage = () => {
     setFilter(value === 'all' ? '' : value);
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  const getDifferenceString = (value?: string, update?: string) => {
-    const normalizedUpdate = update?.trim() ?? undefined;
+  // const getDifferenceString = (value?: string, update?: string) => {
+  //   const normalizedUpdate = update?.trim() ?? undefined;
 
-    if (value !== normalizedUpdate) {
-      return {
-        hasChange: true,
-        value: normalizedUpdate,
-      };
-    }
-    return {
-      hasChange: false,
-      value,
-    };
-  };
+  //   if (value !== normalizedUpdate) {
+  //     return {
+  //       hasChange: true,
+  //       value: normalizedUpdate,
+  //     };
+  //   }
+  //   return {
+  //     hasChange: false,
+  //     value,
+  //   };
+  // };
 
   return {
     currentFilter: filter,
     currentFolder,
     data: formValues,
-    // data,
-    // isError,
     // isPending,
     getFieldValue,
     handleChange,
@@ -220,6 +210,8 @@ const useImagesEditPage = () => {
     handleRefresh,
     handleScan,
     handleSubmit,
+    // data,
+    isError,
     isPending,
     setFieldValue,
   };

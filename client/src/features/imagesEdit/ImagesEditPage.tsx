@@ -19,7 +19,6 @@ const ImagesEditPage = (): React.JSX.Element => {
     currentFilter,
     currentFolder,
     data,
-    error,
     getFieldValue,
     handleChange,
     handleDelete,
@@ -28,7 +27,8 @@ const ImagesEditPage = (): React.JSX.Element => {
     handleRefresh,
     handleScan,
     handleSubmit,
-    isLoading,
+    isError,
+    isPending,
   } = useImagesEditPage();
 
   const { itemsAsListItem } = useArtistsItems();
@@ -69,7 +69,7 @@ const ImagesEditPage = (): React.JSX.Element => {
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Main>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          <LoadingWrapper isError={isError} isPending={isPending}>
             <StyledForm noValidate onSubmit={memoizedHandleSubmit}>
               {data.map((item) => (
                 <ImageDetail

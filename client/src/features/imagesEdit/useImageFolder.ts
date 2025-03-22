@@ -1,23 +1,17 @@
 import { useCallback } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
+import { ServiceUrl } from 'lib/utils';
 import { isValidArray } from 'lib/utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchFolders } from 'store/FolderSlice';
-import type { AppDispatch, RootState } from 'store/store';
-
-const selector = (state: RootState) => state.folders;
 
 const useImageFolder = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const { data } = useSelector(selector);
-  const { isLoading } = useSelector(selector);
-  const { error } = useSelector(selector);
-
-  const dispatchFetchImageFolder = useCallback(
-    async () => dispatch(fetchFolders()),
-    [dispatch],
-  );
+  const { data, isError, isPending } = useQuery({
+    queryFn: async () => {
+      const response = await fetch(ServiceUrl.ENDPOINT_IMAGES_FOLDERS);
+      return (await response.json()) as string[];
+    },
+    queryKey: ['image-folders'],
+  });
 
   const getData = useCallback(
     () =>
@@ -29,9 +23,8 @@ const useImageFolder = () => {
 
   return {
     data: getData(),
-    error,
-    fetchData: dispatchFetchImageFolder,
-    isLoading,
+    isError,
+    isPending,
   };
 };
 

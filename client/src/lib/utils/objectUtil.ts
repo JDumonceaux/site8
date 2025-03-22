@@ -65,24 +65,18 @@ export const removeEmptyAttributesArray = <T>(
 };
 
 export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
-  // Remove null and undefined attributes
-  const temp = Object.fromEntries(
-    Object.entries(obj as Record<string, unknown>)
-      .filter(([_, v]) => v !== null)
-      .filter(([_, v]) => v !== undefined),
-  );
-  for (const k in temp) {
-    const x = temp[k];
-    // Remove empty strings
-    if (typeof x === 'string' && x.trim() === '') {
-      delete temp[k];
-    }
-    // Remove empty arrays
-    if (Array.isArray(x) && x.length === 0) {
-      delete temp[k];
+  const result: Partial<T> = {};
+  for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
+    if (
+      value !== null &&
+      value !== undefined &&
+      !(typeof value === 'string' && value.trim() === '') &&
+      !(Array.isArray(value) && value.length === 0)
+    ) {
+      (result as Record<string, unknown>)[key] = value;
     }
   }
-  return temp;
+  return result;
 };
 
 export const trimAttributes = <T>(obj: T): T => {
@@ -119,40 +113,30 @@ export const cleanUpData = <T extends IdType>(data: T): T => {
   return { id, ...rest } as T;
 };
 
-export const getNextId = <T extends IdType>(
-  items: readonly T[] | undefined,
+export const getNextId = (
+  items: readonly IdType[] | undefined,
 ): number | undefined => {
-  if (!items) {
+  if (!items || items.length === 0) {
     return undefined;
   }
-  if (items.length > 0) {
-    const sortedArray = items.toSorted((a, b) => a.id - b.id);
-    // Iterate through the array to find the missing id
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < sortedArray.length; i++) {
-      const nextId = sortedArray[0].id + i;
-      const y = sortedArray.find((x) => x.id === nextId);
-      if (!y) {
-        return nextId;
-      }
+
+  const sortedArray = items.toSorted((a, b) => a.id - b.id);
+  // Iterate through the array to find the missing id
+  for (let i = 0; i < sortedArray.length; i++) {
+    const nextId = sortedArray[0].id + i;
+    const y = sortedArray.find((x) => x.id === nextId);
+    if (!y) {
+      return nextId;
     }
-    // If no gaps were found, the next free id is one greater than the last object's id
-    return sortedArray ? sortedArray.at(-1).id + 1 : undefined;
   }
-  return undefined;
+
+  // If no gaps were found, the next free id is one greater than the last object's id
+  const lastItem = sortedArray.at(-1);
+  return lastItem ? lastItem.id + 1 : undefined;
 };
 
-/**
- * Returns the next available ID from a given position in an array of objects.
- * The objects in the array must have an `id` property.
- *
- * @template T - The type of objects in the array.
- * @param items - The array of objects.
- * @param start - The starting position to search for the next ID.
- * @returns The next available ID or `undefined` if no IDs are available.
- */
-export const getNextIdFromPos = <T extends IdType>(
-  items: readonly T[] | undefined,
+export const getNextIdFromPos = (
+  items: readonly IdType[] | undefined,
   start: number,
 ): undefined | { index: number; value: number } => {
   if (!items) {
@@ -161,12 +145,13 @@ export const getNextIdFromPos = <T extends IdType>(
   const sortedArray = items.toSorted((a, b) => a.id - b.id);
   // Start with the first id in the sorted array
   let nextId = sortedArray.length > start ? sortedArray[start].id : 1;
+
   // Iterate through the array to find the missing id
-  // eslint-disable-next-line no-plusplus
   for (let i = start; i < sortedArray.length; i++) {
-    const y = sortedArray.find((x) => x.id === nextId);
+    const currentId = nextId;
+    const y = sortedArray.find((x) => x.id === currentId);
     if (!y) {
-      return { index: i, value: nextId };
+      return { index: i, value: currentId };
     }
     nextId++; // Move to the next expected id
   }

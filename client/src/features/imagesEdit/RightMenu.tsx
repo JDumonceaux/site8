@@ -4,7 +4,8 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
 import useImageFolder from 'features/imagesEdit/useImageFolder';
 import { styled } from 'styled-components';
-import type { ListItem } from 'types/ListItem';
+
+import FolderButton from './FolderButton';
 
 type Props = {
   readonly currentFilter: string;
@@ -20,7 +21,7 @@ const RightMenu = memo(
     onClick,
     onFilterSelect,
   }: Props): React.JSX.Element => {
-    const { data, error, isLoading } = useImageFolder();
+    const { data, isError, isPending } = useImageFolder();
 
     const filterData = useMemo(
       () =>
@@ -44,41 +45,17 @@ const RightMenu = memo(
       [data, onClick],
     );
 
-    const FolderButton = memo(
-      ({
-        handleClick,
-        isActive,
-        item,
-      }: {
-        handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-        isActive: boolean;
-        item: ListItem;
-      }): React.JSX.Element =>
-        isActive ? (
-          <StyledActiveButton
-            data-id={item.id}
-            onClick={handleClick}
-            type="button">
-            {item.value}
-          </StyledActiveButton>
-        ) : (
-          <StyledButton data-id={item.id} onClick={handleClick} type="button">
-            {item.value}
-          </StyledButton>
-        ),
-    );
-
     const renderedButtons = useMemo(
       () =>
-        data?.map((item) => (
+        filterData?.map((item) => (
           <FolderButton
             handleClick={handleButton}
             isActive={item.value === currentFolder}
             item={item}
-            key={item.id}
+            key={item.key}
           />
         )),
-      [data, currentFolder, handleButton],
+      [filterData, handleButton, currentFolder],
     );
 
     return (
@@ -106,7 +83,7 @@ const RightMenu = memo(
           </div>
         </StyledHeader>
         <hr />
-        <LoadingWrapper error={error} isLoading={isLoading}>
+        <LoadingWrapper isError={isError} isPending={isPending}>
           {renderedButtons}
         </LoadingWrapper>
       </StickyMenu>
@@ -127,14 +104,6 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #dcdcdc;
   }
-`;
-const StyledActiveButton = styled.button`
-  display: block;
-  width: 100%;
-  padding: 5px 0;
-  color: var(--navbar-dark-primary);
-  background-color: var(--palette-samp);
-  text-align: left;
 `;
 const StyledHeader = styled.div`
   display: flex;

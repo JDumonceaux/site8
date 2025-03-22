@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 import IconMenu from 'components/IconMenu/IconMenu';
 import IconMenuItem from 'components/IconMenu/IconMenuItem';
@@ -23,7 +23,7 @@ type Props = {
   readonly onDelete: (lineId: number) => void;
 };
 
-const ImageDetail = React.memo(
+const ImageDetail = memo(
   ({
     getFieldValue,
     item,
@@ -31,11 +31,11 @@ const ImageDetail = React.memo(
     onChange,
     onDelete,
   }: Props): React.JSX.Element => {
-    const handleOnDelete = React.useCallback(() => {
+    const handleOnDelete = useCallback(() => {
       onDelete(item.lineId);
     }, [item.lineId, onDelete]);
 
-    const getDefaultProps = React.useCallback(
+    const getDefaultProps = useCallback(
       (lineId: number, fieldName: keyof ImageAddExt) => ({
         'data-id': fieldName,
         'data-line': lineId,
@@ -47,7 +47,7 @@ const ImageDetail = React.memo(
       [getFieldValue, onChange],
     );
 
-    const getDefaultPropsSelect = React.useCallback(
+    const getDefaultPropsSelect = useCallback(
       (lineId: number, fieldName: keyof ImageAddExt) => ({
         'data-id': fieldName,
         'data-line': lineId,
@@ -60,22 +60,22 @@ const ImageDetail = React.memo(
     );
 
     // Memoize the props objects to ensure stable references
-    const fileNameProps = React.useMemo(
+    const fileNameProps = useMemo(
       () => getDefaultProps(item.lineId, 'fileName'),
       [getDefaultProps, item.lineId],
     );
 
-    const folderProps = React.useMemo(
+    const folderProps = useMemo(
       () => getDefaultProps(item.lineId, 'folder'),
       [getDefaultProps, item.lineId],
     );
 
-    const itemIdProps = React.useMemo(
+    const itemIdProps = useMemo(
       () => getDefaultPropsSelect(item.lineId, 'itemId'),
       [getDefaultPropsSelect, item.lineId],
     );
 
-    const memoizedInputSelect = React.useMemo(
+    const memoizedInputSelect = useMemo(
       () => (
         <Input.Select {...itemIdProps} dataList={names} placeholder="Item" />
       ),
@@ -110,6 +110,8 @@ const ImageDetail = React.memo(
     );
   },
 );
+
+ImageDetail.displayName = 'ImageDetail';
 
 export default ImageDetail;
 
