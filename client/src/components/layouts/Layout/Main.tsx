@@ -12,6 +12,8 @@ const Main = memo(
   ),
 );
 
+Main.displayName = 'Main';
+
 export default Main;
 
 const StyledElement = styled.main`

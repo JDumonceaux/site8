@@ -12,6 +12,8 @@ const Flex = memo(
   ),
 );
 
+Flex.displayName = 'Flex';
+
 export default Flex;
 
 const StyledElement = styled.div`

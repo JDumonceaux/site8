@@ -8,7 +8,7 @@ describe('InputUrl', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputUrl id="test" />
+          <InputUrl id="test" value="Test" />
         </Form.Field>
       </Form.Root>,
     );

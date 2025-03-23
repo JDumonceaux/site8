@@ -8,7 +8,7 @@ describe('InputTel', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTel id="test" />
+          <InputTel id="test" value="Test" />
         </Form.Field>
       </Form.Root>,
     );
@@ -21,7 +21,7 @@ describe('InputTel', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTel id="test" />
+          <InputTel id="test" value="Test" />
         </Form.Field>
       </Form.Root>,
     );

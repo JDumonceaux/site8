@@ -12,6 +12,8 @@ const TitleFixed = memo(
   ),
 );
 
+TitleFixed.displayName = 'TitleFixed';
+
 export default TitleFixed;
 
 const StyledElement = styled.div`

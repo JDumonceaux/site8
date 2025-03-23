@@ -10,6 +10,8 @@ const Menu = ({ children }: Props): React.JSX.Element => (
   <StyledElement data-testid="menu">{children}</StyledElement>
 );
 
+Menu.displayName = 'Menu';
+
 export default Menu;
 
 const StyledElement = styled.div`

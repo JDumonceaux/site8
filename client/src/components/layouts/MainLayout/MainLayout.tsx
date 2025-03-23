@@ -1,8 +1,8 @@
 import { lazy, Suspense, useMemo } from 'react';
 
-import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import Avatar from 'components/core/Avatar/Avatar';
 import Snackbar from 'components/core/Snackbar/Snackbar';
+import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';

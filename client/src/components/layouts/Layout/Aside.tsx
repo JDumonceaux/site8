@@ -12,6 +12,8 @@ const Aside = memo(
   ),
 );
 
+Aside.displayName = 'Aside';
+
 export default Aside;
 
 const StyledElement = styled.div`

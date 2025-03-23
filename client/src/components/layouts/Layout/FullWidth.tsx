@@ -12,6 +12,8 @@ const FullWidth = memo(
   ),
 );
 
+FullWidth.displayName = 'FullWidth';
+
 export default FullWidth;
 
 const StyledElement = styled.div`

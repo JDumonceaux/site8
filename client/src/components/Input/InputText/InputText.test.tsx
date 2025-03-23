@@ -8,7 +8,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" />
+          <InputText id="test" value="Test" />
         </Form.Field>
       </Form.Root>,
     );
@@ -21,7 +21,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" />
+          <InputText id="test" value="Test" />
         </Form.Field>
       </Form.Root>,
     );
@@ -52,7 +52,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" required />
+          <InputText id="test" required value="Test" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -68,7 +68,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" minLength={5} />
+          <InputText id="test" minLength={5} value="Test" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -84,7 +84,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" maxLength={5} />
+          <InputText id="test" maxLength={5} value="Test" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -100,7 +100,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" pattern="^[a-zA-Z]*$" />
+          <InputText id="test" pattern="^[a-zA-Z]*$" value="Test" />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -133,7 +133,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" />
+          <InputText id="test" value="Test" />
         </Form.Field>
       </Form.Root>,
     );
@@ -156,7 +156,7 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" required />
+          <InputText id="test" required value="Test" />
         </Form.Field>
       </Form.Root>,
     );
