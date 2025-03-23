@@ -4,8 +4,8 @@ import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import { emailAddress, password } from 'features/auth/ZodStrings';
 import useAuth from 'features/auth/useAuth';
+import { emailAddress, password } from 'features/auth/ZodStrings';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import { styled } from 'styled-components';
@@ -38,13 +38,8 @@ const SigninPage = (): React.JSX.Element => {
     [],
   );
 
-  const {
-    formValues,
-    getDefaultFields,
-    getDefaultPasswordFields,
-    handleChange,
-    setErrors,
-  } = useForm<FormValues>(defaultFormValues);
+  const { formValues, getDefaultProps, handleChange, setErrors } =
+    useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
@@ -84,18 +79,17 @@ const SigninPage = (): React.JSX.Element => {
             inputMode="email"
             label="Email Address"
             multiple={false}
-            onChange={handleChange}
             placeholder="Enter Email Address"
             required
             spellCheck="false"
-            {...getDefaultFields('emailAddress' as FormKeys)}
+            {...getDefaultProps('emailAddress' as FormKeys)}
           />
           <Input.Password
             autoComplete="current-password"
             //   errorTextShort="Please enter a password"
             label="Password"
             placeholder="Enter Password"
-            {...getDefaultPasswordFields('password' as FormKeys, compId)}
+            {...getDefaultProps('password' as FormKeys)}
           />
           <Button id="login">{isLoading ? 'Processing' : 'Submit'}</Button>
         </StyledForm>

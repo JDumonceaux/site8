@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenu } from 'store/MenuSlice';
 import type { AppDispatch, RootState } from 'store/store';
+import type { MenuItem } from 'types/MenuItem';
 
 const selector = (state: RootState) => state.menu;
 
@@ -19,37 +20,35 @@ const useMenu = () => {
   );
 
   const getMenu = useCallback(
-    (sec1: string | undefined, sec2: string | undefined) => {
+    (sec1: string | undefined): MenuItem | null => {
       if (!sec1) {
-        return;
+        return null;
       }
       // Get the parent menu
       const menu = data?.items?.find((x: MenuItem) => x.to === sec1);
-      if (!sec2) {
-        return menu;
-      }
-      // Get the child menu
-      return menu?.items?.find((x: MenuItem) => x.to === sec2);
+
+      return menu ?? null;
     },
     [data],
   );
 
   const getOtherMenus = useCallback(
-    (id: number | undefined) => {
+    (id: number | undefined): MenuItem[] | null => {
       if (!id) {
-        return;
+        return null;
       }
       // Get the current menu
       const currentItem = data?.items?.find((x) => x.id === id);
       if (!currentItem) {
-        return data?.items;
+        return data?.items ?? null;
       }
-      // Get the parent menu (i.e. Root menu)
-      const parentItem = data?.items?.find(
-        (x) => x.id === currentItem.parentId,
-      );
+      // // Get the parent menu (i.e. Root menu)
+      // const parentItem = data?.items?.find(
+      //   (x) => x.id === currentItem,
+      // );
       // Return the other menus
-      return parentItem?.items?.filter((x) => x.id !== id);
+      //return parentItem?.items?.filter((x) => x.id !== id);
+      return null;
     },
     [data],
   );

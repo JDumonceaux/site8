@@ -3,7 +3,6 @@ import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReactDOM from 'react-dom/client';
-import { HelmetProvider } from 'react-helmet-async';
 
 import reportWebVitals from './lib/utils/reportWebVitals';
 import ReduxProvider from './providers/ReduxProvider';
@@ -30,9 +29,7 @@ if (rootElement) {
     <React.StrictMode>
       <ReduxProvider>
         <QueryClientProvider client={queryClient}>
-          <HelmetProvider>
-            <RouterProvider />
-          </HelmetProvider>
+          <RouterProvider />
         </QueryClientProvider>
       </ReduxProvider>
     </React.StrictMode>,

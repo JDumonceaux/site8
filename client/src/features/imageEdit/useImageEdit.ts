@@ -4,44 +4,17 @@ import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
 import { safeParse } from 'lib/utils/zodHelper';
 import type { Image } from 'types/Image';
-import { z } from 'zod';
 
+import pageSchema, { type FormKeys, type FormType } from './schema';
+import useImage from './useImage';
 import { useAxios } from '../../hooks/Axios/useAxios';
 import useForm from '../../hooks/useForm';
 
-// Define Zod Shape
-const pageSchema = z.object({
-  description: z.string().trim().optional(),
-  fileName: z.string().trim(),
-  folder: z.string().trim().optional(),
-  id: z.number(),
-  location: z
-    .string({
-      invalid_type_error: 'Location must be a string',
-    })
-    .max(250, 'Location max length exceeded: 500')
-    .trim()
-    .optional(),
-  name: z
-    .string({
-      invalid_type_error: 'Name must be a string',
-      required_error: 'Name is required.',
-    })
-    .max(100, 'Name max length exceeded: 100')
-    .trim()
-    .optional(),
-  official_url: z.string().trim().optional(),
-  src: z.string().trim().optional(),
-  tags: z.string().trim().optional(),
-});
-
 const useImageEdit = (id: null | string) => {
   // Use Axios to fetch data
-  const { data, error, fetchData, isLoading, patchData, putData } =
-    useAxios<Image>();
-  // Create a type from the schema
-  type FormType = z.infer<typeof pageSchema>;
-  type FormKeys = keyof FormType;
+  const { patchData, putData } = useAxios<Image>();
+
+  const { data, isError, isPending } = useImage(id);
 
   const getDefaultProps = (fieldName: FormKeys) => ({
     'data-id': fieldName,
@@ -123,13 +96,6 @@ const useImageEdit = (id: null | string) => {
     }
   }, [id]);
 
-  // Fetch data when currentId changes
-  useEffect(() => {
-    if (currentId > 0) {
-      fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}`);
-    }
-  }, [currentId]);
-
   // Fetch data when currentAction changes
   useEffect(() => {
     if (currentAction) {
@@ -209,7 +175,6 @@ const useImageEdit = (id: null | string) => {
   };
 
   return {
-    error,
     formValues,
     getDefaultProps,
     getFieldValue,
@@ -217,7 +182,6 @@ const useImageEdit = (id: null | string) => {
     handleChangeImage,
     handleClear,
     handleReset,
-    isLoading,
     isProcessing,
     isSaved,
     setFieldValue,

@@ -43,6 +43,17 @@ const useForm = <T>(initialValues: T) => {
       : null;
   };
 
+  const getDefaultProps = (fieldName: FormKeys) => ({
+    'data-id': fieldName,
+    'data-line': 0,
+    onChange: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      setFieldValue(fieldName, e.target.value);
+    },
+    value: getFieldValue(fieldName),
+  });
+
   const hasError = (fieldName: FormKeys) => {
     return !getFieldErrors(fieldName);
   };
@@ -84,6 +95,7 @@ const useForm = <T>(initialValues: T) => {
   return {
     errors,
     formValues,
+    getDefaultProps,
     getFieldErrors,
     getFieldValue,
     getFieldValueBoolean,

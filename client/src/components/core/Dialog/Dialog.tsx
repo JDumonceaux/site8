@@ -1,15 +1,8 @@
-/* eslint-disable jsx-a11y/prefer-tag-over-role */
 /* eslint-disable react/forbid-component-props */
-import {
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ButtonHTMLAttributes,
-  type DialogHTMLAttributes,
-} from 'react';
+import type { ButtonHTMLAttributes, DialogHTMLAttributes } from 'react';
 
 import * as DialogUI from '@radix-ui/react-dialog';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 // Move
 // Resize
@@ -45,9 +38,6 @@ type DialogProps = {
 
 const getIcon = (variant: keyof typeof VARIANTS) => {
   switch (variant) {
-    case VARIANTS.default: {
-      return null;
-    }
     case VARIANTS.error: {
       return (
         <StyledIcon $variant={variant} className="fa-solid fa-circle-xmark" />
@@ -85,9 +75,6 @@ const Dialog = ({
   children,
   footer,
   footerProps,
-  isAutofocusClose = true,
-  isModal = true,
-  isOpen,
   label,
   labelProps,
   onClose,
@@ -95,87 +82,33 @@ const Dialog = ({
   variant = 'default',
   ...rest
 }: DialogProps) => {
-  const ref = useRef<HTMLDialogElement>(null);
-
-  useLayoutEffect(() => {
-    const { current: el } = ref;
-    if (isOpen && el !== null) {
-      isModal ? el.showModal() : el.show();
-    } else if (el !== null) {
-      el.close();
-    }
-  }, [isModal, isOpen]);
-
-  // Resize events
-  const [drag, setDrag] = useState({
-    active: false,
-    x: '',
-    y: '',
-  });
-
-  const startResize = (e) => {
-    setDrag({
-      active: true,
-      x: e.clientX,
-      y: e.clientY,
-    });
-  };
-
-  const [dims, setDims] = useState({
-    h: 200,
-    w: 200,
-  });
-
-  const resizeFrame = (e) => {
-    const { active, x, y } = drag;
-    if (active) {
-      const xDiff = Math.abs(x - e.clientX);
-      const yDiff = Math.abs(y - e.clientY);
-      const newW = x > e.clientX ? dims.w - xDiff : dims.w + xDiff;
-      const newH = y > e.clientY ? dims.h + yDiff : dims.h - yDiff;
-
-      setDrag({ ...drag, x: e.clientX, y: e.clientY });
-      setDims({ h: newH, w: newW });
-    }
-  };
-
-  const stopResize = (e) => {
-    setDrag({ ...drag, active: false });
-  };
-
-  const boxStyle = {
-    height: `${dims.y}px`,
-    width: `${dims.x}px`,
-  };
-
   return (
     <DialogUI.Root>
-      <StyledDialog
-        aria-labelledby="label"
-        data-testid="Dialog"
-        draggable
-        role="dialog"
-        {...rest}
-        $size={size}
-        $variant={variant}>
-        <Content>
-          <div>
-            <LabelRow>
-              {getIcon(variant)}
-              <StyledLabel id="label" {...labelProps} htmlFor="contents">
-                {label}
-              </StyledLabel>
-            </LabelRow>
-            <div id="contents">{children}</div>
-          </div>
-          <Footer {...footerProps}>{footer}</Footer>
-        </Content>
-        <CloseButton
-          aria-label={buttonProps?.['aria-label']}
-          autoFocus={isAutofocusClose}
-          onClick={onClose}>
-          X
-        </CloseButton>
+      <StyledDialog $size={size} $variant={variant}>
+        <dialog
+          aria-labelledby="label"
+          data-testid="Dialog"
+          draggable
+          {...rest}>
+          <Content>
+            <div>
+              <LabelRow>
+                {getIcon(variant)}
+                <StyledLabel id="label" {...labelProps} htmlFor="contents">
+                  {label}
+                </StyledLabel>
+              </LabelRow>
+              <div id="contents">{children}</div>
+            </div>
+            <Footer {...footerProps}>{footer}</Footer>
+          </Content>
+          <CloseButton
+            aria-label={buttonProps?.['aria-label']}
+            // autoFocus={isAutofocusClose}
+            onClick={onClose}>
+            X
+          </CloseButton>
+        </dialog>
       </StyledDialog>
     </DialogUI.Root>
   );
@@ -188,19 +121,6 @@ export default Dialog;
 const StyledLabel = styled.label`
   font-size: 18px;
   font-weight: bold;
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scaleY(0);
-    display: none;
-  }
-  to {
-    opacity: 1;
-    transform: scaleY(1);
-    display: block;
-  }
 `;
 
 const StyledDialog = styled(DialogUI.Portal)<{
@@ -232,7 +152,6 @@ const StyledDialog = styled(DialogUI.Portal)<{
           border-top: 8px solid var(--status-warning, #ff000f);
         `;
       }
-      case VARIANTS.default:
       default: {
         return css`
           border-top: 8px solid var(-text-primary, #1f1f1f);
@@ -337,7 +256,6 @@ const StyledIcon = styled.i<{
           color: var(--status-warning, #ff000f);
         `;
       }
-      case VARIANTS.default:
       default: {
         return css`
           color: var(-text-primary, #1f1f1f);

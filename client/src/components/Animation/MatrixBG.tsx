@@ -23,20 +23,29 @@ export const MatrixBG = (): React.JSX.Element => {
 
   const draw = () => {
     if (ctx === null) return;
-    if (ctx) {
-      // Draw to the canvas
-      ctx.fillStyle = 'rgba(0, 0, 0, .1)';
-      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillStyle = '#0f0';
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        drops[i] += 1;
-        if (drops[i] * fontSize > ctx.canvas.height && Math.random() > 0.95) {
-          drops[i] = 0;
-        }
+
+    const tempContext = { ...ctx };
+    // Draw to the canvas
+    tempContext.fillStyle = 'rgba(0, 0, 0, .1)';
+    tempContext.fillRect(
+      0,
+      0,
+      tempContext.canvas.width,
+      tempContext.canvas.height,
+    );
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      tempContext.fillStyle = '#0f0';
+      tempContext.fillText(text, i * fontSize, drops[i] * fontSize);
+      drops[i] += 1;
+      if (
+        drops[i] * fontSize > tempContext.canvas.height &&
+        Math.random() > 0.95
+      ) {
+        drops[i] = 0;
       }
     }
+    setCtx(tempContext);
   };
 
   const establishContext = (value: CanvasRenderingContext2D | null) => {

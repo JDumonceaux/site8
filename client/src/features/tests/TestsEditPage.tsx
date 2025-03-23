@@ -21,9 +21,9 @@ import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import { Switch } from 'components/Switch/Switch';
+import useAppSettings from 'features/app/useAppSettings';
 import SortableItem from 'features/tests/SortableItem';
 import useTestsEdit from 'features/tests/useTestsEdit';
-import useAppSettings from 'features/app/useAppSettings';
 import { styled } from 'styled-components';
 
 const TestsEditPage = (): React.JSX.Element => {

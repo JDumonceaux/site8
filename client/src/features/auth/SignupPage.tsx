@@ -5,8 +5,8 @@ import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import { emailAddress, password } from 'features/auth/ZodStrings';
 import useAuth, { SocialProvider } from 'features/auth/useAuth';
+import { emailAddress, password } from 'features/auth/ZodStrings';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import { styled } from 'styled-components';
@@ -39,13 +39,8 @@ const SignupPage = (): React.JSX.Element => {
     [],
   );
 
-  const {
-    formValues,
-    getDefaultFields,
-    getDefaultPasswordFields,
-    handleChange,
-    setErrors,
-  } = useForm<FormValues>(defaultFormValues);
+  const { formValues, getDefaultProps, handleChange, setErrors } =
+    useForm<FormValues>(defaultFormValues);
 
   const validateForm = useCallback(() => {
     const result = safeParse<FormValues>(schema, formValues);
@@ -114,17 +109,16 @@ const SignupPage = (): React.JSX.Element => {
             //errorTextShort="Please enter an email address"
             label="Email Address"
             multiple={false}
-            onChange={handleChange}
             placeholder="Enter your email"
             required
             spellCheck="false"
-            {...getDefaultFields('emailAddress' as FormKeys)}
+            {...getDefaultProps('emailAddress' as FormKeys)}
           />
           <Input.Password
             autoComplete="new-password"
             label="Password"
             placeholder="Enter your password"
-            {...getDefaultPasswordFields('password' as FormKeys, compId)}
+            {...getDefaultProps('password' as FormKeys)}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your

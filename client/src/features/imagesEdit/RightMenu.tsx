@@ -84,7 +84,7 @@ const RightMenu = memo(
         </StyledHeader>
         <hr />
         <LoadingWrapper isError={isError} isPending={isPending}>
-          {renderedButtons}
+          y{renderedButtons}
         </LoadingWrapper>
       </StickyMenu>
     );

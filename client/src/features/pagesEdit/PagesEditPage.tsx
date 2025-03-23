@@ -8,8 +8,8 @@ import Layout from 'components/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import { Switch } from 'components/Switch/Switch';
-import MenuAdd from 'features/pagesEdit/MenuAdd';
 import useAppSettings from 'features/app/useAppSettings';
+import MenuAdd from 'features/pagesEdit/MenuAdd';
 import { styled } from 'styled-components';
 import type { MenuItem } from 'types';
 

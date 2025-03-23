@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -47,7 +47,7 @@ const ImageEditImage = (): React.JSX.Element => {
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
 
-  const inputTitleRef = React.useRef<HTMLInputElement>(null);
+  const inputTitleRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputTitleRef.current?.focus();
@@ -86,13 +86,13 @@ const ImageEditImage = (): React.JSX.Element => {
                 <form noValidate onSubmit={handleSubmit}>
                   <Input.Text
                     autoCapitalize="off"
-                    label="Short Title"
-                    required
-                    spellCheck
                     enterKeyHint="next"
                     //errorTextShort="Please enter a short title"
                     inputMode="text"
+                    label="Short Title"
                     ref={inputTitleRef}
+                    required
+                    spellCheck
                     // {...getStandardInputTextAttributes('name')}
                     //ref={focusElement}
                     {...getDefaultProps('name')}

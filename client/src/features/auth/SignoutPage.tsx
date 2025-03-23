@@ -16,7 +16,7 @@ const SignOutpPage = (): React.JSX.Element => {
 
   useEffect(() => {
     authFetchAuthSession();
-  }, []);
+  }, [authFetchAuthSession]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {

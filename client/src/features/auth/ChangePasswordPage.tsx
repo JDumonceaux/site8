@@ -49,7 +49,7 @@ const ChangePasswordPage = (): React.JSX.Element => {
     [],
   );
 
-  const { formValues, getDefaultPasswordFields, setErrors } =
+  const { formValues, getDefaultProps, setErrors } =
     useForm<FormValues>(initialFormValues);
 
   const validateForm = useCallback(() => {
@@ -90,7 +90,7 @@ const ChangePasswordPage = (): React.JSX.Element => {
             // errorTextShort="Please enter a password"
             label="Current Password"
             placeholder="Current password"
-            {...getDefaultPasswordFields('password' as FormKeys, compId)}
+            {...getDefaultProps('password' as FormKeys)}
           />
           <Input.Password
             // autoComplete="new-password"

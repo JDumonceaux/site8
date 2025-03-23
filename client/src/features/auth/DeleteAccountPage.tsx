@@ -61,7 +61,7 @@ const DeleteAccountPage = (): React.JSX.Element => {
     return {
       errorText: getFieldErrors(fieldName),
       id: fieldName,
-      value: formValues[fieldName] || '',
+      value: formValues[fieldName] ?? '',
     };
   };
 

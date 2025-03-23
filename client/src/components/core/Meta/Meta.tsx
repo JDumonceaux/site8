@@ -6,7 +6,7 @@ type MetaProps = {
   readonly description?: string;
   readonly name?: string;
   readonly title?: string;
-  // eslint-disable-next-line no-inline-comments
+   
   readonly type?: 'article' | 'book' | 'profile' | 'website'; // See https://ogp.me/#types for more
 };
 

@@ -7,7 +7,7 @@ const useCanvas = (draw: any) => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
     let frameCount = 0;
-    let animationFrameId: number;
+    let animationFrameId = 0;
 
     const render = () => {
       frameCount += 1;

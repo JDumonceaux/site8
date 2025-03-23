@@ -74,18 +74,24 @@ export default [
       // js Rules
       'accessor-pairs': 'error',
 
-      // Deprected
+      // Deprecated
       'array-bracket-newline': 'off',
+      // Deprecated
 
       'array-bracket-spacing': 'off',
       'array-callback-return': 'error',
+      // Deprecated
       'array-element-newline': 'off',
       // a little too aggressive
       'arrow-body-style': 'off',
+      // Deprecated
       'arrow-parens': 'off',
+      // Deprecated
       'arrow-spacing': 'off',
       'block-scoped-var': 'error',
+      // Deprecated
       'block-spacing': 'off',
+      // Deprecated
       'brace-style': 'off',
       'check-file/filename-naming-convention': [
         'error',
@@ -104,24 +110,27 @@ export default [
       //'camelcase': 'error',
       //'capitalized-comments': 'error',
       'class-methods-use-this': 'error',
+      // Deprecated
       'comma-dangle': 'off',
+      // Deprecated
       'comma-spacing': 'off',
+      // Deprecated
       'comma-style': 'off',
       complexity: 'error',
+      // Deprecated
       'computed-property-spacing': 'off',
-
       'consistent-return': 'error',
-
       'consistent-this': 'error',
       'default-case': 'error',
       'default-case-last': 'error',
       'default-param-last': 'error',
+      // Deprecated
       'dot-location': 'off',
-
       'dot-notation': 'error',
-
+      // Deprecated
       'eol-last': 'off',
       eqeqeq: 'error',
+      // Deprecated
       'func-call-spacing': 'off',
       'func-name-matching': 'error',
       'func-names': 'error',
@@ -204,6 +213,7 @@ export default [
       indent: 'off',
       'indent-legacy': 'off',
       'init-declarations': 'error',
+      'jsx-a11y/anchor-ambiguous-text': 'warn',
       // A11Y rules
       'jsx-a11y/anchor-is-valid': [
         'error',
@@ -213,8 +223,10 @@ export default [
           specialLink: ['hrefLeft', 'hrefRight'],
         },
       ],
+      'jsx-a11y/control-has-associated-label': 'error',
       'jsx-a11y/label-has-associated-control': 'error',
-      'jsx-a11y/label-has-for': 'off',
+      // Depreacted
+      //'jsx-a11y/label-has-for': 'off',
       'jsx-a11y/lang': 'error',
       'jsx-a11y/no-aria-hidden-on-focusable': 'error',
       'jsx-a11y/prefer-tag-over-role': 'error',
@@ -461,6 +473,7 @@ export default [
       radix: 'error',
       // React compiler rules
       'react-compiler/react-compiler': 'error',
+      'react-redux/connect-prefer-named-arguments': 'error',
       // Redux rules
       'react-redux/mapStateToProps-prefer-selectors': 'error',
       // React Rules
@@ -520,9 +533,9 @@ export default [
       'react/forbid-foreign-prop-types': 'error',
       'react/forbid-prop-types': 'error',
       'react/forward-ref-uses-ref': 'error',
+
       // Confusing as to waht is the best practice for component definition
       'react/function-component-definition': 'off',
-
       'react/hook-use-state': 'error',
       'react/iframe-missing-sandbox': 'error',
       'react/jsx-boolean-value': 'error',
@@ -540,10 +553,10 @@ export default [
       // 'react/jsx-first-prop-new-line': 'error',
       'react/jsx-fragments': 'error',
       'react/jsx-handler-names': 'error',
+
       // 'react/jsx-indent': 'error',
       // 'react/jsx-indent-props': 'error',
       'react/jsx-max-depth': ['error', { 'max': 8 }],
-
       // 'react/jsx-max-props-per-line': 'error',
       // 'react/jsx-newline': 'error',
       // This is out-of-date: https://reacttraining.com/blog/react-inline-functions-and-performance
@@ -585,12 +598,14 @@ export default [
       'react/no-set-state': 'error',
       'react/no-this-in-sfc': 'error',
       'react/no-typos': 'error',
+      // added
+      'react/no-unsafe': 'error',
       'react/no-unstable-nested-components': 'error',
       'react/no-unused-class-component-methods': 'error',
       'react/no-unused-prop-types': 'error',
       'react/no-unused-state': 'error',
-      'react/no-will-update-set-state': 'error',
 
+      'react/no-will-update-set-state': 'error',
       'react/prefer-es6-class': 'error',
       'react/prefer-exact-props': 'error',
       'react/prefer-read-only-props': 'off',
@@ -636,6 +651,9 @@ export default [
       'template-curly-spacing': 'off',
       'template-tag-spacing': 'off',
       'unicode-bom': 'error',
+      'unicorn/better-regex': 'error',
+      'unicorn/consistent-destructuring': 'error',
+      'unicorn/custom-error-definition': 'error',
       // Unicorn
       'unicorn/filename-case': 'off',
       // Incorrectly prevents the use of null as a component return (i.e. render nothing)

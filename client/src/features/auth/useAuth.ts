@@ -75,7 +75,7 @@ export const enum SocialProvider {
 
 const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<{ code: string; message: string } | null>(
+  const [error, setError] = useState<null | { code: string; message: string }>(
     null,
   );
   const [accessToken, setAccessToken] = useState<JWT | undefined>();

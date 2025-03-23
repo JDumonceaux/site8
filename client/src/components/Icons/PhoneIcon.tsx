@@ -10,8 +10,8 @@ export const PhoneIcon = ({
   return (
     <svg
       aria-hidden={ariaHidden}
-      focusable={focusable}
       enableBackground="new 0 0 40 40"
+      focusable={focusable}
       height="15px"
       id="Layer_1"
       version="1.1"
