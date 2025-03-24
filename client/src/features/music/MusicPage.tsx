@@ -2,7 +2,7 @@ import React from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'components/layouts/Layout/Layout';
+import Layout from 'features/layouts/Layout/Layout';
 
 const MusicPage = (): React.JSX.Element => {
   const title = 'YouTube Videos';

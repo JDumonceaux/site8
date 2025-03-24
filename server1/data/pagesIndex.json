@@ -3954,19 +3954,6 @@
       "file": true
     },
     {
-      "id": 206,
-      "name": "Avatar",
-      "parentItems": [
-        {
-          "id": 197,
-          "seq": 0
-        }
-      ],
-      "to": "avatar",
-      "type": "page",
-      "file": true
-    },
-    {
       "id": 50,
       "name": "CommonJs vs ES Modules",
       "parentItems": [
@@ -4040,46 +4027,6 @@
           "seq": 0
         }
       ],
-      "reading_time": "I think the McDonald's app is the most frustrating - simply because they have the resources to do better.",
-      "to": "design-problems",
-      "type": "page"
-    },
-    {
-      "id": 213,
-      "name": "Design Problems",
-      "parentItems": [
-        {
-          "id": 2,
-          "seq": 0
-        }
-      ],
-      "reading_time": "I think the McDonald's app is the most frustrating - simply because they have the resources to do better.",
-      "to": "design-problems",
-      "type": "page"
-    },
-    {
-      "id": 214,
-      "name": "Design Problems",
-      "parentItems": [
-        {
-          "id": 2,
-          "seq": 0
-        }
-      ],
-      "reading_time": "I think the McDonald's app is the most frustrating - simply because they have the resources to do better.",
-      "to": "design-problems",
-      "type": "page"
-    },
-    {
-      "id": 215,
-      "name": "Design Problems",
-      "parentItems": [
-        {
-          "id": 2,
-          "seq": 0
-        }
-      ],
-      "reading_time": "I think the McDonald's app is the most frustrating - simply because they have the resources to do better.",
       "to": "design-problems",
       "type": "page"
     },

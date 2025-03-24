@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 
-import Layout from 'components/layouts/Layout/Layout';
 import HomeMenu from 'features/home/HomeMenu';
+import Layout from 'features/layouts/Layout/Layout';
+import { styled } from 'styled-components';
 
 import CircleAnimation from './Animations/CircleAnimation';
 import CircleMenuAnimation from './Animations/CircleMenuAnimation';
@@ -10,9 +11,11 @@ import TitleAnimation from './Animations/TitleAnimation';
 const HomeScreen5 = memo((): React.JSX.Element => {
   return (
     <Layout.FullWidth>
-      <TitleAnimation />
-      <CircleMenuAnimation />
-      <CircleAnimation />
+      <ContainerDiv>
+        <TitleAnimation />
+        <CircleMenuAnimation />
+        <CircleAnimation />
+      </ContainerDiv>
       <HomeMenu />
     </Layout.FullWidth>
   );
@@ -21,3 +24,7 @@ const HomeScreen5 = memo((): React.JSX.Element => {
 HomeScreen5.displayName = 'HomeScreen5';
 
 export default HomeScreen5;
+
+const ContainerDiv = styled.div`
+  height: 100vh;
+`;

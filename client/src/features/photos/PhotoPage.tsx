@@ -3,7 +3,7 @@ import React, { useDeferredValue } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'components/layouts/Layout/Layout';
+import Layout from 'features/layouts/Layout/Layout';
 
 import usePhotos from './usePhotos';
 

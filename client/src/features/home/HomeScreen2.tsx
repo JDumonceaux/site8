@@ -1,5 +1,5 @@
 import Meta from 'components/core/Meta/Meta';
-import Layout from 'components/layouts/Layout/Layout';
+import Layout from 'features/layouts/Layout/Layout';
 import { keyframes, styled } from 'styled-components';
 
 const HomeScreen2 = (): React.JSX.Element => {

@@ -4,7 +4,7 @@ import Fallback from 'components/core/Fallback/Fallback';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'components/layouts/Layout/Layout';
+import Layout from 'features/layouts/Layout/Layout';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { styled } from 'styled-components';
 

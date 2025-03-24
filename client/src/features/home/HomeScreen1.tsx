@@ -1,6 +1,6 @@
 import { MatrixBG } from 'components/Animation/MatrixBG';
 import Meta from 'components/core/Meta/Meta';
-import Layout from 'components/layouts/Layout/Layout';
+import Layout from 'features/layouts/Layout/Layout';
 import HomeMenu from 'features/home/HomeMenu';
 import { styled } from 'styled-components';
 

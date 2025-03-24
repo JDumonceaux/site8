@@ -1,18 +1,36 @@
 import React, { memo } from 'react';
 
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import useMenu from 'features/app/useMenu';
 import { styled } from 'styled-components';
 
 const HomeMenu = memo((): React.JSX.Element => {
-  const { data } = useMenu();
+  const { data, error, isLoading } = useMenu();
 
   return (
     <StyledNav>
-      {data?.items?.map((x) => (
-        <StyledSection key={x.id}>
-          <StyledSectionTitle>{x.name}</StyledSectionTitle>
-        </StyledSection>
-      ))}
+      <LoadingWrapper error={error} isLoading={isLoading}>
+        {data?.items?.map((x) => {
+          switch (x.type) {
+            case 'menu': {
+              return <StyledMenuDiv key={x.id}>{x.name}</StyledMenuDiv>;
+            }
+            case 'page': {
+              return (
+                <StyledPageDiv key={x.id}>
+                  <a href={x.to}>{x.name}</a>
+                </StyledPageDiv>
+              );
+            }
+            case 'root': {
+              return <StyledRootDiv key={x.id}>{x.name}</StyledRootDiv>;
+            }
+            default: {
+              return null;
+            }
+          }
+        })}
+      </LoadingWrapper>
     </StyledNav>
   );
 });
@@ -24,15 +42,27 @@ export default HomeMenu;
 const StyledNav = styled.nav`
   color: var(--palette-text-dark);
 `;
-const StyledSectionTitle = styled.div`
+const StyledRootDiv = styled.div`
   font-weight: 700;
   font-size: 1rem;
   text-transform: uppercase;
-  padding-bottom: 6px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid var(--palette-border);
-`;
-const StyledSection = styled.div`
-  margin-bottom: 18px;
+  padding: 12px 12px 6px 12px;
+  background-color: var(--navbar-light-secondary);
   break-inside: avoid;
+`;
+const StyledPageDiv = styled.div`
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 6px 12px 6px 36px;
+  background-color: var(--navbar-light-primary);
+  break-inside: avoid;
+  border-bottom: 1px solid var(--navbar-light-secondary);
+`;
+const StyledMenuDiv = styled.div`
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 12px 12px 6px 18px;
+  background-color: var(--navbar-light-primary);
+  break-inside: avoid;
+  border-bottom: 1px solid var(--navbar-light-secondary);
 `;

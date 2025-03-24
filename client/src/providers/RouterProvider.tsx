@@ -12,16 +12,16 @@ import InputPage from '../features/design/InputPage';
 import ErrorPage from '../features/site/ErrorPage';
 
 const AuthLayout = lazy(
-  async () => import('components/layouts/AuthLayout/AuthLayout'),
+  async () => import('features/layouts/AuthLayout/AuthLayout'),
 );
 const HomeLayout = lazy(
-  async () => import('components/layouts/HomeLayout/HomeLayout'),
+  async () => import('features/layouts/HomeLayout/HomeLayout'),
 );
 const MainLayout = lazy(
-  async () => import('components/layouts/MainLayout/MainLayout'),
+  async () => import('features/layouts/MainLayout/MainLayout'),
 );
 const PhotoLayout = lazy(
-  async () => import('components/layouts/PhotoLayout/PhotoLayout'),
+  async () => import('features/layouts/PhotoLayout/PhotoLayout'),
 );
 const BookmarkPage = lazy(
   async () => import('../features/bookmarks/BookmarkPage'),
