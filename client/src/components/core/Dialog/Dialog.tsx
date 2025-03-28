@@ -1,5 +1,9 @@
 /* eslint-disable react/forbid-component-props */
-import type { ButtonHTMLAttributes, DialogHTMLAttributes } from 'react';
+import {
+  memo,
+  type ButtonHTMLAttributes,
+  type DialogHTMLAttributes,
+} from 'react';
 
 import * as DialogUI from '@radix-ui/react-dialog';
 import styled, { css } from 'styled-components';
@@ -104,7 +108,8 @@ const Dialog = ({
           </Content>
           <CloseButton
             aria-label={buttonProps?.['aria-label']}
-            // autoFocus={isAutofocusClose}
+            // Not accessible
+            //autoFocus={isAutofocusClose}
             onClick={onClose}>
             X
           </CloseButton>
@@ -116,14 +121,14 @@ const Dialog = ({
 
 Dialog.displayName = 'Dialog';
 
-export default Dialog;
+export default memo(Dialog);
 
 const StyledLabel = styled.label`
   font-size: 18px;
   font-weight: bold;
 `;
 
-const StyledDialog = styled(DialogUI.Portal)<{
+const StyledDialog = styled(DialogUI.Content)<{
   $size?: keyof typeof SIZES;
   $variant?: keyof typeof VARIANTS;
 }>`
@@ -154,7 +159,7 @@ const StyledDialog = styled(DialogUI.Portal)<{
       }
       default: {
         return css`
-          border-top: 8px solid var(-text-primary, #1f1f1f);
+          border-top: 8px solid var(--text-primary, #1f1f1f);
         `;
       }
     }

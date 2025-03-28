@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { memo } from 'react';
 
 import * as RadixAvatar from '@radix-ui/react-avatar';
 import { styled } from 'styled-components';
@@ -11,27 +11,25 @@ type AvatarProps = {
   readonly src?: string;
 } & RadixAvatar.AvatarProps;
 
-const SytledAvatar = ({
+const StyledAvatar = ({
   alt,
   children,
   delayMs = 600,
   id,
   src,
   ...rest
-}: AvatarProps): React.JSX.Element =>
-  useMemo(
-    () => (
-      <StyledRoot data-testid={id} id={id} {...rest}>
-        <StyledImage alt={alt} src={src} />
-        <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
-      </StyledRoot>
-    ),
-    [alt, children, delayMs, id, src, rest],
+}: AvatarProps): React.JSX.Element => {
+  return (
+    <StyledRoot data-testid={id} id={id} {...rest}>
+      <StyledImage alt={alt} src={src} />
+      <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
+    </StyledRoot>
   );
+};
 
-SytledAvatar.displayName = 'SytledAvatar';
+StyledAvatar.displayName = 'StyledAvatar';
 
-export default SytledAvatar;
+export default memo(StyledAvatar);
 
 const StyledRoot = styled(RadixAvatar.Root)`
   display: inline-flex;

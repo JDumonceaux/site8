@@ -1,5 +1,6 @@
 import Article from './Article';
 import Aside from './Aside';
+import Content from './Content';
 import Flex from './Flex';
 import FullWidth from './FullWidth';
 import Main from './Main';
@@ -13,6 +14,7 @@ Layout.Main = Main;
 Layout.Menu = Menu;
 Layout.Flex = Flex;
 Layout.Article = Article;
+Layout.Content = Content;
 Layout.Aside = Aside;
 Layout.Section = Section;
 Layout.FullWidth = FullWidth;

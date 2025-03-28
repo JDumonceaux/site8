@@ -24,7 +24,7 @@ const StyledNavLink = ({
     <StyledElement
       $variant={variant}
       aria-current="page"
-      aria-label={ariaLabel ?? children?.toString()}
+      aria-label={ariaLabel}
       to={to}>
       {children}
     </StyledElement>

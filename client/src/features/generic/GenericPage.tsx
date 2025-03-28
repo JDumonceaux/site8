@@ -27,6 +27,7 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
   }, [x.pathname]);
 
   const { data, isError, isPending } = useGenericPage(id);
+
   const deferredData = useDeferredValue(data);
 
   const pageTitle = deferredData?.name ?? title;
@@ -38,20 +39,22 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
         <Layout.Menu>
           <SubjectMenu />
         </Layout.Menu>
-        <LoadingWrapper isError={isError} isPending={isPending}>
-          <Fallback />
-          <Suspense fallback="Loading ...">
-            <Layout.Article>
-              <PageTitle title={pageTitle}>
-                <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
-              </PageTitle>
-              <StyledSection>
-                <RenderHtml text={deferredData?.text} />
-              </StyledSection>
-            </Layout.Article>
-          </Suspense>
-        </LoadingWrapper>
-        <Layout.Aside />
+        <Layout.Content>
+          <LoadingWrapper isError={isError} isPending={isPending}>
+            <Fallback />
+            <Suspense fallback="Loading ...">
+              <Layout.Article>
+                <PageTitle title={pageTitle}>
+                  <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
+                </PageTitle>
+                <StyledSection>
+                  <RenderHtml text={deferredData?.text} />
+                </StyledSection>
+              </Layout.Article>
+            </Suspense>
+          </LoadingWrapper>
+          <Layout.Aside />
+        </Layout.Content>
       </Layout.Main>
     </>
   );

@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { styled } from 'styled-components';
 
 type LoadingWrapperProps = {
@@ -44,7 +46,7 @@ const LoadingWrapper = ({
 
 LoadingWrapper.displayName = 'LoadingWrapper';
 
-export default LoadingWrapper;
+export default memo(LoadingWrapper);
 
 const StyledLoadingDiv = styled.div`
   color: var(--palette-text);

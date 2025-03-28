@@ -20,4 +20,5 @@ const StyledElement = styled.div`
   background-color: var(--palette-dark-background);
   height: 100vh;
   width: 100vw;
+  max-width: 100%;
 `;

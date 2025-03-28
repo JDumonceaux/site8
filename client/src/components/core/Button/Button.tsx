@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import { memo, type ButtonHTMLAttributes } from 'react';
 
 import styled, { css } from 'styled-components';
 
@@ -47,71 +47,62 @@ const Button = ({
 
 Button.displayName = 'Button';
 
-export default Button;
+export default memo(Button);
 
 const StyledButton = styled.button<{
   $size?: Size;
   $variant?: Variant;
 }>`
   border-radius: 50%;
-  ${(props) => {
-    switch (props.$variant) {
-      case VARIANTS.discreet: {
-        return css`
-          background-color: var(--background-color-discreet);
-        `;
+
+  ${(props) => css`
+    background-color: ${(() => {
+      switch (props.$variant) {
+        case VARIANTS.discreet: {
+          return 'var(--background-color-discreet)';
+        }
+        case VARIANTS.ghost: {
+          return 'var(--background-color-ghost, #ffffff)';
+        }
+        case VARIANTS.secondary: {
+          return 'var(--background-color-secondary, #000014)';
+        }
+        default: {
+          return 'var(--background-color-primary, #000000)';
+        }
       }
-      case VARIANTS.ghost: {
-        return css`
-          background-color: var(--background-color-ghost, #ffffff);
-        `;
+    })()};
+    color: ${(() => {
+      switch (props.$variant) {
+        case VARIANTS.secondary: {
+          return 'var(--text-color-secondary, #000000)';
+        }
+        default: {
+          return 'var(--text-color-primary, #ffffff)';
+        }
       }
-      case VARIANTS.secondary: {
-        return css`
-          color: var(--text-color-secondary, #000000);
-          background-color: var(--background-color-secondary, #000014);
-        `;
+    })()};
+    max-height: ${(() => {
+      switch (props.$size) {
+        case SIZES.lg: {
+          return '48px';
+        }
+        case SIZES.md: {
+          return '40px';
+        }
+        case SIZES.sm: {
+          return '32px';
+        }
+        case SIZES.xl: {
+          return '56px';
+        }
+        case SIZES.xs: {
+          return '24px';
+        }
+        default: {
+          return '40px';
+        }
       }
-      default: {
-        return css`
-          color: var(--text-color-primary, #ffffff);
-          background-color: var(--background-color-primary, #000000);
-        `;
-      }
-    }
-  }}
-  ${(props) => {
-    switch (props.$size) {
-      case SIZES.lg: {
-        return css`
-          max-height: 48px;
-        `;
-      }
-      case SIZES.md: {
-        return css`
-          max-height: 40px;
-        `;
-      }
-      case SIZES.sm: {
-        return css`
-          max-height: 32px;
-        `;
-      }
-      case SIZES.xl: {
-        return css`
-          max-height: 56px;
-        `;
-      }
-      case SIZES.xs: {
-        return css`
-          max-height: 24px;
-        `;
-      }
-      default: {
-        return css`
-          max-height: 40px;
-        `;
-      }
-    }
-  }}
+    })()};
+  `}
 `;

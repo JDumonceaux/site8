@@ -17,8 +17,8 @@ const AuthLayout = lazy(
 const HomeLayout = lazy(
   async () => import('features/layouts/HomeLayout/HomeLayout'),
 );
-const MainLayout = lazy(
-  async () => import('features/layouts/MainLayout/MainLayout'),
+const GenericLayout = lazy(
+  async () => import('features/layouts/GenericLayout/GenericLayout'),
 );
 const PhotoLayout = lazy(
   async () => import('features/layouts/PhotoLayout/PhotoLayout'),
@@ -93,47 +93,52 @@ const router = createBrowserRouter(
           <Route element={<Home />} index />
         </Route>
 
-        {/* 1 - PROGRAMMING */}
-        <Route element={<MainLayout />}>
+        {/* Generic */}
+        <Route element={<GenericLayout />}>
+          <Route element={<GenericPage />} path="/accessibility/*" />
+          <Route element={<GenericPage />} path="/aws/*" />
+          <Route element={<GenericPage />} path="/code-snippets/*" />
+          <Route element={<GenericPage />} path="/fun">
+            <Route element={<TikTokPage />} path="/fun/tiktock" />
+            <Route element={<YachtsPage />} path="/fun/yachts" />
+            <Route element={<GenericImagePage />} path="/fun/images" />
+            <Route element={<GenericPage />} path="/fun/*" />
+          </Route>
+          <Route element={<GenericPage />} path="/:lang?/fun/*" />
+          <Route element={<GenericPage />} path="/html/*" />
+          <Route element={<GenericPage />} path="/interview-questions/*" />
+          <Route element={<GenericPage />} path="/javascript/*" />
+          <Route element={<GenericPage />} path="/management/*" />
+          <Route element={<GenericPage />} path="/nextjs/*" />
+          <Route element={<GenericPage />} path="/nodejs/*" />
           <Route element={<GenericPage />} path="/programming/*" />
           <Route element={<GenericPage />} path="/:lang?/programming/*" />
-        </Route>
-
-        {/* 6 - React */}
-        <Route element={<MainLayout />}>
-          <Route element={<GenericPage />} path="/:lang?/react/*" />
-        </Route>
-
-        {/* 14 = AWS */}
-        <Route element={<MainLayout />}>
-          <Route element={<GenericPage />} path="/:lang?/aws/*" />
+          <Route element={<GenericPage />} path="/python/*" />
+          <Route element={<GenericPage />} path="/react/*" />
+          <Route element={<GenericPage />} path="/react-a-z/*" />
+          <Route element={<GenericPage />} path="/typescript/*" />
+          <Route element={<GenericPage />} path="/web/*" />
         </Route>
 
         {/* Design */}
-        <Route element={<MainLayout />} path="design">
+        <Route element={<GenericLayout />} path="design">
           <Route element={<InputPage />} path="input" />
         </Route>
 
         {/* Bookmarks */}
-        <Route element={<MainLayout />} path="bookmarks">
+        <Route element={<GenericLayout />} path="bookmarks">
           <Route element={<BookmarkPage />} />
         </Route>
 
-        <Route element={<MainLayout />}>
-          <Route element={<TikTokPage />} path="fun/tiktock" />
-          <Route element={<YachtsPage />} path="fun/yachts" />
-          <Route element={<GenericImagePage />} path="fun/images" />
+        <Route element={<GenericLayout />}>
           <Route element={<PhotoLayout />}>
             <Route element={<PhotoPage />} path="fun/photos" />
           </Route>
-          <Route element={<YachtsPage />} path="fun/yachts" />
-          <Route element={<GenericPage />} path="/:lang?/fun/*" />
-          <Route element={<GenericPage />} path="/:lang?/web/*" />
           <Route element={<TestsPage />} path="/react/testing/test-grid" />
         </Route>
 
         {/* ADMIN */}
-        <Route element={<MainLayout />} path="admin">
+        <Route element={<GenericLayout />} path="admin">
           <Route element={<PagesEditPage />} path="pages" />
           <Route element={<PageEditPage />} path="page/edit" />
           <Route element={<PageEditPage />} path="page/edit/:id" />

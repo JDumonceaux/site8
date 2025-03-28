@@ -1,4 +1,6 @@
-import { styled } from 'styled-components';
+import { memo } from 'react';
+
+import styled from 'styled-components';
 
 const Footer = (): React.JSX.Element => {
   const thisYear = new Date().getFullYear();
@@ -14,9 +16,11 @@ const Footer = (): React.JSX.Element => {
 
 Footer.displayName = 'Footer';
 
-export default Footer;
+export default memo(Footer);
 
-const StyledFooter = styled.footer`
+const StyledFooter = styled.footer.attrs({
+  role: 'contentinfo',
+})`
   background-color: var(--palette-main-color, #000);
   display: flex;
   flex-flow: row wrap;

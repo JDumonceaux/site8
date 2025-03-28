@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { MenuIcon } from 'components/icons/MenuIcon';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import { APP_NAME } from 'lib/utils/constants';
@@ -30,7 +32,7 @@ const Header = ({
 
 Header.displayName = 'Header';
 
-export default Header;
+export default memo(Header);
 
 const StyledHeader = styled.header`
   background-color: var(--palette-main-color, #000);

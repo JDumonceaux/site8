@@ -8,7 +8,7 @@ import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 const Header = lazy(async () => import('components/core/Header/Header'));
 
-const MainLayout = (): React.JSX.Element => (
+const GenericLayout = (): React.JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
     {useMemo(
       () => (
@@ -32,7 +32,9 @@ const MainLayout = (): React.JSX.Element => (
   </ErrorBoundary>
 );
 
-export default MainLayout;
+GenericLayout.displayName = 'GenericLayout';
+
+export default GenericLayout;
 
 const LayoutDiv = styled.div`
   max-width: 1920px;

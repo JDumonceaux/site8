@@ -7,28 +7,30 @@ type PageTitleProps = {
   readonly ref?: React.Ref<HTMLDivElement>;
   readonly title?: React.ReactNode;
 };
-const PageTitle = memo(
-  ({ children, ref, title }: PageTitleProps): null | React.JSX.Element => {
-    if (!title) {
-      return null;
-    }
+const PageTitle = ({
+  children,
+  ref,
+  title,
+}: PageTitleProps): null | React.JSX.Element => {
+  if (!title) {
+    return null;
+  }
 
-    return (
-      <StyledWrapper ref={ref}>
-        {title ? (
-          <div>
-            <StyledElement data-testid="page-title">{title}</StyledElement>
-          </div>
-        ) : null}
-        <StyledChildren>{children}</StyledChildren>
-      </StyledWrapper>
-    );
-  },
-);
+  return (
+    <StyledWrapper ref={ref}>
+      {title ? (
+        <div>
+          <StyledElement data-testid="page-title">{title}</StyledElement>
+        </div>
+      ) : null}
+      <StyledChildren>{children}</StyledChildren>
+    </StyledWrapper>
+  );
+};
 
 PageTitle.displayName = 'PageTitle';
 
-export default PageTitle;
+export default memo(PageTitle);
 
 const StyledWrapper = styled.div`
   display: flex;
