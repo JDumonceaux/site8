@@ -42,7 +42,7 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@radix-ui/react-visually-hidden": "^1.1.1",
     "@reduxjs/toolkit": "^2.6.1",
-    "@tanstack/react-query": "^5.70.0",
+    "@tanstack/react-query": "^5.71.0",
     "aws-amplify": "^6.14.1",
     "axios": "^1.8.4",
     "cross-spawn": "^7.0.6",
@@ -71,6 +71,18 @@
     },
     "react-scan": {
       "esbuild": "0.25.1"
+    },
+    "@xstate/react@3.2.2": {
+      "react": "$react"
+    },
+    "@typescript-eslint/typescript-estree@8.19.1": {
+      "typescript": "$typescript"
+    },
+    "@typescript-eslint/utils@8.19.1": {
+      "typescript": "$typescript"
+    },
+    "react-confetti@6.1.0": {
+      "react": "$react"
     },
     "esbuild": "0.25.1"
   },
@@ -108,7 +120,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
-    "eslint-import-resolver-typescript": "^4.2.7",
+    "eslint-import-resolver-typescript": "^4.3.1",
     "eslint-plugin-check-file": "^3.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.11.0",
@@ -126,7 +138,7 @@
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-axe": "^10.0.0",
-    "knip": "^5.46.2",
+    "knip": "^5.46.3",
     "prettier": "^3.5.3",
     "pretty-quick": "^4.1.1",
     "rollup-plugin-analyzer": "^4.0.0",
