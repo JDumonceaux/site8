@@ -6,7 +6,7 @@ import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'features/layouts/Layout/Layout';
 import SubjectMenu from 'features/generic/SubjectMenu';
 import { getSRC } from 'lib/utils/helpers';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import type { Image } from 'types/Image';
 
 import useImages from './useImages';

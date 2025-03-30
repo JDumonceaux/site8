@@ -1,6 +1,6 @@
 import { type LabelHTMLAttributes, isValidElement, useCallback } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type TextHelpProps = {
   readonly characterCount?: number;

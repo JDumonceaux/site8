@@ -4,7 +4,7 @@ import {
   Link as BaseLink,
   type LinkProps as BaseLinkProps,
 } from 'react-router-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type StyledLinkProps = {
   readonly ariaLabel?: string;

@@ -1,8 +1,19 @@
-import React, { memo } from 'react';
+import { type FC, memo } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
-const FooterRow = memo((): React.JSX.Element => <RowDiv />);
+export type FooterRowProps = {
+  readonly ref?: React.Ref<HTMLDivElement>;
+  readonly text?: string;
+} & React.HTMLAttributes<HTMLDivElement>;
+
+const FooterRow: FC<FooterRowProps> = memo(
+  ({ ref, text, ...rest }: FooterRowProps): React.JSX.Element => (
+    <RowDiv {...rest} ref={ref}>
+      {text}
+    </RowDiv>
+  ),
+);
 
 FooterRow.displayName = 'FooterRow';
 

@@ -1,24 +1,33 @@
-/* reset everything */
+/* ----------------------------------------------------------------------------
+   CSS RESET & BASE STYLES
+   ---------------------------------------------------------------------------- */
+
+/* Global Box-Sizing Reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
+/* Remove default margin, padding, and border */
 * {
   margin: 0;
   padding: 0;
-  border: 0 solid transparent;
+  border: 0;
 }
-/* prevent iOS font size change */
+
+/* Prevent iOS text size adjustments */
 html {
   -webkit-text-size-adjust: 100%;
 }
-/* reset body line-height */
+
+/* Base body styles */
 body {
   line-height: 1;
   text-rendering: optimizeSpeed;
 }
-/* all media elements set to block and full width */
+
+/* Make media elements block-level and responsive */
 img,
 svg,
 video,
@@ -30,12 +39,15 @@ object {
   display: block;
   max-width: 100%;
 }
-/* collapse table */
-/* table {
+
+/* Optional: Collapse table borders */
+table {
   border-collapse: collapse;
   border-spacing: 0;
-} */
-/* reset heading style */
+}
+
+
+/* Reset heading styles to inherit typography */
 h1,
 h2,
 h3,
@@ -46,18 +58,21 @@ h6 {
   font-weight: inherit;
   margin: 0;
 }
-/* reset firefox placeholder opacity */
+
+/* Reset Firefox placeholder opacity */
 ::-moz-placeholder {
   opacity: 1;
 }
-/* reset textarea style */
+
+/* Reset textarea default styling */
 textarea {
-  /* move the label to the top */
-  vertical-align: top;
-  /* turn off scroll bars in IE unless needed */
-  overflow: auto;
+  vertical-align: top; /* Ensures labels align correctly */
+  overflow: auto;      /* Turns off scroll bars in IE unless needed */
 }
-/* remove all animations, transitions and smooth scroll for people that prefer not to see them */
+
+/* ----------------------------------------------------------------------------
+   PREFER-REDUCED-MOTION STYLES
+   ---------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;

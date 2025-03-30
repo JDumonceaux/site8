@@ -1,30 +1,35 @@
-import { useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-//https://stackoverflow.com/questions/55187563/determine-which-dependency-array-variable-caused-useeffect-hook-to-fire
-
-const compareInputs = (inputKeys: any, oldInputs: any, newInputs: any) => {
-  inputKeys.forEach((key: any) => {
-    const oldInput = oldInputs[key];
-    const newInput = newInputs[key];
-    if (oldInput !== newInput) {
-      console.log('change detected', key, 'old:', oldInput, 'new:', newInput);
+const compareInputs = <T extends Record<string, any>>(
+  inputKeys: (keyof T)[],
+  oldInputs: T,
+  newInputs: T,
+): void => {
+  for (const key of inputKeys) {
+    if (oldInputs[key] !== newInputs[key]) {
+      // eslint-disable-next-line no-console
+      console.log(
+        'Change detected:',
+        key,
+        'old:',
+        oldInputs[key],
+        'new:',
+        newInputs[key],
+      );
     }
-  });
+  }
 };
 
-export const useDependencyDebugger = (inputs: any) => {
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+export const useDependencyDebugger = <T extends Record<string, any>>(
+  inputs: T,
+): void => {
   const oldInputsRef = useRef(inputs);
-  const inputValuesArray = Object.values(inputs);
-  const inputKeysArray = Object.keys(inputs);
-  useMemo(() => {
+
+  useEffect(() => {
     const oldInputs = oldInputsRef.current;
-
+    const inputKeysArray = Object.keys(inputs) as (keyof T)[];
     compareInputs(inputKeysArray, oldInputs, inputs);
-
     oldInputsRef.current = inputs;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, inputValuesArray);
+  }, [inputs]);
 };
-
-// usage example, will log old/new values when one of the passed params changes
-// useDependencyDebugger({dep1, dep2, dep3})

@@ -1,5 +1,5 @@
 import * as Form from '@radix-ui/react-form';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 // Notes:  The minlength and maxlength constraints are only checked on
 // user - provided input.

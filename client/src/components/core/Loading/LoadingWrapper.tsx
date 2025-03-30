@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type LoadingWrapperProps = {
   readonly children: React.ReactNode;
@@ -25,7 +25,7 @@ const LoadingWrapper = ({
   isLoading,
   isPending,
   loadingText,
-}: LoadingWrapperProps): React.ReactNode => {
+}: LoadingWrapperProps): React.JSX.Element | React.ReactNode => {
   if (isLoading || isPending) {
     return (
       <StyledLoadingDiv>

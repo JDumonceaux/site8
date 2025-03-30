@@ -5,7 +5,7 @@ import PageTitle from 'components/core/PageTitle/PageTitle';
 import Input from 'components/Input/Input';
 import Layout from 'features/layouts/Layout/Layout';
 import useForm from 'hooks/useForm';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type fields = Record<string, string>;
 

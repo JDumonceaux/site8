@@ -4,7 +4,7 @@ import {
   NavLink as BaseLink,
   type NavLinkProps as BaseNavLinkProps,
 } from 'react-router-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type StyledNavLinkProps = {
   readonly ariaLabel?: string;

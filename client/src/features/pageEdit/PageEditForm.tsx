@@ -4,7 +4,7 @@ import * as Form from '@radix-ui/react-form';
 import Input from 'components/Input/Input';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'features/pageEdit/usePageEdit';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import type { Page } from 'types/Page';
 
 import { insertHTML } from './textUtils';

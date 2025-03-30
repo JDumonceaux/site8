@@ -1,13 +1,13 @@
-import { memo } from 'react';
+import { type FC, memo } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
-type StartAdornmentProps = {
+export type StartAdornmentProps = {
   readonly children?: React.ReactNode;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const StartAdornment: React.FC<StartAdornmentProps> = memo(
-  ({ children }: StartAdornmentProps) => {
+const StartAdornment: FC<StartAdornmentProps> = memo(
+  ({ children, ...rest }: StartAdornmentProps): null | React.JSX.Element => {
     if (!children) {
       return null;
     }
@@ -22,7 +22,7 @@ const StartAdornment: React.FC<StartAdornmentProps> = memo(
     // if (isString || isNumber || isBoolean) {
     return (
       <>
-        <StyledDiv>{children}</StyledDiv>
+        <StyledDiv {...rest}>{children}</StyledDiv>
         <StyledVLine />
       </>
     );

@@ -10,7 +10,7 @@ import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'features/app/useAppSettings';
 import useUnmatchedImages from 'features/itemsAdd/useUnmatchedImages';
 import { IMAGE_BASE } from 'lib/utils/constants';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import type { Image } from 'types';
 
 type ImageSelectorProps = {

@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import useMenu from 'features/app/useMenu';
 import { NavLink } from 'react-router-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 const HomeMenu = memo((): React.JSX.Element => {
   const { data, error, isLoading } = useMenu();

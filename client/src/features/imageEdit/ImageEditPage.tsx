@@ -10,7 +10,7 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import useSnackbar from 'features/app/useSnackbar';
 import { useParams } from 'react-router-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import type { Image } from 'types';
 
 import useImageEdit from './useImageEdit';

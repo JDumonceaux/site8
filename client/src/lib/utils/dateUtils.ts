@@ -1,47 +1,32 @@
-/**
- * Parses a string representation of a date and time and returns a Date object.
- * @param date - The string representation of the date and time.
- * @param delimiter - The delimiter used in the date string. Defaults to '/'.
- * @returns A Date object representing the parsed date and time, or null if the input is invalid.
- */
-export const getDateTime = (date?: string, delimiter = '/') => {
-  if (!date) {
-    return null;
-  }
+export const getDateTime = (date?: string, delimiter = '/'): Date | null => {
+  if (!date) return null;
 
   try {
-    const [datePart, timePart] = date.split(' ');
-    if (!datePart || !timePart) {
+    const parts = date.trim().split(' ');
+    if (parts.length < 2) {
       throw new Error('Invalid date format');
     }
+    const [datePart, timePart] = parts;
 
     const [month, day, year] = datePart.split(delimiter).map(Number);
     const [hours, minutes] = timePart.split(':').map(Number);
 
-    if (
-      Number.isNaN(month) ||
-      Number.isNaN(day) ||
-      Number.isNaN(year) ||
-      Number.isNaN(hours) ||
-      Number.isNaN(minutes)
-    ) {
+    if ([month, day, year, hours, minutes].some((num) => Number.isNaN(num))) {
       throw new TypeError('Invalid date or time values');
     }
 
-    const isPM = /pm/iu.test(date);
-    const isAM = /am/iu.test(date);
+    const lowerDate = date.toLowerCase();
+    const isPM = lowerDate.includes('pm');
+    const isAM = lowerDate.includes('am');
 
-    const hoursReturnValue = () => {
-      if (isPM && hours !== 12) {
-        return hours + 12;
-      } else if (isAM && hours === 12) {
-        return 0;
-      }
-      return hours;
-    };
-    const hoursAMPM = hoursReturnValue();
+    let adjustedHours = hours;
+    if (isPM && hours !== 12) {
+      adjustedHours = hours + 12;
+    } else if (isAM && hours === 12) {
+      adjustedHours = 0;
+    }
 
-    return new Date(year, month - 1, day, hoursAMPM, minutes);
+    return new Date(year, month - 1, day, adjustedHours, minutes);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Error parsing date:', error);

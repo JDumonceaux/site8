@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 import useSnackbar, { SnackbarVariant } from 'features/app/useSnackbar';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import Button from '../Button/Button';
 

@@ -1,5 +1,5 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type InputCounterProps = {
   readonly align?: 'left' | 'right';

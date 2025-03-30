@@ -1,11 +1,13 @@
+import type { FC } from 'react';
+
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import Tooltip from '../Tooltip/TooltipBase';
 
-type Props = {
+export type ClearAdornmentProps = {
   readonly ariaLabel?: string;
   readonly icon?: React.ReactNode;
   readonly iconProps?: IconProps;
@@ -14,7 +16,7 @@ type Props = {
   readonly ref?: React.Ref<SVGSVGElement>;
 };
 
-const ClearAdornment = ({
+const ClearAdornment: FC<ClearAdornmentProps> = ({
   ariaLabel = 'clear contents',
   icon,
   iconProps,
@@ -22,7 +24,7 @@ const ClearAdornment = ({
   onClick,
   ref,
   ...rest
-}: Props) => (
+}: ClearAdornmentProps): React.JSX.Element => (
   <Tooltip
     aria-label={ariaLabel}
     content={label}

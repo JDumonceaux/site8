@@ -212,7 +212,8 @@ export default [
       ],
       indent: 'off',
       'indent-legacy': 'off',
-      'init-declarations': 'error',
+      // conflicts with no-undef-init
+      'init-declarations': 'off',
       'jsx-a11y/anchor-ambiguous-text': 'warn',
       // A11Y rules
       'jsx-a11y/anchor-is-valid': [
@@ -656,9 +657,15 @@ export default [
       'unicorn/custom-error-definition': 'error',
       // Unicorn
       'unicorn/filename-case': 'off',
+      // confusing
+      'unicorn/no-array-callback-reference': 'off',
+      // confusing
+      'unicorn/no-array-reduce': 'off',
       // Incorrectly prevents the use of null as a component return (i.e. render nothing)
       'unicorn/no-instanceof-builtins': 'off',
       'unicorn/no-null': 'off',
+      // conflicts with no-undefine-init
+      'unicorn/no-useless-undefined': 'off',
       'unicorn/prefer-node-protocol': 'off',
       'unicorn/prefer-spread': 'off',
       'unicorn/prevent-abbreviations': 'off',
@@ -722,7 +729,8 @@ export default [
       '@typescript-eslint/explicit-function-return-type': ['off'],
       '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/explicit-module-boundary-types': ['off'],
-      '@typescript-eslint/init-declarations': 'error',
+      // Conflicts with no-undef-init
+      '@typescript-eslint/init-declarations': 'off',
       '@typescript-eslint/max-params': ['error', { max: 5 }],
       '@typescript-eslint/member-ordering': 'error',
       '@typescript-eslint/method-signature-style': 'error',
@@ -780,7 +788,8 @@ export default [
       '@typescript-eslint/no-use-before-define': 'off',
       '@typescript-eslint/no-useless-constructor': 'error',
       '@typescript-eslint/no-useless-empty-export': 'error',
-      '@typescript-eslint/non-nullable-type-assertion-style': 'error',
+      // Confusing.  Replaces "as string" with "id!"
+      '@typescript-eslint/non-nullable-type-assertion-style': 'off',
       '@typescript-eslint/parameter-properties': 'error',
       '@typescript-eslint/prefer-destructuring': 'error',
       '@typescript-eslint/prefer-enum-initializers': 'error',

@@ -1,28 +1,37 @@
 /**
- * The `Environment` class provides utility methods to access environment variables.
+ * The Environment utility provides methods to access environment variables.
  */
 export const Environment = {
-  getApplicationVersion: () => process.env.REACT_APP_VERSION,
+  getApplicationVersion: (): string | undefined =>
+    process.env.REACT_APP_VERSION,
 
-  getEnvironment: () => process.env.REACT_APP_ENVIRONMENT,
+  getEnvironment: (): string | undefined => process.env.REACT_APP_ENVIRONMENT,
 
-  getGoogleTagManagerEnvironmentAuth: () => process.env.REACT_APP_GTM_ENV_AUTH,
+  getGoogleTagManagerEnvironmentAuth: (): string | undefined =>
+    process.env.REACT_APP_GTM_ENV_AUTH,
 
-  getGoogleTagManagerEnvironmentPreview: () =>
+  getGoogleTagManagerEnvironmentPreview: (): string | undefined =>
     process.env.REACT_APP_GTM_ENV_PREVIEW,
 
-  getGoogleTagManagerId: () => process.env.REACT_APP_GTM_ID,
+  getGoogleTagManagerId: (): string | undefined => process.env.REACT_APP_GTM_ID,
 
-  getNodeEnvironment: () => process.env.NODE_ENV,
+  getNodeEnvironment: (): string | undefined => process.env.NODE_ENV,
 
-  getPublicUrl: () => process.env.PUBLIC_URL,
+  getPublicUrl: (): string | undefined => process.env.PUBLIC_URL,
 
-  isLocal: () => Environment.getEnvironment() === 'local',
+  isLocal(): boolean {
+    return this.getEnvironment() === 'local';
+  },
 
-  isLowerEnvironment: () => !Environment.isProduction(),
+  isLowerEnvironment(): boolean {
+    return !this.isProduction();
+  },
 
-  isNearProduction: () =>
-    Environment.isLowerEnvironment() && Environment.getEnvironment() === 'uat',
+  isNearProduction(): boolean {
+    return this.isLowerEnvironment() && this.getEnvironment() === 'uat';
+  },
 
-  isProduction: () => Environment.getEnvironment() === 'production',
+  isProduction(): boolean {
+    return this.getEnvironment() === 'production';
+  },
 };

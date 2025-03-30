@@ -15,17 +15,18 @@ const initialState: MenuState = {
   isLoading: false,
 };
 
-const controller = new AbortController();
+export const fetchMenu = createAsyncThunk<Menu>(
+  'menu/fetchMenu',
+  async (_, { signal }) => {
+    const response = await axios.get<Menu>(ServiceUrl.ENDPOINT_MENUS, {
+      responseType: 'json',
+      signal,
+    });
+    return response.data;
+  },
+);
 
-const fetchMenu = createAsyncThunk('menu/fetchMenu', async () => {
-  const response = await axios.get<Menu>(ServiceUrl.ENDPOINT_MENUS, {
-    responseType: 'json',
-    signal: controller.signal,
-  });
-  return response.data;
-});
-
-const MenuSlice = createSlice({
+const menuSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchMenu.pending, (state) => {
@@ -46,5 +47,4 @@ const MenuSlice = createSlice({
   reducers: {},
 });
 
-export { fetchMenu };
-export default MenuSlice.reducer;
+export default menuSlice.reducer;

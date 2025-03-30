@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import * as RadixAvatar from '@radix-ui/react-avatar';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type AvatarProps = {
   readonly alt?: string;

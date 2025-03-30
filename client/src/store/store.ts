@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import appReducer from './AppSlice';
-import menuReducer from './MenuSlice';
+import appReducer from './appSlice';
+import menuReducer from './menuSlice';
 import snackbarReducer from './SnackbarSlice';
 
-const Store = configureStore({
+/**
+ * The Redux store for the application.
+ */
+export const store = configureStore({
   reducer: {
     appSettings: appReducer,
     menu: menuReducer,
@@ -12,8 +15,10 @@ const Store = configureStore({
   },
 });
 
-export default Store;
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof Store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof Store.dispatch;
+// Infer the `RootState` type from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+
+// Infer the `AppDispatch` type from the store's dispatch function
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

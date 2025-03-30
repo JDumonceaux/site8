@@ -1,5 +1,5 @@
 import Meta from 'components/core/Meta/Meta';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 const NotFoundPage = (): React.JSX.Element => (
   <>

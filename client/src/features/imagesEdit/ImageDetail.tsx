@@ -3,7 +3,7 @@ import { memo, useCallback, useMemo } from 'react';
 import IconMenu from 'components/IconMenu/IconMenu';
 import IconMenuItem from 'components/IconMenu/IconMenuItem';
 import Input from 'components/Input/Input';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import type { ListItem } from 'types';
 
 import type { ImageAddExt } from './ImageAdd';

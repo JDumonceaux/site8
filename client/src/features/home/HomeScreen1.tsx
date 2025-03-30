@@ -2,7 +2,7 @@ import { MatrixBG } from 'components/Animation/MatrixBG';
 import Meta from 'components/core/Meta/Meta';
 import Layout from 'features/layouts/Layout/Layout';
 import HomeMenu from 'features/home/HomeMenu';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 const HomeScreen1 = (): React.JSX.Element => {
   const title = 'Home';

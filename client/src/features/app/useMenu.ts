@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMenu } from 'store/MenuSlice';
+import { fetchMenu } from 'store/menuSlice';
 import type { AppDispatch, RootState } from 'store/store';
 import type { MenuItem } from 'types/MenuItem';
 

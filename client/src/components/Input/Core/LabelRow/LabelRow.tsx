@@ -1,18 +1,18 @@
-import { useMemo, type LabelHTMLAttributes } from 'react';
+import { memo, type LabelHTMLAttributes } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import Tooltip from '../Tooltip/Tooltip';
 import type { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
-type LabelRowProps = {
+export type LabelRowProps = {
   readonly children?: React.ReactNode;
   readonly description?: string;
   readonly endAdornment?: React.ReactNode;
   readonly label?: string;
-  readonly labelRef?: React.RefObject<HTMLLabelElement>;
+  readonly ref?: React.Ref<HTMLLabelElement>;
   readonly required?: boolean;
   readonly requiredText?: string;
   readonly tooltipProps?: TooltipBaseProps;
@@ -24,60 +24,44 @@ type LabelRowProps = {
 /* Note: If you use htmlfor(or for) attribute, 
   clicking on the label doesn't seem to select the input */
 
-const LabelRow = ({
-  children,
-  description,
-  endAdornment,
-  id,
-  label,
-  labelRef,
-  required = false,
-  requiredText,
-  tooltipProps,
-  ...rest
-}: LabelRowProps): React.JSX.Element =>
-  useMemo(
-    () => (
-      <Label.Root htmlFor={id} ref={labelRef} {...rest}>
-        <StyledRow>
-          <StyledLabel>
-            {label}
-            {required ? (
-              <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
-            ) : null}
-            {required ? (
-              <Tooltip.Asterix
-                content="Required"
-                triggerColor="var(--color-required)"
-                {...tooltipProps}
-              />
-            ) : null}
-          </StyledLabel>
-          {description ? <Tooltip.QuestionMark content={description} /> : null}
-          {endAdornment}
-        </StyledRow>
-        {children}
-      </Label.Root>
-    ),
-    [
-      children,
-      description,
-      endAdornment,
-      id,
-      label,
-      labelRef,
-      required,
-      requiredText,
-      tooltipProps,
-      rest,
-    ],
-  );
-
+const LabelRow: React.FC<LabelRowProps> = memo(
+  ({
+    children,
+    description,
+    endAdornment,
+    id,
+    label,
+    ref,
+    required = false,
+    requiredText,
+    tooltipProps,
+    ...rest
+  }: LabelRowProps): React.JSX.Element => (
+    <Label.Root htmlFor={id} ref={ref} {...rest}>
+      <StyledRow>
+        <StyledLabel>
+          {label}
+          {required ? (
+            <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
+          ) : null}
+          {required ? (
+            <Tooltip.Asterix
+              content="Required"
+              triggerColor="var(--color-required)"
+              {...tooltipProps}
+            />
+          ) : null}
+        </StyledLabel>
+        {description ? <Tooltip.QuestionMark content={description} /> : null}
+        {endAdornment}
+      </StyledRow>
+      {children}
+    </Label.Root>
+  ),
+);
 LabelRow.displayName = 'LabelRow';
 
 export default LabelRow;
-
-export type { LabelRowProps };
 
 const StyledLabel = styled.div`
   color: var(--input-label-color, '#ffffff');

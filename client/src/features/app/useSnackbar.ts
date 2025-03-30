@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { save } from 'store/SnackbarSlice';
+import { setSnackbar } from 'store/SnackbarSlice';
 import type { AppDispatch, RootState } from 'store/store';
 
 const DEFAULT_DURATION = 500;
@@ -35,11 +35,11 @@ const useSnackbar = () => {
 
   const updateSnackbar = useCallback(
     (updates: Snackbar) => {
-      dispatch(save(updates));
+      dispatch(setSnackbar(updates));
 
       if (data && data.isOpen && data.openDurationMs) {
         setTimeout(() => {
-          dispatch(save({ ...initialState }));
+          dispatch(setSnackbar({ ...initialState }));
         }, data.openDurationMs);
       }
     },

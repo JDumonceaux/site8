@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import useArtistItems from './useArtistItems';
 

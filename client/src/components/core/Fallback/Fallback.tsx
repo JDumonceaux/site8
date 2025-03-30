@@ -1,5 +1,5 @@
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 const Fallback = (): React.JSX.Element => {
   return (

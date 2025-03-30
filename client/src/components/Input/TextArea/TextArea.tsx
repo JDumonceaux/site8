@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, type TextareaHTMLAttributes } from 'react';
 
 import useGetId from 'hooks/useGetId';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import FieldWrapper, {
   type FieldWrapperProps as FieldWrapperProperties,

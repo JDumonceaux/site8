@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 // import gsap from 'gsap';
 // https://codesandbox.io/p/sandbox/semi-circle-animation-20otz8?file=%2Fsrc%2FApp.js%3A1%2C1-105%2C1
 

@@ -3,9 +3,9 @@ import React, { Suspense, useCallback, useMemo } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
 import useArtistsItems from 'features/itemsAdd/useArtistsItems';
-import { styled } from 'styled-components';
+import Layout from 'features/layouts/Layout/Layout';
+import styled from 'styled-components';
 
 import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
@@ -68,7 +68,7 @@ const ImagesEditPage = (): React.JSX.Element => {
         </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>
-        <Layout.Main>
+        <Layout.Content>
           <LoadingWrapper isError={isError} isPending={isPending}>
             <StyledForm noValidate onSubmit={memoizedHandleSubmit}>
               {data.map((item) => (
@@ -83,7 +83,7 @@ const ImagesEditPage = (): React.JSX.Element => {
               ))}
             </StyledForm>
           </LoadingWrapper>
-        </Layout.Main>
+        </Layout.Content>
         <Layout.Aside>
           <Suspense fallback={<div>Loading...</div>}>
             <RightMenu

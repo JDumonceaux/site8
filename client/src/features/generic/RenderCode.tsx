@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import IconButton from 'components/form/IconButton/IconButton';
 import { CopyIcon } from 'components/icons/CopyIcon';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type RenderCodeProps = {
   readonly children?: React.ReactNode;

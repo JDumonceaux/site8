@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DotsVerticalIcon } from '@radix-ui/react-icons';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type Props = {
   readonly children?: React.ReactNode;

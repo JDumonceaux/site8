@@ -1,5 +1,5 @@
 import Layout from 'features/layouts/Layout/Layout';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type AuthContainerProps = {
   readonly children: React.ReactNode;

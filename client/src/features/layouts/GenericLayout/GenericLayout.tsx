@@ -5,7 +5,7 @@ import Snackbar from 'components/core/Snackbar/Snackbar';
 import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 const Header = lazy(async () => import('components/core/Header/Header'));
 
 const GenericLayout = (): React.JSX.Element => (

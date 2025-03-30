@@ -4,5 +4,6 @@
   "project": ["**/*.{ts,tsx}"],
   "vite": {
     "config": ["vite*.config.{js,mjs,ts,cjs,mts,cts}"]
-  }
+  },
+  "ignore": ["**/*.spec.ts", "**/*.test.ts", "**/__tests__/**"]
 }

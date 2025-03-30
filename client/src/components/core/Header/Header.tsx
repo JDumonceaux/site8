@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { MenuIcon } from 'components/icons/MenuIcon';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import { APP_NAME } from 'lib/utils/constants';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type HeaderProps = {
   readonly avatar?: React.ReactNode;

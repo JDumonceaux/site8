@@ -25,7 +25,7 @@ const TooltipBase = memo(
     trigger,
     triggerColor,
     triggerProps,
-  }: TooltipBaseProps): React.ReactNode => {
+  }: TooltipBaseProps): null | React.JSX.Element => {
     const elementRef: React.RefObject<HTMLElement> = useRef(null);
 
     // React doesn't support inert - so you have to do it this way

@@ -137,13 +137,15 @@
 
     /* JSX */
     // .tsx -> Emit .js files with the JSX changed to _jsx calls optimized for production
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
     // jsxFactory
     // jsxFragmentFactory
     // jsxImportSource
 
     // Do not emit compiler output files like JavaScript source code, source-maps or declarations.
     // "noEmit": true,
+    //speeds up the build by skipping type checking of declaration files.
+    "skipLibCheck": true
   },
   // Allow absolute imports from the `src` directory
   "include": ["src"],

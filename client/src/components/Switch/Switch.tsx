@@ -1,5 +1,5 @@
 import * as radixSwitch from '@radix-ui/react-switch';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type SwitchProps = {
   readonly id: string;

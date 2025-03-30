@@ -3,7 +3,7 @@ import React, { memo, useMemo, useCallback } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
 import useImageFolder from 'features/imagesEdit/useImageFolder';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import FolderButton from './FolderButton';
 
@@ -58,6 +58,21 @@ const RightMenu = memo(
       [filterData, handleButton, currentFolder],
     );
 
+    const renderStyledButton = useMemo(() => {
+      if (currentFolder && currentFolder.length > 0) {
+        return (
+          <StyledButton
+            data-id={currentFolder}
+            onClick={handleButton}
+            type="button">
+            {currentFolder}
+          </StyledButton>
+        );
+      } else {
+        return <div>Select Folder ({data?.length})</div>;
+      }
+    }, [currentFolder, handleButton, data]);
+
     return (
       <StickyMenu>
         <FilterDiv>
@@ -70,25 +85,17 @@ const RightMenu = memo(
         </FilterDiv>
         <StyledHeader>
           <div>
-            {currentFolder && currentFolder.length > 0 ? (
-              <StyledButton
-                data-id={currentFolder}
-                onClick={handleButton}
-                type="button">
-                {currentFolder}
-              </StyledButton>
-            ) : (
-              <div>Select Folder ({data?.length})</div>
-            )}
+            {renderStyledButton}
           </div>
         </StyledHeader>
         <hr />
         <LoadingWrapper isError={isError} isPending={isPending}>
-          y{renderedButtons}
+          {renderedButtons}
         </LoadingWrapper>
       </StickyMenu>
     );
   },
+);
 );
 
 RightMenu.displayName = 'RightMenu';

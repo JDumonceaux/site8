@@ -1,23 +1,27 @@
-import { terser } from '@rollup/plugin/terser';
+import { terser } from '@rollup/plugin-terser';
 
 export default {
-  build: {
-    hash: true,
-    minify: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          ui: ['@radix-ui/react-icons', '@radix-ui/react-tooltip'],
-          vendor: ['react', 'react-dom']
-        }
-      }
+  // Entry point of your application
+  input: 'src/scripts/main.js',
+
+  // Output configuration
+  output: {
+    file: 'dist/main.min.js',
+    format: 'iife',
+    // Note: manualChunks is typically used with code-splitting (e.g. output.format === 'esm').
+    // For IIFE format, code-splitting isn't supported, but this is kept for demonstration purposes.
+    manualChunks: {
+      ui: ['@radix-ui/react-icons', '@radix-ui/react-tooltip'],
+      vendor: ['react', 'react-dom'],
     },
+    sourcemap: 'inline',
   },
-  dest: 'dist/main.min.js',
-  entry: 'src/scripts/main.js',
-  format: 'iife',
-  // minifier
-  plugins: [terser()],
-  sourceMap: 'inline',
+
+  // Plugins
+  plugins: [
+    terser(), // Minify the bundle using terser
+  ],
+
+  // Enable tree shaking for optimal bundle size
   treeshake: true,
 };

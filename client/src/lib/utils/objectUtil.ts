@@ -1,84 +1,109 @@
-export const getDefaultObject = (): unknown => {
-  const ret: Record<string, unknown> = {};
-  const obj = {} as unknown;
-  if (typeof obj === 'object' && obj !== null) {
-    for (const key in obj) {
-      if (Object.hasOwn(obj, key)) {
-        const value = (obj as Record<string, unknown>)[key];
-        if (typeof value === 'string') {
-          ret[key] = '';
-        } else if (typeof value === 'number') {
-          ret[key] = 0;
-        } else if (typeof value === 'boolean') {
-          ret[key] = false;
-        } else if (Array.isArray(value)) {
-          ret[key] = [];
-        } else if (typeof value === 'object') {
-          ret[key] = {};
-        } else {
-          ret[key] = null;
-        }
+/**
+ * Returns a new object with the same keys as the provided object,
+ * where each value is replaced by a default based on its type.
+ * For example, string values become '', numbers become 0, booleans become false, etc.
+ */
+export const getDefaultObject = <T extends Record<string, any>>(
+  obj: T,
+): Partial<T> => {
+  const defaultObj: Partial<T> = {};
+  for (const key in obj) {
+    if (Object.hasOwn(obj, key)) {
+      const value = obj[key];
+      if (typeof value === 'string') {
+        defaultObj[key] = '' as any;
+      } else if (typeof value === 'number') {
+        defaultObj[key] = 0 as any;
+      } else if (typeof value === 'boolean') {
+        defaultObj[key] = false as any;
+      } else if (Array.isArray(value)) {
+        defaultObj[key] = [] as any;
+      } else if (value !== null && typeof value === 'object') {
+        defaultObj[key] = {} as any;
+      } else {
+        defaultObj[key] = null as any;
       }
     }
   }
-  return ret as unknown;
+  return defaultObj;
 };
 
+/**
+ * Recursively compares two objects for deep equality.
+ */
 export const isDeepEqual = (
   object1: Record<string, unknown>,
   object2: Record<string, unknown>,
-) => {
-  const objKeys1 = Object.keys(object1);
-  const objKeys2 = Object.keys(object2);
+): boolean => {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) return false;
 
-  if (objKeys1.length !== objKeys2.length) return false;
-
-  for (const key of objKeys1) {
+  for (const key of keys1) {
     const value1 = object1[key];
     const value2 = object2[key];
 
-    const isObjects = typeof value1 === 'object' && typeof value2 === 'object';
+    const areBothObjects =
+      value1 !== null &&
+      value2 !== null &&
+      typeof value1 === 'object' &&
+      typeof value2 === 'object';
 
-    if (
-      (isObjects &&
-        value1 !== null &&
+    if (areBothObjects) {
+      if (
         !isDeepEqual(
           value1 as Record<string, unknown>,
           value2 as Record<string, unknown>,
-        )) ||
-      (!isObjects && value1 !== value2)
-    ) {
+        )
+      ) {
+        return false;
+      }
+    } else if (value1 !== value2) {
       return false;
     }
   }
   return true;
 };
 
+/**
+ * Removes empty attributes from each object in an array.
+ * Returns null if the input array is empty or not an array.
+ */
 export const removeEmptyAttributesArray = <T>(
-  obj: T[],
+  arr: T[],
 ): null | Partial<T>[] => {
-  if (!Array.isArray(obj) || obj.length === 0) {
+  if (!Array.isArray(arr) || arr.length === 0) {
     return null;
   }
-
-  return obj.map((x) => removeEmptyAttributes<T>(x));
+  return arr.map(removeEmptyAttributes);
 };
 
+/**
+ * Removes attributes from an object if they are:
+ * - null or undefined
+ * - an empty string (after trimming)
+ * - an empty array
+ */
 export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
-  const result: Partial<T> = {};
-  for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
-    if (
-      value !== null &&
-      value !== undefined &&
-      !(typeof value === 'string' && value.trim() === '') &&
-      !(Array.isArray(value) && value.length === 0)
-    ) {
-      (result as Record<string, unknown>)[key] = value;
-    }
-  }
-  return result;
+  return Object.entries(obj as Record<string, unknown>).reduce<Partial<T>>(
+    (acc, [key, value]) => {
+      if (
+        value !== null &&
+        value !== undefined &&
+        !(typeof value === 'string' && value.trim() === '') &&
+        !(Array.isArray(value) && value.length === 0)
+      ) {
+        (acc as Record<string, unknown>)[key] = value;
+      }
+      return acc;
+    },
+    {},
+  );
 };
 
+/**
+ * Returns a new object with all string attributes trimmed.
+ */
 export const trimAttributes = <T>(obj: T): T => {
   const trimmedObj: Record<string, unknown> =
     typeof obj === 'object' && obj !== null ? { ...obj } : {};
@@ -90,71 +115,81 @@ export const trimAttributes = <T>(obj: T): T => {
   return trimmedObj as T;
 };
 
+/**
+ * Returns a new object with keys sorted in alphabetical order.
+ */
 export const sortObjectKeys = <T>(obj: T): T => {
-  const sortedKeys: string[] = Object.keys(
-    obj as Record<string, unknown>,
-  ).sort();
-  const result: Record<string, unknown> = {};
-  for (const key of sortedKeys) {
-    result[key] = (obj as Record<string, unknown>)[key];
-  }
-  return result as T;
+  return Object.keys(obj as Record<string, unknown>)
+    .sort()
+    .reduce((acc, key) => {
+      (acc as Record<string, unknown>)[key] = (obj as Record<string, unknown>)[
+        key
+      ];
+      return acc;
+    }, {} as T);
 };
 
+/**
+ * Type representing an object with a numeric "id" property.
+ */
 export type IdType = {
   readonly id: number;
 };
 
+/**
+ * Cleans up an object by:
+ * - Removing empty attributes
+ * - Sorting object keys
+ * - Trimming string values
+ * Returns a new object with these modifications.
+ */
 export const cleanUpData = <T extends IdType>(data: T): T => {
-  const cleanedData = removeEmptyAttributes<T>(data) as T;
-  const sortedData = sortObjectKeys<T>(cleanedData);
-  const trimmedData = trimAttributes<T>(sortedData);
+  const cleanedData = removeEmptyAttributes(data) as T;
+  const sortedData = sortObjectKeys(cleanedData);
+  const trimmedData = trimAttributes(sortedData);
   const { id, ...rest } = trimmedData;
   return { id, ...rest } as T;
 };
 
+/**
+ * Finds the next available id in an array of objects with an "id" property.
+ * Assumes the array is unsorted; it sorts the array first.
+ */
 export const getNextId = (
   items: readonly IdType[] | undefined,
 ): number | undefined => {
   if (!items || items.length === 0) {
     return undefined;
   }
-
   const sortedArray = items.toSorted((a, b) => a.id - b.id);
-  // Iterate through the array to find the missing id
-  for (let i = 0; i < sortedArray.length; i++) {
-    const nextId = sortedArray[0].id + i;
-    const y = sortedArray.find((x) => x.id === nextId);
-    if (!y) {
-      return nextId;
+  let expectedId = sortedArray[0].id;
+  for (const item of sortedArray) {
+    if (item.id !== expectedId) {
+      return expectedId;
     }
+    expectedId++;
   }
-
-  // If no gaps were found, the next free id is one greater than the last object's id
-  const lastItem = sortedArray.at(-1);
-  return lastItem ? lastItem.id + 1 : undefined;
+  return expectedId;
 };
 
+/**
+ * Returns the next available id starting from a given position in the sorted array,
+ * along with the index where this gap occurs.
+ */
 export const getNextIdFromPos = (
   items: readonly IdType[] | undefined,
   start: number,
 ): undefined | { index: number; value: number } => {
-  if (!items) {
-    return undefined;
-  }
+  if (!items || items.length === 0) return undefined;
   const sortedArray = items.toSorted((a, b) => a.id - b.id);
-  // Start with the first id in the sorted array
-  let nextId = sortedArray.length > start ? sortedArray[start].id : 1;
+  const startingItem = sortedArray[start];
+  let expectedId = startingItem.id || 1;
 
-  // Iterate through the array to find the missing id
   for (let i = start; i < sortedArray.length; i++) {
-    const currentId = nextId;
-    const y = sortedArray.find((x) => x.id === currentId);
-    if (!y) {
-      return { index: i, value: currentId };
+    if (sortedArray[i].id !== expectedId) {
+      return { index: i, value: expectedId };
     }
-    nextId++; // Move to the next expected id
+    expectedId++;
   }
-  // If no gaps were found, the next free id is one greater than the last object's id
-  return { index: 0, value: nextId };
+  return { index: 0, value: expectedId };
 };

@@ -10,7 +10,7 @@ import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButt
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'features/app/useAppSettings';
 import MenuAdd from 'features/pagesEdit/MenuAdd';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import type { MenuItem } from 'types';
 
 import usePagesEdit from './usePagesEdit';

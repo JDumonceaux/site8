@@ -1,13 +1,16 @@
 import { isValidElement } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type InputHelpProps = {
   readonly children?: never;
   readonly helpText?: React.ReactNode | string | string[];
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'id'>;
 
-const InputHelp = ({ helpText, ...rest }: InputHelpProps): React.ReactNode => {
+const InputHelp = ({
+  helpText,
+  ...rest
+}: InputHelpProps): null | React.JSX.Element => {
   if (!helpText) return null;
 
   const isString = typeof helpText === 'string' || helpText instanceof String;

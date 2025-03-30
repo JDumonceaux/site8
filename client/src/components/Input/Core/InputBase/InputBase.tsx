@@ -1,4 +1,5 @@
 import React, {
+  type FC,
   type HTMLInputTypeAttribute,
   type InputHTMLAttributes,
   memo,
@@ -59,67 +60,64 @@ type InputBaseProps = {
 // accesskey: never; // Don't use - not accessible
 // autocorrect: a non-standard Safari attribute
 
-const InputBase = memo(
-  ({
-    dataList,
-    endAdornment,
-    id,
-    // showCounter = false,
-    // showError = true,
-    // showRequired = true,
-    // requiredLabel = 'Required',
-    // requiredLabelProps,
-    onChange,
-    onClear,
-    ref,
-    required,
-    showClear = true,
-    startAdornment,
-    type,
-    value,
-    ...rest
-  }: InputBaseProps): React.JSX.Element => {
-    const currId = useGetId(id);
-    const props = { ...rest, id: currId, required };
-    const tempRef = useRef<HTMLInputElement>(null);
-    const localRef = ref ?? tempRef;
+const InputBase: FC<InputBaseProps> = ({
+  dataList,
+  endAdornment,
+  id,
+  // showCounter = false,
+  // showError = true,
+  // showRequired = true,
+  // requiredLabel = 'Required',
+  // requiredLabelProps,
+  onChange,
+  onClear,
+  ref,
+  required,
+  startAdornment,
+  type,
+  value,
+  ...rest
+}: InputBaseProps): React.JSX.Element => {
+  const currId = useGetId(id);
 
-    const handleChange = React.useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (onChange) {
-          onChange(e);
-        }
-        e.preventDefault();
-      },
-      [onChange],
-    );
+  const tempRef = useRef<HTMLInputElement>(null);
+  const localRef = ref ?? tempRef;
 
-    return (
-      <FieldWrapper {...props}>
-        <StyledInput
-          key={currId}
-          list={dataList?.id}
-          type={type}
-          value={value}
-          {...props}
-          onChange={handleChange}
-          ref={localRef}
-        />
-        {dataList?.data ? (
-          <datalist id={dataList.id}>
-            {dataList.data.map((x) => (
-              <option key={x.key} value={x.value} />
-            ))}
-          </datalist>
-        ) : null}
-      </FieldWrapper>
-    );
-  },
-);
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (onChange) {
+        onChange(e);
+      }
+      e.preventDefault();
+    },
+    [onChange],
+  );
+
+  return (
+    <FieldWrapper endAdornment={endAdornment} startAdornment={startAdornment}>
+      <StyledInput
+        key={currId}
+        list={dataList?.id}
+        type={type}
+        value={value}
+        {...rest}
+        onChange={handleChange}
+        ref={localRef}
+      />
+      {dataList?.data ? (
+        <datalist id={dataList.id}>
+          {dataList.data.map((x) => (
+            <option key={x.key} value={x.value} />
+          ))}
+        </datalist>
+      ) : null}
+    </FieldWrapper>
+  );
+};
 
 InputBase.displayName = 'InputBase';
 
-export default InputBase;
+export default memo(InputBase);
 
 export type { InputBaseProps };
 

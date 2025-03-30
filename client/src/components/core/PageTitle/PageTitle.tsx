@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type PageTitleProps = {
   readonly children?: React.ReactNode;

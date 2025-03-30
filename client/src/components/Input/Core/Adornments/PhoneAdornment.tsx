@@ -1,5 +1,5 @@
 import { PhoneIcon as Icon } from 'components/icons/PhoneIcon';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type Props = {
   readonly ref?: React.Ref<HTMLDivElement>;

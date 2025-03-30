@@ -1,195 +1,225 @@
-:root {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  /* Add Property */
-  --color-error: #ff0000;
-  --color-required: #be3455;
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --input-background-color: var(--color-white);
-  --input-background-focus-color: #e1e1e1;
-  --input-color: #212121;
-  --input-error-color: var(--color-error);
-  --input-border-radius: 4px;
-  --input-border-color: #bebebe;
-  --input-border-required-color: var(--color-required);
-  --input-border-focus-color: #5d5d5d;
-  --input-border-hover-color: #7f7f7f;
-  --input-label-color: #212121;
-  --input-placeholder-color: #b7b7b7;
-  --input-adornment-color: #838383;
-  --input-helper-font-size: 0.75rem;
-  --input-helper-font-color: #5d5d5d;
-  --input-helper-error-color: var(--color-error);
-  --input-icon-color: #5d5d5d;
-  --tooltip-label-color: #0f456e;
-  --tooltip-background-color: #e5e5e5;
-  --tooltip-border-color: #0f456e;
-  --tooltip-arrow-color: #0f456e;
-  --status-info: #2196f3;
-  --status-success: #21a67a;
-  --status-warning: #ff000f;
-  --status-error: var(--color-error);
-  --text-primary-color: #1f1f1f;
-  --text-primary-muted-color: #5d5d5d;
-  --page-background-color: #f5f5f5;
-
-  --speed: 500ms;
-
-  --palette-text: #1f1f29;
-  --palette-dark-text: #f2f3f4;
-  --palette-background: #f2f3f4;
-  --palette-main-color: #be3455;
-  --palette-error: #751c31;
-  --palette-border: #181818;
-
-  --palette-page-title: #be3455;
-  --palette-dark-background: #181818;
-  --palette-dark-text: #f2f3f4;
-  --palette-var: #0ab4b4;
-  --palette-samp: #a8a8a8;
-  --palette-kbd: #888888;
-
-  --navbar-width: 256px;
-  --navbar-width-min: 80px;
-  --navbar-text: #f2f3f4;
-  --navbar-dark-primary: #18283b;
-  --navbar-dark-secondary: #465262;
-  --navbar-dark-3: #747e89;
-  --navbar-light-primary: #f5f6fa;
-  --navbar-light-secondary: #8392a5;
-
-  --snackbar-background: #465262;
-  --snackbar-color: #f2f3f4;
-
-  --palette-border-color: #383838;
-  --palette-error: #751c31;
-  --palette-code: #a8a8a8;
-
-  --main-color-d3: #751c31;
-  --palette-menu-color: #d8d8d8;
-
-  --palette-grey-10: #d8d8d8;
-  --palette-grey-100: #585858;
-  --palette-grey-dark: #4b4b4b;
-
-  --palette-white: #f5f5fa;
-  --palette-black: #1f1f29;
-
-  --palette-label: rgb(102, 102, 102);
-}
-
-/* Do not set a root font size - work off browser font-size = default 16px */
-html,
-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-}
-a:link {
-  color: #0000ee;
-  background-color: transparent;
-  text-decoration: none;
-}
-a:visited {
-  background-color: transparent;
-  text-decoration: none;
-}
-a:hover,
-a:active {
-  background-color: transparent;
-  text-decoration: underline;
-}
-hr {
-  border: 1px solid #585858;
-}
-ol,
-ul {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  padding-inline-start: 20px;
-}
-em {
-  font-weight: 700;
-  color: var(--palette-main-color);
-}
-h1 {
-  font-family: 'Roboto Slab', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #000;
-  text-wrap: balance;
-}
-h2 {
-  font-family: 'Roboto Slab', serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #585858;
-}
-p {
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.3em;
-  margin-bottom: 1rem;
-  color: #383838;
-  text-wrap: pretty;
-}
-img {
-  display: block;
-  max-width: 100%;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 0.9em;
-  font-family: sans-serif;
-  min-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-table thead tr {
-  background-color: #009879;
-  color: #ffffff;
-  text-align: left;
-}
-table th,
-table td {
-  padding: 12px 15px;
-}
-table tbody tr {
-  border-bottom: 1px solid #2f2d2d;
-}
-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
-}
-table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
-}
-table tbody tr.active-row {
-  font-weight: bold;
-  color: #009879;
-}
-
-@property --color-error {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: red;
-}
-@property --color-required {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: red;
-}
-@property --color-white {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: white;
-}
-@property --color-black {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: black;
-}
+/* ----------------------------------------------------------------------------
+   Global CSS Variables & Custom Properties
+   ---------------------------------------------------------------------------- */
+   :root {
+    /* Rendering and Font Smoothing */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  
+    /* Core Colors */
+    --color-error: #ff0000;
+    --color-required: #be3455;
+    --color-white: #ffffff;
+    --color-black: #000000;
+  
+    /* Input Styles */
+    --input-background-color: var(--color-white);
+    --input-background-focus-color: #e1e1e1;
+    --input-color: #212121;
+    --input-error-color: var(--color-error);
+    --input-border-radius: 4px;
+    --input-border-color: #bebebe;
+    --input-border-required-color: var(--color-required);
+    --input-border-focus-color: #5d5d5d;
+    --input-border-hover-color: #7f7f7f;
+    --input-label-color: #212121;
+    --input-placeholder-color: #b7b7b7;
+    --input-adornment-color: #838383;
+    --input-helper-font-size: 0.75rem;
+    --input-helper-font-color: #5d5d5d;
+    --input-helper-error-color: var(--color-error);
+    --input-icon-color: #5d5d5d;
+  
+    /* Tooltip Styles */
+    --tooltip-label-color: #0f456e;
+    --tooltip-background-color: #e5e5e5;
+    --tooltip-border-color: #0f456e;
+    --tooltip-arrow-color: #0f456e;
+  
+    /* Status Colors */
+    --status-info: #2196f3;
+    --status-success: #21a67a;
+    --status-warning: #ff000f;
+    --status-error: var(--color-error);
+  
+    /* Text & Background */
+    --text-primary-color: #1f1f1f;
+    --text-primary-muted-color: #5d5d5d;
+    --page-background-color: #f5f5f5;
+  
+    /* Animation */
+    --speed: 500ms;
+  
+    /* Palette */
+    --palette-text: #1f1f29;
+    --palette-dark-text: #f2f3f4;
+    --palette-background: #f2f3f4;
+    --palette-main-color: #be3455;
+    --palette-error: #751c31;
+    --palette-border: #181818;
+    --palette-page-title: #be3455;
+    --palette-dark-background: #181818;
+    --palette-var: #0ab4b4;
+    --palette-samp: #a8a8a8;
+    --palette-kbd: #888888;
+    --palette-border-color: #383838;
+    --palette-code: #a8a8a8;
+    --main-color-d3: #751c31;
+    --palette-menu-color: #d8d8d8;
+    --palette-grey-10: #d8d8d8;
+    --palette-grey-100: #585858;
+    --palette-grey-dark: #4b4b4b;
+    --palette-white: #f5f5fa;
+    --palette-black: #1f1f29;
+    --palette-label: rgb(102, 102, 102);
+  
+    /* Navbar */
+    --navbar-width: 256px;
+    --navbar-width-min: 80px;
+    --navbar-text: #f2f3f4;
+    --navbar-dark-primary: #18283b;
+    --navbar-dark-secondary: #465262;
+    --navbar-dark-3: #747e89;
+    --navbar-light-primary: #f5f6fa;
+    --navbar-light-secondary: #8392a5;
+  
+    /* Snackbar */
+    --snackbar-background: #465262;
+    --snackbar-color: #f2f3f4;
+  }
+  
+  /* ----------------------------------------------------------------------------
+     CSS @property Declarations for Custom Properties
+     ---------------------------------------------------------------------------- */
+  @property --color-error {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+  }
+  @property --color-required {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+  }
+  @property --color-white {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: white;
+  }
+  @property --color-black {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: black;
+  }
+  
+  /* ----------------------------------------------------------------------------
+     Base Styles
+     ---------------------------------------------------------------------------- */
+  html,
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem; /* default browser font size (16px) */
+    margin: 0;
+    padding: 0;
+  }
+  
+  a:link,
+  a:visited {
+    color: #0000ee;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover,
+  a:active {
+    text-decoration: underline;
+  }
+  
+  hr {
+    border: 1px solid #585858;
+  }
+  
+  ol,
+  ul {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 20px;
+  }
+  
+  em {
+    font-weight: 700;
+    color: var(--palette-main-color);
+  }
+  
+  h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #000;
+    /* Use appropriate properties or vendor prefixes if necessary */
+  }
+  
+  h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #585858;
+  }
+  
+  p {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.3em;
+    margin-bottom: 1rem;
+    color: #383838;
+  }
+  
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* ----------------------------------------------------------------------------
+     Table Styles
+     ---------------------------------------------------------------------------- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  table th,
+  table td {
+    padding: 12px 15px;
+  }
+  
+  table tbody tr {
+    border-bottom: 1px solid #2f2d2d;
+  }
+  
+  table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+  

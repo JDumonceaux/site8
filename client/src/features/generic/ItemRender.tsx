@@ -1,7 +1,7 @@
 import React from 'react';
 
 import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import type { MenuItem } from 'types';
 
 type ItemRenderProps = {
@@ -10,7 +10,7 @@ type ItemRenderProps = {
   readonly level: number;
 };
 
-export const ItemRender = ({
+const ItemRender = ({
   children,
   item,
   level,
@@ -19,65 +19,42 @@ export const ItemRender = ({
     return null;
   }
 
-  const renderItem = () => {
-    switch (item.type) {
-      case 'menu': {
-        switch (level) {
-          case 0: {
-            return (
-              <StyledMenu0 to={`${item.toComplete}`}>{item.name}</StyledMenu0>
-            );
-          }
-          case 1: {
-            return (
-              <StyledMenu1 to={`${item.toComplete}`}>{item.name}</StyledMenu1>
-            );
-          }
-          case 2: {
-            return (
-              <StyledMenu2 to={`${item.toComplete}`}>{item.name}</StyledMenu2>
-            );
-          }
-          default: {
-            return null;
-          }
-        }
-      }
-      case 'page': {
-        switch (level) {
-          case 0: {
-            return (
-              <StyledPage0 to={`${item.toComplete}`}>{item.name}</StyledPage0>
-            );
-          }
-          case 1: {
-            return (
-              <StyledPage1 to={`${item.toComplete}`}>{item.name}</StyledPage1>
-            );
-          }
-          case 2: {
-            return (
-              <StyledPage2 to={`${item.toComplete}`}>{item.name}</StyledPage2>
-            );
-          }
-          default: {
-            return <div>{item.name}</div>;
-          }
-        }
-      }
-      default: {
-        return <div>{item.name}</div>;
-      }
-    }
-  };
+  let content: React.ReactNode;
+
+  if (item.type === 'menu') {
+    const menuComponents: Record<number, typeof StyledNavLink> = {
+      0: StyledMenu0,
+      1: StyledMenu1,
+      2: StyledMenu2,
+    };
+
+    const Component = menuComponents[level];
+    content = <Component to={item.toComplete}>{item.name}</Component>;
+  } else if (item.type === 'page') {
+    const pageComponents: Record<number, typeof StyledNavLink> = {
+      0: StyledPage0,
+      1: StyledPage1,
+      2: StyledPage2,
+    };
+
+    const Component = pageComponents[level];
+    content = <Component to={item.toComplete}>{item.name}</Component>;
+  } else {
+    content = <div>{item.name}</div>;
+  }
 
   return (
     <React.Fragment key={item.id}>
-      {renderItem()}
+      {content}
       {children}
     </React.Fragment>
   );
 };
+
+ItemRender.displayName = 'ItemRender';
+
+export default ItemRender;
+
 const StyledMenuLink = styled(StyledNavLink)`
   &:link,
   &:visited,

@@ -1,16 +1,50 @@
 /* eslint-disable @typescript-eslint/prefer-literal-enum-member */
-export const APP_NAME = 'ReactTotal.io';
 
+/* -------------------------------------------------------------------------- */
+/*                               App Metadata                                 */
+/* -------------------------------------------------------------------------- */
+export const APP_NAME = 'ReactTotal.io';
+export const APP_VERSION = '0.0.1';
+export const APP_DESCRIPTION =
+  'ReactTotal.io - React, TypeScript, Node.js, Express, MongoDB';
+export const APP_AUTHOR = 'ReactTotal.io';
+export const APP_COPYRIGHT = 'Copyright © 2023 ReactTotal.io';
+export const APP_COPYRIGHT_YEAR = new Date().getFullYear();
+export const APP_COPYRIGHT_NOTICE = `${APP_COPYRIGHT} ${APP_AUTHOR}`;
+export const APP_COPYRIGHT_NOTICE_LONG = `${APP_COPYRIGHT} ${APP_AUTHOR} - All rights reserved.`;
+
+/* -------------------------------------------------------------------------- */
+/*                              Query & Timing                                */
+/* -------------------------------------------------------------------------- */
+export enum QueryTime {
+  FIVE_MINUTES = 1000 * 60 * 5,
+  TEN_MINUTES = 1000 * 60 * 10,
+  // Garbage Collection Time (same as TEN_MINUTES)
+  GC_TIME = TEN_MINUTES,
+  ONE_MINUTE = 1000 * 60,
+  ONE_SECOND = 1000,
+  REFETCH_INTERVAL = 0,
+  RETRY = 3,
+  RETRY_DELAY = ONE_SECOND,
+  STALE_TIME = FIVE_MINUTES,
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Sorting Order                                 */
+/* -------------------------------------------------------------------------- */
 export enum SortOrder {
   ASC = 'asc',
   DESC = 'desc',
 }
 
+/* -------------------------------------------------------------------------- */
+/*                             Request Headers                                */
+/* -------------------------------------------------------------------------- */
 export enum AcceptHeader {
   ANY = 'application/json, text/plain, */*',
   CSV = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
-  EXCEL = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  EXCEL = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // Same as CSV
   GENERAL = '*/*',
   JSON = 'application/json',
   PDF = 'application/pdf',
@@ -22,6 +56,9 @@ export enum PreferHeader {
   REPRESENTATION = 'return=representation',
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              File Types                                    */
+/* -------------------------------------------------------------------------- */
 export enum FileType {
   CSV = 'csv',
   EXCEL = 'xlsx',
@@ -29,22 +66,23 @@ export enum FileType {
   ZIP = 'zip',
 }
 
-//const API_ROOT = `${Environment.getPublicUrl()}/api`;
+/* -------------------------------------------------------------------------- */
+/*                          API and Route Constants                           */
+/* -------------------------------------------------------------------------- */
+// Change API_ROOT based on environment as needed
 export const API_ROOT = `http://localhost:3005/api`;
-//const API_ROOT = `https://s12k0iq8o1.execute-api.us-west-2.amazonaws.com/Prod/api`;
 
-// internal
+// Routes
 export const ROUTE_ROOT = '/';
-
-// Route /react
 export const ROUTE_REACT = `${ROUTE_ROOT}react`;
-
-// Route /web
 export const ROUTE_WEB = `${ROUTE_ROOT}web`;
 export const ROUTE_WEB_HTML = `${ROUTE_WEB}/html`;
 export const ROUTE_WEB_CSS = `${ROUTE_WEB}/css`;
 export const ROUTE_WEB_TEST_GRID = `${ROUTE_WEB}/test-grid`;
 
+/* -------------------------------------------------------------------------- */
+/*                              Service URLs                                  */
+/* -------------------------------------------------------------------------- */
 export enum ServiceUrl {
   ENDPOINT_ARTIST_ITEMS = `${API_ROOT}/artist/{0}/items`,
   ENDPOINT_ARTISTS = `${API_ROOT}/artists`,
@@ -70,10 +108,11 @@ export enum ServiceUrl {
   ENDPOINT_TESTS = `${API_ROOT}/tests`,
 }
 
+/* -------------------------------------------------------------------------- */
+/*                              Miscellaneous                                 */
+/* -------------------------------------------------------------------------- */
 export const REQUIRED_FIELD = 'Required Field';
-
 export const DF_LONG = 'M/d/yyyy h:mm a';
-
 export const IMAGE_BASE = '/images';
 
 export const MAX_EMAIL_LENGTH = 250;

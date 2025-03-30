@@ -1,24 +1,20 @@
 import { isAxiosError, isCancel } from 'axios';
 
-/**
- * Handles HTTP errors and returns corresponding error messages.
- *
- * @param error - The error object to handle.
- * @returns The error message based on the type of error.
- * @throws Error if the error is null.
- */
 export const httpErrorHandler = (error: unknown): null | string => {
+  // Return null for cancelled requests
   if (isCancel(error)) {
     return null;
   }
 
-  if (!isAxiosError(error) || !(error instanceof Error)) {
-    return null;
-  }
-
+  // Handle Axios errors
   if (isAxiosError(error)) {
-    const { response, status } = error;
-    const data = response?.data || null;
+    const status = error.response?.status;
+    const data = error.response?.data;
+
+    // If status is undefined, return the error message
+    if (!status) {
+      return error.message;
+    }
 
     switch (status) {
       case 401: {
@@ -33,17 +29,17 @@ export const httpErrorHandler = (error: unknown): null | string => {
       case 500: {
         return `Server error: ${data}`;
       }
-      // case 'ERR_CANCELLED': {
-      //   return 'Request cancelled.';
-      // }
-      // case 'ERR_NETWORK': {
-      //   return 'Connection problems.';
-      // }
       default: {
         return `Unknown error ${status}`;
       }
     }
   }
-  // Something happened in setting up the request and triggered an Error
+
+  // Handle other errors (e.g. errors thrown in setting up the request)
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  // Fallback message for unrecognized errors
   return 'Unknown error ...';
 };

@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react';
 
 import StyledLink from 'components/Link/StyledLink/StyledLink';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type LinkButtonProps = {
   readonly children: React.ReactNode;

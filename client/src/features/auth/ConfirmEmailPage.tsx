@@ -7,7 +7,7 @@ import useAuth from 'features/auth/useAuth';
 import { authCode } from 'features/auth/ZodStrings';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { z } from 'zod';
 
 import AuthContainer from './AuthContainer';

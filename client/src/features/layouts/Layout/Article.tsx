@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type Props = {
   readonly children: React.ReactNode;

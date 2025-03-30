@@ -4,13 +4,15 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider as Router,
+  RouterProvider,
 } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
-import InputPage from '../features/design/InputPage';
 import ErrorPage from '../features/site/ErrorPage';
 
+// ---------------------
+// Layouts
+// ---------------------
 const AuthLayout = lazy(
   async () => import('features/layouts/AuthLayout/AuthLayout'),
 );
@@ -23,10 +25,16 @@ const GenericLayout = lazy(
 const PhotoLayout = lazy(
   async () => import('features/layouts/PhotoLayout/PhotoLayout'),
 );
+
+// ---------------------
+// Pages & Features
+// ---------------------
+const InputPage = lazy(async () => import('../features/design/InputPage'));
+const DevelopPage = lazy(async () => import('../features/design/DevelopPage'));
+
 const BookmarkPage = lazy(
   async () => import('../features/bookmarks/BookmarkPage'),
 );
-const DevelopPage = lazy(async () => import('../features/design/DevelopPage'));
 const GenericPage = lazy(async () => import('../features/generic/GenericPage'));
 const GenericImagePage = lazy(
   async () => import('../features/generic/GenericImagePage'),
@@ -40,6 +48,7 @@ const ImagesEditPage = lazy(
 const ItemsAddPage = lazy(
   async () => import('../features/itemsAdd/ItemsAddPage'),
 );
+
 const Home = lazy(async () => import('../features/home/HomePage'));
 const NotFound = lazy(async () => import('../features/site/NotFoundPage'));
 const PageEditPage = lazy(
@@ -56,7 +65,10 @@ const TestsPage = lazy(async () => import('../features/tests/TestsPage'));
 const TestsEditPage = lazy(
   async () => import('../features/tests/TestsEditPage'),
 );
+
+// ---------------------
 // Site Pages
+// ---------------------
 const TermsOfUsePage = lazy(
   async () => import('../features/site/TermsOfUsePage'),
 );
@@ -66,7 +78,10 @@ const CookiesUsePage = lazy(
 const PrivacyPolicyPage = lazy(
   async () => import('../features/site/PrivacyPolicyPage'),
 );
+
+// ---------------------
 // Auth Pages
+// ---------------------
 const SigninPage = lazy(async () => import('../features/auth/SigninPage'));
 const SignoutPage = lazy(async () => import('../features/auth/SignoutPage'));
 const SignupPage = lazy(async () => import('../features/auth/SignupPage'));
@@ -86,38 +101,42 @@ const DeleteAccountPage = lazy(
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<ErrorPage />} path="/">
+      {/* Fallback Routes */}
       <Route element={<NotFound />} path="*" />
       <Route element={<Sitemap />} path="sitemap" />
+
+      {/* Protected Routes */}
       <Route element={<ProtectedRoute />}>
+        {/* Home */}
         <Route element={<HomeLayout />}>
           <Route element={<Home />} index />
         </Route>
 
         {/* Generic */}
         <Route element={<GenericLayout />}>
-          <Route element={<GenericPage />} path="/accessibility/*" />
-          <Route element={<GenericPage />} path="/aws/*" />
-          <Route element={<GenericPage />} path="/code-snippets/*" />
-          <Route element={<GenericPage />} path="/fun">
-            <Route element={<TikTokPage />} path="/fun/tiktock" />
-            <Route element={<YachtsPage />} path="/fun/yachts" />
-            <Route element={<GenericImagePage />} path="/fun/images" />
-            <Route element={<GenericPage />} path="/fun/*" />
+          <Route element={<GenericPage />} path="accessibility/*" />
+          <Route element={<GenericPage />} path="aws/*" />
+          <Route element={<GenericPage />} path="code-snippets/*" />
+          <Route path="fun">
+            <Route element={<TikTokPage />} path="tiktock" />
+            <Route element={<YachtsPage />} path="yachts" />
+            <Route element={<GenericImagePage />} path="images" />
+            <Route element={<GenericPage />} path="*" />
           </Route>
-          <Route element={<GenericPage />} path="/:lang?/fun/*" />
-          <Route element={<GenericPage />} path="/html/*" />
-          <Route element={<GenericPage />} path="/interview-questions/*" />
-          <Route element={<GenericPage />} path="/javascript/*" />
-          <Route element={<GenericPage />} path="/management/*" />
-          <Route element={<GenericPage />} path="/nextjs/*" />
-          <Route element={<GenericPage />} path="/nodejs/*" />
-          <Route element={<GenericPage />} path="/programming/*" />
-          <Route element={<GenericPage />} path="/:lang?/programming/*" />
-          <Route element={<GenericPage />} path="/python/*" />
-          <Route element={<GenericPage />} path="/react/*" />
-          <Route element={<GenericPage />} path="/react-a-z/*" />
-          <Route element={<GenericPage />} path="/typescript/*" />
-          <Route element={<GenericPage />} path="/web/*" />
+          <Route element={<GenericPage />} path=":lang?/fun/*" />
+          <Route element={<GenericPage />} path="html/*" />
+          <Route element={<GenericPage />} path="interview-questions/*" />
+          <Route element={<GenericPage />} path="javascript/*" />
+          <Route element={<GenericPage />} path="management/*" />
+          <Route element={<GenericPage />} path="nextjs/*" />
+          <Route element={<GenericPage />} path="nodejs/*" />
+          <Route element={<GenericPage />} path="programming/*" />
+          <Route element={<GenericPage />} path=":lang?/programming/*" />
+          <Route element={<GenericPage />} path="python/*" />
+          <Route element={<GenericPage />} path="react/*" />
+          <Route element={<GenericPage />} path="react-a-z/*" />
+          <Route element={<GenericPage />} path="typescript/*" />
+          <Route element={<GenericPage />} path="web/*" />
         </Route>
 
         {/* Design */}
@@ -127,17 +146,18 @@ const router = createBrowserRouter(
 
         {/* Bookmarks */}
         <Route element={<GenericLayout />} path="bookmarks">
-          <Route element={<BookmarkPage />} />
+          <Route element={<BookmarkPage />} index />
         </Route>
 
+        {/* Photo & Testing */}
         <Route element={<GenericLayout />}>
           <Route element={<PhotoLayout />}>
             <Route element={<PhotoPage />} path="fun/photos" />
           </Route>
-          <Route element={<TestsPage />} path="/react/testing/test-grid" />
+          <Route element={<TestsPage />} path="react/testing/test-grid" />
         </Route>
 
-        {/* ADMIN */}
+        {/* Admin */}
         <Route element={<GenericLayout />} path="admin">
           <Route element={<PagesEditPage />} path="pages" />
           <Route element={<PageEditPage />} path="page/edit" />
@@ -165,7 +185,6 @@ const router = createBrowserRouter(
           <Route path="account">
             <Route element={<DeleteAccountPage />} path="account/delete" />
           </Route>
-
           <Route element={<TermsOfUsePage />} path="terms-of-use" />
           <Route element={<CookiesUsePage />} path="cookies" />
           <Route element={<PrivacyPolicyPage />} path="privacy-policy" />
@@ -175,6 +194,6 @@ const router = createBrowserRouter(
   ),
 );
 
-export const RouterProvider = () => {
-  return <Router router={router} />;
-};
+const AppRouter = () => <RouterProvider router={router} />;
+
+export default AppRouter;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type Props = {
   readonly children?: React.ReactNode;

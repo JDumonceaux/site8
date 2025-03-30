@@ -1,45 +1,52 @@
-import { memo, useMemo } from 'react';
+import { type FC, memo } from 'react';
 
-import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
 
-import StartAdornment from '../Adornments/StartAdornment';
-import FooterRow from '../FooterRow/FooterRow';
+import EndAdornment, {
+  type EndAdornmentProps,
+} from '../Adornments/EndAdornment';
+import StartAdornment, {
+  type StartAdornmentProps,
+} from '../Adornments/StartAdornment';
+import FooterRow, { type FooterRowProps } from '../FooterRow/FooterRow';
 import LabelRow, { type LabelRowProps } from '../LabelRow/LabelRow';
 
-type FieldWrapperProps = {
-  readonly allowedCharacters?: RegExp;
+export type FieldWrapperProps = {
+  readonly children?: React.ReactNode;
   readonly endAdornment?: React.ReactNode;
-  readonly showClear?: boolean;
+  readonly endAdornmentProps?: EndAdornmentProps;
+  readonly footerRowProps?: FooterRowProps;
+  readonly id?: string;
+  readonly labelProps?: LabelRowProps;
+  readonly onClear?: () => void;
+  readonly ref?: React.Ref<HTMLDivElement>;
   readonly startAdornment?: React.ReactNode;
-} & LabelRowProps;
+  readonly startAdornmentProps?: StartAdornmentProps;
+};
 
-const FieldWrapper = memo(
+const FieldWrapper: FC<FieldWrapperProps> = memo(
   ({
     children,
     endAdornment,
+    endAdornmentProps,
+    footerRowProps,
     id,
-    required,
-    showClear = false,
+    labelProps,
+    ref,
     startAdornment,
-    ...rest
-  }: FieldWrapperProps) => {
-    const currId = useGetId(id);
-
-    const props = useMemo(
-      () => ({ ...rest, id: currId, required }),
-      [rest, currId, required],
-    );
-    const memoizedRest = useMemo(() => rest, [rest]);
-
+    startAdornmentProps,
+  }: FieldWrapperProps): React.JSX.Element => {
     return (
-      <div id={currId}>
-        <LabelRow {...props} />
+      <div id={id} ref={ref}>
+        <LabelRow {...labelProps} />
         <StyledDiv>
-          <StartAdornment>{startAdornment}</StartAdornment>
+          <StartAdornment {...startAdornmentProps}>
+            {startAdornment}
+          </StartAdornment>
           {children}
+          <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
         </StyledDiv>
-        <FooterRow {...memoizedRest} />
+        <FooterRow {...footerRowProps} />
       </div>
     );
   },
@@ -48,8 +55,6 @@ const FieldWrapper = memo(
 FieldWrapper.displayName = 'FieldWrapper';
 
 export default FieldWrapper;
-
-export type { FieldWrapperProps };
 
 const StyledDiv = styled.div`
   display: flex;

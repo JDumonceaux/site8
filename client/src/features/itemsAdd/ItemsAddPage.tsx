@@ -6,7 +6,7 @@ import PageTitle from 'components/core/PageTitle/PageTitle';
 import Input from 'components/Input/Input';
 import Layout from 'features/layouts/Layout/Layout';
 import MenuBar from 'features/imagesEdit/MenuBar';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import ItemDetail from './ItemDetail';
 import RightMenu from './RightMenu';
