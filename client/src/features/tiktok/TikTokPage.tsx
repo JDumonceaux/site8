@@ -3,8 +3,8 @@ import { Suspense, useDeferredValue } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
 import SubjectMenu from 'features/generic/SubjectMenu';
+import Layout from 'features/layouts/Layout/Layout';
 import styled from 'styled-components';
 
 import useTiktok from './useTiktok';
@@ -16,7 +16,7 @@ type TikTokPageProps = {
 const TikTokPage = ({ title }: TikTokPageProps): React.JSX.Element => {
   const tempId = '4000';
 
-  const { data, isError, isPending } = useTiktok(tempId);
+  const { data, error, isError, isLoading } = useTiktok(tempId);
   const deferredData = useDeferredValue(data);
 
   const pageTitle = deferredData?.name ?? title;
@@ -28,7 +28,7 @@ const TikTokPage = ({ title }: TikTokPageProps): React.JSX.Element => {
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Article>
-          <LoadingWrapper isError={isError} isPending={isPending}>
+          <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
             <PageTitle title={pageTitle} />
             <StyledSection>
               <Suspense fallback="Loading results ..." />

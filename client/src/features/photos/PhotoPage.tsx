@@ -8,7 +8,7 @@ import Layout from 'features/layouts/Layout/Layout';
 import usePhotos from './usePhotos';
 
 const PhotoPage = (): React.JSX.Element => {
-  const { data, isError, isPending } = usePhotos();
+  const { data, error, isError, isLoading } = usePhotos();
 
   const deferredData = useDeferredValue(data);
 
@@ -18,7 +18,7 @@ const PhotoPage = (): React.JSX.Element => {
       <Layout.Main>
         <PageTitle title="Photos" />
         <Layout.Article>
-          <LoadingWrapper isError={isError} isPending={isPending}>
+          <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
             <ul>
               {deferredData?.items.map((item) => (
                 <li key={item.id}>

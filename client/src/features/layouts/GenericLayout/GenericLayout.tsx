@@ -1,21 +1,16 @@
-import { lazy, Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 
 import Avatar from 'components/core/Avatar/Avatar';
+import Header from 'components/core/Header/Header';
 import Snackbar from 'components/core/Snackbar/Snackbar';
 import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-const Header = lazy(async () => import('components/core/Header/Header'));
 
 const GenericLayout = (): React.JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
-    {useMemo(
-      () => (
-        <AppInitializer />
-      ),
-      [],
-    )}
+    <AppInitializer />
     <Header
       avatar={
         <Avatar alt="Avatar" id="avatar" src="/avatar.jpg">

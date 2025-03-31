@@ -3,14 +3,14 @@ import { Suspense } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
 import SubjectMenu from 'features/generic/SubjectMenu';
+import Layout from 'features/layouts/Layout/Layout';
 import styled from 'styled-components';
 
 import useTests from './useTests';
 
 const TestsPage = (): React.JSX.Element => {
-  const { data, isError, isPending } = useTests();
+  const { data, error, isError, isLoading } = useTests();
 
   const pageTitle = 'Tests';
 
@@ -22,14 +22,14 @@ const TestsPage = (): React.JSX.Element => {
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Article>
-          <LoadingWrapper isError={isError} isPending={isPending}>
+          <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
             <PageTitle title={pageTitle} />
             <Layout.Section>
               <table>
                 <thead>
                   <tr>
-                    <th />
-                    <th />
+                    <th aria-label="item id" />
+                    <th aria-label="item name" />
                     <th>Value</th>
                     <th>Result</th>
                     <th>Comment</th>

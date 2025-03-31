@@ -26,7 +26,7 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
     setId(temporaryId);
   }, [x.pathname]);
 
-  const { data, isError, isPending } = useGenericPage(id);
+  const { data, isError, isLoading } = useGenericPage(id);
 
   const deferredData = useDeferredValue(data);
 
@@ -40,7 +40,7 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Content>
-          <LoadingWrapper isError={isError} isPending={isPending}>
+          <LoadingWrapper isError={isError} isLoading={isLoading}>
             <Fallback />
             <Suspense fallback="Loading ...">
               <Layout.Article>

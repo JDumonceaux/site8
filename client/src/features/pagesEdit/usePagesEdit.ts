@@ -13,7 +13,7 @@ const pageSchema = z.object({
   id: z.number(),
   lineId: z.number(),
   name: z.string().optional(),
-  parentId: z.string().min(1, { message: REQUIRED_FIELD }),
+  parentId: z.number().min(1, { message: REQUIRED_FIELD }),
   parentSeq: z.string(),
   parentSortby: z.string(),
   type: z.string(),
@@ -28,7 +28,7 @@ const usePagesEdit = () => {
   const [localItems, setLocalItems] = useState<MenuItem[] | undefined>();
   const { patchData } = useAxios<MenuEdit[]>();
 
-  const { data, isError, isPending } = useMenusEdit();
+  const { data, error, isError, isLoading } = useMenusEdit();
 
   // Create a form
   const {
@@ -52,7 +52,7 @@ const usePagesEdit = () => {
       return {
         id: item.id,
         newParent: {
-          id: Number.isNaN(item.parentId) ? 0 : Number(item.parentId),
+          id: item.parentId,
           seq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
           sortby: item.parentSortby as SortByType,
         },
@@ -143,12 +143,13 @@ const usePagesEdit = () => {
 
   return {
     data: localItems,
-    error: isError,
+    error,
     getDefaultProps,
     getFieldValue,
     handleChange,
     handleSave,
-    isLoading: isPending,
+    isError,
+    isLoading,
     isSaved,
     pageSchema,
     setFieldValue,

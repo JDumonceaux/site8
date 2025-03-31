@@ -6,11 +6,9 @@ type Props = {
   readonly children: React.ReactNode;
 };
 
-const Article = memo(
-  ({ children }: Props): React.JSX.Element => (
-    <StyledElement data-testid="article">{children}</StyledElement>
-  ),
-);
+const Article = memo(({ children }: Props): React.JSX.Element => {
+  return <StyledElement data-testid="article">{children}</StyledElement>;
+});
 
 Article.displayName = 'Article';
 

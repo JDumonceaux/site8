@@ -68,9 +68,8 @@ const RightMenu = memo(
             {currentFolder}
           </StyledButton>
         );
-      } else {
-        return <div>Select Folder ({data?.length})</div>;
       }
+      return <div>Select Folder ({data?.length})</div>;
     }, [currentFolder, handleButton, data]);
 
     return (
@@ -84,9 +83,7 @@ const RightMenu = memo(
           />
         </FilterDiv>
         <StyledHeader>
-          <div>
-            {renderStyledButton}
-          </div>
+          <div>{renderStyledButton}</div>
         </StyledHeader>
         <hr />
         <LoadingWrapper isError={isError} isPending={isPending}>
@@ -95,7 +92,6 @@ const RightMenu = memo(
       </StickyMenu>
     );
   },
-);
 );
 
 RightMenu.displayName = 'RightMenu';

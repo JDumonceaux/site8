@@ -17,16 +17,16 @@ import {
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Input from 'components/Input/Input';
-import Layout from 'features/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'features/app/useAppSettings';
+import Layout from 'features/layouts/Layout/Layout';
 import SortableItem from 'features/tests/SortableItem';
 import useTestsEdit from 'features/tests/useTestsEdit';
 import styled from 'styled-components';
 
-const TestsEditPage = (): React.JSX.Element => {
+const TestsEditPage: React.FC = (): React.JSX.Element => {
   const { data, getDefaultProps, handleSave, isSaved, setFormValues } =
     useTestsEdit();
 

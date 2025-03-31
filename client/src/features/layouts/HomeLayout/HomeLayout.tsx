@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 
 import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -6,12 +6,7 @@ import { Outlet } from 'react-router-dom';
 
 const HomeLayout = (): React.JSX.Element => (
   <ErrorBoundary fallback={<div>Something went wrong</div>}>
-    {useMemo(
-      () => (
-        <AppInitializer />
-      ),
-      [],
-    )}
+    <AppInitializer />
     <Suspense fallback={<div>Loading...</div>}>
       <Outlet />
     </Suspense>

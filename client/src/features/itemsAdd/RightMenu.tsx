@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import styled from 'styled-components';
 
@@ -10,18 +8,11 @@ type Props = {
 };
 
 const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
-  const { data, isError, isPending } = useArtistItems();
-
-  useEffect(() => {
-    if (!artistId || artistId === '') {
-      return;
-    }
-    fetch(artistId);
-  }, [artistId]);
+  const { data, error, isError, isLoading } = useArtistItems(artistId);
 
   return (
     <StickyMenu>
-      <LoadingWrapper isError={isError} isPending={isPending}>
+      <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
         <ul>
           {data?.items?.map((item) => (
             <li key={item.key}>{item.display ?? 'Missing'}</li>

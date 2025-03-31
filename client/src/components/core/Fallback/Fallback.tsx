@@ -1,7 +1,8 @@
+import React, { memo } from 'react';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import styled from 'styled-components';
 
-const Fallback = (): React.JSX.Element => {
+const Fallback = memo((): React.JSX.Element => {
   return (
     <output aria-busy="true" data-testid="footer">
       <PageTitle title="Loading" />
@@ -11,7 +12,7 @@ const Fallback = (): React.JSX.Element => {
       ))}
     </output>
   );
-};
+});
 
 Fallback.displayName = 'Fallback';
 

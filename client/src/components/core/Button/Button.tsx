@@ -28,26 +28,28 @@ type ButtonProps = {
   readonly variant?: Variant;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
 
-const Button = ({
-  children,
-  size = 'md',
-  type = 'button',
-  variant = 'primary',
-  ...rest
-}: ButtonProps) => (
-  <StyledButton
-    data-testid="Button"
-    type={type}
-    {...rest}
-    $size={size}
-    $variant={variant}>
-    {children}
-  </StyledButton>
+const Button = memo(
+  ({
+    children,
+    size = 'md',
+    type = 'button',
+    variant = 'primary',
+    ...rest
+  }: ButtonProps) => (
+    <StyledButton
+      data-testid="Button"
+      type={type}
+      {...rest}
+      $size={size}
+      $variant={variant}>
+      {children}
+    </StyledButton>
+  ),
 );
 
 Button.displayName = 'Button';
 
-export default memo(Button);
+export default Button;
 
 const StyledButton = styled.button<{
   $size?: Size;

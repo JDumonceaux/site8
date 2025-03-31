@@ -1,20 +1,39 @@
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl } from 'lib/utils/constants';
+import { QueryTime, ServiceUrl } from 'lib/utils/constants';
 import type { ArtistsItems, ListItem } from 'types';
 
+// Helper function to fetch artists items data
+const fetchData = async (): Promise<ArtistsItems> => {
+  const response = await fetch(ServiceUrl.ENDPOINT_ARTISTS_ITEMS);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch artists items: ${response.statusText}`);
+  }
+  return response.json() as Promise<ArtistsItems>;
+};
+
 const useArtistsItems = () => {
-  const { data, isError, isPending } = useQuery({
-    queryFn: async () => {
-      const response = await fetch(ServiceUrl.ENDPOINT_ARTISTS_ITEMS);
-      return (await response.json()) as ArtistsItems;
-    },
-    queryKey: ['artistsItems'],
+  // Define the query key for caching purposes
+  const queryKey = ['artistsItems'];
+
+  const query = useQuery<ArtistsItems>({
+    gcTime: QueryTime.GC_TIME,
+    queryFn: fetchData,
+    queryKey,
+    refetchInterval: 0,
+    refetchIntervalInBackground: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+    retry: QueryTime.RETRY,
+    retryDelay: QueryTime.RETRY_DELAY,
+    staleTime: QueryTime.STALE_TIME,
   });
 
-  const itemsAsListItem = useCallback(() => {
-    const sortedItems = data?.items?.toSorted((a, b) =>
+  // Memoize the derived list of items as ListItem[]
+  const itemsAsListItem: ListItem[] | undefined = useMemo(() => {
+    const sortedItems = query.data?.items?.toSorted((a, b) =>
       a.artist.sortName.localeCompare(b.artist.sortName),
     );
 
@@ -26,7 +45,7 @@ const useArtistsItems = () => {
         const items = artist.items?.filter(
           (y) => y.artistId === artist.artist.id,
         );
-        if (items)
+        if (items) {
           for (const y of items) {
             ret.push({
               display: `${artist.artist.sortName} - ${y.title}`,
@@ -34,16 +53,18 @@ const useArtistsItems = () => {
               value: y.id,
             });
           }
+        }
       }
     }
     return ret;
-  }, [data]);
+  }, [query.data]);
 
   return {
-    data,
-    isError,
-    isPending,
-    itemsAsListItem: itemsAsListItem(),
+    data: query.data,
+    error: query.error,
+    isError: query.isError,
+    isLoading: query.isLoading,
+    itemsAsListItem,
   };
 };
 

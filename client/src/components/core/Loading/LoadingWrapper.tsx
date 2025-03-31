@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 type LoadingWrapperProps = {
   readonly children: React.ReactNode;
-  readonly error?: null | string | undefined;
+  readonly error?: Error | null | string | undefined;
   readonly fallback?: React.ReactNode;
   readonly isError?: boolean;
   readonly isLoading?: boolean;
@@ -34,12 +34,21 @@ const LoadingWrapper = ({
       </StyledLoadingDiv>
     );
   } else if (error || isError) {
-    return (
-      <>
-        <StyledErrorDiv>{error}</StyledErrorDiv>
-        {children}
-      </>
-    );
+    if (error instanceof Error) {
+      return (
+        <>
+          <StyledErrorDiv>{error.message}</StyledErrorDiv>
+          {children}
+        </>
+      );
+    } else if (typeof error === 'string') {
+      return (
+        <>
+          <StyledErrorDiv>{error}</StyledErrorDiv>
+          {children}
+        </>
+      );
+    }
   }
   return children;
 };

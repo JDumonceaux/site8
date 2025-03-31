@@ -48,7 +48,7 @@ const MenuAdd = (): React.JSX.Element => {
             <th>Seq</th>
             <th>Sortby</th>
             <th>Type</th>
-            <th />
+            <th aria-label="save" />
           </tr>
         </thead>
 

@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import appReducer from './appSlice';
-import menuReducer from './menuSlice';
-import snackbarReducer from './SnackbarSlice';
+import snackbarReducer from './snackbarSlice';
 
 /**
  * The Redux store for the application.
@@ -10,7 +9,6 @@ import snackbarReducer from './SnackbarSlice';
 export const store = configureStore({
   reducer: {
     appSettings: appReducer,
-    menu: menuReducer,
     snackbar: snackbarReducer,
   },
 });

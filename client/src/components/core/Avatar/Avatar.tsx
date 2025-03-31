@@ -11,25 +11,27 @@ type AvatarProps = {
   readonly src?: string;
 } & RadixAvatar.AvatarProps;
 
-const StyledAvatar = ({
-  alt,
-  children,
-  delayMs = 600,
-  id,
-  src,
-  ...rest
-}: AvatarProps): React.JSX.Element => {
-  return (
-    <StyledRoot data-testid={id} id={id} {...rest}>
-      <StyledImage alt={alt} src={src} />
-      <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
-    </StyledRoot>
-  );
-};
+const StyledAvatar = memo(
+  ({
+    alt,
+    children,
+    delayMs = 600,
+    id,
+    src,
+    ...rest
+  }: AvatarProps): React.JSX.Element => {
+    return (
+      <StyledRoot data-testid={id} id={id} {...rest}>
+        <StyledImage alt={alt} src={src} />
+        <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
+      </StyledRoot>
+    );
+  },
+);
 
 StyledAvatar.displayName = 'StyledAvatar';
 
-export default memo(StyledAvatar);
+export default StyledAvatar;
 
 const StyledRoot = styled(RadixAvatar.Root)`
   display: inline-flex;

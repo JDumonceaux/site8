@@ -1,25 +1,34 @@
+import React, { memo, useMemo } from 'react';
+
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 type SortableItemProps = {
-  readonly children?: React.ReactNode;
-  readonly id: number;
+  children?: React.ReactNode;
+  id: number | string;
 };
 
-const SortableItem = ({ children, id }: SortableItemProps) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+const SortableItem: React.FC<SortableItemProps> = memo(
+  ({ children, id }: SortableItemProps): React.JSX.Element => {
+    const { attributes, listeners, setNodeRef, transform, transition } =
+      useSortable({ id });
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+    const style = useMemo(
+      () => ({
+        transform: CSS.Transform.toString(transform),
+        transition,
+      }),
+      [transform, transition],
+    );
 
-  return (
-    <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {children}
-    </tr>
-  );
-};
+    return (
+      <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
+        {children}
+      </tr>
+    );
+  },
+);
+
+SortableItem.displayName = 'SortableItem';
 
 export default SortableItem;

@@ -4,11 +4,11 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Input from 'components/Input/Input';
-import Layout from 'features/layouts/Layout/Layout';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import { Switch } from 'components/Switch/Switch';
 import useAppSettings from 'features/app/useAppSettings';
+import Layout from 'features/layouts/Layout/Layout';
 import MenuAdd from 'features/pagesEdit/MenuAdd';
 import styled from 'styled-components';
 import type { MenuItem } from 'types';
@@ -21,6 +21,7 @@ const PagesEditPage = (): React.JSX.Element => {
     error,
     getDefaultProps,
     handleSave,
+    isError,
     isLoading,
     isSaved,
     setFormValues,
@@ -144,7 +145,7 @@ const PagesEditPage = (): React.JSX.Element => {
               </StyledSaveButton>
             )}
           </PageTitle>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
             <table>
               <thead>
                 <tr>

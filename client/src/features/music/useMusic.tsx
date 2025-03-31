@@ -1,23 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils';
-import type { Page } from 'types';
+import axios from 'axios';
+import { QueryTime, ServiceUrl } from 'lib/utils/constants';
+import type { Music } from 'types/Music';
 
-const fetchData = async (id: string): Promise<Page> => {
-  const response = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.statusText}`);
-  }
-  return response.json() as Promise<Page>;
+// Helper function to fetch music data
+const fetchData = async (): Promise<Music> => {
+  const res = await axios.get<Music>(ServiceUrl.ENDPOINT_MUSIC);
+  return res.data;
 };
 
-const useTiktok = (id: string) => {
+const useMusic = () => {
   // Define the query key for caching purposes
-  const queryKey = ['tiktok', id];
+  const queryKey = ['music'];
 
-  const query = useQuery<Page>({
-    // Cache the data for a specified time
+  const query = useQuery<Music>({
     gcTime: QueryTime.GC_TIME,
-    queryFn: async () => fetchData(id),
+    queryFn: fetchData,
     queryKey,
     refetchInterval: 0,
     refetchIntervalInBackground: false,
@@ -40,4 +38,4 @@ const useTiktok = (id: string) => {
   };
 };
 
-export default useTiktok;
+export default useMusic;
