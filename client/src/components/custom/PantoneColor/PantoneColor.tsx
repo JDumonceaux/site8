@@ -1,4 +1,4 @@
-d-components';
+import styled from 'styled-components';
 
 const PANTONE_LINK = 'https://www.pantone.com/color-of-the-year/2023';
 
