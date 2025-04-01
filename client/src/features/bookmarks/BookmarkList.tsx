@@ -1,14 +1,14 @@
 import type { Bookmarks } from 'types/Bookmarks';
 
-type BookmarksProps = {
+type BookmarkListProps = {
   readonly data?: Bookmarks | null;
   readonly id?: number;
 };
 
-export const BookmarkList = ({
+const BookmarkList: React.FC<BookmarkListProps> = ({
   data,
   id,
-}: BookmarksProps): null | React.JSX.Element => {
+}: BookmarkListProps): null | React.JSX.Element => {
   if (!data) {
     return null;
   }
@@ -27,3 +27,7 @@ export const BookmarkList = ({
     </>
   );
 };
+
+BookmarkList.displayName = 'BookmarkList';
+
+export default BookmarkList;

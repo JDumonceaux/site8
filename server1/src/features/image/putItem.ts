@@ -1,42 +1,52 @@
 import { Request, Response, NextFunction } from 'express';
-
+import { z } from 'zod';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image } from '../../types/Image.js';
 import { PreferHeader } from '../../lib/utils/constants.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
+const CreateImageSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  url: z.string().url(),
+});
+
 export const putItem = async (
-  req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<Image>,
+  req: Request,
+  res: Response<Image | { error: string }>,
   next: NextFunction,
 ) => {
-  const Prefer = req.get('Prefer');
-  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const data: Image = req.body as Image;
+  try {
+    const prefer = req.get('Prefer');
+    const returnRepresentation = prefer === PreferHeader.REPRESENTATION;
 
-  Logger.info(`Image: Put Item called: `);
+    const validationResult = CreateImageSchema.safeParse(req.body);
+    if (!validationResult.success) {
+      const errorMessage = validationResult.error.errors
+        .map((err) => err.message)
+        .join(', ');
+      return res
+        .status(400)
+        .json({ error: `Validation error: ${errorMessage}` });
+    }
+    const data = validationResult.data as Image;
 
-  if (!data) {
-    res.status(500);
-  } else {
+    Logger.info('Image: Put Item called');
+
     const service = ServiceFactory.getImageService();
+    const newId = await service.addItem(data);
 
-    await service
-      .addItem(data)
-      .then((_response) => {
-        // if (response) {
-        //   res.status(200).json(response);
-        // } else {
-        //   res.json(response);
-        // }
-      })
-      .catch((error: Error) => {
-        next(error);
-      });
+    if (returnRepresentation) {
+      const newItem = await service.getItem(newId);
+      if (newItem) {
+        return res.status(200).json(newItem);
+      }
+      return res.status(404).json({ error: 'Created item not found' });
+    } else {
+      res.setHeader('Location', `/image/${newId}`);
+      return res.status(201).send();
+    }
+  } catch (error) {
+    next(error);
   }
-
-  if (returnRepresentation) {
-    next(`/image/${data.id}`);
-  }
-  next();
 };

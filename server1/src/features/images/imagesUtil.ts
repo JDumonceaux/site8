@@ -6,50 +6,44 @@ export function getNewItems(
   prevItems: Image[] | undefined,
   newItems: Image[] | undefined,
 ): Image[] | undefined {
-  // Get the items not already in the list
-  // Exempt site and yatch folders
-  // Exempt where fileName is missing
-  // Add isNewItem property
-  const ret = newItems
-    ?.filter(
-      (x) =>
-        !prevItems?.find(
-          (y) => y.fileName === x.fileName && y.folder === x.folder,
-        ),
-    )
-    .filter(
-      (x) =>
-        !FOLDERS_TO_IGNORE.some((y) =>
-          x.folder ? x.folder.startsWith(y) : true,
-        ),
-    )
-    .filter((x) => x.fileName !== '')
-    .map((x) =>
-      cleanUpData<Image>({
-        ...x,
-        isNewItem: true,
-      }),
-    )
-    .sort((a, b) => a.fileName.localeCompare(b.fileName));
-  return ret;
+  if (!newItems) return undefined;
+
+  const uniqueItems = newItems.filter((item) => {
+    // Exclude items already present in prevItems
+    const exists = prevItems?.some(
+      (prev) => prev.fileName === item.fileName && prev.folder === item.folder,
+    );
+    return !exists;
+  });
+
+  const filteredItems = uniqueItems.filter((item) => {
+    // Exclude items in ignored folders and with an empty fileName
+    const isIgnored = FOLDERS_TO_IGNORE.some((ignore) =>
+      item.folder ? item.folder.startsWith(ignore) : true,
+    );
+    return !isIgnored && item.fileName !== '';
+  });
+
+  const newItemsWithFlag = filteredItems.map((item) =>
+    cleanUpData<Image>({ ...item, isNewItem: true }),
+  );
+
+  return newItemsWithFlag.sort((a, b) => a.fileName.localeCompare(b.fileName));
 }
 
 export function getNewIds(items: Image[] | undefined): Image[] | undefined {
+  if (!items) return undefined;
+
   let startPos = 0;
-  const ret: Image[] | undefined = items?.map((item) => {
+  return items.map((item) => {
     if (item.id > 0) {
       return item;
-    } else {
-      const nextId = getNextIdFromPos<Image>(items, startPos++) || {
-        value: 0,
-        index: 0,
-      };
-      startPos = nextId.index;
-      return {
-        ...item,
-        id: nextId.value,
-      };
     }
+    const nextIdObj = getNextIdFromPos<Image>(items, startPos) || {
+      value: 0,
+      index: 0,
+    };
+    startPos = nextIdObj.index;
+    return { ...item, id: nextIdObj.value };
   });
-  return ret;
 }

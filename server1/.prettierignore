@@ -1,3 +1,21 @@
+// Exclude the Prettier configuration file itself to avoid formatting conflicts
 .prettierrc.cjs
+// Exclude all vscode settings and configurations to avoid conflicts with local development environments
+// This includes settings for extensions, themes, and other IDE-specific configurations
 .vscode/*
-tsconfig.json
+// Exclude all node_modules directories to avoid formatting issues with third-party libraries
+node_modules/*
+// Exclude all build and distribution directories to avoid formatting issues with generated files
+build/*
+dist/*
+// Exclude all log files to avoid formatting issues with runtime logs
+*.log
+// Exclude all temporary files and directories to avoid formatting issues with transient files
+*.tmp
+*.temp
+// Exclude all coverage reports to avoid formatting issues with test coverage files
+coverage/*
+// Exclude all environment variable files to avoid formatting issues with sensitive information
+.env
+.env.*
+

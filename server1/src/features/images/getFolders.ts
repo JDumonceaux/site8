@@ -1,26 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
 export const getFolders = async (
-  req: Request<unknown, unknown, unknown, unknown>,
+  req: Request,
   res: Response<string[] | undefined>,
   next: NextFunction,
-) => {
-  Logger.info(`Images: Get Folders called:`);
+): Promise<Response<string[] | undefined> | void> => {
+  Logger.info('Images: Get Folders called');
 
-  const service = ServiceFactory.getImagesFileService();
-  await service
-    .getFolders()
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      next(error);
-    });
+  try {
+    const service = ServiceFactory.getImagesFileService();
+    const folders = await service.getFolders();
+
+    return folders ? res.status(200).json(folders) : res.sendStatus(204);
+  } catch (error) {
+    return next(error);
+  }
 };

@@ -5,18 +5,22 @@ import { Images } from '../../types/Images.js';
 import { ImagesService } from '../images/ImagesService.js';
 
 export class ImageService {
+  private getImagesService(): ImagesService {
+    return new ImagesService();
+  }
+
   public async getItem(id: number): Promise<Image | undefined> {
     Logger.info(`ImageService: Fetching item with ID -> ${id}`);
+    const imagesService = this.getImagesService();
 
     try {
-      const response = await new ImagesService().getItems();
+      const response = await imagesService.getItems();
       if (!response?.items) {
         Logger.warn(
           `ImageService: No data found while fetching item with ID -> ${id}`,
         );
         throw new Error('No data found');
       }
-
       const item = response.items.find((x) => x.id === id);
       if (!item) {
         Logger.warn(`ImageService: Item with ID -> ${id} not found`);
@@ -33,73 +37,87 @@ export class ImageService {
   }
 
   public async addItem(data: Image): Promise<number> {
-    Logger.info(`ImageService: addItem -> `);
+    Logger.info('ImageService: addItem ->');
+    const imagesService = this.getImagesService();
 
     try {
-      // Clean up the data
       const updatedItem = cleanUpData<Image>(data);
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
-
-      // Get the current file data
-      const ret = await new ImagesService().getItems();
-      if (!ret) {
+      const currentData = await imagesService.getItems();
+      if (!currentData) {
         throw new Error('addItem -> No data found');
       }
+      const idNew = (await imagesService.getNextId()) ?? 0;
+      const newItem = { ...updatedItem, id: idNew };
 
-      // Get next id
-      const idNew = (await new ImagesService().getNextId()) ?? 0;
-
-      // I want the Id to show up first in the record in the file
-      const { id, ...rest } = updatedItem;
-      const newItem = { id: idNew, ...rest };
-
-      // Save the new item
       const updatedFile: Images = {
-        metadata: ret.metadata,
-        items: [...(ret.items ?? []), newItem],
+        metadata: currentData.metadata,
+        items: [...(currentData.items ?? []), newItem],
       };
-
-      await new ImagesService().writeFile(updatedFile);
-      return Promise.resolve(id);
+      await imagesService.writeFile(updatedFile);
+      return idNew;
     } catch (error) {
       Logger.error(`ImageService: addItem -> ${error}`);
-      return Promise.reject(new Error('add failed'));
+      throw new Error('add failed');
     }
   }
 
   public async updateItem(data: Image): Promise<number> {
-    Logger.info(`ImageService: updateItem -> `);
+    Logger.info('ImageService: updateItem ->');
+    const imagesService = this.getImagesService();
 
     try {
       const updatedItem = cleanUpData<Image>(data);
       if (!updatedItem) {
-        return Promise.reject(new Error('updateItem -> Invalid item'));
+        throw new Error('updateItem -> Invalid item');
       }
-
-      const ret = await new ImagesService().getItems();
-      if (!ret) {
+      const currentData = await imagesService.getItems();
+      if (!currentData) {
         throw new Error('updateItem -> No data found');
       }
-
-      // Remove the current item from the data
-      const updateItems = ret.items?.filter((x) => x.id !== data.id);
-
-      // I want the Id to show up first in the record in the file
+      const updatedItems =
+        currentData.items?.filter((x) => x.id !== data.id) ?? [];
       const { id, ...rest } = updatedItem;
       const newItem = { id, ...rest };
 
       const updatedFile: Images = {
-        metadata: ret.metadata,
-        items: [...(updateItems ?? []), newItem],
+        metadata: currentData.metadata,
+        items: [...updatedItems, newItem],
       };
-
-      await new ImagesService().writeFile(updatedFile);
-      return Promise.resolve(data.id);
+      await imagesService.writeFile(updatedFile);
+      return data.id;
     } catch (error) {
       Logger.error(`ImageService: updateItem -> ${error}`);
-      return Promise.reject(new Error('fail'));
+      throw new Error('update failed');
+    }
+  }
+
+  public async deleteItem(id: number): Promise<Image | undefined> {
+    Logger.info(`ImageService: deleteItem -> id: ${id}`);
+    const imagesService = this.getImagesService();
+
+    try {
+      const currentData = await imagesService.getItems();
+      if (!currentData?.items) {
+        throw new Error('deleteItem -> No data found');
+      }
+      const itemToDelete = currentData.items.find((item) => item.id === id);
+      if (!itemToDelete) {
+        Logger.warn(`ImageService: deleteItem -> Item with id ${id} not found`);
+        return undefined;
+      }
+      const updatedItems = currentData.items.filter((item) => item.id !== id);
+      const updatedFile: Images = {
+        metadata: currentData.metadata,
+        items: updatedItems,
+      };
+      await imagesService.writeFile(updatedFile);
+      return itemToDelete;
+    } catch (error) {
+      Logger.error(`ImageService: deleteItem -> ${error}`);
+      throw new Error('delete failed');
     }
   }
 }

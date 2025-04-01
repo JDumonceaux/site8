@@ -1,40 +1,55 @@
 import { Request, Response, NextFunction } from 'express';
-
+import { z } from 'zod';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image } from '../../types/Image.js';
 import { PreferHeader } from '../../lib/utils/constants.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
+// Define a Zod schema for validating the Image data.
+// Adjust the schema according to the actual properties of your Image type.
+const ImageSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  description: z.string().optional(),
+  url: z.string().url(),
+});
+
 export const patchItem = async (
-  req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<Image>,
+  req: Request,
+  res: Response<Image | { error: string }>,
   next: NextFunction,
 ) => {
-  const Prefer = req.get('Prefer');
-  const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
-  const data: Image = req.body as Image;
+  try {
+    const prefer = req.get('Prefer');
+    const returnRepresentation = prefer === PreferHeader.REPRESENTATION;
 
-  Logger.info(`Image: Patch Item called: `);
+    // Validate request data using Zod
+    const validationResult = ImageSchema.safeParse(req.body);
+    if (!validationResult.success) {
+      const errorMessage = validationResult.error.errors
+        .map((err) => err.message)
+        .join(', ');
+      return res
+        .status(400)
+        .json({ error: `Validation error: ${errorMessage}` });
+    }
+    const data = validationResult.data;
 
-  if (!data) {
-    res.status(500);
-  } else {
+    Logger.info('Image: Patch Item called');
+
     const service = ServiceFactory.getImageService();
+    await service.updateItem(data);
 
-    await service
-      .updateItem(data)
-      .then((response) => {
-        if (response) {
-          res.status(200);
-        }
-      })
-      .catch((error: Error) => {
-        next(error);
-      });
-  }
+    if (returnRepresentation) {
+      const updatedItem = await service.getItem(data.id);
+      if (updatedItem) {
+        return res.status(200).json(updatedItem);
+      }
+      return res.status(404).json({ error: 'Updated item not found' });
+    }
 
-  if (returnRepresentation) {
-    next(`/image/${data.id}`);
+    return res.status(204).send();
+  } catch (error) {
+    next(error);
   }
-  next();
 };

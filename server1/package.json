@@ -7,15 +7,15 @@
     "node": ">=20.11.0"
   },
   "scripts": {
-    "start": "npm run build && node dist/server.js",
+    "start": "npm run build && [ -f dist/server.js ] || npm run build && node dist/server.js",
     "debug": "npm run build && node --inspect dist/server.js",
     "build": "tsc",
     "precommit": "pretty-quick --staged",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
-    "lint:format": "prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
+    "lint:fix": "eslint . --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
+    "lint:format": "pretty-quick --staged",
     "prepare": "husky",
-    "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
+    "prepare-commit-msg": "node tools/git-commit-message.js .git/COMMIT_EDITMSG",
     "knip": "knip --production"
   },
   "dependencies": {

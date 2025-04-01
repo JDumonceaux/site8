@@ -7,59 +7,69 @@ import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
 export class ArtistsService {
   private filePath: string;
+  private fileService: ReturnType<typeof ServiceFactory.getFileService>;
 
   constructor(fileName: string = 'items.json') {
     this.filePath = FilePath.getDataDir(fileName);
+    this.fileService = ServiceFactory.getFileService();
   }
 
-  private async readFile(): Promise<ItemsFile | undefined> {
-    const service = ServiceFactory.getFileService();
-    return await service.readFile<ItemsFile>(this.filePath);
-  }
-
-  // Write data to file with error handling
-  public async writeFile(data: ItemsFile): Promise<void> {
-    const service = ServiceFactory.getFileService();
-    await service.writeFile<ItemsFile>(data, this.filePath);
-  }
-
-  // Get all artists
-  public async getArtists(): Promise<Artists> {
-    const data = await this.readFile();
-    if (data) {
-      return {
-        metadata: data.metadata || { title: 'items' },
-        items: data.artists,
-      };
-    } else {
-      throw new Error('No artists found');
+  private async readFile(): Promise<ItemsFile> {
+    try {
+      const data = await this.fileService.readFile<ItemsFile>(this.filePath);
+      if (!data) {
+        throw new Error('File data is undefined');
+      }
+      return data;
+    } catch (error) {
+      throw new Error(`Error reading file: ${error}`);
     }
   }
 
-  // Get items for a specific artist
+  public async writeFile(data: ItemsFile): Promise<void> {
+    try {
+      await this.fileService.writeFile<ItemsFile>(data, this.filePath);
+    } catch (error) {
+      throw new Error(`Error writing file: ${error}`);
+    }
+  }
+
+  public async getArtists(): Promise<Artists> {
+    const data = await this.readFile();
+    if (!data.artists || !Array.isArray(data.artists)) {
+      throw new Error('No artists found');
+    }
+    return {
+      metadata: data.metadata || { title: 'items' },
+      items: data.artists,
+    };
+  }
+
+  private sortItemsByTitle<T extends { title: string }>(items: T[]): T[] {
+    return items.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
   public async getArtistItems(artistId: number): Promise<ArtistItems> {
     const data = await this.readFile();
-    const artist = data?.artists?.find((a) => a.id === artistId);
+    const artist = data.artists?.find((a) => a.id === artistId);
 
     if (!artist) {
       throw new Error(`Artist with ID ${artistId} not found`);
     }
 
     const items =
-      data?.items?.filter((item) => item.artistId === artistId) || [];
-    const sortedItems = items.sort((a, b) => a.title.localeCompare(b.title));
-
-    return { artist, items: sortedItems };
+      data.items?.filter((item) => item.artistId === artistId) || [];
+    return { artist, items: this.sortItemsByTitle(items) };
   }
 
-  // Get all artists and their items
   public async getArtistsItems(): Promise<ArtistsItems> {
     const data = await this.readFile();
 
-    if (!data?.artists) {
+    if (!data.artists) {
       throw new Error('No artists found');
     }
 
+    // Sort artists by their sortName property.
     const sortedArtists = [...data.artists].sort((a, b) =>
       a.sortName.localeCompare(b.sortName),
     );
@@ -67,8 +77,7 @@ export class ArtistsService {
     const artistsItems = sortedArtists.map((artist) => {
       const items =
         data.items?.filter((item) => item.artistId === artist.id) || [];
-      const sortedItems = items.sort((a, b) => a.title.localeCompare(b.title));
-      return { artist, items: sortedItems };
+      return { artist, items: this.sortItemsByTitle(items) };
     });
 
     return {

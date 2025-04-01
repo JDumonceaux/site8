@@ -32,7 +32,7 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        'script-src': ["'self'", 'example.com'],
+        'script-src': ['"self"', 'example.com'],
       },
     },
     hsts: {
@@ -43,10 +43,11 @@ app.use(
 );
 app.use(compression());
 // Add timeout to all requests
-app.use((_req, res, next) => {
+app.use((req, res, next) => {
   res.setTimeout(2000, () => {
     console.log('Request has timed out.');
-    res.sendStatus(408);
+    res.status(408).send('Request Timeout');
+    req.destroy();
   });
   next();
 });
@@ -71,7 +72,7 @@ app.use((_req, res, next) => {
 //   next();
 // });
 
-const port = 3005;
+const port = process.env.PORT || 3005;
 
 // set up rate limiter
 const limiter = RateLimit({
@@ -115,10 +116,6 @@ app.use('/api/pages', pagesRouter);
 
 app.use('/api/build', buildRouter);
 
-app.use('*', (_req: Request, res: Response) => {
-  res.status(404).send('API Not Found');
-});
-
 // error handler
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error(`Error: ${err.message}`);
@@ -128,6 +125,15 @@ app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   res.status(500).json(err.message);
 });
 
-app.listen(port, () => {
-  Logger.info(`Service is listening on port ${port}.`);
+app.use('*', (_req: Request, res: Response) => {
+  res.status(404).send('API Not Found');
+});
+
+app.listen(port, (err?: Error) => {
+  if (err) {
+    Logger.error(`Failed to start server: ${err.message}`);
+    process.exit(1);
+  } else {
+    Logger.info(`Service is listening on port ${port}.`);
+  }
 });

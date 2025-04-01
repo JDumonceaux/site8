@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+
 type Params = {
   filename: string;
 };
@@ -9,22 +10,21 @@ const service = ServiceFactory.getFileService();
 
 export const getFile = async (
   req: Request<Params>,
-  res: Response<unknown>,
+  res: Response,
   next: NextFunction,
 ) => {
-  Logger.debug(`Get File called`);
-  const { filename } = req.params;
+  Logger.debug('Get File called');
+  try {
+    const { filename } = req.params;
+    const filePath = filename.trim() + '.json';
+    const fileData = await service.getFile(filePath);
 
-  await service
-    .getFile(filename.trim() + '.json')
-    .then((response: unknown) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: unknown) => {
-      next(error);
-    });
+    if (fileData) {
+      return res.status(200).json(fileData);
+    }
+
+    return res.status(204).send();
+  } catch (error) {
+    return next(error);
+  }
 };

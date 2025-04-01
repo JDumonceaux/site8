@@ -2,58 +2,71 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 class FilePath {
-  static getAppRoot() {
-    return path.dirname('/src/server.ts');
-  }
+  private static readonly appRootAbsolute: string =
+    FilePath.computeAppRootAbsolute();
 
-  static getAppRootAbsolute() {
+  private static computeAppRootAbsolute(): string {
     const currPath = fileURLToPath(import.meta.url);
-    const iPos = currPath.indexOf('server1');
-    return currPath.substring(0, iPos);
+    const serverDirName = 'server1';
+    const index = currPath.indexOf(serverDirName);
+    if (index === -1) {
+      throw new Error(
+        `Directory "${serverDirName}" not found in path: ${currPath}`,
+      );
+    }
+    return currPath.substring(0, index);
   }
 
-  static getImageDirAbsolute() {
-    return path.join(this.getAppRootAbsolute(), 'client', 'public', 'images');
+  public static getAppRoot(): string {
+    return this.appRootAbsolute;
   }
 
-  static getDataDirAbsolute() {
-    return path.join(this.getAppRootAbsolute(), 'server1', 'data');
+  public static getAppRootAbsolute(): string {
+    return this.appRootAbsolute;
   }
 
-  static getDataDir(fileName: string) {
+  public static getImageDirAbsolute(): string {
+    return path.join(this.appRootAbsolute, 'client', 'public', 'images');
+  }
+
+  public static getDataDirAbsolute(): string {
+    return path.join(this.appRootAbsolute, 'server1', 'data');
+  }
+
+  public static getDataDir(fileName: string): string {
     return path.join(this.getDataDirAbsolute(), fileName);
   }
 
-  static getClientRoot() {
-    return path.join(this.getAppRootAbsolute(), 'client');
+  public static getClientRoot(): string {
+    return path.join(this.appRootAbsolute, 'client');
   }
 
-  static getServerRoot() {
-    return path.join(this.getAppRootAbsolute(), 'server1');
+  public static getServerRoot(): string {
+    return path.join(this.appRootAbsolute, 'server1');
   }
 
-  static getClientSrc() {
-    return path.join(this.getAppRootAbsolute(), 'client', 'src');
+  public static getClientSrc(): string {
+    return path.join(this.appRootAbsolute, 'client', 'src');
   }
 
-  static getServerSrc() {
-    return path.join(this.getAppRootAbsolute(), 'server1', 'src');
+  public static getServerSrc(): string {
+    return path.join(this.appRootAbsolute, 'server1', 'src');
   }
 
-  static getClientTypes() {
-    return path.join(this.getAppRootAbsolute(), 'client', 'src', 'types');
+  public static getClientTypes(): string {
+    return path.join(this.appRootAbsolute, 'client', 'src', 'types');
   }
 
-  static getServerTypes() {
-    return path.join(this.getAppRootAbsolute(), 'server1', 'src', 'types');
+  public static getServerTypes(): string {
+    return path.join(this.appRootAbsolute, 'server1', 'src', 'types');
   }
 
-  static getClientFeatures() {
-    return path.join(this.getAppRootAbsolute(), 'client', 'src', 'features');
+  public static getClientFeatures(): string {
+    return path.join(this.appRootAbsolute, 'client', 'src', 'features');
   }
 
-  static getServerFeatures() {
-    return path.join(this.getAppRootAbsolute(), 'server1', 'src', 'features');
+  public static getServerFeatures(): string {
+    return path.join(this.appRootAbsolute, 'server1', 'src', 'features');
   }
 }
 

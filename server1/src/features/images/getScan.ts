@@ -1,28 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
-
 import { Images } from '../../types/Images.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
 export const getScan = async (
-  req: Request<unknown, unknown, unknown, unknown>,
+  _req: Request,
   res: Response<Images>,
   next: NextFunction,
-) => {
-  Logger.info(`Images: Get Fix File Names called:`);
+): Promise<Response<Images> | void> => {
+  Logger.info('Images: Get Scan called');
 
-  const service = ServiceFactory.getImagesService();
-  await service
-    .scanForNewItems()
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      next(error);
-    });
+  try {
+    const service = ServiceFactory.getImagesService();
+    const response = await service.scanForNewItems();
+    return response ? res.status(200).json(response) : res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
 };

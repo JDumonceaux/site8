@@ -6,7 +6,9 @@ type BookmarksTagsProps = {
   readonly data: BookmarksTags | undefined;
 };
 
-const BookmarkTags = ({ data }: BookmarksTagsProps): React.JSX.Element => {
+const BookmarkTags: React.FC<BookmarksTagsProps> = ({
+  data,
+}: BookmarksTagsProps): React.JSX.Element => {
   return (
     <table>
       <thead>

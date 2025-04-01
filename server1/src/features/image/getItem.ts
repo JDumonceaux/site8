@@ -1,39 +1,32 @@
 import { Request, Response, NextFunction } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
 import { Image } from '../../types/Image.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
 
-// app.get('/users/:id', (req: Request<
-//   { id: string }, // ParamsDictionary
-//   any,            // req.body
-//   any,            // req.locals
-//   { page?: string }, // QueryString.ParsedQs
-//   Record<string, any> // req.headers
-// >, res: Response) => {
-
 export const getItem = async (
-  req: Request<{ id: string }, unknown, unknown, unknown>,
+  req: Request<{ id: string }>,
   res: Response<Image>,
   next: NextFunction,
 ) => {
-  const { id } = req.params;
+  try {
+    const { id } = req.params;
+    Logger.info(`Image: Get Item called: ${id}`);
 
-  Logger.info(`Image: Get Item called: ${id}`);
+    const tempId = Number.parseInt(id, 10);
+    if (isNaN(tempId)) {
+      return res
+        .status(400)
+        .json({ message: 'Invalid ID' } as unknown as Image);
+    }
 
-  const tempId = Number.parseInt(id, 10);
+    const service = ServiceFactory.getImageService();
+    const response = await service.getItem(tempId);
 
-  const service = ServiceFactory.getImageService();
-  await service
-    .getItem(tempId)
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      next(error);
-    });
+    if (response) {
+      return res.status(200).json(response);
+    }
+    return res.status(204).send();
+  } catch (error) {
+    next(error);
+  }
 };

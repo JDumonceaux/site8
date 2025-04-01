@@ -7,20 +7,16 @@ import FilePath from './FilePath.js';
 export class FileService {
   public async getDataFile(fileName: string): Promise<string | undefined> {
     Logger.info(`FileService: getDataFile -> ${fileName}`);
-
     try {
       const filePath = FilePath.getDataDir(fileName);
-
-      // Verify that the file path is under the root directory
-      const tempFilePath = fs.realpathSync(filePath);
-      if (!tempFilePath.startsWith(__dirname)) {
+      const resolvedPath = fs.realpathSync(filePath);
+      if (!resolvedPath.startsWith(__dirname)) {
         Logger.error(
           `FileService: getDataFile: ${fileName} --> Invalid file path: ${filePath}`,
         );
         return undefined;
       }
-
-      return readFile(filePath, { encoding: 'utf8' });
+      return await readFile(filePath, { encoding: 'utf8' });
     } catch (error) {
       Logger.error(`FileService: getDataFile: ${fileName} --> Error: ${error}`);
       return undefined;
@@ -29,22 +25,21 @@ export class FileService {
 
   public async getFile(filePath: string): Promise<string | undefined> {
     Logger.info(`FileService: getFile -> ${filePath}`);
-
     try {
-      return readFile(filePath, { encoding: 'utf8' });
+      return await readFile(filePath, { encoding: 'utf8' });
     } catch (error) {
       Logger.error(`FileService: getFile: ${filePath} --> Error: ${error}`);
       return undefined;
     }
   }
 
-  public async readFile<T>(filePath: string): Promise<T | undefined> {
+  public async readFile<T>(filePath: string): Promise<T> {
     try {
-      const results = await readFile(filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as T;
+      const data = await readFile(filePath, { encoding: 'utf8' });
+      return JSON.parse(data) as T;
     } catch (error) {
       Logger.error(`FileService: readFile -> ${error}`);
-      return Promise.reject(new Error(`Read file failed. Error: ${error}`));
+      throw new Error(`Read file failed. Error: ${error}`);
     }
   }
 
@@ -54,48 +49,40 @@ export class FileService {
       await writeFile(filePath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
       });
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
-      Logger.error(`FileService: writeFile. Error -> ${error}`);
-      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
+      Logger.error(`FileService: writeFile -> Error: ${error}`);
+      throw new Error(`Write file failed. Error: ${error}`);
     }
   }
 
-  public async writeFileSync<T>(data: T, filePath: string): Promise<boolean> {
+  public writeFileSync<T>(data: T, filePath: string): boolean {
     try {
       Logger.info(`FileService: writeFileSync -> ${filePath}`);
-      await writeFileSync(filePath, JSON.stringify(data, null, 2), {
+      writeFileSync(filePath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
         flag: 'w',
       });
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
-      Logger.error(`FileService: writeFileSyce. Error -> ${error}`);
-      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
+      Logger.error(`FileService: writeFileSync -> Error: ${error}`);
+      throw new Error(`Write file failed. Error: ${error}`);
     }
   }
 
-  public async createFolder(path: string): Promise<boolean> {
-    Logger.info(`FileService: createFolder -> ${path}`);
-
+  public async createFolder(folderPath: string): Promise<boolean> {
+    Logger.info(`FileService: createFolder -> ${folderPath}`);
     try {
-      if (fs.existsSync(path)) {
-        return Promise.resolve(true);
+      if (fs.existsSync(folderPath)) {
+        return true;
       }
-
-      // Verify that the file path is under the root directory
-      // const tempFilePath = fs.realpathSync(path);
-      // if (!tempFilePath.startsWith(__dirname)) {
-      //   Logger.error(
-      //     `FileService: createFolder: ${path} --> Invalid file path.`,
-      //   );
-      // }
-      fs.mkdirSync(path, { recursive: true });
-
-      return Promise.resolve(true);
+      fs.mkdirSync(folderPath, { recursive: true });
+      return true;
     } catch (error) {
-      Logger.error(`FileService: createFolder: ${path} --> Error: ${error}`);
-      return Promise.reject(new Error(`Create Folder failed. Error: ${error}`));
+      Logger.error(
+        `FileService: createFolder: ${folderPath} --> Error: ${error}`,
+      );
+      throw new Error(`Create folder failed. Error: ${error}`);
     }
   }
 }
