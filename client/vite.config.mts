@@ -2,11 +2,10 @@ import analyze from 'rollup-plugin-analyzer';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig, type PluginOption } from 'vite';
 import tsConfigPaths from 'vite-tsconfig-paths';
-import MillionLint from '@million/lint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tsConfigPaths(), visualizer() as PluginOption, MillionLint.vite()],
+  plugins: [tsConfigPaths(), visualizer() as PluginOption],
   // Allow absolute imports from the `src` directory
   resolve: {
     alias: {
