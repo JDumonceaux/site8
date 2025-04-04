@@ -118,11 +118,11 @@ app.use('/api/build', buildRouter);
 
 // error handler
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
-  Logger.error(`Error: ${err.message}`);
+  Logger.error({ message: 'Error occurred', error: err.message });
   if (res.headersSent) {
     return next(err);
   }
-  res.status(500).json(err.message);
+  res.status(500).json({ error: { message: 'Internal Server Error' } });
 });
 
 app.use('*', (_req: Request, res: Response) => {

@@ -1,15 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { Logger } from '../../lib/utils/logger.js';
-import { Image } from '../../types/Image.js';
+import { Image, ImageSchema } from '../../types/Image.js';
 import { PreferHeader } from '../../lib/utils/constants.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
-
-const CreateImageSchema = z.object({
-  title: z.string(),
-  description: z.string().optional(),
-  url: z.string().url(),
-});
 
 export const putItem = async (
   req: Request,
@@ -20,7 +14,7 @@ export const putItem = async (
     const prefer = req.get('Prefer');
     const returnRepresentation = prefer === PreferHeader.REPRESENTATION;
 
-    const validationResult = CreateImageSchema.safeParse(req.body);
+    const validationResult = ImageSchema.safeParse(req.body);
     if (!validationResult.success) {
       const errorMessage = validationResult.error.errors
         .map((err) => err.message)

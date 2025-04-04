@@ -318,8 +318,19 @@ export default [
             { importNames: ["useLocation"], message: "Make sure you are importing useLocation from react-router-dom instead of react-router.", name: "react-router" }]
         }
       ],
-
-      'no-restricted-properties': 'error',
+      'no-restricted-properties': ['warn',
+        {
+          message: 'Avoid using reverse, use toReversed instead.',
+          property: 'reverse', // Replace  reverse
+        },
+        {
+          message: 'Avoid using sort, use toSorted instead.',
+          property: 'sort', // Replace  sort
+        },
+        {
+          message: 'Avoid using splice, use toSpliced instead.',
+          property: 'splice', // Replace "splice"
+        },],
       'no-restricted-syntax': 'error',
       'no-return-assign': 'error',
       'no-script-url': 'error',
@@ -490,8 +501,8 @@ export default [
         'error',
         {
           forbid: [
-            { element: 'applet', message: 'use <object> instead' },
             { element: 'acronym', message: 'use <abbr> instead' },
+            { element: 'applet', message: 'use <object> instead' },
             { element: 'basefont', message: 'use <font> instead' },
             { element: 'bgsound' },
             { element: 'big', message: 'use font-size instead' },
@@ -499,35 +510,28 @@ export default [
             { element: 'center', message: 'use text-align instead' },
             { element: 'dir' },
             { element: 'embed', message: 'use <object> instead' },
-            {
-              element: 'font',
-              message: 'use font-family and font-size instead',
-            },
+            { element: 'font', message: 'use font-family and font-size instead' },
+            { element: 'frame' },
             { element: 'frameset', message: 'use <iframe> instead' },
-            { element: 'isindex' },
             { element: 'ilayer' },
+            { element: 'isindex' },
             { element: 'keygen' },
-            { element: 'frameset', message: 'use <iframe> instead' },
             { element: 'layer' },
+            { element: 'marquee', message: 'use CDD instead' },
             { element: 'menu' },
             { element: 'menuitem' },
-            { element: 'menu' },
             { element: 'multicol' },
             { element: 'nobr' },
             { element: 'noembed' },
             { element: 'noframes' },
-            { element: 'frameset' },
-            { element: 'plaintext', message: 'use <pre> instead' },
-            { element: 'frameset', message: 'use <iframe> instead' },
             { element: 'param' },
+            { element: 'plaintext', message: 'use <pre> instead' },
             { element: 's', message: 'use text-decoration instead' },
-            { element: 'strike', message: 'use text-decoration instead' },
             { element: 'spacer', message: 'use <pre> & <br> instead' },
+            { element: 'strike', message: 'use text-decoration instead' },
             { element: 'tt', message: 'use <pre> & <kbd> instead' },
             { element: 'u', message: 'use <pre> & <kbd> instead' },
             { element: 'xmp', message: 'use text-decoration instead' },
-            { element: 'frame' },
-            { element: 'marquee', message: 'use CDD instead' },
           ],
         },
       ],
