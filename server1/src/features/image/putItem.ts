@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { z } from 'zod';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image, ImageSchema } from '../../types/Image.js';
 import { PreferHeader } from '../../lib/utils/constants.js';
