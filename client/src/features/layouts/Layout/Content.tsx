@@ -17,5 +17,5 @@ Content.displayName = 'Content';
 export default Content;
 
 const StyledElement = styled.div`
-  padding: 0 20px;
+  width: 100%;
 `;

@@ -30,7 +30,7 @@ const LoadingWrapper = ({
     return (
       <StyledLoadingDiv>
         <ProgressBar />
-        {loadingText ?? null}
+        {loadingText ? <LoadingText>{loadingText}</LoadingText> : null}
         {fallback ?? null}
       </StyledLoadingDiv>
     );
@@ -58,10 +58,15 @@ LoadingWrapper.displayName = 'LoadingWrapper';
 
 export default memo(LoadingWrapper);
 
+const LoadingText = styled.div`
+  color: var(--palette-text);
+  font-size: 16px;
+  margin-top: 8px;
+  margin-left: 8px;
+`;
 const StyledLoadingDiv = styled.div`
   color: var(--palette-text);
-}`;
-
+`;
 const StyledErrorDiv = styled.div`
   width: 100%;
   color: var(--palette-error);
@@ -76,5 +81,5 @@ const ProgressBar = styled.div`
   background-size: 300% 100%;
   animation: ${keyframes`
     0% {background-position: right}
-  `} 1s infinite linear;
+  `} 2s infinite linear;
 `;

@@ -40,18 +40,21 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Content>
-          <LoadingWrapper isError={isError} isLoading={isLoading}>
-            <Fallback />
-            <Suspense fallback="Loading ...">
-              <Layout.Article>
-                <PageTitle title={pageTitle}>
-                  <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
-                </PageTitle>
-                <StyledSection>
-                  <RenderHtml text={deferredData?.text} />
-                </StyledSection>
-              </Layout.Article>
-            </Suspense>
+          <LoadingWrapper
+            isError={isError}
+            isLoading={isLoading}
+            loadingText="Loading ...">
+            {/* <Fallback />
+            <Suspense fallback="Loading ..."> */}
+            <Layout.Article>
+              <PageTitle title={pageTitle}>
+                <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
+              </PageTitle>
+              <StyledSection>
+                <RenderHtml text={deferredData?.text} />
+              </StyledSection>
+            </Layout.Article>
+            {/* </Suspense> */}
           </LoadingWrapper>
           <Layout.Aside />
         </Layout.Content>
