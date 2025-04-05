@@ -7,7 +7,7 @@
     "node": ">=20.11.0"
   },
   "scripts": {
-    "start": "npm run build && [ -f dist/server.js ] || npm run build && node dist/server.js",
+    "start": "npm run build && node dist/server.js",
     "debug": "npm run build && node --inspect dist/server.js",
     "build": "tsc",
     "precommit": "pretty-quick --staged",

@@ -71,12 +71,15 @@ export type IdType = {
   readonly id: number;
 };
 
-export function cleanUpData<T extends IdType>(data: T): T {
+export function cleanUpData<T>(data: T): T {
   const cleanedData = removeEmptyAttributes<T>(data) as T;
   const sortedData = sortObjectKeys<T>(cleanedData) as T;
   const trimmedData = trimAttributes<T>(sortedData) as T;
-  const { id, ...rest } = trimmedData;
-  return { id, ...rest } as T;
+  if ((trimmedData as Partial<IdType>).id !== undefined) {
+    const { id } = trimmedData as IdType;
+    return { id, ...trimmedData } as T;
+  }
+  return { ...trimmedData } as T;
 }
 
 export function getNextId<T extends IdType>(

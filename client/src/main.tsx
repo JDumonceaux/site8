@@ -5,10 +5,6 @@ import ReactDOM from 'react-dom/client';
 
 import reportWebVitals from './lib/utils/reportWebVitals';
 
-import './lib/utils/i18';
-import './styles/main.css';
-import './styles/reset.css';
-
 // Get the root element from the document
 const rootElement = document.querySelector('#root');
 

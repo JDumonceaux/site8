@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 type LoadingWrapperProps = {
   readonly children: React.ReactNode;
@@ -29,6 +29,7 @@ const LoadingWrapper = ({
   if (isLoading || isPending) {
     return (
       <StyledLoadingDiv>
+        <ProgressBar />
         {loadingText ?? null}
         {fallback ?? null}
       </StyledLoadingDiv>
@@ -67,4 +68,13 @@ const StyledErrorDiv = styled.div`
   border: 1px solid var(--palette-error);
   padding: 12px;
   margin-bottom: 20px;
-}`;
+`;
+const ProgressBar = styled.div`
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
+  background-size: 300% 100%;
+  animation: ${keyframes`
+    0% {background-position: right}
+  `} 1s infinite linear;
+`;

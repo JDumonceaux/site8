@@ -4,7 +4,6 @@ import { getNewIds, getNewItems } from './imagesUtil.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
 import { Image } from '../../types/Image.js';
-import { ImageEdit } from '../../types/ImageEdit.js';
 import { Images } from '../../types/Images.js';
 import { ImagesFileService } from './ImagesFileService.js';
 
@@ -65,8 +64,7 @@ export class ImagesService {
     if (!ret) {
       throw new Error('getNewItems > Index file not loaded');
     }
-    const items = ret.items?.filter((x) => x.isNewItem === true);
-    return { ...ret, items };
+    return { ...ret };
   }
 
   /**
@@ -183,7 +181,7 @@ export class ImagesService {
   }
 
   public async updateItems(
-    items: ReadonlyArray<ImageEdit> | undefined,
+    items: ReadonlyArray<Image> | undefined,
   ): Promise<boolean> {
     if (!items || !Array.isArray(items) || items.length === 0) {
       Logger.info(`ImagesService: updateItems -> no items to update`);
@@ -196,7 +194,7 @@ export class ImagesService {
     }
 
     // Get the updated records
-    const updatedItems: ImageEdit[] = items.map((item) => {
+    const updatedItems: Image[] = items.map((item) => {
       const currItems = images.items?.filter((x) => x.id === item.id);
 
       if (!currItems) {

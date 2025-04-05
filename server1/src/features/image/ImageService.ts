@@ -1,6 +1,6 @@
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData } from '../../lib/utils/objectUtil.js';
-import { Image } from '../../types/Image.js';
+import { Image, ImageAdd } from '../../types/Image.js';
 import { Images } from '../../types/Images.js';
 import { ImagesService } from '../images/ImagesService.js';
 
@@ -36,12 +36,12 @@ export class ImageService {
     }
   }
 
-  public async addItem(data: Image): Promise<number> {
+  public async addItem(data: ImageAdd): Promise<number> {
     Logger.info('ImageService: addItem ->');
     const imagesService = this.getImagesService();
 
     try {
-      const updatedItem = cleanUpData<Image>(data);
+      const updatedItem = cleanUpData<ImageAdd>(data);
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }

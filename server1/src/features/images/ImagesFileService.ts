@@ -2,11 +2,10 @@ import { mkdirSync, existsSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 import { FOLDERS_TO_IGNORE } from '../../lib/utils/constants.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { Image } from '../../types/Image.js';
+import { Image, ImageEdit } from '../../types/Image.js';
 import { Images } from '../../types/Images.js';
 import { ImagesService } from './ImagesService.js';
 import FilePath from '../files/FilePath.js';
-import { ImageEdit } from '../../types/ImageEdit.js';
 
 export class ImagesFileService {
   private imageDir = '';

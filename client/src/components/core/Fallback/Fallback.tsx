@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
+
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import styled from 'styled-components';
 

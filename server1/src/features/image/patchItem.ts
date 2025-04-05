@@ -1,18 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { z } from 'zod';
 import { Logger } from '../../lib/utils/logger.js';
-import { Image } from '../../types/Image.js';
+import { Image, ImageSchema } from '../../types/Image.js';
 import { PreferHeader } from '../../lib/utils/constants.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
-
-// Define a Zod schema for validating the Image data.
-// Adjust the schema according to the actual properties of your Image type.
-const ImageSchema = z.object({
-  id: z.number(),
-  title: z.string(),
-  description: z.string().optional(),
-  url: z.string().url(),
-});
 
 export const patchItem = async (
   req: Request,

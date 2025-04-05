@@ -25,7 +25,7 @@ export function getNewItems(
   });
 
   const newItemsWithFlag = filteredItems.map((item) =>
-    cleanUpData<Image>({ ...item, isNewItem: true }),
+    cleanUpData<Image>({ ...item }),
   );
 
   return newItemsWithFlag.sort((a, b) => a.fileName.localeCompare(b.fileName));
