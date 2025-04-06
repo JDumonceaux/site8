@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
 import useSnackbar from 'features/app/useSnackbar';
 import type { ItemAdd, ItemAddExt } from 'features/itemsAdd/ItemAdd';
-import useServerApi from 'hooks/Axios/useServerApi';
+import { useAxios } from 'hooks/Axios/useAxios';
 import useFormArray from 'hooks/useFormArray';
 import { ServiceUrl } from 'lib/utils/constants';
 import {
   getDefaultObject,
-  removeEmptyAttributes,
   removeEmptyAttributesArray,
 } from 'lib/utils/objectUtil';
 
@@ -28,7 +26,7 @@ const useItemsAddPage = () => {
     setFormValues,
   } = useFormArray<ItemAddExt>();
 
-  const { error, isLoading, putData } = useServerApi<unknown>();
+  const { error, putData } = useAxios<unknown>();
 
   const handleFilterChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {

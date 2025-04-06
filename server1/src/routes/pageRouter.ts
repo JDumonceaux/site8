@@ -8,9 +8,9 @@ import { patchItem } from '../features/page/patchItem.js';
 
 export const pageRouter = express.Router();
 
-const validationStack = [requireId];
+const validationMiddleware = [requireId];
 
-pageRouter.get('/:id', validationStack, getItem);
-pageRouter.delete('/:id', validationStack, deleteItem);
+pageRouter.get('/:id', validationMiddleware, getItem);
+pageRouter.delete('/:id', validationMiddleware, deleteItem);
 pageRouter.put('/', putItem);
 pageRouter.patch('/', patchItem);

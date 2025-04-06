@@ -28,16 +28,17 @@ const LoadingWrapper = ({
 }: LoadingWrapperProps): React.JSX.Element | React.ReactNode => {
   if (isLoading || isPending) {
     return (
-      <StyledLoadingDiv>
+      <>
         <ProgressBar />
         {loadingText ? <LoadingText>{loadingText}</LoadingText> : null}
         {fallback ?? null}
-      </StyledLoadingDiv>
+      </>
     );
   } else if (error || isError) {
     if (error instanceof Error) {
       return (
         <>
+          <ErrorBar />
           <StyledErrorDiv>{error.message}</StyledErrorDiv>
           {children}
         </>
@@ -50,6 +51,12 @@ const LoadingWrapper = ({
         </>
       );
     }
+    return (
+      <>
+        <StyledErrorDiv>Error: Unknown error encountered.</StyledErrorDiv>
+        {children}
+      </>
+    );
   }
   return children;
 };
@@ -64,15 +71,11 @@ const LoadingText = styled.div`
   margin-top: 8px;
   margin-left: 8px;
 `;
-const StyledLoadingDiv = styled.div`
-  color: var(--palette-text);
-`;
 const StyledErrorDiv = styled.div`
-  width: 100%;
   color: var(--palette-error);
-  border: 1px solid var(--palette-error);
-  padding: 12px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  margin-top: 8px;
+  margin-left: 8px;
 `;
 const ProgressBar = styled.div`
   width: 100%;
@@ -82,4 +85,9 @@ const ProgressBar = styled.div`
   animation: ${keyframes`
     0% {background-position: right}
   `} 2s infinite linear;
+`;
+const ErrorBar = styled.div`
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
 `;

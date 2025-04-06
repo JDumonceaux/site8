@@ -18,6 +18,7 @@ import { testsRouter } from './routes/testsRouter.js';
 import { artistsRouter } from './routes/artistsRouter.js';
 import { artistRouter } from './routes/artistRouter.js';
 import { buildRouter } from './routes/buildRouter.js';
+import { genericRouter } from './routes/genericRouter.js';
 
 const app = express();
 
@@ -47,7 +48,7 @@ app.use((req, res, next) => {
   res.setTimeout(2000, () => {
     console.log('Request has timed out.');
     res.status(408).send('Request Timeout');
-    req.destroy();
+    req.socket.destroy();
   });
   next();
 });
@@ -107,6 +108,7 @@ app.use('/api/bookmarks', bookmarksRouter);
 // });
 app.use('/api/artist', artistRouter);
 app.use('/api/artists', artistsRouter);
+app.use('/api/generic', genericRouter);
 app.use('/api/image', imageRouter);
 app.use('/api/images', imagesRouter);
 app.use('/api/items', itemsRouter);

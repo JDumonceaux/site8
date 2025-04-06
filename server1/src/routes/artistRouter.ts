@@ -4,6 +4,8 @@ import { requireId } from '../middleware/requireId.js';
 
 export const artistRouter = express.Router();
 
-const validationStack = [requireId];
+const validationMiddleware = [requireId];
 
-artistRouter.get('/:id/items', validationStack, getArtistItems);
+// Define a route to fetch items for a specific artist by ID.
+// The 'validationMiddleware' ensures the request includes a valid ID before calling 'getArtistItems'.
+artistRouter.get('/:id/items', validationMiddleware, getArtistItems);

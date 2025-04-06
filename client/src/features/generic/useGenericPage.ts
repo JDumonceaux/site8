@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { QueryTime, ServiceUrl } from 'lib/utils/constants';
+import { handleQueryError } from 'lib/utils/errorHandler';
 import type { Page } from 'types';
 
 // Helper function to fetch a generic page by id
 const fetchGenericPage = async (id: string): Promise<Page> => {
-  const response = await fetch(`${ServiceUrl.ENDPOINT_PAGE_NAME}/${id}`);
+  const response = await fetch(`${ServiceUrl.ENDPOINT_GENERIC}/${id}`);
   if (!response.ok) {
-    throw new Error(`Failed to fetch generic page: ${response.statusText}`);
+    handleQueryError(response);
   }
   return response.json() as Promise<Page>;
 };

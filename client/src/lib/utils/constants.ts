@@ -88,6 +88,7 @@ export enum ServiceUrl {
   ENDPOINT_ARTISTS = `${API_ROOT}/artists`,
   ENDPOINT_ARTISTS_ITEMS = `${API_ROOT}/artists/items`,
   ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
+  ENDPOINT_GENERIC = `${API_ROOT}/generic`,
   ENDPOINT_IMAGE = `${API_ROOT}/image`,
   ENDPOINT_IMAGES = `${API_ROOT}/images`,
   ENDPOINT_IMAGES_EDIT = `${API_ROOT}/images/edit`,

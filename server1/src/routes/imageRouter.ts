@@ -8,9 +8,9 @@ import { requireId } from '../middleware/requireId.js';
 
 export const imageRouter = express.Router();
 
-const validationStack = [requireId];
+const validationMiddleware = [requireId];
 
-imageRouter.get('/:id', validationStack, getItem);
-imageRouter.delete('/:id', validationStack, deleteItem);
+imageRouter.get('/:id', validationMiddleware, getItem);
+imageRouter.delete('/:id', validationMiddleware, deleteItem);
 imageRouter.put('/', putItem);
 imageRouter.patch('/', patchItem);

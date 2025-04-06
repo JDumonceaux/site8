@@ -5,6 +5,5 @@ import { requireFileName } from '../middleware/requireFileName.js';
 
 export const filesRouter = express.Router();
 
-const validationStack = [requireFileName];
-
-filesRouter.get('/:filename', validationStack, getFile);
+const validationMiddleware = [requireFileName];
+filesRouter.get('/:filename', validationMiddleware, getFile);

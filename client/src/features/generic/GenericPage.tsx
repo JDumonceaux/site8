@@ -1,6 +1,5 @@
-import { Suspense, useDeferredValue, useEffect, useState } from 'react';
+import { useDeferredValue, useEffect, useState } from 'react';
 
-import Fallback from 'components/core/Fallback/Fallback';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
@@ -26,7 +25,7 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
     setId(temporaryId);
   }, [x.pathname]);
 
-  const { data, isError, isLoading } = useGenericPage(id);
+  const { data, error, isError, isLoading } = useGenericPage(id);
 
   const deferredData = useDeferredValue(data);
 
@@ -41,11 +40,10 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
         </Layout.Menu>
         <Layout.Content>
           <LoadingWrapper
+            error={error}
             isError={isError}
             isLoading={isLoading}
             loadingText="Loading ...">
-            {/* <Fallback />
-            <Suspense fallback="Loading ..."> */}
             <Layout.Article>
               <PageTitle title={pageTitle}>
                 <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
@@ -54,7 +52,6 @@ const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
                 <RenderHtml text={deferredData?.text} />
               </StyledSection>
             </Layout.Article>
-            {/* </Suspense> */}
           </LoadingWrapper>
           <Layout.Aside />
         </Layout.Content>

@@ -6,8 +6,8 @@ import { requireId } from '../middleware/requireId.js';
 
 export const bookmarksRouter = express.Router();
 
-const validationStack = [requireId];
+const validationMiddleware = [requireId];
 
-bookmarksRouter.get('/page/:id', validationStack, getItemsPage);
+bookmarksRouter.get('/page/:id', validationMiddleware, getItemsPage);
 bookmarksRouter.get('/', getItems);
 bookmarksRouter.get('/tags', getTags);
