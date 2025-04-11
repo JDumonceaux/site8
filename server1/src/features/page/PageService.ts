@@ -148,7 +148,7 @@ export class PageService {
       if (!updatedItem) {
         throw new Error('addItem -> Invalid item');
       }
-      // Get the current file
+      // Get the current index file
       const pages = await this.getItems();
       if (!pages) {
         throw new Error('addItem -> Index missing');

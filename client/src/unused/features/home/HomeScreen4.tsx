@@ -1,8 +1,8 @@
 import HomeMenu from 'features/home/HomeMenu';
 import { keyframes, styled } from 'styled-components';
 
-import TitleAnimation from './Animations/TitleAnimation';
 import PinkGraphic from './PinkGraphic';
+import TitleAnimation from '../../../features/home/Animations/TitleAnimation';
 
 const HomeScreen4 = (): React.JSX.Element => {
   return (

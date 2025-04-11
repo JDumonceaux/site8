@@ -3,16 +3,16 @@ import { Suspense, useDeferredValue } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
 import SubjectMenu from 'features/generic/SubjectMenu';
-import { getSRC } from 'lib/utils/helpers';
+import Layout from 'features/layouts/Layout/Layout';
+import { getSRC, sanitizeUrl } from 'lib/utils/helpers';
 import styled from 'styled-components';
 import type { Image } from 'types/Image';
 
 import useImages from './useImages';
 
 const GenericImagePage = (): React.JSX.Element => {
-  const { data, isError, isPending } = useImages();
+  const { data, isError, isLoading } = useImages();
 
   const deferredData = useDeferredValue<Image[]>(data?.items ?? []);
 
@@ -26,7 +26,7 @@ const GenericImagePage = (): React.JSX.Element => {
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Article>
-          <LoadingWrapper isError={isError} isPending={isPending}>
+          <LoadingWrapper isError={isError} isLoading={isLoading}>
             <PageTitle title={pageTitle} />
             <Layout.Section>
               <Suspense fallback="Loading results ...">
@@ -37,9 +37,13 @@ const GenericImagePage = (): React.JSX.Element => {
                       src={getSRC(item.folder, item.fileName)}
                     />
                     <div>{item.fileName}</div>
-                    <div>
-                      <a href={`${item.official_url}`}>Offical Site</a>
-                    </div>
+                    {item.official_url ? (
+                      <div>
+                        <a href={sanitizeUrl(item.official_url)}>
+                          Offical Site
+                        </a>
+                      </div>
+                    ) : null}
                     {/* <div>{item.tags}</div>  */}
                   </div>
                 ))}

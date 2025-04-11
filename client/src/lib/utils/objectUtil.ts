@@ -120,7 +120,7 @@ export const trimAttributes = <T>(obj: T): T => {
  */
 export const sortObjectKeys = <T>(obj: T): T => {
   return Object.keys(obj as Record<string, unknown>)
-    .sort()
+    .toSorted()
     .reduce((acc, key) => {
       (acc as Record<string, unknown>)[key] = (obj as Record<string, unknown>)[
         key

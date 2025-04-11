@@ -11,7 +11,8 @@ export default defineConfig({
     alias: {
       src: '/src',
       components: '/src/components',
-      feature: '/src/feature',
+      content: '/src/content',
+      features: '/src/features',
       hooks: '/src/hooks',
       lib: '/src/lib',
       providers: '/src/providers',
@@ -27,6 +28,16 @@ export default defineConfig({
     minify: true,
     rollupOptions: {
       plugins: [analyze()],
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return `vendor`;
+          }
+          if (id.includes('src/')) {
+            return 'components';
+          }
+        },
+      },
     },
   },
   // test: {

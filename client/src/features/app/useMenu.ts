@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils';
+import { QueryTime, ServiceUrl } from 'lib/utils/constants';
 import type { Menu } from 'types';
 import type { MenuItem } from 'types/MenuItem';
 

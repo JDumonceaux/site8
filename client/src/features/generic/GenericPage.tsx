@@ -1,4 +1,4 @@
-import { useDeferredValue, useEffect, useState } from 'react';
+import { useDeferredValue } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -17,15 +17,10 @@ type GenericPageProps = {
 
 const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
   const x = useLocation();
-  const [id, setId] = useState<string | undefined>();
 
-  useEffect(() => {
-    const array = x.pathname.split('/');
-    const temporaryId = array.at(-1);
-    setId(temporaryId);
-  }, [x.pathname]);
-
-  const { data, error, isError, isLoading } = useGenericPage(id);
+  const { data, error, isError, isLoading } = useGenericPage(
+    x.pathname ? x.pathname.slice(1) : undefined,
+  );
 
   const deferredData = useDeferredValue(data);
 

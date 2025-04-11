@@ -3,7 +3,7 @@ import { memo, type FC } from 'react';
 import { EnvelopeClosedIcon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
 
-export type EmailAdornmentProp = {
+type EmailAdornmentProp = {
   readonly children?: never;
   readonly iconProps?: IconProps;
   readonly ref?: React.Ref<SVGSVGElement>;

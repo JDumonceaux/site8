@@ -13,7 +13,18 @@ if (!rootElement) {
 }
 
 // Render the application wrapped in necessary providers
-ReactDOM.createRoot(rootElement).render(
+ReactDOM.createRoot(rootElement, {
+  onCaughtError: (error, errorInfo) => {
+    // Handle errors in the application
+    // eslint-disable-next-line no-console
+    console.error('Error caught in ReactDOM:', error, errorInfo);
+  },
+  onUncaughtError: (error, errorInfo) => {
+    // Handle uncaught errors in the application
+    // eslint-disable-next-line no-console
+    console.error('Uncaught error in ReactDOM:', error, errorInfo);
+  },
+}).render(
   <StrictMode>
     <App />
   </StrictMode>,

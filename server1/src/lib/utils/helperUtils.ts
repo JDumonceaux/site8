@@ -20,6 +20,7 @@ export const isValidArray = (arr: unknown[] | undefined) => {
   }
   return true;
 };
+
 export function removeItem<T>(arr: Array<T>, value: T): Array<T> {
   const index = arr.indexOf(value);
   if (index > -1) {

@@ -4,6 +4,7 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import Layout from 'features/layouts/Layout/Layout';
+import { sanitizeUrl } from 'lib/utils/helpers';
 
 import usePhotos from './usePhotos';
 
@@ -25,8 +26,12 @@ const PhotoPage = (): React.JSX.Element => {
                   <a
                     data-caption={item.description}
                     data-fancybox
-                    href={item.url}>
-                    <img alt={item.description} loading="lazy" src={item.url} />
+                    href={sanitizeUrl(item.url)}>
+                    <img
+                      alt={item.description}
+                      loading="lazy"
+                      src={sanitizeUrl(item.url)}
+                    />
                   </a>
                 </li>
               ))}

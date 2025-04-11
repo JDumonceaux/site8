@@ -8,6 +8,7 @@ import { PageMenu } from '../../types/PageMenu.js';
 import { Pages } from '../../types/Pages.js';
 import { PagesIndex } from '../../types/PagesIndex.js';
 import { ParentSortby } from '../../types/ParentSortby.js';
+import { sanitizeFilePath } from '../../lib/utils/fileNameUtil.js';
 
 export class PagesService {
   private fileName = 'pagesIndex.json';
@@ -61,8 +62,10 @@ export class PagesService {
   public async writeFile(data: Pages): Promise<boolean> {
     Logger.info(`PagesService: writeFile -> `);
 
+    const filePath = sanitizeFilePath(this.filePath);
+
     try {
-      await writeFile(this.filePath, JSON.stringify(data, null, 2), {
+      await writeFile(filePath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
       });
       return Promise.resolve(true);

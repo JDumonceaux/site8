@@ -21,7 +21,6 @@ export enum QueryTime {
   TEN_MINUTES = 1000 * 60 * 10,
   // Garbage Collection Time (same as TEN_MINUTES)
   GC_TIME = TEN_MINUTES,
-  ONE_MINUTE = 1000 * 60,
   ONE_SECOND = 1000,
   REFETCH_INTERVAL = 0,
   RETRY = 3,
@@ -32,24 +31,24 @@ export enum QueryTime {
 /* -------------------------------------------------------------------------- */
 /*                              Sorting Order                                 */
 /* -------------------------------------------------------------------------- */
-export enum SortOrder {
-  ASC = 'asc',
-  DESC = 'desc',
-}
+// export enum SortOrder {
+//   ASC = 'asc',
+//   DESC = 'desc',
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                             Request Headers                                */
 /* -------------------------------------------------------------------------- */
 export enum AcceptHeader {
-  ANY = 'application/json, text/plain, */*',
-  CSV = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
-  EXCEL = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // Same as CSV
-  GENERAL = '*/*',
+  // ANY = 'application/json, text/plain, */*',
+  // CSV = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  // // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
+  // EXCEL = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // Same as CSV
+  // GENERAL = '*/*',
   JSON = 'application/json',
-  PDF = 'application/pdf',
-  TEXT = 'text/plain',
-  ZIP = 'application/zip',
+  // PDF = 'application/pdf',
+  // TEXT = 'text/plain',
+  // ZIP = 'application/zip',
 }
 
 export enum PreferHeader {
@@ -59,26 +58,19 @@ export enum PreferHeader {
 /* -------------------------------------------------------------------------- */
 /*                              File Types                                    */
 /* -------------------------------------------------------------------------- */
-export enum FileType {
-  CSV = 'csv',
-  EXCEL = 'xlsx',
-  PDF = 'pdf',
-  ZIP = 'zip',
-}
+// export enum FileType {
+//   CSV = 'csv',
+//   EXCEL = 'xlsx',
+//   PDF = 'pdf',
+//   ZIP = 'zip',
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                          API and Route Constants                           */
 /* -------------------------------------------------------------------------- */
 // Change API_ROOT based on environment as needed
-export const API_ROOT = `http://localhost:3005/api`;
-
-// Routes
-export const ROUTE_ROOT = '/';
-export const ROUTE_REACT = `${ROUTE_ROOT}react`;
-export const ROUTE_WEB = `${ROUTE_ROOT}web`;
-export const ROUTE_WEB_HTML = `${ROUTE_WEB}/html`;
-export const ROUTE_WEB_CSS = `${ROUTE_WEB}/css`;
-export const ROUTE_WEB_TEST_GRID = `${ROUTE_WEB}/test-grid`;
+const API_ROOT = `http://localhost:3005/api`;
+export const IMAGE_BASE = '/images';
 
 /* -------------------------------------------------------------------------- */
 /*                              Service URLs                                  */
@@ -87,25 +79,21 @@ export enum ServiceUrl {
   ENDPOINT_ARTIST_ITEMS = `${API_ROOT}/artist/{0}/items`,
   ENDPOINT_ARTISTS = `${API_ROOT}/artists`,
   ENDPOINT_ARTISTS_ITEMS = `${API_ROOT}/artists/items`,
-  ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
+  // ENDPOINT_BOOKMARKS = `${API_ROOT}/bookmarks`,
   ENDPOINT_GENERIC = `${API_ROOT}/generic`,
   ENDPOINT_IMAGE = `${API_ROOT}/image`,
   ENDPOINT_IMAGES = `${API_ROOT}/images`,
   ENDPOINT_IMAGES_EDIT = `${API_ROOT}/images/edit`,
   ENDPOINT_IMAGES_FIX_FILE_NAMES = `${API_ROOT}/images/fix-file-names`,
   ENDPOINT_IMAGES_FIX_INDEX = `${API_ROOT}/images/fix-index`,
-  ENDPOINT_IMAGES_FOLDERS = `${API_ROOT}/images/folders`,
+  // ENDPOINT_IMAGES_FOLDERS = `${API_ROOT}/images/folders`,
   ENDPOINT_IMAGES_LIST_DUPLICATES = `${API_ROOT}/images/list-duplicates`,
-  ENDPOINT_IMAGES_NEW = `${API_ROOT}/images/new`,
-  ENDPOINT_IMAGES_SCAN = `${API_ROOT}/images/scan`,
+  // ENDPOINT_IMAGES_SCAN = `${API_ROOT}/images/scan`,
   ENDPOINT_ITEMS = `${API_ROOT}/items`,
-  ENDPOINT_ITEMS_EDIT = `${API_ROOT}/items/edit`,
   ENDPOINT_MENUS = `${API_ROOT}/menus`,
-  ENDPOINT_MENUS_EDIT = `${API_ROOT}/menus/edit`,
-  ENDPOINT_MUSIC = `${API_ROOT}/music`,
+  // ENDPOINT_MENUS_EDIT = `${API_ROOT}/menus/edit`,
   ENDPOINT_PAGE = `${API_ROOT}/page`,
-  ENDPOINT_PAGE_NAME = `${API_ROOT}/page/name`,
-  ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
+  // ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
   ENDPOINT_TESTS = `${API_ROOT}/tests`,
 }
 
@@ -113,8 +101,7 @@ export enum ServiceUrl {
 /*                              Miscellaneous                                 */
 /* -------------------------------------------------------------------------- */
 export const REQUIRED_FIELD = 'Required Field';
-export const DF_LONG = 'M/d/yyyy h:mm a';
-export const IMAGE_BASE = '/images';
+//export const DF_LONG = 'M/d/yyyy h:mm a';
 
 export const MAX_EMAIL_LENGTH = 250;
 export const MIN_PASSWORD_LENGTH = 8;

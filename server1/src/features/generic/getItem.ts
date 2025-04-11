@@ -2,29 +2,25 @@ import { Request, Response, NextFunction } from 'express';
 
 import { GenericService } from './GenericService.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { PageText } from '../../types/PageText.js';
+import { Responses } from '../../lib/utils/constants.js';
 
 export const getItemByName = async (
-  req: Request<{ id: string }, unknown, unknown, unknown>,
-  res: Response<PageText>,
+  req: Request<{ parent: string; name: string }, unknown, unknown, unknown>,
+  res: Response<PageText | any>,
   next: NextFunction,
 ) => {
-  const { id } = req.params;
+  const { name, parent } = req.params;
+  Logger.info(`Generic: getItemByName called: ${parent}/${name}`);
 
-  Logger.info(`Generic: Get Item by Name called: ${id}`);
-
-  const { id: idNum, isValid } = parseRequestId(id.trim());
-  if (!isValid || !idNum) {
-    Logger.info(`Generic: get item -> invalid param: ${id}`);
-    // res.status(400).json({ error: Responses.INVALID_ID });
+  if (!name) {
+    Logger.info(`Generic: getItemByName -> invalid param: ${parent}/${name}`);
+    res.status(400).json({ error: Responses.INVALID_PARAM });
     return;
   }
-
   const service = new GenericService();
-
   await service
-    .getItem(idNum)
+    .getItem(parent, name)
     .then((response) => {
       if (response) {
         res.status(200).json(response);

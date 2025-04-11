@@ -9,13 +9,6 @@ export const requireId = (req: Request, res: Response, next: NextFunction) => {
   if (id) {
     next();
   } else {
-    // const { id: idNum, isValid } = parseRequestId(id.trim());
-    // if (!isValid || !idNum) {
-    //   Logger.info(`Image: Get Item -> invalid param id: ${id}`);
-    //   next({ message: Responses.INVALID_ID });
-    //   return;
-    // }
-
     res.status(400).json({ message: 'Id is required' });
   }
 };

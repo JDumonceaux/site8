@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import appReducer from './appSlice';
-import snackbarReducer from './snackbarSlice';
+import { appReducer } from './appSlice';
+import { snackbarReducer } from './snackbarSlice';
 
 /**
  * The Redux store for the application.
  */
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     appSettings: appReducer,
     snackbar: snackbarReducer,
