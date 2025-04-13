@@ -2,43 +2,15 @@ import { useCallback, useEffect, useMemo } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl } from 'lib/utils/constants';
 import { combineParent, splitParent } from 'lib/utils/helpers';
+import { getDefaultObject } from 'lib/utils/objectUtil';
 import { safeParse } from 'lib/utils/zodHelper';
-import type { Page } from 'types/Page';
-import { z } from 'zod';
+import type { Page, PageEdit } from 'types/Page';
 
-//import { useAxios } from '../../hooks/Axios/useAxios';
 import useForm from '../../hooks/useForm';
 
-// Define Zod Shape
-const pageSchema = z
-  .object({
-    id: z.number(),
-    name: z
-      .string({
-        invalid_type_error: 'Name must be a string',
-        required_error: 'Name is required.',
-      })
-      .min(1, REQUIRED_FIELD)
-      .max(500, 'Name max length exceeded: 500')
-      .trim(),
-
-    parent: z.string().min(1, REQUIRED_FIELD),
-    readability_score: z.string().trim().optional(),
-    reading_time: z.string().trim().optional(),
-    text: z.string().trim(),
-    to: z.string().trim().optional(),
-    url: z.string().trim().optional(),
-  })
-  .refine(
-    (data) => data.to ?? data.url,
-    'Either to or url should be filled in.',
-  );
-
-// Create a type from the schema
-type FormType = z.infer<typeof pageSchema>;
-type FormKeys = keyof FormType;
+type FormKeys = keyof PageEdit;
 
 const patchData = async (updateItem: Page) => {
   const response = await axios.patch(ServiceUrl.ENDPOINT_PAGE, updateItem);
@@ -58,19 +30,7 @@ const usePageEdit = (data?: null | Page) => {
   });
 
   // Return default form values
-  const initialFormValues: FormType = useMemo(
-    () => ({
-      id: 0,
-      name: '',
-      parent: '',
-      readability_score: '',
-      reading_time: '',
-      text: '',
-      to: '',
-      url: '',
-    }),
-    [],
-  );
+  const initialFormValues: PageEdit = getDefaultObject<PageEdit>();
 
   // Create a form
   const {

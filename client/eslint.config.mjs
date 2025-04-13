@@ -315,7 +315,9 @@ export default [
       'no-restricted-imports': [
         'error', {
           'paths': [
-            { importNames: ["useLocation"], message: "Make sure you are importing useLocation from react-router-dom instead of react-router.", name: "react-router" }]
+            { importNames: ["useLocation"], message: "Make sure you are importing useLocation from react-router-dom instead of react-router.", name: "react-router" },
+            { importNames: ["useFormState"], message: "useActionState instead" }
+          ]
         }
       ],
       'no-restricted-properties': ['warn',
