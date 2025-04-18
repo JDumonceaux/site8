@@ -5,7 +5,7 @@ import Input from 'components/Input/Input';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import usePageEdit from 'features/pageEdit/usePageEdit';
 import styled from 'styled-components';
-import type { Page } from 'types/Page';
+import type { Page, PageEdit } from 'types/Page';
 
 import { insertHTML } from './textUtils';
 import ToolMenu from './ToolMenu';
@@ -15,7 +15,7 @@ type PageEditFormProps = {
   readonly data?: null | Page;
 };
 
-const PageEditForm = ({ data }: PageEditFormProps): React.JSX.Element => {
+const PageEditForm = (): React.JSX.Element => {
   // const {
   //   formValues,
   //   getDefaultProps,
@@ -65,14 +65,24 @@ const PageEditForm = ({ data }: PageEditFormProps): React.JSX.Element => {
   //   [setCurrentPositionStart, setCurrentPositionEnd],
   // );
 
-  const { submitAction, isUpdating } = usePagePatch();
+  const [data, action, isPending] = useActionState(saveUser, {
+    message: 'Stuck up',
+    fieldData: { feedback: 'Test' },
+  });
 
-  const [state, formAction] = useActionState(submitAction, undefined);
+  async function saveUser(prevState: unknown, formData: FormData) {
+    await 1000;
+    console.log('feedback', formData.get('feedback') as string);
+    return {
+      message: 'error',
+      fieldData: { feedback: formData.get('feedback') as string },
+    };
+  }
 
   const isSaved = false;
 
   return (
-    <Form.Root action={formAction}>
+    <form action={action}>
       <StyledButton>
         <StyledSaveButton
           data-testid="button-save"
@@ -82,6 +92,17 @@ const PageEditForm = ({ data }: PageEditFormProps): React.JSX.Element => {
         </StyledSaveButton>
       </StyledButton>
       <button type="submit">Submit</button>
+      <div>{data?.message}</div>
+      <div>
+        p
+        <input
+          name="feedback"
+          placeholder="input"
+          type="text"
+          defaultValue={data?.fieldData?.feedback}
+        />
+        p
+      </div>
       <Input.Text
         id="title"
         labelProps={{ label: 'Title' }}
@@ -127,7 +148,7 @@ const PageEditForm = ({ data }: PageEditFormProps): React.JSX.Element => {
         {...getDefaultProps('readability_score')}
         label="Readability Score"
       /> */}
-    </Form.Root>
+    </form>
   );
 };
 

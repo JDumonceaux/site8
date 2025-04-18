@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { previousDay } from 'date-fns';
 import { ServiceUrl } from 'lib/utils/constants';
 import { PageEdit } from 'types';
 
@@ -15,7 +16,8 @@ const usePagePatch = () => {
     },
   });
 
-  async function submitAction(prevState: any, formData: FormData) {
+  const bakeBun = async (prevState: number, formData: any) => {
+    console.log('Form data:', formData);
     // Object.fromEntries(formData.entries()) as PageEdit;
     const data: PageEdit = {
       id: Number(formData.get('id')),
@@ -24,18 +26,18 @@ const usePagePatch = () => {
       parent: formData.get('parent') as string,
     };
 
-    console.log('Form data:', data);
-
     try {
       await mutation.mutateAsync(data);
       console.log('Data saved successfully!');
     } catch (error) {
       console.error('Error saving data:', error);
     }
-  }
+
+    return Number(formData.get('bunCount'));
+  };
 
   return {
-    submitAction,
+    bakeBun,
     error: mutation.error,
     isError: mutation.isError,
     isUpdating: mutation.isPending,
