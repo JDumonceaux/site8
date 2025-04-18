@@ -316,7 +316,9 @@ export default [
         'error', {
           'paths': [
             { importNames: ["useLocation"], message: "Make sure you are importing useLocation from react-router-dom instead of react-router.", name: "react-router" },
-            { importNames: ["useFormState"], message: "useActionState instead" }
+            { importNames: ["useFormState"], message: "useActionState instead" },
+            { message: "React 19 - deprecated.", name: "react-test-renderer" },
+
           ]
         }
       ],

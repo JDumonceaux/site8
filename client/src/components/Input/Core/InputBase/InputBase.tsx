@@ -43,7 +43,7 @@ type InputBaseProps = {
   readonly onClear?: (id: string) => void;
   readonly ref?: React.Ref<HTMLInputElement>;
   readonly type: HTMLInputTypeAttribute;
-  readonly value: number | string | string[];
+  readonly value?: number | string | string[];
 } & FieldWrapperProps &
   Omit<
     InputHTMLAttributes<HTMLInputElement>,
