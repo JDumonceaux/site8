@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type Props = {
@@ -19,20 +17,11 @@ type Props = {
 // With a list, 'combobox' is inferred.
 
 const InputText = ({
-  fieldName,
-  lineId,
   onChange,
   type = 'text',
   ...rest
 }: Props): React.JSX.Element => {
-  const handleChange = useCallback(
-    (e) => {
-      onChange(lineId, fieldName, e);
-    },
-    [onChange, lineId, fieldName],
-  );
-
-  return <InputBase onChange={handleChange} type={type} {...rest} />;
+  return <InputBase type={type} {...rest} />;
 };
 
 InputText.displayName = 'InputText';

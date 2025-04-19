@@ -36,7 +36,19 @@ import FieldWrapper, {
 //   'valueMissing',
 // ];
 
-type InputBaseProps = {
+type InputRootProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  | 'accesskey'
+  | 'autocorrect'
+  | 'id'
+  | 'name'
+  | 'onChange'
+  | 'onClick'
+  | 'type'
+  | 'value'
+>;
+
+type InputAddProps = {
   readonly allowedCharacters?: RegExp;
   readonly dataList?: { readonly data?: KeyValue[]; readonly id: string };
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -44,17 +56,8 @@ type InputBaseProps = {
   readonly ref?: React.Ref<HTMLInputElement>;
   readonly type: HTMLInputTypeAttribute;
   readonly value?: number | string | string[];
-} & FieldWrapperProps &
-  Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    | 'accesskey'
-    | 'autocorrect'
-    | 'id'
-    | 'name'
-    | 'onChange'
-    | 'onClick'
-    | 'value'
-  >;
+};
+type InputBaseProps = InputRootProps & InputAddProps & FieldWrapperProps;
 
 // Input Attributes
 // accesskey: never; // Don't use - not accessible
@@ -82,6 +85,8 @@ const InputBase: FC<InputBaseProps> = ({
 
   const tempRef = useRef<HTMLInputElement>(null);
   const localRef = ref ?? tempRef;
+  const inputProps = { ...rest };
+  delete inputProps.labelProps;
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,13 +99,16 @@ const InputBase: FC<InputBaseProps> = ({
   );
 
   return (
-    <FieldWrapper endAdornment={endAdornment} startAdornment={startAdornment}>
+    <FieldWrapper
+      endAdornment={endAdornment}
+      startAdornment={startAdornment}
+      {...(rest as FieldWrapperProps)}>
       <StyledInput
         key={currId}
         list={dataList?.id}
         type={type}
         value={value}
-        {...rest}
+        {...(inputProps as InputRootProps)}
         onChange={handleChange}
         ref={localRef}
       />

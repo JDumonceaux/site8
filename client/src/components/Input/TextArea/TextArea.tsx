@@ -4,14 +4,21 @@ import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
 
 import FieldWrapper, {
+  FieldWrapperProps,
   type FieldWrapperProps as FieldWrapperProperties,
 } from '../Core/FieldWrapper/FieldWrapper';
 
-type TextAreaProperties = {
+type TextAreaRootProps = Omit<
+  TextareaHTMLAttributes<HTMLTextAreaElement>,
+  'name' | 'ref' | 'rows'
+>;
+
+type TextAreaAddProps = {
   readonly ref?: React.RefObject<HTMLTextAreaElement>;
   readonly rows: number;
-} & FieldWrapperProperties &
-  Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name' | 'ref' | 'rows'>;
+};
+
+type TextAreaProps = TextAreaRootProps & TextAreaAddProps & FieldWrapperProps;
 
 const TextArea = ({
   id,
@@ -20,21 +27,18 @@ const TextArea = ({
   required,
   rows,
   ...rest
-}: TextAreaProperties): React.JSX.Element => {
+}: TextAreaProps): React.JSX.Element => {
   const currId = useGetId(id);
-
-  const handleChange = useCallback(onChange, [onChange]);
 
   const tempRef = useRef<HTMLTextAreaElement>(null);
   const localRef = ref ?? tempRef;
 
   return (
-    <FieldWrapper id={currId} onChange={handleChange} required={required}>
+    <FieldWrapper {...(rest as FieldWrapperProps)}>
       <StyledTextArea
-        onChange={handleChange}
         ref={localRef}
         rows={rows}
-        {...rest}
+        {...(rest as TextAreaRootProps)}
       />
     </FieldWrapper>
   );

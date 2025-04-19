@@ -14,8 +14,9 @@ import usePagePatch from './usePagePatch';
 type PageEditFormProps = {
   readonly data?: null | Page;
 };
-
-const PageEditForm = (): React.JSX.Element => {
+const PageEditForm = ({
+  data: initData,
+}: PageEditFormProps): React.JSX.Element => {
   // const {
   //   formValues,
   //   getDefaultProps,
@@ -65,18 +66,26 @@ const PageEditForm = (): React.JSX.Element => {
   //   [setCurrentPositionStart, setCurrentPositionEnd],
   // );
 
+  type FormState = {
+    message: string;
+    fieldData: Page;
+  };
+
   const [data, action, isPending] = useActionState(saveUser, {
     message: 'Stuck up',
-    fieldData: { feedback: 'Test' },
-  });
+    fieldData: initData,
+  } as FormState);
 
-  async function saveUser(prevState: unknown, formData: FormData) {
+  async function saveUser(
+    _prevState: unknown,
+    formData: FormData,
+  ): Promise<FormState> {
     await 1000;
     console.log('feedback', formData.get('feedback') as string);
     return {
       message: 'error',
-      fieldData: { feedback: formData.get('feedback') as string },
-    };
+      fieldData: {},
+    } as FormState;
   }
 
   const isSaved = false;
@@ -91,21 +100,11 @@ const PageEditForm = (): React.JSX.Element => {
           {isSaved ? 'Saved' : 'Save'}
         </StyledSaveButton>
       </StyledButton>
-      <button type="submit">Submit</button>
       <div>{data?.message}</div>
-      <div>
-        p
-        <input
-          name="feedback"
-          placeholder="input"
-          type="text"
-          defaultValue={data?.fieldData?.feedback}
-        />
-        p
-      </div>
       <Input.Text
         id="title"
         labelProps={{ label: 'Title' }}
+        defaultValue={data?.fieldData.name}
         // errorText={getFieldErrors('name')}
         minLength={10}
         // onBlur={handeNameOnBlur}
@@ -118,36 +117,40 @@ const PageEditForm = (): React.JSX.Element => {
       <Input.Text
         id="to"
         labelProps={{ label: 'To' }}
+        defaultValue={data?.fieldData.to}
         placeholder="Enter a route"
       />
       <Input.Text
         id="url"
         labelProps={{ label: 'URL' }}
-        //  onChange={handleChange}
+        defaultValue={data?.fieldData.url}
         placeholder="Enter a url"
       />
       <Input.Text
         id="parent"
         labelProps={{ label: 'Parent' }}
+        //defaultValue={data?.fieldData.parentItems}
         placeholder="Enter a menu id"
       />
       {/* <ToolMenu onClick={handeTextInsert} /> */}
       <Input.TextArea
         id="text"
-        labelProps={{ label: 'text' }}
+        labelProps={{ label: 'Text' }}
+        defaultValue={data?.fieldData.text}
         //onBlur={handeTextAreaBlur}
         rows={30}
         spellCheck
       />
-      {/* <Input.Text
-        {...getDefaultProps('reading_time')}
-        // errorText={getFieldErrors('reading_time')}
-        label="Reading Time"
+      <Input.Text
+        id="reading_time"
+        labelProps={{ label: 'Reading Time' }}
+        defaultValue={data?.fieldData.reading_time}
       />
       <Input.Text
-        {...getDefaultProps('readability_score')}
-        label="Readability Score"
-      /> */}
+        id="readability_score"
+        labelProps={{ label: 'Readability Score' }}
+        defaultValue={data?.fieldData.readability_score}
+      />
     </form>
   );
 };
