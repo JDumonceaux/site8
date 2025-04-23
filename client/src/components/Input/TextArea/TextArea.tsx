@@ -1,10 +1,10 @@
-import React, { useRef, useCallback, type TextareaHTMLAttributes } from 'react';
+import React, { useRef, type TextareaHTMLAttributes } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
 
 import FieldWrapper, {
-  FieldWrapperProps,
+  type FieldWrapperProps,
   type FieldWrapperProps as FieldWrapperProperties,
 } from '../Core/FieldWrapper/FieldWrapper';
 
@@ -36,6 +36,8 @@ const TextArea = ({
   return (
     <FieldWrapper {...(rest as FieldWrapperProps)}>
       <StyledTextArea
+        id={id}
+        name={id}
         ref={localRef}
         rows={rows}
         {...(rest as TextAreaRootProps)}

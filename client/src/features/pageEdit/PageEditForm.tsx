@@ -1,15 +1,12 @@
-import React, { useActionState, useCallback, useState } from 'react';
+import React, { useActionState } from 'react';
 
 import * as Form from '@radix-ui/react-form';
 import Input from 'components/Input/Input';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import usePageEdit from 'features/pageEdit/usePageEdit';
 import styled from 'styled-components';
-import type { Page, PageEdit } from 'types/Page';
+import type { Page } from 'types/Page';
 
-import { insertHTML } from './textUtils';
-import ToolMenu from './ToolMenu';
-import usePagePatch from './usePagePatch';
+import usePagePatch, { type FormState } from './usePagePatch';
 
 type PageEditFormProps = {
   readonly data?: null | Page;
@@ -17,26 +14,8 @@ type PageEditFormProps = {
 const PageEditForm = ({
   data: initData,
 }: PageEditFormProps): React.JSX.Element => {
-  // const {
-  //   formValues,
-  //   getDefaultProps,
-  //   handleChange,
-  //   handleSave,
-  //   isSaved,
-  //   setFieldValue,
-  // } = usePageEdit(data);
-
   // const [currentPositionStart, setCurrentPositionStart] = useState<number>(0);
   // const [currentPositionEnd, setCurrentPositionEnd] = useState<number>(0);
-
-  // const handleSubmit = useCallback(
-  //   (error: React.FormEvent) => {
-  //     error.stopPropagation();
-  //     error.preventDefault();
-  //     handleSave();
-  //   },
-  //   [handleSave],
-  // );
 
   // const handeTextInsert = useCallback(
   //   (action: string) => {
@@ -66,64 +45,44 @@ const PageEditForm = ({
   //   [setCurrentPositionStart, setCurrentPositionEnd],
   // );
 
-  type FormState = {
-    message: string;
-    fieldData: Page;
-  };
+  const { patchItem } = usePagePatch();
 
-  const [data, action, isPending] = useActionState(saveUser, {
-    message: 'Stuck up',
+  const [data, action] = useActionState(patchItem, {
     fieldData: initData,
   } as FormState);
 
-  async function saveUser(
-    _prevState: unknown,
-    formData: FormData,
-  ): Promise<FormState> {
-    await 1000;
-    console.log('feedback', formData.get('feedback') as string);
-    return {
-      message: 'error',
-      fieldData: {},
-    } as FormState;
-  }
-
-  const isSaved = false;
-
   return (
-    <form action={action}>
-      <StyledButton>
-        <StyledSaveButton
-          data-testid="button-save"
-          //onClick={handleSubmit}
-          type="submit">
-          {isSaved ? 'Saved' : 'Save'}
+    <Form.Root action={action}>
+      <StyledButtonWrapper>
+        <StyledSaveButton data-testid="button-save" type="submit">
+          Save
         </StyledSaveButton>
-      </StyledButton>
-      <div>{data?.message}</div>
+      </StyledButtonWrapper>
+      <div>{data.message}</div>
+      <input id="id" name="id" type="hidden" value={data.fieldData.id} />
       <Input.Text
+        defaultValue={data.fieldData.name}
         id="title"
         labelProps={{ label: 'Title' }}
-        defaultValue={data?.fieldData.name}
         // errorText={getFieldErrors('name')}
         minLength={10}
+        placeholder="Enter a title"
         // onBlur={handeNameOnBlur}
         // onChange={handleChange}
-        placeholder="Enter a title"
         required
         spellCheck
         // value={formValues.name}
       />
       <Input.Text
+        defaultValue={data.fieldData.to}
         id="to"
         labelProps={{ label: 'To' }}
-        defaultValue={data?.fieldData.to}
         placeholder="Enter a route"
       />
       <Input.Text
+        defaultValue={data.fieldData.url}
         id="url"
         labelProps={{ label: 'URL' }}
-        defaultValue={data?.fieldData.url}
         placeholder="Enter a url"
       />
       <Input.Text
@@ -134,24 +93,24 @@ const PageEditForm = ({
       />
       {/* <ToolMenu onClick={handeTextInsert} /> */}
       <Input.TextArea
+        defaultValue={data.fieldData.text}
         id="text"
         labelProps={{ label: 'Text' }}
-        defaultValue={data?.fieldData.text}
         //onBlur={handeTextAreaBlur}
         rows={30}
         spellCheck
       />
       <Input.Text
+        defaultValue={data.fieldData.reading_time}
         id="reading_time"
         labelProps={{ label: 'Reading Time' }}
-        defaultValue={data?.fieldData.reading_time}
       />
       <Input.Text
+        defaultValue={data.fieldData.readability_score}
         id="readability_score"
         labelProps={{ label: 'Readability Score' }}
-        defaultValue={data?.fieldData.readability_score}
       />
-    </form>
+    </Form.Root>
   );
 };
 
@@ -162,7 +121,7 @@ export default PageEditForm;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: 400;
 `;
-const StyledButton = styled.div`
+const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;

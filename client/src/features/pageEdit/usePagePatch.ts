@@ -1,47 +1,51 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { previousDay } from 'date-fns';
 import { ServiceUrl } from 'lib/utils/constants';
-import { PageEdit } from 'types';
+import type { Page, PageEdit } from 'types';
+
+export type FormState = {
+  fieldData: Page;
+  message?: string;
+};
 
 const usePagePatch = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (data: PageEdit) =>
-      axios.patch<PageEdit>(`${ServiceUrl.ENDPOINT_PAGE}`, data),
-
+    mutationFn: async (data: PageEdit) =>
+      axios.patch<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['page'] });
     },
   });
 
-  const bakeBun = async (prevState: number, formData: any) => {
-    console.log('Form data:', formData);
-    // Object.fromEntries(formData.entries()) as PageEdit;
-    const data: PageEdit = {
-      id: Number(formData.get('id')),
-      name: formData.get('name') as string,
-      text: formData.get('text') as string,
-      parent: formData.get('parent') as string,
-    };
+  const patchItem = async (
+    _prevState: unknown,
+    formData: FormData,
+  ): Promise<FormState> => {
+    const temp = Object.fromEntries(formData.entries());
+    const data: PageEdit = { ...temp, id: Number(temp.id) } as PageEdit;
 
     try {
       await mutation.mutateAsync(data);
-      console.log('Data saved successfully!');
+      return {
+        fieldData: data as unknown as Page,
+        message: 'Data saved successfully!',
+      } as FormState;
     } catch (error) {
-      console.error('Error saving data:', error);
+      return {
+        fieldData: {},
+        message: `Error saving data: ${(error as Error).message}`,
+      } as FormState;
     }
-
-    return Number(formData.get('bunCount'));
   };
 
   return {
-    bakeBun,
     error: mutation.error,
     isError: mutation.isError,
-    isUpdating: mutation.isPending,
     isSuccess: mutation.isSuccess,
+    isUpdating: mutation.isPending,
+    patchItem,
   };
 };
 

@@ -1,4 +1,3 @@
-import { useActionState } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
@@ -7,7 +6,6 @@ import Layout from 'features/layouts/Layout/Layout';
 import { getParamIdAsString } from 'lib/utils/helpers';
 import { useParams } from 'react-router-dom';
 import usePage from './usePage';
-import usePagePatch from './usePagePatch';
 import PageEditForm from './PageEditForm';
 
 const PageEditPage = (): React.JSX.Element => {
@@ -17,10 +15,6 @@ const PageEditPage = (): React.JSX.Element => {
   const currentId = getParamIdAsString(id);
 
   const { data, error, isError, isLoading } = usePage(currentId);
-
-  const { submitAction, isUpdating } = usePagePatch();
-
-  const [state, formAction] = useActionState(submitAction, undefined);
 
   return (
     <>

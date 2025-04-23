@@ -1,0 +1,4082 @@
+{
+  "metadata": {
+    "title": "Pages"
+  },
+  "items": [
+    {
+      "id": 10001,
+      "name": "Programming",
+      "to": "programming",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
+    },
+    {
+      "id": 10002,
+      "name": "React",
+      "to": "react",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 1,
+          "sortBy": "seq"
+        }
+      ]
+    },
+    {
+      "id": 10003,
+      "name": "AWS",
+      "to": "aws",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
+    },
+    {
+      "id": 10004,
+      "name": "Fun Stuff",
+      "to": "fun",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
+    },
+    {
+      "id": 10005,
+      "name": "Web",
+      "to": "web",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
+    },
+    {
+      "id": 10006,
+      "name": "React A-Z",
+      "to": "react-a-z",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
+    },
+    {
+      "id": 10008,
+      "name": "Typescript",
+      "to": "typescript",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
+    },
+    {
+      "id": 10009,
+      "name": "Javascript",
+      "to": "javascript",
+      "type": "root",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Getting Started",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 1
+        }
+      ],
+      "to": "getting-started",
+      "type": "menu"
+    },
+    {
+      "id": 9,
+      "name": "Patterns",
+      "parentItems": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
+      "to": "patterns",
+      "type": "menu"
+    },
+    {
+      "id": 1000,
+      "name": "Creational Design Patterns",
+      "parentItems": [
+        {
+          "id": 9,
+          "seq": 0
+        }
+      ],
+      "to": "creational-design-patterns",
+      "type": "menu"
+    },
+    {
+      "id": 4,
+      "name": "Javascript",
+      "parentItems": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
+      "to": "javascript",
+      "type": "menu"
+    },
+    {
+      "id": 2,
+      "name": "Design Styles",
+      "parentItems": [
+        {
+          "id": 10005,
+          "seq": 0
+        }
+      ],
+      "to": "design",
+      "type": "menu"
+    },
+    {
+      "id": 5,
+      "name": "Cheat Sheets",
+      "parentItems": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
+      "to": "cheatsheet",
+      "type": "menu"
+    },
+    {
+      "id": 8,
+      "name": "Code Solutions",
+      "parentItems": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
+      "to": "code/solutions",
+      "type": "menu"
+    },
+    {
+      "id": 13,
+      "name": "Security",
+      "parentItems": [
+        {
+          "id": 10005,
+          "seq": 0
+        }
+      ],
+      "to": "security",
+      "type": "menu"
+    },
+    {
+      "id": 15,
+      "name": "Maintenance",
+      "parentItems": [
+        {
+          "id": 10005,
+          "seq": 0
+        }
+      ],
+      "to": "maintenance",
+      "type": "menu"
+    },
+    {
+      "id": 30,
+      "name": "IDE",
+      "parentItems": [
+        {
+          "id": 10005,
+          "seq": 0
+        }
+      ],
+      "to": "ide",
+      "type": "menu"
+    },
+    {
+      "id": 14,
+      "name": "AWS",
+      "parentItems": [
+        {
+          "id": 10003,
+          "seq": 0
+        }
+      ],
+      "to": "aws",
+      "type": "menu"
+    },
+    {
+      "id": 16,
+      "name": "Art",
+      "parentItems": [
+        {
+          "id": 10004,
+          "seq": 0
+        }
+      ],
+      "to": "art",
+      "type": "menu"
+    },
+    {
+      "id": 3,
+      "name": "Artist",
+      "parentItems": [
+        {
+          "id": 10004,
+          "seq": 0
+        }
+      ],
+      "to": "artists",
+      "type": "menu"
+    },
+    {
+      "id": 17,
+      "name": "Yachts",
+      "parentItems": [
+        {
+          "id": 10004,
+          "seq": 0
+        }
+      ],
+      "to": "yachts",
+      "type": "menu"
+    },
+    {
+      "id": 6,
+      "name": "Best Practices",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "best-practices",
+      "type": "menu"
+    },
+    {
+      "id": 18,
+      "name": "Images",
+      "parentItems": [
+        {
+          "id": 10004,
+          "seq": 0
+        }
+      ],
+      "to": "images",
+      "type": "menu"
+    },
+    {
+      "id": 19,
+      "name": "Technology Stacks",
+      "parentItems": [
+        {
+          "id": 100,
+          "seq": 0
+        }
+      ],
+      "to": "technology-stacks",
+      "type": "menu"
+    },
+    {
+      "id": 20,
+      "name": "Performance",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "performance",
+      "type": "menu"
+    },
+    {
+      "id": 6006,
+      "name": "Hooks",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "hooks",
+      "type": "menu"
+    },
+    {
+      "id": 23,
+      "name": "Hooks Custom",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "hooks=custom",
+      "type": "menu"
+    },
+    {
+      "id": 24,
+      "name": "Patterns",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "patterns",
+      "type": "menu"
+    },
+    {
+      "id": 25,
+      "name": "ESLint",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "eslint",
+      "type": "menu"
+    },
+    {
+      "id": 26,
+      "name": "Troubleshooting",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "troubleshooting",
+      "type": "menu"
+    },
+    {
+      "id": 27,
+      "name": "Interview Questions",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "interview-questions",
+      "type": "menu"
+    },
+    {
+      "id": 28,
+      "name": "NodeJS",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ],
+      "to": "nodejs",
+      "type": "root"
+    },
+    {
+      "id": 29,
+      "name": "Getting Started",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "getting-started",
+      "type": "menu"
+    },
+    {
+      "id": 911,
+      "create_date": "1911-12-15T15:46:00.000Z",
+      "edit_date": "1911-12-15T15:46:00.000Z",
+      "file": true,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 10005,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page"
+    },
+    {
+      "id": 912,
+      "create_date": "1911-12-15T15:49:00.000Z",
+      "edit_date": "1911-12-15T15:49:00.000Z",
+      "file": true,
+      "name": "Singleton Pattern",
+      "parentItems": [
+        {
+          "id": 9,
+          "seq": 0
+        },
+        {
+          "id": 1000,
+          "seq": 0
+        }
+      ],
+      "to": "singleton-pattern",
+      "type": "page"
+    },
+    {
+      "id": 913,
+      "create_date": "1911-12-15T15:52:00.000Z",
+      "edit_date": "1911-12-15T15:52:00.000Z",
+      "file": true,
+      "name": "Factory Method Pattern",
+      "parentItems": [
+        {
+          "id": 9,
+          "seq": 0
+        },
+        {
+          "id": 1000,
+          "seq": 0
+        }
+      ],
+      "to": "factory-method-pattern",
+      "type": "page"
+    },
+    {
+      "id": 900,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "CSS",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 0
+        }
+      ],
+      "to": "css",
+      "type": "page"
+    },
+    {
+      "id": 901,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Internationalization",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 0
+        }
+      ],
+      "to": "internationalization",
+      "type": "page"
+    },
+    {
+      "id": 1001,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "title": "The Resurgence of Skeuomorphism in Design: A Nostalgic Reimagining",
+      "name": "Skeuomorphism",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "skeuomorphism",
+      "type": "page"
+    },
+    {
+      "id": 1002,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "title": "Flat Design: The Art of Simplicity",
+      "name": "Flat Design",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "flat-design",
+      "type": "page"
+    },
+    {
+      "id": 1003,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "title": "Corporate Memphis: Vibrant, Bold, and Flat",
+      "name": "Corporate Memphis Design",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "readability_score": "22",
+      "reading_time": "1 min 37 sec",
+      "to": "corporate-memphis-design",
+      "type": "page"
+    },
+    {
+      "id": 1004,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Glassmorphism",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "glassmorphism",
+      "type": "page"
+    },
+    {
+      "id": 1005,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Minimalism",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "minimalism",
+      "type": "page"
+    },
+    {
+      "id": 1007,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Retrofuturism",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "retrofuturism",
+      "type": "page"
+    },
+    {
+      "id": 1008,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Swiss Style",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "swiss-style",
+      "type": "page"
+    },
+    {
+      "id": 2001,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Chrome Extensions",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 0
+        }
+      ],
+      "to": "chrome-extensions",
+      "type": "page"
+    },
+    {
+      "id": 2002,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Git",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 0
+        }
+      ],
+      "to": "git",
+      "type": "page"
+    },
+    {
+      "id": 2003,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Visual Studio Code",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 0
+        }
+      ],
+      "to": "visual-studio-code",
+      "type": "page"
+    },
+    {
+      "id": 2004,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Visual Studio Code: Extensions",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 0
+        }
+      ],
+      "to": "visual-studio-code-extensions",
+      "type": "page"
+    },
+    {
+      "id": 3003,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Shoes on the Danube Bank",
+      "parentItems": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "to": "shoes-on-the-danube-bank",
+      "type": "page"
+    },
+    {
+      "id": 4000,
+      "name": "Kelly Boesch",
+      "parentItems": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "to": "kelly-boesch",
+      "type": "page"
+    },
+    {
+      "id": 5001,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Lazels Puzzles",
+      "parentItems": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "to": "puzzles-lazel",
+      "type": "page"
+    },
+    {
+      "id": 5002,
+      "edit_date": "01/18/2024",
+      "file": true,
+      "name": "Puzzle Lab",
+      "parentItems": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "to": "puzzles-the-puzzle-lab",
+      "type": "page"
+    },
+    {
+      "id": 6000,
+      "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Input Element",
+      "parentItems": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
+      "to": "input-element",
+      "type": "page"
+    },
+    {
+      "id": 6001,
+      "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Data Types",
+      "parentItems": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
+      "to": "data-types",
+      "type": "page"
+    },
+    {
+      "id": 6002,
+      "edit_date": "03/24/2024",
+      "file": true,
+      "name": "String Functions",
+      "parentItems": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
+      "to": "string-functions",
+      "type": "page"
+    },
+    {
+      "id": 6004,
+      "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Math Functions",
+      "parentItems": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
+      "to": "math-functions",
+      "type": "page"
+    },
+    {
+      "id": 6005,
+      "edit_date": "03/24/2024",
+      "file": true,
+      "name": "Javascript Array",
+      "parentItems": [
+        {
+          "id": 5,
+          "seq": 0
+        },
+        {
+          "id": 4,
+          "seq": 0
+        }
+      ],
+      "to": "javascript-array",
+      "type": "page"
+    },
+    {
+      "id": 7001,
+      "file": true,
+      "name": "Functional Components",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "functional-components",
+      "type": "page"
+    },
+    {
+      "id": 15002,
+      "edit_date": "3/30/2024 2:24 PM",
+      "name": "Design Patterns - Facade",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "design-patterns-facade",
+      "type": "page"
+    },
+    {
+      "id": 902,
+      "edit_date": "4/2/2024 2:23 PM",
+      "file": true,
+      "name": "Javascript 2024",
+      "parentItems": [
+        {
+          "id": 12,
+          "seq": 0
+        }
+      ],
+      "to": "javascript-2024",
+      "type": "page"
+    },
+    {
+      "id": 1006,
+      "edit_date": "1/18/2024 12:00 AM",
+      "file": true,
+      "name": "Neumorphism",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "neumorphism",
+      "type": "page"
+    },
+    {
+      "id": 903,
+      "edit_date": "4/4/2024 12:45 PM",
+      "file": true,
+      "name": "HTTP Headers",
+      "parentItems": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
+      "to": "http-headers",
+      "type": "page"
+    },
+    {
+      "id": 6003,
+      "edit_date": "1918-02-19T18:00:00.000Z",
+      "file": true,
+      "name": "Global Functions",
+      "parentItems": [
+        {
+          "id": 5,
+          "seq": 0
+        }
+      ],
+      "to": "global-functions",
+      "type": "page"
+    },
+    {
+      "id": 905,
+      "create_date": "1910-02-14T18:30:00.000Z",
+      "edit_date": "1910-02-14T18:30:00.000Z",
+      "file": true,
+      "name": "Code Review",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "code-review",
+      "type": "page"
+    },
+    {
+      "id": 906,
+      "edit_date": "1908-04-24T16:11:00.000Z",
+      "file": true,
+      "name": "Units",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 0
+        }
+      ],
+      "to": "css-units",
+      "type": "page"
+    },
+    {
+      "id": 907,
+      "create_date": "1911-01-14T10:22:00.000Z",
+      "edit_date": "1911-01-14T10:22:00.000Z",
+      "file": true,
+      "name": "Storage Options",
+      "parentItems": [
+        {
+          "id": 14,
+          "seq": 0
+        }
+      ],
+      "to": "storage_options",
+      "type": "page"
+    },
+    {
+      "id": 15000,
+      "edit_date": "1909-07-24T15:55:00.000Z",
+      "file": false,
+      "name": "Images",
+      "parentItems": [
+        {
+          "id": 14,
+          "seq": 0
+        }
+      ],
+      "to": "images",
+      "type": "page"
+    },
+    {
+      "id": 909,
+      "create_date": "1911-07-17T08:22:00.000Z",
+      "edit_date": "1911-07-17T08:22:00.000Z",
+      "file": true,
+      "name": "MERN",
+      "parentItems": [
+        {
+          "id": 19,
+          "seq": 0
+        }
+      ],
+      "to": "mern",
+      "type": "page"
+    },
+    {
+      "id": 910,
+      "create_date": "1911-07-17T08:22:00.000Z",
+      "edit_date": "1911-07-17T08:22:00.000Z",
+      "file": true,
+      "name": "Serverless",
+      "parentItems": [
+        {
+          "id": 19,
+          "seq": 0
+        }
+      ],
+      "to": "serverless",
+      "type": "page"
+    },
+    {
+      "id": 914,
+      "create_date": "1910-09-14T08:41:00.000Z",
+      "edit_date": "1910-09-14T08:41:00.000Z",
+      "file": true,
+      "name": "useTransition",
+      "parentItems": [
+        {
+          "id": 22,
+          "seq": 0
+        }
+      ],
+      "to": "usetransition",
+      "type": "page"
+    },
+    {
+      "id": 915,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Minimize Re-renders",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 1
+        }
+      ],
+      "to": "minimize-re-renders",
+      "type": "page"
+    },
+    {
+      "id": 916,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Use Memoization",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 2
+        }
+      ],
+      "to": "use-memoization",
+      "type": "page"
+    },
+    {
+      "id": 917,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Avoid Using Index as a Key",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 3
+        }
+      ],
+      "to": "avoid-using-index-as-a-key",
+      "type": "page"
+    },
+    {
+      "id": 918,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Use Functional Components",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 4
+        }
+      ],
+      "to": "use-functional-components",
+      "type": "page"
+    },
+    {
+      "id": 920,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Reduce Unnecessary Props",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 6
+        }
+      ],
+      "to": "reduce-unnecessary-props",
+      "type": "page"
+    },
+    {
+      "id": 921,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Avoid Inline Functions",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 7
+        }
+      ],
+      "to": "avoid-inline-functions",
+      "type": "page"
+    },
+    {
+      "id": 922,
+      "create_date": "1911-06-16T18:07:00.000Z",
+      "edit_date": "1911-06-16T18:07:00.000Z",
+      "file": true,
+      "name": "Use React.PureComponent",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 8
+        }
+      ],
+      "to": "use-react-purecomponent-or-react-memo",
+      "type": "page"
+    },
+    {
+      "id": 923,
+      "create_date": "1911-06-16T18:39:00.000Z",
+      "edit_date": "1911-06-16T18:39:00.000Z",
+      "file": true,
+      "name": "Use Efficient Event Handlers",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 9
+        }
+      ],
+      "to": "use-efficient-event-handlers",
+      "type": "page"
+    },
+    {
+      "id": 924,
+      "create_date": "1911-06-16T11:04:00.000Z",
+      "edit_date": "1911-06-16T11:04:00.000Z",
+      "file": true,
+      "name": "Batch State Updates",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 10
+        }
+      ],
+      "to": "batch-state-updates",
+      "type": "page"
+    },
+    {
+      "id": 925,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Code Splitting and Lazy Loading",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 11
+        }
+      ],
+      "to": "use-code-splitting-and-lazy-loading",
+      "type": "page"
+    },
+    {
+      "id": 926,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Memo or useCallback",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 12
+        }
+      ],
+      "to": "use-memo-or-usecallback",
+      "type": "page"
+    },
+    {
+      "id": 927,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Optimize Network Requests",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 13
+        }
+      ],
+      "to": "optimize-network-requests",
+      "type": "page"
+    },
+    {
+      "id": 928,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Implement Virtualization for Large Lists",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 15
+        }
+      ],
+      "to": "implement-virtualization-for-large-lists",
+      "type": "page"
+    },
+    {
+      "id": 929,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use React.memo",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 15
+        }
+      ],
+      "to": "use-react-memo",
+      "type": "page"
+    },
+    {
+      "id": 930,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Compress and Cache Static Assets",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 16
+        }
+      ],
+      "to": "compress-and-cache-static-assets",
+      "type": "page"
+    },
+    {
+      "id": 931,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Optimize CSS Animations",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 17
+        }
+      ],
+      "to": "optimize-css-animations",
+      "type": "page"
+    },
+    {
+      "id": 932,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Defer Expensive Operations in useEffect",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 18
+        }
+      ],
+      "to": "defer-expensive-operations-in-use-effect",
+      "type": "page"
+    },
+    {
+      "id": 933,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Webpack’s Tree Shaking",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 19
+        }
+      ],
+      "to": "use-webpacks-tree-shaking",
+      "type": "page"
+    },
+    {
+      "id": 934,
+      "create_date": "1911-06-16T11:44:00.000Z",
+      "edit_date": "1911-06-16T11:44:00.000Z",
+      "file": true,
+      "name": "Use Redux or MobX for State Management",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 20
+        }
+      ],
+      "to": "use-redux-or-mobx-for-state-management",
+      "type": "page"
+    },
+    {
+      "id": 935,
+      "create_date": "1911-06-16T16:09:00.000Z",
+      "edit_date": "1911-06-16T16:09:00.000Z",
+      "file": true,
+      "name": "Shape the Data",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 21
+        }
+      ],
+      "to": "shape-the-data",
+      "type": "page"
+    },
+    {
+      "id": 936,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useLocalStorage",
+      "parentItems": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "to": "uselocalstorage",
+      "type": "page"
+    },
+    {
+      "id": 937,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useMediaQuery",
+      "parentItems": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "to": "usemediaquery",
+      "type": "page"
+    },
+    {
+      "id": 938,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useDebounce",
+      "parentItems": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "to": "usedebounce",
+      "type": "page"
+    },
+    {
+      "id": 939,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useFetch",
+      "parentItems": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "to": "usefetch",
+      "type": "page"
+    },
+    {
+      "id": 940,
+      "create_date": "1911-07-17T15:34:00.000Z",
+      "edit_date": "1911-07-17T15:34:00.000Z",
+      "file": true,
+      "name": "useToggle",
+      "parentItems": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "to": "usetoggle",
+      "type": "page"
+    },
+    {
+      "id": 941,
+      "create_date": "1911-08-17T16:17:00.000Z",
+      "edit_date": "1911-08-17T16:17:00.000Z",
+      "file": true,
+      "name": "Adapter Pattern",
+      "parentItems": [
+        {
+          "id": 24,
+          "seq": 0
+        }
+      ],
+      "to": "adapter-pattern",
+      "type": "page"
+    },
+    {
+      "id": 942,
+      "create_date": "1911-11-14T09:02:00.000Z",
+      "edit_date": "1911-11-14T09:02:00.000Z",
+      "file": true,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 23,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page"
+    },
+    {
+      "id": 943,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-19T03:38:00.000Z",
+      "file": true,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 25,
+          "seq": 0
+        }
+      ],
+      "to": "Overview",
+      "type": "page"
+    },
+    {
+      "id": 944,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-19T03:38:00.000Z",
+      "file": true,
+      "name": "ESLint - React Compiler",
+      "parentItems": [
+        {
+          "id": 25,
+          "seq": 1
+        }
+      ],
+      "to": "ESLint - React Compiler",
+      "type": "page"
+    },
+    {
+      "id": 945,
+      "edit_date": "2024-05-24T05:43:00.000Z",
+      "file": true,
+      "name": "Using an Index as a Key",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "using-an-index-as-a-key",
+      "type": "page"
+    },
+    {
+      "id": 946,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-24T05:01:00.000Z",
+      "file": true,
+      "name": "Double Render",
+      "parentItems": [
+        {
+          "id": 25,
+          "seq": 0
+        }
+      ],
+      "to": "double-render",
+      "type": "page"
+    },
+    {
+      "id": 947,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-24T03:11:00.000Z",
+      "file": true,
+      "name": "React Interview Questions",
+      "parentItems": [
+        {
+          "id": 27,
+          "seq": 0
+        }
+      ],
+      "to": "react-interview-questions",
+      "type": "page"
+    },
+    {
+      "id": 948,
+      "create_date": "2024-05-19T03:38:00.000Z",
+      "edit_date": "2024-05-24T03:11:00.000Z",
+      "file": false,
+      "name": "Function vs. Method",
+      "parentItems": [
+        {
+          "id": 4,
+          "seq": 0
+        }
+      ],
+      "to": "function-vs.-method",
+      "type": "page",
+      "url": "https://medium.com/@jsomineni/function-vs-method-in-javascript-1d92b3d4eae4"
+    },
+    {
+      "id": 949,
+      "edit_date": "2024-05-25T02:37:00.000Z",
+      "name": "Monads",
+      "parentItems": [
+        {
+          "id": 4,
+          "seq": 0
+        }
+      ],
+      "to": "monads",
+      "type": "page"
+    },
+    {
+      "id": 53,
+      "edit_date": "2024-05-25T02:49:00.000Z",
+      "name": "Declarative Programming",
+      "parentItems": [
+        {
+          "id": 4,
+          "seq": 0
+        }
+      ],
+      "to": "declarative-programming",
+      "type": "page"
+    },
+    {
+      "id": 54,
+      "create_date": "2024-05-25T03:16:00.000Z",
+      "edit_date": "2024-05-25T03:16:00.000Z",
+      "name": "Server-Side Caching",
+      "parentItems": [
+        {
+          "id": 4,
+          "seq": 0
+        }
+      ],
+      "to": "server-side-caching",
+      "type": "page"
+    },
+    {
+      "id": 62,
+      "create_date": "2024-05-25T18:34:00.000Z",
+      "edit_date": "2024-05-25T18:34:00.000Z",
+      "name": "Standards",
+      "parentItems": [
+        {
+          "id": 29,
+          "seq": 1
+        }
+      ],
+      "to": "standards",
+      "type": "page"
+    },
+    {
+      "id": 57,
+      "create_date": "2024-05-25T19:00:00.000Z",
+      "edit_date": "2024-05-25T19:00:00.000Z",
+      "name": "Learning React",
+      "parentItems": [
+        {
+          "id": 29,
+          "seq": 2
+        }
+      ],
+      "to": "learning-react",
+      "type": "page"
+    },
+    {
+      "id": 58,
+      "create_date": "2024-05-25T19:11:00.000Z",
+      "edit_date": "2024-05-25T19:11:00.000Z",
+      "name": "Object Destructuring",
+      "parentItems": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "to": "object-destructuring",
+      "type": "page"
+    },
+    {
+      "id": 59,
+      "create_date": "2024-05-25T20:06:00.000Z",
+      "edit_date": "2024-05-25T20:06:00.000Z",
+      "name": "Performance",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 0
+        }
+      ],
+      "to": "performance",
+      "type": "page"
+    },
+    {
+      "id": 7,
+      "create_date": "2024-05-27T03:38:00.000Z",
+      "edit_date": "2024-05-27T03:38:00.000Z",
+      "name": "Security - Request Validation",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 0
+        }
+      ],
+      "to": "security---request-validation",
+      "type": "page"
+    },
+    {
+      "id": 60,
+      "create_date": "2024-05-28T00:02:00.000Z",
+      "edit_date": "2024-05-28T00:02:00.000Z",
+      "name": "Profiler Component",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 20
+        }
+      ],
+      "to": "profiler-component",
+      "type": "page"
+    },
+    {
+      "id": 10,
+      "create_date": "2024-05-28T19:56:00.000Z",
+      "edit_date": "2024-05-28T19:56:00.000Z",
+      "name": "Adding Fonts",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 2
+        }
+      ],
+      "to": "adding-fonts",
+      "type": "page"
+    },
+    {
+      "id": 61,
+      "edit_date": "2024-05-28T19:56:00.000Z",
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 1
+        }
+      ],
+      "to": "overview",
+      "type": "page"
+    },
+    {
+      "id": 12,
+      "create_date": "2024-05-30T02:58:00.000Z",
+      "edit_date": "2024-05-30T02:58:00.000Z",
+      "name": "Choosing a Version",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 2
+        }
+      ],
+      "to": "choosing-a-version",
+      "type": "page"
+    },
+    {
+      "id": 56,
+      "create_date": "2024-06-06T23:01:00.000Z",
+      "edit_date": "2024-06-06T23:01:00.000Z",
+      "name": "File Not Found",
+      "parentItems": [
+        {
+          "id": 26,
+          "seq": 1
+        }
+      ],
+      "to": "file-not-found",
+      "type": "page"
+    },
+    {
+      "id": 3001,
+      "edit_date": "2024-01-18T18:00:00.000Z",
+      "name": "At Last - Pleasantville",
+      "parentItems": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "to": "at-last-pleasantville",
+      "type": "page"
+    },
+    {
+      "id": 3002,
+      "edit_date": "2024-01-19T06:00:00.000Z",
+      "name": "Gallos",
+      "parentItems": [
+        {
+          "id": 3,
+          "seq": 0
+        }
+      ],
+      "to": "gallos",
+      "type": "page"
+    },
+    {
+      "id": 10012,
+      "name": "Python",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ],
+      "sortby": "name",
+      "to": "python",
+      "type": "root"
+    },
+    {
+      "id": 10010,
+      "name": "Management",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortBy": "name"
+        }
+      ],
+      "sortby": "name",
+      "to": "management",
+      "type": "root"
+    },
+    {
+      "id": 21,
+      "name": "Algorithims",
+      "parentItems": [
+        {
+          "id": 10012,
+          "seq": 0
+        }
+      ],
+      "to": "algorithims",
+      "type": "menu"
+    },
+    {
+      "id": 6007,
+      "name": "Algorithims",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 0
+        }
+      ],
+      "to": "algorithims",
+      "type": "menu"
+    },
+    {
+      "id": 32,
+      "create_date": "2024-06-11T03:00:00.000Z",
+      "edit_date": "2024-06-11T03:00:00.000Z",
+      "name": "Bubble Sort",
+      "parentItems": [
+        {
+          "id": 6007,
+          "seq": 0
+        }
+      ],
+      "to": "bubble-sort",
+      "type": "page"
+    },
+    {
+      "id": 31,
+      "edit_date": "2024-06-11T02:46:00.000Z",
+      "name": "Bubble Sort",
+      "parentItems": [
+        {
+          "id": 21,
+          "seq": 0
+        }
+      ],
+      "to": "bubble-sort",
+      "type": "page"
+    },
+    {
+      "id": 33,
+      "create_date": "2024-06-11T03:17:00.000Z",
+      "edit_date": "2024-06-11T03:17:00.000Z",
+      "name": "Basics",
+      "parentItems": [
+        {
+          "id": 1007,
+          "seq": 1
+        }
+      ],
+      "to": "basics",
+      "type": "page"
+    },
+    {
+      "id": 34,
+      "create_date": "2024-06-13T19:16:00.000Z",
+      "edit_date": "2024-06-13T19:16:00.000Z",
+      "name": "npm Audit",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "to": "npm-audit",
+      "type": "page"
+    },
+    {
+      "id": 35,
+      "create_date": "2024-06-13T19:19:00.000Z",
+      "edit_date": "2024-06-13T19:19:00.000Z",
+      "name": "npm Outdated",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 0
+        }
+      ],
+      "to": "npm-outdated",
+      "type": "page"
+    },
+    {
+      "id": 36,
+      "create_date": "2024-06-13T19:24:00.000Z",
+      "edit_date": "2024-06-13T19:24:00.000Z",
+      "name": "npm Depcheck",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 0
+        }
+      ],
+      "to": "npm-depcheck",
+      "type": "page"
+    },
+    {
+      "id": 37,
+      "create_date": "2024-06-13T19:34:00.000Z",
+      "edit_date": "2024-06-13T19:34:00.000Z",
+      "name": "node_modules",
+      "parentItems": [
+        {
+          "id": 26,
+          "seq": 0
+        }
+      ],
+      "to": "node_modules",
+      "type": "page"
+    },
+    {
+      "id": 38,
+      "name": "Versions",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 10
+        }
+      ],
+      "sortby": "name",
+      "to": "versions",
+      "type": "menu"
+    },
+    {
+      "id": 39,
+      "name": "React 19",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "react-19",
+      "type": "menu"
+    },
+    {
+      "id": 43,
+      "create_date": "2024-06-13T19:57:00.000Z",
+      "edit_date": "2024-06-13T19:57:00.000Z",
+      "name": "useOptimistic",
+      "parentItems": [
+        {
+          "id": 39,
+          "seq": 2
+        }
+      ],
+      "to": "useoptimistic",
+      "type": "page"
+    },
+    {
+      "id": 44,
+      "create_date": "2024-06-14T02:56:00.000Z",
+      "edit_date": "2024-06-14T02:56:00.000Z",
+      "name": "useFormStatus",
+      "parentItems": [
+        {
+          "id": 39,
+          "seq": 3
+        }
+      ],
+      "to": "useformstatus",
+      "type": "page"
+    },
+    {
+      "id": 45,
+      "create_date": "2024-06-15T05:18:00.000Z",
+      "edit_date": "2024-06-15T05:18:00.000Z",
+      "name": "Types vs Interfaces",
+      "parentItems": [
+        {
+          "id": 10008,
+          "seq": 1
+        }
+      ],
+      "to": "types-vs-interfaces",
+      "type": "page"
+    },
+    {
+      "id": 46,
+      "name": "Architecture",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "architecture",
+      "type": "menu"
+    },
+    {
+      "id": 48,
+      "name": "Best Practices",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "best-practices",
+      "type": "menu"
+    },
+    {
+      "id": 51,
+      "name": "Tools",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "tools",
+      "type": "menu"
+    },
+    {
+      "id": 52,
+      "create_date": "2024-06-16T05:41:00.000Z",
+      "edit_date": "2024-06-16T05:41:00.000Z",
+      "name": "Husky",
+      "parentItems": [
+        {
+          "id": 51,
+          "seq": 1
+        }
+      ],
+      "to": "husky",
+      "type": "page"
+    },
+    {
+      "id": 55,
+      "create_date": "2024-06-15T19:16:00.000Z",
+      "edit_date": "2024-06-15T19:16:00.000Z",
+      "name": "VSCode",
+      "parentItems": [
+        {
+          "id": 51,
+          "seq": 2
+        }
+      ],
+      "to": "vscode",
+      "type": "page"
+    },
+    {
+      "id": 63,
+      "create_date": "2024-06-15T19:42:00.000Z",
+      "edit_date": "2024-06-15T19:42:00.000Z",
+      "name": "nginx",
+      "parentItems": [
+        {
+          "id": 51,
+          "seq": 3
+        }
+      ],
+      "to": "nginx",
+      "type": "page"
+    },
+    {
+      "id": 64,
+      "create_date": "2024-06-15T19:44:00.000Z",
+      "edit_date": "2024-06-15T19:44:00.000Z",
+      "name": "browserslistrc",
+      "parentItems": [
+        {
+          "id": 51,
+          "seq": 4
+        }
+      ],
+      "to": "browserslistrc",
+      "type": "page"
+    },
+    {
+      "id": 65,
+      "name": "Package.json",
+      "parentItems": [
+        {
+          "id": 29,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "package.json",
+      "type": "menu"
+    },
+    {
+      "id": 66,
+      "create_date": "2024-06-16T19:34:00.000Z",
+      "edit_date": "2024-06-16T19:34:00.000Z",
+      "name": "React-scripts",
+      "parentItems": [
+        {
+          "id": 65,
+          "seq": 1
+        }
+      ],
+      "to": "react_scripts",
+      "type": "page"
+    },
+    {
+      "id": 67,
+      "create_date": "2024-06-18T18:24:00.000Z",
+      "edit_date": "2024-06-18T18:24:00.000Z",
+      "name": "Vite Config",
+      "parentItems": [
+        {
+          "id": 29,
+          "seq": 3
+        }
+      ],
+      "to": "vite-config",
+      "type": "page"
+    },
+    {
+      "id": 69,
+      "name": "Optimization",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "optimization",
+      "type": "menu"
+    },
+    {
+      "id": 72,
+      "create_date": "2024-06-19T07:02:00.000Z",
+      "edit_date": "2024-06-19T07:02:00.000Z",
+      "name": "Bundle Analyzer",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 1
+        }
+      ],
+      "to": "bundle-analyzer",
+      "type": "page"
+    },
+    {
+      "id": 71,
+      "edit_date": "2024-06-19T07:00:00.000Z",
+      "name": "Bundle Optimization",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 2
+        }
+      ],
+      "text": "<h2>How to Optimize the code?</h2>\n<a href=\"https://www.debugbear.com/blog/webpack-bundle-analyzer\">Improve React App Performance With Webpack Bundle Analyzer</a>\n\n<a href=\"https://www.steveworkman.com/2020/bundle-analysis-deep-dive-how-to-remove-a-megabyte-of-code-from-your-app/\">Bundle analysis deep-dive - how to remove a megabyte of code from your app</a>\n\n<h2>1. Run a Lighthouse Report in Chrome</h2>\n\n<a href=\"/react/optimization/lighthouse-report\">Lighthouse Report</a>\n\n<h2>2. Use Fetch vs. Axios</h2>\n\nAxios adds 33.8kb.  Consider using built-in fetch instead.\n\n<h2>Only use required imports</h2>\nWhen using packages with multiple components, you can reduce the bundle size of your application by importing only the necessary components.\n\n<pre><code>\nimport Grid from \"@mui/material/Grid\";\nvs.\nimport * from '@mui/material\";\n</code></pre>\n\n\n<h2>3. Code Splitting</h2>\nAdd React.lazy and Suspense to split code\n\n\n<pre><code>\nimport React, { Suspense, useState, useEffect } from \"react\";\n\nconst Authors = React.lazy(() => import(\"./components/Authors\"));\n\nfunction App() {\n  const [showAuthors, setShowAuthors] = useState(false);\n  useEffect(() => {\n    setShowAuthors(true);\n  }, []);\n\n  return (\n    <div className=\"App\">\n      {showAuthors ? (\n        <Suspense fallback={<div>Loading..</div>}>\n          <Authors />\n        </Suspense>\n      ) : (\n        <p>Loading</p>\n      )}\n    </div>\n  );\n}\n\nexport default App;\n</code></pre>\n\n<h2>4. Use Modules</h2>\nCommonJS modules are harder to optimize because dynamic imports and exports are supported.\n\nIn tsconfig.json, make sure module is \"module\": \"ESNext\",   vs. \"module\": \"CommonJs\",\n\n\nTurn any CommonJS packages into 100% ESM packages?\n\nIn package.json, add\n\n\n<pre><code>\n\"type\": \"module\",\n  \"module\": \"dist/index\",\n  \"browser\": \"dist/index\",\n  \"main\": \"dist/index\",\n</code></pre>\n\n\n\n\n\n\n\n",
+      "to": "bundle-optimization",
+      "type": "page"
+    },
+    {
+      "id": 73,
+      "edit_date": "2024-06-20T00:59:00.000Z",
+      "name": "Lighthouse Report",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 1
+        }
+      ],
+      "text": "Run a Lighthouse Report in Chrome\n\n1. You want to run and resolve this report for multiple pages in your application (every page?)   If time or cost are constraints, then focus on your first page and your most used.  In my case, I have a couple of components that represent most of the content - so I'll focus on those.\n\n2. Some of these metrics are useful in a development environment, but, generally, they have more meaning in a production build.  \n\nTo run a production build in Vite, \nnpm run build\nnpm run preview\n\n\n<h2>Metrics</h2>\n\n<table>\n<tr><th>Measurement</th><th>Target</th><th>Actual</th></tr>\n<tr><th>First Contentful Paint</th><th>Green:  0–1.8s  Orange: 1.8–3s  Red: over 3s</th><th>12.5s</th></tr>\n<tr><th>Largest Contentful Paint</th><th>Green: 0-2.5s  Orange: 2.5-4s  Red: over 4s</th><th>26.0s</th></tr>\n<tr><th>Total Blocking Time</th><th>Green: 0–200ms Orange: 200-600ms  Red: over 600ms</th><th>30.0ms</th></tr>\n<tr><th>Cumulative Layout Shift</th><th>Green:  0.1  Orange: 0.1 - .25  Red: over .25</th><th>0.016</th></tr>\n<tr><th>Speed Index</th><th>Green:  0–3.4s  Orange: 3.4–5.8s  Red: over 5.8s</th><th>16.3s</th></tr>\n</table>\n\n\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint\">First Contentful Paint</a>\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint\">Largest Contentful Paint</a>\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time\">Total Blocking Time</a>\n<a href=\"https://web.dev/articles/cls?utm_source=lighthouse&utm_medium=devtools\">Cumulative Layout Shift</a>\n<a href=\"https://developer.chrome.com/docs/lighthouse/performance/speed-index\">Speed Index</a>\n\n\n<h2>Diagnostics</h2>\n\n<h3>a. Largest Contentful Paint element</h3>\n\n<h3>b. Minimize main-thread work<h3> \n\n<h3>c. Enable Text Compression</h3>\n\n<h3>d. Minify Javascript</h3>\n\n<h3>e. Reduce unused JavaScript</h3>\n\n<h3>f. Eliminate render-blocking resources</h3>\n\n<h3>g. Preconnect to required origins </h3>\n\n<h3>h. Page prevented back/forward cache restoration </h3>\n\n<h3>i. Remove duplicate modules in JavaScript bundles</h3>\n\n<h3>j. Avoid enormous network payloads</h3>\n\n<h3>k. Avoid large layout shifts</h3>\n\n<h3>l. JavaScript execution time</h3>\n\n<h3>m. Avoid long main-thread tasks</h3>\n\n<h3>n. User Timing marks and measures</h3>\n\n<h3>o. Avoid non-composited animations </h3>\n\n<h3>p. Initial server response time was short</h3>\n\n<h3>q. Avoids an excessive DOM size</h3>\n\n<h3>r. Avoid chaining critical requests</h3>\n\n<h3>s. Minimize third-party usage</h3>\n\n\n<h2>Passed Audits</h2>\n\n<h3>a. Properly size images</h3>\n\n<h3>b. Defer offscreen images<h3> \n\n<h3>c. Minify CSS</h3>\n\n<h3>d. Reduce unused CSS</h3>\n\n<h3>e. Efficiently encode images</h3>\n\n<h3>f. Serve images in next-gen formats</h3>\n\n<h3>g. Avoid multiple page redirects</h3>\n\n<h3>h. Preload key requests</h3>\n\n<h3>i. Use HTTP/2</h3>\n\n<h3>j. Use video formats for animated content</h3>\n\n<h3>k. Avoid serving legacy JavaScript to modern browsers</h3>\n\n<h3>l. Preload Largest Contentful Paint image</h3>\n\n<h3>m. Uses efficient cache policy on static assets</h3>\n\n<h3>n. All text remains visible during webfont loads</h3>\n\n<h3>o. Lazy load third-party resources with facades</h3>\n\n<h3>p. Largest Contentful Paint image was not lazily loaded</h3>\n\n<h3>q. Uses passive listeners to improve scrolling performance</h3>\n\n<h3>r. Avoids document.write()</h3>\n\n<h3>s. Image elements have explicit width and height</h3>\n\n<h3>t. Has a <meta name=\"viewport\"> tag with width or initial-scale</h3>\n\n\n<h2>Accessibility</h2>\n\n\n<h2>Best Practices</h2>\n\n<h2>SEO</h2>\n\n\n<h2>PWA</h2>\n\n\n\n\n\n",
+      "to": "lighthouse-report",
+      "type": "page"
+    },
+    {
+      "id": 74,
+      "name": "Testing",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "testing",
+      "type": "menu"
+    },
+    {
+      "id": 75,
+      "create_date": "2024-06-21T05:29:00.000Z",
+      "edit_date": "2024-06-21T05:29:00.000Z",
+      "name": "Test Grid",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 1
+        }
+      ],
+      "to": "test-grid",
+      "type": "page"
+    },
+    {
+      "id": 49,
+      "edit_date": "2024-06-15T02:49:00.000Z",
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 1
+        }
+      ],
+      "to": "best-practices",
+      "type": "page"
+    },
+    {
+      "id": 70,
+      "create_date": "2024-06-21T16:01:00.000Z",
+      "edit_date": "2024-06-21T16:01:00.000Z",
+      "name": "React Components",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 1
+        }
+      ],
+      "to": "react-components",
+      "type": "page"
+    },
+    {
+      "id": 76,
+      "create_date": "2024-06-21T16:02:00.000Z",
+      "edit_date": "2024-06-21T16:02:00.000Z",
+      "name": "React Profiler",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 2
+        }
+      ],
+      "to": "react-profiler",
+      "type": "page"
+    },
+    {
+      "id": 78,
+      "create_date": "2024-06-22T05:11:00.000Z",
+      "edit_date": "2024-06-22T05:11:00.000Z",
+      "name": "Console",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 10
+        }
+      ],
+      "to": "console",
+      "type": "page"
+    },
+    {
+      "id": 79,
+      "create_date": "2024-06-22T05:21:00.000Z",
+      "edit_date": "2024-06-22T05:21:00.000Z",
+      "name": "Network",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 11
+        }
+      ],
+      "to": "network",
+      "type": "page"
+    },
+    {
+      "id": 80,
+      "name": "Extras",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "sortby": "name",
+      "to": "extras",
+      "type": "menu"
+    },
+    {
+      "id": 81,
+      "create_date": "2024-06-22T19:53:00.000Z",
+      "edit_date": "2024-06-22T19:53:00.000Z",
+      "name": "Drag 'n Drop",
+      "parentItems": [
+        {
+          "id": 80,
+          "seq": 1
+        }
+      ],
+      "to": "drag-n-drop",
+      "type": "page"
+    },
+    {
+      "id": 77,
+      "edit_date": "2024-06-21T16:03:00.000Z",
+      "name": "Performance Insights",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 3
+        }
+      ],
+      "to": "performance-insights",
+      "type": "page"
+    },
+    {
+      "id": 68,
+      "name": "Class Components",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 1
+        }
+      ],
+      "to": "class-components",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 82,
+      "name": "Advanced",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 10,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "advanced"
+    },
+    {
+      "id": 83,
+      "name": "Generators",
+      "parentItems": [
+        {
+          "id": 82,
+          "seq": 1
+        }
+      ],
+      "to": "generators",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 84,
+      "name": "Folder Structure",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 1
+        },
+        {
+          "id": 40,
+          "seq": 4
+        }
+      ],
+      "to": "folder-structure",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 85,
+      "name": "Accessibility",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 10,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "accessibility"
+    },
+    {
+      "id": 86,
+      "name": "SEO",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 11,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "seo"
+    },
+    {
+      "id": 87,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 85,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 88,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 86,
+          "seq": 1
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 89,
+      "name": "Next.js",
+      "parentItems": [
+        {
+          "id": 86,
+          "seq": 2,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "next.js"
+    },
+    {
+      "id": 90,
+      "name": "JSON-LD",
+      "parentItems": [
+        {
+          "id": 89,
+          "seq": 1
+        }
+      ],
+      "to": "json-ld",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 91,
+      "name": "Sitemap",
+      "parentItems": [
+        {
+          "id": 89,
+          "seq": 2
+        }
+      ],
+      "to": "sitemap",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 92,
+      "name": "Testing",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 20,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "testing"
+    },
+    {
+      "id": 93,
+      "name": "Lighthouse",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 2
+        }
+      ],
+      "to": "lighthouse",
+      "type": "page"
+    },
+    {
+      "id": 94,
+      "name": "axe Accessibility Checker",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 3
+        }
+      ],
+      "to": "axe-accessibility-checker",
+      "type": "page"
+    },
+    {
+      "id": 95,
+      "name": "WAVE",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 4
+        }
+      ],
+      "to": "wave",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 96,
+      "name": "eslint-plugin-jsx-a11y",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 5
+        }
+      ],
+      "to": "eslint-plugin-jsx-a11y",
+      "type": "page"
+    },
+    {
+      "id": 97,
+      "name": "React Aria",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 9
+        }
+      ],
+      "to": "react-aria",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 98,
+      "name": "Measurements",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 2,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "measurements"
+    },
+    {
+      "id": 99,
+      "name": "Interaction to Next Paint",
+      "parentItems": [
+        {
+          "id": 98,
+          "seq": 1
+        }
+      ],
+      "to": "interaction-to-next-paint",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 100,
+      "name": "React 17 to 18",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 1
+        }
+      ],
+      "to": "react-17-to-18",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 101,
+      "name": "Code Snippets",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "code-snippets"
+    },
+    {
+      "id": 102,
+      "name": "CSS",
+      "parentItems": [
+        {
+          "id": 101,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "css"
+    },
+    {
+      "id": 103,
+      "name": "Centering an Element Horizontally and Vertically",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 1
+        }
+      ],
+      "to": "centering-an-element-horizontally-and-vertically",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 104,
+      "name": "Universal box sizing",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 2
+        }
+      ],
+      "to": "universal-box-sizing",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 105,
+      "name": "Hiding an Element",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 3
+        }
+      ],
+      "to": "hiding-an-element",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 106,
+      "name": "Styling Placeholder Text",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 4
+        }
+      ],
+      "to": "styling-placeholder-text",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 107,
+      "name": "Truncating Text with Ellipsis",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 5
+        }
+      ],
+      "to": "truncating-text-with-ellipsis",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 108,
+      "name": "Responsive Image",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 6
+        }
+      ],
+      "to": "responsive-image",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 109,
+      "name": "Memory Leaks",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 10
+        }
+      ],
+      "to": "memory-leaks",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 110,
+      "name": "async/await vs Promise Chaining",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 3
+        }
+      ],
+      "to": "async-await-vs-promise-chaining",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 111,
+      "name": "NextJs",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "nextjs"
+    },
+    {
+      "id": 112,
+      "name": "Middleware",
+      "parentItems": [
+        {
+          "id": 111,
+          "seq": 1
+        }
+      ],
+      "to": "middleware",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 113,
+      "name": "Javascript",
+      "parentItems": [
+        {
+          "id": 101,
+          "seq": 2,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "javascript"
+    },
+    {
+      "id": 114,
+      "name": "Array Functions",
+      "parentItems": [
+        {
+          "id": 113,
+          "seq": 1
+        }
+      ],
+      "to": "array-functions",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 919,
+      "name": "Use React.Fragment",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 5
+        }
+      ],
+      "to": "use-react-fragment",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 904,
+      "name": "Best Practices",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "best-practices",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 115,
+      "name": "Better Typescript",
+      "parentItems": [
+        {
+          "id": 10008,
+          "seq": 2
+        }
+      ],
+      "to": "better-typescript",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 117,
+      "name": "Tips",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 2
+        }
+      ],
+      "to": "tips",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 908,
+      "name": "Maintenance",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "maintenance",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 118,
+      "name": "Standard",
+      "parentItems": [
+        {
+          "id": 6006,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "standard"
+    },
+    {
+      "id": 119,
+      "name": "useState",
+      "parentItems": [
+        {
+          "id": 118,
+          "seq": 1
+        }
+      ],
+      "to": "usestate",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 120,
+      "name": "useReducer",
+      "parentItems": [
+        {
+          "id": 118,
+          "seq": 2
+        }
+      ],
+      "to": "usereducer",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 121,
+      "name": "Error Handling",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 4,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "error-handling"
+    },
+    {
+      "id": 122,
+      "name": "Error Boundaries",
+      "parentItems": [
+        {
+          "id": 121,
+          "seq": 1
+        }
+      ],
+      "to": "error-boundaries",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 123,
+      "name": "Date Handling",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 1
+        }
+      ],
+      "to": "date-handling",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 22,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 124,
+      "name": "bundlephobia",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 10
+        }
+      ],
+      "to": "bundlephobia",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 125,
+      "name": "React 18.3.1 - April 2024",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 0
+        }
+      ],
+      "to": "react-18.3.1---april-2024",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 41,
+      "name": "What's New",
+      "parentItems": [
+        {
+          "id": 39,
+          "seq": 0
+        }
+      ],
+      "to": "whats-new",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 126,
+      "name": "Codemods",
+      "parentItems": [
+        {
+          "id": 39,
+          "seq": 0
+        }
+      ],
+      "to": "codemods",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 127,
+      "name": "Routes and Controllers",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 0
+        }
+      ],
+      "to": "routes-and-controllers",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 128,
+      "name": "Synk",
+      "parentItems": [
+        {
+          "id": 74,
+          "seq": 0
+        }
+      ],
+      "to": "synk",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 129,
+      "name": "Optimization",
+      "parentItems": [
+        {
+          "id": 48,
+          "seq": 0
+        }
+      ],
+      "to": "optimization",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 42,
+      "name": "React Compiler",
+      "parentItems": [
+        {
+          "id": 39,
+          "seq": 1
+        }
+      ],
+      "to": "react-compiler",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 130,
+      "name": "Interview Questions",
+      "parentItems": [
+        {
+          "id": 27,
+          "seq": 0
+        }
+      ],
+      "to": "interview-questions",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 131,
+      "name": "useEffect",
+      "parentItems": [
+        {
+          "id": 118,
+          "seq": 1
+        }
+      ],
+      "to": "useeffect",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 132,
+      "name": "useLayoutEffect",
+      "parentItems": [
+        {
+          "id": 118,
+          "seq": 2
+        }
+      ],
+      "to": "uselayouteffect",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 133,
+      "name": "Interview Questions",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 0
+        }
+      ],
+      "to": "interview-questions",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 134,
+      "name": "ECMAScript2024",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 1
+        }
+      ],
+      "to": "ecmascript2024",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 135,
+      "name": "ECMAScript 2016 - ES7",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 1
+        }
+      ],
+      "to": "ecmascript-2016---es7",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 136,
+      "name": "ECMAScript 2023",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 2
+        }
+      ],
+      "to": "ecmascript-2023",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 139,
+      "name": "Atomic Design",
+      "parentItems": [
+        {
+          "id": 10001,
+          "seq": 3
+        },
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "atomic-design",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 138,
+      "name": "Component Composition",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "component-composition",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 140,
+      "name": "Avoid Inline Styles",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "avoid-inline-styles",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 137,
+      "name": "Conflict",
+      "parentItems": [
+        {
+          "id": 10010,
+          "seq": 0
+        }
+      ],
+      "to": "conflict",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 141,
+      "name": "Fluent Design",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "fluent-design",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 47,
+      "name": "Micro-frontend",
+      "parentItems": [
+        {
+          "id": 46,
+          "seq": 0
+        }
+      ],
+      "to": "micro-frontend",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 142,
+      "name": "HTML",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "html"
+    },
+    {
+      "id": 143,
+      "name": "Rarely Used HTML Tags",
+      "parentItems": [
+        {
+          "id": 141,
+          "seq": 0
+        }
+      ],
+      "to": "rarely-used-html-tags",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 144,
+      "name": "Update Node.js",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 4
+        }
+      ],
+      "to": "update-node.js",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 145,
+      "name": "Promise.withResolvers",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 3
+        }
+      ],
+      "to": "promise-withresolvers",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 146,
+      "name": "tsconfig.json",
+      "parentItems": [
+        {
+          "id": 14,
+          "seq": 0
+        }
+      ],
+      "to": "tsconfig_json",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 147,
+      "name": "API",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 10,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "api"
+    },
+    {
+      "id": 148,
+      "name": "Security",
+      "parentItems": [
+        {
+          "id": 147,
+          "seq": 0
+        }
+      ],
+      "to": "security",
+      "type": "page",
+      "hasFile": true
+    },
+    {
+      "id": 149,
+      "name": "New - useActionState",
+      "parentItems": [
+        {
+          "id": 6006,
+          "seq": 0
+        }
+      ],
+      "to": "new---useactionstate",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 150,
+      "name": "Re-renders",
+      "parentItems": [
+        {
+          "id": 69,
+          "seq": 0
+        }
+      ],
+      "to": "re-renders",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 151,
+      "name": "Monads",
+      "parentItems": [
+        {
+          "id": 82,
+          "seq": 0
+        }
+      ],
+      "to": "monads",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 152,
+      "name": "Performance",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "performance"
+    },
+    {
+      "id": 154,
+      "name": "ESM Development",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "esm-development",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 155,
+      "name": "Chrome Tools Debugging",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "chrome-tools-debugging",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 156,
+      "name": "Caching",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "caching",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 157,
+      "name": "Cluster Mode",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "cluster-mode",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 158,
+      "name": "Guard Clause pattern",
+      "parentItems": [
+        {
+          "id": 48,
+          "seq": 0
+        }
+      ],
+      "to": "guard-clause-pattern",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 159,
+      "name": "Fonts - Adding",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 0
+        }
+      ],
+      "to": "fonts---adding",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 160,
+      "name": "any, unknown, and never",
+      "parentItems": [
+        {
+          "id": 10008,
+          "seq": 1
+        }
+      ],
+      "to": "any-unknown-and-never",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 161,
+      "name": "Container Component Design Pattern",
+      "parentItems": [
+        {
+          "id": 24,
+          "seq": 0
+        }
+      ],
+      "to": "container-component-design-pattern",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 162,
+      "name": "CORS",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 10
+        }
+      ],
+      "to": "cors",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 163,
+      "name": "Interview Questions",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "interview-questions"
+    },
+    {
+      "id": 164,
+      "name": "Interview Questions - Node.js",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 10
+        },
+        {
+          "id": 163,
+          "seq": 0
+        }
+      ],
+      "to": "interview-questions---node.js",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 165,
+      "name": "Security",
+      "parentItems": [
+        {
+          "id": 28,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "security"
+    },
+    {
+      "id": 166,
+      "name": "Helmet",
+      "parentItems": [
+        {
+          "id": 165,
+          "seq": 0
+        }
+      ],
+      "to": "helmet",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 167,
+      "name": "Lifecycle",
+      "parentItems": [
+        {
+          "id": 27,
+          "seq": 0
+        }
+      ],
+      "to": "lifecycle",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 168,
+      "name": "React Query",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0
+        }
+      ],
+      "to": "react-query",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 169,
+      "name": "Webpack, Vite, Rollup",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 10
+        }
+      ],
+      "to": "webpack,-vite,-rollup",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 153,
+      "name": "Worker Threads",
+      "parentItems": [
+        {
+          "id": 152,
+          "seq": 0
+        }
+      ],
+      "to": "worker-threads",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 116,
+      "name": "Articles",
+      "parentItems": [
+        {
+          "id": 111,
+          "seq": 1
+        }
+      ],
+      "to": "articles",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 170,
+      "name": "Code Analysis",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 0
+        }
+      ],
+      "to": "code-analysis",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 171,
+      "name": "Image Card - Stacked Background",
+      "parentItems": [
+        {
+          "id": 102,
+          "seq": 0
+        }
+      ],
+      "to": "image-card---stacked-background",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 172,
+      "name": "Cyclomatic Complexity",
+      "parentItems": [
+        {
+          "id": 92,
+          "seq": 0
+        }
+      ],
+      "to": "Cyclomatic Complexity",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 173,
+      "name": "Halstead’s Software Metrics",
+      "parentItems": [
+        {
+          "id": 92,
+          "seq": 0
+        }
+      ],
+      "to": "halstead’s-software-metrics",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 174,
+      "name": "People Metrics",
+      "parentItems": [
+        {
+          "id": 92,
+          "seq": 0
+        }
+      ],
+      "to": "people-metrics",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 175,
+      "name": "Process Metrics",
+      "parentItems": [
+        {
+          "id": 92,
+          "seq": 0
+        }
+      ],
+      "to": "process-metrics",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 176,
+      "name": "Functional Point Analysis",
+      "parentItems": [
+        {
+          "id": 92,
+          "seq": 0
+        }
+      ],
+      "to": "functional-point-analysis",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 177,
+      "name": "Testing",
+      "parentItems": [
+        {
+          "id": 10006,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "testing"
+    },
+    {
+      "id": 181,
+      "name": "Code Quality",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "code-quality"
+    },
+    {
+      "id": 183,
+      "name": "Halstead Bugs",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 0
+        }
+      ],
+      "to": "halstead-bugs",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 182,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 184,
+      "name": "Halstead Measurements",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 2
+        }
+      ],
+      "to": "halstead-measurements",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 185,
+      "name": "Code Smells",
+      "parentItems": [
+        {
+          "id": 171,
+          "seq": 5
+        }
+      ],
+      "to": "code-smells",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 179,
+      "name": "npm dedupe",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "to": "npm-dedupe",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 180,
+      "name": "npm Dedupe",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "to": "npm-dedupe",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 186,
+      "name": "npm doctor",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 1
+        }
+      ],
+      "to": "npm-doctor",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 187,
+      "name": "npm prune",
+      "parentItems": [
+        {
+          "id": 15,
+          "seq": 0
+        }
+      ],
+      "to": "npm-prune",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 11,
+      "name": "Choosing a CSS Platform",
+      "parentItems": [
+        {
+          "id": 40,
+          "seq": 3
+        }
+      ],
+      "to": "choosing-a-css-platform",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 188,
+      "name": "Bugs",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "bugs"
+    },
+    {
+      "id": 189,
+      "name": "Bugs",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "bugs"
+    },
+    {
+      "id": 190,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 189,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 191,
+      "name": "Refactoring",
+      "parentItems": [
+        {
+          "id": 10002,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "refactoring"
+    },
+    {
+      "id": 192,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 191,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 193,
+      "name": "SonarQube",
+      "parentItems": [
+        {
+          "id": 181,
+          "seq": 0
+        }
+      ],
+      "to": "sonarqube",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 194,
+      "name": "Env vs.Secret Managers",
+      "parentItems": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
+      "to": "env-vs.secret-managers",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 195,
+      "name": "API Composition Pattern",
+      "parentItems": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
+      "to": "api-composition-pattern",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 196,
+      "name": "APi Throttling vs. Rate Limiting",
+      "parentItems": [
+        {
+          "id": 1,
+          "seq": 0
+        }
+      ],
+      "to": "api-throttling-vs-rate-limiting",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 197,
+      "name": "Accessibility",
+      "parentItems": [
+        {
+          "id": 0,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "root",
+      "to": "accessibility"
+    },
+    {
+      "id": 198,
+      "name": "Jest-Axe",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "jest-axe",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 178,
+      "name": "Jest",
+      "parentItems": [
+        {
+          "id": 92,
+          "seq": 0
+        }
+      ],
+      "to": "jest",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 200,
+      "name": "Methodologies",
+      "parentItems": [
+        {
+          "id": 10010,
+          "seq": 0,
+          "sortby": "name"
+        }
+      ],
+      "type": "menu",
+      "to": "methodologies"
+    },
+    {
+      "id": 201,
+      "name": "Agile",
+      "parentItems": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "to": "agile",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 202,
+      "name": "Impact Engineering",
+      "parentItems": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "to": "impact-engineering",
+      "type": "page"
+    },
+    {
+      "id": 203,
+      "name": "Lean Engineering",
+      "parentItems": [
+        {
+          "id": 200,
+          "seq": 0
+        }
+      ],
+      "to": "lean-engineering",
+      "type": "page"
+    },
+    {
+      "id": 205,
+      "name": "Avatar",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "avatar",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 204,
+      "name": "Overview",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "overview",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 199,
+      "name": "Inclusive Avatars",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "inclusive-avatars",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 50,
+      "name": "CommonJs vs ES Modules",
+      "parentItems": [
+        {
+          "id": 10009,
+          "seq": 2
+        }
+      ],
+      "to": "commonjs-vs-es-modules",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 208,
+      "name": "React 19",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 0
+        }
+      ],
+      "to": "react-19",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 209,
+      "name": "Input",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "input",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 210,
+      "name": "Implicit Aria Roles",
+      "parentItems": [
+        {
+          "id": 197,
+          "seq": 0
+        }
+      ],
+      "to": "implicit-aria-roles",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 211,
+      "name": "Error Messages",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "error-messages",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 212,
+      "name": "Design Problems",
+      "parentItems": [
+        {
+          "id": 2,
+          "seq": 0
+        }
+      ],
+      "to": "design-problems",
+      "type": "page"
+    },
+    {
+      "id": 216,
+      "name": "Best React Repos",
+      "parentItems": [
+        {
+          "id": 6,
+          "seq": 0
+        }
+      ],
+      "to": "best-react-",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 217,
+      "name": "Meta",
+      "parentItems": [
+        {
+          "id": 142,
+          "seq": 0
+        }
+      ],
+      "to": "meta",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 218,
+      "name": "React Compiler",
+      "parentItems": [
+        {
+          "id": 38,
+          "seq": 0
+        }
+      ],
+      "to": "react-compiler",
+      "type": "page",
+      "file": true
+    },
+    {
+      "id": 207,
+      "name": "Accessible SVGs1",
+      "parent": "4",
+      "readability_score": "7",
+      "reading_time": "6",
+      "to": "accessible-svgs2",
+      "url": "3"
+    }
+  ]
+}

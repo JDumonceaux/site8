@@ -3,7 +3,7 @@ import { memo, type ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 type StyledPlainButtonProps = {
-  readonly children: React.ReactNode;
+  readonly children?: React.ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const StyledPlainButton = memo(

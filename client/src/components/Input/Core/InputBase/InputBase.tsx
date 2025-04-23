@@ -104,8 +104,10 @@ const InputBase: FC<InputBaseProps> = ({
       startAdornment={startAdornment}
       {...(rest as FieldWrapperProps)}>
       <StyledInput
+        id={id}
         key={currId}
         list={dataList?.id}
+        name={id}
         type={type}
         value={value}
         {...(inputProps as InputRootProps)}

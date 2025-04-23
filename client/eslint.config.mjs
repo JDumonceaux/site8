@@ -316,8 +316,10 @@ export default [
         'error', {
           'paths': [
             { importNames: ["useLocation"], message: "Make sure you are importing useLocation from react-router-dom instead of react-router.", name: "react-router" },
-            { importNames: ["useFormState"], message: "useActionState instead" },
-            { message: "React 19 - deprecated.", name: "react-test-renderer" },
+            { importNames: ["useHistory"], message: "Make sure you are importing useHistory from react-router-dom instead of react-router.", name: "react-router" },
+            { importNames: ["useParams"], message: "Make sure you are importing useParams from react-router-dom instead of react-router.", name: "react-router" },
+            { importNames: ["useRouteMatch"], message: "Make sure you are importing useRouteMatch from react-router-dom instead of react-router.", name: "react-router" },
+            { importNames: ["Link"], message: "Make sure you are importing Link from react-router-dom instead of react-router.", name: "react-router" },
 
           ]
         }
