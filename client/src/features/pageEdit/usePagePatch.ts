@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import useSnackbar from 'features/app/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
 import type { Page, PageEdit } from 'types';
 
@@ -10,12 +11,28 @@ export type FormState = {
 
 const usePagePatch = () => {
   const queryClient = useQueryClient();
+  const { setMessage } = useSnackbar();
 
   const mutation = useMutation({
-    mutationFn: async (data: PageEdit) =>
-      axios.patch<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data),
+    mutationFn: async (data: PageEdit) => {
+      if (data.id && data.id > 0) {
+        return axios.patch<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data);
+      } else {
+        return axios.post<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data);
+      }
+    },
     onSuccess: () => {
+      setMessage('Saved');
       queryClient.invalidateQueries({ queryKey: ['page'] });
+    },
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        setMessage(`Error: ${error.message}`);
+      } else if (typeof error === 'string') {
+        setMessage(error);
+      } else {
+        setMessage('Unknown error occurred');
+      }
     },
   });
 
@@ -44,7 +61,7 @@ const usePagePatch = () => {
     error: mutation.error,
     isError: mutation.isError,
     isSuccess: mutation.isSuccess,
-    isUpdating: mutation.isPending,
+    isPending: mutation.isPending,
     patchItem,
   };
 };

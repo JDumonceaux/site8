@@ -12,10 +12,7 @@ export const patchItem = async (
   try {
     const service = new PageService();
     const fileService = new PageFileService();
-    console.log('item1b', req);
     const item = req.body as PageEdit;
-
-    console.log('item1', item);
 
     if (!item) {
       return res.status(400).json({ error: 'Invalid item' });
@@ -27,8 +24,6 @@ export const patchItem = async (
     // }
 
     // Meta data and text are stored in separate files - therefore two updates are needed.
-    console.log('item2', item);
-    console.log('item text', item.text);
     const promise1 = service.updateItem(item);
     const promise2 = fileService.updateFile(item.id, item.text);
     const promises = [promise1, promise2];

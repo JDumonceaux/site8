@@ -11,12 +11,12 @@ const reportWebVitals = async (
   onPerfEntry: (metric: MetricType) => void,
 ): Promise<void> => {
   try {
-    const { onCLS, onFCP, onINP, onLCP, onTTFB } = await import('web-vitals');
+    const { onCLS } = await import('web-vitals');
     onCLS(onPerfEntry);
-    onFCP(onPerfEntry);
-    onINP(onPerfEntry);
-    onLCP(onPerfEntry);
-    onTTFB(onPerfEntry);
+    //   onFCP(onPerfEntry);
+    //   onINP(onPerfEntry);
+    //   onLCP(onPerfEntry);
+    //   onTTFB(onPerfEntry);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Error importing web-vitals:', error);

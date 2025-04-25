@@ -7,10 +7,13 @@ import styled from 'styled-components';
 import type { Page } from 'types/Page';
 
 import usePagePatch, { type FormState } from './usePagePatch';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 
 type PageEditFormProps = {
   readonly data?: null | Page;
+  onSuccess?: (success: boolean) => void;
 };
+
 const PageEditForm = ({
   data: initData,
 }: PageEditFormProps): React.JSX.Element => {
@@ -45,72 +48,74 @@ const PageEditForm = ({
   //   [setCurrentPositionStart, setCurrentPositionEnd],
   // );
 
-  const { patchItem } = usePagePatch();
+  const { patchItem, isError, error, isPending } = usePagePatch();
 
   const [data, action] = useActionState(patchItem, {
     fieldData: initData,
   } as FormState);
 
   return (
-    <Form.Root action={action}>
-      <StyledButtonWrapper>
-        <StyledSaveButton data-testid="button-save" type="submit">
-          Save
-        </StyledSaveButton>
-      </StyledButtonWrapper>
-      <div>{data.message}</div>
-      <input id="id" name="id" type="hidden" value={data.fieldData.id} />
-      <Input.Text
-        defaultValue={data.fieldData.name}
-        id="title"
-        labelProps={{ label: 'Title' }}
-        // errorText={getFieldErrors('name')}
-        minLength={10}
-        placeholder="Enter a title"
-        // onBlur={handeNameOnBlur}
-        // onChange={handleChange}
-        required
-        spellCheck
-        // value={formValues.name}
-      />
-      <Input.Text
-        defaultValue={data.fieldData.to}
-        id="to"
-        labelProps={{ label: 'To' }}
-        placeholder="Enter a route"
-      />
-      <Input.Text
-        defaultValue={data.fieldData.url}
-        id="url"
-        labelProps={{ label: 'URL' }}
-        placeholder="Enter a url"
-      />
-      <Input.Text
-        id="parent"
-        labelProps={{ label: 'Parent' }}
-        //defaultValue={data?.fieldData.parentItems}
-        placeholder="Enter a menu id"
-      />
-      {/* <ToolMenu onClick={handeTextInsert} /> */}
-      <Input.TextArea
-        defaultValue={data.fieldData.text}
-        id="text"
-        labelProps={{ label: 'Text' }}
-        //onBlur={handeTextAreaBlur}
-        rows={30}
-        spellCheck
-      />
-      <Input.Text
-        defaultValue={data.fieldData.reading_time}
-        id="reading_time"
-        labelProps={{ label: 'Reading Time' }}
-      />
-      <Input.Text
-        defaultValue={data.fieldData.readability_score}
-        id="readability_score"
-        labelProps={{ label: 'Readability Score' }}
-      />
-    </Form.Root>
+    <LoadingWrapper isSaving={isPending} isError={isError} error={error}>
+      <Form.Root action={action}>
+        <StyledButtonWrapper>
+          <StyledSaveButton data-testid="button-save" type="submit">
+            Save
+          </StyledSaveButton>
+        </StyledButtonWrapper>
+
+        <input id="id" name="id" type="hidden" value={data.fieldData.id} />
+        <Input.Text
+          defaultValue={data.fieldData.name}
+          id="title"
+          labelProps={{ label: 'Title' }}
+          // errorText={getFieldErrors('name')}
+          minLength={10}
+          placeholder="Enter a title"
+          // onBlur={handeNameOnBlur}
+          // onChange={handleChange}
+          required
+          spellCheck
+          // value={formValues.name}
+        />
+        <Input.Text
+          defaultValue={data.fieldData.to}
+          id="to"
+          labelProps={{ label: 'To' }}
+          placeholder="Enter a route"
+        />
+        <Input.Text
+          defaultValue={data.fieldData.url}
+          id="url"
+          labelProps={{ label: 'URL' }}
+          placeholder="Enter a url"
+        />
+        <Input.Text
+          id="parent"
+          labelProps={{ label: 'Parent' }}
+          //defaultValue={data?.fieldData.parentItems}
+          placeholder="Enter a menu id"
+        />
+        {/* <ToolMenu onClick={handeTextInsert} /> */}
+        <Input.TextArea
+          defaultValue={data.fieldData.text}
+          id="text"
+          labelProps={{ label: 'Text' }}
+          //onBlur={handeTextAreaBlur}
+          rows={30}
+          spellCheck
+        />
+        <Input.Text
+          defaultValue={data.fieldData.reading_time}
+          id="reading_time"
+          labelProps={{ label: 'Reading Time' }}
+        />
+        <Input.Text
+          defaultValue={data.fieldData.readability_score}
+          id="readability_score"
+          labelProps={{ label: 'Readability Score' }}
+        />
+      </Form.Root>
+    </LoadingWrapper>
   );
 };
 

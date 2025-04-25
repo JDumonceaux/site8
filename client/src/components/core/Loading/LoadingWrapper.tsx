@@ -4,11 +4,12 @@ import styled, { keyframes } from 'styled-components';
 
 type LoadingWrapperProps = {
   readonly children: React.ReactNode;
-  readonly error?: Error | null | string | undefined;
+  readonly error?: unknown;
   readonly fallback?: React.ReactNode;
   readonly isError?: boolean;
   readonly isLoading?: boolean;
   readonly isPending?: boolean;
+  readonly isSaving?: boolean;
   readonly loadingText?: React.ReactNode;
 };
 
@@ -24,8 +25,18 @@ const LoadingWrapper = ({
   isError,
   isLoading,
   isPending,
+  isSaving,
   loadingText,
 }: LoadingWrapperProps): React.JSX.Element | React.ReactNode => {
+  if (isSaving) {
+    return (
+      <>
+        <ProgressBar />
+        <LoadingText>Saving</LoadingText>
+      </>
+    );
+  }
+
   if (isLoading || isPending) {
     return (
       <>

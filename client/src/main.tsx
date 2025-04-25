@@ -3,7 +3,7 @@ import { StrictMode } from 'react';
 import { App } from 'app/app';
 import ReactDOM from 'react-dom/client';
 
-import reportWebVitals from './lib/utils/reportWebVitals';
+//import reportWebVitals from './lib/utils/reportWebVitals';
 
 // Get the root element from the document
 const rootElement = document.querySelector('#root');
@@ -31,5 +31,5 @@ ReactDOM.createRoot(rootElement, {
 );
 
 // Report web vitals (change console.log to your analytics endpoint if needed)
-// eslint-disable-next-line no-console
-reportWebVitals(console.log);
+
+//reportWebVitals(console.log);

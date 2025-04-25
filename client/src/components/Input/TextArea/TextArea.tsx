@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import FieldWrapper, {
   type FieldWrapperProps,
-  type FieldWrapperProps as FieldWrapperProperties,
 } from '../Core/FieldWrapper/FieldWrapper';
 
 type TextAreaRootProps = Omit<
@@ -32,6 +31,8 @@ const TextArea = ({
 
   const tempRef = useRef<HTMLTextAreaElement>(null);
   const localRef = ref ?? tempRef;
+  const textAreaProps = { ...rest };
+  delete textAreaProps.labelProps;
 
   return (
     <FieldWrapper {...(rest as FieldWrapperProps)}>
@@ -40,7 +41,7 @@ const TextArea = ({
         name={id}
         ref={localRef}
         rows={rows}
-        {...(rest as TextAreaRootProps)}
+        {...(textAreaProps as TextAreaRootProps)}
       />
     </FieldWrapper>
   );

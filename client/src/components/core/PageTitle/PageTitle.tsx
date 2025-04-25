@@ -51,6 +51,7 @@ const StyledElement = styled.h1`
   color: var(--palette-page-title);
   font-size: 2.25rem;
   display: inline-block;
+  margin: 0;
 `;
 const StyledChildren = styled.div`
   display: inline-flex;

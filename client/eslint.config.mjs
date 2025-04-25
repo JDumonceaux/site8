@@ -14,7 +14,6 @@ import pluginPerfectionist from 'eslint-plugin-perfectionist';
 import pluginArrow from 'eslint-plugin-prefer-arrow-functions';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginReact from 'eslint-plugin-react';
-import pluginReactCompiler from 'eslint-plugin-react-compiler';
 import pluginHooks from 'eslint-plugin-react-hooks';
 import pluginRedux from 'eslint-plugin-react-redux';
 import pluginStorybook from 'eslint-plugin-storybook';
@@ -51,7 +50,6 @@ export default [
       'prefer-arrow-functions': pluginArrow,
       promise: pluginPromise,
       react: pluginReact,
-      'react-compiler': pluginReactCompiler,
       'react-hooks': pluginHooks,
       'react-redux': pluginRedux,
       unicorn: pluginUnicorn,
@@ -66,8 +64,6 @@ export default [
       ...pluginUnicorn.configs.recommended.rules,
       // ...importPlugin.flatconfig.recommended.rules,
 
-      // There is no config for this plugin
-      // ...pluginReactCompiler.configs.recommended.rules,
       // Evaluate: Too many and conflicting rules
       // ...pluginSonar.configs.recommended.rules,
 
@@ -490,7 +486,7 @@ export default [
       quotes: 'off',
       radix: 'error',
       // React compiler rules
-      'react-compiler/react-compiler': 'error',
+      'react-hooks/react-compiler': 'error',
       'react-redux/connect-prefer-named-arguments': 'error',
       // Redux rules
       'react-redux/mapStateToProps-prefer-selectors': 'error',

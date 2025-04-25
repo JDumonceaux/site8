@@ -5,14 +5,14 @@ import StyledLink from 'components/Link/StyledLink/StyledLink';
 import Layout from 'features/layouts/Layout/Layout';
 import { getParamIdAsString } from 'lib/utils/helpers';
 import { useParams } from 'react-router-dom';
-import usePage from './usePage';
+
 import PageEditForm from './PageEditForm';
+import usePage from './usePage';
 
 const PageEditPage = (): React.JSX.Element => {
-  const title = 'New Page';
-
   const { id } = useParams();
   const currentId = getParamIdAsString(id);
+  const title = currentId ? `Edit Page: ${currentId}` : 'New Page';
 
   const { data, error, isError, isLoading } = usePage(currentId);
 
