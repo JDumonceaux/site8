@@ -6,7 +6,7 @@ import { safeParse } from '../../lib/utils/zodHelper.js';
 import { MenuAdd } from '../../types/MenuAdd.js';
 import { MenuItem } from '../../types/MenuItem.js';
 import { Menus } from '../../types/Menus.js';
-import { PageMenu } from '../../types/PageMenu.js';
+import { PageMenu } from '../../types/Page.js';
 import { Pages } from '../../types/Pages.js';
 import { PagesIndex } from '../../types/PagesIndex.js';
 import { Parent } from '../../types/Parent.js';
@@ -73,7 +73,7 @@ export class MenuService {
             ? p.toSorted(
                 (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
               )
-            : p.toSorted((a, b) => a.name.localeCompare(b.name));
+            : p.toSorted((a, b) => a.title.localeCompare(b.title));
         // Add to return
         ret.push(...sorted);
       });
@@ -106,7 +106,7 @@ export class MenuService {
         .map((item) =>
           mapPageMenuToMenuItem(item, item?.parentItems?.[0] ?? defaultParent),
         )
-        .toSorted((a, b) => a.name.localeCompare(b.name) ?? 0);
+        .toSorted((a, b) => a.title.localeCompare(b.title) ?? 0);
 
       // Loop through root menus
       const arr: MenuItem[] = [];
@@ -128,7 +128,7 @@ export class MenuService {
             ? ret2.toSorted(
                 (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
               )
-            : ret2.toSorted((a, b) => a.name.localeCompare(b.name));
+            : ret2.toSorted((a, b) => a.title.localeCompare(b.title));
         // Add the menu items to the return array
         arr.push(...(sorted || []));
       });

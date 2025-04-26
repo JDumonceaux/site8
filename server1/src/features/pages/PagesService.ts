@@ -4,7 +4,7 @@ import { isValidArray } from '../../lib/utils/helperUtils.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
 import { MenuEdit } from '../../types/MenuEdit.js';
-import { PageMenu } from '../../types/PageMenu.js';
+import { PageMenu } from '../../types/Page.js';
 import { Pages } from '../../types/Pages.js';
 import { PagesIndex } from '../../types/PagesIndex.js';
 import { ParentSortby } from '../../types/ParentSortby.js';
@@ -182,7 +182,7 @@ export class PagesService {
     try {
       const item = await this.getItems();
       const duplicates = item?.items
-        ?.map((x) => x.id?.toString() || x.name)
+        ?.map((x) => x.id?.toString() || x.title)
         .filter((x, i, a) => a.indexOf(x) !== i);
       // Filter out null
       const filtered = duplicates?.filter((x) => x);

@@ -1,4 +1,4 @@
-import { useRef, useEffect, memo } from 'react';
+import { memo } from 'react';
 
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
@@ -8,8 +8,6 @@ type TooltipBaseProps = {
   readonly children?: never;
   // This should be translated
   readonly content?: React.ReactNode;
-  readonly ref?: React.RefObject<HTMLElement>;
-  readonly tabStop?: boolean;
   readonly tooltipProps?: TooltipRadix.TooltipProps;
   readonly trigger?: React.ReactNode;
   readonly triggerColor?: string;
@@ -20,33 +18,19 @@ const TooltipBase = memo(
   ({
     arrowProps,
     content,
-    tabStop = false,
     tooltipProps,
     trigger,
     triggerColor,
     triggerProps,
   }: TooltipBaseProps): null | React.JSX.Element => {
-    const elementRef: React.RefObject<HTMLElement> = useRef(null);
-
-    // React doesn't support inert - so you have to do it this way
-    useEffect(() => {
-      if (elementRef.current && !tabStop) {
-        //    elementRef.current.inert = true;
-        elementRef.current.setAttribute('tabindex', '-1');
-      }
-    }, [tabStop]);
-
     if (!content) {
       return null;
     }
 
     return (
       <TooltipRadix.Provider>
-        <TooltipRadix.Root {...tooltipProps}>
-          <StyledTrigger
-            $color={triggerColor}
-            {...triggerProps}
-            ref={elementRef}>
+        <TooltipRadix.Root {...tooltipProps} delayDuration={0}>
+          <StyledTrigger $color={triggerColor} {...triggerProps}>
             {trigger}
           </StyledTrigger>
           <StyledContent>
@@ -69,6 +53,10 @@ const StyledTrigger = styled(TooltipRadix.Trigger)<{
   $color?: string;
 }>`
   color: ${(props) => props.$color ?? 'var(--text-primary-color)'};
+  display: inline-block;
+  position: relative;
+  padding: 0 4px;
+  z-index: 1;
 `;
 const StyledArrow = styled(TooltipRadix.Arrow)`
   fill: var(--tooltip-arrow-color);

@@ -2,7 +2,7 @@ import { Parent } from './Parent.js';
 
 export type MenuItem = {
   readonly id: number;
-  readonly name: string;
+  readonly title: string;
   readonly parentItem?: Parent;
   readonly to?: string;
   readonly url?: string;

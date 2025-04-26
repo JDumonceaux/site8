@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { QueryTime, ServiceUrl } from 'lib/utils/constants';
 import { handleQueryError } from 'lib/utils/errorHandler';
-import { Page } from 'types';
+import type { Page } from 'types';
 
 // Helper function to fetch a generic page by id
 const fn = async (id: string): Promise<Page> => {
@@ -20,9 +20,9 @@ const usePage = (id: string | undefined) => {
     enabled: Boolean(id),
     // Cache the data for 10 minutes
     gcTime: QueryTime.GC_TIME,
-    // Only run the query if an id is provided
-    queryKey: queryKey,
     queryFn: async () => fn(id as string),
+    // Only run the query if an id is provided
+    queryKey,
     refetchInterval: QueryTime.REFETCH_INTERVAL,
     refetchIntervalInBackground: false,
     // Disable auto-refetching behaviors

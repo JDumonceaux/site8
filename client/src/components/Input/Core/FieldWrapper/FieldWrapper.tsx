@@ -20,6 +20,7 @@ export type FieldWrapperProps = {
   readonly labelProps?: LabelRowProps;
   readonly onClear?: () => void;
   readonly ref?: React.Ref<HTMLDivElement>;
+  readonly required?: boolean;
   readonly startAdornment?: React.ReactNode;
   readonly startAdornmentProps?: StartAdornmentProps;
 };
@@ -33,12 +34,13 @@ const FieldWrapper: FC<FieldWrapperProps> = memo(
     id,
     labelProps,
     ref,
+    required,
     startAdornment,
     startAdornmentProps,
   }: FieldWrapperProps): React.JSX.Element => {
     return (
       <div id={id} ref={ref}>
-        <LabelRow {...labelProps} />
+        <LabelRow {...labelProps} required={required} />
         <StyledDiv>
           <StartAdornment {...startAdornmentProps}>
             {startAdornment}

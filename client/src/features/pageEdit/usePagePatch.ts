@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import useSnackbar from 'features/app/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
-import { Page, PageEdit, PageEditSchema } from 'types';
+import type { Page, PageEdit } from 'types';
 import { PageSchema } from 'types/PageSchema';
 
 export type FormState = {
@@ -14,17 +14,13 @@ const usePagePatch = () => {
   const queryClient = useQueryClient();
   const { setMessage } = useSnackbar();
 
+  // Send the data to the server
   const mutation = useMutation({
     mutationFn: async (data: PageEdit) => {
       if (data.id && data.id > 0) {
         return axios.patch<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data);
-      } else {
-        return axios.post<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data);
       }
-    },
-    onSuccess: () => {
-      setMessage('Saved');
-      queryClient.invalidateQueries({ queryKey: ['page'] });
+      return axios.post<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data);
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
@@ -35,37 +31,23 @@ const usePagePatch = () => {
         setMessage('Unknown error occurred');
       }
     },
+    onSuccess: () => {
+      setMessage('Saved');
+      queryClient.invalidateQueries({ queryKey: ['page'] });
+    },
   });
 
+  // Validate the data using Zod schema
   const isValid = (data: PageEdit): boolean => {
-    // const schema = z.object({
-    //   id: z.number(),
-    //   name: z
-    //     .string({
-    //       invalid_type_error: 'Name must be a string',
-    //       required_error: 'Name is required.',
-    //     })
-    //     .min(1, 'Name is required.')
-    //     .max(500, 'Name max length exceeded: 500')
-    //     .trim(),
-    //   parent: z.string().min(1, 'Parent is required.'),
-    //   readability_score: z.string().trim().optional(),
-    //   reading_time: z.string().trim().optional(),
-    //   text: z.string().trim(),
-    //   to: z.string().trim().optional(),
-    //   url: z.string().trim().optional(),
-    // });
     const result = PageSchema.safeParse(data);
     if (result.success) {
-      console.log('true');
       return true;
-    } else {
-      console.log('false');
-      setMessage(`Validation error: ${result.error.message}`);
-      return false;
     }
+    setMessage(`Validation error: ${result.error.message}`);
+    return false;
   };
 
+  // Function to handle the form submission
   const patchItem = async (
     _prevState: unknown,
     formData: FormData,
@@ -97,8 +79,8 @@ const usePagePatch = () => {
   return {
     error: mutation.error,
     isError: mutation.isError,
-    isSuccess: mutation.isSuccess,
     isPending: mutation.isPending,
+    isSuccess: mutation.isSuccess,
     patchItem,
   };
 };

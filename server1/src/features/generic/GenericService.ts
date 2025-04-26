@@ -1,6 +1,6 @@
 import { Logger } from '../../lib/utils/logger.js';
 import { PageText } from '../../types/PageText.js';
-import { PageMenu } from '../../types/PageMenu.js';
+import { PageMenu } from '../../types/Page.js';
 import { PageFileService } from '../page/PageFileService.js';
 import { PagesService } from '../pages/PagesService.js';
 

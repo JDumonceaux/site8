@@ -101,6 +101,7 @@ const InputBase: FC<InputBaseProps> = ({
   return (
     <FieldWrapper
       endAdornment={endAdornment}
+      required={required}
       startAdornment={startAdornment}
       {...(rest as FieldWrapperProps)}>
       <StyledInput

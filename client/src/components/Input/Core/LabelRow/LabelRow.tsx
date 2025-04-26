@@ -8,7 +8,7 @@ import Tooltip from '../Tooltip/Tooltip';
 import type { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
 export type LabelRowProps = {
-  readonly children?: React.ReactNode;
+  readonly children: never;
   readonly description?: string;
   readonly endAdornment?: React.ReactNode;
   readonly label?: string;
@@ -18,7 +18,7 @@ export type LabelRowProps = {
   readonly tooltipProps?: TooltipBaseProps;
 } & Omit<
   LabelHTMLAttributes<HTMLLabelElement>,
-  'autoComplete' | 'onBlur' | 'onChange' | 'onClick' | 'ref'
+  'autoComplete' | 'children' | 'onBlur' | 'onChange' | 'onClick' | 'ref'
 >;
 
 /* Note: If you use htmlfor(or for) attribute, 
@@ -26,7 +26,6 @@ export type LabelRowProps = {
 
 const LabelRow: React.FC<LabelRowProps> = memo(
   ({
-    children,
     description,
     endAdornment,
     id,
@@ -36,28 +35,32 @@ const LabelRow: React.FC<LabelRowProps> = memo(
     requiredText,
     tooltipProps,
     ...rest
-  }: LabelRowProps): React.JSX.Element => (
-    <Label.Root htmlFor={id} ref={ref} {...rest}>
-      <StyledRow>
-        <StyledLabel>
-          {label}
-          {required ? (
-            <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
-          ) : null}
-          {required ? (
-            <Tooltip.Asterix
-              content="Required"
-              triggerColor="var(--color-required)"
-              {...tooltipProps}
-            />
-          ) : null}
-        </StyledLabel>
-        {description ? <Tooltip.QuestionMark content={description} /> : null}
-        {endAdornment}
-      </StyledRow>
-      {children}
-    </Label.Root>
-  ),
+  }: LabelRowProps): React.JSX.Element => {
+    const cleanedTooltipProps = { ...tooltipProps };
+    delete cleanedTooltipProps.children;
+
+    return (
+      <Label.Root htmlFor={id} ref={ref} {...rest}>
+        <StyledRow>
+          <StyledLabel>
+            {label}
+            {required ? (
+              <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
+            ) : null}
+            {required ? (
+              <Tooltip.Asterix
+                content="Required"
+                triggerColor="var(--color-required)"
+                {...cleanedTooltipProps}
+              />
+            ) : null}
+          </StyledLabel>
+          {description ? <Tooltip.QuestionMark content={description} /> : null}
+          {endAdornment}
+        </StyledRow>
+      </Label.Root>
+    );
+  },
 );
 LabelRow.displayName = 'LabelRow';
 

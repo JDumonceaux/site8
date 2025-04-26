@@ -1,5 +1,11 @@
 import { z } from 'zod';
 
+const Parent = z.object({
+  id: z.number(),
+  seq: z.number(),
+  sortBy: z.string().optional(),
+});
+
 export const PageSchema = z.object({
   id: z.number(),
   title: z.string(),
@@ -10,10 +16,10 @@ export const PageSchema = z.object({
   create_date: z.date().optional(),
   reading_time: z.string().optional(),
   readability_score: z.string().optional(),
-  // parentItem: Parent.optional(),
+  parentItems: Parent.array().optional(),
   file: z.boolean().optional(),
-  type: z.literal('page').optional(),
-  issue: z.boolean().optional(),
+  type: z.literal('page'),
+  issue: z.string().optional(),
   line: z.number(),
 });
 

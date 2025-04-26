@@ -1,4 +1,4 @@
-import { PageMenu } from './PageMenu.js';
+import { PageMenu } from './Page.js';
 
 export type PageText = PageMenu & {
   readonly text?: string;

@@ -1,6 +1,9 @@
 import js from '@eslint/js';
 import pluginTypescript from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser'; P
+import pluginCheckFile from 'eslint-plugin-check-file';
+import typescriptParser from '@typescript-eslint/parser';
+// There is no default export for this plug-in, so import it this way.
+import * as  importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
 
 export default [
@@ -25,9 +28,75 @@ export default [
     name: 'Site8-js',
     plugins: {
       '@eslint/js': js,
+      import: importPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
+      'import/default': 'off',
+      'import/no-cycle': 'error',
+      // Import Rules
+      'import/no-dynamic-require': 'warn',
+      'import/no-named-as-default': 'off',
+      'import/no-named-as-default-member': 'off',
+      'import/no-nodejs-modules': 'warn',
+      'import/no-restricted-paths': [
+        'error',
+        {
+          zones: [
+            // disables cross-feature imports:
+            // eg. src/features/discussions should not import from src/features/comments, etc.
+            {
+              except: ['./auth'],
+              from: './src/features',
+              target: './src/features/auth',
+            },
+            {
+              except: ['./users'],
+              from: './src/features',
+              target: './src/features/users',
+            },
+            // enforce unidirectional codebase:
+
+            // e.g. src/app can import from src/features but not the other way around
+            {
+              from: './src/app',
+              target: './src/features',
+            },
+
+            // e.g src/features and src/app can import from these shared modules but not the other way around
+            {
+              from: ['./src/features', './src/app'],
+              target: [
+                './src/components',
+                './src/hooks',
+                './src/lib',
+                './src/types',
+                './src/utils',
+              ],
+            },
+          ],
+        },
+      ],
+      'import/order': [
+        'error',
+        {
+          "alphabetize": {
+            "caseInsensitive": true,
+            "order": "asc"
+
+          },
+          "groups": ["builtin", "external", "internal"],
+          "newlines-between": "always",
+          "pathGroups": [
+            {
+              "group": "external",
+              "pattern": "react",
+              "position": "before"
+            }
+          ],
+          "pathGroupsExcludedImportTypes": ["react"],
+        },
+      ],
     },
     settings: {
       react: {
@@ -56,7 +125,6 @@ export default [
       '@typescript-eslint': pluginTypescript,
       'check-file': pluginCheckFile,
     },
-
     rules: {
       ...pluginTypescript.configs.recommended.rules,
       ...pluginTypescript.configs['recommended-requiring-type-checking'].rules,
@@ -173,10 +241,8 @@ export default [
       'check-file/filename-naming-convention': [
         'error',
         {
-          '**/*.{tsx}': 'PASCAL_CASE',
-          '**/*.{ts}': 'CAMEL_CASE',
-        },
-        {
+          '**/*.tsx': 'PASCAL_CASE',
+          '**/*.ts': 'CAMEL_CASE',
           ignoreMiddleExtensions: true,
         },
       ],
