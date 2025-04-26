@@ -65,7 +65,7 @@ const PageEditForm = ({
 
         <input id="id" name="id" type="hidden" value={data.fieldData.id} />
         <Input.Text
-          defaultValue={data.fieldData.name}
+          defaultValue={data.fieldData.title}
           id="title"
           labelProps={{ label: 'Title' }}
           // errorText={getFieldErrors('name')}

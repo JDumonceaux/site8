@@ -1,10 +1,7 @@
 import { REQUIRED_FIELD } from 'lib/utils/constants';
 import { z } from 'zod';
-import { PageSchema } from './PageSchema';
 
-export type Page = z.infer<typeof PageSchema>;
-
-export const PageEditSchema = z
+export const PageSchema = z
   .object({
     id: z.number(),
     title: z
@@ -33,5 +30,3 @@ export const PageEditSchema = z
     (data) => data.to ?? data.url,
     'Either to or url should be filled in.',
   );
-
-export type PageEdit = z.infer<typeof PageEditSchema>;

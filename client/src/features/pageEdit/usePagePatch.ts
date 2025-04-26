@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import useSnackbar from 'features/app/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
-import { type Page, type PageEdit } from 'types';
-import { z } from 'zod';
+import { Page, PageEdit, PageEditSchema } from 'types';
+import { PageSchema } from 'types/PageSchema';
 
 export type FormState = {
   fieldData: Page;
@@ -38,28 +38,32 @@ const usePagePatch = () => {
   });
 
   const isValid = (data: PageEdit): boolean => {
-    const schema = z.object({
-      id: z.number(),
-      name: z
-        .string({
-          invalid_type_error: 'Name must be a string',
-          required_error: 'Name is required.',
-        })
-        .min(1, 'Name is required.')
-        .max(500, 'Name max length exceeded: 500')
-        .trim(),
-      parent: z.string().min(1, 'Parent is required.'),
-      readability_score: z.string().trim().optional(),
-      reading_time: z.string().trim().optional(),
-      text: z.string().trim(),
-      to: z.string().trim().optional(),
-      url: z.string().trim().optional(),
-    });
-    if (schema.safeParse(data)) {
+    // const schema = z.object({
+    //   id: z.number(),
+    //   name: z
+    //     .string({
+    //       invalid_type_error: 'Name must be a string',
+    //       required_error: 'Name is required.',
+    //     })
+    //     .min(1, 'Name is required.')
+    //     .max(500, 'Name max length exceeded: 500')
+    //     .trim(),
+    //   parent: z.string().min(1, 'Parent is required.'),
+    //   readability_score: z.string().trim().optional(),
+    //   reading_time: z.string().trim().optional(),
+    //   text: z.string().trim(),
+    //   to: z.string().trim().optional(),
+    //   url: z.string().trim().optional(),
+    // });
+    const result = PageSchema.safeParse(data);
+    if (result.success) {
+      console.log('true');
       return true;
+    } else {
+      console.log('false');
+      setMessage(`Validation error: ${result.error.message}`);
+      return false;
     }
-    setMessage('Validation error: Invalid data');
-    return false;
   };
 
   const patchItem = async (

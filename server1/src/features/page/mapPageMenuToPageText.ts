@@ -1,4 +1,4 @@
-import { PageMenu } from '../../types/PageMenu.js';
+import { PageMenu } from '../../types/Page.js';
 import { PageText } from '../../types/PageText.js';
 
 export const mapPageMenuToPageText = (

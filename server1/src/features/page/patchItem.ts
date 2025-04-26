@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { PageService } from './PageService.js';
 import { PageFileService } from './PageFileService.js';
-import { PageEdit } from 'src/types/PageEdit.js';
 import { Logger } from '../../lib/utils/logger.js';
+import { PageEdit } from '../../types/Page.js';
 
 export const patchItem = async (
   req: Request<unknown, unknown, PageEdit, unknown>,

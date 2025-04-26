@@ -1,19 +1,30 @@
-import { Parent } from './Parent.js';
+import { z } from 'zod';
 
-export type Page = {
-  readonly id: number;
-  readonly name: string;
-  readonly title?: string;
-  readonly to?: string;
-  readonly toComplete?: string;
-  readonly url?: string;
-  readonly edit_date?: Date;
-  readonly create_date?: Date;
-  readonly reading_time?: string;
-  readonly readability_score?: string;
-  readonly parentItem?: Parent;
-  readonly file?: boolean;
-  readonly type?: 'page';
-  readonly issue?: boolean;
-  readonly line: number;
-};
+export const PageSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  to: z.string().optional(),
+  toComplete: z.string().optional(),
+  url: z.string().optional(),
+  edit_date: z.date().optional(),
+  create_date: z.date().optional(),
+  reading_time: z.string().optional(),
+  readability_score: z.string().optional(),
+  // parentItem: Parent.optional(),
+  file: z.boolean().optional(),
+  type: z.literal('page').optional(),
+  issue: z.boolean().optional(),
+  line: z.number(),
+});
+
+export type Page = z.infer<typeof PageSchema>;
+
+export type PageEdit = {
+  readonly text?: string;
+} & Page;
+
+export type PageMenu = {
+  readonly type: 'page' | 'root' | 'menu';
+} & Omit<Page, 'type'>;
+
+export const PageSchemaAdd = PageSchema.omit({ id: true });
