@@ -50,9 +50,11 @@ type InputRootProps = Omit<
 
 type InputAddProps = {
   readonly allowedCharacters?: RegExp;
+
   readonly dataList?: { readonly data?: KeyValue[]; readonly id: string };
+  readonly defaultValue?: number | string | string[];
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  readonly onClear?: (id: string) => void;
+  //readonly onClear?: (id: string) => void;
   readonly ref?: React.Ref<HTMLInputElement>;
   readonly type: HTMLInputTypeAttribute;
   readonly value?: number | string | string[];
@@ -65,22 +67,18 @@ type InputBaseProps = InputRootProps & InputAddProps & FieldWrapperProps;
 
 const InputBase: FC<InputBaseProps> = ({
   dataList,
-  endAdornment,
+  defaultValue = '',
   id,
-  // showCounter = false,
-  // showError = true,
-  // showRequired = true,
-  // requiredLabel = 'Required',
-  // requiredLabelProps,
   onChange,
-  onClear,
   ref,
   required,
-  startAdornment,
   type,
   value,
   ...rest
 }: InputBaseProps): React.JSX.Element => {
+  const [fieldLength, setFieldLength] = React.useState<number>(
+    defaultValue.toString().length,
+  );
   const currId = useGetId(id);
 
   const tempRef = useRef<HTMLInputElement>(null);
@@ -90,6 +88,7 @@ const InputBase: FC<InputBaseProps> = ({
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFieldLength(e.target.value.length);
       if (onChange) {
         onChange(e);
       }
@@ -100,11 +99,11 @@ const InputBase: FC<InputBaseProps> = ({
 
   return (
     <FieldWrapper
-      endAdornment={endAdornment}
       required={required}
-      startAdornment={startAdornment}
-      {...(rest as FieldWrapperProps)}>
+      {...(rest as FieldWrapperProps)}
+      fieldLength={fieldLength}>
       <StyledInput
+        defaultValue={defaultValue}
         id={id}
         key={currId}
         list={dataList?.id}
@@ -118,7 +117,9 @@ const InputBase: FC<InputBaseProps> = ({
       {dataList?.data ? (
         <datalist id={dataList.id}>
           {dataList.data.map((x) => (
-            <option key={x.key} value={x.value} />
+            <option key={x.key} value={x.value}>
+              {x.value}
+            </option>
           ))}
         </datalist>
       ) : null}

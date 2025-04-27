@@ -8,7 +8,7 @@ import Tooltip from '../Tooltip/Tooltip';
 import type { TooltipBaseProps } from '../Tooltip/TooltipBase';
 
 export type LabelRowProps = {
-  readonly children: never;
+  readonly children?: never;
   readonly description?: string;
   readonly endAdornment?: React.ReactNode;
   readonly label?: string;

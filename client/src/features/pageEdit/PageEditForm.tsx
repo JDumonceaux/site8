@@ -1,17 +1,16 @@
 import React, { useActionState } from 'react';
 
 import * as Form from '@radix-ui/react-form';
+import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import styled from 'styled-components';
 import type { Page } from 'types/Page';
 
 import usePagePatch, { type FormState } from './usePagePatch';
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 
 type PageEditFormProps = {
   readonly data?: null | Page;
-  onSuccess?: (success: boolean) => void;
 };
 
 const PageEditForm = ({
@@ -48,14 +47,14 @@ const PageEditForm = ({
   //   [setCurrentPositionStart, setCurrentPositionEnd],
   // );
 
-  const { patchItem, isError, error, isPending } = usePagePatch();
+  const { error, isError, isPending, patchItem } = usePagePatch();
 
   const [data, action] = useActionState(patchItem, {
     fieldData: initData,
   } as FormState);
 
   return (
-    <LoadingWrapper isSaving={isPending} isError={isError} error={error}>
+    <LoadingWrapper error={error} isError={isError} isSaving={isPending}>
       <Form.Root action={action}>
         <StyledButtonWrapper>
           <StyledSaveButton data-testid="button-save" type="submit">
@@ -67,12 +66,13 @@ const PageEditForm = ({
         <Input.Text
           defaultValue={data.fieldData.title}
           id="title"
+          // onBlur={handeNameOnBlur}
+          // onChange={handleChange}
           labelProps={{ label: 'Title' }}
+          maxLength={500}
           // errorText={getFieldErrors('name')}
           minLength={10}
           placeholder="Enter a title"
-          // onBlur={handeNameOnBlur}
-          // onChange={handleChange}
           required
           spellCheck
           // value={formValues.name}

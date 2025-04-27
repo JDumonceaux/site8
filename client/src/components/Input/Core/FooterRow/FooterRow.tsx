@@ -3,14 +3,25 @@ import { type FC, memo } from 'react';
 import styled from 'styled-components';
 
 export type FooterRowProps = {
+  readonly fieldLength?: number;
+  readonly maxLength?: number;
   readonly ref?: React.Ref<HTMLDivElement>;
   readonly text?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const FooterRow: FC<FooterRowProps> = memo(
-  ({ ref, text, ...rest }: FooterRowProps): React.JSX.Element => (
+  ({
+    fieldLength = 0,
+    maxLength = 0,
+    ref,
+    text,
+    ...rest
+  }: FooterRowProps): React.JSX.Element => (
     <RowDiv {...rest} ref={ref}>
-      {text}
+      <div>{text}</div>
+      <CounterDiv>
+        {fieldLength}/{maxLength}
+      </CounterDiv>
     </RowDiv>
   ),
 );
@@ -29,4 +40,7 @@ const RowDiv = styled.div`
   > div:first-child {
     flex-grow: 1;
   }
+`;
+const CounterDiv = styled.div`
+  color: var(--input-helper-font-color);
 `;
