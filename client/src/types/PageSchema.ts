@@ -3,7 +3,16 @@ import { z } from 'zod';
 
 export const PageSchema = z
   .object({
+    create_date: z.date().optional(),
+    edit_date: z.date().optional(),
+    file: z.boolean().optional(),
     id: z.number(),
+    issue: z.boolean().optional(),
+    line: z.number(),
+    parent: z.string().min(1, REQUIRED_FIELD),
+    readability_score: z.string().optional(),
+    reading_time: z.string().optional(),
+    text: z.string().trim(),
     title: z
       .string({
         invalid_type_error: 'Title must be a string',
@@ -14,17 +23,8 @@ export const PageSchema = z
       .trim(),
     to: z.string().optional(),
     toComplete: z.string().optional(),
-    url: z.string().optional(),
-    edit_date: z.date().optional(),
-    create_date: z.date().optional(),
-    reading_time: z.string().optional(),
-    readability_score: z.string().optional(),
-    parent: z.string().min(1, REQUIRED_FIELD),
-    text: z.string().trim(),
-    file: z.boolean().optional(),
     type: z.literal('page').optional(),
-    issue: z.boolean().optional(),
-    line: z.number(),
+    url: z.string().optional(),
   })
   .refine(
     (data) => data.to ?? data.url,
