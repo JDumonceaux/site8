@@ -5,9 +5,10 @@ import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import styled from 'styled-components';
+import type { FormState } from 'types';
 import type { Page } from 'types/Page';
 
-import usePagePatch, { type FormState } from './usePagePatch';
+import usePagePatch from './usePagePatch';
 
 type PageEditFormProps = {
   readonly data?: null | Page;
@@ -53,6 +54,10 @@ const PageEditForm = ({
     fieldData: initData,
   } as FormState);
 
+  console.log('x', data.fieldData);
+  console.log('y', data.errors?.url.errors);
+  console.log('y2', data.errors?.title.errors);
+
   return (
     <LoadingWrapper error={error} isError={isError} isSaving={isPending}>
       <Form.Root action={action}>
@@ -65,6 +70,7 @@ const PageEditForm = ({
         <input id="id" name="id" type="hidden" value={data.fieldData.id} />
         <Input.Text
           defaultValue={data.fieldData.title}
+          errorText={data.errors?.title}
           id="title"
           // onBlur={handeNameOnBlur}
           // onChange={handleChange}
@@ -85,6 +91,7 @@ const PageEditForm = ({
         />
         <Input.Text
           defaultValue={data.fieldData.url}
+          errorText={data.errors?.url}
           id="url"
           labelProps={{ label: 'URL' }}
           placeholder="Enter a url"

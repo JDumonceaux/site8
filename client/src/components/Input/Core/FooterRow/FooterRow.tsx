@@ -3,6 +3,7 @@ import { type FC, memo } from 'react';
 import styled from 'styled-components';
 
 export type FooterRowProps = {
+  readonly errorText?: string;
   readonly fieldLength?: number;
   readonly maxLength?: number;
   readonly ref?: React.Ref<HTMLDivElement>;
@@ -12,6 +13,7 @@ export type FooterRowProps = {
 
 const FooterRow: FC<FooterRowProps> = memo(
   ({
+    errorText,
     fieldLength = 0,
     maxLength = 0,
     ref,
@@ -20,7 +22,10 @@ const FooterRow: FC<FooterRowProps> = memo(
     ...rest
   }: FooterRowProps): React.JSX.Element => (
     <RowDiv {...rest} ref={ref}>
-      <div>{text}</div>
+      <div>
+        {text}
+        {errorText}
+      </div>
       {showCounter ? (
         <CounterDiv>
           {fieldLength}/{maxLength}

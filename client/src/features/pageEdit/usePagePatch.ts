@@ -2,13 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import useSnackbar from 'features/app/useSnackbar';
 import { ServiceUrl } from 'lib/utils/constants';
-import type { Page, PageEdit } from 'types';
-import { PageSchema } from 'types/PageSchema';
-
-export type FormState = {
-  fieldData: Page;
-  message?: string;
-};
+import type { FormErrors, FormState, Page } from 'types';
+import { type PageEdit, PageEditSchema } from 'types/PageEditSchema';
 
 const usePagePatch = () => {
   const queryClient = useQueryClient();
@@ -38,14 +33,14 @@ const usePagePatch = () => {
   });
 
   // Validate the data using Zod schema
-  const isValid = (data: PageEdit): boolean => {
-    const result = PageSchema.safeParse(data);
-    if (result.success) {
-      return true;
-    }
-    setMessage(`Validation error: ${result.error.message}`);
-    return false;
-  };
+  // const isValid = (data: PageEdit): boolean => {
+  //   const result = PageSchema.safeParse(data);
+  //   if (result.success) {
+  //     return true;
+  //   }
+  //   setMessage(`Validation error: ${result.error.message}`);
+  //   return false;
+  // };
 
   // Function to handle the form submission
   const patchItem = async (
@@ -55,11 +50,25 @@ const usePagePatch = () => {
     const temp = Object.fromEntries(formData.entries());
     const data: PageEdit = { ...temp, id: Number(temp.id) } as PageEdit;
 
-    if (!isValid(data)) {
+    const validationResult = PageEditSchema.safeParse(data);
+
+    if (!validationResult.success) {
+      //console.log('here1', validationResult.error);
+      //console.log('here2', validationResult.error.format());
+
+      const tempErrors: FormErrors = {};
+      tempErrors.url = {
+        errors: [{ message: 'errorurl1' }],
+      };
+      tempErrors.title = {
+        errors: [{ message: 'errortitle' }],
+      };
+
       return {
-        fieldData: {},
+        errors: tempErrors,
+        fieldData: data,
         message: 'Validation error: Invalid data',
-      } as FormState;
+      } as unknown as FormState;
     }
 
     try {
