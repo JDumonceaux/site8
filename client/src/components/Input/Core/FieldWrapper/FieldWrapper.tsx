@@ -15,32 +15,27 @@ export type FieldWrapperProps = {
   readonly children?: React.ReactNode;
   readonly endAdornment?: React.ReactNode;
   readonly endAdornmentProps?: EndAdornmentProps;
-  readonly fieldLength?: number;
-  readonly footerRowProps?: FooterRowProps;
   readonly id?: string;
   readonly labelProps?: LabelRowProps;
-  readonly maxLength?: number;
   readonly onClear?: () => void;
   readonly ref?: React.Ref<HTMLDivElement>;
   readonly required?: boolean;
   readonly startAdornment?: React.ReactNode;
   readonly startAdornmentProps?: StartAdornmentProps;
-};
+} & FooterRowProps;
 
 const FieldWrapper: FC<FieldWrapperProps> = memo(
   ({
     children,
     endAdornment,
     endAdornmentProps,
-    fieldLength,
-    footerRowProps,
     id,
     labelProps,
-    maxLength,
     ref,
     required,
     startAdornment,
     startAdornmentProps,
+    ...rest
   }: FieldWrapperProps): React.JSX.Element => {
     const filteredLabelProps = { ...labelProps };
     delete filteredLabelProps.children;
@@ -55,11 +50,7 @@ const FieldWrapper: FC<FieldWrapperProps> = memo(
           {children}
           <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
         </StyledDiv>
-        <FooterRow
-          {...footerRowProps}
-          fieldLength={fieldLength}
-          maxLength={maxLength}
-        />
+        <FooterRow {...rest} />
       </div>
     );
   },

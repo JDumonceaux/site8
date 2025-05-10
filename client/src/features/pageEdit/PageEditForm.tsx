@@ -54,10 +54,6 @@ const PageEditForm = ({
     fieldData: initData,
   } as FormState);
 
-  console.log('x', data.fieldData);
-  console.log('y', data.errors?.url.errors);
-  console.log('y2', data.errors?.title.errors);
-
   return (
     <LoadingWrapper error={error} isError={isError} isSaving={isPending}>
       <Form.Root action={action}>
@@ -70,13 +66,13 @@ const PageEditForm = ({
         <input id="id" name="id" type="hidden" value={data.fieldData.id} />
         <Input.Text
           defaultValue={data.fieldData.title}
-          errorText={data.errors?.title}
+          errors={data.errors?.title}
           id="title"
           // onBlur={handeNameOnBlur}
           // onChange={handleChange}
           labelProps={{ label: 'Title' }}
           maxLength={500}
-          // errorText={getFieldErrors('name')}
+          // errors={getFieldErrors('name')}
           minLength={10}
           placeholder="Enter a title"
           required
@@ -91,7 +87,7 @@ const PageEditForm = ({
         />
         <Input.Text
           defaultValue={data.fieldData.url}
-          errorText={data.errors?.url}
+          errors={{ errors: [{ message: 'rror F' }] }}
           id="url"
           labelProps={{ label: 'URL' }}
           placeholder="Enter a url"
