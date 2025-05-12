@@ -62,7 +62,7 @@
     "react-scan": "^0.3.3",
     "react-window": "^1.8.11",
     "styled-components": "^6.1.17",
-    "web-vitals": "^4.2.4",
+    "web-vitals": "^5.0.0",
     "zod": "^3.24.3"
   },
   "overrides": {
