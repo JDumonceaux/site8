@@ -16,6 +16,7 @@ import pluginPromise from 'eslint-plugin-promise';
 import pluginReact from 'eslint-plugin-react';
 import pluginHooks from 'eslint-plugin-react-hooks';
 import pluginRedux from 'eslint-plugin-react-redux';
+import pluginYouMightNotNeedAnEffect from "eslint-plugin-react-you-might-not-need-an-effect";
 import pluginStorybook from 'eslint-plugin-storybook';
 import pluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
@@ -52,6 +53,7 @@ export default [
       react: pluginReact,
       'react-hooks': pluginHooks,
       'react-redux': pluginRedux,
+      "react-you-might-not-need-an-effect": pluginYouMightNotNeedAnEffect,
       unicorn: pluginUnicorn,
     },
     rules: {
@@ -62,19 +64,19 @@ export default [
       ...pluginRedux.configs.recommended.rules,
       ...pluginA11y.configs.recommended.rules,
       ...pluginUnicorn.configs.recommended.rules,
+      // js Rules
+      'accessor-pairs': 'error',
       // ...importPlugin.flatconfig.recommended.rules,
 
       // Evaluate: Too many and conflicting rules
       // ...pluginSonar.configs.recommended.rules,
 
-      // js Rules
-      'accessor-pairs': 'error',
-
       // Deprecated
       'array-bracket-newline': 'off',
-      // Deprecated
 
       'array-bracket-spacing': 'off',
+      // Deprecated
+
       'array-callback-return': 'error',
       // Deprecated
       'array-element-newline': 'off',
@@ -133,8 +135,8 @@ export default [
       'func-style': 'error',
       'function-call-argument-newline': 'off',
       'function-paren-newline': 'off',
-
       'generator-star-spacing': 'off',
+
       'grouped-accessor-pairs': 'error',
       'guard-for-in': 'error',
       'id-denylist': 'error',
@@ -267,13 +269,13 @@ export default [
       'no-extra-parens': 'off',
       'no-extra-semi': 'off',
       'no-floating-decimal': 'off',
-
       // Too restrictive
       'no-implicit-coercion': 'off',
 
       'no-implicit-globals': 'error',
 
       'no-implied-eval': 'error',
+
       // Too restrictive
       'no-inline-comments': 'off',
       'no-inner-declarations': 'error',
@@ -485,11 +487,14 @@ export default [
       'quote-props': 'off',
       quotes: 'off',
       radix: 'error',
-      // React compiler rules
+      "react-hooks/exhaustive-deps": "warn",
       'react-hooks/react-compiler': 'error',
+      // React compiler rules
+      "react-hooks/rules-of-hooks": "error",
       'react-redux/connect-prefer-named-arguments': 'error',
       // Redux rules
       'react-redux/mapStateToProps-prefer-selectors': 'error',
+      "react-you-might-not-need-an-effect/you-might-not-need-an-effect": "warn",
       // React Rules
       'react/boolean-prop-naming': 'error',
       'react/button-has-type': 'error',
