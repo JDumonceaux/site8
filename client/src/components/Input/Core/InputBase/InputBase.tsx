@@ -50,7 +50,6 @@ type InputRootProps = Omit<
 
 type InputAddProps = {
   readonly allowedCharacters?: RegExp;
-
   readonly dataList?: { readonly data?: KeyValue[]; readonly id: string };
   readonly defaultValue?: number | string | string[];
   readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -80,11 +79,11 @@ const InputBase: FC<InputBaseProps> = ({
     defaultValue.toString().length,
   );
   const currId = useGetId(id);
-
   const tempRef = useRef<HTMLInputElement>(null);
   const localRef = ref ?? tempRef;
   const inputProps = { ...rest };
   delete inputProps.labelProps;
+  delete inputProps.errors;
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,38 +1,34 @@
 import { type FC, memo } from 'react';
 
 import styled from 'styled-components';
+import type { FieldErrors } from 'types';
 
 export type FooterRowProps = {
-  readonly errorText?: string;
+  readonly errors?: FieldErrors;
   readonly fieldLength?: number;
   readonly maxLength?: number;
-  readonly ref?: React.Ref<HTMLDivElement>;
   readonly showCounter?: boolean;
-  readonly text?: string;
-} & React.HTMLAttributes<HTMLDivElement>;
+};
 
 const FooterRow: FC<FooterRowProps> = memo(
   ({
-    errorText,
+    errors,
     fieldLength = 0,
     maxLength = 0,
-    ref,
     showCounter = false,
-    text,
-    ...rest
-  }: FooterRowProps): React.JSX.Element => (
-    <RowDiv {...rest} ref={ref}>
-      <div>
-        {text}
-        {errorText}
-      </div>
-      {showCounter ? (
-        <CounterDiv>
-          {fieldLength}/{maxLength}
-        </CounterDiv>
-      ) : null}
-    </RowDiv>
-  ),
+  }: FooterRowProps): React.JSX.Element => {
+    const text = errors?.errors ? errors.errors[0].message : null;
+    return (
+      <RowDiv>
+        <div>{text}</div>
+        {showCounter ? (
+          <CounterDiv>
+            {fieldLength}/{maxLength}
+          </CounterDiv>
+        ) : null}
+      </RowDiv>
+    );
+  },
 );
 
 FooterRow.displayName = 'FooterRow';
