@@ -65,8 +65,8 @@ const usePagePatch = () => {
       };
 
       return {
-        errors: tempErrors,
         fieldData: data,
+        fields: tempErrors,
         message: 'Validation error: Invalid data',
       } as unknown as FormState;
     }

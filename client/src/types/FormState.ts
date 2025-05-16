@@ -2,7 +2,7 @@ import type { FieldErrors } from './FieldErrors';
 import type { PageEdit } from './PageEditSchema';
 
 export type FormState = {
-  errors?: Record<string, FieldErrors>;
   fieldData: PageEdit;
+  fields?: Record<string, FieldErrors>;
   message?: string;
 };

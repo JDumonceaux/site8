@@ -66,7 +66,7 @@ const PageEditForm = ({
         <input id="id" name="id" type="hidden" value={data.fieldData.id} />
         <Input.Text
           defaultValue={data.fieldData.title}
-          errors={data.errors?.title}
+          errors={data.fields?.title.errors}
           id="title"
           // onBlur={handeNameOnBlur}
           // onChange={handleChange}
@@ -87,7 +87,6 @@ const PageEditForm = ({
         />
         <Input.Text
           defaultValue={data.fieldData.url}
-          errors={{ errors: [{ message: 'rror F' }] }}
           id="url"
           labelProps={{ label: 'URL' }}
           placeholder="Enter a url"

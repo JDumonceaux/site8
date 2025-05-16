@@ -1,10 +1,10 @@
 import { type FC, memo } from 'react';
 
 import styled from 'styled-components';
-import type { FieldErrors } from 'types';
+import type { FieldError } from 'types';
 
 export type FooterRowProps = {
-  readonly errors?: FieldErrors;
+  readonly errors?: FieldError[];
   readonly fieldLength?: number;
   readonly maxLength?: number;
   readonly showCounter?: boolean;
@@ -17,7 +17,7 @@ const FooterRow: FC<FooterRowProps> = memo(
     maxLength = 0,
     showCounter = false,
   }: FooterRowProps): React.JSX.Element => {
-    const text = errors?.errors ? errors.errors[0].message : null;
+    const text = errors ? errors[0].message : null;
     return (
       <RowDiv>
         <div>{text}</div>
