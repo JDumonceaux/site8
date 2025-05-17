@@ -4,36 +4,32 @@ import { handleQueryError } from 'lib/utils/errorHandler';
 import type { Page } from 'types';
 
 // Helper function to fetch a generic page by id
-const fn = async (id: string): Promise<Page> => {
-  const response = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`);
-  if (!response.ok) {
-    handleQueryError(response);
+const fetchPageById = async (
+  id: string,
+  signal?: AbortSignal,
+): Promise<Page> => {
+  const res = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`, { signal });
+  if (!res.ok) {
+    handleQueryError(res);
   }
-  return response.json() as Promise<Page>;
+  return res.json();
 };
 
-const usePage = (id: string | undefined) => {
-  // Define the query key based on the id
-  const queryKey = ['page', id];
-
+const usePage = (id: string) => {
   const query = useQuery<Page>({
+    // cacheTime: QueryTime.GC_TIME, // how long unused cache stays in memory
     enabled: Boolean(id),
-    // Cache the data for 10 minutes
-    gcTime: QueryTime.GC_TIME,
-    queryFn: async () => fn(id as string),
-    // Only run the query if an id is provided
-    queryKey,
-    refetchInterval: QueryTime.REFETCH_INTERVAL,
+    queryFn: async ({ signal }: { signal?: AbortSignal }) =>
+      fetchPageById(id, signal),
+    queryKey: ['page', id],
+    refetchInterval: QueryTime.REFETCH_INTERVAL, // polling interval (in ms)
     refetchIntervalInBackground: false,
-    // Disable auto-refetching behaviors
     refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
-    // Retry up to QueryTime.RETRY times with a delay of QueryTime.RETRY_DELAY between attempts
     retry: QueryTime.RETRY,
     retryDelay: QueryTime.RETRY_DELAY,
-    // Consider data fresh for 5 minutes
-    staleTime: QueryTime.STALE_TIME,
+    staleTime: QueryTime.STALE_TIME, // how long data is “fresh”
   });
 
   return {

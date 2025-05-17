@@ -53,16 +53,16 @@ const usePagePatch = () => {
     const validationResult = PageEditSchema.safeParse(data);
 
     if (!validationResult.success) {
-      //console.log('here1', validationResult.error);
-      //console.log('here2', validationResult.error.format());
-
       const tempErrors: FormErrors = {};
-      tempErrors.url = {
-        errors: [{ message: 'errorurl1' }],
-      };
-      tempErrors.title = {
-        errors: [{ message: 'errortitle' }],
-      };
+
+      // Map each Zod issue into our FormErrors shape
+      for (const issue of validationResult.error.issues) {
+        const fieldName = issue.path[0] as keyof FormErrors;
+        tempErrors[fieldName] = { errors: [] };
+        tempErrors[fieldName].errors?.push({
+          message: issue.message,
+        });
+      }
 
       return {
         fieldData: data,

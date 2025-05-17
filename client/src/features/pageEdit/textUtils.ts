@@ -1,54 +1,101 @@
-const textToListItem = (value: string) => {
-  return value
-    .split('\n')
-    .map((x) => `<li>${x}</li>`)
-    .join('\n');
+type ListAction = 'ol' | 'ul';
+type InlineTag = 'h2' | 'mark' | 'q' | 's' | 'sub' | 'sup';
+type WrapperTag = 'abbr' | 'code' | 'link' | InlineTag;
+
+type InsertOptions = {
+  action: ListAction | WrapperTag;
+  href?: string; // for link
+  title?: string; // for abbr
 };
 
-export const insertHTML = (
-  value: string,
-  startPosition: number,
-  endPosition: number,
-  action: string,
-) => {
-  try {
-    const textBefore = value.slice(0, Math.max(0, startPosition));
-    const textAfter = value.slice(Math.max(0, endPosition));
-    const textMiddle = value.slice(startPosition, endPosition);
-
-    switch (action) {
-      case 'abbr': {
-        return `${textBefore}<${action} title="">\n${textMiddle}\n</${action}>${
-          textAfter
-        }`;
+/**
+ * Safely escape HTML special characters in text.
+ */
+const escapeHtml = (text: string): string =>
+  text.replaceAll(/["&'<>]/gu, (char) => {
+    switch (char) {
+      case '"': {
+        return '&quot;';
       }
-      case 'code': {
-        return `${textBefore}<pre><code>\n${textMiddle}\n</code></pre>${
-          textAfter
-        }`;
+      case '&': {
+        return '&amp;';
       }
-      case 'h2':
-      case 'mark':
-      case 'q':
-      case 's':
-      case 'sub':
-      case 'sup': {
-        return `${textBefore}<${action}>${textMiddle}</${action}>${textAfter}`;
+      case "'": {
+        return '&#39;';
       }
-      case 'link': {
-        return `${textBefore}<a href="">${textMiddle} </a>${textAfter}`;
+      case '<': {
+        return '&lt;';
       }
-      case 'ol':
-      case 'ul': {
-        return `${textBefore}<${action}>\n${textToListItem(
-          textMiddle,
-        )}\n</${action}>${textAfter}`;
+      case '>': {
+        return '&gt;';
       }
       default: {
-        return textBefore + textMiddle + textAfter;
+        return char;
       }
     }
-  } catch {
-    return null;
+  });
+
+/**
+ * Convert newline-delimited text into <li> items.
+ */
+export const textToListItems = (text: string): string =>
+  text
+    .split(/\r?\n/u)
+    .map((line) => `<li>${escapeHtml(line)}</li>`)
+    .join('\n');
+
+/**
+ * Insert HTML wrappers around a selected range in a string.
+ * Returns the new HTML string or throws if invalid positions.
+ */
+export const insertHTML = (
+  value: string,
+  start: number,
+  end: number,
+  options: InsertOptions,
+): string => {
+  const { length } = value;
+  const from = Math.max(0, Math.min(start, length));
+  const to = Math.max(from, Math.min(end, length));
+
+  const before = value.slice(0, from);
+  const middle = value.slice(from, to);
+  const after = value.slice(to);
+
+  const escapedMiddle = escapeHtml(middle);
+
+  // Build opening and closing tags
+  let openTag: string;
+  let closeTag: string;
+
+  switch (options.action) {
+    case 'abbr': {
+      openTag = `<abbr title="${escapeHtml(options.title ?? '')}">`;
+      closeTag = `</abbr>`;
+      break;
+    }
+    case 'code': {
+      openTag = `<pre><code>`;
+      closeTag = `</code></pre>`;
+      break;
+    }
+    case 'link': {
+      openTag = `<a href="${escapeHtml(options.href ?? '#')}">`;
+      closeTag = `</a>`;
+      break;
+    }
+    case 'ol':
+    case 'ul': {
+      openTag = `<${options.action}>\n`;
+      closeTag = `\n</${options.action}>`;
+      return `${before}${openTag}${textToListItems(middle)}${closeTag}${after}`;
+    }
+    default: {
+      // Inline tags: h2, mark, q, s, sub, sup
+      openTag = `<${options.action}>`;
+      closeTag = `</${options.action}>`;
+    }
   }
+
+  return `${before}${openTag}${escapedMiddle}${closeTag}${after}`;
 };
