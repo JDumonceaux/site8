@@ -1,22 +1,23 @@
-import React, { memo } from 'react';
+import { type FC, memo } from 'react';
 
 import styled from 'styled-components';
 
-type Props = {
-  readonly children?: React.ReactNode;
+/**
+ * Sidebar container with fixed width and padding.
+ */
+type AsideProps = {
+  /** Optional content to render inside the aside */
+  children?: React.ReactNode;
 };
 
-const Aside = memo(
-  ({ children }: Props): React.JSX.Element => (
-    <StyledElement data-testid="aside">{children}</StyledElement>
-  ),
-);
-
+const Aside: FC<AsideProps> = memo(({ children }) => (
+  <Container data-testid="aside">{children}</Container>
+));
 Aside.displayName = 'Aside';
-
 export default Aside;
 
-const StyledElement = styled.div`
+// Styled component for the aside layout
+const Container = styled.aside`
   flex: 0 0 250px;
   padding: 0 20px;
 `;

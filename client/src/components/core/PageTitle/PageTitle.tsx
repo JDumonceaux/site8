@@ -1,63 +1,59 @@
-import { memo } from 'react';
+import { type ReactNode, type HTMLAttributes, type JSX, memo } from 'react';
 
 import styled from 'styled-components';
 
-type PageTitleProps = {
-  readonly children?: React.ReactNode;
-  readonly ref?: React.Ref<HTMLDivElement>;
-  readonly title?: React.ReactNode;
+type PageTitleProps = HTMLAttributes<HTMLDivElement> & {
+  /** Optional trailing content (e.g. actions, breadcrumbs) */
+  children?: ReactNode;
+  /** Main title text; if absent, component renders nothing */
+  title?: ReactNode;
 };
-const PageTitle = ({
+
+/**
+ * Renders a page header title with optional trailing content.
+ * Returns null if no title is provided.
+ */
+function PageTitle({
   children,
-  ref,
   title,
-}: PageTitleProps): null | React.JSX.Element => {
-  if (!title) {
-    return null;
-  }
+  ...rest
+}: PageTitleProps): JSX.Element | null {
+  if (!title) return null;
 
   return (
-    <StyledWrapper ref={ref}>
-      {title ? (
-        <div>
-          <StyledElement data-testid="page-title">{title}</StyledElement>
-        </div>
-      ) : null}
-      <StyledChildren>{children}</StyledChildren>
+    <StyledWrapper {...rest}>
+      <StyledTitle data-testid="page-title">{title}</StyledTitle>
+      {children ? <StyledChildren>{children}</StyledChildren> : null}
     </StyledWrapper>
   );
-};
+}
 
 PageTitle.displayName = 'PageTitle';
-
 export default memo(PageTitle);
 
 const StyledWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: baseline;
-  row-gap: 12px;
+  justify-content: space-between;
+  gap: 1rem;
   width: 100%;
+  padding: 0 0.75rem;
+  margin-bottom: 1.125rem;
   border-bottom: 1px solid #888;
-  padding-bottom: 6px;
-  margin-bottom: 18px;
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 0.75rem;
   background-color: var(--page-background-color);
 `;
-const StyledElement = styled.h1`
-  color: var(--palette-page-title);
-  font-size: 2.25rem;
-  display: inline-block;
+
+const StyledTitle = styled.h1`
   margin: 0;
+  font-size: 2.25rem;
+  color: var(--palette-page-title);
 `;
+
 const StyledChildren = styled.div`
   display: inline-flex;
   align-items: baseline;
-  button,
-  a {
-    margin-left: 12px;
+
+  & > * + * {
+    margin-left: 0.75rem;
   }
 `;

@@ -10,14 +10,14 @@ import TitleFixed from './TitleFixed';
 
 const Layout = (): React.JSX.Element => <>Not defined</>;
 
+Layout.Article = Article;
+Layout.Aside = Aside;
+Layout.Content = Content;
+Layout.Flex = Flex;
+Layout.FullWidth = FullWidth;
 Layout.Main = Main;
 Layout.Menu = Menu;
-Layout.Flex = Flex;
-Layout.Article = Article;
-Layout.Content = Content;
-Layout.Aside = Aside;
 Layout.Section = Section;
-Layout.FullWidth = FullWidth;
 Layout.TitleFixed = TitleFixed;
 
 export default Layout;

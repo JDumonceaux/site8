@@ -1,24 +1,30 @@
+import { type FC, memo } from 'react';
+
 import Meta from 'components/core/Meta/Meta';
 import styled from 'styled-components';
 
-const NotFoundPage: React.FC = (): React.JSX.Element => (
+/**
+ * 404 Page – displayed when a route does not match any page.
+ */
+const NotFoundPage: FC = () => (
   <>
     <Meta title="Page not found" />
-    <Main>
+    <Main aria-labelledby="not-found-heading">
       <StyledDiv>
-        <StyledH1>Oops! Page Not Found</StyledH1>
+        <StyledH1 id="not-found-heading">Oops! Page Not Found</StyledH1>
       </StyledDiv>
     </Main>
   </>
 );
 
-export default NotFoundPage;
+NotFoundPage.displayName = 'NotFoundPage';
+export default memo(NotFoundPage);
 
 // Styled Components
 const Main = styled.main`
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 `;
 
@@ -43,7 +49,7 @@ const StyledDiv = styled.div`
 
 const StyledH1 = styled.h1`
   color: var(--palette-black, #000);
-  text-align: center;
-  padding-top: 10vh;
   font-size: clamp(12px, 3vw, 36px);
+  padding-top: 10vh;
+  text-align: center;
 `;

@@ -1,4 +1,4 @@
-import { Suspense, useDeferredValue } from 'react';
+import { useDeferredValue, type FC } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -9,17 +9,19 @@ import styled from 'styled-components';
 
 import useTiktok from './useTiktok';
 
-type TikTokPageProps = {
+export type TikTokPageProps = {
+  /** Fallback title if data.name is unavailable */
   readonly title?: string;
 };
 
-const TikTokPage = ({ title }: TikTokPageProps): React.JSX.Element => {
+export const TikTokPage: FC<TikTokPageProps> = ({ title = 'TikTok' }) => {
   const tempId = '4000';
-
   const { data, error, isError, isLoading } = useTiktok(tempId);
-  const deferredData = useDeferredValue(data);
 
-  const pageTitle = deferredData?.name ?? title;
+  // Defer updates to the title to avoid jank on heavy renders
+  const deferredName = useDeferredValue(data?.title);
+  const pageTitle = deferredName ?? title;
+
   return (
     <>
       <Meta title={pageTitle} />
@@ -31,7 +33,11 @@ const TikTokPage = ({ title }: TikTokPageProps): React.JSX.Element => {
           <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
             <PageTitle title={pageTitle} />
             <StyledSection>
-              <Suspense fallback="Loading results ..." />
+              {data ? (
+                <pre>
+                  <code>{JSON.stringify(data, null, 2)}</code>
+                </pre>
+              ) : null}
             </StyledSection>
           </LoadingWrapper>
         </Layout.Article>
@@ -41,14 +47,15 @@ const TikTokPage = ({ title }: TikTokPageProps): React.JSX.Element => {
   );
 };
 
+TikTokPage.displayName = 'TikTokPage';
 export default TikTokPage;
 
 const StyledSection = styled.section`
   pre {
-    > div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    > code {
+      display: block;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
   }
 `;

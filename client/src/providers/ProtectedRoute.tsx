@@ -1,23 +1,22 @@
-import { useEffect } from 'react';
+import type { FC } from 'react';
 
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRoute = () => {
-  // eslint-disable-next-line no-warning-comments
-  // TODO: Replace this with your real authentication logic.
-  const user = 1; // Dummy user; use your auth hook/context here.
+/**
+ * Protects routes by redirecting unauthenticated users to login.
+ */
+const ProtectedRoute: FC = () => {
+  // TODO: Replace this with real authentication logic (e.g., useAuth hook/context).
+  const user = 1; // Dummy placeholder
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // If the user is not authenticated, redirect to the login page.
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (!user) {
-      navigate('/login', { replace: true });
-    }
-  }, [navigate, user]);
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!user) {
+    return <Navigate replace to="/login" />;
+  }
 
   return <Outlet />;
 };
+
+ProtectedRoute.displayName = 'ProtectedRoute';
 
 export default ProtectedRoute;

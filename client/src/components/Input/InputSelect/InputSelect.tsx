@@ -1,4 +1,4 @@
-import { memo, useRef, useMemo, type SelectHTMLAttributes } from 'react';
+import { memo, useRef, type FC, type SelectHTMLAttributes } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import FieldWrapper, {
   type FieldWrapperProps,
 } from '../Core/FieldWrapper/FieldWrapper';
 
-type Props = {
+type InputSelectProps = {
   readonly allowedCharacters?: RegExp;
   readonly dataList?: ListItem[];
   readonly placeholder?: string;
@@ -18,9 +18,10 @@ type Props = {
 } & FieldWrapperProps &
   SelectHTMLAttributes<HTMLSelectElement>;
 
-// Implicit aria-role => 'combobox' or 'listbox'
+// Implicit aria-role ⇒ 'combobox' or 'listbox'
 // https://www.w3.org/TR/html-aria/#docconformance
-const InputSelect = memo(
+
+export const InputSelect: FC<InputSelectProps> = memo(
   ({
     dataList,
     id,
@@ -29,35 +30,32 @@ const InputSelect = memo(
     required,
     showBlankOption = false,
     ...rest
-  }: Props): React.JSX.Element => {
+  }: InputSelectProps) => {
     const currId = useGetId(id);
-    const props = { ...rest, id: currId, required };
     const tempRef = useRef<HTMLSelectElement>(null);
-    const localRef = ref ?? tempRef;
+    const selectRef = ref ?? tempRef;
+    // commonProps includes wrapper props (errors, labelProps, etc.) plus select attrs
+    const commonProps = { ...rest, id: currId, required };
 
-    return useMemo(
-      () => (
-        <FieldWrapper {...props}>
-          <StyledSelect {...props} ref={localRef}>
-            {showBlankOption ? <option value="" /> : null}
-            {placeholder ? (
-              <option value="placeholder">{placeholder}</option>
-            ) : null}
-            {dataList?.map((item) => (
-              <option key={item.key} value={item.value}>
-                {item.display ?? item.value}
-              </option>
-            ))}
-          </StyledSelect>
-        </FieldWrapper>
-      ),
-      [props, showBlankOption, placeholder, dataList, localRef],
+    return (
+      <FieldWrapper {...commonProps}>
+        <StyledSelect {...commonProps} ref={selectRef}>
+          {showBlankOption ? <option value="">Select an option</option> : null}
+          {placeholder ? (
+            <option value="placeholder">{placeholder}</option>
+          ) : null}
+          {dataList?.map((item) => (
+            <option key={item.key} value={item.value}>
+              {item.display ?? item.value}
+            </option>
+          ))}
+        </StyledSelect>
+      </FieldWrapper>
     );
   },
 );
 
 InputSelect.displayName = 'InputSelect';
-
 export default InputSelect;
 
 const StyledSelect = styled.select`
@@ -67,15 +65,11 @@ const StyledSelect = styled.select`
   background-color: inherit;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   padding: 0 8px;
   border: none;
   height: 32px;
   width: 100%;
-  :focus {
-    outline: none;
-  }
-  :focus {
+  &:focus {
     outline: none;
   }
 `;

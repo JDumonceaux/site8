@@ -1,31 +1,41 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl } from 'lib/utils/constants';
-import type { Images } from 'types';
 
-const useImages = () => {
-  const { data, isError, isPending } = useQuery({
-    queryFn: async () => {
-      const response = await fetch(ServiceUrl.ENDPOINT_IMAGES);
-      return (await response.json()) as Images;
-    },
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
+import type { Images } from 'types/Images';
+
+/**
+ * Fetches the Images payload from the API, supporting cancellation.
+ */
+async function fetchImages({
+  signal,
+}: {
+  signal?: AbortSignal;
+}): Promise<Images> {
+  const res = await fetch(ServiceUrl.ENDPOINT_IMAGES, { signal });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch images: ${res.statusText}`);
+  }
+  return res.json() as Promise<Images>;
+}
+
+/**
+ * Custom hook to load a list of images.
+ */
+export function useImages() {
+  const query = useQuery<Images>({
     queryKey: ['images'],
+    queryFn: fetchImages,
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  // Scan the 'sort' directory for new items
-  // const scanForNewItems = useCallback(() => {
-  //   fetchData(ServiceUrl.ENDPOINT_IMAGES_SCAN);
-  // }, [fetchData]);
-
-  // // Handle save
-  // const saveItems = async (updates: ImageAdd[]) => {
-  //   return patchData(ServiceUrl.ENDPOINT_IMAGES, { items: updates });
-  // };
-
   return {
-    data,
-    isError,
-    isPending,
+    data: query.data,
+    error: query.error,
+    isLoading: query.isLoading,
+    isError: query.isError,
+    isFetching: query.isFetching,
+    refetch: query.refetch,
   };
-};
+}
 
 export default useImages;

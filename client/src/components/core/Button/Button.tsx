@@ -1,110 +1,144 @@
-import { memo, type ButtonHTMLAttributes } from 'react';
+import { memo, type JSX, type ButtonHTMLAttributes } from 'react';
 
 import styled, { css } from 'styled-components';
 
-const VARIANTS = Object.freeze({
-  discreet: 'discreet',
-  ghost: 'ghost',
-  primary: 'primary',
-  secondary: 'secondary',
-} as const);
+// Allowed visual variants
+export const VARIANTS = ['discreet', 'ghost', 'secondary', 'primary'] as const;
+export type Variant = (typeof VARIANTS)[number];
 
-type Variant = keyof typeof VARIANTS;
+// Allowed size options
+export const SIZES = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+export type Size = (typeof SIZES)[number];
 
-const SIZES = Object.freeze({
-  lg: 'lg',
-  md: 'md',
-  sm: 'sm',
-  xl: 'xl',
-  xs: 'xs',
-} as const);
+/** Public props for Button */
+export type ButtonProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'type'
+> & {
+  /** Stretch to fill its parent container */
+  fullWidth?: boolean;
+  /** Visual size of the button */
+  size?: Size;
+  /** Visual style variant */
+  variant?: Variant;
+  type?: 'button' | 'submit' | 'reset';
+};
 
-type Size = keyof typeof SIZES;
+/** Transient styling props (never forwarded to the DOM) */
+type StyledButtonProps = {
+  $fullWidth: boolean;
+  $size: Size;
+  $variant: Variant;
+};
 
-type ButtonProps = {
-  readonly children: React.ReactNode;
-  readonly size?: Size;
-  readonly type?: 'button' | 'reset' | 'submit';
-  readonly variant?: Variant;
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
+const variantStyles: Record<Variant, ReturnType<typeof css>> = {
+  discreet: css`
+    background: var(--bg-discreet);
+    color: var(--text-primary);
+  `,
+  ghost: css`
+    background: transparent;
+    color: var(--text-primary);
+  `,
+  primary: css`
+    background: var(--bg-primary);
+    color: var(--text-on-primary);
+  `,
+  secondary: css`
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+  `,
+};
 
-const Button = memo(
-  ({
-    children,
-    size = 'md',
-    type = 'button',
-    variant = 'primary',
-    ...rest
-  }: ButtonProps) => (
+const sizeStyles: Record<Size, ReturnType<typeof css>> = {
+  xl: css`
+    font-size: 1.25rem;
+    padding: 1.25rem 1.5rem;
+  `,
+  lg: css`
+    font-size: 1.125rem;
+    padding: 1rem 1.25rem;
+  `,
+  md: css`
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  `,
+  sm: css`
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  `,
+  xs: css`
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  `,
+};
+
+/**
+ * Core styled `<button>` using only transient props
+ */
+const StyledButton = styled.button<StyledButtonProps>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    transform 100ms ease;
+
+  ${({ $variant }) => variantStyles[$variant]};
+  ${({ $size }) => sizeStyles[$size]};
+  ${({ $fullWidth }) =>
+    $fullWidth &&
+    css`
+      width: 100%;
+    `}
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+  }
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    filter: brightness(0.95);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring, #2684ff);
+    outline-offset: 2px;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+`;
+
+/**
+ * A memoized, SOLID-compliant Button component.
+ * - Defaults `type="button"` to prevent accidental form submits.
+ * - Prop → transient‐prop mapping keeps the DOM clean.
+ */
+function Button({
+  children,
+  fullWidth = false,
+  size = 'md',
+  variant = 'primary',
+  type = 'button',
+  ...rest
+}: ButtonProps): JSX.Element {
+  return (
     <StyledButton
-      data-testid="Button"
-      type={type}
-      {...rest}
+      $fullWidth={fullWidth}
       $size={size}
-      $variant={variant}>
+      $variant={variant}
+      type={type}
+      {...rest}>
       {children}
     </StyledButton>
-  ),
-);
+  );
+}
 
 Button.displayName = 'Button';
-
-export default Button;
-
-const StyledButton = styled.button<{
-  $size?: Size;
-  $variant?: Variant;
-}>`
-  border-radius: 50%;
-
-  ${(props) => css`
-    background-color: ${(() => {
-      switch (props.$variant) {
-        case VARIANTS.discreet: {
-          return 'var(--background-color-discreet)';
-        }
-        case VARIANTS.ghost: {
-          return 'var(--background-color-ghost, #ffffff)';
-        }
-        case VARIANTS.secondary: {
-          return 'var(--background-color-secondary, #000014)';
-        }
-        default: {
-          return 'var(--background-color-primary, #000000)';
-        }
-      }
-    })()};
-    color: ${(() => {
-      switch (props.$variant) {
-        case VARIANTS.secondary: {
-          return 'var(--text-color-secondary, #000000)';
-        }
-        default: {
-          return 'var(--text-color-primary, #ffffff)';
-        }
-      }
-    })()};
-    max-height: ${(() => {
-      switch (props.$size) {
-        case SIZES.lg: {
-          return '48px';
-        }
-        case SIZES.md: {
-          return '40px';
-        }
-        case SIZES.sm: {
-          return '32px';
-        }
-        case SIZES.xl: {
-          return '56px';
-        }
-        case SIZES.xs: {
-          return '24px';
-        }
-        default: {
-          return '40px';
-        }
-      }
-    })()};
-  `}
-`;
+export default memo(Button);

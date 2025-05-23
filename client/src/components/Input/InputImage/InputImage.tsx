@@ -1,11 +1,13 @@
+import type { FC } from 'react';
+
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
-type InputImageProps = {
-  readonly type?: 'color';
-} & Omit<
+type InputImageProps = Omit<
   InputBaseProps,
   'autocapitalize' | 'pattern' | 'required' | 'step' | 'type' | 'value'
->;
+> & {
+  readonly type?: 'image';
+};
 
 // Remove: 'autocapitalize', 'pattern', 'required', 'step', 'value'
 
@@ -14,11 +16,10 @@ type InputImageProps = {
 // src - image - Address of the image type
 // width - image - Horizontal dimension (width) of the image type
 
-const InputImage = ({
-  type = 'color',
+export const InputImage: FC<InputImageProps> = ({
+  type = 'image',
   ...rest
-}: InputImageProps): React.JSX.Element => <InputBase type={type} {...rest} />;
+}) => <InputBase type={type} {...rest} />;
 
 InputImage.displayName = 'InputImage';
-
 export default InputImage;

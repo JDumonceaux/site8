@@ -1,20 +1,21 @@
+import type { FC } from 'react';
+
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
-type InputEmailProps = {
-  readonly type?: 'email';
-} & Omit<
+type InputEmailProps = Omit<
   InputBaseProps,
   'autocapitalize' | 'height' | 'src' | 'step' | 'type' | 'width'
->;
+> & {
+  readonly type?: 'email';
+};
 
 // Remove: 'autocapitalize', 'height', 'src', 'step', 'width'
 // Valid: multiple, pattern, value
 
-const InputEmail = ({
+export const InputEmail: FC<InputEmailProps> = ({
   type = 'email',
   ...rest
-}: InputEmailProps): React.JSX.Element => <InputBase type={type} {...rest} />;
+}) => <InputBase type={type} {...rest} />;
 
 InputEmail.displayName = 'InputEmail';
-
 export default InputEmail;

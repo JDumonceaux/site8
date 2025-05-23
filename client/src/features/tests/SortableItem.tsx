@@ -1,34 +1,44 @@
-import { memo, useMemo } from 'react';
+import {
+  memo,
+  useMemo,
+  type FC,
+  type ReactNode,
+  type CSSProperties,
+} from 'react';
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-type SortableItemProps = {
-  children?: React.ReactNode;
+export type SortableItemProps = {
+  /** Row contents */
+  children?: ReactNode;
+  /** Unique identifier for the sortable item */
   id: number | string;
 };
 
-const SortableItem: React.FC<SortableItemProps> = memo(
-  ({ children, id }: SortableItemProps): React.JSX.Element => {
-    const { attributes, listeners, setNodeRef, transform, transition } =
-      useSortable({ id });
+/**
+ * A table row that can be reordered via drag-and-drop.
+ */
+const SortableItemComponent: FC<SortableItemProps> = ({ children, id }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
 
-    const style = useMemo(
-      () => ({
-        transform: CSS.Transform.toString(transform),
-        transition,
-      }),
-      [transform, transition],
-    );
+  const style = useMemo<CSSProperties>(
+    () => ({
+      transform: CSS.Transform.toString(transform),
+      transition,
+    }),
+    [transform, transition],
+  );
 
-    return (
-      <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
-        {children}
-      </tr>
-    );
-  },
-);
+  return (
+    <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      {children}
+    </tr>
+  );
+};
 
+export const SortableItem = memo(SortableItemComponent);
 SortableItem.displayName = 'SortableItem';
 
 export default SortableItem;

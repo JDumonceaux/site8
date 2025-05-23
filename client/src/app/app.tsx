@@ -1,15 +1,31 @@
-import { AppProvider } from 'providers/AppProvider';
-import AppRouter from 'providers/RouterProvider';
-// import { preload } from 'react-dom';
+import { Suspense, lazy, StrictMode, type JSX } from 'react';
 
-export const App = () => {
-  // preload('/lib/utils/i18', { as: 'script' });
-  // preload('/styles/reset.css', { as: 'style', fetchPriority: 'low' });
-  // preload('/styles/main.css', { as: 'style', fetchPriority: 'high' });
+import { AppProvider } from 'providers/AppProvider';
+import { usePreloadResources } from './usePreloadResources';
+
+// Lazy‐load the router for code-splitting
+const AppRouter = lazy(async () => import('providers/RouterProvider'));
+
+/**
+ * Root application component
+ */
+function App(): JSX.Element {
+  usePreloadResources();
 
   return (
-    <AppProvider>
-      <AppRouter />
-    </AppProvider>
+    <StrictMode>
+      <AppProvider>
+        <Suspense
+          fallback={
+            <div role="status" aria-live="polite">
+              Loading application…
+            </div>
+          }>
+          <AppRouter />
+        </Suspense>
+      </AppProvider>
+    </StrictMode>
   );
-};
+}
+
+export default App;

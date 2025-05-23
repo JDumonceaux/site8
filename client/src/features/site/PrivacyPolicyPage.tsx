@@ -1,15 +1,22 @@
+import { type FC, memo } from 'react';
+
 import Meta from 'components/core/Meta/Meta';
 
-const PrivacyPolicyPage: React.FC = (): React.JSX.Element => {
-  return (
-    <>
-      <Meta title="Privacy Policy" />
-      <div>
-        No personally identifiable data is collected this website except in
-        conjuction with site security.
-      </div>
-    </>
-  );
-};
+/**
+ * Privacy Policy page – outlines data collection practices.
+ */
+const PrivacyPolicyPage: FC = () => (
+  <>
+    <Meta title="Privacy Policy" />
+    <main aria-labelledby="privacy-policy-heading">
+      <h1 id="privacy-policy-heading">Privacy Policy</h1>
+      <p>
+        No personally identifiable data is collected on this website except in
+        conjunction with site security.
+      </p>
+    </main>
+  </>
+);
 
-export default PrivacyPolicyPage;
+PrivacyPolicyPage.displayName = 'PrivacyPolicyPage';
+export default memo(PrivacyPolicyPage);

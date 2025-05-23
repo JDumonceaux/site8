@@ -1,20 +1,14 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 
 import styled from 'styled-components';
+import type { Video } from 'types/Video';
 
-const VideoEmbed = memo(
-  ({
-    iframeTitle,
-    title,
-    videoSrc,
-  }: {
-    iframeTitle?: string;
-    title: string;
-    videoSrc: string;
-  }) => (
-    <div>
-      <StyledTitle>{title}</StyledTitle>
-      <VideoContainer>
+/** Responsive video embed with title */
+export const VideoEmbed: FC<Video> = memo(
+  ({ iframeTitle, title, videoSrc }: Video) => (
+    <Section>
+      <Heading>{title}</Heading>
+      <VideoWrapper>
         <StyledIframe
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
@@ -22,32 +16,36 @@ const VideoEmbed = memo(
           src={videoSrc}
           title={iframeTitle ?? title}
         />
-      </VideoContainer>
-    </div>
+      </VideoWrapper>
+    </Section>
   ),
 );
 
 VideoEmbed.displayName = 'VideoEmbed';
-
 export default VideoEmbed;
 
-const VideoContainer = styled.div`
-  padding: 56.25% 0 0 0;
-  position: relative;
+const Section = styled.div`
   margin-bottom: 16px;
 `;
-const StyledTitle = styled.div`
+
+const Heading = styled.div`
   color: #fff;
   background: #585858;
-  padding: 12px 16px 6px 16px;
+  padding: 12px 16px 6px;
   text-align: center;
   margin-top: 2px;
 `;
+
+const VideoWrapper = styled.div`
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+`;
+
 const StyledIframe = styled.iframe`
-  height: 100%;
-  left: 0;
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
   border: 0;
 `;

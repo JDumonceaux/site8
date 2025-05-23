@@ -1,0 +1,51 @@
+- Using React 19 and Typescript 5.8.3 (Baseline 2023), improve and optimize code.  
+- Change to FC.  
+- Do not import React unless needed.  
+- Leave 1 line after the import from 'react'; and the next import. Keep any comments
+- Use SOLID 
+- Add displayName if to FC
+- Do not add a space between displayName and export
+- useTransition and useOptimistic if appropriate
+- Use type for props
+- Do not use forwardRef
+
+
+
+Using React 19 and Typescript 5.8.3 (Baseline 2023):
+-  improve and optimize code.  
+- Review this code for errors, logical, or security concerns and refactor and provide a list of recommendations.
+- Do not import React unless needed.  
+- Leave 1 line after the import from 'react'; and the next import. Keep any comments
+- Use SOLID 
+- Do not add a line between displayName and export
+- Use type for props
+- Do not use forwardRef
+- Return (): JSX.Element | null vs. FC
+
+
+- Write tests
+- Use jest 29.7.0, jest-Axe 10.0.0, jest-styled-components
+- Import AxeResults from  'axe-core';
+- Include style, a11y accessibility tests, and edge cases
+- Include filename as comment on first line.
+- Every test should have either `expect.assertions(<number of assertions>)` or `expect.hasAssertions()` as its first expression
+- Do not include Import React unless needed.
+- import '@testing-library/jest-dom' if needed
+- Use toHaveStyle vs. toHaveStyleRule
+
+Write storybook story:
+- Use StoryObj from '@storybook/react';
+- Do not include Import React unless needed.
+- Include filename as comment on first line.
+
+
+
+
+- Using React 19 and Typescript 5.8.3, improve and optimize code. 
+- Sort all items.
+- Include export type.
+
+single-responsibility principle (SRP)
+SOLID
+
+Add Abort signal

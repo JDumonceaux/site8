@@ -1,41 +1,29 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 
 import styled from 'styled-components';
+import type { Image } from 'types/Image';
 
-const ImageBlock = memo(
-  ({
-    alt,
-    imageTitle,
-    src,
-    title,
-  }: {
-    alt?: string;
-    imageTitle?: string;
-    src: string;
-    title: string;
-  }) => (
-    <ImageSection>
-      <StyledTitle>{title}</StyledTitle>
-      <img
-        alt={alt ?? title}
-        src={src}
-        {...(imageTitle ? { title: imageTitle } : {})}
-      />
-    </ImageSection>
-  ),
+/**
+ * Renders a titled block with an image.
+ */
+export const ImageBlock: FC<Image> = ({ alt, src, title }: Image) => (
+  <Section>
+    <Title>{title}</Title>
+    <img alt={alt ?? title} src={src} {...(title ? { title } : {})} />
+  </Section>
 );
 
 ImageBlock.displayName = 'ImageBlock';
+export default memo(ImageBlock);
 
-export default ImageBlock;
+const Section = styled.div`
+  margin-bottom: 16px;
+`;
 
-const StyledTitle = styled.div`
+const Title = styled.div`
   color: #fff;
   background: #585858;
-  padding: 12px 16px 6px 16px;
+  padding: 12px 16px 6px;
   text-align: center;
   margin-top: 2px;
-`;
-const ImageSection = styled.div`
-  margin-bottom: 16px;
 `;

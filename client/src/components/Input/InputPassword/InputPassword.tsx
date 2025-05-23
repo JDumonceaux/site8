@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import { useState, useCallback, type FC } from 'react';
 
 import PasswordAdornment from '../Core/Adornments/PasswordAdornment';
 import ShowAdornment from '../Core/Adornments/ShowAdornment';
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
-type InputPasswordProps = {
+export type InputPasswordProps = {
   readonly autoComplete?: 'current-password' | 'new-password' | 'off';
   readonly type?: 'password';
 } & Omit<
@@ -23,14 +23,14 @@ type InputPasswordProps = {
 // Remove: 'autocapitalize', 'height', 'src', 'step', 'width'
 // Valid: pattern, value
 
-const InputPassword = ({
+export const InputPassword: FC<InputPasswordProps> = ({
   autoComplete = 'off',
   ...rest
-}: InputPasswordProps): React.JSX.Element => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+}) => {
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handlePress = useCallback((value: boolean) => {
-    setShowPassword(value);
+  const handlePress = useCallback((pressed: boolean) => {
+    setShowPassword(pressed);
   }, []);
 
   return (
@@ -47,5 +47,4 @@ const InputPassword = ({
 };
 
 InputPassword.displayName = 'InputPassword';
-
 export default InputPassword;

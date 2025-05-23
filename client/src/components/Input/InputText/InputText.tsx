@@ -1,3 +1,5 @@
+import type { FC } from 'react';
+
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type Props = {
@@ -16,10 +18,9 @@ type Props = {
 // No aria-role is required. The default, inferred type is 'textbox'.
 // With a list, 'combobox' is inferred.
 
-const InputText = ({ type = 'text', ...rest }: Props): React.JSX.Element => {
-  return <InputBase type={type} {...rest} />;
-};
+export const InputText: FC<Props> = ({ type = 'text', ...rest }) => (
+  <InputBase type={type} {...rest} />
+);
 
 InputText.displayName = 'InputText';
-
 export default InputText;

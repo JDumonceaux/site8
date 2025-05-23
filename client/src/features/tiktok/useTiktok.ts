@@ -1,35 +1,36 @@
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { Page } from 'types';
 
-const fetchData = async (id: string): Promise<Page> => {
-  const response = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.statusText}`);
-  }
-  return response.json() as Promise<Page>;
+export type UseTiktokResult = {
+  data?: Page;
+  error: unknown;
+  isError: boolean;
+  isLoading: boolean;
 };
 
-const useTiktok = (id: string) => {
-  // Define the query key for caching purposes
-  const queryKey = ['tiktok', id];
+/**
+ * Fetches a Page by ID from the API, supporting an AbortSignal.
+ */
+const fetchPageById = async (
+  id: string,
+  signal?: AbortSignal,
+): Promise<Page> => {
+  const res = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`, { signal });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch page ${id}: ${res.statusText}`);
+  }
+  return res.json() as Promise<Page>;
+};
 
+/**
+ * Custom hook to load TikTok page data.
+ */
+export const useTiktok: (id: string) => UseTiktokResult = (id) => {
   const query = useQuery<Page>({
-    // Cache the data for a specified time
-    gcTime: QueryTime.GC_TIME,
-    queryFn: async () => fetchData(id),
-    queryKey,
-    refetchInterval: 0,
-    refetchIntervalInBackground: false,
-    // Disable auto-refetching behaviors
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    // Retry configuration
-    retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
-    // Consider data fresh for a specified time
-    staleTime: QueryTime.STALE_TIME,
+    queryFn: async ({ signal }) => fetchPageById(id, signal),
+    queryKey: ['tiktok', id],
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
   return {

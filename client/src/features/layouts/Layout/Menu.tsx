@@ -1,21 +1,24 @@
-import React, { memo } from 'react';
+import { type FC, memo } from 'react';
 
 import styled from 'styled-components';
 
-type Props = {
-  readonly children: React.ReactNode;
+/**
+ * Sidebar menu component following SOLID principles.
+ */
+type MenuProps = {
+  /** Elements to render inside the menu */
+  children: React.ReactNode;
 };
 
-const Menu = memo(
-  ({ children }: Props): React.JSX.Element => (
-    <StyledElement data-testid="menu">{children}</StyledElement>
-  ),
-);
-
+const Menu: FC<MenuProps> = memo(({ children }) => (
+  <MenuContainer data-testid="menu">{children}</MenuContainer>
+));
 Menu.displayName = 'Menu';
-
 export default Menu;
 
-const StyledElement = styled.div`
+// Styled component defining menu layout and width
+const MenuContainer = styled.div`
   flex: 0 0 250px;
+  display: flex;
+  flex-direction: column;
 `;

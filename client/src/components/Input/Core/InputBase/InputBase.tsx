@@ -1,9 +1,11 @@
-import React, {
-  type FC,
-  type HTMLInputTypeAttribute,
-  type InputHTMLAttributes,
+import {
   memo,
+  type FC,
+  useState,
   useRef,
+  useCallback,
+  type ChangeEvent,
+  type Ref,
 } from 'react';
 
 import useGetId from 'hooks/useGetId';
@@ -37,147 +39,121 @@ import FieldWrapper, {
 // ];
 
 type InputRootProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  | 'accesskey'
-  | 'autocorrect'
-  | 'id'
-  | 'name'
-  | 'onChange'
-  | 'onClick'
-  | 'type'
-  | 'value'
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'accessKey' | 'autoCorrect' | 'id' | 'name' | 'onChange' | 'type' | 'value'
 >;
 
 type InputAddProps = {
   readonly allowedCharacters?: RegExp;
   readonly dataList?: { readonly data?: KeyValue[]; readonly id: string };
-  readonly defaultValue?: number | string | string[];
-  readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  //readonly onClear?: (id: string) => void;
-  readonly ref?: React.Ref<HTMLInputElement>;
-  readonly type: HTMLInputTypeAttribute;
-  readonly value?: number | string | string[];
+  readonly defaultValue?: number | string;
+  readonly inputRef?: Ref<HTMLInputElement>;
+  readonly onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  readonly type: React.HTMLInputTypeAttribute;
+  readonly value?: number | string;
 };
+
 type InputBaseProps = InputRootProps & InputAddProps & FieldWrapperProps;
 
-// Input Attributes
-// accesskey: never; // Don't use - not accessible
-// autocorrect: a non-standard Safari attribute
+/**
+ * Base input component with label, adornments, and optional datalist.
+ */
+const InputBase: FC<InputBaseProps> = memo(
+  ({
+    dataList,
+    defaultValue = '',
+    errors,
+    id,
+    inputRef,
+    labelProps,
+    onChange,
+    required,
+    type,
+    value,
+    ...footerProps
+  }) => {
+    const [fieldLength, setFieldLength] = useState(String(defaultValue).length);
+    const generatedId = useGetId(id);
+    const internalRef = useRef<HTMLInputElement>(null);
+    const refToUse = inputRef ?? internalRef;
 
-const InputBase: FC<InputBaseProps> = ({
-  dataList,
-  defaultValue = '',
-  id,
-  onChange,
-  ref,
-  required,
-  type,
-  value,
-  ...rest
-}: InputBaseProps): React.JSX.Element => {
-  const [fieldLength, setFieldLength] = React.useState<number>(
-    defaultValue.toString().length,
-  );
-  const currId = useGetId(id);
-  const tempRef = useRef<HTMLInputElement>(null);
-  const localRef = ref ?? tempRef;
-  const inputProps = { ...rest };
-  delete inputProps.labelProps;
-  delete inputProps.errors;
+    const {
+      dataList: _dl,
+      defaultValue: _dv,
+      errors: _errs,
+      inputRef: _ir,
+      labelProps: _lp,
+      onChange: _oc,
+      required: _rq,
+      type: _t,
+      value: _v,
+      ...inputProps
+    } = {
+      dataList,
+      defaultValue,
+      errors,
+      id: generatedId,
+      inputRef: refToUse,
+      labelProps,
+      name: generatedId,
+      onChange,
+      type,
+      value,
+      ...footerProps,
+    };
 
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFieldLength(e.target.value.length);
-      if (onChange) {
-        onChange(e);
-      }
-      e.preventDefault();
-    },
-    [onChange],
-  );
+    const handleChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement>) => {
+        setFieldLength(e.target.value.length);
+        onChange?.(e);
+      },
+      [onChange],
+    );
 
-  return (
-    <FieldWrapper
-      required={required}
-      {...(rest as FieldWrapperProps)}
-      fieldLength={fieldLength}>
-      <StyledInput
-        defaultValue={defaultValue}
-        id={id}
-        key={currId}
-        list={dataList?.id}
-        name={id}
-        type={type}
-        value={value}
-        {...(inputProps as InputRootProps)}
-        onChange={handleChange}
-        ref={localRef}
-      />
-      {dataList?.data ? (
-        <datalist id={dataList.id}>
-          {dataList.data.map((x) => (
-            <option key={x.key} value={x.value}>
-              {x.value}
-            </option>
-          ))}
-        </datalist>
-      ) : null}
-    </FieldWrapper>
-  );
-};
+    return (
+      <FieldWrapper
+        {...footerProps}
+        fieldLength={fieldLength}
+        required={required}>
+        <StyledInput
+          {...inputProps}
+          defaultValue={defaultValue}
+          id={generatedId}
+          list={dataList?.id}
+          onChange={handleChange}
+          ref={refToUse}
+          type={type}
+          value={value}
+        />
+        {dataList?.data ? (
+          <datalist id={dataList.id}>
+            {dataList.data.map(({ key, value }) => (
+              <option key={key} value={value} />
+            ))}
+          </datalist>
+        ) : null}
+      </FieldWrapper>
+    );
+  },
+);
 
 InputBase.displayName = 'InputBase';
-
-export default memo(InputBase);
-
+export default InputBase;
 export type { InputBaseProps };
 
 const StyledInput = styled.input`
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   color: inherit;
-  background-color: inherit;
+  background: inherit;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   padding: 0 8px;
   border: none;
   height: 32px;
   width: 100%;
-  :focus {
+  &:focus,
+  &:focus-visible {
     outline: none;
   }
-  :focus-visible {
-    outline: none;
-  }
-  // &:hover {
-  //   box-shadow: 0 0 0 1px var(--input-border-hover);
-  // }
-  // &::selection {
-  //   //  Accessibility don't override unless you have a good reason
-  // }
-  // &::spelling-error {
-  //   text-decoration: wavy underline var(--input-error);
-  // }
-  // &::grammar-error {
-  //   text-decoration: underline var(--input-error);
-  // }
-  // &::placeholder {
-  //   font-size: 0.9rem;
-  //   color: var(--input-placeholder);
-  // }
-  // &:invalid {
-  //   color: var(--input-error);
-  // }
-  // &[required] {
-  //   border-left: 3px solid var(--input-border-required);
-  // }
-  // @supports not selector(:user-invalid) {
-  //   input:invalid {
-  //     color: var(--input-error);
-  //   }
-  //   input:valid {
-  //     /* Valid input UI styles */
-  //   }
-  // }
 `;

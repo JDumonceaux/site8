@@ -1,58 +1,98 @@
-import { memo } from 'react';
+import { memo, type JSX, type CSSProperties } from 'react';
 
-import * as RadixAvatar from '@radix-ui/react-avatar';
+import {
+  Avatar as RadixAvatarRoot,
+  AvatarImage as RadixAvatarImage,
+  AvatarFallback as RadixAvatarFallback,
+  type AvatarProps as RadixAvatarProps,
+} from '@radix-ui/react-avatar';
+
 import styled from 'styled-components';
 
-type AvatarProps = {
-  readonly alt?: string;
-  readonly children?: React.ReactNode;
-  readonly delayMs?: number;
-  readonly id?: string;
-  readonly src?: string;
-} & RadixAvatar.AvatarProps;
+/**
+ * Props for our Avatar:
+ * - Omit Radix’s own `delayMs` so we can supply a default
+ * - Allow specifying a distinct `dataTestId`
+ */
+export type AvatarProps = Omit<RadixAvatarProps, 'delayMs'> & {
+  /** Fallback text (e.g. initials) if no `children` provided */
+  alt?: string;
+  /** Seconds before showing fallback (ms) */
+  delayMs?: number;
+  /** Diameter in pixels */
+  size?: number;
+  /** Image URL */
+  src?: string;
+  /** Testing hook */
+  dataTestId?: string;
+  /** Inline style override */
+  style?: CSSProperties;
+};
 
-const StyledAvatar = memo(
-  ({
-    alt,
-    children,
-    delayMs = 600,
-    id,
-    src,
-    ...rest
-  }: AvatarProps): React.JSX.Element => {
-    return (
-      <StyledRoot data-testid={id} id={id} {...rest}>
-        <StyledImage alt={alt} src={src} />
-        <StyledFallback delayMs={delayMs}>{children}</StyledFallback>
-      </StyledRoot>
-    );
-  },
-);
+const DEFAULT_SIZE = 40;
+const DEFAULT_DELAY = 600;
 
-StyledAvatar.displayName = 'StyledAvatar';
+const getInitials = (name?: string): string =>
+  name
+    ?.trim()
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase() ?? '';
 
-export default StyledAvatar;
+/**
+ * A circular avatar that shows an <img> when `src` is valid,
+ * otherwise renders initials or custom `children`.
+ */
+function Avatar({
+  alt,
+  children,
+  delayMs = DEFAULT_DELAY,
+  size = DEFAULT_SIZE,
+  src,
+  dataTestId,
+  style,
+  ...rest
+}: AvatarProps): JSX.Element | null {
+  const fallbackContent = children ?? getInitials(alt);
 
-const StyledRoot = styled(RadixAvatar.Root)`
+  // Basic sanitization: allow only http(s) URLs
+  const safeSrc = src && /^https?:\/\//.test(src) ? src : undefined;
+
+  // If no image and no fallback content, render nothing
+  if (!safeSrc && !fallbackContent) return null;
+
+  return (
+    <Root {...rest} size={size} style={style} data-testid={dataTestId}>
+      {safeSrc && <Image src={safeSrc} alt={alt ?? 'avatar'} />}
+      <Fallback delayMs={delayMs}>{fallbackContent}</Fallback>
+    </Root>
+  );
+}
+
+Avatar.displayName = 'Avatar';
+export default memo(Avatar);
+
+const Root = styled(RadixAvatarRoot)<{ size: number }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  vertical-align: middle;
   overflow: hidden;
   user-select: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: var(--black-a3);
-  margin: 5px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
 `;
-const StyledImage = styled(RadixAvatar.Image)`
+
+const Image = styled(RadixAvatarImage)`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
 `;
-const StyledFallback = styled(RadixAvatar.AvatarFallback)`
+
+const Fallback = styled(RadixAvatarFallback)`
   width: 100%;
   height: 100%;
   display: flex;
@@ -60,7 +100,7 @@ const StyledFallback = styled(RadixAvatar.AvatarFallback)`
   justify-content: center;
   background-color: white;
   color: var(--violet-11);
-  font-size: 15px;
-  line-height: 1;
+  font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1;
 `;

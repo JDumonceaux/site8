@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import {
   Link as BaseLink,
@@ -6,48 +6,44 @@ import {
 } from 'react-router-dom';
 import styled from 'styled-components';
 
-type StyledLinkProps = {
+export type StyledLinkProps = BaseLinkProps & {
   readonly ariaLabel?: string;
-  readonly children: React.ReactNode;
-  readonly to: string;
+  readonly children: ReactNode;
   readonly variant?: 'dark' | 'light';
-} & BaseLinkProps &
-  React.RefAttributes<HTMLAnchorElement>;
-
-const StyledLink = ({
-  ariaLabel,
-  children,
-  to,
-  variant = 'light',
-}: StyledLinkProps): React.JSX.Element => {
-  return useMemo(
-    () => (
-      <StyledElement
-        $variant={variant}
-        aria-current="page"
-        aria-label={ariaLabel ?? children?.toString()}
-        to={to}>
-        {children}
-      </StyledElement>
-    ),
-    [variant, ariaLabel, children, to],
-  );
 };
 
-StyledLink.displayName = 'StyledLink';
+/**
+ * A styled React Router Link with light/dark variants.
+ *
+ * Note: Pseudo classes must be in the following order: link, visited, hover, active
+ */
+export const StyledLink: FC<StyledLinkProps> = ({
+  ariaLabel,
+  children,
+  variant = 'light',
+  ...rest
+}) => (
+  <StyledBaseLink
+    $variant={variant}
+    aria-current="page"
+    aria-label={ariaLabel}
+    {...rest}>
+    {children}
+  </StyledBaseLink>
+);
 
+StyledLink.displayName = 'StyledLink';
 export default StyledLink;
 
-// Note: Pseudo classes must be in the following order: link, visited, hover, active
-const StyledElement = styled(BaseLink)<{ $variant?: 'dark' | 'light' }>`
+const StyledBaseLink = styled(BaseLink)<{ $variant: 'dark' | 'light' }>`
   &:link,
   &:visited,
   &:hover,
   &:active {
-    color: ${(props) =>
-      props.$variant === 'light'
-        ? `var(--palette-text)`
-        : `var(--palette-text-dark)`};
+    color: ${({ $variant }) =>
+      $variant === 'light'
+        ? 'var(--palette-text)'
+        : 'var(--palette-text-dark)'};
   }
   display: block;
 `;

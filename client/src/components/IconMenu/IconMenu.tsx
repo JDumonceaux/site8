@@ -1,57 +1,61 @@
-import { memo, useMemo } from 'react';
+import { memo, type FC, type ReactNode } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DotsVerticalIcon } from '@radix-ui/react-icons';
 import styled from 'styled-components';
 
-type Props = {
-  readonly children?: React.ReactNode;
+export type IconMenuProps = {
+  /** Menu items to render inside the dropdown */
+  children?: ReactNode;
 };
 
-const IconMenu = memo(({ children }: Props): React.JSX.Element => {
-  const memoizedDropdownMenu = useMemo(
-    () => (
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger asChild>
-          <StyledButton aria-label="Customise options" type="button">
-            <DotsVerticalIcon />
-          </StyledButton>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Portal>
-          <StyledMenuContent align="start" side="right" sideOffset={5}>
-            {children}
-          </StyledMenuContent>
-        </DropdownMenu.Portal>
-      </DropdownMenu.Root>
-    ),
-    [children],
-  );
+const IconMenu: FC<IconMenuProps> = ({ children }) => (
+  <DropdownMenu.Root>
+    <DropdownMenu.Trigger asChild>
+      <StyledButton
+        aria-haspopup="menu"
+        aria-label="Customize options"
+        type="button">
+        <DotsVerticalIcon />
+      </StyledButton>
+    </DropdownMenu.Trigger>
 
-  return memoizedDropdownMenu;
-});
+    <DropdownMenu.Portal>
+      <StyledMenuContent align="start" side="right" sideOffset={5}>
+        {children}
+      </StyledMenuContent>
+    </DropdownMenu.Portal>
+  </DropdownMenu.Root>
+);
 
 IconMenu.displayName = 'IconMenu';
-
-export default IconMenu;
+export default memo(IconMenu);
 
 const StyledButton = styled.button`
   font-family: inherit;
-  border-radius: 100%;
-  height: 35px;
+  border-radius: 50%;
   width: 35px;
+  height: 35px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--violet-11);
-  background-color: white;
+  background-color: #fff;
   box-shadow: 0 2px 10px var(--black-a7);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color, #2684ff);
+    outline-offset: 2px;
+  }
 `;
+
 const StyledMenuContent = styled(DropdownMenu.Content)`
   min-width: 220px;
   background-color: var(--palette-grey-10);
-  border-radius: 6px;
   border: 1px solid var(--palette-samp);
-  padding: 5px;
+  border-radius: 6px;
+  padding: 0.5rem;
   box-shadow:
     0px 10px 38px -10px rgba(22, 23, 24, 0.35),
     0px 10px 20px -15px rgba(22, 23, 24, 0.2);

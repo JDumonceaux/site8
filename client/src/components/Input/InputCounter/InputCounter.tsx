@@ -1,58 +1,49 @@
+import type { FC, HTMLAttributes } from 'react';
+
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import styled from 'styled-components';
 
-type InputCounterProps = {
+export type InputCounterProps = HTMLAttributes<HTMLDivElement> & {
   readonly align?: 'left' | 'right';
   // This should be translated
   readonly assistiveLabel?: string;
-  readonly characterCount: number | undefined;
+  readonly characterCount?: number;
   readonly id: string;
-  readonly maxLength: number | undefined;
+  readonly maxLength?: number;
   readonly showCounter?: boolean;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'id'>;
+};
 
-const InputCounter = ({
+/**
+ * Displays a character count with assistive text.
+ */
+export const InputCounter: FC<InputCounterProps> = ({
   align = 'right',
   assistiveLabel = 'Character count',
-  characterCount,
+  characterCount = 0,
   id,
-  maxLength,
+  maxLength = 0,
   showCounter = false,
   ...rest
-}: InputCounterProps): React.JSX.Element => {
-  if (!showCounter) {
-    return <></>;
-  }
+}) => {
+  if (!showCounter) return null;
 
   return (
-    <StyledDivWrapper
-      id={id}
-      {...rest}
+    <Counter
       $align={align}
       aria-live="polite"
-      data-testid="input-counter">
-      <VisuallyHidden>{assistiveLabel}:</VisuallyHidden> {characterCount ?? 0} /
-      {maxLength ?? 0}
-    </StyledDivWrapper>
+      data-testid="input-counter"
+      id={id}
+      {...rest}>
+      <VisuallyHidden>{assistiveLabel}:</VisuallyHidden>
+      {` ${characterCount} / ${maxLength}`}
+    </Counter>
   );
 };
 
 InputCounter.displayName = 'InputCounter';
-
 export default InputCounter;
 
-const StyledDivWrapper = styled.div<{ $align?: 'left' | 'right' }>`
+const Counter = styled.div<{ $align: 'left' | 'right' }>`
   font-size: 0.75rem;
   text-align: ${({ $align }) => $align};
 `;
-// const VisuallyHidden = styled.span`
-//   &:not(:focus):not(:active) {
-//     clip: rect(0 0 0 0);
-//     clip-path: inset(50%);
-//     height: 1px;
-//     overflow: hidden;
-//     position: absolute;
-//     white-space: nowrap;
-//     width: 1px;
-//   }
-// `;

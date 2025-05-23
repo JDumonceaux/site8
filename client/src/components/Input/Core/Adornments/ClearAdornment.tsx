@@ -1,58 +1,80 @@
-import type { FC } from 'react';
+import type { FC, HTMLAttributes, MouseEventHandler } from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
-import { Cross1Icon as Icon } from '@radix-ui/react-icons';
+import { Cross1Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
 import styled from 'styled-components';
 
 import Tooltip from '../Tooltip/TooltipBase';
 
-export type ClearAdornmentProps = {
-  readonly ariaLabel?: string;
-  readonly icon?: React.ReactNode;
-  readonly iconProps?: IconProps;
-  readonly label?: string;
-  readonly onClick: () => void;
-  readonly ref?: React.Ref<SVGSVGElement>;
+export type ClearAdornmentProps = HTMLAttributes<HTMLDivElement> & {
+  /** Tooltip text for screen readers */
+  ariaLabel?: string;
+  /** Custom icon element */
+  icon?: React.ReactNode;
+  /** Props forwarded to the default icon */
+  iconProps?: IconProps;
+  /** Tooltip content */
+  label?: string;
+  /** Click handler */
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-const ClearAdornment: FC<ClearAdornmentProps> = ({
+/**
+ * A clickable clear/close adornment with tooltip.
+ */
+export const ClearAdornment: FC<ClearAdornmentProps> = ({
   ariaLabel = 'clear contents',
+  className,
   icon,
   iconProps,
   label = 'Clear contents',
   onClick,
-  ref,
+  style,
   ...rest
-}: ClearAdornmentProps): React.JSX.Element => (
+}) => (
   <Tooltip
     aria-label={ariaLabel}
     content={label}
-    {...rest}
     trigger={
-      <StyledTrigger onClick={onClick}>
+      <TriggerButton
+        className={className}
+        onClick={onClick}
+        style={style}
+        {...rest}>
         <AccessibleIcon label={label}>
-          {icon ?? <Icon {...iconProps} ref={ref} />}
+          {icon ?? <Cross1Icon {...iconProps} />}
         </AccessibleIcon>
-      </StyledTrigger>
+      </TriggerButton>
     }
   />
 );
 
 ClearAdornment.displayName = 'ClearAdornment';
-
 export default ClearAdornment;
 
-const StyledTrigger = styled.div`
+const TriggerButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 8px;
-  height: 24px;
   width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
   color: var(--text-primary-muted);
-  :hover {
-    background-color: blue;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--hover-bg, rgba(0, 0, 255, 0.1));
     border-radius: 50%;
+    outline: none;
   }
+
   svg {
-    margin: auto;
+    width: 100%;
+    height: 100%;
   }
 `;

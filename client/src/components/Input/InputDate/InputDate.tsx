@@ -1,8 +1,10 @@
+import type { FC } from 'react';
+
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
-type InputDateProps = {
-  readonly type?: 'date' | 'datetime-local' | 'month' | 'time' | 'week';
-} & Omit<
+// Remove: 'autocapitalize', 'height', 'multiple', 'pattern', 'src', 'width'
+// Valid: 'value'
+export type InputDateProps = Omit<
   InputBaseProps,
   | 'autocapitalize'
   | 'height'
@@ -11,16 +13,15 @@ type InputDateProps = {
   | 'src'
   | 'type'
   | 'width'
->;
+> & {
+  /** Supported HTML5 date/time input types */
+  type?: 'date' | 'datetime-local' | 'month' | 'time' | 'week';
+};
 
-// Remove: 'autocapitalize', 'height', 'multiple', 'pattern', 'src', 'width'
-// Valid: 'value'
-
-const InputDate = ({
-  type = 'date',
-  ...rest
-}: InputDateProps): React.JSX.Element => <InputBase type={type} {...rest} />;
+/** Date/time input wrapper */
+export const InputDate: FC<InputDateProps> = ({ type = 'date', ...rest }) => (
+  <InputBase type={type} {...rest} />
+);
 
 InputDate.displayName = 'InputDate';
-
 export default InputDate;

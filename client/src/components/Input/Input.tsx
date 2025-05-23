@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 
 import InputBase, { type InputBaseProps } from './Core/InputBase/InputBase';
 import InputCheckbox from './InputCheckbox/InputCheckbox';
@@ -11,11 +11,20 @@ import InputText from './InputText/InputText';
 import InputToggle from './InputToggle/InputToggle';
 import TextArea from './TextArea/TextArea';
 
-type Props = InputBaseProps;
+type InputComponent = FC<InputBaseProps> & {
+  Checkbox: typeof InputCheckbox;
+  Email: typeof InputEmail;
+  Number: typeof InputNumber;
+  Password: typeof InputPassword;
+  Select: typeof InputSelect;
+  Tel: typeof InputTel;
+  Text: typeof InputText;
+  TextArea: typeof TextArea;
+  Toggle: typeof InputToggle;
+};
 
-const Input = ({ ...rest }: Props): React.JSX.Element => (
-  <InputBase {...rest} />
-);
+/** Primary input component with static subtypes for various input types */
+export const Input: InputComponent = (props) => <InputBase {...props} />;
 
 Input.Email = InputEmail;
 Input.Number = InputNumber;
@@ -27,4 +36,5 @@ Input.Checkbox = InputCheckbox;
 Input.Toggle = InputToggle;
 Input.Select = InputSelect;
 
+Input.displayName = 'Input';
 export default Input;

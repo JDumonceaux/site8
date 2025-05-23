@@ -1,47 +1,47 @@
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils/constants';
+
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import { handleQueryError } from 'lib/utils/errorHandler';
 import type { Page } from 'types';
 
-// Helper function to fetch a generic page by id
-const fetchGenericPage = async (id: string): Promise<Page> => {
-  const response = await fetch(`${ServiceUrl.ENDPOINT_GENERIC}/${id}`);
-  if (!response.ok) {
-    handleQueryError(response);
+/**
+ * Fetches a generic page by ID, with support for cancellation.
+ */
+async function fetchGenericPage(
+  id: string,
+  signal: AbortSignal,
+): Promise<Page> {
+  const res = await fetch(`${ServiceUrl.ENDPOINT_GENERIC}/${id}`, {
+    signal,
+  });
+  if (!res.ok) {
+    // Delegates error handling/logging to your central handler,
+    // then throw to let React Query register the failure.
+    handleQueryError(res);
+    throw new Error(`Failed to fetch page ${id}: ${res.statusText}`);
   }
-  return response.json() as Promise<Page>;
-};
+  return res.json() as Promise<Page>;
+}
 
-const useGenericPage = (id: string | undefined) => {
-  // Define the query key based on the id
-  const queryKey = ['generic-page', id];
-
+/**
+ * Hook to load a generic page by ID.
+ * Only runs when `id` is truthy, and automatically cancels on unmount or key change.
+ */
+export function useGenericPage(id: string) {
   const query = useQuery<Page>({
+    queryKey: ['generic-page', id],
     enabled: Boolean(id),
-    // Cache the data for 10 minutes
-    gcTime: QueryTime.GC_TIME,
-    // Only run the query if an id is provided
-    queryFn: async () => fetchGenericPage(id as string),
-    queryKey,
-    refetchInterval: QueryTime.REFETCH_INTERVAL,
-    refetchIntervalInBackground: false,
-    // Disable auto-refetching behaviors
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    // Retry up to QueryTime.RETRY times with a delay of QueryTime.RETRY_DELAY between attempts
-    retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
-    // Consider data fresh for 5 minutes
-    staleTime: QueryTime.STALE_TIME,
+    queryFn: async ({ signal }) => fetchGenericPage(id, signal),
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
   return {
     data: query.data,
     error: query.error,
-    isError: query.isError,
     isLoading: query.isLoading,
+    isError: query.isError,
+    isFetching: query.isFetching,
   };
-};
+}
 
 export default useGenericPage;

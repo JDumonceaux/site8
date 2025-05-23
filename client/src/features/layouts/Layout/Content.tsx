@@ -1,21 +1,22 @@
-import React, { memo } from 'react';
+import { type FC, memo } from 'react';
 
 import styled from 'styled-components';
 
-type Props = {
-  readonly children?: React.ReactNode;
+/**
+ * Content wrapper that spans full width.
+ */
+type ContentProps = {
+  /** Optional content to render */
+  children?: React.ReactNode;
 };
 
-const Content = memo(
-  ({ children }: Props): React.JSX.Element => (
-    <StyledElement data-testid="content">{children}</StyledElement>
-  ),
-);
-
+const Content: FC<ContentProps> = memo(({ children }) => (
+  <Container data-testid="content">{children}</Container>
+));
 Content.displayName = 'Content';
-
 export default Content;
 
-const StyledElement = styled.div`
+// Styled component for content area
+const Container = styled.div`
   width: 100%;
 `;

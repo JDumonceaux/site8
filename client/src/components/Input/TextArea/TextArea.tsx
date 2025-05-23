@@ -1,4 +1,9 @@
-import React, { useRef, type TextareaHTMLAttributes } from 'react';
+import {
+  useRef,
+  type FC,
+  type TextareaHTMLAttributes,
+  type ChangeEvent,
+} from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
@@ -6,6 +11,15 @@ import styled from 'styled-components';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../Core/FieldWrapper/FieldWrapper';
+
+// Most attributes have an effect on only
+// a specific subset of input types. In addition, the way some
+// attributes impact an input depends on the input type,
+// impacting different input types in different ways.
+
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+//
+// ACCESSIBILITY: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-readonly
 
 type TextAreaRootProps = Omit<
   TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -19,26 +33,31 @@ type TextAreaAddProps = {
 
 type TextAreaProps = TextAreaRootProps & TextAreaAddProps & FieldWrapperProps;
 
-const TextArea = ({
+/**
+ * A textarea with integrated label, error display, and adornments.
+ */
+export const TextArea: FC<TextAreaProps> = ({
   id,
   onChange,
   ref,
   required,
   rows,
   ...rest
-}: TextAreaProps): React.JSX.Element => {
+}) => {
   const currId = useGetId(id);
-
   const tempRef = useRef<HTMLTextAreaElement>(null);
   const localRef = ref ?? tempRef;
+
+  // Separate out wrapper vs. textarea props
   const textAreaProps = { ...rest };
   delete textAreaProps.labelProps;
 
   return (
-    <FieldWrapper {...(rest as FieldWrapperProps)}>
+    <FieldWrapper required={required} {...(rest as FieldWrapperProps)}>
       <StyledTextArea
-        id={id}
-        name={id}
+        id={currId}
+        name={currId}
+        onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
         ref={localRef}
         rows={rows}
         {...(textAreaProps as TextAreaRootProps)}
@@ -48,29 +67,21 @@ const TextArea = ({
 };
 
 TextArea.displayName = 'TextArea';
-
 export default TextArea;
 
 const StyledTextArea = styled.textarea`
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   background-color: var(--palette-white, #fff);
-  font-size: 1rem;
   letter-spacing: 0.5px;
   line-height: 20px;
-  padding-block-end: 6px;
-  padding-block-start: 6px;
-  padding-inline-end: 6px;
-  padding-inline-start: 6px;
-  padding: 6px 6px;
-  border-width: 1px;
-  border-style: solid;
+  padding: 6px;
+  border: 1px solid var(--input-border-color, #ccc);
   border-radius: 4px;
   width: 100%;
-  :focus {
+
+  &:focus,
+  &:focus-visible {
     outline: none;
   }
-  :focus-visible {
-    outline: none;
-i  }
 `;

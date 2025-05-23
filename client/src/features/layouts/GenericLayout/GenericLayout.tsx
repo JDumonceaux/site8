@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { type FC, Suspense, memo } from 'react';
 
 import Avatar from 'components/core/Avatar/Avatar';
 import Header from 'components/core/Header/Header';
@@ -8,34 +8,83 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-const GenericLayout = (): React.JSX.Element => (
-  <ErrorBoundary fallback={<div>Something went wrong</div>}>
+/**
+ * Accessible fallback shown while the page is lazy-loading.
+ */
+const LoadingFallback: FC = () => (
+  <div role="status" aria-live="polite" aria-busy="true">
+    Loading…
+  </div>
+);
+
+/**
+ * Error fallback for any rendering errors in this layout.
+ */
+const ErrorFallback: FC<{ error: Error; resetErrorBoundary: () => void }> = ({
+  error,
+  resetErrorBoundary,
+}) => (
+  <ErrorContainer role="alert">
+    <p>Something went wrong.</p>
+    <pre>{error.message}</pre>
+    <RetryButton onClick={resetErrorBoundary}>Try again</RetryButton>
+  </ErrorContainer>
+);
+
+/**
+ * Layout wrapper for general application pages.
+ */
+const GenericLayout: FC = () => (
+  <ErrorBoundary FallbackComponent={ErrorFallback}>
     <AppInitializer />
     <Header
       avatar={
-        <Avatar alt="Avatar" id="avatar" src="/avatar.jpg">
+        <Avatar alt="User avatar" id="avatar" src="/avatar.jpg">
           JD
         </Avatar>
       }
     />
-    <LayoutDiv>
-      <Suspense fallback="Loading ...">
+    <Main>
+      <Suspense fallback={<LoadingFallback />}>
         <Outlet />
       </Suspense>
       <Snackbar />
-    </LayoutDiv>
+    </Main>
   </ErrorBoundary>
 );
 
 GenericLayout.displayName = 'GenericLayout';
+export default memo(GenericLayout);
 
-export default GenericLayout;
-
-const LayoutDiv = styled.div`
+// Styled Components
+const Main = styled.main`
   max-width: 1920px;
-  margin-inline: auto;
+  margin: 50px auto 0;
   min-height: 100vh;
-  margin-top: 50px;
+  padding: 0 1rem;
   color: var(--palette-text);
   background-color: var(--palette-background);
+`;
+
+const ErrorContainer = styled.div`
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 600px;
+  background: #fee;
+  color: #900;
+  border-radius: 4px;
+`;
+
+const RetryButton = styled.button`
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  &:hover {
+    background: #0056b3;
+  }
 `;

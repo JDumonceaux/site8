@@ -1,17 +1,22 @@
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import type { FC } from 'react';
 
-type InputSearchProps = {
-  readonly type?: 'text';
-} & Omit<InputBaseProps, 'height' | 'src' | 'step' | 'type' | 'width'>;
+import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 // Remove: 'height', 'src', 'step', 'width'
 // Valid: pattern, value
 
-const InputSearch = ({
+export type InputSearchProps = Omit<
+  InputBaseProps,
+  'height' | 'src' | 'step' | 'type' | 'width'
+> & {
+  readonly type?: 'text';
+};
+
+/** Text input optimized for search usage */
+export const InputSearch: FC<InputSearchProps> = ({
   type = 'text',
   ...rest
-}: InputSearchProps): React.JSX.Element => <InputBase type={type} {...rest} />;
+}) => <InputBase type={type} {...rest} />;
 
 InputSearch.displayName = 'InputSearch';
-
 export default InputSearch;

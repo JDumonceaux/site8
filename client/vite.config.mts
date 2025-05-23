@@ -1,15 +1,17 @@
 import analyze from 'rollup-plugin-analyzer';
 import { visualizer } from 'rollup-plugin-visualizer';
-import { defineConfig, type PluginOption } from 'vite';
+import { defineConfig } from 'vite';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tsConfigPaths(), visualizer() as PluginOption],
-  // Allow absolute imports from the `src` directory
+  plugins: [
+    tsConfigPaths(),
+    // no need to coerce to PluginOption—visualizer() already matches Vite’s plugin API
+    visualizer(),
+  ],
   resolve: {
     alias: {
-      src: '/src',
       components: '/src/components',
       content: '/src/content',
       features: '/src/features',
@@ -19,30 +21,29 @@ export default defineConfig({
       store: '/src/store',
       styles: '/src/styles',
       types: '/src/types',
+      // if you still want a `src/` import, keep that as well
+      src: '/src',
     },
   },
   build: {
-    sourcemap: false,
-    assetsDir: '',
     outDir: 'dist',
+    assetsDir: '',
+    sourcemap: false,
     minify: true,
     rollupOptions: {
       plugins: [analyze()],
       output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            return `vendor`;
-          }
-          if (id.includes('src/')) {
-            return 'components';
-          }
+        manualChunks(id) {
+          if (id.includes('node_modules')) return 'vendor';
+          if (id.includes('/src/')) return 'components';
         },
       },
     },
   },
+  // If you decide to re-enable Vitest:
   // test: {
-  //   globals: true,
+  //   globals:     true,
   //   environment: 'jsdom',
-  //   watch: false,
+  //   watch:       false,
   // },
 });

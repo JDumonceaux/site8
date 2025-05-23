@@ -1,20 +1,22 @@
+import type { FC } from 'react';
+
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
-type InputHiddenProps = {
-  readonly type?: 'password';
-} & Omit<
+type InputHiddenProps = Omit<
   InputBaseProps,
   'autocapitalize' | 'height' | 'pattern' | 'src' | 'step' | 'type' | 'width'
->;
+> & {
+  /** Always "password" for this input */
+  type?: 'password';
+};
 
 // Remove: 'autocapitalize', 'height', 'pattern', 'src', 'step', 'width'
 // Valid: 'value'
 
-const InputHidden = ({
+export const InputHidden: FC<InputHiddenProps> = ({
   type = 'password',
   ...rest
-}: InputHiddenProps): React.JSX.Element => <InputBase type={type} {...rest} />;
+}) => <InputBase type={type} {...rest} />;
 
 InputHidden.displayName = 'InputHidden';
-
 export default InputHidden;

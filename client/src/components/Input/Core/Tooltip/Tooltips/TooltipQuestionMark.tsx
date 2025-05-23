@@ -1,13 +1,15 @@
+import type { FC } from 'react';
+
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 
 import Tooltip, { type TooltipBaseProps } from '../TooltipBase';
 
-type Props = TooltipBaseProps;
+export type TooltipQuestionMarkProps = TooltipBaseProps;
 
-const TooltipQuestionMark = ({ ...rest }: Props): React.JSX.Element => (
-  <Tooltip trigger={<QuestionMarkCircledIcon />} {...rest} />
+/** Renders a question-mark icon trigger tooltip */
+export const TooltipQuestionMark: FC<TooltipQuestionMarkProps> = (props) => (
+  <Tooltip trigger={<QuestionMarkCircledIcon />} {...props} />
 );
 
 TooltipQuestionMark.displayName = 'TooltipQuestionMark';
-
 export default TooltipQuestionMark;

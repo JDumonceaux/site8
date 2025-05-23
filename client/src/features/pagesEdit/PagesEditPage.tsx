@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
+import { type FC, useEffect, useMemo, useCallback } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
 import { Switch } from 'components/Switch/Switch';
@@ -11,13 +10,17 @@ import useAppSettings from 'features/app/useAppSettings';
 import Layout from 'features/layouts/Layout/Layout';
 import MenuAdd from 'features/pagesEdit/MenuAdd';
 import styled from 'styled-components';
-import type { MenuItem } from 'types';
 
+import { mapToFormValues } from './mapToFormValues';
+import { PageRow } from './PageRow';
 import usePagesEdit from './usePagesEdit';
 
-const PagesEditPage = (): React.JSX.Element => {
+/**
+ * Page for editing site pages and menu structure.
+ */
+const PagesEditPage: FC = () => {
   const {
-    data,
+    data = [],
     error,
     getDefaultProps,
     handleSave,
@@ -29,95 +32,18 @@ const PagesEditPage = (): React.JSX.Element => {
 
   const { setShowPages, showPages } = useAppSettings();
 
+  // Initialize form values when data changes
+  const formValues = useMemo(() => mapToFormValues(data), [data]);
   useEffect(() => {
-    const returnValue = data?.map((item) => ({
-      id: item.id,
-      lineId: item.lineId,
-      name: item.name,
-      parentId: item.parentItem.id ? item.parentItem.id.toString() : '0',
-      parentSeq: item.parentItem.seq ? item.parentItem.seq.toString() : '0',
-      parentSortby: item.parentItem.sortby ?? '',
-      type: item.type,
-    }));
-    if (returnValue) {
-      setFormValues(returnValue);
-    }
-  }, [data, setFormValues]);
+    setFormValues(formValues);
+  }, [formValues, setFormValues]);
 
-  const renderItem = useCallback(
-    (item: MenuItem | undefined): null | React.JSX.Element => {
-      if (!item) {
-        return null;
-      }
-
-      const level = (() => {
-        switch (item.type) {
-          case 'menu': {
-            return ' -- ';
-          }
-          case 'page': {
-            return ' ---- ';
-          }
-          default: {
-            return '';
-          }
-        }
-      })();
-
-      return (
-        <React.Fragment key={item.lineId}>
-          <StyledTr>
-            <td>
-              {item.type === 'page' ? (
-                <StyledLink to={`/admin/page/edit/${item.id}`}>
-                  {item.id}
-                </StyledLink>
-              ) : (
-                item.id
-              )}
-            </td>
-            <td>
-              <StyledLink to={item.toComplete ?? ''}>
-                {level}
-                {item.name}
-              </StyledLink>
-            </td>
-            <td>
-              {item.type === 'root' ? null : (
-                <Input.Text {...getDefaultProps(item.lineId, 'parentId')} />
-              )}
-            </td>
-            <td>
-              <Input.Text {...getDefaultProps(item.lineId, 'parentSeq')} />
-            </td>
-
-            <td>
-              {item.type === 'page' ? null : (
-                <>
-                  <Input.Text
-                    {...getDefaultProps(item.lineId, 'parentSortby')}
-                    list="sortTypes"
-                  />
-                  <datalist id="sortTypes">
-                    <option value="seq" />
-                    <option value="name" />
-                  </datalist>
-                </>
-              )}
-            </td>
-            <td>
-              {item.type} {item.issue ? '-I' : null} -{item.lineId}
-            </td>
-          </StyledTr>
-        </React.Fragment>
-      );
+  const onToggleShowPages = useCallback(
+    (checked: boolean) => {
+      setShowPages(checked);
     },
-    [getDefaultProps],
+    [setShowPages],
   );
-
-  const onShowPages = (checked: boolean) => {
-    setShowPages(checked);
-  };
 
   return (
     <>
@@ -129,14 +55,12 @@ const PagesEditPage = (): React.JSX.Element => {
               checked={showPages}
               id="showPages"
               label={showPages ? 'Hide Pages' : 'Show Pages'}
-              onCheckedChange={(error_) => {
-                onShowPages(error_);
-              }}
+              onCheckedChange={onToggleShowPages}
             />
             <StyledLink data-testid="nav-new" to="/admin/page/edit">
               New
             </StyledLink>
-            {isSaved ? null : (
+            {!isSaved && (
               <StyledSaveButton
                 data-testid="button-save"
                 onClick={handleSave}
@@ -157,7 +81,15 @@ const PagesEditPage = (): React.JSX.Element => {
                   <th>Type</th>
                 </tr>
               </thead>
-              <tbody>{data?.map((item) => renderItem(item))}</tbody>
+              <tbody>
+                {data.map((item) => (
+                  <PageRow
+                    getDefaultProps={getDefaultProps}
+                    item={item}
+                    key={item.lineId}
+                  />
+                ))}
+              </tbody>
             </table>
           </LoadingWrapper>
           <MenuAdd />
@@ -169,11 +101,6 @@ const PagesEditPage = (): React.JSX.Element => {
 
 export default PagesEditPage;
 
-const StyledTr = styled.tr`
-  td {
-    padding: 3px 15px;
-  }
-`;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: bold;
 `;

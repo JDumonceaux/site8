@@ -1,41 +1,42 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { QueryTime, ServiceUrl } from 'lib/utils/constants';
+
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { Music } from 'types/Music';
 
-// Helper function to fetch music data
-const fetchData = async (): Promise<Music> => {
-  const res = await axios.get<Music>(ServiceUrl.ENDPOINT_MUSIC);
-  return res.data;
-};
+/**
+ * Fetches music data from the API, supporting cancellation via AbortSignal.
+ */
+async function fetchMusic({
+  signal,
+}: {
+  signal?: AbortSignal;
+}): Promise<Music> {
+  const response = await fetch(ServiceUrl.ENDPOINT_MUSIC, { signal });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch music: ${response.statusText}`);
+  }
+  return response.json() as Promise<Music>;
+}
 
-const useMusic = () => {
-  // Define the query key for caching purposes
+/**
+ * Custom hook to load music data.
+ */
+export function useMusic() {
   const queryKey = ['music'];
-
   const query = useQuery<Music>({
-    gcTime: QueryTime.GC_TIME,
-    queryFn: fetchData,
     queryKey,
-    refetchInterval: 0,
-    refetchIntervalInBackground: false,
-    // Disable auto-refetching behaviors
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    // Retry configuration
-    retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
-    // Consider data fresh for a specified time
-    staleTime: QueryTime.STALE_TIME,
+    queryFn: fetchMusic,
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
   return {
     data: query.data,
     error: query.error,
-    isError: query.isError,
     isLoading: query.isLoading,
+    isError: query.isError,
+    isFetching: query.isFetching,
+    refetch: query.refetch,
   };
-};
+}
 
 export default useMusic;

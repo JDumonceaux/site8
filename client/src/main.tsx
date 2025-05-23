@@ -1,35 +1,26 @@
 import { StrictMode } from 'react';
 
 import { App } from 'app/app';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 
-//import reportWebVitals from './lib/utils/reportWebVitals';
+// Grab the root container (must match your index.html)
+const container = document.querySelector('#root');
+if (!container) throw new Error('Root element with id="root" not found');
 
-// Get the root element from the document
-const rootElement = document.querySelector('#root');
-
-if (!rootElement) {
-  throw new Error('No root element found');
-}
-
-// Render the application wrapped in necessary providers
-ReactDOM.createRoot(rootElement, {
-  onCaughtError: (error, errorInfo) => {
-    // Handle errors in the application
-    // eslint-disable-next-line no-console
-    console.error('Error caught in ReactDOM:', error, errorInfo);
+// Create a React root with recoverable-error handling
+const root = createRoot(container, {
+  onRecoverableError: (error: unknown, errorInfo) => {
+    // Won’t unmount the whole tree—just logs
+    console.error('Recoverable React error:', error, errorInfo);
   },
-  onUncaughtError: (error, errorInfo) => {
-    // Handle uncaught errors in the application
-    // eslint-disable-next-line no-console
-    console.error('Uncaught error in ReactDOM:', error, errorInfo);
-  },
-}).render(
+});
+
+// Initial render
+root.render(
   <StrictMode>
     <App />
   </StrictMode>,
 );
 
-// Report web vitals (change console.log to your analytics endpoint if needed)
-
-//reportWebVitals(console.log);
+// Send web vitals to console (swap to your analytics)
+// reportWebVitals(console.log);

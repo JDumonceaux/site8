@@ -1,30 +1,37 @@
-import { memo, type ButtonHTMLAttributes } from 'react';
+import {
+  type FC,
+  type ReactNode,
+  type ButtonHTMLAttributes,
+  memo,
+} from 'react';
 
 import styled from 'styled-components';
 
-type StyledPlainButtonProps = {
-  readonly children?: React.ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+export type StyledPlainButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  /** Button content */
+  children?: ReactNode;
+};
 
-const StyledPlainButton = memo(
-  ({ children, ...rest }: StyledPlainButtonProps): React.JSX.Element => (
-    <StyledElement {...rest}>{children}</StyledElement>
-  ),
-);
+/** A plain button styled as a link */
+const StyledPlainButton: FC<StyledPlainButtonProps> = ({
+  children,
+  ...rest
+}) => <StyledButton {...rest}>{children}</StyledButton>;
 
 StyledPlainButton.displayName = 'StyledPlainButton';
+export default memo(StyledPlainButton);
 
-export default StyledPlainButton;
-
-const StyledElement = styled.button`
+const StyledButton = styled.button`
   display: inline-block;
   color: var(--palette-text);
+
   &:link,
   &:visited,
   &:hover,
   &:active {
     color: var(--palette-text);
   }
+
   &:hover {
     text-decoration: underline;
   }

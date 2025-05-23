@@ -1,41 +1,61 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  type PayloadAction,
+  createSelector,
+} from '@reduxjs/toolkit';
+import type { RootState } from './store';
 import type { Snackbar } from 'features/app/useSnackbar';
 
-/**
- * Represents the state structure for the snackbar.
- */
-export type SnackbarState = {
-  data: null | Snackbar;
+/** Shape of the `snackbar` slice state. */
+type SnackbarState = {
+  /** The current snackbar payload, or null if none is showing. */
+  data: Snackbar | null;
 };
 
+/** Initial state: nothing showing. */
 const initialState: SnackbarState = {
   data: null,
 };
 
 /**
- * Snackbar slice for managing snackbar notifications.
+ * Manages the global snackbar (toast) notification.
  */
 const snackbarSlice = createSlice({
-  initialState,
   name: 'snackbar',
+  initialState,
   reducers: {
     /**
-     * Clears the snackbar data.
-     * @param state - The current snackbar state.
+     * Show a new snackbar.
+     * @param state Current slice state
+     * @param action Payload must be a valid Snackbar
      */
-    clearSnackbar: (state) => {
-      state.data = null;
+    showSnackbar(state, action: PayloadAction<Snackbar>) {
+      state.data = action.payload;
     },
     /**
-     * Sets the snackbar data.
-     * @param state - The current snackbar state.
-     * @param action - The action payload containing the snackbar.
+     * Hide/clear the current snackbar.
+     * @param state Current slice state
      */
-    setSnackbar: (state, action: PayloadAction<Snackbar>) => {
-      state.data = action.payload;
+    hideSnackbar(state) {
+      state.data = null;
     },
   },
 });
 
-export const snackbarReducer = snackbarSlice.reducer;
-export const { clearSnackbar, setSnackbar } = snackbarSlice.actions;
+export const { showSnackbar, hideSnackbar } = snackbarSlice.actions;
+export default snackbarSlice.reducer;
+
+/** Root selector — returns the entire slice. */
+const selectSnackbarSlice = (state: RootState) => state.snackbar;
+
+/** Returns the current snackbar payload (or null). */
+export const selectSnackbarData = createSelector(
+  selectSnackbarSlice,
+  (slice: SnackbarState) => slice.data,
+);
+
+/** Returns true if a snackbar is currently visible. */
+export const selectIsSnackbarVisible = createSelector(
+  selectSnackbarData,
+  (data) => data !== null,
+);

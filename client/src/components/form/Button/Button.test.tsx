@@ -2,14 +2,16 @@ import { render, screen } from '@testing-library/react';
 
 import Button from './Button';
 
-describe('Button', () => {
+describe('button', () => {
   test('renders without errors', () => {
     render(<Button id="test-button">Click me</Button>);
+
     expect(screen.getByText('Click me')).toBeInTheDocument();
   });
 
   test('renders with the primary variant by default', () => {
     render(<Button id="test-button">Click me</Button>);
+
     expect(screen.getByTestId('test-button')).toHaveStyle({
       backgroundColor: '#6db144',
       border: 'none',
@@ -23,6 +25,7 @@ describe('Button', () => {
         Click me
       </Button>,
     );
+
     expect(screen.getByTestId('test-button')).toHaveStyle({
       backgroundColor: '#fff',
       border: '1px solid #6db144',
@@ -38,6 +41,7 @@ describe('Button', () => {
       </Button>,
     );
     screen.getByTestId('test-button').click();
+
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });

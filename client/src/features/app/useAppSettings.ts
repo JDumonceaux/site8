@@ -1,58 +1,65 @@
-import { useMemo } from 'react';
+import { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/appSlice';
 import type { AppDispatch, RootState } from 'store/store';
 import type { AppSettings } from 'types/AppSettings';
 
-const selector = (state: RootState) => state.appSettings;
+// Default settings
+const initialState: AppSettings = {
+  showAll: false,
+  showPages: false,
+  showUnmatched: false,
+};
 
-const useAppSettings = () => {
+const selectAppSettingsData = (state: RootState) => state.appSettings.data;
+
+export type UseAppSettingsReturn = {
+  data: AppSettings | null | undefined;
+  reset: () => void;
+  setShowAll: (showAll: boolean) => void;
+  setShowPages: (showPages: boolean) => void;
+  setShowUnmatched: (showUnmatched: boolean) => void;
+  showAll: boolean | undefined;
+  showPages: boolean | undefined;
+  showUnmatched: boolean | undefined;
+};
+
+const useAppSettings = (): UseAppSettingsReturn => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data } = useSelector(selector);
+  const data = useSelector(selectAppSettingsData);
 
-  const initialState: AppSettings = useMemo(
-    () => ({
-      showAll: false,
-      showPages: false,
-      showUnmatched: false,
-    }),
-    [],
+  const saveSettings = useCallback(
+    (updates: AppSettings) => {
+      dispatch(save(updates));
+    },
+    [dispatch],
   );
 
-  const updateAppSettingsDispatch = (updates: AppSettings) => {
-    dispatch(save(updates));
-  };
+  const setShowAll = useCallback(
+    (showAll: boolean) => {
+      saveSettings({ ...initialState, ...data, showAll });
+    },
+    [data, saveSettings],
+  );
 
-  const setShowAll = (value: boolean) => {
-    updateAppSettingsDispatch({
-      ...data,
-      showAll: value,
-    });
-  };
+  const setShowPages = useCallback(
+    (showPages: boolean) => {
+      saveSettings({ ...initialState, ...data, showPages });
+    },
+    [data, saveSettings],
+  );
 
-  const setShowUnmatched = (value: boolean) => {
-    updateAppSettingsDispatch({
-      ...data,
-      showUnmatched: value,
-    });
-  };
+  const setShowUnmatched = useCallback(
+    (showUnmatched: boolean) => {
+      saveSettings({ ...initialState, ...data, showUnmatched });
+    },
+    [data, saveSettings],
+  );
 
-  const setShowPages = (value: boolean) => {
-    updateAppSettingsDispatch({
-      ...data,
-      showPages: value,
-    });
-  };
-
-  const reset = () => {
-    updateAppSettingsDispatch({
-      ...initialState,
-    });
-  };
-
-  const showUnmatched = data?.showUnmatched ?? false;
-  const showPages = data?.showPages ?? false;
+  const reset = useCallback(() => {
+    saveSettings(initialState);
+  }, [saveSettings]);
 
   return {
     data,
@@ -60,8 +67,9 @@ const useAppSettings = () => {
     setShowAll,
     setShowPages,
     setShowUnmatched,
-    showPages,
-    showUnmatched,
+    showAll: data?.showAll ?? initialState.showAll,
+    showPages: data?.showPages ?? initialState.showPages,
+    showUnmatched: data?.showUnmatched ?? initialState.showUnmatched,
   };
 };
 

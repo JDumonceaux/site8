@@ -1,104 +1,113 @@
-import { memo } from 'react';
-
+import { type JSX, memo, type ReactNode } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-type LoadingWrapperProps = {
-  readonly children: React.ReactNode;
-  readonly error?: unknown;
-  readonly fallback?: React.ReactNode;
-  readonly isError?: boolean;
-  readonly isLoading?: boolean;
-  readonly isPending?: boolean;
-  readonly isSaving?: boolean;
-  readonly loadingText?: React.ReactNode;
+export type LoadingWrapperProps = {
+  children: ReactNode;
+  error?: unknown;
+  fallback?: ReactNode;
+  isError?: boolean;
+  isLoading?: boolean;
+  isPending?: boolean;
+  isSaving?: boolean;
+  loadingText?: ReactNode;
 };
 
-// If the progress bar is describing the loading progress of a particular region of a page,
-// you should use aria - describedby to point to the progress bar, and set the aria -
-// busy attribute to true on that region until it has finished loading.
-// https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/progressbar_role
-
-const LoadingWrapper = ({
+/**
+ * Displays a loading, saving, or error state around children content.
+ */
+function LoadingWrapper({
   children,
   error,
-  fallback,
-  isError,
-  isLoading,
-  isPending,
-  isSaving,
-  loadingText,
-}: LoadingWrapperProps): React.JSX.Element | React.ReactNode => {
+  fallback = null,
+  isError = false,
+  isLoading = false,
+  isPending = false,
+  isSaving = false,
+  loadingText = 'Loading…',
+}: LoadingWrapperProps): JSX.Element {
+  // Saving state
   if (isSaving) {
     return (
-      <>
-        <ProgressBar />
-        <LoadingText>Saving</LoadingText>
-      </>
+      <StateContainer aria-busy="true" aria-label="Saving">
+        <ProgressBar role="progressbar" aria-valuetext="Saving…" />
+        <Message>Saving…</Message>
+      </StateContainer>
     );
   }
 
+  // Loading or pending state
   if (isLoading || isPending) {
+    const valueText = typeof loadingText === 'string' ? loadingText : undefined;
     return (
-      <>
-        <ProgressBar />
-        {loadingText ? <LoadingText>{loadingText}</LoadingText> : null}
-        {fallback ?? null}
-      </>
-    );
-  } else if (error || isError) {
-    if (error instanceof Error) {
-      return (
-        <>
-          <ErrorBar />
-          <StyledErrorDiv>{error.message}</StyledErrorDiv>
-          {children}
-        </>
-      );
-    } else if (typeof error === 'string') {
-      return (
-        <>
-          <StyledErrorDiv>{error}</StyledErrorDiv>
-          {children}
-        </>
-      );
-    }
-    return (
-      <>
-        <StyledErrorDiv>Error: Unknown error encountered.</StyledErrorDiv>
-        {children}
-      </>
+      <StateContainer aria-busy="true" aria-label="Loading">
+        <ProgressBar role="progressbar" aria-valuetext={valueText} />
+        <Message>{loadingText}</Message>
+        {fallback}
+      </StateContainer>
     );
   }
-  return children;
-};
+
+  // Error state
+  if (error || isError) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : typeof error === 'string'
+          ? error
+          : 'An unknown error occurred.';
+    return (
+      <StateContainer>
+        <ErrorBar role="alert" aria-label="Error" />
+        <ErrorMessage>{message}</ErrorMessage>
+        {children}
+      </StateContainer>
+    );
+  }
+
+  // Default to children
+  return <>{children}</>;
+}
 
 LoadingWrapper.displayName = 'LoadingWrapper';
-
 export default memo(LoadingWrapper);
 
-const LoadingText = styled.div`
+/* --- Styled Components & Animations --- */
+
+const slide = keyframes`
+  from { background-position: right; }
+  to   { background-position: left; }
+`;
+
+const StateContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const Message = styled.div`
   color: var(--palette-text);
-  font-size: 16px;
-  margin-top: 8px;
-  margin-left: 8px;
+  font-size: 1rem;
+  margin: 0.5rem 0 0 0.5rem;
 `;
-const StyledErrorDiv = styled.div`
+
+const ErrorMessage = styled(Message)`
   color: var(--palette-error);
-  font-size: 16px;
-  margin-top: 8px;
-  margin-left: 8px;
 `;
+
 const ProgressBar = styled.div`
   width: 100%;
-  height: 20px;
-  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
+  height: 1.25rem;
+  background: #f2f2f2;
+  background-image: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%);
   background-size: 300% 100%;
-  animation: ${keyframes`
-    0% {background-position: right}
-  `} 2s infinite linear;
+  animation: ${slide} 2s infinite linear;
+  border-radius: 0.25rem;
 `;
+
 const ErrorBar = styled.div`
   width: 100%;
-  height: 20px;
-  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
+  height: 1.25rem;
+  background: var(--palette-error-light);
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
 `;

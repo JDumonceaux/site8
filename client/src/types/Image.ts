@@ -1,8 +1,11 @@
 export type Image = {
-  readonly fileName: string;
+  readonly alt?: string;
+  readonly fileName?: string;
   readonly folder?: string;
   readonly id: number;
-  readonly itemId: number;
+  readonly itemId?: number;
   readonly location?: string;
   readonly official_url?: string;
+  readonly src?: string;
+  readonly title?: string;
 };

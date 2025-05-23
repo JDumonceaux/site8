@@ -1,14 +1,27 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { FC, ReactNode } from 'react';
+
+import type { LinkProps as BaseLinkProps } from 'react-router-dom';
 
 import StyledLink from '../StyledLink/StyledLink';
 
-type LinkButtonProps = {
-  readonly children: React.ReactNode;
-  readonly to: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+export type LinkButtonProps = {
+  /** Button label */
+  children: ReactNode;
+  /** Destination URL */
+  to: string;
+} & BaseLinkProps;
 
-const LinkButton = ({ children, to }: LinkButtonProps): React.JSX.Element => (
-  <StyledLink to={to}>{children}</StyledLink>
+/** A link styled as a button */
+export const LinkButton: FC<LinkButtonProps> = ({
+  children,
+  to,
+  ...rest
+}: LinkButtonProps) => (
+  // eslint-disable-next-line jsx-a11y/prefer-tag-over-role
+  <StyledLink role="button" to={to} {...rest}>
+    {children}
+  </StyledLink>
 );
 
+LinkButton.displayName = 'LinkButton';
 export default LinkButton;

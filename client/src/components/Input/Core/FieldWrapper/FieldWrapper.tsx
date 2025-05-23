@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import { type FC, memo, type ReactNode, type HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
@@ -11,77 +11,84 @@ import StartAdornment, {
 import FooterRow, { type FooterRowProps } from '../FooterRow/FooterRow';
 import LabelRow, { type LabelRowProps } from '../LabelRow/LabelRow';
 
-export type FieldWrapperProps = {
-  readonly children?: React.ReactNode;
-  readonly endAdornment?: React.ReactNode;
-  readonly endAdornmentProps?: EndAdornmentProps;
-  readonly id?: string;
-  readonly labelProps?: LabelRowProps;
-  readonly onClear?: () => void;
-  readonly ref?: React.Ref<HTMLDivElement>;
-  readonly required?: boolean;
-  readonly startAdornment?: React.ReactNode;
-  readonly startAdornmentProps?: StartAdornmentProps;
+export type FieldWrapperProps = HTMLAttributes<HTMLDivElement> & {
+  /** Trailing adornment element */
+  endAdornment?: ReactNode;
+  /** Props for the trailing adornment */
+  endAdornmentProps?: EndAdornmentProps;
+  /** Unique identifier for the wrapper */
+  id?: string;
+  /** Props for the label row (children are omitted) */
+  labelProps?: Omit<LabelRowProps, 'children'>;
+  /** Whether the field is required */
+  required?: boolean;
+  /** Leading adornment element */
+  startAdornment?: ReactNode;
+  /** Props for the leading adornment */
+  startAdornmentProps?: StartAdornmentProps;
 } & FooterRowProps;
 
+/**
+ * Wraps a form field with optional label, adornments, and footer.
+ */
 const FieldWrapper: FC<FieldWrapperProps> = memo(
   ({
     children,
     endAdornment,
     endAdornmentProps,
     id,
-    labelProps,
-    ref,
-    required,
+    labelProps = {},
+    required = false,
     startAdornment,
     startAdornmentProps,
-    ...rest
-  }: FieldWrapperProps): React.JSX.Element => {
-    const filteredLabelProps = { ...labelProps };
-    delete filteredLabelProps.children;
+    ...footerProps
+  }: FieldWrapperProps) => {
+    const { ...filteredLabelProps } = labelProps;
 
     return (
-      <div id={id} ref={ref}>
+      <Container id={id}>
         <LabelRow {...filteredLabelProps} required={required} />
-        <StyledDiv>
-          <StartAdornment {...startAdornmentProps}>
-            {startAdornment}
-          </StartAdornment>
+        <InputRow>
+          {startAdornment ? (
+            <StartAdornment {...startAdornmentProps}>
+              {startAdornment}
+            </StartAdornment>
+          ) : null}
           {children}
-          <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
-        </StyledDiv>
-        <FooterRow {...rest} />
-      </div>
+          {endAdornment ? (
+            <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
+          ) : null}
+        </InputRow>
+        <FooterRow {...footerProps} />
+      </Container>
     );
   },
 );
 
 FieldWrapper.displayName = 'FieldWrapper';
-
 export default FieldWrapper;
 
-const StyledDiv = styled.div`
+const Container = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const InputRow = styled.div`
+  display: flex;
   align-items: center;
+  width: 100%;
   color: var(--input-color);
   background-color: var(--input-background-color);
-  border-radius: var(--input-border-radius, 0);
   border: 1px solid var(--input-border-color);
-  width: 100%;
-  :focus {
-    outline: none;
-  }
-  :focus-visible {
+  border-radius: var(--input-border-radius, 0);
+
+  &:focus-within {
     outline: none;
     background-color: var(--input-background-focus-color);
     border-bottom: 1.5px solid var(--input-border-focus-color);
   }
 
-  // &:focus:within {
-  //   box-shadow: 0 0 0 1px var(--input-border-focus-color);
-  // }
   &:has(input[required]) {
     border-left: 3px solid var(--input-border-required-color);
   }

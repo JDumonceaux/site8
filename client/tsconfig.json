@@ -1,154 +1,35 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "React Vite",
-  "_version": "3.0.0",
-
   "compilerOptions": {
-    // https://www.typescriptlang.org/tsconfig/
     "strict": true,
     "target": "ESNext",
-    "useDefineForClassFields": true,
-    // ESNext.Array: Adds in support for the ECMAScript 2023: toSortedArray() method, etc.
-    "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.Array"],
-
-    /* Module */
-    // Sets the module system for the program (i.e. ES2023)
     "module": "ESNext",
-
-    /* Module Resolution */
-    // Set module resultion strategy
     "moduleResolution": "Node",
+    "useDefineForClassFields": true,
 
-    /* Module Suffixes */
-    // Override file names for module resolution
-    // "moduleSuffixes": ["js", "jsx", "ts", "tsx"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.Array"],
+    "jsx": "react-jsx",
 
-    /* No resolve */
-    // Do not add import and references directives to the program
-    // "noResolve": false,
+    // Resolve imports from `src/` by default
+    "baseUrl": "src",
 
-    /* Paths */
-    // lets you declare how TypeScript should resolve an import
-    // Used???  See vite.config.mts file
-    "paths": {
-      "*" : ["./src/*"],
-      // "components/*": ["./src/components/*"],
-      // "feature/*": ["./src/feature/*"],
-      // // "hooks/*": ["./src/hooks/*"],
-      // // "lib/*": ["./src/lib/*"],
-      // "providers/*": ["./src/providers/*"],
-      // "store/*": ["./src/store/*"],
-      // "styles/*": ["./src/styles/*"],
-      // "types/*": ["./src/types/*"],
-    },
-
-    /* Resolve JSON */
-    // Allows .json files to be imported.
-    // TypeScript does not support resolving JSON files by default
+    // Allow JSON imports
     "resolveJsonModule": true,
 
-    /* resolvePackageJsonExports */
-    // forces TypeScript to consult the exports field of package.json files
-    // if it ever reads from a package in node_modules.  Default is true
-    // resolvePackageJsonExports: true,
-    // Default is true
-    // resolvePackageJsonImports: true,
-
-    /* rootDir */
-    // Alters how code is converted from /scr to /dist upon build
-    // "rootDir": "./src",
-
-    /* rootDirs */
-    // Combine multiple directories into one virtual directory
-    // "rootDirs": ["src", "generated"]
-
-    /* typeRoots */
-    // Specifies which type files are included
-
-    /* Types */
-    // Specifies which type files are included
-    // Emit
-    // declarationDir
-    // declarationMap
-    // downlevelIteration
-    // emitBOM
-    // emitDeclarationOnly
-    // importHelpers
-    // inlineSourceMap
-    // inlineSources
-    // mapRoot
-    // newLine
-    // noEmit
-    // noEmitHelpers
-    // noEmitOnError
-    // outDir
-    // outFile
-    // preserveConstEnums // Default true
-
-    // Enables the generation of sourcemap files. These files allow debuggers and other tools to display
-    // the original TypeScript source code when running the JavaScript output of the TypeScript compiler.
-    // Turn of for production!!!
-    "sourceMap": true,
-    // sourceRoot
-    // stripInternal
-
-    /* Modules */
-    // Requires that imports be .js, ts, or have a declaration file
-    "allowArbitraryExtensions": false,
-    // Allows .ts files to be imported. Bundler must handle this.
-    // "allowImportingTsExtensions": true,
-    // ?
-    //"allowUmdGlobalAccess": false,
-    // For use with AMD loaders. Not recommended. Use paths instead.
-    // "baseUrl": "src",
-
-    /* Custom Conditions  */
-    // "customConditions": ["xxx"],
-
-    /* JavaScript Support */
-    // Allows JavaScript files to be imported
-    // (allows you to mix JavaScript and TypeScript in the same project)
-    "allowJs": false,
-    // Works with allowJs.  If true, TypeScript will check the JavaScript files for errors
-    "checkJs": false,
-    // maxNodeModuleJsDepth
-    // Works with allowJs.  Default is 0
-    // "maxNodeModuleJsDepth": 0,
-
-    /* Editor Support */
-    // Removes limit on memory allocation
-    // disableSizeLimit
-    // List of plugins in editor.  VSCode seems to hanlde this.
-    // plugins
-
-    /* Interop Constraints */
-    // `import React from 'react'` vs `import * as React from 'react'`
-    "allowSyntheticDefaultImports": true,
-    // Fixes issue with TypeScript treats CommonJS/AMD/UMD modules similar to ES6 modules
+    // Interop
     "esModuleInterop": true,
-    // Enforces case-sensitivity in file names fileManger.ts vs. FileManager.ts
+    "allowSyntheticDefaultImports": true,
+
+    // Skip type-checking libs for speed
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    // ?? Something to do with Declaration files (a.k.a. .d.ts files)
-    //"isolatedDeclarations": true,
-    // Warns is single-file transpilation is unable to understand the Typescript code
     "isolatedModules": true,
-    // preserveSymlinks
-    // verbatimModuleSyntax
 
-    /* JSX */
-    // .tsx -> Emit .js files with the JSX changed to _jsx calls optimized for production
-    "jsx": "react-jsx",
-    // jsxFactory
-    // jsxFragmentFactory
-    // jsxImportSource
-
-    // Do not emit compiler output files like JavaScript source code, source-maps or declarations.
-    // "noEmit": true,
-    //speeds up the build by skipping type checking of declaration files.
-    "skipLibCheck": true
+    // Source maps during dev
+    "sourceMap": true
   },
-  // Allow absolute imports from the `src` directory
   "include": ["src"],
-  "exclude": ["node_modules", "__test__"],
+  "exclude": ["node_modules", "dist", "__test__"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

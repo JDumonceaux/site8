@@ -1,58 +1,41 @@
-import { type FC, memo } from 'react';
+import { memo, type FC, type ReactNode, type HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
 export type StartAdornmentProps = {
-  readonly children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
+  /** Content to render before the separator */
+  children?: ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
 
-const StartAdornment: FC<StartAdornmentProps> = memo(
-  ({ children, ...rest }: StartAdornmentProps): null | React.JSX.Element => {
-    if (!children) {
-      return null;
-    }
+/**
+ * Renders a leading adornment with a vertical separator.
+ */
+const StartAdornment: FC<StartAdornmentProps> = ({
+  children,
+  ...props
+}: StartAdornmentProps) => {
+  if (!children) return null;
 
-    // const isString = (value) =>
-    //   typeof value === 'string' || value instanceof String;
-    // const isNumber = (value) =>
-    //   typeof value === 'number' || value instanceof Number;
-    // const isBoolean = (value) =>
-    //   typeof value === 'boolean' || value instanceof Boolean;
-
-    // if (isString || isNumber || isBoolean) {
-    return (
-      <>
-        <StyledDiv {...rest}>{children}</StyledDiv>
-        <StyledVLine />
-      </>
-    );
-    // }
-
-    // if (React.isValidElement(children)) {
-    //   return (
-    //     <>
-    //       {children}
-    //       <StyledVLine />
-    //     </>
-    //   );
-    // }
-    // throw new Error('Invalid type passed as child.');
-  },
-);
+  return (
+    <>
+      <AdornmentContent {...props}>{children}</AdornmentContent>
+      <SeparatorDiv />
+    </>
+  );
+};
 
 StartAdornment.displayName = 'StartAdornment';
+export default memo(StartAdornment);
 
-export default StartAdornment;
-
-const StyledDiv = styled.div`
+const AdornmentContent = styled.div`
   color: var(--input-adornment-color);
-  margin-left: 8px;
-  margin-right: 8px;
+  margin: 0 8px;
   user-select: none;
 `;
-const StyledVLine = styled.div`
-  background-color: var(--input-adornment-color);
+
+const SeparatorDiv = styled.div`
   width: 1px;
   height: 18px;
+  background-color: var(--input-adornment-color);
   user-select: none;
 `;

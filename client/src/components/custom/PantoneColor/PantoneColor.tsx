@@ -1,42 +1,73 @@
+import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 const PANTONE_LINK = 'https://www.pantone.com/color-of-the-year/2023';
 
-const PantoneColor = (): React.JSX.Element => (
-  <WrapperDiv>
-    This page is inspired by the{' '}
-    <a href={PANTONE_LINK}>2023 Pantone&#174; Color of the Year</a>
-    <ColorDiv>
-      <div />
-      <div>Viva Magenta</div>
-    </ColorDiv>
-  </WrapperDiv>
-);
+/**
+ * Displays a reference to the Pantone Color of the Year with a color swatch.
+ */
+function PantoneColor(): JSX.Element {
+  return (
+    <Wrapper>
+      <Text>
+        This page is inspired by the{' '}
+        <Link href={PANTONE_LINK} rel="noopener noreferrer" target="_blank">
+          2023 Pantone® Color of the Year
+        </Link>
+        .
+      </Text>
+      <ColorFigure>
+        <Swatch aria-label="Viva Magenta color swatch" />
+        <FigCaption>Viva Magenta</FigCaption>
+      </ColorFigure>
+    </Wrapper>
+  );
+}
 
 PantoneColor.displayName = 'PantoneColor';
-
 export default PantoneColor;
 
-const WrapperDiv = styled.div`
+/* -- styled components -- */
+
+const Wrapper = styled.div`
   width: 100%;
+  padding: 1rem 0;
   font-family: 'Shadows Into Light', cursive;
   font-size: 1.1rem;
   color: var(--palette-grey-100, #000);
-  padding: 16px 0;
 `;
-const ColorDiv = styled.div`
-  display: flex;
+
+const Text = styled.p`
+  margin: 0 0 0.5rem;
+`;
+
+const Link = styled.a`
+  color: var(--palette-main-color);
+  text-decoration: underline;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+`;
+
+const ColorFigure = styled.figure`
+  display: inline-grid;
+  grid-template-columns: auto auto;
   align-items: center;
-  padding: 8px 0;
-  & :nth-child(1) {
-    background-color: var(--palette-main-color);
-    border-radius: 50%;
-    min-width: 20px;
-    min-height: 20px;
-  }
-  & :nth-child(2) {
-    font-weight: bold;
-    color: var(--palette-main-color);
-    padding-left: 0.5rem;
-  }
+  gap: 0.5rem;
+  margin: 0;
+`;
+
+const Swatch = styled.div`
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--palette-main-color);
+  border-radius: 50%;
+`;
+
+const FigCaption = styled.figcaption`
+  margin: 0;
+  font-weight: bold;
+  color: var(--palette-main-color);
 `;

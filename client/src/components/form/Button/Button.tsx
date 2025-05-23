@@ -1,53 +1,60 @@
-import type { ButtonHTMLAttributes } from 'react';
+import {
+  memo,
+  type FC,
+  type ReactNode,
+  type ButtonHTMLAttributes,
+} from 'react';
 
 import styled from 'styled-components';
 
-type ButtonProps = {
-  readonly children: React.ReactNode;
-  readonly id: string;
-  readonly variant?: 'primary' | 'secondary';
+type Variant = 'primary' | 'secondary';
+
+export type ButtonProps = {
+  /** Button content */
+  children: ReactNode;
+  /** Unique identifier and name */
+  id: string;
+  /** Visual style variant */
+  variant?: Variant;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
-const Button = ({
-  children,
-  id,
-  variant = 'primary',
-  ...rest
-}: ButtonProps): React.JSX.Element => (
-  <StyledButton id={id} name={id} variant={variant} {...rest} type="button">
-    {children}
-  </StyledButton>
+/**
+ * A full-width, accessible button.
+ */
+export const Button: FC<ButtonProps> = memo(
+  ({ children, id, variant = 'primary', ...rest }: ButtonProps) => (
+    <StyledButton id={id} name={id} type="button" variant={variant} {...rest}>
+      {children}
+    </StyledButton>
+  ),
 );
 
 Button.displayName = 'Button';
-
 export default Button;
 
-const StyledButton = styled.button<{
-  variant: 'primary' | 'secondary' | undefined;
-}>`
-  color: ${(props) => (props.variant === 'primary' ? '#fff' : '#000')};
-  background-color: ${(props) =>
-    props.variant === 'primary' ? '#6db144' : '#fff'};
-  border: ${(props) =>
-    props.variant === 'primary' ? undefined : '1px solid #6db144'};
+const StyledButton = styled.button<{ variant: Variant }>`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 16px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  line-height: normal;
   box-shadow:
     0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14),
     0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  width: 100%;
-  border-radius: 5px;
-  padding: 6px 16px;
-  font-size: 0.875rem;
-  min-height: 36px;
-  line-height: normal;
-  letter-spacing: 1.25px;
-  font-weight: 500;
-  display: inline-flex;
-  justify-content: center;
-  &:hover {
-    background-color: #24671f;
-  }
+  color: ${({ variant }) => (variant === 'primary' ? '#fff' : '#000')};
+  background-color: ${({ variant }) =>
+    variant === 'primary' ? '#6db144' : '#fff'};
+  border: ${({ variant }) =>
+    variant === 'primary' ? 'none' : '1px solid #6db144'};
+
+  &:hover,
   &:focus {
     background-color: #24671f;
   }

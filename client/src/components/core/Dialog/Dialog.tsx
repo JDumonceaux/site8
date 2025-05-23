@@ -1,271 +1,180 @@
-/* eslint-disable react/forbid-component-props */
-import {
-  memo,
-  type ButtonHTMLAttributes,
-  type DialogHTMLAttributes,
-} from 'react';
+import { memo, useId, type JSX } from 'react';
 
-import * as DialogUI from '@radix-ui/react-dialog';
-import styled, { css } from 'styled-components';
+import * as RadixDialog from '@radix-ui/react-dialog';
+import styled from 'styled-components';
 
-// Move
-// Resize
-// Scroll
-const VARIANTS = Object.freeze({
+export const VARIANTS = {
   default: 'default',
   error: 'error',
   info: 'info',
   success: 'success',
   warning: 'warning',
-} as const);
+} as const;
+export type Variant = keyof typeof VARIANTS;
 
-const SIZES = Object.freeze({
-  lg: 'lg',
-  md: 'md',
+export const SIZES = {
   sm: 'sm',
-} as const);
+  md: 'md',
+  lg: 'lg',
+} as const;
+export type Size = keyof typeof SIZES;
 
-type DialogProps = {
-  readonly buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
-  readonly children: React.ReactNode;
-  readonly footer?: React.ReactNode;
-  readonly footerProps?: React.HTMLAttributes<HTMLDivElement>;
-  readonly isAutofocusClose?: boolean;
-  readonly isModal?: boolean;
-  readonly isOpen: boolean;
-  readonly label: React.ReactNode;
-  readonly labelProps?: React.HTMLAttributes<HTMLLabelElement>;
-  readonly onClose: () => void;
-  readonly size?: keyof typeof SIZES;
-  readonly variant?: keyof typeof VARIANTS;
-} & DialogHTMLAttributes<HTMLDialogElement>;
-
-const getIcon = (variant: keyof typeof VARIANTS) => {
-  switch (variant) {
-    case VARIANTS.error: {
-      return (
-        <StyledIcon $variant={variant} className="fa-solid fa-circle-xmark" />
-      );
-    }
-    case VARIANTS.info: {
-      return (
-        <StyledIcon
-          $variant={variant}
-          className="fa-solid fa-circle-exclamation"
-        />
-      );
-    }
-    case VARIANTS.success: {
-      return (
-        <StyledIcon $variant={variant} className="fa-solid fa-circle-check" />
-      );
-    }
-    case VARIANTS.warning: {
-      return (
-        <StyledIcon
-          $variant={variant}
-          className="fa-solid fa-triangle-exclamation"
-        />
-      );
-    }
-    default: {
-      return null;
-    }
-  }
+export type DialogProps = {
+  /** Controls whether the dialog is open */
+  isOpen: boolean;
+  /** Called when the open state should change (e.g. on close) */
+  onOpenChange: (open: boolean) => void;
+  /** Accessible label text */
+  label: string;
+  /** Main body content */
+  children: React.ReactNode;
+  /** Optional footer area */
+  footer?: React.ReactNode;
+  /** Props forwarded to the close button */
+  closeButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  /** Props forwarded to the dialog container */
+  contentProps?: React.HTMLAttributes<HTMLDivElement>;
+  /** Visual variant (determines border & icon) */
+  variant?: Variant;
+  /** Dialog max-width size */
+  size?: Size;
 };
 
-const Dialog = ({
-  buttonProps,
+const ICONS: Record<Variant, JSX.Element | null> = {
+  default: null,
+  error: <i className="fa-solid fa-circle-xmark" />,
+  info: <i className="fa-solid fa-circle-exclamation" />,
+  success: <i className="fa-solid fa-circle-check" />,
+  warning: <i className="fa-solid fa-triangle-exclamation" />,
+};
+
+const BorderColor: Record<Variant, string> = {
+  default: 'var(--text-primary, #1f1f1f)',
+  error: 'var(--status-error,   #ef3934)',
+  info: 'var(--status-info,    #0052ff)',
+  success: 'var(--status-success, #21a67a)',
+  warning: 'var(--status-warning, #ff000f)',
+};
+
+const MaxWidth: Record<Size, string> = {
+  sm: '320px',
+  md: '480px',
+  lg: '640px',
+};
+
+/**
+ * A controlled, accessible dialog using Radix UI.
+ */
+function Dialog({
+  isOpen,
+  onOpenChange,
+  label,
   children,
   footer,
-  footerProps,
-  label,
-  labelProps,
-  onClose,
-  size = 'md',
+  closeButtonProps,
+  contentProps,
   variant = 'default',
-  ...rest
-}: DialogProps) => {
+  size = 'md',
+}: DialogProps): JSX.Element {
+  const titleId = useId();
+
   return (
-    <DialogUI.Root>
-      <StyledDialog $size={size} $variant={variant}>
-        <dialog
-          aria-labelledby="label"
-          data-testid="Dialog"
-          draggable
-          {...rest}>
-          <Content>
-            <div>
-              <LabelRow>
-                {getIcon(variant)}
-                <StyledLabel id="label" {...labelProps} htmlFor="contents">
-                  {label}
-                </StyledLabel>
-              </LabelRow>
-              <div id="contents">{children}</div>
-            </div>
-            <Footer {...footerProps}>{footer}</Footer>
-          </Content>
-          <CloseButton
-            aria-label={buttonProps?.['aria-label']}
-            // Not accessible
-            //autoFocus={isAutofocusClose}
-            onClick={onClose}>
-            X
-          </CloseButton>
-        </dialog>
-      </StyledDialog>
-    </DialogUI.Root>
+    <RadixDialog.Root open={isOpen} onOpenChange={onOpenChange}>
+      <RadixDialog.Portal>
+        <Overlay />
+        <Content
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          data-variant={variant}
+          data-size={size}
+          {...contentProps}>
+          <Header>
+            {ICONS[variant]}
+            <Title id={titleId}>{label}</Title>
+          </Header>
+          <Body>{children}</Body>
+          {footer && <Footer>{footer}</Footer>}
+          <RadixDialog.Close asChild>
+            <CloseButton
+              aria-label={closeButtonProps?.['aria-label'] ?? 'Close dialog'}
+              {...closeButtonProps}>
+              ×
+            </CloseButton>
+          </RadixDialog.Close>
+        </Content>
+      </RadixDialog.Portal>
+    </RadixDialog.Root>
   );
-};
+}
 
 Dialog.displayName = 'Dialog';
-
 export default memo(Dialog);
 
-const StyledLabel = styled.label`
-  font-size: 18px;
-  font-weight: bold;
+/* ---------------- Styled Components ---------------- */
+
+const Overlay = styled(RadixDialog.Overlay)`
+  position: fixed;
+  inset: 0;
+  background-color: var(--backdrop, rgba(0, 0, 0, 0.5));
 `;
 
-const StyledDialog = styled(DialogUI.Content)<{
-  $size?: keyof typeof SIZES;
-  $variant?: keyof typeof VARIANTS;
+const Content = styled(RadixDialog.Content)<{
+  'data-variant': Variant;
+  'data-size': Size;
 }>`
-  all: revert;
-  box-sizing: border-box;
-  border: unset;
-  ${(props) => {
-    switch (props.$variant) {
-      case VARIANTS.error: {
-        return css`
-          border-top: 8px solid var(--status-error, #ef3934);
-        `;
-      }
-      case VARIANTS.info: {
-        return css`
-          border-top: 8px solid var(--status-info, #0052ff);
-        `;
-      }
-      case VARIANTS.success: {
-        return css`
-          border-top: 8px solid var(--status-success, #21a67a);
-        `;
-      }
-      case VARIANTS.warning: {
-        return css`
-          border-top: 8px solid var(--status-warning, #ff000f);
-        `;
-      }
-      default: {
-        return css`
-          border-top: 8px solid var(--text-primary, #1f1f1f);
-        `;
-      }
-    }
-  }}
-  ${(props) => {
-    switch (props.$size) {
-      case SIZES.lg: {
-        return css`
-          max-width: 640px;
-        `;
-      }
-      case SIZES.md: {
-        return css`
-          max-width: 480px;
-        `;
-      }
-      case SIZES.sm: {
-        return css`
-          max-width: 320px;
-        `;
-      }
-      default: {
-        return css`
-          max-width: 480px;
-        `;
-      }
-    }
-  }}
-  border-radius: 10px;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 8px;
+  border-top: 6px solid ${({ 'data-variant': v }) => BorderColor[v]};
+  max-width: ${({ 'data-size': s }) => MaxWidth[s]};
+  width: calc(100% - 2rem);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   outline: none;
-  overflow-x: hidden;
-  min-height: 50dvh;
-  min-width: 320px;
-  width: calc(100% - 32px);
-  ::backdrop {
-    background-color: var(--backdrop, rgba(0, 0, 0, 0.5));
-  }
-  [open] {
-    animation: fadeIn 0.7s ease-out;
-  }
-`;
-
-const Content = styled(DialogUI.Content)`
   display: flex;
   flex-direction: column;
-  position: absolute;
-  height: 90%;
-  div:first-child {
-    flex: 1;
-  }
-  width: calc(100% - 32px);
+  padding: 1rem;
 `;
 
-const LabelRow = styled(DialogUI.Title)`
+const Header = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: baseline;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
-const CloseButton = styled(DialogUI.Close)`
-  font-size: 24px;
+const Title = styled.h2`
+  margin: 0;
+  font-size: 1.25rem;
   font-weight: bold;
-  border: none;
-  cursor: pointer;
+`;
+
+const Body = styled.div`
+  flex: 1;
+  margin-top: 1rem;
+  overflow-y: auto;
+`;
+
+const Footer = styled.footer`
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const CloseButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
-`;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
 
-const Footer = styled.div`
-  flex-shrink: 0;
-`;
-
-const StyledIcon = styled.i<{
-  $variant?: keyof typeof VARIANTS;
-}>`
-  font-size: 24px;
-  margin-right: 8px;
-  ${(props) => {
-    switch (props.$variant) {
-      case VARIANTS.error: {
-        return css`
-          color: var(--status-error, #ef3934);
-        `;
-      }
-      case VARIANTS.info: {
-        return css`
-          color: var(--status-info, #0052ff);
-        `;
-      }
-      case VARIANTS.success: {
-        return css`
-          color: var(--status-info, #21a67a);
-        `;
-      }
-      case VARIANTS.warning: {
-        return css`
-          color: var(--status-warning, #ff000f);
-        `;
-      }
-      default: {
-        return css`
-          color: var(-text-primary, #1f1f1f);
-        `;
-      }
-    }
-  }}
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring, #2684ff);
+    outline-offset: 2px;
+  }
 `;

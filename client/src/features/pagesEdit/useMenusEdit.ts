@@ -1,10 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { Menu } from 'types';
 
-// Helper function to fetch menus edit data
-const fetchData = async (): Promise<Menu> => {
-  const response = await fetch(ServiceUrl.ENDPOINT_MENUS_EDIT);
+// Helper function to fetch menus edit data with support for aborting
+const fetchData = async ({
+  signal,
+}: {
+  signal: AbortSignal;
+}): Promise<Menu> => {
+  const response = await fetch(ServiceUrl.ENDPOINT_MENUS_EDIT, { signal });
   if (!response.ok) {
     throw new Error(`Failed to fetch menus edit: ${response.statusText}`);
   }
@@ -12,24 +16,10 @@ const fetchData = async (): Promise<Menu> => {
 };
 
 const useMenusEdit = () => {
-  // Define the query key for caching purposes
-  const queryKey = ['menus-edit'];
-
   const query = useQuery<Menu>({
-    gcTime: QueryTime.GC_TIME,
     queryFn: fetchData,
-    queryKey,
-    refetchInterval: 0,
-    refetchIntervalInBackground: false,
-    // Disable auto-refetching behaviors
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    // Retry configuration
-    retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
-    // Consider data fresh for a specified time
-    staleTime: QueryTime.STALE_TIME,
+    queryKey: ['menus-edit'],
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
   return {

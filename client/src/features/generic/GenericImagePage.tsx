@@ -9,7 +9,7 @@ import { getSRC, sanitizeUrl } from 'lib/utils/helpers';
 import styled from 'styled-components';
 import type { Image } from 'types/Image';
 
-import useImages from './useImages';
+import useImages from '../imagesEdit/useImages';
 
 const GenericImagePage = (): React.JSX.Element => {
   const { data, isError, isLoading } = useImages();

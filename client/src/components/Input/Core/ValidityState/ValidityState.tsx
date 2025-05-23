@@ -1,19 +1,24 @@
+import type { FC } from 'react';
+
 import * as Form from '@radix-ui/react-form';
 import styled from 'styled-components';
 
-// Notes:  The minlength and maxlength constraints are only checked on
-// user - provided input.
+// Notes: The minlength and maxlength constraints are only checked on
+// user-provided input.
 // They are not checked if a value is set programmatically,
 // even when explicitly calling checkValidity() or reportValidity()
-type ValidityStateProps = {
+export type ValidityStateProps = {
   readonly errorMissing?: string;
   readonly errorType?: string;
 };
 
-const ValidityState = ({
+/**
+ * Renders Radix Form.Messages for various validity states.
+ */
+export const ValidityState: FC<ValidityStateProps> = ({
   errorMissing,
   errorType,
-}: ValidityStateProps): React.JSX.Element => (
+}) => (
   <>
     <StyledMessage match="badInput">{errorMissing}</StyledMessage>
     {/* This should be valid but doesn't seem to be working */}
@@ -31,11 +36,10 @@ const ValidityState = ({
 );
 
 ValidityState.displayName = 'ValidityState';
-
 export default ValidityState;
 
 const StyledMessage = styled(Form.Message)`
-  color: var(--input-helper-error-color, '#ff0000');
+  color: var(--input-helper-error-color, #ff0000);
   font-size: 0.8rem;
   opacity: 0.8;
   padding-top: 7px;

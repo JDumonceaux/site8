@@ -1,7 +1,9 @@
+import type { FC } from 'react';
+
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
 type InputNumberProps = {
-  readonly type?: 'password';
+  readonly type?: 'number';
 } & Omit<
   InputBaseProps,
   'autocapitalize' | 'height' | 'pattern' | 'src' | 'step' | 'type' | 'width'
@@ -10,11 +12,10 @@ type InputNumberProps = {
 // Remove: 'autocapitalize', 'height', 'pattern','src', 'step', 'width'
 // Valid: 'value'
 
-const InputNumber = ({
-  type = 'password',
+export const InputNumber: FC<InputNumberProps> = ({
+  type = 'number',
   ...rest
-}: InputNumberProps): React.JSX.Element => <InputBase type={type} {...rest} />;
+}) => <InputBase type={type} {...rest} />;
 
 InputNumber.displayName = 'InputNumber';
-
 export default InputNumber;

@@ -1,8 +1,12 @@
-import React, {
+import {
+  memo,
+  useState,
   useCallback,
   useDeferredValue,
-  useEffect,
-  useState,
+  useMemo,
+  type JSX,
+  type MouseEvent,
+  type KeyboardEvent,
 } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
@@ -13,24 +17,17 @@ import { IMAGE_BASE } from 'lib/utils/constants';
 import styled from 'styled-components';
 import type { Image } from 'types';
 
-type ImageSelectorProps = {
-  readonly onSelectImage: (image: Image | undefined) => void;
+export type ImageSelectorProps = {
+  onSelectImage: (image: Image | undefined) => void;
 };
 
-const ImageSelector = ({
-  onSelectImage,
-}: ImageSelectorProps): React.JSX.Element => {
+/**
+ * Image grid with filtering, selection, and deferred count.
+ */
+function ImageSelector({ onSelectImage }: ImageSelectorProps): JSX.Element {
   const { setShowUnmatched, showUnmatched } = useAppSettings();
-  const { data, error, fetchData, isLoading } = useUnmatchedImages();
+  const { data } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  const onRefresh = useCallback(() => {
-    fetchData();
-  }, [fetchData]);
 
   const onShowAll = useCallback(() => {
     setSelectedItem(undefined);
@@ -44,11 +41,10 @@ const ImageSelector = ({
   );
 
   const onSelect = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const id = Number(event.currentTarget.id);
-      const item = data?.items.find((x) => x.id === id) ?? undefined;
+    (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      const id = Number(e.currentTarget.id);
+      const item = data?.items.find((x) => x.id === id);
       setSelectedItem(item);
       onSelectImage(item);
     },
@@ -56,37 +52,30 @@ const ImageSelector = ({
   );
 
   const onKeyboardSelect = useCallback(
-    (event: React.KeyboardEvent<HTMLButtonElement>) => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        event.stopPropagation();
-        const id = Number(event.currentTarget.id);
-        setSelectedItem(data?.items.find((x) => x.id === id) ?? undefined);
+    (e: KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const id = Number(e.currentTarget.id);
+        const item = data?.items.find((x) => x.id === id);
+        setSelectedItem(item);
+        onSelectImage(item);
       }
     },
-    [data?.items],
+    [data?.items, onSelectImage],
   );
 
-  const getFilteredData = useCallback((): Image[] => {
-    if (!data) {
-      return [];
-    }
-    if (selectedItem) {
-      return data.items.filter((x) => x.id === selectedItem.id);
-    } else if (showUnmatched) {
-      return data.items.filter((x) => !x.isMatched);
-    }
+  const filteredData = useMemo(() => {
+    if (!data) return [];
+    if (selectedItem) return data.items.filter((x) => x.id === selectedItem.id);
     return data.items;
-  }, [data, selectedItem, showUnmatched]);
-
-  const filteredData = getFilteredData();
+  }, [data, selectedItem]);
 
   const itemCount = useDeferredValue(filteredData.length);
 
   return (
     <>
-      <StyledButtonRow>
-        <button onClick={onRefresh} type="button">
+      <Controls>
+        <button onClick={() => null} type="button">
           Refresh
         </button>
         <button onClick={onShowAll} type="button">
@@ -96,41 +85,73 @@ const ImageSelector = ({
           checked={showUnmatched}
           id="showUnmatched"
           label={showUnmatched ? 'Hide Unmatched' : 'Show Unmatched'}
-          onCheckedChange={(error_) => {
-            onShowUnmatched(error_);
-          }}
+          onCheckedChange={onShowUnmatched}
         />
-        <div>{itemCount}</div>
-      </StyledButtonRow>
-      <LoadingWrapper error={error} isLoading={isLoading}>
-        {filteredData.map((item) => (
-          <React.Fragment key={item.id}>
-            <button
-              id={item.id.toString()}
+        <Count>{itemCount}</Count>
+      </Controls>
+
+      <LoadingWrapper>
+        <Grid>
+          {filteredData.map((item) => (
+            <ImageButton
+              $selected={selectedItem?.id === item.id}
+              id={String(item.id)}
+              key={item.id}
               onClick={onSelect}
               onKeyDown={onKeyboardSelect}
               type="button">
-              <img alt={item.name} src={`${IMAGE_BASE}/${item.fileName}`} />
-            </button>
-          </React.Fragment>
-        ))}
+              <img alt="" src={`${IMAGE_BASE}/${item.fileName}`} />
+            </ImageButton>
+          ))}
+        </Grid>
       </LoadingWrapper>
     </>
   );
-};
+}
 
 ImageSelector.displayName = 'ImageSelector';
+export default memo(ImageSelector);
 
-export default ImageSelector;
+/* -- styles -- */
 
-const StyledButtonRow = styled.div`
+const Controls = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
+
   button {
-    margin-right: 20px;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
   }
-  label {
-    font-size: 0.8rem;
+`;
+
+const Count = styled.div`
+  font-size: 0.875rem;
+  font-weight: bold;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.5rem;
+`;
+
+const ImageButton = styled.button<{ $selected: boolean }>`
+  padding: 0;
+  border: ${({ $selected }) =>
+    $selected ? '2px solid var(--focus-ring-color)' : '1px solid #ddd'};
+  border-radius: 4px;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
   }
 `;

@@ -1,87 +1,92 @@
-import { type LabelHTMLAttributes, isValidElement, useCallback } from 'react';
+import { type FC, type LabelHTMLAttributes, isValidElement } from 'react';
 
 import styled from 'styled-components';
 
-type TextHelpProps = {
-  readonly characterCount?: number;
-  readonly errorText?: React.ReactNode | string | string[];
-  readonly hasError?: boolean;
-  readonly helpText?: React.ReactNode | string | string[];
-  readonly maxLength?: number;
-  readonly showCounter?: boolean;
-} & LabelHTMLAttributes<HTMLLabelElement>;
+export type TextHelpProps = LabelHTMLAttributes<HTMLDivElement> & {
+  /** Current character count */
+  characterCount?: number;
+  /** Text to show when there is an error */
+  errorText?: React.ReactNode | string | string[];
+  /** Whether to display the errorText (true) or helpText (false) */
+  hasError?: boolean;
+  /** Text to show when there is no error */
+  helpText?: React.ReactNode | string | string[];
+  /** Maximum allowed length */
+  maxLength?: number;
+  /** Whether to display the length counter */
+  showCounter?: boolean;
+};
 
-const TextHelp = ({
-  characterCount,
+const renderHelper = (msg?: React.ReactNode | string | string[]) => {
+  if (!msg) return null;
+  if (isValidElement(msg)) return msg;
+
+  if (Array.isArray(msg)) {
+    if (msg.length > 1) {
+      return (
+        <ul>
+          {msg.map((item, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      );
+    }
+    return <div>{msg[0]}</div>;
+  }
+
+  // string, number, boolean
+  return <div>{msg}</div>;
+};
+
+/**
+ * Displays contextual help or error text, with an optional character counter.
+ */
+export const TextHelp: FC<TextHelpProps> = ({
+  characterCount = 0,
   errorText,
   hasError = true,
   helpText,
-  maxLength,
+  maxLength = 0,
   showCounter = false,
-}: TextHelpProps): React.JSX.Element => {
-  const getHelperText = useCallback(
-    (msg: React.ReactNode | string | string[] | undefined) => {
-      if (!msg) return null;
-      if (isValidElement(msg)) return msg;
-      if (!Array.isArray(msg)) return <div>{msg}</div>;
-
-      if (msg.length > 1) {
-        return (
-          <ul>
-            {msg.map((item, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={`item-${index}`}>{item}</li>
-            ))}
-          </ul>
-        );
-      }
-      return <div>{msg[0]}</div>;
-    },
-    [],
-  );
-
-  const getCounterText = useCallback(
-    (
-      helperTextCharacterCount: number | undefined,
-      helperTextMaxLength: number | undefined,
-      helperTextShowCounter: boolean,
-    ) => {
-      return helperTextShowCounter ? (
-        <div>
-          {helperTextCharacterCount ?? 0}/{helperTextMaxLength ?? 0}
-        </div>
-      ) : null;
-    },
-    [],
-  );
+  ...rest
+}) => {
+  const content = hasError ? helpText : errorText;
 
   return (
-    <StyledDivWrapper>
-      <StyledErrorDiv $hasError={hasError}>
-        {getHelperText(hasError ? helpText : errorText)}
-      </StyledErrorDiv>
-      {getCounterText(characterCount, maxLength, showCounter)}
-    </StyledDivWrapper>
+    <Wrapper {...rest}>
+      <Message $hasError={hasError}>{renderHelper(content)}</Message>
+      {showCounter ? (
+        <Counter>
+          {characterCount}/{maxLength}
+        </Counter>
+      ) : null}
+    </Wrapper>
   );
 };
 
 TextHelp.displayName = 'TextHelp';
-
 export default TextHelp;
 
-const StyledDivWrapper = styled.div`
-  font-size: 0.75rem;
+const Wrapper = styled.div`
   display: flex;
-  align-items: flex-start;
-  flex-direction: row;
   justify-content: space-between;
-  margin-top: 4px;
-  margin-bottom: 6px;
+  align-items: flex-start;
+  font-size: 0.75rem;
+  margin: 4px 0 6px;
   ul {
     margin-block-start: 0;
     padding-inline-start: 15px;
   }
 `;
-const StyledErrorDiv = styled.div<{ $hasError: boolean }>`
-  color: ${(props) => (props.$hasError ? '#212121' : '#ff0000')};
+
+const Message = styled.div<{ $hasError: boolean }>`
+  color: ${({ $hasError }) =>
+    $hasError ? 'var(--input-helper-font-color, #000)' : '#ff0000'};
+  flex: 1;
+`;
+
+const Counter = styled.div`
+  margin-left: 1rem;
+  color: var(--input-helper-font-color, #000);
 `;

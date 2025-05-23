@@ -1,4 +1,4 @@
-import React, { useDeferredValue } from 'react';
+import { type FC, useDeferredValue } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -8,10 +8,13 @@ import { sanitizeUrl } from 'lib/utils/helpers';
 
 import usePhotos from './usePhotos';
 
-const PhotoPage = (): React.JSX.Element => {
-  const { data, error, isError, isLoading } = usePhotos();
-
+/**
+ * Photo page – displays a gallery of photos with lazy loading.
+ */
+const PhotoPage: FC = () => {
+  const { data = { items: [] }, error, isError, isLoading } = usePhotos();
   const deferredData = useDeferredValue(data);
+  const { items } = deferredData;
 
   return (
     <>
@@ -21,20 +24,16 @@ const PhotoPage = (): React.JSX.Element => {
         <Layout.Article>
           <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
             <ul>
-              {deferredData?.items.map((item) => (
-                <li key={item.id}>
-                  <a
-                    data-caption={item.description}
-                    data-fancybox
-                    href={sanitizeUrl(item.url)}>
-                    <img
-                      alt={item.description}
-                      loading="lazy"
-                      src={sanitizeUrl(item.url)}
-                    />
-                  </a>
-                </li>
-              ))}
+              {items.map(({ description, id, url }) => {
+                const safeUrl = sanitizeUrl(url);
+                return (
+                  <li key={id}>
+                    <a data-caption={description} data-fancybox href={safeUrl}>
+                      <img alt={description} loading="lazy" src={safeUrl} />
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </LoadingWrapper>
         </Layout.Article>
@@ -43,4 +42,5 @@ const PhotoPage = (): React.JSX.Element => {
   );
 };
 
+PhotoPage.displayName = 'PhotoPage';
 export default PhotoPage;

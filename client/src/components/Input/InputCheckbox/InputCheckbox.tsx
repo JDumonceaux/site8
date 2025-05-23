@@ -1,48 +1,73 @@
+import type { FC, ChangeEvent } from 'react';
+
 import styled from 'styled-components';
 
 import type { InputBaseProps } from '../Core/InputBase/InputBase';
 
-type Props = {
-  readonly type?: 'checkbox';
-} & Omit<
+export type InputCheckboxProps = Omit<
   InputBaseProps,
   'height' | 'max' | 'min' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
->;
+> & {
+  /** Field identifier */
+  fieldName: string;
+  label: string;
+  /** Row identifier */
+  lineId: string;
+  /** Change handler receives row, field, and native event */
+  onChange: (
+    lineId: string,
+    fieldName: string,
+    event: ChangeEvent<HTMLInputElement>,
+  ) => void;
+  /** Always "checkbox" for this component */
+  type?: 'checkbox';
+};
 
-// Checked
-// Value
-
-// Implicit aria-role => 'checkbox'
-const InputCheckbox = ({
+/**
+ * Renders a checkbox input with a label.
+ */
+export const InputCheckbox: FC<InputCheckboxProps> = ({
   fieldName,
+  id,
+  label,
   lineId,
   onChange,
   type = 'checkbox',
   ...rest
-}: Props): React.JSX.Element => {
-  const { id, label } = rest;
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+}: InputCheckboxProps) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(lineId, fieldName, e);
   };
 
   return (
-    <StyledDiv>
+    <Wrapper>
       <label htmlFor={id}>
-        <input name={id} onChange={handleChange} type={type} {...rest} />
+        <input
+          id={id}
+          name={fieldName}
+          onChange={handleChange}
+          type={type}
+          {...rest}
+        />
         {label}
       </label>
-    </StyledDiv>
+    </Wrapper>
   );
 };
 
 InputCheckbox.displayName = 'InputCheckbox';
-
 export default InputCheckbox;
 
-const StyledDiv = styled.div`
+const Wrapper = styled.div`
   margin-bottom: 16px;
-  input {
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  input[type='checkbox'] {
     margin-right: 6px;
   }
 `;

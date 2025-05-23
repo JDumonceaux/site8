@@ -1,69 +1,69 @@
-import { isValidElement } from 'react';
+import { isValidElement, type FC, type ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-type InputHelpProps = {
-  readonly children?: never;
-  readonly helpText?: React.ReactNode | string | string[];
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'id'>;
+export type InputHelpProps = Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'children' | 'id'
+> & {
+  /** Help text content: string, number, array of strings/nodes, or React element */
+  readonly helpText?: ReactNode;
+};
 
-const InputHelp = ({
-  helpText,
-  ...rest
-}: InputHelpProps): null | React.JSX.Element => {
+/**
+ * Renders contextual help for an input, handling strings, arrays, and React elements.
+ */
+export const InputHelp: FC<InputHelpProps> = ({ helpText, ...rest }) => {
   if (!helpText) return null;
 
-  const isString = typeof helpText === 'string' || helpText instanceof String;
-  const isNumber = typeof helpText === 'number' || helpText instanceof Number;
-  const isBoolean =
-    typeof helpText === 'boolean' || helpText instanceof Boolean;
-  const isArray = Array.isArray(helpText);
-
-  if (isString || isNumber || isBoolean) {
-    return (
-      <StyledDiv data-testid="input-help" {...rest}>
-        {helpText}
-      </StyledDiv>
-    );
+  // Primitive values: string, number, boolean
+  if (
+    typeof helpText === 'string' ||
+    typeof helpText === 'number' ||
+    typeof helpText === 'boolean'
+  ) {
+    return <StyledDiv {...rest}>{helpText}</StyledDiv>;
   }
 
-  if (isArray) {
-    if (helpText.length > 1) {
-      return <StyledDiv data-testid="input-help" {...rest} />;
-    }
-    return (
-      <StyledDiv data-testid="input-help" {...rest}>
+  // Array of values: render as list if more than one item
+  if (Array.isArray(helpText)) {
+    return helpText.length > 1 ? (
+      <StyledDiv {...rest}>
         <ul>
-          {helpText.map((item, index) => (
-            <li key={`item-${index}`}>{item}</li>
+          {helpText.map((item, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li key={idx}>{item}</li>
           ))}
         </ul>
       </StyledDiv>
+    ) : (
+      <StyledDiv {...rest}>{helpText[0]}</StyledDiv>
     );
   }
 
+  // React element
   if (isValidElement(helpText)) {
-    return <div {...rest}>{helpText}</div>;
+    return <StyledDiv {...rest}>{helpText}</StyledDiv>;
   }
-  throw new Error('Invalid type passed as child.');
+
+  throw new Error('Invalid type passed as helpText.');
 };
 
 InputHelp.displayName = 'InputHelp';
-
 export default InputHelp;
-
-export type { InputHelpProps };
 
 const StyledDiv = styled.div`
   font-size: var(--input-helper-font-size, 0.75rem);
   color: var(--input-helper-font-color, #000000);
   margin-top: 4px;
   margin-bottom: 6px;
+
   ul {
     margin-block-start: 0;
     padding-inline-start: 15px;
     list-style-type: none;
   }
+
   .valid {
     color: green;
   }
@@ -72,6 +72,7 @@ const StyledDiv = styled.div`
     left: -5px;
     content: '\\2713';
   }
+
   .invalid {
     color: red;
   }

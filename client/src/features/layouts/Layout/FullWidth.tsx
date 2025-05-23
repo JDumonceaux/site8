@@ -1,24 +1,31 @@
-import React, { memo } from 'react';
+import { type FC, memo, type JSX } from 'react';
 
 import styled from 'styled-components';
 
-type Props = {
-  readonly children?: React.ReactNode;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'data-testid'>;
+/**
+ * Props for <FullWidth>
+ */
+type FullWidthProps = {
+  /** Optional children to render within the full-width container */
+  children?: React.ReactNode;
+} & Omit<JSX.IntrinsicElements['div'], 'data-testid'>;
 
-const FullWidth = memo(
-  ({ children }: Props): React.JSX.Element => (
-    <StyledElement data-testid="fullWidth">{children}</StyledElement>
-  ),
-);
+/**
+ * A container that spans the full viewport width & height.
+ */
+const FullWidth: FC<FullWidthProps> = memo(({ children, ...rest }) => (
+  <Container data-testid="fullWidth" {...rest}>
+    {children}
+  </Container>
+));
 
 FullWidth.displayName = 'FullWidth';
-
 export default FullWidth;
 
-const StyledElement = styled.div`
+// Styled component for layout
+const Container = styled.div`
   background-color: var(--palette-dark-background);
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   max-width: 100%;
 `;

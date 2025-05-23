@@ -1,10 +1,9 @@
 import { useCallback } from 'react';
 
+import { SNACKBAR_DEFAULT_DURATION } from 'lib/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSnackbar } from 'store/snackbarSlice';
 import type { AppDispatch, RootState } from 'store/store';
-
-const DEFAULT_DURATION = 500;
 
 export type Snackbar = {
   contents: null | React.ReactNode;
@@ -29,42 +28,40 @@ const initialState: Snackbar = {
 
 const selectSnackbarData = (state: RootState) => state.snackbar.data;
 
-const useSnackbar = () => {
+export type UseSnackbarReturn = {
+  closeSnackbar: () => void;
+  data: null | Snackbar;
+  setErrorMessage: (contents: Snackbar['contents'], duration?: number) => void;
+  setMessage: (contents: Snackbar['contents'], duration?: number) => void;
+};
+
+const useSnackbar = (): UseSnackbarReturn => {
   const dispatch = useDispatch<AppDispatch>();
-  const data: null | Snackbar = useSelector(selectSnackbarData);
+  const data = useSelector<RootState, null | Snackbar>(selectSnackbarData);
 
   const updateSnackbar = useCallback(
     (updates: Snackbar) => {
       dispatch(setSnackbar(updates));
-
-      if (data && data.isOpen && data.openDurationMs) {
+      const duration = updates.openDurationMs ?? SNACKBAR_DEFAULT_DURATION;
+      if (updates.isOpen && duration > 0) {
         setTimeout(() => {
-          dispatch(setSnackbar({ ...initialState }));
-        }, data.openDurationMs);
+          dispatch(setSnackbar(initialState));
+        }, duration);
       }
     },
-    [data, dispatch],
-  );
-
-  const setMessage = useCallback(
-    (contents: Snackbar['contents'], duration = DEFAULT_DURATION) => {
-      updateSnackbar({
-        contents,
-        isOpen: true,
-        openDurationMs: duration,
-        showCloseButton: true,
-        variant: SnackbarVariant.INFO,
-      });
-    },
-    [updateSnackbar],
+    [dispatch],
   );
 
   const setErrorMessage = useCallback(
-    (contents: Snackbar['contents'], duration = DEFAULT_DURATION) => {
+    (
+      contents: Snackbar['contents'],
+      openDurationMs = SNACKBAR_DEFAULT_DURATION,
+    ) => {
       updateSnackbar({
+        ...initialState,
         contents,
         isOpen: true,
-        openDurationMs: duration,
+        openDurationMs,
         showCloseButton: true,
         variant: SnackbarVariant.ERROR,
       });
@@ -72,12 +69,29 @@ const useSnackbar = () => {
     [updateSnackbar],
   );
 
-  const close = useCallback(() => {
-    updateSnackbar(initialState);
-  }, [updateSnackbar]);
+  const setMessage = useCallback(
+    (
+      contents: Snackbar['contents'],
+      openDurationMs = SNACKBAR_DEFAULT_DURATION,
+    ) => {
+      updateSnackbar({
+        ...initialState,
+        contents,
+        isOpen: true,
+        openDurationMs,
+        showCloseButton: true,
+        variant: SnackbarVariant.INFO,
+      });
+    },
+    [updateSnackbar],
+  );
+
+  const closeSnackbar = useCallback(() => {
+    dispatch(setSnackbar(initialState));
+  }, [dispatch]);
 
   return {
-    closeSnackbar: close,
+    closeSnackbar,
     data,
     setErrorMessage,
     setMessage,

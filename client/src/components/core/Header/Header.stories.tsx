@@ -1,31 +1,60 @@
-import type { StoryObj } from '@storybook/react';
-
+// Header.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Header from './Header';
+import Avatar from 'components/core/Avatar/Avatar';
+import { APP_NAME } from 'lib/utils/constants';
 
-const meta = {
-  argTypes: {
-    variant: {
-      control: {
-        options: ['includeMenu', 'excludeMenu'],
-        type: 'includeMenu',
+const meta: Meta<typeof Header> = {
+  title: `${APP_NAME}/Header`,
+  component: Header,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `The main application header displaying **${APP_NAME}**’s logo, optional menu toggle, and avatar slot.`,
       },
     },
   },
-  component: Header,
-  title: 'Components/Header',
+  argTypes: {
+    onMenuToggle: { action: 'menu toggled', control: false },
+    avatar: { control: false },
+  },
+};
+export default meta;
+type Story = StoryObj<typeof Header>;
+
+/** Default: no menu button, no avatar */
+export const Default: Story = {
+  args: {},
 };
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
+/** Shows the menu toggle button only */
+export const WithMenu: Story = {
   args: {
-    includeMenu: false,
+    onMenuToggle: action('menu toggled'),
   },
 };
 
-export const WithMenu: Story = {
+/** Shows the avatar only */
+export const WithAvatar: Story = {
   args: {
-    includeMenu: true,
+    avatar: (
+      <Avatar alt="JD" src="/avatar.jpg">
+        JD
+      </Avatar>
+    ),
+  },
+};
+
+/** Full header: menu toggle + logo + avatar */
+export const Full: Story = {
+  args: {
+    onMenuToggle: action('menu toggled'),
+    avatar: (
+      <Avatar alt="JD" src="/avatar.jpg">
+        JD
+      </Avatar>
+    ),
   },
 };

@@ -1,85 +1,97 @@
-import { Suspense } from 'react';
+import { Suspense, useMemo, type FC } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import SubjectMenu from 'features/generic/SubjectMenu';
 import Layout from 'features/layouts/Layout/Layout';
+import type { Image } from 'types/Image';
+import type { Video } from 'types/Video';
 
 import ImageBlock from './ImageBlock';
 import VideoEmbed from './VideoEmbed';
 
-const YachtsPage = (): React.JSX.Element => {
+/**
+ * Page showcasing yacht designs with images and videos.
+ */
+export const YachtsPage: FC = () => {
   const pageTitle = 'Yachts';
 
   // Data for main article images
-  const images = [
-    {
-      alt: 'Nature Design 1',
-      id: 1,
-      src: '/images/yachts/sinot-nature-1.jpg.webp',
-      title: 'Nature Design',
-    },
-    {
-      alt: 'Nature Design 2',
-      id: 2,
-      src: '/images/yachts/sinot-nature-2.jpg.webp',
-      title: 'Nature Design',
-    },
-    {
-      alt: 'Nature - Observation Lounge',
-      id: 3,
-      imageTitle: 'Nature - Observation Lounge',
-      src: '/images/yachts/sinot-nature-5.png',
-      title: 'Nature Design - Observation Lounge with floor to ceiling windows',
-    },
-    {
-      alt: 'Nature Design - Expansive Decks',
-      id: 4,
-      src: '/images/yachts/sinot-nature-3.png',
-      title: 'Nature Design - Expansive Decks',
-    },
-    {
-      alt: 'Nature - Guest Bedroom',
-      id: 5,
-      imageTitle: 'Nature - Guest Bedroom',
-      src: '/images/yachts/sinot-nature-4.png',
-      title: 'Nature Design - Guest Bedroom',
-    },
-    {
-      alt: 'Beach Design',
-      id: 6,
-      src: '/images/yachts/sinot-beach.png',
-      title: 'Beach Design',
-    },
-    {
-      alt: "Aqua Design - Owner's Suite",
-      id: 7,
-      src: '/images/yachts/sinot-aqua-owners-suite.png',
-      title: "Aqua Design - Owner's Suite",
-    },
-  ];
+  const images: Image[] = useMemo(
+    () => [
+      {
+        alt: 'Nature Design 1',
+        id: 1,
+        src: '/images/yachts/sinot-nature-1.jpg.webp',
+        title: 'Nature Design',
+      },
+      {
+        alt: 'Nature Design 2',
+        id: 2,
+        src: '/images/yachts/sinot-nature-2.jpg.webp',
+        title: 'Nature Design',
+      },
+      {
+        alt: 'Nature - Observation Lounge',
+        id: 3,
+        imageTitle: 'Nature - Observation Lounge',
+        src: '/images/yachts/sinot-nature-5.png',
+        title:
+          'Nature Design - Observation Lounge with floor to ceiling windows',
+      },
+      {
+        alt: 'Nature Design - Expansive Decks',
+        id: 4,
+        src: '/images/yachts/sinot-nature-3.png',
+        title: 'Nature Design - Expansive Decks',
+      },
+      {
+        alt: 'Nature - Guest Bedroom',
+        id: 5,
+        imageTitle: 'Nature - Guest Bedroom',
+        src: '/images/yachts/sinot-nature-4.png',
+        title: 'Nature Design - Guest Bedroom',
+      },
+      {
+        alt: 'Beach Design',
+        id: 6,
+        src: '/images/yachts/sinot-beach.png',
+        title: 'Beach Design',
+      },
+      {
+        alt: "Aqua Design - Owner's Suite",
+        id: 7,
+        src: '/images/yachts/sinot-aqua-owners-suite.png',
+        title: "Aqua Design - Owner's Suite",
+      },
+    ],
+    [],
+  );
 
   // Data for aside videos
-  const videos = [
-    {
-      id: 1,
-      iframeTitle: 'Art of Life Design',
-      title: 'Art of Life Design',
-      videoSrc: 'https://player.vimeo.com/video/290705961?h=9cfff6a399',
-    },
-    {
-      id: 2,
-      iframeTitle: 'Nature Design',
-      title: 'Nature Design',
-      videoSrc: 'https://player.vimeo.com/video/235907283?h=35a2fec5db',
-    },
-    {
-      id: 3,
-      iframeTitle: 'Zen Design',
-      title: 'Zen Design',
-      videoSrc: 'https://player.vimeo.com/video/184474900?h=bef5fe895d',
-    },
-  ];
+  const videos: Video[] = useMemo(
+    () => [
+      {
+        id: 1,
+        iframeTitle: 'Art of Life Design',
+        title: 'Art of Life Design',
+        videoSrc: 'https://player.vimeo.com/video/290705961?h=9cfff6a399',
+      },
+      {
+        id: 2,
+        iframeTitle: 'Nature Design',
+        title: 'Nature Design',
+        videoSrc: 'https://player.vimeo.com/video/235907283?h=35a2fec5db',
+      },
+      {
+        id: 3,
+        iframeTitle: 'Zen Design',
+        title: 'Zen Design',
+        videoSrc: 'https://player.vimeo.com/video/184474900?h=bef5fe895d',
+      },
+    ],
+    [],
+  );
 
   return (
     <>
@@ -113,7 +125,7 @@ const YachtsPage = (): React.JSX.Element => {
               <p>
                 <a href="https://sinot.com/nature/">
                   Sinot Yacht Architecture and Design
-                </a>
+                </a>{' '}
                 has a range of other beautiful designs:{' '}
                 <a href="https://sinot.com/aware/">Aware</a>,{' '}
                 <a href="https://sinot.com/beach/">Beach</a>,{' '}
@@ -122,8 +134,7 @@ const YachtsPage = (): React.JSX.Element => {
                 <a href="https://sinot.com/the-art-of-life/">The Art of Life</a>
                 , <a href="https://sinot.com/nature/">Nature</a>,{' '}
                 <a href="https://sinot.com/zen/">Zen</a>, and{' '}
-                <a href="https://sinot.com/balance/">Balance</a>. All equally
-                beautiful and innovative.
+                <a href="https://sinot.com/balance/">Balance</a>.
               </p>
               {images.map((img) => (
                 <ImageBlock key={img.id} {...img} />
@@ -131,7 +142,6 @@ const YachtsPage = (): React.JSX.Element => {
             </Suspense>
           </Layout.Section>
         </Layout.Article>
-
         <Layout.Aside>
           {videos.map((video) => (
             <VideoEmbed key={video.id} {...video} />
@@ -142,4 +152,5 @@ const YachtsPage = (): React.JSX.Element => {
   );
 };
 
+YachtsPage.displayName = 'YachtsPage';
 export default YachtsPage;

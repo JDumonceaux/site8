@@ -1,55 +1,35 @@
-import { type FC, memo } from 'react';
+import { memo, type FC, type ReactNode, type HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
 export type EndAdornmentProps = {
-  readonly children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
+  /** Content to render before the separator */
+  children?: ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
 
-const EndAdornment: FC<EndAdornmentProps> = memo(
-  ({ children, ...rest }: EndAdornmentProps): null | React.JSX.Element => {
-    if (!children) {
-      return null;
-    }
+/** Renders an end adornment with a vertical separator */
+export const EndAdornment: FC<EndAdornmentProps> = memo(
+  ({ children, ...rest }: EndAdornmentProps) => {
+    if (!children) return null;
 
-    // const isString = (value) =>
-    //   typeof value === 'string' || value instanceof String;
-    // const isNumber = (value) =>
-    //   typeof value === 'number' || value instanceof Number;
-    // const isBoolean = (value) =>
-    //   typeof value === 'boolean' || value instanceof Boolean;
-
-    // if (isString || isNumber || isBoolean) {
     return (
       <>
-        <StyledDiv {...rest}>{children}</StyledDiv>
-        <StyledVLine />
+        <Content {...rest}>{children}</Content>
+        <Separator aria-hidden="true" />
       </>
     );
-    // }
-
-    // if (React.isValidElement(children)) {
-    //   return (
-    //     <>
-    //       {children}
-    //       <StyledVLine />
-    //     </>
-    //   );
-    // }
-    // throw new Error('Invalid type passed as child.');
   },
 );
 
-EndAdornment.displayName = 'EndAdornments';
-
+EndAdornment.displayName = 'EndAdornment';
 export default EndAdornment;
 
-const StyledDiv = styled.div`
+const Content = styled.div`
   color: var(--input-adornment);
-  margin-left: 8px;
-  margin-right: 8px;
+  margin: 0 8px;
 `;
-const StyledVLine = styled.div`
+
+const Separator = styled.div`
   background-color: var(--input-adornment);
   width: 1px;
   height: 60%;

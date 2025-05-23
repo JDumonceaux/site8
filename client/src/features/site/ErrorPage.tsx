@@ -1,21 +1,33 @@
+import { type FC, memo } from 'react';
+
 import Meta from 'components/core/Meta/Meta';
 import styled from 'styled-components';
 
-const ErrorPage: React.FC = (): React.JSX.Element => (
+/**
+ * Error Page – shown when an unexpected error occurs.
+ */
+const ErrorPage: FC = () => (
   <>
     <Meta title="Error Page" />
-    <Container>
+    <Container aria-label="Error message" role="alert">
       <Title>Error Page</Title>
-      <p>Sorry, something went wrong. Please try again later.</p>
+      <Message>Sorry, something went wrong. Please try again later.</Message>
     </Container>
   </>
 );
 
-export default ErrorPage;
+ErrorPage.displayName = 'ErrorPage';
+
+export default memo(ErrorPage);
 
 const Container = styled.div`
-  text-align: center;
   margin-top: 20%;
+  text-align: center;
+`;
+
+const Message = styled.p`
+  color: var(--palette-dark, #000);
+  font-size: 1rem;
 `;
 
 const Title = styled.h1`

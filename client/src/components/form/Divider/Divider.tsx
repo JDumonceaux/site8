@@ -1,35 +1,45 @@
+import type { FC, ReactNode, HTMLAttributes } from 'react';
+
 import styled from 'styled-components';
 
-type DividerProps = {
-  readonly children: React.ReactNode;
+export type DividerProps = HTMLAttributes<HTMLDivElement> & {
+  /** Optional content to display between the lines */
+  children?: ReactNode;
 };
 
-const Divider = ({ children }: DividerProps): React.JSX.Element => {
-  return (
-    <StyledDiv>
-      <StyledLine />
-      <StyledChildren>{children}</StyledChildren>
-      <StyledLine />
-    </StyledDiv>
-  );
-};
+/**
+ * A horizontal divider with optional centered content.
+ */
+export const Divider: FC<DividerProps> = ({ children, ...rest }) => (
+  <Container {...rest}>
+    <Line aria-hidden="true" />
+    {children ? <Content>{children}</Content> : null}
+    <Line aria-hidden="true" />
+  </Container>
+);
 
 Divider.displayName = 'Divider';
-
 export default Divider;
 
-const StyledDiv = styled.div`
+/* -- styled components -- */
+
+const Container = styled.div`
   display: flex;
-  min-height: 20px;
   align-items: center;
-  justify-content: space-between;
-`;
-const StyledLine = styled.div`
-  border: solid #727272;
-  border-width: 1px 0 0;
-  line-height: 20px;
   width: 100%;
+  gap: 0.5rem;
 `;
-const StyledChildren = styled.div`
-  padding: 0 10px;
+
+const Line = styled.hr`
+  flex: 1;
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--divider-color, #727272);
+`;
+
+const Content = styled.div`
+  white-space: nowrap;
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted, #555);
 `;
