@@ -7,9 +7,10 @@ import { useEffect } from 'react';
 export function usePreloadResources() {
   useEffect(() => {
     const resources = [
-      { as: 'script', href: '/lib/utils/i18.js', priority: 'high' },
-      { as: 'style', href: '/styles/reset.css', priority: 'low' },
-      { as: 'style', href: '/styles/main.css', priority: 'high' },
+      // These are not loading fast enough to be useful
+      //{ as: 'script', href: '/lib/utils/i18.js', priority: 'high' },
+      //{ as: 'style', href: '/styles/reset.css', priority: 'low' },
+      //{ as: 'style', href: '/styles/main.css', priority: 'high' },
     ] as const;
 
     resources.forEach(({ as, href, priority }) => {

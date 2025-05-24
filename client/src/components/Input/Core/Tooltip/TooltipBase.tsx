@@ -3,9 +3,6 @@ import type { JSX, ReactNode } from 'react';
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
 
-/**
- * Props for the styled tooltip wrapper using Radix UI.
- */
 export type TooltipBaseProps = {
   /** Tooltip arrow props */
   arrowProps?: TooltipRadix.TooltipArrowProps;
@@ -25,10 +22,7 @@ export type TooltipBaseProps = {
   disableHoverableContent?: boolean;
 };
 
-/**
- * A styled tooltip wrapper using Radix UI.
- */
-function TooltipBase({
+const TooltipBase = ({
   arrowProps,
   content,
   tooltipProps,
@@ -37,7 +31,7 @@ function TooltipBase({
   triggerColor,
   triggerProps,
   disableHoverableContent = false,
-}: TooltipBaseProps): JSX.Element | null {
+}: TooltipBaseProps): JSX.Element | null => {
   // Don’t render if no content or no trigger provided
   if (!content || !trigger) return null;
 
@@ -56,7 +50,7 @@ function TooltipBase({
       </TooltipRadix.Root>
     </TooltipRadix.Provider>
   );
-}
+};
 
 TooltipBase.displayName = 'TooltipBase';
 export default TooltipBase;

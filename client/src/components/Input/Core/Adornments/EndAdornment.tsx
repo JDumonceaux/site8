@@ -2,21 +2,15 @@ import { memo, type JSX, type ReactNode, type HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
-/**
- * Props for rendering an end adornment with an optional separator.
- */
 export type EndAdornmentProps = HTMLAttributes<HTMLDivElement> & {
   /** Content to render before the separator */
   children?: ReactNode;
 };
 
-/**
- * Renders an end adornment with a vertical separator.
- */
-function EndAdornment({
+const EndAdornment = ({
   children,
   ...rest
-}: EndAdornmentProps): JSX.Element | null {
+}: EndAdornmentProps): JSX.Element | null => {
   if (!children) return null;
 
   return (
@@ -25,7 +19,7 @@ function EndAdornment({
       <Separator aria-hidden="true" />
     </>
   );
-}
+};
 
 EndAdornment.displayName = 'EndAdornment';
 export default memo(EndAdornment);

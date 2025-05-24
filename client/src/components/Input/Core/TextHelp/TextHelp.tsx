@@ -27,7 +27,6 @@ const renderHelper = (msg?: React.ReactNode | string | string[]) => {
       return (
         <ul>
           {msg.map((item, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
             <li key={idx}>{item}</li>
           ))}
         </ul>
@@ -43,7 +42,7 @@ const renderHelper = (msg?: React.ReactNode | string | string[]) => {
 /**
  * Displays contextual help or error text, with an optional character counter.
  */
-function TextHelp({
+const TextHelp = ({
   characterCount = 0,
   errorText,
   hasError = true,
@@ -51,7 +50,7 @@ function TextHelp({
   maxLength = 0,
   showCounter = false,
   ...rest
-}: TextHelpProps): JSX.Element | null {
+}: TextHelpProps): JSX.Element | null => {
   const content = hasError ? helpText : errorText;
 
   return (
@@ -64,7 +63,7 @@ function TextHelp({
       ) : null}
     </Wrapper>
   );
-}
+};
 
 TextHelp.displayName = 'TextHelp';
 export default TextHelp;

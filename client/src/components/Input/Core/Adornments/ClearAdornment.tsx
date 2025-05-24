@@ -7,9 +7,6 @@ import styled from 'styled-components';
 
 import Tooltip from '../Tooltip/TooltipBase';
 
-/**
- * Props for the clear/close adornment with tooltip.
- */
 type ClearAdornmentProps = {
   /** Tooltip text for screen readers */
   ariaLabel?: string;
@@ -23,10 +20,7 @@ type ClearAdornmentProps = {
   onClick: MouseEventHandler<HTMLButtonElement>;
 } & HTMLAttributes<HTMLButtonElement>;
 
-/**
- * A clickable clear/close adornment with tooltip.
- */
-function ClearAdornment({
+const ClearAdornment = ({
   ariaLabel = 'clear contents',
   className,
   icon,
@@ -35,7 +29,7 @@ function ClearAdornment({
   onClick,
   style,
   ...rest
-}: ClearAdornmentProps): JSX.Element {
+}: ClearAdornmentProps): JSX.Element => {
   return (
     <Tooltip
       aria-label={ariaLabel}
@@ -53,7 +47,7 @@ function ClearAdornment({
       }
     />
   );
-}
+};
 
 ClearAdornment.displayName = 'ClearAdornment';
 export default ClearAdornment;

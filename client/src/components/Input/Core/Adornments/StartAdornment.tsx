@@ -2,27 +2,24 @@ import { memo, type JSX, type ReactNode, type HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
-/**
- * Renders a leading adornment with a vertical separator.
- */
 export type StartAdornmentProps = HTMLAttributes<HTMLDivElement> & {
   /** Content to render before the separator */
   children?: ReactNode;
 };
 
-function StartAdornment({
+const StartAdornment = ({
   children,
-  ...props
-}: StartAdornmentProps): JSX.Element | null {
+  ...rest
+}: StartAdornmentProps): JSX.Element | null => {
   if (!children) return null;
 
   return (
     <>
-      <AdornmentContent {...props}>{children}</AdornmentContent>
+      <AdornmentContent {...rest}>{children}</AdornmentContent>
       <SeparatorDiv aria-hidden="true" />
     </>
   );
-}
+};
 
 StartAdornment.displayName = 'StartAdornment';
 export default memo(StartAdornment);

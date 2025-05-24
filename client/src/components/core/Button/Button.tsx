@@ -120,14 +120,14 @@ const StyledButton = styled.button<StyledButtonProps>`
  * - Defaults `type="button"` to prevent accidental form submits.
  * - Prop → transient‐prop mapping keeps the DOM clean.
  */
-function Button({
+const Button = ({
   children,
   fullWidth = false,
   size = 'md',
   variant = 'primary',
   type = 'button',
   ...rest
-}: ButtonProps): JSX.Element {
+}: ButtonProps): JSX.Element => {
   return (
     <StyledButton
       $fullWidth={fullWidth}
@@ -138,7 +138,7 @@ function Button({
       {children}
     </StyledButton>
   );
-}
+};
 
 Button.displayName = 'Button';
 export default memo(Button);

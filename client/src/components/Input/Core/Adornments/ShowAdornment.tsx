@@ -7,9 +7,6 @@ import * as Toggle from '@radix-ui/react-toggle';
 import type { ToggleProps } from '@radix-ui/react-toggle';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
-/**
- * Props for toggling password visibility with accessible icons.
- */
 type ShowAdornmentProps = ToggleProps & {
   /** Tooltip text when password is visible */
   hideLabel?: string;
@@ -21,17 +18,14 @@ type ShowAdornmentProps = ToggleProps & {
   ref?: Ref<HTMLButtonElement>;
 };
 
-/**
- * Toggles password visibility with accessible icons and labels.
- */
-function ShowAdornment({
+const ShowAdornment = ({
   hideLabel = 'Hide password',
   showLabel = 'Show password',
   pressed = false,
   iconProps,
   ref,
   ...rest
-}: ShowAdornmentProps): JSX.Element {
+}: ShowAdornmentProps): JSX.Element => {
   const label = pressed ? hideLabel : showLabel;
 
   return (
@@ -46,7 +40,7 @@ function ShowAdornment({
       <VisuallyHidden>{label}</VisuallyHidden>
     </Toggle.Root>
   );
-}
+};
 
 ShowAdornment.displayName = 'ShowAdornment';
 export default ShowAdornment;

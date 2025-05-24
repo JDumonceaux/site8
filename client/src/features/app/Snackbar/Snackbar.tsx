@@ -1,15 +1,17 @@
 import { type JSX, memo } from 'react';
 
-import useSnackbar, { SnackbarVariant } from 'features/app/useSnackbar';
+import useSnackbar, {
+  SnackbarVariant,
+} from 'features/app/Snackbar/useSnackbar';
 
 import styled from 'styled-components';
 
-import Button from '../Button/Button';
+import Button from '../../../components/core/Button/Button';
 
 /**
  * Global notification banner for transient messages.
  */
-function Snackbar(): JSX.Element | null {
+const Snackbar = (): JSX.Element | null => {
   const { closeSnackbar, data } = useSnackbar();
   if (!data?.isOpen) return null;
 
@@ -29,7 +31,7 @@ function Snackbar(): JSX.Element | null {
       </Button>
     </StyledDialog>
   );
-}
+};
 
 Snackbar.displayName = 'Snackbar';
 export default memo(Snackbar);

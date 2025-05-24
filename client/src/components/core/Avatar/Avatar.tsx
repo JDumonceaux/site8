@@ -44,7 +44,7 @@ const getInitials = (name?: string): string =>
  * A circular avatar that shows an <img> when `src` is valid,
  * otherwise renders initials or custom `children`.
  */
-function Avatar({
+const Avatar = ({
   alt,
   children,
   delayMs = DEFAULT_DELAY,
@@ -53,7 +53,7 @@ function Avatar({
   dataTestId,
   style,
   ...rest
-}: AvatarProps): JSX.Element | null {
+}: AvatarProps): JSX.Element | null => {
   const fallbackContent = children ?? getInitials(alt);
 
   // Basic sanitization: allow only http(s) URLs
@@ -68,7 +68,7 @@ function Avatar({
       <Fallback delayMs={delayMs}>{fallbackContent}</Fallback>
     </Root>
   );
-}
+};
 
 Avatar.displayName = 'Avatar';
 export default memo(Avatar);

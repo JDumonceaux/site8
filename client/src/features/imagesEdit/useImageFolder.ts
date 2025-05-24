@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl } from 'lib/utils';
+import { ServiceUrl } from 'lib/utils/constants';
 import { isValidArray } from 'lib/utils/helpers';
 
 const useImageFolder = () => {

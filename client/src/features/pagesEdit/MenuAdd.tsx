@@ -2,7 +2,7 @@ import React, { startTransition, useCallback } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
-import useSnackbar from 'features/app/useSnackbar';
+import useSnackbar from 'features/app/Snackbar/useSnackbar';
 import useMenuAdd from 'hooks/useMenuAdd';
 /**
  * Represents a form for adding a single menu item.

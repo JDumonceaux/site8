@@ -1,21 +1,12 @@
 import type { JSX, HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 
-/**
- * Props for the horizontal divider.
- */
 export type DividerProps = {
   /** Optional content to display between the lines */
   children?: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-/**
- * A horizontal divider with optional centered content.
- *
- * Using an explicit return type (`JSX.Element`) avoids the implicit `children`
- * prop and extra overhead of `FC<>`.
- */
-export function Divider({ children, ...rest }: DividerProps): JSX.Element {
+const Divider = ({ children, ...rest }: DividerProps): JSX.Element => {
   return (
     <Container {...rest}>
       <Line aria-hidden="true" />
@@ -23,8 +14,9 @@ export function Divider({ children, ...rest }: DividerProps): JSX.Element {
       <Line aria-hidden="true" />
     </Container>
   );
-}
+};
 
+Divider.displayName = 'Divider';
 export default Divider;
 
 /* -- styled components -- */

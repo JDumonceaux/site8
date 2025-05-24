@@ -1,15 +1,13 @@
-import { memo } from 'react';
-import type { JSX, ReactNode, ButtonHTMLAttributes } from 'react';
+import {
+  memo,
+  type JSX,
+  type ReactNode,
+  type ButtonHTMLAttributes,
+} from 'react';
 import styled from 'styled-components';
 
-/**
- * Style variants for the Button component.
- */
 export type Variant = 'primary' | 'secondary';
 
-/**
- * Props for a full-width, accessible button.
- */
 export type ButtonProps = {
   /** Button content */
   children: ReactNode;
@@ -19,24 +17,18 @@ export type ButtonProps = {
   variant?: Variant;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
-/**
- * A full-width, accessible icon button with neumorphic styling.
- *
- * Uses a named function with explicit return type (`JSX.Element`) to
- * avoid the implicit `children` prop and extra overhead of `FC<>`.
- */
-function Button({
+const Button = ({
   children,
   id,
   variant = 'primary',
   ...rest
-}: ButtonProps): JSX.Element {
+}: ButtonProps): JSX.Element => {
   return (
     <StyledButton id={id} name={id} type="button" $variant={variant} {...rest}>
       {children}
     </StyledButton>
   );
-}
+};
 
 const MemoButton = memo(Button);
 MemoButton.displayName = 'Button';

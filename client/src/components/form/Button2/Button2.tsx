@@ -1,14 +1,8 @@
 import type { JSX, ReactNode, ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-/**
- * Available style variants for Button2
- */
 export type Variant = 'primary' | 'secondary';
 
-/**
- * Props for the styled full-width button with optional icon.
- */
 export type Button2Props = {
   /** Button text or content */
   children: ReactNode;
@@ -22,20 +16,14 @@ export type Button2Props = {
   variant?: Variant;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
-/**
- * Styled button with optional icon, full-width layout, and neumorphic shadows.
- *
- * Using a named function with explicit `JSX.Element` return type
- * avoids the implicit `children` prop that comes with `FC<>`.
- */
-export function Button2({
+const Button2 = ({
   children,
   icon,
   id,
   marginBottom,
   variant = 'primary',
   ...rest
-}: Button2Props): JSX.Element {
+}: Button2Props): JSX.Element => {
   return (
     <StyledButton
       $margin={marginBottom}
@@ -48,8 +36,9 @@ export function Button2({
       {children}
     </StyledButton>
   );
-}
+};
 
+Button2.displayName = 'Button2';
 export default Button2;
 
 /* -- styled components -- */

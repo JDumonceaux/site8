@@ -2,9 +2,6 @@ import { memo, type JSX } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 import styled from 'styled-components';
 
-/**
- * Props for the full‑screen error fallback.
- */
 export type MainErrorFallbackProps = {
   /** Optional error message to display */
   message?: string;
@@ -12,17 +9,11 @@ export type MainErrorFallbackProps = {
   onRetry?: () => void;
 } & FallbackProps;
 
-/**
- * Full‑screen error fallback UI.
- *
- * Using a named function with an explicit return type (`JSX.Element`) provides better
- * inference and avoids the implicit `children` prop that comes with `FC<>`.
- */
-export function MainErrorFallback({
+const MainErrorFallback = ({
   resetErrorBoundary,
   message,
   onRetry,
-}: MainErrorFallbackProps): JSX.Element {
+}: MainErrorFallbackProps): JSX.Element => {
   const handleRetry = (): void => {
     if (onRetry) {
       onRetry();
@@ -45,7 +36,7 @@ export function MainErrorFallback({
       </RetryButton>
     </Container>
   );
-}
+};
 
 MainErrorFallback.displayName = 'MainErrorFallback';
 export default memo(MainErrorFallback);

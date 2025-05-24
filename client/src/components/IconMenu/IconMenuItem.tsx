@@ -8,10 +8,13 @@ export type IconMenuItemProps = DropdownMenu.DropdownMenuItemProps & {
   children?: ReactNode;
 };
 
-/** A styled dropdown menu item with built-in padding and alignment */
-function IconMenuItem({ children, ...props }: IconMenuItemProps): JSX.Element {
-  return <StyledMenuItem {...props}>{children}</StyledMenuItem>;
-}
+const IconMenuItem = ({
+  children,
+  ...rest
+}: IconMenuItemProps): JSX.Element => {
+  return <StyledMenuItem {...rest}>{children}</StyledMenuItem>;
+};
+
 IconMenuItem.displayName = 'IconMenuItem';
 export default memo(IconMenuItem);
 

@@ -15,7 +15,7 @@ export type LoadingWrapperProps = {
 /**
  * Displays a loading, saving, or error state around children content.
  */
-function LoadingWrapper({
+const LoadingWrapper = ({
   children,
   error,
   fallback = null,
@@ -24,7 +24,7 @@ function LoadingWrapper({
   isPending = false,
   isSaving = false,
   loadingText = 'Loading…',
-}: LoadingWrapperProps): JSX.Element {
+}: LoadingWrapperProps): JSX.Element => {
   // Saving state
   if (isSaving) {
     return (
@@ -66,7 +66,7 @@ function LoadingWrapper({
 
   // Default to children
   return <>{children}</>;
-}
+};
 
 LoadingWrapper.displayName = 'LoadingWrapper';
 export default memo(LoadingWrapper);

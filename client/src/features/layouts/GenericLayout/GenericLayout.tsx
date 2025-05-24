@@ -2,7 +2,7 @@ import { type FC, Suspense, memo } from 'react';
 
 import Avatar from 'components/core/Avatar/Avatar';
 import Header from 'components/core/Header/Header';
-import Snackbar from 'components/core/Snackbar/Snackbar';
+import Snackbar from 'features/app/Snackbar/Snackbar';
 import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';

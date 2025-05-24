@@ -7,7 +7,7 @@ const PANTONE_LINK = 'https://www.pantone.com/color-of-the-year/2023';
 /**
  * Displays a reference to the Pantone Color of the Year with a color swatch.
  */
-function PantoneColor(): JSX.Element {
+const PantoneColor = (): JSX.Element => {
   return (
     <Wrapper>
       <Text>
@@ -23,7 +23,7 @@ function PantoneColor(): JSX.Element {
       </ColorFigure>
     </Wrapper>
   );
-}
+};
 
 PantoneColor.displayName = 'PantoneColor';
 export default PantoneColor;

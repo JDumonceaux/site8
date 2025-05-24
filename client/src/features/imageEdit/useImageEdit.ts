@@ -14,7 +14,7 @@ const useImageEdit = (id: null | string) => {
   // Use Axios to fetch data
   const { patchData, putData } = useAxios<Image>();
 
-  const { data, isError, isPending } = useImage(id);
+  const { data } = useImage(id);
 
   const getDefaultProps = (fieldName: FormKeys) => ({
     'data-id': fieldName,
@@ -67,15 +67,16 @@ const useImageEdit = (id: null | string) => {
     (items: Image | null | undefined) => {
       if (items) {
         const item: FormType = {
-          description: items.description ?? '',
-          fileName: items.fileName,
+          fileName: '',
+          // description: items.description ?? '',
+          // fileName: items.fileName,
           folder: items.folder ?? '',
           id: items.id,
           location: items.location ?? '',
-          name: items.name ?? '',
+          // name: items.name ?? '',
           official_url: items.official_url ?? '',
           src: getSRC(items.folder, items.fileName),
-          tags: items.tags?.toString() ?? '',
+          // tags: items.tags?.toString() ?? '',
         };
         setFormValues(item);
       }
@@ -99,7 +100,7 @@ const useImageEdit = (id: null | string) => {
   // Fetch data when currentAction changes
   useEffect(() => {
     if (currentAction) {
-      fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}/${currentAction}`);
+      // fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}/${currentAction}`);
     }
   }, [currentAction, currentId]);
 
@@ -112,7 +113,7 @@ const useImageEdit = (id: null | string) => {
   // Validate  form
   const validateForm = useCallback(() => {
     const result = safeParse<FormType>(pageSchema, formValues);
-    setErrors(result.error?.issues);
+    //setErrors(result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
 
@@ -138,7 +139,7 @@ const useImageEdit = (id: null | string) => {
       // RETHINK THIS
       const updatedItem: Image = {
         ...items,
-        tags: items.tags?.split(',') ?? [],
+        // tags: items.tags?.split(',') ?? [],
       };
 
       await (updatedItem.id > 0

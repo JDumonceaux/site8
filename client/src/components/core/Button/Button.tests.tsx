@@ -80,7 +80,7 @@ describe('Button component – accessibility', () => {
     ['fullWidth', { fullWidth: true }],
   ] as const)('no a11y violations – %s', async (_label, props) => {
     expect.hasAssertions();
-    const { container } = render(<Button {...props}>Test</Button>);
+    const { container } = render(<Button {...rest}>Test</Button>);
     const results: AxeResults = await axe(container);
     expect(results).toHaveNoViolations();
   });

@@ -8,13 +8,13 @@ const currentYear = new Date().getFullYear();
 /**
  * Application footer with automatic year update.
  */
-function Footer(): JSX.Element {
+const Footer = (): JSX.Element => {
   return (
     <FooterContainer data-testid="footer">
       <CopyrightText>&copy; {currentYear}</CopyrightText>
     </FooterContainer>
   );
-}
+};
 
 Footer.displayName = 'Footer';
 export default memo(Footer);

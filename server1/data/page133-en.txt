@@ -9,7 +9,7 @@ const withAuth = (WrappedComponent) => {
   return (props) => (
     <div>
       {isAuthenticated ? (
-        <WrappedComponent {...props} />
+        <WrappedComponent {...rest} />
       ) : (
         <p>Please login to access this content.</p>
       )}

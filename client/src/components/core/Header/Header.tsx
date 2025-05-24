@@ -16,7 +16,7 @@ type HeaderProps = {
 /**
  * Page header with optional menu toggle and avatar slot.
  */
-function Header({ avatar, onMenuToggle }: HeaderProps): JSX.Element {
+const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
   const handleMenuClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
@@ -47,7 +47,7 @@ function Header({ avatar, onMenuToggle }: HeaderProps): JSX.Element {
       <AvatarGroup aria-label="User menu">{avatar}</AvatarGroup>
     </HeaderContainer>
   );
-}
+};
 
 Header.displayName = 'Header';
 export default memo(Header);

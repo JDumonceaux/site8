@@ -6,16 +6,9 @@ import TooltipQuestionMark from './Tooltips/TooltipQuestionMark';
 
 export type TooltipProps = TooltipBaseProps;
 
-type TooltipComponent = {
-  (props: TooltipProps): JSX.Element;
-  Asterix: typeof TooltipAsterix;
-  QuestionMark: typeof TooltipQuestionMark;
-  displayName?: string;
+const Tooltip = ({ ...rest }: TooltipProps): JSX.Element => {
+  return <TooltipBase {...rest} />;
 };
-
-const Tooltip: TooltipComponent = function Tooltip(props) {
-  return <TooltipBase {...props} />;
-} as TooltipComponent;
 
 Tooltip.Asterix = TooltipAsterix;
 Tooltip.QuestionMark = TooltipQuestionMark;

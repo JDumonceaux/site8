@@ -38,9 +38,6 @@ import FieldWrapper, {
 //   'valueMissing',
 // ];
 
-/**
- * Props for the base input component with adornments and datalist support.
- */
 type InputRootProps = Omit<
   JSX.IntrinsicElements['input'],
   'accessKey' | 'autoCorrect' | 'id' | 'name' | 'onChange' | 'type' | 'value'
@@ -65,10 +62,7 @@ type InputAddProps = {
 
 export type InputBaseProps = InputRootProps & InputAddProps & FieldWrapperProps;
 
-/**
- * Base input component with label, adornments, and optional datalist.
- */
-function InputBase({
+const InputBase = ({
   dataList,
   defaultValue = '',
   errors,
@@ -81,7 +75,7 @@ function InputBase({
   value,
   allowedCharacters,
   ...footerProps
-}: InputBaseProps): JSX.Element {
+}: InputBaseProps): JSX.Element => {
   const generatedId = useGetId(id);
   const [fieldLength, setFieldLength] = useState<number>(
     String(value ?? defaultValue).length,
@@ -111,38 +105,29 @@ function InputBase({
     [onChange, allowedCharacters],
   );
 
-  // merge all props then extract input-specific attributes
-  const merged = {
-    dataList,
-    defaultValue,
-    errors,
-    id: generatedId,
-    inputRef: refToUse,
-    labelProps,
-    name: generatedId,
-    onChange,
-    required,
-    type,
-    value,
+  const inputProps: InputRootProps = {
+    ...labelProps,
     ...footerProps,
+    autoComplete: 'off',
+    //autoCorrect: 'off',
+    // id: generatedId,
+    //  name: generatedId,
+    //onChange: handleChange,
   };
-  const {
-    dataList: _dl,
-    defaultValue: _dv,
-    errors: _errs,
-    inputRef: _ir,
-    labelProps: _lp,
-    onChange: _oc,
-    required: _rq,
-    type: _t,
-    value: _v,
-    name: _nm,
-    ...inputProps
-  } = merged;
+
+  const fieldWrapperProps: FieldWrapperProps = {
+    ...footerProps,
+    errors,
+    labelProps: {
+      ...labelProps,
+      htmlFor: generatedId,
+      id: `${generatedId}-label`,
+    },
+  };
 
   return (
     <FieldWrapper
-      {...footerProps}
+      {...fieldWrapperProps}
       fieldLength={fieldLength}
       required={required}>
       <StyledInput
@@ -163,7 +148,7 @@ function InputBase({
       )}
     </FieldWrapper>
   );
-}
+};
 
 InputBase.displayName = 'InputBase';
 export default memo(InputBase);

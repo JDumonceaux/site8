@@ -6,14 +6,13 @@ export type InputHelpProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'children' | 'id'
 > & {
-  /** Help text content: string, number, array of strings/nodes, or React element */
   readonly helpText?: ReactNode;
 };
 
-/**
- * Renders contextual help for an input, handling strings, arrays, and React elements.
- */
-function InputHelp({ helpText, ...rest }: InputHelpProps): JSX.Element | null {
+const InputHelp = ({
+  helpText,
+  ...rest
+}: InputHelpProps): JSX.Element | null => {
   if (!helpText) return null;
 
   // Primitive values: string, number, boolean
@@ -31,7 +30,6 @@ function InputHelp({ helpText, ...rest }: InputHelpProps): JSX.Element | null {
       <StyledDiv {...rest}>
         <ul>
           {helpText.map((item, idx) => (
-            // eslint-disable-next-line react/no-array-index-key
             <li key={idx}>{item}</li>
           ))}
         </ul>
@@ -47,7 +45,7 @@ function InputHelp({ helpText, ...rest }: InputHelpProps): JSX.Element | null {
   }
 
   throw new Error('Invalid type passed as helpText.');
-}
+};
 
 InputHelp.displayName = 'InputHelp';
 export default InputHelp;

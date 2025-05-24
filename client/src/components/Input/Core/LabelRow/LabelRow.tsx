@@ -31,10 +31,7 @@ export type LabelRowProps = Omit<
   tooltipProps?: TooltipProps;
 };
 
-/**
- * Renders a form field label row with optional description and adornments
- */
-function LabelRow({
+const LabelRow = ({
   description,
   endAdornment,
   id,
@@ -44,7 +41,7 @@ function LabelRow({
   requiredText,
   tooltipProps,
   ...rest
-}: LabelRowProps): JSX.Element {
+}: LabelRowProps): JSX.Element => {
   return (
     <Label.Root htmlFor={id} ref={ref} {...rest}>
       <Row>
@@ -66,7 +63,7 @@ function LabelRow({
       </Row>
     </Label.Root>
   );
-}
+};
 
 LabelRow.displayName = 'LabelRow';
 export default LabelRow;

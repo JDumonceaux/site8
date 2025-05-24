@@ -4,7 +4,7 @@ import {
   createSelector,
 } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-import type { Snackbar } from 'features/app/useSnackbar';
+import type { Snackbar } from 'features/app/Snackbar/useSnackbar';
 
 /** Shape of the `snackbar` slice state. */
 type SnackbarState = {

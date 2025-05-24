@@ -13,11 +13,11 @@ type PageTitleProps = HTMLAttributes<HTMLDivElement> & {
  * Renders a page header title with optional trailing content.
  * Returns null if no title is provided.
  */
-function PageTitle({
+const PageTitle = ({
   children,
   title,
   ...rest
-}: PageTitleProps): JSX.Element | null {
+}: PageTitleProps): JSX.Element | null => {
   if (!title) return null;
 
   return (
@@ -26,7 +26,7 @@ function PageTitle({
       {children ? <StyledChildren>{children}</StyledChildren> : null}
     </StyledWrapper>
   );
-}
+};
 
 PageTitle.displayName = 'PageTitle';
 export default memo(PageTitle);

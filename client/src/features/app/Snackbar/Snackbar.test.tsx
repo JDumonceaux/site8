@@ -6,7 +6,7 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 import type { AxeResults } from 'axe-core';
 
 import Snackbar from './Snackbar';
-import { SnackbarVariant } from 'features/app/useSnackbar';
+import { SnackbarVariant } from 'features/app/Snackbar/useSnackbar';
 
 // Mock the snackbar hook and variant constants
 const mockClose = jest.fn();

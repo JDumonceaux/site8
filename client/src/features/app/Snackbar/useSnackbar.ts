@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { SNACKBAR_DEFAULT_DURATION } from 'lib/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSnackbar } from 'store/snackbarSlice';
+import { showSnackbar, hideSnackbar } from 'store/snackbarSlice';
 import type { AppDispatch, RootState } from 'store/store';
 
 export type Snackbar = {
@@ -24,6 +24,8 @@ const initialState: Snackbar = {
   contents: null,
   isOpen: false,
   openDurationMs: 0,
+  showCloseButton: false,
+  variant: SnackbarVariant.INFO,
 };
 
 const selectSnackbarData = (state: RootState) => state.snackbar.data;
@@ -41,11 +43,11 @@ const useSnackbar = (): UseSnackbarReturn => {
 
   const updateSnackbar = useCallback(
     (updates: Snackbar) => {
-      dispatch(setSnackbar(updates));
+      dispatch(showSnackbar(updates));
       const duration = updates.openDurationMs ?? SNACKBAR_DEFAULT_DURATION;
       if (updates.isOpen && duration > 0) {
         setTimeout(() => {
-          dispatch(setSnackbar(initialState));
+          dispatch(showSnackbar(initialState));
         }, duration);
       }
     },
@@ -87,7 +89,7 @@ const useSnackbar = (): UseSnackbarReturn => {
   );
 
   const closeSnackbar = useCallback(() => {
-    dispatch(setSnackbar(initialState));
+    dispatch(hideSnackbar());
   }, [dispatch]);
 
   return {

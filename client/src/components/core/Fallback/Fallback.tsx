@@ -15,7 +15,7 @@ const DEFAULT_LINES = 5;
 /**
  * Renders a series of placeholder loading lines with a shimmer effect.
  */
-function Fallback({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element {
+const Fallback = ({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element => {
   // runtime-validate & clamp
   const raw = Math.floor(lines);
   let count = raw;
@@ -41,7 +41,7 @@ function Fallback({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element {
       ))}
     </LoadingContainer>
   );
-}
+};
 
 const MemoFallback = memo(Fallback);
 MemoFallback.displayName = 'Fallback';

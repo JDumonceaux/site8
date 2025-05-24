@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 
-import { App } from 'app/app';
+import App from 'app/app';
 import { createRoot } from 'react-dom/client';
 
 // Grab the root container (must match your index.html)

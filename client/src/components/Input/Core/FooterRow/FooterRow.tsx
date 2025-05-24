@@ -14,15 +14,12 @@ export type FooterRowProps = {
   showCounter?: boolean;
 };
 
-/**
- * Displays the first error message and an optional length counter.
- */
-function FooterRow({
+const FooterRow = ({
   errors,
   fieldLength = 0,
   maxLength = 0,
   showCounter = false,
-}: FooterRowProps): JSX.Element {
+}: FooterRowProps): JSX.Element => {
   const errorMessage = errors?.[0]?.message ?? null;
 
   return (
@@ -35,7 +32,7 @@ function FooterRow({
       )}
     </Row>
   );
-}
+};
 
 FooterRow.displayName = 'FooterRow';
 export default memo(FooterRow);

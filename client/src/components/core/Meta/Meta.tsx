@@ -204,7 +204,7 @@ const buildHttpEquivTag = (httpEquiv: string, content: string): JSX.Element => (
 /**
  * Renders all specified meta and link tags in head.
  */
-function Meta({
+const Meta = ({
   charset,
   viewport,
   title,
@@ -233,7 +233,7 @@ function Meta({
   xUaCompatible,
   contentLanguage,
   refresh,
-}: MetaProps): JSX.Element {
+}: MetaProps): JSX.Element => {
   const tags: JSX.Element[] = [];
 
   if (charset) tags.push(buildCharsetTag(charset));
@@ -272,7 +272,7 @@ function Meta({
   if (refresh) tags.push(buildHttpEquivTag('refresh', refresh));
 
   return <>{tags}</>;
-}
+};
 
 Meta.displayName = 'Meta';
 export default memo(Meta);

@@ -15,7 +15,7 @@ type IconMenuProps = {
 /**
  * A trigger-only icon button that displays a dropdown menu.
  */
-function IconMenu({ children }: IconMenuProps): JSX.Element {
+const IconMenu = ({ children }: IconMenuProps): JSX.Element => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -34,7 +34,8 @@ function IconMenu({ children }: IconMenuProps): JSX.Element {
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
   );
-}
+};
+
 IconMenu.displayName = 'IconMenu';
 export default memo(IconMenu);
 

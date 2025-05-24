@@ -40,6 +40,7 @@ export enum PreferHeader {
 /*                          API and Route Constants                           */
 /* -------------------------------------------------------------------------- */
 const API_ROOT = `http://localhost:3005/api`;
+
 export const IMAGE_BASE = '/images';
 
 /* -------------------------------------------------------------------------- */
@@ -55,6 +56,7 @@ export enum ServiceUrl {
   ENDPOINT_IMAGES_EDIT = `${API_ROOT}/images/edit`,
   ENDPOINT_IMAGES_FIX_FILE_NAMES = `${API_ROOT}/images/fix-file-names`,
   ENDPOINT_IMAGES_FIX_INDEX = `${API_ROOT}/images/fix-index`,
+  ENDPOINT_IMAGES_FOLDERS = `${API_ROOT}/images/folders`,
   ENDPOINT_IMAGES_LIST_DUPLICATES = `${API_ROOT}/images/list-duplicates`,
   ENDPOINT_ITEMS = `${API_ROOT}/items`,
   ENDPOINT_MENUS = `${API_ROOT}/menus`,

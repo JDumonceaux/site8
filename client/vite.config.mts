@@ -1,15 +1,10 @@
 import analyze from 'rollup-plugin-analyzer';
-import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    tsConfigPaths(),
-    // no need to coerce to PluginOption—visualizer() already matches Vite’s plugin API
-    visualizer(),
-  ],
+  plugins: [tsConfigPaths()],
   resolve: {
     alias: {
       components: '/src/components',

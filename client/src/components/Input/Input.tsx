@@ -24,7 +24,7 @@ type InputComponent = FC<InputBaseProps> & {
 };
 
 /** Primary input component with static subtypes for various input types */
-export const Input: InputComponent = (props) => <InputBase {...props} />;
+export const Input: InputComponent = (props) => <InputBase {...rest} />;
 
 Input.Email = InputEmail;
 Input.Number = InputNumber;

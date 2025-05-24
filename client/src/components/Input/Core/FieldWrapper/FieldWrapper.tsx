@@ -11,9 +11,6 @@ import StartAdornment, {
 import FooterRow, { type FooterRowProps } from '../FooterRow/FooterRow';
 import LabelRow, { type LabelRowProps } from '../LabelRow/LabelRow';
 
-/**
- * Props for wrapping a form field with optional label, adornments, and footer.
- */
 export type FieldWrapperProps = HTMLAttributes<HTMLDivElement> & {
   /** Trailing adornment element */
   endAdornment?: ReactNode;
@@ -31,10 +28,7 @@ export type FieldWrapperProps = HTMLAttributes<HTMLDivElement> & {
   startAdornmentProps?: StartAdornmentProps;
 } & FooterRowProps;
 
-/**
- * Wraps a form field with optional label, adornments, and footer.
- */
-function FieldWrapper({
+const FieldWrapper = ({
   children,
   endAdornment,
   endAdornmentProps,
@@ -44,7 +38,7 @@ function FieldWrapper({
   startAdornment,
   startAdornmentProps,
   ...footerProps
-}: FieldWrapperProps): JSX.Element {
+}: FieldWrapperProps): JSX.Element => {
   const { ...filteredLabelProps } = labelProps;
 
   return (
@@ -64,7 +58,7 @@ function FieldWrapper({
       <FooterRow {...footerProps} />
     </Container>
   );
-}
+};
 
 FieldWrapper.displayName = 'FieldWrapper';
 export default memo(FieldWrapper);

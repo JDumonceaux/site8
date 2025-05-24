@@ -1,9 +1,6 @@
 import type { JSX, ReactNode, ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-/**
- * Props for the icon-only button.
- */
 export type IconButtonProps = {
   /** Accessible label for screen readers */
   'aria-label': string;
@@ -13,25 +10,20 @@ export type IconButtonProps = {
   color?: string;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'aria-label' | 'type'>;
 
-/**
- * Icon-only button with accessible label.
- *
- * Defined as a named function with explicit JSX.Element return type to avoid
- * the implicit `children` injection and baggage of `FC<>`.
- */
-export function IconButton({
+const IconButton = ({
   'aria-label': ariaLabel,
   children,
   color = 'currentColor',
   ...rest
-}: IconButtonProps): JSX.Element {
+}: IconButtonProps): JSX.Element => {
   return (
     <StyledButton $color={color} aria-label={ariaLabel} type="button" {...rest}>
       {children}
     </StyledButton>
   );
-}
+};
 
+IconButton.displayName = 'IconButton';
 export default IconButton;
 
 /* -- styled components -- */

@@ -21,10 +21,7 @@ export type ImageSelectorProps = {
   onSelectImage: (image: Image | undefined) => void;
 };
 
-/**
- * Image grid with filtering, selection, and deferred count.
- */
-function ImageSelector({ onSelectImage }: ImageSelectorProps): JSX.Element {
+const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
   const { setShowUnmatched, showUnmatched } = useAppSettings();
   const { data } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();
@@ -107,7 +104,7 @@ function ImageSelector({ onSelectImage }: ImageSelectorProps): JSX.Element {
       </LoadingWrapper>
     </>
   );
-}
+};
 
 ImageSelector.displayName = 'ImageSelector';
 export default memo(ImageSelector);

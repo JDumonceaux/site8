@@ -9,7 +9,7 @@ const AppRouter = lazy(async () => import('providers/RouterProvider'));
 /**
  * Root application component
  */
-function App(): JSX.Element {
+const App = (): JSX.Element => {
   usePreloadResources();
 
   return (
@@ -26,6 +26,6 @@ function App(): JSX.Element {
       </AppProvider>
     </StrictMode>
   );
-}
+};
 
 export default App;

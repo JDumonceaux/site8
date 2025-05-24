@@ -65,7 +65,7 @@ const MaxWidth: Record<Size, string> = {
 /**
  * A controlled, accessible dialog using Radix UI.
  */
-function Dialog({
+const Dialog = ({
   isOpen,
   onOpenChange,
   label,
@@ -75,7 +75,7 @@ function Dialog({
   contentProps,
   variant = 'default',
   size = 'md',
-}: DialogProps): JSX.Element {
+}: DialogProps): JSX.Element => {
   const titleId = useId();
 
   return (
@@ -106,7 +106,7 @@ function Dialog({
       </RadixDialog.Portal>
     </RadixDialog.Root>
   );
-}
+};
 
 Dialog.displayName = 'Dialog';
 export default memo(Dialog);

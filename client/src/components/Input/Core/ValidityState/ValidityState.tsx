@@ -11,23 +11,16 @@ export type ValidityStateProps = {
   readonly errorType?: string;
 };
 
-/**
- * Renders Radix Form.Messages for various validity states.
- */
-function ValidityState({
+const ValidityState = ({
   errorMissing,
   errorType,
-}: ValidityStateProps): JSX.Element | null {
+}: ValidityStateProps): JSX.Element | null => {
   // If neither message is provided, render nothing
   if (!errorMissing && !errorType) return null;
 
   // Group the validity matches by which message they should show
-  const missingMatches: Form.MessageMatch[] = [
-    'valueMissing',
-    'badInput',
-    'valid',
-  ];
-  const typeMatches: Form.MessageMatch[] = [
+  const missingMatches = ['valueMissing', 'badInput', 'valid'] as const;
+  const typeMatches = [
     'patternMismatch',
     'rangeOverflow',
     'rangeUnderflow',
@@ -35,7 +28,7 @@ function ValidityState({
     'tooLong',
     'tooShort',
     'typeMismatch',
-  ];
+  ] as const;
 
   return (
     <>
@@ -51,7 +44,7 @@ function ValidityState({
       ))}
     </>
   );
-}
+};
 
 ValidityState.displayName = 'ValidityState';
 export default ValidityState;
