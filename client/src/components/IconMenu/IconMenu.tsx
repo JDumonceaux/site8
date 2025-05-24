@@ -1,33 +1,40 @@
-import { memo, type FC, type ReactNode } from 'react';
+import { memo, type JSX, type ReactNode } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DotsVerticalIcon } from '@radix-ui/react-icons';
 import styled from 'styled-components';
 
-export type IconMenuProps = {
+/**
+ * Props for the icon-triggered dropdown menu.
+ */
+type IconMenuProps = {
   /** Menu items to render inside the dropdown */
   children?: ReactNode;
 };
 
-const IconMenu: FC<IconMenuProps> = ({ children }) => (
-  <DropdownMenu.Root>
-    <DropdownMenu.Trigger asChild>
-      <StyledButton
-        aria-haspopup="menu"
-        aria-label="Customize options"
-        type="button">
-        <DotsVerticalIcon />
-      </StyledButton>
-    </DropdownMenu.Trigger>
+/**
+ * A trigger-only icon button that displays a dropdown menu.
+ */
+function IconMenu({ children }: IconMenuProps): JSX.Element {
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <StyledButton
+          aria-haspopup="menu"
+          aria-label="Customize options"
+          type="button">
+          <DotsVerticalIcon />
+        </StyledButton>
+      </DropdownMenu.Trigger>
 
-    <DropdownMenu.Portal>
-      <StyledMenuContent align="start" side="right" sideOffset={5}>
-        {children}
-      </StyledMenuContent>
-    </DropdownMenu.Portal>
-  </DropdownMenu.Root>
-);
-
+      <DropdownMenu.Portal>
+        <StyledMenuContent align="start" side="right" sideOffset={5}>
+          {children}
+        </StyledMenuContent>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
+  );
+}
 IconMenu.displayName = 'IconMenu';
 export default memo(IconMenu);
 

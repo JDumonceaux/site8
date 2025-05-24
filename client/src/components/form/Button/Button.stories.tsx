@@ -1,36 +1,41 @@
-import type { StoryObj } from '@storybook/react';
-
+// Button.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
 import Button from './Button';
 
-const meta = {
-  argTypes: {
-    onClick: { action: 'clicked' },
-    variant: {
-      control: {
-        options: ['primary', 'secondary'],
-        type: 'select',
-      },
-    },
-  },
-  component: Button,
+const meta: Meta<typeof Button> = {
   title: 'Components/Button',
+  component: Button,
+  argTypes: {
+    variant: {
+      control: { type: 'select', options: ['primary', 'secondary'] },
+    },
+    onClick: { action: 'clicked' },
+  },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
   args: {
+    id: 'btn-primary',
     children: 'Primary Button',
-    id: 'primary-button',
     variant: 'primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
+    id: 'btn-secondary',
     children: 'Secondary Button',
-    id: 'secondary-button',
     variant: 'secondary',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    id: 'btn-disabled',
+    children: 'Disabled Button',
+    disabled: true,
   },
 };

@@ -1,4 +1,4 @@
-import { isValidElement, type FC, type ReactNode } from 'react';
+import { isValidElement, type JSX, type ReactNode } from 'react';
 
 import styled from 'styled-components';
 
@@ -13,7 +13,7 @@ export type InputHelpProps = Omit<
 /**
  * Renders contextual help for an input, handling strings, arrays, and React elements.
  */
-export const InputHelp: FC<InputHelpProps> = ({ helpText, ...rest }) => {
+function InputHelp({ helpText, ...rest }: InputHelpProps): JSX.Element | null {
   if (!helpText) return null;
 
   // Primitive values: string, number, boolean
@@ -47,7 +47,7 @@ export const InputHelp: FC<InputHelpProps> = ({ helpText, ...rest }) => {
   }
 
   throw new Error('Invalid type passed as helpText.');
-};
+}
 
 InputHelp.displayName = 'InputHelp';
 export default InputHelp;
@@ -70,7 +70,7 @@ const StyledDiv = styled.div`
   .valid:before {
     position: relative;
     left: -5px;
-    content: '\\2713';
+    content: '\2713';
   }
 
   .invalid {
@@ -79,6 +79,6 @@ const StyledDiv = styled.div`
   .invalid:before {
     position: relative;
     left: -5px;
-    content: '\\0078';
+    content: '\0078';
   }
 `;

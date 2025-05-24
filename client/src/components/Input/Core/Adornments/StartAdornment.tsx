@@ -1,28 +1,28 @@
-import { memo, type FC, type ReactNode, type HTMLAttributes } from 'react';
+import { memo, type JSX, type ReactNode, type HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
-
-export type StartAdornmentProps = {
-  /** Content to render before the separator */
-  children?: ReactNode;
-} & HTMLAttributes<HTMLDivElement>;
 
 /**
  * Renders a leading adornment with a vertical separator.
  */
-const StartAdornment: FC<StartAdornmentProps> = ({
+export type StartAdornmentProps = HTMLAttributes<HTMLDivElement> & {
+  /** Content to render before the separator */
+  children?: ReactNode;
+};
+
+function StartAdornment({
   children,
   ...props
-}: StartAdornmentProps) => {
+}: StartAdornmentProps): JSX.Element | null {
   if (!children) return null;
 
   return (
     <>
       <AdornmentContent {...props}>{children}</AdornmentContent>
-      <SeparatorDiv />
+      <SeparatorDiv aria-hidden="true" />
     </>
   );
-};
+}
 
 StartAdornment.displayName = 'StartAdornment';
 export default memo(StartAdornment);

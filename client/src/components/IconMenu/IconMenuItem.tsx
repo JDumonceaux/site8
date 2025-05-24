@@ -1,4 +1,4 @@
-import { memo, type FC, type ReactNode } from 'react';
+import { memo, type JSX, type ReactNode } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import styled from 'styled-components';
@@ -9,14 +9,11 @@ export type IconMenuItemProps = DropdownMenu.DropdownMenuItemProps & {
 };
 
 /** A styled dropdown menu item with built-in padding and alignment */
-const IconMenuItem: FC<IconMenuItemProps> = memo(
-  ({ children, ...props }: IconMenuItemProps) => (
-    <StyledMenuItem {...props}>{children}</StyledMenuItem>
-  ),
-);
-
+function IconMenuItem({ children, ...props }: IconMenuItemProps): JSX.Element {
+  return <StyledMenuItem {...props}>{children}</StyledMenuItem>;
+}
 IconMenuItem.displayName = 'IconMenuItem';
-export default IconMenuItem;
+export default memo(IconMenuItem);
 
 const StyledMenuItem = styled(DropdownMenu.Item)`
   display: flex;

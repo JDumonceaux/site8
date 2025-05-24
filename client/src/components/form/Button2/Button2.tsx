@@ -1,52 +1,59 @@
-import type { FC, ReactNode, ButtonHTMLAttributes } from 'react';
-
+import type { JSX, ReactNode, ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-type Variant = 'primary' | 'secondary';
+/**
+ * Available style variants for Button2
+ */
+export type Variant = 'primary' | 'secondary';
 
+/**
+ * Props for the styled full-width button with optional icon.
+ */
 export type Button2Props = {
-  /** Button content */
+  /** Button text or content */
   children: ReactNode;
-  /** Optional leading icon */
+  /** Optional leading icon element */
   icon?: ReactNode;
-  /** Unique identifier (applied to both `id` and `name`) */
+  /** Unique identifier used for both id and name */
   id: string;
-  /** CSS margin-bottom value */
+  /** Optional bottom margin (CSS value) */
   marginBottom?: string;
-  /** Visual style variant */
+  /** Visual variant (affects shadow styling) */
   variant?: Variant;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
 /**
- * Styled button with optional icon, full-width, neumorphic shadows.
+ * Styled button with optional icon, full-width layout, and neumorphic shadows.
+ *
+ * Using a named function with explicit `JSX.Element` return type
+ * avoids the implicit `children` prop that comes with `FC<>`.
  */
-export const Button2: FC<Button2Props> = ({
+export function Button2({
   children,
   icon,
   id,
   marginBottom,
   variant = 'primary',
   ...rest
-}) => (
-  <StyledButton
-    $margin={marginBottom}
-    $variant={variant}
-    id={id}
-    name={id}
-    type="button"
-    {...rest}>
-    {icon ? <IconWrapper>{icon}</IconWrapper> : null}
-    {children}
-  </StyledButton>
-);
+}: Button2Props): JSX.Element {
+  return (
+    <StyledButton
+      $margin={marginBottom}
+      $variant={variant}
+      id={id}
+      name={id}
+      type="button"
+      {...rest}>
+      {icon && <IconWrapper>{icon}</IconWrapper>}
+      {children}
+    </StyledButton>
+  );
+}
 
-Button2.displayName = 'Button2';
 export default Button2;
 
-const StyledButton = styled.button<{
-  $margin?: string;
-  $variant: Variant;
-}>`
+/* -- styled components -- */
+const StyledButton = styled.button<{ $margin?: string; $variant: Variant }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,6 +88,7 @@ const IconWrapper = styled.span`
   display: flex;
   align-items: center;
   margin-right: 8px;
+
   & > svg {
     width: 1em;
     height: 1em;

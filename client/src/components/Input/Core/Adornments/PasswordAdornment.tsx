@@ -1,7 +1,10 @@
-import type { FC, Ref, SVGProps } from 'react';
+import type { JSX, Ref, SVGProps } from 'react';
 
 import { LockClosedIcon as Icon } from '@radix-ui/react-icons';
 
+/**
+ * Props for the password field adornment icon.
+ */
 export type PasswordAdornmentProps = Omit<
   SVGProps<SVGSVGElement>,
   'children' | 'data-testid'
@@ -11,12 +14,12 @@ export type PasswordAdornmentProps = Omit<
 };
 
 /** A lock icon for password fields */
-export const PasswordAdornment: FC<PasswordAdornmentProps> = ({
+function PasswordAdornment({
   ref,
   ...props
-}: PasswordAdornmentProps) => (
-  <Icon data-testid="Lock icon" ref={ref} {...props} />
-);
+}: PasswordAdornmentProps): JSX.Element {
+  return <Icon data-testid="Lock icon" ref={ref} {...props} />;
+}
 
 PasswordAdornment.displayName = 'PasswordAdornment';
 export default PasswordAdornment;

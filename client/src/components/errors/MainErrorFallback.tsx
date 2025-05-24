@@ -1,8 +1,10 @@
-import { memo, type FC } from 'react';
-
+import { memo, type JSX } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 import styled from 'styled-components';
 
+/**
+ * Props for the full‑screen error fallback.
+ */
 export type MainErrorFallbackProps = {
   /** Optional error message to display */
   message?: string;
@@ -11,15 +13,24 @@ export type MainErrorFallbackProps = {
 } & FallbackProps;
 
 /**
- * Full‐screen error fallback UI.
+ * Full‑screen error fallback UI.
+ *
+ * Using a named function with an explicit return type (`JSX.Element`) provides better
+ * inference and avoids the implicit `children` prop that comes with `FC<>`.
  */
-const MainErrorFallback: FC<FallbackProps> = ({
+export function MainErrorFallback({
+  resetErrorBoundary,
   message,
   onRetry,
-}: MainErrorFallbackProps) => {
-  const handleRetry = () => {
-    if (onRetry) onRetry();
-    else globalThis.location.reload();
+}: MainErrorFallbackProps): JSX.Element {
+  const handleRetry = (): void => {
+    if (onRetry) {
+      onRetry();
+    } else {
+      globalThis.location.reload();
+    }
+    // Clear the error state so the UI can retry
+    resetErrorBoundary();
   };
 
   return (
@@ -28,19 +39,18 @@ const MainErrorFallback: FC<FallbackProps> = ({
       aria-labelledby="error-title"
       role="alertdialog">
       <Title id="error-title">Oops! Something went wrong.</Title>
-      {message ? <Message id="error-message">{message}</Message> : null}
+      {message && <Message id="error-message">{message}</Message>}
       <RetryButton onClick={handleRetry} type="button">
         Retry
       </RetryButton>
     </Container>
   );
-};
+}
 
 MainErrorFallback.displayName = 'MainErrorFallback';
 export default memo(MainErrorFallback);
 
 /* -- styled components -- */
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;

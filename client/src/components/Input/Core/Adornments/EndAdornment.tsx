@@ -1,28 +1,34 @@
-import { memo, type FC, type ReactNode, type HTMLAttributes } from 'react';
+import { memo, type JSX, type ReactNode, type HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
-export type EndAdornmentProps = {
+/**
+ * Props for rendering an end adornment with an optional separator.
+ */
+export type EndAdornmentProps = HTMLAttributes<HTMLDivElement> & {
   /** Content to render before the separator */
   children?: ReactNode;
-} & HTMLAttributes<HTMLDivElement>;
+};
 
-/** Renders an end adornment with a vertical separator */
-export const EndAdornment: FC<EndAdornmentProps> = memo(
-  ({ children, ...rest }: EndAdornmentProps) => {
-    if (!children) return null;
+/**
+ * Renders an end adornment with a vertical separator.
+ */
+function EndAdornment({
+  children,
+  ...rest
+}: EndAdornmentProps): JSX.Element | null {
+  if (!children) return null;
 
-    return (
-      <>
-        <Content {...rest}>{children}</Content>
-        <Separator aria-hidden="true" />
-      </>
-    );
-  },
-);
+  return (
+    <>
+      <Content {...rest}>{children}</Content>
+      <Separator aria-hidden="true" />
+    </>
+  );
+}
 
 EndAdornment.displayName = 'EndAdornment';
-export default EndAdornment;
+export default memo(EndAdornment);
 
 const Content = styled.div`
   color: var(--input-adornment);

@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import TooltipBase, { type TooltipBaseProps } from './TooltipBase';
 import TooltipAsterix from './Tooltips/TooltipAsterix';
@@ -6,10 +6,16 @@ import TooltipQuestionMark from './Tooltips/TooltipQuestionMark';
 
 export type TooltipProps = TooltipBaseProps;
 
-export const Tooltip: FC<TooltipProps> & {
+type TooltipComponent = {
+  (props: TooltipProps): JSX.Element;
   Asterix: typeof TooltipAsterix;
   QuestionMark: typeof TooltipQuestionMark;
-} = (props) => <TooltipBase {...props} />;
+  displayName?: string;
+};
+
+const Tooltip: TooltipComponent = function Tooltip(props) {
+  return <TooltipBase {...props} />;
+} as TooltipComponent;
 
 Tooltip.Asterix = TooltipAsterix;
 Tooltip.QuestionMark = TooltipQuestionMark;

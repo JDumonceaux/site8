@@ -1,4 +1,5 @@
-import { type FC, type LabelHTMLAttributes, isValidElement } from 'react';
+import type { JSX, LabelHTMLAttributes } from 'react';
+import { isValidElement } from 'react';
 
 import styled from 'styled-components';
 
@@ -42,7 +43,7 @@ const renderHelper = (msg?: React.ReactNode | string | string[]) => {
 /**
  * Displays contextual help or error text, with an optional character counter.
  */
-export const TextHelp: FC<TextHelpProps> = ({
+function TextHelp({
   characterCount = 0,
   errorText,
   hasError = true,
@@ -50,7 +51,7 @@ export const TextHelp: FC<TextHelpProps> = ({
   maxLength = 0,
   showCounter = false,
   ...rest
-}) => {
+}: TextHelpProps): JSX.Element | null {
   const content = hasError ? helpText : errorText;
 
   return (
@@ -63,7 +64,7 @@ export const TextHelp: FC<TextHelpProps> = ({
       ) : null}
     </Wrapper>
   );
-};
+}
 
 TextHelp.displayName = 'TextHelp';
 export default TextHelp;

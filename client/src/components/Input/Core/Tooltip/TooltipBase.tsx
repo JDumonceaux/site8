@@ -1,52 +1,62 @@
-import { memo, type FC } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
 
+/**
+ * Props for the styled tooltip wrapper using Radix UI.
+ */
 export type TooltipBaseProps = {
   /** Tooltip arrow props */
   arrowProps?: TooltipRadix.TooltipArrowProps;
   /** Content to display inside the tooltip */
-  content?: React.ReactNode;
+  content?: ReactNode;
   /** Props for the Tooltip.Root */
   tooltipProps?: TooltipRadix.TooltipProps;
+  /** Delay before showing tooltip (ms), defaults to 0 */
+  delayDuration?: number;
   /** Element that triggers the tooltip */
-  trigger?: React.ReactNode;
+  trigger?: ReactNode;
   /** Color for the trigger element */
   triggerColor?: string;
   /** Props for the Tooltip.Trigger */
   triggerProps?: TooltipRadix.TooltipTriggerProps;
+  /** Disable hoverable content in provider */
+  disableHoverableContent?: boolean;
 };
 
 /**
  * A styled tooltip wrapper using Radix UI.
  */
-const TooltipBase: FC<TooltipBaseProps> = memo(
-  ({
-    arrowProps,
-    content,
-    tooltipProps,
-    trigger,
-    triggerColor,
-    triggerProps,
-  }: TooltipBaseProps) => {
-    if (!content) return null;
+function TooltipBase({
+  arrowProps,
+  content,
+  tooltipProps,
+  delayDuration = tooltipProps?.delayDuration ?? 0,
+  trigger,
+  triggerColor,
+  triggerProps,
+  disableHoverableContent = false,
+}: TooltipBaseProps): JSX.Element | null {
+  // Don’t render if no content or no trigger provided
+  if (!content || !trigger) return null;
 
-    return (
-      <TooltipRadix.Provider>
-        <TooltipRadix.Root {...tooltipProps} delayDuration={0}>
-          <StyledTrigger $color={triggerColor} {...triggerProps}>
-            {trigger}
-          </StyledTrigger>
+  return (
+    <TooltipRadix.Provider disableHoverableContent={disableHoverableContent}>
+      <TooltipRadix.Root {...tooltipProps} delayDuration={delayDuration}>
+        <StyledTrigger $color={triggerColor} {...triggerProps}>
+          {trigger}
+        </StyledTrigger>
+        <TooltipRadix.Portal>
           <StyledContent>
             <StyledArrow {...arrowProps} />
             {content}
           </StyledContent>
-        </TooltipRadix.Root>
-      </TooltipRadix.Provider>
-    );
-  },
-);
+        </TooltipRadix.Portal>
+      </TooltipRadix.Root>
+    </TooltipRadix.Provider>
+  );
+}
 
 TooltipBase.displayName = 'TooltipBase';
 export default TooltipBase;
@@ -68,31 +78,27 @@ const scaleIn = keyframes`
   to   { opacity: 1; transform: scale(1); }
 `;
 
+// Animations for content appearing
 const slideUp = keyframes`
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 `;
-
 const slideDown = keyframes`
   from { opacity: 0; transform: translateY(-10px); }
   to   { opacity: 1; transform: translateY(0); }
 `;
-
 const slideLeftAndFade = keyframes`
   from { opacity: 0; transform: translateX(2px); }
   to   { opacity: 1; transform: translateX(0); }
 `;
-
 const slideRightAndFade = keyframes`
   from { opacity: 0; transform: translateX(-2px); }
   to   { opacity: 1; transform: translateX(0); }
 `;
-
 const slideUpAndFade = keyframes`
   from { opacity: 0; transform: translateY(2px); }
   to   { opacity: 1; transform: translateY(0); }
 `;
-
 const slideDownAndFade = keyframes`
   from { opacity: 0; transform: translateY(-2px); }
   to   { opacity: 1; transform: translateY(0); }

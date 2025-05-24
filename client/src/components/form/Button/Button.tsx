@@ -1,38 +1,49 @@
-import {
-  memo,
-  type FC,
-  type ReactNode,
-  type ButtonHTMLAttributes,
-} from 'react';
-
+import { memo } from 'react';
+import type { JSX, ReactNode, ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-type Variant = 'primary' | 'secondary';
+/**
+ * Style variants for the Button component.
+ */
+export type Variant = 'primary' | 'secondary';
 
+/**
+ * Props for a full-width, accessible button.
+ */
 export type ButtonProps = {
   /** Button content */
   children: ReactNode;
-  /** Unique identifier and name */
+  /** Unique identifier applied to both `id` and `name` attributes */
   id: string;
-  /** Visual style variant */
+  /** Visual style variant; defaults to `primary` */
   variant?: Variant;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name' | 'type'>;
 
 /**
- * A full-width, accessible button.
+ * A full-width, accessible icon button with neumorphic styling.
+ *
+ * Uses a named function with explicit return type (`JSX.Element`) to
+ * avoid the implicit `children` prop and extra overhead of `FC<>`.
  */
-export const Button: FC<ButtonProps> = memo(
-  ({ children, id, variant = 'primary', ...rest }: ButtonProps) => (
-    <StyledButton id={id} name={id} type="button" variant={variant} {...rest}>
+function Button({
+  children,
+  id,
+  variant = 'primary',
+  ...rest
+}: ButtonProps): JSX.Element {
+  return (
+    <StyledButton id={id} name={id} type="button" $variant={variant} {...rest}>
       {children}
     </StyledButton>
-  ),
-);
+  );
+}
 
-Button.displayName = 'Button';
-export default Button;
+const MemoButton = memo(Button);
+MemoButton.displayName = 'Button';
+export default MemoButton;
 
-const StyledButton = styled.button<{ variant: Variant }>`
+/* -- styled components -- */
+const StyledButton = styled.button<{ $variant: Variant }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -48,14 +59,15 @@ const StyledButton = styled.button<{ variant: Variant }>`
     0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14),
     0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  color: ${({ variant }) => (variant === 'primary' ? '#fff' : '#000')};
-  background-color: ${({ variant }) =>
-    variant === 'primary' ? '#6db144' : '#fff'};
-  border: ${({ variant }) =>
-    variant === 'primary' ? 'none' : '1px solid #6db144'};
+  color: ${({ $variant }) => ($variant === 'primary' ? '#fff' : '#000')};
+  background-color: ${({ $variant }) =>
+    $variant === 'primary' ? '#6db144' : '#fff'};
+  border: ${({ $variant }) =>
+    $variant === 'primary' ? 'none' : '1px solid #6db144'};
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background-color: #24671f;
+    outline: none;
   }
 `;

@@ -1,4 +1,4 @@
-import { type FC, memo, type ReactNode, type HTMLAttributes } from 'react';
+import { type JSX, type ReactNode, type HTMLAttributes, memo } from 'react';
 
 import styled from 'styled-components';
 
@@ -11,6 +11,9 @@ import StartAdornment, {
 import FooterRow, { type FooterRowProps } from '../FooterRow/FooterRow';
 import LabelRow, { type LabelRowProps } from '../LabelRow/LabelRow';
 
+/**
+ * Props for wrapping a form field with optional label, adornments, and footer.
+ */
 export type FieldWrapperProps = HTMLAttributes<HTMLDivElement> & {
   /** Trailing adornment element */
   endAdornment?: ReactNode;
@@ -31,42 +34,40 @@ export type FieldWrapperProps = HTMLAttributes<HTMLDivElement> & {
 /**
  * Wraps a form field with optional label, adornments, and footer.
  */
-const FieldWrapper: FC<FieldWrapperProps> = memo(
-  ({
-    children,
-    endAdornment,
-    endAdornmentProps,
-    id,
-    labelProps = {},
-    required = false,
-    startAdornment,
-    startAdornmentProps,
-    ...footerProps
-  }: FieldWrapperProps) => {
-    const { ...filteredLabelProps } = labelProps;
+function FieldWrapper({
+  children,
+  endAdornment,
+  endAdornmentProps,
+  id,
+  labelProps = {},
+  required = false,
+  startAdornment,
+  startAdornmentProps,
+  ...footerProps
+}: FieldWrapperProps): JSX.Element {
+  const { ...filteredLabelProps } = labelProps;
 
-    return (
-      <Container id={id}>
-        <LabelRow {...filteredLabelProps} required={required} />
-        <InputRow>
-          {startAdornment ? (
-            <StartAdornment {...startAdornmentProps}>
-              {startAdornment}
-            </StartAdornment>
-          ) : null}
-          {children}
-          {endAdornment ? (
-            <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
-          ) : null}
-        </InputRow>
-        <FooterRow {...footerProps} />
-      </Container>
-    );
-  },
-);
+  return (
+    <Container id={id}>
+      <LabelRow {...filteredLabelProps} required={required} />
+      <InputRow>
+        {startAdornment && (
+          <StartAdornment {...startAdornmentProps}>
+            {startAdornment}
+          </StartAdornment>
+        )}
+        {children}
+        {endAdornment && (
+          <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
+        )}
+      </InputRow>
+      <FooterRow {...footerProps} />
+    </Container>
+  );
+}
 
 FieldWrapper.displayName = 'FieldWrapper';
-export default FieldWrapper;
+export default memo(FieldWrapper);
 
 const Container = styled.div`
   display: flex;

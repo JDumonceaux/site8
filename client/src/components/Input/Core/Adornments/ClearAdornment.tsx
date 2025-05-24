@@ -1,4 +1,4 @@
-import type { FC, HTMLAttributes, MouseEventHandler } from 'react';
+import type { JSX, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon } from '@radix-ui/react-icons';
@@ -7,23 +7,26 @@ import styled from 'styled-components';
 
 import Tooltip from '../Tooltip/TooltipBase';
 
-export type ClearAdornmentProps = HTMLAttributes<HTMLDivElement> & {
+/**
+ * Props for the clear/close adornment with tooltip.
+ */
+type ClearAdornmentProps = {
   /** Tooltip text for screen readers */
   ariaLabel?: string;
   /** Custom icon element */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /** Props forwarded to the default icon */
   iconProps?: IconProps;
   /** Tooltip content */
   label?: string;
   /** Click handler */
   onClick: MouseEventHandler<HTMLButtonElement>;
-};
+} & HTMLAttributes<HTMLButtonElement>;
 
 /**
  * A clickable clear/close adornment with tooltip.
  */
-export const ClearAdornment: FC<ClearAdornmentProps> = ({
+function ClearAdornment({
   ariaLabel = 'clear contents',
   className,
   icon,
@@ -32,23 +35,25 @@ export const ClearAdornment: FC<ClearAdornmentProps> = ({
   onClick,
   style,
   ...rest
-}) => (
-  <Tooltip
-    aria-label={ariaLabel}
-    content={label}
-    trigger={
-      <TriggerButton
-        className={className}
-        onClick={onClick}
-        style={style}
-        {...rest}>
-        <AccessibleIcon label={label}>
-          {icon ?? <Cross1Icon {...iconProps} />}
-        </AccessibleIcon>
-      </TriggerButton>
-    }
-  />
-);
+}: ClearAdornmentProps): JSX.Element {
+  return (
+    <Tooltip
+      aria-label={ariaLabel}
+      content={label}
+      trigger={
+        <TriggerButton
+          className={className}
+          onClick={onClick}
+          style={style}
+          {...rest}>
+          <AccessibleIcon label={label}>
+            {icon ?? <Cross1Icon {...iconProps} />}
+          </AccessibleIcon>
+        </TriggerButton>
+      }
+    />
+  );
+}
 
 ClearAdornment.displayName = 'ClearAdornment';
 export default ClearAdornment;

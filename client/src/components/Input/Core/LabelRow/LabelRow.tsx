@@ -1,4 +1,4 @@
-import type { FC, LabelHTMLAttributes, Ref } from 'react';
+import type { JSX, LabelHTMLAttributes, Ref } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
@@ -31,8 +31,10 @@ export type LabelRowProps = Omit<
   tooltipProps?: TooltipProps;
 };
 
-/** Renders a form field label row with optional description and adornments */
-export const LabelRow: FC<LabelRowProps> = ({
+/**
+ * Renders a form field label row with optional description and adornments
+ */
+function LabelRow({
   description,
   endAdornment,
   id,
@@ -42,7 +44,7 @@ export const LabelRow: FC<LabelRowProps> = ({
   requiredText,
   tooltipProps,
   ...rest
-}) => {
+}: LabelRowProps): JSX.Element {
   return (
     <Label.Root htmlFor={id} ref={ref} {...rest}>
       <Row>
@@ -64,7 +66,7 @@ export const LabelRow: FC<LabelRowProps> = ({
       </Row>
     </Label.Root>
   );
-};
+}
 
 LabelRow.displayName = 'LabelRow';
 export default LabelRow;
