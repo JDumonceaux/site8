@@ -20,7 +20,9 @@ Using React 19 and Typescript 5.8.3 (Baseline 2023):
 - Do not add a line between displayName and export
 - Use type for props
 - Do not use forwardRef
+
 - Return (): JSX.Element | null vs. FC
+- Add type JSX to import from react if needed.
 
 
 - Write tests
