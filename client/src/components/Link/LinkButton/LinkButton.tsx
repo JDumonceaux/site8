@@ -17,7 +17,6 @@ export const LinkButton: FC<LinkButtonProps> = ({
   to,
   ...rest
 }: LinkButtonProps) => (
-  // eslint-disable-next-line jsx-a11y/prefer-tag-over-role
   <StyledLink role="button" to={to} {...rest}>
     {children}
   </StyledLink>

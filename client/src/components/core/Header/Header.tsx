@@ -124,6 +124,7 @@ const LogoLink = styled(StyledLink)`
   &:hover,
   &:focus-visible {
     text-decoration: underline;
+    text-underline-position: under;
   }
 `;
 

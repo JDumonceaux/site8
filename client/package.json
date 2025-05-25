@@ -7,7 +7,6 @@
     "build": "npm run type-check && vite build",
     "build:analyze": "cross-env NODE_ENV=production npm run build",
     "build:prod": "cross-env NODE_ENV=production npm run build",
-    "build-storybook": "storybook build",
     "dev": "vite",
     "fix": "npm run lint && npm run prettier",
     "knip": "knip --files --exports",
@@ -20,9 +19,10 @@
     "preview": "vite preview",
     "serve": "vite preview",
     "start": "vite",
-    "storybook": "storybook dev -p 6006",
     "test": "jest",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.11.2",
@@ -70,11 +70,10 @@
     "@eslint/js": "^9.27.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/addon-interactions": "^8.6.14",
-    "@storybook/addon-links": "^8.6.14",
     "@storybook/addon-onboarding": "^8.6.14",
     "@storybook/blocks": "^8.6.14",
     "@storybook/builder-vite": "^8.6.14",
+    "@storybook/experimental-addon-test": "^8.6.14",
     "@storybook/react": "^8.6.14",
     "@storybook/react-vite": "^8.6.14",
     "@storybook/test": "^8.6.14",
@@ -92,6 +91,8 @@
     "@types/react-window": "^1.8.8",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
+    "@vitest/browser": "^3.1.4",
+    "@vitest/coverage-v8": "^3.1.4",
     "babel-jest": "^29.7.0",
     "cross-env": "^7.0.3",
     "eslint": "^9.27.0",
@@ -116,6 +117,7 @@
     "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^29.7.0",
     "knip": "^5.58.0",
+    "playwright": "^1.52.0",
     "prettier": "^3.5.3",
     "pretty-quick": "^4.1.1",
     "rollup-plugin-analyzer": "^4.0.0",
@@ -126,7 +128,29 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1",
     "vite": "^6.3.5",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.4"
+  },
+  "overrides": {
+    "react-scan": {
+      "esbuild": "0.25.1"
+    },
+    "react-ts": {
+      "storybook": "$storybook"
+    },
+    "@xstate/react@3.2.2": {
+      "react": "$react"
+    },
+    "@typescript-eslint/typescript-estree@8.19.1": {
+      "typescript": "$typescript"
+    },
+    "@typescript-eslint/utils@8.19.1": {
+      "typescript": "$typescript"
+    },
+    "react-confetti@6.1.0": {
+      "react": "$react"
+    },
+    "esbuild": "0.25.1"
   },
   "engines": {
     "node": ">=18",

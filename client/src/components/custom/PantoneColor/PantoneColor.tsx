@@ -45,6 +45,7 @@ const Text = styled.p`
 const Link = styled.a`
   color: var(--palette-main-color);
   text-decoration: underline;
+  text-underline-position: under;
   &:hover,
   &:focus {
     opacity: 0.8;

@@ -34,5 +34,6 @@ const StyledButton = styled.button`
 
   &:hover {
     text-decoration: underline;
+    text-underline-position: under;
   }
 `;
