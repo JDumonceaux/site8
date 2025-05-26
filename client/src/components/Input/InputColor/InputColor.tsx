@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
@@ -20,10 +20,12 @@ export type InputColorProps = Omit<
 // Remove: 'autocapitalize', 'height', 'multiple', 'pattern','readonly', 'src',  'step', 'width'
 // Valid: 'value'
 
-export const InputColor: FC<InputColorProps> = ({
+const InputColor = ({
   type = 'color',
   ...rest
-}) => <InputBase type={type} {...rest} />;
+}: InputColorProps): JSX.Element => {
+  return <InputBase type={type} {...rest} />;
+};
 
 InputColor.displayName = 'InputColor';
 export default InputColor;

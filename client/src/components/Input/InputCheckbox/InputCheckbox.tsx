@@ -1,4 +1,4 @@
-import type { FC, ChangeEvent } from 'react';
+import type { JSX, ChangeEvent } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,6 +10,7 @@ export type InputCheckboxProps = Omit<
 > & {
   /** Field identifier */
   fieldName: string;
+  /** Label text for the checkbox */
   label: string;
   /** Row identifier */
   lineId: string;
@@ -23,10 +24,7 @@ export type InputCheckboxProps = Omit<
   type?: 'checkbox';
 };
 
-/**
- * Renders a checkbox input with a label.
- */
-export const InputCheckbox: FC<InputCheckboxProps> = ({
+const InputCheckbox = ({
   fieldName,
   id,
   label,
@@ -34,7 +32,7 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
   onChange,
   type = 'checkbox',
   ...rest
-}: InputCheckboxProps) => {
+}: InputCheckboxProps): JSX.Element => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(lineId, fieldName, e);
   };

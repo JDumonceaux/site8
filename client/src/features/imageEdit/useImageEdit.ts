@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  type ChangeEvent,
+} from 'react';
 
 import { ServiceUrl } from 'lib/utils/constants';
 import { getSRC } from 'lib/utils/helpers';
@@ -10,33 +16,28 @@ import useImage from './useImage';
 import { useAxios } from '../../hooks/Axios/useAxios';
 import useForm from '../../hooks/useForm';
 
-const useImageEdit = (id: null | string) => {
-  // Use Axios to fetch data
+/**
+ * Hook for editing an Image entity, handling form state, validation, and persistence.
+ */
+export const useImageEdit = (rawId: string | null) => {
   const { patchData, putData } = useAxios<Image>();
+  const { data: imageData } = useImage(rawId);
 
-  const { data } = useImage(id);
+  // Parse ID or action keyword
+  const { currentId, currentAction } = useMemo(() => {
+    let idNum = 0;
+    let action: string | null = null;
+    if (rawId) {
+      const parsed = Number(rawId);
+      if (!Number.isNaN(parsed) && parsed > 0) idNum = parsed;
+      else if (['first', 'last', 'next', 'prev'].includes(rawId))
+        action = rawId;
+    }
+    return { currentId: idNum, currentAction: action };
+  }, [rawId]);
 
-  const getDefaultProps = (fieldName: FormKeys) => ({
-    'data-id': fieldName,
-    'data-line': 0,
-    onChange: (
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-      setFieldValue(fieldName, e.target.value);
-    },
-    value: getFieldValue(fieldName),
-  });
-
-  // Current Item
-  const [currentId, setCurrentId] = useState<number>(0);
-  // Current Action
-  const [currentAction, setCurrentAction] = useState<null | string>();
-  // Does the data need to be saved?
-  const [isSaved, setIsSaved] = useState<boolean>(true);
-  // Is the form saving?
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  // Return default form values
-  const defaultFormType: FormType = useMemo(
+  // Form defaults
+  const defaultForm: FormType = useMemo(
     () => ({
       description: '',
       fileName: '',
@@ -49,144 +50,109 @@ const useImageEdit = (id: null | string) => {
     }),
     [],
   );
-  // Create a form
-  const {
-    formValues,
-    getFieldValue,
-    handleChange,
-    setErrors,
-    setFieldValue,
-    setFormValues,
-  } = useForm<FormType>(defaultFormType);
 
-  // Keep a copy of the form values to reset
-  const [originalValues, setOriginalValues] = useState<Image | null>();
+  const { formValues, getFieldValue, setFieldValue, setFormValues, setErrors } =
+    useForm<FormType>(defaultForm);
 
-  // Update the form values from the data
-  const updateFormType = useCallback(
-    (items: Image | null | undefined) => {
-      if (items) {
-        const item: FormType = {
-          fileName: '',
-          // description: items.description ?? '',
-          // fileName: items.fileName,
-          folder: items.folder ?? '',
-          id: items.id,
-          location: items.location ?? '',
-          // name: items.name ?? '',
-          official_url: items.official_url ?? '',
-          src: getSRC(items.folder, items.fileName),
-          // tags: items.tags?.toString() ?? '',
-        };
-        setFormValues(item);
-      }
+  // Keep original for reset
+  const [originalValues, setOriginalValues] = useState<Image | null>(null);
+
+  // Initialize or update form when data arrives
+  const updateForm = useCallback(
+    (item: Image | null | undefined) => {
+      if (!item) return;
+      const formData: FormType = {
+        ...defaultForm,
+        id: item.id,
+        fileName: item.fileName ?? '',
+        folder: item.folder ?? '',
+        location: item.location ?? '',
+        official_url: item.official_url ?? '',
+        src: getSRC(item.folder, item.fileName),
+      };
+      setFormValues(formData);
+      setOriginalValues(item);
     },
-    [setFormValues],
+    [defaultForm, setFormValues],
   );
 
-  // Get the data if the params change
   useEffect(() => {
-    if (id) {
-      const temporaryId = Number.parseInt(id, 10);
-      if (!Number.isNaN(temporaryId) && temporaryId > 0) {
-        setCurrentId(temporaryId);
-      }
-      if (['first', 'last', 'next', 'prev'].includes(id)) {
-        setCurrentAction(id);
-      }
-    }
-  }, [id]);
+    updateForm(imageData);
+  }, [imageData, updateForm]);
 
-  // Fetch data when currentAction changes
-  useEffect(() => {
-    if (currentAction) {
-      // fetchData(`${ServiceUrl.ENDPOINT_IMAGE}/${currentId}/${currentAction}`);
-    }
-  }, [currentAction, currentId]);
+  // Form helpers
+  const getDefaultProps = useCallback(
+    (field: FormKeys) => ({
+      'data-id': field,
+      'data-line': 0,
+      value: getFieldValue(field),
+      onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFieldValue(field, e.target.value);
+      },
+    }),
+    [getFieldValue, setFieldValue],
+  );
 
-  // Update the form values when the data changes
-  useEffect(() => {
-    updateFormType(data);
-    setOriginalValues(data);
-  }, [data, updateFormType]);
-
-  // Validate  form
   const validateForm = useCallback(() => {
     const result = safeParse<FormType>(pageSchema, formValues);
-    //setErrors(result.error?.issues);
+    setErrors(result.success ? null : result.error?.issues);
     return result.success;
   }, [formValues, setErrors]);
 
-  // Handle clear form
-  const handleClear = () => {
-    setFormValues(defaultFormType);
-    setIsSaved(true);
-    setIsProcessing(false);
-    setErrors(null);
-  };
+  // Save state
+  const [isSaved, setIsSaved] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  // Handle form reset
-  const handleReset = () => {
-    updateFormType(originalValues);
-    setIsSaved(true);
-    setIsProcessing(false);
-    setErrors(null);
-  };
-
-  // Handle save
-  const saveItem = useCallback(
-    async (items: FormType) => {
-      // RETHINK THIS
-      const updatedItem: Image = {
-        ...items,
-        // tags: items.tags?.split(',') ?? [],
-      };
-
-      await (updatedItem.id > 0
-        ? patchData(
-            `${ServiceUrl.ENDPOINT_IMAGE}/${updatedItem.id}`,
-            updatedItem,
-          )
-        : putData(ServiceUrl.ENDPOINT_IMAGE, updatedItem));
-      return true;
-    },
-    [patchData, putData],
-  );
-
-  // Handle form submission
-  const submitForm = async (): Promise<boolean> => {
+  const saveItem = useCallback(async () => {
+    if (!validateForm()) return false;
     setIsProcessing(true);
-    if (validateForm()) {
-      await saveItem(formValues);
-      setIsProcessing(false);
+
+    const payload: Image = {
+      ...formValues,
+      // map tags string to array if needed
+    } as any;
+
+    try {
+      if (payload.id > 0) {
+        await patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`, payload);
+      } else {
+        await putData(ServiceUrl.ENDPOINT_IMAGE, payload);
+      }
       setIsSaved(true);
       return true;
+    } finally {
+      setIsProcessing(false);
     }
-    return false;
-  };
+  }, [formValues, patchData, putData, validateForm]);
 
-  const handleChangeImage = (item: Image | null | undefined) => {
-    setFormValues((previous) => ({
-      ...previous,
-      fileName: item?.fileName ?? '',
-      folder: item?.folder ?? '',
-    }));
+  const resetForm = useCallback(() => {
+    if (originalValues) updateForm(originalValues);
+    setIsSaved(true);
+    setIsProcessing(false);
+    setErrors(null);
+  }, [originalValues, updateForm, setErrors]);
 
-    setIsSaved(false);
-  };
+  const clearForm = useCallback(() => {
+    setFormValues(defaultForm);
+    setIsSaved(true);
+    setIsProcessing(false);
+    setErrors(null);
+  }, [defaultForm, setFormValues, setErrors]);
+
+  // Update unsaved flag when values change
+  useEffect(() => {
+    setIsSaved(JSON.stringify(formValues) === JSON.stringify(originalValues));
+  }, [formValues, originalValues]);
 
   return {
     formValues,
     getDefaultProps,
-    getFieldValue,
-    handleChange,
-    handleChangeImage,
-    handleClear,
-    handleReset,
+    validateForm,
+    saveItem,
+    resetForm,
+    clearForm,
     isProcessing,
     isSaved,
-    setFieldValue,
-    submitForm,
   };
 };
 
