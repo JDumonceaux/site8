@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import MainErrorFallback from 'components/errors/MainErrorFallback';
+import MainErrorFallback from 'components/core/MainErrorFallback';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import ReduxProvider from './ReduxProvider';

@@ -1,9 +1,16 @@
-export type Video = {
-  id: number;
-  /** Accessible title for the iframe (defaults to `title`) */
-  iframeTitle?: string;
-  /** Displayed heading above the video */
-  title: string;
-  /** Source URL for the embedded video */
-  videoSrc: string;
-};
+import { z } from 'zod';
+
+export const VideoSchema = z
+  .object({
+    id: z.number(),
+    /** Accessible title for the iframe (defaults to `title`) */
+    iframeTitle: z.string().optional(),
+    /** Displayed heading above the video */
+    title: z.string(),
+    /** Source URL for the embedded video */
+    videoSrc: z.string().url(),
+  })
+  .strict()
+  .readonly();
+
+export type Video = z.infer<typeof VideoSchema>;

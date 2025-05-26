@@ -1,9 +1,18 @@
-import type { Metadata } from './Metadata';
-import type { Photo } from './Photo';
-import type { PhotoSet } from './PhotoSet';
+import { z } from 'zod';
+import { MetadataSchema } from './Metadata';
+import { PhotoSchema } from './Photo';
+import { PhotoSetSchema } from './PhotoSet';
 
-export type Photos = {
-  readonly items: Photo[];
-  readonly metadata: Metadata;
-  readonly sets: PhotoSet[];
-};
+export const PhotosSchema = z
+  .object({
+    /** Array of Photo objects */
+    items: z.array(PhotoSchema),
+    /** Metadata object */
+    metadata: MetadataSchema,
+    /** Array of PhotoSet objects */
+    sets: z.array(PhotoSetSchema),
+  })
+  .strict()
+  .readonly();
+
+export type Photos = z.infer<typeof PhotosSchema>;
