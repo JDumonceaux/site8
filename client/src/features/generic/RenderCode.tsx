@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import IconButton from 'components/form/IconButton/IconButton';
+import IconButton from 'components/core/Button/IconButton/IconButton';
 import { CopyIcon } from 'components/icons/CopyIcon';
 import styled from 'styled-components';
 
@@ -18,14 +18,12 @@ const copyToClipboard = async (text: string) => {
       permissionStatus.state === 'prompt'
     ) {
       await navigator.clipboard.writeText(text);
-      // eslint-disable-next-line no-alert
+
       alert('Copied.');
     } else {
-      // eslint-disable-next-line no-alert
       alert('Copy to clipboard is not supported.');
     }
   } catch {
-    // eslint-disable-next-line no-alert
     alert('Failed to copy.');
   }
 };

@@ -1,7 +1,15 @@
-import type { Metadata } from './Metadata';
-import type { Test } from './Test';
+import { z } from 'zod';
+import { MetadataSchema } from './Metadata';
+import { TestSchema } from './Test';
 
-export type Tests = {
-  readonly items?: Test[];
-  readonly metadata: Metadata;
-};
+export const TestsSchema = z
+  .object({
+    /** Optional array of Test items */
+    items: z.array(TestSchema).optional(),
+    /** Metadata object */
+    metadata: MetadataSchema,
+  })
+  .strict()
+  .readonly();
+
+export type Tests = z.infer<typeof TestsSchema>;
