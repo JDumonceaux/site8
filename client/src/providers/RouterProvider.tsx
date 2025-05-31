@@ -9,6 +9,9 @@ import {
 
 import ProtectedRoute from './ProtectedRoute';
 import ErrorPage from '../features/site/ErrorPage';
+import { pageLoader } from '../features/pageEdit/pagePrefetch';
+import { QueryClient } from '@tanstack/react-query';
+const queryClient = new QueryClient();
 
 // ---------------------
 // Layouts
@@ -48,7 +51,6 @@ const ImagesEditPage = lazy(
 const ItemsAddPage = lazy(
   async () => import('../features/itemsAdd/ItemsAddPage'),
 );
-
 const Home = lazy(async () => import('../features/home/HomePage'));
 const NotFound = lazy(async () => import('../features/site/NotFoundPage'));
 const PageEditPage = lazy(
@@ -161,7 +163,11 @@ const router = createBrowserRouter(
         <Route element={<GenericLayout />} path="admin">
           <Route element={<PagesEditPage />} path="pages" />
           <Route element={<PageEditPage />} path="page/edit" />
-          <Route element={<PageEditPage />} path="page/edit/:id" />
+          <Route
+            element={<PageEditPage />}
+            path="page/edit/:id"
+            loader={pageLoader(queryClient)}
+          />
           <Route element={<ImageEditPage />} path="image/edit" />
           <Route element={<ImageEditPage />} path="image/edit/:id" />
           <Route element={<ImagesEditPage />} path="images" />

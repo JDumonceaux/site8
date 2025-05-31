@@ -24,6 +24,7 @@ export enum QueryTime {
   RETRY = 3,
   RETRY_DELAY = ONE_SECOND,
   STALE_TIME = FIVE_MINUTES,
+  STALE_TIME_PREFETCH = 1000 * 60, // 1 minutes
 }
 
 /* -------------------------------------------------------------------------- */

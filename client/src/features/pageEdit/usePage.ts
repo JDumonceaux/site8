@@ -1,19 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
-import { handleQueryError } from 'lib/utils/errorHandler';
+import { USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { Page } from 'types';
-
-// Helper function to fetch a generic page by id
-const fetchPageById = async (
-  id: string,
-  signal?: AbortSignal,
-): Promise<Page> => {
-  const res = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`, { signal });
-  if (!res.ok) {
-    handleQueryError(res);
-  }
-  return res.json();
-};
+import { fetchPageById } from './api';
 
 const usePage = (id: string) => {
   const query = useQuery<Page>({

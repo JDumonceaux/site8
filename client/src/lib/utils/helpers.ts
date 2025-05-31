@@ -89,3 +89,12 @@ export const sanitizeUrl = (url: string): string => {
 
   return `unsafe:${temp}`;
 };
+
+// validation.ts
+export function assertIdParam(params: Record<string, unknown>): string {
+  const { id } = params;
+  if (typeof id !== 'string' || id.trim() === '') {
+    throw new Error('Page ID is required for prefetching');
+  }
+  return id;
+}
