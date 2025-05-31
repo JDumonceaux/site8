@@ -1,4 +1,4 @@
-import type { FC, HTMLAttributes } from 'react';
+import type { JSX, HTMLAttributes } from 'react';
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import styled from 'styled-components';
@@ -13,10 +13,7 @@ export type InputCounterProps = HTMLAttributes<HTMLDivElement> & {
   readonly showCounter?: boolean;
 };
 
-/**
- * Displays a character count with assistive text.
- */
-export const InputCounter: FC<InputCounterProps> = ({
+const InputCounter = ({
   align = 'right',
   assistiveLabel = 'Character count',
   characterCount = 0,
@@ -24,7 +21,7 @@ export const InputCounter: FC<InputCounterProps> = ({
   maxLength = 0,
   showCounter = false,
   ...rest
-}) => {
+}: InputCounterProps): JSX.Element | null => {
   if (!showCounter) return null;
 
   return (

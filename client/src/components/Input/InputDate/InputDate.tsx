@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
@@ -19,9 +19,9 @@ export type InputDateProps = Omit<
 };
 
 /** Date/time input wrapper */
-export const InputDate: FC<InputDateProps> = ({ type = 'date', ...rest }) => (
-  <InputBase type={type} {...rest} />
-);
+const InputDate = ({ type = 'date', ...rest }: InputDateProps): JSX.Element => {
+  return <InputBase type={type} {...rest} />;
+};
 
 InputDate.displayName = 'InputDate';
 export default InputDate;
