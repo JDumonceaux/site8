@@ -1,4 +1,4 @@
-import { , useRef, type FC, type SelectHTMLAttributes } from 'react';
+import {  useRef, type FC, type SelectHTMLAttributes } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
