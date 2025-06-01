@@ -1,10 +1,10 @@
-import { memo, type FC } from 'react';
+import { , type FC } from 'react';
 
 import styled from 'styled-components';
 import type { Video } from 'types/Video';
 
 /** Responsive video embed with title */
-export const VideoEmbed: FC<Video> = memo(
+export const VideoEmbed: FC<Video> = (
   ({ iframeTitle, title, videoSrc }: Video) => (
     <Section>
       <Heading>{title}</Heading>

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 export type UseDialogReturn = {
   /** close the dialog */
@@ -19,17 +19,17 @@ export type UseDialogReturn = {
 export const useDialog = (initialOpen = false): UseDialogReturn => {
   const [isOpen, setIsOpen] = useState<boolean>(initialOpen);
 
-  const open = useCallback(() => {
+  const open = () => {
     setIsOpen(true);
-  }, []);
+  };
 
-  const close = useCallback(() => {
+  const close = () => {
     setIsOpen(false);
-  }, []);
+  };
 
-  const toggle = useCallback(() => {
+  const toggle = () => {
     setIsOpen((prev) => !prev);
-  }, []);
+  };
 
   return { close, isOpen, open, toggle };
 };

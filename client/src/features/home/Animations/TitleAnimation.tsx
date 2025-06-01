@@ -1,10 +1,10 @@
-import { memo } from 'react';
+import {} from 'react';
 
 import { keyframes, styled } from 'styled-components';
 
-const TitleAnimation = memo((): React.JSX.Element => {
+const TitleAnimation = (): JSX.Element => {
   return <TitleElement>React Notes</TitleElement>;
-});
+};
 
 TitleAnimation.displayName = 'TitleAnimation';
 

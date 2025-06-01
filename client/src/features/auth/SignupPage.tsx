@@ -1,8 +1,5 @@
-import { useCallback, useId, useMemo } from 'react';
-
-import { Divider } from '@aws-amplify/ui-react';
+import { useId } from 'react';
 import Meta from 'components/core/Meta/Meta';
-import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import useAuth, { SocialProvider } from 'features/auth/useAuth';
@@ -11,56 +8,44 @@ import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
-
 import AuthContainer from './AuthContainer';
 
-// Define Zod Shape
 const schema = z.object({
-  // eslint-disable-next-line object-shorthand
   emailAddress: emailAddress,
-  // eslint-disable-next-line object-shorthand
   password: password,
 });
 
-const SignupPage = (): React.JSX.Element => {
+const SignupPage = (): JSX.Element => {
   const title = 'Sign-Up';
   const compId = useId();
-
   type FormValues = z.infer<typeof schema>;
   type FormKeys = keyof FormValues;
 
   const { authSignInWithRedirect, authSignUp, error, isLoading } = useAuth();
 
-  const defaultFormValues: FormValues = useMemo(
-    () => ({
-      emailAddress: '',
-      password: '',
-    }),
-    [],
-  );
+  const defaultFormValues: FormValues = {
+    emailAddress: '',
+    password: '',
+  };
 
   const { formValues, getDefaultProps, handleChange, setErrors } =
     useForm<FormValues>(defaultFormValues);
 
-  const validateForm = useCallback(() => {
+  function validateForm() {
     const result = safeParse<FormValues>(schema, formValues);
     setErrors(result.error?.issues);
     return result.success;
-  }, [formValues, setErrors]);
+  }
 
-  const handleSubmit = useCallback(
-    async (event: React.FormEvent) => {
-      event.preventDefault();
-      if (validateForm()) {
-        try {
-          await authSignUp(formValues.emailAddress, formValues.password);
-        } catch {
-          // Handle sign-up error
-        }
-      }
-    },
-    [validateForm, authSignUp, formValues],
-  );
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    if (!validateForm()) return;
+    try {
+      await authSignUp(formValues.emailAddress, formValues.password);
+    } catch {
+      // Handle sign-up error
+    }
+  }
 
   const handleClick = (provider: SocialProvider) => {
     authSignInWithRedirect(provider);
@@ -74,7 +59,6 @@ const SignupPage = (): React.JSX.Element => {
         leftImage={<img alt="" src="/images/face.png" />}
         title="Sign Up">
         <Button
-          ///  icon={<AmazonIcon ariaHidden focusable={false} />}
           id="login"
           onClick={() => {
             handleClick(SocialProvider.AMAZON);
@@ -82,7 +66,6 @@ const SignupPage = (): React.JSX.Element => {
           Sign up with Amazon
         </Button>
         <Button
-          //  icon={<FacebookIcon ariaHidden focusable={false} />}
           id="login"
           onClick={() => {
             handleClick(SocialProvider.FACEBOOK);
@@ -90,7 +73,6 @@ const SignupPage = (): React.JSX.Element => {
           Sign up with Facebook
         </Button>
         <Button
-          //  icon={<GoogleIcon ariaHidden focusable={false} />}
           id="login"
           onClick={() => {
             handleClick(SocialProvider.GOOGLE);
@@ -98,15 +80,9 @@ const SignupPage = (): React.JSX.Element => {
           Sign up with Google
         </Button>
         <Divider>or</Divider>
-        <StyledForm
-          noValidate
-          // aria-errormessage={error ? 'error' : undefined}
-          // aria-invalid={error ? 'true' : 'false'}
-          // noValidate
-          onSubmit={handleSubmit}>
+        <StyledForm noValidate onSubmit={handleSubmit}>
           <Input.Email
             autoComplete="email"
-            //errorTextShort="Please enter an email address"
             label="Email Address"
             multiple={false}
             placeholder="Enter your email"
@@ -143,6 +119,7 @@ const SignupPage = (): React.JSX.Element => {
   );
 };
 
+SignupPage.displayName = 'SignupPage';
 export default SignupPage;
 
 const StyledForm = styled.form`

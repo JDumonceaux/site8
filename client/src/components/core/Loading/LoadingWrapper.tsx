@@ -1,4 +1,4 @@
-import { type JSX, memo, type ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 export type LoadingWrapperProps = {
@@ -69,7 +69,7 @@ const LoadingWrapper = ({
 };
 
 LoadingWrapper.displayName = 'LoadingWrapper';
-export default memo(LoadingWrapper);
+export default LoadingWrapper;
 
 /* --- Styled Components & Animations --- */
 

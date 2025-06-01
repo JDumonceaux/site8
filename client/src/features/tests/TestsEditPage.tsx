@@ -26,7 +26,7 @@ import SortableItem from 'features/tests/SortableItem';
 import useTestsEdit from 'features/tests/useTestsEdit';
 import styled from 'styled-components';
 
-const TestsEditPage: React.FC = (): React.JSX.Element => {
+const TestsEditPage: React.FC = (): JSX.Element => {
   const { data, getDefaultProps, handleSave, isSaved, setFormValues } =
     useTestsEdit();
 

@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import styled from 'styled-components';
@@ -17,8 +17,7 @@ const ErrorPage: FC = () => (
 );
 
 ErrorPage.displayName = 'ErrorPage';
-
-export default memo(ErrorPage);
+export default ErrorPage;
 
 const Container = styled.div`
   margin-top: 20%;

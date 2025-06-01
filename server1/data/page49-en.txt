@@ -187,7 +187,7 @@ type HeaderProps = {
   readonly includeMenu?: boolean;
 };
 
-export const Header = ({ includeMenu = false }: HeaderProps): React.JSX.Element => {
+export const Header = ({ includeMenu = false }: HeaderProps): JSX.Element => {
 </code></pre>
 
 

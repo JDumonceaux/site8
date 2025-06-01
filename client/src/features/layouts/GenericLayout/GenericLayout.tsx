@@ -1,4 +1,4 @@
-import { type FC, Suspense, memo } from 'react';
+import { type FC, Suspense } from 'react';
 
 import Avatar from 'components/core/Avatar/Avatar';
 import Header from 'components/core/Header/Header';
@@ -54,7 +54,7 @@ const GenericLayout: FC = () => (
 );
 
 GenericLayout.displayName = 'GenericLayout';
-export default memo(GenericLayout);
+export default GenericLayout;
 
 // Styled Components
 const Main = styled.main`

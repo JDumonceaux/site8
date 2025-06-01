@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,9 +10,10 @@ type MenuProps = {
   children: React.ReactNode;
 };
 
-const Menu: FC<MenuProps> = memo(({ children }) => (
+const Menu: FC<MenuProps> = ({ children }) => (
   <MenuContainer data-testid="menu">{children}</MenuContainer>
-));
+);
+
 Menu.displayName = 'Menu';
 export default Menu;
 

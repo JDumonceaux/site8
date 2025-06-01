@@ -1,4 +1,4 @@
-import { type JSX, memo } from 'react';
+import type { JSX } from 'react';
 
 /**
  * Props for Meta component defining various head and link tags.
@@ -275,4 +275,4 @@ const Meta = ({
 };
 
 Meta.displayName = 'Meta';
-export default memo(Meta);
+export default Meta;

@@ -1,11 +1,11 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import useMenu from 'features/app/useMenu';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const HomeMenu = memo((): React.JSX.Element => {
+const HomeMenu = (): JSX.Element => {
   const { data, error, isLoading } = useMenu();
 
   let tempTo = '';
@@ -37,7 +37,7 @@ const HomeMenu = memo((): React.JSX.Element => {
       </LoadingWrapper>
     </StyledNav>
   );
-});
+};
 
 HomeMenu.displayName = 'HomeMenu';
 

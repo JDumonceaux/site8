@@ -32,7 +32,7 @@ const ItemDetail = ({
   onChange,
   onDelete,
   periods,
-}: Props): React.JSX.Element => {
+}: Props): JSX.Element => {
   const handleOnDelete = React.useCallback(() => {
     if (onDelete) {
       onDelete(item.lineId);

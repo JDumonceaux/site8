@@ -44,7 +44,7 @@ const meta: Meta<ButtonProps> = {
     docs: {
       description: {
         component:
-          'A styled, memoized Button supporting variants, sizes, fullWidth, and HTML types.',
+          'A styled Button supporting variants, sizes, fullWidth, and HTML types.',
       },
     },
   },

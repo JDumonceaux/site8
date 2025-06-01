@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,9 +10,9 @@ type FlexProps = {
   children: React.ReactNode;
 };
 
-const Flex: FC<FlexProps> = memo(({ children }) => (
+const Flex: FC<FlexProps> = ({ children }) => (
   <Container data-testid="layout">{children}</Container>
-));
+);
 Flex.displayName = 'Flex';
 export default Flex;
 

@@ -1,4 +1,4 @@
-import { type FC, memo, useTransition } from 'react';
+import { type FC, , useTransition } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ type MainProps = {
   children: React.ReactNode;
 };
 
-const Main: FC<MainProps> = memo(({ children }) => {
+const Main: FC<MainProps> = (({ children }) => {
   const [isPending, startTransition] = useTransition();
 
   // Optionally defer rendering heavy content

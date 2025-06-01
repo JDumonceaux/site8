@@ -1,4 +1,4 @@
-import { type FC, Suspense, memo } from 'react';
+import { type FC, Suspense } from 'react';
 
 import Header from 'components/core/Header/Header';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -43,7 +43,7 @@ const AuthLayout: FC = () => (
 );
 
 AuthLayout.displayName = 'AuthLayout';
-export default memo(AuthLayout);
+export default AuthLayout;
 
 // Styled Components
 const Main = styled.main`

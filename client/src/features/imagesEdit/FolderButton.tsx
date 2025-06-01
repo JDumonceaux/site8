@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, {  } from 'react';
 
 import styled from 'styled-components';
 import type { ListItem } from 'types/ListItem';
@@ -9,8 +9,8 @@ type Props = {
   readonly item: ListItem;
 };
 
-const FolderButton = memo(
-  ({ handleClick, isActive, item }: Props): React.JSX.Element =>
+const FolderButton = (
+  ({ handleClick, isActive, item }: Props): JSX.Element =>
     isActive ? (
       <StyledActiveButton
         data-id={item.key}

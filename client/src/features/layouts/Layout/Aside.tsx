@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,9 +10,9 @@ type AsideProps = {
   children?: React.ReactNode;
 };
 
-const Aside: FC<AsideProps> = memo(({ children }) => (
+const Aside: FC<AsideProps> = ({ children }) => (
   <Container data-testid="aside">{children}</Container>
-));
+);
 Aside.displayName = 'Aside';
 export default Aside;
 

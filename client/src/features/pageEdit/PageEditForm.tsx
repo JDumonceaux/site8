@@ -14,9 +14,7 @@ type PageEditFormProps = {
   readonly data?: null | Page;
 };
 
-const PageEditForm = ({
-  data: initData,
-}: PageEditFormProps): React.JSX.Element => {
+const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
   // const [currentPositionStart, setCurrentPositionStart] = useState<number>(0);
   // const [currentPositionEnd, setCurrentPositionEnd] = useState<number>(0);
 

@@ -1,7 +1,6 @@
-import { useCallback, useId, useMemo } from 'react';
-
+import React, { useId } from 'react';
 import Meta from 'components/core/Meta/Meta';
-import Button from 'components/form/Button/Button';
+
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import useAuth from 'features/auth/useAuth';
@@ -12,13 +11,13 @@ import styled from 'styled-components';
 import { z } from 'zod';
 
 import AuthContainer from './AuthContainer';
+import Button from 'components/core/Button/Button';
 
 // Define Zod Shape
 const schema = z
   .object({
     confirmPassword: password,
     newPassword: password,
-    // eslint-disable-next-line object-shorthand
     password: password,
   })
   .refine((x) => x.newPassword === x.confirmPassword, {
@@ -26,51 +25,38 @@ const schema = z
     path: ['confirmPassword'],
   });
 
-const ChangePasswordPage = (): React.JSX.Element => {
+type FormValues = z.infer<typeof schema>;
+
+const initialFormValues: FormValues = {
+  password: '',
+  newPassword: '',
+  confirmPassword: '',
+};
+
+const ChangePasswordPage = (): JSX.Element => {
   const title = 'Change Password';
   const compId = useId();
-
   const { authUpdatePassword, error } = useAuth();
-
-  type FormValues = z.infer<typeof schema>;
-  type FormKeys = keyof FormValues;
-
-  const initialFormValues: FormValues = useMemo(
-    () => ({
-      confirmPassword: '',
-      id: 0,
-      name: '',
-      newPassword: '',
-      password: '',
-      text: '',
-      to: '',
-      url: '',
-    }),
-    [],
-  );
 
   const { formValues, getDefaultProps, setErrors } =
     useForm<FormValues>(initialFormValues);
 
-  const validateForm = useCallback(() => {
-    const result = safeParse<FormValues>(schema, formValues);
+  function validateForm() {
+    const result = safeParse(schema, formValues);
     setErrors(result.error?.issues);
     return result.success;
-  }, [formValues, setErrors]);
+  }
 
-  const handleSubmit = useCallback(
-    async (event: React.FormEvent) => {
-      event.preventDefault();
-      if (validateForm()) {
-        try {
-          await authUpdatePassword(formValues.password, formValues.newPassword);
-        } catch {
-          // Handle sign-up error
-        }
-      }
-    },
-    [validateForm, authUpdatePassword, formValues],
-  );
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    if (!validateForm()) return;
+
+    try {
+      await authUpdatePassword(formValues.password, formValues.newPassword);
+    } catch {
+      // handle error
+    }
+  }
 
   return (
     <>
@@ -78,37 +64,26 @@ const ChangePasswordPage = (): React.JSX.Element => {
       <AuthContainer
         error={error}
         leftImage={<img alt="" src="/images/face.png" />}
-        title="Change Password">
-        <StyledForm
-          noValidate
-          // aria-errormessage={error ? 'error' : undefined}
-          // aria-invalid={error ? 'true' : 'false'}
-          // noValidate
-          onSubmit={handleSubmit}>
+        title={title}>
+        <StyledForm noValidate onSubmit={handleSubmit}>
           <Input.Password
-            // autoComplete="current-password"
-            // errorTextShort="Please enter a password"
             label="Current Password"
             placeholder="Current password"
-            {...getDefaultProps('password' as FormKeys)}
+            {...getDefaultProps('password')}
           />
           <Input.Password
-            // autoComplete="new-password"
-            // errorTextShort="Please enter a password"
-            // helpText={['8 characters minimum']}
             label="New Password"
             placeholder="New password"
-            {...getDefaultPasswordFields('newPassword' as FormKeys, compId)}
+            {...getDefaultProps('newPassword')}
+            id={`${compId}-newPassword`}
           />
           <Input.Password
-            //autoComplete="new-password"
-            //errorTextShort="Please enter a password"
-            //helpText={['8 characters minimum']}
             label="Confirm Password"
             placeholder="Confirm password"
-            {...getDefaultPasswordFields('confirmPassword' as FormKeys, compId)}
+            {...getDefaultProps('confirmPassword')}
+            id={`${compId}-confirmPassword`}
           />
-          <Button id="login">Submit</Button>
+          <Button id="submit">Submit</Button>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/">Cancel</StyledLink>
@@ -123,6 +98,7 @@ export default ChangePasswordPage;
 const StyledForm = styled.form`
   padding: 20px 0;
 `;
+
 const StyledBottomMsg = styled.div`
   padding: 20px 0;
   text-align: center;

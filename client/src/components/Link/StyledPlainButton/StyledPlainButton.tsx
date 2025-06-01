@@ -1,9 +1,4 @@
-import {
-  type FC,
-  type ReactNode,
-  type ButtonHTMLAttributes,
-  memo,
-} from 'react';
+import type { FC, ReactNode, ButtonHTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
@@ -19,7 +14,7 @@ const StyledPlainButton: FC<StyledPlainButtonProps> = ({
 }) => <StyledButton {...rest}>{children}</StyledButton>;
 
 StyledPlainButton.displayName = 'StyledPlainButton';
-export default memo(StyledPlainButton);
+export default StyledPlainButton;
 
 const StyledButton = styled.button`
   display: inline-block;

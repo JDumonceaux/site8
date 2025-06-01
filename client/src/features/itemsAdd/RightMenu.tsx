@@ -7,7 +7,7 @@ type Props = {
   readonly artistId?: string;
 };
 
-const RightMenu = ({ artistId = '' }: Props): React.JSX.Element => {
+const RightMenu = ({ artistId = '' }: Props): JSX.Element => {
   const { data, error, isError, isLoading } = useArtistItems(artistId);
 
   return (

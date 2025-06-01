@@ -1,4 +1,4 @@
-import { type FC, Suspense, memo } from 'react';
+import { type FC, Suspense } from 'react';
 
 import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -39,7 +39,7 @@ const HomeLayout: FC = () => (
 );
 
 HomeLayout.displayName = 'HomeLayout';
-export default memo(HomeLayout);
+export default HomeLayout;
 
 // Styled components
 const Main = styled.main`

@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 
@@ -19,4 +19,4 @@ const PrivacyPolicyPage: FC = () => (
 );
 
 PrivacyPolicyPage.displayName = 'PrivacyPolicyPage';
-export default memo(PrivacyPolicyPage);
+export default PrivacyPolicyPage;

@@ -1,4 +1,4 @@
-import { memo, type JSX, type ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DotsVerticalIcon } from '@radix-ui/react-icons';
@@ -37,7 +37,7 @@ const IconMenu = ({ children }: IconMenuProps): JSX.Element => {
 };
 
 IconMenu.displayName = 'IconMenu';
-export default memo(IconMenu);
+export default IconMenu;
 
 const StyledButton = styled.button`
   font-family: inherit;

@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import { type FC,  } from 'react';
 
 import HomeMenu from 'features/home/HomeMenu';
 import Layout from 'features/layouts/Layout/Layout';
@@ -8,8 +8,8 @@ import CircleAnimation from './Animations/CircleAnimation';
 import CircleMenuAnimation from './Animations/CircleMenuAnimation';
 import TitleAnimation from './Animations/TitleAnimation';
 
-const HomeScreen5: FC = memo(
-  (): React.JSX.Element => (
+const HomeScreen5: FC = (
+  (): JSX.Element => (
     <Layout.FullWidth>
       <ContainerDiv>
         <TitleAnimation />

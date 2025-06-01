@@ -1,5 +1,4 @@
-import { memo, type JSX } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 // Compute once at module load
@@ -17,7 +16,7 @@ const Footer = (): JSX.Element => {
 };
 
 Footer.displayName = 'Footer';
-export default memo(Footer);
+export default Footer;
 
 // --------------------------------------------------------------------------------
 // Styled Components

@@ -1,5 +1,4 @@
-import { type FC, useState, useEffect, useTransition, useMemo } from 'react';
-
+import { useState, useEffect, useTransition, type JSX } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
@@ -15,7 +14,7 @@ const ROW_HEIGHT = 220;
  * Displays a list of favorite YouTube videos in a virtualized scrollable list,
  * leveraging useTransition to defer updating the list when new data arrives.
  */
-const MusicPage: FC = () => {
+const MusicPage = (): JSX.Element | null => {
   const title = 'YouTube Videos';
   const { data, error, isError, isLoading } = useMusic();
 
@@ -23,20 +22,15 @@ const MusicPage: FC = () => {
   const [isPending, startTransition] = useTransition();
   const [items, setItems] = useState(data?.items ?? []);
 
-  // When data.items changes, update items state in a transition
   useEffect(() => {
     startTransition(() => {
       setItems(data?.items ?? []);
     });
   }, [data?.items, startTransition]);
 
-  // Memoize itemData for referential stability
-  const itemData = useMemo(() => ({ items }), [items]);
-
   return (
     <>
       <Meta title={title} />
-
       <Layout.Main>
         <PageTitle title={title} />
 
@@ -50,7 +44,7 @@ const MusicPage: FC = () => {
               <List
                 height={600}
                 itemCount={items.length}
-                itemData={itemData}
+                itemData={{ items }}
                 itemSize={ROW_HEIGHT}
                 overscanCount={15}
                 width="100%">
@@ -65,6 +59,7 @@ const MusicPage: FC = () => {
     </>
   );
 };
+
 MusicPage.displayName = 'MusicPage';
 export default MusicPage;
 

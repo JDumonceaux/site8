@@ -7,7 +7,7 @@ import Layout from 'features/layouts/Layout/Layout';
 
 type UploadStatus = 'error' | 'idle' | 'success' | 'uploading';
 
-const FileUploadPage = (): React.JSX.Element => {
+const FileUploadPage = (): JSX.Element => {
   const title = 'File Upload';
 
   const [file, setFile] = useState<File | null>(null);

@@ -1,4 +1,4 @@
-import { memo, useRef, type FC, type SelectHTMLAttributes } from 'react';
+import { , useRef, type FC, type SelectHTMLAttributes } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
@@ -21,7 +21,7 @@ type InputSelectProps = {
 // Implicit aria-role ⇒ 'combobox' or 'listbox'
 // https://www.w3.org/TR/html-aria/#docconformance
 
-export const InputSelect: FC<InputSelectProps> = memo(
+export const InputSelect: FC<InputSelectProps> = (
   ({
     dataList,
     id,

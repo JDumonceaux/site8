@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 import type { MusicItem } from 'types/MusicItem';
@@ -18,7 +18,7 @@ type ItemRendererProps = {
 /**
  * Renders a single music item with description and embedded video.
  */
-const ItemRenderer: FC<ItemRendererProps> = memo(({ data, index, style }) => {
+const ItemRenderer: FC<ItemRendererProps> = ({ data, index, style }) => {
   const item = data.items[index];
 
   return (
@@ -35,7 +35,8 @@ const ItemRenderer: FC<ItemRendererProps> = memo(({ data, index, style }) => {
       />
     </Container>
   );
-});
+};
+
 ItemRenderer.displayName = 'ItemRenderer';
 export default ItemRenderer;
 

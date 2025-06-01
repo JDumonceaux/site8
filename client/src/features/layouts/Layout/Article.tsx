@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 
@@ -13,11 +13,11 @@ type ArticleProps = React.HTMLAttributes<HTMLElement> & {
 /**
  * A semantic Article container with flexible layout.
  */
-const Article: FC<ArticleProps> = memo(({ children, ...rest }) => (
+const Article: FC<ArticleProps> = ({ children, ...rest }) => (
   <Container data-testid="article" {...rest}>
     {children}
   </Container>
-));
+);
 Article.displayName = 'Article';
 export default Article;
 

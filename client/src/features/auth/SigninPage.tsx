@@ -1,7 +1,5 @@
-import { useCallback, useId, useMemo } from 'react';
-
+import { useId } from 'react';
 import Meta from 'components/core/Meta/Meta';
-import Button from 'components/form/Button/Button';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import useAuth from 'features/auth/useAuth';
@@ -12,16 +10,15 @@ import styled from 'styled-components';
 import { z } from 'zod';
 
 import AuthContainer from './AuthContainer';
+import Button from 'components/core/Button/Button';
 
 // Define Zod Shape
 const schema = z.object({
-  // eslint-disable-next-line object-shorthand
   emailAddress: emailAddress,
-  // eslint-disable-next-line object-shorthand
   password: password,
 });
 
-const SigninPage = (): React.JSX.Element => {
+const SigninPage = (): JSX.Element => {
   const title = 'Sign-In';
   const compId = useId();
 
@@ -30,36 +27,30 @@ const SigninPage = (): React.JSX.Element => {
 
   const { authSignIn, error, isLoading } = useAuth();
 
-  const defaultFormValues: FormValues = useMemo(
-    () => ({
-      emailAddress: '',
-      password: '',
-    }),
-    [],
-  );
+  const defaultFormValues: FormValues = {
+    emailAddress: '',
+    password: '',
+  };
 
   const { formValues, getDefaultProps, handleChange, setErrors } =
     useForm<FormValues>(defaultFormValues);
 
-  const validateForm = useCallback(() => {
+  const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
     setErrors(result.error?.issues);
     return result.success;
-  }, [formValues, setErrors]);
+  };
 
-  const handleSubmit = useCallback(
-    async (event: React.FormEvent) => {
-      event.preventDefault();
-      if (validateForm()) {
-        try {
-          await authSignIn(formValues.emailAddress, formValues.password);
-        } catch {
-          // Handle sign-up error
-        }
-      }
-    },
-    [validateForm, authSignIn, formValues],
-  );
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!validateForm()) return;
+
+    try {
+      await authSignIn(formValues.emailAddress, formValues.password);
+    } catch {
+      // Handle sign-in error
+    }
+  };
 
   return (
     <>
@@ -68,14 +59,9 @@ const SigninPage = (): React.JSX.Element => {
         error={error}
         leftImage={<img alt="" src="/images/face.png" />}
         title="Sign In">
-        <StyledForm
-          // aria-errormessage={error ? 'error' : undefined}
-          // aria-invalid={error ? 'true' : 'false'}
-          noValidate
-          onSubmit={handleSubmit}>
+        <StyledForm noValidate onSubmit={handleSubmit}>
           <Input.Email
             autoComplete="email"
-            //errorTextShort="Please enter an email address"
             inputMode="email"
             label="Email Address"
             multiple={false}
@@ -86,7 +72,6 @@ const SigninPage = (): React.JSX.Element => {
           />
           <Input.Password
             autoComplete="current-password"
-            //   errorTextShort="Please enter a password"
             label="Password"
             placeholder="Enter Password"
             {...getDefaultProps('password' as FormKeys)}
@@ -102,11 +87,14 @@ const SigninPage = (): React.JSX.Element => {
   );
 };
 
+SigninPage.displayName = 'SigninPage';
+s;
 export default SigninPage;
 
 const StyledForm = styled.form`
   padding: 20px 0;
 `;
+
 const StyledBottomMsg = styled.div`
   padding: 20px 0;
   display: flex;

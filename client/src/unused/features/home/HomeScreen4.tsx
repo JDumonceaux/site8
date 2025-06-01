@@ -4,7 +4,7 @@ import { keyframes, styled } from 'styled-components';
 import PinkGraphic from './PinkGraphic';
 import TitleAnimation from '../../../features/home/Animations/TitleAnimation';
 
-const HomeScreen4 = (): React.JSX.Element => {
+const HomeScreen4 = (): JSX.Element => {
   return (
     <>
       <StyledSection>

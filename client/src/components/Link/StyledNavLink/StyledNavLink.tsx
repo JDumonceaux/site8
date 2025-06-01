@@ -1,4 +1,4 @@
-import { memo, type FC } from 'react';
+import {  type FC } from 'react';
 
 import { NavLink, type NavLinkProps } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ export type StyledNavLinkProps = Omit<NavLinkProps, 'aria-current'> & {
  * A styled wrapper around react-router’s NavLink.
  * Respects active state (automatic aria-current), and supports two color variants.
  */
-const StyledNavLink: FC<StyledNavLinkProps> = memo(
+const StyledNavLink: FC<StyledNavLinkProps> = (
   ({ variant = 'light', 'aria-label': ariaLabel, ...navProps }) => (
     <Link
       variant={variant}

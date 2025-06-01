@@ -15,7 +15,7 @@ type GenericPageProps = {
   readonly title?: string;
 };
 
-const GenericPage = ({ title }: GenericPageProps): React.JSX.Element => {
+const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
   const x = useLocation();
 
   const { data, error, isError, isLoading } = useGenericPage(

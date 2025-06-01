@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import useTests from './useTests';
 
-const TestsPage = (): React.JSX.Element => {
+const TestsPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useTests();
 
   const pageTitle = 'Tests';

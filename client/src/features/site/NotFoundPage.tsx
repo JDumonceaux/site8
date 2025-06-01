@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import styled from 'styled-components';
@@ -18,7 +18,7 @@ const NotFoundPage: FC = () => (
 );
 
 NotFoundPage.displayName = 'NotFoundPage';
-export default memo(NotFoundPage);
+export default NotFoundPage;
 
 // Styled Components
 const Main = styled.main`

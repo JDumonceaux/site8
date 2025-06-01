@@ -4,7 +4,7 @@ type ToolMenuProps = {
   readonly onClick: (value: string) => void;
 };
 
-const ToolMenu = ({ onClick }: ToolMenuProps): React.JSX.Element => {
+const ToolMenu = ({ onClick }: ToolMenuProps): JSX.Element => {
   const buttons = [
     { label: 'Code', testId: 'insert-code', value: 'code' },
     { label: 'H2', testId: 'insert-h2', value: 'h2' },

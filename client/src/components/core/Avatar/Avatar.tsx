@@ -1,4 +1,4 @@
-import { memo, type JSX, type CSSProperties } from 'react';
+import type { JSX, CSSProperties } from 'react';
 
 import {
   Avatar as RadixAvatarRoot,
@@ -71,7 +71,7 @@ const Avatar = ({
 };
 
 Avatar.displayName = 'Avatar';
-export default memo(Avatar);
+export default Avatar;
 
 const Root = styled(RadixAvatarRoot)<{ size: number }>`
   display: inline-flex;

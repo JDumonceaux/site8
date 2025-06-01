@@ -1,10 +1,8 @@
-import React, { memo, useMemo, useCallback } from 'react';
-
+import type { JSX } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
 import useImageFolder from 'features/imagesEdit/useImageFolder';
 import styled from 'styled-components';
-
 import FolderButton from './FolderButton';
 
 type Props = {
@@ -14,88 +12,73 @@ type Props = {
   readonly onFilterSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const RightMenu = memo(
-  ({
-    currentFilter,
-    currentFolder,
-    onClick,
-    onFilterSelect,
-  }: Props): React.JSX.Element => {
-    const { data, isError, isPending } = useImageFolder();
+function RightMenu({
+  currentFilter,
+  currentFolder,
+  onClick,
+  onFilterSelect,
+}: Props): JSX.Element {
+  const { data, isError, isPending } = useImageFolder();
 
-    const filterData = useMemo(
-      () =>
-        data?.map((x) => ({
-          key: x.id,
-          value: x.value,
-        })),
-      [data],
+  const filterData = data?.map((x) => ({
+    key: x.id,
+    value: x.value,
+  }));
+
+  function handleButton(event: React.MouseEvent<HTMLButtonElement>) {
+    const { id } = event.currentTarget.dataset;
+    if (id) {
+      const tempId = Number(id);
+      const item = data?.find((x) => x.id === tempId);
+      onClick(item?.value);
+    }
+  }
+
+  const renderedButtons = filterData?.map((item) => (
+    <FolderButton
+      handleClick={handleButton}
+      isActive={item.value === currentFolder}
+      item={item}
+      key={item.key}
+    />
+  ));
+
+  let renderStyledButton: React.ReactNode;
+  if (currentFolder) {
+    renderStyledButton = (
+      <StyledButton
+        data-id={currentFolder}
+        onClick={handleButton}
+        type="button">
+        {currentFolder}
+      </StyledButton>
     );
+  } else {
+    renderStyledButton = <div>Select Folder ({data?.length})</div>;
+  }
 
-    const handleButton = useCallback(
-      (event: React.MouseEvent<HTMLButtonElement>) => {
-        const { dataset } = event.currentTarget;
-        const { id } = dataset;
-        if (id) {
-          const tempId = Number(id);
-          const item = data?.find((x) => x.id === tempId);
-          onClick(item?.value);
-        }
-      },
-      [data, onClick],
-    );
-
-    const renderedButtons = useMemo(
-      () =>
-        filterData?.map((item) => (
-          <FolderButton
-            handleClick={handleButton}
-            isActive={item.value === currentFolder}
-            item={item}
-            key={item.key}
-          />
-        )),
-      [filterData, handleButton, currentFolder],
-    );
-
-    const renderStyledButton = useMemo(() => {
-      if (currentFolder && currentFolder.length > 0) {
-        return (
-          <StyledButton
-            data-id={currentFolder}
-            onClick={handleButton}
-            type="button">
-            {currentFolder}
-          </StyledButton>
-        );
-      }
-      return <div>Select Folder ({data?.length})</div>;
-    }, [currentFolder, handleButton, data]);
-
-    return (
-      <StickyMenu>
-        <FilterDiv>
-          <Input.Select
-            dataList={filterData}
-            label="Filter"
-            onChange={onFilterSelect}
-            value={currentFilter}
-          />
-        </FilterDiv>
-        <StyledHeader>
-          <div>{renderStyledButton}</div>
-        </StyledHeader>
-        <hr />
-        <LoadingWrapper isError={isError} isPending={isPending}>
-          {renderedButtons}
-        </LoadingWrapper>
-      </StickyMenu>
-    );
-  },
-);
+  return (
+    <StickyMenu>
+      <FilterDiv>
+        <Input.Select
+          dataList={filterData}
+          label="Filter"
+          onChange={onFilterSelect}
+          value={currentFilter}
+        />
+      </FilterDiv>
+      <StyledHeader>
+        <div>{renderStyledButton}</div>
+      </StyledHeader>
+      <hr />
+      <LoadingWrapper isError={isError} isPending={isPending}>
+        {renderedButtons}
+      </LoadingWrapper>
+    </StickyMenu>
+  );
+}
 
 RightMenu.displayName = 'RightMenu';
-
 export default RightMenu;
 
 const StyledButton = styled.button`
@@ -108,12 +91,14 @@ const StyledButton = styled.button`
     background-color: #dcdcdc;
   }
 `;
+
 const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   column-gap: 10px;
   align-items: baseline;
 `;
+
 const StickyMenu = styled.div`
   position: sticky;
   top: 100px;
@@ -121,6 +106,7 @@ const StickyMenu = styled.div`
   overflow-y: auto;
   padding-bottom: 20px;
 `;
+
 const FilterDiv = styled.div`
   margin-bottom: 18px;
   select {

@@ -1,4 +1,4 @@
-import { memo, type JSX } from 'react';
+import type { JSX } from 'react';
 
 import styled from 'styled-components';
 import type { FieldError } from 'types';
@@ -35,7 +35,7 @@ const FooterRow = ({
 };
 
 FooterRow.displayName = 'FooterRow';
-export default memo(FooterRow);
+export default FooterRow;
 
 const Row = styled.div`
   display: flex;

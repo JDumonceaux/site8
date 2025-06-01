@@ -31,7 +31,7 @@ const Button = ({
   id,
   children,
   ...rest
-}: ButtonProps): React.JSX.Element => (
+}: ButtonProps): JSX.Element => (
   <button $variant={variant} id={id} name={id} {...rest} type="button">
     {children}
   </button>

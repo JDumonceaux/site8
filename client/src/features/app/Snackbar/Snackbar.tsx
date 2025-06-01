@@ -1,4 +1,4 @@
-import { type JSX, memo } from 'react';
+import type { JSX } from 'react';
 
 import useSnackbar, {
   SnackbarVariant,
@@ -34,7 +34,7 @@ const Snackbar = (): JSX.Element | null => {
 };
 
 Snackbar.displayName = 'Snackbar';
-export default memo(Snackbar);
+export default Snackbar;
 
 const StyledDialog = styled.dialog<{ $variant: SnackbarVariant }>`
   position: fixed;

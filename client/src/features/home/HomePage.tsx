@@ -4,7 +4,7 @@ import { APP_NAME } from 'lib/utils/constants';
 
 import HomeScreen5 from './HomeScreen5';
 
-const HomePage = (): React.JSX.Element => {
+const HomePage = (): JSX.Element => {
   const title = `${APP_NAME}: Home`;
 
   return (

@@ -1,4 +1,4 @@
-import { memo, type FC } from 'react';
+import { , type FC } from 'react';
 
 import styled from 'styled-components';
 import type { Image } from 'types/Image';
@@ -14,7 +14,7 @@ export const ImageBlock: FC<Image> = ({ alt, src, title }: Image) => (
 );
 
 ImageBlock.displayName = 'ImageBlock';
-export default memo(ImageBlock);
+export default (ImageBlock);
 
 const Section = styled.div`
   margin-bottom: 16px;

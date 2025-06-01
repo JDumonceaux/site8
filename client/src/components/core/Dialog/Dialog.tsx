@@ -1,5 +1,4 @@
-import { memo, useId, type JSX } from 'react';
-
+import { useId, type JSX } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import styled from 'styled-components';
 
@@ -109,7 +108,7 @@ const Dialog = ({
 };
 
 Dialog.displayName = 'Dialog';
-export default memo(Dialog);
+export default Dialog;
 
 /* ---------------- Styled Components ---------------- */
 

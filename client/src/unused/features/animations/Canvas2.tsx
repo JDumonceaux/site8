@@ -10,7 +10,7 @@ export const Canvas2 = ({
   backgroundColor = '#000',
   height = '100%',
   width = '100%',
-}: Canvas2Props): React.JSX.Element => {
+}: Canvas2Props): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 

@@ -1,4 +1,4 @@
-import { memo, type JSX } from 'react';
+import type { JSX } from 'react';
 
 import PageTitle from 'components/core/PageTitle/PageTitle';
 import styled, { keyframes } from 'styled-components';
@@ -43,9 +43,8 @@ const Fallback = ({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element => {
   );
 };
 
-const MemoFallback = memo(Fallback);
-MemoFallback.displayName = 'Fallback';
-export default MemoFallback;
+Fallback.displayName = 'Fallback';
+export default Fallback;
 
 /* -- styles -- */
 

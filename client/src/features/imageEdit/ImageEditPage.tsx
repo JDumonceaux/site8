@@ -15,7 +15,7 @@ import type { Image } from 'types';
 
 import useImageEdit from './useImageEdit';
 
-const ImageEditImage = (): React.JSX.Element => {
+const ImageEditImage = (): JSX.Element => {
   const parameters = useParams();
   const { id } = parameters as { id: string };
   const {

@@ -18,7 +18,7 @@ export const Canvas3 = ({
   fps = 15,
   height = '100%',
   width = '100%',
-}: Canvas3Props): React.JSX.Element => {
+}: Canvas3Props): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 

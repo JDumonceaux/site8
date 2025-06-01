@@ -20,7 +20,7 @@ const generateDots = (
   });
 };
 
-const PinkGraphic = (): React.JSX.Element => {
+const PinkGraphic = (): JSX.Element => {
   const myArr20 = Array.from({ length: 20 }, (_, index) => index + 1);
   const myArr36 = Array.from({ length: 36 }, (_, index) => index + 1);
 

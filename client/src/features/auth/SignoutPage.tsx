@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import AuthContainer from './AuthContainer';
 
-const SignOutpPage = (): React.JSX.Element => {
+const SignOutpPage = (): JSX.Element => {
   const title = 'Sign-Out';
 
   const { authFetchAuthSession, authorized, authSignOut, error, isLoading } =

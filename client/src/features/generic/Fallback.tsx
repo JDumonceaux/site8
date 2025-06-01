@@ -1,13 +1,12 @@
-import { memo } from 'react';
+import {} from 'react';
 
 import styled, { keyframes } from 'styled-components';
 
-const Fallback = memo((): React.JSX.Element => {
+const Fallback = (): JSX.Element => {
   return <Bar />;
-});
+};
 
 Fallback.displayName = 'Fallback';
-
 export default Fallback;
 
 const Bar = styled.div`

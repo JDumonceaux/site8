@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useSnackbar from 'features/app/Snackbar/useSnackbar';
 import type { ItemAdd, ItemAddExt } from 'features/itemsAdd/ItemAdd';
@@ -16,7 +16,6 @@ const useItemsAddPage = () => {
   const { setErrorMessage, setMessage } = useSnackbar();
   const [artistId, setArtistId] = useState('');
 
-  // Create a form
   const {
     formValues,
     getFieldValue,
@@ -26,38 +25,29 @@ const useItemsAddPage = () => {
     setFormValues,
   } = useFormArray<ItemAddExt>();
 
-  const { error, putData } = useAxios<unknown>();
+  const { error, putData, isError, isPending } = useAxios<unknown>();
 
-  const handleFilterChange = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setArtistId(event.target.value);
-    },
-    [],
-  );
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setArtistId(event.target.value);
+  };
 
-  const defaultObject = useMemo(() => getDefaultObject<ItemAddExt>(), []);
+  const defaultObject = getDefaultObject<ItemAddExt>();
 
-  // Map database to form
-  const mapDataToForm = useCallback(() => {
-    const ret: ItemAddExt[] = Array.from(
-      { length: ITEM_COUNT },
-      (_, index) => ({ ...defaultObject, lineId: index + 1 }),
-    );
-    return ret;
-  }, [defaultObject]);
+  const mapDataToForm = () => {
+    return Array.from({ length: ITEM_COUNT }, (_, index) => ({
+      ...defaultObject,
+      lineId: index + 1,
+    }));
+  };
 
   useEffect(() => {
     setFormValues(mapDataToForm());
-  }, [mapDataToForm, setFormValues]);
+  }, [setFormValues]);
 
-  // Handle save
-  const saveItems = useCallback(
-    async (updates: ItemAdd[]) => {
-      const cleanedData = removeEmptyAttributesArray(updates);
-      return putData(ServiceUrl.ENDPOINT_ITEMS, cleanedData);
-    },
-    [putData],
-  );
+  const saveItems = async (updates: ItemAdd[]) => {
+    const cleanedData = removeEmptyAttributesArray(updates);
+    return putData(ServiceUrl.ENDPOINT_ITEMS, cleanedData);
+  };
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -76,29 +66,27 @@ const useItemsAddPage = () => {
     setFormValues(mapDataToForm());
   };
 
-  // Only submit updated records
-  const getUpdates = useCallback(() => {
+  const getUpdates = (): ItemAdd[] | null => {
     const ret: ItemAdd[] = [];
     const artistIdNum = Number(artistId);
+
     for (const i of getIndex()) {
-      const item: ItemAddExt | null = getItem(i.lineId);
+      const item = getItem(i.lineId);
       if (item) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { lineId, ...rest } = item;
         const newItem: ItemAdd = { ...rest, artistId: artistIdNum };
-        // Check for empty objects
         const isEmpty = Object.values(newItem).every((x) => x === '');
         if (!isEmpty) {
           ret.push(newItem);
         }
       }
     }
-    // Remove empty titles
-    const filtered = ret.filter((x) => x.title && x.title.trim() !== '');
-    return filtered.length > 0 ? filtered : null;
-  }, [artistId, getIndex, getItem]);
 
-  const handleSubmit = useCallback(() => {
+    const filtered = ret.filter((x) => x.title?.trim() !== '');
+    return filtered.length > 0 ? filtered : null;
+  };
+
+  const handleSubmit = () => {
     const updates = getUpdates();
 
     if (!updates) {
@@ -107,42 +95,31 @@ const useItemsAddPage = () => {
     }
     setMessage('Saving...');
 
-    // eslint-disable-next-line promise/catch-or-return
     saveItems(updates)
-      // eslint-disable-next-line promise/prefer-await-to-then
       .then((result) => {
-        // eslint-disable-next-line promise/always-return
         if (result) {
           setMessage('Saved');
-          //handleRefresh();
         } else {
           setMessage(`Error saving ${error}`);
         }
       })
-      // eslint-disable-next-line promise/prefer-await-to-then
-      .catch((error_: unknown) => {
-        if (error_ instanceof Error) {
-          setMessage(`An unexpected error occurred: ${error_.message}`);
+      .catch((err: unknown) => {
+        if (err instanceof Error) {
+          setMessage(`An unexpected error occurred: ${err.message}`);
         } else {
           setMessage('An unexpected error occurred');
         }
-      })
-      // eslint-disable-next-line promise/prefer-await-to-then
-      .finally(() => {
-        //   setIsProcessing(false);
       });
-  }, [getUpdates, setMessage, saveItems, setErrorMessage, error]);
+  };
 
   return {
     artistId,
     data: formValues,
     getFieldValue,
     handleChange,
-
     handleClear,
     handleFilterChange,
     handleSubmit,
-    //  data,
     isError,
     isPending,
     setFieldValue,

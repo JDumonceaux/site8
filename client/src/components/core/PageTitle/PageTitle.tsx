@@ -1,5 +1,4 @@
-import { type ReactNode, type HTMLAttributes, type JSX, memo } from 'react';
-
+import type { ReactNode, HTMLAttributes, JSX } from 'react';
 import styled from 'styled-components';
 
 type PageTitleProps = HTMLAttributes<HTMLDivElement> & {
@@ -28,8 +27,7 @@ const PageTitle = ({
   );
 };
 
-PageTitle.displayName = 'PageTitle';
-export default memo(PageTitle);
+export default PageTitle;
 
 const StyledWrapper = styled.div`
   display: flex;

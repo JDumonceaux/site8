@@ -1,5 +1,4 @@
-import { type JSX, memo, useCallback, type ReactNode } from 'react';
-
+import type { JSX, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { MenuIcon } from 'components/icons/MenuIcon';
@@ -17,13 +16,10 @@ type HeaderProps = {
  * Page header with optional menu toggle and avatar slot.
  */
 const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
-  const handleMenuClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      onMenuToggle?.();
-    },
-    [onMenuToggle],
-  );
+  const handleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onMenuToggle?.();
+  };
 
   return (
     <HeaderContainer>
@@ -50,7 +46,7 @@ const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
 };
 
 Header.displayName = 'Header';
-export default memo(Header);
+export default Header;
 
 // ---------------- Styled Components ----------------
 

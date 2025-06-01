@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 type fields = Record<string, string>;
 
-const InputPage = (): React.JSX.Element => {
+const InputPage = (): JSX.Element => {
   const title = 'Design - Input';
 
   const items: fields = {};

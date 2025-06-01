@@ -1,4 +1,4 @@
-import { memo, type JSX, type ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import styled from 'styled-components';
@@ -16,7 +16,7 @@ const IconMenuItem = ({
 };
 
 IconMenuItem.displayName = 'IconMenuItem';
-export default memo(IconMenuItem);
+export default IconMenuItem;
 
 const StyledMenuItem = styled(DropdownMenu.Item)`
   display: flex;

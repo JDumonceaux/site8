@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,9 +10,9 @@ type SectionProps = {
   children: React.ReactNode;
 };
 
-const Section: FC<SectionProps> = memo(({ children }) => (
+const Section: FC<SectionProps> = ({ children }) => (
   <StyledSection data-testid="section">{children}</StyledSection>
-));
+);
 Section.displayName = 'Section';
 export default Section;
 

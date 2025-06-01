@@ -8,7 +8,7 @@ type BookmarksTagsProps = {
 
 const BookmarkTags: React.FC<BookmarksTagsProps> = ({
   data,
-}: BookmarksTagsProps): React.JSX.Element => {
+}: BookmarksTagsProps): JSX.Element => {
   return (
     <table>
       <thead>

@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import PageEditForm from './PageEditForm';
 import usePage from './usePage';
 
-const PageEditPage = (): React.JSX.Element => {
+const PageEditPage = (): JSX.Element => {
   const { id } = useParams();
   const currentId = getParamIdAsString(id);
   const title = currentId ? `Edit Page: ${currentId}` : 'New Page';

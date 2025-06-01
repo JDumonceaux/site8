@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, {  } from 'react';
 
 import IconMenu from 'components/IconMenu/IconMenu';
 import IconMenuItem from 'components/IconMenu/IconMenuItem';
@@ -13,14 +13,14 @@ type Props = {
   readonly handleSubmit?: () => void;
 };
 
-const MenuBar = memo(
+const MenuBar = (
   ({
     children,
     handleClear,
     handleRefresh,
     handleScan,
     handleSubmit,
-  }: Props): React.JSX.Element => {
+  }: Props): JSX.Element => {
     const renderButton = (
       testId: string,
       onClick: (() => void) | undefined,

@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 
@@ -67,4 +67,4 @@ export const TermsOfUsePage: FC = () => {
 };
 
 TermsOfUsePage.displayName = 'TermsOfUsePage';
-export default memo(TermsOfUsePage);
+export default TermsOfUsePage;

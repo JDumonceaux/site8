@@ -1,4 +1,4 @@
-import { type FC, memo, type JSX } from 'react';
+import { type FC, , type JSX } from 'react';
 
 import styled from 'styled-components';
 
@@ -13,7 +13,7 @@ type FullWidthProps = {
 /**
  * A container that spans the full viewport width & height.
  */
-const FullWidth: FC<FullWidthProps> = memo(({ children, ...rest }) => (
+const FullWidth: FC<FullWidthProps> = (({ children, ...rest }) => (
   <Container data-testid="fullWidth" {...rest}>
     {children}
   </Container>

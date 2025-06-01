@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 
 type IdType = {
   readonly lineId: number;
@@ -10,101 +10,68 @@ const useFormArray = <T extends IdType>() => {
   const [formValues, setFormValues] = useState<T[]>([]);
   const [isSaved, setIsSaved] = useState<boolean>(true);
 
-  // Finds the index of the item with the given lineId.
-  const findItemIndex = useCallback(
-    (lineId: number): number =>
-      formValues.findIndex((x) => x.lineId === lineId),
-    [formValues],
-  );
+  const findItemIndex = (lineId: number): number =>
+    formValues.findIndex((x) => x.lineId === lineId);
 
-  // Updates a specific field of an item, or creates a new item if not found.
-  const setFieldValue = useCallback(
-    (lineId: number, fieldName: keyof T, value: FieldValue) => {
-      setFormValues((prev) => {
-        const index = findItemIndex(lineId);
-        if (index !== -1) {
-          const updated = [...prev];
-          updated[index] = { ...updated[index], [fieldName]: value };
-          return updated;
-        }
-        return [...prev, { [fieldName]: value, lineId } as T];
-      });
-      setIsSaved(false);
-    },
-    [findItemIndex],
-  );
+  const setFieldValue = (
+    lineId: number,
+    fieldName: keyof T,
+    value: FieldValue,
+  ) => {
+    setFormValues((prev) => {
+      const index = prev.findIndex((x) => x.lineId === lineId);
+      if (index !== -1) {
+        const updated = [...prev];
+        updated[index] = { ...updated[index], [fieldName]: value };
+        return updated;
+      }
+      return [...prev, { [fieldName]: value, lineId } as T];
+    });
+    setIsSaved(false);
+  };
 
-  // Retrieves the value of a field as a string for the given item.
-  const getFieldValue = useCallback(
-    (lineId: number, fieldName: keyof T): string => {
-      const item = formValues.find((x) => x.lineId === lineId);
-      return item ? String(item[fieldName]) : '';
-    },
-    [formValues],
-  );
+  const getFieldValue = (lineId: number, fieldName: keyof T): string => {
+    const item = formValues.find((x) => x.lineId === lineId);
+    return item ? String(item[fieldName]) : '';
+  };
 
-  // Replaces or adds an entire item.
-  const setItem = useCallback(
-    (lineId: number, item: T) => {
-      setFormValues((prev) => {
-        const index = findItemIndex(lineId);
-        if (index !== -1) {
-          const updated = [...prev];
-          updated[index] = { ...updated[index], ...item };
-          return updated;
-        }
-        return [...prev, item];
-      });
-      setIsSaved(false);
-    },
-    [findItemIndex],
-  );
+  const setItem = (lineId: number, item: T) => {
+    setFormValues((prev) => {
+      const index = prev.findIndex((x) => x.lineId === lineId);
+      if (index !== -1) {
+        const updated = [...prev];
+        updated[index] = { ...updated[index], ...item };
+        return updated;
+      }
+      return [...prev, item];
+    });
+    setIsSaved(false);
+  };
 
-  // Returns the item with the specified lineId, or null if not found.
-  const getItem = useCallback(
-    (lineId: number): null | T => {
-      const index = findItemIndex(lineId);
-      return index === -1 ? null : formValues[index];
-    },
-    [formValues, findItemIndex],
-  );
+  const getItem = (lineId: number): T | null => {
+    const index = formValues.findIndex((x) => x.lineId === lineId);
+    return index === -1 ? null : formValues[index];
+  };
 
-  // Returns all items that have a truthy lineId.
-  const getIndex = useCallback((): IdType[] => {
-    return formValues.filter((x) => Boolean(x.lineId));
-  }, [formValues]);
+  const getIndex = (): IdType[] => formValues.filter((x) => Boolean(x.lineId));
 
-  // Resets the form array to an empty state.
-  const clearForm = useCallback(() => {
+  const clearForm = () => {
     setFormValues([]);
-  }, []);
+    setIsSaved(true);
+  };
 
-  return useMemo(
-    () => ({
-      clearForm,
-      formValues,
-      getFieldValue,
-      getIndex,
-      getItem,
-      isSaved,
-      setFieldValue,
-      setFormValues,
-      setIsSaved,
-      setItem,
-    }),
-    [
-      formValues,
-      isSaved,
-      getFieldValue,
-      getIndex,
-      getItem,
-      setFieldValue,
-      setFormValues,
-      setIsSaved,
-      setItem,
-      clearForm,
-    ],
-  );
+  return {
+    clearForm,
+    formValues,
+    getFieldValue,
+    getIndex,
+    getItem,
+    isSaved,
+    setFieldValue,
+    setFormValues,
+    setIsSaved,
+    setItem,
+  };
 };
 
 export default useFormArray;

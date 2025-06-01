@@ -1,4 +1,4 @@
-import { type JSX, type ReactNode, type HTMLAttributes, memo } from 'react';
+import type { JSX, ReactNode, HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
@@ -61,7 +61,7 @@ const FieldWrapper = ({
 };
 
 FieldWrapper.displayName = 'FieldWrapper';
-export default memo(FieldWrapper);
+export default FieldWrapper;
 
 const Container = styled.div`
   display: flex;

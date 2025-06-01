@@ -14,7 +14,7 @@ const ItemRender = ({
   children,
   item,
   level,
-}: ItemRenderProps): null | React.JSX.Element => {
+}: ItemRenderProps): null | JSX.Element => {
   if (!item) {
     return null;
   }

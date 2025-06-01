@@ -1,11 +1,8 @@
-import { useMemo, useCallback } from 'react';
-
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { Items, ListItem } from 'types';
 import type { KeyValue } from 'types/KeyValue';
 
-// Helper function to fetch items
 const fetchData = async (): Promise<Items> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ITEMS);
   if (!response.ok) {
@@ -15,99 +12,62 @@ const fetchData = async (): Promise<Items> => {
 };
 
 const useItems = () => {
-  // Define a unique query key for caching purposes
-  const queryKey = ['items'];
-
-  const query = useQuery<Items>({
-    gcTime: QueryTime.GC_TIME,
+  const { data, error, isError, isLoading } = useQuery<Items>({
     queryFn: fetchData,
-    queryKey,
-    refetchInterval: 0,
-    refetchIntervalInBackground: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
-    staleTime: QueryTime.STALE_TIME,
+    queryKey: ['items'],
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  const { data, error, isError, isLoading } = query;
+  const items = data?.items ?? [];
 
-  // Derived arrays using useMemo for efficient recalculation
-  const artists = useMemo(() => {
-    return data?.items
-      ? [...new Set(data.items.map((x) => x.artist))]
-          .filter((x) => x !== undefined)
-          .toSorted((a, b) => a.localeCompare(b))
-      : [];
-  }, [data]);
+  const artists = [...new Set(items.map((x) => x.artist))]
+    .filter((x): x is string => !!x)
+    .toSorted((a, b) => a.localeCompare(b));
 
-  const locations = useMemo(() => {
-    return data?.items
-      ? [...new Set(data.items.map((x) => x.location))]
-          .filter((x) => x !== undefined)
-          .toSorted((a, b) => a.localeCompare(b))
-      : [];
-  }, [data]);
+  const locations = [...new Set(items.map((x) => x.location))]
+    .filter((x): x is string => !!x)
+    .toSorted((a, b) => a.localeCompare(b));
 
-  const names = useMemo(() => {
-    return data?.items
-      ? [...new Set(data.items.map((x) => x.name))]
-          .filter((x) => x !== undefined)
-          .toSorted((a, b) => a.localeCompare(b))
-      : [];
-  }, [data]);
+  const names = [...new Set(items.map((x) => x.name))]
+    .filter((x): x is string => !!x)
+    .toSorted((a, b) => a.localeCompare(b));
 
-  const periods = useMemo(() => {
-    return data?.items
-      ? [...new Set(data.items.map((x) => x.period))]
-          .filter((x) => x !== undefined)
-          .toSorted((a, b) => a.localeCompare(b))
-      : [];
-  }, [data]);
+  const periods = [...new Set(items.map((x) => x.period))]
+    .filter((x): x is string => !!x)
+    .toSorted((a, b) => a.localeCompare(b));
 
-  // Function to filter items by artist
-  const getNamesFiltered = useCallback(
-    (artist: string) => {
-      return data?.items.filter((x) => x.artist === artist) ?? [];
-    },
-    [data],
+  const getNamesFiltered = (artist: string) =>
+    items.filter((x) => x.artist === artist);
+
+  const artistsNames = items.toSorted((a, b) =>
+    (a.artist ?? '').localeCompare(b.artist ?? ''),
   );
 
-  // Sorted list of artist items
-  const artistsNames = useMemo(() => {
-    return data?.items
-      ? data.items.toSorted((a, b) =>
-          (a.artist ?? '').localeCompare(b.artist ?? ''),
-        )
-      : [];
-  }, [data]);
+  const artistsIndexed: KeyValue[] = artists.map((value, key) => ({
+    key,
+    value,
+  }));
 
-  // Index derived arrays
-  const artistsIndexed: KeyValue[] = useMemo(() => {
-    return artists.map((x, index) => ({ key: index, value: x }));
-  }, [artists]);
+  const artistsNamesIndexed: ListItem[] = artistsNames.map((item, key) => ({
+    display: `${item.artist} - ${item.name} (${item.year})`,
+    key,
+    value: item.id,
+  }));
 
-  const artistsNamesIndexed: ListItem[] = useMemo(() => {
-    return artistsNames.map((x, index) => ({
-      display: `${x.artist} - ${x.name} (${x.year})`,
-      key: index,
-      value: x.id,
-    }));
-  }, [artistsNames]);
+  const locationsIndexed: KeyValue[] = locations.map((value, key) => ({
+    key,
+    value,
+  }));
 
-  const locationsIndexed: KeyValue[] = useMemo(() => {
-    return locations.map((x, index) => ({ key: index, value: x }));
-  }, [locations]);
+  const namesIndexed: KeyValue[] = names.map((value, key) => ({
+    key,
+    value,
+  }));
 
-  const namesIndexed: KeyValue[] = useMemo(() => {
-    return names.map((x, index) => ({ key: index, value: x }));
-  }, [names]);
-
-  const periodsIndexed: KeyValue[] = useMemo(() => {
-    return periods.map((x, index) => ({ key: index, value: x }));
-  }, [periods]);
+  const periodsIndexed: KeyValue[] = periods.map((value, key) => ({
+    key,
+    value,
+  }));
 
   return {
     artists,

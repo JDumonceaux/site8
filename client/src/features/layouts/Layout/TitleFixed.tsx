@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 
@@ -11,11 +11,12 @@ type TitleFixedProps = {
   children: React.ReactNode;
 };
 
-const TitleFixed: FC<TitleFixedProps> = memo(({ children }) => (
+const TitleFixed: FC<TitleFixedProps> = ({ children }) => (
   <StickyHeading role="heading" aria-level={1} data-testid="title">
     {children}
   </StickyHeading>
-));
+);
+
 TitleFixed.displayName = 'TitleFixed';
 export default TitleFixed;
 

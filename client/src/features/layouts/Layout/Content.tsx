@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,9 +10,9 @@ type ContentProps = {
   children?: React.ReactNode;
 };
 
-const Content: FC<ContentProps> = memo(({ children }) => (
+const Content: FC<ContentProps> = ({ children }) => (
   <Container data-testid="content">{children}</Container>
-));
+);
 Content.displayName = 'Content';
 export default Content;
 

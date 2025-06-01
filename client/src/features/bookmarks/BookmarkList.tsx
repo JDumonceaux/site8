@@ -8,7 +8,7 @@ type BookmarkListProps = {
 const BookmarkList: React.FC<BookmarkListProps> = ({
   data,
   id,
-}: BookmarkListProps): null | React.JSX.Element => {
+}: BookmarkListProps): null | JSX.Element => {
   if (!data) {
     return null;
   }

@@ -1,18 +1,18 @@
-import React, { Suspense, useCallback, useMemo } from 'react';
+import React, { Suspense } from 'react';
+import styled from 'styled-components';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import useArtistsItems from 'features/itemsAdd/useArtistsItems';
 import Layout from 'features/layouts/Layout/Layout';
-import styled from 'styled-components';
+import useArtistsItems from 'features/itemsAdd/useArtistsItems';
 
 import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
 import useImagesEditPage from './useImagesEditPage';
 
-const ImagesEditPage = (): React.JSX.Element => {
+const ImagesEditPage = (): JSX.Element => {
   const title = 'Edit Images';
 
   const {
@@ -33,52 +33,30 @@ const ImagesEditPage = (): React.JSX.Element => {
 
   const { itemsAsListItem } = useArtistsItems();
 
-  // Memoize handlers to ensure stable references
-  const memoizedGetFieldValue = useCallback(getFieldValue, [getFieldValue]);
-  const memoizedHandleChange = useCallback(handleChange, [handleChange]);
-  const memoizedHandleDelete = useCallback(handleDelete, [handleDelete]);
-
-  const memoizedHandleFolderChange = useCallback(handleFolderChange, [
-    handleFolderChange,
-  ]);
-  const memoizedHandleFilterSelect = useCallback(handleFilterSelect, [
-    handleFilterSelect,
-  ]);
-
-  const memoizedHandleScan = useCallback(handleScan, [handleScan]);
-  const memoizedHandleRefresh = useCallback(handleRefresh, [handleRefresh]);
-  const memoizedHandleSubmit = useCallback(handleSubmit, [handleSubmit]);
-
-  // Memoize itemsAsListItem to ensure a stable reference
-  const memoizedItemsAsListItem = useMemo(
-    () => itemsAsListItem,
-    [itemsAsListItem],
-  );
-
   return (
     <>
       <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
           <MenuBar
-            handleRefresh={memoizedHandleRefresh}
-            handleScan={memoizedHandleScan}
-            handleSubmit={memoizedHandleSubmit}
+            handleRefresh={handleRefresh}
+            handleScan={handleScan}
+            handleSubmit={handleSubmit}
           />
         </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Content>
           <LoadingWrapper isError={isError} isPending={isPending}>
-            <StyledForm noValidate onSubmit={memoizedHandleSubmit}>
+            <StyledForm noValidate onSubmit={handleSubmit}>
               {data.map((item) => (
                 <ImageDetail
-                  getFieldValue={memoizedGetFieldValue}
-                  item={item}
                   key={item.lineId}
-                  names={memoizedItemsAsListItem}
-                  onChange={memoizedHandleChange}
-                  onDelete={memoizedHandleDelete}
+                  item={item}
+                  names={itemsAsListItem}
+                  getFieldValue={getFieldValue}
+                  onChange={handleChange}
+                  onDelete={handleDelete}
                 />
               ))}
             </StyledForm>
@@ -89,8 +67,8 @@ const ImagesEditPage = (): React.JSX.Element => {
             <RightMenu
               currentFilter={currentFilter}
               currentFolder={currentFolder}
-              onClick={memoizedHandleFolderChange}
-              onFilterSelect={memoizedHandleFilterSelect}
+              onClick={handleFolderChange}
+              onFilterSelect={handleFilterSelect}
             />
           </Suspense>
         </Layout.Aside>
@@ -99,6 +77,7 @@ const ImagesEditPage = (): React.JSX.Element => {
   );
 };
 
+ImagesEditPage.displayName = 'ImagesEditPage';
 export default ImagesEditPage;
 
 const StyledForm = styled.form`

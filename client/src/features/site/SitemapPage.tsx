@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
@@ -25,4 +25,4 @@ export const SitemapPage: FC = () => (
 );
 
 SitemapPage.displayName = 'SitemapPage';
-export default memo(SitemapPage);
+export default SitemapPage;

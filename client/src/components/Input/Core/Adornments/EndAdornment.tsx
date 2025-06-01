@@ -1,4 +1,4 @@
-import { memo, type JSX, type ReactNode, type HTMLAttributes } from 'react';
+import type { JSX, ReactNode, HTMLAttributes } from 'react';
 
 import styled from 'styled-components';
 
@@ -22,7 +22,7 @@ const EndAdornment = ({
 };
 
 EndAdornment.displayName = 'EndAdornment';
-export default memo(EndAdornment);
+export default EndAdornment;
 
 const Content = styled.div`
   color: var(--input-adornment);

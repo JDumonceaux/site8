@@ -1,5 +1,4 @@
-import { memo, type JSX, type ButtonHTMLAttributes } from 'react';
-
+import type { JSX, ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
 // Allowed visual variants
@@ -116,7 +115,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 `;
 
 /**
- * A memoized, SOLID-compliant Button component.
+ * A SOLID-compliant Button component.
  * - Defaults `type="button"` to prevent accidental form submits.
  * - Prop → transient‐prop mapping keeps the DOM clean.
  */
@@ -141,4 +140,4 @@ const Button = ({
 };
 
 Button.displayName = 'Button';
-export default memo(Button);
+export default Button;

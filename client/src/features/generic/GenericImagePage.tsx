@@ -11,7 +11,7 @@ import type { Image } from 'types/Image';
 
 import useImages from '../imagesEdit/useImages';
 
-const GenericImagePage = (): React.JSX.Element => {
+const GenericImagePage = (): JSX.Element => {
   const { data, isError, isLoading } = useImages();
 
   const deferredData = useDeferredValue<Image[]>(data?.items ?? []);

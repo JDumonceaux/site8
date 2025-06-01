@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import type { FC } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 
@@ -23,4 +23,4 @@ const CookiesUsePage: FC = () => (
 );
 
 CookiesUsePage.displayName = 'CookiesUsePage';
-export default memo(CookiesUsePage);
+export default CookiesUsePage;

@@ -1,4 +1,5 @@
-import { type FC, useEffect, useMemo, useCallback } from 'react';
+import { useEffect } from 'react';
+import type { JSX } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -18,7 +19,7 @@ import usePagesEdit from './usePagesEdit';
 /**
  * Page for editing site pages and menu structure.
  */
-const PagesEditPage: FC = () => {
+const PagesEditPage = (): JSX.Element | null => {
   const {
     data = [],
     error,
@@ -33,17 +34,14 @@ const PagesEditPage: FC = () => {
   const { setShowPages, showPages } = useAppSettings();
 
   // Initialize form values when data changes
-  const formValues = useMemo(() => mapToFormValues(data), [data]);
+  const formValues = mapToFormValues(data);
   useEffect(() => {
     setFormValues(formValues);
   }, [formValues, setFormValues]);
 
-  const onToggleShowPages = useCallback(
-    (checked: boolean) => {
-      setShowPages(checked);
-    },
-    [setShowPages],
-  );
+  const onToggleShowPages = (checked: boolean) => {
+    setShowPages(checked);
+  };
 
   return (
     <>
@@ -99,6 +97,7 @@ const PagesEditPage: FC = () => {
   );
 };
 
+PagesEditPage.displayName = 'PagesEditPage';
 export default PagesEditPage;
 
 const StyledSaveButton = styled(StyledPlainButton)`

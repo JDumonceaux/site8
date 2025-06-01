@@ -6,7 +6,7 @@ import Layout from 'features/layouts/Layout/Layout';
 import BookmarkList from './BookmarkList';
 import useBookmarks from './useBookmarks';
 
-const BookmarkPage = (): React.JSX.Element => {
+const BookmarkPage = (): JSX.Element => {
   const title = 'Bookmarks';
   const { data, error, isError, isLoading } = useBookmarks();
 

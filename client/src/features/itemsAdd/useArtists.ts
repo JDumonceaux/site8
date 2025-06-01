@@ -1,7 +1,5 @@
-import { useMemo } from 'react';
-
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { Artists } from 'types/Artists';
 import type { ListItem } from 'types/ListItem';
 
@@ -15,32 +13,22 @@ const fetchData = async (): Promise<Artists> => {
 };
 
 const useArtists = () => {
-  // Define the query key for caching purposes
   const queryKey = ['artists'];
 
   const query = useQuery<Artists>({
-    gcTime: QueryTime.GC_TIME,
     queryFn: fetchData,
     queryKey,
-    refetchInterval: 0,
-    refetchIntervalInBackground: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  // Memoize the derived list of artists as list items
-  const artistsAsListItem: ListItem[] | undefined = useMemo(() => {
-    return query.data?.items
-      ?.toSorted((a, b) => a.sortName.localeCompare(b.sortName))
-      .map((x, index) => ({
-        display: x.name,
-        key: index,
-        value: x.id,
-      }));
-  }, [query.data]);
+  // Directly compute the list items on each render
+  const artistsAsListItem: ListItem[] | undefined = query.data?.items
+    ?.toSorted((a, b) => a.sortName.localeCompare(b.sortName))
+    .map((x, index) => ({
+      display: x.name,
+      key: index,
+      value: x.id,
+    }));
 
   return {
     artistsAsListItem,

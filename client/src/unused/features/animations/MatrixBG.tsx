@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Canvas3 } from './Canvas3';
 
 // https://medium.com/@ruse.marshall/converting-a-vanilla-js-canvas-animation-to-react-78443bad6d7b
-export const MatrixBG = (): React.JSX.Element => {
+export const MatrixBG = (): JSX.Element => {
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const [canvasWidth, setCanvasWidth] = useState<null | number>(null);
 

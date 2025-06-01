@@ -8,7 +8,7 @@ type LinkButtonProps = {
   readonly to: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const LinkButton = ({ to, ...rest }: LinkButtonProps): React.JSX.Element => (
+const LinkButton = ({ to, ...rest }: LinkButtonProps): JSX.Element => (
   <StyledLink to={to}>
     <StyledElement id="button" {...rest} />
   </StyledLink>

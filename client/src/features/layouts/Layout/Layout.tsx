@@ -8,7 +8,7 @@ import Menu from './Menu';
 import Section from './Section';
 import TitleFixed from './TitleFixed';
 
-const Layout = (): React.JSX.Element => <>Not defined</>;
+const Layout = (): JSX.Element => <>Not defined</>;
 
 Layout.Article = Article;
 Layout.Aside = Aside;

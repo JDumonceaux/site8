@@ -1,4 +1,4 @@
-import { memo, type JSX, type SVGProps } from 'react';
+import type { JSX, SVGProps } from 'react';
 
 import { EnvelopeClosedIcon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
@@ -14,4 +14,4 @@ const EmailAdornment = ({ ...rest }: EmailAdornmentProps): JSX.Element => {
 };
 
 EmailAdornment.displayName = 'EmailAdornment';
-export default memo(EmailAdornment);
+export default EmailAdornment;

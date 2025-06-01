@@ -1,4 +1,4 @@
-import { memo, type JSX } from 'react';
+import type { JSX } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 import styled from 'styled-components';
 
@@ -39,7 +39,7 @@ const MainErrorFallback = ({
 };
 
 MainErrorFallback.displayName = 'MainErrorFallback';
-export default memo(MainErrorFallback);
+export default MainErrorFallback;
 
 /* -- styled components -- */
 const Container = styled.div`

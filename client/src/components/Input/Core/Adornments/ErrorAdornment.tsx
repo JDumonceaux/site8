@@ -1,4 +1,4 @@
-import { memo, type JSX, type SVGProps } from 'react';
+import type { JSX, SVGProps } from 'react';
 
 import { ExclamationTriangleIcon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
@@ -11,4 +11,4 @@ const ErrorAdornment = ({ ...rest }: ErrorAdornmentProps): JSX.Element => {
 };
 
 ErrorAdornment.displayName = 'ErrorAdornment';
-export default memo(ErrorAdornment);
+export default ErrorAdornment;

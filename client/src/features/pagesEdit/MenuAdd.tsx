@@ -9,7 +9,7 @@ import useMenuAdd from 'hooks/useMenuAdd';
  *
  * @returns The JSX element representing the MenuAdd component.
  */
-const MenuAdd = (): React.JSX.Element => {
+const MenuAdd = (): JSX.Element => {
   const { setMessage } = useSnackbar();
 
   const {
