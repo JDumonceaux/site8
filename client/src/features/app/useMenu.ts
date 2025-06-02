@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import { useQuery } from '@tanstack/react-query';
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { Menu } from 'types';
@@ -34,18 +32,12 @@ const useMenu = (): UseMenuReturn => {
     ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  const getMenu = useCallback(
-    (to: string) => data?.items?.find((item) => item.to === to),
-    [data],
-  );
+  const getMenu = (to: string) => data?.items?.find((item) => item.to === to);
 
-  const getOtherMenus = useCallback(
-    (id: number) =>
-      data?.items
-        ?.toSorted((a, b) => a.id - b.id)
-        .filter((item) => item.id !== id) ?? [],
-    [data],
-  );
+  const getOtherMenus = (id: number) =>
+    data?.items
+      ?.toSorted((a, b) => a.id - b.id)
+      .filter((item) => item.id !== id) ?? [];
 
   return {
     data,

@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -13,13 +12,12 @@ type ArticleProps = React.HTMLAttributes<HTMLElement> & {
 /**
  * A semantic Article container with flexible layout.
  */
-const Article: FC<ArticleProps> = ({ children, ...rest }) => (
+export const Article = ({ children, ...rest }: ArticleProps): JSX.Element => (
   <Container data-testid="article" {...rest}>
     {children}
   </Container>
 );
 Article.displayName = 'Article';
-export default Article;
 
 // Styled component defining the Article layout
 const Container = styled.article`

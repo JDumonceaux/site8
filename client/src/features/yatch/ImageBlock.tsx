@@ -1,12 +1,11 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 import type { Image } from 'types/Image';
 
 /**
  * Renders a titled block with an image.
  */
-export const ImageBlock: FC<Image> = ({ alt, src, title }: Image) => (
+const ImageBlock = ({ alt, src, title }: Image): JSX.Element | null => (
   <Section>
     <Title>{title}</Title>
     <img alt={alt ?? title} src={src} {...(title ? { title } : {})} />

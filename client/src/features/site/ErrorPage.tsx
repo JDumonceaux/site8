@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import styled from 'styled-components';
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 /**
  * Error Page – shown when an unexpected error occurs.
  */
-const ErrorPage: FC = () => (
+export const ErrorPage = (): JSX.Element => (
   <>
     <Meta title="Error Page" />
     <Container aria-label="Error message" role="alert">
@@ -17,7 +17,6 @@ const ErrorPage: FC = () => (
 );
 
 ErrorPage.displayName = 'ErrorPage';
-export default ErrorPage;
 
 const Container = styled.div`
   margin-top: 20%;

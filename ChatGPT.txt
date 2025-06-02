@@ -11,6 +11,8 @@
 
 
 
+
+
 Using React 19 and Typescript 5.8.3 (Baseline 2023):
 -  improve and optimize code.  
 - Review this code for errors, logical, or security concerns and refactor and provide a list of recommendations.
@@ -21,8 +23,14 @@ Using React 19 and Typescript 5.8.3 (Baseline 2023):
 - Use type for props
 - Do not use forwardRef
 
-- Return (): JSX.Element | null vs. FC
+
+
+- Remove FC or functional component
+- Return named const arrow function (): JSX.Element | null 
+- Do not remove comments
 - Add type JSX to import from react if needed.
+- Export const as default
+- Add component displayName;
 
 
 - Write tests

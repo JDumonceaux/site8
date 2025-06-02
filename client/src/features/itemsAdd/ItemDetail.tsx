@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ChangeEvent, JSX } from 'react';
 
 import IconMenu from 'components/IconMenu/IconMenu';
 import IconMenuItem from 'components/IconMenu/IconMenuItem';
@@ -18,7 +18,7 @@ type Props = {
   readonly locations?: KeyValue[];
   readonly names?: KeyValue[];
   readonly onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   readonly onDelete?: (lineId: number) => void;
   readonly periods?: KeyValue[];
@@ -33,22 +33,19 @@ const ItemDetail = ({
   onDelete,
   periods,
 }: Props): JSX.Element => {
-  const handleOnDelete = React.useCallback(() => {
+  function handleOnDelete() {
     if (onDelete) {
       onDelete(item.lineId);
     }
-  }, [item.lineId, onDelete]);
+  }
 
-  const handleFieldChange = React.useCallback(
-    (
-      lineId: number,
-      fieldName: keyof ItemAddExt,
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-      onChange(e, lineId, fieldName);
-    },
-    [onChange],
-  );
+  function handleFieldChange(
+    lineId: number,
+    fieldName: keyof ItemAddExt,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onChange(e, lineId, fieldName);
+  }
 
   return (
     <StyledRow key={item.lineId}>

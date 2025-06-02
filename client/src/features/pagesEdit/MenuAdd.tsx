@@ -1,4 +1,4 @@
-import React, { startTransition, useCallback } from 'react';
+import { type JSX, startTransition } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
@@ -22,21 +22,18 @@ const MenuAdd = (): JSX.Element => {
     validateForm,
   } = useMenuAdd();
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      if (validateForm()) {
-        setMessage('Saving...');
-        startTransition(() => {
-          submitForm();
-          clearForm();
-          setMessage('Saved');
-        });
-      }
-    },
-    [validateForm, setMessage, submitForm, clearForm],
-  );
+  const handleSubmit = (e: React.FormEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (validateForm()) {
+      setMessage('Saving...');
+      startTransition(() => {
+        submitForm();
+        clearForm();
+        setMessage('Saved');
+      });
+    }
+  };
 
   return (
     <LoadingWrapper error={error} isLoading={isLoading}>

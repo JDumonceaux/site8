@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { Bookmarks } from 'types/Bookmarks';
 
 type BookmarkListProps = {
@@ -5,10 +6,11 @@ type BookmarkListProps = {
   readonly id?: number;
 };
 
-const BookmarkList: React.FC<BookmarkListProps> = ({
+// BookmarkList component displays a list of bookmarks
+const BookmarkList = ({
   data,
   id,
-}: BookmarkListProps): null | JSX.Element => {
+}: BookmarkListProps): JSX.Element | null => {
   if (!data) {
     return null;
   }

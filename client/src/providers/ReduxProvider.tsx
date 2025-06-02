@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 
 import { Provider } from 'react-redux';
 import store from 'store/store';
@@ -11,7 +11,9 @@ type ReduxProviderProps = {
 /**
  * Wraps the application in a Redux store provider.
  */
-const ReduxProvider: FC<ReduxProviderProps> = ({ children }) => (
+const ReduxProvider = ({
+  children,
+}: ReduxProviderProps): JSX.Element | null => (
   <Provider store={store}>{children}</Provider>
 );
 

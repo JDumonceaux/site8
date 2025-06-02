@@ -1,11 +1,11 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 
 /**
  * Privacy Policy page – outlines data collection practices.
  */
-const PrivacyPolicyPage: FC = () => (
+const PrivacyPolicyPage = (): JSX.Element => (
   <>
     <Meta title="Privacy Policy" />
     <main aria-labelledby="privacy-policy-heading">

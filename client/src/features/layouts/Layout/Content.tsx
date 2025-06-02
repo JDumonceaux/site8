@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -10,11 +9,10 @@ type ContentProps = {
   children?: React.ReactNode;
 };
 
-const Content: FC<ContentProps> = ({ children }) => (
+export const Content = ({ children }: ContentProps): JSX.Element | null => (
   <Container data-testid="content">{children}</Container>
 );
 Content.displayName = 'Content';
-export default Content;
 
 // Styled component for content area
 const Container = styled.div`

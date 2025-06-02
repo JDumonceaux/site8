@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 
 import Layout from 'features/layouts/Layout/Layout';
 import styled from 'styled-components';
@@ -17,12 +17,12 @@ export type AuthContainerProps = {
 /**
  * Layout wrapper for authentication pages with a left graphic and right form.
  */
-export const AuthContainer: FC<AuthContainerProps> = ({
+export const AuthContainer = ({
   children,
   error,
   leftImage,
   title,
-}) => (
+}: AuthContainerProps): JSX.Element | null => (
   <Layout.Main>
     <Grid>
       <Left aria-hidden="true">{leftImage}</Left>

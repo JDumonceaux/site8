@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
@@ -10,7 +10,10 @@ type PageRowProps = {
   item: MenuItem;
 };
 
-export const PageRow: FC<PageRowProps> = ({ getDefaultProps, item }) => {
+const PageRow = ({
+  getDefaultProps,
+  item,
+}: PageRowProps): JSX.Element | null => {
   const isPage = item.type === 'page';
   const levelPrefix =
     {
@@ -62,6 +65,9 @@ export const PageRow: FC<PageRowProps> = ({ getDefaultProps, item }) => {
     </StyledTr>
   );
 };
+
+PageRow.displayName = 'PageRow';
+export default PageRow;
 
 const StyledTr = styled.tr`
   td {

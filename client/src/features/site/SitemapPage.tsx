@@ -1,9 +1,9 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
 
-export const SitemapPage: FC = () => (
+const SitemapPage = (): JSX.Element | null => (
   <>
     <Meta title="Sitemap" />
     <main>

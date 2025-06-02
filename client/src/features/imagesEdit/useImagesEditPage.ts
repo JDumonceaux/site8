@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
 import useSnackbar from 'features/app/Snackbar/useSnackbar';
 import useFormArray from 'hooks/useFormArray';
@@ -25,7 +25,7 @@ const useImagesEditPage = () => {
   const { data, isError } = useImagesEdit();
 
   // Filter and sort data
-  const filterAndSortData = useCallback(() => {
+  function filterAndSortData() {
     const temp =
       filter && filter.length > 0
         ? data?.items.filter((x) => x.folder === filter)
@@ -36,20 +36,22 @@ const useImagesEditPage = () => {
     const sortedData = filteredImageType?.toSorted((a, b) => b.id - a.id);
     const trimmedData = sortedData?.slice(0, 100);
     setDisplayData(trimmedData ?? []);
-  }, [filter, data?.items]);
+  }
 
   useEffect(() => {
     filterAndSortData();
-  }, [filterAndSortData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, data?.items]);
 
   useEffect(() => {
     // The full set of items
     const temp = mapDataToForm(displayData);
     setFormValues(temp);
     setOriginalValues(temp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayData, setFormValues]);
 
-  const mapDataToForm = (items: Image[] | undefined) => {
+  function mapDataToForm(items: Image[] | undefined) {
     if (!items) {
       return [];
     }
@@ -63,7 +65,7 @@ const useImagesEditPage = () => {
       };
     });
     return ret;
-  };
+  }
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -86,16 +88,16 @@ const useImagesEditPage = () => {
     }
   };
 
-  const handleRefresh = useCallback(() => {
+  function handleRefresh() {
     setMessage('Updating...');
     startTransition(() => {
       // fetchData();
     });
     setMessage('Done');
-  }, [setMessage, startTransition]);
+  }
 
   // Only submit updated records
-  const getUpdates = useCallback(() => {
+  function getUpdates() {
     const returnValue: ImageAdd[] = [];
 
     // loop through originals
@@ -117,9 +119,9 @@ const useImagesEditPage = () => {
     }
 
     return returnValue.length > 0 ? returnValue : undefined;
-  }, [formValues, originalValues]);
+  }
 
-  const handleSubmit = useCallback(() => {
+  function handleSubmit() {
     const updates = getUpdates();
     if (!updates) {
       setMessage('No changes to save');
@@ -151,35 +153,35 @@ const useImagesEditPage = () => {
     //   .finally(() => {
     //     //   setIsProcessing(false);
     //   });
-  }, [getUpdates, setMessage]);
+  }
 
-  const handleScan = () => {
+  function handleScan() {
     setMessage('Scanning...');
     startTransition(() => {
       //  scanForNewItems();
     });
     setMessage('Done');
-  };
+  }
 
-  const handleFolderChange = (value: string | undefined) => {
+  function handleFolderChange(value: string | undefined) {
     if (value) {
       setCurrentFolder((previous) => (previous === value ? '' : value));
     }
-  };
+  }
 
-  const handleDelete = (lineId: number) => {
+  function handleDelete(lineId: number) {
     const previous = getFieldValue(lineId, 'delete');
     setFieldValue(lineId, 'delete', !previous);
-  };
+  }
 
-  const handleFolderSelect = (lineId: number) => {
+  function handleFolderSelect(lineId: number) {
     setFieldValue(lineId, 'folder', currentFolder);
-  };
+  }
 
-  const handleFilterSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  function handleFilterSelect(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.target;
     setFilter(value === 'all' ? '' : value);
-  };
+  }
 
   // const getDifferenceString = (value?: string, update?: string) => {
   //   const normalizedUpdate = update?.trim() ?? undefined;

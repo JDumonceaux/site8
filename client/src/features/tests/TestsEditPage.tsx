@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { type JSX, useEffect, useState } from 'react';
 
 import {
   DndContext,
@@ -26,7 +26,8 @@ import SortableItem from 'features/tests/SortableItem';
 import useTestsEdit from 'features/tests/useTestsEdit';
 import styled from 'styled-components';
 
-const TestsEditPage: React.FC = (): JSX.Element => {
+// Do not remove comments
+const TestsEditPage = (): JSX.Element | null => {
   const { data, getDefaultProps, handleSave, isSaved, setFormValues } =
     useTestsEdit();
 
@@ -58,12 +59,9 @@ const TestsEditPage: React.FC = (): JSX.Element => {
     }
   }, [data, setFormValues]);
 
-  const onShowPages = useCallback(
-    (checked: boolean) => {
-      setShowPages(checked);
-    },
-    [setShowPages],
-  );
+  const onShowPages = (checked: boolean) => {
+    setShowPages(checked);
+  };
 
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
@@ -175,6 +173,7 @@ const TestsEditPage: React.FC = (): JSX.Element => {
   );
 };
 
+TestsEditPage.displayName = 'TestsEditPage';
 export default TestsEditPage;
 
 const StyledSaveButton = styled(StyledPlainButton)`

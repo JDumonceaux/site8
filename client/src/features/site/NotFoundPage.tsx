@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import styled from 'styled-components';
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 /**
  * 404 Page – displayed when a route does not match any page.
  */
-const NotFoundPage: FC = () => (
+const NotFoundPage = (): JSX.Element => (
   <>
     <Meta title="Page not found" />
     <Main aria-labelledby="not-found-heading">

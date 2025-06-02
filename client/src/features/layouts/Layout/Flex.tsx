@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -10,9 +9,10 @@ type FlexProps = {
   children: React.ReactNode;
 };
 
-const Flex: FC<FlexProps> = ({ children }) => (
+const Flex = ({ children }: FlexProps): JSX.Element => (
   <Container data-testid="layout">{children}</Container>
 );
+
 Flex.displayName = 'Flex';
 export default Flex;
 

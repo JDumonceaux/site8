@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect, type JSX, type FormEvent } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 import Button from 'components/form/Button/Button';
@@ -18,18 +18,15 @@ const SignOutpPage = (): JSX.Element => {
     authFetchAuthSession();
   }, [authFetchAuthSession]);
 
-  const handleSubmit = useCallback(
-    async (event: React.FormEvent) => {
-      event.preventDefault();
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
 
-      try {
-        await authSignOut();
-      } catch {
-        // Handle sign-up error
-      }
-    },
-    [authSignOut],
-  );
+    try {
+      await authSignOut();
+    } catch {
+      // Handle sign-up error
+    }
+  };
 
   return (
     <>
@@ -60,6 +57,7 @@ const SignOutpPage = (): JSX.Element => {
   );
 };
 
+SignOutpPage.displayName = 'SignOutPage';
 export default SignOutpPage;
 
 const StyledForm = styled.form`

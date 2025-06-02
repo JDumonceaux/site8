@@ -1,4 +1,4 @@
-import { useState, useCallback, type FC } from 'react';
+import { type JSX, useState } from 'react';
 
 import PasswordAdornment from '../Core/Adornments/PasswordAdornment';
 import ShowAdornment from '../Core/Adornments/ShowAdornment';
@@ -23,15 +23,15 @@ export type InputPasswordProps = {
 // Remove: 'autocapitalize', 'height', 'src', 'step', 'width'
 // Valid: pattern, value
 
-export const InputPassword: FC<InputPasswordProps> = ({
+export const InputPassword = ({
   autoComplete = 'off',
   ...rest
-}) => {
+}: InputPasswordProps): JSX.Element | null => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handlePress = useCallback((pressed: boolean) => {
+  const handlePress = (pressed: boolean) => {
     setShowPassword(pressed);
-  }, []);
+  };
 
   return (
     <InputBase

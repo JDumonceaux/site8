@@ -1,24 +1,22 @@
-import { type FC } from 'react';
+import React, { type JSX } from 'react';
 
 import styled from 'styled-components';
 import type { Video } from 'types/Video';
 
 /** Responsive video embed with title */
-export const VideoEmbed: FC<Video> = (
-  ({ iframeTitle, title, videoSrc }: Video) => (
-    <Section>
-      <Heading>{title}</Heading>
-      <VideoWrapper>
-        <StyledIframe
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          sandbox="allow-same-origin allow-scripts"
-          src={videoSrc}
-          title={iframeTitle ?? title}
-        />
-      </VideoWrapper>
-    </Section>
-  ),
+const VideoEmbed = ({ iframeTitle, title, videoSrc }: Video): JSX.Element | null => (
+  <Section>
+    <Heading>{title}</Heading>
+    <VideoWrapper>
+      <StyledIframe
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        sandbox="allow-same-origin allow-scripts"
+        src={videoSrc}
+        title={iframeTitle ?? title}
+      />
+    </VideoWrapper>
+  </Section>
 );
 
 VideoEmbed.displayName = 'VideoEmbed';

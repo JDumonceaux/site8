@@ -1,4 +1,4 @@
-import { type FC, Suspense } from 'react';
+import { Suspense, type JSX } from 'react';
 
 import Header from 'components/core/Header/Header';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -8,7 +8,7 @@ import styled from 'styled-components';
 /**
  * Accessible fallback shown while the page is lazy-loading.
  */
-const LoadingFallback: FC = () => (
+export const LoadingFallback = (): JSX.Element => (
   <div role="status" aria-live="polite" aria-busy="true">
     Loading…
   </div>
@@ -17,10 +17,13 @@ const LoadingFallback: FC = () => (
 /**
  * Error fallback for any rendering errors in this layout.
  */
-const ErrorFallback: FC<{ error: Error; resetErrorBoundary: () => void }> = ({
+export const ErrorFallback = ({
   error,
   resetErrorBoundary,
-}) => (
+}: {
+  error: Error;
+  resetErrorBoundary: () => void;
+}): JSX.Element => (
   <ErrorContainer role="alert">
     <p>Something went wrong.</p>
     <pre>{error.message}</pre>
@@ -31,7 +34,7 @@ const ErrorFallback: FC<{ error: Error; resetErrorBoundary: () => void }> = ({
 /**
  * Layout wrapper for authentication-related routes.
  */
-const AuthLayout: FC = () => (
+const AuthLayout = (): JSX.Element => (
   <ErrorBoundary FallbackComponent={ErrorFallback}>
     <Header />
     <Main>

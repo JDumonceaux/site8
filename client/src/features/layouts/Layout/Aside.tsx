@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import styled from 'styled-components';
 
@@ -7,14 +7,13 @@ import styled from 'styled-components';
  */
 type AsideProps = {
   /** Optional content to render inside the aside */
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-const Aside: FC<AsideProps> = ({ children }) => (
+export const Aside = ({ children }: AsideProps): JSX.Element | null => (
   <Container data-testid="aside">{children}</Container>
 );
 Aside.displayName = 'Aside';
-export default Aside;
 
 // Styled component for the aside layout
 const Container = styled.aside`

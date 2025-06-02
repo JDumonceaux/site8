@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import type { JSX } from 'react';
+import type { InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase from '../Core/InputBase/InputBase';
 
 type InputHiddenProps = Omit<
   InputBaseProps,
@@ -13,10 +13,10 @@ type InputHiddenProps = Omit<
 // Remove: 'autocapitalize', 'height', 'pattern', 'src', 'step', 'width'
 // Valid: 'value'
 
-export const InputHidden: FC<InputHiddenProps> = ({
+export const InputHidden = ({
   type = 'password',
   ...rest
-}) => <InputBase type={type} {...rest} />;
+}: InputHiddenProps): JSX.Element | null => <InputBase type={type} {...rest} />;
 
 InputHidden.displayName = 'InputHidden';
 export default InputHidden;

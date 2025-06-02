@@ -1,8 +1,9 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import Meta from 'components/core/Meta/Meta';
 
-export const TermsOfUsePage: FC = () => {
+// TermsOfUsePage component
+const TermsOfUsePage = (): JSX.Element | null => {
   const lastUpdated = '2024-03-21';
   const contactEmail = 'support@example.com';
   const contactAddress = ['123 Main St.', 'Anytown, USA'];

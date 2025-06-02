@@ -1,22 +1,24 @@
-import { type FC, Suspense } from 'react';
-
+import { type JSX, Suspense } from 'react';
 import AppInitializer from 'features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 /** Accessible fallback displayed during lazy-loading */
-const LoadingFallback: FC = () => (
+const LoadingFallback = (): JSX.Element => (
   <div role="status" aria-live="polite">
     Loading…
   </div>
 );
 
 /** Error fallback for unexpected rendering errors */
-const ErrorFallback: FC<{ error: Error; resetErrorBoundary: () => void }> = ({
+const ErrorFallback = ({
   error,
   resetErrorBoundary,
-}) => (
+}: {
+  error: Error;
+  resetErrorBoundary: () => void;
+}): JSX.Element => (
   <ErrorContainer role="alert">
     <p>Sorry, an unexpected error occurred.</p>
     <pre>{error.message}</pre>
@@ -27,7 +29,7 @@ const ErrorFallback: FC<{ error: Error; resetErrorBoundary: () => void }> = ({
 /**
  * Layout wrapper for the home (root) routes.
  */
-const HomeLayout: FC = () => (
+const HomeLayout = (): JSX.Element => (
   <ErrorBoundary FallbackComponent={ErrorFallback}>
     <AppInitializer />
     <Main>

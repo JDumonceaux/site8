@@ -1,7 +1,5 @@
-import { useCallback } from 'react';
-
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl } from 'lib/utils/constants';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import { isValidArray } from 'lib/utils/helpers';
 
 const useImageFolder = () => {
@@ -11,15 +9,13 @@ const useImageFolder = () => {
       return (await response.json()) as string[];
     },
     queryKey: ['image-folders'],
+    ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  const getData = useCallback(
-    () =>
-      isValidArray(data)
-        ? data?.map((x, index) => ({ id: index + 1, value: x }))
-        : undefined,
-    [data],
-  );
+  const getData = () =>
+    isValidArray(data)
+      ? data?.map((x, index) => ({ id: index + 1, value: x }))
+      : undefined;
 
   return {
     data: getData(),

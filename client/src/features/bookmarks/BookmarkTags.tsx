@@ -1,14 +1,14 @@
-import React from 'react';
-
+import { type JSX, Fragment } from 'react';
 import type { BookmarksTags } from 'types/BookmarksTags';
 
 type BookmarksTagsProps = {
   readonly data: BookmarksTags | undefined;
 };
 
-const BookmarkTags: React.FC<BookmarksTagsProps> = ({
+// Render bookmark tags table
+export const BookmarkTags = ({
   data,
-}: BookmarksTagsProps): JSX.Element => {
+}: BookmarksTagsProps): JSX.Element | null => {
   return (
     <table>
       <thead>
@@ -19,7 +19,7 @@ const BookmarkTags: React.FC<BookmarksTagsProps> = ({
       </thead>
       <tbody>
         {data?.items?.map((item) => (
-          <React.Fragment key={item.tag}>
+          <Fragment key={item.tag}>
             <tr key={item.tag}>
               <td>{item.tag}</td>
               <td />
@@ -30,7 +30,7 @@ const BookmarkTags: React.FC<BookmarksTagsProps> = ({
                 <td>{x.description}</td>
               </tr>
             ))}
-          </React.Fragment>
+          </Fragment>
         ))}
       </tbody>
     </table>

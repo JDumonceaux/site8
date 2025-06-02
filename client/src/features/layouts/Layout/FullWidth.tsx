@@ -1,5 +1,4 @@
-import type { FC, JSX } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -13,14 +12,13 @@ type FullWidthProps = {
 /**
  * A container that spans the full viewport width & height.
  */
-const FullWidth: FC<FullWidthProps> = ({ children, ...rest }) => (
+export const FullWidth = ({ children, ...rest }: FullWidthProps): JSX.Element | null => (
   <Container data-testid="fullWidth" {...rest}>
     {children}
   </Container>
 );
 
 FullWidth.displayName = 'FullWidth';
-export default FullWidth;
 
 // Styled component for layout
 const Container = styled.div`

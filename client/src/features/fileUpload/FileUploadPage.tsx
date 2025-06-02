@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { type JSX, type ChangeEvent, useState } from 'react';
 
 import axios from 'axios';
 import Meta from 'components/core/Meta/Meta';
@@ -14,16 +14,13 @@ const FileUploadPage = (): JSX.Element => {
   const [status, setStatus] = useState<UploadStatus>('idle');
   const [uploadProgress, setUploadProgress] = useState(0);
 
-  const handleFileChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files) {
-        setFile(e.target.files[0]);
-      }
-    },
-    [],
-  );
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
 
-  const handleFileUpload = useCallback(async () => {
+  const handleFileUpload = async () => {
     if (!file) return;
 
     setStatus('uploading');
@@ -47,7 +44,7 @@ const FileUploadPage = (): JSX.Element => {
       setStatus('error');
       setUploadProgress(0);
     }
-  }, [file]);
+  };
 
   return (
     <>

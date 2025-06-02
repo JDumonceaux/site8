@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -11,11 +10,13 @@ type TitleFixedProps = {
   children: React.ReactNode;
 };
 
-const TitleFixed: FC<TitleFixedProps> = ({ children }) => (
-  <StickyHeading role="heading" aria-level={1} data-testid="title">
-    {children}
-  </StickyHeading>
-);
+const TitleFixed = ({ children }: TitleFixedProps): JSX.Element | null => {
+  return (
+    <StickyHeading role="heading" aria-level={1} data-testid="title">
+      {children}
+    </StickyHeading>
+  );
+};
 
 TitleFixed.displayName = 'TitleFixed';
 export default TitleFixed;

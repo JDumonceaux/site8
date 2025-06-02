@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
+import type { InputBaseProps } from '../Core/InputBase/InputBase';
 import PhoneAdornment from '../Core/Adornments/PhoneAdornment';
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase from '../Core/InputBase/InputBase';
 
 export type InputTelProps = Omit<
   InputBaseProps,
@@ -15,11 +15,11 @@ export type InputTelProps = Omit<
 // spellcheck, autocorrect, enterkeyhint
 // Deprecated: mozactionhint - use enterkeyhint
 
-export const InputTel: FC<InputTelProps> = ({
+export const InputTel = ({
   autoComplete = 'tel',
   type = 'tel',
   ...rest
-}) => (
+}: InputTelProps): JSX.Element | null => (
   <InputBase
     autoComplete={autoComplete}
     startAdornment={<PhoneAdornment />}

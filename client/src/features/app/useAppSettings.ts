@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/appSlice';
 import type { AppDispatch, RootState } from 'store/store';
@@ -29,37 +27,25 @@ const useAppSettings = (): UseAppSettingsReturn => {
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector(selectAppSettingsData);
 
-  const saveSettings = useCallback(
-    (updates: AppSettings) => {
-      dispatch(save(updates));
-    },
-    [dispatch],
-  );
+  const saveSettings = (updates: AppSettings) => {
+    dispatch(save(updates));
+  };
 
-  const setShowAll = useCallback(
-    (showAll: boolean) => {
-      saveSettings({ ...initialState, ...data, showAll });
-    },
-    [data, saveSettings],
-  );
+  const setShowAll = (showAll: boolean) => {
+    saveSettings({ ...initialState, ...data, showAll });
+  };
 
-  const setShowPages = useCallback(
-    (showPages: boolean) => {
-      saveSettings({ ...initialState, ...data, showPages });
-    },
-    [data, saveSettings],
-  );
+  const setShowPages = (showPages: boolean) => {
+    saveSettings({ ...initialState, ...data, showPages });
+  };
 
-  const setShowUnmatched = useCallback(
-    (showUnmatched: boolean) => {
-      saveSettings({ ...initialState, ...data, showUnmatched });
-    },
-    [data, saveSettings],
-  );
+  const setShowUnmatched = (showUnmatched: boolean) => {
+    saveSettings({ ...initialState, ...data, showUnmatched });
+  };
 
-  const reset = useCallback(() => {
+  const reset = () => {
     saveSettings(initialState);
-  }, [saveSettings]);
+  };
 
   return {
     data,

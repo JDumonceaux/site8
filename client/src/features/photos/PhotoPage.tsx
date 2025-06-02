@@ -1,4 +1,4 @@
-import { type FC, useDeferredValue } from 'react';
+import { useDeferredValue, type JSX } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -11,7 +11,7 @@ import usePhotos from './usePhotos';
 /**
  * Photo page – displays a gallery of photos with lazy loading.
  */
-const PhotoPage: FC = () => {
+const PhotoPage = (): JSX.Element | null => {
   const { data = { items: [] }, error, isError, isLoading } = usePhotos();
   const deferredData = useDeferredValue(data);
   const { items } = deferredData;

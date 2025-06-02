@@ -1,4 +1,4 @@
-import {  useRef, type FC, type SelectHTMLAttributes } from 'react';
+import { useRef, type SelectHTMLAttributes, type JSX } from 'react';
 
 import useGetId from 'hooks/useGetId';
 import styled from 'styled-components';
@@ -21,39 +21,37 @@ type InputSelectProps = {
 // Implicit aria-role ⇒ 'combobox' or 'listbox'
 // https://www.w3.org/TR/html-aria/#docconformance
 
-export const InputSelect: FC<InputSelectProps> = (
-  ({
-    dataList,
-    id,
-    placeholder,
-    ref,
-    required,
-    showBlankOption = false,
-    ...rest
-  }: InputSelectProps) => {
-    const currId = useGetId(id);
-    const tempRef = useRef<HTMLSelectElement>(null);
-    const selectRef = ref ?? tempRef;
-    // commonProps includes wrapper props (errors, labelProps, etc.) plus select attrs
-    const commonProps = { ...rest, id: currId, required };
+const InputSelect = ({
+  dataList,
+  id,
+  placeholder,
+  ref,
+  required,
+  showBlankOption = false,
+  ...rest
+}: InputSelectProps): JSX.Element | null => {
+  const currId = useGetId(id);
+  const tempRef = useRef<HTMLSelectElement>(null);
+  const selectRef = ref ?? tempRef;
+  // commonProps includes wrapper props (errors, labelProps, etc.) plus select attrs
+  const commonProps = { ...rest, id: currId, required };
 
-    return (
-      <FieldWrapper {...commonProps}>
-        <StyledSelect {...commonProps} ref={selectRef}>
-          {showBlankOption ? <option value="">Select an option</option> : null}
-          {placeholder ? (
-            <option value="placeholder">{placeholder}</option>
-          ) : null}
-          {dataList?.map((item) => (
-            <option key={item.key} value={item.value}>
-              {item.display ?? item.value}
-            </option>
-          ))}
-        </StyledSelect>
-      </FieldWrapper>
-    );
-  },
-);
+  return (
+    <FieldWrapper {...commonProps}>
+      <StyledSelect {...commonProps} ref={selectRef}>
+        {showBlankOption ? <option value="">Select an option</option> : null}
+        {placeholder ? (
+          <option value="placeholder">{placeholder}</option>
+        ) : null}
+        {dataList?.map((item) => (
+          <option key={item.key} value={item.value}>
+            {item.display ?? item.value}
+          </option>
+        ))}
+      </StyledSelect>
+    </FieldWrapper>
+  );
+};
 
 InputSelect.displayName = 'InputSelect';
 export default InputSelect;

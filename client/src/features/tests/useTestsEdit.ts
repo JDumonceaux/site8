@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ServiceUrl } from 'lib/utils/constants';
 import type { Test } from 'types/Test';
@@ -31,7 +31,7 @@ const useTestsEdit = () => {
   const { patchData } = useAxios<Tests>();
   const [localItems, setLocalItems] = useState<null | Test[]>();
 
-  const { data, isError, isPending } = useTests();
+  const { data, isError } = useTests();
 
   // Create a form
   const {
@@ -58,7 +58,7 @@ const useTestsEdit = () => {
   });
 
   // Get the updates
-  const getUpdates = useCallback((): null | Tests => {
+  function getUpdates(): null | Tests {
     if (!data?.items) {
       return null;
     }
@@ -83,17 +83,17 @@ const useTestsEdit = () => {
       ...data,
       items: returnValue.filter(Boolean),
     };
-  }, [data, formValues]);
+  }
 
   // Validate form
-  // const validateForm = useCallback(() => {
+  // const validateForm = () => {
   //   const result = safeParse<FormType>(pageSchema, formValues);
   //   setErrors(result.error?.issues);
   //   return result.success;
-  // }, [formValues, setErrors]);
+  // };
 
   // Handle save
-  const submitForm = useCallback(async () => {
+  async function submitForm() {
     const data = getUpdates();
     if (!data) {
       return false;
@@ -103,19 +103,16 @@ const useTestsEdit = () => {
     //setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [getUpdates, patchData, setIsSaved]);
+  }
 
-  const handleChange = useCallback(
-    (id: number, fieldName: FormKeys, value: string) => {
-      setFieldValue(id, fieldName, value);
-    },
-    [setFieldValue],
-  );
+  function handleChange(id: number, fieldName: FormKeys, value: string) {
+    setFieldValue(id, fieldName, value);
+  }
 
-  const handleSave = useCallback(async () => {
+  async function handleSave() {
     const returnValue = await submitForm();
     return returnValue;
-  }, [submitForm]);
+  }
 
   return {
     data: localItems,
@@ -124,7 +121,6 @@ const useTestsEdit = () => {
     handleChange,
     handleSave,
     isError,
-    isPending,
     isSaved,
     pageSchema,
     setFieldValue,

@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import type { JSX } from 'react';
+import type { InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase from '../Core/InputBase/InputBase';
 
 type InputUrlProps = {
   readonly type?: 'url';
@@ -12,9 +12,10 @@ type InputUrlProps = {
 // Remove: 'autocapitalize', 'height', 'src', 'step', 'width'
 // Valid: pattern, value
 
-export const InputUrl: FC<InputUrlProps> = ({ type = 'url', ...rest }) => (
-  <InputBase type={type} {...rest} />
-);
+export const InputUrl = ({
+  type = 'url',
+  ...rest
+}: InputUrlProps): JSX.Element | null => <InputBase type={type} {...rest} />;
 
 InputUrl.displayName = 'InputUrl';
 export default InputUrl;

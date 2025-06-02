@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -10,10 +9,12 @@ type SectionProps = {
   children: React.ReactNode;
 };
 
-const Section: FC<SectionProps> = ({ children }) => (
+const Section = ({ children }: SectionProps): JSX.Element => (
   <StyledSection data-testid="section">{children}</StyledSection>
 );
+
 Section.displayName = 'Section';
+
 export default Section;
 
 // Styled component defining layout behavior

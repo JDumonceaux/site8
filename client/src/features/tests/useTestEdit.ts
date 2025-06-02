@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
 import type { MenuEdit } from 'types';
 import { z } from 'zod';
@@ -27,7 +25,7 @@ type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
 const useTestEdit = () => {
-  const { data, isError, isPending } = useTestMenus();
+  const { data, isError } = useTestMenus();
 
   const { patchData } = useAxios<MenuEdit[]>();
 
@@ -42,7 +40,7 @@ const useTestEdit = () => {
   } = useFormArray<FormType>();
 
   // Get the updates
-  const getUpdates = useCallback((): MenuEdit[] | null => {
+  function getUpdates(): MenuEdit[] | null {
     if (!data?.items) {
       return null;
     }
@@ -70,65 +68,34 @@ const useTestEdit = () => {
 
     // Filter out empty array values
     return returnValue.filter(Boolean);
-  }, [data?.items, formValues]);
-
-  // Validate form
-  // const validateForm = useCallback(() => {
-  //   const result = safeParse<FormType>(pageSchema, formValues);
-  //   setErrors(result.error?.issues);
-  //   return result.success;
-  // }, [formValues, setErrors]);
+  }
 
   // Handle save
-  const submitForm = useCallback(async () => {
+  async function submitForm() {
     const updates = getUpdates();
     if (!updates) {
       return false;
     }
-    // setIsProcessing(true);
     const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
-    // setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }, [getUpdates, patchData, setIsSaved]);
+  }
 
-  const handleChange = useCallback(
-    (id: number, fieldName: FormKeys, value: string) => {
-      setFieldValue(id, fieldName, value);
-    },
-    [setFieldValue],
-  );
+  function handleChange(id: number, fieldName: FormKeys, value: string) {
+    setFieldValue(id, fieldName, value);
+  }
 
-  const handleSave = useCallback(async () => {
+  async function handleSave() {
     return submitForm();
-  }, [submitForm]);
+  }
 
-  const getStandardInputTextAttributes = useCallback(
-    (lineId: number, fieldName: FormKeys) => {
-      const field = `${fieldName}-${lineId}`;
-      return {
-        id: field,
-        value: getFieldValue(lineId, fieldName),
-        // errorText: getFieldErrors(fieldName),
-        // hasError: hasError(fieldName),
-        // value: formValues[fieldName],
-      };
-    },
-    [getFieldValue],
-  );
-
-  // const filter = (arr: MenuItem[] | null) => {
-  //   const matches: MenuItem[] = [];
-  //   if (!Array.isArray(arr)) return matches;
-  //   arr.forEach((i) => {
-  //     if (i.type !== 'page') {
-  //       const { items, ...rest } = i;
-  //       const childResults = filter(items);
-  //       matches.push({ items: childResults, ...rest });
-  //     }
-  //   });
-  //   return matches;
-  // };
+  function getStandardInputTextAttributes(lineId: number, fieldName: FormKeys) {
+    const field = `${fieldName}-${lineId}`;
+    return {
+      id: field,
+      value: getFieldValue(lineId, fieldName),
+    };
+  }
 
   const filteredData = data?.items;
 
@@ -139,7 +106,6 @@ const useTestEdit = () => {
     handleChange,
     handleSave,
     isError,
-    isPending,
     isSaved,
     pageSchema,
     setFieldValue,

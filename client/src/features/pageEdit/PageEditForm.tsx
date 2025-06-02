@@ -1,4 +1,4 @@
-import React, { useActionState } from 'react';
+import { type JSX, useActionState } from 'react';
 
 import * as Form from '@radix-ui/react-form';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
@@ -18,7 +18,7 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
   // const [currentPositionStart, setCurrentPositionStart] = useState<number>(0);
   // const [currentPositionEnd, setCurrentPositionEnd] = useState<number>(0);
 
-  // const handeTextInsert = useCallback(
+  // const handeTextInsert =
   //   (action: string) => {
   //     const result = insertHTML(
   //       formValues.text,
@@ -27,23 +27,20 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
   //       action,
   //     );
   //     setFieldValue('text', result);
-  //   },
-  //   [formValues.text, currentPositionStart, currentPositionEnd, setFieldValue],
-  // );
+  //   };
 
-  // const handeNameOnBlur = useCallback(() => {
+  // const handeNameOnBlur = () => {
   //   if (formValues.name.length > 0 && formValues.to?.length === 0) {
   //     const x = formValues.name.toLowerCase().replaceAll(' ', '-');
   //     setFieldValue('to', x);
   //   }
-  // }, [formValues.name, formValues.to?.length, setFieldValue]);
+  // };
 
-  // const handeTextAreaBlur = useCallback(
+  // const handeTextAreaBlur =
   //   (error: React.FocusEvent<HTMLTextAreaElement>) => {
   //     setCurrentPositionStart(error.currentTarget.selectionStart);
   //     setCurrentPositionEnd(error.currentTarget.selectionEnd);
-  //   },
-  //   [setCurrentPositionStart, setCurrentPositionEnd],
+  //   }
   // );
 
   const { error, isError, isPending, patchItem } = usePagePatch();

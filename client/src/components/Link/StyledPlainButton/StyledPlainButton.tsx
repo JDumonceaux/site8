@@ -1,4 +1,4 @@
-import type { FC, ReactNode, ButtonHTMLAttributes } from 'react';
+import type { ReactNode, ButtonHTMLAttributes, JSX } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,13 +8,14 @@ export type StyledPlainButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 /** A plain button styled as a link */
-const StyledPlainButton: FC<StyledPlainButtonProps> = ({
+export const StyledPlainButton = ({
   children,
   ...rest
-}) => <StyledButton {...rest}>{children}</StyledButton>;
+}: StyledPlainButtonProps): JSX.Element | null => (
+  <StyledButton {...rest}>{children}</StyledButton>
+);
 
 StyledPlainButton.displayName = 'StyledPlainButton';
-export default StyledPlainButton;
 
 const StyledButton = styled.button`
   display: inline-block;

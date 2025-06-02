@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -31,15 +31,12 @@ const ImageEditImage = (): JSX.Element => {
 
   const { setMessage } = useSnackbar();
 
-  const handleSubmit = useCallback(
-    (error_: React.FormEvent) => {
-      error_.stopPropagation();
-      error_.preventDefault();
-      setMessage('Saving...');
-      submitForm();
-    },
-    [submitForm, setMessage],
-  );
+  const handleSubmit = (error_: React.FormEvent) => {
+    error_.stopPropagation();
+    error_.preventDefault();
+    setMessage('Saving...');
+    submitForm();
+  };
 
   const handleSelectImage = (item: Image | null | undefined) => {
     handleChangeImage(item);

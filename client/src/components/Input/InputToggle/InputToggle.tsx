@@ -1,8 +1,7 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
+import type { InputBaseProps } from '../Core/InputBase/InputBase';
 
 import styled from 'styled-components';
-
-import type { InputBaseProps } from '../Core/InputBase/InputBase';
 
 type Props = {
   label: string;
@@ -16,12 +15,12 @@ type Props = {
 // Value
 
 // Implicit aria-role => 'checkbox'
-export const InputToggle: FC<Props> = ({
+export const InputToggle = ({
   id,
   label,
   type = 'checkbox',
   ...rest
-}) => (
+}: Props): JSX.Element | null => (
   <Wrapper>
     <ToggleLabel htmlFor={id}>
       <input id={id} name={id} type={type} {...rest} />

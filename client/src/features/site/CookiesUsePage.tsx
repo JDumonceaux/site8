@@ -1,11 +1,10 @@
-import type { FC } from 'react';
-
 import Meta from 'components/core/Meta/Meta';
+import type { JSX } from 'react';
 
 /**
  * Cookies Use page – describes cookie usage on the site.
  */
-const CookiesUsePage: FC = () => (
+export const CookiesUsePage = (): JSX.Element => (
   <>
     <Meta title="Cookies Use" />
     <main aria-labelledby="cookies-use-heading">

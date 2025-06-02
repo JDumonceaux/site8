@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import type { LinkProps as BaseLinkProps } from 'react-router-dom';
 
@@ -12,11 +12,11 @@ export type LinkButtonProps = {
 } & BaseLinkProps;
 
 /** A link styled as a button */
-export const LinkButton: FC<LinkButtonProps> = ({
+export const LinkButton = ({
   children,
   to,
   ...rest
-}: LinkButtonProps) => (
+}: LinkButtonProps): JSX.Element | null => (
   <StyledLink role="button" to={to} {...rest}>
     {children}
   </StyledLink>

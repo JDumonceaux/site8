@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAxios } from 'hooks/Axios/useAxios';
 import useFormArray from 'hooks/useFormArray';
@@ -47,26 +47,23 @@ const usePagesEdit = () => {
     );
   }, [data?.items, setLocalItems]);
 
-  const mapFormTypeToMenuEdit = useCallback(
-    (item: FormType): MenuEdit | undefined => {
-      return {
-        id: item.id,
-        newParent: {
-          id: item.parentId,
-          seq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
-          sortby: item.parentSortby as SortByType,
-        },
-        // Temporary filler
-        priorParent: { id: 0, seq: 0, sortby: 'name' as SortByType },
-      };
-    },
-    [],
-  );
+  function mapFormTypeToMenuEdit(item: FormType): MenuEdit | undefined {
+    return {
+      id: item.id,
+      newParent: {
+        id: item.parentId,
+        seq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
+        sortby: item.parentSortby as SortByType,
+      },
+      // Temporary filler
+      priorParent: { id: 0, seq: 0, sortby: 'name' as SortByType },
+    };
+  }
 
-  const shouldUpdate = (
+  function shouldUpdate(
     originalItem: MenuItem | undefined,
     newItem: MenuEdit | undefined,
-  ): boolean => {
+  ): boolean {
     if (!originalItem || !newItem) {
       return false;
     }
@@ -84,10 +81,10 @@ const usePagesEdit = () => {
       return true;
     }
     return false;
-  };
+  }
 
   // We only want to submit the differences - not every record.
-  const getUpdates = (): MenuEdit[] | undefined => {
+  function getUpdates(): MenuEdit[] | undefined {
     if (!localItems) {
       return undefined;
     }
@@ -109,9 +106,9 @@ const usePagesEdit = () => {
 
     // Filter out empty array values
     return returnValue.filter(Boolean);
-  };
+  }
 
-  const submitForm = async () => {
+  async function submitForm() {
     const updates = getUpdates();
     if (!updates) {
       return false;
@@ -121,25 +118,27 @@ const usePagesEdit = () => {
     // setIsProcessing(false);
     setIsSaved(result);
     return result;
-  };
+  }
 
-  const handleChange = (id: number, fieldName: FormKeys, value: string) => {
+  function handleChange(id: number, fieldName: FormKeys, value: string) {
     setFieldValue(id, fieldName, value);
-  };
+  }
 
-  const handleSave = async () => {
+  async function handleSave() {
     const returnValue = await submitForm();
     return returnValue;
-  };
+  }
 
-  const getDefaultProps = (lineId: number, fieldName: FormKeys) => ({
-    'data-id': fieldName,
-    'data-line': lineId,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFieldValue(lineId, fieldName, e.target.value);
-    },
-    value: getFieldValue(lineId, fieldName),
-  });
+  function getDefaultProps(lineId: number, fieldName: FormKeys) {
+    return {
+      'data-id': fieldName,
+      'data-line': lineId,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFieldValue(lineId, fieldName, e.target.value);
+      },
+      value: getFieldValue(lineId, fieldName),
+    };
+  }
 
   return {
     data: localItems,

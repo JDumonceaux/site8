@@ -1,8 +1,8 @@
 import {
   useRef,
-  type FC,
   type TextareaHTMLAttributes,
   type ChangeEvent,
+  type JSX,
 } from 'react';
 
 import useGetId from 'hooks/useGetId';
@@ -36,14 +36,14 @@ type TextAreaProps = TextAreaRootProps & TextAreaAddProps & FieldWrapperProps;
 /**
  * A textarea with integrated label, error display, and adornments.
  */
-export const TextArea: FC<TextAreaProps> = ({
+export const TextArea = ({
   id,
   onChange,
   ref,
   required,
   rows,
   ...rest
-}) => {
+}: TextAreaProps): JSX.Element | null => {
   const currId = useGetId(id);
   const tempRef = useRef<HTMLTextAreaElement>(null);
   const localRef = ref ?? tempRef;

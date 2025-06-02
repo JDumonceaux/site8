@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import * as radixSwitch from '@radix-ui/react-switch';
 import styled from 'styled-components';
@@ -12,12 +12,12 @@ export type SwitchProps = {
 /**
  * A labeled toggle switch component.
  */
-export const Switch: FC<SwitchProps> = ({
+export const Switch = ({
   id,
   label,
   onCheckedChanged,
   ...rest
-}) => (
+}: SwitchProps): JSX.Element | null => (
   <StyledWrapper>
     <StyledLabel htmlFor={id}>{label}</StyledLabel>
     <StyledSwitchRoot id={id} onCheckedChange={onCheckedChanged} {...rest}>

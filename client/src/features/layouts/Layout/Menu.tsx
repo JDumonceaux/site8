@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -10,12 +9,11 @@ type MenuProps = {
   children: React.ReactNode;
 };
 
-const Menu: FC<MenuProps> = ({ children }) => (
+export const Menu = ({ children }: MenuProps): JSX.Element => (
   <MenuContainer data-testid="menu">{children}</MenuContainer>
 );
 
 Menu.displayName = 'Menu';
-export default Menu;
 
 // Styled component defining menu layout and width
 const MenuContainer = styled.div`

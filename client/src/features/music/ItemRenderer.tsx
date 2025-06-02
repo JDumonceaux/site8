@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import React, { type JSX } from 'react';
 
 import styled from 'styled-components';
 import type { MusicItem } from 'types/MusicItem';
@@ -18,7 +18,7 @@ type ItemRendererProps = {
 /**
  * Renders a single music item with description and embedded video.
  */
-const ItemRenderer: FC<ItemRendererProps> = ({ data, index, style }) => {
+const ItemRenderer = ({ data, index, style }: ItemRendererProps): JSX.Element | null => {
   const item = data.items[index];
 
   return (

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import type { z } from 'zod';
 
@@ -11,110 +11,85 @@ const useForm = <T>(initialValues: T) => {
   const [isSaved, setIsSaved] = useState<boolean>(true);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-  const setFieldValue = useCallback(
-    (fieldName: FormKeys<T>, value: FieldValue) => {
-      setFormValues((prev) => ({
-        ...prev,
-        [fieldName]: value,
-      }));
-      setIsSaved(false);
+  const setFieldValue = (fieldName: FormKeys<T>, value: FieldValue) => {
+    setFormValues((prev) => ({
+      ...prev,
+      [fieldName]: value,
+    }));
+    setIsSaved(false);
+  };
+
+  const getFieldValue = (fieldName: FormKeys<T>): string => {
+    const val = formValues[fieldName];
+    return typeof val === 'string' ? val : '';
+  };
+
+  const getFieldValueBoolean = (fieldName: FormKeys<T>): boolean => {
+    const val = formValues[fieldName];
+    return typeof val === 'boolean' ? val : false;
+  };
+
+  const getFieldValueNumber = (fieldName: FormKeys<T>): number => {
+    const val = formValues[fieldName];
+    return typeof val === 'number' ? val : 0;
+  };
+
+  const getFieldErrors = (fieldName: FormKeys<T>): null | string | string[] => {
+    if (!errors) return null;
+    const filteredErrors = errors.filter((issue) =>
+      issue.path.includes(fieldName as string),
+    );
+    return filteredErrors.length > 0
+      ? filteredErrors.map((issue) => issue.message)
+      : null;
+  };
+
+  const getDefaultProps = (fieldName: FormKeys<T>) => ({
+    'data-id': fieldName,
+    'data-line': 0,
+    onChange: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+      setFieldValue(fieldName, e.target.value);
     },
-    [],
-  );
+    value: getFieldValue(fieldName),
+  });
 
-  const getFieldValue = useCallback(
-    (fieldName: FormKeys<T>): string => {
-      const val = formValues[fieldName];
-      return typeof val === 'string' ? val : '';
-    },
-    [formValues],
-  );
+  const hasError = (fieldName: FormKeys<T>): boolean =>
+    !!getFieldErrors(fieldName);
 
-  const getFieldValueBoolean = useCallback(
-    (fieldName: FormKeys<T>): boolean => {
-      const val = formValues[fieldName];
-      return typeof val === 'boolean' ? val : false;
-    },
-    [formValues],
-  );
-
-  const getFieldValueNumber = useCallback(
-    (fieldName: FormKeys<T>): number => {
-      const val = formValues[fieldName];
-      return typeof val === 'number' ? val : 0;
-    },
-    [formValues],
-  );
-
-  const getFieldErrors = useCallback(
-    (fieldName: FormKeys<T>): null | string | string[] => {
-      if (!errors) return null;
-      const filteredErrors = errors.filter((issue) =>
-        issue.path.includes(fieldName as string),
-      );
-      return filteredErrors.length > 0
-        ? filteredErrors.map((issue) => issue.message)
-        : null;
-    },
-    [errors],
-  );
-
-  const getDefaultProps = useCallback(
-    (fieldName: FormKeys<T>) => ({
-      'data-id': fieldName,
-      'data-line': 0,
-      onChange: (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-      ) => {
-        setFieldValue(fieldName, e.target.value);
-      },
-      value: getFieldValue(fieldName),
-    }),
-    [setFieldValue, getFieldValue],
-  );
-
-  const hasError = useCallback(
-    (fieldName: FormKeys<T>): boolean => !!getFieldErrors(fieldName),
-    [getFieldErrors],
-  );
-
-  const isFormValid = useCallback((): boolean => {
+  const isFormValid = (): boolean => {
     return !errors || errors.length === 0;
-  }, [errors]);
+  };
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { id, value } = e.target;
-      if (!id) {
-        // eslint-disable-next-line no-console
-        console.warn('No id found in event target');
-        return;
-      }
-      setFieldValue(id as FormKeys<T>, value);
-    },
-    [setFieldValue],
-  );
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { id, value } = e.target;
+    if (!id) {
+      console.warn('No id found in event target');
+      return;
+    }
+    setFieldValue(id as FormKeys<T>, value);
+  };
 
-  const handleClearField = useCallback(
-    (fieldName: FormKeys<T>) => {
-      setFieldValue(fieldName, '');
-    },
-    [setFieldValue],
-  );
+  const handleClearField = (fieldName: FormKeys<T>) => {
+    setFieldValue(fieldName, '');
+  };
 
-  const handleClearAll = useCallback(() => {
+  const handleClearAll = () => {
     setFormValues({} as T);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }, []);
+  };
 
-  const handleReset = useCallback(() => {
+  const handleReset = () => {
     setFormValues(initialValues);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }, [initialValues]);
+  };
 
   return {
     errors,

@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import {
   Link as BaseLink,
@@ -17,12 +17,12 @@ export type StyledLinkProps = BaseLinkProps & {
  *
  * Note: Pseudo classes must be in the following order: link, visited, hover, active
  */
-export const StyledLink: FC<StyledLinkProps> = ({
+export const StyledLink = ({
   ariaLabel,
   children,
   variant = 'light',
   ...rest
-}) => (
+}: StyledLinkProps): JSX.Element | null => (
   <StyledBaseLink
     $variant={variant}
     aria-current="page"

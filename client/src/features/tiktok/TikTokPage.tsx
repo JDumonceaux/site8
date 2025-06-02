@@ -1,4 +1,4 @@
-import { useDeferredValue, type FC } from 'react';
+import { useDeferredValue, type JSX } from 'react';
 
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
@@ -14,7 +14,9 @@ export type TikTokPageProps = {
   readonly title?: string;
 };
 
-export const TikTokPage: FC<TikTokPageProps> = ({ title = 'TikTok' }) => {
+const TikTokPage = ({
+  title = 'TikTok',
+}: TikTokPageProps): JSX.Element | null => {
   const tempId = '4000';
   const { data, error, isError, isLoading } = useTiktok(tempId);
 

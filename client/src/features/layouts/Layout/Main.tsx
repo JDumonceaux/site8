@@ -1,5 +1,4 @@
-import { type FC, useTransition } from 'react';
-
+import { useTransition, type JSX } from 'react';
 import styled from 'styled-components';
 
 /**
@@ -10,7 +9,7 @@ type MainProps = {
   children: React.ReactNode;
 };
 
-const Main: FC<MainProps> = ({ children }) => {
+const Main = ({ children }: MainProps): JSX.Element | null => {
   const [isPending, startTransition] = useTransition();
 
   // Optionally defer rendering heavy content
@@ -29,6 +28,7 @@ const Main: FC<MainProps> = ({ children }) => {
     </MainContainer>
   );
 };
+
 Main.displayName = 'Main';
 export default Main;
 

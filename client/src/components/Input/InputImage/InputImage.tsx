@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
 import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
 
@@ -16,10 +16,10 @@ type InputImageProps = Omit<
 // src - image - Address of the image type
 // width - image - Horizontal dimension (width) of the image type
 
-export const InputImage: FC<InputImageProps> = ({
+export const InputImage = ({
   type = 'image',
   ...rest
-}) => <InputBase type={type} {...rest} />;
+}: InputImageProps): JSX.Element | null => <InputBase type={type} {...rest} />;
 
 InputImage.displayName = 'InputImage';
 export default InputImage;

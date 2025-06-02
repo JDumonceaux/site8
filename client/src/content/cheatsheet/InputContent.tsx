@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-import type { FC } from 'react';
+import type { JSX } from 'react';
 
-export const InputContent: FC = () => {
+export const InputContent = (): JSX.Element => {
   const obj = `
 <label>
   Current Password

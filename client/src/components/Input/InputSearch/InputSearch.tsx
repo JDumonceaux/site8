@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import type { JSX } from 'react';
+import type { InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase from '../Core/InputBase/InputBase';
 
 // Remove: 'height', 'src', 'step', 'width'
 // Valid: pattern, value
@@ -13,10 +13,10 @@ export type InputSearchProps = Omit<
 };
 
 /** Text input optimized for search usage */
-export const InputSearch: FC<InputSearchProps> = ({
+export const InputSearch = ({
   type = 'text',
   ...rest
-}) => <InputBase type={type} {...rest} />;
+}: InputSearchProps): JSX.Element | null => <InputBase type={type} {...rest} />;
 
 InputSearch.displayName = 'InputSearch';
 export default InputSearch;

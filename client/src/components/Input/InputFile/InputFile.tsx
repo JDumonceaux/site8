@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import type { JSX } from 'react';
+import type { InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase from '../Core/InputBase/InputBase';
 
 type InputFileProps = Omit<
   InputBaseProps,
@@ -18,9 +18,10 @@ type InputFileProps = Omit<
 //           microphone, video, or camera
 // multiple - email, file - Boolean. Whether to allow multiple values
 
-export const InputFile: FC<InputFileProps> = ({ type = 'file', ...rest }) => (
-  <InputBase type={type} {...rest} />
-);
+export const InputFile = (props: InputFileProps): JSX.Element | null => {
+  const { type = 'file', ...rest } = props;
+  return <InputBase type={type} {...rest} />;
+};
 
 InputFile.displayName = 'InputFile';
 export default InputFile;

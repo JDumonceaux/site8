@@ -1,11 +1,10 @@
-import type { FC } from 'react';
-
+import type { JSX } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 /**
  * Protects routes by redirecting unauthenticated users to login.
  */
-const ProtectedRoute: FC = () => {
+const ProtectedRoute = (): JSX.Element | null => {
   // TODO: Replace this with real authentication logic (e.g., useAuth hook/context).
   const user = 1; // Dummy placeholder
 
@@ -18,5 +17,4 @@ const ProtectedRoute: FC = () => {
 };
 
 ProtectedRoute.displayName = 'ProtectedRoute';
-
 export default ProtectedRoute;

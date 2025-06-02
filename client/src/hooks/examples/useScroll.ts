@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useScroll = ({
   isWindow = false,
@@ -8,16 +8,16 @@ const useScroll = ({
   const [isAtBottom, setIsAtBottom] = useState(false);
   const ref = useRef(isWindow ? globalThis : null);
 
-  const goTop = useCallback(() => {
+  function goTop() {
     const element = ref.current;
     element &&
       element.scrollTo({
         behavior: smooth ? 'smooth' : 'auto',
         top: 0,
       });
-  }, [smooth]);
+  }
 
-  const goBottom = useCallback(() => {
+  function goBottom() {
     const element =
       ref.current instanceof Window ? document.documentElement : ref.current;
     ref.current &&
@@ -25,11 +25,10 @@ const useScroll = ({
         behavior: smooth ? 'smooth' : 'auto',
         top: element ? element.scrollHeight : 0,
       });
-  }, [smooth]);
+  }
 
-  const handleScroll = useCallback(() => {
+  function handleScroll() {
     if (ref.current) {
-      // eslint-disable-next-line immutable/no-let
       let isAtBottom = false;
       if (ref.current instanceof Window) {
         const currentScrollTop = window.innerHeight + window.scrollY;
@@ -42,7 +41,7 @@ const useScroll = ({
       }
       setIsAtBottom(isAtBottom);
     }
-  }, [threshold]);
+  }
 
   useEffect(() => {
     if (isWindow) {
@@ -52,7 +51,7 @@ const useScroll = ({
       };
     }
     return () => {};
-  }, [isWindow, handleScroll]);
+  }, [isWindow, threshold, smooth]);
 
   return { goBottom, goTop, handleScroll, isAtBottom, ref };
 };
