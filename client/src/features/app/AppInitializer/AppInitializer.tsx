@@ -4,6 +4,8 @@
 // Maintainability Index: High, inferred from simplicity and low complexity.
 // Code smells: None found.
 
+import useAppInitializer from './useAppInitializer';
+
 /**
  * Initializes the app.
  * This component sets up the necessary configurations and setups for the app.
@@ -13,7 +15,7 @@
  * and causes a total re-render
  */
 const AppInitializer = () => {
-  // useAppInitializer();
+  useAppInitializer();
   return null;
 };
 

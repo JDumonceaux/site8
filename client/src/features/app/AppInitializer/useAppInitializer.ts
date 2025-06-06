@@ -1,7 +1,6 @@
-import useMenu from 'features/app/useMenu';
+import useMenu from 'features/menu/useMenu';
 
 const useAppInitializer = () => {
-  // eslint-disable-next-line no-empty-pattern
   const {} = useMenu();
 };
 

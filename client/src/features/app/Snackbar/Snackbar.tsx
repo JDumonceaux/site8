@@ -5,8 +5,7 @@ import useSnackbar, {
 } from 'features/app/Snackbar/useSnackbar';
 
 import styled from 'styled-components';
-
-import Button from '../../../components/core/Button/Button';
+import Button from 'components/core/Button/Button';
 
 /**
  * Global notification banner for transient messages.

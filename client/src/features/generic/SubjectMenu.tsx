@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import useMenu from 'features/app/useMenu';
+import useMenu from 'features/menu/useMenu';
 import { getURLPath } from 'lib/utils/helpers';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
