@@ -11,13 +11,17 @@ import StartAdornment, {
 import FooterRow, { type FooterRowProps } from '../FooterRow/FooterRow';
 import LabelRow, { type LabelRowProps } from '../LabelRow/LabelRow';
 
-export type FieldWrapperProps = HTMLAttributes<HTMLDivElement> & {
+export type FieldWrapperProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'onChange'
+> & {
   /** Trailing adornment element */
   endAdornment?: ReactNode;
   /** Props for the trailing adornment */
   endAdornmentProps?: EndAdornmentProps;
   /** Unique identifier for the wrapper */
   id?: string;
+  label?: string;
   /** Props for the label row (children are omitted) */
   labelProps?: Omit<LabelRowProps, 'children'>;
   /** Whether the field is required */
@@ -33,17 +37,16 @@ const FieldWrapper = ({
   endAdornment,
   endAdornmentProps,
   id,
+  label,
   labelProps = {},
   required = false,
   startAdornment,
   startAdornmentProps,
   ...footerProps
 }: FieldWrapperProps): JSX.Element => {
-  const { ...filteredLabelProps } = labelProps;
-
   return (
     <Container id={id}>
-      <LabelRow {...filteredLabelProps} required={required} />
+      <LabelRow label={label} {...labelProps} required={required} />
       <InputRow>
         {startAdornment && (
           <StartAdornment {...startAdornmentProps}>

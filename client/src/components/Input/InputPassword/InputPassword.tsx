@@ -1,8 +1,8 @@
 import { type JSX, useState } from 'react';
 
-import PasswordAdornment from '../Core/Adornments/PasswordAdornment';
-import ShowAdornment from '../Core/Adornments/ShowAdornment';
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import PasswordAdornment from '../Base/Adornments/PasswordAdornment';
+import ShowAdornment from '../Base/Adornments/ShowAdornment';
+import InputBase, { type InputBaseProps } from '../Base/InputBase/InputBase';
 
 export type InputPasswordProps = {
   readonly autoComplete?: 'current-password' | 'new-password' | 'off';

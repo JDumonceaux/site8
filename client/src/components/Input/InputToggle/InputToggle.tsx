@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import type { InputBaseProps } from '../Core/InputBase/InputBase';
+import type { InputBaseProps } from '../Base/InputBase/InputBase';
 
 import styled from 'styled-components';
 

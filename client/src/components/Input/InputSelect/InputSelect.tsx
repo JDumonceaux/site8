@@ -6,7 +6,7 @@ import type { ListItem } from 'types/ListItem';
 
 import FieldWrapper, {
   type FieldWrapperProps,
-} from '../Core/FieldWrapper/FieldWrapper';
+} from '../Base/FieldWrapper/FieldWrapper';
 
 type InputSelectProps = {
   readonly allowedCharacters?: RegExp;

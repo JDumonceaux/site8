@@ -2,7 +2,7 @@ import type { JSX, ChangeEvent } from 'react';
 
 import styled from 'styled-components';
 
-import type { InputBaseProps } from '../Core/InputBase/InputBase';
+import type { InputBaseProps } from '../Base/InputBase/InputBase';
 
 export type InputCheckboxProps = Omit<
   InputBaseProps,

@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import InputBase, { type InputBaseProps } from '../Core/InputBase/InputBase';
+import InputBase, { type InputBaseProps } from '../Base/InputBase/InputBase';
 
 // Remove: 'autocapitalize', 'height', 'multiple', 'pattern', 'src', 'width'
 // Valid: 'value'

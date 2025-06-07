@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import FieldWrapper, {
   type FieldWrapperProps,
-} from '../Core/FieldWrapper/FieldWrapper';
+} from '../Base/FieldWrapper/FieldWrapper';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some

@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
-import type { InputBaseProps } from '../Core/InputBase/InputBase';
-import InputBase from '../Core/InputBase/InputBase';
+import type { InputBaseProps } from '../Base/InputBase/InputBase';
+import InputBase from '../Base/InputBase/InputBase';
 
 type InputHiddenProps = Omit<
   InputBaseProps,

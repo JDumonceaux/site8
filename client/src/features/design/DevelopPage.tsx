@@ -3,7 +3,7 @@ import Dialog from 'components/core/Dialog/Dialog';
 import { useDialog } from 'components/core/Dialog/useDialog';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
-import EmailAdornment from 'components/Input/Core/Adornments/EmailAdornment';
+import EmailAdornment from 'components/Input/Base/Adornments/EmailAdornment';
 import Input from 'components/Input/Input';
 import Layout from 'features/layouts/Layout/Layout';
 import useForm from 'hooks/useForm';

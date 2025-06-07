@@ -1,9 +1,8 @@
-import { useId } from 'react';
+import type { JSX } from 'react';
 import Meta from 'components/core/Meta/Meta';
 import Input from 'components/Input/Input';
 import StyledLink from 'components/Link/StyledLink/StyledLink';
 import useAuth from 'features/auth/useAuth';
-import { emailAddress, password } from 'features/auth/ZodStrings';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import styled from 'styled-components';
@@ -11,6 +10,7 @@ import { z } from 'zod';
 
 import AuthContainer from './AuthContainer';
 import Button from 'components/core/Button/Button';
+import { emailAddress, password } from 'lib/utils/constants';
 
 // Define Zod Shape
 const schema = z.object({
@@ -20,7 +20,6 @@ const schema = z.object({
 
 const SigninPage = (): JSX.Element => {
   const title = 'Sign-In';
-  const compId = useId();
 
   type FormValues = z.infer<typeof schema>;
   type FormKeys = keyof FormValues;
@@ -32,24 +31,21 @@ const SigninPage = (): JSX.Element => {
     password: '',
   };
 
-  const { formValues, getDefaultProps, handleChange, setErrors } =
+  const { formValues, getDefaultProps } =
     useForm<FormValues>(defaultFormValues);
 
   const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.error?.issues);
     return result.success;
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
     if (!validateForm()) return;
 
-    try {
-      await authSignIn(formValues.emailAddress, formValues.password);
-    } catch {
+    authSignIn(formValues.emailAddress, formValues.password).catch(() => {
       // Handle sign-in error
-    }
+    });
   };
 
   return (
@@ -88,7 +84,6 @@ const SigninPage = (): JSX.Element => {
 };
 
 SigninPage.displayName = 'SigninPage';
-s;
 export default SigninPage;
 
 const StyledForm = styled.form`

@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
-import type { InputBaseProps } from '../Core/InputBase/InputBase';
-import PhoneAdornment from '../Core/Adornments/PhoneAdornment';
-import InputBase from '../Core/InputBase/InputBase';
+import type { InputBaseProps } from '../Base/InputBase/InputBase';
+import PhoneAdornment from '../Base/Adornments/PhoneAdornment';
+import InputBase from '../Base/InputBase/InputBase';
 
 export type InputTelProps = Omit<
   InputBaseProps,
