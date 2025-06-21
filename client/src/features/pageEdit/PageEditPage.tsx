@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Meta from 'components/core/Meta/Meta';
 import PageTitle from 'components/core/PageTitle/PageTitle';
@@ -8,7 +9,6 @@ import { useParams } from 'react-router-dom';
 
 import PageEditForm from './PageEditForm';
 import usePage from './usePage';
-
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();
   const currentId = getParamIdAsString(id);

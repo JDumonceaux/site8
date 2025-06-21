@@ -3,7 +3,7 @@ import { type JSX, useActionState } from 'react';
 import * as Form from '@radix-ui/react-form';
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import Input from 'components/Input/Input';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
+
 import styled from 'styled-components';
 import type { FormState } from 'types';
 import type { Page } from 'types/Page';
@@ -66,6 +66,7 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
           // onBlur={handeNameOnBlur}
           // onChange={handleChange}
           labelProps={{ label: 'Title' }}
+          label="Title"
           maxLength={500}
           // errors={getFieldErrors('name')}
           minLength={10}
