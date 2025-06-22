@@ -31,6 +31,48 @@ const ChangePasswordPage = (): JSX.Element => {
 
   //    await authUpdatePassword(formValues.password, formValues.newPassword);
 
+  const patchItem = async (
+    _prevState: unknown,
+    formData: FormData,
+  ): Promise<FormState> => {
+    const temp = Object.fromEntries(formData.entries());
+    const data: PageEdit = { ...temp, id: Number(temp.id) } as PageEdit;
+
+    const validationResult = PageEditSchema.safeParse(data);
+
+    if (!validationResult.success) {
+      const tempErrors: FormErrors = {};
+
+      // Map each Zod issue into our FormErrors shape
+      for (const issue of validationResult.error.issues) {
+        const fieldName = issue.path[0] as keyof FormErrors;
+        tempErrors[fieldName] = { errors: [] };
+        tempErrors[fieldName].errors?.push({
+          message: issue.message,
+        });
+      }
+
+      return {
+        fieldData: data,
+        fields: tempErrors,
+        message: 'Validation error: Invalid data',
+      } as unknown as FormState;
+    }
+
+    try {
+      await authUpdatePassword(formData.password, formData.newPassword);
+      return {
+        fieldData: data as unknown as Page,
+        message: 'Data saved successfully!',
+      } as FormState;
+    } catch (error) {
+      return {
+        fieldData: {},
+        message: `Error saving data: ${(error as Error).message}`,
+      } as FormState;
+    }
+  };
+
   const [data, action] = useActionState(patchItem, {
     fieldData: initData,
   } as FormState);
