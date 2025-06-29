@@ -1,8 +1,7 @@
 import type { FieldErrors } from './FieldErrors';
-import type { PageEdit } from './PageEditSchema';
 
-export type FormState = {
-  fieldData: PageEdit;
+export type FormState<T> = {
+  fieldData: T;
   fields?: Record<string, FieldErrors>;
   message?: string;
 };

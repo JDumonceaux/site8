@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 /* -------------------------------------------------------------------------- */
 /*                               App Metadata                                 */
 /* -------------------------------------------------------------------------- */
@@ -92,28 +90,6 @@ export const AUTH_ERROR_MESSAGES = {
   passwordInvalidType: 'Password must be a string',
   passwordRequired: 'Password is required.',
 } as const;
-
-/* -------------------------------------------------------------------------- */
-/*                             Zod Schema Strings                             */
-/* -------------------------------------------------------------------------- */
-export const emailAddress = z
-  .string({
-    invalid_type_error: AUTH_ERROR_MESSAGES.emailInvalidType,
-    required_error: AUTH_ERROR_MESSAGES.emailRequired,
-  })
-  .min(1, REQUIRED_FIELD)
-  .max(MAX_EMAIL_LENGTH)
-  .trim();
-export const password = z
-  .string({
-    invalid_type_error: AUTH_ERROR_MESSAGES.passwordInvalidType,
-    required_error: AUTH_ERROR_MESSAGES.passwordRequired,
-  })
-  .min(
-    MIN_PASSWORD_LENGTH,
-    `Must be at least ${MIN_PASSWORD_LENGTH} characters`,
-  )
-  .max(MAX_PASSWORD_LENGTH, `Cannot exceed ${MAX_PASSWORD_LENGTH} characters`);
 
 /* -------------------------------------------------------------------------- */
 /*                          Default React Query Options                       */
