@@ -27,7 +27,7 @@
     "helmet": "^8.1.0",
     "validator": "^13.15.15",
     "winston": "^3.17.0",
-    "zod": "^3.25.47"
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
