@@ -57,7 +57,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.7.0",
     "react-scan": "^0.4.3",
-    "react-window": "^1.8.11",
+    "react-window": "^2.0.2",
     "styled-components": "^6.1.19",
     "web-vitals": "^5.0.3",
     "zod": "^4.0.5"
