@@ -10,92 +10,92 @@ import type { Video } from 'types/Video';
 import ImageBlock from './ImageBlock';
 import VideoEmbed from './VideoEmbed';
 
+const PAGE_TITLE = 'Yachts';
+
+// Static data moved outside component to avoid re-allocation each render
+const IMAGES: Image[] = [
+  {
+    alt: 'Nature Design 1',
+    id: 1,
+    src: '/images/yachts/sinot-nature-1.jpg.webp',
+    title: 'Nature Design',
+  },
+  {
+    alt: 'Nature Design 2',
+    id: 2,
+    src: '/images/yachts/sinot-nature-2.jpg.webp',
+    title: 'Nature Design',
+  },
+  {
+    alt: 'Nature - Observation Lounge',
+    id: 3,
+    imageTitle: 'Nature - Observation Lounge',
+    src: '/images/yachts/sinot-nature-5.png',
+    title: 'Nature Design - Observation Lounge with floor to ceiling windows',
+  },
+  {
+    alt: 'Nature Design - Expansive Decks',
+    id: 4,
+    src: '/images/yachts/sinot-nature-3.png',
+    title: 'Nature Design - Expansive Decks',
+  },
+  {
+    alt: 'Nature - Guest Bedroom',
+    id: 5,
+    imageTitle: 'Nature - Guest Bedroom',
+    src: '/images/yachts/sinot-nature-4.png',
+    title: 'Nature Design - Guest Bedroom',
+  },
+  {
+    alt: 'Beach Design',
+    id: 6,
+    src: '/images/yachts/sinot-beach.png',
+    title: 'Beach Design',
+  },
+  {
+    alt: "Aqua Design - Owner's Suite",
+    id: 7,
+    src: '/images/yachts/sinot-aqua-owners-suite.png',
+    title: "Aqua Design - Owner's Suite",
+  },
+];
+
+const VIDEOS: Video[] = [
+  {
+    id: 1,
+    iframeTitle: 'Art of Life Design',
+    title: 'Art of Life Design',
+    videoSrc: 'https://player.vimeo.com/video/290705961?h=9cfff6a399',
+  },
+  {
+    id: 2,
+    iframeTitle: 'Nature Design',
+    title: 'Nature Design',
+    videoSrc: 'https://player.vimeo.com/video/235907283?h=35a2fec5db',
+  },
+  {
+    id: 3,
+    iframeTitle: 'Zen Design',
+    title: 'Zen Design',
+    videoSrc: 'https://player.vimeo.com/video/184474900?h=bef5fe895d',
+  },
+];
+
 /**
  * Page showcasing yacht designs with images and videos.
  */
-export function YachtsPage(): JSX.Element | null {
-  const pageTitle = 'Yachts';
-
-  // Data for main article images
-  const images: Image[] = [
-    {
-      alt: 'Nature Design 1',
-      id: 1,
-      src: '/images/yachts/sinot-nature-1.jpg.webp',
-      title: 'Nature Design',
-    },
-    {
-      alt: 'Nature Design 2',
-      id: 2,
-      src: '/images/yachts/sinot-nature-2.jpg.webp',
-      title: 'Nature Design',
-    },
-    {
-      alt: 'Nature - Observation Lounge',
-      id: 3,
-      imageTitle: 'Nature - Observation Lounge',
-      src: '/images/yachts/sinot-nature-5.png',
-      title: 'Nature Design - Observation Lounge with floor to ceiling windows',
-    },
-    {
-      alt: 'Nature Design - Expansive Decks',
-      id: 4,
-      src: '/images/yachts/sinot-nature-3.png',
-      title: 'Nature Design - Expansive Decks',
-    },
-    {
-      alt: 'Nature - Guest Bedroom',
-      id: 5,
-      imageTitle: 'Nature - Guest Bedroom',
-      src: '/images/yachts/sinot-nature-4.png',
-      title: 'Nature Design - Guest Bedroom',
-    },
-    {
-      alt: 'Beach Design',
-      id: 6,
-      src: '/images/yachts/sinot-beach.png',
-      title: 'Beach Design',
-    },
-    {
-      alt: "Aqua Design - Owner's Suite",
-      id: 7,
-      src: '/images/yachts/sinot-aqua-owners-suite.png',
-      title: "Aqua Design - Owner's Suite",
-    },
-  ];
-
-  // Data for aside videos
-  const videos: Video[] = [
-    {
-      id: 1,
-      iframeTitle: 'Art of Life Design',
-      title: 'Art of Life Design',
-      videoSrc: 'https://player.vimeo.com/video/290705961?h=9cfff6a399',
-    },
-    {
-      id: 2,
-      iframeTitle: 'Nature Design',
-      title: 'Nature Design',
-      videoSrc: 'https://player.vimeo.com/video/235907283?h=35a2fec5db',
-    },
-    {
-      id: 3,
-      iframeTitle: 'Zen Design',
-      title: 'Zen Design',
-      videoSrc: 'https://player.vimeo.com/video/184474900?h=bef5fe895d',
-    },
-  ];
-
+export function YachtsPage(): JSX.Element {
   return (
     <>
-      <Meta title={pageTitle} />
+      <Meta title={PAGE_TITLE} />
       <Layout.Main>
         <Layout.Menu>
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Article>
-          <PageTitle title={pageTitle} />
+          <PageTitle title={PAGE_TITLE} />
           <Layout.Section>
+            {/* Suspense is not doing anything unless children are lazy; keep or remove */}
             <Suspense fallback="Loading results ...">
               <p>
                 The design of this yacht is called <em>Nature</em>.
@@ -129,14 +129,14 @@ export function YachtsPage(): JSX.Element | null {
                 <a href="https://sinot.com/zen/">Zen</a>, and{' '}
                 <a href="https://sinot.com/balance/">Balance</a>.
               </p>
-              {images.map((img) => (
+              {IMAGES.map((img) => (
                 <ImageBlock key={img.id} {...img} />
               ))}
             </Suspense>
           </Layout.Section>
         </Layout.Article>
         <Layout.Aside>
-          {videos.map((video) => (
+          {VIDEOS.map((video) => (
             <VideoEmbed key={video.id} {...video} />
           ))}
         </Layout.Aside>

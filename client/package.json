@@ -1,28 +1,26 @@
 {
   "name": "react-ts",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "npm run type-check && vite build",
-    "build:analyze": "cross-env NODE_ENV=production npm run build",
-    "build:prod": "cross-env NODE_ENV=production npm run build",
     "dev": "vite",
-    "fix": "npm run lint && npm run prettier",
-    "knip": "knip --files --exports",
-    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
-    "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix",
-    "lint:format": "prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
-    "prepare": "husky",
-    "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
-    "precommit": "pretty-quick --staged",
+    "start": "vite preview",
+    "build": "npm run type-check && vite build",
     "preview": "vite preview",
     "serve": "vite preview",
-    "start": "vite",
-    "test": "jest",
     "type-check": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+    "lint:fix": "eslint \"src\" --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --ignore-path .prettierignore",
+    "test": "jest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky",
+    "pre-commit": "pretty-quick --staged",
+    "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
+    "upgrade": "pnpm up --latest --interactive",
+    "clean": "rimraf dist coverage"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.13.0",
@@ -47,8 +45,6 @@
     "date-fns": "^4.1.0",
     "dompurify": "^3.2.7",
     "html-react-parser": "^5.2.6",
-    "i18next": "^25.5.3",
-    "memoize-one": "^6.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-error-boundary": "^6.0.0",
@@ -59,12 +55,12 @@
     "react-scan": "^0.4.3",
     "react-window": "^2.2.0",
     "styled-components": "^6.1.19",
+    "vite-bundle-analyzer": "^1.2.3",
     "web-vitals": "^5.1.0",
     "zod": "^4.1.11"
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",
-    "@babel/preset-env": "^7.28.3",
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^9.37.0",
     "@rollup/plugin-terser": "^0.4.4",
@@ -80,8 +76,8 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@types/react-window": "^1.8.8",
-    "@typescript-eslint/eslint-plugin": "^8.43.0",
-    "@typescript-eslint/parser": "^8.43.0",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
     "babel-jest": "^30.0.2",
@@ -93,13 +89,13 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-perfectionist": "^4.15.0",
+    "eslint-plugin-perfectionist": "^4.15.1",
     "eslint-plugin-prefer-arrow-functions": "^3.9.1",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^6.1.0",
+    "eslint-plugin-react-hooks": "^6.1.1",
     "eslint-plugin-react-redux": "^4.2.2",
-    "eslint-plugin-react-you-might-not-need-an-effect": "^0.5.5",
+    "eslint-plugin-react-you-might-not-need-an-effect": "^0.5.6",
     "eslint-plugin-storybook": "^9.1.10",
     "eslint-plugin-unicorn": "^61.0.2",
     "globals": "^16.4.0",
@@ -110,12 +106,12 @@
     "knip": "^5.64.1",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
+    "rimraf": "^6.0.1",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-visualizer": "^6.0.4",
     "ts-jest": "^29.4.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.45.0",
     "vite": "^7.1.9",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
@@ -123,9 +119,6 @@
   "overrides": {
     "react-scan": {
       "esbuild": "0.25.1"
-    },
-    "react-ts": {
-      "storybook": "$storybook"
     },
     "@xstate/react@3.2.2": {
       "react": "$react"
@@ -136,14 +129,11 @@
     "@typescript-eslint/utils@8.19.1": {
       "typescript": "$typescript"
     },
-    "react-confetti@6.1.0": {
-      "react": "$react"
-    },
     "esbuild": "0.25.1"
   },
   "engines": {
-    "node": ">=18",
-    "npm": ">=9"
+    "node": ">=20.0.0",
+    "npm": ">=10"
   },
   "browserslist": [
     ">0.2%",
@@ -153,6 +143,7 @@
     "last 2 versions",
     "maintained node versions"
   ],
+  "sideEffects": false,
   "packageManager": "pnpm@9.6.0",
   "license": "UNLICENSED"
 }

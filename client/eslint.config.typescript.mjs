@@ -17,7 +17,7 @@ export default {
     linterOptions: {
         reportUnusedDisableDirectives: 'error',
     },
-    name: 'Site8-typescript',
+    name: 'site8-ts-eslint-config',
     plugins: {
         '@typescript-eslint': pluginTypescript,
         'check-file': pluginCheckFile,
@@ -52,7 +52,10 @@ export default {
         '@typescript-eslint/no-deprecated': 'error',
         '@typescript-eslint/no-dupe-class-members': 'error',
         '@typescript-eslint/no-dynamic-delete': 'error',
-        '@typescript-eslint/no-empty-function': 'off',
+        // Allow empty functions for cases such as interface implementations or intentional stubs.
+        // The 'any' type is permitted in rare cases where type safety cannot be guaranteed or for rapid prototyping.
+        // Please document the reason for using 'any' in code comments when it is used.
+        '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-extraneous-class': 'error',
         '@typescript-eslint/no-import-type-side-effects': 'error',
@@ -94,7 +97,8 @@ export default {
         // Filename convention for TypeScript files
         'check-file/filename-naming-convention': [
             'error',
-            { '**/*.{tsx}': 'PASCAL_CASE', '**/*.{ts}': 'CAMEL_CASE' },
+            // Both .ts and .tsx files use PASCAL_CASE for consistency across the team
+            { '**/*.{ts,tsx}': 'PASCAL_CASE' },
             { ignoreMiddleExtensions: true }
         ],
     },

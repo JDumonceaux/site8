@@ -1,3 +1,9 @@
+// Babel configuration for transpiling modern JavaScript and TypeScript for Node.js environment.
+// Adjust presets and plugins as needed for project requirements.
+
+// Babel configuration for transpiling modern JavaScript and TypeScript for Node.js environment.
+// Adjust presets and plugins as needed for project requirements.
+
 /** @type {import("@babel/core").TransformOptions} */
 module.exports = {
   presets: [
@@ -12,6 +18,8 @@ module.exports = {
     // Reuse Babel's injected helper code to reduce bundle size
     ['@babel/plugin-transform-runtime', { regenerator: true }],
     // Uncomment the following if you need decorator support (experimental)
+    // See: https://babeljs.io/docs/babel-plugin-proposal-decorators/
+    // WARNING: Decorators are experimental and may introduce breaking changes in future Babel releases.
     // ['@babel/plugin-proposal-decorators', { legacy: true }],
     // Optional: Add support for object rest/spread if not already handled by preset-env
     // '@babel/plugin-proposal-object-rest-spread',

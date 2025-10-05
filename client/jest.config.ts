@@ -3,16 +3,10 @@
  * https://jestjs.io/docs/configuration
  */
 import type { Config } from 'jest';
-import { defaults } from 'ts-jest/presets';
 
 const config: Config = {
-  ...defaults,
   // Use ts-jest preset for TypeScript support
   preset: 'ts-jest',
-  transform: {
-    // Transpile JavaScript and TypeScript files using ts-jest
-    '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
-  },
   // Simulate a browser-like environment for testing
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [

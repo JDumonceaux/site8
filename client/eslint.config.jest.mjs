@@ -10,6 +10,7 @@ export default {
             it: 'readonly',
         },
     },
+    // Used to identify this ESLint configuration in logs and error messages
     name: 'Site8-Jest files',
     plugins: {
         jest: pluginJest,
@@ -36,15 +37,19 @@ export default {
         'jest/prefer-lowercase-title': 'error',
         'jest/prefer-to-have-length': 'warn',
         'jest/valid-expect': 'error',
-    },
-    settings: {
+
         // Enforce folder naming conventions in test files
+        // 'check-file/folder-naming-convention' is a non-standard ESLint rule.
+        // See: https://github.com/ljosberinn/eslint-plugin-check-file#folder-naming-convention
         'check-file/folder-naming-convention': [
             'error',
             {
-                '**/*': 'KEBAB_CASE',
+                // Using 'KEBAB_CASE' for folder naming to match project convention; update if other casing is used elsewhere
+                '**/*': 'kebab-case',
             },
         ],
+    },
+    settings: {
         react: {
             version: 'detect',
         },

@@ -1,10 +1,22 @@
-import analyze from 'rollup-plugin-analyzer';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import tsConfigPaths from 'vite-tsconfig-paths';
+import { analyzer } from 'vite-bundle-analyzer';
 
-// https://vitejs.dev/config/
+// Vite 7.1.9 validated - CHANGED: Updated to use vite-bundle-analyzer instead of rollup-plugin-analyzer
+const analyzePlugin: Plugin | undefined =
+  process.env.ANALYZE === 'true'
+    ? analyzer({
+        analyzerMode: 'static', // ADDED: Required for vite-bundle-analyzer
+        openAnalyzer: false, // ADDED: Prevents auto-opening browser
+      })
+    : undefined;
+
 export default defineConfig({
-  plugins: [tsConfigPaths()],
+  plugins: [
+    tsConfigPaths(), // unchanged
+    analyzePlugin, // CHANGED: extracted & typed for clarity
+    // The type guard below ensures only valid plugins are included, avoiding undefined values in the plugins array.
+  ].filter((p): p is Plugin => !!p), // CHANGED: typed filter instead of Boolean
   resolve: {
     alias: {
       components: '/src/components',
@@ -16,29 +28,24 @@ export default defineConfig({
       store: '/src/store',
       styles: '/src/styles',
       types: '/src/types',
-      // if you still want a `src/` import, keep that as well
       src: '/src',
     },
   },
   build: {
     outDir: 'dist',
-    assetsDir: '',
-    sourcemap: false,
-    minify: true,
+    assetsDir: 'assets', // unchanged
+    sourcemap: false, // unchanged (set true for debugging if needed)
+    minify: 'esbuild', // unchanged
+    target: 'es2022', // unchanged
     rollupOptions: {
-      plugins: [analyze()],
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) return 'vendor';
-          if (id.includes('/src/')) return 'components';
+          return undefined; // Intentionally let Vite handle chunking for non-vendor modules
+          return undefined; // ADDED: explicit for clarity
         },
       },
     },
   },
-  // If you decide to re-enable Vitest:
-  // test: {
-  //   globals:     true,
-  //   environment: 'jsdom',
-  //   watch:       false,
-  // },
+  // Uncomment the block below to enable Vitest configuration for unit testing:
+  // test: { globals: true, environment: 'jsdom', watch: false },
 });

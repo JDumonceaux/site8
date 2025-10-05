@@ -1,9 +1,15 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
-  "entry": ["src/main.tsx"],
-  "project": ["**/*.{ts,tsx}"],
+  "entry": ["**/*.{ts,tsx}"],
+  "project": ["**/*.{ts,tsx}", "!dist/**/*", "!build/**/*"],
+  "ignore": [
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/__tests__/**"
+  ],
   "vite": {
     "config": ["vite*.config.{js,mjs,ts,cjs,mts,cts}"]
-  },
-  "ignore": ["**/*.spec.ts", "**/*.test.ts", "**/__tests__/**"]
+  }
 }

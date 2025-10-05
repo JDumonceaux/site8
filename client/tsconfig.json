@@ -11,8 +11,11 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.Array"],
     "jsx": "react-jsx",
 
-    // Resolve imports from `src/` by default
-    "baseUrl": "src",
+    // Set baseUrl to project root and alias src/
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"]
+    },
 
     // Allow JSON imports
     "resolveJsonModule": true,
@@ -27,9 +30,9 @@
     "isolatedModules": true,
 
     // Source maps during dev
-    "sourceMap": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "__test__"],
+  "exclude": ["node_modules", "dist", "__tests__"],
+  // Reference to node-specific tsconfig for project builds and type-checking
   "references": [{ "path": "./tsconfig.node.json" }]
 }

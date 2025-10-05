@@ -1,19 +1,30 @@
-import type { JSX } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
-import type { Image } from 'types/Image';
 
-/**
- * Renders a titled block with an image.
- */
-const ImageBlock = ({ alt, src, title }: Image): JSX.Element | null => (
-  <Section>
-    <Title>{title}</Title>
-    <img alt={alt ?? title} src={src} {...(title ? { title } : {})} />
-  </Section>
-);
+interface ImageBlockProps {
+  src: string;
+  alt?: string;
+  title?: string;
+}
+
+const ImageBlock: React.FC<ImageBlockProps> = ({ alt, src, title }) => {
+  if (!src) return null;
+
+  return (
+    <Section>
+      {title && <Title>{title}</Title>}
+      <StyledImg
+        src={src}
+        alt={alt || title || ''}
+        {...(title ? { title } : {})}
+        loading="lazy"
+      />
+    </Section>
+  );
+};
 
 ImageBlock.displayName = 'ImageBlock';
-export default ImageBlock;
+export default memo(ImageBlock);
 
 const Section = styled.div`
   margin-bottom: 16px;
@@ -25,4 +36,10 @@ const Title = styled.div`
   padding: 12px 16px 6px;
   text-align: center;
   margin-top: 2px;
+`;
+
+const StyledImg = styled.img`
+  display: block;
+  width: 100%;
+  height: auto;
 `;
