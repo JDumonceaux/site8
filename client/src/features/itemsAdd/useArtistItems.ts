@@ -1,24 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
 import type { ListItem } from 'types';
-import type { ArtistItems } from 'types/ArtistItems';
+import type { ArtistWithtems } from 'types/ArtistWithtems';
 
 // Helper function to fetch artist items
-const fetchData = async (artistId: string): Promise<ArtistItems> => {
+const fetchData = async (artistId: string): Promise<ArtistWithtems> => {
   const response = await fetch(
     ServiceUrl.ENDPOINT_ARTIST_ITEMS.replace('{0}', artistId),
   );
   if (!response.ok) {
     throw new Error(`Failed to fetch artist items: ${response.statusText}`);
   }
-  return response.json() as Promise<ArtistItems>;
+  return response.json() as Promise<ArtistWithtems>;
 };
 
-const useArtistItems = (artistId: string) => {
+const useArtistWithtems = (artistId: string) => {
   // Define the query key to include the artistId for caching purposes
-  const queryKey = ['artistItems', artistId];
+  const queryKey = ['ArtistWithtems', artistId];
 
-  const query = useQuery<ArtistItems>({
+  const query = useQuery<ArtistWithtems>({
     queryFn: async () => fetchData(artistId),
     queryKey,
     ...USEQUERY_DEFAULT_OPTIONS,
@@ -42,4 +42,4 @@ const useArtistItems = (artistId: string) => {
   };
 };
 
-export default useArtistItems;
+export default useArtistWithtems;

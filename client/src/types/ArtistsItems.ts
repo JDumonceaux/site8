@@ -1,7 +1,7 @@
-import type { ArtistItems } from './ArtistItems';
+import type { ArtistWithtems } from './ArtistWithtems';
 import type { Metadata } from './Metadata';
 
 export type ArtistsItems = {
-  readonly items: ArtistItems[] | undefined;
+  readonly items: ArtistWithtems[] | undefined;
   readonly metadata: Metadata;
 };

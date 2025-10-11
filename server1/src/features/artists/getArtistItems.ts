@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
-import { ArtistItems } from '../../types/ArtistItems.js';
+import { ArtistWithtems } from '../../types/ArtistWithtems.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { ArtistNotFoundError } from './ArtistsService.js';
 
@@ -10,19 +10,19 @@ import { ArtistNotFoundError } from './ArtistsService.js';
  *
  * @route GET /artists/:id/items
  * @param req.params.id - Artist ID (string that should parse to positive integer)
- * @returns 200 with ArtistItems data
+ * @returns 200 with ArtistWithtems data
  * @returns 400 for invalid ID format
  * @returns 404 if artist not found
  * @returns 500 for server errors
  */
-export const getArtistItems = async (
+export const getArtistWithtems = async (
   req: Request<
     { id: string },
-    ArtistItems | { error: string },
+    ArtistWithtems | { error: string },
     unknown,
     unknown
   >,
-  res: Response<ArtistItems | { error: string }>,
+  res: Response<ArtistWithtems | { error: string }>,
   next: NextFunction,
 ) => {
   try {
@@ -55,12 +55,12 @@ export const getArtistItems = async (
     const service = ServiceFactory.getArtistsService();
 
     try {
-      const artistItems = await service.getArtistItems(artistId);
+      const ArtistWithtems = await service.getArtistWithtems(artistId);
 
       Logger.info(
-        `Successfully retrieved artist ${artistId} with ${artistItems.items?.length || 0} items`,
+        `Successfully retrieved artist ${artistId} with ${ArtistWithtems.items?.length || 0} items`,
       );
-      return res.status(200).json(artistItems);
+      return res.status(200).json(ArtistWithtems);
     } catch (serviceError) {
       // Handle specific service errors
       if (serviceError instanceof ArtistNotFoundError) {
@@ -77,7 +77,7 @@ export const getArtistItems = async (
     // Log the error with context
     const errorMessage = error instanceof Error ? error.message : String(error);
     Logger.error(
-      `Error in getArtistItems for ID ${req.params?.id}: ${errorMessage}`,
+      `Error in getArtistWithtems for ID ${req.params?.id}: ${errorMessage}`,
       error,
     );
 

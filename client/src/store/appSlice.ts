@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { AppSettings } from 'types';
+import type { AppSettings } from '../types';
 
 /**
  * The application state interface.

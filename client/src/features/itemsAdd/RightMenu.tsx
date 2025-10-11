@@ -1,18 +1,22 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import styled from 'styled-components';
 
-import useArtistItems from './useArtistItems';
+import useArtistWithtems from './useArtistWithtems';
 
 type Props = {
   readonly artistId?: string;
 };
 
 const RightMenu = ({ artistId = '' }: Props): JSX.Element => {
-  const { data, error, isError, isLoading } = useArtistItems(artistId);
+  const { data, error, isError, isLoading } = useArtistWithtems(artistId);
 
   return (
     <StickyMenu>
-      <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
+      <LoadingWrapper
+        error={error}
+        isError={isError}
+        isLoading={isLoading}
+      >
         <ul>
           {data?.items?.map((item) => (
             <li key={item.key}>{item.display ?? 'Missing'}</li>

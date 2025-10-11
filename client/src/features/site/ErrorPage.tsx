@@ -1,21 +1,25 @@
 import type { JSX } from 'react';
 
-import Meta from 'components/core/Meta/Meta';
+import Meta from '../../components/core/Meta/Meta';
 import styled from 'styled-components';
 
 /**
  * Error Page – shown when an unexpected error occurs.
  */
-export const ErrorPage = (): JSX.Element => (
+const ErrorPage = (): JSX.Element => (
   <>
     <Meta title="Error Page" />
-    <Container aria-label="Error message" role="alert">
+    <Container
+      aria-label="Error message"
+      role="alert"
+    >
       <Title>Error Page</Title>
       <Message>Sorry, something went wrong. Please try again later.</Message>
     </Container>
   </>
 );
 
+export default ErrorPage;
 ErrorPage.displayName = 'ErrorPage';
 
 const Container = styled.div`

@@ -1,5 +1,5 @@
 import FilePath from '../files/FilePath.js';
-import { ArtistItems } from '../../types/ArtistItems.js';
+import { ArtistWithtems } from '../../types/ArtistWithtems.js';
 import { Artists } from '../../types/Artists.js';
 import { ArtistsItems } from '../../types/ArtistsItems.js';
 import { ItemsFile } from '../../types/ItemsFile.js';
@@ -233,11 +233,11 @@ export class ArtistsService {
    * Retrieves a specific artist and their associated items.
    * @public
    * @param {number} artistId - The ID of the artist to retrieve
-   * @returns {Promise<ArtistItems>} Artist and their items
+   * @returns {Promise<ArtistWithtems>} Artist and their items
    * @throws {ArtistNotFoundError} If artist not found
    * @throws {Error} If artistId is invalid
    */
-  public async getArtistItems(artistId: number): Promise<ArtistItems> {
+  public async getArtistWithtems(artistId: number): Promise<ArtistWithtems> {
     // Validate input
     if (!Number.isInteger(artistId) || artistId <= 0) {
       throw new Error(
@@ -464,12 +464,12 @@ export class ArtistsService {
    * Retrieves multiple artists and their items in a single operation.
    * @public
    * @param {number[]} artistIds - Array of artist IDs to retrieve
-   * @returns {Promise<ArtistItems[]>} Array of artists with their items
+   * @returns {Promise<ArtistWithtems[]>} Array of artists with their items
    * @throws {Error} If any artistId is invalid
    */
-  public async getMultipleArtistItems(
+  public async getMultipleArtistWithtems(
     artistIds: number[],
-  ): Promise<ArtistItems[]> {
+  ): Promise<ArtistWithtems[]> {
     // Validate inputs
     if (!Array.isArray(artistIds)) {
       throw new Error('artistIds must be an array');
@@ -490,7 +490,7 @@ export class ArtistsService {
     }
 
     const data = await this.readFile();
-    const results: ArtistItems[] = [];
+    const results: ArtistWithtems[] = [];
     const notFound: number[] = [];
 
     // Create a map for efficient lookups
