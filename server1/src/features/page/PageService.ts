@@ -15,9 +15,9 @@ const pageAddSchema = z
     id: z.number(),
     name: z
       .string({
-        required_error: 'Name is required.',
-        invalid_type_error: 'Name must be a string',
+        message: 'Name is required and must be a string',
       })
+      .min(1, 'Name is required.')
       .max(500, 'Name max length exceeded: 500')
       .trim(),
     to: z.string().trim().optional(),

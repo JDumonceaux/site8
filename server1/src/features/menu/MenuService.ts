@@ -16,10 +16,8 @@ const menuAddSchema = z
   .object({
     id: z.number(),
     name: z
-      .string({
-        required_error: 'Name is required.',
-        invalid_type_error: 'Name must be a string',
-      })
+      .string({ message: 'Name must be a string' })
+      .min(1, 'Name is required.')
       .max(500, 'Name max length exceeded: 500')
       .trim(),
     to: z.string().trim().optional(),

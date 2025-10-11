@@ -51,7 +51,7 @@ export class ImagesFileService {
         withFileTypes: true,
       })
         .filter((x) => x.isDirectory())
-        .map((x) => x.path + '\\' + x.name)
+        .map((x) => x.parentPath + '\\' + x.name)
         .map((x) => x.substring(this.imageDir.length + 1).trim())
         .filter((x) => !FOLDERS_TO_IGNORE.some((y) => x.startsWith(y)))
         .toSorted((a, b) => a.localeCompare(b));

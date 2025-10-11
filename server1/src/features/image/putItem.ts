@@ -15,9 +15,10 @@ export const putItem = async (
 
     const validationResult = ImageSchemaAdd.safeParse(req.body);
     if (!validationResult.success) {
-      const errorMessage = validationResult.error.errors
-        .map((err) => err.message)
-        .join(', ');
+      const errorMessage = '';
+      // const errorMessage = validationResult.error.errors
+      //   .map((err) => err.message)
+      //   .join(', ');
       return res
         .status(400)
         .json({ error: `Validation error: ${errorMessage}` });

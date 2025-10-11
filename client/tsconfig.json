@@ -5,8 +5,9 @@
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler", // Updated
     "useDefineForClassFields": true,
+    "noEmit": true, // Added
 
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.Array"],
     "jsx": "react-jsx",
@@ -17,19 +18,24 @@
       "src/*": ["src/*"]
     },
 
-    // Allow JSON imports
+    // Allow JSON and TS extensions
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true, // Added
 
     // Interop
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": true, // Added
 
     // Skip type-checking libs for speed
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
 
-    // Source maps during dev
+    // Stricter checking
+    "noUnusedLocals": true, // Added
+    "noUnusedParameters": true, // Added
+    "noFallthroughCasesInSwitch": true // Added
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "__tests__"],
