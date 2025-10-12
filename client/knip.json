@@ -1,15 +1,35 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
-  "entry": ["**/*.{ts,tsx}"],
-  "project": ["**/*.{ts,tsx}", "!dist/**/*", "!build/**/*"],
+  "entry": ["src/main.tsx", "src/App.tsx", "index.html"],
+  "project": ["**/*.{ts,tsx}"],
   "ignore": [
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
-    "**/__tests__/**"
+    "**/__tests__/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "node_modules/**",
+    "public/**"
   ],
-  "vite": {
-    "config": ["vite*.config.{js,mjs,ts,cjs,mts,cts}"]
+  "ignoreDependencies": ["@types/*"],
+  "ignoreExportsUsedInFile": true,
+  "includeEntryExports": true,
+  "rules": {
+    "files": "error",
+    "dependencies": "error",
+    "devDependencies": "warn",
+    "unlisted": "error",
+    "exports": "warn",
+    "nsExports": "error",
+    "nsTypes": "error",
+    "duplicates": "error",
+    "config": ["vite*.config.{js,mjs,ts,cjs,mts,cts}"],
+    "entry": ["index.html"]
+  },
+  "typescript": {
+    "skipLibCheck": true
   }
 }

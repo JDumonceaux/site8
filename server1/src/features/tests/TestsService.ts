@@ -5,21 +5,15 @@ import { Test } from '../../types/Test.js';
 import { Tests } from '../../types/Tests.js';
 
 export class TestsService {
-  private async sortItems(items: Test[]) {
-    try {
-      if (!items) {
-        return undefined;
-      }
-
-      // const sorted = items.sort(function (a, b) {
-      //   return a.parentId - b.parentId || a.parentSeq - b.parentSeq;
-      // });
-      // return sorted;
-      return items;
-    } catch (error) {
-      Logger.error(`TestsService: sortItems:  --> Error: ${error}`);
-      return undefined;
+  private sortItems(items: readonly Test[]): readonly Test[] {
+    if (!items?.length) {
+      return [];
     }
+
+    return [...items].sort((a, b) => {
+      const parentDiff = a.parentId - b.parentId;
+      return parentDiff !== 0 ? parentDiff : a.parentSeq - b.parentSeq;
+    });
   }
 
   public async getItems(): Promise<Tests | undefined> {
@@ -28,26 +22,25 @@ export class TestsService {
       const filePath = FilePath.getDataDir(fileName);
 
       const data = await readFile(filePath, { encoding: 'utf8' });
-
       const rawData = JSON.parse(data) as Tests;
 
       const expanded: Test[] =
         rawData.items?.flatMap((item) => {
           if (item.parentItems) {
-            return item?.parentItems?.map((parent) => ({
+            return item.parentItems.map((parent) => ({
               ...item,
               parentId: parent.id,
               parentSeq: parent.seq,
             }));
-          } else {
-            return [{ ...item, parentId: 0, parentSeq: 0 }];
           }
-        }) || [];
+          return [{ ...item, parentId: 0, parentSeq: 0 }];
+        }) ?? [];
 
-      const items = await this.sortItems(expanded);
+      const items = this.sortItems(expanded);
+
       return { ...rawData, items };
     } catch (error) {
-      Logger.error(`TestsService: getItems:  --> Error: ${error}`);
+      Logger.error(`TestsService: getItems --> Error: ${error}`);
       return undefined;
     }
   }

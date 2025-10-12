@@ -2,27 +2,32 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { Pages } from '../../types/Pages.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getPagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItems = async (
-  req: Request<unknown, unknown, unknown, unknown>,
+  req: Request,
   res: Response<Pages>,
   next: NextFunction,
-) => {
-  Logger.info(`Pages: Get Items called`);
+): Promise<void> => {
+  try {
+    Logger.info('Pages: Get Items called');
 
-  const service = ServiceFactory.getPagesService();
+    const service = getPagesService();
+    const response = await service.getItems();
 
-  await service
-    .getItems()
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      next(error);
-    });
+    if (!response) {
+      Logger.warn('Pages: No items found');
+      res.status(404).json({ message: 'No pages found' } as Pages);
+      return;
+    }
+
+    Logger.info(
+      `Pages: Successfully retrieved ${response.items?.length ?? 0} items`,
+    );
+    res.status(200).json(response);
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    Logger.error(`Pages: Error fetching items - ${errorMessage}`, { error });
+    next(error);
+  }
 };

@@ -1,9 +1,9 @@
 import express from 'express';
-import { getItems } from '../features/artists/getItems.js';
-import { getArtistsItems } from '../features/artists/getArtistsItems.js';
+import { asyncHandler } from '../lib/utils/routerUtils.js';
+import { getArtists } from '../features/artists/getArtists.js';
+import { getArtistsWithItems } from '../features/artists/getArtistsWithItems.js';
 
-export const artistsRouter: express.Router = express.Router();
-// Fetches a list of all items
-artistsRouter.get('/', getItems);
-// Fetches detailed artist items
-artistsRouter.get('/items', getArtistsItems);
+export const artistsRouter = express.Router();
+
+artistsRouter.get('/', asyncHandler(getArtists));
+artistsRouter.get('/items', asyncHandler(getArtistsWithItems));

@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../lib/utils/logger.js';
 
+const MAX_NAME_LENGTH = 255;
+
 export const requireName = (
   req: Request,
   res: Response,
@@ -8,11 +10,19 @@ export const requireName = (
 ) => {
   const { name } = req.params;
 
-  Logger.debug(`Require id middleware received value=${name}`);
+  Logger.debug(`Require name middleware received value=${name}`);
 
-  if (name) {
-    next();
-  } else {
-    res.status(400).json({ message: 'Name is required' });
+  if (!name?.trim()) {
+    Logger.warn(`Missing or empty name parameter`);
+    return res.status(400).json({ message: 'Name is required' });
   }
+
+  if (name.length > MAX_NAME_LENGTH) {
+    Logger.warn(`Name parameter too long: ${name.length} characters`);
+    return res.status(400).json({
+      message: `Name must not exceed ${MAX_NAME_LENGTH} characters`,
+    });
+  }
+
+  next();
 };

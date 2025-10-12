@@ -2,18 +2,34 @@ import { Logger } from '../../lib/utils/logger.js';
 import * as prettier from 'prettier';
 
 export class PrettierService {
-  public async formatCode(code: string, filePath: string) {
+  public async formatCode(code: string, filePath: string): Promise<string> {
     try {
+      if (!code?.trim()) {
+        Logger.warn('PrettierService: Empty code provided');
+        return code;
+      }
+
+      if (!filePath?.trim()) {
+        Logger.warn('PrettierService: Empty file path provided');
+        return code;
+      }
+
       const options = await prettier.resolveConfig(filePath);
       const formatted = await prettier.format(code, {
-        ...options,
+        ...(options ?? {}),
         filepath: filePath,
       });
 
+      Logger.info(`PrettierService: Successfully formatted ${filePath}`);
       return formatted;
     } catch (error) {
-      Logger.error('Error formatting code:', error);
-      return code; // Return the original code if formatting fails
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `PrettierService: Error formatting code for ${filePath} - ${errorMessage}`,
+        { error },
+      );
+      return code;
     }
   }
 }

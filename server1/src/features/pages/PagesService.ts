@@ -8,189 +8,225 @@ import { PageMenu } from '../../types/Page.js';
 import { Pages } from '../../types/Pages.js';
 import { PagesIndex } from '../../types/PagesIndex.js';
 import { ParentSortby } from '../../types/ParentSortby.js';
-//import { sanitizeFilePath } from '../../lib/utils/fileNameUtil.js';
 
 export class PagesService {
-  private fileName = 'pagesIndex.json';
-  private filePath = '';
+  private readonly FILE_NAME = 'pagesIndex.json';
+  private readonly filePath: string;
 
   constructor() {
-    this.filePath = FilePath.getDataDir(this.fileName);
+    this.filePath = FilePath.getDataDir(this.FILE_NAME);
   }
 
-  // Get all data
   public async getItems(): Promise<PagesIndex | undefined> {
-    Logger.info(`PagesService: getItems ->`);
-
-    const { promise, resolve, reject } = Promise.withResolvers<
-      Pages | undefined
-    >();
+    Logger.info('PagesService: getItems');
 
     try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
+      const data = await readFile(this.filePath, { encoding: 'utf8' });
 
-      if (!results) reject(new Error('No data found'));
-      resolve(JSON.parse(results) as PagesIndex);
+      if (!data?.trim()) {
+        Logger.warn('PagesService: No data found');
+        return undefined;
+      }
+
+      const parsedData = JSON.parse(data) as PagesIndex;
+      Logger.info('PagesService: Successfully retrieved items');
+      return parsedData;
     } catch (error) {
       if (error instanceof SyntaxError) {
-        Logger.error(
-          `PagesService: getItems. Invalid JSON -> ${error.message}`,
-        );
-        reject(new Error('Syntax Error'));
+        Logger.error(`PagesService: Invalid JSON - ${error.message}`, {
+          error,
+        });
       } else {
-        Logger.error(`PagesService: getItems. Error -> ${error}`);
-        reject(new Error(`Get Items failed. Error: ${error}`));
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        Logger.error(`PagesService: Error reading items - ${errorMessage}`, {
+          error,
+          filePath: this.filePath,
+        });
       }
-    }
-    return promise;
-  }
-
-  // Get the next id for the record
-  public async getNextId(): Promise<number | undefined> {
-    Logger.info(`PagesService: getNextId -> `);
-
-    try {
-      const data = await this.getItems();
-      return getNextId<PageMenu>(data?.items);
-    } catch (error) {
-      Logger.error(`PagesService: getNextId. Error -> ${error}`);
       return undefined;
     }
   }
 
-  // Write to file
-  public async writeFile(data: Pages): Promise<boolean> {
-    Logger.info(`PagesService: writeFile -> `);
-
-    const filePath = this.filePath;
+  public async getNextId(): Promise<number | undefined> {
+    Logger.info('PagesService: getNextId');
 
     try {
-      await writeFile(filePath, JSON.stringify(data, null, 2), {
-        encoding: 'utf8',
-      });
-      return Promise.resolve(true);
+      const data = await this.getItems();
+      const nextId = getNextId<PageMenu>(data?.items);
+
+      Logger.info(`PagesService: Next ID is ${nextId ?? 'undefined'}`);
+      return nextId;
     } catch (error) {
-      Logger.error(`PagesService: writeFile. Error -> ${error}`);
-      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`PagesService: Error getting next ID - ${errorMessage}`, {
+        error,
+      });
+      return undefined;
     }
   }
 
-  // ?
-  private getUpdatedParent(
+  public async writeFile(data: Pages): Promise<boolean> {
+    Logger.info('PagesService: writeFile');
+
+    try {
+      await writeFile(this.filePath, JSON.stringify(data, null, 2), {
+        encoding: 'utf8',
+      });
+
+      Logger.info('PagesService: Successfully wrote file');
+      return true;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`PagesService: Error writing file - ${errorMessage}`, {
+        error,
+        filePath: this.filePath,
+      });
+      throw error;
+    }
+  }
+
+  private getUpdatedParentItems(
     updates: MenuEdit[] | undefined,
     currItem: PageMenu | undefined,
   ): ParentSortby[] | undefined {
-    Logger.info(`PagesService: getUpdatedParent ->`);
+    Logger.info('PagesService: getUpdatedParentItems');
 
     try {
       if (!currItem || !updates || !isValidArray(updates)) {
         return undefined;
       }
 
-      const newArr: ParentSortby[] = [];
-      // Update existing item
+      const updatedItems: ParentSortby[] = [];
+
       currItem.parentItems?.forEach((item) => {
-        // Find the prior record
         const match = updates.find((x) => x.priorParent.id === item.id);
 
-        const update = match && {
-          id: match.newParent.id,
-          seq: match.newParent.seq,
-          sortby: match.newParent.sortby,
-        };
+        const update = match
+          ? {
+              id: match.newParent.id,
+              seq: match.newParent.seq,
+              sortby: match.newParent.sortby,
+            }
+          : item;
 
-        newArr.push(update ?? item);
+        updatedItems.push(update);
       });
 
-      //Second Loop through "new items"
-      updates.forEach((x) => {
-        const found = newArr.find((y) => y.id !== x.id);
+      updates.forEach((update) => {
+        const found = updatedItems.find(
+          (item) => item.id === update.newParent.id,
+        );
         if (!found) {
-          newArr.push(x.newParent);
+          updatedItems.push(update.newParent);
         }
       });
 
       const filtered =
         currItem.type === 'page'
-          ? newArr.map((x) => ({ id: x.id, seq: x.seq }))
-          : newArr;
-      const sorted = filtered.sort((a, b) => a.id - b.id);
+          ? updatedItems.map((x) => ({ id: x.id, seq: x.seq }))
+          : updatedItems;
+
+      const sorted = [...filtered].sort((a, b) => a.id - b.id);
 
       return sorted.length > 0 ? sorted : undefined;
     } catch (error) {
-      Logger.error(`PagesService: getUpdatedParent. Error: -> ${error}`);
-    }
-    return undefined;
-  }
-
-  // Update multiple items in pagesIndex.json
-  public async updateItems(items: ReadonlyArray<MenuEdit>): Promise<void> {
-    Logger.info(`PagesService: updateItems ->`);
-
-    try {
-      const pages = await this.getItems();
-      if (!pages?.items) {
-        return Promise.reject(new Error('No items found'));
-      }
-
-      // Loop through items from pagesIndex.json
-      pages.items.map((item) => {
-        // Get the updates from the incoming records - could be more than one update per entry.
-        const updateItems = items.filter((x) => x.id === item.id);
-        // Check for zero length array
-        const hasContent = isValidArray(updateItems);
-        // Get the updated item or undefined.
-        const updatedItem =
-          hasContent && this.getUpdatedParent(updateItems, item);
-
-        // Add update (if there is one) or original
-        return updatedItem ?? item;
-      });
-    } catch (error) {
-      Logger.error(`PagesService: updateItems. Error -> ${error}`);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `PagesService: Error updating parent items - ${errorMessage}`,
+        { error },
+      );
       return undefined;
     }
   }
 
-  // Standardize all entries in pagesIndex.json
-  public async fixAllEntries(): Promise<unknown> {
-    Logger.info(`PagesService: fixAllEntries -> `);
+  public async updateItems(items: ReadonlyArray<MenuEdit>): Promise<void> {
+    Logger.info('PagesService: updateItems');
 
     try {
       const pages = await this.getItems();
+
       if (!pages?.items) {
-        return Promise.reject(new Error('No items found'));
+        throw new Error('No items found');
       }
-      const data = pages.items.map((item) => {
-        const newItem = cleanUpData<PageMenu>(item);
-        return newItem;
+
+      const updatedItems = pages.items.map((item) => {
+        const updates = items.filter((x) => x.id === item.id);
+        const hasUpdates = isValidArray(updates);
+        const updatedParentItems = hasUpdates
+          ? this.getUpdatedParentItems(updates, item)
+          : undefined;
+
+        return updatedParentItems
+          ? { ...item, parentItems: updatedParentItems }
+          : item;
       });
 
-      const newData = { ...pages, items: data };
-      await this.writeFile(newData);
-      return Promise.resolve();
+      await this.writeFile({ ...pages, items: updatedItems });
+      Logger.info('PagesService: Successfully updated items');
     } catch (error) {
-      Logger.error(`PagesService: fixAllEntries. Error -> ${error}`);
-      return Promise.reject(new Error(`fixAllEntries. Error: ${error}`));
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`PagesService: Error updating items - ${errorMessage}`, {
+        error,
+      });
+      throw error;
     }
   }
 
-  // List duplicates Ids
-  public async listDuplicates(): Promise<unknown> {
-    Logger.info(`PagesService: listDuplicates -> `);
+  public async fixAllEntries(): Promise<void> {
+    Logger.info('PagesService: fixAllEntries');
 
     try {
-      const item = await this.getItems();
-      const duplicates = item?.items
-        ?.map((x) => x.id?.toString() || x.title)
-        .filter((x, i, a) => a.indexOf(x) !== i);
-      // Filter out null
-      const filtered = duplicates?.filter((x) => x);
-      // Convert to string
+      const pages = await this.getItems();
+
+      if (!pages?.items) {
+        throw new Error('No items found');
+      }
+
+      const cleanedItems = pages.items.map((item) =>
+        cleanUpData<PageMenu>(item),
+      );
+      const newData = { ...pages, items: cleanedItems };
+
+      await this.writeFile(newData);
+      Logger.info('PagesService: Successfully fixed all entries');
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`PagesService: Error fixing entries - ${errorMessage}`, {
+        error,
+      });
+      throw error;
+    }
+  }
+
+  public async listDuplicates(): Promise<{ readonly items: string[] }> {
+    Logger.info('PagesService: listDuplicates');
+
+    try {
+      const data = await this.getItems();
+
+      if (!data?.items) {
+        return { items: [] };
+      }
+
+      const allIds = data.items.map((x) => x.id?.toString() ?? x.title);
+      const duplicates = allIds.filter((x, i, arr) => arr.indexOf(x) !== i);
+      const filtered = [...new Set(duplicates)].filter((x) => x);
+
+      Logger.info(`PagesService: Found ${filtered.length} duplicates`);
       return { items: filtered };
     } catch (error) {
-      Logger.error(`PagesService: listDuplicates -> ${error}`);
-      return Promise.reject(new Error(`List Duplicates. Error: ${error}`));
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`PagesService: Error listing duplicates - ${errorMessage}`, {
+        error,
+      });
+      throw error;
     }
   }
 }

@@ -6,9 +6,10 @@ export const requireId = (req: Request, res: Response, next: NextFunction) => {
 
   Logger.debug(`Require id middleware received value=${id}`);
 
-  if (id) {
-    next();
-  } else {
-    res.status(400).json({ message: 'Id is required' });
+  if (!id?.trim()) {
+    Logger.warn(`Missing or empty id parameter`);
+    return res.status(400).json({ message: 'Id is required' });
   }
+
+  next();
 };

@@ -4,20 +4,27 @@ import { Logger } from '../../lib/utils/logger.js';
 import { Photos } from '../../types/Photos.js';
 
 export class PhotosService {
-  private fileName = 'photos.json';
-  private filePath = '';
+  private readonly FILE_NAME = 'photos.json';
+  private readonly filePath: string;
 
   constructor() {
-    this.filePath = FilePath.getDataDir(this.fileName);
+    this.filePath = FilePath.getDataDir(this.FILE_NAME);
   }
 
-  // Get all data
   public async getItems(): Promise<Photos | undefined> {
     try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as Photos;
+      const data = await readFile(this.filePath, { encoding: 'utf8' });
+      const parsedData = JSON.parse(data) as Photos;
+
+      Logger.info('PhotosService: Successfully retrieved photos');
+      return parsedData;
     } catch (error) {
-      Logger.error(`PhotosService: getItems -> ${error}`);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `PhotosService: Error reading photos file - ${errorMessage}`,
+        { error, filePath: this.filePath },
+      );
       return undefined;
     }
   }

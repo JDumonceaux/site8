@@ -9,13 +9,18 @@ export class PageFileService {
   }
 
   public async getFile(id: number): Promise<string> {
-    Logger.info(`PageFileService: getFile id: -> ${id}`);
+    Logger.info(`PageFileService: getFile id: ${id}`);
 
     try {
-      return readFile(this.getFileName(id), 'utf8');
+      return await readFile(this.getFileName(id), 'utf8');
     } catch (error) {
-      Logger.error(`PageFileService: getFile id -> ${error}`);
-      return Promise.reject(new Error(`unable to read file: -> ${id}`));
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `PageFileService: Error reading file id ${id} - ${errorMessage}`,
+        { error },
+      );
+      throw new Error(`Unable to read file for id: ${id}`);
     }
   }
 
@@ -23,51 +28,65 @@ export class PageFileService {
   // 'w': Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
   private async saveFile(id: number, text: string): Promise<boolean> {
     try {
-      Logger.info(`PageFileService: saveFile id: -> ${id}`);
-      await writeFile(this.getFileName(id), text || '', {
+      Logger.info(`PageFileService: saveFile id: ${id}`);
+      await writeFile(this.getFileName(id), text ?? '', {
         encoding: 'utf8',
         flag: 'w',
       });
-      return Promise.resolve(true);
+      return true;
     } catch (error) {
-      Logger.error(`PageFileService: saveFile id -> ${error}`);
-      return Promise.reject(new Error(`unable to save file: -> ${id}`));
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `PageFileService: Error saving file id ${id} - ${errorMessage}`,
+        { error },
+      );
+      throw new Error(`Unable to save file for id: ${id}`);
     }
   }
 
   public async addFile(id: number, text: string | undefined): Promise<boolean> {
-    Logger.info(`PageFileService: addFile -> `);
+    Logger.info('PageFileService: addFile');
+
     if (text === undefined) {
-      return Promise.reject(new Error('addFile -> Text is required'));
+      throw new Error('addFile - Text is required');
     }
+
     await this.saveFile(id, text);
-    return Promise.resolve(true);
+    return true;
   }
 
   public async updateFile(
     id: number,
     text: string | undefined,
   ): Promise<boolean> {
-    Logger.info(`PageFileService: updateFile -> `);
+    Logger.info('PageFileService: updateFile');
     await this.saveFile(id, text ?? '');
-    return Promise.resolve(true);
+    return true;
   }
 
   public async deleteFile(id: number): Promise<void> {
-    Logger.info(`PageFileService: deleteFile -> `);
+    Logger.info('PageFileService: deleteFile');
+
     const filePath = this.getFileName(id);
 
     if (id === undefined || id === 0) {
-      return Promise.reject(new Error('deleteFile -> ID is required'));
+      throw new Error('deleteFile - ID is required');
     }
+
     try {
       if (existsSync(filePath)) {
-        return await unlink(filePath);
+        await unlink(filePath);
       } else {
-        throw new Error(`deleteFile -> File does not exist: ${filePath}`);
+        throw new Error(`deleteFile - File does not exist: ${filePath}`);
       }
     } catch (error) {
-      Logger.error(`PageFileService: deleteFile --> Error: ${error}`);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`PageFileService: Error deleting file - ${errorMessage}`, {
+        error,
+        filePath,
+      });
       Logger.error(`Failed to delete file: ${filePath}`);
       throw error;
     }

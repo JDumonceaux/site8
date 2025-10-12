@@ -1,14 +1,14 @@
 import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
 import styled from 'styled-components';
 
-import useArtistWithtems from './useArtistWithtems';
+import useArtistWithItems from './useArtistWithItems';
 
 type Props = {
   readonly artistId?: string;
 };
 
 const RightMenu = ({ artistId = '' }: Props): JSX.Element => {
-  const { data, error, isError, isLoading } = useArtistWithtems(artistId);
+  const { data, error, isError, isLoading } = useArtistWithItems(artistId);
 
   return (
     <StickyMenu>

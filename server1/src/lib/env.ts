@@ -1,13 +1,22 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 const envSchema = z.object({
   BASE_URL: z.string().url(),
-  VITE_PORT: z.number(),
-  USE_AUTH: z.string().transform((value) => value === 'true'),
+  PORT: z.coerce.number().int().positive().default(3000),
+  USE_AUTH: z
+    .string()
+    .transform((value) => value === 'true')
+    .default('false'),
+  NODE_ENV: z
+    .enum(['development', 'production', 'test'])
+    .default('development'),
 });
 
+export type Env = z.infer<typeof envSchema>;
+
 export const env = envSchema.parse({
-  // BASE_URL: import.meta.env.VITE_BASE_URL,
-  // VITE_PORT: import.meta.env.VITE_PORT,
-  // USE_AUTH: import.meta.env.VITE_USE_AUTH,
+  BASE_URL: process.env.BASE_URL,
+  PORT: process.env.PORT,
+  USE_AUTH: process.env.USE_AUTH,
+  NODE_ENV: process.env.NODE_ENV,
 });

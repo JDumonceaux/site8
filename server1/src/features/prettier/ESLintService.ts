@@ -2,27 +2,43 @@ import { Logger } from '../../lib/utils/logger.js';
 import * as ESLint from 'eslint';
 
 export class ESLintService {
-  public async lintAndFixFiles(filePaths: string | string[]) {
+  public async lintAndFixFiles(
+    filePaths: string | string[],
+  ): Promise<ESLint.ESLint.LintResult[]> {
     try {
-      // 1. Create an ESLint instance
+      if (!filePaths || (Array.isArray(filePaths) && filePaths.length === 0)) {
+        Logger.warn('ESLintService: No file paths provided');
+        return [];
+      }
+
       const eslint = new ESLint.ESLint({
-        fix: true, // Enable auto-fixing
+        fix: true,
       });
 
-      // 2. Lint files
       const results = await eslint.lintFiles(filePaths);
 
-      // 3. Format the results
       const formatter = await eslint.loadFormatter('stylish');
       const resultText = formatter.format(results);
 
-      // 4. Output results
-      console.log(resultText);
+      Logger.info('ESLintService: Lint results', { resultText });
 
-      // 5. Apply fixes if any
-      // await ESLint.outputFixes(results);
+      await ESLint.ESLint.outputFixes(results);
+
+      const fileCount = Array.isArray(filePaths) ? filePaths.length : 1;
+      Logger.info(`ESLintService: Successfully linted ${fileCount} file(s)`);
+
+      return results;
     } catch (error) {
-      Logger.error('Error during linting:', error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      const pathsStr = Array.isArray(filePaths)
+        ? filePaths.join(', ')
+        : filePaths;
+      Logger.error(
+        `ESLintService: Error linting files [${pathsStr}] - ${errorMessage}`,
+        { error },
+      );
+      throw error;
     }
   }
 }

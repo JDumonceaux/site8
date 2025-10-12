@@ -14,50 +14,93 @@ import { PrettierService } from '../../features/prettier/PrettierService.js';
 import { TestsService } from '../../features/tests/TestsService.js';
 import { BuildService } from '../../features/build/BuildService.js';
 
-export class ServiceFactory {
-  public static getArtistsService() {
-    return new ArtistsService();
-  }
-  public static getBookmarksService() {
-    return new BookmarksService();
-  }
-  public static getBuildService() {
-    return new BuildService();
-  }
-  public static getFileService() {
-    return new FileService();
-  }
-  public static getImageService() {
-    return new ImageService();
-  }
-  public static getImagesFileService() {
-    return new ImagesFileService();
-  }
-  public static getImagesService() {
-    return new ImagesService();
-  }
-  public static getItemsService() {
-    return new ItemsService();
-  }
-  public static getMenuService() {
-    return new MenuService();
-  }
-  public static getPageService() {
-    return new PageService();
-  }
-  public static getPageFileService() {
-    return new PageFileService();
-  }
-  public static getPagesService() {
-    return new PagesService();
-  }
-  public static getPhotosService() {
-    return new PhotosService();
-  }
-  public static getPrettierService() {
-    return new PrettierService();
-  }
-  public static getTestsService() {
-    return new TestsService();
-  }
-}
+let artistsService: ArtistsService | null = null;
+let bookmarksService: BookmarksService | null = null;
+let buildService: BuildService | null = null;
+let fileService: FileService | null = null;
+let imageService: ImageService | null = null;
+let imagesFileService: ImagesFileService | null = null;
+let imagesService: ImagesService | null = null;
+let itemsService: ItemsService | null = null;
+let menuService: MenuService | null = null;
+let pageService: PageService | null = null;
+let pageFileService: PageFileService | null = null;
+let pagesService: PagesService | null = null;
+let photosService: PhotosService | null = null;
+let prettierService: PrettierService | null = null;
+let testsService: TestsService | null = null;
+
+export const getArtistsService = (): ArtistsService => {
+  artistsService ??= new ArtistsService();
+  return artistsService;
+};
+
+export const getBookmarksService = (): BookmarksService => {
+  bookmarksService ??= new BookmarksService();
+  return bookmarksService;
+};
+
+export const getBuildService = (): BuildService => {
+  buildService ??= new BuildService();
+  return buildService;
+};
+
+export const getFileService = (): FileService => {
+  fileService ??= new FileService();
+  return fileService;
+};
+
+export const getImageService = (): ImageService => {
+  imageService ??= new ImageService();
+  return imageService;
+};
+
+export const getImagesFileService = (): ImagesFileService => {
+  imagesFileService ??= new ImagesFileService();
+  return imagesFileService;
+};
+
+export const getImagesService = (): ImagesService => {
+  imagesService ??= new ImagesService();
+  return imagesService;
+};
+
+export const getItemsService = (): ItemsService => {
+  itemsService ??= new ItemsService();
+  return itemsService;
+};
+
+export const getMenuService = (): MenuService => {
+  menuService ??= new MenuService();
+  return menuService;
+};
+
+export const getPageService = (): PageService => {
+  pageService ??= new PageService();
+  return pageService;
+};
+
+export const getPageFileService = (): PageFileService => {
+  pageFileService ??= new PageFileService();
+  return pageFileService;
+};
+
+export const getPagesService = (): PagesService => {
+  pagesService ??= new PagesService();
+  return pagesService;
+};
+
+export const getPhotosService = (): PhotosService => {
+  photosService ??= new PhotosService();
+  return photosService;
+};
+
+export const getPrettierService = (): PrettierService => {
+  prettierService ??= new PrettierService();
+  return prettierService;
+};
+
+export const getTestsService = (): TestsService => {
+  testsService ??= new TestsService();
+  return testsService;
+};

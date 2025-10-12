@@ -1,5 +1,24 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
-  "entry": ["src/server.*"],
-  "project": ["**/*.ts", "**/*.tsx"]
+  "entry": ["src/server.ts", "src/lib/env.ts"],
+  "project": ["**/*.ts"],
+  "ignore": ["**/*.test.ts", "**/*.spec.ts", "dist/**", "coverage/**"],
+  "ignoreDependencies": ["@types/*"],
+  "ignoreExportsUsedInFile": true,
+  "includeEntryExports": true,
+  "rules": {
+    "files": "error",
+    "dependencies": "error",
+    "devDependencies": "warn",
+    "unlisted": "error",
+    "exports": "warn",
+    "nsExports": "error",
+    "nsTypes": "error",
+    "duplicates": "error"
+  },
+  "typescript": {
+    "config": {
+      "skipLibCheck": true
+    }
+  }
 }

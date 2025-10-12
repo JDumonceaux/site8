@@ -4,19 +4,23 @@
   "description": "API service for the application",
   "type": "module",
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=20.11.0",
+    "npm": ">=10.0.0"
   },
   "scripts": {
     "start": "npm run build && node dist/server.js",
     "debug": "npm run build && node --inspect dist/server.js",
     "build": "tsc",
+    "build:clean": "rm -rf dist && tsc",
     "precommit": "pretty-quick --staged",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint .",
     "lint:fix": "eslint . --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint:format": "pretty-quick --staged",
     "prepare": "husky",
     "prepare-commit-msg": "node tools/git-commit-message.js .git/COMMIT_EDITMSG",
-    "knip": "knip --production"
+    "knip": "knip",
+    "knip:prod": "knip --production",
+    "start:prod": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "compression": "^1.8.1",
@@ -27,7 +31,7 @@
     "helmet": "^8.1.0",
     "validator": "^13.15.15",
     "winston": "^3.18.3",
-    "zod": "^4.1.11"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
@@ -36,20 +40,21 @@
     "@types/cors": "^2.8.19",
     "@types/express": "4.17.21",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.6.2",
+    "@types/node": "^24.7.2",
     "@types/validator": "^13.15.3",
-    "@typescript-eslint/eslint-plugin": "^8.45.0",
-    "@typescript-eslint/parser": "^8.45.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.0",
+    "@typescript-eslint/parser": "^8.46.0",
     "eslint": "^9.37.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-check-file": "^3.3.0",
+    "eslint-plugin-import": "^2.32.0",
     "globals": "^16.4.0",
     "husky": "^9.1.7",
-    "knip": "^5.64.1",
+    "knip": "^5.64.3",
     "prettier": "^3.5.3",
     "pretty-quick": "^4.2.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.45.0"
+    "typescript-eslint": "^8.46.0"
   },
   "keywords": [
     "api",
@@ -67,5 +72,12 @@
   "bugs": {
     "url": "https://github.com/username/repository/issues"
   },
-  "homepage": "https://github.com/username/repository#readme"
+  "homepage": "https://github.com/username/repository#readme",
+  "dev": "tsx watch src/server.ts",
+  "typecheck": "tsc --noEmit",
+  "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+  "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+  "tsx": "^4.19.2",
+  "jest": "^30.0.0",
+  "ts-jest": "^30.0.0"
 }

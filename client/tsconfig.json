@@ -13,7 +13,7 @@
     "jsx": "react-jsx",
 
     // Set baseUrl to project root and alias src/
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
       "src/*": ["src/*"]
     },

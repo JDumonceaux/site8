@@ -1,11 +1,14 @@
 import express from 'express';
-import { getArtistWithtems } from '../features/artists/getArtistWithtems.js';
-import { requireId } from '../middleware/requireId.js';
+import { asyncHandler } from '../lib/utils/routerUtils.js';
+import { getArtistWithItems } from '../features/artists/getArtistWithItems.js';
+import { requireNumericId } from 'src/middleware/requireNumericId.js';
+
+const VALIDATION_MIDDLEWARE = [requireNumericId];
 
 export const artistRouter = express.Router();
 
-const validationMiddleware = [requireId];
-
-// Define a route to fetch items for a specific artist by ID.
-// The 'validationMiddleware' ensures the request includes a valid ID before calling 'getArtistWithtems'.
-artistRouter.get('/:id/items', validationMiddleware, getArtistWithtems);
+artistRouter.get(
+  '/:id/items',
+  VALIDATION_MIDDLEWARE,
+  asyncHandler(getArtistWithItems),
+);

@@ -1,27 +1,29 @@
 import { Request, Response, NextFunction } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getPagesService } from '../../lib/utils/ServiceFactory.js';
+
+type DuplicatesResponse = {
+  readonly items: string[];
+};
 
 export const listDuplicates = async (
-  req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<unknown>,
+  req: Request,
+  res: Response<DuplicatesResponse>,
   next: NextFunction,
-) => {
-  Logger.info(`Pages: List Duplicates called`);
+): Promise<void> => {
+  try {
+    Logger.info('Pages: List duplicates called');
 
-  const service = ServiceFactory.getPagesService();
+    const service = getPagesService();
+    const response = await service.listDuplicates();
 
-  await service
-    .listDuplicates()
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      next(error);
+    Logger.info(`Pages: Found ${response.items.length} duplicates`);
+    res.status(200).json(response);
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    Logger.error(`Pages: Error listing duplicates - ${errorMessage}`, {
+      error,
     });
+    next(error);
+  }
 };

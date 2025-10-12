@@ -1,30 +1,28 @@
-export function parseRequestId(value: string | undefined) {
-  let isValid = false;
-  let id: number | undefined;
-
-  if (value) {
-    id = parseInt(value);
-    isValid = !Number.isNaN(id) && id !== 0;
-  }
-
-  return { isValid, id };
-}
-// Array.isArray(), checks whether its argument is an array.
-// This weeds out values like null,
-// undefined and anything else that is not an array.
-// arr.length condition checks whether the
-// variable's length property evaluates to a truthy value.
-export const isValidArray = (arr: unknown[] | undefined) => {
-  if (!Array.isArray(arr) || !arr.length) {
-    return false;
-  }
-  return true;
+type ParseIdResult = {
+  readonly isValid: boolean;
+  readonly id: number | undefined;
 };
 
-export function removeItem<T>(arr: Array<T>, value: T): Array<T> {
-  const index = arr.indexOf(value);
-  if (index > -1) {
-    arr.splice(index, 1);
+export const parseRequestId = (value: string | undefined): ParseIdResult => {
+  const trimmedValue = value?.trim();
+
+  if (!trimmedValue) {
+    return { isValid: false, id: undefined };
   }
-  return arr;
-}
+
+  const id = Number(trimmedValue);
+  const isValid = !Number.isNaN(id) && id > 0 && Number.isInteger(id);
+
+  return { isValid, id: isValid ? id : undefined };
+};
+
+export const isValidArray = (arr: unknown[] | undefined): boolean => {
+  return Array.isArray(arr) && arr.length > 0;
+};
+
+export const removeItem = <T>(
+  arr: ReadonlyArray<T>,
+  value: T,
+): ReadonlyArray<T> => {
+  return arr.filter((item) => item !== value);
+};

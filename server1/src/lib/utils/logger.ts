@@ -5,14 +5,41 @@
 import winston from 'winston';
 import { Environment } from './Environment.js';
 
-const options = {
+type FileTransportOptions = {
+  readonly level: string;
+  readonly filename: string;
+  readonly handleExceptions: boolean;
+  readonly json: boolean;
+  readonly maxsize: number;
+  readonly maxFiles: number;
+  readonly colorize: boolean;
+  readonly timestamp: boolean;
+};
+
+type ConsoleTransportOptions = {
+  readonly level: string;
+  readonly handleExceptions: boolean;
+  readonly json: boolean;
+  readonly colorize: boolean;
+  readonly timestamp: boolean;
+};
+
+type LoggerOptions = {
+  readonly file: FileTransportOptions;
+  readonly console: ConsoleTransportOptions;
+};
+
+const MAX_LOG_FILE_SIZE = 5242880;
+const MAX_LOG_FILES = 5;
+
+const OPTIONS: LoggerOptions = {
   file: {
     level: 'info',
     filename: 'local.log',
     handleExceptions: true,
     json: true,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
+    maxsize: MAX_LOG_FILE_SIZE,
+    maxFiles: MAX_LOG_FILES,
     colorize: false,
     timestamp: true,
   },
@@ -25,39 +52,29 @@ const options = {
   },
 };
 
-//eslint-disable-next-line
-const transports: any[] = [new winston.transports.Console(options.console)];
-let winstonFormat = winston.format.json();
+const transports: winston.transport[] = [
+  new winston.transports.Console(OPTIONS.console),
+];
+
+let format = winston.format.json();
 
 if (Environment.isLocal()) {
-  transports.push(new winston.transports.File(options.file));
-  winstonFormat = winston.format.combine(
+  transports.push(new winston.transports.File(OPTIONS.file));
+  format = winston.format.combine(
     winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
     winston.format.printf(
       (info) => `[${info.timestamp}] ${info.level}: ${info.message}`,
     ),
-
-    // winston.format.json(),
-    // winston.format.prettyPrint()
   );
 }
 
-/**
- * The logger instance.
- * @type {winston.Logger}
- */
 export const Logger = winston.createLogger({
   level: Environment.isProduction() ? 'info' : 'debug',
-  format: winstonFormat,
+  format,
   transports,
   exitOnError: false,
 });
 
-//eslint-disable-next-line
-Logger.on('error', (_error: any) => {
-  console.info('Logger caught an unhandled error');
+Logger.on('error', (error: Error) => {
+  Logger.info('Logger caught an unhandled error', { error: error.message });
 });
-
-if (!Environment.isLocal()) {
-  console.log('not local');
-}
