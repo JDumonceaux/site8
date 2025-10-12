@@ -54,6 +54,16 @@ export default {
   // ----------------------------------------------------------------------------
   overrides: [
     {
+      // Ensure consistent formatting for JavaScript module config files
+      files: '*.mjs',
+      options: {
+        parser: 'babel',
+        singleQuote: true,
+        semi: true,
+        trailingComma: 'all',
+      },
+    },
+    {
       files: '*.json',
       options: {
         printWidth: 120,               // Allow longer lines in JSON files

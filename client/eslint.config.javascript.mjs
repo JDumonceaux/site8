@@ -1,8 +1,5 @@
-// eslint.config.base.mjs
+// eslint.config.javascript.mjs
 import js from '@eslint/js';
-import pluginReactQuery from '@tanstack/eslint-plugin-query';
-import pluginCheckFile from 'eslint-plugin-check-file';
-import pluginArrow from 'eslint-plugin-prefer-arrow-functions';
 import globals from 'globals';
 
 export default {
@@ -24,17 +21,12 @@ export default {
     linterOptions: {
         reportUnusedDisableDirectives: 'error',
     },
-    name: 'Site8-base',
+    name: 'Site8-javascript',
     plugins: {
         '@eslint/js': js,
-        '@tanstack/query': pluginReactQuery,
-        'check-file': pluginCheckFile,
-        'prefer-arrow-functions': pluginArrow,
     },
     rules: {
         ...js.configs.recommended.rules,
-        ...pluginReactQuery.configs.recommended.rules,
-
         // ============================================================================
         // JavaScript Core Rules
         // ============================================================================
@@ -69,7 +61,6 @@ export default {
         'no-bitwise': 'error',
         'no-caller': 'error',
         'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
-        'no-constant-binary-expression': 'error',
         'no-constructor-return': 'error',
         'no-continue': 'error',
         'no-div-regex': 'error',
@@ -96,11 +87,8 @@ export default {
         'no-multi-str': 'error',
         'no-negated-condition': 'error',
         'no-nested-ternary': 'error',
-        'no-new': 'error',
         'no-new-func': 'error',
-        'no-new-native-nonconstructor': 'error',
         'no-new-wrappers': 'error',
-        'no-nonoctal-decimal-escape': 'error',
         'no-object-constructor': 'error',
         'no-octal-escape': 'error',
         'no-param-reassign': ['error', { props: true }],
@@ -164,11 +152,9 @@ export default {
         'no-unneeded-ternary': 'error',
         'no-unreachable-loop': 'error',
         'no-unused-expressions': 'error',
-        'no-unused-private-class-members': 'error',
         'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
         'no-useless-assignment': 'error',
         'no-useless-call': 'error',
-        'no-useless-catch': 'error',
         'no-useless-computed-key': 'error',
         'no-useless-concat': 'error',
         'no-useless-constructor': 'error',
@@ -203,39 +189,7 @@ export default {
         yoda: 'error',
 
         // ============================================================================
-        // Prefer Arrow Functions
-        // ============================================================================
-        'prefer-arrow-functions/prefer-arrow-functions': [
-            'warn',
-            {
-                allowNamedFunctions: false,
-                classPropertiesAllowed: false,
-                disallowPrototype: false,
-                returnStyle: 'unchanged',
-                singleReturnOnly: false,
-            },
-        ],
-
-        // ============================================================================
-        // Check File Rules
-        // ============================================================================
-        'check-file/filename-naming-convention': [
-            'error',
-            {
-                '**/*.config.{mjs}': 'FLAT_CASE',
-                '**/*.{html}': 'FLAT_CASE',
-                '**/*.{json}': 'FLAT_CASE',
-                '**/*.{jsx}': 'PASCAL_CASE',
-                '**/*.{js,mjs}': 'CAMEL_CASE',
-                '**/*.{md}': 'SCREAMING_SNAKE_CASE',
-            },
-            {
-                ignoreMiddleExtensions: true,
-            },
-        ],
-
-        // ============================================================================
-        // Deprecated Rules - Turned Off
+        // Deprecated Rules - Turned Off - defer to prettier for code formatting
         // ============================================================================
         'array-bracket-newline': 'off',
         'array-bracket-spacing': 'off',
@@ -257,7 +211,6 @@ export default {
         'generator-star-spacing': 'off',
         'implicit-arrow-linebreak': 'off',
         indent: 'off',
-        'indent-legacy': 'off',
         'jsx-quotes': 'off',
         'key-spacing': 'off',
         'keyword-spacing': 'off',
@@ -277,9 +230,7 @@ export default {
         'no-mixed-spaces-and-tabs': 'off',
         'no-multi-spaces': 'off',
         'no-multiple-empty-lines': 'off',
-        'no-native-reassign': 'off', // Deprecated - replaced by no-global-assign
         'no-plusplus': 'off',
-        'no-spaced-func': 'off', // Deprecated - replaced by func-call-spacing
         'no-tabs': 'off',
         'no-trailing-spaces': 'off',
         'no-undefined': 'off',

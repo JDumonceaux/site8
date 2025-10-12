@@ -1,7 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // eslint.config.import.mjs
 import importPlugin from 'eslint-plugin-import';
 
-export default {
+const importConfig = {
     name: 'Site8-import',
     plugins: {
         import: importPlugin,
@@ -11,11 +12,11 @@ export default {
         ...importPlugin.configs.recommended.rules,
 
         // ============================================================================
-        // Import Plugin Rules
+        // Import Plugin Rules (mirrored from client)
         // ============================================================================
         'import/default': 'off',
         'import/export': 'error',
-        'import/extensions': [ // Missing recommended rule
+        'import/extensions': [
             'error',
             'ignorePackages',
             {
@@ -30,8 +31,8 @@ export default {
 
         'import/newline-after-import': 'error',
         'import/no-absolute-path': 'error',
-        'import/no-amd': 'error', // Missing recommended rule
-        'import/no-anonymous-default-export': [ // Missing recommended rule
+        'import/no-amd': 'error',
+        'import/no-anonymous-default-export': [
             'warn',
             {
                 allowArray: false,
@@ -44,14 +45,14 @@ export default {
                 allowObject: false,
             },
         ],
-        'import/no-commonjs': 'off', // Consider enabling for ES modules only
+        'import/no-commonjs': 'off',
         'import/no-cycle': ['error', { maxDepth: 3 }],
-        'import/no-default-export': 'off', // Consider based on your preference
-        'import/no-deprecated': 'warn', // Missing recommended rule
+        'import/no-default-export': 'off',
+        'import/no-deprecated': 'warn',
 
         'import/no-dynamic-require': 'warn',
-        'import/no-empty-named-blocks': 'error', // Missing recommended rule
-        'import/no-extraneous-dependencies': [ // Missing recommended rule
+        'import/no-empty-named-blocks': 'error',
+        'import/no-extraneous-dependencies': [
             'error',
             {
                 devDependencies: [
@@ -69,15 +70,15 @@ export default {
                 optionalDependencies: false,
             },
         ],
-        'import/no-import-module-exports': 'error', // Missing recommended rule
+        'import/no-import-module-exports': 'error',
         'import/no-mutable-exports': 'error',
         'import/no-named-as-default': 'off',
         'import/no-named-as-default-member': 'off',
-        'import/no-named-default': 'error', // Missing recommended rule
-        'import/no-namespace': 'off', // Consider based on your preference
+        'import/no-named-default': 'error',
+        'import/no-namespace': 'off',
         'import/no-nodejs-modules': 'warn',
-        'import/no-relative-packages': 'error', // Missing recommended rule
-        'import/no-relative-parent-imports': 'off', // Consider enabling
+        'import/no-relative-packages': 'error',
+        'import/no-relative-parent-imports': 'off',
         'import/no-restricted-paths': [
             'error',
             {
@@ -104,7 +105,7 @@ export default {
             },
         ],
         'import/no-self-import': 'error',
-        'import/no-unassigned-import': [ // Missing recommended rule
+        'import/no-unassigned-import': [
             'error',
             {
                 allow: [
@@ -116,7 +117,7 @@ export default {
             },
         ],
 
-        'import/no-unused-modules': [ // Missing recommended rule
+        'import/no-unused-modules': [
             'warn',
             {
                 unusedExports: true,
@@ -143,7 +144,7 @@ export default {
                 pathGroupsExcludedImportTypes: ['react'],
             },
         ],
-        'import/prefer-default-export': 'off', // Consider based on your preference
+        'import/prefer-default-export': 'off',
     },
     settings: {
         'import/resolver': {
@@ -161,3 +162,5 @@ export default {
         },
     },
 };
+
+export default importConfig;

@@ -7,7 +7,6 @@ export default {
         perfectionist: pluginPerfectionist,
     },
     rules: {
-        // Missing recommended rules:
         'perfectionist/sort-imports': [
             'error',
             {

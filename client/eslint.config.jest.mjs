@@ -11,7 +11,7 @@ export default {
         },
     },
     // Used to identify this ESLint configuration in logs and error messages
-    name: 'Site8-Jest files',
+    name: 'Site8-Jest',
     plugins: {
         jest: pluginJest,
     },
@@ -20,9 +20,6 @@ export default {
         ...pluginJest.configs.recommended.rules,
 
         // Enforce best practices in tests
-        'jest/no-disabled-tests': 'warn',
-        'jest/no-focused-tests': 'error',
-        'jest/no-identical-title': 'error',
         'jest/padding-around-after-all-blocks': 'error',
         'jest/padding-around-after-each-blocks': 'error',
         'jest/padding-around-all': 'error',
@@ -36,7 +33,6 @@ export default {
         'jest/prefer-hooks-on-top': 'error',
         'jest/prefer-lowercase-title': 'error',
         'jest/prefer-to-have-length': 'warn',
-        'jest/valid-expect': 'error',
 
         // Enforce folder naming conventions in test files
         // 'check-file/folder-naming-convention' is a non-standard ESLint rule.

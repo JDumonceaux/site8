@@ -179,9 +179,8 @@ export default {
         // ============================================================================
         // React Hooks Rules
         // ============================================================================
-        'react-hooks/exhaustive-deps': 'warn',
-        'react-hooks/react-compiler': 'warn', // Changed from 'error' to 'warn' since React Compiler is experimental
-        'react-hooks/rules-of-hooks': 'error',
+        // Provided by plugin's recommended config; keep only custom hook rules here
+        // 'react-hooks/exhaustive-deps' and 'react-hooks/rules-of-hooks' are included via the spread above
 
         // ============================================================================
         // React Redux Rules

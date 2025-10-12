@@ -18,13 +18,10 @@ export default {
         'unicorn/filename-case': 'off', // Managed by check-file plugin
         'unicorn/no-array-callback-reference': 'off',
         'unicorn/no-array-reduce': 'off',
-        'unicorn/no-instanceof-array': 'error',
         'unicorn/no-null': 'off',
         'unicorn/no-useless-undefined': ['error', { checkArguments: false }],
-        'unicorn/prefer-module': 'error',
         'unicorn/prefer-node-protocol': 'off',
         'unicorn/prefer-spread': 'off',
-        'unicorn/prefer-top-level-await': 'error',
         'unicorn/prevent-abbreviations': [
             'error',
             {
