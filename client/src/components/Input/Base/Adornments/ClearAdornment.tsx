@@ -1,4 +1,5 @@
 import type { JSX, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
+import { forwardRef } from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon } from '@radix-ui/react-icons';
@@ -9,45 +10,47 @@ import Tooltip from '../Tooltip/TooltipBase';
 
 type ClearAdornmentProps = {
   /** Tooltip text for screen readers */
-  ariaLabel?: string;
+  readonly ariaLabel?: string;
   /** Custom icon element */
-  icon?: ReactNode;
+  readonly icon?: ReactNode;
   /** Props forwarded to the default icon */
-  iconProps?: IconProps;
+  readonly iconProps?: IconProps;
   /** Tooltip content */
-  label?: string;
+  readonly label?: string;
   /** Click handler */
-  onClick: MouseEventHandler<HTMLButtonElement>;
-} & HTMLAttributes<HTMLButtonElement>;
+  readonly onClick: MouseEventHandler<HTMLButtonElement>;
+} & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'>;
 
-const ClearAdornment = ({
-  ariaLabel = 'clear contents',
-  className,
-  icon,
-  iconProps,
-  label = 'Clear contents',
-  onClick,
-  style,
-  ...rest
-}: ClearAdornmentProps): JSX.Element => {
-  return (
+const ClearAdornment = forwardRef<HTMLButtonElement, ClearAdornmentProps>(
+  (
+    {
+      ariaLabel = 'clear contents',
+      icon,
+      iconProps,
+      label = 'Clear contents',
+      onClick,
+      ...rest
+    },
+    ref,
+  ): JSX.Element => (
     <Tooltip
       aria-label={ariaLabel}
       content={label}
       trigger={
         <TriggerButton
-          className={className}
+          ref={ref}
+          type="button"
           onClick={onClick}
-          style={style}
-          {...rest}>
+          {...rest}
+        >
           <AccessibleIcon label={label}>
             {icon ?? <Cross1Icon {...iconProps} />}
           </AccessibleIcon>
         </TriggerButton>
       }
     />
-  );
-};
+  ),
+);
 
 ClearAdornment.displayName = 'ClearAdornment';
 export default ClearAdornment;
@@ -62,12 +65,12 @@ const TriggerButton = styled.button`
   padding: 0;
   border: none;
   background: transparent;
-  color: var(--text-primary-muted);
+  color: var(--palette-text-muted);
   cursor: pointer;
 
   &:hover,
   &:focus-visible {
-    background-color: var(--hover-bg, rgba(0, 0, 255, 0.1));
+    background-color: var(--palette-hover-bg);
     border-radius: 50%;
     outline: none;
   }

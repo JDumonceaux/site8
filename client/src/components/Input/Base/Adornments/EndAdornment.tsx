@@ -1,28 +1,35 @@
 import type { JSX, ReactNode, HTMLAttributes } from 'react';
+import { forwardRef } from 'react';
 
 import styled from 'styled-components';
 
 export type EndAdornmentProps = HTMLAttributes<HTMLDivElement> & {
-  /** Content to render before the separator */
-  children?: ReactNode;
+  readonly children?: ReactNode;
 };
 
-const EndAdornment = ({
-  children,
-  ...rest
-}: EndAdornmentProps): JSX.Element | null => {
-  if (!children) return null;
+const EndAdornment = forwardRef<HTMLDivElement, EndAdornmentProps>(
+  ({ children, ...rest }, ref): JSX.Element | null => {
+    if (!children) return null;
 
-  return (
-    <>
-      <Content {...rest}>{children}</Content>
-      <Separator aria-hidden="true" />
-    </>
-  );
-};
+    return (
+      <Wrapper
+        ref={ref}
+        {...rest}
+      >
+        <Content>{children}</Content>
+        <Separator aria-hidden="true" />
+      </Wrapper>
+    );
+  },
+);
 
 EndAdornment.displayName = 'EndAdornment';
 export default EndAdornment;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const Content = styled.div`
   color: var(--input-adornment);

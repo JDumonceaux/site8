@@ -1,5 +1,6 @@
 import type { JSX } from 'react';
-import type { Bookmarks } from 'types/Bookmarks';
+import type { Bookmarks } from '@types/Bookmarks';
+import styled from 'styled-components';
 
 type BookmarkListProps = {
   readonly data?: Bookmarks | null;
@@ -7,10 +8,7 @@ type BookmarkListProps = {
 };
 
 // BookmarkList component displays a list of bookmarks
-const BookmarkList = ({
-  data,
-  id,
-}: BookmarkListProps): JSX.Element | null => {
+const BookmarkList = ({ data, id }: BookmarkListProps): JSX.Element | null => {
   if (!data) {
     return null;
   }
@@ -20,9 +18,9 @@ const BookmarkList = ({
       {id ? <div>{id}</div> : null}
       {data.items.map((item) => (
         <div key={item.id}>
-          <h3>
+          <StyledHeading>
             <a href={item.url}>{item.name}</a>
-          </h3>
+          </StyledHeading>
           <p>{item.description}</p>
         </div>
       ))}
@@ -33,3 +31,9 @@ const BookmarkList = ({
 BookmarkList.displayName = 'BookmarkList';
 
 export default BookmarkList;
+
+const StyledHeading = styled.h3`
+  font-size: 1.25rem;
+  margin: 0 0 0.25em 0;
+  font-weight: 600;
+`;

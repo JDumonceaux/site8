@@ -1,16 +1,29 @@
 import { useQuery } from '@tanstack/react-query';
-import { QueryTime, ServiceUrl } from 'lib/utils';
-import type { Bookmarks } from 'types';
+import { QueryTime, ServiceUrl } from 'lib/utils/constants';
+import type { Bookmarks } from 'types/Bookmarks';
 
 const fetchData = async (): Promise<Bookmarks> => {
-  const response = await fetch(ServiceUrl.ENDPOINT_BOOKMARKS);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch bookmarks: ${response.statusText}`);
+  try {
+    const response = await fetch(ServiceUrl.ENDPOINT_BOOKMARKS);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch bookmarks: ${response.statusText}`);
+    }
+    return response.json();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('useBookmarks: Error fetching bookmarks', error);
+    throw error;
   }
-  return response.json();
 };
 
-const useBookmarks = () => {
+type UseBookmarksResult = {
+  data: Bookmarks | undefined;
+  error: unknown;
+  isError: boolean;
+  isLoading: boolean;
+};
+
+const useBookmarks = (): UseBookmarksResult => {
   const queryKey = ['bookmarks'];
 
   const query = useQuery<Bookmarks>({

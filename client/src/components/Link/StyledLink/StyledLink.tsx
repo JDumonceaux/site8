@@ -1,5 +1,5 @@
 import type { JSX, ReactNode } from 'react';
-
+import { forwardRef } from 'react';
 import {
   Link as BaseLink,
   type LinkProps as BaseLinkProps,
@@ -7,7 +7,7 @@ import {
 import styled from 'styled-components';
 
 export type StyledLinkProps = BaseLinkProps & {
-  readonly ariaLabel?: string;
+  readonly 'aria-label'?: string;
   readonly children: ReactNode;
   readonly variant?: 'dark' | 'light';
 };
@@ -17,33 +17,57 @@ export type StyledLinkProps = BaseLinkProps & {
  *
  * Note: Pseudo classes must be in the following order: link, visited, hover, active
  */
-export const StyledLink = ({
-  ariaLabel,
-  children,
-  variant = 'light',
-  ...rest
-}: StyledLinkProps): JSX.Element | null => (
-  <StyledBaseLink
-    $variant={variant}
-    aria-current="page"
-    aria-label={ariaLabel}
-    {...rest}>
-    {children}
-  </StyledBaseLink>
+const StyledLink = forwardRef<HTMLAnchorElement, StyledLinkProps>(
+  (
+    { 'aria-label': ariaLabel, children, variant = 'light', ...rest },
+    ref,
+  ): JSX.Element => (
+    <StyledBaseLink
+      ref={ref}
+      $variant={variant}
+      aria-label={ariaLabel}
+      {...rest}
+    >
+      {children}
+    </StyledBaseLink>
+  ),
 );
 
 StyledLink.displayName = 'StyledLink';
 export default StyledLink;
 
-const StyledBaseLink = styled(BaseLink)<{ $variant: 'dark' | 'light' }>`
-  &:link,
-  &:visited,
-  &:hover,
-  &:active {
+const StyledBaseLink = styled(BaseLink)<{
+  readonly $variant: 'dark' | 'light';
+}>`
+  display: block;
+  color: ${({ $variant }) =>
+    $variant === 'light' ? 'var(--palette-text)' : 'var(--palette-text-dark)'};
+  text-decoration: none;
+
+  &:visited {
     color: ${({ $variant }) =>
       $variant === 'light'
         ? 'var(--palette-text)'
         : 'var(--palette-text-dark)'};
   }
-  display: block;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--palette-black);
+    outline-offset: 2px;
+  }
+
+  &[aria-disabled='true'] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 `;
