@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import InputCounter, { type InputCounterProps } from './InputCounter';
 
 const meta: Meta<typeof InputCounter> = {
-  title: 'Components/InputCounter',
+  title: '@components/InputCounter',
   component: InputCounter,
   argTypes: {
     align: { control: { type: 'radio' }, options: ['left', 'right'] },

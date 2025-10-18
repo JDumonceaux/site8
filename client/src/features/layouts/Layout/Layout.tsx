@@ -1,3 +1,4 @@
+import React from 'react';
 import Article from './Article';
 import Aside from './Aside';
 import Content from './Content';
@@ -8,7 +9,19 @@ import Menu from './Menu';
 import Section from './Section';
 import TitleFixed from './TitleFixed';
 
-const Layout = (): JSX.Element => <>Not defined</>;
+interface LayoutComponent extends React.FC {
+  Article: typeof Article;
+  Aside: typeof Aside;
+  Content: typeof Content;
+  Flex: typeof Flex;
+  FullWidth: typeof FullWidth;
+  Main: typeof Main;
+  Menu: typeof Menu;
+  Section: typeof Section;
+  TitleFixed: typeof TitleFixed;
+}
+
+const Layout: LayoutComponent = (): React.ReactElement => <>Not defined</>;
 
 Layout.Article = Article;
 Layout.Aside = Aside;

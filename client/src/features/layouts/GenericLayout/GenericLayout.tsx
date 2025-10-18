@@ -1,9 +1,9 @@
 import { type JSX, Suspense } from 'react';
 
-import Avatar from 'components/core/Avatar/Avatar';
-import Header from 'components/core/Header/Header';
-import Snackbar from 'features/app/Snackbar/Snackbar';
-import AppInitializer from 'features/app/AppInitializer/AppInitializer';
+import Avatar from '@components/core/Avatar/Avatar';
+import Header from '@components/core/Header/Header';
+import Snackbar from '@features/app/Snackbar/Snackbar';
+import AppInitializer from '@features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
@@ -12,7 +12,11 @@ import styled from 'styled-components';
  * Accessible fallback shown while the page is lazy-loading.
  */
 const LoadingFallback = (): JSX.Element => (
-  <div role="status" aria-live="polite" aria-busy="true">
+  <div
+    role="status"
+    aria-live="polite"
+    aria-busy="true"
+  >
     Loading…
   </div>
 );
@@ -42,7 +46,11 @@ const GenericLayout = (): JSX.Element => (
     <AppInitializer />
     <Header
       avatar={
-        <Avatar alt="User avatar" id="avatar" src="/avatar.jpg">
+        <Avatar
+          alt="User avatar"
+          id="avatar"
+          src="/avatar.jpg"
+        >
           JD
         </Avatar>
       }

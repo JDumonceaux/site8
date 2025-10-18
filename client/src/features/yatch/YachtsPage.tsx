@@ -1,9 +1,9 @@
 import { Suspense, type JSX } from 'react';
 
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import SubjectMenu from 'features/generic/SubjectMenu';
-import Layout from 'features/layouts/Layout/Layout';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import SubjectMenu from '@features/generic/SubjectMenu';
+import Layout from '@features/layouts/Layout/Layout';
 import type { Image } from 'types/Image';
 import type { Video } from 'types/Video';
 
@@ -130,14 +130,20 @@ export function YachtsPage(): JSX.Element {
                 <a href="https://sinot.com/balance/">Balance</a>.
               </p>
               {IMAGES.map((img) => (
-                <ImageBlock key={img.id} {...img} />
+                <ImageBlock
+                  key={img.id}
+                  {...img}
+                />
               ))}
             </Suspense>
           </Layout.Section>
         </Layout.Article>
         <Layout.Aside>
           {VIDEOS.map((video) => (
-            <VideoEmbed key={video.id} {...video} />
+            <VideoEmbed
+              key={video.id}
+              {...video}
+            />
           ))}
         </Layout.Aside>
       </Layout.Main>

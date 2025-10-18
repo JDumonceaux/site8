@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from 'react';
 
-import StyledLink from 'components/Link/StyledLink/StyledLink';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
 import styled from 'styled-components';
 
 type LinkButtonProps = {
@@ -10,7 +10,10 @@ type LinkButtonProps = {
 
 const LinkButton = ({ to, ...rest }: LinkButtonProps): JSX.Element => (
   <StyledLink to={to}>
-    <StyledElement id="button" {...rest} />
+    <StyledElement
+      id="button"
+      {...rest}
+    />
   </StyledLink>
 );
 

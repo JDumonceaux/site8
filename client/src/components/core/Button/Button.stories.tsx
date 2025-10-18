@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Button, { VARIANTS, SIZES, type ButtonProps } from './Button';
 
 const meta: Meta<ButtonProps> = {
-  title: 'Components/Button',
+  title: '@components/Button',
   component: Button,
   args: {
     children: 'Click me',
@@ -58,7 +58,11 @@ export const AllVariants: Story = {
   render: (args) => (
     <div style={{ display: 'flex', gap: 8 }}>
       {VARIANTS.map((v) => (
-        <Button key={v} {...args} variant={v}>
+        <Button
+          key={v}
+          {...args}
+          variant={v}
+        >
           {v}
         </Button>
       ))}
@@ -71,7 +75,11 @@ export const AllSizes: Story = {
   render: (args) => (
     <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
       {SIZES.map((s) => (
-        <Button key={s} {...args} size={s}>
+        <Button
+          key={s}
+          {...args}
+          size={s}
+        >
           {s}
         </Button>
       ))}

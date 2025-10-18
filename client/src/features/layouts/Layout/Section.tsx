@@ -14,7 +14,6 @@ const Section = ({ children }: SectionProps): JSX.Element => (
 );
 
 Section.displayName = 'Section';
-
 export default Section;
 
 // Styled component defining layout behavior

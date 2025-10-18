@@ -1,8 +1,8 @@
 import { type JSX, useActionState } from 'react';
 
 import * as Form from '@radix-ui/react-form';
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Input from 'components/Input/Input';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Input from '@components/Input/Input';
 
 import styled from 'styled-components';
 import type { FormState } from 'types';
@@ -50,15 +50,27 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
   } as FormState);
 
   return (
-    <LoadingWrapper error={error} isError={isError} isSaving={isPending}>
+    <LoadingWrapper
+      error={error}
+      isError={isError}
+      isSaving={isPending}
+    >
       <Form.Root action={action}>
         <StyledButtonWrapper>
-          <StyledSaveButton data-testid="button-save" type="submit">
+          <StyledSaveButton
+            data-testid="button-save"
+            type="submit"
+          >
             Save
           </StyledSaveButton>
         </StyledButtonWrapper>
 
-        <input id="id" name="id" type="hidden" value={data.fieldData.id} />
+        <input
+          id="id"
+          name="id"
+          type="hidden"
+          value={data.fieldData.id}
+        />
         <Input.Text
           defaultValue={data.fieldData.title}
           errors={data.fields?.title.errors}

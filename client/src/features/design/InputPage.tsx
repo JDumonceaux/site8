@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Input from 'components/Input/Input';
-import Layout from 'features/layouts/Layout/Layout';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Input from '@components/Input/Input';
+import Layout from '@features/layouts/Layout/Layout';
 import useForm from 'hooks/useForm';
 import styled from 'styled-components';
 

@@ -9,10 +9,12 @@ type ContentProps = {
   children?: React.ReactNode;
 };
 
-export const Content = ({ children }: ContentProps): JSX.Element | null => (
+const Content = ({ children }: ContentProps): JSX.Element | null => (
   <Container data-testid="content">{children}</Container>
 );
+
 Content.displayName = 'Content';
+export default Content;
 
 // Styled component for content area
 const Container = styled.div`

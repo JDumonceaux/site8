@@ -1,6 +1,6 @@
 import { Suspense, type JSX } from 'react';
 
-import Header from 'components/core/Header/Header';
+import Header from '@components/core/Header/Header';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
@@ -9,7 +9,11 @@ import styled from 'styled-components';
  * Accessible fallback shown while the page is lazy-loading.
  */
 export const LoadingFallback = (): JSX.Element => (
-  <div role="status" aria-live="polite" aria-busy="true">
+  <div
+    role="status"
+    aria-live="polite"
+    aria-busy="true"
+  >
     Loading…
   </div>
 );

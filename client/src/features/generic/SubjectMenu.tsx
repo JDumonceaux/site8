@@ -1,6 +1,6 @@
 import React from 'react';
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import useMenu from 'features/menu/useMenu';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import useMenu from '@features/menu/useMenu';
 import { getURLPath } from 'lib/utils/helpers';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -16,23 +16,40 @@ const SubjectMenu = ({ ref, ..._ }: any): JSX.Element => {
   const data2 = getOtherMenus(data?.id);
 
   const mappedItems = data?.items?.map((x) => (
-    <ItemRender item={x} key={x.id} level={1} />
+    <ItemRender
+      item={x}
+      key={x.id}
+      level={1}
+    />
   ));
 
   const mappedData2 = data2?.map((x) => (
-    <ItemRender item={x} key={x.id} level={1} />
+    <ItemRender
+      item={x}
+      key={x.id}
+      level={1}
+    />
   ));
 
   return (
     <StyledNav ref={ref}>
       <StyledContent>
-        <LoadingWrapper isError={isError} isLoading={isLoading}>
-          <ItemRender item={data} level={0}>
+        <LoadingWrapper
+          isError={isError}
+          isLoading={isLoading}
+        >
+          <ItemRender
+            item={data}
+            level={0}
+          >
             {mappedItems}
           </ItemRender>
           <br />
           <br />
-          <ItemRender item={data} level={0}>
+          <ItemRender
+            item={data}
+            level={0}
+          >
             {mappedData2}
           </ItemRender>
         </LoadingWrapper>

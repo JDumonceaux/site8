@@ -1,15 +1,15 @@
 import type { JSX } from 'react';
-import Meta from 'components/core/Meta/Meta';
-import Input from 'components/Input/Input';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import useAuth from 'features/auth/useAuth';
+import Meta from '@components/core/Meta/Meta';
+import Input from '@components/Input/Input';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import useAuth from '@features/auth/useAuth';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
 
 import AuthContainer from './AuthContainer';
-import Button from 'components/core/Button/Button';
+import Button from '@components/core/Button/Button';
 import { emailAddress, password } from 'lib/utils/constants';
 
 // Define Zod Shape
@@ -53,9 +53,18 @@ const SigninPage = (): JSX.Element => {
       <Meta title={title} />
       <AuthContainer
         error={error}
-        leftImage={<img alt="" src="/images/face.png" />}
-        title="Sign In">
-        <StyledForm noValidate onSubmit={handleSubmit}>
+        leftImage={
+          <img
+            alt=""
+            src="/images/face.png"
+          />
+        }
+        title="Sign In"
+      >
+        <StyledForm
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <Input.Email
             autoComplete="email"
             inputMode="email"

@@ -1,8 +1,8 @@
 import React, {  } from 'react';
 
-import IconMenu from 'components/IconMenu/IconMenu';
-import IconMenuItem from 'components/IconMenu/IconMenuItem';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
+import IconMenu from '@components/IconMenu/IconMenu';
+import IconMenuItem from '@components/IconMenu/IconMenuItem';
+import StyledPlainButton from '@components/Link/StyledPlainButton/StyledPlainButton';
 import { ServiceUrl } from 'lib/utils/constants';
 
 type Props = {

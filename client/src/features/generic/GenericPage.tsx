@@ -1,9 +1,9 @@
 import { useDeferredValue } from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Layout from '@features/layouts/Layout/Layout';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -38,7 +38,8 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
             error={error}
             isError={isError}
             isLoading={isLoading}
-            loadingText="Loading ...">
+            loadingText="Loading ..."
+          >
             <Layout.Article>
               <PageTitle title={pageTitle}>
                 <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>

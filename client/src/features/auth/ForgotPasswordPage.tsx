@@ -1,9 +1,9 @@
 import React from 'react';
-import Meta from 'components/core/Meta/Meta';
-import Input from 'components/Input/Input';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import useAuth from 'features/auth/useAuth';
-import { emailAddress, password } from 'features/auth/ZodStrings';
+import Meta from '@components/core/Meta/Meta';
+import Input from '@components/Input/Input';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import useAuth from '@features/auth/useAuth';
+import { emailAddress, password } from '@features/auth/ZodStrings';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import styled from 'styled-components';
@@ -55,9 +55,18 @@ const ForgotPasswordPage = (): JSX.Element => {
       <Meta title={title} />
       <AuthContainer
         error={error}
-        leftImage={<img alt="" src="/images/face.png" />}
-        title="Forgot Password">
-        <StyledForm noValidate onSubmit={handleSubmit}>
+        leftImage={
+          <img
+            alt=""
+            src="/images/face.png"
+          />
+        }
+        title="Forgot Password"
+      >
+        <StyledForm
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <Input.Email
             autoComplete="email"
             inputMode="email"
@@ -73,7 +82,10 @@ const ForgotPasswordPage = (): JSX.Element => {
             You will be sent a validation code via email to confirm your
             account.
           </InstDiv>
-          <Button2 id="login" type="submit">
+          <Button2
+            id="login"
+            type="submit"
+          >
             {isLoading ? 'Processing' : 'Request Password Change'}
           </Button2>
         </StyledForm>

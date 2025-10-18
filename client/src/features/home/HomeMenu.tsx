@@ -1,7 +1,7 @@
 import React from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import useMenu from 'features/menu/useMenu';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import useMenu from '@features/menu/useMenu';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -11,7 +11,10 @@ const HomeMenu = (): JSX.Element => {
   let tempTo = '';
   return (
     <StyledNav>
-      <LoadingWrapper error={error} isLoading={isLoading}>
+      <LoadingWrapper
+        error={error}
+        isLoading={isLoading}
+      >
         {data?.items?.map((x) => {
           switch (x.type) {
             case 'menu': {
@@ -20,7 +23,10 @@ const HomeMenu = (): JSX.Element => {
             }
             case 'page': {
               return (
-                <StyledPageDiv key={x.id} to={`${tempTo}/${x.to}`}>
+                <StyledPageDiv
+                  key={x.id}
+                  to={`${tempTo}/${x.to}`}
+                >
                   {x.name}
                 </StyledPageDiv>
               );

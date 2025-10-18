@@ -11,7 +11,7 @@ const meta = {
     },
   },
   component: InputFile,
-  title: 'Components/Input/InputFile',
+  title: '@components/Input/InputFile',
 };
 
 export default meta;

@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import InputEmail, { type InputEmailProps } from './InputEmail';
 
 const meta: Meta<typeof InputEmail> = {
-  title: 'Components/InputEmail',
+  title: '@components/InputEmail',
   component: InputEmail,
   argTypes: {
     type: { control: { disable: true } },

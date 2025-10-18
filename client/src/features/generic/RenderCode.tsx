@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
-import IconButton from 'components/core/Button/IconButton/IconButton';
-import { CopyIcon } from 'components/icons/CopyIcon';
+import IconButton from '@components/core/Button/IconButton/IconButton';
+import { CopyIcon } from '@components/icons/CopyIcon';
 import styled from 'styled-components';
 
 type RenderCodeProps = {
@@ -42,8 +42,15 @@ const RenderCode = ({ children }: RenderCodeProps) => {
     <CodeBlock>
       <StyledHeader>
         <div>JavaScript</div>
-        <IconButton aria-label="Copy" id="copy" onClick={handleCopy}>
-          <CopyIcon aria-hidden focusable={false} />
+        <IconButton
+          aria-label="Copy"
+          id="copy"
+          onClick={handleCopy}
+        >
+          <CopyIcon
+            aria-hidden
+            focusable={false}
+          />
         </IconButton>
       </StyledHeader>
       <StyledElement>

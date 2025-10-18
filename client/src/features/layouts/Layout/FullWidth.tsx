@@ -12,13 +12,20 @@ type FullWidthProps = {
 /**
  * A container that spans the full viewport width & height.
  */
-export const FullWidth = ({ children, ...rest }: FullWidthProps): JSX.Element | null => (
-  <Container data-testid="fullWidth" {...rest}>
+const FullWidth = ({
+  children,
+  ...rest
+}: FullWidthProps): JSX.Element | null => (
+  <Container
+    data-testid="fullWidth"
+    {...rest}
+  >
     {children}
   </Container>
 );
 
 FullWidth.displayName = 'FullWidth';
+export default FullWidth;
 
 // Styled component for layout
 const Container = styled.div`

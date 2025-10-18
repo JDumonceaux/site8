@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import PageTitle from 'components/core/PageTitle/PageTitle';
+import PageTitle from '@components/core/PageTitle/PageTitle';
 import styled, { keyframes } from 'styled-components';
 
 export type FallbackProps = {
@@ -37,7 +37,10 @@ const Fallback = ({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element => {
     <LoadingContainer aria-live="polite">
       <PageTitle title="Loading…" />
       {widths.map((w, idx) => (
-        <LoadingLine key={idx} style={{ width: `${w}%` }} />
+        <LoadingLine
+          key={idx}
+          style={{ width: `${w}%` }}
+        />
       ))}
     </LoadingContainer>
   );

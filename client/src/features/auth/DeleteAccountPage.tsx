@@ -1,7 +1,7 @@
-import Meta from 'components/core/Meta/Meta';
-import Input from 'components/Input/Input';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import useAuth from 'features/auth/useAuth';
+import Meta from '@components/core/Meta/Meta';
+import Input from '@components/Input/Input';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import useAuth from '@features/auth/useAuth';
 import useForm from 'hooks/useForm';
 import { safeParse } from 'lib/utils/zodHelper';
 import styled from 'styled-components';
@@ -56,9 +56,18 @@ const DeleteAccountPage = (): JSX.Element => {
       <Meta title={title} />
       <AuthContainer
         error={error}
-        leftImage={<img alt="" src="/images/face.png" />}
-        title="Delete Account">
-        <StyledForm noValidate onSubmit={handleSubmit}>
+        leftImage={
+          <img
+            alt=""
+            src="/images/face.png"
+          />
+        }
+        title="Delete Account"
+      >
+        <StyledForm
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <div>
             Are you sure you want to delete your account? You will lose access
             and all data.

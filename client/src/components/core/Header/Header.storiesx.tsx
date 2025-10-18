@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Header from './Header';
-import Avatar from 'components/core/Avatar/Avatar';
+import Avatar from '@components/core/Avatar/Avatar';
 import { APP_NAME } from 'lib/utils/constants';
 
 const meta: Meta<typeof Header> = {
@@ -40,7 +40,10 @@ export const WithMenu: Story = {
 export const WithAvatar: Story = {
   args: {
     avatar: (
-      <Avatar alt="JD" src="/avatar.jpg">
+      <Avatar
+        alt="JD"
+        src="/avatar.jpg"
+      >
         JD
       </Avatar>
     ),
@@ -52,7 +55,10 @@ export const Full: Story = {
   args: {
     onMenuToggle: action('menu toggled'),
     avatar: (
-      <Avatar alt="JD" src="/avatar.jpg">
+      <Avatar
+        alt="JD"
+        src="/avatar.jpg"
+      >
         JD
       </Avatar>
     ),

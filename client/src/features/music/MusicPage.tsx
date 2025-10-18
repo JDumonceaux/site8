@@ -1,8 +1,8 @@
 import { useState, useEffect, useTransition, type JSX } from 'react';
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Layout from '@features/layouts/Layout/Layout';
 import { FixedSizeList as List } from 'react-window';
 import ItemRenderer from './ItemRenderer';
 import useMusic from './useMusic';
@@ -34,12 +34,19 @@ const MusicPage = (): JSX.Element | null => {
       <Layout.Main>
         <PageTitle title={title} />
 
-        <Section aria-label="Favorite YouTube videos" aria-busy={isPending}>
+        <Section
+          aria-label="Favorite YouTube videos"
+          aria-busy={isPending}
+        >
           <Description>
             These are some of my favorite YouTube videos.
           </Description>
 
-          <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
+          <LoadingWrapper
+            error={error}
+            isError={isError}
+            isLoading={isLoading}
+          >
             {items.length > 0 ? (
               <List
                 height={600}
@@ -47,7 +54,8 @@ const MusicPage = (): JSX.Element | null => {
                 itemData={{ items }}
                 itemSize={ROW_HEIGHT}
                 overscanCount={15}
-                width="100%">
+                width="100%"
+              >
                 {ItemRenderer}
               </List>
             ) : (

@@ -1,8 +1,8 @@
 import type { JSX, ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { MenuIcon } from 'components/icons/MenuIcon';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
+import { MenuIcon } from '@components/icons/MenuIcon';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
 import { APP_NAME } from 'lib/utils/constants';
 
 type HeaderProps = {
@@ -25,17 +25,24 @@ const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
     <HeaderContainer>
       <SkipNav href="#main-content">Skip to main content</SkipNav>
 
-      <NavGroup role="navigation" aria-label="Main">
+      <NavGroup
+        role="navigation"
+        aria-label="Main"
+      >
         {onMenuToggle && (
           <MenuButton
             type="button"
             aria-label="Toggle navigation menu"
-            onClick={handleMenuClick}>
+            onClick={handleMenuClick}
+          >
             <MenuIcon />
           </MenuButton>
         )}
 
-        <LogoLink to="/" aria-label={`${APP_NAME} Home`}>
+        <LogoLink
+          to="/"
+          aria-label={`${APP_NAME} Home`}
+        >
           {APP_NAME}
         </LogoLink>
       </NavGroup>

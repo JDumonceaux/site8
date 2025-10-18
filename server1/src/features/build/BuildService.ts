@@ -6,7 +6,7 @@ import FilePath from '../files/FilePath.js';
 import path from 'path';
 
 export class BuildService {
-  private fileName = 'features.json';
+  private fileName = '@features.json';
   private filePath = '';
 
   constructor() {

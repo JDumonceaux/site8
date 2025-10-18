@@ -1,9 +1,9 @@
 import { useEffect, type JSX, type FormEvent } from 'react';
 
-import Meta from 'components/core/Meta/Meta';
-import Button from 'components/form/Button/Button';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import useAuth from 'features/auth/useAuth';
+import Meta from '@components/core/Meta/Meta';
+import Button from '@components/form/Button/Button';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import useAuth from '@features/auth/useAuth';
 import styled from 'styled-components';
 
 import AuthContainer from './AuthContainer';
@@ -33,8 +33,14 @@ const SignOutpPage = (): JSX.Element => {
       <Meta title={title} />
       <AuthContainer
         error={error}
-        leftImage={<img alt="" src="/images/face.png" />}
-        title="Sign Out">
+        leftImage={
+          <img
+            alt=""
+            src="/images/face.png"
+          />
+        }
+        title="Sign Out"
+      >
         {authorized ? (
           <StyledError>
             Oops! It looks like you are already signed out. Would you like to{' '}
@@ -46,8 +52,12 @@ const SignOutpPage = (): JSX.Element => {
             // aria-errormessage={error ? 'error' : undefined}
             // aria-invalid={error ? 'true' : 'false'}
             // noValidate
-            onSubmit={handleSubmit}>
-            <Button id="login" variant="secondary">
+            onSubmit={handleSubmit}
+          >
+            <Button
+              id="login"
+              variant="secondary"
+            >
               {isLoading ? 'Processing' : 'Sign Out'}
             </Button>
           </StyledForm>

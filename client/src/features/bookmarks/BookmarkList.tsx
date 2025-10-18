@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import type { Bookmarks } from '@types/Bookmarks';
+import type { Bookmarks } from '../../types/Bookmarks';
 import styled from 'styled-components';
 
 type BookmarkListProps = {

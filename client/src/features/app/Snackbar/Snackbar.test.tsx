@@ -6,13 +6,13 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 import type { AxeResults } from 'axe-core';
 
 import Snackbar from './Snackbar';
-import { SnackbarVariant } from 'features/app/Snackbar/useSnackbar';
+import { SnackbarVariant } from '@features/app/Snackbar/useSnackbar';
 
 // Mock the snackbar hook and variant constants
 const mockClose = jest.fn();
 let mockData: any;
 
-jest.mock('features/app/useSnackbar', () => ({
+jest.mock('@features/app/useSnackbar', () => ({
   __esModule: true,
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   default: () => ({ data: mockData, closeSnackbar: mockClose }),

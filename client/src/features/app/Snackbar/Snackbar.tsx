@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 import { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Button from 'components/core/Button/Button';
+import Button from '@components/core/Button/Button';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
 
 const SNACKBAR_HEIGHT = '2.5rem';

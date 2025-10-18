@@ -11,7 +11,7 @@ const meta = {
     },
   },
   component: InputTel,
-  title: 'Components/Input/InputTel',
+  title: '@components/Input/InputTel',
 };
 
 export default meta;

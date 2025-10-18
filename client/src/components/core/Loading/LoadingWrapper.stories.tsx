@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import LoadingWrapper from './LoadingWrapper';
 
 const meta: Meta<typeof LoadingWrapper> = {
-  title: 'Components/LoadingWrapper',
+  title: '@components/LoadingWrapper',
   component: LoadingWrapper,
   argTypes: {
     isSaving: { control: 'boolean' },
@@ -28,7 +28,8 @@ const Template: Story = {
           padding: '1rem',
           background: '#eef',
           borderRadius: '0.25rem',
-        }}>
+        }}
+      >
         Here is the main content
       </div>
     </LoadingWrapper>

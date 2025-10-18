@@ -1,4 +1,4 @@
-import Meta from 'components/core/Meta/Meta';
+import Meta from '@components/core/Meta/Meta';
 import type { JSX } from 'react';
 
 /**

@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Input from 'components/Input/Input';
-import useImageFolder from 'features/imagesEdit/useImageFolder';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Input from '@components/Input/Input';
+import useImageFolder from '@features/imagesEdit/useImageFolder';
 import styled from 'styled-components';
 import FolderButton from './FolderButton';
 
@@ -49,7 +49,8 @@ function RightMenu({
       <StyledButton
         data-id={currentFolder}
         onClick={handleButton}
-        type="button">
+        type="button"
+      >
         {currentFolder}
       </StyledButton>
     );
@@ -71,7 +72,10 @@ function RightMenu({
         <div>{renderStyledButton}</div>
       </StyledHeader>
       <hr />
-      <LoadingWrapper isError={isError} isPending={isPending}>
+      <LoadingWrapper
+        isError={isError}
+        isPending={isPending}
+      >
         {renderedButtons}
       </LoadingWrapper>
     </StickyMenu>

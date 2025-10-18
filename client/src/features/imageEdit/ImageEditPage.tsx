@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import ImageSelector from 'components/custom/ImageSelector/ImageSelector';
-import Input from 'components/Input/Input';
-import Layout from 'features/layouts/Layout/Layout';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import useSnackbar from 'features/app/Snackbar/useSnackbar';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import ImageSelector from '@components/custom/ImageSelector/ImageSelector';
+import Input from '@components/Input/Input';
+import Layout from '@features/layouts/Layout/Layout';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import StyledPlainButton from '@components/Link/StyledPlainButton/StyledPlainButton';
+import useSnackbar from '@features/app/Snackbar/useSnackbar';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import type { Image } from 'types';
@@ -60,27 +60,41 @@ const ImageEditImage = (): JSX.Element => {
               <StyledPlainButton
                 data-testid="button-save"
                 onClick={handleSubmit}
-                type="submit">
+                type="submit"
+              >
                 Save
               </StyledPlainButton>
             )}
-            <StyledLink data-testid="nav-new" to="/admin/image/edit">
+            <StyledLink
+              data-testid="nav-new"
+              to="/admin/image/edit"
+            >
               New
             </StyledLink>
-            <StyledLink data-testid="nav-list" to="/admin/images">
+            <StyledLink
+              data-testid="nav-list"
+              to="/admin/images"
+            >
               List
             </StyledLink>
             <StyledPlainButton
               data-testid="button-reset"
               onClick={handleReset}
-              type="reset">
+              type="reset"
+            >
               Reset
             </StyledPlainButton>
           </PageTitle>
-          <LoadingWrapper error={error} isLoading={isLoading}>
+          <LoadingWrapper
+            error={error}
+            isLoading={isLoading}
+          >
             <StyledContainer>
               <FormContainer>
-                <form noValidate onSubmit={handleSubmit}>
+                <form
+                  noValidate
+                  onSubmit={handleSubmit}
+                >
                   <Input.Text
                     autoCapitalize="off"
                     enterKeyHint="next"

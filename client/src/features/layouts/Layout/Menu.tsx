@@ -9,11 +9,12 @@ type MenuProps = {
   children: React.ReactNode;
 };
 
-export const Menu = ({ children }: MenuProps): JSX.Element => (
+const Menu = ({ children }: MenuProps): JSX.Element => (
   <MenuContainer data-testid="menu">{children}</MenuContainer>
 );
 
 Menu.displayName = 'Menu';
+export default Menu;
 
 // Styled component defining menu layout and width
 const MenuContainer = styled.div`

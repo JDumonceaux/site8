@@ -1,9 +1,9 @@
 import { type JSX, type ChangeEvent, useState } from 'react';
 
 import axios from 'axios';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Layout from '@features/layouts/Layout/Layout';
 
 type UploadStatus = 'error' | 'idle' | 'success' | 'uploading';
 
@@ -52,7 +52,10 @@ const FileUploadPage = (): JSX.Element => {
       <Layout.Main>
         <PageTitle title={title} />
         <section>
-          <input onChange={handleFileChange} type="file" />
+          <input
+            onChange={handleFileChange}
+            type="file"
+          />
           {file ? (
             <div>
               <div>File name: {file.name}</div>
@@ -60,7 +63,10 @@ const FileUploadPage = (): JSX.Element => {
             </div>
           ) : null}
           {file && status !== 'uploading' ? (
-            <button onClick={handleFileUpload} type="button">
+            <button
+              onClick={handleFileUpload}
+              type="button"
+            >
               Upload
             </button>
           ) : null}
