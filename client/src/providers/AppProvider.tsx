@@ -75,7 +75,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
                 role="status"
                 aria-label="Loading application"
               >
-                <LoadingSpinner size="large" />
+                <RingLoader />
                 <span className="sr-only">Loading application...</span>
               </div>
             }

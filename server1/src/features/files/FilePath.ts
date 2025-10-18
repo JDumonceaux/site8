@@ -62,11 +62,11 @@ class FilePath {
   }
 
   public static getClientFeatures(): string {
-    return path.join(this.appRootAbsolute, 'client', 'src', 'features');
+    return path.join(this.appRootAbsolute, 'client', 'src', '@features');
   }
 
   public static getServerFeatures(): string {
-    return path.join(this.appRootAbsolute, 'server1', 'src', 'features');
+    return path.join(this.appRootAbsolute, 'server1', 'src', '@features');
   }
 }
 

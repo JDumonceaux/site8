@@ -10,10 +10,11 @@ type AsideProps = {
   children?: ReactNode;
 };
 
-export const Aside = ({ children }: AsideProps): JSX.Element | null => (
+const Aside = ({ children }: AsideProps): JSX.Element | null => (
   <Container data-testid="aside">{children}</Container>
 );
 Aside.displayName = 'Aside';
+export default Aside;
 
 // Styled component for the aside layout
 const Container = styled.aside`
