@@ -1,10 +1,14 @@
 import React, { type JSX } from 'react';
 
 import styled from 'styled-components';
-import type { Video } from 'types/Video';
+import type { Video } from '../../types/Video';
 
 /** Responsive video embed with title */
-const VideoEmbed = ({ iframeTitle, title, videoSrc }: Video): JSX.Element | null => (
+const VideoEmbed = ({
+  iframeTitle,
+  title,
+  videoSrc,
+}: Video): JSX.Element | null => (
   <Section>
     <Heading>{title}</Heading>
     <VideoWrapper>

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
-import type { Items, ListItem } from 'types';
-import type { KeyValue } from 'types/KeyValue';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import type { Items, ListItem } from '../../types';
+import type { KeyValue } from '../../types/KeyValue';
 
 const fetchData = async (): Promise<Items> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ITEMS);

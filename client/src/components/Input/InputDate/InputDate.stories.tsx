@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import InputDate, { type InputDateProps } from './InputDate';
 
 const meta: Meta<typeof InputDate> = {
-  title: 'Components/InputDate',
+  title: '@components/InputDate',
   component: InputDate,
   argTypes: {
     type: {

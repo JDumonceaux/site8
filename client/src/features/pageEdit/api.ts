@@ -1,6 +1,6 @@
-import { ServiceUrl } from 'lib/utils/constants';
-import { handleQueryError } from 'lib/utils/errorHandler';
-import type { Page } from 'types';
+import { ServiceUrl } from '@lib/utils/constants';
+import { handleQueryError } from '@lib/utils/errorHandler';
+import type { Page } from '../../types';
 
 // Helper function to fetch a generic page by id
 export const fetchPageById = async (

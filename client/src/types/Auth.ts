@@ -4,7 +4,7 @@ import {
   MAX_EMAIL_LENGTH,
   MIN_PASSWORD_LENGTH,
   MAX_PASSWORD_LENGTH,
-} from 'lib/utils/constants';
+} from '@lib/utils/constants';
 import z from 'zod';
 
 const emailAddress = z

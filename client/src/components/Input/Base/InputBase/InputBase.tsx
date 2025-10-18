@@ -7,9 +7,9 @@ import {
   type Ref,
 } from 'react';
 
-import useGetId from 'hooks/useGetId';
+import useGetId from '@hooks/useGetId';
 import styled from 'styled-components';
-import type { KeyValue } from 'types/KeyValue';
+import type { KeyValue } from '../../types/KeyValue';
 
 import FieldWrapper, {
   type FieldWrapperProps,
@@ -89,7 +89,8 @@ const InputBase = ({
     <FieldWrapper
       {...fieldWrapperProps}
       fieldLength={fieldLength}
-      required={required}>
+      required={required}
+    >
       <StyledInput
         {...(value === undefined ? { defaultValue } : { value })}
         {...(dataList ? { list: dataList.id } : {})}
@@ -102,7 +103,10 @@ const InputBase = ({
       {dataList?.data && (
         <datalist id={dataList.id}>
           {dataList.data.map(({ key, value: val }) => (
-            <option key={key} value={val} />
+            <option
+              key={key}
+              value={val}
+            />
           ))}
         </datalist>
       )}

@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
+import { Suspense, type JSX } from 'react';
 import styled from 'styled-components';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
-import useArtistsItems from 'features/itemsAdd/useArtistsItems';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Layout from '@features/layouts/Layout/Layout';
+import useArtistsItems from '@features/itemsAdd/useArtistsItems';
 
 import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
@@ -47,8 +47,14 @@ const ImagesEditPage = (): JSX.Element => {
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Content>
-          <LoadingWrapper isError={isError} isPending={isPending}>
-            <StyledForm noValidate onSubmit={handleSubmit}>
+          <LoadingWrapper
+            isError={isError}
+            isPending={isPending}
+          >
+            <StyledForm
+              noValidate
+              onSubmit={handleSubmit}
+            >
               {data.map((item) => (
                 <ImageDetail
                   key={item.lineId}

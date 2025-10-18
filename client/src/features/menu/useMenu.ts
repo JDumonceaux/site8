@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
-import type { Menu } from 'types';
-import type { MenuItem } from 'types/MenuItem';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import type { Menu } from '../../types';
+import type { MenuItem } from '../../types/MenuItem';
 
 // Helper function to fetch menus
 const fetchMenu = async (): Promise<Menu> => {

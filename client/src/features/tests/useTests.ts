@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
-import type { Tests } from 'types';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import type { Tests } from '../../types';
 
 // Helper function to fetch test menus data with support for cancellation
 const fetchTests = async ({

@@ -1,12 +1,12 @@
 import { useState, useEffect, type ChangeEvent } from 'react';
-import { ServiceUrl } from 'lib/utils/constants';
-import { getSRC } from 'lib/utils/helpers';
-import { safeParse } from 'lib/utils/zodHelper';
-import type { Image } from 'types/Image';
+import { ServiceUrl } from '@lib/utils/constants';
+import { getSRC } from '@lib/utils/helpers';
+import { safeParse } from '@lib/utils/zodHelper';
+import type { Image } from '../../types/Image';
 import pageSchema, { type FormKeys, type FormType } from './schema';
 import useImage from './useImage';
-import { useAxios } from '../../hooks/Axios/useAxios';
-import useForm from '../../hooks/useForm';
+import { useAxios } from '@hooks/Axios/useAxios';
+import useForm from '@hooks/useForm';
 
 /**
  * Hook for editing an Image entity, handling form state, validation, and persistence.

@@ -4,7 +4,7 @@ export type * from './ArtItem';
 export type * from './ArtistWithItems';
 export type * from './ArtistsItems';
 export type * from './Bookmark';
-export type * from './Bookmarks';
+export type * from './Bookmark';
 export type * from './BookmarksTag';
 export type * from './BookmarksTags';
 export type * from './FieldError';

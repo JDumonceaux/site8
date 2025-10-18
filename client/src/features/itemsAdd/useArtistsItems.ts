@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
-import type { ArtistsItems, ListItem } from 'types';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import type { ArtistsItems, ListItem } from '../../types';
 
 // Helper function to fetch artists items data
 const fetchData = async (): Promise<ArtistsItems> => {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { useAxios } from 'hooks/Axios/useAxios';
-import useFormArray from 'hooks/useFormArray';
-import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
-import type { MenuEdit, MenuItem } from 'types';
+import { useAxios } from '@hooks/Axios/useAxios';
+import useFormArray from '@hooks/useFormArray';
+import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
+import type { MenuEdit, MenuItem } from '../../types';
 import { z } from 'zod';
 
 import useMenusEdit from './useMenusEdit';

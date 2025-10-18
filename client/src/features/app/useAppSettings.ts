@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { save } from 'store/appSlice';
 import type { AppDispatch, RootState } from 'store/store';
-import type { AppSettings } from 'types/AppSettings';
+import type { AppSettings } from '../../types/AppSettings';
 
 // Default settings
 const initialState: AppSettings = {

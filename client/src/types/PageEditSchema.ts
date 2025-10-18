@@ -1,4 +1,4 @@
-import { REQUIRED_FIELD } from 'lib/utils/constants';
+import { REQUIRED_FIELD } from '@lib/utils/constants';
 import { z } from 'zod';
 
 export const PageEditSchema = z

@@ -1,8 +1,8 @@
 import { useRef, type SelectHTMLAttributes, type JSX } from 'react';
 
-import useGetId from 'hooks/useGetId';
+import useGetId from '@hooks/useGetId';
 import styled from 'styled-components';
-import type { ListItem } from 'types/ListItem';
+import type { ListItem } from '../../types/ListItem';
 
 import FieldWrapper, {
   type FieldWrapperProps,
@@ -38,13 +38,19 @@ const InputSelect = ({
 
   return (
     <FieldWrapper {...commonProps}>
-      <StyledSelect {...commonProps} ref={selectRef}>
+      <StyledSelect
+        {...commonProps}
+        ref={selectRef}
+      >
         {showBlankOption ? <option value="">Select an option</option> : null}
         {placeholder ? (
           <option value="placeholder">{placeholder}</option>
         ) : null}
         {dataList?.map((item) => (
-          <option key={item.key} value={item.value}>
+          <option
+            key={item.key}
+            value={item.value}
+          >
             {item.display ?? item.value}
           </option>
         ))}

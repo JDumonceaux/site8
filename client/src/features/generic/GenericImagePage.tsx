@@ -1,13 +1,13 @@
-import { Suspense, useDeferredValue } from 'react';
+import { Suspense, useDeferredValue, type JSX } from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import SubjectMenu from 'features/generic/SubjectMenu';
-import Layout from 'features/layouts/Layout/Layout';
-import { getSRC, sanitizeUrl } from 'lib/utils/helpers';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import SubjectMenu from '@features/generic/SubjectMenu';
+import Layout from '@features/layouts/Layout/Layout';
+import { getSRC, sanitizeUrl } from '@lib/utils/helpers';
 import styled from 'styled-components';
-import type { Image } from 'types/Image';
+import type { Image } from '../../types/Image';
 
 import useImages from '../imagesEdit/useImages';
 
@@ -26,7 +26,10 @@ const GenericImagePage = (): JSX.Element => {
           <SubjectMenu />
         </Layout.Menu>
         <Layout.Article>
-          <LoadingWrapper isError={isError} isLoading={isLoading}>
+          <LoadingWrapper
+            isError={isError}
+            isLoading={isLoading}
+          >
             <PageTitle title={pageTitle} />
             <Layout.Section>
               <Suspense fallback="Loading results ...">

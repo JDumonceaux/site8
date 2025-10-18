@@ -1,5 +1,5 @@
-import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
-import type { MenuEdit } from 'types';
+import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
+import type { MenuEdit } from '../../types';
 import { z } from 'zod';
 
 import useTestMenus from './useTestMenus';

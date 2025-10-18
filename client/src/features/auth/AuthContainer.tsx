@@ -1,6 +1,6 @@
 import type { ReactNode, JSX } from 'react';
 
-import Layout from 'features/layouts/Layout/Layout';
+import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
 
 export type AuthContainerProps = {
@@ -29,7 +29,10 @@ export const AuthContainer = ({
       <Right>
         <Title>{title}</Title>
         {error ? (
-          <ErrorMessage id="error" role="alert">
+          <ErrorMessage
+            id="error"
+            role="alert"
+          >
             <p>Oops! There was an error:</p>
             <p>{error.message}</p>
           </ErrorMessage>

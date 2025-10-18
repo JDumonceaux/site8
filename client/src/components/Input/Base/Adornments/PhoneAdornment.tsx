@@ -1,7 +1,7 @@
 import type { JSX, HTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 
-import { PhoneIcon as Icon } from 'components/icons/PhoneIcon';
+import { PhoneIcon as Icon } from '@components/icons/PhoneIcon';
 import styled from 'styled-components';
 
 export type PhoneAdornmentProps = Readonly<HTMLAttributes<HTMLDivElement>>;

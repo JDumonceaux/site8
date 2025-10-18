@@ -1,10 +1,10 @@
 import React from 'react';
-import Meta from 'components/core/Meta/Meta';
-import Input from 'components/Input/Input';
-import useAuth from 'features/auth/useAuth';
-import { authCode } from 'features/auth/ZodStrings';
-import useForm from 'hooks/useForm';
-import { safeParse } from 'lib/utils/zodHelper';
+import Meta from '@components/core/Meta/Meta';
+import Input from '@components/Input/Input';
+import useAuth from '@features/auth/useAuth';
+import { authCode } from '@features/auth/ZodStrings';
+import useForm from '@hooks/useForm';
+import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
 
@@ -79,9 +79,18 @@ const ConfirmEmailPage = (): JSX.Element => {
       <Meta title={title} />
       <AuthContainer
         error={error}
-        leftImage={<img alt="" src="/images/bowler.jpg" />}
-        title="Confirm Email">
-        <StyledForm noValidate onSubmit={handleSubmit}>
+        leftImage={
+          <img
+            alt=""
+            src="/images/bowler.jpg"
+          />
+        }
+        title="Confirm Email"
+      >
+        <StyledForm
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <Input.Email
             autoComplete="email"
             inputMode="email"
@@ -105,12 +114,18 @@ const ConfirmEmailPage = (): JSX.Element => {
             {...getStandardInputTextAttributes('authenticationCode')}
           />
 
-          <Button2 id="login" type="submit">
+          <Button2
+            id="login"
+            type="submit"
+          >
             {isLoading ? 'Processing' : 'Submit'}
           </Button2>
 
           <StyledBottomMsg>
-            <button onClick={handleResend} type="button">
+            <button
+              onClick={handleResend}
+              type="button"
+            >
               Resend Code
             </button>
           </StyledBottomMsg>

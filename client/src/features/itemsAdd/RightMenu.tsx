@@ -1,4 +1,4 @@
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import styled from 'styled-components';
 
 import useArtistWithItems from './useArtistWithItems';

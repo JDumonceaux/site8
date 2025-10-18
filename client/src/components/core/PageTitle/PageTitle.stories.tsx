@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import PageTitle from './PageTitle';
 
 const meta: Meta<typeof PageTitle> = {
-  title: 'Components/PageTitle',
+  title: '@components/PageTitle',
   component: PageTitle,
   argTypes: {
     title: { control: 'text' },

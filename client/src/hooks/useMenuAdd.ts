@@ -1,9 +1,9 @@
 import type { ChangeEvent } from 'react';
 import { z } from 'zod';
 
-import { REQUIRED_FIELD, ServiceUrl } from 'lib/utils/constants';
-import { safeParse } from 'lib/utils/zodHelper';
-import type { MenuAdd } from 'types';
+import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
+import { safeParse } from '@lib/utils/zodHelper';
+import type { MenuAdd } from '../../types';
 
 import { useAxios } from './Axios/useAxios';
 import useForm from './useForm';

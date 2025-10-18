@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from 'lib/utils/constants';
-import type { Menu } from 'types';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import type { Menu } from '../../types';
 
 export type UseTestMenusResult = {
   data?: Menu;

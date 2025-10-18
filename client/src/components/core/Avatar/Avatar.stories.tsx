@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Avatar, { type AvatarProps } from './Avatar';
 
 const meta: Meta<AvatarProps> = {
-  title: 'Components/Avatar',
+  title: '@components/Avatar',
   component: Avatar,
   // Default props applied to all stories
   args: {

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { type JSX } from 'react';
 
-import StyledNavLink from 'components/Link/StyledNavLink/StyledNavLink';
+import StyledNavLink from '@components/Link/StyledNavLink/StyledNavLink';
 import styled from 'styled-components';
-import type { MenuItem } from 'types';
+import type { MenuItem } from '../../types';
 
 type ItemRenderProps = {
   readonly children?: React.ReactNode;

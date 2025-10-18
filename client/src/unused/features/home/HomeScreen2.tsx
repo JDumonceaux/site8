@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
-import Meta from 'components/core/Meta/Meta';
-import Layout from 'features/layouts/Layout/Layout';
+import Meta from '@components/core/Meta/Meta';
+import Layout from '@features/layouts/Layout/Layout';
 import { keyframes, styled } from 'styled-components';
 
 const HomeScreen2 = (): JSX.Element | null => {
@@ -86,5 +86,5 @@ const R1C7 = styled(SDiv)`
 const R1C8 = styled(SDiv)`
   top: 0;
   left: 700px;
-  background-color:rgb(29, 27, 22);
+  background-color: rgb(29, 27, 22);
 `;

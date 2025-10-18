@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import Meta from 'components/core/Meta/Meta';
+import Meta from '@components/core/Meta/Meta';
 
 // TermsOfUsePage component
 const TermsOfUsePage = (): JSX.Element | null => {

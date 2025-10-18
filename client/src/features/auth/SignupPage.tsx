@@ -1,16 +1,16 @@
 import type { JSX } from 'react';
-import Meta from 'components/core/Meta/Meta';
-import Input from 'components/Input/Input';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import useAuth, { SocialProvider } from 'features/auth/useAuth';
+import Meta from '@components/core/Meta/Meta';
+import Input from '@components/Input/Input';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import useAuth, { SocialProvider } from '@features/auth/useAuth';
 
-import useForm from 'hooks/useForm';
-import { safeParse } from 'lib/utils/zodHelper';
+import useForm from '@hooks/useForm';
+import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import { emailAddress, password } from 'lib/utils/constants';
-import Button from 'components/core/Button/Button';
+import { emailAddress, password } from '@lib/utils/constants';
+import Button from '@components/core/Button/Button';
 
 const schema = z.object({
   emailAddress,
@@ -60,30 +60,42 @@ const SignupPage = (): JSX.Element => {
       <Meta title={title} />
       <AuthContainer
         error={error}
-        leftImage={<img alt="" src="/images/face.png" />}
-        title="Sign Up">
+        leftImage={
+          <img
+            alt=""
+            src="/images/face.png"
+          />
+        }
+        title="Sign Up"
+      >
         <Button
           id="login"
           onClick={() => {
             handleClick(SocialProvider.AMAZON);
-          }}>
+          }}
+        >
           Sign up with Amazon
         </Button>
         <Button
           id="login"
           onClick={() => {
             handleClick(SocialProvider.FACEBOOK);
-          }}>
+          }}
+        >
           Sign up with Facebook
         </Button>
         <Button
           id="login"
           onClick={() => {
             handleClick(SocialProvider.GOOGLE);
-          }}>
+          }}
+        >
           Sign up with Google
         </Button>
-        <StyledForm noValidate onSubmit={handleSubmit}>
+        <StyledForm
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <Input.Email
             autoComplete="email"
             label="Email Address"
@@ -103,7 +115,10 @@ const SignupPage = (): JSX.Element => {
             You will be sent a validation code via email to confirm your
             account.
           </InstDiv>
-          <Button id="login" variant="secondary">
+          <Button
+            id="login"
+            variant="secondary"
+          >
             {isLoading ? 'Processing' : 'Submit'}
           </Button>
         </StyledForm>

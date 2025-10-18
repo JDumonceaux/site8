@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { type JSX } from 'react';
 
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Input from 'components/Input/Input';
-import Layout from 'features/layouts/Layout/Layout';
-import useForm from 'hooks/useForm';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Input from '@components/Input/Input';
+import Layout from '@features/layouts/Layout/Layout';
+import useForm from '@hooks/useForm';
 import styled from 'styled-components';
 
 type fields = Record<string, string>;
@@ -65,7 +65,6 @@ const InputPage = (): JSX.Element => {
             </GridItem>
             <GridItem>
               <Input.Text
-                description="This is a required field"
                 id="field4"
                 label="First Name"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -195,16 +194,15 @@ const InputPage = (): JSX.Element => {
             </GridItem>
             <GridItem>
               <Input.TextArea
-                description="This is a required field"
-                id="select252"
+                id="select253"
                 label="TextArea"
                 onChange={(e) => {
-                  setFieldValue('field252', e.target.value);
+                  setFieldValue('field253', e.target.value);
                 }}
                 placeholder="Enter text"
                 required
                 rows={10}
-                value={getFieldValue('field252')}
+                value={getFieldValue('field253')}
               />
             </GridItem>
           </Grid>

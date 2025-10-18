@@ -14,16 +14,16 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Input from 'components/Input/Input';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import { Switch } from 'components/Switch/Switch';
-import useAppSettings from 'features/app/useAppSettings';
-import Layout from 'features/layouts/Layout/Layout';
-import SortableItem from 'features/tests/SortableItem';
-import useTestsEdit from 'features/tests/useTestsEdit';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Input from '@components/Input/Input';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import StyledPlainButton from '@components/Link/StyledPlainButton/StyledPlainButton';
+import { Switch } from '@components/Switch/Switch';
+import useAppSettings from '@features/app/useAppSettings';
+import Layout from '@features/layouts/Layout/Layout';
+import SortableItem from '@features/tests/SortableItem';
+import useTestsEdit from '@features/tests/useTestsEdit';
 import styled from 'styled-components';
 
 // Do not remove comments
@@ -89,14 +89,18 @@ const TestsEditPage = (): JSX.Element | null => {
                 onShowPages(e);
               }}
             />
-            <StyledLink data-testid="nav-new" to="/admin/page/edit">
+            <StyledLink
+              data-testid="nav-new"
+              to="/admin/page/edit"
+            >
               New
             </StyledLink>
             {isSaved ? null : (
               <StyledSaveButton
                 data-testid="button-save"
                 onClick={handleSave}
-                type="submit">
+                type="submit"
+              >
                 Save
               </StyledSaveButton>
             )}
@@ -119,13 +123,18 @@ const TestsEditPage = (): JSX.Element | null => {
             <DndContext
               collisionDetection={closestCenter}
               onDragEnd={handleDragEnd}
-              sensors={sensors}>
+              sensors={sensors}
+            >
               <SortableContext
                 items={items}
-                strategy={verticalListSortingStrategy}>
+                strategy={verticalListSortingStrategy}
+              >
                 <tbody>
                   {data?.map((item) => (
-                    <SortableItem id={item.lineId} key={item.lineId}>
+                    <SortableItem
+                      id={item.lineId}
+                      key={item.lineId}
+                    >
                       <td>{item.id}</td>
                       <td>
                         <Input.Text {...getDefaultProps(item.lineId, 'name')} />

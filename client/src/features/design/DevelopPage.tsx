@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
-import Dialog from 'components/core/Dialog/Dialog';
-import { useDialog } from 'components/core/Dialog/useDialog';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import EmailAdornment from 'components/Input/Base/Adornments/EmailAdornment';
-import Input from 'components/Input/Input';
-import Layout from 'features/layouts/Layout/Layout';
-import useForm from 'hooks/useForm';
+import React, { useEffect, useRef, type JSX } from 'react';
+import Dialog from '@components/core/Dialog/Dialog';
+import { useDialog } from '@components/core/Dialog/useDialog';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import EmailAdornment from '@components/Input/Base/Adornments/EmailAdornment';
+import Input from '@components/Input/Input';
+import Layout from '@features/layouts/Layout/Layout';
+import useForm from '@hooks/useForm';
 import styled from 'styled-components';
 import { z } from 'zod';
 
@@ -105,7 +105,10 @@ const DevelopPage = (): JSX.Element => {
         <Layout.Main>
           <PageTitle title={title} />
           <section>
-            <button onClick={onDialogOpen} type="button">
+            <button
+              onClick={onDialogOpen}
+              type="button"
+            >
               Open Dialog
             </button>
             <br />
@@ -116,7 +119,6 @@ const DevelopPage = (): JSX.Element => {
                   <Grid>
                     <Input.Text
                       autoComplete="given-name"
-                      description="Given name"
                       id="given_name"
                       label="First Name"
                       minLength={10}
@@ -161,7 +163,11 @@ const DevelopPage = (): JSX.Element => {
           </section>
         </Layout.Main>
       </Layout.Flex>
-      <Dialog label="Test" onClose={onDialogClose} {...dialogProps}>
+      <Dialog
+        label="Test"
+        onClose={onDialogClose}
+        {...dialogProps}
+      >
         Children
       </Dialog>
     </>

@@ -11,7 +11,7 @@ const meta = {
     },
   },
   component: InputText,
-  title: 'Components/Input/InputText',
+  title: '@components/Input/InputText',
 };
 
 export default meta;

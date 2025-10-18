@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Input from 'components/Input/Input';
-import useImageFolder from 'features/imagesEdit/useImageFolder';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Input from '@components/Input/Input';
+import useImageFolder from '@features/imagesEdit/useImageFolder';
 import styled from 'styled-components';
 import FolderButton from './FolderButton';
 
@@ -49,7 +49,8 @@ function RightMenu({
       <StyledButton
         data-id={currentFolder}
         onClick={handleButton}
-        type="button">
+        type="button"
+      >
         {currentFolder}
       </StyledButton>
     );
@@ -71,7 +72,10 @@ function RightMenu({
         <div>{renderStyledButton}</div>
       </StyledHeader>
       <hr />
-      <LoadingWrapper isError={isError} isPending={isPending}>
+      <LoadingWrapper
+        isError={isError}
+        isPending={isPending}
+      >
         {renderedButtons}
       </LoadingWrapper>
     </StickyMenu>
@@ -87,8 +91,13 @@ const StyledButton = styled.button`
   padding: 5px 0;
   text-align: left;
   cursor: pointer;
+  background: var(--input-background-color, #fff);
+  color: var(--text-primary-color, #1f1f1f);
+  border: 1px solid var(--input-border-color, #bebebe);
+  border-radius: var(--input-border-radius, 4px);
+  transition: background 0.2s;
   &:hover {
-    background-color: #dcdcdc;
+    background-color: var(--input-background-focus-color, #e1e1e1);
   }
 `;
 
@@ -110,6 +119,15 @@ const StickyMenu = styled.div`
 const FilterDiv = styled.div`
   margin-bottom: 18px;
   select {
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border-color, #bebebe);
+    background: var(--input-background-color, #fff);
+    color: var(--input-color, #212121);
+    border-radius: var(--input-border-radius, 4px);
+    padding: 4px 8px;
+    transition: border-color 0.2s;
+    &:focus {
+      border-color: var(--input-border-focus-color, #5d5d5d);
+      outline: none;
+    }
   }
 `;

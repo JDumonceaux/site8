@@ -1,10 +1,10 @@
 import type { ChangeEvent, JSX } from 'react';
 
-import IconMenu from 'components/IconMenu/IconMenu';
-import IconMenuItem from 'components/IconMenu/IconMenuItem';
-import Input from 'components/Input/Input';
+import IconMenu from '@components/IconMenu/IconMenu';
+import IconMenuItem from '@components/IconMenu/IconMenuItem';
+import Input from '@components/Input/Input';
 import styled from 'styled-components';
-import type { KeyValue } from 'types/KeyValue';
+import type { KeyValue } from '../../types/KeyValue';
 
 import type { ItemAddExt } from './ItemAdd';
 

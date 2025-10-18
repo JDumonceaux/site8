@@ -6,13 +6,13 @@ import {
   type KeyboardEvent,
 } from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import { Switch } from 'components/Switch/Switch';
-import useAppSettings from 'features/app/useAppSettings';
-import useUnmatchedImages from 'features/itemsAdd/useUnmatchedImages';
-import { IMAGE_BASE } from 'lib/utils/constants';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import { Switch } from '@components/Switch/Switch';
+import useAppSettings from '@features/app/useAppSettings';
+import useUnmatchedImages from '@features/itemsAdd/useUnmatchedImages';
+import { IMAGE_BASE } from '@lib/utils/constants';
 import styled from 'styled-components';
-import type { Image } from 'types';
+import type { Image } from '../../types';
 
 export type ImageSelectorProps = {
   onSelectImage: (image: Image | undefined) => void;
@@ -60,10 +60,16 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
   return (
     <>
       <Controls>
-        <button onClick={() => null} type="button">
+        <button
+          onClick={() => null}
+          type="button"
+        >
           Refresh
         </button>
-        <button onClick={handleShowAll} type="button">
+        <button
+          onClick={handleShowAll}
+          type="button"
+        >
           Show All
         </button>
         <Switch
@@ -84,8 +90,12 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
               key={item.id}
               onClick={handleSelect}
               onKeyDown={handleKeyboardSelect}
-              type="button">
-              <img alt="" src={`${IMAGE_BASE}/${item.fileName}`} />
+              type="button"
+            >
+              <img
+                alt=""
+                src={`${IMAGE_BASE}/${item.fileName}`}
+              />
             </ImageButton>
           ))}
         </Grid>

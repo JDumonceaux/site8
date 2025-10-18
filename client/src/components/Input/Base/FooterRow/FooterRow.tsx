@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
 import styled from 'styled-components';
-import type { FieldError } from 'types';
+import type { FieldError } from '../../types';
 
 export type FooterRowProps = {
   /** Validation errors for the field */

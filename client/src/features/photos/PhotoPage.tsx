@@ -1,10 +1,10 @@
 import { useDeferredValue, type JSX } from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Layout from 'features/layouts/Layout/Layout';
-import { sanitizeUrl } from 'lib/utils/helpers';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Layout from '@features/layouts/Layout/Layout';
+import { sanitizeUrl } from '@lib/utils/helpers';
 
 import usePhotos from './usePhotos';
 
@@ -22,14 +22,26 @@ const PhotoPage = (): JSX.Element | null => {
       <Layout.Main>
         <PageTitle title="Photos" />
         <Layout.Article>
-          <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
+          <LoadingWrapper
+            error={error}
+            isError={isError}
+            isLoading={isLoading}
+          >
             <ul>
               {items.map(({ description, id, url }) => {
                 const safeUrl = sanitizeUrl(url);
                 return (
                   <li key={id}>
-                    <a data-caption={description} data-fancybox href={safeUrl}>
-                      <img alt={description} loading="lazy" src={safeUrl} />
+                    <a
+                      data-caption={description}
+                      data-fancybox
+                      href={safeUrl}
+                    >
+                      <img
+                        alt={description}
+                        loading="lazy"
+                        src={safeUrl}
+                      />
                     </a>
                   </li>
                 );

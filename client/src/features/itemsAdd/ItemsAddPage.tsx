@@ -1,12 +1,12 @@
 import { Suspense, type JSX } from 'react';
 import styled from 'styled-components';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import Input from 'components/Input/Input';
-import Layout from 'features/layouts/Layout/Layout';
-import MenuBar from 'features/imagesEdit/MenuBar';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import Input from '@components/Input/Input';
+import Layout from '@features/layouts/Layout/Layout';
+import MenuBar from '@features/imagesEdit/MenuBar';
 
 import ItemDetail from './ItemDetail';
 import RightMenu from './RightMenu';
@@ -37,7 +37,10 @@ const ItemsAddPage = (): JSX.Element => {
       <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
-          <MenuBar handleClear={handleClear} handleSubmit={handleSubmit} />
+          <MenuBar
+            handleClear={handleClear}
+            handleSubmit={handleSubmit}
+          />
         </PageTitle>
       </Layout.TitleFixed>
 
@@ -50,7 +53,10 @@ const ItemsAddPage = (): JSX.Element => {
               placeholder="Artist"
               value={artistId}
             />
-            <StyledForm noValidate onSubmit={handleSubmit}>
+            <StyledForm
+              noValidate
+              onSubmit={handleSubmit}
+            >
               {data.map((item) => (
                 <ItemDetail
                   key={item.lineId}

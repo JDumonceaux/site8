@@ -5,7 +5,7 @@ import {
   type JSX,
 } from 'react';
 
-import useGetId from 'hooks/useGetId';
+import useGetId from '@hooks/useGetId';
 import styled from 'styled-components';
 
 import FieldWrapper, {
@@ -53,7 +53,10 @@ export const TextArea = ({
   delete textAreaProps.labelProps;
 
   return (
-    <FieldWrapper required={required} {...(rest as FieldWrapperProps)}>
+    <FieldWrapper
+      required={required}
+      {...(rest as FieldWrapperProps)}
+    >
       <StyledTextArea
         id={currId}
         name={currId}

@@ -2,8 +2,8 @@ import { Suspense, useMemo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import MainErrorFallback from 'components/core/MainErrorFallback';
-import LoadingSpinner from 'components/core/LoadingSpinner'; // Assuming you have this
+import MainErrorFallback from '@components/core/MainErrorFallback';
+import LoadingSpinner from '@components/core/LoadingSpinner'; // Assuming you have this
 import ReduxProvider from './ReduxProvider';
 
 type AppProviderProps = {

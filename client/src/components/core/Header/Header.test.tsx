@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { configureAxe } from 'jest-axe';
 import Header from './Header';
-import { APP_NAME } from 'lib/utils/constants';
+import { APP_NAME } from '@lib/utils/constants';
 
 const axe = configureAxe();
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 import axios from 'axios';
-import { AcceptHeader, PreferHeader } from 'lib/utils/constants';
-//import { httpErrorHandler } from 'lib/utils/errorHandler';
+import { AcceptHeader, PreferHeader } from '@lib/utils/constants';
+//import { httpErrorHandler } from '@lib/utils/errorHandler';
 
 export const useAxios = <T>() => {
   const [data, setData] = useState<null | T>();

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { ServiceUrl } from 'lib/utils/constants';
-import type { Test } from 'types/Test';
-import type { Tests } from 'types/Tests';
+import { ServiceUrl } from '@lib/utils/constants';
+import type { Test } from '../../types/Test';
+import type { Tests } from '../../types/Tests';
 import { z } from 'zod';
 
 import useTests from './useTests';

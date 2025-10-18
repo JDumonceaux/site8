@@ -11,7 +11,7 @@ const meta = {
     },
   },
   component: InputSearch,
-  title: 'Components/Input/InputSearch',
+  title: '@components/Input/InputSearch',
 };
 
 export default meta;

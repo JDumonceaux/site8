@@ -1,9 +1,9 @@
 import { type JSX, startTransition } from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Input from 'components/Input/Input';
-import useSnackbar from 'features/app/Snackbar/useSnackbar';
-import useMenuAdd from 'hooks/useMenuAdd';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Input from '@components/Input/Input';
+import useSnackbar from '@features/app/Snackbar/useSnackbar';
+import useMenuAdd from '@hooks/useMenuAdd';
 /**
  * Represents a form for adding a single menu item.
  *
@@ -36,7 +36,10 @@ const MenuAdd = (): JSX.Element => {
   };
 
   return (
-    <LoadingWrapper error={error} isLoading={isLoading}>
+    <LoadingWrapper
+      error={error}
+      isLoading={isLoading}
+    >
       <table>
         <thead>
           <tr>
@@ -108,7 +111,8 @@ const MenuAdd = (): JSX.Element => {
               <button
                 data-testid="insert-code"
                 onClick={handleSubmit}
-                type="submit">
+                type="submit"
+              >
                 Save
               </button>
             </td>

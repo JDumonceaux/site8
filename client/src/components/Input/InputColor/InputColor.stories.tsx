@@ -11,7 +11,7 @@ const meta = {
     },
   },
   component: InputColor,
-  title: 'Components/Input/InputColor',
+  title: '@components/Input/InputColor',
 };
 
 export default meta;

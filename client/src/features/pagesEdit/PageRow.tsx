@@ -1,9 +1,9 @@
 import type { JSX } from 'react';
 
-import Input from 'components/Input/Input';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
+import Input from '@components/Input/Input';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
 import styled from 'styled-components';
-import type { MenuItem } from 'types';
+import type { MenuItem } from '../../types';
 
 type PageRowProps = {
   getDefaultProps: (lineId: string, field: string) => any;

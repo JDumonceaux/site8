@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import type { JSX } from 'react';
 
-import LoadingWrapper from 'components/core/Loading/LoadingWrapper';
-import Meta from 'components/core/Meta/Meta';
-import PageTitle from 'components/core/PageTitle/PageTitle';
-import StyledLink from 'components/Link/StyledLink/StyledLink';
-import StyledPlainButton from 'components/Link/StyledPlainButton/StyledPlainButton';
-import { Switch } from 'components/Switch/Switch';
-import useAppSettings from 'features/app/useAppSettings';
-import Layout from 'features/layouts/Layout/Layout';
-import MenuAdd from 'features/pagesEdit/MenuAdd';
+import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import Meta from '@components/core/Meta/Meta';
+import PageTitle from '@components/core/PageTitle/PageTitle';
+import StyledLink from '@components/Link/StyledLink/StyledLink';
+import StyledPlainButton from '@components/Link/StyledPlainButton/StyledPlainButton';
+import { Switch } from '@components/Switch/Switch';
+import useAppSettings from '@features/app/useAppSettings';
+import Layout from '@features/layouts/Layout/Layout';
+import MenuAdd from '@features/pagesEdit/MenuAdd';
 import styled from 'styled-components';
 
 import { mapToFormValues } from './mapToFormValues';
@@ -55,19 +55,27 @@ const PagesEditPage = (): JSX.Element | null => {
               label={showPages ? 'Hide Pages' : 'Show Pages'}
               onCheckedChange={onToggleShowPages}
             />
-            <StyledLink data-testid="nav-new" to="/admin/page/edit">
+            <StyledLink
+              data-testid="nav-new"
+              to="/admin/page/edit"
+            >
               New
             </StyledLink>
             {!isSaved && (
               <StyledSaveButton
                 data-testid="button-save"
                 onClick={handleSave}
-                type="submit">
+                type="submit"
+              >
                 Save
               </StyledSaveButton>
             )}
           </PageTitle>
-          <LoadingWrapper error={error} isError={isError} isLoading={isLoading}>
+          <LoadingWrapper
+            error={error}
+            isError={isError}
+            isLoading={isLoading}
+          >
             <table>
               <thead>
                 <tr>

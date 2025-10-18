@@ -1,7 +1,7 @@
 import React, { type JSX } from 'react';
 
 import styled from 'styled-components';
-import type { MusicItem } from 'types/MusicItem';
+import type { MusicItem } from '../../types/MusicItem';
 
 /**
  * Props for rendering a single music item in a virtual list.
@@ -18,14 +18,19 @@ type ItemRendererProps = {
 /**
  * Renders a single music item with description and embedded video.
  */
-const ItemRenderer = ({ data, index, style }: ItemRendererProps): JSX.Element | null => {
+const ItemRenderer = ({
+  data,
+  index,
+  style,
+}: ItemRendererProps): JSX.Element | null => {
   const item = data.items[index];
 
   return (
     <Container
       style={style}
       role="listitem"
-      aria-label={`Music item ${index + 1}: ${item.description}`}>
+      aria-label={`Music item ${index + 1}: ${item.description}`}
+    >
       <Description>{item.description}</Description>
       <VideoFrame
         src={item.url}

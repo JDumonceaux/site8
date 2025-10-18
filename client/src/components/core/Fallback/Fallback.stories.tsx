@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Fallback from './Fallback';
 
 const meta: Meta<typeof Fallback> = {
-  title: 'Components/Fallback',
+  title: '@components/Fallback',
   component: Fallback,
   tags: ['autodocs'],
   parameters: {

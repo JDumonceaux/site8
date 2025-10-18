@@ -12,7 +12,7 @@ const OpenButton = styled.button`
 `;
 
 const meta: Meta<DialogProps> = {
-  title: 'Components/Dialog',
+  title: '@components/Dialog',
   component: Dialog,
   args: {
     label: 'Dialog Title',
@@ -63,10 +63,15 @@ export const Default: Story = {
         <OpenButton
           onClick={() => {
             setOpen(true);
-          }}>
+          }}
+        >
           Open Dialog
         </OpenButton>
-        <Dialog {...args} isOpen={open} onOpenChange={setOpen} />
+        <Dialog
+          {...args}
+          isOpen={open}
+          onOpenChange={setOpen}
+        />
       </>
     );
   },
@@ -85,11 +90,15 @@ export const Variants: Story = {
     return (
       <>
         {Object.keys(VARIANTS).map((v) => (
-          <div key={v} style={{ marginBottom: '2rem' }}>
+          <div
+            key={v}
+            style={{ marginBottom: '2rem' }}
+          >
             <OpenButton
               onClick={() => {
                 toggle(v);
-              }}>
+              }}
+            >
               Open {v}
             </OpenButton>
             <Dialog
@@ -121,11 +130,15 @@ export const Sizes: Story = {
     return (
       <>
         {Object.keys(SIZES).map((s) => (
-          <div key={s} style={{ marginBottom: '2rem' }}>
+          <div
+            key={s}
+            style={{ marginBottom: '2rem' }}
+          >
             <OpenButton
               onClick={() => {
                 toggle(s);
-              }}>
+              }}
+            >
               Open {s}
             </OpenButton>
             <Dialog

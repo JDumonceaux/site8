@@ -11,7 +11,7 @@ const meta = {
     },
   },
   component: InputImage,
-  title: 'Components/Input/InputImage',
+  title: '@components/Input/InputImage',
 };
 
 export default meta;
