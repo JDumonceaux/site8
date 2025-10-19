@@ -28,6 +28,6 @@ export const getItems = async (
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     Logger.error(`Pages: Error fetching items - ${errorMessage}`, { error });
-    next(error);
+    return next(error);
   }
 };

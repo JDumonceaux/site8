@@ -29,7 +29,7 @@ export const patchItems = async (
       }
     })
     .catch((error: Error) => {
-      next(error);
+      return next(error);
     });
 
   // if (returnRepresentation) {

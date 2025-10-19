@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image, ImageAdd, ImageSchemaAdd } from '../../types/Image.js';
-import { PreferHeader } from '../../lib/utils/constants.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { PREFER_HEADER } from '../../lib/utils/constants.js';
+import { getImageService } from '../../lib/utils/ServiceFactory.js';
 
 export const putItem = async (
   req: Request,
@@ -11,7 +11,7 @@ export const putItem = async (
 ) => {
   try {
     const prefer = req.get('Prefer');
-    const returnRepresentation = prefer === PreferHeader.REPRESENTATION;
+    const returnRepresentation = prefer === PREFER_HEADER.REPRESENTATION;
 
     const validationResult = ImageSchemaAdd.safeParse(req.body);
     if (!validationResult.success) {
@@ -27,7 +27,7 @@ export const putItem = async (
 
     Logger.info('Image: Put Item called');
 
-    const service = ServiceFactory.getImageService();
+    const service = getImageService();
     const newId = await service.addItem(data);
 
     if (returnRepresentation) {
@@ -41,6 +41,6 @@ export const putItem = async (
       return res.status(201).send();
     }
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };

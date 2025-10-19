@@ -33,6 +33,6 @@ export const getItem = async (
       }
     })
     .catch((error: Error) => {
-      next(error);
+      return next(error);
     });
 };

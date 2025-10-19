@@ -30,6 +30,6 @@ export const getItemByName = async (
     }
   } catch (error) {
     Logger.error(`Generic: getItemByName -> error: ${String(error)}`);
-    next(error);
+    return next(error);
   }
 };

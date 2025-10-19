@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { Images } from '../../types/Images.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getImagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const patchItems = async (
   req: Request<{ id: string }, unknown, unknown, unknown>,
@@ -18,7 +18,7 @@ export const patchItems = async (
   if (!data) {
     res.status(500);
   } else {
-    const service = ServiceFactory.getImagesService();
+    const service = getImagesService();
     await service
       .updateItems(data.items)
       .then((_response) => {
@@ -29,7 +29,7 @@ export const patchItems = async (
         // }
       })
       .catch((error: Error) => {
-        next(error);
+        return next(error);
       });
   }
 

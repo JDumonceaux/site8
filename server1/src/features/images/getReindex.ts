@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getImagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const getReindex = async (
   _req: Request,
@@ -10,10 +10,10 @@ export const getReindex = async (
   Logger.info('Images: Get Reindex called');
 
   try {
-    const service = ServiceFactory.getImagesService();
+    const service = getImagesService();
     const result = await service.fixIndex();
     return result ? res.status(200).json(result) : res.sendStatus(204);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };

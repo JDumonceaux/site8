@@ -1,5 +1,5 @@
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getFileService } from '../../lib/utils/ServiceFactory.js';
 import { Features } from './Features.js';
 import { buildServerType } from './functions/server/bServerType.js';
 import FilePath from '../files/FilePath.js';
@@ -19,7 +19,7 @@ export class BuildService {
 
   public async build(feature: string) {
     Logger.info(`BuildService: build -> ${feature}`);
-    const service = ServiceFactory.getFileService();
+    const service = getFileService();
     const ret = await service.readFile<Features>(this.filePath);
 
     if (!ret) {

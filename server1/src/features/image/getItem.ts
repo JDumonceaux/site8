@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image } from '../../types/Image.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getImageService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItem = async (
   req: Request<{ id: string }>,
@@ -19,7 +19,7 @@ export const getItem = async (
         .json({ message: 'Invalid ID' } as unknown as Image);
     }
 
-    const service = ServiceFactory.getImageService();
+    const service = getImageService();
     const response = await service.getItem(tempId);
 
     if (response) {
@@ -27,6 +27,6 @@ export const getItem = async (
     }
     return res.status(204).send();
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };

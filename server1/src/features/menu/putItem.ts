@@ -37,7 +37,7 @@ export const putItem = async (
       }
     })
     .catch((error: Error) => {
-      next(error);
+      return next(error);
     });
 
   next();

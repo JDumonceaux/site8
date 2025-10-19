@@ -24,6 +24,6 @@ export const listDuplicates = async (
     Logger.error(`Pages: Error listing duplicates - ${errorMessage}`, {
       error,
     });
-    next(error);
+    return next(error);
   }
 };

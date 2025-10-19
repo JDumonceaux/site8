@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image, ImageAdd, ImageSchemaAdd } from '../../types/Image.js';
-import { PreferHeader } from '../../lib/utils/constants.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { PREFER_HEADER } from '../../lib/utils/constants.js';
+import { getImageService } from '../../lib/utils/ServiceFactory.js';
 
 export const postItem = async (
   req: Request,
@@ -11,7 +11,7 @@ export const postItem = async (
 ) => {
   try {
     const prefer = req.get('Prefer');
-    const returnRepresentation = prefer === PreferHeader.REPRESENTATION;
+    const returnRepresentation = prefer === PREFER_HEADER.REPRESENTATION;
 
     // Validate request data using Add schema (no ID required)
     const validationResult = ImageSchemaAdd.safeParse(req.body);
@@ -29,7 +29,7 @@ export const postItem = async (
 
     Logger.info('Image: Post Item called (create new)');
 
-    const service = ServiceFactory.getImageService();
+    const service = getImageService();
 
     try {
       // Create new item
@@ -73,6 +73,6 @@ export const postItem = async (
     if (error instanceof Error) {
       return res.status(500).json({ error: 'Internal server error' });
     }
-    next(error);
+    return next(error);
   }
 };

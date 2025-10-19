@@ -1,13 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image, ImageSchema } from '../../types/Image.js';
-import { PreferHeader } from '../../lib/utils/constants.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { PREFER_HEADER } from '../../lib/utils/constants.js';
+import { getImageService } from '../../lib/utils/ServiceFactory.js';
 import { z } from 'zod';
 
 // Create a partial schema for PATCH operations
+// Patch schema: all fields optional except id and itemId (strings, will be parsed to numbers), fileName required
 const ImagePatchSchema = ImageSchema.partial().extend({
-  id: z.string().min(1, 'ID is required'), // ID is always required
+  id: z.string().min(1, 'ID is required'),
+  fileName: z.string().min(1, 'fileName is required'),
+  itemId: z.string().min(1, 'itemId is required'),
 });
 
 export const patchItem = async (
@@ -18,7 +21,7 @@ export const patchItem = async (
   try {
     const { id } = req.params;
     const prefer = req.get('Prefer');
-    const returnRepresentation = prefer === PreferHeader.REPRESENTATION;
+    const returnRepresentation = prefer === PREFER_HEADER.REPRESENTATION;
 
     // Validate ID parameter
     if (!id) {
@@ -40,7 +43,26 @@ export const patchItem = async (
         .json({ error: `Validation error: ${errorMessage}` });
     }
 
-    const data = validationResult.data;
+    // Convert id and itemId to numbers, ensure fileName is present and types match Image
+    const {
+      id: idStr,
+      itemId: itemIdStr,
+      fileName,
+      ...rest
+    } = validationResult.data;
+    const idNum = Number(idStr);
+    const itemIdNum = Number(itemIdStr);
+    if (isNaN(idNum) || isNaN(itemIdNum)) {
+      return res
+        .status(400)
+        .json({ error: 'ID and itemId must be valid numbers' });
+    }
+    const data = {
+      ...rest,
+      id: idNum,
+      itemId: itemIdNum,
+      fileName,
+    };
 
     // Ensure ID consistency between URL and body
     if (req.body.id && req.body.id !== id) {
@@ -51,24 +73,20 @@ export const patchItem = async (
 
     Logger.info(`Image: Patch Item called for ID: ${id}`);
 
-    const service = ServiceFactory.getImageService();
+    const service = getImageService();
 
     try {
       // Perform the update and get result in one operation if possible
-      const updatedItem = await service.updateItem(data);
+      const updatedId = await service.updateItem(data);
 
       if (returnRepresentation) {
-        // If service.updateItem returns the updated item, use it
-        // Otherwise, fetch it separately
-        const result = updatedItem || (await service.getItem(id));
-
+        // Always fetch the updated item by id
+        const result = await service.getItem(updatedId);
         if (!result) {
           return res.status(404).json({ error: 'Item not found after update' });
         }
-
         return res.status(200).json(result);
       }
-
       return res.status(204).send();
     } catch (serviceError) {
       // Handle specific service errors
@@ -86,6 +104,6 @@ export const patchItem = async (
     }
   } catch (error) {
     Logger.error('Error in patchItem:', error);
-    next(error);
+    return next(error);
   }
 };

@@ -28,6 +28,6 @@ export const deleteItem = async (
     }
     return res.status(404).send(new Error(Responses.NOT_FOUND));
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };

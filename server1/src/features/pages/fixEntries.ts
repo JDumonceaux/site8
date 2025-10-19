@@ -18,6 +18,6 @@ export const fixEntries = async (
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     Logger.error(`Pages: Error fixing entries - ${errorMessage}`, { error });
-    next(error);
+    return next(error);
   }
 };

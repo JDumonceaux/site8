@@ -25,6 +25,6 @@ export const getItemsArtists = async (
     Logger.error(
       `Error fetching items and artists: ${(error as Error).message}`,
     );
-    next(error);
+    return next(error);
   }
 };
