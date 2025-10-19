@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Items } from '../../types/Items.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getItemsService } from '@/lib/utils/ServiceFactory.js';
 
 export const getItemsArtists = async (
   _req: Request<unknown, unknown, unknown, unknown>,
@@ -11,7 +11,7 @@ export const getItemsArtists = async (
   try {
     Logger.info('Fetching items and artists from the service.');
 
-    const service = ServiceFactory.getItemsService();
+    const service = getItemsService();
     const response = await service.getItems();
 
     if (response) {

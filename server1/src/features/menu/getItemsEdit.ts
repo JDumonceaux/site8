@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { Menus } from '../../types/Menus.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getMenuService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItemsEdit = async (
   _req: Request<unknown, unknown, unknown, unknown>,
@@ -11,7 +11,7 @@ export const getItemsEdit = async (
 ) => {
   Logger.info(`Menu: Get Items Edit called: `);
 
-  const service = ServiceFactory.getMenuService();
+  const service = getMenuService();
 
   await service
     .getMenu()

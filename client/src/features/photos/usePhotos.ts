@@ -9,7 +9,7 @@ const fetchData = async ({
   signal: AbortSignal;
 }): Promise<Photos> => {
   const response = await fetch(ServiceUrl.ENDPOINT_PHOTOS, { signal });
-  if (!response.ok) {
+  if (!RESPONSE.ok) {
     throw new Error(`Failed to fetch photos: ${response.statusText}`);
   }
   return response.json() as Promise<Photos>;

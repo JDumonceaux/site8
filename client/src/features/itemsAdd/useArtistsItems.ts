@@ -5,7 +5,7 @@ import type { ArtistsItems, ListItem } from '../../types';
 // Helper function to fetch artists items data
 const fetchData = async (): Promise<ArtistsItems> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ARTISTS_ITEMS);
-  if (!response.ok) {
+  if (!RESPONSE.ok) {
     throw new Error(`Failed to fetch artists items: ${response.statusText}`);
   }
   return response.json() as Promise<ArtistsItems>;

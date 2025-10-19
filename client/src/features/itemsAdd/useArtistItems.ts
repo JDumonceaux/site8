@@ -8,7 +8,7 @@ const fetchData = async (artistId: string): Promise<ArtistWithItems> => {
   const response = await fetch(
     ServiceUrl.ENDPOINT_ARTIST_ITEMS.replace('{0}', artistId),
   );
-  if (!response.ok) {
+  if (!RESPONSE.ok) {
     throw new Error(`Failed to fetch artist items: ${response.statusText}`);
   }
   return response.json() as Promise<ArtistWithItems>;

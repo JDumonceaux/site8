@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getFileService } from '../../lib/utils/ServiceFactory.js';
 
 type Params = {
   filename: string;
 };
 
-const service = ServiceFactory.getFileService();
+const service = getFileService();
 
 export const getFile = async (
   req: Request<Params>,
@@ -25,6 +25,7 @@ export const getFile = async (
 
     return res.status(204).send();
   } catch (error) {
+    Logger.error('Get File failed', { error });
     return next(error);
   }
 };

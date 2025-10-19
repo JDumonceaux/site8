@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { Menus } from '../../types/Menus.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getMenuService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItems = async (
   _req: Request<unknown, unknown, unknown, unknown>,
@@ -11,11 +11,12 @@ export const getItems = async (
 ) => {
   Logger.info(`Menu: Get Items called: `);
 
-  const service = ServiceFactory.getMenuService();
+  const service = getMenuService();
 
   await service
     .getMenu()
-    .then((response) => {
+    .then((response: Menus | undefined) => {
+      // Explicitly typed response
       if (response) {
         res.status(200).json(response);
       } else {

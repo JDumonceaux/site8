@@ -2,7 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { MenuAdd } from '../../types/MenuAdd.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import {
+  getPagesService,
+  getMenuService,
+} from '../../lib/utils/ServiceFactory.js';
 
 export const putItem = async (
   req: Request<unknown, unknown, unknown, unknown>,
@@ -13,8 +16,8 @@ export const putItem = async (
 
   Logger.info(`Menu: Put Items called: `);
 
-  const service = ServiceFactory.getPagesService();
-  const service2 = ServiceFactory.getMenuService();
+  const service = getPagesService();
+  const service2 = getMenuService();
 
   if (!data) {
     // res.status(400).json({ error: 'No data found' });

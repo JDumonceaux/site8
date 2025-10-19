@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { Items } from '../../types/Items.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getItemsService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItems = async (
   _req: Request<unknown, unknown, unknown, unknown>,
@@ -11,7 +11,7 @@ export const getItems = async (
 ) => {
   Logger.info(`Items: Get Items called: `);
 
-  const service = ServiceFactory.getItemsService();
+  const service = getItemsService();
 
   await service
     .getItems()

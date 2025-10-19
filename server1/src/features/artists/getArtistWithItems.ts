@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
 import { ArtistWithItems } from '../../types/ArtistWithItems.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { ArtistNotFoundError } from './ArtistsService.js';
@@ -29,7 +29,7 @@ export const getArtistWithItems = async (
     const artistId = parseResult.id;
     Logger.info(`Artists: Get artist items called for ID: ${artistId}`);
 
-    const service = ServiceFactory.getArtistsService();
+    const service = getArtistsService();
 
     try {
       const artistWithItems = await service.getArtistWithItems(artistId);
@@ -54,7 +54,6 @@ export const getArtistWithItems = async (
       `Error in getArtistWithItems for ID ${req.params?.id}: ${errorMessage}`,
       error,
     );
-
-    next(error);
+    return next(error);
   }
 };

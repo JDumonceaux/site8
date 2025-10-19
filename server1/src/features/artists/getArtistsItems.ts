@@ -1,17 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
 import { ArtistsItems } from '../../types/ArtistsItems.js';
 
 export const getArtistsItems = async (
   _req: Request,
   res: Response<ArtistsItems>,
   next: NextFunction,
-) => {
+): Promise<Response<ArtistsItems> | void> => {
   try {
     Logger.info('Items: Get Artists Items called');
 
-    const service = ServiceFactory.getArtistsService();
+    const service = getArtistsService();
     const artistsItems = await service.getArtistsItems();
 
     if (!artistsItems) {
@@ -20,6 +20,7 @@ export const getArtistsItems = async (
 
     return res.status(200).json(artistsItems);
   } catch (error) {
-    next(error);
+    Logger.error('Items: Get Artists Items failed', { error });
+    return next(error);
   }
 };

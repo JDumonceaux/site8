@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Bookmarks } from '../../types/Bookmarks.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItems = async (
   _req: Request,
@@ -11,7 +11,7 @@ export const getItems = async (
   try {
     Logger.info('Bookmarks: Get Items called');
 
-    const service = ServiceFactory.getBookmarksService();
+    const service = getBookmarksService();
     const bookmarks = await service.getAllItems();
 
     if (!bookmarks) {
@@ -20,6 +20,7 @@ export const getItems = async (
 
     return res.status(200).json(bookmarks);
   } catch (error) {
-    next(error);
+    Logger.error('Bookmarks: Get Items failed', { error });
+    return next(error);
   }
 };

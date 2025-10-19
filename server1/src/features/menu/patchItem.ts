@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { MenuEdit } from '../../types/MenuEdit.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getPagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const patchItem = async (
   req: Request<unknown, unknown, unknown, unknown>,
@@ -15,7 +15,7 @@ export const patchItem = async (
   if (!data) {
     res.status(500);
   } else {
-    const service = ServiceFactory.getPagesService();
+    const service = getPagesService();
 
     await service
       .updateItems(data)

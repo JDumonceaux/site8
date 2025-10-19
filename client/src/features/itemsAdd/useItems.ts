@@ -5,7 +5,7 @@ import type { KeyValue } from '../../types/KeyValue';
 
 const fetchData = async (): Promise<Items> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ITEMS);
-  if (!response.ok) {
+  if (!RESPONSE.ok) {
     throw new Error(`Failed to fetch data: ${response.statusText}`);
   }
   return response.json() as Promise<Items>;

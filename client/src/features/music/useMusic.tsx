@@ -12,7 +12,7 @@ async function fetchMusic({
   signal?: AbortSignal;
 }): Promise<Music> {
   const response = await fetch(ServiceUrl.ENDPOINT_MUSIC, { signal });
-  if (!response.ok) {
+  if (!RESPONSE.ok) {
     throw new Error(`Failed to fetch music: ${response.statusText}`);
   }
   return response.json() as Promise<Music>;

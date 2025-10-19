@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { ItemAdd } from '../../types/ItemAdd.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getItemsService } from '../../lib/utils/ServiceFactory.js';
 
 export const putItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
@@ -17,7 +17,7 @@ export const putItems = async (
     throw new Error('No data to change.');
   }
 
-  const service = ServiceFactory.getItemsService();
+  const service = getItemsService();
 
   await service
     .putItems(data)

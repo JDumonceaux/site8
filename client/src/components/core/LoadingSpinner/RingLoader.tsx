@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 
 import { parseLengthAndUnit, cssValue } from './helpers/unitConverter';

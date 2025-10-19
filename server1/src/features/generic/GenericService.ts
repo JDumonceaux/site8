@@ -9,7 +9,7 @@ export class GenericService {
   public async getItem(
     parent: string,
     name: string,
-  ): Promise<PageText | undefined> {
+  ): Promise<PageText | PageMenu | undefined> {
     Logger.info(`GenericService: getItem -> ${parent}/${name}`);
     const items = await new PagesService().getItems();
 
@@ -42,6 +42,7 @@ export class GenericService {
 
     if (!match) {
       Logger.warn(`GenericService: getItem -> no parent match`);
+      return undefined;
     }
     // Get file (i.e. contents)
     const file = await this.getFile(match.id);
