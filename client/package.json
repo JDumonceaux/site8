@@ -105,7 +105,7 @@
     "jest": "^30.2.0",
     "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^30.2.0",
-    "knip": "^5.66.0",
+    "knip": "^5.66.1",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
     "rimraf": "^6.0.1",
