@@ -50,7 +50,7 @@
     "eslint-plugin-check-file": "^3.3.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prefer-arrow-functions": "^3.9.1",
-    "eslint-plugin-promise": "^6.6.0",
+    "eslint-plugin-promise": "^7.2.1",
     "globals": "^16.4.0",
     "husky": "^9.1.7",
     "knip": "^5.66.1",
