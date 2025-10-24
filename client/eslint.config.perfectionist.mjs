@@ -12,7 +12,7 @@ export default {
             {
                 order: 'asc',
                 type: 'natural',
-                'newlines-between': 'always',
+                newlinesBetween: 1,
                 groups: [
                     'type',
                     'builtin',
