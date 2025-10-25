@@ -24,5 +24,5 @@ export const requireName = (
     });
   }
 
-  next();
+  return next();
 };

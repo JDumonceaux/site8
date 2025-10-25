@@ -58,7 +58,7 @@ export class BookmarksService {
         normalizedItems,
         uniqueTags,
       );
-      return { metadata: data.metadata, items: remappedBookmarks };
+      return { metadata: data.metadata, items: remappedBookmarks ?? [] };
     } catch (error) {
       Logger.error(`BookmarkService: getAllItemsByTag --> Error: ${error}`);
       return undefined;

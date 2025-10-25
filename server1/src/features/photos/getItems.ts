@@ -4,7 +4,7 @@ import { Photos } from '../../types/Photos.js';
 import { getPhotosService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItems = async (
-  req: Request,
+  _req: Request,
   res: Response<Photos>,
   next: NextFunction,
 ): Promise<void> => {
@@ -16,7 +16,7 @@ export const getItems = async (
 
     if (!items) {
       Logger.warn('Photos: No items found');
-      res.status(404).json({ message: 'No photos found' } as Photos);
+      res.status(404).json({ message: 'No photos found' } as unknown as Photos);
       return;
     }
 

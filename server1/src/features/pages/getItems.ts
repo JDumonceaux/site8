@@ -5,8 +5,8 @@ import { Pages } from '../../types/Pages.js';
 import { getPagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItems = async (
-  req: Request,
-  res: Response<Pages>,
+  _req: Request,
+  res: Response<Pages | { message: string }>,
   next: NextFunction,
 ): Promise<void> => {
   try {
@@ -17,7 +17,7 @@ export const getItems = async (
 
     if (!response) {
       Logger.warn('Pages: No items found');
-      res.status(404).json({ message: 'No pages found' } as Pages);
+      res.status(404).json({ message: 'No pages found' } as unknown as Pages);
       return;
     }
 

@@ -1,13 +1,16 @@
 import { Logger } from '../../../../lib/utils/logger.js';
-import { ServiceFactory } from '../../../../lib/utils/ServiceFactory.js';
+import {
+  getFileService,
+  getPrettierService,
+} from '../../../../lib/utils/ServiceFactory.js';
 import path from 'path';
 import { FieldType } from '../../Features.js';
 
 export const buildServerType = async (data: FieldType, targetPath: string) => {
   Logger.debug(`Build Server Type called`);
 
-  const service = ServiceFactory.getFileService();
-  const prettierService = ServiceFactory.getPrettierService();
+  const service = getFileService();
+  const prettierService = getPrettierService();
   const ret: string[] = [];
 
   // Start

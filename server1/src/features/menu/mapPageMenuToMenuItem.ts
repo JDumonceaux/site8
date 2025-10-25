@@ -1,15 +1,15 @@
 import { Parent } from '../../types/Parent.js';
 import { MenuItem } from '../../types/MenuItem.js';
-import { PageMenu } from '../../types/Page.js';
+import { Page } from '../../types/Page.js';
 
 export const mapPageMenuToMenuItem = (
-  item: PageMenu,
+  item: Page,
   currParent: Parent,
 ): MenuItem => {
   return {
     id: item.id,
     title: item.title,
-    // parentItems: currParent,
+    parentItem: currParent,
     to: item.to,
     url: item.url,
     toComplete: item.toComplete,

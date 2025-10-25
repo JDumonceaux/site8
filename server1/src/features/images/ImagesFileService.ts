@@ -122,17 +122,24 @@ export class ImagesFileService {
         return items;
       }
 
-      // const ret = items?.map((item) => {
-      //   const matched = item.src
-      //     ? data.items?.find((x) => x.src === item.src)
-      //     : false;
-      //   return {
-      //     ...item,
-      //     isMatched: !!matched,
-      //     matchedId: matched ? matched?.id : 0,
-      //   };
-      // });
-      // return ret;
+      if (!items) {
+        return undefined;
+      }
+
+      const ret = items.map((item) => {
+        // Try to match by src if present, otherwise fall back to filename
+        const matched = (item as any).src
+          ? data.items?.find((x) => (x as any).src === (item as any).src)
+          : data.items?.find((x) => x.fileName === item.fileName);
+
+        return {
+          ...item,
+          isMatched: !!matched,
+          matchedId: matched ? (matched.id ?? 0) : 0,
+        } as Image;
+      });
+
+      return ret;
     } catch (error) {
       Logger.error(`ImagesFileService: matchItems -> ${error}`);
       return undefined;
@@ -159,7 +166,7 @@ export class ImagesFileService {
         return true;
       }
 
-      updates.forEach((item) => {
+      for (const item of updates) {
         if (!item.fileName || !item.folder) {
           Logger.error(
             `ImagesFileService: moveItems -> fileName or folder is missing.`,
@@ -193,7 +200,7 @@ export class ImagesFileService {
         } else {
           renameSync(currLocation, moveTo);
         }
-      });
+      }
       return true;
     } catch (error) {
       Logger.error(`ImagesFileService: moveItems ->  ${error}`);

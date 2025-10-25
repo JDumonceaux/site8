@@ -10,7 +10,15 @@ const VALIDATION_MIDDLEWARE = [requireId];
 
 export const pageRouter = express.Router();
 
-pageRouter.get('/:id', VALIDATION_MIDDLEWARE, asyncHandler(getItem));
-pageRouter.delete('/:id', VALIDATION_MIDDLEWARE, asyncHandler(deleteItem));
+pageRouter.get<{ id: string }>(
+  '/:id',
+  VALIDATION_MIDDLEWARE,
+  asyncHandler(getItem),
+);
+pageRouter.delete<{ id: string }>(
+  '/:id',
+  VALIDATION_MIDDLEWARE,
+  asyncHandler(deleteItem),
+);
 pageRouter.put('/', asyncHandler(putItem));
 pageRouter.patch('/', asyncHandler(patchItem));

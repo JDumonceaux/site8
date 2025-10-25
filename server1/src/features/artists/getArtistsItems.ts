@@ -3,7 +3,7 @@ import { Logger } from '../../lib/utils/logger.js';
 import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
 import { ArtistsItems } from '../../types/ArtistsItems.js';
 
-export const getArtistsItems = async (
+const getArtistsItems = async (
   _req: Request,
   res: Response<ArtistsItems>,
   next: NextFunction,
@@ -24,3 +24,5 @@ export const getArtistsItems = async (
     return next(error);
   }
 };
+
+export default getArtistsItems;

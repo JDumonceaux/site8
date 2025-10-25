@@ -10,9 +10,10 @@ export const requireFileName = (
 
   Logger.debug(`Require file name middleware received value=${filename}`);
 
-  if (filename) {
-    next();
-  } else {
-    next(new Error('Filename is required'));
+  if (!filename) {
+    Logger.warn(`Missing file name parameter`);
+    return _res.status(400).json({ message: 'File name is required' });
   }
+
+  return next();
 };

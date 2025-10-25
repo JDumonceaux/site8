@@ -7,7 +7,7 @@ type DuplicatesResponse = {
 };
 
 export const listDuplicates = async (
-  req: Request,
+  _req: Request,
   res: Response<DuplicatesResponse>,
   next: NextFunction,
 ): Promise<void> => {

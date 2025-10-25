@@ -3,7 +3,7 @@ import { ArtistWithItems } from '../../types/ArtistWithItems.js';
 import { Artists } from '../../types/Artists.js';
 import { ArtistsItems } from '../../types/ArtistsItems.js';
 import { ItemsFile } from '../../types/ItemsFile.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import { getFileService } from '../../lib/utils/ServiceFactory.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { z } from 'zod';
 
@@ -67,9 +67,7 @@ export class ValidationError extends Error {
  */
 export class ArtistsService {
   private readonly filePath: string;
-  private readonly fileService: ReturnType<
-    typeof ServiceFactory.getFileService
-  >;
+  private readonly fileService: ReturnType<typeof getFileService>;
   private readonly DEFAULT_METADATA = { title: 'artists' };
 
   // Cache configuration - made mutable for setCacheTTL
@@ -79,7 +77,7 @@ export class ArtistsService {
 
   constructor(fileName: string = 'items.json') {
     this.filePath = FilePath.getDataDir(fileName);
-    this.fileService = ServiceFactory.getFileService();
+    this.fileService = getFileService();
   }
 
   /**

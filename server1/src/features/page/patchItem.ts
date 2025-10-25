@@ -8,14 +8,15 @@ export const patchItem = async (
   req: Request<unknown, unknown, PageEdit, unknown>,
   res: Response<unknown>,
   _next: NextFunction,
-) => {
+): Promise<void> => {
   try {
     const service = new PageService();
     const fileService = new PageFileService();
     const item = req.body as PageEdit;
 
     if (!item) {
-      return res.status(400).json({ error: 'Invalid item' });
+      res.status(400).json({ error: 'Invalid item' });
+      return;
     }
 
     // TODO - validate the item against Zod schema
@@ -26,24 +27,25 @@ export const patchItem = async (
     // Meta data and text are stored in separate files - therefore two updates are needed.
     const promise1 = service.updateItem(item);
     const promise2 = fileService.updateFile(item.id, item.text);
-    const promises = [promise1, promise2];
-    await Promise.allSettled(promises);
-    // Use a for loop so you can break out.  You may not be able to break other loops.
-    // for (const result of results) {
-    //   if (result.status !== 'fulfilled') {
-    //     Logger.error(
-    //       `pageRouter: patch -> Error: ${result.status} - ${result.reason}`,
-    //     );
-    //     res.status(400).json({ error: result.reason });
-    //     res.end();
-    //   }
-    // }
-    // Return the updated item
-    // const ret = await new PageService().getItemCompleteById(item.id);
-    res.status(200).json('Success');
+    const results = await Promise.allSettled([promise1, promise2]);
+
+    // If any update failed, log and return an error response.
+    for (const result of results) {
+      if (result.status === 'rejected') {
+        Logger.error(`pageRouter: patch -> Error: ${result.reason}`);
+        res
+          .status(400)
+          .json({ error: String(result.reason) || 'Update failed' });
+        return;
+      }
+    }
+
+    // Return success (optionally fetch and return the updated item)
+    // const ret = await service.getItemCompleteById(item.id);
+    res.status(200).json({ message: 'Success' });
   } catch (error) {
     Logger.error(`pageRouter: patch -> Error: ${error}`);
-    res.status(500);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 // const { id } = req.params;

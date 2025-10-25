@@ -2,11 +2,14 @@ import { Request, Response, NextFunction } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
-import { ServiceFactory } from '../../lib/utils/ServiceFactory.js';
+import {
+  getPageFileService,
+  getPageService,
+} from '../../lib/utils/ServiceFactory.js';
 
 export const deleteItem = async (
-  req: Request<{ id: string }, unknown, unknown, unknown>,
-  res: Response<boolean>,
+  req: Request<{ id: string }>,
+  res: Response,
   next: NextFunction,
 ) => {
   const { id } = req.params;
@@ -16,21 +19,22 @@ export const deleteItem = async (
   const { id: idNum, isValid } = parseRequestId(id.trim());
   if (!isValid || !idNum) {
     Logger.info(`Page: Delete Item -> invalid param id: ${id}`);
-    //res.status(400).json({ error: Responses.INVALID_ID });
-    return res.end();
+    return res.status(400).json({ error: 'Invalid id' });
   }
 
-  const service = ServiceFactory.getPageService();
-  const fileService = ServiceFactory.getPageFileService();
-  await Promise.all([service.deleteItem(idNum), fileService.deleteFile(idNum)])
-    .then((response) => {
-      if (response) {
-        //res.status(200).json(response);
-      } else {
-        res.json(response);
-      }
-    })
-    .catch((error: Error) => {
-      return next(error);
-    });
+  const service = getPageService();
+  const fileService = getPageFileService();
+
+  try {
+    await Promise.all([
+      service.deleteItem(idNum),
+      fileService.deleteFile(idNum),
+    ]);
+    return res.sendStatus(200);
+  } catch (error) {
+    Logger.info(
+      `Page: Delete Item -> error deleting id ${idNum}: ${(error as Error).message}`,
+    );
+    return next(error);
+  }
 };

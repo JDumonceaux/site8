@@ -3,7 +3,7 @@ import { Logger } from '../../lib/utils/logger.js';
 import { getPagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const fixEntries = async (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
