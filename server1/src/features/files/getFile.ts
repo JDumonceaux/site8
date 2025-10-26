@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { getFileService } from '../../lib/utils/ServiceFactory.js';
 
@@ -11,8 +11,7 @@ const service = getFileService();
 export const getFile = async (
   req: Request<Params>,
   res: Response,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   Logger.debug('Get File called');
   try {
     const { filename } = req.params;
@@ -20,12 +19,12 @@ export const getFile = async (
     const fileData = await service.getFile(filePath);
 
     if (fileData) {
-      return res.status(200).json(fileData);
+      res.status(200).json(fileData);
+    } else {
+      res.sendStatus(204);
     }
-
-    return res.status(204).send();
   } catch (error) {
     Logger.error('Get File failed', { error });
-    return next(error);
+    res.sendStatus(500);
   }
 };

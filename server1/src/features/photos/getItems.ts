@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Photos } from '../../types/Photos.js';
 import { getPhotosService } from '../../lib/utils/ServiceFactory.js';
@@ -6,7 +6,6 @@ import { getPhotosService } from '../../lib/utils/ServiceFactory.js';
 export const getItems = async (
   _req: Request,
   res: Response<Photos>,
-  next: NextFunction,
 ): Promise<void> => {
   try {
     Logger.info('Photos: Fetching items');
@@ -16,7 +15,14 @@ export const getItems = async (
 
     if (!items) {
       Logger.warn('Photos: No items found');
-      res.status(404).json({ message: 'No photos found' } as unknown as Photos);
+      res
+        .status(404)
+        .json({
+          title: 'No photos found',
+          items: [],
+          sets: [],
+          metadata: { title: 'No photos found' },
+        });
       return;
     }
 
@@ -25,6 +31,6 @@ export const getItems = async (
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     Logger.error(`Photos: Error fetching items - ${errorMessage}`, { error });
-    return next(error);
+    res.sendStatus(500);
   }
 };

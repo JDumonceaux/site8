@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { getPagesService } from '../../lib/utils/ServiceFactory.js';
 
@@ -9,7 +9,6 @@ type DuplicatesResponse = {
 export const listDuplicates = async (
   _req: Request,
   res: Response<DuplicatesResponse>,
-  next: NextFunction,
 ): Promise<void> => {
   try {
     Logger.info('Pages: List duplicates called');
@@ -24,6 +23,6 @@ export const listDuplicates = async (
     Logger.error(`Pages: Error listing duplicates - ${errorMessage}`, {
       error,
     });
-    return next(error);
+    res.sendStatus(500);
   }
 };

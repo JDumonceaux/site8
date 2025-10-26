@@ -1,11 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { getPagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const fixEntries = async (
   _req: Request,
   res: Response,
-  next: NextFunction,
 ): Promise<void> => {
   try {
     Logger.info('Pages: Fix Entries called');
@@ -18,6 +17,6 @@ export const fixEntries = async (
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     Logger.error(`Pages: Error fixing entries - ${errorMessage}`, { error });
-    return next(error);
+    res.sendStatus(500);
   }
 };

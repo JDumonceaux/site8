@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { ItemEdit } from '../../types/ItemEdit.js';
@@ -7,8 +7,7 @@ import { getItemsService } from '../../lib/utils/ServiceFactory.js';
 export const patchItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
   res: Response<boolean | string>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   const data = req.body as ItemEdit[];
 
   Logger.info(`Items: Patch Items called: `);
@@ -28,8 +27,8 @@ export const patchItems = async (
         throw new Error(`Edit failed `);
       }
     })
-    .catch((error: Error) => {
-      return next(error);
+    .catch((_error: Error) => {
+      res.sendStatus(500);
     });
 
   // if (returnRepresentation) {

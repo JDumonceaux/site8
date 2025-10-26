@@ -7,7 +7,6 @@ import { PageEdit } from '../../types/Page.js';
 export const patchItem = async (
   req: Request<unknown, unknown, PageEdit, unknown>,
   res: Response<unknown>,
-  _next: NextFunction,
 ): Promise<void> => {
   try {
     const service = new PageService();

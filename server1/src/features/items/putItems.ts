@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { ItemAdd } from '../../types/ItemAdd.js';
@@ -7,8 +7,7 @@ import { getItemsService } from '../../lib/utils/ServiceFactory.js';
 export const putItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
   res: Response<boolean>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   const data = req.body as ItemAdd[];
 
   Logger.info(`Items: Put Items called: `);
@@ -19,16 +18,14 @@ export const putItems = async (
 
   const service = getItemsService();
 
-  await service
-    .putItems(data)
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.json(response);
-      }
-    })
-    .catch((error: Error) => {
-      return next(error);
-    });
+  try {
+    const response = await service.putItems(data);
+    if (response) {
+      res.status(200).json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    res.sendStatus(500);
+  }
 };

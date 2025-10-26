@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { Image } from '../../types/Image.js';
@@ -8,8 +8,7 @@ import { getImageService } from '../../lib/utils/ServiceFactory.js';
 export const deleteItem = async (
   req: Request<{ id: string }>,
   res: Response<Image | Error>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   try {
     const { id } = req.params;
     Logger.info(`Image: Delete Item called: ${id}`);
@@ -24,10 +23,11 @@ export const deleteItem = async (
     const service = getImageService();
     const deletedItem = await service.deleteItem(idNum);
     if (deletedItem) {
-      return res.status(200).json(deletedItem);
+      res.status(200).json(deletedItem);
+    } else {
+      res.status(404).send(new Error(RESPONSES.NOT_FOUND));
     }
-    return res.status(404).send(new Error(RESPONSES.NOT_FOUND));
   } catch (error) {
-    return next(error);
+    res.sendStatus(500);
   }
 };

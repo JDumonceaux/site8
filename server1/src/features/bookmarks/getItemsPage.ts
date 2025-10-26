@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Bookmarks } from '../../types/Bookmarks.js';
 import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
@@ -6,8 +6,7 @@ import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
 export const getItemsPage = async (
   req: Request<{ id: string }>,
   res: Response<Bookmarks>,
-  next: NextFunction,
-): Promise<Response<Bookmarks> | void> => {
+): Promise<void> => {
   try {
     const { id } = req.params;
     Logger.info('Bookmarks: Get ItemsPage called');
@@ -16,12 +15,12 @@ export const getItemsPage = async (
     const bookmarks = await service.getBookmarksForPage(id);
 
     if (!bookmarks) {
-      return res.status(204).send();
+      res.sendStatus(204);
+      return;
     }
-
-    return res.status(200).json(bookmarks);
+    res.status(200).json(bookmarks);
   } catch (error) {
     Logger.error('Bookmarks: Get ItemsPage failed', { error });
-    return next(error);
+    res.sendStatus(500);
   }
 };

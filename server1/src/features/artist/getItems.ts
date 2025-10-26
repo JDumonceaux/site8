@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Artists } from '../../types/Artists.js';
 import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
@@ -6,7 +6,8 @@ import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
 export const getItems = async (
   _req: Request,
   res: Response<Artists>,
-): Promise<void> => {
+  next: NextFunction,
+) => {
   try {
     Logger.info('Artists: Get Artists called');
 
@@ -14,12 +15,12 @@ export const getItems = async (
     const artists = await service.getArtists();
 
     if (!artists) {
-      res.sendStatus(204);
-      return;
+      return res.status(204).send();
     }
-    res.status(200).json(artists);
+
+    return res.status(200).json(artists);
   } catch (error) {
     Logger.error('Artists: Get Artists failed', { error });
-    res.sendStatus(500);
+    return next(error);
   }
 };

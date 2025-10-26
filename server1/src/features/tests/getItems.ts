@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Tests } from '../../types/Tests.js';
 import { getTestsService } from '../../lib/utils/ServiceFactory.js';
@@ -6,7 +6,6 @@ import { getTestsService } from '../../lib/utils/ServiceFactory.js';
 export const getItems = async (
   req: Request,
   res: Response<Tests>,
-  next: NextFunction,
 ): Promise<void> => {
   try {
     Logger.info('Tests: Fetching items', { query: req.query });
@@ -16,7 +15,9 @@ export const getItems = async (
 
     if (!items) {
       Logger.warn('Tests: No items found');
-      res.status(404).json({ message: 'No test items found' } as Tests);
+      res
+        .status(404)
+        .json({ items: [], metadata: { title: 'No test items found' } });
       return;
     }
 
@@ -27,6 +28,6 @@ export const getItems = async (
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     Logger.error(`Tests: Error fetching items - ${errorMessage}`, { error });
-    return next(error);
+    res.sendStatus(500);
   }
 };

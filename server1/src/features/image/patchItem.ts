@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image, ImageSchema } from '../../types/Image.js';
 import { PREFER_HEADER } from '../../lib/utils/constants.js';
@@ -16,8 +16,7 @@ const ImagePatchSchema = ImageSchema.partial().extend({
 export const patchItem = async (
   req: Request,
   res: Response<Image | { error: string }>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   try {
     const { id } = req.params;
     const prefer = req.get('Prefer');
@@ -25,7 +24,8 @@ export const patchItem = async (
 
     // Validate ID parameter
     if (!id) {
-      return res.status(400).json({ error: 'ID parameter is required' });
+      res.status(400).json({ error: 'ID parameter is required' });
+      return;
     }
 
     // Add ID to request body for validation
@@ -38,9 +38,8 @@ export const patchItem = async (
       // const errorMessage = validationResult.error.errors
       //   .map((err) => `${err.path.join('.')}: ${err.message}`)
       //   .join(', ');
-      return res
-        .status(400)
-        .json({ error: `Validation error: ${errorMessage}` });
+      res.status(400).json({ error: `Validation error: ${errorMessage}` });
+      return;
     }
 
     // Convert id and itemId to numbers, ensure fileName is present and types match Image
@@ -53,9 +52,8 @@ export const patchItem = async (
     const idNum = Number(idStr);
     const itemIdNum = Number(itemIdStr);
     if (isNaN(idNum) || isNaN(itemIdNum)) {
-      return res
-        .status(400)
-        .json({ error: 'ID and itemId must be valid numbers' });
+      res.status(400).json({ error: 'ID and itemId must be valid numbers' });
+      return;
     }
     const data = {
       ...rest,
@@ -66,9 +64,10 @@ export const patchItem = async (
 
     // Ensure ID consistency between URL and body
     if (req.body.id && req.body.id !== id) {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'ID in request body must match ID in URL',
       });
+      return;
     }
 
     Logger.info(`Image: Patch Item called for ID: ${id}`);
@@ -83,19 +82,23 @@ export const patchItem = async (
         // Always fetch the updated item by id
         const result = await service.getItem(updatedId);
         if (!result) {
-          return res.status(404).json({ error: 'Item not found after update' });
+          res.status(404).json({ error: 'Item not found after update' });
+        } else {
+          res.status(200).json(result);
         }
-        return res.status(200).json(result);
       }
-      return res.status(204).send();
+      res.sendStatus(204);
+      return;
     } catch (serviceError) {
       // Handle specific service errors
       if (serviceError instanceof Error) {
         if (serviceError.message.includes('not found')) {
-          return res.status(404).json({ error: 'Item not found' });
+          res.status(404).json({ error: 'Item not found' });
+          return;
         }
         if (serviceError.message.includes('validation')) {
-          return res.status(400).json({ error: serviceError.message });
+          res.status(400).json({ error: serviceError.message });
+          return;
         }
       }
 
@@ -104,6 +107,6 @@ export const patchItem = async (
     }
   } catch (error) {
     Logger.error('Error in patchItem:', error);
-    return next(error);
+    res.sendStatus(500);
   }
 };

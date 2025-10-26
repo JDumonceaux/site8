@@ -1,14 +1,13 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { Images } from '../../types/Images.js';
 import { getImagesService } from '../../lib/utils/ServiceFactory.js';
 
 export const patchItems = async (
-  req: Request<{ id: string }, unknown, unknown, unknown>,
+  req: Request,
   res: Response<Images>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   //const Prefer = req.get('Prefer');
   //const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
   const data = req.body as Images;
@@ -16,21 +15,17 @@ export const patchItems = async (
   Logger.info(`Images: Patch Images called: `);
 
   if (!data) {
-    res.status(500);
-  } else {
+    res.sendStatus(400);
+    return;
+  }
+  try {
     const service = getImagesService();
-    await service
-      .updateItems(data.items)
-      .then((_response) => {
-        // if (response) {
-        //   res.status(200).json(response);
-        // } else {
-        //   res.json(response);
-        // }
-      })
-      .catch((error: Error) => {
-        return next(error);
-      });
+    await service.updateItems(data.items);
+    res.sendStatus(200);
+  } catch (error) {
+    // Optionally log error or handle with error middleware
+    // Logger.error(error);
+    res.sendStatus(500);
   }
 
   // if (returnRepresentation) {

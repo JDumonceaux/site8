@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 
 import { GenericService } from './GenericService.js';
 import { Logger } from '../../lib/utils/logger.js';
@@ -8,8 +8,7 @@ import { RESPONSES } from '@/lib/utils/constants.js';
 export const getItemByName = async (
   req: Request<{ parent: string; name: string }, unknown, unknown, unknown>,
   res: Response<PageText | any>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   const { name, parent } = req.params;
   Logger.info(`Generic: getItemByName called: ${parent}/${name}`);
 
@@ -26,10 +25,10 @@ export const getItemByName = async (
     if (response) {
       res.status(200).json(response);
     } else {
-      res.status(204).send();
+      res.sendStatus(204);
     }
   } catch (error) {
     Logger.error(`Generic: getItemByName -> error: ${String(error)}`);
-    return next(error);
+    res.sendStatus(500);
   }
 };

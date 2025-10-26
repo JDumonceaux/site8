@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { Image, ImageAdd, ImageSchemaAdd } from '../../types/Image.js';
 import { PREFER_HEADER } from '../../lib/utils/constants.js';
@@ -7,8 +7,7 @@ import { getImageService } from '../../lib/utils/ServiceFactory.js';
 export const postItem = async (
   req: Request,
   res: Response<Image | { error: string }>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   try {
     const prefer = req.get('Prefer');
     const returnRepresentation = prefer === PREFER_HEADER.REPRESENTATION;
@@ -20,9 +19,8 @@ export const postItem = async (
       //   const errorMessage = validationResult.error
       //     .map((err) => `${err.path.join('.')}: ${err.message}`)
       //     .join(', ');
-      return res
-        .status(400)
-        .json({ error: `Validation error: ${errorMessage}` });
+      res.status(400).json({ error: `Validation error: ${errorMessage}` });
+      return;
     }
 
     const data = validationResult.data as ImageAdd;
@@ -39,29 +37,31 @@ export const postItem = async (
         const newItem = await service.getItem(newId);
 
         if (!newItem) {
-          return res.status(500).json({
-            error: 'Failed to retrieve created item',
-          });
+          res.status(500).json({ error: 'Failed to retrieve created item' });
+        } else {
+          res.setHeader('Location', `/image/${newId}`);
+          res.status(201).json(newItem);
         }
-
-        res.setHeader('Location', `/image/${newId}`);
-        return res.status(201).json(newItem);
+        return;
       }
 
       // No representation requested
       res.setHeader('Location', `/image/${newId}`);
-      return res.status(201).send();
+      res.status(201).send();
+      return;
     } catch (serviceError) {
       // Handle specific service errors
       if (serviceError instanceof Error) {
         if (serviceError.message.includes('validation')) {
-          return res.status(400).json({ error: serviceError.message });
+          res.status(400).json({ error: serviceError.message });
+          return;
         }
         if (
           serviceError.message.includes('duplicate') ||
           serviceError.message.includes('already exists')
         ) {
-          return res.status(409).json({ error: serviceError.message });
+          res.status(409).json({ error: serviceError.message });
+          return;
         }
       }
 
@@ -71,8 +71,9 @@ export const postItem = async (
   } catch (error) {
     Logger.error('Error in postItem:', error);
     if (error instanceof Error) {
-      return res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: 'Internal server error' });
+    } else {
+      res.sendStatus(500);
     }
-    return next(error);
   }
 };

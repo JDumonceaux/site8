@@ -8,8 +8,7 @@ import { PageText } from '../../types/PageText.js';
 export const getItem = async (
   req: Request<{ id: string }, unknown, unknown, unknown>,
   res: Response<PageText>,
-  next: NextFunction,
-) => {
+): Promise<void> => {
   const { id } = req.params;
 
   Logger.info(`Page: Get Item called: ${id}`);
