@@ -19,7 +19,6 @@
     "prepare": "husky",
     "prepare-commit-msg": "node tools/git-commit-message.js .git/COMMIT_EDITMSG",
     "knip": "knip",
-    "knip:prod": "knip --production",
     "start:prod": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {

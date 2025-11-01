@@ -15,10 +15,5 @@
     "nsExports": "error",
     "nsTypes": "error",
     "duplicates": "error"
-  },
-  "typescript": {
-    "config": {
-      "skipLibCheck": true
-    }
   }
 }

@@ -20,7 +20,8 @@
     "pre-commit": "pretty-quick --staged",
     "prepare-commit-msg": "sh tools/git-commit-message.sh .git/COMMIT_EDITMSG",
     "upgrade": "pnpm up --latest --interactive",
-    "clean": "rimraf dist coverage"
+    "clean": "rimraf dist coverage",
+    "knip": "knip --debug"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^6.13.1",
@@ -50,10 +51,10 @@
     "react-colorful": "^5.6.1",
     "react-dom": "^19.2.0",
     "react-error-boundary": "^6.0.0",
-    "react-i18next": "^16.2.1",
+    "react-i18next": "^16.2.3",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.9.4",
+    "react-router-dom": "^7.9.5",
     "react-scan": "^0.4.3",
     "react-window": "^2.2.2",
     "styled-components": "^6.1.19",
@@ -99,16 +100,16 @@
     "eslint-plugin-react-redux": "^4.2.2",
     "eslint-plugin-react-you-might-not-need-an-effect": "^0.6.1",
     "eslint-plugin-storybook": "^9.1.13",
-    "eslint-plugin-unicorn": "^61.0.2",
+    "eslint-plugin-unicorn": "^62.0.0",
     "globals": "^16.4.0",
     "husky": "^9.1.7",
     "jest": "^30.2.0",
     "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^30.2.0",
-    "knip": "^5.66.3",
+    "knip": "^5.66.4",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-visualizer": "^6.0.5",
     "ts-jest": "^29.4.5",
@@ -116,7 +117,7 @@
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.4"
+    "vitest": "^4.0.6"
   },
   "overrides": {
     "react-scan": {
