@@ -1,9 +1,9 @@
 import { Parent } from '../../types/Parent.js';
 import { MenuItem } from '../../types/MenuItem.js';
-import { Page } from '../../types/Page.js';
+import { PageMenu } from '../../types/PageMenu.js';
 
 export const mapPageMenuToMenuItem = (
-  item: Page,
+  item: PageMenu,
   currParent: Parent,
 ): MenuItem => {
   return {

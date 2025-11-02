@@ -5,8 +5,8 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(3000),
   USE_AUTH: z
     .string()
-    .transform((value) => value === 'true')
-    .default('false'),
+    .default('false')
+    .transform((value) => value === 'true'),
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
     .default('development'),
@@ -15,8 +15,8 @@ const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 
 export const env = envSchema.parse({
-  BASE_URL: process.env.BASE_URL,
-  PORT: process.env.PORT,
-  USE_AUTH: process.env.USE_AUTH,
-  NODE_ENV: process.env.NODE_ENV,
+  BASE_URL: process.env['BASE_URL'],
+  PORT: process.env['PORT'],
+  USE_AUTH: process.env['USE_AUTH'],
+  NODE_ENV: process.env['NODE_ENV'],
 });

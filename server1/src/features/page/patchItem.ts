@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { PageService } from './PageService.js';
 import { PageFileService } from './PageFileService.js';
 import { Logger } from '../../lib/utils/logger.js';

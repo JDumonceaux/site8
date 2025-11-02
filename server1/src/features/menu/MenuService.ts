@@ -6,7 +6,7 @@ import { safeParse } from '../../lib/utils/zodHelper.js';
 import { MenuAdd } from '../../types/MenuAdd.js';
 import { MenuItem } from '../../types/MenuItem.js';
 import { Menus } from '../../types/Menus.js';
-import { PageMenu } from '../../types/Page.js';
+import { PageMenu } from '../../types/PageMenu.js';
 import { Pages } from '../../types/Pages.js';
 import { PagesIndex } from '../../types/PagesIndex.js';
 import { Parent } from '../../types/Parent.js';
@@ -178,7 +178,7 @@ export class MenuService {
       const ret = this.buildMenu(data?.items);
       return {
         metadata: data.metadata,
-        items: ret,
+        items: ret || [],
       };
     } catch (error) {
       Logger.error(`MenuService: getMenu --> Error: ${error}`);

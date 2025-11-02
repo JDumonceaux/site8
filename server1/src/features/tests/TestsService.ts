@@ -4,8 +4,13 @@ import { Logger } from '../../lib/utils/logger.js';
 import { Test } from '../../types/Test.js';
 import { Tests } from '../../types/Tests.js';
 
+type ExpandedTest = Test & {
+  readonly parentId: number;
+  readonly parentSeq: number;
+};
+
 export class TestsService {
-  private sortItems(items: readonly Test[]): readonly Test[] {
+  private sortItems(items: readonly ExpandedTest[]): readonly ExpandedTest[] {
     if (!items?.length) {
       return [];
     }
@@ -24,7 +29,7 @@ export class TestsService {
       const data = await readFile(filePath, { encoding: 'utf8' });
       const rawData = JSON.parse(data) as Tests;
 
-      const expanded: Test[] =
+      const expanded: ExpandedTest[] =
         rawData.items?.flatMap((item) => {
           if (item.parentItems) {
             return item.parentItems.map((parent) => ({
@@ -38,7 +43,7 @@ export class TestsService {
 
       const items = this.sortItems(expanded);
 
-      return { ...rawData, items };
+      return { ...rawData, items: [...items] };
     } catch (error) {
       Logger.error(`TestsService: getItems --> Error: ${error}`);
       return undefined;

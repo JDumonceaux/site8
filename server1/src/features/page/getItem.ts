@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response } from 'express';
 
 import { PageService } from './PageService.js';
 import { Logger } from '../../lib/utils/logger.js';
@@ -6,12 +6,17 @@ import { parseRequestId } from '../../lib/utils/helperUtils.js';
 import { PageText } from '../../types/PageText.js';
 
 export const getItem = async (
-  req: Request<{ id: string }, unknown, unknown, unknown>,
+  req: Request,
   res: Response<PageText>,
 ): Promise<void> => {
   const { id } = req.params;
 
   Logger.info(`Page: Get Item called: ${id}`);
+
+  if (!id) {
+    res.status(400).json({ message: 'Invalid ID' } as unknown as PageText);
+    return;
+  }
 
   const { id: idNum, isValid } = parseRequestId(id.trim());
   if (!isValid || !idNum) {
@@ -22,16 +27,14 @@ export const getItem = async (
 
   const service = new PageService();
 
-  await service
-    .getItemCompleteById(idNum)
-    .then((response) => {
-      if (response) {
-        res.status(200).json(response);
-      } else {
-        res.status(204).send();
-      }
-    })
-    .catch((error: Error) => {
-      return next(error);
-    });
+  try {
+    const response = await service.getItemCompleteById(idNum);
+    if (response) {
+      res.status(200).json(response);
+    } else {
+      res.status(204).send();
+    }
+  } catch (error) {
+    res.sendStatus(500);
+  }
 };

@@ -8,12 +8,17 @@ import {
 } from '../../lib/utils/ServiceFactory.js';
 
 export const deleteItem = async (
-  req: Request<{ id: string }>,
+  req: Request,
   res: Response,
 ): Promise<void> => {
   const { id } = req.params;
 
   Logger.info(`Page: Delete Item called: ${id}`);
+
+  if (!id) {
+    res.status(400).json({ message: 'Invalid ID' } as unknown);
+    return;
+  }
 
   const { id: idNum, isValid } = parseRequestId(id.trim());
   if (!isValid || typeof idNum !== 'number') {

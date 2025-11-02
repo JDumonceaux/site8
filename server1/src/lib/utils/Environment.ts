@@ -1,10 +1,10 @@
 type NodeEnv = 'local' | 'development' | 'staging' | 'production' | 'test';
 
 export class Environment {
-  private static readonly NODE_ENV: NodeEnv = (process.env.NODE_ENV ??
+  private static readonly NODE_ENV: NodeEnv = (process.env['NODE_ENV'] ??
     'production') as NodeEnv;
   private static readonly APPLICATION_NAME: string =
-    process.env.APPLICATION_NAME ?? '';
+    process.env['APPLICATION_NAME'] ?? '';
 
   static getNodeEnv(): NodeEnv {
     return this.NODE_ENV;

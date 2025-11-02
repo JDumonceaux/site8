@@ -69,9 +69,9 @@ export const cleanUpData = <T extends Record<string, unknown>>(data: T): T => {
   const sorted = sortObjectKeys(cleaned);
   const trimmed = trimAttributes(sorted);
 
-  if ('id' in trimmed && typeof trimmed.id === 'number') {
+  if ('id' in trimmed && typeof trimmed['id'] === 'number') {
     const { id, ...rest } = trimmed;
-    return { id, ...rest } as T;
+    return { id, ...rest } as unknown as T;
   }
 
   return trimmed;
@@ -85,7 +85,11 @@ export const getNextId = <T extends IdType>(
   }
 
   const sorted = [...items].sort((a, b) => a.id - b.id);
-  let nextId = sorted[0].id;
+  let nextId = sorted[0]?.id;
+
+  if (nextId === undefined) {
+    return undefined;
+  }
 
   for (let i = 0; i < sorted.length; i++) {
     if (!sorted.find((x) => x.id === nextId)) {
@@ -106,7 +110,11 @@ export const getNextIdFromPos = <T extends IdType>(
   }
 
   const sorted = [...items].sort((a, b) => a.id - b.id);
-  let nextId = sorted.length > start ? sorted[start].id : 1;
+  let nextId = sorted.length > start ? sorted[start]?.id : 1;
+
+  if (nextId === undefined) {
+    nextId = 1;
+  }
 
   for (let i = start; i < sorted.length; i++) {
     if (!sorted.find((x) => x.id === nextId)) {

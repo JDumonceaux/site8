@@ -6,12 +6,18 @@ import { RESPONSES } from '../../lib/utils/constants.js';
 import { getImageService } from '../../lib/utils/ServiceFactory.js';
 
 export const deleteItem = async (
-  req: Request<{ id: string }>,
+  req: Request,
   res: Response<Image | Error>,
 ): Promise<void> => {
   try {
     const { id } = req.params;
     Logger.info(`Image: Delete Item called: ${id}`);
+
+    if (!id) {
+      Logger.info(`Image: Delete invalid param -> id: ${id}`);
+      res.status(400).send(new Error(RESPONSES.INVALID_ID));
+      return;
+    }
 
     const { id: idNum, isValid } = parseRequestId(id.trim());
     if (!isValid || !idNum) {

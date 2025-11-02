@@ -3,7 +3,8 @@ import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData } from '../../lib/utils/objectUtil.js';
 import { safeParse } from '../../lib/utils/zodHelper.js';
-import { PageEdit, PageMenu } from '../../types/Page.js';
+import { PageEdit } from '../../types/Page.js';
+import { PageMenu } from '../../types/PageMenu.js';
 import { Pages } from '../../types/Pages.js';
 import { PageText } from '../../types/PageText.js';
 import { PageFileService } from './PageFileService.js';
@@ -107,7 +108,27 @@ export class PageService {
         throw new Error('Invalid item');
       }
 
-      const valid = safeParse<AddData>(PAGE_ADD_SCHEMA, item);
+      // Transform the item to match the validation schema
+      const parentItems = updatedItem.parentItems?.map(({ id, seq }) => ({
+        id,
+        seq,
+      }));
+
+      if (!parentItems || parentItems.length === 0) {
+        throw new Error(
+          'parentItems is required and must have at least one item',
+        );
+      }
+
+      const validationData = {
+        id: updatedItem.id,
+        name: updatedItem.title,
+        to: updatedItem.to,
+        url: updatedItem.url,
+        parentItems,
+      };
+
+      const valid = safeParse<AddData>(PAGE_ADD_SCHEMA, validationData);
 
       if (valid.error) {
         throw new Error(`Validation failed: ${valid.error}`);

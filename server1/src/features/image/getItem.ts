@@ -4,12 +4,17 @@ import { Image } from '../../types/Image.js';
 import { getImageService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItem = async (
-  req: Request<{ id: string }>,
+  req: Request,
   res: Response<Image>,
 ): Promise<void> => {
   try {
     const { id } = req.params;
     Logger.info(`Image: Get Item called: ${id}`);
+
+    if (!id) {
+      res.status(400).json({ message: 'Invalid ID' } as unknown as Image);
+      return;
+    }
 
     const tempId = Number.parseInt(id, 10);
     if (isNaN(tempId)) {

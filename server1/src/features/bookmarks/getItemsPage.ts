@@ -4,12 +4,17 @@ import { Bookmarks } from '../../types/Bookmarks.js';
 import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItemsPage = async (
-  req: Request<{ id: string }>,
+  req: Request,
   res: Response<Bookmarks>,
 ): Promise<void> => {
   try {
     const { id } = req.params;
     Logger.info('Bookmarks: Get ItemsPage called');
+
+    if (!id) {
+      res.status(400).json({ error: 'Invalid ID' } as unknown as Bookmarks);
+      return;
+    }
 
     const service = getBookmarksService();
     const bookmarks = await service.getBookmarksForPage(id);

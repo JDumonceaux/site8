@@ -29,8 +29,4 @@ export type PageEdit = {
   readonly text?: string;
 } & Page;
 
-export type PageMenu = {
-  readonly type: 'page' | 'root' | 'menu';
-} & Omit<Page, 'type'>;
-
 export const PageSchemaAdd = PageSchema.omit({ id: true });
