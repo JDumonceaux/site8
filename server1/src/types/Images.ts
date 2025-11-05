@@ -1,5 +1,5 @@
-import { Image, ImageEdit } from './Image.js';
-import { Metadata } from './Metadata.js';
+import type { Image, ImageEdit } from './Image.js';
+import type { Metadata } from './Metadata.js';
 
 export type Images = {
   readonly metadata: Metadata;

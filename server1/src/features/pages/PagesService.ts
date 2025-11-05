@@ -1,13 +1,15 @@
 import { readFile, writeFile } from 'fs/promises';
-import FilePath from '../files/FilePath.js';
+
 import { isValidArray } from '../../lib/utils/helperUtils.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
-import { MenuEdit } from '../../types/MenuEdit.js';
-import { PageMenu } from '../../types/PageMenu.js';
-import { Pages } from '../../types/Pages.js';
-import { PagesIndex } from '../../types/PagesIndex.js';
-import { ParentSortby } from '../../types/ParentSortby.js';
+import FilePath from '../files/FilePath.js';
+
+import type { MenuEdit } from '../../types/MenuEdit.js';
+import type { PageMenu } from '../../types/PageMenu.js';
+import type { Pages } from '../../types/Pages.js';
+import type { PagesIndex } from '../../types/PagesIndex.js';
+import type { ParentSortby } from '../../types/ParentSortby.js';
 
 export class PagesService {
   private readonly FILE_NAME = 'pagesIndex.json';
@@ -143,7 +145,7 @@ export class PagesService {
     }
   }
 
-  public async updateItems(items: ReadonlyArray<MenuEdit>): Promise<void> {
+  public async updateItems(items: readonly MenuEdit[]): Promise<void> {
     Logger.info('PagesService: updateItems');
 
     try {

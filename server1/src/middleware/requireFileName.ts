@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../lib/utils/logger.js';
+
+import type { NextFunction, Request, Response } from 'express';
 
 export const requireFileName = (
   req: Request,
@@ -15,5 +16,5 @@ export const requireFileName = (
     return _res.status(400).json({ message: 'File name is required' });
   }
 
-  return next();
+  next();
 };

@@ -1,8 +1,9 @@
-import { Request, Response } from 'express';
-import { PageService } from './PageService.js';
 import { PageFileService } from './PageFileService.js';
+import { PageService } from './PageService.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { PageEdit } from '../../types/Page.js';
+
+import type { PageEdit } from '../../types/Page.js';
+import type { Request, Response } from 'express';
 
 export const patchItem = async (
   req: Request<unknown, unknown, PageEdit, unknown>,
@@ -11,7 +12,7 @@ export const patchItem = async (
   try {
     const service = new PageService();
     const fileService = new PageFileService();
-    const item = req.body as PageEdit;
+    const item = req.body;
 
     if (!item) {
       res.status(400).json({ error: 'Invalid item' });

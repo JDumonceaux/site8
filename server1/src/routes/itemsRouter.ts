@@ -1,9 +1,10 @@
 import express from 'express';
-import { asyncHandler } from '../lib/utils/routerUtils.js';
+
 import { getItems } from '../features/items/getItems.js';
+import { getItemsArtists } from '../features/items/getItemsArtists.js';
 import { patchItems } from '../features/items/patchItems.js';
 import { putItems } from '../features/items/putItems.js';
-import { getItemsArtists } from '../features/items/getItemsArtists.js';
+import { asyncHandler } from '../lib/utils/routerUtils.js';
 
 export const itemsRouter = express.Router();
 

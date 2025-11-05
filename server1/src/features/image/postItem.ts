@@ -1,8 +1,13 @@
-import type { Request, Response } from 'express';
-import { Logger } from '../../lib/utils/logger.js';
-import { Image, ImageAdd, ImageSchemaAdd } from '../../types/Image.js';
 import { PREFER_HEADER } from '../../lib/utils/constants.js';
+import { Logger } from '../../lib/utils/logger.js';
 import { getImageService } from '../../lib/utils/ServiceFactory.js';
+import {
+  type Image,
+  type ImageAdd,
+  ImageSchemaAdd,
+} from '../../types/Image.js';
+
+import type { Request, Response } from 'express';
 
 export const postItem = async (
   req: Request,

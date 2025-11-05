@@ -1,5 +1,5 @@
-import { Metadata } from './Metadata.js';
-import { PageMenu } from './PageMenu.js';
+import type { Metadata } from './Metadata.js';
+import type { PageMenu } from './PageMenu.js';
 
 export type PagesIndex = {
   readonly metadata: Metadata;

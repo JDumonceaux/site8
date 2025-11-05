@@ -1,7 +1,8 @@
-import type { Request, Response } from 'express';
-import { MenuEdit } from '../../types/MenuEdit.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { getPagesService } from '../../lib/utils/ServiceFactory.js';
+
+import type { MenuEdit } from '../../types/MenuEdit.js';
+import type { Request, Response } from 'express';
 
 export const patchItem = async (
   req: Request<unknown, unknown, unknown, unknown>,

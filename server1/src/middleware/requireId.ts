@@ -1,5 +1,6 @@
-import { RequestHandler } from 'express';
 import { Logger } from '../lib/utils/logger.js';
+
+import type { RequestHandler } from 'express';
 
 export const requireId: RequestHandler = (req, res, next) => {
   const { id } = req.params;
@@ -11,5 +12,5 @@ export const requireId: RequestHandler = (req, res, next) => {
     return res.status(400).json({ message: 'Id is required' });
   }
 
-  return next();
+  next();
 };

@@ -1,7 +1,8 @@
-import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-import { Photos } from '../../types/Photos.js';
 import { getPhotosService } from '../../lib/utils/ServiceFactory.js';
+
+import type { Photos } from '../../types/Photos.js';
+import type { Request, Response } from 'express';
 
 export const getItems = async (
   _req: Request,
@@ -15,14 +16,12 @@ export const getItems = async (
 
     if (!items) {
       Logger.warn('Photos: No items found');
-      res
-        .status(404)
-        .json({
-          title: 'No photos found',
-          items: [],
-          sets: [],
-          metadata: { title: 'No photos found' },
-        });
+      res.status(404).json({
+        title: 'No photos found',
+        items: [],
+        sets: [],
+        metadata: { title: 'No photos found' },
+      });
       return;
     }
 

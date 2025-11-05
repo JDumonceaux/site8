@@ -1,8 +1,9 @@
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData } from '../../lib/utils/objectUtil.js';
-import { Image, ImageAdd } from '../../types/Image.js';
-import { Images } from '../../types/Images.js';
 import { ImagesService } from '../images/ImagesService.js';
+
+import type { Image, ImageAdd } from '../../types/Image.js';
+import type { Images } from '../../types/Images.js';
 
 export class ImageService {
   private getImagesService(): ImagesService {

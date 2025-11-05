@@ -1,6 +1,6 @@
-import { Parent } from '../../types/Parent.js';
-import { MenuItem } from '../../types/MenuItem.js';
-import { PageMenu } from '../../types/PageMenu.js';
+import type { MenuItem } from '../../types/MenuItem.js';
+import type { PageMenu } from '../../types/PageMenu.js';
+import type { Parent } from '../../types/Parent.js';
 
 export const mapPageMenuToMenuItem = (
   item: PageMenu,

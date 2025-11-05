@@ -3,6 +3,7 @@
  * @module Logger
  */
 import winston from 'winston';
+
 import { Environment } from './Environment.js';
 
 type FileTransportOptions = {

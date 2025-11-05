@@ -1,11 +1,11 @@
-import type { Request, Response } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
-import { MenuAdd } from '../../types/MenuAdd.js';
 import {
   getPagesService,
   getMenuService,
 } from '../../lib/utils/ServiceFactory.js';
+
+import type { MenuAdd } from '../../types/MenuAdd.js';
+import type { Request, Response } from 'express';
 
 export const putItem = async (
   req: Request<unknown, unknown, unknown, unknown>,

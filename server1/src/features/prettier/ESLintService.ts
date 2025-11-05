@@ -1,5 +1,6 @@
-import { Logger } from '../../lib/utils/logger.js';
 import * as ESLint from 'eslint';
+
+import { Logger } from '../../lib/utils/logger.js';
 
 export class ESLintService {
   public async lintAndFixFiles(

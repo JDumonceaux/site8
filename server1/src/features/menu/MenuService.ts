@@ -1,16 +1,18 @@
 import { z } from 'zod';
+
 import { mapPageMenuToMenuItem } from './mapPageMenuToMenuItem.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData } from '../../lib/utils/objectUtil.js';
 import { safeParse } from '../../lib/utils/zodHelper.js';
-import { MenuAdd } from '../../types/MenuAdd.js';
-import { MenuItem } from '../../types/MenuItem.js';
-import { Menus } from '../../types/Menus.js';
-import { PageMenu } from '../../types/PageMenu.js';
-import { Pages } from '../../types/Pages.js';
-import { PagesIndex } from '../../types/PagesIndex.js';
-import { Parent } from '../../types/Parent.js';
 import { PagesService } from '../pages/PagesService.js';
+
+import type { MenuAdd } from '../../types/MenuAdd.js';
+import type { MenuItem } from '../../types/MenuItem.js';
+import type { Menus } from '../../types/Menus.js';
+import type { PageMenu } from '../../types/PageMenu.js';
+import type { Pages } from '../../types/Pages.js';
+import type { PagesIndex } from '../../types/PagesIndex.js';
+import type { Parent } from '../../types/Parent.js';
 
 const menuAddSchema = z
   .object({
@@ -43,10 +45,7 @@ export class MenuService {
   }
 
   //  2. Add children to the menu
-  private getPages(
-    items?: ReadonlyArray<MenuItem>,
-    pages?: ReadonlyArray<PageMenu>,
-  ) {
+  private getPages(items?: readonly MenuItem[], pages?: readonly PageMenu[]) {
     try {
       if (!items || items.length === 0 || !pages || pages.length === 0) {
         return items;
@@ -83,7 +82,7 @@ export class MenuService {
   }
 
   // 1. Get built menu
-  private buildMenu(items?: ReadonlyArray<PageMenu>): MenuItem[] | undefined {
+  private buildMenu(items?: readonly PageMenu[]): MenuItem[] | undefined {
     try {
       if (!items) {
         return undefined;

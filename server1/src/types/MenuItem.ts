@@ -1,4 +1,4 @@
-import { Parent } from './Parent.js';
+import type { Parent } from './Parent.js';
 
 export type MenuItem = {
   readonly id: number;

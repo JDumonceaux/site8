@@ -78,7 +78,7 @@ export const cleanUpData = <T extends Record<string, unknown>>(data: T): T => {
 };
 
 export const getNextId = <T extends IdType>(
-  items: ReadonlyArray<T> | undefined,
+  items: readonly T[] | undefined,
 ): number | undefined => {
   if (!items?.length) {
     return undefined;
@@ -102,7 +102,7 @@ export const getNextId = <T extends IdType>(
 };
 
 export const getNextIdFromPos = <T extends IdType>(
-  items: ReadonlyArray<T> | undefined,
+  items: readonly T[] | undefined,
   start: number,
 ): { readonly value: number; readonly index: number } | undefined => {
   if (!items?.length) {

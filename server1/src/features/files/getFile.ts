@@ -1,6 +1,7 @@
-import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { getFileService } from '../../lib/utils/ServiceFactory.js';
+
+import type { Request, Response } from 'express';
 
 const service = getFileService();
 

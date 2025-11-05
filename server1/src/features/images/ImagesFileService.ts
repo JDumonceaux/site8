@@ -1,14 +1,16 @@
 import { mkdirSync, existsSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
+
+import { ImagesService } from './ImagesService.js';
 import { FOLDERS_TO_IGNORE } from '../../lib/utils/constants.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { Image, ImageEdit } from '../../types/Image.js';
-import { Images } from '../../types/Images.js';
-import { ImagesService } from './ImagesService.js';
 import FilePath from '../files/FilePath.js';
 
+import type { Image, ImageEdit } from '../../types/Image.js';
+import type { Images } from '../../types/Images.js';
+
 export class ImagesFileService {
-  private imageDir = '';
+  private readonly imageDir: string = '';
 
   constructor() {
     this.imageDir = FilePath.getImageDirAbsolute();
@@ -152,7 +154,7 @@ export class ImagesFileService {
    * @returns A Promise that resolves to a boolean indicating whether the move operation was successful.
    */
   public async moveItems(
-    items: ReadonlyArray<ImageEdit> | undefined,
+    items: readonly ImageEdit[] | undefined,
   ): Promise<boolean> {
     try {
       Logger.info(

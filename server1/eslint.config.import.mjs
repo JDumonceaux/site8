@@ -59,6 +59,7 @@ const importConfig = {
                     '**/*.test.{js,jsx,ts,tsx}',
                     '**/*.spec.{js,jsx,ts,tsx}',
                     '**/*.config.{js,mjs,ts}',
+                    '**/*.config.*.{mjs}',
                     '**/*.setup.{js,ts}',
                     '**/setupTests.{js,ts}',
                     '**/*.stories.{js,jsx,ts,tsx}',

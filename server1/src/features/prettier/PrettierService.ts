@@ -1,5 +1,6 @@
-import { Logger } from '../../lib/utils/logger.js';
 import * as prettier from 'prettier';
+
+import { Logger } from '../../lib/utils/logger.js';
 
 export class PrettierService {
   public async formatCode(code: string, filePath: string): Promise<string> {

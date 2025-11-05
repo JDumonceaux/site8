@@ -1,4 +1,4 @@
-import { z, Schema } from 'zod';
+import type { z, Schema } from 'zod';
 
 export type ParseResult<T> = {
   readonly success: boolean;

@@ -1,7 +1,8 @@
-import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-import { Bookmarks } from '../../types/Bookmarks.js';
 import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
+
+import type { Bookmarks } from '../../types/Bookmarks.js';
+import type { Request, Response } from 'express';
 
 export const getItems = async (
   _req: Request,

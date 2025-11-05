@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../lib/utils/logger.js';
+
+import type { NextFunction, Request, Response } from 'express';
 
 const MAX_NAME_LENGTH = 255;
 
@@ -24,5 +25,5 @@ export const requireName = (
     });
   }
 
-  return next();
+  next();
 };

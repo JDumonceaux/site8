@@ -1,5 +1,3 @@
-'use strict';
-
 const ILLEGAL_RE = /[\/\?<>\\:\*\|"]/g;
 const CONTROL_RE = /[\x00-\x1f\x80-\x9f]/g;
 const RESERVED_RE = /^\.+$/;

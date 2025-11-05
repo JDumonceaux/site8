@@ -1,8 +1,13 @@
 import compression from 'compression';
 import cors from 'cors';
-import express, { NextFunction, Request, Response } from 'express';
+import express, {
+  type NextFunction,
+  type Request,
+  type Response,
+} from 'express';
 import RateLimit from 'express-rate-limit';
 import helmet from 'helmet';
+
 import { env } from './lib/env.js';
 import { Logger } from './lib/utils/logger.js';
 import { artistRouter } from './routes/artistRouter.js';
@@ -93,7 +98,8 @@ app.use('/api/build', buildRouter);
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Error occurred', { error: err.message, stack: err.stack });
   if (res.headersSent) {
-    return next(err);
+    next(err);
+    return;
   }
   res.status(500).json({ error: { message: 'Internal Server Error' } });
 });

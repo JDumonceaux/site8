@@ -1,9 +1,11 @@
-import type { Request, Response } from 'express';
-import { Logger } from '../../lib/utils/logger.js';
-import { Image, ImageSchema } from '../../types/Image.js';
-import { PREFER_HEADER } from '../../lib/utils/constants.js';
-import { getImageService } from '../../lib/utils/ServiceFactory.js';
 import { z } from 'zod';
+
+import { PREFER_HEADER } from '../../lib/utils/constants.js';
+import { Logger } from '../../lib/utils/logger.js';
+import { getImageService } from '../../lib/utils/ServiceFactory.js';
+import { type Image, ImageSchema } from '../../types/Image.js';
+
+import type { Request, Response } from 'express';
 
 // Create a partial schema for PATCH operations
 // Patch schema: all fields optional except id and itemId (strings, will be parsed to numbers), fileName required

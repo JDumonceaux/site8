@@ -1,8 +1,8 @@
-import type { Request, Response } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
-import { ItemEdit } from '../../types/ItemEdit.js';
 import { getItemsService } from '../../lib/utils/ServiceFactory.js';
+
+import type { ItemEdit } from '../../types/ItemEdit.js';
+import type { Request, Response } from 'express';
 
 export const patchItems = async (
   req: Request<unknown, unknown, unknown, unknown>,

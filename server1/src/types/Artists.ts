@@ -1,5 +1,5 @@
-import { Artist } from './Artist.js';
-import { Metadata } from './Metadata.js';
+import type { Artist } from './Artist.js';
+import type { Metadata } from './Metadata.js';
 
 export type Artists = {
   readonly metadata: Metadata;

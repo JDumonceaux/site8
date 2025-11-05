@@ -1,18 +1,22 @@
 import { readFile, writeFile } from 'fs/promises';
-import FilePath from '../files/FilePath.js';
+
 import { Logger } from '../../lib/utils/logger.js';
 import { getNextId } from '../../lib/utils/objectUtil.js';
-import { Item } from '../../types/Item.js';
-import { ItemsFile } from '../../types/ItemsFile.js';
-import { Items } from '../../types/Items.js';
-import { ItemsArtists } from '../../types/ItemsArtists.js';
-import { ItemArtist } from '../../types/ItemArtist.js';
-import { ItemAdd } from '../../types/ItemAdd.js';
-import { ItemEdit } from '../../types/ItemEdit.js';
+
+import { type Items } from '../../types/Items.js';
+import { type ItemsArtists } from '../../types/ItemsArtists.js';
+
+import FilePath from '../files/FilePath.js';
+
+import type { Item } from '../../types/Item.js';
+import type { ItemAdd } from '../../types/ItemAdd.js';
+import type { ItemArtist } from '../../types/ItemArtist.js';
+import type { ItemEdit } from '../../types/ItemEdit.js';
+import type { ItemsFile } from '../../types/ItemsFile.js';
 
 export class ItemsService {
-  private fileName = 'items.json';
-  private filePath = '';
+  private readonly fileName = 'items.json';
+  private readonly filePath: string = '';
 
   constructor() {
     this.filePath = FilePath.getDataDir(this.fileName);
@@ -86,7 +90,7 @@ export class ItemsService {
     }
   }
 
-  public async patchItems(_items: ReadonlyArray<ItemEdit>): Promise<boolean> {
+  public async patchItems(_items: readonly ItemEdit[]): Promise<boolean> {
     //    const itemsTemp = await this.readFile();
 
     // Get the updated records
@@ -140,7 +144,7 @@ export class ItemsService {
     return true;
   }
 
-  public async putItems(items: ReadonlyArray<ItemAdd>) {
+  public async putItems(items: readonly ItemAdd[]) {
     try {
       if (!Array.isArray(items)) {
         return Promise.reject(

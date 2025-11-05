@@ -1,4 +1,4 @@
-import { Bookmark } from './Bookmark.js';
+import type { Bookmark } from './Bookmark.js';
 
 export type BookmarksTag = {
   readonly tag: string;

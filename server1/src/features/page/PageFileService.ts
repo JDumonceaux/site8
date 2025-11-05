@@ -1,7 +1,8 @@
 import { existsSync } from 'fs';
 import { readFile, unlink, writeFile } from 'fs/promises';
-import FilePath from '../files/FilePath.js';
+
 import { Logger } from '../../lib/utils/logger.js';
+import FilePath from '../files/FilePath.js';
 
 export class PageFileService {
   private getFileName(id: number): string {

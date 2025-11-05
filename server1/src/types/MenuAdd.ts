@@ -1,4 +1,4 @@
-import { ParentSortby } from './ParentSortby.js';
+import type { ParentSortby } from './ParentSortby.js';
 
 export type MenuAdd = {
   readonly id: number;

@@ -1,8 +1,9 @@
 import { Logger } from '../../lib/utils/logger.js';
-import { PageText } from '../../types/PageText.js';
-import { PageMenu } from '../../types/PageMenu.js';
 import { PageFileService } from '../page/PageFileService.js';
 import { PagesService } from '../pages/PagesService.js';
+
+import type { PageMenu } from '../../types/PageMenu.js';
+import type { PageText } from '../../types/PageText.js';
 
 export class GenericService {
   // Get Item
@@ -61,7 +62,7 @@ export class GenericService {
   // Get ids for possible parents
   private getParentIds(
     parentName: string,
-    items: ReadonlyArray<PageMenu> | undefined,
+    items: readonly PageMenu[] | undefined,
   ): number[] | undefined {
     if (!items || items.length === 0) {
       Logger.warn(`GenericService: getParentId -> items is empty`);

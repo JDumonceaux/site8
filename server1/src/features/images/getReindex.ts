@@ -1,6 +1,7 @@
-import { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { getImagesService } from '../../lib/utils/ServiceFactory.js';
+
+import type { Request, Response } from 'express';
 
 export const getReindex = async (
   _req: Request,

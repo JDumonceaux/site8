@@ -1,8 +1,9 @@
 import express from 'express';
-import { asyncHandler } from '../lib/utils/routerUtils.js';
+
 import { getItems } from '../features/bookmarks/getItems.js';
-import { getTags } from '../features/bookmarks/getTags.js';
 import { getItemsPage } from '../features/bookmarks/getItemsPage.js';
+import { getTags } from '../features/bookmarks/getTags.js';
+import { asyncHandler } from '../lib/utils/routerUtils.js';
 import { requireNumericId } from '../middleware/requireNumericId.js';
 
 const VALIDATION_MIDDLEWARE = [requireNumericId];

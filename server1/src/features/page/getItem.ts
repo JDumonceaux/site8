@@ -1,9 +1,9 @@
-import type { Request, Response } from 'express';
-
 import { PageService } from './PageService.js';
-import { Logger } from '../../lib/utils/logger.js';
 import { parseRequestId } from '../../lib/utils/helperUtils.js';
-import { PageText } from '../../types/PageText.js';
+import { Logger } from '../../lib/utils/logger.js';
+
+import type { PageText } from '../../types/PageText.js';
+import type { Request, Response } from 'express';
 
 export const getItem = async (
   req: Request,

@@ -1,15 +1,17 @@
 import { readFile, writeFile } from 'fs/promises';
-import FilePath from '../files/FilePath.js';
+
+import { ImagesFileService } from './ImagesFileService.js';
 import { getNewIds, getNewItems } from './imagesUtil.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData, getNextId } from '../../lib/utils/objectUtil.js';
-import { Image } from '../../types/Image.js';
-import { Images } from '../../types/Images.js';
-import { ImagesFileService } from './ImagesFileService.js';
+import FilePath from '../files/FilePath.js';
+
+import type { Image } from '../../types/Image.js';
+import type { Images } from '../../types/Images.js';
 
 export class ImagesService {
-  private fileName = 'images.json';
-  private filePath = '';
+  private readonly fileName = 'images.json';
+  private readonly filePath: string = '';
 
   constructor() {
     this.filePath = FilePath.getDataDir(this.fileName);
@@ -181,7 +183,7 @@ export class ImagesService {
   }
 
   public async updateItems(
-    items: ReadonlyArray<Image> | undefined,
+    items: readonly Image[] | undefined,
   ): Promise<boolean> {
     if (!items || !Array.isArray(items) || items.length === 0) {
       Logger.info(`ImagesService: updateItems -> no items to update`);

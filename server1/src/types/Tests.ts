@@ -1,5 +1,5 @@
-import { Metadata } from './Metadata.js';
-import { Test } from './Test.js';
+import type { Metadata } from './Metadata.js';
+import type { Test } from './Test.js';
 
 export type Tests = {
   readonly metadata: Metadata;

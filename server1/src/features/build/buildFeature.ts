@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-
 import { getBuildService } from '../../lib/utils/ServiceFactory.js';
+
+import type { NextFunction, Request, Response } from 'express';
 
 const service = getBuildService();
 
@@ -20,6 +20,7 @@ export const buildFeature = async (
     }
   } catch (error) {
     Logger.error('Error building feature', { error });
-    return next(error);
+    next(error);
+    return;
   }
 };

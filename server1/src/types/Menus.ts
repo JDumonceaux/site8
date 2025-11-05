@@ -1,5 +1,5 @@
-import { MenuItem } from './MenuItem.js';
-import { Metadata } from './Metadata.js';
+import type { MenuItem } from './MenuItem.js';
+import type { Metadata } from './Metadata.js';
 
 export type Menus = {
   readonly metadata: Metadata;

@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../lib/utils/logger.js';
+
+import type { NextFunction, Request, Response } from 'express';
 
 export const requireNumericId = (
   req: Request,
@@ -24,5 +25,5 @@ export const requireNumericId = (
     });
   }
 
-  return next();
+  next();
 };

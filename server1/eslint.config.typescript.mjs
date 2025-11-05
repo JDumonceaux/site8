@@ -45,10 +45,11 @@ export default {
         '@typescript-eslint/member-ordering': 'error',
         '@typescript-eslint/method-signature-style': 'error',
         '@typescript-eslint/naming-convention': [
-            'error',
+            'off',
             {
                 selector: 'variableLike',
-                format: ['camelCase'],
+                format: ['camelCase', 'UPPER_CASE'],
+                leadingUnderscore: 'allow',
             },
             {
                 selector: 'typeLike',

@@ -1,14 +1,16 @@
 import { readFile } from 'fs/promises';
-import FilePath from '../files/FilePath.js';
+
 import { Logger } from '../../lib/utils/logger.js';
-import { Bookmark } from '../../types/Bookmark.js';
-import { Bookmarks } from '../../types/Bookmarks.js';
-import { BookmarksTag } from '../../types/BookmarksTag.js';
-import { BookmarksTags } from '../../types/BookmarksTags.js';
+import FilePath from '../files/FilePath.js';
+
+import type { Bookmark } from '../../types/Bookmark.js';
+import type { Bookmarks } from '../../types/Bookmarks.js';
+import type { BookmarksTag } from '../../types/BookmarksTag.js';
+import type { BookmarksTags } from '../../types/BookmarksTags.js';
 
 export class BookmarksService {
-  private fileName = 'bookmarks.json';
-  private filePath: string;
+  private readonly fileName = 'bookmarks.json';
+  private readonly filePath: string;
 
   constructor() {
     this.filePath = FilePath.getDataDir(this.fileName);
@@ -92,7 +94,7 @@ export class BookmarksService {
       return undefined;
     }
     try {
-      const uniqueTags = items.reduce((acc: string[], item) => {
+      const uniqueTags = items.reduce<string[]>((acc: string[], item) => {
         if (item.tags) {
           item.tags.forEach((tag) => {
             if (!acc.includes(tag)) {
@@ -101,7 +103,7 @@ export class BookmarksService {
           });
         }
         return acc;
-      }, [] as string[]);
+      }, []);
       Object.freeze(uniqueTags);
       return uniqueTags.toSorted();
     } catch (error) {

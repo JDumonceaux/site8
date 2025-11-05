@@ -1,11 +1,12 @@
-import { Image } from '../../types/Image.js';
 import { FOLDERS_TO_IGNORE } from '../../lib/utils/constants.js';
 import { cleanUpData, getNextIdFromPos } from '../../lib/utils/objectUtil.js';
 
-export function getNewItems(
+import type { Image } from '../../types/Image.js';
+
+export const getNewItems = (
   prevItems: Image[] | undefined,
   newItems: Image[] | undefined,
-): Image[] | undefined {
+): Image[] | undefined => {
   if (!newItems) return undefined;
 
   const uniqueItems = newItems.filter((item) => {
@@ -29,9 +30,9 @@ export function getNewItems(
   );
 
   return newItemsWithFlag.sort((a, b) => a.fileName.localeCompare(b.fileName));
-}
+};
 
-export function getNewIds(items: Image[] | undefined): Image[] | undefined {
+export const getNewIds = (items: Image[] | undefined): Image[] | undefined => {
   if (!items) return undefined;
 
   let startPos = 0;
@@ -46,4 +47,4 @@ export function getNewIds(items: Image[] | undefined): Image[] | undefined {
     startPos = nextIdObj.index;
     return { ...item, id: nextIdObj.value };
   });
-}
+};

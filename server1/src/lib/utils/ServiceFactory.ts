@@ -1,18 +1,18 @@
-import { ImagesFileService } from '../../features/images/ImagesFileService.js';
-import { PageFileService } from '../../features/page/PageFileService.js';
 import { ArtistsService } from '../../features/artists/ArtistsService.js';
 import { BookmarksService } from '../../features/bookmarks/BookmarksService.js';
+import { BuildService } from '../../features/build/BuildService.js';
 import { FileService } from '../../features/files/FileService.js';
 import { ImageService } from '../../features/image/ImageService.js';
+import { ImagesFileService } from '../../features/images/ImagesFileService.js';
 import { ImagesService } from '../../features/images/ImagesService.js';
 import { ItemsService } from '../../features/items/ItemsService.js';
 import { MenuService } from '../../features/menu/MenuService.js';
+import { PageFileService } from '../../features/page/PageFileService.js';
 import { PageService } from '../../features/page/PageService.js';
 import { PagesService } from '../../features/pages/PagesService.js';
 import { PhotosService } from '../../features/photos/PhotosService.js';
 import { PrettierService } from '../../features/prettier/PrettierService.js';
 import { TestsService } from '../../features/tests/TestsService.js';
-import { BuildService } from '../../features/build/BuildService.js';
 
 let artistsService: ArtistsService | null = null;
 let bookmarksService: BookmarksService | null = null;

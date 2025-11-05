@@ -1,9 +1,10 @@
-import type { Request, Response } from 'express';
-import { Logger } from '../../lib/utils/logger.js';
-import { parseRequestId } from '../../lib/utils/helperUtils.js';
-import { Image } from '../../types/Image.js';
 import { RESPONSES } from '../../lib/utils/constants.js';
+import { parseRequestId } from '../../lib/utils/helperUtils.js';
+import { Logger } from '../../lib/utils/logger.js';
 import { getImageService } from '../../lib/utils/ServiceFactory.js';
+
+import type { Image } from '../../types/Image.js';
+import type { Request, Response } from 'express';
 
 export const deleteItem = async (
   req: Request,

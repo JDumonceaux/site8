@@ -1,7 +1,8 @@
-import { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
 import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
-import { ArtistsItems } from '../../types/ArtistsItems.js';
+
+import type { ArtistsItems } from '../../types/ArtistsItems.js';
+import type { Request, Response } from 'express';
 
 const getArtistsItems = async (
   _req: Request,

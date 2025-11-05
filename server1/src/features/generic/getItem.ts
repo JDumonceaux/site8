@@ -1,13 +1,13 @@
-import type { Request, Response } from 'express';
+import { RESPONSES } from '@/lib/utils/constants.js';
 
 import { GenericService } from './GenericService.js';
 import { Logger } from '../../lib/utils/logger.js';
-import { PageText } from '../../types/PageText.js';
-import { RESPONSES } from '@/lib/utils/constants.js';
+
+import type { Request, Response } from 'express';
 
 export const getItemByName = async (
   req: Request,
-  res: Response<PageText | any>,
+  res: Response,
 ): Promise<void> => {
   const { name, parent } = req.params;
   Logger.info(`Generic: getItemByName called: ${parent}/${name}`);

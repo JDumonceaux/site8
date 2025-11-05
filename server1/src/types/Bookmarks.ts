@@ -1,5 +1,5 @@
-import { Bookmark } from './Bookmark.js';
-import { Metadata } from './Metadata.js';
+import type { Bookmark } from './Bookmark.js';
+import type { Metadata } from './Metadata.js';
 
 export type Bookmarks = {
   readonly metadata: Metadata;

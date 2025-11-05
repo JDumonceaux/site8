@@ -1,8 +1,8 @@
-import type { Request, Response } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
-import { ItemAdd } from '../../types/ItemAdd.js';
 import { getItemsService } from '../../lib/utils/ServiceFactory.js';
+
+import type { ItemAdd } from '../../types/ItemAdd.js';
+import type { Request, Response } from 'express';
 
 export const putItems = async (
   req: Request<unknown, unknown, unknown, unknown>,

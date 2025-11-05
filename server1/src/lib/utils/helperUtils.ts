@@ -20,9 +20,6 @@ export const isValidArray = (arr: unknown[] | undefined): boolean => {
   return Array.isArray(arr) && arr.length > 0;
 };
 
-export const removeItem = <T>(
-  arr: ReadonlyArray<T>,
-  value: T,
-): ReadonlyArray<T> => {
+export const removeItem = <T>(arr: readonly T[], value: T): readonly T[] => {
   return arr.filter((item) => item !== value);
 };

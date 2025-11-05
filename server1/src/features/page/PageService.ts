@@ -1,14 +1,16 @@
 import { z } from 'zod';
+
 import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
+import { PageFileService } from './PageFileService.js';
 import { Logger } from '../../lib/utils/logger.js';
 import { cleanUpData } from '../../lib/utils/objectUtil.js';
 import { safeParse } from '../../lib/utils/zodHelper.js';
-import { PageEdit } from '../../types/Page.js';
-import { PageMenu } from '../../types/PageMenu.js';
-import { Pages } from '../../types/Pages.js';
-import { PageText } from '../../types/PageText.js';
-import { PageFileService } from './PageFileService.js';
 import { PagesService } from '../pages/PagesService.js';
+
+import type { PageEdit } from '../../types/Page.js';
+import type { PageMenu } from '../../types/PageMenu.js';
+import type { Pages } from '../../types/Pages.js';
+import type { PageText } from '../../types/PageText.js';
 
 const PAGE_ADD_SCHEMA = z
   .object({

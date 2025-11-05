@@ -1,8 +1,8 @@
-import type { Request, Response } from 'express';
-
 import { Logger } from '../../lib/utils/logger.js';
-import { Menus } from '../../types/Menus.js';
 import { getMenuService } from '../../lib/utils/ServiceFactory.js';
+
+import type { Menus } from '../../types/Menus.js';
+import type { Request, Response } from 'express';
 
 export const getItems = async (
   _req: Request<unknown, unknown, unknown, unknown>,

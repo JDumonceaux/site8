@@ -1,11 +1,13 @@
-import FilePath from '../files/FilePath.js';
-import { ArtistWithItems } from '../../types/ArtistWithItems.js';
-import { Artists } from '../../types/Artists.js';
-import { ArtistsItems } from '../../types/ArtistsItems.js';
-import { ItemsFile } from '../../types/ItemsFile.js';
-import { getFileService } from '../../lib/utils/ServiceFactory.js';
-import { Logger } from '../../lib/utils/logger.js';
 import { z } from 'zod';
+
+import { Logger } from '../../lib/utils/logger.js';
+import { getFileService } from '../../lib/utils/ServiceFactory.js';
+import FilePath from '../files/FilePath.js';
+
+import type { Artists } from '../../types/Artists.js';
+import type { ArtistsItems } from '../../types/ArtistsItems.js';
+import type { ArtistWithItems } from '../../types/ArtistWithItems.js';
+import type { ItemsFile } from '../../types/ItemsFile.js';
 
 // ============================================================================
 // Zod Validation Schemas
@@ -72,10 +74,10 @@ export class ArtistsService {
 
   // Cache configuration - made mutable for setCacheTTL
   private cache: ItemsFile | null = null;
-  private cacheTimestamp: number = 0;
+  private cacheTimestamp = 0;
   private cacheTTL = 5000; // 5 seconds (no longer readonly)
 
-  constructor(fileName: string = 'items.json') {
+  protected constructor(fileName = 'items.json') {
     this.filePath = FilePath.getDataDir(fileName);
     this.fileService = getFileService();
   }
@@ -504,7 +506,7 @@ export class ArtistsService {
         continue;
       }
 
-      const items = (data.items || []).filter(
+      const items = (data.items ?? []).filter(
         (item) => item.artistId === artistId,
       );
       results.push({

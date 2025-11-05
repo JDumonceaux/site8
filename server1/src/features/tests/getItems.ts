@@ -1,7 +1,8 @@
-import type { Request, Response } from 'express';
 import { Logger } from '../../lib/utils/logger.js';
-import { Tests } from '../../types/Tests.js';
 import { getTestsService } from '../../lib/utils/ServiceFactory.js';
+
+import type { Tests } from '../../types/Tests.js';
+import type { Request, Response } from 'express';
 
 export const getItems = async (
   req: Request,
