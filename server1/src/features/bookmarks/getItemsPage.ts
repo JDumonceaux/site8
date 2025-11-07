@@ -20,13 +20,14 @@ export const getItemsPage = async (
     const service = getBookmarksService();
     const bookmarks = await service.getBookmarksForPage(id);
 
-    if (!bookmarks) {
+    // if the service returns an empty array respond with 204 No Content
+    if (Array.isArray(bookmarks) && bookmarks.length === 0) {
       res.sendStatus(204);
       return;
     }
     res.status(200).json(bookmarks);
   } catch (error) {
-    Logger.error('Bookmarks: Get ItemsPage failed', { error });
+    Logger.error('Bookmarks: Get ItemsPage failed', error);
     res.sendStatus(500);
   }
 };

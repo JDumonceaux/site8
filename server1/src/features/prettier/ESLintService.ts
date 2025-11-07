@@ -37,7 +37,7 @@ export class ESLintService {
         : filePaths;
       Logger.error(
         `ESLintService: Error linting files [${pathsStr}] - ${errorMessage}`,
-        { error },
+        error,
       );
       throw error;
     }

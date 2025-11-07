@@ -19,7 +19,7 @@ export class PageFileService {
         error instanceof Error ? error.message : String(error);
       Logger.error(
         `PageFileService: Error reading file id ${id} - ${errorMessage}`,
-        { error },
+        error,
       );
       throw new Error(`Unable to read file for id: ${id}`);
     }
@@ -40,7 +40,7 @@ export class PageFileService {
         error instanceof Error ? error.message : String(error);
       Logger.error(
         `PageFileService: Error saving file id ${id} - ${errorMessage}`,
-        { error },
+        error,
       );
       throw new Error(`Unable to save file for id: ${id}`);
     }

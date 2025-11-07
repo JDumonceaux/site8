@@ -35,6 +35,7 @@ export const deleteItem = async (
       res.status(404).send(new Error(RESPONSES.NOT_FOUND));
     }
   } catch (error) {
+    Logger.error('Image: Delete Item error:', error);
     res.sendStatus(500);
   }
 };

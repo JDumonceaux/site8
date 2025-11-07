@@ -13,13 +13,14 @@ export const getTags = async (
     const service = getBookmarksService();
     const tags = await service.getAllItemsByTag();
 
-    if (!tags) {
+    // if the service returns an empty array respond with 204 No Content
+    if (Array.isArray(tags) && tags.length === 0) {
       res.sendStatus(204);
       return;
     }
     res.status(200).json(tags);
   } catch (error) {
-    Logger.error('Bookmarks: Get Tags failed', { error });
+    Logger.error('Bookmarks: Get Tags failed', error);
     res.sendStatus(500);
   }
 };

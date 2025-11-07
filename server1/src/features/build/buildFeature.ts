@@ -19,7 +19,7 @@ export const buildFeature = async (
       res.status(204).send();
     }
   } catch (error) {
-    Logger.error('Error building feature', { error });
+    Logger.error('Error building feature', error);
     next(error);
     return;
   }

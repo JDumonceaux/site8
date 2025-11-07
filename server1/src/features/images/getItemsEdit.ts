@@ -19,8 +19,7 @@ export const getItemsEdit = async (
       res.sendStatus(204);
     }
   } catch (error) {
-    // Optionally log error or handle with error middleware
-    // Logger.error(error);
+    Logger.error('Images: Get Items Edit error:', error);
     res.sendStatus(500);
   }
 };

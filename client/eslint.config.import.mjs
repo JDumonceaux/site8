@@ -27,7 +27,6 @@ export default {
             },
         ],
         'import/first': 'error',
-
         'import/newline-after-import': 'error',
         'import/no-absolute-path': 'error',
         'import/no-amd': 'error', // Missing recommended rule

@@ -27,10 +27,10 @@ export const patchItems = async (
         throw new Error(`Edit failed `);
       }
     })
-    .catch((_error: Error) => {
-      res.sendStatus(500);
-    });
-
+  .catch (error) {
+    Logger.error('Items: Patch Items error:', error);
+    res.sendStatus(500);
+  }
   // if (returnRepresentation) {
   //   const ret = await service.getItem(id);
   //   // 201 Created

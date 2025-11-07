@@ -14,14 +14,9 @@ export const getArtist = async (
     const service = getArtistsService();
     const artists = await service.getArtists();
 
-    if (!artists) {
-      res.status(204).send();
-      return;
-    }
-
     res.status(200).json(artists);
   } catch (error) {
-    Logger.error('Artists: Get Artists failed', { error });
+    Logger.error('Artists: Get Artists failed', error);
     res.sendStatus(500);
   }
 };

@@ -1,5 +1,8 @@
+import { Logger } from '../../lib/utils/logger.js';
+
 import type { Request, Response } from 'express';
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const putItem = async (_req: Request, res: Response): Promise<void> => {
   // TODO: Implement the actual logic for updating a page item
   // This is a placeholder implementation following project standards
@@ -20,8 +23,7 @@ export const putItem = async (_req: Request, res: Response): Promise<void> => {
     // }
     res.sendStatus(501); // Not Implemented
   } catch (error) {
-    // Optionally log error
-    // Logger.error(error);
+    Logger.error('Page: Put Item error:', error);
     res.sendStatus(500);
   }
 };

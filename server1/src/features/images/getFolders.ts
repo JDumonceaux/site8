@@ -18,8 +18,7 @@ export const getFolders = async (
       res.sendStatus(204);
     }
   } catch (error) {
-    // Optionally log error or handle with error middleware
-    // Logger.error(error);
+    Logger.error('Images: Get Folders error:', error);
     res.sendStatus(500);
   }
 };

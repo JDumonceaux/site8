@@ -28,7 +28,7 @@ export class PrettierService {
         error instanceof Error ? error.message : String(error);
       Logger.error(
         `PrettierService: Error formatting code for ${filePath} - ${errorMessage}`,
-        { error },
+        error,
       );
       return code;
     }

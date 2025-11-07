@@ -2,23 +2,21 @@ import { readFile, writeFile } from 'fs/promises';
 
 import { Logger } from '../../lib/utils/logger.js';
 import { getNextId } from '../../lib/utils/objectUtil.js';
-
-import { type Items } from '../../types/Items.js';
-import { type ItemsArtists } from '../../types/ItemsArtists.js';
-
 import FilePath from '../files/FilePath.js';
 
 import type { Item } from '../../types/Item.js';
 import type { ItemAdd } from '../../types/ItemAdd.js';
 import type { ItemArtist } from '../../types/ItemArtist.js';
 import type { ItemEdit } from '../../types/ItemEdit.js';
+import type { Items } from '../../types/Items.js';
+import type { ItemsArtists } from '../../types/ItemsArtists.js';
 import type { ItemsFile } from '../../types/ItemsFile.js';
 
 export class ItemsService {
   private readonly fileName = 'items.json';
   private readonly filePath: string = '';
 
-  constructor() {
+  private constructor() {
     this.filePath = FilePath.getDataDir(this.fileName);
   }
 

@@ -35,19 +35,8 @@ const ItemsFileSchema = z.object({
   items: z.array(ItemSchema).default([]),
 });
 
-// ============================================================================
-// Custom Error Classes
-// ============================================================================
-
-export class ArtistNotFoundError extends Error {
-  constructor(artistId: number) {
-    super(`Artist with ID ${artistId} not found`);
-    this.name = 'ArtistNotFoundError';
-  }
-}
-
-export class ValidationError extends Error {
-  constructor(
+class ValidationError extends Error {
+  public constructor(
     message: string,
     public validationErrors: string[],
   ) {
@@ -59,7 +48,7 @@ export class ValidationError extends Error {
 // ============================================================================
 // Service Class
 // ============================================================================
-export class ArtistService {
+class ArtistService {
   private readonly filePath: string;
   private readonly fileService: ReturnType<typeof getFileService>;
   private readonly DEFAULT_METADATA = { title: 'artists' };
@@ -69,74 +58,14 @@ export class ArtistService {
   private cacheTimestamp = 0;
   private cacheTTL = 5000; // 5 seconds (no longer readonly)
 
-  constructor(fileName = 'items.json') {
+  public constructor(fileName = 'items.json') {
     this.filePath = FilePath.getDataDir(fileName);
     this.fileService = getFileService();
   }
 
-  // Reads and validates the items file from disk with optional caching.
-  private async readFile(): Promise<ItemsFile> {
-    try {
-      // Check cache first
-      const now = Date.now();
-      if (this.cache && now - this.cacheTimestamp < this.cacheTTL) {
-        Logger.debug('Returning cached artists data');
-        return this.cache;
-      }
-
-      Logger.debug(`Reading artists file from ${this.filePath}`);
-      const rawData = await this.fileService.readFile<unknown>(this.filePath);
-
-      if (!rawData) {
-        throw new Error('File data is undefined or null');
-      }
-
-      // Validate data structure using Zod
-      const validationResult = ItemsFileSchema.safeParse(rawData);
-
-      if (!validationResult.success) {
-        const errors = validationResult.error.issues
-          .map((err) => `${err.path.join('.')}: ${err.message}`)
-          .join('; ');
-        Logger.error(`Data validation failed: ${errors}`);
-        throw new ValidationError(
-          `Invalid file structure: ${errors}`,
-          errors.split('; '),
-        );
-      }
-
-      const validatedData = validationResult.data;
-
-      // Ensure defaults for optional fields
-      const data: ItemsFile = {
-        metadata: validatedData.metadata || this.DEFAULT_METADATA,
-        artists: validatedData.artists,
-        items: validatedData.items,
-      };
-
-      // Update cache
-      this.cache = data;
-      this.cacheTimestamp = now;
-
-      Logger.info(
-        `Successfully loaded ${data.artists?.length ?? 0} artists and ${data.items?.length ?? 0} items`,
-      );
-
-      return data;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`Failed to read file at ${this.filePath}: ${errorMessage}`);
-
-      // Re-throw with context but preserve original error
-      if (error instanceof Error) {
-        throw new Error(`Error reading artists file: ${errorMessage}`, {
-          cause: error,
-        });
-      }
-      throw new Error(`Error reading artists file: ${errorMessage}`);
-    }
-  }
+  // ============================================================================
+  // Public Methods
+  // ============================================================================
 
   // Validates and writes the items file to disk, then invalidates cache.
   public async writeFile(data: ItemsFile): Promise<void> {
@@ -197,7 +126,7 @@ export class ArtistService {
       }
 
       const data = await this.readFile();
-      return (data.artists || []).some((a) => a.id === artistId);
+      return (data.artists ?? []).some((a) => a.id === artistId);
     } catch (error) {
       Logger.warn(`Error checking artist existence for ID ${artistId}:`, error);
       return false;
@@ -219,7 +148,7 @@ export class ArtistService {
       age,
       ttl: this.cacheTTL,
       size: this.cache
-        ? (this.cache.artists?.length || 0) + (this.cache.items?.length || 0)
+        ? (this.cache.artists?.length ?? 0) + (this.cache.items?.length ?? 0)
         : null,
     };
   }
@@ -252,6 +181,7 @@ export class ArtistService {
       }
     }
   }
+
   // Gets detailed information about the service instance.
   public getServiceInfo(): {
     filePath: string;
@@ -269,4 +199,74 @@ export class ArtistService {
       cacheStatus: this.getCacheStatus(),
     };
   }
+
+  // ============================================================================
+  // Private Methods
+  // ============================================================================
+
+  // Reads and validates the items file from disk with optional caching.
+  private async readFile(): Promise<ItemsFile> {
+    try {
+      // Check cache first
+      const now = Date.now();
+      if (this.cache && now - this.cacheTimestamp < this.cacheTTL) {
+        Logger.debug('Returning cached artists data');
+        return this.cache;
+      }
+
+      Logger.debug(`Reading artists file from ${this.filePath}`);
+      const rawData = await this.fileService.readFile<unknown>(this.filePath);
+
+      if (!rawData) {
+        throw new Error('File data is undefined or null');
+      }
+
+      // Validate data structure using Zod
+      const validationResult = ItemsFileSchema.safeParse(rawData);
+
+      if (!validationResult.success) {
+        const errors = validationResult.error.issues
+          .map((err) => `${err.path.join('.')}: ${err.message}`)
+          .join('; ');
+        Logger.error(`Data validation failed: ${errors}`);
+        throw new ValidationError(
+          `Invalid file structure: ${errors}`,
+          errors.split('; '),
+        );
+      }
+
+      const validatedData = validationResult.data;
+
+      // Ensure defaults for optional fields
+      const data: ItemsFile = {
+        metadata: validatedData.metadata ?? this.DEFAULT_METADATA,
+        artists: validatedData.artists,
+        items: validatedData.items,
+      };
+
+      // Update cache
+      this.cache = data;
+      this.cacheTimestamp = now;
+
+      Logger.info(
+        `Successfully loaded ${data.artists?.length ?? 0} artists and ${data.items?.length ?? 0} items`,
+      );
+
+      return data;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`Failed to read file at ${this.filePath}: ${errorMessage}`);
+
+      // Re-throw with context but preserve original error
+      if (error instanceof Error) {
+        throw new Error(`Error reading artists file: ${errorMessage}`, {
+          cause: error,
+        });
+      }
+      throw new Error(`Error reading artists file: ${errorMessage}`);
+    }
+  }
 }
+
+export { ArtistService, ValidationError };

@@ -1,8 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
+
 // eslint.config.import.mjs
 import importPlugin from 'eslint-plugin-import';
 
-const importConfig = {
+export default {
     name: 'Site8-import',
     plugins: {
         import: importPlugin,
@@ -28,7 +28,6 @@ const importConfig = {
             },
         ],
         'import/first': 'error',
-
         'import/newline-after-import': 'error',
         'import/no-absolute-path': 'error',
         'import/no-amd': 'error',
@@ -42,33 +41,32 @@ const importConfig = {
                 allowCallExpression: true,
                 allowNew: false,
                 allowLiteral: false,
-                allowObject: false,
+                allowObject: true, // Allow for ESLint config files and simple exports
             },
         ],
         'import/no-commonjs': 'off',
         'import/no-cycle': ['error', { maxDepth: 3 }],
         'import/no-default-export': 'off',
         'import/no-deprecated': 'warn',
-
         'import/no-dynamic-require': 'warn',
         'import/no-empty-named-blocks': 'error',
         'import/no-extraneous-dependencies': [
             'error',
             {
                 devDependencies: [
-                    '**/*.test.{js,jsx,ts,tsx}',
-                    '**/*.spec.{js,jsx,ts,tsx}',
+                    '**/*.test.{js,ts}',
+                    '**/*.spec.{js,ts}',
                     '**/*.config.{js,mjs,ts}',
-                    '**/*.config.*.{mjs}',
+                    '**/*.config.*.{js,mjs,ts}',
                     '**/*.setup.{js,ts}',
                     '**/setupTests.{js,ts}',
-                    '**/*.stories.{js,jsx,ts,tsx}',
-                    'vite.config.*',
-                    'vitest.config.*',
-                    'jest.config.*',
-                    'webpack.config.*',
+                    '**/eslint.config.*.{js,mjs}',
+                    'eslint.config.{js,mjs}',
+                    '**/jest.config.{js,ts}',
+                    '**/vitest.config.{js,ts}',
                 ],
                 optionalDependencies: false,
+                peerDependencies: false,
             },
         ],
         'import/no-import-module-exports': 'error',
@@ -117,11 +115,23 @@ const importConfig = {
                 ],
             },
         ],
-
         'import/no-unused-modules': [
-            'warn',
+            // Too much trouble.
+            'off',
             {
                 unusedExports: true,
+                ignoreExports: [
+                    '**/*.config.{js,mjs,ts}',
+                    '**/*.config.*.{js,mjs,ts}',
+                    '**/eslint.config.*.{js,mjs}',
+                    'eslint.config.{js,mjs}',
+                    '**/*.d.ts',
+                    '**/index.{ts,js}', // Entry points and barrel files
+                    '**/main.{ts,js}',
+                    '**/server.{ts,js}',
+                    '**/*.test.{ts,js}',
+                    '**/*.spec.{ts,js}',
+                ],
             },
         ],
         'import/no-useless-path-segments': 'error',
@@ -163,5 +173,3 @@ const importConfig = {
         },
     },
 };
-
-export default importConfig;

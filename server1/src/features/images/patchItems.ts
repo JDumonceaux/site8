@@ -23,8 +23,7 @@ export const patchItems = async (
     await service.updateItems(data.items);
     res.sendStatus(200);
   } catch (error) {
-    // Optionally log error or handle with error middleware
-    // Logger.error(error);
+    Logger.error('Images: Patch Items error:', error);
     res.sendStatus(500);
   }
 

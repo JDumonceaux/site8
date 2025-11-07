@@ -47,6 +47,7 @@ export const putItem = async (
       return;
     }
   } catch (error) {
+    Logger.error('Image: Put Item error:', error);
     res.sendStatus(500);
   }
 };

@@ -20,6 +20,7 @@ export const getItemsEdit = async (
       res.sendStatus(204);
     }
   } catch (error) {
+    Logger.error('Menu: Get Items Edit error:', error);
     res.sendStatus(500);
   }
 };

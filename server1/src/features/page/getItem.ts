@@ -35,6 +35,7 @@ export const getItem = async (
       res.status(204).send();
     }
   } catch (error) {
+    Logger.error('Page: Get Item error:', error);
     res.sendStatus(500);
   }
 };

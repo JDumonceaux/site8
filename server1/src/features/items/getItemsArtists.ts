@@ -23,9 +23,7 @@ export const getItemsArtists = async (
       res.sendStatus(204);
     }
   } catch (error: unknown) {
-    Logger.error(
-      `Error fetching items and artists: ${(error as Error).message}`,
-    );
+    Logger.error('Items: Get Items Artists error:', error);
     res.sendStatus(500);
   }
 };

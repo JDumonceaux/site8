@@ -1,73 +1,64 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-class FilePath {
-  private static readonly appRootAbsolute: string =
-    FilePath.computeAppRootAbsolute();
-
-  private static computeAppRootAbsolute(): string {
-    const currPath = fileURLToPath(import.meta.url);
-    const serverDirName = 'server1';
-    const index = currPath.indexOf(serverDirName);
-    if (index === -1) {
-      throw new Error(
-        `Directory "${serverDirName}" not found in path: ${currPath}`,
-      );
-    }
-    return currPath.substring(0, index);
+const decodeFileUrl = (url: string): string => {
+  const pathname = decodeURIComponent(new URL(url).pathname);
+  if (process.platform === 'win32' && pathname.startsWith('/')) {
+    return pathname.slice(1);
   }
+  return pathname;
+};
 
-  public static getAppRoot(): string {
-    return this.appRootAbsolute;
-  }
+const joinPath = (...parts: string[]): string =>
+  parts
+    .map((p) => p.replace(/\\/g, '/'))
+    .join('/')
+    .replace(/\/+/g, '/');
 
-  public static getAppRootAbsolute(): string {
-    return this.appRootAbsolute;
+const computeAppRootAbsolute = (): string => {
+  const currPath = decodeFileUrl(import.meta.url);
+  const serverDirName = 'server1';
+  const index = currPath.indexOf(serverDirName);
+  if (index === -1) {
+    throw new Error(
+      `Directory "${serverDirName}" not found in path: ${currPath}`,
+    );
   }
+  return currPath.substring(0, index);
+};
 
-  public static getImageDirAbsolute(): string {
-    return path.join(this.appRootAbsolute, 'client', 'public', 'images');
-  }
+const appRootAbsolute: string = computeAppRootAbsolute();
 
-  public static getDataDirAbsolute(): string {
-    return path.join(this.appRootAbsolute, 'server1', 'data');
-  }
+const FilePath = {
+  getAppRoot: (): string => appRootAbsolute,
 
-  public static getDataDir(fileName: string): string {
-    return path.join(this.getDataDirAbsolute(), fileName);
-  }
+  getAppRootAbsolute: (): string => appRootAbsolute,
 
-  public static getClientRoot(): string {
-    return path.join(this.appRootAbsolute, 'client');
-  }
+  getImageDirAbsolute: (): string =>
+    joinPath(appRootAbsolute, 'client', 'public', 'images'),
 
-  public static getServerRoot(): string {
-    return path.join(this.appRootAbsolute, 'server1');
-  }
+  getDataDirAbsolute: (): string =>
+    joinPath(appRootAbsolute, 'server1', 'data'),
 
-  public static getClientSrc(): string {
-    return path.join(this.appRootAbsolute, 'client', 'src');
-  }
+  getDataDir: (fileName: string): string =>
+    joinPath(FilePath.getDataDirAbsolute(), fileName),
 
-  public static getServerSrc(): string {
-    return path.join(this.appRootAbsolute, 'server1', 'src');
-  }
+  getClientRoot: (): string => joinPath(appRootAbsolute, 'client'),
 
-  public static getClientTypes(): string {
-    return path.join(this.appRootAbsolute, 'client', 'src', 'types');
-  }
+  getServerRoot: (): string => joinPath(appRootAbsolute, 'server1'),
 
-  public static getServerTypes(): string {
-    return path.join(this.appRootAbsolute, 'server1', 'src', 'types');
-  }
+  getClientSrc: (): string => joinPath(appRootAbsolute, 'client', 'src'),
 
-  public static getClientFeatures(): string {
-    return path.join(this.appRootAbsolute, 'client', 'src', '@features');
-  }
+  getServerSrc: (): string => joinPath(appRootAbsolute, 'server1', 'src'),
 
-  public static getServerFeatures(): string {
-    return path.join(this.appRootAbsolute, 'server1', 'src', '@features');
-  }
-}
+  getClientTypes: (): string =>
+    joinPath(appRootAbsolute, 'client', 'src', 'types'),
+
+  getServerTypes: (): string =>
+    joinPath(appRootAbsolute, 'server1', 'src', 'types'),
+
+  getClientFeatures: (): string =>
+    joinPath(appRootAbsolute, 'client', 'src', '@features'),
+
+  getServerFeatures: (): string =>
+    joinPath(appRootAbsolute, 'server1', 'src', '@features'),
+};
 
 export default FilePath;

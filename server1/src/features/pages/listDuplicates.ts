@@ -20,10 +20,7 @@ export const listDuplicates = async (
     Logger.info(`Pages: Found ${response.items.length} duplicates`);
     res.status(200).json(response);
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    Logger.error(`Pages: Error listing duplicates - ${errorMessage}`, {
-      error,
-    });
+    Logger.error('Pages: List Duplicates error:', error);
     res.sendStatus(500);
   }
 };

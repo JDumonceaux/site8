@@ -24,7 +24,7 @@ export const getFile = async (req: Request, res: Response): Promise<void> => {
       res.sendStatus(204);
     }
   } catch (error) {
-    Logger.error('Get File failed', { error });
+    Logger.error('Get File failed', error);
     res.sendStatus(500);
   }
 };

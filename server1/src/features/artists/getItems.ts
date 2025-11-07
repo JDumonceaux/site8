@@ -14,13 +14,13 @@ export const getItems = async (
     const service = getArtistsService();
     const artists = await service.getArtists();
 
-    if (!artists) {
+    if (Array.isArray(artists) && artists.length === 0) {
       res.sendStatus(204);
       return;
     }
     res.status(200).json(artists);
   } catch (error) {
-    Logger.error('Artists: Get Artists failed', { error });
+    Logger.error('Artists: Get Artists failed', error);
     res.sendStatus(500);
   }
 };

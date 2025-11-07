@@ -31,7 +31,7 @@ export const patchItem = async (
     }
 
     // Add ID to request body for validation
-    const requestData = { ...req.body, id };
+    const requestData = { ...(req.body as Record<string, unknown>), id };
 
     // Validate request data using partial Zod schema
     const validationResult = ImagePatchSchema.safeParse(requestData);
@@ -65,7 +65,7 @@ export const patchItem = async (
     };
 
     // Ensure ID consistency between URL and body
-    if (req.body.id && req.body.id !== id) {
+    if (validationResult.data.id && validationResult.data.id !== id) {
       res.status(400).json({
         error: 'ID in request body must match ID in URL',
       });

@@ -18,8 +18,7 @@ export const getListDuplicates = async (
       res.sendStatus(204);
     }
   } catch (error) {
-    // Optionally log error or handle with error middleware
-    // Logger.error(error);
+    Logger.error('Images: Get List Duplicates error:', error);
     res.sendStatus(500);
   }
 };

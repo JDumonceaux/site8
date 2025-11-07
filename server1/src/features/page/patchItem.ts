@@ -12,12 +12,7 @@ export const patchItem = async (
   try {
     const service = new PageService();
     const fileService = new PageFileService();
-    const item = req.body;
-
-    if (!item) {
-      res.status(400).json({ error: 'Invalid item' });
-      return;
-    }
+    const item: PageEdit = req.body;
 
     // TODO - validate the item against Zod schema
     // if (!isValid) {
@@ -44,8 +39,8 @@ export const patchItem = async (
     // const ret = await service.getItemCompleteById(item.id);
     res.status(200).json({ message: 'Success' });
   } catch (error) {
-    Logger.error(`pageRouter: patch -> Error: ${error}`);
-    res.status(500).json({ error: 'Internal Server Error' });
+    Logger.error('Page: Patch Item error:', error);
+    res.sendStatus(500);
   }
 };
 // const { id } = req.params;

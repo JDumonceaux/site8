@@ -3,7 +3,7 @@
 import importPlugin from 'eslint-plugin-import';
 
 
-export const importRules = {
+export default {
     // Include recommended Import rules
     ...importPlugin.configs.recommended.rules,
 

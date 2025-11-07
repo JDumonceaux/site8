@@ -113,6 +113,6 @@ const server = app.listen(env.PORT, () => {
 });
 
 server.on('error', (error: Error) => {
-  Logger.error(`Failed to start server: ${error.message}`, { error });
+  Logger.error(`Failed to start server: ${error.message}`, error);
   process.exit(1);
 });

@@ -28,8 +28,7 @@ export const getItems = async (
     Logger.info('Photos: Successfully retrieved items');
     res.status(200).json(items);
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    Logger.error(`Photos: Error fetching items - ${errorMessage}`, { error });
+    Logger.error('Photos: Get Items error:', error);
     res.sendStatus(500);
   }
 };

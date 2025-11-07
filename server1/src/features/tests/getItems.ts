@@ -27,8 +27,7 @@ export const getItems = async (
     );
     res.status(200).json(items);
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    Logger.error(`Tests: Error fetching items - ${errorMessage}`, { error });
+    Logger.error('Tests: Get Items error:', error);
     res.sendStatus(500);
   }
 };

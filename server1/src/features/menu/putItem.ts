@@ -18,7 +18,7 @@ export const putItem = async (
   const service = getPagesService();
   const service2 = getMenuService();
 
-  if (!data) {
+  if (Object.keys(data).length === 0) {
     res.status(400).json({ error: 'No data found' });
     return;
   }
@@ -38,6 +38,7 @@ export const putItem = async (
       res.sendStatus(500);
     }
   } catch (error) {
+    Logger.error('Menu: Put Item error:', error);
     res.sendStatus(500);
   }
 };

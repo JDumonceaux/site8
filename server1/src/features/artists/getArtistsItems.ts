@@ -14,13 +14,14 @@ const getArtistsItems = async (
     const service = getArtistsService();
     const artistsItems = await service.getArtistsItems();
 
-    if (!artistsItems) {
+    // if the service returns an empty array respond with 204 No Content
+    if (Array.isArray(artistsItems) && artistsItems.length === 0) {
       res.sendStatus(204);
       return;
     }
     res.status(200).json(artistsItems);
   } catch (error) {
-    Logger.error('Items: Get Artists Items failed', { error });
+    Logger.error('Items: Get Artists Items failed', error);
     res.sendStatus(500);
   }
 };

@@ -16,8 +16,7 @@ export const fixEntries = async (
     Logger.info('Pages: Successfully fixed all entries');
     res.status(200).json({ message: 'Successfully fixed all entries' });
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    Logger.error(`Pages: Error fixing entries - ${errorMessage}`, { error });
+    Logger.error('Pages: Fix Entries error:', error);
     res.sendStatus(500);
   }
 };

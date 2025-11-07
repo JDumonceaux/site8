@@ -74,11 +74,7 @@ export const postItem = async (
       throw serviceError;
     }
   } catch (error) {
-    Logger.error('Error in postItem:', error);
-    if (error instanceof Error) {
-      res.status(500).json({ error: 'Internal server error' });
-    } else {
-      res.sendStatus(500);
-    }
+    Logger.error('Image: Post Item error:', error);
+    res.sendStatus(500);
   }
 };

@@ -139,7 +139,7 @@ export class PagesService {
         error instanceof Error ? error.message : String(error);
       Logger.error(
         `PagesService: Error updating parent items - ${errorMessage}`,
-        { error },
+        error,
       );
       return undefined;
     }

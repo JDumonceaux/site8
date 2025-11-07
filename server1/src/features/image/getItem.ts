@@ -32,6 +32,7 @@ export const getItem = async (
       res.sendStatus(204);
     }
   } catch (error) {
+    Logger.error('Image: Get Item failed', error);
     res.sendStatus(500);
   }
 };

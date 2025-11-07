@@ -26,6 +26,7 @@ export const putItems = async (
       res.json(response);
     }
   } catch (error) {
+    Logger.error('Items: Put Items error:', error);
     res.sendStatus(500);
   }
 };
