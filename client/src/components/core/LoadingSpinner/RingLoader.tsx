@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { parseLengthAndUnit, cssValue } from './helpers/unitConverter';
 import type { LoaderSizeProps } from './helpers/props';
+
 import { createAnimation } from './helpers/animation';
+import { parseLengthAndUnit, cssValue } from './helpers/unitConverter';
 
 const right = createAnimation(
   'RingLoader',
@@ -16,37 +17,37 @@ const left = createAnimation(
   'left',
 );
 
-function RingLoader({
-  loading = true,
+const RingLoader = ({
   color = '#000000',
-  speedMultiplier = 1,
   cssOverride = {},
+  loading = true,
   size = 60,
+  speedMultiplier = 1,
   ...additionalprops
-}: LoaderSizeProps) {
-  const { value, unit } = parseLengthAndUnit(size);
+}: LoaderSizeProps) => {
+  const { unit, value } = parseLengthAndUnit(size);
 
   const wrapper: React.CSSProperties = {
     display: 'inherit',
-    width: cssValue(size),
     height: cssValue(size),
     position: 'relative',
+    width: cssValue(size),
     ...cssOverride,
   };
 
-  const style = (i: number): React.CSSProperties => {
+  const style = (index: number): React.CSSProperties => {
     return {
+      animation: `${index === 1 ? right : left} ${2 / speedMultiplier}s 0s infinite linear`,
+      animationFillMode: 'forwards',
+      border: `${value / 10}${unit} solid ${color}`,
+      borderRadius: '100%',
+      height: `${value}${unit}`,
+      left: '0',
+      opacity: '0.4',
+      perspective: '800px',
       position: 'absolute',
       top: '0',
-      left: '0',
       width: `${value}${unit}`,
-      height: `${value}${unit}`,
-      border: `${value / 10}${unit} solid ${color}`,
-      opacity: '0.4',
-      borderRadius: '100%',
-      animationFillMode: 'forwards',
-      perspective: '800px',
-      animation: `${i === 1 ? right : left} ${2 / speedMultiplier}s 0s infinite linear`,
     };
   };
 
@@ -63,6 +64,6 @@ function RingLoader({
       <span style={style(2)} />
     </span>
   );
-}
+};
 
 export default RingLoader;

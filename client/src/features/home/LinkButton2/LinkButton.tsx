@@ -27,7 +27,7 @@ const StyledElement = styled.button<{
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-bottom: ${(props) => (props.$margin ? props.$margin : undefined)};
+  margin-bottom: ${(props) => props.$margin ?? undefined};
   background-color: #ffffff;
   color: #424242;
   width: 200px;

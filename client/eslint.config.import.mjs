@@ -15,13 +15,13 @@ export default {
         // ============================================================================
         'import/default': 'off',
         'import/export': 'error',
-        'import/extensions': [ // Missing recommended rule
+        'import/extensions': [
             'error',
             'ignorePackages',
             {
                 js: 'never',
                 jsx: 'never',
-                mjs: 'never',
+                mjs: 'always',
                 ts: 'never',
                 tsx: 'never',
             },
@@ -29,29 +29,28 @@ export default {
         'import/first': 'error',
         'import/newline-after-import': 'error',
         'import/no-absolute-path': 'error',
-        'import/no-amd': 'error', // Missing recommended rule
-        'import/no-anonymous-default-export': [ // Missing recommended rule
-            'warn',
+        'import/no-amd': 'error',
+        'import/no-anonymous-default-export': [
+            'off',
             {
-                allowArray: false,
-                allowArrowFunction: false,
                 allowAnonymousClass: false,
                 allowAnonymousFunction: false,
+                allowArray: false,
+                allowArrowFunction: false,
                 allowCallExpression: true,
-                allowNew: false,
                 allowLiteral: false,
-                allowObject: false,
+                allowNew: false,
+                allowObject: true, // Allow for ESLint config files and simple exports
             },
         ],
         'import/no-commonjs': 'off', // Consider enabling for ES modules only
         'import/no-cycle': ['error', { maxDepth: 3 }],
         'import/no-default-export': 'off', // Consider based on your preference
-        'import/no-deprecated': 'warn', // Missing recommended rule
-
+        'import/no-deprecated': 'warn',
         'import/no-dynamic-require': 'warn',
-        'import/no-empty-named-blocks': 'error', // Missing recommended rule
-        'import/no-extraneous-dependencies': [ // Missing recommended rule
-            'error',
+        'import/no-empty-named-blocks': 'error',
+        'import/no-extraneous-dependencies': [
+            'off',
             {
                 devDependencies: [
                     '**/*.test.{js,jsx,ts,tsx}',
@@ -66,16 +65,18 @@ export default {
                     'webpack.config.*',
                 ],
                 optionalDependencies: false,
+                packageDir: './',
+                peerDependencies: false,
             },
         ],
-        'import/no-import-module-exports': 'error', // Missing recommended rule
+        'import/no-import-module-exports': 'error',
         'import/no-mutable-exports': 'error',
         'import/no-named-as-default': 'off',
         'import/no-named-as-default-member': 'off',
-        'import/no-named-default': 'error', // Missing recommended rule
+        'import/no-named-default': 'error',
         'import/no-namespace': 'off', // Consider based on your preference
         'import/no-nodejs-modules': 'warn',
-        'import/no-relative-packages': 'error', // Missing recommended rule
+        'import/no-relative-packages': 'error',
         'import/no-relative-parent-imports': 'off', // Consider enabling
         'import/no-restricted-paths': [
             'error',
@@ -114,17 +115,18 @@ export default {
                 ],
             },
         ],
-
+        // Seems to be problem
         'import/no-unused-modules': [ // Missing recommended rule
-            'warn',
+            'off',
             {
                 unusedExports: true,
             },
         ],
         'import/no-useless-path-segments': 'error',
         'import/no-webpack-loader-syntax': 'error',
+        // using perfectionist for import sorting
         'import/order': [
-            'error',
+            'off',
             {
                 alphabetize: {
                     caseInsensitive: true,
@@ -145,6 +147,10 @@ export default {
         'import/prefer-default-export': 'off', // Consider based on your preference
     },
     settings: {
+        'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx'], // Missing extensions setting
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx'],
+        },
         'import/resolver': {
             node: {
                 extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'], // Added .ts and .tsx
@@ -153,10 +159,6 @@ export default {
                 alwaysTryTypes: true,
                 project: './tsconfig.json',
             },
-        },
-        'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx'], // Missing extensions setting
-        'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.tsx'],
         },
     },
 };

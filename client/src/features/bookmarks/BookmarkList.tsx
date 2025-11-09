@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
-import type { Bookmarks } from '../../types/Bookmarks';
+
 import styled from 'styled-components';
+import type { Bookmarks } from '../../types/Bookmarks';
 
 type BookmarkListProps = {
   readonly data?: Bookmarks | null;

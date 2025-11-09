@@ -30,15 +30,16 @@ const Fallback = ({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element => {
   }
 
   const widths = Array.from({ length: count }).map(
-    (_, i) => 100 - (i % 3) * 10,
+    (_, index) => 100 - (index % 3) * 10,
   );
 
   return (
     <LoadingContainer aria-live="polite">
       <PageTitle title="Loading…" />
-      {widths.map((w, idx) => (
+      {widths.map((w, index) => (
         <LoadingLine
-          key={idx}
+          // eslint-disable-next-line react/no-array-index-key
+          key={index}
           style={{ width: `${w}%` }}
         />
       ))}

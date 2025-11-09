@@ -1,10 +1,10 @@
 import React, { type JSX } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import { getURLPath } from '@lib/utils/helpers';
-import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-
 import ItemRender from './ItemRender';
 
 const SubjectMenu = ({ ref, ..._ }: any): JSX.Element => {
@@ -17,16 +17,16 @@ const SubjectMenu = ({ ref, ..._ }: any): JSX.Element => {
 
   const mappedItems = data?.items?.map((x) => (
     <ItemRender
-      item={x}
       key={x.id}
+      item={x}
       level={1}
     />
   ));
 
   const mappedData2 = data2?.map((x) => (
     <ItemRender
-      item={x}
       key={x.id}
+      item={x}
       level={1}
     />
   ));

@@ -1,15 +1,15 @@
+import * as Form from '@radix-ui/react-form';
 import { type JSX, useActionState } from 'react';
-import Meta from '@components/core/Meta/Meta';
 
+import Button from '@components/core/Button/Button';
+import Meta from '@components/core/Meta/Meta';
 import Input from '@components/Input/Input';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import styled from 'styled-components';
 import type { FormState } from '../../types';
-import AuthContainer from './AuthContainer';
-import Button from '@components/core/Button/Button';
-import * as Form from '@radix-ui/react-form';
 import type { ChangePassword } from '../../types/Auth';
+import AuthContainer from './AuthContainer';
 
 const ChangePasswordPage = (): JSX.Element => {
   const title = 'Change Password';
@@ -29,23 +29,22 @@ const ChangePasswordPage = (): JSX.Element => {
       return {
         fieldData: data as unknown as ChangePassword,
       } as FormState<ChangePassword>;
-    } catch (err) {
+    } catch (error_) {
       return {
         fieldData: {},
-        message: `Error saving data: ${(err as Error).message}`,
+        message: `Error saving data: ${(error_ as Error).message}`,
       } as FormState<ChangePassword>;
     }
   };
 
   const [data, action] = useActionState(postItem, {
-    fieldData: { password: '', newPassword: '', confirmPassword: '' },
+    fieldData: { confirmPassword: '', newPassword: '', password: '' },
   } as FormState<ChangePassword>);
 
   return (
     <>
       <Meta title={title} />
       <AuthContainer
-        error={error}
         leftImage={
           <img
             alt=""
@@ -53,25 +52,26 @@ const ChangePasswordPage = (): JSX.Element => {
           />
         }
         title={title}
+        error={error}
       >
         <Form.Root action={action}>
           <Input.Password
+            defaultValue=""
+            id="password"
             label="Current Password"
             placeholder="Current password"
-            id={`password`}
-            defaultValue={''}
           />
           <Input.Password
+            defaultValue=""
+            id="newPassword"
             label="New Password"
             placeholder="New password"
-            id={`newPassword`}
-            defaultValue={''}
           />
           <Input.Password
+            defaultValue=""
+            id="confirmPassword"
             label="Confirm Password"
             placeholder="Confirm password"
-            id={`confirmPassword`}
-            defaultValue={''}
           />
           <Button id="submit">Submit</Button>
         </Form.Root>

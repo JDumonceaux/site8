@@ -17,6 +17,11 @@ export default {
         ...pluginRedux.configs.recommended.rules,
 
         // ============================================================================
+        // React Redux Rules
+        // ============================================================================
+        'react-redux/connect-prefer-named-arguments': 'error',
+        'react-redux/mapStateToProps-prefer-selectors': 'error',
+        // ============================================================================
         // React Rules
         // ============================================================================
         'react/boolean-prop-naming': ['error', { rule: '^(is|has|should|can|will|did)[A-Z]([A-Za-z0-9]?)+' }],
@@ -66,7 +71,7 @@ export default {
         'react/jsx-boolean-value': ['error', 'never'],
         'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
         'react/jsx-closing-tag-location': 'error',
-        'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+        'react/jsx-curly-brace-presence': ['error', { children: 'never', props: 'never' }],
         'react/jsx-curly-newline': [ // Missing recommended rule
             'error',
             {
@@ -111,22 +116,22 @@ export default {
         'react/jsx-tag-spacing': [
             'error',
             {
-                closingSlash: 'never',
-                beforeSelfClosing: 'always',
                 afterOpening: 'never',
                 beforeClosing: 'never',
+                beforeSelfClosing: 'always',
+                closingSlash: 'never',
             },
         ],
         'react/jsx-wrap-multilines': [
             'error',
             {
-                declaration: 'parens-new-line',
-                assignment: 'parens-new-line',
-                return: 'parens-new-line',
                 arrow: 'parens-new-line',
+                assignment: 'parens-new-line',
                 condition: 'parens-new-line',
+                declaration: 'parens-new-line',
                 logical: 'parens-new-line',
                 prop: 'parens-new-line',
+                return: 'parens-new-line',
             },
         ],
         'react/no-access-state-in-setstate': 'error',
@@ -173,8 +178,6 @@ export default {
         'react/sort-prop-types': 'error',
         'react/state-in-constructor': ['error', 'never'],
         'react/static-property-placement': 'error',
-        'react/style-prop-object': 'error',
-        'react/void-dom-elements-no-children': 'error',
 
         // ============================================================================
         // React Hooks Rules
@@ -182,11 +185,8 @@ export default {
         // Provided by plugin's recommended config; keep only custom hook rules here
         // 'react-hooks/exhaustive-deps' and 'react-hooks/rules-of-hooks' are included via the spread above
 
-        // ============================================================================
-        // React Redux Rules
-        // ============================================================================
-        'react-redux/connect-prefer-named-arguments': 'error',
-        'react-redux/mapStateToProps-prefer-selectors': 'error',
+        'react/style-prop-object': 'error',
+        'react/void-dom-elements-no-children': 'error',
     },
     settings: {
         react: {

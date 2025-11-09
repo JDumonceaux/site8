@@ -1,4 +1,5 @@
-import type { JSX, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, JSX, ReactNode } from 'react';
+
 import styled from 'styled-components';
 
 export type DividerProps = {
@@ -10,7 +11,7 @@ const Divider = ({ children, ...rest }: DividerProps): JSX.Element => {
   return (
     <Container {...rest}>
       <Line aria-hidden="true" />
-      {children && <Content>{children}</Content>}
+      {children ? <Content>{children}</Content> : null}
       <Line aria-hidden="true" />
     </Container>
   );

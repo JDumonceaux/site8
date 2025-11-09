@@ -1,4 +1,5 @@
-import type { JSX, ReactNode, ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, JSX, ReactNode } from 'react';
+
 import styled from 'styled-components';
 
 export type IconButtonProps = {
@@ -17,7 +18,12 @@ const IconButton = ({
   ...rest
 }: IconButtonProps): JSX.Element => {
   return (
-    <StyledButton $color={color} aria-label={ariaLabel} type="button" {...rest}>
+    <StyledButton
+      aria-label={ariaLabel}
+      type="button"
+      $color={color}
+      {...rest}
+    >
       {children}
     </StyledButton>
   );

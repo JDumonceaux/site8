@@ -1,4 +1,5 @@
-import { type JSX } from 'react';
+import type { JSX } from 'react';
+
 import type { BookmarksTags } from '../../types/BookmarksTags';
 
 type BookmarksTagsProps = {

@@ -1,8 +1,8 @@
-import { type JSX } from 'react';
+import type { JSX } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HomeMenu = (): JSX.Element => {

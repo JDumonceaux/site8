@@ -4,87 +4,118 @@ import type { JSX } from 'react';
  * Props for Meta component defining various head and link tags.
  */
 type MetaProps = {
-  /** Character encoding */
-  charset?: string;
-  /** Viewport settings (e.g., "width=device-width, initial-scale=1") */
-  viewport?: string;
-  /** Page title */
-  title?: string;
-  /** Meta description */
-  description?: string;
-  /** Twitter/Facebook creator handle (e.g. @username) */
-  name?: string;
-  /** Author of the document */
-  author?: string;
-  /** Search engine instructions (e.g., "index,follow") */
-  robots?: string;
-  /** Theme color for mobile browsers */
-  themeColor?: string;
-  /** SEO keywords */
-  keywords?: string;
-  /** Canonical URL */
-  canonical?: string;
-  /** OpenGraph/Twitter card type */
-  type?: 'article' | 'book' | 'profile' | 'website';
-  /** OpenGraph URL */
-  ogUrl?: string;
-  /** OpenGraph site name */
-  siteName?: string;
-  /** OpenGraph image URL */
-  ogImage?: string;
-  /** OpenGraph locale (e.g., "en_US") */
-  ogLocale?: string;
-  /** Twitter site handle (e.g., @site) */
-  twitterSite?: string;
-  /** Twitter image alt text */
-  twitterImageAlt?: string;
-  /** Mobile web app capable flag */
-  mobileWebAppCapable?: string;
   /** Apple mobile web app capable flag */
   appleMobileWebAppCapable?: string;
   /** Apple touch icon URL */
   appleTouchIcon?: string;
+  /** Author of the document */
+  author?: string;
+  /** Canonical URL */
+  canonical?: string;
+  /** Character encoding */
+  charset?: string;
+  /** HTTP-Equiv: Content-Language */
+  contentLanguage?: string;
+  /** Meta description */
+  description?: string;
+  /** Google site verification token */
+  googleSiteVerification?: string;
+  /** SEO keywords */
+  keywords?: string;
   /** PWA manifest URL */
   manifest?: string;
+  /** Mobile web app capable flag */
+  mobileWebAppCapable?: string;
   /** Microsoft tile color */
   msTileColor?: string;
   /** Microsoft tile image URL */
   msTileImage?: string;
-  /** Google site verification token */
-  googleSiteVerification?: string;
-  /** Yandex site verification token */
-  yandexVerification?: string;
-  /** HTTP-Equiv: X-UA-Compatible */
-  xUaCompatible?: string;
-  /** HTTP-Equiv: Content-Language */
-  contentLanguage?: string;
+  /** Twitter/Facebook creator handle (e.g. @username) */
+  name?: string;
+  /** OpenGraph image URL */
+  ogImage?: string;
+  /** OpenGraph locale (e.g., "en_US") */
+  ogLocale?: string;
+  /** OpenGraph URL */
+  ogUrl?: string;
   /** HTTP-Equiv: refresh content (seconds) */
   refresh?: string;
+  /** Search engine instructions (e.g., "index,follow") */
+  robots?: string;
+  /** OpenGraph site name */
+  siteName?: string;
+  /** Theme color for mobile browsers */
+  themeColor?: string;
+  /** Page title */
+  title?: string;
+  /** Twitter image alt text */
+  twitterImageAlt?: string;
+  /** Twitter site handle (e.g., @site) */
+  twitterSite?: string;
+  /** OpenGraph/Twitter card type */
+  type?: 'article' | 'book' | 'profile' | 'website';
+  /** Viewport settings (e.g., "width=device-width, initial-scale=1") */
+  viewport?: string;
+  /** HTTP-Equiv: X-UA-Compatible */
+  xUaCompatible?: string;
+  /** Yandex site verification token */
+  yandexVerification?: string;
 };
 
 /** Tag builder functions */
 const buildCharsetTag = (charset: string): JSX.Element => (
-  <meta key="charset" charSet={charset} />
+  <meta
+    key="charset"
+    charSet={charset}
+  />
 );
 
 const buildViewportTag = (viewport: string): JSX.Element => (
-  <meta key="viewport" name="viewport" content={viewport} />
+  <meta
+    key="viewport"
+    name="viewport"
+    content={viewport}
+  />
 );
 
 const buildTitleTags = (title: string): JSX.Element[] => [
   <title key="title">{title}</title>,
-  <meta key="og:title" property="og:title" content={title} />,
-  <meta key="twitter:title" name="twitter:title" content={title} />,
+  <meta
+    key="og:title"
+    content={title}
+    property="og:title"
+  />,
+  <meta
+    key="twitter:title"
+    name="twitter:title"
+    content={title}
+  />,
 ];
 
 const buildTypeTags = (cardType: MetaProps['type']): JSX.Element[] => [
-  <meta key="og:type" property="og:type" content={cardType} />,
-  <meta key="twitter:card" name="twitter:card" content={cardType} />,
+  <meta
+    key="og:type"
+    content={cardType}
+    property="og:type"
+  />,
+  <meta
+    key="twitter:card"
+    name="twitter:card"
+    content={cardType}
+  />,
 ];
 
 const buildDescriptionTags = (description: string): JSX.Element[] => [
-  <meta key="description" name="description" content={description} />,
-  <meta key="og:description" property="og:description" content={description} />,
+  <meta
+    key="description"
+    name="description"
+    content={description}
+  />,
+  <meta
+    key="og:description"
+    content={description}
+    property="og:description"
+  />,
   <meta
     key="twitter:description"
     name="twitter:description"
@@ -93,76 +124,136 @@ const buildDescriptionTags = (description: string): JSX.Element[] => [
 ];
 
 const buildCreatorTag = (creator: string): JSX.Element => (
-  <meta key="twitter:creator" name="twitter:creator" content={creator} />
-);
-
-const buildRobotsTag = (robots: string): JSX.Element => (
-  <meta key="robots" name="robots" content={robots} />
-);
-
-const buildAuthorTag = (author: string): JSX.Element => (
-  <meta key="author" name="author" content={author} />
-);
-
-const buildThemeColorTag = (themeColor: string): JSX.Element => (
-  <meta key="theme-color" name="theme-color" content={themeColor} />
-);
-
-const buildKeywordsTag = (keywords: string): JSX.Element => (
-  <meta key="keywords" name="keywords" content={keywords} />
-);
-
-const buildCanonicalLink = (canonical: string): JSX.Element => (
-  <link key="canonical" rel="canonical" href={canonical} />
-);
-
-const buildOgUrlTag = (ogUrl: string): JSX.Element => (
-  <meta key="og:url" property="og:url" content={ogUrl} />
-);
-
-const buildSiteNameTag = (siteName: string): JSX.Element => (
-  <meta key="og:site_name" property="og:site_name" content={siteName} />
-);
-
-const buildOgImageTags = (ogImage: string): JSX.Element[] => [
-  <meta key="og:image" property="og:image" content={ogImage} />,
-  <meta key="twitter:image" name="twitter:image" content={ogImage} />,
-];
-
-const buildOgLocaleTag = (locale: string): JSX.Element => (
-  <meta key="og:locale" property="og:locale" content={locale} />
-);
-
-const buildTwitterSiteTag = (twitterSite: string): JSX.Element => (
-  <meta key="twitter:site" name="twitter:site" content={twitterSite} />
-);
-
-const buildTwitterImageAltTag = (alt: string): JSX.Element => (
-  <meta key="twitter:image:alt" name="twitter:image:alt" content={alt} />
-);
-
-const buildMobileWebAppCapableTag = (val: string): JSX.Element => (
   <meta
-    key="mobile-web-app-capable"
-    name="mobile-web-app-capable"
-    content={val}
+    key="twitter:creator"
+    name="twitter:creator"
+    content={creator}
   />
 );
 
-const buildAppleMobileWebAppCapableTag = (val: string): JSX.Element => (
+const buildRobotsTag = (robots: string): JSX.Element => (
+  <meta
+    key="robots"
+    name="robots"
+    content={robots}
+  />
+);
+
+const buildAuthorTag = (author: string): JSX.Element => (
+  <meta
+    key="author"
+    name="author"
+    content={author}
+  />
+);
+
+const buildThemeColorTag = (themeColor: string): JSX.Element => (
+  <meta
+    key="theme-color"
+    name="theme-color"
+    content={themeColor}
+  />
+);
+
+const buildKeywordsTag = (keywords: string): JSX.Element => (
+  <meta
+    key="keywords"
+    name="keywords"
+    content={keywords}
+  />
+);
+
+const buildCanonicalLink = (canonical: string): JSX.Element => (
+  <link
+    href={canonical}
+    key="canonical"
+    rel="canonical"
+  />
+);
+
+const buildOgUrlTag = (ogUrl: string): JSX.Element => (
+  <meta
+    key="og:url"
+    content={ogUrl}
+    property="og:url"
+  />
+);
+
+const buildSiteNameTag = (siteName: string): JSX.Element => (
+  <meta
+    key="og:site_name"
+    content={siteName}
+    property="og:site_name"
+  />
+);
+
+const buildOgImageTags = (ogImage: string): JSX.Element[] => [
+  <meta
+    key="og:image"
+    content={ogImage}
+    property="og:image"
+  />,
+  <meta
+    key="twitter:image"
+    name="twitter:image"
+    content={ogImage}
+  />,
+];
+
+const buildOgLocaleTag = (locale: string): JSX.Element => (
+  <meta
+    key="og:locale"
+    content={locale}
+    property="og:locale"
+  />
+);
+
+const buildTwitterSiteTag = (twitterSite: string): JSX.Element => (
+  <meta
+    key="twitter:site"
+    name="twitter:site"
+    content={twitterSite}
+  />
+);
+
+const buildTwitterImageAltTag = (alt: string): JSX.Element => (
+  <meta
+    key="twitter:image:alt"
+    name="twitter:image:alt"
+    content={alt}
+  />
+);
+
+const buildMobileWebAppCapableTag = (value: string): JSX.Element => (
+  <meta
+    key="mobile-web-app-capable"
+    name="mobile-web-app-capable"
+    content={value}
+  />
+);
+
+const buildAppleMobileWebAppCapableTag = (value: string): JSX.Element => (
   <meta
     key="apple-mobile-web-app-capable"
     name="apple-mobile-web-app-capable"
-    content={val}
+    content={value}
   />
 );
 
 const buildAppleTouchIconLink = (icon: string): JSX.Element => (
-  <link key="apple-touch-icon" rel="apple-touch-icon" href={icon} />
+  <link
+    href={icon}
+    key="apple-touch-icon"
+    rel="apple-touch-icon"
+  />
 );
 
 const buildManifestLink = (manifest: string): JSX.Element => (
-  <link key="manifest" rel="manifest" href={manifest} />
+  <link
+    href={manifest}
+    key="manifest"
+    rel="manifest"
+  />
 );
 
 const buildMsTileColorTag = (color: string): JSX.Element => (
@@ -190,7 +281,11 @@ const buildGoogleSiteVerificationTag = (token: string): JSX.Element => (
 );
 
 const buildYandexVerificationTag = (token: string): JSX.Element => (
-  <meta key="yandex-verification" name="yandex-verification" content={token} />
+  <meta
+    key="yandex-verification"
+    name="yandex-verification"
+    content={token}
+  />
 );
 
 const buildHttpEquivTag = (httpEquiv: string, content: string): JSX.Element => (
@@ -205,34 +300,34 @@ const buildHttpEquivTag = (httpEquiv: string, content: string): JSX.Element => (
  * Renders all specified meta and link tags in head.
  */
 const Meta = ({
-  charset,
-  viewport,
-  title,
-  description,
-  type: cardType,
-  name,
-  author,
-  robots,
-  themeColor,
-  keywords,
-  canonical,
-  ogUrl,
-  siteName,
-  ogImage,
-  ogLocale,
-  twitterSite,
-  twitterImageAlt,
-  mobileWebAppCapable,
   appleMobileWebAppCapable,
   appleTouchIcon,
+  author,
+  canonical,
+  charset,
+  contentLanguage,
+  description,
+  googleSiteVerification,
+  keywords,
   manifest,
+  mobileWebAppCapable,
   msTileColor,
   msTileImage,
-  googleSiteVerification,
-  yandexVerification,
-  xUaCompatible,
-  contentLanguage,
+  name,
+  ogImage,
+  ogLocale,
+  ogUrl,
   refresh,
+  robots,
+  siteName,
+  themeColor,
+  title,
+  twitterImageAlt,
+  twitterSite,
+  type: cardType,
+  viewport,
+  xUaCompatible,
+  yandexVerification,
 }: MetaProps): JSX.Element => {
   const tags: JSX.Element[] = [];
 

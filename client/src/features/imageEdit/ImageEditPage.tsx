@@ -1,18 +1,17 @@
-import { useEffect, useRef, type JSX } from 'react';
+import { type JSX, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
 import ImageSelector from '@components/custom/ImageSelector/ImageSelector';
 import Input from '@components/Input/Input';
-import Layout from '@features/layouts/Layout/Layout';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
 import StyledPlainButton from '@components/Link/StyledPlainButton/StyledPlainButton';
 import useSnackbar from '@features/app/Snackbar/useSnackbar';
-import { useParams } from 'react-router-dom';
+import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
 import type { Image } from '../../types';
-
 import useImageEdit from './useImageEdit';
 
 const ImageEditImage = (): JSX.Element => {
@@ -59,8 +58,8 @@ const ImageEditImage = (): JSX.Element => {
             {isSaved ? null : (
               <StyledPlainButton
                 data-testid="button-save"
-                onClick={handleSubmit}
                 type="submit"
+                onClick={handleSubmit}
               >
                 Save
               </StyledPlainButton>
@@ -79,8 +78,8 @@ const ImageEditImage = (): JSX.Element => {
             </StyledLink>
             <StyledPlainButton
               data-testid="button-reset"
-              onClick={handleReset}
               type="reset"
+              onClick={handleReset}
             >
               Reset
             </StyledPlainButton>
@@ -96,48 +95,48 @@ const ImageEditImage = (): JSX.Element => {
                   onSubmit={handleSubmit}
                 >
                   <Input.Text
-                    autoCapitalize="off"
-                    enterKeyHint="next"
-                    //errorTextShort="Please enter a short title"
-                    inputMode="text"
-                    label="Short Title"
                     ref={inputTitleRef}
                     required
                     spellCheck
+                    enterKeyHint="next"
+                    label="Short Title"
+                    autoCapitalize="off"
+                    //errorTextShort="Please enter a short title"
+                    inputMode="text"
                     // {...getStandardInputTextAttributes('name')}
                     //ref={focusElement}
                     {...getDefaultProps('name')}
                   />
                   <Input.Text
-                    autoCapitalize="off"
-                    enterKeyHint="next"
-                    // errorTextShort="Please enter a location"
-                    inputMode="text"
-                    label="Location"
                     required
                     spellCheck
+                    enterKeyHint="next"
+                    label="Location"
+                    autoCapitalize="off"
+                    // errorTextShort="Please enter a location"
+                    inputMode="text"
                     //ref={focusElement}
                     {...getDefaultProps('location')}
                   />
                   <Input.Text
-                    autoCapitalize="off"
-                    enterKeyHint="next"
-                    //   errorTextShort="Please enter a File Name"
-                    inputMode="text"
-                    label="File Name"
                     required
                     spellCheck
+                    enterKeyHint="next"
+                    label="File Name"
+                    autoCapitalize="off"
+                    //   errorTextShort="Please enter a File Name"
+                    inputMode="text"
                     {...getDefaultProps('fileName')}
                     //ref={focusElement}
                   />
                   <Input.Text
-                    autoCapitalize="off"
-                    enterKeyHint="next"
-                    //  errorTextShort="Please enter a image path"
-                    inputMode="text"
-                    label="SRC"
                     required
                     spellCheck
+                    enterKeyHint="next"
+                    label="SRC"
+                    autoCapitalize="off"
+                    //  errorTextShort="Please enter a image path"
+                    inputMode="text"
                     {...getDefaultProps('src')}
                     //ref={focusElement}
                   />
@@ -149,31 +148,31 @@ const ImageEditImage = (): JSX.Element => {
                     {...getDefaultProps('folder')}
                   />
                   <Input.Text
-                    autoCapitalize="off"
+                    spellCheck
                     enterKeyHint="next"
-                    //    errorTextShort="Please enter a official URL"
-                    inputMode="text"
                     label="Official URL"
                     required={false}
-                    spellCheck
+                    autoCapitalize="off"
+                    //    errorTextShort="Please enter a official URL"
+                    inputMode="text"
                     {...getDefaultProps('official_url')}
                     //ref={focusElement}
                   />
                   <Input.Text
-                    autoCapitalize="off"
+                    spellCheck
                     enterKeyHint="next"
-                    //  errorTextShort="Please enter a tag"
-                    inputMode="text"
                     label="Tags"
                     required={false}
-                    spellCheck
+                    autoCapitalize="off"
+                    //  errorTextShort="Please enter a tag"
+                    inputMode="text"
                     {...getDefaultProps('tags')}
                     //ref={focusElement}
                   />
                   <Input.TextArea
+                    spellCheck
                     label="Description"
                     rows={30}
-                    spellCheck
                     {...getDefaultProps('description')}
                     // required
                   />

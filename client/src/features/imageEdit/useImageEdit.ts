@@ -1,23 +1,24 @@
-import { useState, useEffect, type ChangeEvent } from 'react';
+import { type ChangeEvent, useEffect, useState } from 'react';
+
+import { useAxios } from '@hooks/Axios/useAxios';
+import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
 import { getSRC } from '@lib/utils/helpers';
 import { safeParse } from '@lib/utils/zodHelper';
 import type { Image } from '../../types/Image';
 import pageSchema, { type FormKeys, type FormType } from './schema';
 import useImage from './useImage';
-import { useAxios } from '@hooks/Axios/useAxios';
-import useForm from '@hooks/useForm';
 
 /**
  * Hook for editing an Image entity, handling form state, validation, and persistence.
  */
-export const useImageEdit = (rawId: string | null) => {
+export const useImageEdit = (rawId: null | string) => {
   const { patchData, putData } = useAxios<Image>();
   const { data: imageData } = useImage(rawId);
 
   // Parse ID or action keyword
   let currentId = 0;
-  let currentAction: string | null = null;
+  let currentAction: null | string = null;
   if (rawId) {
     const parsed = Number(rawId);
     if (!Number.isNaN(parsed) && parsed > 0) {
@@ -39,7 +40,7 @@ export const useImageEdit = (rawId: string | null) => {
     tags: '',
   };
 
-  const { formValues, getFieldValue, setFieldValue, setFormValues, setErrors } =
+  const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
     useForm<FormType>(defaultForm);
 
   // Keep original for reset
@@ -50,9 +51,9 @@ export const useImageEdit = (rawId: string | null) => {
     if (!imageData) return;
     const formData: FormType = {
       ...defaultForm,
-      id: imageData.id,
       fileName: imageData.fileName ?? '',
       folder: imageData.folder ?? '',
+      id: imageData.id,
       location: imageData.location ?? '',
       official_url: imageData.official_url ?? '',
       src: getSRC(imageData.folder, imageData.fileName),
@@ -62,28 +63,26 @@ export const useImageEdit = (rawId: string | null) => {
   }, [imageData]);
 
   // Form helpers
-  function getDefaultProps(field: FormKeys) {
-    return {
-      'data-id': field,
-      'data-line': 0,
-      value: getFieldValue(field),
-      onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFieldValue(field, e.target.value);
-      },
-    };
-  }
+  const getDefaultProps = (field: FormKeys) => ({
+    'data-id': field,
+    'data-line': 0,
+    onChange: (error: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFieldValue(field, error.target.value);
+    },
+    value: getFieldValue(field),
+  });
 
-  function validateForm() {
+  const validateForm = () => {
     const result = safeParse<FormType>(pageSchema, formValues);
     setErrors(result.success ? null : result.error?.issues);
     return result.success;
-  }
+  };
 
   // Save state
   const [isSaved, setIsSaved] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  async function saveItem() {
+  const saveItem = async () => {
     if (!validateForm()) return false;
     setIsProcessing(true);
 
@@ -93,25 +92,23 @@ export const useImageEdit = (rawId: string | null) => {
     } as any;
 
     try {
-      if (payload.id > 0) {
-        await patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`, payload);
-      } else {
-        await putData(ServiceUrl.ENDPOINT_IMAGE, payload);
-      }
+      await (payload.id > 0
+        ? patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`, payload)
+        : putData(ServiceUrl.ENDPOINT_IMAGE, payload));
       setIsSaved(true);
       return true;
     } finally {
       setIsProcessing(false);
     }
-  }
+  };
 
-  function resetForm() {
+  const resetForm = () => {
     if (originalValues) {
       const formData: FormType = {
         ...defaultForm,
-        id: originalValues.id,
         fileName: originalValues.fileName ?? '',
         folder: originalValues.folder ?? '',
+        id: originalValues.id,
         location: originalValues.location ?? '',
         official_url: originalValues.official_url ?? '',
         src: getSRC(originalValues.folder, originalValues.fileName),
@@ -121,14 +118,14 @@ export const useImageEdit = (rawId: string | null) => {
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }
+  };
 
-  function clearForm() {
+  const clearForm = () => {
     setFormValues(defaultForm);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }
+  };
 
   // Update unsaved flag when values change
   useEffect(() => {
@@ -136,14 +133,14 @@ export const useImageEdit = (rawId: string | null) => {
   }, [formValues, originalValues]);
 
   return {
+    clearForm,
     formValues,
     getDefaultProps,
-    validateForm,
-    saveItem,
-    resetForm,
-    clearForm,
     isProcessing,
     isSaved,
+    resetForm,
+    saveItem,
+    validateForm,
   };
 };
 

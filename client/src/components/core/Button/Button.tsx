@@ -1,4 +1,5 @@
-import type { JSX, ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, JSX } from 'react';
+
 import styled, { css } from 'styled-components';
 
 // Allowed visual variants
@@ -18,9 +19,9 @@ export type ButtonProps = Omit<
   fullWidth?: boolean;
   /** Visual size of the button */
   size?: Size;
+  type?: 'button' | 'reset' | 'submit';
   /** Visual style variant */
   variant?: Variant;
-  type?: 'button' | 'submit' | 'reset';
 };
 
 /** Transient styling props (never forwarded to the DOM) */
@@ -50,10 +51,6 @@ const variantStyles: Record<Variant, ReturnType<typeof css>> = {
 };
 
 const sizeStyles: Record<Size, ReturnType<typeof css>> = {
-  xl: css`
-    font-size: 1.25rem;
-    padding: 1.25rem 1.5rem;
-  `,
   lg: css`
     font-size: 1.125rem;
     padding: 1rem 1.25rem;
@@ -65,6 +62,10 @@ const sizeStyles: Record<Size, ReturnType<typeof css>> = {
   sm: css`
     font-size: 0.875rem;
     padding: 0.5rem 0.75rem;
+  `,
+  xl: css`
+    font-size: 1.25rem;
+    padding: 1.25rem 1.5rem;
   `,
   xs: css`
     font-size: 0.75rem;
@@ -123,8 +124,8 @@ const Button = ({
   children,
   fullWidth = false,
   size = 'md',
-  variant = 'primary',
   type = 'button',
+  variant = 'primary',
   ...rest
 }: ButtonProps): JSX.Element => {
   return (
@@ -133,7 +134,8 @@ const Button = ({
       $size={size}
       $variant={variant}
       type={type}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </StyledButton>
   );

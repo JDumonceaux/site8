@@ -34,7 +34,7 @@ const RenderCode = ({ children }: RenderCodeProps) => {
   const handleCopy = () => {
     const text = ref.current?.textContent;
     if (text) {
-      copyToClipboard(text);
+      void copyToClipboard(text);
     }
   };
 

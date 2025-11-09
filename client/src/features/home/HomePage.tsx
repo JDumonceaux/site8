@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import Meta from '@components/core/Meta/Meta';
 import Layout from '@features/layouts/Layout/Layout';
 import { APP_NAME } from '@lib/utils/constants';

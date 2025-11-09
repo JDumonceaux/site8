@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, type JSX } from 'react';
+import React, { type JSX, useEffect, useRef } from 'react';
+
 import Dialog from '@components/core/Dialog/Dialog';
 import { useDialog } from '@components/core/Dialog/useDialog';
 import Meta from '@components/core/Meta/Meta';
@@ -81,15 +82,14 @@ const DevelopPage = (): JSX.Element => {
   const { formValues, getFieldValue, handleChange } =
     useForm<FormType>(initialFormValues);
 
-  function handleSubmit(e: React.FormEvent) {
-    e.stopPropagation();
-    e.preventDefault();
+  const handleSubmit = (error: React.FormEvent) => {
+    error.stopPropagation();
+    error.preventDefault();
     // handleSave();
-  }
+  };
 
-  function getTitleErrors() {
-    return pageSchema.shape.title.safeParse(formValues.title);
-  }
+  const getTitleErrors = () =>
+    pageSchema.shape.title.safeParse(formValues.title);
 
   const { onDialogClose, onDialogOpen, ...dialogProps } = useDialog();
   const firstFieldRef = useRef<HTMLInputElement>(null);
@@ -106,8 +106,8 @@ const DevelopPage = (): JSX.Element => {
           <PageTitle title={title} />
           <section>
             <button
-              onClick={onDialogOpen}
               type="button"
+              onClick={onDialogOpen}
             >
               Open Dialog
             </button>
@@ -118,44 +118,44 @@ const DevelopPage = (): JSX.Element => {
                 <div>
                   <Grid>
                     <Input.Text
-                      autoComplete="given-name"
+                      required
+                      spellCheck
                       id="given_name"
                       label="First Name"
                       minLength={10}
+                      value={getFieldValue('given_name')}
+                      autoComplete="given-name"
                       onChange={handleChange}
                       placeholder="Enter a first name"
-                      required
-                      spellCheck
-                      value={getFieldValue('given_name')}
                     />
                     <Input.Text
-                      autoComplete="family-name"
+                      required
+                      spellCheck
                       id="family_name"
                       label="Last Name"
                       minLength={10}
+                      value={getFieldValue('family_name')}
+                      autoComplete="family-name"
                       onChange={handleChange}
                       placeholder="Enter a last name"
-                      required
-                      spellCheck
-                      value={getFieldValue('family_name')}
                     />
                   </Grid>
                   <Input.Email
                     id="email"
                     label="Email"
+                    value={getFieldValue('email')}
                     onChange={handleChange}
                     placeholder="Enter an Email"
                     startAdornment={<EmailAdornment />}
-                    value={getFieldValue('email')}
                   />
                   <Input.TextArea
+                    required
                     id="textarea"
                     label="Text Area"
+                    value={getFieldValue('textarea')}
                     onChange={handleChange}
                     placeholder="Enter text"
-                    required
                     rows={10}
-                    value={getFieldValue('textarea')}
                   />
                 </div>
               </Grid>

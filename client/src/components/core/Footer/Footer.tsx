@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 // Compute once at module load
@@ -10,7 +11,10 @@ const currentYear = new Date().getFullYear();
 const Footer = (): JSX.Element => {
   return (
     <FooterContainer data-testid="footer">
-      <CopyrightText>&copy; {currentYear}</CopyrightText>
+      <CopyrightText>
+        &copy;
+        {currentYear}
+      </CopyrightText>
     </FooterContainer>
   );
 };

@@ -15,11 +15,11 @@ export default {
         'jsx-a11y/alt-text': [
             'error',
             {
+                area: [],
                 elements: ['img', 'object', 'area', 'input[type="image"]'],
                 img: [],
-                object: [],
-                area: [],
                 'input[type="image"]': [],
+                object: [],
             },
         ],
         'jsx-a11y/anchor-ambiguous-text': 'warn',
@@ -56,8 +56,8 @@ export default {
             'error',
             {
                 audio: [],
-                video: [],
                 track: [],
+                video: [],
             },
         ],
 
@@ -91,15 +91,7 @@ export default {
         'jsx-a11y/no-noninteractive-element-to-interactive-role': [
             'error',
             {
-                ul: [
-                    'listbox',
-                    'menu',
-                    'menubar',
-                    'radiogroup',
-                    'tablist',
-                    'tree',
-                    'treegrid',
-                ],
+                li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
                 ol: [
                     'listbox',
                     'menu',
@@ -109,16 +101,24 @@ export default {
                     'tree',
                     'treegrid',
                 ],
-                li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
                 table: ['grid'],
                 td: ['gridcell'],
+                ul: [
+                    'listbox',
+                    'menu',
+                    'menubar',
+                    'radiogroup',
+                    'tablist',
+                    'tree',
+                    'treegrid',
+                ],
             },
         ],
         'jsx-a11y/no-noninteractive-tabindex': [
             'error',
             {
-                tags: [],
                 roles: ['tabpanel'],
+                tags: [],
             },
         ],
 

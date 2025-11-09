@@ -1,4 +1,5 @@
-import type { ReactNode, HTMLAttributes, JSX } from 'react';
+import type { HTMLAttributes, JSX, ReactNode } from 'react';
+
 import styled from 'styled-components';
 
 type PageTitleProps = HTMLAttributes<HTMLDivElement> & {

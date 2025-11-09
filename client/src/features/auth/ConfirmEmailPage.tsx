@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Meta from '@components/core/Meta/Meta';
 import Input from '@components/Input/Input';
 import useAuth from '@features/auth/useAuth';
@@ -7,7 +8,6 @@ import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
-
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
@@ -37,13 +37,13 @@ const ConfirmEmailPage = (): JSX.Element => {
     setErrors,
   } = useForm<FormValues>(initialFormValues);
 
-  function validateForm() {
+  const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
     setErrors(result.error?.issues);
     return result.success;
-  }
+  };
 
-  async function handleSubmit(event: React.FormEvent) {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!validateForm()) return;
 
@@ -53,32 +53,29 @@ const ConfirmEmailPage = (): JSX.Element => {
         formValues.authenticationCode,
       );
       // Handle successful confirmation
-    } catch (err) {
-      console.error('Error confirming sign up:', err);
+    } catch (error_) {
+      console.error('Error confirming sign up:', error_);
     }
-  }
+  };
 
-  async function handleResend() {
+  const handleResend = async () => {
     try {
       await authResendConfirmationCode(formValues.emailAddress);
-    } catch (err) {
-      console.error('Error resending code:', err);
+    } catch (error_) {
+      console.error('Error resending code:', error_);
     }
-  }
+  };
 
-  function getStandardInputTextAttributes(fieldName: FormKeys) {
-    return {
-      errorText: getFieldErrors(fieldName),
-      id: fieldName,
-      value: formValues[fieldName],
-    };
-  }
+  const getStandardInputTextAttributes = (fieldName: FormKeys) => ({
+    errorText: getFieldErrors(fieldName),
+    id: fieldName,
+    value: formValues[fieldName],
+  });
 
   return (
     <>
       <Meta title={title} />
       <AuthContainer
-        error={error}
         leftImage={
           <img
             alt=""
@@ -86,31 +83,32 @@ const ConfirmEmailPage = (): JSX.Element => {
           />
         }
         title="Confirm Email"
+        error={error}
       >
         <StyledForm
           noValidate
           onSubmit={handleSubmit}
         >
           <Input.Email
-            autoComplete="email"
-            inputMode="email"
+            required
             label="Email Address"
             multiple={false}
+            spellCheck="false"
+            autoComplete="email"
+            inputMode="email"
             onChange={handleChange}
             placeholder="Enter Email Address"
-            required
-            spellCheck="false"
             {...getDefaultProps('emailAddress')}
           />
 
           <Input.Number
-            autoComplete="one-time-code"
-            inputMode="numeric"
             label="Authentication Code"
             maxLength={6}
+            spellCheck="false"
+            autoComplete="one-time-code"
+            inputMode="numeric"
             onChange={handleChange}
             placeholder="Enter Authentication Code"
-            spellCheck="false"
             {...getStandardInputTextAttributes('authenticationCode')}
           />
 
@@ -123,8 +121,8 @@ const ConfirmEmailPage = (): JSX.Element => {
 
           <StyledBottomMsg>
             <button
-              onClick={handleResend}
               type="button"
+              onClick={handleResend}
             >
               Resend Code
             </button>

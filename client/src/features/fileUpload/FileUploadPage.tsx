@@ -1,9 +1,9 @@
-import { type JSX, type ChangeEvent, useState } from 'react';
+import { type ChangeEvent, type JSX, useState } from 'react';
 
-import axios from 'axios';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
 import Layout from '@features/layouts/Layout/Layout';
+import axios from 'axios';
 
 type UploadStatus = 'error' | 'idle' | 'success' | 'uploading';
 
@@ -14,9 +14,9 @@ const FileUploadPage = (): JSX.Element => {
   const [status, setStatus] = useState<UploadStatus>('idle');
   const [uploadProgress, setUploadProgress] = useState(0);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+  const handleFileChange = (error: ChangeEvent<HTMLInputElement>) => {
+    if (error.target.files) {
+      setFile(error.target.files[0]);
     }
   };
 
@@ -53,26 +53,35 @@ const FileUploadPage = (): JSX.Element => {
         <PageTitle title={title} />
         <section>
           <input
-            onChange={handleFileChange}
             type="file"
+            onChange={handleFileChange}
           />
           {file ? (
             <div>
-              <div>File name: {file.name}</div>
-              <div>Size: {file.size}</div>
+              <div>
+                File name:
+                {file.name}
+              </div>
+              <div>
+                Size:
+                {file.size}
+              </div>
             </div>
           ) : null}
           {file && status !== 'uploading' ? (
             <button
-              onClick={handleFileUpload}
               type="button"
+              onClick={handleFileUpload}
             >
               Upload
             </button>
           ) : null}
-          {status === 'success' && <div>Success</div>}
-          {status === 'error' && <div>Error</div>}
-          <div>Progress: {uploadProgress}</div>
+          {status === 'success' ? <div>Success</div> : null}
+          {status === 'error' ? <div>Error</div> : null}
+          <div>
+            Progress:
+            {uploadProgress}
+          </div>
         </section>
       </Layout.Main>
     </>

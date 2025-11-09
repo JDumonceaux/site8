@@ -1,11 +1,12 @@
 // AppInitializer.test.jsx
 
 import { render } from '@testing-library/react';
+
+import type { AxeResults } from 'axe-core';
+import { axe } from 'jest-axe';
+import AppInitializer from './AppInitializer';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import { axe } from 'jest-axe';
-import type { AxeResults } from 'axe-core';
-import AppInitializer from './AppInitializer';
 
 describe('appInitializer component', () => {
   test('should render null', () => {

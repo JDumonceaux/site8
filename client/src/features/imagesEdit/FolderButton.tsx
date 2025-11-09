@@ -1,29 +1,36 @@
-import React, {  } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 import type { ListItem } from '../../types/ListItem';
 
 type Props = {
-  readonly handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  readonly handleClick: (error: React.MouseEvent<HTMLButtonElement>) => void;
   readonly isActive: boolean;
   readonly item: ListItem;
 };
 
-const FolderButton = (
-  ({ handleClick, isActive, item }: Props): JSX.Element =>
-    isActive ? (
-      <StyledActiveButton
-        data-id={item.key}
-        onClick={handleClick}
-        type="button">
-        {item.value}
-      </StyledActiveButton>
-    ) : (
-      <StyledButton data-id={item.key} onClick={handleClick} type="button">
-        {item.value}
-      </StyledButton>
-    ),
-);
+const FolderButton = ({
+  handleClick,
+  isActive,
+  item,
+}: Props): React.JSX.Element =>
+  isActive ? (
+    <StyledActiveButton
+      data-id={item.key}
+      type="button"
+      onClick={handleClick}
+    >
+      {item.value}
+    </StyledActiveButton>
+  ) : (
+    <StyledButton
+      data-id={item.key}
+      type="button"
+      onClick={handleClick}
+    >
+      {item.value}
+    </StyledButton>
+  );
 
 FolderButton.displayName = 'FolderButton';
 

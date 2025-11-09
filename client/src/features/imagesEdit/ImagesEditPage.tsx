@@ -1,12 +1,11 @@
-import { Suspense, type JSX } from 'react';
-import styled from 'styled-components';
+import { type JSX, Suspense } from 'react';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
-import Layout from '@features/layouts/Layout/Layout';
 import useArtistsItems from '@features/itemsAdd/useArtistsItems';
-
+import Layout from '@features/layouts/Layout/Layout';
+import styled from 'styled-components';
 import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
@@ -48,8 +47,8 @@ const ImagesEditPage = (): JSX.Element => {
       <Layout.Flex>
         <Layout.Content>
           <LoadingWrapper
-            isError={isError}
             isPending={isPending}
+            isError={isError}
           >
             <StyledForm
               noValidate
@@ -58,9 +57,9 @@ const ImagesEditPage = (): JSX.Element => {
               {data.map((item) => (
                 <ImageDetail
                   key={item.lineId}
+                  getFieldValue={getFieldValue}
                   item={item}
                   names={itemsAsListItem}
-                  getFieldValue={getFieldValue}
                   onChange={handleChange}
                   onDelete={handleDelete}
                 />

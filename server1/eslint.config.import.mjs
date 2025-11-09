@@ -20,9 +20,9 @@ export default {
             'error',
             'ignorePackages',
             {
-                js: 'never',
+                js: 'always',
                 jsx: 'never',
-                mjs: 'never',
+                mjs: 'always',
                 ts: 'never',
                 tsx: 'never',
             },

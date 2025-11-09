@@ -1,12 +1,11 @@
-import type { JSX, CSSProperties } from 'react';
+import type { CSSProperties, JSX } from 'react';
 
 import {
-  Avatar as RadixAvatarRoot,
-  AvatarImage as RadixAvatarImage,
   AvatarFallback as RadixAvatarFallback,
+  AvatarImage as RadixAvatarImage,
   type AvatarProps as RadixAvatarProps,
+  Avatar as RadixAvatarRoot,
 } from '@radix-ui/react-avatar';
-
 import styled from 'styled-components';
 
 /**
@@ -17,14 +16,14 @@ import styled from 'styled-components';
 export type AvatarProps = Omit<RadixAvatarProps, 'delayMs'> & {
   /** Fallback text (e.g. initials) if no `children` provided */
   alt?: string;
+  /** Testing hook */
+  dataTestId?: string;
   /** Seconds before showing fallback (ms) */
   delayMs?: number;
   /** Diameter in pixels */
   size?: number;
   /** Image URL */
   src?: string;
-  /** Testing hook */
-  dataTestId?: string;
   /** Inline style override */
   style?: CSSProperties;
 };
@@ -47,24 +46,32 @@ const getInitials = (name?: string): string =>
 const Avatar = ({
   alt,
   children,
+  dataTestId,
   delayMs = DEFAULT_DELAY,
   size = DEFAULT_SIZE,
   src,
-  dataTestId,
-  style,
   ...rest
 }: AvatarProps): JSX.Element | null => {
   const fallbackContent = children ?? getInitials(alt);
 
   // Basic sanitization: allow only http(s) URLs
-  const safeSrc = src && /^https?:\/\//.test(src) ? src : undefined;
+  const safeSource = src && /^https?:\/\//.test(src) ? src : undefined;
 
   // If no image and no fallback content, render nothing
-  if (!safeSrc && !fallbackContent) return null;
+  if (!safeSource && !fallbackContent) return null;
 
   return (
-    <Root {...rest} size={size} style={style} data-testid={dataTestId}>
-      {safeSrc && <Image src={safeSrc} alt={alt ?? 'avatar'} />}
+    <Root
+      {...rest}
+      data-testid={dataTestId}
+      size={size}
+    >
+      {safeSource ? (
+        <Image
+          alt={alt ?? 'avatar'}
+          src={safeSource}
+        />
+      ) : null}
       <Fallback delayMs={delayMs}>{fallbackContent}</Fallback>
     </Root>
   );

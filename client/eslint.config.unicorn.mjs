@@ -27,10 +27,15 @@ export default {
             {
                 replacements: {
                     args: false,
+                    "e": { "event": false },
                     env: false,
+                    "ext": { "extension": false },
+                    fn: { "func": false, "function": false },
                     params: false,
+                    "prev": { "previous": false },
                     props: false,
                     ref: false,
+                    "temp": { "temporary": false },
                 },
             },
         ],

@@ -1,7 +1,7 @@
 import parse, {
-  Element,
-  domToReact,
   type DOMNode,
+  domToReact,
+  Element,
   type HTMLReactParserOptions,
 } from 'html-react-parser';
 

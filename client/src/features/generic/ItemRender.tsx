@@ -14,7 +14,7 @@ const ItemRender = ({
   children,
   item,
   level,
-}: ItemRenderProps): null | JSX.Element => {
+}: ItemRenderProps): JSX.Element | null => {
   if (!item) {
     return null;
   }

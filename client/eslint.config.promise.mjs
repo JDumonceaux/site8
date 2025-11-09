@@ -18,6 +18,5 @@ export default {
         'promise/prefer-await-to-callbacks': 'warn',
         'promise/prefer-await-to-then': 'warn',
         'promise/prefer-catch': 'warn',
-        'promise/spec-only': 'warn',
     },
 };

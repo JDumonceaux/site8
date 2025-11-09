@@ -1,4 +1,5 @@
 import type { JSX, ReactNode } from 'react';
+
 import styled, { keyframes } from 'styled-components';
 
 export type LoadingWrapperProps = {
@@ -28,8 +29,14 @@ const LoadingWrapper = ({
   // Saving state
   if (isSaving) {
     return (
-      <StateContainer aria-busy="true" aria-label="Saving">
-        <ProgressBar role="progressbar" aria-valuetext="Saving…" />
+      <StateContainer
+        aria-busy="true"
+        aria-label="Saving"
+      >
+        <ProgressBar
+          aria-valuetext="Saving…"
+          role="progressbar"
+        />
         <Message>Saving…</Message>
       </StateContainer>
     );
@@ -39,8 +46,14 @@ const LoadingWrapper = ({
   if (isLoading || isPending) {
     const valueText = typeof loadingText === 'string' ? loadingText : undefined;
     return (
-      <StateContainer aria-busy="true" aria-label="Loading">
-        <ProgressBar role="progressbar" aria-valuetext={valueText} />
+      <StateContainer
+        aria-busy="true"
+        aria-label="Loading"
+      >
+        <ProgressBar
+          aria-valuetext={valueText}
+          role="progressbar"
+        />
         <Message>{loadingText}</Message>
         {fallback}
       </StateContainer>
@@ -57,7 +70,10 @@ const LoadingWrapper = ({
           : 'An unknown error occurred.';
     return (
       <StateContainer>
-        <ErrorBar role="alert" aria-label="Error" />
+        <ErrorBar
+          aria-label="Error"
+          role="alert"
+        />
         <ErrorMessage>{message}</ErrorMessage>
         {children}
       </StateContainer>

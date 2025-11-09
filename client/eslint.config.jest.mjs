@@ -19,6 +19,16 @@ export default {
         // Include recommended Jest rules
         ...pluginJest.configs.recommended.rules,
 
+        // Enforce folder naming conventions in test files
+        // 'check-file/folder-naming-convention' is a non-standard ESLint rule.
+        // See: https://github.com/ljosberinn/eslint-plugin-check-file#folder-naming-convention
+        'check-file/folder-naming-convention': [
+            'error',
+            {
+                // Using 'KEBAB_CASE' for folder naming to match project convention; update if other casing is used elsewhere
+                '**/*': 'kebab-case',
+            },
+        ],
         // Enforce best practices in tests
         'jest/padding-around-after-all-blocks': 'error',
         'jest/padding-around-after-each-blocks': 'error',
@@ -33,17 +43,6 @@ export default {
         'jest/prefer-hooks-on-top': 'error',
         'jest/prefer-lowercase-title': 'error',
         'jest/prefer-to-have-length': 'warn',
-
-        // Enforce folder naming conventions in test files
-        // 'check-file/folder-naming-convention' is a non-standard ESLint rule.
-        // See: https://github.com/ljosberinn/eslint-plugin-check-file#folder-naming-convention
-        'check-file/folder-naming-convention': [
-            'error',
-            {
-                // Using 'KEBAB_CASE' for folder naming to match project convention; update if other casing is used elsewhere
-                '**/*': 'kebab-case',
-            },
-        ],
     },
     settings: {
         react: {

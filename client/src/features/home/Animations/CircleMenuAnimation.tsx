@@ -1,4 +1,5 @@
-import { type JSX } from 'react';
+import type { JSX } from 'react';
+
 import { keyframes, styled } from 'styled-components';
 import LinkButton from '../LinkButton2/LinkButton';
 

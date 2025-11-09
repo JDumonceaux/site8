@@ -1,5 +1,5 @@
-import { useId, type JSX } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
+import { type JSX, useId } from 'react';
 import styled from 'styled-components';
 
 export const VARIANTS = {
@@ -12,31 +12,31 @@ export const VARIANTS = {
 export type Variant = keyof typeof VARIANTS;
 
 export const SIZES = {
-  sm: 'sm',
-  md: 'md',
   lg: 'lg',
+  md: 'md',
+  sm: 'sm',
 } as const;
 export type Size = keyof typeof SIZES;
 
 export type DialogProps = {
-  /** Controls whether the dialog is open */
-  isOpen: boolean;
-  /** Called when the open state should change (e.g. on close) */
-  onOpenChange: (open: boolean) => void;
-  /** Accessible label text */
-  label: string;
   /** Main body content */
   children: React.ReactNode;
-  /** Optional footer area */
-  footer?: React.ReactNode;
   /** Props forwarded to the close button */
   closeButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /** Props forwarded to the dialog container */
   contentProps?: React.HTMLAttributes<HTMLDivElement>;
-  /** Visual variant (determines border & icon) */
-  variant?: Variant;
+  /** Optional footer area */
+  footer?: React.ReactNode;
+  /** Controls whether the dialog is open */
+  isOpen: boolean;
+  /** Accessible label text */
+  label: string;
+  /** Called when the open state should change (e.g. on close) */
+  onOpenChange: (open: boolean) => void;
   /** Dialog max-width size */
   size?: Size;
+  /** Visual variant (determines border & icon) */
+  variant?: Variant;
 };
 
 const ICONS: Record<Variant, JSX.Element | null> = {
@@ -56,48 +56,52 @@ const BorderColor: Record<Variant, string> = {
 };
 
 const MaxWidth: Record<Size, string> = {
-  sm: '320px',
-  md: '480px',
   lg: '640px',
+  md: '480px',
+  sm: '320px',
 };
 
 /**
  * A controlled, accessible dialog using Radix UI.
  */
 const Dialog = ({
-  isOpen,
-  onOpenChange,
-  label,
   children,
-  footer,
   closeButtonProps,
   contentProps,
-  variant = 'default',
+  footer,
+  isOpen,
+  label,
+  onOpenChange,
   size = 'md',
+  variant = 'default',
 }: DialogProps): JSX.Element => {
   const titleId = useId();
 
   return (
-    <RadixDialog.Root open={isOpen} onOpenChange={onOpenChange}>
+    <RadixDialog.Root
+      onOpenChange={onOpenChange}
+      open={isOpen}
+    >
       <RadixDialog.Portal>
         <Overlay />
         <Content
-          role="dialog"
-          aria-modal="true"
           aria-labelledby={titleId}
-          data-variant={variant}
           data-size={size}
-          {...contentProps}>
+          data-variant={variant}
+          aria-modal="true"
+          {...contentProps}
+        >
           <Header>
             {ICONS[variant]}
             <Title id={titleId}>{label}</Title>
           </Header>
           <Body>{children}</Body>
-          {footer && <Footer>{footer}</Footer>}
+          {footer ? <Footer>{footer}</Footer> : null}
           <RadixDialog.Close asChild>
             <CloseButton
               aria-label={closeButtonProps?.['aria-label'] ?? 'Close dialog'}
-              {...closeButtonProps}>
+              {...closeButtonProps}
+            >
               ×
             </CloseButton>
           </RadixDialog.Close>
@@ -119,8 +123,8 @@ const Overlay = styled(RadixDialog.Overlay)`
 `;
 
 const Content = styled(RadixDialog.Content)<{
-  'data-variant': Variant;
   'data-size': Size;
+  'data-variant': Variant;
 }>`
   position: fixed;
   top: 10%;

@@ -1,12 +1,11 @@
-import { useDeferredValue, type JSX } from 'react';
+import { type JSX, useDeferredValue } from 'react';
+import { Link as BaseLink, useLocation } from 'react-router-dom';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
 import Layout from '@features/layouts/Layout/Layout';
-import { Link as BaseLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-
 import RenderHtml from './RenderHtml';
 import SubjectMenu from './SubjectMenu';
 import useGenericPage from './useGenericPage';

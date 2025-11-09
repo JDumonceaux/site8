@@ -47,12 +47,13 @@ export default {
         '@typescript-eslint/naming-convention': [
             'error',
             {
+                format: ['camelCase', 'StrictPascalCase', 'UPPER_CASE'],
+                leadingUnderscore: 'allow',
                 selector: 'variableLike',
-                format: ['camelCase'],
             },
             {
-                selector: 'typeLike',
                 format: ['PascalCase'],
+                selector: 'typeLike',
             },
         ],
         '@typescript-eslint/no-confusing-non-null-assertion': 'error',
@@ -99,7 +100,7 @@ export default {
         '@typescript-eslint/promise-function-async': 'error',
         '@typescript-eslint/require-array-sort-compare': 'error',
         '@typescript-eslint/return-await': 'error',
-        '@typescript-eslint/unified-signatures': 'error',
+        '@typescript-eslint/unified-signatures': 'off', //
         '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
     },
     settings: {

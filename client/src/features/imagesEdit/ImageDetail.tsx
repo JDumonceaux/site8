@@ -1,4 +1,5 @@
 import React, { type JSX } from 'react';
+
 import IconMenu from '@components/IconMenu/IconMenu';
 import IconMenuItem from '@components/IconMenu/IconMenuItem';
 import Input from '@components/Input/Input';
@@ -14,7 +15,7 @@ type Props = {
   readonly item: ImageAddExt;
   readonly names?: ListItem[];
   readonly onChange: (
-    e: React.ChangeEvent<
+    error: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
   ) => void;
@@ -46,27 +47,27 @@ const ImageDetail = ({
         />
       </StyledImgContainer>
       <StyledOuterRow>
-        {item.isDuplicate && <div>Duplicate Image</div>}
+        {item.isDuplicate ? <div>Duplicate Image</div> : null}
         <Input.Select
           data-id="itemId"
           data-line={item.lineId}
-          onChange={onChange}
-          value={itemIdValue}
           dataList={names}
+          value={itemIdValue}
+          onChange={onChange}
           placeholder="Item"
         />
         <Input.Text
           data-id="fileName"
           data-line={item.lineId}
-          onChange={onChange}
           value={fileNameValue}
+          onChange={onChange}
           placeholder="File Name"
         />
         <Input.Text
           data-id="folder"
           data-line={item.lineId}
-          onChange={onChange}
           value={folderValue}
+          onChange={onChange}
           placeholder="Folder"
         />
         <IconMenu>
@@ -77,8 +78,8 @@ const ImageDetail = ({
           checked={isSelected}
           data-id="isSelected"
           data-line={item.lineId}
-          onChange={onChange}
           value="x"
+          onChange={onChange}
         />
       </StyledOuterRow>
     </StyledRow>

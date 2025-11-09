@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
+
 import HomeMenu from '@features/home/HomeMenu';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-
 import CircleAnimation from './Animations/CircleAnimation';
 import CircleMenuAnimation from './Animations/CircleMenuAnimation';
 import TitleAnimation from './Animations/TitleAnimation';
