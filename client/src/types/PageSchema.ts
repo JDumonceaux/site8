@@ -15,8 +15,8 @@ export const PageSchema = z
     text: z.string().trim(),
     title: z
       .string({
-        invalid_type_error: 'Title must be a string',
-        required_error: 'Title is required.',
+        error: 'Title must be a string',
+        message: 'Title is required.',
       })
       .min(1, REQUIRED_FIELD)
       .max(500, 'Title max length exceeded: 500')
@@ -26,7 +26,6 @@ export const PageSchema = z
     type: z.literal('page').optional(),
     url: z.string().optional(),
   })
-  .refine(
-    (data) => data.to ?? data.url,
-    'Either to or url should be filled in.',
-  );
+  .refine((data) => !!(data.to ?? data.url), {
+    message: 'Either to or url should be filled in.',
+  });

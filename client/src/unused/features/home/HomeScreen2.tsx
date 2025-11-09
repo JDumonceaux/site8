@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import Meta from '@components/core/Meta/Meta';
 import Layout from '@features/layouts/Layout/Layout';
 import { keyframes, styled } from 'styled-components';
@@ -34,7 +35,7 @@ const breatheAnimation = keyframes`
 //  40% { height: 405px; width: 405px; opacity: 0.3; }
  100% { height: 100px; width: 100px; opacity: 0.6; }
 `;
-const SDiv = styled.div`
+const BaseDiv = styled.div`
   position: fixed;
   width: 25px;
   height: 25px;
@@ -46,44 +47,44 @@ const SDiv = styled.div`
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
 `;
-const R1C1 = styled(SDiv)`
+const R1C1 = styled(BaseDiv)`
   top: 0;
   left: 0;
   background-color: purple;
 `;
-const R1C2 = styled(SDiv)`
+const R1C2 = styled(BaseDiv)`
   top: 0px;
   left: 100px;
   background-color: red;
   transition-property: left;
   transition-duration: 0.5s;
 `;
-const R1C3 = styled(SDiv)`
+const R1C3 = styled(BaseDiv)`
   top: 0px;
   left: 200px;
   background-color: blue;
 `;
-const R1C4 = styled(SDiv)`
+const R1C4 = styled(BaseDiv)`
   top: 0px;
   left: 300px;
   background-color: #1a5276;
 `;
-const R1C5 = styled(SDiv)`
+const R1C5 = styled(BaseDiv)`
   top: 0px;
   left: 400px;
   background-color: #daf7a6;
 `;
-const R1C6 = styled(SDiv)`
+const R1C6 = styled(BaseDiv)`
   top: 0px;
   left: 500px;
   background-color: #ff5733;
 `;
-const R1C7 = styled(SDiv)`
+const R1C7 = styled(BaseDiv)`
   top: 0;
   left: 600px;
   background-color: #c70039;
 `;
-const R1C8 = styled(SDiv)`
+const R1C8 = styled(BaseDiv)`
   top: 0;
   left: 700px;
   background-color: rgb(29, 27, 22);

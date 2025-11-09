@@ -70,12 +70,12 @@ export const isDeepEqual = (
  * Returns null if the input array is empty or not an array.
  */
 export const removeEmptyAttributesArray = <T>(
-  arr: T[],
+  array: T[],
 ): null | Partial<T>[] => {
-  if (!Array.isArray(arr) || arr.length === 0) {
+  if (!Array.isArray(array) || array.length === 0) {
     return null;
   }
-  return arr.map(removeEmptyAttributes);
+  return array.map(removeEmptyAttributes);
 };
 
 /**
@@ -86,16 +86,16 @@ export const removeEmptyAttributesArray = <T>(
  */
 export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
   return Object.entries(obj as Record<string, unknown>).reduce<Partial<T>>(
-    (acc, [key, value]) => {
+    (accumulator, [key, value]) => {
       if (
         value !== null &&
         value !== undefined &&
         !(typeof value === 'string' && value.trim() === '') &&
         !(Array.isArray(value) && value.length === 0)
       ) {
-        (acc as Record<string, unknown>)[key] = value;
+        (accumulator as Record<string, unknown>)[key] = value;
       }
-      return acc;
+      return accumulator;
     },
     {},
   );
@@ -121,11 +121,11 @@ export const trimAttributes = <T>(obj: T): T => {
 export const sortObjectKeys = <T>(obj: T): T => {
   return Object.keys(obj as Record<string, unknown>)
     .toSorted()
-    .reduce((acc, key) => {
-      (acc as Record<string, unknown>)[key] = (obj as Record<string, unknown>)[
-        key
-      ];
-      return acc;
+    .reduce((accumulator, key) => {
+      (accumulator as Record<string, unknown>)[key] = (
+        obj as Record<string, unknown>
+      )[key];
+      return accumulator;
     }, {} as T);
 };
 
@@ -185,9 +185,9 @@ export const getNextIdFromPos = (
   const startingItem = sortedArray[start];
   let expectedId = startingItem.id || 1;
 
-  for (let i = start; i < sortedArray.length; i++) {
-    if (sortedArray[i].id !== expectedId) {
-      return { index: i, value: expectedId };
+  for (let index = start; index < sortedArray.length; index++) {
+    if (sortedArray[index].id !== expectedId) {
+      return { index: index, value: expectedId };
     }
     expectedId++;
   }

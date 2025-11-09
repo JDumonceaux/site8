@@ -10,7 +10,12 @@ const ProtectedRoute = (): JSX.Element | null => {
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (!user) {
-    return <Navigate replace to="/login" />;
+    return (
+      <Navigate
+        replace
+        to="/login"
+      />
+    );
   }
 
   return <Outlet />;

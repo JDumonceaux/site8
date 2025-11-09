@@ -111,7 +111,8 @@ export default {
         'react/jsx-pascal-case': 'error',
         'react/jsx-props-no-multi-spaces': 'error', // Missing recommended rule
         'react/jsx-props-no-spread-multi': 'error',
-        'react/jsx-props-no-spreading': ['warn', { custom: 'ignore', explicitSpread: 'ignore' }],
+        // Too restrictive for our codebase
+        'react/jsx-props-no-spreading': ['off', { custom: 'ignore', explicitSpread: 'ignore' }],
         'react/jsx-sort-props': 'off',
         'react/jsx-tag-spacing': [
             'error',
@@ -130,7 +131,8 @@ export default {
                 condition: 'parens-new-line',
                 declaration: 'parens-new-line',
                 logical: 'parens-new-line',
-                prop: 'parens-new-line',
+                // Disabled - not useful
+                //prop: 'parens-new-line',
                 return: 'parens-new-line',
             },
         ],

@@ -1,13 +1,22 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Suspense, useMemo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import MainErrorFallback from '@components/core/MainErrorFallback';
 import RingLoader from '@components/core/LoadingSpinner/RingLoader';
+import MainErrorFallback from '@components/core/MainErrorFallback';
 import ReduxProvider from './ReduxProvider';
 
 type AppProviderProps = {
   children: React.ReactNode;
+};
+
+// Type guard to check if error has a status property
+const isClientError = (
+  errorValue: unknown,
+): errorValue is { status: number } => {
+  if (typeof errorValue !== 'object' || errorValue === null) return false;
+  const maybeStatus = (errorValue as Record<string, unknown>).status;
+  return typeof maybeStatus === 'number';
 };
 
 /**
@@ -20,30 +29,30 @@ const AppProvider = ({ children }: AppProviderProps) => {
     () =>
       new QueryClient({
         defaultOptions: {
+          mutations: {
+            // Retry mutations once
+            retry: 1,
+          },
           queries: {
-            // Stale time: how long data stays fresh (5 minutes)
-            staleTime: 5 * 60 * 1000,
             // Cache time: how long inactive data stays in cache (10 minutes)
             gcTime: 10 * 60 * 1000,
+            // Don't refetch on reconnect by default
+            refetchOnReconnect: false,
+            // Refetch on window focus for better UX
+            refetchOnWindowFocus: true,
             // Retry failed requests 3 times with exponential backoff
-            retry: (failureCount, error) => {
+            retry: (failureCount, error: unknown) => {
               // Don't retry on 4xx errors (client errors)
-              if (error instanceof Error && 'status' in error) {
-                const status = (error as any).status;
+              if (isClientError(error)) {
+                const { status } = error;
                 if (status >= 400 && status < 500) {
                   return false;
                 }
               }
               return failureCount < 3;
             },
-            // Refetch on window focus for better UX
-            refetchOnWindowFocus: true,
-            // Don't refetch on reconnect by default
-            refetchOnReconnect: false,
-          },
-          mutations: {
-            // Retry mutations once
-            retry: 1,
+            // Stale time: how long data stays fresh (5 minutes)
+            staleTime: 5 * 60 * 1000,
           },
         },
       }),
@@ -63,21 +72,20 @@ const AppProvider = ({ children }: AppProviderProps) => {
       onReset={() => {
         // Optional: Clear any application state on error reset
         // This could include clearing localStorage, resetting Redux, etc.
-        window.location.reload();
+        globalThis.location.reload();
       }}
     >
       <ReduxProvider>
         <QueryClientProvider client={queryClient}>
           <Suspense
             fallback={
-              <div
-                className="flex items-center justify-center min-h-screen"
-                role="status"
+              <output
                 aria-label="Loading application"
+                className="flex items-center justify-center min-h-screen"
               >
                 <RingLoader />
                 <span className="sr-only">Loading application...</span>
-              </div>
+              </output>
             }
           >
             {children}

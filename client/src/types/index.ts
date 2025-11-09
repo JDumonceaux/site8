@@ -1,9 +1,8 @@
 export type * from './AppSettings';
 export type * from './Art';
-export type * from './ArtItem';
-export type * from './ArtistWithItems';
 export type * from './ArtistsItems';
-export type * from './Bookmark';
+export type * from './ArtistWithItems';
+export type * from './ArtItem';
 export type * from './Bookmark';
 export type * from './BookmarksTag';
 export type * from './BookmarksTags';

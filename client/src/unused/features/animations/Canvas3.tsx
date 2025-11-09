@@ -24,7 +24,7 @@ export const Canvas3 = ({
 
   const resizeCanvas = (context: {
     canvas: any;
-    scale: (arg0: number, arg1: number) => void;
+    scale: (argument0: number, argument1: number) => void;
   }) => {
     const { canvas } = context;
     const { height, width } = canvas.getBoundingClientRect();
@@ -45,19 +45,18 @@ export const Canvas3 = ({
   useEffect(() => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
-      if (ctx === null) return;
-      setContext(ctx);
-      resizeCanvas(ctx);
+      const canvasContext = canvas.getContext('2d');
+      if (canvasContext === null) return;
+      setContext(canvasContext);
+      resizeCanvas(canvasContext);
       if (establishContext) {
-        establishContext(ctx);
+        establishContext(canvasContext);
       }
     }
   }, [establishContext, resizeCanvas]);
 
   useEffect(() => {
     let animationFrameId: number;
-    let frameCount = 0;
     let fpsInterval = 1000 / 30;
     let now = 0;
     let then = Date.now();
@@ -72,7 +71,6 @@ export const Canvas3 = ({
         elapsed = now - then;
         if (elapsed > fpsInterval) {
           then = now - (elapsed % fpsInterval);
-          frameCount += 1;
           draw();
         }
       };
@@ -91,7 +89,10 @@ export const Canvas3 = ({
   }, [draw, context, fps]);
 
   return (
-    <canvas ref={canvasRef} style={{ backgroundColor, height, width }}>
+    <canvas
+      ref={canvasRef}
+      style={{ backgroundColor, height, width }}
+    >
       Canvas not supported
     </canvas>
   );

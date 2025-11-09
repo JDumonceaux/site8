@@ -1,135 +1,145 @@
+import type { JSX } from 'react';
+
 import { keyframes, styled } from 'styled-components';
 
 const generateDots = (
-  arr: number[],
+  array: number[],
   color: string,
   xOffset: number,
   yOffset: number,
 ) => {
   let x = -1;
   let y = 0;
-  return arr.map((item) => {
+  return array.map((item) => {
     x += 1;
     if (x > 5) {
       x = 0;
       y += 1;
     }
     return (
-      <Dot color={color} key={item} left={x * xOffset} top={y * yOffset} />
+      <Dot
+        key={item}
+        left={x * xOffset}
+        color={color}
+        top={y * yOffset}
+      />
     );
   });
 };
 
 const PinkGraphic = (): JSX.Element => {
-  const myArr20 = Array.from({ length: 20 }, (_, index) => index + 1);
-  const myArr36 = Array.from({ length: 36 }, (_, index) => index + 1);
+  const myArray20 = Array.from({ length: 20 }, (_, index) => index + 1);
+  const myArray36 = Array.from({ length: 36 }, (_, index) => index + 1);
 
   return (
     <StyledDiv>
-      {myArr20.map((item, index) => (
-        <WhiteLine index={index} key={item} />
+      {myArray20.map((item, index) => (
+        <WhiteLine
+          key={item}
+          index={index}
+        />
       ))}
       <GenLineAnim
-        color="#808080"
         height={350}
         left={-120}
-        top={-250}
         width={8}
         z={2}
+        color="#808080"
+        top={-250}
       />
       <GenLineAnim
-        boxShadow
-        color="#303030"
         height={400}
         left={-80}
-        top={-150}
         width={16}
         z={2}
+        boxShadow
+        color="#303030"
+        top={-150}
       />
       <GenLine
-        boxShadow
-        color="#9d6060"
         height={140}
         left={-75}
-        top={-70}
         width={32}
         z={2}
+        boxShadow
+        color="#9d6060"
+        top={-70}
       />
       <GenLine
-        boxShadow
-        color="#fff"
         height={50}
         left={-50}
-        top={-20}
         width={15}
         z={3}
+        boxShadow
+        color="#fff"
+        top={-20}
       />
       <GenLine
-        color="#fff"
         height={150}
         left={0}
-        top={-150}
         width={240}
         z={3}
+        color="#fff"
+        top={-150}
       />
       <GenLine
-        boxShadow
-        color="#9d6060"
         height={400}
         left={11}
-        top={-270}
         width={4}
         z={3}
-      />
-      <GenLine
         boxShadow
         color="#9d6060"
+        top={-270}
+      />
+      <GenLine
         height={400}
         left={20}
-        top={-270}
         width={6}
         z={3}
+        boxShadow
+        color="#9d6060"
+        top={-270}
       />
       <DiagLine
-        boxShadow
-        color="#808080"
         height={100}
         left={75}
+        width={8}
+        z={3}
+        boxShadow
+        color="#808080"
         top={-90}
-        width={8}
-        z={3}
       />
       <DiagLine
-        boxShadow
-        color="#808080"
         height={100}
         left={75}
+        width={8}
+        z={3}
+        boxShadow
+        color="#808080"
         top={-110}
-        width={8}
-        z={3}
       />
       <DiagLine
-        boxShadow
-        color="#808080"
         height={100}
         left={75}
+        width={8}
+        z={3}
+        boxShadow
+        color="#808080"
         top={-130}
-        width={8}
-        z={3}
       />
       <DiagLine
-        boxShadow
-        color="#808080"
         height={100}
         left={75}
-        top={-150}
         width={8}
         z={3}
+        boxShadow
+        color="#808080"
+        top={-150}
       />
       <LargePinkCircle />
       <LargeGrayTriangle />
-      {generateDots(myArr36, '#808080', 20, 20)}
-      {generateDots(myArr36, '#9d6060', 10, 10)}
+      {generateDots(myArray36, '#808080', 20, 20)}
+      {generateDots(myArray36, '#9d6060', 10, 10)}
     </StyledDiv>
   );
 };

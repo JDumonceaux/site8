@@ -1,8 +1,9 @@
+import type { JSX } from 'react';
+
 import HomeMenu from '@features/home/HomeMenu';
 import { keyframes, styled } from 'styled-components';
-
-import PinkGraphic from './PinkGraphic';
 import TitleAnimation from '../../../features/home/Animations/TitleAnimation';
+import PinkGraphic from './PinkGraphic';
 
 const HomeScreen4 = (): JSX.Element => {
   return (
@@ -11,11 +12,11 @@ const HomeScreen4 = (): JSX.Element => {
         <TitleAnimation />
         <PinkGraphic />
         <StyledVideo
-          autoPlay
-          id="video-bg"
-          loop
           muted
           playsInline
+          id="video-bg"
+          autoPlay
+          loop
         >
           <source
             src="/images/background/tactus-waves-hero.mp4"

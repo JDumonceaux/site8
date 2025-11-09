@@ -8,25 +8,30 @@ type CanvasProps = {
 
 const Canvas = ({ ...rest }: CanvasProps) => {
   const draw = (
-    ctx: CanvasRenderingContext2D,
+    context: CanvasRenderingContext2D,
     frameCount: number | undefined,
   ) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = '#000';
-    ctx.beginPath();
-    ctx.arc(
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    context.fillStyle = '#000';
+    context.beginPath();
+    context.arc(
       50,
       100,
       20 * Math.sin((frameCount ?? 0) * 0.05) ** 2,
       0,
       2 * Math.PI,
     );
-    ctx.fill();
+    context.fill();
   };
 
   const canvasRef = useCanvas(draw);
 
-  return <canvas ref={canvasRef} {...rest} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      {...rest}
+    />
+  );
 };
 
 export default Canvas;

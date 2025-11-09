@@ -16,7 +16,7 @@ export const Canvas2 = ({
 
   const resizeCanvas = (context: {
     canvas: any;
-    scale: (arg0: number, arg1: number) => void;
+    scale: (argument0: number, argument1: number) => void;
   }) => {
     const { canvas } = context;
     const { height, width } = canvas.getBoundingClientRect();
@@ -35,8 +35,8 @@ export const Canvas2 = ({
     //i.e. value other than null or undefined
     if (canvasRef.current) {
       const canvas = canvasRef.current;
-      const ctx = canvas.getContext('2d');
-      setContext(ctx);
+      const context_ = canvas.getContext('2d');
+      setContext(context_);
     }
   }, []);
 
@@ -70,7 +70,10 @@ export const Canvas2 = ({
   }, [draw, context]);
 
   return (
-    <canvas ref={canvasRef} style={{ backgroundColor, height, width }}>
+    <canvas
+      ref={canvasRef}
+      style={{ backgroundColor, height, width }}
+    >
       Canvas not supported
     </canvas>
   );

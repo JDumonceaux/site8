@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { MetadataSchema } from './Metadata';
-import { PageSchema } from './Page';
+import { PageSchema } from './PageSchema';
 
 export const PagesSchema = z
   .object({

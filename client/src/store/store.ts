@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
 import {
+  type TypedUseSelectorHook,
   useDispatch,
   useSelector,
-  type TypedUseSelectorHook,
 } from 'react-redux';
 
-import snackbarReducer from './snackbarSlice';
+import { configureStore } from '@reduxjs/toolkit';
 import appReducer from './appSlice';
+import snackbarReducer from './snackbarSlice';
 
 /**
  * Configure the Redux store with:
@@ -15,16 +15,16 @@ import appReducer from './appSlice';
  * - (Optional) preloadedState, enhancers, or listener middleware
  */
 export const store = configureStore({
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      immutableCheck: true,
+      serializableCheck: true,
+    }),
   reducer: {
     appSettings: appReducer,
     snackbar: snackbarReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: true,
-      immutableCheck: true,
-    }),
-  devTools: process.env.NODE_ENV !== 'production',
 });
 
 /** Infer the RootState type from the store itself */

@@ -1,3 +1,4 @@
+import { QueryClient } from '@tanstack/react-query';
 import { lazy, useMemo } from 'react';
 import {
   createBrowserRouter,
@@ -5,87 +6,102 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import { QueryClient } from '@tanstack/react-query';
 
-import ProtectedRoute from './ProtectedRoute';
-import ErrorPage from '../features/site/ErrorPage';
 import { pageLoader } from '../features/pageEdit/pagePrefetch';
+import ErrorPage from '../features/site/ErrorPage';
+import ProtectedRoute from './ProtectedRoute';
 
 // ---------------------
 // Layouts
 // ---------------------
 const AuthLayout = lazy(
-  () => import('../features/layouts/AuthLayout/AuthLayout'),
+  async () => import('../features/layouts/AuthLayout/AuthLayout'),
 );
 const HomeLayout = lazy(
-  () => import('../features/layouts/HomeLayout/HomeLayout'),
+  async () => import('../features/layouts/HomeLayout/HomeLayout'),
 );
 const GenericLayout = lazy(
-  () => import('../features/layouts/GenericLayout/GenericLayout'),
+  async () => import('../features/layouts/GenericLayout/GenericLayout'),
 );
 const PhotoLayout = lazy(
-  () => import('../features/layouts/PhotoLayout/PhotoLayout'),
+  async () => import('../features/layouts/PhotoLayout/PhotoLayout'),
 );
 
 // ---------------------
 // Public Pages (No Auth Required)
 // ---------------------
-const Home = lazy(() => import('../features/home/HomePage'));
-const NotFound = lazy(() => import('../features/site/NotFoundPage'));
-const Sitemap = lazy(() => import('../features/site/SitemapPage'));
+const Home = lazy(async () => import('../features/home/HomePage'));
+const NotFound = lazy(async () => import('../features/site/NotFoundPage'));
+const Sitemap = lazy(async () => import('../features/site/SitemapPage'));
 
 // Auth Pages (Should NOT be protected)
-const SigninPage = lazy(() => import('../features/auth/SigninPage'));
-const SignoutPage = lazy(() => import('../features/auth/SignoutPage'));
-const SignupPage = lazy(() => import('../features/auth/SignupPage'));
+const SigninPage = lazy(async () => import('../features/auth/SigninPage'));
+const SignoutPage = lazy(async () => import('../features/auth/SignoutPage'));
+const SignupPage = lazy(async () => import('../features/auth/SignupPage'));
 const ConfirmEmailPage = lazy(
-  () => import('../features/auth/ConfirmEmailPage'),
+  async () => import('../features/auth/ConfirmEmailPage'),
 );
 const ForgotPasswordPage = lazy(
-  () => import('../features/auth/ForgotPasswordPage'),
+  async () => import('../features/auth/ForgotPasswordPage'),
 );
 const ChangePasswordPage = lazy(
-  () => import('../features/auth/ChangePasswordPage'),
+  async () => import('../features/auth/ChangePasswordPage'),
 );
 const DeleteAccountPage = lazy(
-  () => import('../features/auth/DeleteAccountPage'),
+  async () => import('../features/auth/DeleteAccountPage'),
 );
 
 // Legal Pages (Public)
-const TermsOfUsePage = lazy(() => import('../features/site/TermsOfUsePage'));
-const CookiesUsePage = lazy(() => import('../features/site/CookiesUsePage'));
+const TermsOfUsePage = lazy(
+  async () => import('../features/site/TermsOfUsePage'),
+);
+const CookiesUsePage = lazy(
+  async () => import('../features/site/CookiesUsePage'),
+);
 const PrivacyPolicyPage = lazy(
-  () => import('../features/site/PrivacyPolicyPage'),
+  async () => import('../features/site/PrivacyPolicyPage'),
 );
 
 // ---------------------
 // Protected Pages (Auth Required)
 // ---------------------
-const BookmarkPage = lazy(() => import('../features/bookmarks/BookmarkPage'));
-const GenericPage = lazy(() => import('../features/generic/GenericPage'));
-const GenericImagePage = lazy(
-  () => import('../features/generic/GenericImagePage'),
+const BookmarkPage = lazy(
+  async () => import('../features/bookmarks/BookmarkPage'),
 );
-const PhotoPage = lazy(() => import('../features/photos/PhotoPage'));
-const TikTokPage = lazy(() => import('../features/tiktok/TikTokPage'));
-const YachtsPage = lazy(() => import('../features/yatch/YachtsPage'));
-const TestsPage = lazy(() => import('../features/tests/TestsPage'));
+const GenericPage = lazy(async () => import('../features/generic/GenericPage'));
+const GenericImagePage = lazy(
+  async () => import('../features/generic/GenericImagePage'),
+);
+const PhotoPage = lazy(async () => import('../features/photos/PhotoPage'));
+const TikTokPage = lazy(async () => import('../features/tiktok/TikTokPage'));
+const YachtsPage = lazy(async () => import('../features/yatch/YachtsPage'));
+const TestsPage = lazy(async () => import('../features/tests/TestsPage'));
 
 // Design Pages
-const InputPage = lazy(() => import('../features/design/InputPage'));
-const DevelopPage = lazy(() => import('../features/design/DevelopPage'));
+const InputPage = lazy(async () => import('../features/design/InputPage'));
+const DevelopPage = lazy(async () => import('../features/design/DevelopPage'));
 
 // ---------------------
 // Admin Pages (Require Admin Role)
 // ---------------------
-const ImageEditPage = lazy(() => import('../features/imageEdit/ImageEditPage'));
-const ImagesEditPage = lazy(
-  () => import('../features/imagesEdit/ImagesEditPage'),
+const ImageEditPage = lazy(
+  async () => import('../features/imageEdit/ImageEditPage'),
 );
-const ItemsAddPage = lazy(() => import('../features/itemsAdd/ItemsAddPage'));
-const PageEditPage = lazy(() => import('../features/pageEdit/PageEditPage'));
-const PagesEditPage = lazy(() => import('../features/pagesEdit/PagesEditPage'));
-const TestsEditPage = lazy(() => import('../features/tests/TestsEditPage'));
+const ImagesEditPage = lazy(
+  async () => import('../features/imagesEdit/ImagesEditPage'),
+);
+const ItemsAddPage = lazy(
+  async () => import('../features/itemsAdd/ItemsAddPage'),
+);
+const PageEditPage = lazy(
+  async () => import('../features/pageEdit/PageEditPage'),
+);
+const PagesEditPage = lazy(
+  async () => import('../features/pagesEdit/PagesEditPage'),
+);
+const TestsEditPage = lazy(
+  async () => import('../features/tests/TestsEditPage'),
+);
 
 /**
  * Creates router configuration with proper route protection and organization
@@ -94,16 +110,16 @@ const createAppRouter = (queryClient: QueryClient) => {
   return createBrowserRouter(
     createRoutesFromElements(
       <Route
-        errorElement={<ErrorPage />}
         path="/"
+        errorElement={<ErrorPage />}
       >
         {/* ===== PUBLIC ROUTES (No Authentication Required) ===== */}
 
         {/* Home Page */}
         <Route element={<HomeLayout />}>
           <Route
-            element={<Home />}
             index
+            element={<Home />}
           />
         </Route>
 
@@ -243,7 +259,7 @@ const createAppRouter = (queryClient: QueryClient) => {
               <Route
                 element={<TikTokPage />}
                 path="tiktok"
-              />{' '}
+              />
               {/* Fixed typo */}
               <Route
                 element={<YachtsPage />}
@@ -287,8 +303,8 @@ const createAppRouter = (queryClient: QueryClient) => {
             path="bookmarks"
           >
             <Route
-              element={<BookmarkPage />}
               index
+              element={<BookmarkPage />}
             />
           </Route>
 
@@ -302,14 +318,7 @@ const createAppRouter = (queryClient: QueryClient) => {
         </Route>
 
         {/* ===== ADMIN ROUTES (Admin Role Required) ===== */}
-        <Route
-          element={
-            <ProtectedRoute
-            // requiredRoles={['admin']}
-            // unauthorizedRedirectTo="/unauthorized"
-            />
-          }
-        >
+        <Route element={<ProtectedRoute />}>
           <Route
             element={<GenericLayout />}
             path="admin"
@@ -382,8 +391,8 @@ const AppRouter = () => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 5 * 60 * 1000, // 5 minutes
             gcTime: 10 * 60 * 1000, // 10 minutes
+            staleTime: 5 * 60 * 1000, // 5 minutes
           },
         },
       }),

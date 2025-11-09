@@ -8,7 +8,7 @@ export const VideoSchema = z
     /** Displayed heading above the video */
     title: z.string(),
     /** Source URL for the embedded video */
-    videoSrc: z.string().url(),
+    videoSrc: z.url(),
   })
   .strict()
   .readonly();

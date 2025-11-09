@@ -9,10 +9,7 @@ export const PageEditSchema = z
     reading_time: z.string().optional(),
     text: z.string().trim(),
     title: z
-      .string({
-        invalid_type_error: 'Title must be a string',
-        required_error: 'Title is required.',
-      })
+      .string({ message: 'Title must be a string' })
       .min(1, REQUIRED_FIELD)
       .max(500, 'Title max length exceeded: 500')
       .trim(),

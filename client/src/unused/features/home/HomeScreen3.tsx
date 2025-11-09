@@ -8,33 +8,21 @@ const HomeScreen3 = () => {
   const [semiCircles, setSemiCircles] = useState<React.ReactNode[]>([]);
 
   useEffect(() => {
-    if (semiCircles.length > 0) {
-      //   gsap.to('.spacer', {
-      //     delay: 1,
-      //     duration: 1,
-      //     stagger: 0.1,
-      //     ease: 'power3.inOut',
-      //     width: 0,
-      //   });
-    }
-  }, [semiCircles]);
-
-  useEffect(() => {
     const items: React.ReactNode[] = [];
-    let i = 0;
+    let index = 0;
 
-    while (i * 150 < window.innerWidth) {
+    while (index * 150 < window.innerWidth) {
       items.push(
-        <Fragment key={i}>
+        <Fragment key={index}>
           <Spacer />
           <SemiCircle />
         </Fragment>,
       );
 
-      i += 1;
+      index += 1;
     }
 
-    setSemiCircles(items);
+    // setSemiCircles(items);
   }, [setSemiCircles]);
 
   return (
