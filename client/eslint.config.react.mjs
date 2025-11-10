@@ -19,8 +19,10 @@ export default {
         // ============================================================================
         // React Redux Rules
         // ============================================================================
-        'react-redux/connect-prefer-named-arguments': 'error',
-        'react-redux/mapStateToProps-prefer-selectors': 'error',
+        // ABB
+        'react-redux/connect-prefer-named-arguments': 'off',
+        // ABB
+        'react-redux/mapStateToProps-prefer-selectors': 'off',
         // ============================================================================
         // React Rules
         // ============================================================================
@@ -72,8 +74,9 @@ export default {
         'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
         'react/jsx-closing-tag-location': 'error',
         'react/jsx-curly-brace-presence': ['error', { children: 'never', props: 'never' }],
-        'react/jsx-curly-newline': [ // Missing recommended rule
-            'error',
+        // conflict
+        'react/jsx-curly-newline': [
+            'off',
             {
                 multiline: 'consistent',
                 singleline: 'consistent',
@@ -93,8 +96,9 @@ export default {
                 eventHandlerPropPrefix: 'on',
             },
         ],
-        'react/jsx-indent': ['error', 2],
-        'react/jsx-indent-props': ['error', 2],
+        // Skip
+        // 'react/jsx-indent': ['error', 2],
+        // 'react/jsx-indent-props': ['error', 2],
         'react/jsx-key': 'error',
         'react/jsx-max-depth': ['error', { max: 8 }],
         'react/jsx-max-props-per-line': [ // Missing recommended rule

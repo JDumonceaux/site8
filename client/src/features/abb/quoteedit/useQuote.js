@@ -19,12 +19,8 @@ const useQuote = () => {
 
         const returnValue = {
             ...clone,
-            cultureCode: quote.CultureCode
-                ? quote.CultureCode
-                : user.CultureCode,
-            currencyCode: quote.CurrencyCode
-                ? quote.CurrencyCode
-                : user.CurrencyCode,
+            cultureCode: quote.CultureCode ?? user.CultureCode,
+            currencyCode: quote.CurrencyCode ?? user.CurrencyCode,
             description:
                 quote.Description === null || quote.Description === undefined
                     ? ""
@@ -43,7 +39,7 @@ const useQuote = () => {
                 quote.UserAuth || quote.StatusID === 2 || quote.StatusID > 4,
             maxPOValue,
             minPOValue,
-            orgId: quote.OrgID ? quote.OrgID : user.OrgID,
+            orgId: quote.OrgID ?? user.OrgID,
             poNumber: quote.PONumber === null ? "" : quote.PONumber,
             poValue,
             quoteName: quote.QuoteName === null ? "" : quote.QuoteName,
@@ -54,9 +50,7 @@ const useQuote = () => {
             submitDate: quote.SubmitDate
                 ? fmtr(new Date(quote.SubmitDate))
                 : "",
-            territoryId: quote.TerritoryID
-                ? quote.TerritoryID
-                : user.TerritoryID,
+            territoryId: quote.TerritoryID ?? user.TerritoryID,
             totalQuoteValue
         };
 
@@ -67,10 +61,10 @@ const useQuote = () => {
         if (!quote) return {};
 
         const fmtr = Globalize("en").dateFormatter();
-        const totalQuoteValue = isNaN(quote.QuoteValueGE)
+        const totalQuoteValue = Number.isNaN(quote.QuoteValueGE)
             ? 0
             : quote.QuoteValueGE;
-        const poValue = isNaN(quote.POValue) ? 0 : quote.POValue;
+        const poValue = Number.isNaN(quote.POValue) ? 0 : quote.POValue;
         const minPOValue = totalQuoteValue * 0.95;
         const maxPOValue = totalQuoteValue * 1.05;
 
@@ -78,12 +72,8 @@ const useQuote = () => {
 
         const returnValue = {
             ...clone,
-            cultureCode: quote.CultureCode
-                ? quote.CultureCode
-                : user.CultureCode,
-            currencyCode: quote.CurrencyCode
-                ? quote.CurrencyCode
-                : user.CurrencyCode,
+            cultureCode: quote.CultureCode ?? user.CultureCode,
+            currencyCode: quote.CurrencyCode ?? user.CurrencyCode,
             description:
                 quote.Description === null || quote.Description === undefined
                     ? ""
@@ -95,7 +85,7 @@ const useQuote = () => {
                     : false,
             maxPOValue,
             minPOValue,
-            orgId: quote.OrgID ? quote.OrgID : user.OrgID,
+            orgId: quote.OrgID ?? user.OrgID,
             poNumber: quote.PONumber === null ? "" : quote.PONumber,
             poValue,
             quoteName: quote.QuoteName === null ? "" : quote.QuoteName,
@@ -106,9 +96,7 @@ const useQuote = () => {
             submitDate: quote.SubmitDate
                 ? fmtr(new Date(quote.SubmitDate))
                 : "",
-            territoryId: quote.TerritoryID
-                ? quote.TerritoryID
-                : user.TerritoryID,
+            territoryId: quote.TerritoryID ?? user.TerritoryID,
             totalQuoteValue
         };
 
@@ -144,7 +132,7 @@ const useQuote = () => {
                 form.poNumber && form.poNumber !== null && form.poNumber !== ""
                     ? form.poNumber
                     : null,
-            POValue: form.poValue ? form.poValue : 0,
+            POValue: form.poValue ?? 0,
             QuoteName: form.quoteName,
             SubmitDate:
                 form.submitDate && form.submitDate.length > 0

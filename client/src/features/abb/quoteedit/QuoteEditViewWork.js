@@ -1,27 +1,27 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import find from "lodash/find";
-import matches from "lodash/matches";
-import clone from "lodash/clone";
-var Globalize = require("globalize");
-require("imports-loader?$=jquery!bootstrap-datepicker");
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FormatMessage } from "react-globalize";
-import FormInput from "components/util/FormInput";
-import { msgFormatter } from "app/util";
-import Lessonly from "app/lessonlyIntg";
-import { Prompt } from "react-router-dom";
-import Tooltip from "components/modals/Tooltip";
 //  Redux imports
 import { connect } from "react-redux";
+import { Prompt } from "react-router-dom";
+
 import {
-    showUserSearchModal,
-    showCustomerSearchModal
+    showCustomerSearchModal,
+    showUserSearchModal
 } from "actions/CustomerActions";
-import { saveQuote } from "actions/QuoteActions";
-import { updateCurrentQuote } from "actions/QuoteActions";
 import { showChangeCustomerModal } from "actions/InteractionActions";
-import InputForm from "components/generic/InputForm";
+import { saveQuote, updateCurrentQuote } from "actions/QuoteActions";
 import { PermissionContext } from "app/contexts/PermissionContext";
+import Lessonly from "app/lessonlyIntg";
+import { msgFormatter } from "app/util";
+import InputForm from "components/generic/InputForm";
+import Tooltip from "components/modals/Tooltip";
+import FormInput from "components/util/FormInput";
+var Globalize = require("globalize");
+import clone from "lodash/clone";
+import find from "lodash/find";
+import matches from "lodash/matches";
 import GovernmentRequirementsField from "wwwroot/components/util/GovernmentRequirementsField";
+require("imports-loader?$=jquery!bootstrap-datepicker");
 
 const QuoteEditView = props => {
     const context = useContext(PermissionContext);
@@ -40,26 +40,26 @@ const QuoteEditView = props => {
         if (
             props.data &&
             props.data.currentQuote &&
-            typeof props.data.currentQuote.ReadOnly !== "undefined"
+            props.data.currentQuote.ReadOnly !== undefined
         )
             return props.data.currentQuote.ReadOnly;
         return false;
     };
 
-    const newQuote = props.newQuote ? true : false;
+    const newQuote = !!props.newQuote;
 
     useEffect(() => {
         Lessonly.setKeywords(["addEditQuote"]);
         if (quoteNameRef.current) {
-            let str = quoteNameRef.current.value;
+            const str = quoteNameRef.current.value;
             quoteNameRef.current.focus();
             try {
                 quoteNameRef.current.setSelectionRange(str.length, str.length);
-            } catch (e) {
+            } catch {
                 // some inputs may not support setSelectionRange
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, []);
 
     useEffect(() => {
@@ -81,7 +81,7 @@ const QuoteEditView = props => {
             const newQuoteObj = {
                 ...prevQuote,
                 PackagingProgressBilling:
-                    prevQuote.PackagingProgressBilling === false ? true : false
+                    prevQuote.PackagingProgressBilling === false
             };
             props.updateCurrentQuote(newQuoteObj);
             return newQuoteObj;
@@ -89,14 +89,14 @@ const QuoteEditView = props => {
         setChanged(true);
     };
 
-    function handleOrgChange(e) {
-        var q = clone(quote);
-        var orgID = q.OrgID;
+    const handleOrgChange = (e) => {
+        const q = clone(quote);
+        const orgID = q.OrgID;
         q.OrgID = orgIDRef.current ? orgIDRef.current.value : q.OrgID;
         if (q.OrgID !== orgID) {
-            var org = getOrg(q.OrgID);
+            const org = getOrg(q.OrgID);
 
-            var terr = find(org.Territories, {
+            const terr = find(org.Territories, {
                 TerritoryID: q.TerritoryID
             });
             if (!terr) {
@@ -110,11 +110,11 @@ const QuoteEditView = props => {
         setQuote(q);
         setChanged(true);
         props.updateCurrentQuote(q);
-    }
+    };
 
-    function handleQuoteChange(e) {
+    const handleQuoteChange = (e) => {
         if (!isReadOnly()) {
-            var q = clone(quote);
+            const q = clone(quote);
             q.QuoteName = quoteNameRef.current
                 ? quoteNameRef.current.value
                 : q.QuoteName;
@@ -142,8 +142,8 @@ const QuoteEditView = props => {
                 : q.CultureCode;
             q.PONumber =
                 poNumberRef.current &&
-                poNumberRef.current.value !== null &&
-                poNumberRef.current.value !== ""
+                    poNumberRef.current.value !== null &&
+                    poNumberRef.current.value !== ""
                     ? poNumberRef.current.value
                     : null;
             q.POValue = poValueRef.current ? poValueRef.current.value() : 0;
@@ -151,11 +151,11 @@ const QuoteEditView = props => {
             setChanged(true);
             props.updateCurrentQuote(q);
         }
-    }
+    };
 
     const handleIncoTermChange = e => {
         if (!isReadOnly()) {
-            var q = clone(quote);
+            const q = clone(quote);
 
             q.IncoTerm = e.target.value.split(" - ")[0];
             q.IncoTermDescription = e.target.value.split(" - ")[1];
@@ -166,11 +166,11 @@ const QuoteEditView = props => {
         }
     };
 
-    function hasChanged(q) {
-        var matcher = matches(props.data.currentQuoteBaseline);
-        var rtn = matcher(q);
+    const hasChanged = (q) => {
+        const matcher = matches(props.data.currentQuoteBaseline);
+        const rtn = matcher(q);
         return !rtn;
-    }
+    };
 
     const handleChangeEquipmentOwner = (e, id) => {
         const updated = {
@@ -189,12 +189,12 @@ const QuoteEditView = props => {
         const updated = {
             ...quote,
             EquipmentOwner: {
-                CompanyName: newValue,
-                StreetAddress: newValue,
                 City: newValue,
+                CompanyName: newValue,
+                PhoneNumber: newValue,
                 State: newValue,
-                ZipCode: newValue,
-                PhoneNumber: newValue
+                StreetAddress: newValue,
+                ZipCode: newValue
             }
         };
         setQuote(updated);
@@ -203,7 +203,7 @@ const QuoteEditView = props => {
 
     const handleGovernmentFundedChange = val => {
         const gAnswer = val;
-        let updated = {
+        const updated = {
             ...quote,
             GovernmentFundedAnswer: gAnswer
         };
@@ -214,7 +214,7 @@ const QuoteEditView = props => {
     };
 
     // render logic (kept mostly unchanged)
-    var q = quote;
+    const q = quote;
     const equipmentOwnerFormInstruction = msgFormatter(
         "equipmentOwnerFormInstruction"
     )();
@@ -247,7 +247,7 @@ const QuoteEditView = props => {
         !props.appData.currentUser.Profile.Internal &&
         props.appData.currentUser.Accounts
     ) {
-        var accounts = clone(props.appData.currentUser.Accounts);
+        const accounts = clone(props.appData.currentUser.Accounts);
 
         if (accounts.length == 1) {
             var account = accounts[0];
@@ -281,33 +281,33 @@ const QuoteEditView = props => {
     }
 
     // determine the org and territory (check quote and fallback to settings for current user)
-    var orgId = q.OrgID ? q.OrgID : props.appData.currentUser.OrgID;
-    var org = getOrg(orgId);
-    var terrs = org && org.Territories ? org.Territories : [];
+    const orgId = q.OrgID ? q.OrgID : props.appData.currentUser.OrgID;
+    const org = getOrg(orgId);
+    const terrs = org && org.Territories ? org.Territories : [];
 
     // set up the state of the quote (editable or not)
-    var disabled = isReadOnly() ? true : false;
-    var external = !props.appData.currentUser.Profile.Internal;
-    var userHasCost = context.isInRole("Cost");
+    const disabled = !!isReadOnly();
+    const external = !props.appData.currentUser.Profile.Internal;
+    const userHasCost = context.isInRole("Cost");
 
     // create a map of the orgs, territories, cultures, and currencies for the selects
-    var orgs =
+    const orgs =
         !org && q.Organization ? (
             <option key={q.Organization.OrgID} value={q.Organization.OrgID}>
                 {q.Organization.Description}
             </option>
         ) : (
-            props.appData.filters.organizations.map(function(org) {
+            props.appData.filters.organizations.map((org) => {
                 return (
                     <option key={org.OrgID} value={org.OrgID}>
                         {org.Description}
                     </option>
                 );
-            }, this)
+            })
         );
 
-    var territories =
-        terrs.length == 0 && q.Territory ? (
+    const territories =
+        terrs.length === 0 && q.Territory ? (
             <option
                 key={q.Territory.TerritoryID}
                 value={q.Territory.TerritoryID}
@@ -315,21 +315,21 @@ const QuoteEditView = props => {
                 {q.Territory.Description}
             </option>
         ) : (
-            terrs.map(function(terr) {
+            terrs.map((terr) => {
                 return (
                     <option key={terr.TerritoryID} value={terr.TerritoryID}>
                         {terr.Description}
                     </option>
                 );
-            }, this)
+            })
         );
 
-    var incoTermsControl = null;
-    var incoTermsOptions = null;
+    let incoTermsControl = null;
+    let incoTermsOptions = null;
     if (!external) {
-        var incoTerms = msgFormatter("noTermsListed");
+        let incoTerms = msgFormatter("noTermsListed");
         if (q.IncoTerm && q.IncoTerm !== "") {
-            incoTerms = q.IncoTerm + " - " + q.IncoTermDescription;
+            incoTerms = `${q.IncoTerm} - ${q.IncoTermDescription}`;
         }
 
         if (disabled || !userHasCost || q.StatusID === 4) {
@@ -349,7 +349,11 @@ const QuoteEditView = props => {
             incoTermsOptions = props.appData.filters.incoTerms.map(item => {
                 return (
                     <option key={item.Key} value={item.Key}>
-                        {item.Key} ({item.Name})
+                        {item.Key}
+                        {' '}
+                        (
+                        {item.Name}
+                        )
                     </option>
                 );
             });
@@ -359,17 +363,17 @@ const QuoteEditView = props => {
                 q.IncoTermDescription &&
                 q.IncoTermDescription !== null
             ) {
-                var item = find(props.appData.filters.incoTerms, {
-                    IncoTermID: q.IncoTerm,
-                    IncoTermDescription: q.IncoTermDescription
+                const item = find(props.appData.filters.incoTerms, {
+                    IncoTermDescription: q.IncoTermDescription,
+                    IncoTermID: q.IncoTerm
                 });
                 if (!item) {
                     incoTermsOptions.unshift(
                         <option
-                            key={q.IncoTerm + " - " + q.IncoTermDescription}
-                            value={q.IncoTerm + " - " + q.IncoTermDescription}
+                            key={`${q.IncoTerm} - ${q.IncoTermDescription}`}
+                            value={`${q.IncoTerm} - ${q.IncoTermDescription}`}
                         >
-                            {q.IncoTerm + " - " + q.IncoTermDescription}
+                            {`${q.IncoTerm} - ${q.IncoTermDescription}`}
                         </option>
                     );
                 }
@@ -385,9 +389,9 @@ const QuoteEditView = props => {
                         </label>
                         <select
                             ref={incoTermsRef}
-                            onChange={handleIncoTermChange}
                             className="form-control"
                             value={incoTerms}
+                            onChange={handleIncoTermChange}
                         >
                             {incoTermsOptions}
                         </select>
@@ -397,8 +401,8 @@ const QuoteEditView = props => {
         }
     }
 
-    var poNumberInput;
-    var poValueInput;
+    let poNumberInput;
+    let poValueInput;
     if (!props.appData.currentUser.Profile.EndUser) {
         poNumberInput = (
             <li className="col-xs-12 col-sm-6">
@@ -412,27 +416,25 @@ const QuoteEditView = props => {
         );
     }
 
-    var endCustomerVal;
+    let endCustomerVal;
     if (q.EndCustomerSapID) {
-        endCustomerVal = q.EndCustomerSapID + ", " + q.EndCustomerName;
+        endCustomerVal = `${q.EndCustomerSapID}, ${q.EndCustomerName}`;
     }
 
     // Government Funding
     let disableSave = false;
-    let requireGovFunded = props.appData.configuration.RequireGovFundedAnswer;
+    const requireGovFunded = props.appData.configuration.RequireGovFundedAnswer;
 
-    if (requireGovFunded && newQuote) {
-        if (
-            governmentFundedAnswer === "yes" ||
-            governmentFundedAnswer === null
-        ) {
-            disableSave = true;
-        }
+    if (requireGovFunded && newQuote && (
+        governmentFundedAnswer === "yes" ||
+        governmentFundedAnswer === null
+    )) {
+        disableSave = true;
     }
 
     return (
         <div>
-            <Prompt when={changed} message={() => prmpt} />
+            <Prompt message={() => prmpt} when={changed} />
             <section>
                 <div className="container">
                     {/* <SaveButtons></SaveButtons> */}
@@ -472,47 +474,47 @@ const QuoteEditView = props => {
                                         {/* <OutputLanguage></OutputLanguage> aka cultures */}
                                     </li>
                                     {/* Govt Funded */}
-                                    {requireGovFunded && (
+                                    {requireGovFunded ? (
                                         <li className="col-xs-12">
                                             <GovernmentRequirementsField
-                                                governmentFundedAnswer={
-                                                    props.data.currentQuote
-                                                        .GovernmentFunded
-                                                        ? "yes"
-                                                        : props.data
-                                                              .currentQuote
-                                                              .DomesticPreference
-                                                        ? "dpo"
-                                                        : "no"
-                                                }
-                                                domesticPreference={
-                                                    props.data.currentQuote
-                                                        .DomesticPreference
-                                                }
+                                                hideWarning
+                                                readOnly
                                                 isExternal={
                                                     props.appData.currentUser
                                                         .Profile.External
                                                 }
-                                                readOnly={true}
-                                                govFundedYesDisabled={
+                                                domesticPreference={
                                                     props.data.currentQuote
-                                                        .GovernmentFundedAnswer !==
-                                                    "yes"
-                                                }
-                                                govFundedNoDisabled={
-                                                    props.data.currentQuote
-                                                        .GovernmentFundedAnswer !==
-                                                    "no"
+                                                        .DomesticPreference
                                                 }
                                                 dpoDisabled={
                                                     props.data.currentQuote
                                                         .GovernmentFundedAnswer !==
                                                     "dpo"
                                                 }
-                                                hideWarning={true}
+                                                governmentFundedAnswer={
+                                                    props.data.currentQuote
+                                                        .GovernmentFunded
+                                                        ? "yes"
+                                                        : (props.data
+                                                            .currentQuote
+                                                            .DomesticPreference
+                                                            ? "dpo"
+                                                            : "no")
+                                                }
+                                                govFundedNoDisabled={
+                                                    props.data.currentQuote
+                                                        .GovernmentFundedAnswer !==
+                                                    "no"
+                                                }
+                                                govFundedYesDisabled={
+                                                    props.data.currentQuote
+                                                        .GovernmentFundedAnswer !==
+                                                    "yes"
+                                                }
                                             />
                                         </li>
-                                    )}
+                                    ) : null}
                                     <li className="col-xs-12 col-sm-6">
                                         {/* <OpportunityLabel></OpportunityLabel> */}
                                     </li>
@@ -552,27 +554,27 @@ const QuoteEditView = props => {
                                     {/* <IncoTerms></IncoTerms> */}
                                 </ul>
                                 {!hideEquipmentOwnerSection &&
-                                    q.HasEquipment && (
-                                        <InputForm
-                                            title="Equipment Owner"
-                                            tooltipTitle={
-                                                equipmentOwnerFormInstruction
-                                            }
-                                            formGroupArr={equipOwnerForms}
-                                            handleChangeValue={
-                                                handleChangeEquipmentOwner
-                                            }
-                                            handleWillAdviseChange={
-                                                handleWillAdviseChange
-                                            }
-                                            checkWillAdvise={
-                                                q.EquipmentOwner
-                                                    ?.CompanyName ===
-                                                "Will Advise"
-                                            }
-                                            disableForm={priorOrderExists}
-                                        />
-                                    )}
+                                    q.HasEquipment ? (
+                                    <InputForm
+                                        checkWillAdvise={
+                                            q.EquipmentOwner
+                                                ?.CompanyName ===
+                                            "Will Advise"
+                                        }
+                                        handleChangeValue={
+                                            handleChangeEquipmentOwner
+                                        }
+                                        handleWillAdviseChange={
+                                            handleWillAdviseChange
+                                        }
+                                        title="Equipment Owner"
+                                        disableForm={priorOrderExists}
+                                        formGroupArr={equipOwnerForms}
+                                        tooltipTitle={
+                                            equipmentOwnerFormInstruction
+                                        }
+                                    />
+                                ) : null}
                             </div>
                         </form>
                     </div>
@@ -587,9 +589,9 @@ const QuoteEditView = props => {
 
 //  react-redux connect
 export default connect(null, {
-    showUserSearchModal,
-    showCustomerSearchModal,
-    updateCurrentQuote,
+    saveQuote,
     showChangeCustomerModal,
-    saveQuote
+    showCustomerSearchModal,
+    showUserSearchModal,
+    updateCurrentQuote
 })(QuoteEditView);

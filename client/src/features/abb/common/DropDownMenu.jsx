@@ -46,10 +46,11 @@ const DropDownMenu = ({
           $position={position}
           role="menu"
         >
-          {items.map((item, index) =>
+          {items.map((item) =>
             item.isEnabled ? (
               <ItemDiv
-                key={index}
+                key={item.title}
+                // eslint-disable-next-line react/jsx-handler-names
                 onClick={item.onClick}
               >
                 {item.title}

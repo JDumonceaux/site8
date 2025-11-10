@@ -1,6 +1,6 @@
 // dataDisplay.js
 // Private
-const _getItemDisplay = item => {
+const getItemDisplay = item => {
     if (!item) {
         return null;
     }
@@ -17,7 +17,7 @@ const _getItemDisplay = item => {
 const getDataDisplay = items => {
     if (!items) return [];
     const dataArray = Array.isArray(items) ? items : [items];
-    return dataArray.map(_getItemDisplay);
+    return dataArray.map(getItemDisplay);
 };
 
 export default getDataDisplay;

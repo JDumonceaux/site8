@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import { msgFormatter } from "app/util";
-import FieldMargin from "./FieldMargin";
-import NumberForm from "./NumberForm";
+import { msgFormatter } from 'app/util';
+import FieldMargin from './FieldMargin';
+import NumberForm from './NumberForm';
 
-const POValue = ({ margin, onChange, show, value, ...rest }) => {
-    if (!show) return null;
+const POValue = ({ margin, onChange, show, ...rest }) => {
+  if (!show) return null;
 
-    return (
-      <FieldMargin margin={margin}>
-        <NumberForm
-          handleChange={onChange}
-          id="po_value"
-          label={msgFormatter("poValue")()}
-          mDec={2}
-          vMin={0}
-          {...rest}
-        />
-      </FieldMargin>
-    );
+  return (
+    <FieldMargin margin={margin}>
+      <NumberForm
+        handleChange={onChange}
+        id="po_value"
+        label={msgFormatter('poValue')()}
+        mDec={2}
+        vMin={0}
+        {...rest}
+      />
+    </FieldMargin>
+  );
 };
 
 export default POValue;

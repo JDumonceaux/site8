@@ -33,7 +33,6 @@ const DocumentDefinition = ({
           id="docName"
           inputText={docName}
         />
-
         <SelectForm
           handleChange={(value) => onDocChange(value.key)}
           id="docType"
@@ -42,7 +41,6 @@ const DocumentDefinition = ({
           inModal
           options={filteredDocumentTypeOptions}
         />
-
         <SelectForm
           handleChange={(value) => onFormatChange(value.key)}
           id="docFormat"

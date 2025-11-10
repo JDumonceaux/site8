@@ -1,8 +1,8 @@
-﻿import React from "react";
+﻿import React from 'react';
 
-import styled from "styled-components";
-import FieldLabel from "./FieldLabel";
-import FieldMargin from "./FieldMargin";
+import styled from 'styled-components';
+import FieldLabel from './FieldLabel';
+import FieldMargin from './FieldMargin';
 
 const Label = ({ children, margin, ...rest }) => (
   <FieldMargin margin={margin}>

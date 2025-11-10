@@ -7,9 +7,9 @@ import { setCurrentQuote } from 'actions/QuoteActions';
 const GridQuoteLink = ({ data, quote, rowData, setCurrentQuote }) => {
   const getQuote = () => {
     const q = quote || rowData || {};
-    q.QuoteNo = q.QuoteNo || '';
-    q.QuoteID = q.QuoteID || '';
-    q.QuoteName = q.QuoteName || '';
+    q.QuoteNo ||= '';
+    q.QuoteID ||= '';
+    q.QuoteName ||= '';
     return q;
   };
 

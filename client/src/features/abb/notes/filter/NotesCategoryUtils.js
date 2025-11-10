@@ -4,6 +4,8 @@
 export const getNoteTypes = (data) => {
     if (!Array.isArray(data)) return [];
     // Sort by ID
+    // Change to toSorted() when we can target ES2023    
+    // eslint-disable-next-line no-restricted-properties, unicorn/no-array-sort
     const sorted = [...data].sort((a, b) => a.ID - b.ID);
     // Use a Set for uniqueness
     const seen = new Set();

@@ -36,6 +36,7 @@ const GridOrderLink = ({ orderURL, poNumber, salesOrder, statusId }) => {
           <Tooltip title={failedOrderInfo}>
             <i
               className="fa fa-info-circle"
+              // eslint-disable-next-line react/forbid-dom-props
               style={{ marginLeft: '5px' }}
             />
           </Tooltip>

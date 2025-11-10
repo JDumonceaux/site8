@@ -6,6 +6,10 @@ import { msgFormatter } from 'app/util';
 import SectionsBar from 'empower-components/SectionsBar';
 import usePermissionContext from 'wwwroot/feature/common/usePermissionContext';
 
+const handleSection = (_section) => {
+  // No action needed, NavLink handles the routing
+};
+
 const HeaderMenu = ({
   appData,
   configuration,
@@ -24,10 +28,6 @@ const HeaderMenu = ({
   } = usePermissionContext();
   const location = useLocation();
 
-  const handleSection = (_section) => {
-    // No action needed, NavLink handles the routing
-  };
-
   const routePathT =
     match.url.slice(-1) === '/' ? match.url.slice(0, -1) : match.url;
 
@@ -37,6 +37,7 @@ const HeaderMenu = ({
     priceValidation && !priceValidation.Valid ? (
       <i
         className="fal fa-exclamation-triangle label-red"
+        // eslint-disable-next-line react/forbid-dom-props
         style={{ fontSize: '13px' }}
         title={msgFormatter('pricingIssuesExist')()}
       />

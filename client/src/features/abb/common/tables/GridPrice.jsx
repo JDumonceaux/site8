@@ -15,15 +15,14 @@ const GridPrice = ({
   if (!show || show === false) return null;
   if (hideZero === true && children === 0) return null;
 
-  if (currencyCode == null || currencyCode === '') {
-    currencyCode = 'USD';
-  }
+  const tempCurrencyCode =
+    currencyCode == null || currencyCode === '' ? 'USD' : currencyCode;
 
   return alignRight === true ? (
     <RightAlignedDiv>
       <StyledDiv
         $disabled={disabled}
-        currency={currencyCode}
+        currency={tempCurrencyCode}
       >
         {children}
       </StyledDiv>
@@ -31,7 +30,7 @@ const GridPrice = ({
   ) : (
     <StyledDiv
       $disabled={disabled}
-      currency={currencyCode}
+      currency={tempCurrencyCode}
     >
       {children}
     </StyledDiv>

@@ -18,6 +18,8 @@ export default {
         'unicorn/filename-case': 'off', // Managed by check-file plugin
         'unicorn/no-array-callback-reference': 'off',
         'unicorn/no-array-reduce': 'off',
+        // Too restrictive
+        'unicorn/no-nested-ternary': 'off',
         'unicorn/no-null': 'off',
         'unicorn/no-useless-undefined': ['error', { checkArguments: false }],
         'unicorn/prefer-node-protocol': 'off',

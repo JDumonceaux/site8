@@ -13,7 +13,7 @@ export default {
             {
                 '**/*.config.{mjs}': 'FLAT_CASE',
                 '**/*.{html}': 'FLAT_CASE',
-                '**/*.{js,mjs}': 'CAMEL_CASE',
+                // '**/*.{js,mjs}': 'CAMEL_CASE',
                 '**/*.{json}': 'FLAT_CASE',
                 '**/*.{jsx}': 'PASCAL_CASE',
                 '**/*.{md}': 'SCREAMING_SNAKE_CASE',

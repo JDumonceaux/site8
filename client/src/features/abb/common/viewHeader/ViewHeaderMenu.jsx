@@ -6,6 +6,10 @@ import { msgFormatter } from 'app/util';
 import SectionsBar from 'empower-components/SectionsBar';
 import usePermissionContext from 'wwwroot/feature/common/usePermissionContext';
 
+const handleSectionClick = () => {
+  /* empty */
+};
+
 const ViewHeaderMenu = ({ appData, data, match }) => {
   const {
     isCostFCMRole,
@@ -18,11 +22,10 @@ const ViewHeaderMenu = ({ appData, data, match }) => {
   } = usePermissionContext();
   const location = useLocation();
 
-  const handleSectionClick = (section) => {};
-
   let routePath = `${
     appData.configuration.EmpowerURL + globalThis.location.pathname
   }#${match.url}`;
+
   if (globalThis.location.host === 'localhost') {
     routePath = `${appData.configuration.EmpowerURL}#${match.url}`;
   }
@@ -42,6 +45,8 @@ const ViewHeaderMenu = ({ appData, data, match }) => {
 
   if (quote && quote.QuoteItems && quote.QuoteItems.length > 0) {
     if (isHistoryRole) {
+      // Use toSpliced when we can target ES2023
+      // eslint-disable-next-line no-restricted-properties
       sections.splice(1, 0, {
         key: 'history',
         name: 'History',
