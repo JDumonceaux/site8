@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import Input from '@/components/input/Input';
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import styled from 'styled-components';
 import type { MenuItem } from '../../types';
 

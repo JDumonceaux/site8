@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SNACKBAR_DEFAULT_DURATION } from '@lib/utils/constants';
 import type { AppDispatch, RootState } from '@store/store';
+import { SNACKBAR_DEFAULT_DURATION } from '@lib/utils/constants';
 import { hideSnackbar, showSnackbar } from '@store/snackbarSlice';
 
 export type Snackbar = {
