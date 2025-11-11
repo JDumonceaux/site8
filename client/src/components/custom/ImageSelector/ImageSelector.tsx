@@ -1,13 +1,13 @@
 import {
-  useState,
-  useDeferredValue,
   type JSX,
-  type MouseEvent,
   type KeyboardEvent,
+  type MouseEvent,
+  useDeferredValue,
+  useState,
 } from 'react';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
-import { Switch } from '@components/Switch/Switch';
+import Switch from '@components/Switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import useUnmatchedImages from '@features/itemsAdd/useUnmatchedImages';
 import { IMAGE_BASE } from '@lib/utils/constants';
@@ -23,23 +23,23 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
   const { data } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();
 
-  function handleShowAll(): void {
+  const handleShowAll = (): void => {
     setSelectedItem(undefined);
-  }
+  };
 
-  function handleShowUnmatched(checked: boolean): void {
+  const handleShowUnmatched = (checked: boolean): void => {
     setShowUnmatched(checked);
-  }
+  };
 
-  function handleSelect(e: MouseEvent<HTMLButtonElement>): void {
+  const handleSelect = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     const id = Number(e.currentTarget.id);
     const item = data?.items.find((x) => x.id === id);
     setSelectedItem(item);
     onSelectImage(item);
-  }
+  };
 
-  function handleKeyboardSelect(e: KeyboardEvent<HTMLButtonElement>): void {
+  const handleKeyboardSelect = (e: KeyboardEvent<HTMLButtonElement>): void => {
     if (e.key === 'Enter') {
       e.preventDefault();
       const id = Number(e.currentTarget.id);
@@ -47,13 +47,13 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
       setSelectedItem(item);
       onSelectImage(item);
     }
-  }
+  };
 
-  const filteredData = !data
-    ? []
-    : selectedItem
+  const filteredData = data
+    ? selectedItem
       ? data.items.filter((x) => x.id === selectedItem.id)
-      : data.items;
+      : data.items
+    : [];
 
   const itemCount = useDeferredValue(filteredData.length);
 
@@ -61,14 +61,14 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
     <>
       <Controls>
         <button
-          onClick={() => null}
           type="button"
+          onClick={() => null}
         >
           Refresh
         </button>
         <button
-          onClick={handleShowAll}
           type="button"
+          onClick={handleShowAll}
         >
           Show All
         </button>
@@ -85,12 +85,12 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
         <Grid>
           {filteredData.map((item) => (
             <ImageButton
+              key={item.id}
               $selected={selectedItem?.id === item.id}
               id={String(item.id)}
-              key={item.id}
+              type="button"
               onClick={handleSelect}
               onKeyDown={handleKeyboardSelect}
-              type="button"
             >
               <img
                 alt=""

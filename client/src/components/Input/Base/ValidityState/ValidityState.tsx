@@ -1,5 +1,6 @@
-import type { JSX } from 'react';
 import * as Form from '@radix-ui/react-form';
+import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 // Notes: The minlength and maxlength constraints are only checked on
@@ -33,12 +34,18 @@ const ValidityState = ({
   return (
     <>
       {missingMatches.map((match) => (
-        <StyledMessage key={match} match={match}>
+        <StyledMessage
+          key={match}
+          match={match}
+        >
           {errorMissing}
         </StyledMessage>
       ))}
       {typeMatches.map((match) => (
-        <StyledMessage key={match} match={match}>
+        <StyledMessage
+          key={match}
+          match={match}
+        >
           {errorType}
         </StyledMessage>
       ))}

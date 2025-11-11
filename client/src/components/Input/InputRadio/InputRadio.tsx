@@ -15,7 +15,11 @@ export const InputRadio = ({
   type = 'radio',
   ...rest
 }: InputRadioProps): JSX.Element | null => (
-  <input {...rest} type={type} value="Not implemented – use a radio element" />
+  <input
+    {...rest}
+    type={type}
+    value="Not implemented – use a radio element"
+  />
 );
 
 InputRadio.displayName = 'InputRadio';

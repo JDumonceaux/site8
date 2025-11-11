@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 import PhoneAdornment from '../Base/Adornments/PhoneAdornment';
 import InputBase from '../Base/InputBase/InputBase';
@@ -21,9 +22,9 @@ export const InputTel = ({
   ...rest
 }: InputTelProps): JSX.Element | null => (
   <InputBase
+    type={type}
     autoComplete={autoComplete}
     startAdornment={<PhoneAdornment />}
-    type={type}
     {...rest}
   />
 );

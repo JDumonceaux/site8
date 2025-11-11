@@ -5,13 +5,13 @@ export const createAnimation = (
 ): string => {
   const animationName = `react-spinners-${loaderName}-${suffix}`;
 
-  if (typeof window == 'undefined' || !window.document) {
+  if (globalThis.window === undefined || !globalThis.document) {
     return animationName;
   }
 
-  const styleEl = document.createElement('style');
-  document.head.appendChild(styleEl);
-  const styleSheet = styleEl.sheet;
+  const styleElement = document.createElement('style');
+  document.head.append(styleElement);
+  const styleSheet = styleElement.sheet;
 
   const keyFrames = `
     @keyframes ${animationName} {

@@ -37,7 +37,7 @@ const PageRow = ({
         </StyledLink>
       </td>
       <td>
-        {item.type !== 'root' && (
+        {item.type === 'root' ? null : (
           <Input.Text {...getDefaultProps(item.lineId, 'parentId')} />
         )}
       </td>
@@ -45,7 +45,7 @@ const PageRow = ({
         <Input.Text {...getDefaultProps(item.lineId, 'parentSeq')} />
       </td>
       <td>
-        {item.type !== 'page' && (
+        {item.type === 'page' ? null : (
           <>
             <Input.Text
               {...getDefaultProps(item.lineId, 'parentSortby')}

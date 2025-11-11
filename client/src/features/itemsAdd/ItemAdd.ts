@@ -8,7 +8,7 @@ const schema = z.object({
   description: z.string().trim().optional(),
   location: z
     .string({
-      invalid_type_error: 'Location must be a string',
+      error: 'Location must be a string',
     })
     .max(250, 'Location max length exceeded: 500')
     .trim()

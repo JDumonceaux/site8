@@ -1,19 +1,24 @@
 import * as Form from '@radix-ui/react-form';
-import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import InputText from './InputText';
-describe('InputText', () => {
+import '@testing-library/jest-dom';
+
+describe('inputText', () => {
   test('renders the input correctly', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" value="Test" />
+          <InputText
+            id="test"
+            value="Test"
+          />
         </Form.Field>
       </Form.Root>,
     );
 
     const inputElement = screen.getByRole('textbox');
+
     expect(inputElement).toBeInTheDocument();
   });
 
@@ -21,12 +26,16 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" value="Test" />
+          <InputText
+            id="test"
+            value="Test"
+          />
         </Form.Field>
       </Form.Root>,
     );
     const inputElement = screen.getByRole('textbox');
     fireEvent.change(inputElement, { target: { value: 'Hello' } });
+
     expect(inputElement).toHaveValue('Hello');
   });
 
@@ -52,7 +61,11 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" required value="Test" />
+          <InputText
+            required
+            id="test"
+            value="Test"
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -60,6 +73,7 @@ describe('InputText', () => {
     const submitButton = screen.getByText('Submit');
     fireEvent.click(submitButton);
     const errorMessage = screen.getByText('This value is missing');
+
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -68,7 +82,11 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" minLength={5} value="Test" />
+          <InputText
+            id="test"
+            minLength={5}
+            value="Test"
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -76,6 +94,7 @@ describe('InputText', () => {
     const submitButton = screen.getByText('Submit');
     fireEvent.click(submitButton);
     const errorMessage = screen.getByText('Must be at least 5 characters');
+
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -84,7 +103,11 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" maxLength={5} value="Test" />
+          <InputText
+            id="test"
+            maxLength={5}
+            value="Test"
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -92,6 +115,7 @@ describe('InputText', () => {
     const submitButton = screen.getByText('Submit');
     fireEvent.click(submitButton);
     const errorMessage = screen.getByText('Must be at most 5 characters');
+
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -100,7 +124,11 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" pattern="^[a-zA-Z]*$" value="Test" />
+          <InputText
+            id="test"
+            pattern="^[a-zA-Z]*$"
+            value="Test"
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -108,6 +136,7 @@ describe('InputText', () => {
     const submitButton = screen.getByText('Submit');
     fireEvent.click(submitButton);
     const errorMessage = screen.getByText('Invalid format');
+
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -133,7 +162,10 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" value="Test" />
+          <InputText
+            id="test"
+            value="Test"
+          />
         </Form.Field>
       </Form.Root>,
     );
@@ -145,10 +177,12 @@ describe('InputText', () => {
 
     // Simulate focus
     fireEvent.focus(inputElement);
+
     expect(inputElement).toHaveStyle('border-color: blue'); // Replace with the expected style when focused
 
     // Simulate blur
     fireEvent.blur(inputElement);
+
     expect(inputElement).toHaveStyle('border-color: #ccc'); // Back to default style
   });
 
@@ -156,13 +190,18 @@ describe('InputText', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputText id="test" required value="Test" />
+          <InputText
+            required
+            id="test"
+            value="Test"
+          />
         </Form.Field>
       </Form.Root>,
     );
     const inputElement = screen.getByRole('textbox');
     const submitButton = screen.getByText('Submit');
     fireEvent.click(submitButton);
+
     expect(inputElement).toHaveStyle('border-color: red');
   });
 });

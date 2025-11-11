@@ -1,12 +1,13 @@
-import { useState, useEffect, useTransition, type JSX } from 'react';
+import { type JSX, useEffect, useState, useTransition } from 'react';
+import { FixedSizeList as List } from 'react-window';
+
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
 import Layout from '@features/layouts/Layout/Layout';
-import { FixedSizeList as List } from 'react-window';
+import styled from 'styled-components';
 import ItemRenderer from './ItemRenderer';
 import useMusic from './useMusic';
-import styled from 'styled-components';
 
 const ROW_HEIGHT = 220;
 
@@ -35,8 +36,8 @@ const MusicPage = (): JSX.Element | null => {
         <PageTitle title={title} />
 
         <Section
-          aria-label="Favorite YouTube videos"
           aria-busy={isPending}
+          aria-label="Favorite YouTube videos"
         >
           <Description>
             These are some of my favorite YouTube videos.
@@ -50,11 +51,11 @@ const MusicPage = (): JSX.Element | null => {
             {items.length > 0 ? (
               <List
                 height={600}
-                itemCount={items.length}
                 itemData={{ items }}
                 itemSize={ROW_HEIGHT}
-                overscanCount={15}
                 width="100%"
+                itemCount={items.length}
+                overscanCount={15}
               >
                 {ItemRenderer}
               </List>

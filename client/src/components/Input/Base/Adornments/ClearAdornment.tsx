@@ -1,11 +1,10 @@
-import type { JSX, ReactNode, HTMLAttributes, MouseEventHandler } from 'react';
-import { forwardRef } from 'react';
-
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
-import styled from 'styled-components';
+import type { HTMLAttributes, JSX, MouseEventHandler, ReactNode } from 'react';
+import { forwardRef } from 'react';
 
+import styled from 'styled-components';
 import Tooltip from '../Tooltip/TooltipBase';
 
 type ClearAdornmentProps = {
@@ -34,8 +33,6 @@ const ClearAdornment = forwardRef<HTMLButtonElement, ClearAdornmentProps>(
     ref,
   ): JSX.Element => (
     <Tooltip
-      aria-label={ariaLabel}
-      content={label}
       trigger={
         <TriggerButton
           ref={ref}
@@ -48,6 +45,8 @@ const ClearAdornment = forwardRef<HTMLButtonElement, ClearAdornmentProps>(
           </AccessibleIcon>
         </TriggerButton>
       }
+      aria-label={ariaLabel}
+      content={label}
     />
   ),
 );

@@ -1,24 +1,24 @@
-interface LengthObject {
-  value: number;
+type LengthObject = {
   unit: string;
-}
+  value: number;
+};
 
-const cssUnit: { [unit: string]: boolean } = {
+const cssUnit: Record<string, boolean> = {
+  '%': true,
+  ch: true,
   cm: true,
-  mm: true,
-  in: true,
-  px: true,
-  pt: true,
-  pc: true,
   em: true,
   ex: true,
-  ch: true,
+  in: true,
+  mm: true,
+  pc: true,
+  pt: true,
+  px: true,
   rem: true,
-  vw: true,
   vh: true,
-  vmin: true,
   vmax: true,
-  '%': true,
+  vmin: true,
+  vw: true,
 };
 
 /**
@@ -30,27 +30,25 @@ const cssUnit: { [unit: string]: boolean } = {
  * @param {(number | string)} size
  * @return {LengthObject} LengthObject
  */
-export function parseLengthAndUnit(size: number | string): LengthObject {
+export const parseLengthAndUnit = (size: number | string): LengthObject => {
   if (typeof size === 'number') {
     return {
-      value: size,
       unit: 'px',
+      value: size,
     };
   }
   let value: number;
-  const valueString: string = (size.match(/^[0-9.]*/) || '').toString();
-  if (valueString.includes('.')) {
-    value = parseFloat(valueString);
-  } else {
-    value = parseInt(valueString, 10);
-  }
+  const valueString: string = (/^[\d.]*/.exec(size) || '').toString();
+  value = valueString.includes('.')
+    ? Number.parseFloat(valueString)
+    : Number.parseInt(valueString, 10);
 
-  const unit: string = (size.match(/[^0-9]*$/) || '').toString();
+  const unit: string = (/\D*$/.exec(size) || '').toString();
 
   if (cssUnit[unit]) {
     return {
-      value,
       unit,
+      value,
     };
   }
 
@@ -59,10 +57,10 @@ export function parseLengthAndUnit(size: number | string): LengthObject {
   );
 
   return {
-    value,
     unit: 'px',
+    value,
   };
-}
+};
 
 /**
  * Take value as an input and return valid css value
@@ -70,8 +68,8 @@ export function parseLengthAndUnit(size: number | string): LengthObject {
  * @param {(number | string)} value
  * @return {string} valid css value
  */
-export function cssValue(value: number | string): string {
+export const cssValue = (value: number | string): string => {
   const lengthWithunit = parseLengthAndUnit(value);
 
   return `${lengthWithunit.value}${lengthWithunit.unit}`;
-}
+};

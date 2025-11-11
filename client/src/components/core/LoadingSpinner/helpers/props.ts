@@ -2,31 +2,30 @@ import type { CSSProperties, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 export type LengthType = number | string;
 
-interface CommonProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {
+type CommonProps = {
   color?: string;
-  loading?: boolean;
   cssOverride?: CSSProperties;
+  loading?: boolean;
   speedMultiplier?: number;
-}
+} & DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 
-export interface LoaderHeightWidthProps extends CommonProps {
+export type LoaderHeightWidthProps = {
   height?: LengthType;
   width?: LengthType;
-}
+} & CommonProps;
 
-export interface LoaderSizeProps extends CommonProps {
+export type LoaderSizeProps = {
   size?: LengthType;
-}
+} & CommonProps;
 
-export interface LoaderSizeMarginProps extends CommonProps {
-  size?: LengthType;
+export type LoaderSizeMarginProps = {
   margin?: LengthType;
-}
+  size?: LengthType;
+} & CommonProps;
 
-export interface LoaderHeightWidthRadiusProps extends CommonProps {
+export type LoaderHeightWidthRadiusProps = {
   height?: LengthType;
-  width?: LengthType;
+  margin?: LengthType;
   radius?: LengthType;
-  margin?: LengthType;
-}
+  width?: LengthType;
+} & CommonProps;

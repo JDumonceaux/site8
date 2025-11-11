@@ -1,5 +1,6 @@
 // useDialog.test.ts
-import { renderHook, act } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react-hooks';
+
 import { useDialog, type UseDialogReturn } from './useDialog';
 
 describe('useDialog hook', () => {

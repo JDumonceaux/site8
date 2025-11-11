@@ -1,21 +1,22 @@
 import React, { memo } from 'react';
+
 import styled from 'styled-components';
 
-interface ImageBlockProps {
-  src: string;
+type ImageBlockProps = {
   alt?: string;
+  src: string;
   title?: string;
-}
+};
 
 const ImageBlock: React.FC<ImageBlockProps> = ({ alt, src, title }) => {
   if (!src) return null;
 
   return (
     <Section>
-      {title && <Title>{title}</Title>}
+      {title ? <Title>{title}</Title> : null}
       <StyledImg
+        alt={alt ?? title ?? ''}
         src={src}
-        alt={alt || title || ''}
         {...(title ? { title } : {})}
         loading="lazy"
       />

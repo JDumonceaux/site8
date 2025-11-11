@@ -1,10 +1,9 @@
-import type { JSX, SVGProps } from 'react';
-
 import { EnvelopeClosedIcon as Icon } from '@radix-ui/react-icons';
 import type { IconProps } from '@radix-ui/react-icons/dist/types';
+import type { JSX, SVGProps } from 'react';
 
 type EmailAdornmentProps = Readonly<
-  Omit<SVGProps<SVGSVGElement>, 'ref' | 'data-testid'> & IconProps
+  Omit<SVGProps<SVGSVGElement>, 'data-testid' | 'ref'> & IconProps
 >;
 
 const EmailAdornment = (props: EmailAdornmentProps): JSX.Element => (

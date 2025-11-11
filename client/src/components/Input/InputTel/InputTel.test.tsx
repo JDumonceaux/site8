@@ -1,19 +1,24 @@
 import * as Form from '@radix-ui/react-form';
-import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import InputTel from './InputTel';
-describe('InputTel', () => {
+import '@testing-library/jest-dom';
+
+describe('inputTel', () => {
   test('renders the input correctly', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTel id="test" value="Test" />
+          <InputTel
+            id="test"
+            value="Test"
+          />
         </Form.Field>
       </Form.Root>,
     );
 
     const inputElement = screen.getByRole('textbox');
+
     expect(inputElement).toBeInTheDocument();
   });
 
@@ -21,12 +26,16 @@ describe('InputTel', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputTel id="test" value="Test" />
+          <InputTel
+            id="test"
+            value="Test"
+          />
         </Form.Field>
       </Form.Root>,
     );
     const inputElement = screen.getByRole('textbox');
     fireEvent.change(inputElement, { target: { value: 'Hello' } });
+
     expect(inputElement).toHaveValue('Hello');
   });
 

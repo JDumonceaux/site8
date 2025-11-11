@@ -1,4 +1,4 @@
-import { Suspense, useDeferredValue, type JSX } from 'react';
+import { type JSX, Suspense, useDeferredValue } from 'react';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
@@ -8,7 +8,6 @@ import Layout from '@features/layouts/Layout/Layout';
 import { getSRC, sanitizeUrl } from '@lib/utils/helpers';
 import styled from 'styled-components';
 import type { Image } from '../../types/Image';
-
 import useImages from '../imagesEdit/useImages';
 
 const GenericImagePage = (): JSX.Element => {

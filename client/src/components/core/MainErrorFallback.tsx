@@ -1,5 +1,6 @@
 import type { JSX } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
+
 import styled from 'styled-components';
 
 export type MainErrorFallbackProps = {
@@ -10,9 +11,9 @@ export type MainErrorFallbackProps = {
 } & FallbackProps;
 
 const MainErrorFallback = ({
-  resetErrorBoundary,
   message,
   onRetry,
+  resetErrorBoundary,
 }: MainErrorFallbackProps): JSX.Element => {
   const handleRetry = (): void => {
     if (onRetry) {
@@ -28,10 +29,14 @@ const MainErrorFallback = ({
     <Container
       aria-describedby={message ? 'error-message' : undefined}
       aria-labelledby="error-title"
-      role="alertdialog">
+      role="alertdialog"
+    >
       <Title id="error-title">Oops! Something went wrong.</Title>
-      {message && <Message id="error-message">{message}</Message>}
-      <RetryButton onClick={handleRetry} type="button">
+      {message ? <Message id="error-message">{message}</Message> : null}
+      <RetryButton
+        type="button"
+        onClick={handleRetry}
+      >
         Retry
       </RetryButton>
     </Container>

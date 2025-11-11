@@ -24,7 +24,12 @@ const InputColor = ({
   type = 'color',
   ...rest
 }: InputColorProps): JSX.Element => {
-  return <InputBase type={type} {...rest} />;
+  return (
+    <InputBase
+      type={type}
+      {...rest}
+    />
+  );
 };
 
 InputColor.displayName = 'InputColor';

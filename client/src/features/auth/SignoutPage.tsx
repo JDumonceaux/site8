@@ -1,11 +1,10 @@
-import { useEffect, type JSX, type FormEvent } from 'react';
+import { type FormEvent, type JSX, useEffect } from 'react';
 
 import Meta from '@components/core/Meta/Meta';
 import Button from '@components/form/Button/Button';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import styled from 'styled-components';
-
 import AuthContainer from './AuthContainer';
 
 const SignOutpPage = (): JSX.Element => {
@@ -32,7 +31,6 @@ const SignOutpPage = (): JSX.Element => {
     <>
       <Meta title={title} />
       <AuthContainer
-        error={error}
         leftImage={
           <img
             alt=""
@@ -40,6 +38,7 @@ const SignOutpPage = (): JSX.Element => {
           />
         }
         title="Sign Out"
+        error={error}
       >
         {authorized ? (
           <StyledError>

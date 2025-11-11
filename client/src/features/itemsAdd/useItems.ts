@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { Items, ListItem } from '../../types';
 import type { KeyValue } from '../../types/KeyValue';
 
 const fetchData = async (): Promise<Items> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ITEMS);
-  if (!RESPONSE.ok) {
+  if (!response.ok) {
     throw new Error(`Failed to fetch data: ${response.statusText}`);
   }
   return response.json() as Promise<Items>;

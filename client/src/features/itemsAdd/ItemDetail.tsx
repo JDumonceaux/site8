@@ -5,7 +5,6 @@ import IconMenuItem from '@components/IconMenu/IconMenuItem';
 import Input from '@components/Input/Input';
 import styled from 'styled-components';
 import type { KeyValue } from '../../types/KeyValue';
-
 import type { ItemAddExt } from './ItemAdd';
 
 type Props = {
@@ -33,19 +32,19 @@ const ItemDetail = ({
   onDelete,
   periods,
 }: Props): JSX.Element => {
-  function handleOnDelete() {
+  const handleOnDelete = () => {
     if (onDelete) {
       onDelete(item.lineId);
     }
-  }
+  };
 
-  function handleFieldChange(
+  const handleFieldChange = (
     lineId: number,
     fieldName: keyof ItemAddExt,
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
+  ) => {
     onChange(e, lineId, fieldName);
-  }
+  };
 
   return (
     <StyledRow key={item.lineId}>

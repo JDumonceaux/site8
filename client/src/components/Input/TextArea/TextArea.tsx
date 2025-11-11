@@ -1,13 +1,12 @@
 import {
-  useRef,
-  type TextareaHTMLAttributes,
   type ChangeEvent,
   type JSX,
+  type TextareaHTMLAttributes,
+  useRef,
 } from 'react';
 
 import useGetId from '@hooks/useGetId';
 import styled from 'styled-components';
-
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../Base/FieldWrapper/FieldWrapper';
@@ -44,7 +43,7 @@ export const TextArea = ({
   rows,
   ...rest
 }: TextAreaProps): JSX.Element | null => {
-  const currId = useGetId(id);
+  const currentId = useGetId(id);
   const tempRef = useRef<HTMLTextAreaElement>(null);
   const localRef = ref ?? tempRef;
 
@@ -58,10 +57,10 @@ export const TextArea = ({
       {...(rest as FieldWrapperProps)}
     >
       <StyledTextArea
-        id={currId}
-        name={currId}
-        onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
         ref={localRef}
+        id={currentId}
+        name={currentId}
+        onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
         rows={rows}
         {...(textAreaProps as TextAreaRootProps)}
       />

@@ -25,11 +25,11 @@ const FooterRow = ({
   return (
     <Row>
       <ErrorText>{errorMessage}</ErrorText>
-      {showCounter && (
+      {showCounter ? (
         <Counter>
           {fieldLength}/{maxLength}
         </Counter>
-      )}
+      ) : null}
     </Row>
   );
 };

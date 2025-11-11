@@ -1,13 +1,12 @@
-import { Suspense, type JSX } from 'react';
-import styled from 'styled-components';
+import { type JSX, Suspense } from 'react';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
 import Input from '@components/Input/Input';
-import Layout from '@features/layouts/Layout/Layout';
 import MenuBar from '@features/imagesEdit/MenuBar';
-
+import Layout from '@features/layouts/Layout/Layout';
+import styled from 'styled-components';
 import ItemDetail from './ItemDetail';
 import RightMenu from './RightMenu';
 import useArtists from './useArtists';
@@ -49,9 +48,9 @@ const ItemsAddPage = (): JSX.Element => {
           <LoadingWrapper>
             <Input.Select
               dataList={artistsAsListItem}
+              value={artistId}
               onChange={handleFilterChange}
               placeholder="Artist"
-              value={artistId}
             />
             <StyledForm
               noValidate
@@ -60,13 +59,13 @@ const ItemsAddPage = (): JSX.Element => {
               {data.map((item) => (
                 <ItemDetail
                   key={item.lineId}
-                  item={item}
                   artists={artistsIndexed}
-                  locations={locationsIndexed}
-                  names={namesIndexed}
-                  periods={periodsIndexed}
                   getFieldValue={getFieldValue}
+                  item={item}
+                  names={namesIndexed}
+                  locations={locationsIndexed}
                   onChange={handleChange}
+                  periods={periodsIndexed}
                 />
               ))}
             </StyledForm>

@@ -1,10 +1,11 @@
 // Tooltip.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import type { AxeResults } from 'axe-core';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import Tooltip from './Tooltip';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import type { AxeResults } from 'axe-core';
-import Tooltip from './Tooltip';
 
 describe('tooltip component', () => {
   beforeAll(() => {
@@ -43,7 +44,12 @@ describe('tooltip component', () => {
   test('renders number content correctly', async () => {
     expect.assertions(2);
 
-    render(<Tooltip trigger={<span>Count</span>} content={123} />);
+    render(
+      <Tooltip
+        trigger={<span>Count</span>}
+        content={123}
+      />,
+    );
     const trigger = screen.getByText('Count');
     fireEvent.mouseOver(trigger);
     const tooltip = await screen.findByRole('tooltip');
@@ -56,7 +62,10 @@ describe('tooltip component', () => {
     expect.hasAssertions();
 
     const { container } = render(
-      <Tooltip trigger={<button>Hover me</button>} content="Accessible" />,
+      <Tooltip
+        trigger={<button>Hover me</button>}
+        content="Accessible"
+      />,
     );
     const results: AxeResults = await axe(container);
 

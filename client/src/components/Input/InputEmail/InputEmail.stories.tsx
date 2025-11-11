@@ -1,21 +1,22 @@
 // InputEmail.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { action } from '@storybook/addon-actions';
 import InputEmail, { type InputEmailProps } from './InputEmail';
 
 const meta: Meta<typeof InputEmail> = {
-  title: '@components/InputEmail',
-  component: InputEmail,
   argTypes: {
-    type: { control: { disable: true } },
-    id: { control: 'text' },
-    value: { control: 'text' },
-    placeholder: { control: 'text' },
-    multiple: { control: 'boolean' },
-    pattern: { control: 'text' },
-    onChange: { action: 'changed' },
     disabled: { control: 'boolean' },
+    id: { control: 'text' },
+    multiple: { control: 'boolean' },
+    onChange: { action: 'changed' },
+    pattern: { control: 'text' },
+    placeholder: { control: 'text' },
+    type: { control: { disable: true } },
+    value: { control: 'text' },
   },
+  component: InputEmail,
+  title: '@components/InputEmail',
 };
 
 export default meta;
@@ -24,17 +25,17 @@ type Story = StoryObj<typeof InputEmail>;
 export const Default: Story = {
   args: {
     id: 'email-default',
-    value: '',
-    placeholder: 'example@example.com',
     onChange: action('onChange'),
+    placeholder: 'example@example.com',
+    value: '',
   } as InputEmailProps,
 };
 
 export const WithValue: Story = {
   args: {
     id: 'email-with-value',
-    value: 'user@example.com',
     onChange: action('onChange'),
+    value: 'user@example.com',
   } as InputEmailProps,
 };
 
@@ -42,25 +43,25 @@ export const Multiple: Story = {
   args: {
     id: 'email-multiple',
     multiple: true,
-    value: 'user1@example.com, user2@example.com',
     onChange: action('onChange'),
+    value: 'user1@example.com, user2@example.com',
   } as InputEmailProps,
 };
 
 export const WithPattern: Story = {
   args: {
     id: 'email-pattern',
-    pattern: '[a-z0-9._%+-]+@example\\.com',
-    placeholder: 'name@example.com',
     onChange: action('onChange'),
+    pattern: String.raw`[a-z0-9._%+-]+@example\.com`,
+    placeholder: 'name@example.com',
   } as InputEmailProps,
 };
 
 export const Disabled: Story = {
   args: {
-    id: 'email-disabled',
-    value: '',
     disabled: true,
+    id: 'email-disabled',
     placeholder: 'cannot edit',
+    value: '',
   } as InputEmailProps,
 };

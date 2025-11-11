@@ -8,15 +8,14 @@ const pageSchema = z.object({
   id: z.number(),
   location: z
     .string({
-      invalid_type_error: 'Location must be a string',
+      message: 'Location must be a string',
     })
     .max(250, 'Location max length exceeded: 500')
     .trim()
     .optional(),
   name: z
     .string({
-      invalid_type_error: 'Name must be a string',
-      required_error: 'Name is required.',
+      message: 'Name must be a string',
     })
     .max(100, 'Name max length exceeded: 100')
     .trim()

@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Input from '@components/Input/Input';
 import useImageFolder from '@features/imagesEdit/useImageFolder';
@@ -12,12 +13,12 @@ type Props = {
   readonly onFilterSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-function RightMenu({
+const RightMenu = ({
   currentFilter,
   currentFolder,
   onClick,
   onFilterSelect,
-}: Props): JSX.Element {
+}: Props): JSX.Element => {
   const { data, isError, isPending } = useImageFolder();
 
   const filterData = data?.map((x) => ({
@@ -25,38 +26,36 @@ function RightMenu({
     value: x.value,
   }));
 
-  function handleButton(event: React.MouseEvent<HTMLButtonElement>) {
+  const handleButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = event.currentTarget.dataset;
     if (id) {
       const tempId = Number(id);
       const item = data?.find((x) => x.id === tempId);
       onClick(item?.value);
     }
-  }
+  };
 
   const renderedButtons = filterData?.map((item) => (
     <FolderButton
+      key={item.key}
       handleClick={handleButton}
       isActive={item.value === currentFolder}
       item={item}
-      key={item.key}
     />
   ));
 
   let renderStyledButton: React.ReactNode;
-  if (currentFolder) {
-    renderStyledButton = (
-      <StyledButton
-        data-id={currentFolder}
-        onClick={handleButton}
-        type="button"
-      >
-        {currentFolder}
-      </StyledButton>
-    );
-  } else {
-    renderStyledButton = <div>Select Folder ({data?.length})</div>;
-  }
+  renderStyledButton = currentFolder ? (
+    <StyledButton
+      data-id={currentFolder}
+      type="button"
+      onClick={handleButton}
+    >
+      {currentFolder}
+    </StyledButton>
+  ) : (
+    <div>Select Folder ({data?.length})</div>
+  );
 
   return (
     <StickyMenu>
@@ -64,8 +63,8 @@ function RightMenu({
         <Input.Select
           dataList={filterData}
           label="Filter"
-          onChange={onFilterSelect}
           value={currentFilter}
+          onChange={onFilterSelect}
         />
       </FilterDiv>
       <StyledHeader>
@@ -73,14 +72,14 @@ function RightMenu({
       </StyledHeader>
       <hr />
       <LoadingWrapper
-        isError={isError}
         isPending={isPending}
+        isError={isError}
       >
         {renderedButtons}
       </LoadingWrapper>
     </StickyMenu>
   );
-}
+};
 
 RightMenu.displayName = 'RightMenu';
 export default RightMenu;

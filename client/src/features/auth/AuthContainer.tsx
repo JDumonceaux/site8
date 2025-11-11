@@ -1,4 +1,4 @@
-import type { ReactNode, JSX } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';

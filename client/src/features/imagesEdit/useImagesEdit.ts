@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ServiceUrl } from '@lib/utils/constants';
 import type { Images } from '../../types';
 

@@ -1,7 +1,6 @@
-import type { JSX, ReactNode, HTMLAttributes } from 'react';
+import type { HTMLAttributes, JSX, ReactNode } from 'react';
 
 import styled from 'styled-components';
-
 import EndAdornment, {
   type EndAdornmentProps,
 } from '../Adornments/EndAdornment';
@@ -46,17 +45,21 @@ const FieldWrapper = ({
 }: FieldWrapperProps): JSX.Element => {
   return (
     <Container id={id}>
-      <LabelRow label={label} {...labelProps} required={required} />
+      <LabelRow
+        label={label}
+        {...labelProps}
+        required={required}
+      />
       <InputRow>
-        {startAdornment && (
+        {startAdornment ? (
           <StartAdornment {...startAdornmentProps}>
             {startAdornment}
           </StartAdornment>
-        )}
+        ) : null}
         {children}
-        {endAdornment && (
+        {endAdornment ? (
           <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
-        )}
+        ) : null}
       </InputRow>
       <FooterRow {...footerProps} />
     </Container>

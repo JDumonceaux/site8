@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { ArtistsItems, ListItem } from '../../types';
 
 // Helper function to fetch artists items data
 const fetchData = async (): Promise<ArtistsItems> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ARTISTS_ITEMS);
-  if (!RESPONSE.ok) {
+  if (!response.ok) {
     throw new Error(`Failed to fetch artists items: ${response.statusText}`);
   }
   return response.json() as Promise<ArtistsItems>;
@@ -25,7 +26,7 @@ const useArtistsItems = () => {
     a.artist.sortName.localeCompare(b.artist.sortName),
   );
 
-  let i = 0;
+  let index = 0;
   if (sortedItems) {
     for (const artist of sortedItems) {
       const items = artist.items?.filter(
@@ -35,7 +36,7 @@ const useArtistsItems = () => {
         for (const y of items) {
           itemsAsListItem.push({
             display: `${artist.artist.sortName} - ${y.title}`,
-            key: i++,
+            key: index++,
             value: y.id,
           });
         }

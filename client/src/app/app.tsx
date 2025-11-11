@@ -1,4 +1,4 @@
-import { Suspense, lazy, StrictMode, type JSX } from 'react';
+import { type JSX, lazy, StrictMode, Suspense } from 'react';
 
 import AppProvider from '@providers/AppProvider';
 import { usePreloadResources } from './usePreloadResources';
@@ -18,8 +18,8 @@ const App = (): JSX.Element => {
         <Suspense
           fallback={
             <div
-              role="status"
               aria-live="polite"
+              role="status"
             >
               Loading application…
             </div>

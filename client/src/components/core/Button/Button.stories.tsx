@@ -2,44 +2,43 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Button, { VARIANTS, SIZES, type ButtonProps } from './Button';
+import Button, { type ButtonProps, SIZES, VARIANTS } from './Button';
 
 const meta: Meta<ButtonProps> = {
-  title: '@components/Button',
-  component: Button,
   args: {
     children: 'Click me',
-    variant: 'primary',
-    size: 'md',
     fullWidth: false,
+    size: 'md',
     type: 'button',
+    variant: 'primary',
   },
   argTypes: {
     children: {
       control: 'text',
       description: 'Button label or custom node',
     },
-    variant: {
-      options: VARIANTS,
-      control: { type: 'inline-radio' },
-      description: 'Visual style variant',
-    },
-    size: {
-      options: SIZES,
-      control: { type: 'inline-radio' },
-      description: 'Visual size of the button',
-    },
     fullWidth: {
       control: 'boolean',
       description: 'Stretch to fill its container',
     },
+    onClick: { action: 'clicked' },
+    size: {
+      control: { type: 'inline-radio' },
+      description: 'Visual size of the button',
+      options: SIZES,
+    },
     type: {
-      options: ['button', 'submit', 'reset'],
       control: 'select',
       description: 'HTML button type attribute',
+      options: ['button', 'submit', 'reset'],
     },
-    onClick: { action: 'clicked' },
+    variant: {
+      control: { type: 'inline-radio' },
+      description: 'Visual style variant',
+      options: VARIANTS,
+    },
   },
+  component: Button,
   parameters: {
     docs: {
       description: {
@@ -48,6 +47,7 @@ const meta: Meta<ButtonProps> = {
       },
     },
   },
+  title: '@components/Button',
 };
 export default meta;
 type Story = StoryObj<ButtonProps>;
@@ -55,6 +55,7 @@ type Story = StoryObj<ButtonProps>;
 export const Default: Story = {};
 
 export const AllVariants: Story = {
+  name: 'Variants',
   render: (args) => (
     <div style={{ display: 'flex', gap: 8 }}>
       {VARIANTS.map((v) => (
@@ -68,12 +69,12 @@ export const AllVariants: Story = {
       ))}
     </div>
   ),
-  name: 'Variants',
 };
 
 export const AllSizes: Story = {
+  name: 'Sizes',
   render: (args) => (
-    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+    <div style={{ alignItems: 'center', display: 'flex', gap: 8 }}>
       {SIZES.map((s) => (
         <Button
           key={s}
@@ -85,19 +86,18 @@ export const AllSizes: Story = {
       ))}
     </div>
   ),
-  name: 'Sizes',
 };
 
 export const FullWidth: Story = {
   args: {
-    fullWidth: true,
     children: 'Full Width',
+    fullWidth: true,
   },
 };
 
 export const SubmitType: Story = {
   args: {
-    type: 'submit',
     children: 'Submit Form',
+    type: 'submit',
   },
 };

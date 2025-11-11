@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 import { useCallback, useEffect } from 'react';
-import styled from 'styled-components';
 
 import Button from '@components/core/Button/Button';
+import styled from 'styled-components';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
 
 const SNACKBAR_HEIGHT = '2.5rem';
@@ -39,9 +39,9 @@ const Snackbar = (): JSX.Element | null => {
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
+    globalThis.addEventListener('keydown', handleEscape);
     return () => {
-      window.removeEventListener('keydown', handleEscape);
+      globalThis.removeEventListener('keydown', handleEscape);
     };
   }, [data?.isOpen, handleClose]);
 
@@ -55,12 +55,12 @@ const Snackbar = (): JSX.Element | null => {
   return (
     <StyledDialog
       $variant={variant}
-      role="alert"
       aria-live="polite"
-      aria-atomic="true"
       data-testid="snackbar"
+      aria-atomic="true"
       onClose={handleClose}
       open
+      role="alert"
     >
       <Message>{contents}</Message>
       <CloseButton

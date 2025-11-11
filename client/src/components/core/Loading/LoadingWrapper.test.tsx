@@ -1,10 +1,10 @@
+import { render, screen } from '@testing-library/react';
+
+import type { AxeResults } from 'axe-core';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import LoadingWrapper from './LoadingWrapper';
 // LoadingWrapper.test.tsx
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import type { AxeResults } from 'axe-core';
-
-import LoadingWrapper from './LoadingWrapper';
 
 expect.extend(toHaveNoViolations);
 
@@ -30,7 +30,7 @@ describe('loadingWrapper Component', () => {
       </LoadingWrapper>,
     );
 
-    expect(screen.getByText(/Saving…/i)).toBeInTheDocument();
+    expect(screen.getByText(/saving…/i)).toBeInTheDocument();
 
     const progress = screen.getByRole('progressbar');
 
@@ -43,9 +43,10 @@ describe('loadingWrapper Component', () => {
 
     render(
       <LoadingWrapper
+        fallback={<div data-testid="fallback" />}
         isLoading
         loadingText="Please wait"
-        fallback={<div data-testid="fallback" />}>
+      >
         <div>Child</div>
       </LoadingWrapper>,
     );
@@ -95,7 +96,7 @@ describe('loadingWrapper Component', () => {
     expect.assertions(1);
 
     const { container } = render(
-      <LoadingWrapper isLoading children={undefined} />,
+      <LoadingWrapper children={undefined} isLoading />,
     );
     const bar = container.querySelector('div');
 

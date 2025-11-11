@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
-
 /**
  * Retrieves the raw environment variable by key.
  * @param key - The name of the environment variable.
  * @returns The variable value or undefined.
  */
+// eslint-disable-next-line unicorn/prevent-abbreviations
 const getEnvVar = (key: string): string | undefined => {
   const val = process.env[key];
   if (!val) console.warn(`Environment: missing variable ${key}`);

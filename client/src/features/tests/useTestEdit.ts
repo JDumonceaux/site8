@@ -1,10 +1,9 @@
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
-import type { MenuEdit } from '../../types';
 import { z } from 'zod';
-
-import useTestMenus from './useTestMenus';
+import type { MenuEdit } from '../../types';
 import { useAxios } from '../../hooks/Axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
+import useTestMenus from './useTestMenus';
 
 export type sortByType = 'name' | 'seq';
 
@@ -40,7 +39,7 @@ const useTestEdit = () => {
   } = useFormArray<FormType>();
 
   // Get the updates
-  function getUpdates(): MenuEdit[] | null {
+  const getUpdates = (): MenuEdit[] | null => {
     if (!data?.items) {
       return null;
     }
@@ -68,10 +67,10 @@ const useTestEdit = () => {
 
     // Filter out empty array values
     return returnValue.filter(Boolean);
-  }
+  };
 
   // Handle save
-  async function submitForm() {
+  const submitForm = async () => {
     const updates = getUpdates();
     if (!updates) {
       return false;
@@ -79,23 +78,24 @@ const useTestEdit = () => {
     const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
     setIsSaved(result);
     return result;
-  }
+  };
 
-  function handleChange(id: number, fieldName: FormKeys, value: string) {
+  const handleChange = (id: number, fieldName: FormKeys, value: string) => {
     setFieldValue(id, fieldName, value);
-  }
+  };
 
-  async function handleSave() {
-    return submitForm();
-  }
+  const handleSave = async () => submitForm();
 
-  function getStandardInputTextAttributes(lineId: number, fieldName: FormKeys) {
+  const getStandardInputTextAttributes = (
+    lineId: number,
+    fieldName: FormKeys,
+  ) => {
     const field = `${fieldName}-${lineId}`;
     return {
       id: field,
       value: getFieldValue(lineId, fieldName),
     };
-  }
+  };
 
   const filteredData = data?.items;
 

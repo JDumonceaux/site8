@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
-import type { InputBaseProps } from '../Base/InputBase/InputBase';
 
 import styled from 'styled-components';
+import type { InputBaseProps } from '../Base/InputBase/InputBase';
 
 type Props = {
   label: string;
@@ -23,7 +23,12 @@ export const InputToggle = ({
 }: Props): JSX.Element | null => (
   <Wrapper>
     <ToggleLabel htmlFor={id}>
-      <input id={id} name={id} type={type} {...rest} />
+      <input
+        id={id}
+        name={id}
+        type={type}
+        {...rest}
+      />
       {label}
       <Slider />
     </ToggleLabel>

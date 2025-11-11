@@ -1,4 +1,5 @@
-import type { ReactNode, CSSProperties, JSX } from 'react';
+import type { CSSProperties, JSX, ReactNode } from 'react';
+
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -25,7 +26,12 @@ const SortableItem = ({
   };
 
   return (
-    <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <tr
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
       {children}
     </tr>
   );

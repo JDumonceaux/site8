@@ -11,7 +11,6 @@ import useAppSettings from '@features/app/useAppSettings';
 import Layout from '@features/layouts/Layout/Layout';
 import MenuAdd from '@features/pagesEdit/MenuAdd';
 import styled from 'styled-components';
-
 import { mapToFormValues } from './mapToFormValues';
 import { PageRow } from './PageRow';
 import usePagesEdit from './usePagesEdit';
@@ -61,11 +60,11 @@ const PagesEditPage = (): JSX.Element | null => {
             >
               New
             </StyledLink>
-            {!isSaved && (
+            {isSaved ? null : (
               <StyledSaveButton
                 data-testid="button-save"
-                onClick={handleSave}
                 type="submit"
+                onClick={handleSave}
               >
                 Save
               </StyledSaveButton>
@@ -90,9 +89,9 @@ const PagesEditPage = (): JSX.Element | null => {
               <tbody>
                 {data.map((item) => (
                   <PageRow
-                    getDefaultProps={getDefaultProps}
-                    item={item}
                     key={item.lineId}
+                    item={item}
+                    getDefaultProps={getDefaultProps}
                   />
                 ))}
               </tbody>

@@ -1,14 +1,15 @@
 // InputCheckbox.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
+
 import InputCheckbox, { type InputCheckboxProps } from './InputCheckbox';
 
 const meta: Meta<typeof InputCheckbox> = {
-  title: '@components/InputCheckbox',
-  component: InputCheckbox,
   argTypes: {
     onChange: { action: 'onChange' },
     type: { control: { disable: true } },
   },
+  component: InputCheckbox,
+  title: '@components/InputCheckbox',
 };
 
 export default meta;
@@ -17,11 +18,11 @@ type Story = StoryObj<typeof InputCheckbox>;
 
 export const Default: Story = {
   args: {
-    id: 'checkbox-default',
+    checked: false,
     fieldName: 'acceptTerms',
+    id: 'checkbox-default',
     label: 'Accept Terms and Conditions',
     lineId: 'line1',
-    checked: false,
   } as InputCheckboxProps,
 };
 

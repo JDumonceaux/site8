@@ -12,7 +12,11 @@ const PantoneColor = (): JSX.Element => {
     <Wrapper>
       <Text>
         This page is inspired by the{' '}
-        <Link href={PANTONE_LINK} rel="noopener noreferrer" target="_blank">
+        <Link
+          href={PANTONE_LINK}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           2023 Pantone® Color of the Year
         </Link>
         .

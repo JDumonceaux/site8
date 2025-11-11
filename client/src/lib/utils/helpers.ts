@@ -45,9 +45,9 @@ export const splitParent = (
   if (parts.length % 2 !== 0) return undefined;
 
   const result: { id: number; seq: number }[] = [];
-  for (let i = 0; i < parts.length; i += 2) {
-    const id = Number.parseInt(parts[i], 10);
-    const seq = Number.parseInt(parts[i + 1], 10);
+  for (let index = 0; index < parts.length; index += 2) {
+    const id = Number.parseInt(parts[index], 10);
+    const seq = Number.parseInt(parts[index + 1], 10);
     if (!Number.isNaN(id) && !Number.isNaN(seq)) {
       result.push({ id, seq });
     }
@@ -91,10 +91,10 @@ export const sanitizeUrl = (url: string): string => {
 };
 
 // validation.ts
-export function assertIdParam(params: Record<string, unknown>): string {
+export const assertIdParam = (params: Record<string, unknown>): string => {
   const { id } = params;
   if (typeof id !== 'string' || id.trim() === '') {
     throw new Error('Page ID is required for prefetching');
   }
   return id;
-}
+};

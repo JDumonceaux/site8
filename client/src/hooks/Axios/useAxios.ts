@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import axios from 'axios';
 import { AcceptHeader, PreferHeader } from '@lib/utils/constants';
+import axios from 'axios';
 //import { httpErrorHandler } from '@lib/utils/errorHandler';
 
 export const useAxios = <T>() => {
@@ -28,12 +28,12 @@ export const useAxios = <T>() => {
       abortControllerRef.current?.abort();
       abortControllerRef.current = new AbortController();
 
-      const ret = await axios.get<T>(url, {
+      const returnValue = await axios.get<T>(url, {
         headers: { Accept: AcceptHeader.JSON },
         responseType: 'json',
         //  signal: abortControllerRef.current.signal,
       });
-      return ret.data;
+      return returnValue.data;
     } catch {
       // if (!Axios.isCancel(error_)) {
       //   setError(httpErrorHandler(error_));
@@ -55,8 +55,8 @@ export const useAxios = <T>() => {
   const fetchDataAsync = async (url: string) => {
     try {
       reset();
-      const ret = await fetchData(url);
-      setData(ret);
+      const returnValue = await fetchData(url);
+      setData(returnValue);
     } catch {
       // if (!isCancel(error_)) {
       //   setError(httpErrorHandler(error_));

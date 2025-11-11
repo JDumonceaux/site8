@@ -1,4 +1,4 @@
-import type { JSX, HTMLAttributes } from 'react';
+import type { HTMLAttributes, JSX } from 'react';
 import { forwardRef } from 'react';
 
 import { PhoneIcon as Icon } from '@components/icons/PhoneIcon';
@@ -9,8 +9,8 @@ export type PhoneAdornmentProps = Readonly<HTMLAttributes<HTMLDivElement>>;
 const PhoneAdornment = forwardRef<HTMLDivElement, PhoneAdornmentProps>(
   (props, ref): JSX.Element => (
     <Container
-      data-testid="phone-icon"
       ref={ref}
+      data-testid="phone-icon"
       {...props}
     >
       <StyledIcon />

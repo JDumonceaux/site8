@@ -1,4 +1,5 @@
-import { useTransition, type JSX } from 'react';
+import { type JSX, useTransition } from 'react';
+
 import styled from 'styled-components';
 
 /**
@@ -21,9 +22,10 @@ const Main = ({ children }: MainProps): JSX.Element | null => {
 
   return (
     <MainContainer
+      aria-busy={isPending}
       data-testid="main"
       onLoad={renderContent}
-      aria-busy={isPending}>
+    >
       {children}
     </MainContainer>
   );

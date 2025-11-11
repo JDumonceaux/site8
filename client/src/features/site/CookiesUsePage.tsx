@@ -1,5 +1,6 @@
-import Meta from '@components/core/Meta/Meta';
 import type { JSX } from 'react';
+
+import Meta from '@components/core/Meta/Meta';
 
 /**
  * Cookies Use page – describes cookie usage on the site.

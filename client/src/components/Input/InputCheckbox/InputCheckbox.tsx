@@ -1,7 +1,6 @@
-import type { JSX, ChangeEvent } from 'react';
+import type { ChangeEvent, JSX } from 'react';
 
 import styled from 'styled-components';
-
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 
 export type InputCheckboxProps = Omit<
@@ -43,8 +42,8 @@ const InputCheckbox = ({
         <input
           id={id}
           name={fieldName}
-          onChange={handleChange}
           type={type}
+          onChange={handleChange}
           {...rest}
         />
         {label}

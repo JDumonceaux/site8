@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Meta from '@components/core/Meta/Meta';
 import Input from '@components/Input/Input';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
@@ -8,7 +9,6 @@ import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
-
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
@@ -33,13 +33,13 @@ const ForgotPasswordPage = (): JSX.Element => {
   const { formValues, getDefaultFields, handleChange, setErrors } =
     useForm<FormValues>(defaultFormValues);
 
-  function validateForm() {
+  const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
     setErrors(result.error?.issues);
     return result.success;
-  }
+  };
 
-  async function handleSubmit(event: React.FormEvent) {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
       try {
@@ -48,13 +48,12 @@ const ForgotPasswordPage = (): JSX.Element => {
         // Handle error
       }
     }
-  }
+  };
 
   return (
     <>
       <Meta title={title} />
       <AuthContainer
-        error={error}
         leftImage={
           <img
             alt=""
@@ -62,20 +61,21 @@ const ForgotPasswordPage = (): JSX.Element => {
           />
         }
         title="Forgot Password"
+        error={error}
       >
         <StyledForm
           noValidate
           onSubmit={handleSubmit}
         >
           <Input.Email
-            autoComplete="email"
-            inputMode="email"
+            required
             label="Email Address"
             multiple={false}
+            spellCheck="false"
+            autoComplete="email"
+            inputMode="email"
             onChange={handleChange}
             placeholder="Enter Email Address"
-            required
-            spellCheck="false"
             {...getDefaultFields('emailAddress' as FormKeys)}
           />
           <InstDiv>

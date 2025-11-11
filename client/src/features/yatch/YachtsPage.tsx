@@ -1,4 +1,4 @@
-import { Suspense, type JSX } from 'react';
+import { type JSX, Suspense } from 'react';
 
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
@@ -6,7 +6,6 @@ import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/Layout/Layout';
 import type { Image } from '../../types/Image';
 import type { Video } from '../../types/Video';
-
 import ImageBlock from './ImageBlock';
 import VideoEmbed from './VideoEmbed';
 
@@ -84,72 +83,70 @@ const VIDEOS: Video[] = [
 /**
  * Page showcasing yacht designs with images and videos.
  */
-export function YachtsPage(): JSX.Element {
-  return (
-    <>
-      <Meta title={PAGE_TITLE} />
-      <Layout.Main>
-        <Layout.Menu>
-          <SubjectMenu />
-        </Layout.Menu>
-        <Layout.Article>
-          <PageTitle title={PAGE_TITLE} />
-          <Layout.Section>
-            {/* Suspense is not doing anything unless children are lazy; keep or remove */}
-            <Suspense fallback="Loading results ...">
-              <p>
-                The design of this yacht is called <em>Nature</em>.
-              </p>
-              <p>
-                I&apos;d do just about anything to own this beautiful beast...
-                Is anyone feeling generous?
-              </p>
-              <p>
-                I love the Japanese influence, low profile, clean lines, and
-                brooding color. The bow panels on either side slide back to
-                expose the floor-to-ceiling windows of the upper observation
-                lounge. Large doors fold down from the sides—becoming decks from
-                which you can dangle your feet in warm waters.
-              </p>
-              <p>
-                Imagine slipping through tropical waters with a fine drink in
-                your hand.
-              </p>
-              <p>
-                <a href="https://sinot.com/nature/">
-                  Sinot Yacht Architecture and Design
-                </a>{' '}
-                has a range of other beautiful designs:{' '}
-                <a href="https://sinot.com/aware/">Aware</a>,{' '}
-                <a href="https://sinot.com/beach/">Beach</a>,{' '}
-                <a href="https://sinot.com/poetry/">Poetry</a>,{' '}
-                <a href="https://sinot.com/aqua/">Aqua</a>,{' '}
-                <a href="https://sinot.com/the-art-of-life/">The Art of Life</a>
-                , <a href="https://sinot.com/nature/">Nature</a>,{' '}
-                <a href="https://sinot.com/zen/">Zen</a>, and{' '}
-                <a href="https://sinot.com/balance/">Balance</a>.
-              </p>
-              {IMAGES.map((img) => (
-                <ImageBlock
-                  key={img.id}
-                  {...img}
-                />
-              ))}
-            </Suspense>
-          </Layout.Section>
-        </Layout.Article>
-        <Layout.Aside>
-          {VIDEOS.map((video) => (
-            <VideoEmbed
-              key={video.id}
-              {...video}
-            />
-          ))}
-        </Layout.Aside>
-      </Layout.Main>
-    </>
-  );
-}
+export const YachtsPage = (): JSX.Element => (
+  <>
+    <Meta title={PAGE_TITLE} />
+    <Layout.Main>
+      <Layout.Menu>
+        <SubjectMenu />
+      </Layout.Menu>
+      <Layout.Article>
+        <PageTitle title={PAGE_TITLE} />
+        <Layout.Section>
+          {/* Suspense is not doing anything unless children are lazy; keep or remove */}
+          <Suspense fallback="Loading results ...">
+            <p>
+              The design of this yacht is called <em>Nature</em>.
+            </p>
+            <p>
+              I&apos;d do just about anything to own this beautiful beast... Is
+              anyone feeling generous?
+            </p>
+            <p>
+              I love the Japanese influence, low profile, clean lines, and
+              brooding color. The bow panels on either side slide back to expose
+              the floor-to-ceiling windows of the upper observation lounge.
+              Large doors fold down from the sides—becoming decks from which you
+              can dangle your feet in warm waters.
+            </p>
+            <p>
+              Imagine slipping through tropical waters with a fine drink in your
+              hand.
+            </p>
+            <p>
+              <a href="https://sinot.com/nature/">
+                Sinot Yacht Architecture and Design
+              </a>{' '}
+              has a range of other beautiful designs:{' '}
+              <a href="https://sinot.com/aware/">Aware</a>,{' '}
+              <a href="https://sinot.com/beach/">Beach</a>,{' '}
+              <a href="https://sinot.com/poetry/">Poetry</a>,{' '}
+              <a href="https://sinot.com/aqua/">Aqua</a>,{' '}
+              <a href="https://sinot.com/the-art-of-life/">The Art of Life</a>,{' '}
+              <a href="https://sinot.com/nature/">Nature</a>,{' '}
+              <a href="https://sinot.com/zen/">Zen</a>, and{' '}
+              <a href="https://sinot.com/balance/">Balance</a>.
+            </p>
+            {IMAGES.map((img) => (
+              <ImageBlock
+                key={img.id}
+                {...img}
+              />
+            ))}
+          </Suspense>
+        </Layout.Section>
+      </Layout.Article>
+      <Layout.Aside>
+        {VIDEOS.map((video) => (
+          <VideoEmbed
+            key={video.id}
+            {...video}
+          />
+        ))}
+      </Layout.Aside>
+    </Layout.Main>
+  </>
+);
 
 YachtsPage.displayName = 'YachtsPage';
 export default YachtsPage;

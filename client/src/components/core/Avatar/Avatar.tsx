@@ -1,11 +1,11 @@
-import type { CSSProperties, JSX } from 'react';
-
 import {
   AvatarFallback as RadixAvatarFallback,
   AvatarImage as RadixAvatarImage,
   type AvatarProps as RadixAvatarProps,
   Avatar as RadixAvatarRoot,
 } from '@radix-ui/react-avatar';
+import type { CSSProperties, JSX } from 'react';
+
 import styled from 'styled-components';
 
 /**

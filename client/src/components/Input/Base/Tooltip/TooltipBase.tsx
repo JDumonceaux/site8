@@ -1,6 +1,6 @@
+import * as TooltipRadix from '@radix-ui/react-tooltip';
 import type { JSX, ReactNode } from 'react';
 
-import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
 
 export type TooltipBaseProps = {
@@ -8,18 +8,18 @@ export type TooltipBaseProps = {
   arrowProps?: TooltipRadix.TooltipArrowProps;
   /** Content to display inside the tooltip */
   content?: ReactNode;
-  /** Props for the Tooltip.Root */
-  tooltipProps?: TooltipRadix.TooltipProps;
   /** Delay before showing tooltip (ms), defaults to 0 */
   delayDuration?: number;
+  /** Disable hoverable content in provider */
+  disableHoverableContent?: boolean;
+  /** Props for the Tooltip.Root */
+  tooltipProps?: TooltipRadix.TooltipProps;
   /** Element that triggers the tooltip */
   trigger?: ReactNode;
   /** Color for the trigger element */
   triggerColor?: string;
   /** Props for the Tooltip.Trigger */
   triggerProps?: TooltipRadix.TooltipTriggerProps;
-  /** Disable hoverable content in provider */
-  disableHoverableContent?: boolean;
 };
 
 const TooltipBase = ({
@@ -27,18 +27,24 @@ const TooltipBase = ({
   content,
   tooltipProps,
   delayDuration = tooltipProps?.delayDuration ?? 0,
+  disableHoverableContent = false,
   trigger,
   triggerColor,
   triggerProps,
-  disableHoverableContent = false,
 }: TooltipBaseProps): JSX.Element | null => {
   // Don’t render if no content or no trigger provided
   if (!content || !trigger) return null;
 
   return (
     <TooltipRadix.Provider disableHoverableContent={disableHoverableContent}>
-      <TooltipRadix.Root {...tooltipProps} delayDuration={delayDuration}>
-        <StyledTrigger $color={triggerColor} {...triggerProps}>
+      <TooltipRadix.Root
+        {...tooltipProps}
+        delayDuration={delayDuration}
+      >
+        <StyledTrigger
+          $color={triggerColor}
+          {...triggerProps}
+        >
           {trigger}
         </StyledTrigger>
         <TooltipRadix.Portal>

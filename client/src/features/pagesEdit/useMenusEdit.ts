@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { Menu } from '../../types';
 
@@ -9,7 +10,7 @@ const fetchData = async ({
   signal: AbortSignal;
 }): Promise<Menu> => {
   const response = await fetch(ServiceUrl.ENDPOINT_MENUS_EDIT, { signal });
-  if (!RESPONSE.ok) {
+  if (!response.ok) {
     throw new Error(`Failed to fetch menus edit: ${response.statusText}`);
   }
   return response.json() as Promise<Menu>;

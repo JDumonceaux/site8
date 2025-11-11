@@ -1,18 +1,13 @@
 import { type JSX, Suspense } from 'react';
-
-import AppInitializer from '@features/app/AppInitializer/AppInitializer';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
+
+import AppInitializer from '@features/app/AppInitializer/AppInitializer';
 import styled from 'styled-components';
 
 /** Accessible fallback displayed during lazy-loading */
 const LoadingFallback = (): JSX.Element => (
-  <div
-    role="status"
-    aria-live="polite"
-  >
-    Loading…
-  </div>
+  <output aria-live="polite">Loading…</output>
 );
 
 /** Error fallback for unexpected rendering errors */

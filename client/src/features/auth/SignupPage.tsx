@@ -1,16 +1,16 @@
 import type { JSX } from 'react';
+
+import Button from '@components/core/Button/Button';
 import Meta from '@components/core/Meta/Meta';
 import Input from '@components/Input/Input';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
-
 import useForm from '@hooks/useForm';
+import { emailAddress, password } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import { emailAddress, password } from '@lib/utils/constants';
-import Button from '@components/core/Button/Button';
 
 const schema = z.object({
   emailAddress,
@@ -33,24 +33,24 @@ const SignupPage = (): JSX.Element => {
   const { formValues, getDefaultProps } =
     useForm<FormValues>(defaultFormValues);
 
-  function validateForm() {
+  const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
 
     return result.success;
-  }
+  };
 
-  function handleSubmit(event: React.FormEvent): void {
+  const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
     if (!validateForm()) return;
 
     authSignUp(formValues.emailAddress, formValues.password).catch(() => {
       // Handle sign-in error
     });
-  }
+  };
 
   const handleClick = (provider: SocialProvider) => {
-    authSignInWithRedirect(provider).catch((err: unknown) => {
-      console.error('Error during social sign-in:', err);
+    authSignInWithRedirect(provider).catch((error_: unknown) => {
+      console.error('Error during social sign-in:', error_);
       // Handle error appropriately, e.g., show a notification
     });
   };
@@ -59,7 +59,6 @@ const SignupPage = (): JSX.Element => {
     <>
       <Meta title={title} />
       <AuthContainer
-        error={error}
         leftImage={
           <img
             alt=""
@@ -67,6 +66,7 @@ const SignupPage = (): JSX.Element => {
           />
         }
         title="Sign Up"
+        error={error}
       >
         <Button
           id="login"
@@ -97,17 +97,17 @@ const SignupPage = (): JSX.Element => {
           onSubmit={handleSubmit}
         >
           <Input.Email
-            autoComplete="email"
+            required
             label="Email Address"
             multiple={false}
-            placeholder="Enter your email"
-            required
             spellCheck="false"
+            autoComplete="email"
+            placeholder="Enter your email"
             {...getDefaultProps('emailAddress' as FormKeys)}
           />
           <Input.Password
-            autoComplete="new-password"
             label="Password"
+            autoComplete="new-password"
             placeholder="Enter your password"
             {...getDefaultProps('password' as FormKeys)}
           />

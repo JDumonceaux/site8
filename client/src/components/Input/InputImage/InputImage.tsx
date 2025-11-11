@@ -19,7 +19,12 @@ type InputImageProps = Omit<
 export const InputImage = ({
   type = 'image',
   ...rest
-}: InputImageProps): JSX.Element | null => <InputBase type={type} {...rest} />;
+}: InputImageProps): JSX.Element | null => (
+  <InputBase
+    type={type}
+    {...rest}
+  />
+);
 
 InputImage.displayName = 'InputImage';
 export default InputImage;

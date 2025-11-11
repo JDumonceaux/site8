@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import useSnackbar from '@features/app/Snackbar/useSnackbar';
 import type { ItemAdd, ItemAddExt } from '@features/itemsAdd/ItemAdd';
+import useSnackbar from '@features/app/Snackbar/useSnackbar';
 import { useAxios } from '@hooks/Axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { ServiceUrl } from '@lib/utils/constants';
@@ -25,7 +25,7 @@ const useItemsAddPage = () => {
     setFormValues,
   } = useFormArray<ItemAddExt>();
 
-  const { error, putData, isError, isPending } = useAxios<unknown>();
+  const { error, isError, isPending, putData } = useAxios<unknown>();
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setArtistId(event.target.value);
@@ -54,9 +54,9 @@ const useItemsAddPage = () => {
   ) => {
     const { dataset, value } = event.target;
     const { id, line } = dataset;
-    const lineNum = Number(line);
+    const lineNumber = Number(line);
     if (id) {
-      setFieldValue(lineNum, id as keyof ItemAddExt, value);
+      setFieldValue(lineNumber, id as keyof ItemAddExt, value);
     } else {
       throw new Error('No id found');
     }
@@ -67,22 +67,22 @@ const useItemsAddPage = () => {
   };
 
   const getUpdates = (): ItemAdd[] | null => {
-    const ret: ItemAdd[] = [];
-    const artistIdNum = Number(artistId);
+    const returnValue: ItemAdd[] = [];
+    const artistIdNumber = Number(artistId);
 
-    for (const i of getIndex()) {
-      const item = getItem(i.lineId);
+    for (const index of getIndex()) {
+      const item = getItem(index.lineId);
       if (item) {
         const { lineId, ...rest } = item;
-        const newItem: ItemAdd = { ...rest, artistId: artistIdNum };
+        const newItem: ItemAdd = { ...rest, artistId: artistIdNumber };
         const isEmpty = Object.values(newItem).every((x) => x === '');
         if (!isEmpty) {
-          ret.push(newItem);
+          returnValue.push(newItem);
         }
       }
     }
 
-    const filtered = ret.filter((x) => x.title?.trim() !== '');
+    const filtered = returnValue.filter((x) => x.title?.trim() !== '');
     return filtered.length > 0 ? filtered : null;
   };
 
@@ -103,9 +103,9 @@ const useItemsAddPage = () => {
           setMessage(`Error saving ${error}`);
         }
       })
-      .catch((err: unknown) => {
-        if (err instanceof Error) {
-          setMessage(`An unexpected error occurred: ${err.message}`);
+      .catch((error_: unknown) => {
+        if (error_ instanceof Error) {
+          setMessage(`An unexpected error occurred: ${error_.message}`);
         } else {
           setMessage('An unexpected error occurred');
         }

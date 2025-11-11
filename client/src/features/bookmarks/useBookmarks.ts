@@ -6,7 +6,7 @@ import type { Bookmarks } from '../../types/Bookmarks';
 const fetchData = async (): Promise<Bookmarks> => {
   try {
     const response = await fetch(ServiceUrl.ENDPOINT_BOOKMARKS);
-    if (!RESPONSE.ok) {
+    if (!response.ok) {
       throw new Error(`Failed to fetch bookmarks: ${response.statusText}`);
     }
     return response.json();

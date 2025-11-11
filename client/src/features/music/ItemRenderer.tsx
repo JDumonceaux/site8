@@ -27,9 +27,9 @@ const ItemRenderer = ({
 
   return (
     <Container
+      aria-label={`Music item ${index + 1}: ${item.description}`}
       style={style}
       role="listitem"
-      aria-label={`Music item ${index + 1}: ${item.description}`}
     >
       <Description>{item.description}</Description>
       <VideoFrame

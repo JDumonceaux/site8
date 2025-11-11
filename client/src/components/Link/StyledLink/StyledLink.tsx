@@ -4,6 +4,7 @@ import {
   Link as BaseLink,
   type LinkProps as BaseLinkProps,
 } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 export type StyledLinkProps = BaseLinkProps & {

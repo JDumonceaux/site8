@@ -48,7 +48,7 @@ const useFormArray = <T extends IdType>() => {
     setIsSaved(false);
   };
 
-  const getItem = (lineId: number): T | null => {
+  const getItem = (lineId: number): null | T => {
     const index = formValues.findIndex((x) => x.lineId === lineId);
     return index === -1 ? null : formValues[index];
   };

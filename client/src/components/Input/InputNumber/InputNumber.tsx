@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 import InputBase from '../Base/InputBase/InputBase';
 
@@ -15,7 +16,12 @@ type InputNumberProps = {
 export const InputNumber = ({
   type = 'number',
   ...rest
-}: InputNumberProps): JSX.Element | null => <InputBase type={type} {...rest} />;
+}: InputNumberProps): JSX.Element | null => (
+  <InputBase
+    type={type}
+    {...rest}
+  />
+);
 
 InputNumber.displayName = 'InputNumber';
 export default InputNumber;

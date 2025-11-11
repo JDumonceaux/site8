@@ -1,16 +1,15 @@
 import {
-  useState,
+  type ChangeEvent,
+  type JSX,
+  type Ref,
   useEffect,
   useRef,
-  type JSX,
-  type ChangeEvent,
-  type Ref,
+  useState,
 } from 'react';
 
 import useGetId from '@hooks/useGetId';
 import styled from 'styled-components';
 import type { KeyValue } from '../../types/KeyValue';
-
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../FieldWrapper/FieldWrapper';
@@ -33,6 +32,7 @@ type InputAddProps = {
 export type InputBaseProps = InputRootProps & InputAddProps & FieldWrapperProps;
 
 const InputBase = ({
+  allowedCharacters,
   dataList,
   defaultValue = '',
   errors,
@@ -43,7 +43,6 @@ const InputBase = ({
   required,
   type,
   value,
-  allowedCharacters,
   ...footerProps
 }: InputBaseProps): JSX.Element => {
   const generatedId = useGetId(id);
@@ -57,7 +56,7 @@ const InputBase = ({
     setFieldLength(String(value ?? defaultValue).length);
   }, [value, defaultValue]);
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     let newValue = e.target.value;
     if (allowedCharacters) {
       newValue = Array.from(newValue)
@@ -67,7 +66,7 @@ const InputBase = ({
     }
     setFieldLength(newValue.length);
     onChange?.(e);
-  }
+  };
 
   const inputProps: InputRootProps = {
     ...labelProps,
@@ -95,12 +94,12 @@ const InputBase = ({
         {...(value === undefined ? { defaultValue } : { value })}
         {...(dataList ? { list: dataList.id } : {})}
         {...inputProps}
-        id={generatedId}
         ref={refToUse}
-        onChange={handleChange}
+        id={generatedId}
         type={type}
+        onChange={handleChange}
       />
-      {dataList?.data && (
+      {dataList?.data ? (
         <datalist id={dataList.id}>
           {dataList.data.map(({ key, value: val }) => (
             <option
@@ -109,7 +108,7 @@ const InputBase = ({
             />
           ))}
         </datalist>
-      )}
+      ) : null}
     </FieldWrapper>
   );
 };

@@ -1,9 +1,10 @@
 import * as Form from '@radix-ui/react-form';
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
 import InputNumber from './InputNumber';
-describe('InputNumber', () => {
+import '@testing-library/jest-dom';
+
+describe('inputNumber', () => {
   test('renders the input correctly', () => {
     render(
       <Form.Root>
@@ -14,6 +15,7 @@ describe('InputNumber', () => {
     );
 
     const inputElement = screen.getByRole('textbox');
+
     expect(inputElement).toBeInTheDocument();
   });
 });

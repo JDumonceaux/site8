@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+
 import useSnackbar from '@features/app/Snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
+import axios from 'axios';
 import type { FormErrors, FormState, Page } from '../../types';
 import { type PageEdit, PageEditSchema } from '../../types/PageEditSchema';
 

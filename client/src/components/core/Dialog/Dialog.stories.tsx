@@ -1,8 +1,9 @@
 // Dialog.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import Dialog, { type DialogProps, VARIANTS, SIZES } from './Dialog';
+
 import styled from 'styled-components';
+import Dialog, { type DialogProps, SIZES, VARIANTS } from './Dialog';
 
 // A simple trigger button for stories
 const OpenButton = styled.button`
@@ -12,10 +13,7 @@ const OpenButton = styled.button`
 `;
 
 const meta: Meta<DialogProps> = {
-  title: '@components/Dialog',
-  component: Dialog,
   args: {
-    label: 'Dialog Title',
     children: (
       <p>
         This is the main content of the dialog. You can put any React nodes
@@ -23,22 +21,24 @@ const meta: Meta<DialogProps> = {
       </p>
     ),
     footer: <button>Confirm</button>,
-    variant: 'default',
+    label: 'Dialog Title',
     size: 'md',
+    variant: 'default',
   },
   argTypes: {
-    variant: {
-      control: 'select',
-      options: Object.keys(VARIANTS),
-      description: 'Visual style variant (border color & icon)',
-    },
+    onOpenChange: { action: 'onOpenChange' },
     size: {
       control: 'select',
-      options: Object.keys(SIZES),
       description: 'Max-width size of the dialog',
+      options: Object.keys(SIZES),
     },
-    onOpenChange: { action: 'onOpenChange' },
+    variant: {
+      control: 'select',
+      description: 'Visual style variant (border color & icon)',
+      options: Object.keys(VARIANTS),
+    },
   },
+  component: Dialog,
   parameters: {
     docs: {
       description: {
@@ -47,6 +47,7 @@ const meta: Meta<DialogProps> = {
       },
     },
   },
+  title: '@components/Dialog',
 };
 export default meta;
 
@@ -103,12 +104,12 @@ export const Variants: Story = {
             </OpenButton>
             <Dialog
               {...args}
-              variant={v as typeof args.variant}
               isOpen={!!openMap[v]}
+              label={`Variant: ${v}`}
+              variant={v as typeof args.variant}
               onOpenChange={(o) => {
                 setOpenMap((prev) => ({ ...prev, [v]: o }));
               }}
-              label={`Variant: ${v}`}
             />
           </div>
         ))}
@@ -143,12 +144,12 @@ export const Sizes: Story = {
             </OpenButton>
             <Dialog
               {...args}
-              size={s as typeof args.size}
               isOpen={!!openMap[s]}
+              label={`Size: ${s}`}
+              size={s as typeof args.size}
               onOpenChange={(o) => {
                 setOpenMap((prev) => ({ ...prev, [s]: o }));
               }}
-              label={`Size: ${s}`}
             />
           </div>
         ))}

@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 import InputBase from '../Base/InputBase/InputBase';
 
@@ -15,7 +16,12 @@ type InputUrlProps = {
 export const InputUrl = ({
   type = 'url',
   ...rest
-}: InputUrlProps): JSX.Element | null => <InputBase type={type} {...rest} />;
+}: InputUrlProps): JSX.Element | null => (
+  <InputBase
+    type={type}
+    {...rest}
+  />
+);
 
 InputUrl.displayName = 'InputUrl';
 export default InputUrl;

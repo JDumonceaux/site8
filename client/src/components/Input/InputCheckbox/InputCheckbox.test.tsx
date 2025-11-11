@@ -1,10 +1,11 @@
 // InputCheckbox.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import type { AxeResults } from 'axe-core';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import InputCheckbox from './InputCheckbox';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import type { AxeResults } from 'axe-core';
-import InputCheckbox from './InputCheckbox';
 
 describe('inputCheckbox component', () => {
   beforeAll(() => {
@@ -16,11 +17,11 @@ describe('inputCheckbox component', () => {
 
     render(
       <InputCheckbox
-        id="chk1"
+        checked={false}
         fieldName="agree"
+        id="chk1"
         label="Agree to terms"
         lineId="line1"
-        checked={false}
         onChange={() => {}}
       />,
     );
@@ -38,8 +39,8 @@ describe('inputCheckbox component', () => {
     const handleChange = jest.fn();
     render(
       <InputCheckbox
-        id="chk2"
         fieldName="subscribe"
+        id="chk2"
         label="Subscribe"
         lineId="row2"
         onChange={handleChange}
@@ -62,12 +63,12 @@ describe('inputCheckbox component', () => {
     const handleChange = jest.fn();
     render(
       <InputCheckbox
-        id="chk3"
+        disabled
         fieldName="optIn"
+        id="chk3"
         label="Opt In"
         lineId="r3"
         onChange={handleChange}
-        disabled
       />,
     );
     const checkbox = screen.getByRole('checkbox', { name: 'Opt In' });
@@ -81,8 +82,8 @@ describe('inputCheckbox component', () => {
 
     const { container } = render(
       <InputCheckbox
-        id="chk4"
         fieldName="test"
+        id="chk4"
         label="Test"
         lineId="r4"
         onChange={() => {}}
@@ -98,8 +99,8 @@ describe('inputCheckbox component', () => {
 
     const { container } = render(
       <InputCheckbox
-        id="chk5"
         fieldName="foo"
+        id="chk5"
         label="Foo"
         lineId="r5"
         onChange={() => {}}

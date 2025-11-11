@@ -20,7 +20,12 @@ export type InputDateProps = Omit<
 
 /** Date/time input wrapper */
 const InputDate = ({ type = 'date', ...rest }: InputDateProps): JSX.Element => {
-  return <InputBase type={type} {...rest} />;
+  return (
+    <InputBase
+      type={type}
+      {...rest}
+    />
+  );
 };
 
 InputDate.displayName = 'InputDate';

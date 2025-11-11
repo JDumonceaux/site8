@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 import InputBase from '../Base/InputBase/InputBase';
 
@@ -20,7 +21,12 @@ type InputFileProps = Omit<
 
 export const InputFile = (props: InputFileProps): JSX.Element | null => {
   const { type = 'file', ...rest } = props;
-  return <InputBase type={type} {...rest} />;
+  return (
+    <InputBase
+      type={type}
+      {...rest}
+    />
+  );
 };
 
 InputFile.displayName = 'InputFile';

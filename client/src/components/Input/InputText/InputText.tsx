@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 import InputBase from '../Base/InputBase/InputBase';
 
@@ -21,7 +22,12 @@ type Props = {
 export const InputText = ({
   type = 'text',
   ...rest
-}: Props): JSX.Element | null => <InputBase type={type} {...rest} />;
+}: Props): JSX.Element | null => (
+  <InputBase
+    type={type}
+    {...rest}
+  />
+);
 
 InputText.displayName = 'InputText';
 export default InputText;

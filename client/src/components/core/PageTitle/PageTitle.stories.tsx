@@ -4,13 +4,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import PageTitle from './PageTitle';
 
 const meta: Meta<typeof PageTitle> = {
-  title: '@components/PageTitle',
-  component: PageTitle,
   argTypes: {
-    title: { control: 'text' },
     children: { control: false },
     id: { control: 'text' },
+    title: { control: 'text' },
   },
+  component: PageTitle,
+  title: '@components/PageTitle',
 };
 
 export default meta;
@@ -25,14 +25,14 @@ export const Default: Story = {
 
 export const WithChildren: Story = {
   args: {
-    title: 'Page Title with Actions',
     children: <button>Action</button>,
+    title: 'Page Title with Actions',
   },
 };
 
 export const CustomId: Story = {
   args: {
-    title: 'Page Title with Custom ID',
     id: 'main-page-title',
+    title: 'Page Title with Custom ID',
   },
 };

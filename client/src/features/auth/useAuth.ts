@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   AuthError,
@@ -9,23 +10,22 @@ import {
   fetchAuthSession,
   fetchDevices,
   fetchUserAttributes,
+  type FetchUserAttributesOutput,
   forgetDevice,
   getCurrentUser,
+  type JWT,
   rememberDevice,
   resendSignUpCode,
   resetPassword,
+  type ResetPasswordOutput,
   signIn,
+  type SignInOutput,
   signInWithRedirect,
   signOut,
   signUp,
-  updatePassword,
-  type FetchUserAttributesOutput,
-  type JWT,
-  type ResetPasswordOutput,
-  type SignInOutput,
   type SignUpOutput,
+  updatePassword,
 } from 'aws-amplify/auth';
-import { useNavigate } from 'react-router-dom';
 
 export const enum SocialProvider {
   AMAZON = 'Amazon',

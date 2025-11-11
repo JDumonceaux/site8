@@ -29,8 +29,9 @@ const InputHelp = ({
     return helpText.length > 1 ? (
       <StyledDiv {...rest}>
         <ul>
-          {helpText.map((item, idx) => (
-            <li key={idx}>{item}</li>
+          {helpText.map((item, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </StyledDiv>

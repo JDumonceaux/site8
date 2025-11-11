@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 import InputBase from '../Base/InputBase/InputBase';
 
@@ -16,7 +17,12 @@ type InputHiddenProps = Omit<
 export const InputHidden = ({
   type = 'password',
   ...rest
-}: InputHiddenProps): JSX.Element | null => <InputBase type={type} {...rest} />;
+}: InputHiddenProps): JSX.Element | null => (
+  <InputBase
+    type={type}
+    {...rest}
+  />
+);
 
 InputHidden.displayName = 'InputHidden';
 export default InputHidden;

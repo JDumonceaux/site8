@@ -1,5 +1,6 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { type JSX, useId } from 'react';
+
 import styled from 'styled-components';
 
 export const VARIANTS = {

@@ -1,9 +1,10 @@
-// Header.test.tsx
-import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import { APP_NAME } from '@lib/utils/constants';
 import { configureAxe } from 'jest-axe';
 import Header from './Header';
-import { APP_NAME } from '@lib/utils/constants';
+// Header.test.tsx
+import '@testing-library/jest-dom';
 
 const axe = configureAxe();
 
@@ -48,11 +49,11 @@ describe('header component', () => {
     expect.assertions(1);
 
     render(<Header />);
-    const btn = screen.queryByRole('button', {
+    const button = screen.queryByRole('button', {
       name: /toggle navigation menu/i,
     });
 
-    expect(btn).toBeNull();
+    expect(button).toBeNull();
   });
 
   test('renders avatar slot when provided', () => {

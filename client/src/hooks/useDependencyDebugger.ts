@@ -7,7 +7,6 @@ const compareInputs = <T extends Record<string, any>>(
 ): void => {
   for (const key of inputKeys) {
     if (oldInputs[key] !== newInputs[key]) {
-      // eslint-disable-next-line no-console
       console.log(
         'Change detected:',
         key,

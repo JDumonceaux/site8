@@ -1,11 +1,18 @@
 // Fallback.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
+
 import Fallback from './Fallback';
 
 const meta: Meta<typeof Fallback> = {
-  title: '@components/Fallback',
+  argTypes: {
+    lines: {
+      control: { max: 20, min: 1, step: 1, type: 'number' },
+      defaultValue: 5,
+      description:
+        'Number of loading lines to render (integer between 1 and 20)',
+    },
+  },
   component: Fallback,
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
@@ -14,14 +21,8 @@ const meta: Meta<typeof Fallback> = {
       },
     },
   },
-  argTypes: {
-    lines: {
-      control: { type: 'number', min: 1, max: 20, step: 1 },
-      description:
-        'Number of loading lines to render (integer between 1 and 20)',
-      defaultValue: 5,
-    },
-  },
+  tags: ['autodocs'],
+  title: '@components/Fallback',
 };
 export default meta;
 
@@ -34,29 +35,29 @@ export const Default: Story = {
 };
 
 export const CustomCount: Story = {
-  name: 'Custom (8 lines)',
   args: {
     lines: 8,
   },
+  name: 'Custom (8 lines)',
 };
 
 export const FractionalInput: Story = {
-  name: 'Fractional (3.7 ➔ 3 lines)',
   args: {
     lines: 3.7,
   },
+  name: 'Fractional (3.7 ➔ 3 lines)',
 };
 
 export const BelowMinimum: Story = {
-  name: 'Below Min (0 ➔ clamps to 1)',
   args: {
     lines: 0,
   },
+  name: 'Below Min (0 ➔ clamps to 1)',
 };
 
 export const AboveMaximum: Story = {
-  name: 'Above Max (100 ➔ clamps to 20)',
   args: {
     lines: 100,
   },
+  name: 'Above Max (100 ➔ clamps to 20)',
 };

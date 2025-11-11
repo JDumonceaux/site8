@@ -3,21 +3,48 @@ type IconProps = {
   readonly focusable?: boolean;
 };
 
-const AmazonIcon = ({ ariaHidden = false, focusable = true }: IconProps) => {
+export const AmazonIcon = ({
+  ariaHidden = false,
+  focusable = true,
+}: IconProps) => {
   return (
     <svg
       aria-hidden={ariaHidden}
-      focusable={focusable}
       height="22"
-      viewBox="2.167 .438 251.038 259.969"
       width="22"
-      xmlns="http://www.w3.org/2000/svg">
-      <link id="dark-mode-custom-link" rel="stylesheet" type="text/css" />
-      <link id="dark-mode-general-link" rel="stylesheet" type="text/css" />
-      <style id="dark-mode-custom-style" lang="en" type="text/css" />
-      <style id="dark-mode-native-style" lang="en" type="text/css" />
-      <style id="dark-mode-native-sheet" lang="en" type="text/css" />
-      <g fill="none" fillRule="evenodd">
+      xmlns="http://www.w3.org/2000/svg"
+      focusable={focusable}
+      viewBox="2.167 .438 251.038 259.969"
+    >
+      <link
+        id="dark-mode-custom-link"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link
+        id="dark-mode-general-link"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <style
+        id="dark-mode-custom-style"
+        lang="en"
+        type="text/css"
+      />
+      <style
+        id="dark-mode-native-style"
+        lang="en"
+        type="text/css"
+      />
+      <style
+        id="dark-mode-native-sheet"
+        lang="en"
+        type="text/css"
+      />
+      <g
+        fill="none"
+        fillRule="evenodd"
+      >
         <path
           d="m221.503 210.324c-105.235 50.083-170.545 8.18-212.352-17.271-2.587-1.604-6.984.375-3.169 4.757 13.928 16.888 59.573 57.593 119.153 57.593 59.621 0 95.09-32.532 99.527-38.207 4.407-5.627 1.294-8.731-3.16-6.872zm29.555-16.322c-2.826-3.68-17.184-4.366-26.22-3.256-9.05 1.078-22.634 6.609-21.453 9.93.606 1.244 1.843.686 8.06.127 6.234-.622 23.698-2.826 27.337 1.931 3.656 4.79-5.57 27.608-7.255 31.288-1.628 3.68.622 4.629 3.68 2.178 3.016-2.45 8.476-8.795 12.14-17.774 3.639-9.028 5.858-21.622 3.71-24.424z"
           fill="#f90"
@@ -40,5 +67,3 @@ const AmazonIcon = ({ ariaHidden = false, focusable = true }: IconProps) => {
     </svg>
   );
 };
-
-export default AmazonIcon;

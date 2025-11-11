@@ -8,16 +8,16 @@ const useScroll = ({
   const [isAtBottom, setIsAtBottom] = useState(false);
   const ref = useRef(isWindow ? globalThis : null);
 
-  function goTop() {
+  const goTop = () => {
     const element = ref.current;
     element &&
       element.scrollTo({
         behavior: smooth ? 'smooth' : 'auto',
         top: 0,
       });
-  }
+  };
 
-  function goBottom() {
+  const goBottom = () => {
     const element =
       ref.current instanceof Window ? document.documentElement : ref.current;
     ref.current &&
@@ -25,9 +25,9 @@ const useScroll = ({
         behavior: smooth ? 'smooth' : 'auto',
         top: element ? element.scrollHeight : 0,
       });
-  }
+  };
 
-  function handleScroll() {
+  const handleScroll = () => {
     if (ref.current) {
       let isAtBottom = false;
       if (ref.current instanceof Window) {
@@ -41,7 +41,7 @@ const useScroll = ({
       }
       setIsAtBottom(isAtBottom);
     }
-  }
+  };
 
   useEffect(() => {
     if (isWindow) {

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Article from './Article';
 import Aside from './Aside';
 import Content from './Content';
@@ -9,7 +10,7 @@ import Menu from './Menu';
 import Section from './Section';
 import TitleFixed from './TitleFixed';
 
-interface LayoutComponent extends React.FC {
+type LayoutComponent = {
   Article: typeof Article;
   Aside: typeof Aside;
   Content: typeof Content;
@@ -19,7 +20,7 @@ interface LayoutComponent extends React.FC {
   Menu: typeof Menu;
   Section: typeof Section;
   TitleFixed: typeof TitleFixed;
-}
+} & React.FC;
 
 const Layout: LayoutComponent = (): React.ReactElement => <>Not defined</>;
 

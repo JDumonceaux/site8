@@ -1,10 +1,10 @@
-// Avatar.test.tsx
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import Avatar from './Avatar';
-import { configureAxe } from 'jest-axe';
 import type { AxeResults } from 'axe-core';
+import { configureAxe } from 'jest-axe';
+import Avatar from './Avatar';
+// Avatar.test.tsx
+import '@testing-library/jest-dom';
 
 const axe = configureAxe({
   rules: {
@@ -25,7 +25,12 @@ describe('avatar Component', () => {
   test('renders initials fallback when no src or children provided', () => {
     expect.assertions(2);
 
-    render(<Avatar alt="Jane Doe" dataTestId="avatar" />);
+    render(
+      <Avatar
+        alt="Jane Doe"
+        dataTestId="avatar"
+      />,
+    );
     const root = screen.getByTestId('avatar');
 
     expect(root).toBeInTheDocument();
@@ -50,7 +55,13 @@ describe('avatar Component', () => {
     expect.assertions(3);
 
     const url = 'https://example.com/avatar.png';
-    render(<Avatar src={url} alt="User Avatar" dataTestId="avatar" />);
+    render(
+      <Avatar
+        alt="User Avatar"
+        dataTestId="avatar"
+        src={url}
+      />,
+    );
 
     // The <img> should appear with correct alt and src
     const img = screen.getByRole('img', { name: 'User Avatar' });
@@ -65,17 +76,28 @@ describe('avatar Component', () => {
   test('applies correct size styling', () => {
     expect.assertions(1);
 
-    render(<Avatar size={80} dataTestId="avatar" />);
+    render(
+      <Avatar
+        dataTestId="avatar"
+        size={80}
+      />,
+    );
     const root = screen.getByTestId('avatar');
 
     // The container should have 80px width and height
-    expect(root).toHaveStyle({ width: '80px', height: '80px' });
+    expect(root).toHaveStyle({ height: '80px', width: '80px' });
   });
 
   test('does not show fallback until after delayMs', async () => {
     expect.assertions(2);
 
-    render(<Avatar alt="John Smith" delayMs={1000} dataTestId="avatar" />);
+    render(
+      <Avatar
+        alt="John Smith"
+        dataTestId="avatar"
+        delayMs={1000}
+      />,
+    );
 
     // Immediately after render, fallback is not yet visible
     expect(screen.queryByText('JS')).toBeNull();
@@ -93,7 +115,10 @@ describe('avatar Component', () => {
     expect.hasAssertions();
 
     const { container } = render(
-      <Avatar alt="A11y Test" dataTestId="avatar" />,
+      <Avatar
+        alt="A11y Test"
+        dataTestId="avatar"
+      />,
     );
     const results: AxeResults = await axe(container);
 

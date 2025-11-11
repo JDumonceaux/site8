@@ -1,9 +1,8 @@
-import { useRef, type SelectHTMLAttributes, type JSX } from 'react';
+import { type JSX, type SelectHTMLAttributes, useRef } from 'react';
 
 import useGetId from '@hooks/useGetId';
 import styled from 'styled-components';
 import type { ListItem } from '../../types/ListItem';
-
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../Base/FieldWrapper/FieldWrapper';
@@ -30,11 +29,11 @@ const InputSelect = ({
   showBlankOption = false,
   ...rest
 }: InputSelectProps): JSX.Element | null => {
-  const currId = useGetId(id);
+  const currentId = useGetId(id);
   const tempRef = useRef<HTMLSelectElement>(null);
   const selectRef = ref ?? tempRef;
   // commonProps includes wrapper props (errors, labelProps, etc.) plus select attrs
-  const commonProps = { ...rest, id: currId, required };
+  const commonProps = { ...rest, id: currentId, required };
 
   return (
     <FieldWrapper {...commonProps}>

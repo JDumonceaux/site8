@@ -3,23 +3,22 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Avatar, { type AvatarProps } from './Avatar';
 
 const meta: Meta<AvatarProps> = {
-  title: '@components/Avatar',
-  component: Avatar,
   // Default props applied to all stories
   args: {
     alt: 'User Name',
-    src: 'https://placekitten.com/64/64',
     size: 40,
+    src: 'https://placekitten.com/64/64',
   },
   argTypes: {
-    // Expose controls for interactive tweaking
-    src: { control: 'text', description: 'Image URL (http(s) only)' },
     alt: {
       control: 'text',
       description: 'Accessible alt text / fallback initials',
     },
     size: { control: 'number', description: 'Diameter in pixels' },
+    // Expose controls for interactive tweaking
+    src: { control: 'text', description: 'Image URL (http(s) only)' },
   },
+  component: Avatar,
   parameters: {
     docs: {
       description: {
@@ -28,6 +27,7 @@ const meta: Meta<AvatarProps> = {
       },
     },
   },
+  title: '@components/Avatar',
 };
 export default meta;
 
@@ -39,17 +39,17 @@ export const Default: Story = {
 
 export const FallbackInitials: Story = {
   args: {
-    src: undefined,
     alt: 'Jane Doe',
+    src: undefined,
   },
   name: 'Fallback → Initials',
 };
 
 export const CustomChild: Story = {
   args: {
-    src: undefined,
     alt: undefined,
     children: <span>👤</span>,
+    src: undefined,
   },
   name: 'Custom Child',
 };

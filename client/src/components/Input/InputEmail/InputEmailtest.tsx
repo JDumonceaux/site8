@@ -1,14 +1,18 @@
 import * as Form from '@radix-ui/react-form';
-import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import InputEmail from './InputEmail';
+import '@testing-library/jest-dom';
+
 describe('InputEmail', () => {
   test('renders the input correctly', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" value="" />
+          <InputEmail
+            id="test"
+            value=""
+          />
         </Form.Field>
       </Form.Root>,
     );
@@ -21,7 +25,10 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" value="" />
+          <InputEmail
+            id="test"
+            value=""
+          />
         </Form.Field>
       </Form.Root>,
     );
@@ -52,7 +59,11 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" required value="" />
+          <InputEmail
+            required
+            id="test"
+            value=""
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -68,7 +79,11 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" minLength={5} value="" />
+          <InputEmail
+            id="test"
+            minLength={5}
+            value=""
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -84,7 +99,11 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" maxLength={5} value="" />
+          <InputEmail
+            id="test"
+            maxLength={5}
+            value=""
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -100,7 +119,11 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" pattern="^[a-zA-Z]*$" value="" />
+          <InputEmail
+            id="test"
+            pattern="^[a-zA-Z]*$"
+            value=""
+          />
         </Form.Field>
         <button type="submit">Submit</button>
       </Form.Root>,
@@ -133,7 +156,10 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" value="" />
+          <InputEmail
+            id="test"
+            value=""
+          />
         </Form.Field>
       </Form.Root>,
     );
@@ -158,7 +184,11 @@ describe('InputEmail', () => {
     render(
       <Form.Root>
         <Form.Field name="test">
-          <InputEmail id="test" required value="" />
+          <InputEmail
+            required
+            id="test"
+            value=""
+          />
         </Form.Field>
       </Form.Root>,
     );

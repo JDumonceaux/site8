@@ -1,14 +1,17 @@
 // Header.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import Header from './Header';
+
 import Avatar from '@components/core/Avatar/Avatar';
 import { APP_NAME } from '@lib/utils/constants';
+import { action } from '@storybook/addon-actions';
+import Header from './Header';
 
 const meta: Meta<typeof Header> = {
-  title: `${APP_NAME}/Header`,
+  argTypes: {
+    avatar: { control: false },
+    onMenuToggle: { action: 'menu toggled', control: false },
+  },
   component: Header,
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
@@ -16,10 +19,8 @@ const meta: Meta<typeof Header> = {
       },
     },
   },
-  argTypes: {
-    onMenuToggle: { action: 'menu toggled', control: false },
-    avatar: { control: false },
-  },
+  tags: ['autodocs'],
+  title: `${APP_NAME}/Header`,
 };
 export default meta;
 type Story = StoryObj<typeof Header>;
@@ -53,7 +54,6 @@ export const WithAvatar: Story = {
 /** Full header: menu toggle + logo + avatar */
 export const Full: Story = {
   args: {
-    onMenuToggle: action('menu toggled'),
     avatar: (
       <Avatar
         alt="JD"
@@ -62,5 +62,6 @@ export const Full: Story = {
         JD
       </Avatar>
     ),
+    onMenuToggle: action('menu toggled'),
   },
 };

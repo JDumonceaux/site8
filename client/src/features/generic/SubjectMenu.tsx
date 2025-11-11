@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import type { JSX } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
@@ -23,7 +23,7 @@ const SubjectMenu = ({ ref, ..._ }: any): JSX.Element => {
     />
   ));
 
-  const mappedData2 = data2?.map((x) => (
+  const mappedData2 = data2.map((x) => (
     <ItemRender
       key={x.id}
       item={x}

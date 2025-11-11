@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import { ServiceUrl } from '@lib/utils/constants';
+import { z } from 'zod';
 import type { Test } from '../../types/Test';
 import type { Tests } from '../../types/Tests';
-import { z } from 'zod';
-
-import useTests from './useTests';
 import { useAxios } from '../../hooks/Axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
+import useTests from './useTests';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -58,7 +57,7 @@ const useTestsEdit = () => {
   });
 
   // Get the updates
-  function getUpdates(): null | Tests {
+  const getUpdates = (): null | Tests => {
     if (!data?.items) {
       return null;
     }
@@ -83,7 +82,7 @@ const useTestsEdit = () => {
       ...data,
       items: returnValue.filter(Boolean),
     };
-  }
+  };
 
   // Validate form
   // const validateForm = () => {
@@ -93,7 +92,7 @@ const useTestsEdit = () => {
   // };
 
   // Handle save
-  async function submitForm() {
+  const submitForm = async () => {
     const data = getUpdates();
     if (!data) {
       return false;
@@ -103,16 +102,16 @@ const useTestsEdit = () => {
     //setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }
+  };
 
-  function handleChange(id: number, fieldName: FormKeys, value: string) {
+  const handleChange = (id: number, fieldName: FormKeys, value: string) => {
     setFieldValue(id, fieldName, value);
-  }
+  };
 
-  async function handleSave() {
+  const handleSave = async () => {
     const returnValue = await submitForm();
     return returnValue;
-  }
+  };
 
   return {
     data: localItems,

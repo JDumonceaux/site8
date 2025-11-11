@@ -1,24 +1,23 @@
 import { type JSX, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Outlet } from 'react-router-dom';
 
 import Avatar from '@components/core/Avatar/Avatar';
 import Header from '@components/core/Header/Header';
-import Snackbar from '@features/app/Snackbar/Snackbar';
 import AppInitializer from '@features/app/AppInitializer/AppInitializer';
-import { ErrorBoundary } from 'react-error-boundary';
-import { Outlet } from 'react-router-dom';
+import Snackbar from '@features/app/Snackbar/Snackbar';
 import styled from 'styled-components';
 
 /**
  * Accessible fallback shown while the page is lazy-loading.
  */
 const LoadingFallback = (): JSX.Element => (
-  <div
-    role="status"
-    aria-live="polite"
+  <output
     aria-busy="true"
+    aria-live="polite"
   >
     Loading…
-  </div>
+  </output>
 );
 
 /**

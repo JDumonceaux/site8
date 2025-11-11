@@ -1,13 +1,11 @@
+import * as Form from '@radix-ui/react-form';
 import { type JSX, useActionState } from 'react';
 
-import * as Form from '@radix-ui/react-form';
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Input from '@components/Input/Input';
-
 import styled from 'styled-components';
 import type { FormState } from '../../types';
 import type { Page } from '../../types/Page';
-
 import usePagePatch from './usePagePatch';
 
 type PageEditFormProps = {
@@ -51,9 +49,9 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
 
   return (
     <LoadingWrapper
+      isSaving={isPending}
       error={error}
       isError={isError}
-      isSaving={isPending}
     >
       <Form.Root action={action}>
         <StyledButtonWrapper>
@@ -72,19 +70,19 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
           value={data.fieldData.id}
         />
         <Input.Text
+          required
+          spellCheck
           defaultValue={data.fieldData.title}
-          errors={data.fields?.title.errors}
           id="title"
-          // onBlur={handeNameOnBlur}
-          // onChange={handleChange}
-          labelProps={{ label: 'Title' }}
           label="Title"
           maxLength={500}
           // errors={getFieldErrors('name')}
           minLength={10}
+          errors={data.fields?.title.errors}
+          // onBlur={handeNameOnBlur}
+          // onChange={handleChange}
+          labelProps={{ label: 'Title' }}
           placeholder="Enter a title"
-          required
-          spellCheck
           // value={formValues.name}
         />
         <Input.Text
@@ -107,12 +105,12 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
         />
         {/* <ToolMenu onClick={handeTextInsert} /> */}
         <Input.TextArea
+          spellCheck
           defaultValue={data.fieldData.text}
           id="text"
           labelProps={{ label: 'Text' }}
           //onBlur={handeTextAreaBlur}
           rows={30}
-          spellCheck
         />
         <Input.Text
           defaultValue={data.fieldData.reading_time}

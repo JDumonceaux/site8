@@ -1,9 +1,8 @@
-import type { JSX, LabelHTMLAttributes, Ref } from 'react';
-
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import styled from 'styled-components';
+import type { JSX, LabelHTMLAttributes, Ref } from 'react';
 
+import styled from 'styled-components';
 import Tooltip, { type TooltipProps } from '../Tooltip/Tooltip';
 
 /* Note: If you use htmlFor (or for) attribute,
@@ -43,7 +42,11 @@ const LabelRow = ({
   ...rest
 }: LabelRowProps): JSX.Element => {
   return (
-    <Label.Root htmlFor={id} ref={ref} {...rest}>
+    <Label.Root
+      ref={ref}
+      htmlFor={id}
+      {...rest}
+    >
       <Row>
         <Text>
           {label}

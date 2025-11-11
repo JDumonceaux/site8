@@ -1,10 +1,9 @@
 import type { ChangeEvent } from 'react';
-import { z } from 'zod';
 
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
+import { z } from 'zod';
 import type { MenuAdd } from '../../types';
-
 import { useAxios } from './Axios/useAxios';
 import useForm from './useForm';
 
@@ -48,54 +47,50 @@ const useMenuEdit = () => {
     setIsSaved,
   } = useForm<FormType>(initialFormValues);
 
-  function validateForm(): boolean {
+  const validateForm = (): boolean => {
     const result = safeParse<FormType>(pageSchema, formValues);
     setErrors(result.error?.issues ?? null);
     return result.success;
-  }
+  };
 
-  function getUpdates(): MenuAdd {
-    return {
-      id: 0,
-      name: formValues.name,
-      parentItems: [
-        {
-          id: parseInt(formValues.parent, 10),
-          seq: parseInt(formValues.seq, 10),
-          sortby: formValues.sortby as SortByType,
-        },
-      ],
-      to: formValues.name.toLowerCase().replaceAll(' ', '-'),
-      type: formValues.type as MenuType,
-    };
-  }
+  const getUpdates = (): MenuAdd => ({
+    id: 0,
+    name: formValues.name,
+    parentItems: [
+      {
+        id: Number.parseInt(formValues.parent, 10),
+        seq: Number.parseInt(formValues.seq, 10),
+        sortby: formValues.sortby as SortByType,
+      },
+    ],
+    to: formValues.name.toLowerCase().replaceAll(' ', '-'),
+    type: formValues.type as MenuType,
+  });
 
-  async function submitForm(): Promise<boolean> {
+  const submitForm = async (): Promise<boolean> => {
     const data = getUpdates();
     setIsProcessing(true);
     const result = await putData(ServiceUrl.ENDPOINT_MENUS, data);
     setIsProcessing(false);
     setIsSaved(result);
     return result;
-  }
+  };
 
-  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFieldValue(name as FormKeys, value);
-  }
+  };
 
-  function getStandardInputTextAttributes(fieldName: FormKeys) {
-    return {
-      errorText: getFieldErrors(fieldName),
-      hasError: hasError(fieldName),
-      id: fieldName,
-      value: getFieldValue(fieldName),
-    };
-  }
+  const getStandardInputTextAttributes = (fieldName: FormKeys) => ({
+    errorText: getFieldErrors(fieldName),
+    hasError: hasError(fieldName),
+    id: fieldName,
+    value: getFieldValue(fieldName),
+  });
 
-  function clearForm() {
+  const clearForm = () => {
     setFormValues(initialFormValues);
-  }
+  };
 
   return {
     clearForm,

@@ -7,7 +7,7 @@ type FieldValue = boolean | null | number | string;
 
 const useForm = <T>(initialValues: T) => {
   const [formValues, setFormValues] = useState<T>(initialValues);
-  const [errors, setErrors] = useState<null | z.ZodIssue[]>(null);
+  const [errors, setErrors] = useState<null | z.core.$ZodIssue[]>(null);
   const [isSaved, setIsSaved] = useState<boolean>(true);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 

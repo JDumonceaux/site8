@@ -1,25 +1,25 @@
 import { type JSX, useEffect, useState } from 'react';
 
-import {
-  DndContext,
-  KeyboardSensor,
-  PointerSensor,
-  closestCenter,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
-import {
-  SortableContext,
-  arrayMove,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
 import Input from '@components/Input/Input';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
 import StyledPlainButton from '@components/Link/StyledPlainButton/StyledPlainButton';
 import { Switch } from '@components/Switch/Switch';
+import {
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import useAppSettings from '@features/app/useAppSettings';
 import Layout from '@features/layouts/Layout/Layout';
 import SortableItem from '@features/tests/SortableItem';
@@ -42,7 +42,7 @@ const TestsEditPage = (): JSX.Element | null => {
   const { setShowPages, showPages } = useAppSettings();
 
   useEffect(() => {
-    const ret = data?.map((item) => ({
+    const returnValue = data?.map((item) => ({
       action: '',
       id: item.id,
       level: item.level?.toString(),
@@ -54,8 +54,8 @@ const TestsEditPage = (): JSX.Element | null => {
       text: item.text,
       type: item.type?.toString(),
     }));
-    if (ret) {
-      setFormValues(ret);
+    if (returnValue) {
+      setFormValues(returnValue);
     }
   }, [data, setFormValues]);
 
@@ -98,8 +98,8 @@ const TestsEditPage = (): JSX.Element | null => {
             {isSaved ? null : (
               <StyledSaveButton
                 data-testid="button-save"
-                onClick={handleSave}
                 type="submit"
+                onClick={handleSave}
               >
                 Save
               </StyledSaveButton>
@@ -132,8 +132,8 @@ const TestsEditPage = (): JSX.Element | null => {
                 <tbody>
                   {data?.map((item) => (
                     <SortableItem
-                      id={item.lineId}
                       key={item.lineId}
+                      id={item.lineId}
                     >
                       <td>{item.id}</td>
                       <td>

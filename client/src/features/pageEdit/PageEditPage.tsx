@@ -1,14 +1,15 @@
 import type { JSX } from 'react';
+import { useParams } from 'react-router-dom';
+
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
 import PageTitle from '@components/core/PageTitle/PageTitle';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
 import Layout from '@features/layouts/Layout/Layout';
 import { getParamIdAsString } from '@lib/utils/helpers';
-import { useParams } from 'react-router-dom';
-
 import PageEditForm from './PageEditForm';
 import usePage from './usePage';
+
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();
   const currentId = getParamIdAsString(id);

@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import type { InputBaseProps } from '../Base/InputBase/InputBase';
 import InputBase from '../Base/InputBase/InputBase';
 
@@ -16,7 +17,12 @@ export type InputSearchProps = Omit<
 export const InputSearch = ({
   type = 'text',
   ...rest
-}: InputSearchProps): JSX.Element | null => <InputBase type={type} {...rest} />;
+}: InputSearchProps): JSX.Element | null => (
+  <InputBase
+    type={type}
+    {...rest}
+  />
+);
 
 InputSearch.displayName = 'InputSearch';
 export default InputSearch;

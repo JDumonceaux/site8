@@ -1,7 +1,8 @@
+import { render, screen } from '@testing-library/react';
+
+import Fallback from './Fallback';
 // Fallback.test.tsx
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import Fallback from './Fallback';
 
 describe('fallback component', () => {
   beforeEach(() => {
@@ -38,9 +39,9 @@ describe('fallback component', () => {
     expect(lines).toHaveLength(5);
 
     const expectedWidths = [100, 90, 80, 100, 90];
-    lines.forEach((line, idx) => {
-      expect(line).toHaveStyle(`width: ${expectedWidths[idx]}%`);
-    });
+    for (const [index, line] of lines.entries()) {
+      expect(line).toHaveStyle(`width: ${expectedWidths[index]}%`);
+    }
   });
 
   test('fractional lines prop is floored without warning', () => {
@@ -91,13 +92,13 @@ describe('fallback component', () => {
 
     render(<Fallback lines={3} />);
     const lines = screen.getAllByTestId('fallback-line');
-    lines.forEach((line) => {
+    for (const line of lines) {
       expect(line).toHaveStyle('height: 1.25rem');
       expect(line).toHaveStyle('border-radius: 0.375rem');
       expect(line).toHaveStyle(
         'background: linear-gradient(90deg, var(--palette-grey-10) 25%, var(--palette-grey-20) 37%, var(--palette-grey-10) 63%)',
       );
       expect(line).toHaveStyle('animation:');
-    });
+    }
   });
 });

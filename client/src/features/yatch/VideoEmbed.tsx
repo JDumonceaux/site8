@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import type { JSX } from 'react';
 
 import styled from 'styled-components';
 import type { Video } from '../../types/Video';
@@ -13,11 +13,11 @@ const VideoEmbed = ({
     <Heading>{title}</Heading>
     <VideoWrapper>
       <StyledIframe
+        src={videoSrc}
+        title={iframeTitle ?? title}
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
         sandbox="allow-same-origin allow-scripts"
-        src={videoSrc}
-        title={iframeTitle ?? title}
       />
     </VideoWrapper>
   </Section>

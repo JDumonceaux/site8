@@ -1,7 +1,7 @@
-import type { JSX, ReactNode } from 'react';
-
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { DotsVerticalIcon } from '@radix-ui/react-icons';
+import type { JSX, ReactNode } from 'react';
+
 import styled from 'styled-components';
 
 /**
@@ -20,15 +20,20 @@ const IconMenu = ({ children }: IconMenuProps): JSX.Element => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <StyledButton
-          aria-haspopup="menu"
           aria-label="Customize options"
-          type="button">
+          type="button"
+          aria-haspopup="menu"
+        >
           <DotsVerticalIcon />
         </StyledButton>
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
-        <StyledMenuContent align="start" side="right" sideOffset={5}>
+        <StyledMenuContent
+          align="start"
+          side="right"
+          sideOffset={5}
+        >
           {children}
         </StyledMenuContent>
       </DropdownMenu.Portal>

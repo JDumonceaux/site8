@@ -9,7 +9,7 @@ export type LinkButtonProps = {
   readonly children: ReactNode;
   /** Destination URL */
   readonly to: To;
-} & Omit<BaseLinkProps, 'to' | 'children'>;
+} & Omit<BaseLinkProps, 'children' | 'to'>;
 
 /**
  * A link styled as a button.
@@ -25,9 +25,9 @@ const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
 
     return (
       <StyledLink
-        to={to}
         ref={ref}
         rel={rel}
+        to={to}
         {...rest}
       >
         {children}

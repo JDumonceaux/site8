@@ -1,6 +1,6 @@
-import type { JSX, HTMLAttributes } from 'react';
-
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import type { HTMLAttributes, JSX } from 'react';
+
 import styled from 'styled-components';
 
 export type InputCounterProps = HTMLAttributes<HTMLDivElement> & {
@@ -30,7 +30,8 @@ const InputCounter = ({
       aria-live="polite"
       data-testid="input-counter"
       id={id}
-      {...rest}>
+      {...rest}
+    >
       <VisuallyHidden>{assistiveLabel}:</VisuallyHidden>
       {` ${characterCount} / ${maxLength}`}
     </Counter>

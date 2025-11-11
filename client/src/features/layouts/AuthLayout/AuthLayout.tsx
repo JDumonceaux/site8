@@ -1,21 +1,20 @@
-import { Suspense, type JSX } from 'react';
-
-import Header from '@components/core/Header/Header';
+import { type JSX, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
+
+import Header from '@components/core/Header/Header';
 import styled from 'styled-components';
 
 /**
  * Accessible fallback shown while the page is lazy-loading.
  */
 export const LoadingFallback = (): JSX.Element => (
-  <div
-    role="status"
-    aria-live="polite"
+  <output
     aria-busy="true"
+    aria-live="polite"
   >
     Loading…
-  </div>
+  </output>
 );
 
 /**

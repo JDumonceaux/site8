@@ -4,7 +4,7 @@ import { useEffect } from 'react';
  * Hook that preloads a set of resources with appropriate priorities.
  * Extracted for single-responsibility and easier testing.
  */
-export function usePreloadResources() {
+export const usePreloadResources = () => {
   useEffect(() => {
     const resources = [
       // These are not loading fast enough to be useful
@@ -13,7 +13,7 @@ export function usePreloadResources() {
       //{ as: 'style', href: '/styles/main.css', priority: 'high' },
     ] as const;
 
-    resources.forEach(({ as, href, priority }) => {
+    for (const { as, href, priority } of resources) {
       const link = document.createElement('link');
       link.rel = 'preload';
       link.as = as;
@@ -23,6 +23,6 @@ export function usePreloadResources() {
         link.fetchPriority = priority;
       }
       document.head.append(link);
-    });
+    }
   }, []);
-}
+};

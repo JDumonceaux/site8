@@ -1,4 +1,4 @@
-import type { JSX, ReactNode, HTMLAttributes } from 'react';
+import type { HTMLAttributes, JSX, ReactNode } from 'react';
 import { forwardRef } from 'react';
 
 import styled from 'styled-components';

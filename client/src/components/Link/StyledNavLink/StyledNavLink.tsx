@@ -7,7 +7,7 @@ import styled from 'styled-components';
 /**
  * Variants for link color theming.
  */
-type Variant = 'light' | 'dark';
+type Variant = 'dark' | 'light';
 
 /**
  * Props for our styled NavLink.
@@ -16,8 +16,8 @@ type Variant = 'light' | 'dark';
  * - Optional `aria-label` for accessibility
  */
 export type StyledNavLinkProps = Omit<NavLinkProps, 'aria-current'> & {
-  readonly variant?: Variant;
   readonly 'aria-label'?: string;
+  readonly variant?: Variant;
 };
 
 /**
@@ -26,13 +26,13 @@ export type StyledNavLinkProps = Omit<NavLinkProps, 'aria-current'> & {
  */
 const StyledNavLink = forwardRef<HTMLAnchorElement, StyledNavLinkProps>(
   (
-    { variant = 'light', 'aria-label': ariaLabel, ...navProps },
+    { 'aria-label': ariaLabel, variant = 'light', ...navProps },
     ref,
   ): JSX.Element => (
     <Link
       ref={ref}
-      variant={variant}
       aria-label={ariaLabel}
+      variant={variant}
       {...navProps}
       // NavLink will add aria-current="page" when active
       end={navProps.end ?? false}

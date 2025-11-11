@@ -24,18 +24,20 @@ const useImagesEditPage = () => {
   const { data, isError } = useImagesEdit();
 
   // Filter and sort data
-  function filterAndSortData() {
+  const filterAndSortData = () => {
     const temp =
       filter && filter.length > 0
         ? data?.items.filter((x) => x.folder === filter)
         : data?.items;
     const filteredImageType = temp?.filter(
-      (x) => !x.fileName.toLowerCase().includes('.heic'),
+      (x) =>
+        typeof x.fileName === 'string' &&
+        !x.fileName.toLowerCase().includes('.heic'),
     );
     const sortedData = filteredImageType?.toSorted((a, b) => b.id - a.id);
     const trimmedData = sortedData?.slice(0, 100);
     setDisplayData(trimmedData ?? []);
-  }
+  };
 
   useEffect(() => {
     filterAndSortData();
@@ -47,14 +49,13 @@ const useImagesEditPage = () => {
     const temp = mapDataToForm(displayData);
     setFormValues(temp);
     setOriginalValues(temp);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayData, setFormValues]);
 
-  function mapDataToForm(items: Image[] | undefined) {
+  const mapDataToForm = (items: Image[] | undefined) => {
     if (!items) {
       return [];
     }
-    const ret: ImageAddExt[] | undefined = items.map((x, index) => {
+    const returnValue: ImageAddExt[] | undefined = items.map((x, index) => {
       const temp = getDefaultObject() as ImageAddExt;
       return {
         ...temp,
@@ -63,8 +64,8 @@ const useImagesEditPage = () => {
         src: getSRC(x.folder, x.fileName),
       };
     });
-    return ret;
-  }
+    return returnValue;
+  };
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -73,30 +74,30 @@ const useImagesEditPage = () => {
   ) => {
     const { dataset, type, value } = event.target;
     const { id, line } = dataset;
-    const lineNum = Number(line);
+    const lineNumber = Number(line);
     //  const fieldValue = type === 'checkbox' ? checked : value;
     if (id) {
-      setFieldValue(lineNum, id as keyof ImageAddExt, value);
+      setFieldValue(lineNumber, id as keyof ImageAddExt, value);
 
       if (type === 'checkbox' && id === 'isSelected') {
         const { checked } = event.target as HTMLInputElement;
-        setFieldValue(lineNum, 'folder', checked ? currentFolder : '');
+        setFieldValue(lineNumber, 'folder', checked ? currentFolder : '');
       }
     } else {
       throw new Error('No id found');
     }
   };
 
-  function handleRefresh() {
+  const handleRefresh = () => {
     setMessage('Updating...');
     startTransition(() => {
       // fetchData();
     });
     setMessage('Done');
-  }
+  };
 
   // Only submit updated records
-  function getUpdates() {
+  const getUpdates = () => {
     const returnValue: ImageAdd[] = [];
 
     // loop through originals
@@ -118,9 +119,9 @@ const useImagesEditPage = () => {
     }
 
     return returnValue.length > 0 ? returnValue : undefined;
-  }
+  };
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     const updates = getUpdates();
     if (!updates) {
       setMessage('No changes to save');
@@ -152,35 +153,35 @@ const useImagesEditPage = () => {
     //   .finally(() => {
     //     //   setIsProcessing(false);
     //   });
-  }
+  };
 
-  function handleScan() {
+  const handleScan = () => {
     setMessage('Scanning...');
     startTransition(() => {
       //  scanForNewItems();
     });
     setMessage('Done');
-  }
+  };
 
-  function handleFolderChange(value: string | undefined) {
+  const handleFolderChange = (value: string | undefined) => {
     if (value) {
       setCurrentFolder((previous) => (previous === value ? '' : value));
     }
-  }
+  };
 
-  function handleDelete(lineId: number) {
+  const handleDelete = (lineId: number) => {
     const previous = getFieldValue(lineId, 'delete');
     setFieldValue(lineId, 'delete', !previous);
-  }
+  };
 
-  function handleFolderSelect(lineId: number) {
+  const handleFolderSelect = (lineId: number) => {
     setFieldValue(lineId, 'folder', currentFolder);
-  }
+  };
 
-  function handleFilterSelect(e: React.ChangeEvent<HTMLSelectElement>) {
+  const handleFilterSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setFilter(value === 'all' ? '' : value);
-  }
+  };
 
   // const getDifferenceString = (value?: string, update?: string) => {
   //   const normalizedUpdate = update?.trim() ?? undefined;

@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 /**
@@ -12,7 +13,11 @@ type TitleFixedProps = {
 
 const TitleFixed = ({ children }: TitleFixedProps): JSX.Element | null => {
   return (
-    <StickyHeading role="heading" aria-level={1} data-testid="title">
+    <StickyHeading
+      aria-level={1}
+      data-testid="title"
+      role="heading"
+    >
       {children}
     </StickyHeading>
   );

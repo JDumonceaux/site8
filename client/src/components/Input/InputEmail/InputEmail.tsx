@@ -16,7 +16,12 @@ const InputEmail = ({
   type = 'email',
   ...rest
 }: InputEmailProps): JSX.Element => {
-  return <InputBase type={type} {...rest} />;
+  return (
+    <InputBase
+      type={type}
+      {...rest}
+    />
+  );
 };
 
 InputEmail.displayName = 'InputEmail';

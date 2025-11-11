@@ -3,17 +3,17 @@ import type { Meta, StoryObj } from '@storybook/react';
 import LoadingWrapper from './LoadingWrapper';
 
 const meta: Meta<typeof LoadingWrapper> = {
-  title: '@components/LoadingWrapper',
-  component: LoadingWrapper,
   argTypes: {
-    isSaving: { control: 'boolean' },
+    error: { control: 'text' },
+    fallback: { control: false },
+    isError: { control: 'boolean' },
     isLoading: { control: 'boolean' },
     isPending: { control: 'boolean' },
-    isError: { control: 'boolean' },
-    error: { control: 'text' },
+    isSaving: { control: 'boolean' },
     loadingText: { control: 'text' },
-    fallback: { control: false },
   },
+  component: LoadingWrapper,
+  title: '@components/LoadingWrapper',
 };
 
 export default meta;
@@ -25,9 +25,9 @@ const Template: Story = {
     <LoadingWrapper {...args}>
       <div
         style={{
-          padding: '1rem',
           background: '#eef',
           borderRadius: '0.25rem',
+          padding: '1rem',
         }}
       >
         Here is the main content
@@ -49,9 +49,9 @@ export const Saving: Story = {
 export const Loading: Story = {
   ...Template,
   args: {
+    fallback: <div style={{ marginTop: '0.5rem' }}>Loading placeholder</div>,
     isLoading: true,
     loadingText: 'Please wait…',
-    fallback: <div style={{ marginTop: '0.5rem' }}>Loading placeholder</div>,
   },
 };
 
@@ -66,8 +66,8 @@ export const Pending: Story = {
 export const ErrorString: Story = {
   ...Template,
   args: {
-    isError: true,
     error: 'Something went wrong',
+    isError: true,
   },
 };
 

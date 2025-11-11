@@ -23,13 +23,14 @@ const ToolMenu = ({ onClick }: ToolMenuProps): JSX.Element => {
     <StyledSubMenu>
       {buttons.map(({ label, testId, value }) => (
         <button
+          key={value}
           aria-label={`Insert ${label}`}
           data-testid={testId}
-          key={value}
+          type="button"
           onClick={() => {
             onClick(value);
           }}
-          type="button">
+        >
           {label}
         </button>
       ))}

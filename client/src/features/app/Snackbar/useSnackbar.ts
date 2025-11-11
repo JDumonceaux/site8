@@ -1,7 +1,8 @@
-import { SNACKBAR_DEFAULT_DURATION } from '@lib/utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { showSnackbar, hideSnackbar } from 'store/snackbarSlice';
+
 import type { AppDispatch, RootState } from 'store/store';
+import { SNACKBAR_DEFAULT_DURATION } from '@lib/utils/constants';
+import { hideSnackbar, showSnackbar } from 'store/snackbarSlice';
 
 export type Snackbar = {
   contents: null | React.ReactNode;
@@ -39,7 +40,7 @@ const useSnackbar = (): UseSnackbarReturn => {
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector<RootState, null | Snackbar>(selectSnackbarData);
 
-  function updateSnackbar(updates: Snackbar) {
+  const updateSnackbar = (updates: Snackbar) => {
     dispatch(showSnackbar(updates));
     const duration = updates.openDurationMs ?? SNACKBAR_DEFAULT_DURATION;
     if (updates.isOpen && duration > 0) {
@@ -47,12 +48,12 @@ const useSnackbar = (): UseSnackbarReturn => {
         dispatch(showSnackbar(initialState));
       }, duration);
     }
-  }
+  };
 
-  function setErrorMessage(
+  const setErrorMessage = (
     contents: Snackbar['contents'],
     openDurationMs = SNACKBAR_DEFAULT_DURATION,
-  ) {
+  ) => {
     updateSnackbar({
       ...initialState,
       contents,
@@ -61,12 +62,12 @@ const useSnackbar = (): UseSnackbarReturn => {
       showCloseButton: true,
       variant: SnackbarVariant.ERROR,
     });
-  }
+  };
 
-  function setMessage(
+  const setMessage = (
     contents: Snackbar['contents'],
     openDurationMs = SNACKBAR_DEFAULT_DURATION,
-  ) {
+  ) => {
     updateSnackbar({
       ...initialState,
       contents,
@@ -75,11 +76,11 @@ const useSnackbar = (): UseSnackbarReturn => {
       showCloseButton: true,
       variant: SnackbarVariant.INFO,
     });
-  }
+  };
 
-  function closeSnackbar() {
+  const closeSnackbar = () => {
     dispatch(hideSnackbar());
-  }
+  };
 
   return {
     closeSnackbar,

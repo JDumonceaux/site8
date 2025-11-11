@@ -1,7 +1,7 @@
+import * as radixSwitch from '@radix-ui/react-switch';
 import type { JSX } from 'react';
 import { forwardRef } from 'react';
 
-import * as radixSwitch from '@radix-ui/react-switch';
 import styled from 'styled-components';
 
 export type SwitchProps = {
@@ -18,8 +18,8 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     <StyledWrapper>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
       <StyledSwitchRoot
-        id={id}
         ref={ref}
+        id={id}
         onCheckedChange={onCheckedChange}
         {...rest}
       >

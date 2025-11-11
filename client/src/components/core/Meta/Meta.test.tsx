@@ -1,11 +1,11 @@
+import { render } from '@testing-library/react';
+
+import type { AxeResults } from 'axe-core';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import Meta from './Meta';
 // Meta.test.tsx
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import { render } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import type { AxeResults } from 'axe-core';
-
-import Meta from './Meta';
 
 expect.extend(toHaveNoViolations);
 
@@ -22,7 +22,10 @@ describe('meta component', () => {
     expect.assertions(2);
 
     const { container } = render(
-      <Meta charset="UTF-8" viewport="width=device-width" />,
+      <Meta
+        charset="UTF-8"
+        viewport="width=device-width"
+      />,
     );
 
     expect(
@@ -40,10 +43,10 @@ describe('meta component', () => {
 
     const { container } = render(
       <Meta
-        title="Page Title"
-        description="Page description"
-        type="website"
         name="@creator"
+        title="Page Title"
+        type="website"
+        description="Page description"
       />,
     );
 
@@ -68,9 +71,9 @@ describe('meta component', () => {
 
     const { container } = render(
       <Meta
-        canonical="https://example.com"
-        appleTouchIcon="/icon.png"
         manifest="/manifest.json"
+        appleTouchIcon="/icon.png"
+        canonical="https://example.com"
       />,
     );
 
@@ -90,7 +93,12 @@ describe('meta component', () => {
   it('renders http-equiv meta tags for X-UA-Compatible and refresh', () => {
     expect.assertions(2);
 
-    const { container } = render(<Meta xUaCompatible="IE=edge" refresh="30" />);
+    const { container } = render(
+      <Meta
+        refresh="30"
+        xUaCompatible="IE=edge"
+      />,
+    );
 
     expect(
       container.querySelector(
@@ -107,9 +115,9 @@ describe('meta component', () => {
 
     const { container } = render(
       <Meta
+        author="Author Name"
         keywords="a,b,c"
         robots="noindex,nofollow"
-        author="Author Name"
         themeColor="#ffffff"
       />,
     );
@@ -134,7 +142,11 @@ describe('meta component', () => {
     expect.hasAssertions();
 
     const { container } = render(
-      <Meta title="Title" description="Desc" canonical="https://example.com" />,
+      <Meta
+        title="Title"
+        canonical="https://example.com"
+        description="Desc"
+      />,
     );
     const results: AxeResults = await axe(container);
 

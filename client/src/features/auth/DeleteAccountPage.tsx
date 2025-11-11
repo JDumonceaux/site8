@@ -6,7 +6,6 @@ import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
-
 import AuthContainer from './AuthContainer';
 
 const schema = z.object({
@@ -28,13 +27,13 @@ const DeleteAccountPage = (): JSX.Element => {
   const { formValues, getFieldErrors, handleChange, setErrors } =
     useForm<FormValues>(initialFormValues);
 
-  function validateForm(): boolean {
+  const validateForm = (): boolean => {
     const result = safeParse<FormValues>(schema, formValues);
     setErrors(result.error?.issues);
     return result.success;
-  }
+  };
 
-  async function handleSubmit(event: React.FormEvent) {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
       try {
@@ -43,7 +42,7 @@ const DeleteAccountPage = (): JSX.Element => {
         // handle error
       }
     }
-  }
+  };
 
   const getDefaultProps = (fieldName: FormKeys) => ({
     errorText: getFieldErrors(fieldName),
@@ -55,7 +54,6 @@ const DeleteAccountPage = (): JSX.Element => {
     <>
       <Meta title={title} />
       <AuthContainer
-        error={error}
         leftImage={
           <img
             alt=""
@@ -63,6 +61,7 @@ const DeleteAccountPage = (): JSX.Element => {
           />
         }
         title="Delete Account"
+        error={error}
       >
         <StyledForm
           noValidate
@@ -73,13 +72,13 @@ const DeleteAccountPage = (): JSX.Element => {
             and all data.
           </div>
           <Input.Text
+            required
+            label="Please enter 'delete' to confirm"
+            spellCheck="false"
             autoComplete="off"
             inputMode="text"
-            label="Please enter 'delete' to confirm"
             onChange={handleChange}
             placeholder="delete"
-            required
-            spellCheck="false"
             {...getDefaultProps('deleteCode')}
           />
           <Button id="login">Delete Account</Button>

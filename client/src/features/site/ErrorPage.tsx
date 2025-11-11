@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import Meta from '../../components/core/Meta/Meta';
 import styled from 'styled-components';
+import Meta from '../../components/core/Meta/Meta';
 
 /**
  * Error Page – shown when an unexpected error occurs.

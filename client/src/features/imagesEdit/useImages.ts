@@ -6,36 +6,36 @@ import type { Images } from '../../types/Images';
 /**
  * Fetches the Images payload from the API, supporting cancellation.
  */
-async function fetchImages({
+const fetchImages = async ({
   signal,
 }: {
   signal?: AbortSignal;
-}): Promise<Images> {
+}): Promise<Images> => {
   const res = await fetch(ServiceUrl.ENDPOINT_IMAGES, { signal });
   if (!res.ok) {
     throw new Error(`Failed to fetch images: ${res.statusText}`);
   }
   return res.json() as Promise<Images>;
-}
+};
 
 /**
  * Custom hook to load a list of images.
  */
-export function useImages() {
+export const useImages = () => {
   const query = useQuery<Images>({
-    queryKey: ['images'],
     queryFn: fetchImages,
+    queryKey: ['images'],
     ...USEQUERY_DEFAULT_OPTIONS,
   });
 
   return {
     data: query.data,
     error: query.error,
-    isLoading: query.isLoading,
     isError: query.isError,
     isFetching: query.isFetching,
+    isLoading: query.isLoading,
     refetch: query.refetch,
   };
-}
+};
 
 export default useImages;

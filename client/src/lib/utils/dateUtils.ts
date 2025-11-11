@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * Parses a date-time string in `MM/DD/YYYY hh:mm` format (with optional AM/PM) into a Date.
  * @param dateString - Input string, e.g. "12/31/2023 11:59 PM".

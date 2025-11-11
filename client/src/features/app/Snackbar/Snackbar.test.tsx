@@ -1,12 +1,12 @@
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import type { AxeResults } from 'axe-core';
+import { SnackbarVariant } from '@features/app/Snackbar/useSnackbar';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import Snackbar from './Snackbar';
 // Snackbar.test.tsx
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import type { AxeResults } from 'axe-core';
-
-import Snackbar from './Snackbar';
-import { SnackbarVariant } from '@features/app/Snackbar/useSnackbar';
 
 // Mock the snackbar hook and variant constants
 const mockClose = jest.fn();
@@ -15,10 +15,10 @@ let mockData: any;
 jest.mock('@features/app/useSnackbar', () => ({
   __esModule: true,
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  default: () => ({ data: mockData, closeSnackbar: mockClose }),
+  default: () => ({ closeSnackbar: mockClose, data: mockData }),
   SnackbarVariant: {
-    INFO: SnackbarVariant.INFO,
     ERROR: SnackbarVariant.ERROR,
+    INFO: SnackbarVariant.INFO,
   },
 }));
 
@@ -42,8 +42,8 @@ describe('snackbar component', () => {
     expect.assertions(4);
 
     mockData = {
-      isOpen: true,
       contents: 'Hello World',
+      isOpen: true,
       variant: SnackbarVariant.INFO,
     };
     render(<Snackbar />);
@@ -52,7 +52,7 @@ describe('snackbar component', () => {
     expect(snackbar).toBeInTheDocument();
     expect(screen.getByText('Hello World')).toBeInTheDocument();
 
-    const button = screen.getByRole('button', { name: /Close notification/i });
+    const button = screen.getByRole('button', { name: /close notification/i });
 
     expect(button).toBeInTheDocument();
 
@@ -65,8 +65,8 @@ describe('snackbar component', () => {
     expect.assertions(2);
 
     mockData = {
-      isOpen: true,
       contents: 'Info',
+      isOpen: true,
       variant: SnackbarVariant.INFO,
     };
     render(<Snackbar />);
@@ -80,8 +80,8 @@ describe('snackbar component', () => {
     expect.assertions(1);
 
     mockData = {
-      isOpen: true,
       contents: 'Error occurred',
+      isOpen: true,
       variant: SnackbarVariant.ERROR,
     };
     render(<Snackbar />);
@@ -94,8 +94,8 @@ describe('snackbar component', () => {
     expect.hasAssertions();
 
     mockData = {
-      isOpen: true,
       contents: 'Accessible',
+      isOpen: true,
       variant: SnackbarVariant.INFO,
     };
     const { container } = render(<Snackbar />);

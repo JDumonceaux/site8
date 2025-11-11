@@ -1,16 +1,16 @@
 import type { JSX } from 'react';
+
+import Button from '@components/core/Button/Button';
 import Meta from '@components/core/Meta/Meta';
 import Input from '@components/Input/Input';
 import StyledLink from '@components/Link/StyledLink/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
+import { emailAddress, password } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
-
 import AuthContainer from './AuthContainer';
-import Button from '@components/core/Button/Button';
-import { emailAddress, password } from '@lib/utils/constants';
 
 // Define Zod Shape
 const schema = z.object({
@@ -52,7 +52,6 @@ const SigninPage = (): JSX.Element => {
     <>
       <Meta title={title} />
       <AuthContainer
-        error={error}
         leftImage={
           <img
             alt=""
@@ -60,24 +59,25 @@ const SigninPage = (): JSX.Element => {
           />
         }
         title="Sign In"
+        error={error}
       >
         <StyledForm
           noValidate
           onSubmit={handleSubmit}
         >
           <Input.Email
-            autoComplete="email"
-            inputMode="email"
+            required
             label="Email Address"
             multiple={false}
-            placeholder="Enter Email Address"
-            required
             spellCheck="false"
+            autoComplete="email"
+            inputMode="email"
+            placeholder="Enter Email Address"
             {...getDefaultProps('emailAddress' as FormKeys)}
           />
           <Input.Password
-            autoComplete="current-password"
             label="Password"
+            autoComplete="current-password"
             placeholder="Enter Password"
             {...getDefaultProps('password' as FormKeys)}
           />

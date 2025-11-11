@@ -18,25 +18,25 @@ export type TextHelpProps = LabelHTMLAttributes<HTMLDivElement> & {
   showCounter?: boolean;
 };
 
-const renderHelper = (msg?: React.ReactNode | string | string[]) => {
-  if (!msg) return null;
-  if (isValidElement(msg)) return msg;
+const renderHelper = (message?: React.ReactNode | string | string[]) => {
+  if (!message) return null;
+  if (isValidElement(message)) return message;
 
-  if (Array.isArray(msg)) {
-    if (msg.length > 1) {
+  if (Array.isArray(message)) {
+    if (message.length > 1) {
       return (
         <ul>
-          {msg.map((item, idx) => (
-            <li key={idx}>{item}</li>
+          {message.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
       );
     }
-    return <div>{msg[0]}</div>;
+    return <div>{message[0]}</div>;
   }
 
   // string, number, boolean
-  return <div>{msg}</div>;
+  return <div>{message}</div>;
 };
 
 /**

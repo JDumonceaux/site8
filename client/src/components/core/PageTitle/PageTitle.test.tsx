@@ -1,11 +1,11 @@
+import { render, screen } from '@testing-library/react';
+
+import type { AxeResults } from 'axe-core';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import PageTitle from './PageTitle';
 // PageTitle.test.tsx
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import type { AxeResults } from 'axe-core';
-
-import PageTitle from './PageTitle';
 
 expect.extend(toHaveNoViolations);
 
@@ -22,10 +22,10 @@ describe('pageTitle component', () => {
     expect.assertions(2);
 
     render(<PageTitle title="Hello World" />);
-    const titleEl = screen.getByTestId('page-title');
+    const titleElement = screen.getByTestId('page-title');
 
-    expect(titleEl).toBeInTheDocument();
-    expect(titleEl.textContent).toBe('Hello World');
+    expect(titleElement).toBeInTheDocument();
+    expect(titleElement.textContent).toBe('Hello World');
   });
 
   it('renders children when provided', () => {
@@ -44,7 +44,12 @@ describe('pageTitle component', () => {
   it('forwards HTML attributes to the wrapper element', () => {
     expect.assertions(1);
 
-    const { container } = render(<PageTitle title="Test" id="main-title" />);
+    const { container } = render(
+      <PageTitle
+        id="main-title"
+        title="Test"
+      />,
+    );
     const wrapper = container.querySelector('div#main-title');
 
     expect(wrapper).toBeInTheDocument();
@@ -58,9 +63,9 @@ describe('pageTitle component', () => {
 
     expect(wrapper).toHaveStyle('display: flex');
 
-    const titleEl = screen.getByTestId('page-title');
+    const titleElement = screen.getByTestId('page-title');
 
-    expect(titleEl).toHaveStyle('font-size: 2.25rem');
+    expect(titleElement).toHaveStyle('font-size: 2.25rem');
   });
 
   it('has no a11y violations', async () => {

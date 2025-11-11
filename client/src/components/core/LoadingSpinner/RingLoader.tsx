@@ -1,9 +1,8 @@
 import * as React from 'react';
 
 import type { LoaderSizeProps } from './helpers/props';
-
 import { createAnimation } from './helpers/animation';
-import { parseLengthAndUnit, cssValue } from './helpers/unitConverter';
+import { cssValue, parseLengthAndUnit } from './helpers/unitConverter';
 
 const right = createAnimation(
   'RingLoader',

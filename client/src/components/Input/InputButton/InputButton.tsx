@@ -1,4 +1,4 @@
-import type { JSX, InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, JSX } from 'react';
 
 export type InputButtonProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { type JSX, Suspense } from 'react';
 
 import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
 import Meta from '@components/core/Meta/Meta';
@@ -6,7 +6,6 @@ import PageTitle from '@components/core/PageTitle/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-
 import useTests from './useTests';
 
 const TestsPage = (): JSX.Element => {

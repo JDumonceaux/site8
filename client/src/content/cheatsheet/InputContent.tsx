@@ -45,7 +45,10 @@ export const InputContent = (): JSX.Element => {
             </td>
             <td>
               <label htmlFor="sample-input">Sample Input</label>
-              <input id="sample-input" type="text" />
+              <input
+                id="sample-input"
+                type="text"
+              />
             </td>
             <td>type is optional</td>
           </tr>
