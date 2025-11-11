@@ -1,9 +1,10 @@
+// Header.test.tsx
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { APP_NAME } from '@lib/utils/constants';
 import { configureAxe } from 'jest-axe';
 import Header from './Header';
-// Header.test.tsx
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 const axe = configureAxe();

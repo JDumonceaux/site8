@@ -1,11 +1,11 @@
+// Meta.test.tsx
 import { render } from '@testing-library/react';
 
 import type { AxeResults } from 'axe-core';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import Meta from './Meta';
-// Meta.test.tsx
+// eslint-disable-next-line import/no-unassigned-import -- Extends Jest matchers
 import '@testing-library/jest-dom';
-import 'jest-styled-components';
 
 expect.extend(toHaveNoViolations);
 
@@ -23,13 +23,13 @@ describe('meta component', () => {
 
     const { container } = render(
       <Meta
-        charset="UTF-8"
+        charset="utf-8"
         viewport="width=device-width"
       />,
     );
 
     expect(
-      container.querySelector('meta[charset="UTF-8"]'),
+      container.querySelector('meta[charset="utf-8"]'),
     ).toBeInTheDocument();
     expect(
       container.querySelector(

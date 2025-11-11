@@ -1,14 +1,14 @@
 import { type JSX, Suspense, useDeferredValue } from 'react';
 
-import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
-import Meta from '@components/core/Meta/Meta';
-import PageTitle from '@components/core/PageTitle/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/Layout/Layout';
 import { getSRC, sanitizeUrl } from '@lib/utils/helpers';
 import styled from 'styled-components';
+import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
+import Meta from '@/components/core/meta/Meta';
+import PageTitle from '@/components/core/page-title/PageTitle';
 import type { Image } from '../../types/Image';
-import useImages from '../imagesEdit/useImages';
+import useImages from '../images-edit/useImages';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, isError, isLoading } = useImages();

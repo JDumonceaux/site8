@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Meta from '@components/core/Meta/Meta';
-import Input from '@components/Input/Input';
+import Meta from '@/components/core/meta/Meta';
+import Input from '@/components/input/Input';
 import useAuth from '@features/auth/useAuth';
 import { authCode } from '@features/auth/ZodStrings';
 import useForm from '@hooks/useForm';

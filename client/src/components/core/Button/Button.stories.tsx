@@ -1,5 +1,5 @@
+/* eslint-disable react/forbid-dom-props */
 // Button.stories.tsx
-
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Button, { type ButtonProps, SIZES, VARIANTS } from './Button';
@@ -7,7 +7,7 @@ import Button, { type ButtonProps, SIZES, VARIANTS } from './Button';
 const meta: Meta<ButtonProps> = {
   args: {
     children: 'Click me',
-    fullWidth: false,
+    isFullWidth: false,
     size: 'md',
     type: 'button',
     variant: 'primary',
@@ -17,7 +17,7 @@ const meta: Meta<ButtonProps> = {
       control: 'text',
       description: 'Button label or custom node',
     },
-    fullWidth: {
+    isFullWidth: {
       control: 'boolean',
       description: 'Stretch to fill its container',
     },
@@ -91,7 +91,7 @@ export const AllSizes: Story = {
 export const FullWidth: Story = {
   args: {
     children: 'Full Width',
-    fullWidth: true,
+    isFullWidth: true,
   },
 };
 

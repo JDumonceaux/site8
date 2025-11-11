@@ -1,9 +1,10 @@
+// LoadingWrapper.test.tsx
 import { render, screen } from '@testing-library/react';
 
 import type { AxeResults } from 'axe-core';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import LoadingWrapper from './LoadingWrapper';
-// LoadingWrapper.test.tsx
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 expect.extend(toHaveNoViolations);
@@ -96,7 +97,9 @@ describe('loadingWrapper Component', () => {
     expect.assertions(1);
 
     const { container } = render(
-      <LoadingWrapper children={undefined} isLoading />,
+      <LoadingWrapper isLoading>
+        <div />
+      </LoadingWrapper>,
     );
     const bar = container.querySelector('div');
 

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@storybook/addon-actions": "^9.0.8",
     "eslint": "^9.39.1"
   }
 }

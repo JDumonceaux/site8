@@ -1,9 +1,10 @@
+// Avatar.test.tsx
 import { render, screen } from '@testing-library/react';
 
 import type { AxeResults } from 'axe-core';
 import { configureAxe } from 'jest-axe';
 import Avatar from './Avatar';
-// Avatar.test.tsx
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 const axe = configureAxe({

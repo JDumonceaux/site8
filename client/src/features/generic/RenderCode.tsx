@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 
-import IconButton from '@components/core/Button/IconButton/IconButton';
 import { CopyIcon } from '@components/icons/CopyIcon';
 import styled from 'styled-components';
+import IconButton from '@/components/core/button/icon-buttton/IconButton';
 
 type RenderCodeProps = {
   readonly children?: React.ReactNode;

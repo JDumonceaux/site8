@@ -2,71 +2,73 @@ import { msgFormatter } from "app/util";
 const Globalize = require("globalize");
 import cloneDeep from "lodash/cloneDeep";
 
-const useQuote = () => {
-    // Adds additional values to quote
-    const getExtendedQuote = (quote, user) => {
-        if (!quote) return {};
+// Helper utilities extracted to reduce complexity inside functions
+const formatDate = (date) => {
+    if (!date) return "";
+    const fmtr = Globalize("en").dateFormatter();
+    return fmtr(new Date(date));
+};
 
-        const clone = cloneDeep(quote);
+const safeString = (value) =>
+    value === null || value === undefined ? "" : value;
 
-        const fmtr = Globalize("en").dateFormatter();
-        const totalQuoteValue = Number.isNaN(quote.QuoteValueGE)
-            ? 0
-            : quote.QuoteValueGE;
-        const poValue = Number.isNaN(quote.POValue) ? 0 : quote.POValue;
-        const minPOValue = totalQuoteValue * 0.95;
-        const maxPOValue = totalQuoteValue * 1.05;
+const safeNumber = (value) => (Number.isNaN(value) ? 0 : value);
 
-        const returnValue = {
-            ...clone,
-            cultureCode: quote.CultureCode ?? user.CultureCode,
-            currencyCode: quote.CurrencyCode ?? user.CurrencyCode,
-            description:
-                quote.Description === null || quote.Description === undefined
-                    ? ""
-                    : quote.Description,
-            dueDate: quote.DueDate ? fmtr(new Date(quote.DueDate)) : "",
-            isPOInvalid:
-                poValue > 0
-                    ? poValue < minPOValue || poValue > maxPOValue
-                    : false,
-            isReadOnly:
-                !quote ||
-                quote.UserAuth ||
-                quote.StatusID === 2 ||
-                quote.StatusID > 4,
-            isUserSearchDisabled:
-                quote.UserAuth || quote.StatusID === 2 || quote.StatusID > 4,
-            maxPOValue,
-            minPOValue,
-            orgId: quote.OrgID ?? user.OrgID,
-            poNumber: quote.PONumber === null ? "" : quote.PONumber,
-            poValue,
-            quoteName: quote.QuoteName === null ? "" : quote.QuoteName,
-            //most customers will have an SapID, only SFDC Quotes *could* only have a DUNS
-            //if SAP customer we will lock Org, territory, Currency based on Account
-            sapCustomer: !(quote.SapID === null || quote.SapID === undefined),
-            status: msgFormatter(`server/status/short/${quote.StatusID}`)(),
-            submitDate: quote.SubmitDate
-                ? fmtr(new Date(quote.SubmitDate))
-                : "",
-            territoryId: quote.TerritoryID ?? user.TerritoryID,
-            totalQuoteValue
-        };
+const computePOBounds = (total) => ({
+    max: total * 1.05,
+    min: total * 0.95
+});
 
-        return returnValue;
+const isSapCustomer = (quote) => !(quote.SapID === null || quote.SapID === undefined);
+
+const formatStatus = (statusID) => msgFormatter(`server/status/short/${statusID}`)();
+
+const isSearchOrReadOnly = (quote) => quote.UserAuth || quote.StatusID === 2 || quote.StatusID > 4;
+
+// Adds additional values to quote (moved to outer scope and simplified)
+const getExtendedQuote = (quote, user) => {
+    if (!quote) return {};
+
+    const clone = cloneDeep(quote);
+
+    const totalQuoteValue = safeNumber(quote.QuoteValueGE);
+    const poValue = safeNumber(quote.POValue);
+    const { max: maxPOValue, min: minPOValue } = computePOBounds(totalQuoteValue);
+
+    const returnValue = {
+        ...clone,
+        cultureCode: quote.CultureCode ?? user.CultureCode,
+        currencyCode: quote.CurrencyCode ?? user.CurrencyCode,
+        description: safeString(quote.Description),
+        dueDate: formatDate(quote.DueDate),
+        isPOInvalid: poValue > 0 ? poValue < minPOValue || poValue > maxPOValue : false,
+        isReadOnly: !quote || isSearchOrReadOnly(quote),
+        isUserSearchDisabled: isSearchOrReadOnly(quote),
+        maxPOValue,
+        minPOValue,
+        orgId: quote.OrgID ?? user.OrgID,
+        poNumber: quote.PONumber === null ? "" : quote.PONumber,
+        poValue,
+        quoteName: quote.QuoteName === null ? "" : quote.QuoteName,
+        //most customers will have an SapID, only SFDC Quotes *could* only have a DUNS
+        //if SAP customer we will lock Org, territory, Currency based on Account
+        sapCustomer: isSapCustomer(quote),
+        status: formatStatus(quote.StatusID),
+        submitDate: formatDate(quote.SubmitDate),
+        territoryId: quote.TerritoryID ?? user.TerritoryID,
+        totalQuoteValue
     };
 
+    return returnValue;
+};
+
+const useQuote = () => {
     const getFormValues = (quote, user) => {
         if (!quote) return {};
 
-        const fmtr = Globalize("en").dateFormatter();
-        const totalQuoteValue = Number.isNaN(quote.QuoteValueGE)
-            ? 0
-            : quote.QuoteValueGE;
-        const poValue = Number.isNaN(quote.POValue) ? 0 : quote.POValue;
-        const minPOValue = totalQuoteValue * 0.95;
-        const maxPOValue = totalQuoteValue * 1.05;
+        const totalQuoteValue = safeNumber(quote.QuoteValueGE);
+        const poValue = safeNumber(quote.POValue);
+        const { max: maxPOValue, min: minPOValue } = computePOBounds(totalQuoteValue);
 
         const clone = cloneDeep(quote);
 
@@ -74,15 +76,9 @@ const useQuote = () => {
             ...clone,
             cultureCode: quote.CultureCode ?? user.CultureCode,
             currencyCode: quote.CurrencyCode ?? user.CurrencyCode,
-            description:
-                quote.Description === null || quote.Description === undefined
-                    ? ""
-                    : quote.Description,
-            dueDate: quote.DueDate ? fmtr(new Date(quote.DueDate)) : "",
-            isPOInvalid:
-                poValue > 0
-                    ? poValue < minPOValue || poValue > maxPOValue
-                    : false,
+            description: safeString(quote.Description),
+            dueDate: formatDate(quote.DueDate),
+            isPOInvalid: poValue > 0 ? poValue < minPOValue || poValue > maxPOValue : false,
             maxPOValue,
             minPOValue,
             orgId: quote.OrgID ?? user.OrgID,
@@ -91,11 +87,9 @@ const useQuote = () => {
             quoteName: quote.QuoteName === null ? "" : quote.QuoteName,
             //most customers will have an SapID, only SFDC Quotes *could* only have a DUNS
             //if SAP customer we will lock Org, territory, Currency based on Account
-            sapCustomer: !(quote.SapID === null || quote.SapID === undefined),
-            status: msgFormatter(`server/status/short/${quote.StatusID}`)(),
-            submitDate: quote.SubmitDate
-                ? fmtr(new Date(quote.SubmitDate))
-                : "",
+            sapCustomer: isSapCustomer(quote),
+            status: formatStatus(quote.StatusID),
+            submitDate: formatDate(quote.SubmitDate),
             territoryId: quote.TerritoryID ?? user.TerritoryID,
             totalQuoteValue
         };
@@ -145,6 +139,7 @@ const useQuote = () => {
     };
 
     return {
+        getExtendedQuote,
         getFormValues,
         mapFormToQuote
     };

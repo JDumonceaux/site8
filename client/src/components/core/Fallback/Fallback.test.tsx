@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import Fallback from './Fallback';
-// Fallback.test.tsx
+// eslint-disable-next-line import/no-unassigned-import -- Extends Jest matchers
 import '@testing-library/jest-dom';
 
 describe('fallback component', () => {
@@ -58,7 +58,9 @@ describe('fallback component', () => {
   test('lines below MIN_LINES clamp to 1 and warn', () => {
     expect.assertions(3);
 
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {
+      // Mock implementation to suppress console warnings
+    });
     render(<Fallback lines={0} />);
     const lines = screen.getAllByTestId('fallback-line');
 
@@ -74,7 +76,9 @@ describe('fallback component', () => {
   test('lines above MAX_LINES clamp to 20 and warn', () => {
     expect.assertions(3);
 
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {
+      // Mock implementation to suppress console warnings
+    });
     render(<Fallback lines={25} />);
     const lines = screen.getAllByTestId('fallback-line');
 

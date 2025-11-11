@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-dom-props */
 import type { Meta, StoryObj } from '@storybook/react';
 
 import LoadingWrapper from './LoadingWrapper';

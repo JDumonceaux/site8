@@ -1,8 +1,9 @@
+// Footer.test.tsx
 import { render, screen } from '@testing-library/react';
 
 import { configureAxe } from 'jest-axe';
 import Footer from './Footer';
-// Footer.test.tsx
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 const axe = configureAxe();

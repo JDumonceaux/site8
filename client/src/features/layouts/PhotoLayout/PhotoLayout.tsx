@@ -2,7 +2,7 @@ import { type JSX, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-import AppInitializer from '@features/app/AppInitializer/AppInitializer';
+import AppInitializer from '@/features/app/app-initializer/AppInitializer';
 import styled from 'styled-components';
 
 /** Accessible fallback displayed during lazy-loading */

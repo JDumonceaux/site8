@@ -1,10 +1,10 @@
 import * as Form from '@radix-ui/react-form';
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/core/Button/Button';
-import Meta from '@components/core/Meta/Meta';
-import Input from '@components/Input/Input';
-import StyledLink from '@components/Link/StyledLink/StyledLink';
+import Button from '@/components/core/button/Button';
+import Meta from '@/components/core/meta/Meta';
+import Input from '@/components/input/Input';
+import StyledLink from '@/components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import styled from 'styled-components';
 import type { FormState } from '../../types';

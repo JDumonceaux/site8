@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Meta from '@components/core/Meta/Meta';
-import Input from '@components/Input/Input';
-import StyledLink from '@components/Link/StyledLink/StyledLink';
+import Meta from '@/components/core/meta/Meta';
+import Input from '@/components/input/Input';
+import StyledLink from '@/components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import { emailAddress, password } from '@features/auth/ZodStrings';
 import useForm from '@hooks/useForm';

@@ -1,9 +1,10 @@
+// Button.test.tsx
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import type { AxeResults } from 'axe-core';
 import { configureAxe } from 'jest-axe';
 import Button, { SIZES, VARIANTS } from './Button';
-// Button.test.tsx
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 const axe = configureAxe();
@@ -52,9 +53,9 @@ describe('Button component – behavior & basic styling', () => {
     expect(button).toHaveStyle({ display: 'inline-flex' });
   });
 
-  test('fullWidth prop adds inline width:100%', () => {
+  test('isFullWidth prop adds inline width:100%', () => {
     expect.assertions(1);
-    render(<Button fullWidth>Wide</Button>);
+    render(<Button isFullWidth>Wide</Button>);
     const button = screen.getByRole('button', { name: 'Wide' });
     expect(button).toHaveStyle({ width: '100%' });
   });
@@ -83,7 +84,7 @@ describe('Button component – accessibility', () => {
     ['fullWidth', { fullWidth: true }],
   ] as const)('no a11y violations – %s', async (_label, props) => {
     expect.hasAssertions();
-    const { container } = render(<Button {...rest}>Test</Button>);
+    const { container } = render(<Button {...props}>Test</Button>);
     const results: AxeResults = await axe(container);
     expect(results).toHaveNoViolations();
   });

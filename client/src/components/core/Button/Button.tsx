@@ -16,7 +16,7 @@ export type ButtonProps = Omit<
   'type'
 > & {
   /** Stretch to fill its parent container */
-  fullWidth?: boolean;
+  isFullWidth?: boolean;
   /** Visual size of the button */
   size?: Size;
   type?: 'button' | 'reset' | 'submit';
@@ -122,7 +122,7 @@ const StyledButton = styled.button<StyledButtonProps>`
  */
 const Button = ({
   children,
-  fullWidth = false,
+  isFullWidth = false,
   size = 'md',
   type = 'button',
   variant = 'primary',
@@ -130,7 +130,7 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   return (
     <StyledButton
-      $fullWidth={fullWidth}
+      $fullWidth={isFullWidth}
       $size={size}
       $variant={variant}
       type={type}

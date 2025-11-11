@@ -25,8 +25,8 @@ export default {
         'check-file/folder-naming-convention': [
             'error',
             {
-                // Using 'KEBAB_CASE' for folder naming to match project convention; update if other casing is used elsewhere
-                '**/*': 'kebab-case',
+                // Allow PascalCase for component folders, enforce kebab-case for others
+                'src/**/!(components)/**/*': 'KEBAB_CASE',
             },
         ],
         // Enforce best practices in tests

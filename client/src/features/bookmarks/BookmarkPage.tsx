@@ -1,9 +1,9 @@
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
-import Meta from '@components/core/Meta/Meta';
-import PageTitle from '@components/core/PageTitle/PageTitle';
 import Layout from '@features/layouts/Layout/Layout';
+import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
+import Meta from '@/components/core/meta/Meta';
+import PageTitle from '@/components/core/page-title/PageTitle';
 import BookmarkList from './BookmarkList';
 import useBookmarks from './useBookmarks';
 

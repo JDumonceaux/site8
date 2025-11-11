@@ -5,7 +5,7 @@ import type { HTMLAttributes, JSX, MouseEventHandler, ReactNode } from 'react';
 import { forwardRef } from 'react';
 
 import styled from 'styled-components';
-import Tooltip from '../Tooltip/TooltipBase';
+import Tooltip from '../tooltip/TooltipBase';
 
 type ClearAdornmentProps = {
   /** Tooltip text for screen readers */

@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-dom-props */
 // Dialog.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -20,7 +21,7 @@ const meta: Meta<DialogProps> = {
         here.
       </p>
     ),
-    footer: <button>Confirm</button>,
+    footer: <button type="button">Confirm</button>,
     label: 'Dialog Title',
     size: 'md',
     variant: 'default',

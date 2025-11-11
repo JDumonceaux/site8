@@ -1,26 +1,26 @@
 import type { JSX } from 'react';
 
-import type { InputBaseProps } from './Base/InputBase/InputBase';
-import InputBase from './Base/InputBase/InputBase';
-import InputButton from './InputButton/InputButton';
-import InputCheckbox from './InputCheckbox/InputCheckbox';
-import InputColor from './InputColor/InputColor';
-import InputCounter from './InputCounter/InputCounter';
-import InputDate from './InputDate/InputDate';
-import InputEmail from './InputEmail/InputEmail';
-import InputFile from './InputFile/InputFile';
-import InputHidden from './InputHidden/InputHidden';
-import InputImage from './InputImage/InputImage';
-import InputNumber from './InputNumber/InputNumber';
-import InputPassword from './InputPassword/InputPassword';
-import InputRadio from './InputRadio/InputRadio';
-import InputSearch from './InputSearch/InputSearch';
-import InputSelect from './InputSelect/InputSelect';
-import InputTel from './InputTel/InputTel';
-import InputText from './InputText/InputText';
-import InputToggle from './InputToggle/InputToggle';
-import InputUrl from './InputUrl/InputUrl';
-import TextArea from './TextArea/TextArea';
+import type { InputBaseProps } from './base/input-base/InputBase';
+import InputBase from './base/input-base/InputBase';
+import InputButton from './input-button/InputButton';
+import InputCheckbox from './input-checkbox/InputCheckbox';
+import InputColor from './input-color/InputColor';
+import InputCounter from './input-counter/InputCounter';
+import InputDate from './input-date/InputDate';
+import InputEmail from './input-email/InputEmail';
+import InputFile from './input-file/InputFile';
+import InputHidden from './input-hidden/InputHidden';
+import InputImage from './input-image/InputImage';
+import InputNumber from './input-number/InputNumber';
+import InputPassword from './input-password/InputPassword';
+import InputRadio from './input-radio/InputRadio';
+import InputSearch from './input-search/InputSearch';
+import InputSelect from './input-select/InputSelect';
+import InputTel from './input-tele/InputTel';
+import InputText from './input-text/InputText';
+import InputToggle from './input-toggle/InputToggle';
+import InputUrl from './input-url/InputUrl';
+import TextArea from './text-area/TextArea';
 
 type InputComponent = ((props: InputBaseProps) => JSX.Element | null) & {
   Button: typeof InputButton;

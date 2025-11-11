@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useCallback, useEffect } from 'react';
 
-import Button from '@components/core/Button/Button';
+import Button from '@/components/core/button/Button';
 import styled from 'styled-components';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
 

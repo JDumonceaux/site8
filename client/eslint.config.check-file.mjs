@@ -23,5 +23,12 @@ export default {
                 ignoreMiddleExtensions: true,
             },
         ],
+        'check-file/folder-naming-convention': [
+            'error',
+            {
+                // Using 'KEBAB_CASE' for folder naming to match project convention; update if other casing is used elsewhere
+                '**/*': 'KEBAB_CASE',
+            },
+        ],
     },
 };

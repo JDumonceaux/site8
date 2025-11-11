@@ -39,6 +39,7 @@ export default {
                     "prev": false,
                     props: false,
                     ref: false,
+                    res: false,
                     "str": false,
                     "temp": false,
                     "util": false,

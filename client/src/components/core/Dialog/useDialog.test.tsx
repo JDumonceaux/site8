@@ -1,7 +1,7 @@
 // useDialog.test.ts
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 
-import { useDialog, type UseDialogReturn } from './useDialog';
+import { useDialog } from './useDialog';
 
 describe('useDialog hook', () => {
   test('should initialize closed by default', () => {
@@ -23,7 +23,7 @@ describe('useDialog hook', () => {
   test('open() should set isOpen to true', () => {
     expect.assertions(1);
 
-    const { result } = renderHook<unknown, UseDialogReturn>(() => useDialog());
+    const { result } = renderHook(() => useDialog());
     act(() => {
       result.current.open();
     });
@@ -34,9 +34,7 @@ describe('useDialog hook', () => {
   test('close() should set isOpen to false', () => {
     expect.assertions(1);
 
-    const { result } = renderHook<unknown, UseDialogReturn>(() =>
-      useDialog(true),
-    );
+    const { result } = renderHook(() => useDialog(true));
     act(() => {
       result.current.close();
     });
@@ -47,9 +45,7 @@ describe('useDialog hook', () => {
   test('toggle() should invert isOpen state', () => {
     expect.assertions(2);
 
-    const { result } = renderHook<unknown, UseDialogReturn>(() =>
-      useDialog(false),
-    );
+    const { result } = renderHook(() => useDialog(false));
     act(() => {
       result.current.toggle();
     });

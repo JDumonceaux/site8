@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import { pageLoader } from '../features/pageEdit/pagePrefetch';
+import { pageLoader } from '../features/page-edit/pagePrefetch';
 import ErrorPage from '../features/site/ErrorPage';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -85,19 +85,19 @@ const DevelopPage = lazy(async () => import('../features/design/DevelopPage'));
 // Admin Pages (Require Admin Role)
 // ---------------------
 const ImageEditPage = lazy(
-  async () => import('../features/imageEdit/ImageEditPage'),
+  async () => import('../features/image-edit/ImageEditPage'),
 );
 const ImagesEditPage = lazy(
-  async () => import('../features/imagesEdit/ImagesEditPage'),
+  async () => import('../features/images-edit/ImagesEditPage'),
 );
 const ItemsAddPage = lazy(
-  async () => import('../features/itemsAdd/ItemsAddPage'),
+  async () => import('../features/items-add/ItemsAddPage'),
 );
 const PageEditPage = lazy(
-  async () => import('../features/pageEdit/PageEditPage'),
+  async () => import('../features/page-edit/PageEditPage'),
 );
 const PagesEditPage = lazy(
-  async () => import('../features/pagesEdit/PagesEditPage'),
+  async () => import('../features/pages-edit/PagesEditPage'),
 );
 const TestsEditPage = lazy(
   async () => import('../features/tests/TestsEditPage'),

@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import LoadingWrapper from '@components/core/Loading/LoadingWrapper';
+import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import styled from 'styled-components';
 

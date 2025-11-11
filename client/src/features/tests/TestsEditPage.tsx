@@ -1,11 +1,5 @@
 import { type JSX, useEffect, useState } from 'react';
 
-import Meta from '@components/core/Meta/Meta';
-import PageTitle from '@components/core/PageTitle/PageTitle';
-import Input from '@components/Input/Input';
-import StyledLink from '@components/Link/StyledLink/StyledLink';
-import StyledPlainButton from '@components/Link/StyledPlainButton/StyledPlainButton';
-import { Switch } from '@components/Switch/Switch';
 import {
   closestCenter,
   DndContext,
@@ -25,6 +19,12 @@ import Layout from '@features/layouts/Layout/Layout';
 import SortableItem from '@features/tests/SortableItem';
 import useTestsEdit from '@features/tests/useTestsEdit';
 import styled from 'styled-components';
+import Meta from '@/components/core/meta/Meta';
+import PageTitle from '@/components/core/page-title/PageTitle';
+import Input from '@/components/input/Input';
+import StyledLink from '@/components/link/styled-link/StyledLink';
+import StyledPlainButton from '@/components/link/styled-plain-button/StyledPlainButton';
+import { Switch } from '@/components/switch/Switch';
 
 // Do not remove comments
 const TestsEditPage = (): JSX.Element | null => {

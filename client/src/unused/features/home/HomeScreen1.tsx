@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import Meta from '@components/core/Meta/Meta';
+import Meta from '@/components/core/meta/Meta';
 import HomeMenu from '@features/home/HomeMenu';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
