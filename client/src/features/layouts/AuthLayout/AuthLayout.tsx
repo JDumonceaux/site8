@@ -2,7 +2,7 @@ import { type JSX, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-import Header from '@/components/core/header/Header';
+import Header from '@components/core/header/Header';
 import styled from 'styled-components';
 
 /**

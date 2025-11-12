@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { msgFormatter } from 'app/util';
 import SelectForm from 'empower-components/SelectForm';
+import PropTypes from 'prop-types';
 
 const ChannelType = ({ channelTypes, onChange, orgId, ...rest }) => {
   // 2025-10-29 - This comment is from the original code:
@@ -27,6 +28,18 @@ const ChannelType = ({ channelTypes, onChange, orgId, ...rest }) => {
       {...rest}
     />
   );
+};
+
+ChannelType.propTypes = {
+  channelTypes: PropTypes.arrayOf(
+    PropTypes.shape({
+      ChannelType: PropTypes.string,
+      Description: PropTypes.string,
+      Source: PropTypes.string,
+    }),
+  ),
+  onChange: PropTypes.func,
+  orgId: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

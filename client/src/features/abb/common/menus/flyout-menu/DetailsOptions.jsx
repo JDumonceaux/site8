@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const positions = {
@@ -33,6 +34,14 @@ const DetailsOptions = ({
       <NameSpan $position={position}>{msgFormatter(path)()}</NameSpan>
     </ItemDiv>
   );
+};
+
+DetailsOptions.propTypes = {
+  active: PropTypes.bool,
+  onChange: PropTypes.func,
+  path: PropTypes.string,
+  position: PropTypes.oneOf(['center', 'left', 'right']),
+  value: PropTypes.string,
 };
 
 export default DetailsOptions;

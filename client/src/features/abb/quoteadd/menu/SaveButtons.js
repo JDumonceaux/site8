@@ -1,18 +1,18 @@
-﻿import React from "react";
-import { useEffect } from "react";
-import styled from "styled-components";
+﻿import React, { useEffect } from "react";
+import { connect } from "react-redux";
+
+import { showConfirmModal } from "actions/InteractionActions";
+import { clearQuoteSaveAction, saveQuote } from "actions/QuoteActions";
 import { msgFormatter } from "app/util";
 import Button from "empower-components/Button";
-import { connect } from "react-redux";
-import { clearQuoteSaveAction, saveQuote } from "actions/QuoteActions";
-import { showConfirmModal } from "actions/InteractionActions";
+import styled from "styled-components";
 
 const SaveButtons = ({
-    quote,
-    quoteSaveAction,
+    clearQuoteSaveAction,
     disabled,
     history,
-    clearQuoteSaveAction,
+    quote,
+    quoteSaveAction,
     saveQuote,
     showConfirmModal
 }) => {
@@ -79,29 +79,29 @@ const SaveButtons = ({
             quote.StatusID > 4
         ) {
             return null;
-        } else {
-            return (
-                <ButtonsDiv>
-                    <Button
-                        buttonType="secondary"
-                        size="regular"
-                        title={msgFormatter("cancel")()}
-                        handleSave={handleCancel}
-                    />
-
-                    <Button
-                        buttonType="primary"
-                        size="regular"
-                        title={msgFormatter("save")()}
-                        handleSave={handleSave}
-                        disabled={disabled}
-                    />
-                </ButtonsDiv>
-            );
         }
-    } else {
-        return null;
+        return (
+            <ButtonsDiv>
+                <Button
+                    handleSave={handleCancel}
+                    size="regular"
+                    title={msgFormatter("cancel")()}
+                    buttonType="secondary"
+                />
+
+                <Button
+                    disabled={disabled}
+                    handleSave={handleSave}
+                    size="regular"
+                    title={msgFormatter("save")()}
+                    buttonType="primary"
+                />
+            </ButtonsDiv>
+        );
+
     }
+    return null;
+
 };
 
 export default connect(null, {

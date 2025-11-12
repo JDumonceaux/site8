@@ -86,13 +86,14 @@ const useAuth = () => {
   const [signInDetails, setSignInDetails] = useState<unknown>();
   const navigate = useNavigate();
 
-  const handleError = (error: unknown): void => {
-    if (error instanceof AuthError) {
-      setError({ code: error.name, message: error.message });
+  const handleError = (errorValue: unknown): void => {
+    if (errorValue instanceof AuthError) {
+      setError({ code: errorValue.name, message: errorValue.message });
     } else {
       setError({
         code: '',
-        message: error instanceof Error ? error.message : 'Unknown Error',
+        message:
+          errorValue instanceof Error ? errorValue.message : 'Unknown Error',
       });
     }
   };
@@ -109,7 +110,7 @@ const useAuth = () => {
       }
       case 'DONE': {
         // The user has successfully changed their password
-        navigate('/');
+        void navigate('/');
         break;
       }
     }
@@ -125,7 +126,7 @@ const useAuth = () => {
       case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED': {
         // The user was created with a temporary password and must set a new one.
         // Complete the process with confirmSignIn.
-        navigate('/password-reset');
+        void navigate('/password-reset');
         break;
       }
       case 'CONFIRM_SIGN_IN_WITH_SMS_CODE': {
@@ -142,7 +143,7 @@ const useAuth = () => {
       case 'CONFIRM_SIGN_UP': {
         // Validation code is sent to the user's email during sign-up
         //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
-        navigate('/confirm');
+        void navigate('/confirm');
         break;
       }
       case 'CONTINUE_SIGN_IN_WITH_MFA_SELECTION': {
@@ -159,12 +160,12 @@ const useAuth = () => {
       case 'DONE': {
         // User is signed in
         // The sign in process has been completed.
-        navigate('/');
+        void navigate('/');
         break;
       }
       case 'RESET_PASSWORD': {
         //  The user must reset their password via resetPassword
-        navigate('/password-reset');
+        void navigate('/password-reset');
         break;
       }
       default: {
@@ -181,22 +182,22 @@ const useAuth = () => {
         const { codeDeliveryDetails } = step;
         if (codeDeliveryDetails) {
           // Redirect user to confirm-sign-up with link screen.
-          navigate('/confirm');
+          void navigate('/confirm');
         } else {
           // Perform auto sign-in
-          authAutoSignIn();
+          void authAutoSignIn();
         }
         break;
       }
       case 'CONFIRM_SIGN_UP': {
         // Validation code is sent to the user's email during sign-up
         //  The user hasn't completed the sign-up flow fully and must be confirmed via confirmSignUp
-        navigate('/confirm');
+        void navigate('/confirm');
         break;
       }
       case 'DONE': {
         // The user has been successfully signed up
-        navigate('/');
+        void navigate('/');
         break;
       }
       default: {
@@ -213,7 +214,7 @@ const useAuth = () => {
       const { nextStep } = await autoSignIn();
 
       handleSignInStep(nextStep);
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -234,7 +235,7 @@ const useAuth = () => {
         newPassword,
         username: eMailAddress,
       });
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -252,7 +253,7 @@ const useAuth = () => {
       });
       console.log(nextStep);
       handleSignUpStep(nextStep);
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -264,7 +265,7 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await deleteUser();
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -275,11 +276,13 @@ const useAuth = () => {
     try {
       setError(null);
       setIsLoading(true);
-      const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
-      setAccessToken(accessToken);
-      setIdToken(idToken);
-    } catch (error: unknown) {
-      handleError(error);
+      const session = await fetchAuthSession();
+      const { accessToken: sessionAccessToken, idToken: sessionIdToken } =
+        session.tokens ?? {};
+      setAccessToken(sessionAccessToken);
+      setIdToken(sessionIdToken);
+    } catch (error_: unknown) {
+      handleError(error_);
     } finally {
       setIsLoading(false);
     }
@@ -294,20 +297,21 @@ const useAuth = () => {
       });
       setAccessToken(tokens?.accessToken);
       setIdToken(tokens?.idToken);
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const authFetchDevices = async () => {
+  const authFetchDevices = async (): Promise<unknown> => {
     try {
       setError(null);
       setIsLoading(true);
       return await fetchDevices();
-    } catch (error: unknown) {
-      handleError(error);
+    } catch (error_: unknown) {
+      handleError(error_);
+      return null;
     } finally {
       setIsLoading(false);
     }
@@ -318,7 +322,7 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await forgetDevice();
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -326,23 +330,31 @@ const useAuth = () => {
   };
 
   const handleGetCurrentUser = (
-    username: string,
-    userId: string,
-    signInDetails: unknown,
+    currentUsername: string,
+    currentUserId: string,
+    currentSignInDetails: unknown,
   ): void => {
-    setUsername(username);
-    setUserId(userId);
-    setSignInDetails(signInDetails);
+    setUsername(currentUsername);
+    setUserId(currentUserId);
+    setSignInDetails(currentSignInDetails);
   };
 
   const authGetCurrentUser = async () => {
     try {
       setError(null);
       setIsLoading(true);
-      const { signInDetails, userId, username } = await getCurrentUser();
-      handleGetCurrentUser(username, userId, signInDetails);
-    } catch (error: unknown) {
-      handleError(error);
+      const {
+        signInDetails: currentSignInDetails,
+        userId: currentUserId,
+        username: currentUsername,
+      } = await getCurrentUser();
+      handleGetCurrentUser(
+        currentUsername,
+        currentUserId,
+        currentSignInDetails,
+      );
+    } catch (error_: unknown) {
+      handleError(error_);
     } finally {
       setIsLoading(false);
     }
@@ -358,7 +370,7 @@ const useAuth = () => {
       setIsLoading(true);
       const data = await fetchUserAttributes();
       handleFetchUserAttributes(data);
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -374,7 +386,7 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await rememberDevice();
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -389,7 +401,7 @@ const useAuth = () => {
       await resendSignUpCode({
         username: eMailAddress,
       });
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -405,7 +417,7 @@ const useAuth = () => {
         username: eMailAddress,
       });
       handleResetPasswordNextStep(nextStep);
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -432,7 +444,7 @@ const useAuth = () => {
         username: eMailAddress,
       });
       handleSignInStep(nextStep);
-    } catch (error) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -451,7 +463,7 @@ const useAuth = () => {
       await signInWithRedirect({
         provider,
       });
-    } catch (error) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -466,7 +478,7 @@ const useAuth = () => {
       setAccessToken(undefined);
       setIdToken(undefined);
       await signOut({ global: true });
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -496,7 +508,7 @@ const useAuth = () => {
         username: eMailAddress,
       });
       handleSignUpStep(nextStep);
-    } catch (error) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -515,7 +527,7 @@ const useAuth = () => {
         newPassword,
         oldPassword,
       });
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);
@@ -527,7 +539,7 @@ const useAuth = () => {
       setError(null);
       setIsLoading(true);
       await currentAuthenticatedUser();
-    } catch (error: unknown) {
+    } catch {
       handleError(error);
     } finally {
       setIsLoading(false);

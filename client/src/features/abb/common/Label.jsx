@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 /**
@@ -15,6 +16,13 @@ const Label = ({ children, className, path, startAdornment }) => (
     <Content>{children}</Content>
   </Wrapper>
 );
+
+Label.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  path: PropTypes.string,
+  startAdornment: PropTypes.node,
+};
 
 export default Label;
 

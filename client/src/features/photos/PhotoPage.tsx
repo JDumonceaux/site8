@@ -1,10 +1,10 @@
 import { type JSX, useDeferredValue } from 'react';
 
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page-title/PageTitle';
 import Layout from '@features/layouts/Layout/Layout';
 import { sanitizeUrl } from '@lib/utils/helpers';
-import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
-import Meta from '@/components/core/meta/Meta';
-import PageTitle from '@/components/core/page-title/PageTitle';
 import usePhotos from './usePhotos';
 
 /**

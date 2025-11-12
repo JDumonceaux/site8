@@ -1,8 +1,8 @@
 import React, { type JSX } from 'react';
 
-import IconMenu from '@/components/Icon-menu/IconMenu';
-import IconMenuItem from '@/components/Icon-menu/IconMenuItem';
-import Input from '@/components/input/Input';
+import IconMenu from '@components/Icon-menu/IconMenu';
+import IconMenuItem from '@components/Icon-menu/IconMenuItem';
+import Input from '@components/input/Input';
 import styled from 'styled-components';
 import type { ListItem } from '../../types';
 import type { ImageAddExt } from './ImageAdd';

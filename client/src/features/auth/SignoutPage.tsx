@@ -1,8 +1,8 @@
 import { type FormEvent, type JSX, useEffect } from 'react';
 
-import Meta from '@/components/core/meta/Meta';
-import Button from '@components/form/Button/Button';
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import styled from 'styled-components';
 import AuthContainer from './AuthContainer';
@@ -14,17 +14,19 @@ const SignOutpPage = (): JSX.Element => {
     useAuth();
 
   useEffect(() => {
-    authFetchAuthSession();
+    void authFetchAuthSession();
   }, [authFetchAuthSession]);
 
-  const handleSubmit = async (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    try {
-      await authSignOut();
-    } catch {
-      // Handle sign-up error
-    }
+    void (async () => {
+      try {
+        await authSignOut();
+      } catch {
+        // Handle sign-up error
+      }
+    })();
   };
 
   return (
@@ -42,7 +44,7 @@ const SignOutpPage = (): JSX.Element => {
       >
         {authorized ? (
           <StyledError>
-            Oops! It looks like you are already signed out. Would you like to{' '}
+            Oops! It looks like you are already signed out. Would you like to
             <StyledLink to="/signin">Sign In</StyledLink>?
           </StyledError>
         ) : (

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ToolTipIcon from '../ToolTipIcon';
 import Favorite from './Favorite';
@@ -77,6 +78,23 @@ const ViewHeader = ({
       <div>{children}</div>
     </WrapperDiv>
   );
+};
+
+ViewHeader.propTypes = {
+  children: PropTypes.node,
+  hideMenu: PropTypes.bool,
+  quote: PropTypes.shape({
+    DomesticPreference: PropTypes.bool,
+    Favorite: PropTypes.bool,
+    GovernmentFunded: PropTypes.bool,
+    QuoteID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    QuoteName: PropTypes.string,
+    QuoteNo: PropTypes.string,
+    VersionDescription: PropTypes.string,
+    VersionID: PropTypes.number,
+    VersionName: PropTypes.string,
+  }),
+  requireGovFundedAnswer: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

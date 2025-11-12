@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { msgFormatter } from 'app/util';
 import SelectForm from 'empower-components/SelectForm';
+import PropTypes from 'prop-types';
 
 const Currency = ({ currencies, onChange, ...rest }) => {
   const options =
@@ -21,6 +22,15 @@ const Currency = ({ currencies, onChange, ...rest }) => {
       {...rest}
     />
   );
+};
+
+Currency.propTypes = {
+  currencies: PropTypes.arrayOf(
+    PropTypes.shape({
+      CurrencyCode: PropTypes.string,
+    }),
+  ),
+  onChange: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({

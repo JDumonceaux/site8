@@ -4,7 +4,7 @@ import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
 import { z } from 'zod';
 import type { MenuAdd } from '../../types';
-import { useAxios } from './Axios/useAxios';
+import { useAxios } from './axios/useAxios';
 import useForm from './useForm';
 
 // Validation schema

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ViewSubHeader = ({ border = 'normal', middleDiv, rightDiv, title }) => (
@@ -11,6 +12,13 @@ const ViewSubHeader = ({ border = 'normal', middleDiv, rightDiv, title }) => (
     <Right>{rightDiv}</Right>
   </Container>
 );
+
+ViewSubHeader.propTypes = {
+  border: PropTypes.oneOf(['normal', 'bold']),
+  middleDiv: PropTypes.node,
+  rightDiv: PropTypes.node,
+  title: PropTypes.string,
+};
 
 ViewSubHeader.displayName = 'ViewSubHeader';
 export default ViewSubHeader;

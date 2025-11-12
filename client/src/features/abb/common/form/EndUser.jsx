@@ -5,6 +5,7 @@ import { showUserSearchModal } from 'actions/CustomerActions';
 import { msgFormatter } from 'app/util';
 import InputForm from 'empower-components/InputForm';
 import Tooltip from 'empower-components/Tooltip';
+import PropTypes from 'prop-types';
 
 const EndUser = ({ onChange, showUserSearchModal, ...rest }) => {
   const handleSearch = () => {
@@ -28,6 +29,11 @@ const EndUser = ({ onChange, showUserSearchModal, ...rest }) => {
       {...rest}
     />
   );
+};
+
+EndUser.propTypes = {
+  onChange: PropTypes.func,
+  showUserSearchModal: PropTypes.func.isRequired,
 };
 
 export default connect(null, { showUserSearchModal })(EndUser);

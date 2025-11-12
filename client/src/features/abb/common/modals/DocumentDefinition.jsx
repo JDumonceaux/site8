@@ -4,6 +4,7 @@ import { msgFormatter } from 'app/util';
 import Button from 'empower-components/Button';
 import InputForm from 'empower-components/InputForm';
 import SelectForm from 'empower-components/SelectForm';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const DocumentDefinition = ({
@@ -57,6 +58,30 @@ const DocumentDefinition = ({
       />
     </RowDiv>
   );
+};
+
+DocumentDefinition.propTypes = {
+  docFormat: PropTypes.string,
+  docFormatOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      show: PropTypes.bool,
+      text: PropTypes.string,
+    }),
+  ),
+  docName: PropTypes.string,
+  docType: PropTypes.string,
+  docTypeOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      show: PropTypes.bool,
+      text: PropTypes.string,
+    }),
+  ),
+  onDocChange: PropTypes.func.isRequired,
+  onFormatChange: PropTypes.func.isRequired,
+  onNameChange: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
 };
 
 export default DocumentDefinition;

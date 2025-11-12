@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { handleColorType } from 'wwwroot/feature/common/StyleColorType';
 
@@ -61,6 +62,25 @@ const DropDownMenu = ({
       ) : null}
     </WrapperDiv>
   );
+};
+
+DropDownMenu.propTypes = {
+  innerRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+  isMenuEnabled: PropTypes.bool,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      isEnabled: PropTypes.bool,
+      onClick: PropTypes.func,
+      title: PropTypes.string,
+    }),
+  ),
+  position: PropTypes.oneOf(['auto', 'left', 'right']),
+  status: PropTypes.string,
+  title: PropTypes.string,
+  width: PropTypes.string,
 };
 
 export default DropDownMenu;

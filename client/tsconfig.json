@@ -20,13 +20,15 @@
       "@components/*": ["src/components/*"],
       "@content/*": ["src/content/*"],
       "@features/*": ["src/features/*"],
+      "@features/auth/*": ["src/features/auth/*"],
       "@hooks/*": ["src/hooks/*"],
       "@lib/*": ["src/lib/*"],
       "@providers/*": ["src/providers/*"],
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/styles/*"],
-      "@types/*": ["src/types/*"]
-     },
+      "@types/*": ["src/types/*"],
+      "@unused/*": ["src/unused/*"]
+    },
 
     // Allow JSON and TS extensions
     "resolveJsonModule": true,

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import type { ItemAdd, ItemAddExt } from '@/features/items-add/ItemAdd';
 import useSnackbar from '@/features/app/snackbar/useSnackbar';
-import { useAxios } from '@hooks/Axios/useAxios';
+import { useAxios } from '@hooks/axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { ServiceUrl } from '@lib/utils/constants';
 import {

@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import IconsMenuItem from './IconsMenuItem';
 
@@ -514,6 +515,34 @@ const IconsMenu = ({
       )}
     </>
   );
+};
+
+IconsMenu.propTypes = {
+  display: PropTypes.oneOf(['horizontal', 'vertical']),
+  includeLI: PropTypes.bool,
+  includeUL: PropTypes.bool,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      badge: PropTypes.node,
+      badgeStatus: PropTypes.string,
+      children: PropTypes.node,
+      count: PropTypes.number,
+      id: PropTypes.string,
+      isActive: PropTypes.bool,
+      isEnabled: PropTypes.bool,
+      key: PropTypes.string,
+      link: PropTypes.string,
+      onClick: PropTypes.func,
+      show: PropTypes.bool,
+      showText: PropTypes.bool,
+      status: PropTypes.number,
+      text: PropTypes.string,
+      to: PropTypes.string,
+      toolTip: PropTypes.string,
+      toolTipDisabled: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  ),
 };
 
 IconsMenu.displayName = 'IconsMenu';

@@ -9,6 +9,7 @@ import {
   SubSection,
   SubSectionContent,
 } from 'empower-components/ContentSection';
+import PropTypes from 'prop-types';
 
 const QuoteUnavailable = ({ clearInvalidQuoteFlag, invalidQuote }) => {
   const [shouldShow, setShouldShow] = useState(false);
@@ -46,6 +47,11 @@ const QuoteUnavailable = ({ clearInvalidQuoteFlag, invalidQuote }) => {
       </SubSection>
     </ContentSection>
   );
+};
+
+QuoteUnavailable.propTypes = {
+  clearInvalidQuoteFlag: PropTypes.func.isRequired,
+  invalidQuote: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

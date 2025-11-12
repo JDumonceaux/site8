@@ -1,10 +1,10 @@
 import type { JSX } from 'react';
 
-import Meta from '@/components/core/meta/Meta';
+import Meta from '@components/core/meta/Meta';
 import HomeMenu from '@features/home/HomeMenu';
 import Layout from '@features/layouts/Layout/Layout';
+import { MatrixBG } from '@unused/features/animations/MatrixBG';
 import styled from 'styled-components';
-import { MatrixBG } from '@/unused/features/animations/MatrixBG';
 
 const HomeScreen1 = (): JSX.Element => {
   const title = 'Home';

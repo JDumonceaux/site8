@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { showSpinner } from 'actions/index';
+import PropTypes from 'prop-types';
 
 // AppLoading as functional component
 const AppLoading = ({ error, showSpinner }) => {
@@ -15,6 +16,11 @@ const AppLoading = ({ error, showSpinner }) => {
   }, [showSpinner, error]);
 
   return <div />;
+};
+
+AppLoading.propTypes = {
+  error: PropTypes.bool,
+  showSpinner: PropTypes.func.isRequired,
 };
 
 // Loading as functional component
@@ -31,6 +37,12 @@ const Loading = ({ error, pastDelay, showSpinner }) => {
     );
   }
   return null;
+};
+
+Loading.propTypes = {
+  error: PropTypes.bool,
+  pastDelay: PropTypes.bool,
+  showSpinner: PropTypes.func.isRequired,
 };
 
 // ErrorBoundary as functional component
@@ -65,6 +77,11 @@ const ErrorBoundary = ({ children, showSpinner }) => {
   );
 };
 
+ErrorBoundary.propTypes = {
+  children: PropTypes.node,
+  showSpinner: PropTypes.func.isRequired,
+};
+
 const SuspenseRender = ({ children, error, showSpinner }) => (
   <ErrorBoundary showSpinner={showSpinner}>
     <Suspense
@@ -80,5 +97,11 @@ const SuspenseRender = ({ children, error, showSpinner }) => (
     </Suspense>
   </ErrorBoundary>
 );
+
+SuspenseRender.propTypes = {
+  children: PropTypes.node,
+  error: PropTypes.bool,
+  showSpinner: PropTypes.func.isRequired,
+};
 
 export default connect(null, { showSpinner })(SuspenseRender);

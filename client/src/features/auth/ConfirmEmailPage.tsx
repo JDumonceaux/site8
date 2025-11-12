@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { type JSX } from 'react';
 
-import Meta from '@/components/core/meta/Meta';
-import Input from '@/components/input/Input';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import Input from '@components/input/Input';
 import useAuth from '@features/auth/useAuth';
-import { authCode } from '@features/auth/ZodStrings';
 import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 
-// Define Zod Shape
 const schema = z.object({
-  authenticationCode: authCode,
-  emailAddress: z.string().trim(),
+  authenticationCode: z.string().length(6, 'Code must be 6 digits'),
+  emailAddress: z.string().pipe(z.email({ message: 'Invalid email address' })),
 });
 
 const ConfirmEmailPage = (): JSX.Element => {
@@ -29,41 +28,40 @@ const ConfirmEmailPage = (): JSX.Element => {
     emailAddress: '',
   };
 
-  const {
-    formValues,
-    getDefaultProps,
-    getFieldErrors,
-    handleChange,
-    setErrors,
-  } = useForm<FormValues>(initialFormValues);
+  const { formValues, getDefaultProps, getFieldErrors, setErrors } =
+    useForm<FormValues>(initialFormValues);
 
   const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.error?.issues);
+    setErrors(result.error?.issues ?? null);
     return result.success;
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!validateForm()) return;
 
-    try {
-      await authConfirmSignUp(
-        formValues.emailAddress,
-        formValues.authenticationCode,
-      );
-      // Handle successful confirmation
-    } catch (error_) {
-      console.error('Error confirming sign up:', error_);
-    }
+    void (async () => {
+      try {
+        await authConfirmSignUp(
+          formValues.emailAddress,
+          formValues.authenticationCode,
+        );
+        // Handle successful confirmation
+      } catch (error_) {
+        console.error('Error confirming sign up:', error_);
+      }
+    })();
   };
 
-  const handleResend = async () => {
-    try {
-      await authResendConfirmationCode(formValues.emailAddress);
-    } catch (error_) {
-      console.error('Error resending code:', error_);
-    }
+  const handleResend = () => {
+    void (async () => {
+      try {
+        await authResendConfirmationCode(formValues.emailAddress);
+      } catch (error_) {
+        console.error('Error resending code:', error_);
+      }
+    })();
   };
 
   const getStandardInputTextAttributes = (fieldName: FormKeys) => ({
@@ -96,7 +94,6 @@ const ConfirmEmailPage = (): JSX.Element => {
             spellCheck="false"
             autoComplete="email"
             inputMode="email"
-            onChange={handleChange}
             placeholder="Enter Email Address"
             {...getDefaultProps('emailAddress')}
           />
@@ -107,17 +104,16 @@ const ConfirmEmailPage = (): JSX.Element => {
             spellCheck="false"
             autoComplete="one-time-code"
             inputMode="numeric"
-            onChange={handleChange}
             placeholder="Enter Authentication Code"
             {...getStandardInputTextAttributes('authenticationCode')}
           />
 
-          <Button2
+          <Button
             id="login"
             type="submit"
           >
             {isLoading ? 'Processing' : 'Submit'}
-          </Button2>
+          </Button>
 
           <StyledBottomMsg>
             <button

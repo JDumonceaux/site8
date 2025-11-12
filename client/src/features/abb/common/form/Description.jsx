@@ -2,6 +2,7 @@ import React from 'react';
 
 import { msgFormatter } from 'app/util';
 import TextArea from 'empower-components/TextArea';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Description = ({ ...rest }) => {
@@ -14,6 +15,10 @@ const Description = ({ ...rest }) => {
       {...rest}
     />
   );
+};
+
+Description.propTypes = {
+  // Accepts any additional props passed to TextArea component
 };
 
 export default Description;

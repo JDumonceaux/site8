@@ -1,9 +1,9 @@
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
-import Input from '@/components/input/Input';
-import useImageFolder from '@/features/images-edit/useImageFolder';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Input from '@components/input/Input';
 import styled from 'styled-components';
+import useImageFolder from '@/features/images-edit/useImageFolder';
 import FolderButton from './FolderButton';
 
 type Props = {

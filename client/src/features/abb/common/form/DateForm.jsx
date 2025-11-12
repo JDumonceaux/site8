@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FieldLabel from './FieldLabel';
 import FieldWrapper from './FieldWrapper';
@@ -53,6 +54,17 @@ const DateForm = ({
       </InputWrapper>
     </FieldWrapper>
   );
+};
+
+DateForm.propTypes = {
+  autoComplete: PropTypes.string,
+  disabled: PropTypes.bool,
+  extra: PropTypes.node,
+  id: PropTypes.string,
+  label: PropTypes.string,
+  labelProps: PropTypes.object,
+  required: PropTypes.bool,
+  size: PropTypes.oneOf(['regular', 'small', 'large']),
 };
 
 export default DateForm;

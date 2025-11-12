@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const NoData = ({ title }) => {
@@ -9,6 +10,10 @@ const NoData = ({ title }) => {
       <p>{title}</p>
     </NoDataDiv>
   );
+};
+
+NoData.propTypes = {
+  title: PropTypes.string,
 };
 
 export default NoData;

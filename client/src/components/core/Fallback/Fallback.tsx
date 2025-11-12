@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
+import PageTitle from '@components/core/page-title/PageTitle';
 import styled, { keyframes } from 'styled-components';
-import PageTitle from '@/components/core/page-title/PageTitle';
 
 export type FallbackProps = {
   /** Number of loading lines to render (integer between 1 and 10) */
@@ -37,7 +37,6 @@ const Fallback = ({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element => {
     <LoadingContainer aria-live="polite">
       <PageTitle title="Loading…" />
       {widths.map((w, index) => (
-        // eslint-disable-next-line react/no-array-index-key -- Static list, no reordering
         <LoadingLine
           key={index}
           $width={w}

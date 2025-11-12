@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/prefer-tag-over-role */
 import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Accordion = ({ children, defaultOpen, title }) => {
@@ -38,6 +39,12 @@ const Accordion = ({ children, defaultOpen, title }) => {
       {isExpanded ? <ChildrenDiv>{children}</ChildrenDiv> : null}
     </AccordionDiv>
   );
+};
+
+Accordion.propTypes = {
+  children: PropTypes.node,
+  defaultOpen: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export default Accordion;

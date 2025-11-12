@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Banner from 'empower-components/Banner';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const BannerList = ({ children, level, messages, show, title }) => {
@@ -31,6 +32,14 @@ const BannerList = ({ children, level, messages, show, title }) => {
       />
     </StyledBanner>
   );
+};
+
+BannerList.propTypes = {
+  children: PropTypes.node,
+  level: PropTypes.oneOf(['error', 'warning', 'info', 'success']),
+  messages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  show: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export default BannerList;

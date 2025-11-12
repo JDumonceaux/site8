@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { showUserSearchModal } from 'actions/CustomerActions';
 import { msgFormatter } from 'app/util';
 import InputForm from 'empower-components/InputForm';
+import PropTypes from 'prop-types';
 
 const EquipmentOwner = ({ onChange, show }) => {
   if (!show) {
@@ -60,6 +61,11 @@ const EquipmentOwner = ({ onChange, show }) => {
       />
     </>
   );
+};
+
+EquipmentOwner.propTypes = {
+  onChange: PropTypes.func,
+  show: PropTypes.bool,
 };
 
 export default connect(null, { showUserSearchModal })(EquipmentOwner);

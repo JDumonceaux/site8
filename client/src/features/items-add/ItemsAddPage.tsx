@@ -1,12 +1,12 @@
 import { type JSX, Suspense } from 'react';
 
-import MenuBar from '@/features/images-edit/MenuBar';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page-title/PageTitle';
+import Input from '@components/input/Input';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
-import Meta from '@/components/core/meta/Meta';
-import PageTitle from '@/components/core/page-title/PageTitle';
-import Input from '@/components/input/Input';
+import MenuBar from '@/features/images-edit/MenuBar';
 import ItemDetail from './ItemDetail';
 import RightMenu from './RightMenu';
 import useArtists from './useArtists';

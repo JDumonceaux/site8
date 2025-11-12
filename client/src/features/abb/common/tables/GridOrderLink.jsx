@@ -2,6 +2,7 @@
 
 import { msgFormatter } from 'app/util';
 import Tooltip from 'empower-components/Tooltip';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const GridOrderLink = ({ orderURL, poNumber, salesOrder, statusId }) => {
@@ -59,6 +60,13 @@ const GridOrderLink = ({ orderURL, poNumber, salesOrder, statusId }) => {
     );
   }
   return <div />;
+};
+
+GridOrderLink.propTypes = {
+  orderURL: PropTypes.string,
+  poNumber: PropTypes.string,
+  salesOrder: PropTypes.string,
+  statusId: PropTypes.number,
 };
 
 export default GridOrderLink;

@@ -1,10 +1,10 @@
 import * as Form from '@radix-ui/react-form';
 import { type JSX, useActionState } from 'react';
 
-import Button from '@/components/core/button/Button';
-import Meta from '@/components/core/meta/Meta';
-import Input from '@/components/input/Input';
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import styled from 'styled-components';
 import type { FormState } from '../../types';
@@ -37,7 +37,8 @@ const ChangePasswordPage = (): JSX.Element => {
     }
   };
 
-  const [data, action] = useActionState(postItem, {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_state, formAction] = useActionState(postItem, {
     fieldData: { confirmPassword: '', newPassword: '', password: '' },
   } as FormState<ChangePassword>);
 
@@ -54,7 +55,7 @@ const ChangePasswordPage = (): JSX.Element => {
         title={title}
         error={error}
       >
-        <Form.Root action={action}>
+        <Form.Root action={formAction}>
           <Input.Password
             defaultValue=""
             id="password"

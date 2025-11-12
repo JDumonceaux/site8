@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 
 import { msgFormatter } from 'app/util';
 import InputForm from 'empower-components/InputForm';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const EditField = ({ id, onSave, text, value }) => {
@@ -48,6 +50,13 @@ const EditField = ({ id, onSave, text, value }) => {
       </div>
     </TextDiv>
   );
+};
+
+EditField.propTypes = {
+  id: PropTypes.string,
+  onSave: PropTypes.func,
+  text: PropTypes.node,
+  value: PropTypes.string,
 };
 
 EditField.displayName = 'EditField';

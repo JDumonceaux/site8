@@ -1,7 +1,17 @@
 import type { JSX } from 'react';
 
 import styled from 'styled-components';
-import type { Bookmarks } from '../../types/Bookmarks';
+
+type BookmarkItem = {
+  description?: null | string;
+  id: number | string;
+  name: string;
+  url: string;
+};
+
+type Bookmarks = {
+  items: BookmarkItem[];
+};
 
 type BookmarkListProps = {
   readonly data?: Bookmarks | null;

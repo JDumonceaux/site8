@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormatCurrency } from 'react-globalize';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { handleColorType } from '../StyleColorType';
 
@@ -35,6 +36,15 @@ const GridPrice = ({
       {children}
     </StyledDiv>
   );
+};
+
+GridPrice.propTypes = {
+  alignRight: PropTypes.bool,
+  children: PropTypes.node,
+  currencyCode: PropTypes.string,
+  disabled: PropTypes.bool,
+  hideZero: PropTypes.bool,
+  show: PropTypes.bool,
 };
 
 export default GridPrice;

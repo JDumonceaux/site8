@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 
 import GblAutoNumericInput from 'components/util/GblAutoNumericInput';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const NUMERICFORM_TYPE = {
@@ -55,6 +56,14 @@ const NumericForm = ({
       />
     </StyledInput>
   );
+};
+
+NumericForm.propTypes = {
+  label: PropTypes.string,
+  required: PropTypes.bool,
+  type: PropTypes.oneOf(['currency', 'percent', 'percentNeg']),
+  vMax: PropTypes.number,
+  vMin: PropTypes.number,
 };
 
 export default NumericForm;

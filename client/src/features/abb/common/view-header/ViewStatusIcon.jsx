@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import ToolTipIcon from '../ToolTipIcon';
 
 const ViewStatusIcon = ({ quote }) => {
@@ -33,6 +34,14 @@ const ViewStatusIcon = ({ quote }) => {
       ) : null}
     </>
   );
+};
+
+ViewStatusIcon.propTypes = {
+  quote: PropTypes.shape({
+    ReadOnly: PropTypes.bool,
+    VersionLocked: PropTypes.bool,
+    VersionType: PropTypes.number,
+  }),
 };
 
 const mapStateToProps = (state) => ({

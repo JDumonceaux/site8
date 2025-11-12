@@ -3,6 +3,7 @@ export type * from './Art';
 export type * from './ArtistsItems';
 export type * from './ArtistWithItems';
 export type * from './ArtItem';
+export type * from './Auth';
 export type * from './Bookmark';
 export type * from './BookmarksTag';
 export type * from './BookmarksTags';

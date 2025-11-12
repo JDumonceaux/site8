@@ -1,15 +1,15 @@
 import { type JSX, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page-title/PageTitle';
+import ImageSelector from '@components/custom/image-selector/ImageSelector';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
+import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
-import Meta from '@/components/core/meta/Meta';
-import PageTitle from '@/components/core/page-title/PageTitle';
-import ImageSelector from '@/components/custom/image-selector/ImageSelector';
-import Input from '@/components/input/Input';
-import StyledLink from '@/components/link/styled-link/StyledLink';
-import StyledPlainButton from '@/components/link/styled-plain-button/StyledPlainButton';
 import useSnackbar from '@/features/app/snackbar/useSnackbar';
 import type { Image } from '../../types';
 import useImageEdit from './useImageEdit';

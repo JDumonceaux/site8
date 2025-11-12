@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Checkbox from 'empower-components/Checkbox';
+import PropTypes from 'prop-types';
 import FieldWrapper from './FieldWrapper';
 
 const CheckboxForm = ({
@@ -22,6 +23,14 @@ const CheckboxForm = ({
       />
     </FieldWrapper>
   );
+};
+
+CheckboxForm.propTypes = {
+  checked: PropTypes.bool,
+  id: PropTypes.string,
+  label: PropTypes.string,
+  onSelect: PropTypes.func,
+  required: PropTypes.bool,
 };
 
 export default CheckboxForm;

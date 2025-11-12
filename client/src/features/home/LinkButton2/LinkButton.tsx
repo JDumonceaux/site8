@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, JSX } from 'react';
 
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import styled from 'styled-components';
 
 type LinkButtonProps = {

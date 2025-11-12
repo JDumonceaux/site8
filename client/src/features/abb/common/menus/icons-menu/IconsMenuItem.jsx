@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Tooltip from 'empower-components/Tooltip';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { handleColorType } from '../../StyleColorType';
 
@@ -62,6 +63,27 @@ const IconsMenuItem = ({ includeLI = false, item }) => {
   ) : (
     <StyledDiv>{activeContent}</StyledDiv>
   );
+};
+
+IconsMenuItem.propTypes = {
+  includeLI: PropTypes.bool,
+  item: PropTypes.shape({
+    align: PropTypes.string,
+    badge: PropTypes.string,
+    badgeStatus: PropTypes.string,
+    children: PropTypes.node,
+    count: PropTypes.number,
+    icon: PropTypes.node,
+    isEnabled: PropTypes.bool,
+    link: PropTypes.string,
+    onClick: PropTypes.func,
+    show: PropTypes.bool,
+    showText: PropTypes.bool,
+    status: PropTypes.string,
+    text: PropTypes.string,
+    to: PropTypes.string,
+    toolTip: PropTypes.string,
+  }),
 };
 
 IconsMenuItem.displayName = 'IconsMenuItem';

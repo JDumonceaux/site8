@@ -2,11 +2,11 @@ import { type JSX, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-import Avatar from '@/components/core/avatar3/Avatar';
-import Header from '@/components/core/header/Header';
+import Avatar from '@components/core/avatar3/Avatar';
+import Header from '@components/core/header/Header';
+import styled from 'styled-components';
 import AppInitializer from '@/features/app/app-initializer/AppInitializer';
 import Snackbar from '@/features/app/snackbar/Snackbar';
-import styled from 'styled-components';
 
 /**
  * Accessible fallback shown while the page is lazy-loading.

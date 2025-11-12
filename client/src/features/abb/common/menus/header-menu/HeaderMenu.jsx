@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import { msgFormatter } from 'app/util';
 import SectionsBar from 'empower-components/SectionsBar';
+import PropTypes from 'prop-types';
 import usePermissionContext from 'wwwroot/feature/common/usePermissionContext';
 
 const handleSection = (_section) => {
@@ -141,6 +142,24 @@ const HeaderMenu = ({
       showPanel={appData.showPanel}
     />
   );
+};
+
+HeaderMenu.propTypes = {
+  appData: PropTypes.shape({
+    showPanel: PropTypes.bool,
+  }),
+  configuration: PropTypes.shape({
+    Pricing: PropTypes.bool,
+  }),
+  match: PropTypes.shape({
+    url: PropTypes.string,
+  }),
+  priceValidation: PropTypes.shape({
+    Valid: PropTypes.bool,
+  }),
+  quote: PropTypes.shape({
+    QuoteItems: PropTypes.array,
+  }),
 };
 
 const HeaderMenuContainer = (props) => <HeaderMenu {...props} />;

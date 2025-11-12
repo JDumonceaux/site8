@@ -1,15 +1,15 @@
 import type { JSX } from 'react';
 
-import Button from '@/components/core/button/Button';
-import Meta from '@/components/core/meta/Meta';
-import Input from '@/components/input/Input';
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
-import { emailAddress, password } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
+import { emailAddress, password } from '../../types/Auth';
 import AuthContainer from './AuthContainer';
 
 const schema = z.object({
@@ -43,16 +43,24 @@ const SignupPage = (): JSX.Element => {
     event.preventDefault();
     if (!validateForm()) return;
 
-    authSignUp(formValues.emailAddress, formValues.password).catch(() => {
-      // Handle sign-in error
-    });
+    void (async () => {
+      try {
+        await authSignUp(formValues.emailAddress, formValues.password);
+      } catch {
+        // Handle sign-in error
+      }
+    })();
   };
 
   const handleClick = (provider: SocialProvider) => {
-    authSignInWithRedirect(provider).catch((error_: unknown) => {
-      console.error('Error during social sign-in:', error_);
-      // Handle error appropriately, e.g., show a notification
-    });
+    void (async () => {
+      try {
+        await authSignInWithRedirect(provider);
+      } catch (error_) {
+        console.error('Error during social sign-in:', error_);
+        // Handle error appropriately, e.g., show a notification
+      }
+    })();
   };
 
   return (
@@ -130,7 +138,8 @@ const SignupPage = (): JSX.Element => {
           site.
         </TermsDiv>
         <StyledBottomMsg>
-          Already have an account? <StyledLink to="/signin">Sign in</StyledLink>
+          Already have an account?
+          <StyledLink to="/signin">Sign in</StyledLink>
         </StyledBottomMsg>
       </AuthContainer>
     </>

@@ -1,8 +1,8 @@
 import React, { type JSX } from 'react';
 
-import IconMenu from '@/components/Icon-menu/IconMenu';
-import IconMenuItem from '@/components/Icon-menu/IconMenuItem';
-import StyledPlainButton from '@/components/link/styled-plain-button/StyledPlainButton';
+import IconMenu from '@components/Icon-menu/IconMenu';
+import IconMenuItem from '@components/Icon-menu/IconMenuItem';
+import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import { ServiceUrl } from '@lib/utils/constants';
 
 type Props = {

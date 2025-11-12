@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { type JSX } from 'react';
 
-import Meta from '@/components/core/meta/Meta';
-import Input from '@/components/input/Input';
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import { emailAddress, password } from '@features/auth/ZodStrings';
 import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
+import { emailAddress, password } from '../../types/Auth';
 import AuthContainer from './AuthContainer';
 
 // Define Zod Shape
 const schema = z.object({
-  emailAddress: emailAddress,
-  password: password,
+  emailAddress,
+  password,
 });
 
 const ForgotPasswordPage = (): JSX.Element => {
   const title = 'Forgot Password';
 
   type FormValues = z.infer<typeof schema>;
-  type FormKeys = keyof FormValues;
 
   const { authResetPassword, error, isLoading } = useAuth();
 
@@ -30,23 +30,25 @@ const ForgotPasswordPage = (): JSX.Element => {
     password: '',
   };
 
-  const { formValues, getDefaultFields, handleChange, setErrors } =
+  const { formValues, getDefaultProps, setErrors } =
     useForm<FormValues>(defaultFormValues);
 
   const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.error?.issues);
+    setErrors(result.error?.issues ?? null);
     return result.success;
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
-      try {
-        await authResetPassword(formValues.emailAddress);
-      } catch {
-        // Handle error
-      }
+      void (async () => {
+        try {
+          await authResetPassword(formValues.emailAddress);
+        } catch {
+          // Handle error
+        }
+      })();
     }
   };
 
@@ -74,20 +76,19 @@ const ForgotPasswordPage = (): JSX.Element => {
             spellCheck="false"
             autoComplete="email"
             inputMode="email"
-            onChange={handleChange}
             placeholder="Enter Email Address"
-            {...getDefaultFields('emailAddress' as FormKeys)}
+            {...getDefaultProps('emailAddress')}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your
             account.
           </InstDiv>
-          <Button2
+          <Button
             id="login"
             type="submit"
           >
             {isLoading ? 'Processing' : 'Request Password Change'}
-          </Button2>
+          </Button>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/signin">Sign in</StyledLink>
@@ -98,7 +99,6 @@ const ForgotPasswordPage = (): JSX.Element => {
   );
 };
 
-ForgotPasswordPage;
 export default ForgotPasswordPage;
 
 const StyledForm = styled.form`

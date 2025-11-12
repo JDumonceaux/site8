@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { closeQuote, openQuote } from 'actions/QuoteActions';
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import DropDownMenu from 'wwwroot/feature/common/DropDownMenu';
 
 const ViewStatus = ({ closeQuote, openQuote, quote }) => {
@@ -69,6 +70,16 @@ const ViewStatus = ({ closeQuote, openQuote, quote }) => {
       width="150px"
     />
   );
+};
+
+ViewStatus.propTypes = {
+  closeQuote: PropTypes.func.isRequired,
+  openQuote: PropTypes.func.isRequired,
+  quote: PropTypes.shape({
+    QuoteID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    StatusID: PropTypes.number,
+    UserAuth: PropTypes.bool,
+  }),
 };
 
 const mapStateToProps = (state) => ({

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import Label from './Label';
 
 // Reusable label wrapper
@@ -21,3 +22,11 @@ export const LabelC3 = ({
   ) : keepSpacing ? (
     <div className="col-xs-6 col-sm-3" />
   ) : null;
+
+LabelC3.propTypes = {
+  children: PropTypes.node,
+  isDisplayed: PropTypes.bool,
+  keepSpacing: PropTypes.bool,
+  path: PropTypes.string,
+  startAdornment: PropTypes.node,
+};

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { handleColorType } from './StyleColorType';
 
@@ -44,6 +45,20 @@ const StyledIcon = ({ icon, status, title }) => {
       title={title}
     />
   );
+};
+
+StyledIcon.propTypes = {
+  icon: PropTypes.oneOf([
+    'exclamation',
+    'exclamation-circle',
+    'eye',
+    'government',
+    'info-circle',
+    'pen-circle',
+    'us-flag',
+  ]),
+  status: PropTypes.string,
+  title: PropTypes.string,
 };
 
 StyledIcon.displayName = 'StyledIcon';

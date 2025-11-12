@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Tooltip from 'empower-components/Tooltip';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { handleColorType } from './StyleColorType';
 
@@ -57,6 +58,24 @@ const ToolTipIcon = ({ children, icon, status, title }) => {
       {children}
     </StyledToolTip>
   );
+};
+
+ToolTipIcon.propTypes = {
+  children: PropTypes.node,
+  icon: PropTypes.oneOf([
+    'exclamation',
+    'exclamation-circle',
+    'eye',
+    'government',
+    'info-circle',
+    'locked',
+    'pen-circle',
+    'snapshot',
+    'us-flag',
+    'view-only',
+  ]),
+  status: PropTypes.string,
+  title: PropTypes.string,
 };
 
 ToolTipIcon.displayName = 'ToolTipIcon';

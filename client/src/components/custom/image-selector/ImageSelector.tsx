@@ -6,12 +6,12 @@ import {
   useState,
 } from 'react';
 
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Switch from '@components/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import { IMAGE_BASE } from '@lib/utils/constants';
 import styled from 'styled-components';
 import type { Image } from '@/types';
-import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
-import Switch from '@/components/switch/Switch';
 import useUnmatchedImages from '@/features/items-add/useUnmatchedImages';
 
 export type ImageSelectorProps = {

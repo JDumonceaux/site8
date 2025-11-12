@@ -1,11 +1,11 @@
 import { type JSX, useEffect, useState, useTransition } from 'react';
 import { FixedSizeList as List } from 'react-window';
 
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page-title/PageTitle';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
-import Meta from '@/components/core/meta/Meta';
-import PageTitle from '@/components/core/page-title/PageTitle';
 import ItemRenderer from './ItemRenderer';
 import useMusic from './useMusic';
 

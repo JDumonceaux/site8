@@ -1,15 +1,19 @@
-import Meta from '@/components/core/meta/Meta';
-import Input from '@/components/input/Input';
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import type { JSX } from 'react';
+
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
+import { deleteCode } from '../../types/Auth';
 import AuthContainer from './AuthContainer';
 
 const schema = z.object({
-  deleteCode: z.literal('delete'),
+  deleteCode,
 });
 
 type FormValues = {
@@ -29,18 +33,20 @@ const DeleteAccountPage = (): JSX.Element => {
 
   const validateForm = (): boolean => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.error?.issues);
+    setErrors(result.error?.issues ?? null);
     return result.success;
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
-      try {
-        await authDeleteUser();
-      } catch {
-        // handle error
-      }
+      void (async () => {
+        try {
+          await authDeleteUser();
+        } catch {
+          // handle error
+        }
+      })();
     }
   };
 

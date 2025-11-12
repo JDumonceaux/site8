@@ -1,8 +1,8 @@
 // Header.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 
+import Avatar from '@components/core/avatar/Avatar';
 import { APP_NAME } from '@lib/utils/constants';
-import Avatar from '@/components/core/avatar/Avatar';
 import Header from './Header';
 
 const meta: Meta<typeof Header> = {

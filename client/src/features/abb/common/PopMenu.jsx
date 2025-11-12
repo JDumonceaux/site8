@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // This is a small, hidden menu usually associated with a tag icon.
@@ -29,6 +30,17 @@ const PopMenu = ({
       {children}
     </BoxDiv>
   );
+};
+
+PopMenu.propTypes = {
+  children: PropTypes.node,
+  innerRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+  isShown: PropTypes.bool,
+  position: PropTypes.oneOf(['left', 'right']),
+  width: PropTypes.string,
 };
 
 PopMenu.displayName = 'PopMenu';

@@ -1,6 +1,6 @@
 import React, { type JSX } from 'react';
 
-import StyledNavLink from '@/components/link/styled-nav-link/StyledNavLink';
+import StyledNavLink from '@components/link/styled-nav-link/StyledNavLink';
 import styled from 'styled-components';
 import type { MenuItem } from '../../types';
 

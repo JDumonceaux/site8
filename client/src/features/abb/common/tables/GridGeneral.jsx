@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { handleColorType } from '../StyleColorType';
 
@@ -13,6 +14,13 @@ const GridGeneral = ({ alignRight = false, disabled, show = true, value }) => {
   ) : (
     <StyledDiv $disabled={disabled}>{value}</StyledDiv>
   );
+};
+
+GridGeneral.propTypes = {
+  alignRight: PropTypes.bool,
+  disabled: PropTypes.bool,
+  show: PropTypes.bool,
+  value: PropTypes.node,
 };
 
 export default GridGeneral;

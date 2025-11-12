@@ -1,21 +1,20 @@
 import type { JSX } from 'react';
 
-import Button from '@/components/core/button/Button';
-import Meta from '@/components/core/meta/Meta';
-import Input from '@/components/input/Input';
-import StyledLink from '@/components/link/styled-link/StyledLink';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
-import { emailAddress, password } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
 import styled from 'styled-components';
 import { z } from 'zod';
+import { emailAddress, password } from '../../types/Auth';
 import AuthContainer from './AuthContainer';
 
-// Define Zod Shape
 const schema = z.object({
-  emailAddress: emailAddress,
-  password: password,
+  emailAddress,
+  password,
 });
 
 const SigninPage = (): JSX.Element => {
@@ -43,9 +42,13 @@ const SigninPage = (): JSX.Element => {
     event.preventDefault();
     if (!validateForm()) return;
 
-    authSignIn(formValues.emailAddress, formValues.password).catch(() => {
-      // Handle sign-in error
-    });
+    void (async () => {
+      try {
+        await authSignIn(formValues.emailAddress, formValues.password);
+      } catch {
+        // Handle sign-in error
+      }
+    })();
   };
 
   return (

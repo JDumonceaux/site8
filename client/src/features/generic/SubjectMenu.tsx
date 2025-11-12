@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import LoadingWrapper from '@/components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import { getURLPath } from '@lib/utils/helpers';
 import styled from 'styled-components';
