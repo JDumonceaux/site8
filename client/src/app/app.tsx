@@ -16,14 +16,7 @@ const App = (): JSX.Element => {
     <StrictMode>
       <AppProvider>
         <Suspense
-          fallback={
-            <div
-              aria-live="polite"
-              role="status"
-            >
-              Loading application…
-            </div>
-          }
+          fallback={<output aria-live="polite">Loading application…</output>}
         >
           <AppRouter />
         </Suspense>

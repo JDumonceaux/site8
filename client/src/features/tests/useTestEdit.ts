@@ -5,7 +5,7 @@ import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
 import useTestMenus from './useTestMenus';
 
-export type sortByType = 'name' | 'seq';
+export type SortByType = 'name' | 'seq';
 
 // Define Zod Shape
 const pageSchema = z.object({
@@ -58,7 +58,7 @@ const useTestEdit = () => {
           priorParent: {
             id: Number.parseInt(item.parent, 10),
             seq: Number.parseInt(item.seq, 10),
-            sortby: item.sortby as sortByType,
+            sortby: item.sortby as SortByType,
           },
         };
         returnValue.push(x);

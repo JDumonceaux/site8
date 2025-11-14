@@ -6,7 +6,7 @@ import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
-import { Switch } from '@components/switch/Switch';
+import Switch from '@components/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';

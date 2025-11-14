@@ -9,7 +9,7 @@ export const httpErrorHandler = (error: unknown): null | string => {
   // Handle Axios errors
   if (isAxiosError(error)) {
     const status = error.response?.status;
-    const data = error.response?.data;
+    const data = error.response?.data as unknown;
 
     // If status is undefined, return the error message
     if (!status) {
@@ -27,7 +27,7 @@ export const httpErrorHandler = (error: unknown): null | string => {
         return 'Request timed out.';
       }
       case 500: {
-        return `Server error: ${data}`;
+        return `Server error: ${String(data)}`;
       }
       default: {
         return `Unknown error ${status}`;

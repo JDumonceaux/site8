@@ -28,7 +28,6 @@ const IMAGES: Image[] = [
   {
     alt: 'Nature - Observation Lounge',
     id: 3,
-    imageTitle: 'Nature - Observation Lounge',
     src: '/images/yachts/sinot-nature-5.png',
     title: 'Nature Design - Observation Lounge with floor to ceiling windows',
   },
@@ -41,7 +40,6 @@ const IMAGES: Image[] = [
   {
     alt: 'Nature - Guest Bedroom',
     id: 5,
-    imageTitle: 'Nature - Guest Bedroom',
     src: '/images/yachts/sinot-nature-4.png',
     title: 'Nature Design - Guest Bedroom',
   },

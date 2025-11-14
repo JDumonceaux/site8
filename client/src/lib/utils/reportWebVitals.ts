@@ -18,7 +18,6 @@ const reportWebVitals = async (
     //   onLCP(onPerfEntry);
     //   onTTFB(onPerfEntry);
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Error importing web-vitals:', error);
   }
 };

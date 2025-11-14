@@ -33,6 +33,8 @@ export default {
                     env: false,
                     "ext": false,
                     fn: false,
+                    "i": false,
+                    idx: false,
                     msg: false,
                     obj: false,
                     param: false,

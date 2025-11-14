@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import App from './app/App';
-import { createRoot } from 'react-dom/client';
 
 // Grab the root container (must match your index.html)
 const container = document.querySelector('#root');

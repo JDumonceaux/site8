@@ -2,6 +2,8 @@ import { combineParent } from './helpers';
 
 describe('combineParent', () => {
   test('should return "0,0" for an empty input array', () => {
+    expect.hasAssertions();
+
     const input: { id?: number; seq?: number }[] = [];
     const expected = '0,0';
 
@@ -11,6 +13,8 @@ describe('combineParent', () => {
   });
 
   test('should return "1,2,3,4,5,6" for a valid input array', () => {
+    expect.hasAssertions();
+
     const input = [
       { id: 1, seq: 2 },
       { id: 3, seq: 4 },
@@ -24,6 +28,8 @@ describe('combineParent', () => {
   });
 
   test('should return "1,2,3,4" for an input array with undefined values', () => {
+    expect.hasAssertions();
+
     const input = [
       { id: 1, seq: 2 },
       { id: undefined, seq: 4 },
@@ -38,6 +44,8 @@ describe('combineParent', () => {
   });
 
   test('should return "0,0" for an undefined input', () => {
+    expect.hasAssertions();
+
     const input = undefined;
     const expected = '0,0';
 

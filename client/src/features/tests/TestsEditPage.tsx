@@ -5,10 +5,11 @@ import PageTitle from '@components/core/page-title/PageTitle';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
-import { Switch } from '@components/switch/Switch';
+import Switch from '@components/switch/Switch';
 import {
   closestCenter,
   DndContext,
+  type DragEndEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -63,16 +64,20 @@ const TestsEditPage = (): JSX.Element | null => {
     setShowPages(checked);
   };
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id);
-        const newIndex = items.indexOf(over.id);
-        return arrayMove(items, oldIndex, newIndex);
+    if (active.id !== over?.id) {
+      setItems((itemsList) => {
+        const oldIndex = itemsList.indexOf(active.id as number);
+        const newIndex = itemsList.indexOf(over?.id as number);
+        return arrayMove(itemsList, oldIndex, newIndex);
       });
     }
+  };
+
+  const handleSaveClick = () => {
+    void handleSave();
   };
 
   return (
@@ -99,7 +104,7 @@ const TestsEditPage = (): JSX.Element | null => {
               <StyledSaveButton
                 data-testid="button-save"
                 type="submit"
-                onClick={handleSave}
+                onClick={handleSaveClick}
               >
                 Save
               </StyledSaveButton>

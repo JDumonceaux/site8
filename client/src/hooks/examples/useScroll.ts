@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const useScroll = ({
   isWindow = false,
@@ -10,38 +10,38 @@ const useScroll = ({
 
   const goTop = () => {
     const element = ref.current;
-    element &&
-      element.scrollTo({
-        behavior: smooth ? 'smooth' : 'auto',
-        top: 0,
-      });
+    element?.scrollTo({
+      behavior: smooth ? 'smooth' : 'auto',
+      top: 0,
+    });
   };
 
   const goBottom = () => {
     const element =
       ref.current instanceof Window ? document.documentElement : ref.current;
-    ref.current &&
+    if (ref.current && element && 'scrollHeight' in element) {
       ref.current.scrollTo({
         behavior: smooth ? 'smooth' : 'auto',
-        top: element ? element.scrollHeight : 0,
+        top: element.scrollHeight,
       });
+    }
   };
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (ref.current) {
-      let isAtBottom = false;
+      let bottomStatus = false;
       if (ref.current instanceof Window) {
         const currentScrollTop = window.innerHeight + window.scrollY;
-        isAtBottom =
+        bottomStatus =
           currentScrollTop >= document.documentElement.offsetHeight - threshold;
       } else {
         // const currentScrollTop =
         //   ref.current.offsetHeight + ref.current.scrollTop;
         // isAtBottom = currentScrollTop >= ref.current.scrollHeight - threshold;
       }
-      setIsAtBottom(isAtBottom);
+      setIsAtBottom(bottomStatus);
     }
-  };
+  }, [threshold]);
 
   useEffect(() => {
     if (isWindow) {
@@ -50,8 +50,10 @@ const useScroll = ({
         window.removeEventListener('scroll', handleScroll);
       };
     }
-    return () => {};
-  }, [isWindow, threshold, smooth]);
+    return () => {
+      // No cleanup needed for non-window case
+    };
+  }, [isWindow, handleScroll]);
 
   return { goBottom, goTop, handleScroll, isAtBottom, ref };
 };

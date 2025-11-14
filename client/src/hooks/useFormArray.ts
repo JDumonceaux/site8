@@ -10,9 +10,6 @@ const useFormArray = <T extends IdType>() => {
   const [formValues, setFormValues] = useState<T[]>([]);
   const [isSaved, setIsSaved] = useState<boolean>(true);
 
-  const findItemIndex = (lineId: number): number =>
-    formValues.findIndex((x) => x.lineId === lineId);
-
   const setFieldValue = (
     lineId: number,
     fieldName: keyof T,

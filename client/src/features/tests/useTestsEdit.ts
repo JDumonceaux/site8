@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { ServiceUrl } from '@lib/utils/constants';
 import { z } from 'zod';
 import type { Test } from '../../types/Test';
@@ -28,9 +26,11 @@ type FormKeys = keyof FormType;
 
 const useTestsEdit = () => {
   const { patchData } = useAxios<Tests>();
-  const [localItems, setLocalItems] = useState<null | Test[]>();
 
   const { data, isError } = useTests();
+
+  // Compute local items with lineId during render instead of storing in state
+  const localItems = data?.items?.map((x, index) => ({ ...x, lineId: index }));
 
   // Create a form
   const {
@@ -41,11 +41,6 @@ const useTestsEdit = () => {
     setFormValues,
     setIsSaved,
   } = useFormArray<FormType>();
-
-  // Save to local - adding local index
-  useEffect(() => {
-    setLocalItems(data?.items?.map((x, index) => ({ ...x, lineId: index })));
-  }, [data?.items, setLocalItems]);
 
   const getDefaultProps = (lineId: number, fieldName: FormKeys) => ({
     'data-id': fieldName,
@@ -93,12 +88,12 @@ const useTestsEdit = () => {
 
   // Handle save
   const submitForm = async () => {
-    const data = getUpdates();
-    if (!data) {
+    const updates = getUpdates();
+    if (!updates) {
       return false;
     }
     //setIsProcessing(true);
-    const result = await patchData(ServiceUrl.ENDPOINT_TESTS, data);
+    const result = await patchData(ServiceUrl.ENDPOINT_TESTS, updates);
     //setIsProcessing(false);
     setIsSaved(result);
     return result;
