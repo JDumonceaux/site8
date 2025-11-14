@@ -10,9 +10,9 @@ import Switch from '@components/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-import MenuAdd from '@/features/pages-edit/MenuAdd';
 import { mapToFormValues } from './mapToFormValues';
-import { PageRow } from './PageRow';
+import MenuAdd from './MenuAdd';
+import PageRow from './PageRow';
 import usePagesEdit from './usePagesEdit';
 
 /**
