@@ -1,32 +1,55 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 
 import Banner from 'empower-components/Banner';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const BannerList = ({ children, level, messages, show, title }) => {
+const BannerList = ({
+  children,
+  level = 'info',
+  messages,
+  show = true,
+  title,
+}) => {
+  // Early return if not shown
   if (!show) {
     return null;
   }
 
+  // Validate messages is an array
   if (!Array.isArray(messages)) {
-    throw new TypeError(`BannerList:  Messages is not an array.`);
+    console.error('BannerList: messages prop must be an array');
+    return null;
   }
+
+  // Validate messages array is not empty
+  if (messages.length === 0) {
+    return null;
+  }
+
+  // Memoize the message content to avoid recreating on each render
+  const messageContent = useMemo(
+    () => (
+      <BoxDiv>
+        <BannerUL>
+          {messages.map((message, index) => (
+            <li
+              key={`banner-message-${index}-${String(message).substring(0, 20)}`}
+            >
+              {message}
+            </li>
+          ))}
+        </BannerUL>
+        {children}
+      </BoxDiv>
+    ),
+    [messages, children],
+  );
 
   return (
     <StyledBanner>
       <Banner
-        message={
-          <BoxDiv>
-            <BannerUL>
-              {messages.map((x, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={index}>{x}</li>
-              ))}
-            </BannerUL>
-            {children}
-          </BoxDiv>
-        }
+        message={messageContent}
         level={level}
         title={title}
       />
@@ -42,7 +65,9 @@ BannerList.propTypes = {
   title: PropTypes.string,
 };
 
-export default BannerList;
+BannerList.displayName = 'BannerList';
+
+export default memo(BannerList);
 
 const StyledBanner = styled.div`
   section > div > div:last-child {

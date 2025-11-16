@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import type { AxeResults } from 'axe-core';
-import { SnackbarVariant } from '@/features/app/snackbar/useSnackbar';
+import { SnackbarVariant } from '@features/app/snackbar/useSnackbar';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import Snackbar from './Snackbar';
 // Snackbar.test.tsx

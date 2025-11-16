@@ -3,9 +3,9 @@ import type { JSX } from 'react';
 import HomeMenu from '@features/home/HomeMenu';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-import CircleAnimation from './Animations/CircleAnimation';
-import CircleMenuAnimation from './Animations/CircleMenuAnimation';
-import TitleAnimation from './Animations/TitleAnimation';
+import CircleAnimation from './animations/CircleAnimation';
+import CircleMenuAnimation from './animations/CircleMenuAnimation';
+import TitleAnimation from './animations/TitleAnimation';
 
 // Use named const arrow function with explicit return type
 export const HomeScreen5 = (): JSX.Element | null => (

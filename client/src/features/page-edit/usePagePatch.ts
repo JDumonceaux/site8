@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import useSnackbar from '@/features/app/snackbar/useSnackbar';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
 import axios from 'axios';
 import type { FormErrors, FormState, Page } from '../../types';

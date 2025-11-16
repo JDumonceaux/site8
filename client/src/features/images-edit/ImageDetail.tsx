@@ -19,6 +19,11 @@ type Props = {
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >,
   ) => void;
+  readonly onChangeCheckbox?: (
+    lineId: string,
+    fieldName: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
   readonly onDelete: (lineId: number) => void;
 };
 
@@ -27,6 +32,7 @@ const ImageDetail = ({
   item,
   names,
   onChange,
+  onChangeCheckbox,
   onDelete,
 }: Props): JSX.Element => {
   const handleOnDelete = () => {
@@ -76,10 +82,15 @@ const ImageDetail = ({
         </IconMenu>
         <Input.Checkbox
           checked={isSelected}
-          data-id="isSelected"
-          data-line={item.lineId}
-          value="x"
-          onChange={onChange}
+          fieldName="isSelected"
+          label=""
+          lineId={String(item.lineId)}
+          onChange={
+            onChangeCheckbox ??
+            ((_lineId, _fieldName, event) => {
+              onChange(event);
+            })
+          }
         />
       </StyledOuterRow>
     </StyledRow>

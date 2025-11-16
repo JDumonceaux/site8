@@ -1,10 +1,21 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { Artists } from '../../types/Artists';
 import type { ListItem } from '../../types/ListItem';
 
-// Helper function to fetch artists data
+type UseArtistsReturn = {
+  readonly artistsAsListItem: ListItem[];
+  readonly data: Artists | undefined;
+  readonly error: Error | null;
+  readonly isError: boolean;
+  readonly isLoading: boolean;
+};
+
+/**
+ * Helper function to fetch artists data
+ */
 const fetchData = async (): Promise<Artists> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ARTISTS);
   if (!response.ok) {
@@ -13,23 +24,35 @@ const fetchData = async (): Promise<Artists> => {
   return response.json() as Promise<Artists>;
 };
 
-const useArtists = () => {
-  const queryKey = ['artists'];
-
-  const query = useQuery<Artists>({
+/**
+ * Custom hook to fetch and process artists data
+ * @returns Query state and processed artists list
+ */
+const useArtists = (): UseArtistsReturn => {
+  const query: UseQueryResult<Artists> = useQuery<Artists>({
     queryFn: fetchData,
-    queryKey,
+    queryKey: ['artists'],
     ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  // Directly compute the list items on each render
-  const artistsAsListItem: ListItem[] | undefined = query.data?.items
-    ?.toSorted((a, b) => a.sortName.localeCompare(b.sortName))
-    .map((x, index) => ({
-      display: x.name,
-      key: index,
-      value: x.id,
-    }));
+  // Memoize the list items computation
+  const artistsAsListItem: ListItem[] = useMemo(() => {
+    if (!query.data?.items) {
+      return [];
+    }
+
+    return query.data.items
+      .toSorted((a, b) => {
+        const sortNameA = a.sortName ?? '';
+        const sortNameB = b.sortName ?? '';
+        return sortNameA.localeCompare(sortNameB);
+      })
+      .map((artist, index) => ({
+        display: artist.name,
+        key: index,
+        value: artist.id,
+      }));
+  }, [query.data]);
 
   return {
     artistsAsListItem,

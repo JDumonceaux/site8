@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
-
-import SlideoutMenu from 'empower-components/SlideoutMenu';
+import React, { memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import SlideoutMenu from 'empower-components/SlideoutMenu';
 import styled from 'styled-components';
 import IconsMenu from '../icons-menu/IconsMenu';
 
+// ActionsMenu: Renders a menu of action icons using SlideoutMenu and IconsMenu
 const ActionsMenu = ({ items }) => {
   // Validate and filter items
   const validItems = useMemo(() => {
@@ -12,7 +12,6 @@ const ActionsMenu = ({ items }) => {
       console.warn('ActionsMenu: items prop should be an array');
       return [];
     }
-
     return items.filter((item) => {
       if (!item || typeof item !== 'object') {
         console.warn('ActionsMenu: Invalid item in items array', item);
@@ -30,7 +29,7 @@ const ActionsMenu = ({ items }) => {
     <WrapperDiv>
       <StyledMenu>
         <SlideoutMenu>
-          {/* Note: SlideoutMenu already includes a UL wrappper, so includeUL is set to false. */}
+          {/* Note: SlideoutMenu already includes a UL wrapper, so includeUL is set to false. */}
           <IconsMenu
             includeLI
             includeUL={false}
@@ -46,7 +45,9 @@ ActionsMenu.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default ActionsMenu;
+ActionsMenu.displayName = 'ActionsMenu';
+
+export default memo(ActionsMenu);
 const StyledMenu = styled.div`
   li {
     justify-content: normal !important;

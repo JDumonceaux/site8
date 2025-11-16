@@ -8,37 +8,42 @@ import ImageSelector from '@components/custom/image-selector/ImageSelector';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-import useSnackbar from '@/features/app/snackbar/useSnackbar';
 import type { Image } from '../../types';
 import useImageEdit from './useImageEdit';
 
-const ImageEditImage = (): JSX.Element => {
+const ImageEditPage = (): JSX.Element => {
   const parameters = useParams();
   const { id } = parameters as { id: string };
   const {
-    error,
     formValues,
     getDefaultProps,
-    handleChangeImage,
-    handleReset,
-    isLoading,
+    isProcessing,
     isSaved,
-    submitForm,
+    resetForm,
+    saveItem,
   } = useImageEdit(id);
 
   const { setMessage } = useSnackbar();
 
-  const handleSubmit = (error_: React.FormEvent) => {
-    error_.stopPropagation();
-    error_.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
     setMessage('Saving...');
-    submitForm();
+    void (async () => {
+      const success = await saveItem();
+      if (success) {
+        setMessage('Saved successfully');
+      }
+    })();
   };
 
-  const handleSelectImage = (item: Image | null | undefined) => {
-    handleChangeImage(item);
+  const handleSelectImage = (item: Image | undefined) => {
+    if (item) {
+      setMessage(`Image selected: ${item.title ?? item.fileName ?? 'Unknown'}`);
+    }
   };
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
@@ -47,7 +52,7 @@ const ImageEditImage = (): JSX.Element => {
 
   useEffect(() => {
     inputTitleRef.current?.focus();
-  });
+  }, []);
 
   return (
     <>
@@ -79,15 +84,12 @@ const ImageEditImage = (): JSX.Element => {
             <StyledPlainButton
               data-testid="button-reset"
               type="reset"
-              onClick={handleReset}
+              onClick={resetForm}
             >
               Reset
             </StyledPlainButton>
           </PageTitle>
-          <LoadingWrapper
-            error={error}
-            isLoading={isLoading}
-          >
+          <LoadingWrapper isLoading={isProcessing}>
             <StyledContainer>
               <FormContainer>
                 <form
@@ -96,94 +98,74 @@ const ImageEditImage = (): JSX.Element => {
                 >
                   <Input.Text
                     ref={inputTitleRef}
-                    required
+                    isRequired
                     spellCheck
                     enterKeyHint="next"
                     label="Short Title"
                     autoCapitalize="off"
-                    //errorTextShort="Please enter a short title"
                     inputMode="text"
-                    // {...getStandardInputTextAttributes('name')}
-                    //ref={focusElement}
                     {...getDefaultProps('name')}
                   />
                   <Input.Text
-                    required
+                    isRequired
                     spellCheck
                     enterKeyHint="next"
                     label="Location"
                     autoCapitalize="off"
-                    // errorTextShort="Please enter a location"
                     inputMode="text"
-                    //ref={focusElement}
                     {...getDefaultProps('location')}
                   />
                   <Input.Text
-                    required
+                    isRequired
                     spellCheck
                     enterKeyHint="next"
                     label="File Name"
                     autoCapitalize="off"
-                    //   errorTextShort="Please enter a File Name"
                     inputMode="text"
                     {...getDefaultProps('fileName')}
-                    //ref={focusElement}
                   />
                   <Input.Text
-                    required
+                    isRequired
                     spellCheck
                     enterKeyHint="next"
                     label="SRC"
                     autoCapitalize="off"
-                    //  errorTextShort="Please enter a image path"
                     inputMode="text"
                     {...getDefaultProps('src')}
-                    //ref={focusElement}
                   />
                   <Input.Text
-                    // errorTextShort="Please enter a folder"
+                    isRequired={false}
                     label="Folder"
-                    required={false}
-                    //   type="text"
                     {...getDefaultProps('folder')}
                   />
                   <Input.Text
                     spellCheck
                     enterKeyHint="next"
+                    isRequired={false}
                     label="Official URL"
-                    required={false}
                     autoCapitalize="off"
-                    //    errorTextShort="Please enter a official URL"
-                    inputMode="text"
+                    inputMode="url"
                     {...getDefaultProps('official_url')}
-                    //ref={focusElement}
                   />
                   <Input.Text
                     spellCheck
                     enterKeyHint="next"
+                    isRequired={false}
                     label="Tags"
-                    required={false}
                     autoCapitalize="off"
-                    //  errorTextShort="Please enter a tag"
                     inputMode="text"
                     {...getDefaultProps('tags')}
-                    //ref={focusElement}
                   />
                   <Input.TextArea
                     spellCheck
                     label="Description"
                     rows={30}
                     {...getDefaultProps('description')}
-                    // required
                   />
                 </form>
               </FormContainer>
               <ImageContainer>
-                <ImageSelector
-                  onSelectImage={(error_) => {
-                    handleSelectImage(error_);
-                  }}
-                />
+                <ImageSelector onSelectImage={handleSelectImage} />
               </ImageContainer>
             </StyledContainer>
           </LoadingWrapper>
@@ -193,7 +175,7 @@ const ImageEditImage = (): JSX.Element => {
   );
 };
 
-export default ImageEditImage;
+export default ImageEditPage;
 
 const StyledContainer = styled.div`
   display: flex;

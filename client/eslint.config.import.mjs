@@ -126,25 +126,9 @@ export default {
         'import/no-useless-path-segments': 'error',
         'import/no-webpack-loader-syntax': 'error',
         // using perfectionist for import sorting
-        'import/order': [
-            'off',
-            {
-                alphabetize: {
-                    caseInsensitive: true,
-                    order: 'asc',
-                },
-                groups: ['builtin', 'external', 'internal', ['parent', 'sibling'], 'index', 'type'],
-                'newlines-between': 'always',
-                pathGroups: [
-                    {
-                        group: 'external',
-                        pattern: 'react',
-                        position: 'before',
-                    },
-                ],
-                pathGroupsExcludedImportTypes: ['react'],
-            },
-        ],
+        'import/order': 'off',
+        // using perfectionist for import sorting
+        'import/sort-imports': 'off',
         'import/prefer-default-export': 'off', // Consider based on your preference
     },
     settings: {

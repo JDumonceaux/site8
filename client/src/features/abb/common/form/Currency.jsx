@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import { msgFormatter } from 'app/util';
@@ -6,18 +6,21 @@ import SelectForm from 'empower-components/SelectForm';
 import PropTypes from 'prop-types';
 
 const Currency = ({ currencies, onChange, ...rest }) => {
-  const options =
-    currencies?.map((x) => ({
-      key: x.CurrencyCode,
-      value: msgFormatter(`server/currency/${x.CurrencyCode}`)(),
-    })) || [];
+  const options = useMemo(
+    () =>
+      currencies?.map((x) => ({
+        key: x.CurrencyCode,
+        value: msgFormatter(`server/currency/${x.CurrencyCode}`)(),
+      })) ?? [],
+    [currencies],
+  );
 
   return (
     <SelectForm
+      dropdownIcon="fal fa-chevron-down"
       handleChange={onChange}
       id="currency"
       label={msgFormatter('currency')()}
-      dropdownIcon="fal fa-chevron-down"
       options={options}
       {...rest}
     />
@@ -33,8 +36,10 @@ Currency.propTypes = {
   onChange: PropTypes.func,
 };
 
+Currency.displayName = 'Currency';
+
 const mapStateToProps = (state) => ({
   currencies: state.App.filters.currencies,
 });
 
-export default connect(mapStateToProps, {})(Currency);
+export default connect(mapStateToProps, {})(memo(Currency));

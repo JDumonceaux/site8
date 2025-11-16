@@ -29,7 +29,11 @@ const ItemRender = ({
     };
 
     const Component = menuComponents[level];
-    content = <Component to={item.toComplete}>{item.name}</Component>;
+    content = item.toComplete ? (
+      <Component to={item.toComplete}>{item.name}</Component>
+    ) : (
+      <div>{item.name}</div>
+    );
   } else if (item.type === 'page') {
     const pageComponents: Record<number, typeof StyledNavLink> = {
       0: StyledPage0,
@@ -38,7 +42,11 @@ const ItemRender = ({
     };
 
     const Component = pageComponents[level];
-    content = <Component to={item.toComplete}>{item.name}</Component>;
+    content = item.toComplete ? (
+      <Component to={item.toComplete}>{item.name}</Component>
+    ) : (
+      <div>{item.name}</div>
+    );
   } else {
     content = <div>{item.name}</div>;
   }

@@ -1,12 +1,13 @@
-import { type JSX, Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { type JSX, memo, Suspense } from 'react';
+import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-import Avatar from '@components/core/avatar3/Avatar';
+import Avatar from '@components/core/avatar/Avatar';
 import Header from '@components/core/header/Header';
 import styled from 'styled-components';
-import AppInitializer from '@/features/app/app-initializer/AppInitializer';
-import Snackbar from '@/features/app/snackbar/Snackbar';
+
+import AppInitializer from '@features/app/app-initializer/AppInitializer';
+import Snackbar from '@features/app/snackbar/Snackbar';
 
 /**
  * Accessible fallback shown while the page is lazy-loading.
@@ -22,23 +23,30 @@ const LoadingFallback = (): JSX.Element => (
 
 /**
  * Error fallback for any rendering errors in this layout.
+ * @param props - FallbackProps from react-error-boundary
  */
 const ErrorFallback = ({
   error,
   resetErrorBoundary,
-}: {
-  error: Error;
-  resetErrorBoundary: () => void;
-}): JSX.Element => (
-  <ErrorContainer role="alert">
-    <p>Something went wrong.</p>
-    <pre>{error.message}</pre>
-    <RetryButton onClick={resetErrorBoundary}>Try again</RetryButton>
+}: FallbackProps): JSX.Element => (
+  <ErrorContainer
+    role="alert"
+    aria-live="assertive"
+  >
+    <ErrorTitle>Something went wrong</ErrorTitle>
+    <ErrorMessage>{error.message}</ErrorMessage>
+    <RetryButton
+      onClick={resetErrorBoundary}
+      type="button"
+    >
+      Try again
+    </RetryButton>
   </ErrorContainer>
 );
 
 /**
  * Layout wrapper for general application pages.
+ * Provides error boundary, app initialization, header with avatar, and suspense for lazy-loaded routes.
  */
 const GenericLayout = (): JSX.Element => (
   <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -64,7 +72,7 @@ const GenericLayout = (): JSX.Element => (
 );
 
 GenericLayout.displayName = 'GenericLayout';
-export default GenericLayout;
+export default memo(GenericLayout);
 
 // Styled Components
 const Main = styled.main`
@@ -85,6 +93,23 @@ const ErrorContainer = styled.div`
   border-radius: 4px;
 `;
 
+const ErrorTitle = styled.p`
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem 0;
+`;
+
+const ErrorMessage = styled.pre`
+  margin: 0 0 1rem 0;
+  padding: 0.5rem;
+  background: #fdd;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+`;
+
 const RetryButton = styled.button`
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
@@ -94,7 +119,18 @@ const RetryButton = styled.button`
   color: white;
   border: none;
   border-radius: 4px;
+  transition: background-color 0.2s ease;
+
   &:hover {
     background: #0056b3;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background: #004085;
   }
 `;

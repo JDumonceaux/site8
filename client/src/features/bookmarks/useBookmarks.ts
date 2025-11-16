@@ -9,7 +9,7 @@ const fetchData = async (): Promise<Bookmarks> => {
     if (!response.ok) {
       throw new Error(`Failed to fetch bookmarks: ${response.statusText}`);
     }
-    return response.json();
+    return (await response.json()) as Bookmarks;
   } catch (error) {
     console.error('useBookmarks: Error fetching bookmarks', error);
     throw error;

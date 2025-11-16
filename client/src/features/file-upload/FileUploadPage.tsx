@@ -71,7 +71,9 @@ const FileUploadPage = (): JSX.Element => {
           {file && status !== 'uploading' ? (
             <button
               type="button"
-              onClick={handleFileUpload}
+              onClick={() => {
+                void handleFileUpload();
+              }}
             >
               Upload
             </button>

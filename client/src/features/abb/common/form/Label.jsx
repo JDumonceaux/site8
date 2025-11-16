@@ -1,6 +1,8 @@
-﻿import React from 'react';
+﻿import React, { memo } from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import FieldLabel from './FieldLabel';
 import FieldMargin from './FieldMargin';
 
@@ -11,6 +13,13 @@ const Label = ({ children, margin, ...rest }) => (
   </FieldMargin>
 );
 
-export default Label;
+Label.propTypes = {
+  children: PropTypes.node,
+  margin: PropTypes.string,
+};
+
+Label.displayName = 'Label';
+
+export default memo(Label);
 
 const Content = styled.div``;

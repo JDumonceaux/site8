@@ -1,16 +1,16 @@
-﻿import React from 'react';
+﻿import React, { memo } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 import { msgFormatter } from 'app/util';
 import SectionsBar from 'empower-components/SectionsBar';
-import PropTypes from 'prop-types';
 import usePermissionContext from 'wwwroot/feature/common/usePermissionContext';
 
 const handleSection = (_section) => {
   // No action needed, NavLink handles the routing
 };
 
+// HeaderMenu: Top navigation menu for quote sections
 const HeaderMenu = ({
   appData,
   configuration,
@@ -162,6 +162,8 @@ HeaderMenu.propTypes = {
   }),
 };
 
+HeaderMenu.displayName = 'HeaderMenu';
+
 const HeaderMenuContainer = (props) => <HeaderMenu {...props} />;
 
 const mapStateToProps = (state) => ({
@@ -172,4 +174,4 @@ const mapStateToProps = (state) => ({
   quote: state.Quote.currentQuote,
 });
 
-export default connect(mapStateToProps)(HeaderMenuContainer);
+export default connect(mapStateToProps)(memo(HeaderMenuContainer));

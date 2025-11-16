@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 import { showUserSearchModal } from 'actions/CustomerActions';
@@ -8,9 +8,9 @@ import Tooltip from 'empower-components/Tooltip';
 import PropTypes from 'prop-types';
 
 const EndUser = ({ onChange, showUserSearchModal, ...rest }) => {
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     showUserSearchModal(true, null, false, 'ec');
-  };
+  }, [showUserSearchModal]);
 
   return (
     <InputForm
@@ -36,4 +36,6 @@ EndUser.propTypes = {
   showUserSearchModal: PropTypes.func.isRequired,
 };
 
-export default connect(null, { showUserSearchModal })(EndUser);
+EndUser.displayName = 'EndUser';
+
+export default connect(null, { showUserSearchModal })(memo(EndUser));

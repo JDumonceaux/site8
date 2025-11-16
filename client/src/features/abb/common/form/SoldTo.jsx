@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import {
-  showCustomerSearchModal,
-  showUserSearchModal,
-} from 'actions/CustomerActions';
+import { showCustomerSearchModal } from 'actions/CustomerActions';
 import { msgFormatter } from 'app/util';
 import InputForm from 'empower-components/InputForm';
 import Tooltip from 'empower-components/Tooltip';
 
+// SoldTo: Input for Sold-To account with search and tooltip
 const SoldTo = ({ onChange, showCustomerSearchModal, user, ...rest }) => {
   // TO DO - Add Alternative Search Logic
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     showCustomerSearchModal(true, user);
-  };
+  }, [showCustomerSearchModal, user]);
 
   return (
     <InputForm
@@ -34,6 +33,16 @@ const SoldTo = ({ onChange, showCustomerSearchModal, user, ...rest }) => {
   );
 };
 
+SoldTo.propTypes = {
+  onChange: PropTypes.func,
+  showCustomerSearchModal: PropTypes.func,
+  user: PropTypes.object,
+};
+
+SoldTo.displayName = 'SoldTo';
+
 const mapStateToProps = (state) => ({ user: state.App.currentUser });
 
-export default connect(mapStateToProps, { showCustomerSearchModal })(SoldTo);
+export default connect(mapStateToProps, { showCustomerSearchModal })(
+  memo(SoldTo),
+);

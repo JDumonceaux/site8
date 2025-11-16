@@ -34,7 +34,7 @@ export const useGenericPage = (
   isError: boolean;
   isFetching: boolean;
   isLoading: boolean;
-  refetch: () => void;
+  refetch: () => Promise<unknown>;
 } => {
   const query: UseQueryResult<Page, unknown> = useQuery({
     enabled: Boolean(id),

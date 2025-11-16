@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import IconButton from '@components/core/button/icon-buttton/IconButton';
+import IconButton from '@components/core/button/icon-button/IconButton';
 import { CopyIcon } from '@components/icons/CopyIcon';
 import styled from 'styled-components';
 

@@ -1,7 +1,6 @@
-import React from 'react';
-
-import { msgFormatter } from 'app/util';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { msgFormatter } from 'app/util';
 import styled, { css } from 'styled-components';
 
 const positions = {
@@ -10,6 +9,7 @@ const positions = {
   right: 'circle-right',
 };
 
+// DetailsOptions: Option selector for details flyout menu
 const DetailsOptions = ({
   active,
   onChange,
@@ -44,7 +44,17 @@ DetailsOptions.propTypes = {
   value: PropTypes.string,
 };
 
-export default DetailsOptions;
+DetailsOptions.displayName = 'DetailsOptions';
+
+export default memo(DetailsOptions);
+
+DetailsOptions.propTypes = {
+  active: PropTypes.bool,
+  onChange: PropTypes.func,
+  path: PropTypes.string,
+  position: PropTypes.oneOf(['center', 'left', 'right']),
+  value: PropTypes.string,
+};
 
 const ItemDiv = styled.div`
   display: inline-block;

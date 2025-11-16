@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
+
 import FieldMargin from './FieldMargin';
 import NumberForm from './NumberForm';
 
-const POValue = ({ margin, onChange, show, ...rest }) => {
-  if (!show) return null;
+const POValue = ({ margin, onChange, show = true, ...rest }) => {
+  if (!show) {
+    return null;
+  }
 
   return (
     <FieldMargin margin={margin}>
@@ -21,4 +25,12 @@ const POValue = ({ margin, onChange, show, ...rest }) => {
   );
 };
 
-export default POValue;
+POValue.propTypes = {
+  margin: PropTypes.string,
+  onChange: PropTypes.func,
+  show: PropTypes.bool,
+};
+
+POValue.displayName = 'POValue';
+
+export default memo(POValue);

@@ -1,8 +1,10 @@
-﻿import React from 'react';
+﻿import React, { memo, useCallback, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import { msgFormatter } from 'app/util';
 import RadioButton from 'empower-components/RadioButton';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 // governmentFunded = true, false, or null
 // null is used to force a user selection.
@@ -47,7 +49,7 @@ const GovernmentRequirements = (props) => {
     isExternal: isExternal ?? isExternalState,
   };
 
-  const message = React.useMemo(() => {
+  const message = useMemo(() => {
     if (hideWarning) {
       return '';
     }
@@ -84,49 +86,65 @@ const GovernmentRequirements = (props) => {
     localValues.isExternal,
   ]);
 
+  const handleYesChange = useCallback(() => onChange('yes'), [onChange]);
+  const handleNoChange = useCallback(() => onChange('no'), [onChange]);
+  const handleDpoChange = useCallback(() => onChange('dpo'), [onChange]);
+
   return (
-    <div>
-      <label>{msgFormatter('governmentRequirements')()}</label>
-      <div>{msgFormatter('governmentRequirementsDetails')()}</div>
-      <div className="radio-mandatory-container">
-        <div className="radio-group">
+    <Container>
+      <Label>{msgFormatter('governmentRequirements')()}</Label>
+      <Details>{msgFormatter('governmentRequirementsDetails')()}</Details>
+      <RadioContainer>
+        <RadioGroup>
           <RadioButton
             checked={localValues.governmentFundedAnswer === 'yes'}
             disabled={localValues.govFundedYesDisabled}
-            handleSelect={() => onChange('yes')}
+            handleSelect={handleYesChange}
             label={msgFormatter('yes')()}
           />
-        </div>
-        <div className="radio-group">
+        </RadioGroup>
+        <RadioGroup>
           <RadioButton
             checked={localValues.governmentFundedAnswer === 'no'}
             disabled={localValues.govFundedNoDisabled}
-            handleSelect={() => onChange('no')}
+            handleSelect={handleNoChange}
             label={msgFormatter('no')()}
           />
-        </div>
-        {localValues.domesticPreference || localValues.isExternal ? (
-          <div className="radio-group">
+        </RadioGroup>
+        {(localValues.domesticPreference || localValues.isExternal) && (
+          <RadioGroup>
             <RadioButton
               checked={localValues.governmentFundedAnswer === 'dpo'}
               disabled={localValues.dpoDisabled}
-              handleSelect={() => onChange('dpo')}
+              handleSelect={handleDpoChange}
               label={msgFormatter('govFundedDpo')()}
             />
-          </div>
-        ) : null}
-      </div>
-      <span
-        // eslint-disable-next-line react/forbid-dom-props
-        style={{
-          color: 'red',
-        }}
-      >
-        {message}
-      </span>
-    </div>
+          </RadioGroup>
+        )}
+      </RadioContainer>
+      {message && <WarningMessage>{message}</WarningMessage>}
+    </Container>
   );
 };
+
+GovernmentRequirements.propTypes = {
+  domesticPreference: PropTypes.bool,
+  domesticPreferenceState: PropTypes.bool,
+  dpoDisabled: PropTypes.bool,
+  governmentFundedAnswer: PropTypes.string,
+  governmentFundedState: PropTypes.bool,
+  govFundedNoDisabled: PropTypes.bool,
+  govFundedYesDisabled: PropTypes.bool,
+  hideWarning: PropTypes.bool,
+  isExternal: PropTypes.bool,
+  isExternalState: PropTypes.bool,
+  isOrder: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  show: PropTypes.bool,
+  value: PropTypes.string,
+};
+
+GovernmentRequirements.displayName = 'GovernmentRequirements';
 
 const mapStateToProps = (state) => ({
   domesticPreferenceState: state.Quote?.currentQuote?.DomesticPreference,
@@ -134,4 +152,28 @@ const mapStateToProps = (state) => ({
   isExternalState: state.App.currentUser.Profile.External,
 });
 
-export default connect(mapStateToProps, {})(GovernmentRequirements);
+export default connect(mapStateToProps, {})(memo(GovernmentRequirements));
+
+const Container = styled.div``;
+
+const Label = styled.label`
+  font-weight: 500;
+`;
+
+const Details = styled.div`
+  margin-bottom: 8px;
+`;
+
+const RadioContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+`;
+
+const RadioGroup = styled.div``;
+
+const WarningMessage = styled.span`
+  color: #f03040;
+  display: block;
+  margin-top: 8px;
+`;

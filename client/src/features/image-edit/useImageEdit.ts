@@ -1,4 +1,10 @@
-import { type ChangeEvent, useEffect, useState } from 'react';
+import {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { useAxios } from '@hooks/axios/useAxios';
 import useForm from '@hooks/useForm';
@@ -6,39 +12,48 @@ import { ServiceUrl } from '@lib/utils/constants';
 import { getSRC } from '@lib/utils/helpers';
 import { safeParse } from '@lib/utils/zodHelper';
 import type { Image } from '../../types/Image';
-import pageSchema, { type FormKeys, type FormType } from './schema';
+import imageEditSchema, { type FormKeys, type FormType } from './schema';
 import useImage from './useImage';
+
+type UseImageEditReturn = {
+  clearForm: () => void;
+  formValues: FormType;
+  getDefaultProps: (field: FormKeys) => {
+    'data-id': FormKeys;
+    'data-line': number;
+    onChange: (
+      event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void;
+    value: string;
+  };
+  isProcessing: boolean;
+  isSaved: boolean;
+  resetForm: () => void;
+  saveItem: () => Promise<boolean>;
+  validateForm: () => boolean;
+};
 
 /**
  * Hook for editing an Image entity, handling form state, validation, and persistence.
  */
-export const useImageEdit = (rawId: null | string) => {
+export const useImageEdit = (rawId: null | string): UseImageEditReturn => {
   const { patchData, putData } = useAxios<Image>();
   const { data: imageData } = useImage(rawId);
 
-  // Parse ID or action keyword
-  let currentId = 0;
-  let currentAction: null | string = null;
-  if (rawId) {
-    const parsed = Number(rawId);
-    if (!Number.isNaN(parsed) && parsed > 0) {
-      currentId = parsed;
-    } else if (['first', 'last', 'next', 'prev'].includes(rawId)) {
-      currentAction = rawId;
-    }
-  }
-
   // Form defaults
-  const defaultForm: FormType = {
-    description: '',
-    fileName: '',
-    folder: '',
-    id: 0,
-    location: '',
-    name: '',
-    official_url: '',
-    tags: '',
-  };
+  const defaultForm: FormType = useMemo(
+    () => ({
+      description: '',
+      fileName: '',
+      folder: '',
+      id: 0,
+      location: '',
+      name: '',
+      official_url: '',
+      tags: '',
+    }),
+    [],
+  );
 
   const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
     useForm<FormType>(defaultForm);
@@ -60,36 +75,45 @@ export const useImageEdit = (rawId: null | string) => {
     };
     setFormValues(formData);
     setOriginalValues(imageData);
-  }, [imageData]);
+  }, [imageData, defaultForm, setFormValues]);
 
   // Form helpers
-  const getDefaultProps = (field: FormKeys) => ({
-    'data-id': field,
-    'data-line': 0,
-    onChange: (error: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setFieldValue(field, error.target.value);
-    },
-    value: getFieldValue(field),
-  });
+  const getDefaultProps = useCallback(
+    (field: FormKeys) => ({
+      'data-id': field,
+      'data-line': 0,
+      onChange: (
+        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      ) => {
+        setFieldValue(field, event.target.value);
+      },
+      value: getFieldValue(field),
+    }),
+    [getFieldValue, setFieldValue],
+  );
 
-  const validateForm = () => {
-    const result = safeParse<FormType>(pageSchema, formValues);
-    setErrors(result.success ? null : result.error?.issues);
+  const validateForm = useCallback(() => {
+    const result = safeParse<FormType>(imageEditSchema, formValues);
+    setErrors(result.success ? null : (result.error?.issues ?? null));
     return result.success;
-  };
+  }, [formValues, setErrors]);
 
   // Save state
   const [isSaved, setIsSaved] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const saveItem = async () => {
+  const saveItem = useCallback(async () => {
     if (!validateForm()) return false;
     setIsProcessing(true);
 
     const payload: Image = {
-      ...formValues,
-      // map tags string to array if needed
-    } as any;
+      fileName: formValues.fileName,
+      folder: formValues.folder,
+      id: formValues.id,
+      location: formValues.location,
+      official_url: formValues.official_url,
+      title: formValues.name,
+    };
 
     try {
       await (payload.id > 0
@@ -97,12 +121,15 @@ export const useImageEdit = (rawId: null | string) => {
         : putData(ServiceUrl.ENDPOINT_IMAGE, payload));
       setIsSaved(true);
       return true;
+    } catch (error) {
+      console.error('Failed to save image:', error);
+      return false;
     } finally {
       setIsProcessing(false);
     }
-  };
+  }, [formValues, patchData, putData, validateForm]);
 
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     if (originalValues) {
       const formData: FormType = {
         ...defaultForm,
@@ -118,18 +145,30 @@ export const useImageEdit = (rawId: null | string) => {
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  };
+  }, [defaultForm, originalValues, setErrors, setFormValues]);
 
-  const clearForm = () => {
+  const clearForm = useCallback(() => {
     setFormValues(defaultForm);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  };
+  }, [defaultForm, setErrors, setFormValues]);
 
   // Update unsaved flag when values change
   useEffect(() => {
-    setIsSaved(JSON.stringify(formValues) === JSON.stringify(originalValues));
+    if (!originalValues) {
+      setIsSaved(false);
+      return;
+    }
+
+    const hasChanges =
+      formValues.fileName !== (originalValues.fileName ?? '') ||
+      formValues.folder !== (originalValues.folder ?? '') ||
+      formValues.location !== (originalValues.location ?? '') ||
+      formValues.name !== (originalValues.title ?? '') ||
+      formValues.official_url !== (originalValues.official_url ?? '');
+
+    setIsSaved(!hasChanges);
   }, [formValues, originalValues]);
 
   return {

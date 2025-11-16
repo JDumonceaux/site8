@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import { clearInvalidQuoteFlag } from 'actions/QuoteActions';
 import { msgFormatter } from 'app/util';
 import Banner from 'empower-components/Banner';
@@ -9,8 +9,8 @@ import {
   SubSection,
   SubSectionContent,
 } from 'empower-components/ContentSection';
-import PropTypes from 'prop-types';
 
+// QuoteUnavailable: Banner for unavailable/invalid quote
 const QuoteUnavailable = ({ clearInvalidQuoteFlag, invalidQuote }) => {
   const [shouldShow, setShouldShow] = useState(false);
 
@@ -54,10 +54,12 @@ QuoteUnavailable.propTypes = {
   invalidQuote: PropTypes.bool,
 };
 
+QuoteUnavailable.displayName = 'QuoteUnavailable';
+
 const mapStateToProps = (state) => ({
   invalidQuote: state.Quote.invalidQuote,
 });
 
 export default connect(mapStateToProps, { clearInvalidQuoteFlag })(
-  QuoteUnavailable,
+  memo(QuoteUnavailable),
 );

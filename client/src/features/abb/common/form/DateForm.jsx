@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import FieldLabel from './FieldLabel';
 import FieldWrapper from './FieldWrapper';
 
@@ -16,11 +17,12 @@ const DateForm = ({
   size = 'regular',
   ...rest
 }) => {
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     if (!disabled) {
-      handleSearch();
+      // TODO: Implement calendar picker functionality
+      // This is currently a placeholder
     }
-  };
+  }, [disabled]);
 
   return (
     <FieldWrapper
@@ -36,19 +38,30 @@ const DateForm = ({
       />
       <InputWrapper>
         <StyledInput
+          autoComplete={autoComplete}
           disabled={disabled}
           id={id || 'dateForm'}
-          // className={`input-form-input ${size} ${
-          //     search ? "search" : ""
-          // } ${required && !search ? "required" : ""}`}
           required={required}
           type="date"
-          autoComplete={autoComplete}
           {...rest}
         />
         <IconWrapper>
-          <a onClick={handleSearch}>
-            <i className="far fa-calendar-alt" />
+          <a
+            aria-label="Open calendar picker"
+            onClick={handleSearch}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleSearch();
+              }
+            }}
+            role="button"
+            tabIndex={disabled ? -1 : 0}
+          >
+            <i
+              aria-hidden="true"
+              className="far fa-calendar-alt"
+            />
           </a>
         </IconWrapper>
       </InputWrapper>
@@ -67,7 +80,9 @@ DateForm.propTypes = {
   size: PropTypes.oneOf(['regular', 'small', 'large']),
 };
 
-export default DateForm;
+DateForm.displayName = 'DateForm';
+
+export default memo(DateForm);
 
 const IconWrapper = styled.div`
   height: 32px;
@@ -76,19 +91,27 @@ const IconWrapper = styled.div`
   border-radius: 0px 4px 4px 0px;
   display: inline-flex;
   cursor: pointer;
+
   i {
     color: #fff;
     font-size: 16px;
     font-weight: 300;
   }
+
   a {
     display: flex;
     margin: auto;
   }
+
   a,
   a:focus {
     outline: none;
     text-decoration: none;
+  }
+
+  a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -4px;
   }
 `;
 const InputWrapper = styled.div`

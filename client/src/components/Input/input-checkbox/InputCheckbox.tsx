@@ -5,7 +5,15 @@ import type { InputBaseProps } from '../base/input-base/InputBase';
 
 export type InputCheckboxProps = Omit<
   InputBaseProps,
-  'height' | 'max' | 'min' | 'mozactionhint' | 'src' | 'step' | 'type' | 'width'
+  | 'height'
+  | 'max'
+  | 'min'
+  | 'mozactionhint'
+  | 'onChange'
+  | 'src'
+  | 'step'
+  | 'type'
+  | 'width'
 > & {
   /** Field identifier */
   fieldName: string;

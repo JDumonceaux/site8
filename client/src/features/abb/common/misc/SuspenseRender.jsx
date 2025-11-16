@@ -1,8 +1,7 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState, memo } from 'react';
 import { connect } from 'react-redux';
-
-import { showSpinner } from 'actions/index';
 import PropTypes from 'prop-types';
+import { showSpinner } from 'actions/index';
 
 // AppLoading as functional component
 const AppLoading = ({ error, showSpinner }) => {
@@ -104,4 +103,6 @@ SuspenseRender.propTypes = {
   showSpinner: PropTypes.func.isRequired,
 };
 
-export default connect(null, { showSpinner })(SuspenseRender);
+SuspenseRender.displayName = 'SuspenseRender';
+
+export default connect(null, { showSpinner })(memo(SuspenseRender));

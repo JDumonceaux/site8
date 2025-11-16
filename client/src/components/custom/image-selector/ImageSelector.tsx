@@ -12,7 +12,7 @@ import useAppSettings from '@features/app/useAppSettings';
 import { IMAGE_BASE } from '@lib/utils/constants';
 import styled from 'styled-components';
 import type { Image } from '@/types';
-import useUnmatchedImages from '@/features/items-add/useUnmatchedImages';
+import useUnmatchedImages from '@features/items-add/useUnmatchedImages';
 
 export type ImageSelectorProps = {
   onSelectImage: (image: Image | undefined) => void;

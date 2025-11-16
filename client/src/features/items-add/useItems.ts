@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+
 import type { Items, ListItem } from '../../types';
 import type { KeyValue } from '../../types/KeyValue';
 
@@ -29,11 +30,11 @@ const useItems = () => {
     .filter((x): x is string => !!x)
     .toSorted((a, b) => a.localeCompare(b));
 
-  const names = [...new Set(items.map((x) => x.name))]
+  const titles = [...new Set(items.map((x) => x.title))]
     .filter((x): x is string => !!x)
     .toSorted((a, b) => a.localeCompare(b));
 
-  const periods = [...new Set(items.map((x) => x.period))]
+  const periods = [...new Set(items.map((x) => x.artisticPeriod))]
     .filter((x): x is string => !!x)
     .toSorted((a, b) => a.localeCompare(b));
 
@@ -50,7 +51,7 @@ const useItems = () => {
   }));
 
   const artistsNamesIndexed: ListItem[] = artistsNames.map((item, key) => ({
-    display: `${item.artist} - ${item.name} (${item.year})`,
+    display: `${item.artist} - ${item.title} (${item.year})`,
     key,
     value: item.id,
   }));
@@ -60,7 +61,7 @@ const useItems = () => {
     value,
   }));
 
-  const namesIndexed: KeyValue[] = names.map((value, key) => ({
+  const titlesIndexed: KeyValue[] = titles.map((value, key) => ({
     key,
     value,
   }));
@@ -81,10 +82,10 @@ const useItems = () => {
     isLoading,
     locations,
     locationsIndexed,
-    names,
-    namesIndexed,
     periods,
     periodsIndexed,
+    titles,
+    titlesIndexed,
   };
 };
 

@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { msgFormatter } from 'app/util';
 import PropTypes from 'prop-types';
+
 import GridNameDate from '../tables/GridNameDate';
 import FieldMargin from './FieldMargin';
 import Label from './Label';
 
-const CreatedBy = ({ margin, quote, ...rest }) => {
-  return (
-    <FieldMargin margin={margin}>
-      <Label
-        label={msgFormatter('createdBy')()}
-        {...rest}
-      />
-      <GridNameDate type="createdInfo">{quote}</GridNameDate>
-    </FieldMargin>
-  );
-};
+const CreatedBy = ({ margin, quote, ...rest }) => (
+  <FieldMargin margin={margin}>
+    <Label
+      label={msgFormatter('createdBy')()}
+      {...rest}
+    />
+    <GridNameDate type="createdInfo">{quote}</GridNameDate>
+  </FieldMargin>
+);
 
 CreatedBy.propTypes = {
   margin: PropTypes.string,
@@ -29,4 +28,6 @@ CreatedBy.propTypes = {
   }),
 };
 
-export default CreatedBy;
+CreatedBy.displayName = 'CreatedBy';
+
+export default memo(CreatedBy);

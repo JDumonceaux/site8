@@ -1,24 +1,29 @@
-import React from 'react';
-
-import { msgFormatter } from 'app/util';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { msgFormatter } from 'app/util';
 import styled from 'styled-components';
 
-const SectionTitle = ({ showPath, titlePath }) => {
-  return (
-    <Title>
-      <div>{msgFormatter(titlePath)()}</div>
-      <div>{showPath ? msgFormatter(showPath)() : msgFormatter('show')()}</div>
-    </Title>
-  );
-};
+// SectionTitle: Title for flyout menu sections
+const SectionTitle = ({ showPath, titlePath }) => (
+  <Title>
+    <div>{msgFormatter(titlePath)()}</div>
+    <div>{showPath ? msgFormatter(showPath)() : msgFormatter('show')()}</div>
+  </Title>
+);
 
 SectionTitle.propTypes = {
   showPath: PropTypes.string,
   titlePath: PropTypes.string,
 };
 
-export default SectionTitle;
+SectionTitle.displayName = 'SectionTitle';
+
+SectionTitle.propTypes = {
+  showPath: PropTypes.string,
+  titlePath: PropTypes.string,
+};
+
+export default memo(SectionTitle);
 const Title = styled.div`
   font-size: 16px;
   line-height: 30px;

@@ -1,19 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { memo, useCallback } from 'react';
 
-import { showUserSearchModal } from 'actions/CustomerActions';
 import { msgFormatter } from 'app/util';
 import InputForm from 'empower-components/InputForm';
 import PropTypes from 'prop-types';
 
-const EquipmentOwner = ({ onChange, show }) => {
+const EquipmentOwner = ({ onChange, show = true }) => {
+  const handleGenericChange = useCallback(
+    (field, value) => {
+      if (onChange) {
+        onChange(field, value);
+      }
+    },
+    [onChange],
+  );
+
   if (!show) {
     return null;
   }
-
-  const handleGenericChange = () => {
-    onChange(field, val);
-  };
 
   return (
     <>
@@ -68,4 +71,6 @@ EquipmentOwner.propTypes = {
   show: PropTypes.bool,
 };
 
-export default connect(null, { showUserSearchModal })(EquipmentOwner);
+EquipmentOwner.displayName = 'EquipmentOwner';
+
+export default memo(EquipmentOwner);

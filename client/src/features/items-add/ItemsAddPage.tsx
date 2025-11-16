@@ -4,9 +4,10 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import Input from '@components/input/Input';
+import MenuBar from '@features/images-edit/MenuBar';
 import Layout from '@features/layouts/Layout/Layout';
 import styled from 'styled-components';
-import MenuBar from '@/features/images-edit/MenuBar';
+import type { ItemAddExt } from './ItemAdd';
 import ItemDetail from './ItemDetail';
 import RightMenu from './RightMenu';
 import useArtists from './useArtists';
@@ -17,15 +18,13 @@ const ItemsAddPage = (): JSX.Element => {
   const {
     artistId,
     data,
-    getFieldValue,
     handleChange,
     handleClear,
     handleFilterChange,
     handleSubmit,
   } = useItemsAddPage();
 
-  const { artistsIndexed, locationsIndexed, namesIndexed, periodsIndexed } =
-    useItems();
+  const { locationsIndexed, periodsIndexed, titlesIndexed } = useItems();
 
   const { artistsAsListItem } = useArtists();
 
@@ -56,13 +55,11 @@ const ItemsAddPage = (): JSX.Element => {
               noValidate
               onSubmit={handleSubmit}
             >
-              {data.map((item) => (
+              {data.map((item: ItemAddExt) => (
                 <ItemDetail
                   key={item.lineId}
-                  artists={artistsIndexed}
-                  getFieldValue={getFieldValue}
                   item={item}
-                  names={namesIndexed}
+                  names={titlesIndexed}
                   locations={locationsIndexed}
                   onChange={handleChange}
                   periods={periodsIndexed}

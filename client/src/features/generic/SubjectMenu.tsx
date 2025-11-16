@@ -7,21 +7,17 @@ import { getURLPath } from '@lib/utils/helpers';
 import styled from 'styled-components';
 import ItemRender from './ItemRender';
 
-const SubjectMenu = ({ ref, ..._ }: any): JSX.Element => {
+type SubjectMenuProps = {
+  readonly ref?: React.Ref<HTMLElement>;
+};
+
+const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   const { getMenu, getOtherMenus, isError, isLoading } = useMenu();
   const { pathname } = useLocation();
 
-  const [pn1, pn2] = getURLPath(pathname) || [];
-  const data = getMenu(pn1, pn2);
-  const data2 = getOtherMenus(data?.id);
-
-  const mappedItems = data?.items?.map((x) => (
-    <ItemRender
-      key={x.id}
-      item={x}
-      level={1}
-    />
-  ));
+  const [pn1] = getURLPath(pathname) ?? [];
+  const data = getMenu(pn1);
+  const data2 = getOtherMenus(data?.id ?? 0);
 
   const mappedData2 = data2.map((x) => (
     <ItemRender
@@ -41,9 +37,7 @@ const SubjectMenu = ({ ref, ..._ }: any): JSX.Element => {
           <ItemRender
             item={data}
             level={0}
-          >
-            {mappedItems}
-          </ItemRender>
+          />
           <br />
           <br />
           <ItemRender

@@ -1,9 +1,19 @@
-import { useQuery } from '@tanstack/react-query';
-
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { ArtistsItems, ListItem } from '../../types';
 
-// Helper function to fetch artists items data
+type UseArtistsItemsReturn = {
+  readonly data: ArtistsItems | undefined;
+  readonly error: Error | null;
+  readonly isError: boolean;
+  readonly isLoading: boolean;
+  readonly itemsAsListItem: ListItem[];
+};
+
+/**
+ * Helper function to fetch artists items data
+ */
 const fetchData = async (): Promise<ArtistsItems> => {
   const response = await fetch(ServiceUrl.ENDPOINT_ARTISTS_ITEMS);
   if (!response.ok) {
@@ -12,37 +22,50 @@ const fetchData = async (): Promise<ArtistsItems> => {
   return response.json() as Promise<ArtistsItems>;
 };
 
-const useArtistsItems = () => {
-  const queryKey = ['artistsItems'];
-  const query = useQuery<ArtistsItems>({
+/**
+ * Custom hook to fetch and process artists items data
+ * @returns Query state and processed items list
+ */
+const useArtistsItems = (): UseArtistsItemsReturn => {
+  const query: UseQueryResult<ArtistsItems> = useQuery<ArtistsItems>({
     queryFn: fetchData,
-    queryKey,
+    queryKey: ['artists-items'],
     ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  // Derive the list of items as ListItem[]
-  const itemsAsListItem: ListItem[] = [];
-  const sortedItems = query.data?.items?.toSorted((a, b) =>
-    a.artist.sortName.localeCompare(b.artist.sortName),
-  );
+  // Derive the list of items as ListItem[] using useMemo for performance
+  const itemsAsListItem: ListItem[] = useMemo(() => {
+    if (!query.data?.items) {
+      return [];
+    }
 
-  let index = 0;
-  if (sortedItems) {
+    const sortedItems = query.data.items.toSorted((a, b) => {
+      const sortNameA = a.artist.sortName ?? '';
+      const sortNameB = b.artist.sortName ?? '';
+      return sortNameA.localeCompare(sortNameB);
+    });
+
+    const result: ListItem[] = [];
+    let index = 0;
+
     for (const artist of sortedItems) {
       const items = artist.items?.filter(
-        (y) => y.artistId === artist.artist.id,
+        (item) => item.artistId === artist.artist.id,
       );
+
       if (items) {
-        for (const y of items) {
-          itemsAsListItem.push({
-            display: `${artist.artist.sortName} - ${y.title}`,
+        for (const item of items) {
+          result.push({
+            display: `${artist.artist.sortName ?? 'Unknown'} - ${item.title}`,
             key: index++,
-            value: y.id,
+            value: item.id,
           });
         }
       }
     }
-  }
+
+    return result;
+  }, [query.data]);
 
   return {
     data: query.data,

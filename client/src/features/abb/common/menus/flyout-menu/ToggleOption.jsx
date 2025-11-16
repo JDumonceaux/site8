@@ -1,11 +1,11 @@
-import React from 'react';
-
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { msgFormatter } from 'app/util';
 import Toggle from 'empower-components/Toggle';
 import Tooltip from 'empower-components/Tooltip';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// ToggleOption: Renders a toggle with optional tooltip and label
 const ToggleOption = ({ item }) => {
   // Fill in any missing or undefined properties
   const modifiedItem = {
@@ -59,7 +59,22 @@ ToggleOption.propTypes = {
   }),
 };
 
-export default ToggleOption;
+ToggleOption.displayName = 'ToggleOption';
+
+ToggleOption.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    infoIcon: PropTypes.string,
+    isEnabled: PropTypes.bool,
+    onChange: PropTypes.func,
+    path: PropTypes.string,
+    show: PropTypes.bool,
+    text: PropTypes.string,
+    value: PropTypes.bool,
+  }),
+};
+
+export default memo(ToggleOption);
 
 const ToggleDiv = styled.div`
   > div:first-child {

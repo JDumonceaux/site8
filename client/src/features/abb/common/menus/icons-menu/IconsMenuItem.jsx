@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-
-import Tooltip from 'empower-components/Tooltip';
 import PropTypes from 'prop-types';
+import Tooltip from 'empower-components/Tooltip';
 import styled from 'styled-components';
 import { handleColorType } from '../../StyleColorType';
 
@@ -87,7 +86,7 @@ IconsMenuItem.propTypes = {
 };
 
 IconsMenuItem.displayName = 'IconsMenuItem';
-export default IconsMenuItem;
+export default memo(IconsMenuItem);
 
 const StyledItem = styled.div`
   align-items: ${(props) =>

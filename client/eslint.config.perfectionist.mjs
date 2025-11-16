@@ -15,26 +15,30 @@ export default {
         'perfectionist/sort-enums': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-exports': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-imports': [
-            'error',
+            'warn',
             {
-                customGroups: {
-                    type: {
-                        react: 'react',
-                    },
-                    value: {
-                        react: ['react', 'react-*'],
-                    },
-                },
+                customGroups:
+                    [
+                        {
+                            selector: "type",
+                            groupName: "react",
+                            elementNamePattern: ["react", "react-*"],
+                            newlinesInside: 0
+
+                        }
+                    ],
                 groups: [
-                    'react', { newlinesBetween: 1 },
+                    'react',
+                    { newlinesBetween: 1 },
+                    'tanstack',
                     'type',
                     'builtin',
                     'external',
                     'internal-type',
                     'internal',
                     'parent-type',
-                    'sibling-type',
                     'parent',
+                    'sibling-type',
                     'sibling',
                     'side-effect',
                     'style',
@@ -43,8 +47,10 @@ export default {
                 ],
                 newlinesBetween: 0,
                 order: 'asc',
+                fallbackSort: { type: 'alphabetical', order: 'asc' },
                 partitionByNewLine: false,
                 type: 'natural',
+                tsconfig: { rootDir: './', filename: './tsconfig.json' }
             },
         ],
         'perfectionist/sort-interfaces': ['error', { order: 'asc', type: 'natural' }],

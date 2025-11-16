@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const FieldLabel = ({
@@ -12,7 +13,10 @@ const FieldLabel = ({
   required = false,
   startAdornment,
 }) => {
-  const displayLabel = label || (path ? msgFormatter(path)() : '');
+  const displayLabel = useMemo(
+    () => label || (path ? msgFormatter(path)() : ''),
+    [label, path],
+  );
 
   return (
     <StyledLabel
@@ -22,14 +26,26 @@ const FieldLabel = ({
       <div>
         {startAdornment}
         {displayLabel}
-        {required ? <RequiredLabel>*</RequiredLabel> : null}
+        {required && <RequiredLabel>*</RequiredLabel>}
       </div>
-      <div>{endAdornment}</div>
+      {endAdornment && <div>{endAdornment}</div>}
     </StyledLabel>
   );
 };
 
-export default FieldLabel;
+FieldLabel.propTypes = {
+  endAdornment: PropTypes.node,
+  id: PropTypes.string,
+  label: PropTypes.string,
+  labelProps: PropTypes.object,
+  path: PropTypes.string,
+  required: PropTypes.bool,
+  startAdornment: PropTypes.node,
+};
+
+FieldLabel.displayName = 'FieldLabel';
+
+export default memo(FieldLabel);
 
 const StyledLabel = styled.label`
   box-sizing: border-box;

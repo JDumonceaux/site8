@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { memo } from 'react';
 import Menu from 'empower-components/FlyoutMenu';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -32,6 +31,8 @@ const FlyoutMenu = ({ children, footer, show, title, titleExtra }) => {
   );
 };
 
+export default memo(FlyoutMenu);
+
 FlyoutMenu.propTypes = {
   children: PropTypes.node,
   footer: PropTypes.node,
@@ -41,7 +42,6 @@ FlyoutMenu.propTypes = {
 };
 
 FlyoutMenu.displayName = 'FlyoutMenu';
-export default FlyoutMenu;
 
 const TitleDiv = styled.div`
   border-bottom: 1px solid #cacdd0;

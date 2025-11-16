@@ -1,18 +1,43 @@
 import { useEffect, useState } from 'react';
 
-import type { ItemAdd, ItemAddExt } from '@/features/items-add/ItemAdd';
-import useSnackbar from '@/features/app/snackbar/useSnackbar';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { useAxios } from '@hooks/axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { ServiceUrl } from '@lib/utils/constants';
-import {
-  getDefaultObject,
-  removeEmptyAttributesArray,
-} from '@lib/utils/objectUtil';
+import { removeEmptyAttributesArray } from '@lib/utils/objectUtil';
+
+import type { ItemAdd, ItemAddExt } from './ItemAdd';
 
 const ITEM_COUNT = 10;
 
-const useItemsAddPage = () => {
+type UseItemsAddPageReturn = {
+  readonly artistId: string;
+  readonly data: ItemAddExt[];
+  readonly getFieldValue: (
+    lineId: number,
+    fieldName: keyof ItemAddExt,
+  ) => string;
+  readonly handleChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  readonly handleClear: () => void;
+  readonly handleFilterChange: (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => void;
+  readonly handleSubmit: () => void;
+  readonly isLoading: boolean;
+  readonly setFieldValue: (
+    lineId: number,
+    fieldName: keyof ItemAddExt,
+    value: boolean | null | number | string,
+  ) => void;
+};
+
+/**
+ * Custom hook for managing the items add page state and operations
+ * @returns State and handlers for the items add page
+ */
+const useItemsAddPage = (): UseItemsAddPageReturn => {
   const { setErrorMessage, setMessage } = useSnackbar();
   const [artistId, setArtistId] = useState('');
 
@@ -25,24 +50,37 @@ const useItemsAddPage = () => {
     setFormValues,
   } = useFormArray<ItemAddExt>();
 
-  const { error, isError, isPending, putData } = useAxios<unknown>();
+  const { error, isLoading, putData } = useAxios<unknown>();
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setArtistId(event.target.value);
   };
 
-  const defaultObject = getDefaultObject<ItemAddExt>();
-
-  const mapDataToForm = () => {
-    return Array.from({ length: ITEM_COUNT }, (_, index) => ({
-      ...defaultObject,
-      lineId: index + 1,
-    }));
-  };
+  const createDefaultItem = (lineId: number): ItemAddExt => ({
+    artisticPeriod: '',
+    description: '',
+    lineId,
+    location: '',
+    officialWebAddress: '',
+    tags: '',
+    title: '',
+    year: '',
+  });
 
   useEffect(() => {
-    setFormValues(mapDataToForm());
-  }, [setFormValues]);
+    const items = Array.from({ length: ITEM_COUNT }, (_, index) =>
+      createDefaultItem(index + 1),
+    );
+    setFormValues(items);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleClear = () => {
+    const items = Array.from({ length: ITEM_COUNT }, (_, index) =>
+      createDefaultItem(index + 1),
+    );
+    setFormValues(items);
+  };
 
   const saveItems = async (updates: ItemAdd[]) => {
     const cleanedData = removeEmptyAttributesArray(updates);
@@ -51,65 +89,86 @@ const useItemsAddPage = () => {
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  ): void => {
     const { dataset, value } = event.target;
     const { id, line } = dataset;
-    const lineNumber = Number(line);
-    if (id) {
-      setFieldValue(lineNumber, id as keyof ItemAddExt, value);
-    } else {
-      throw new Error('No id found');
-    }
-  };
 
-  const handleClear = () => {
-    setFormValues(mapDataToForm());
+    if (!id || !line) {
+      console.error('Missing data attributes: id or line');
+      return;
+    }
+
+    const lineNumber = Number(line);
+    if (Number.isNaN(lineNumber)) {
+      console.error('Invalid line number:', line);
+      return;
+    }
+
+    setFieldValue(lineNumber, id as keyof ItemAddExt, value);
   };
 
   const getUpdates = (): ItemAdd[] | null => {
-    const returnValue: ItemAdd[] = [];
     const artistIdNumber = Number(artistId);
+
+    if (!artistIdNumber || Number.isNaN(artistIdNumber)) {
+      console.error('Invalid artist ID:', artistId);
+      return null;
+    }
+
+    const items: ItemAdd[] = [];
 
     for (const index of getIndex()) {
       const item = getItem(index.lineId);
-      if (item) {
-        const { lineId, ...rest } = item;
-        const newItem: ItemAdd = { ...rest, artistId: artistIdNumber };
-        const isEmpty = Object.values(newItem).every((x) => x === '');
-        if (!isEmpty) {
-          returnValue.push(newItem);
-        }
+      if (!item) {
+        continue;
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { lineId, ...rest } = item;
+      const newItem: ItemAdd = { ...rest, artistId: artistIdNumber };
+
+      // Check if all values are empty
+      const isEmpty = Object.values(newItem).every(
+        (value) => value === '' || value === 0,
+      );
+
+      if (!isEmpty) {
+        items.push(newItem);
       }
     }
 
-    const filtered = returnValue.filter((x) => x.title?.trim() !== '');
+    // Filter out items without a title
+    const filtered = items.filter((item) => item.title.trim() !== '');
     return filtered.length > 0 ? filtered : null;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (): void => {
     const updates = getUpdates();
 
     if (!updates) {
       setErrorMessage('No changes to save');
       return;
     }
+
     setMessage('Saving...');
 
-    saveItems(updates)
-      .then((result) => {
+    void (async () => {
+      try {
+        const result = await saveItems(updates);
         if (result) {
-          setMessage('Saved');
+          setMessage('Items saved successfully');
         } else {
-          setMessage(`Error saving ${error}`);
+          setMessage(error ? `Error saving: ${error}` : 'Error saving items');
         }
-      })
-      .catch((error_: unknown) => {
-        if (error_ instanceof Error) {
-          setMessage(`An unexpected error occurred: ${error_.message}`);
-        } else {
-          setMessage('An unexpected error occurred');
-        }
-      });
+      } catch (error_: unknown) {
+        const errorMessage =
+          error_ instanceof Error
+            ? `An unexpected error occurred: ${error_.message}`
+            : 'An unexpected error occurred';
+        setMessage(errorMessage);
+        console.error('Error saving items:', error_);
+      }
+    })();
   };
 
   return {
@@ -120,8 +179,7 @@ const useItemsAddPage = () => {
     handleClear,
     handleFilterChange,
     handleSubmit,
-    isError,
-    isPending,
+    isLoading,
     setFieldValue,
   };
 };

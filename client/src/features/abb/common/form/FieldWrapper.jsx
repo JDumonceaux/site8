@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { memo } from 'react';
 
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const FieldWrapper = ({ children, required = false, size = 'regular' }) => {
-  return (
-    <InputFormContainer
-      required={required}
-      size={size}
-    >
-      {children}
-    </InputFormContainer>
-  );
+const FieldWrapper = ({ children, required = false, size = 'regular' }) => (
+  <InputFormContainer
+    required={required}
+    size={size}
+  >
+    {children}
+  </InputFormContainer>
+);
+
+FieldWrapper.propTypes = {
+  children: PropTypes.node,
+  required: PropTypes.bool,
+  size: PropTypes.oneOf(['regular', 'small', 'large']),
 };
 
-export default FieldWrapper;
+FieldWrapper.displayName = 'FieldWrapper';
+
+export default memo(FieldWrapper);
 
 const InputFormContainer = styled.div`
   display: flex;

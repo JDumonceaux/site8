@@ -14,15 +14,15 @@ const BookmarkTags = ({ data }: BookmarksTagsProps): JSX.Element | null => {
     <table>
       <thead>
         <tr>
-          <th />
-          <th />
+          <th>Tag/Name</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
         {data.items.flatMap((item) => [
           <tr key={item.tag}>
             <td>{item.tag}</td>
-            <td />
+            <td aria-label="Empty" />
           </tr>,
           ...item.items.map((x) => (
             <tr key={x.id}>

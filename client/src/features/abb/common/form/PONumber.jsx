@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { msgFormatter } from 'app/util';
 import InputForm from 'empower-components/InputForm';
+import PropTypes from 'prop-types';
+
 import FieldMargin from './FieldMargin';
 
-const PONumber = ({ margin, onChange, show, value, ...rest }) => {
-  if (!show) return null;
+const PONumber = ({ margin, onChange, show = true, value, ...rest }) => {
+  if (!show) {
+    return null;
+  }
 
   return (
     <FieldMargin margin={margin}>
@@ -22,4 +26,13 @@ const PONumber = ({ margin, onChange, show, value, ...rest }) => {
   );
 };
 
-export default PONumber;
+PONumber.propTypes = {
+  margin: PropTypes.string,
+  onChange: PropTypes.func,
+  show: PropTypes.bool,
+  value: PropTypes.string,
+};
+
+PONumber.displayName = 'PONumber';
+
+export default memo(PONumber);

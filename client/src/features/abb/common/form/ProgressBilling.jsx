@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
+
 import CheckboxForm from './CheckboxForm';
 import FieldMargin from './FieldMargin';
 
-const ProgressBilling = ({ checked, margin, onSelect, show, ...rest }) => {
-  if (!show) return null;
+const ProgressBilling = ({
+  checked,
+  margin,
+  onSelect,
+  show = true,
+  ...rest
+}) => {
+  if (!show) {
+    return null;
+  }
 
   return (
     <FieldMargin margin={margin}>
@@ -21,4 +31,13 @@ const ProgressBilling = ({ checked, margin, onSelect, show, ...rest }) => {
   );
 };
 
-export default ProgressBilling;
+ProgressBilling.propTypes = {
+  checked: PropTypes.bool,
+  margin: PropTypes.string,
+  onSelect: PropTypes.func,
+  show: PropTypes.bool,
+};
+
+ProgressBilling.displayName = 'ProgressBilling';
+
+export default memo(ProgressBilling);

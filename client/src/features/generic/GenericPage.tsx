@@ -18,12 +18,12 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
   const x = useLocation();
 
   const { data, error, isError, isLoading } = useGenericPage(
-    x.pathname ? x.pathname.slice(1) : undefined,
+    x.pathname.slice(1),
   );
 
   const deferredData = useDeferredValue(data);
 
-  const pageTitle = deferredData?.name ?? title;
+  const pageTitle = deferredData?.title ?? title;
 
   return (
     <>

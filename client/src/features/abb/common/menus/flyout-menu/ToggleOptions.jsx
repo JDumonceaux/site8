@@ -1,8 +1,8 @@
-import React from 'react';
-
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import ToggleOption from './ToggleOption';
 
+// ToggleOptions: Renders a list of ToggleOption components
 const ToggleOptions = ({ items }) => {
   if (!items || items.length === 0) {
     return null;
@@ -36,4 +36,16 @@ ToggleOptions.propTypes = {
   ),
 };
 
-export default ToggleOptions;
+ToggleOptions.displayName = 'ToggleOptions';
+
+ToggleOptions.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      key: PropTypes.string,
+      path: PropTypes.string,
+    }),
+  ),
+};
+
+export default memo(ToggleOptions);

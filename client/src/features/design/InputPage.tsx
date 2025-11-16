@@ -7,18 +7,18 @@ import Layout from '@features/layouts/Layout/Layout';
 import useForm from '@hooks/useForm';
 import styled from 'styled-components';
 
-type fields = Record<string, string>;
+type Fields = Record<string, string>;
 
 const InputPage = (): JSX.Element => {
   const title = 'Design - Input';
 
-  const items: fields = {};
+  const items: Fields = {};
 
   for (const key of Object.keys(items)) {
     items[key] = '';
   }
 
-  const { getFieldValue, setFieldValue } = useForm<fields>(items);
+  const { getFieldValue, setFieldValue } = useForm<Fields>(items);
 
   return (
     <>
@@ -83,7 +83,7 @@ const InputPage = (): JSX.Element => {
           <Grid>
             <GridItem>
               <Input.Select
-                data={[
+                dataList={[
                   { key: '1', value: 'One' },
                   { key: '2', value: 'Two' },
                   { key: '3', value: 'Three' },
@@ -91,15 +91,15 @@ const InputPage = (): JSX.Element => {
                 id="select150"
                 label="Select"
                 value={getFieldValue('field150')}
+                isShowBlankOption
                 onChange={(error) => {
                   setFieldValue('field150', error.target.value);
                 }}
-                showBlankOption
               />
             </GridItem>
             <GridItem>
               <Input.Select
-                data={[
+                dataList={[
                   { key: '1', value: 'One' },
                   { key: '2', value: 'Two' },
                   { key: '3', value: 'Three' },
@@ -115,8 +115,8 @@ const InputPage = (): JSX.Element => {
             </GridItem>
             <GridItem>
               <Input.Select
-                required
-                data={[
+                isRequired
+                dataList={[
                   { key: '1', value: 'One' },
                   { key: '2', value: 'Two' },
                   { key: '3', value: 'Three' },
@@ -132,17 +132,16 @@ const InputPage = (): JSX.Element => {
             </GridItem>
             <GridItem>
               <Input.Select
-                required
-                data={[
+                isRequired
+                dataList={[
                   { key: '1', value: 'One' },
                   { key: '2', value: 'Two' },
                   { key: '3', value: 'Three' },
                 ]}
                 id="select153"
                 label="Select"
-                //placeholder="Enter your first name"
                 value={getFieldValue('field153')}
-                description="This is a required field"
+                labelProps={{ description: 'This is a required field' }}
                 onChange={(error) => {
                   setFieldValue('field153', error.target.value);
                 }}

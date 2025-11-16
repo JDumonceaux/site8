@@ -1,10 +1,10 @@
-import React from 'react';
-
-import { msgFormatter } from 'app/util';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { msgFormatter } from 'app/util';
 import styled from 'styled-components';
 import DetailsOptions from './DetailsOptions';
 
+// ViewOptions: Renders a set of DetailsOptions for view selection
 const ViewOptions = ({ items, onChange, path, value }) => {
   const handleViewChange = (value_) => {
     onChange(value_);
@@ -48,7 +48,22 @@ ViewOptions.propTypes = {
   value: PropTypes.string,
 };
 
-export default ViewOptions;
+ViewOptions.displayName = 'ViewOptions';
+
+ViewOptions.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      path: PropTypes.string,
+      position: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ),
+  onChange: PropTypes.func,
+  path: PropTypes.string,
+  value: PropTypes.string,
+};
+
+export default memo(ViewOptions);
 
 const WrapperDiv = styled.div`
   display: flex;

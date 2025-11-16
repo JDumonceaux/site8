@@ -1,28 +1,26 @@
-import type { JSX } from 'react';
+import { memo, type JSX } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import styled from 'styled-components';
 
 /**
  * Props for the Article container, extending standard HTML attributes.
  */
-type ArticleProps = React.HTMLAttributes<HTMLElement> & {
+type ArticleProps = HTMLAttributes<HTMLElement> & {
   /** Content to render inside the Article */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /**
  * A semantic Article container with flexible layout.
+ * Provides a responsive flex container for article content.
  */
 const Article = ({ children, ...rest }: ArticleProps): JSX.Element => (
-  <Container
-    data-testid="article"
-    {...rest}
-  >
-    {children}
-  </Container>
+  <Container {...rest}>{children}</Container>
 );
+
 Article.displayName = 'Article';
-export default Article;
+export default memo(Article);
 
 // Styled component defining the Article layout
 const Container = styled.article`

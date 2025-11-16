@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { msgFormatter } from 'app/util';
+
 import DateForm from './DateForm';
 
-const DueDate = ({ ...rest }) => {
-  return (
-    <DateForm
-      required
-      label={msgFormatter('dueDate')()}
-      {...rest}
-    />
-  );
-};
+const DueDate = ({ ...rest }) => (
+  <DateForm
+    required
+    label={msgFormatter('dueDate')()}
+    {...rest}
+  />
+);
 
-export default DueDate;
+DueDate.displayName = 'DueDate';
+
+export default memo(DueDate);

@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { z } from 'zod';
 
 // Define Zod Shape
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- Used for type inference
 const pageSchema = z.object({
   address_line1: z.string().min(10).optional(),
   address_line2: z.string().min(10).optional(),
@@ -19,7 +20,10 @@ const pageSchema = z.object({
   cc_number: z.string().min(10).optional(),
   country: z.string().min(10).optional(),
   day: z.string().min(10).optional(),
-  email: z.string().email().optional(),
+  email: z
+    .string()
+    .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Invalid email address')
+    .optional(),
   family_name: z.string().min(10).optional(),
   given_name: z.string().min(10).optional(),
   honorific_prefix: z.string().min(10).optional(),
@@ -36,15 +40,18 @@ const pageSchema = z.object({
   tel: z.string().optional(),
   textarea: z.string().optional(),
   title: z
-    .string({
-      invalid_type_error: 'Title must be a string',
-      required_error: 'Title is required.',
-    })
+    .string()
     .min(10, 'Title min length not met: 10')
     .max(100, 'Title max length exceeded: 100')
     .describe('Enter a title'),
   year: z.string().min(10).optional(),
 });
+
+const handleSubmit = (error: React.FormEvent) => {
+  error.stopPropagation();
+  error.preventDefault();
+  // handleSave();
+};
 
 const DevelopPage = (): JSX.Element => {
   const title = 'Develop';
@@ -79,19 +86,16 @@ const DevelopPage = (): JSX.Element => {
     year: '',
   };
 
-  const { formValues, getFieldValue, handleChange } =
-    useForm<FormType>(initialFormValues);
+  const { getFieldValue, handleChange } = useForm<FormType>(initialFormValues);
 
-  const handleSubmit = (error: React.FormEvent) => {
-    error.stopPropagation();
-    error.preventDefault();
-    // handleSave();
+  const { open, toggle, ...dialogProps } = useDialog();
+
+  const handleDialogOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      toggle();
+    }
   };
 
-  const getTitleErrors = () =>
-    pageSchema.shape.title.safeParse(formValues.title);
-
-  const { onDialogClose, onDialogOpen, ...dialogProps } = useDialog();
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -107,7 +111,7 @@ const DevelopPage = (): JSX.Element => {
           <section>
             <button
               type="button"
-              onClick={onDialogOpen}
+              onClick={open}
             >
               Open Dialog
             </button>
@@ -165,7 +169,7 @@ const DevelopPage = (): JSX.Element => {
       </Layout.Flex>
       <Dialog
         label="Test"
-        onClose={onDialogClose}
+        onOpenChange={handleDialogOpenChange}
         {...dialogProps}
       >
         Children
