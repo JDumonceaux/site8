@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Tooltip from 'empower-components/Tooltip';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { handleColorType } from '../../StyleColorType';
 
@@ -11,45 +11,51 @@ const IconsMenuItem = ({ includeLI = false, item }) => {
   }
 
   const showText = item.showText ? <span>{item.text}</span> : null;
+  const itemContent = (
+    <>
+      {item.icon}
+      {showText}
+    </>
+  );
 
-  const activeContent = (
+  // Priority: to > link > onClick
+  let clickContent = null;
+  if (item.to) {
+    clickContent = <Link to={item.to}>{itemContent}</Link>;
+  } else if (item.link) {
+    clickContent = <a href={item.link}>{itemContent}</a>;
+  } else if (item.onClick) {
+    clickContent = (
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          item.onClick(e);
+        }}
+      >
+        {itemContent}
+      </a>
+    );
+  }
+
+  const content = (
     <StyledItem
       $align={item.align}
       $isEnabled={item.isEnabled}
       $status={item.status}
     >
-      {item.isEnabled ? (
-        <>
-          <Tooltip title={item.toolTip}>
-            {item.onClick ? (
-              <a onClick={item.onClick}>
-                {item.icon}
-                {showText}
-              </a>
-            ) : null}
-            {item.link ? (
-              <a href={item.link}>
-                {item.icon}
-                {showText}
-              </a>
-            ) : null}
-            {item.to ? (
-              <Link to={item.to}>
-                {item.icon}
-                {showText}
-              </Link>
-            ) : null}
-          </Tooltip>
-          {item.children}
-        </>
+      {item.showToolTip !== false && item.toolTip ? (
+        item.isEnabled ? (
+          <Tooltip title={item.toolTip}>{clickContent}</Tooltip>
+        ) : (
+          <Tooltip title={item.toolTipDisabled}>{itemContent}</Tooltip>
+        )
+      ) : item.isEnabled ? (
+        <div>{clickContent}</div>
       ) : (
-        <Tooltip title={item.toolTip}>
-          <>
-            {item.icon}
-            {showText}
-          </>
-        </Tooltip>
+        <div>{itemContent}</div>
       )}
+      {item.children}
       {item.count > 0 ? <Badge $status="info">{item.count}</Badge> : null}
       {item.badge ? (
         <Badge $status={item.badgeStatus}>{item.badge}</Badge>
@@ -58,9 +64,9 @@ const IconsMenuItem = ({ includeLI = false, item }) => {
   );
 
   return includeLI ? (
-    <StyledLi>{activeContent}</StyledLi>
+    <StyledLi>{content}</StyledLi>
   ) : (
-    <StyledDiv>{activeContent}</StyledDiv>
+    <StyledDiv>{content}</StyledDiv>
   );
 };
 
@@ -68,25 +74,31 @@ IconsMenuItem.propTypes = {
   includeLI: PropTypes.bool,
   item: PropTypes.shape({
     align: PropTypes.string,
-    badge: PropTypes.string,
+    badge: PropTypes.node,
     badgeStatus: PropTypes.string,
     children: PropTypes.node,
     count: PropTypes.number,
     icon: PropTypes.node,
+    iconActive: PropTypes.node,
+    isActive: PropTypes.bool,
     isEnabled: PropTypes.bool,
+    key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     link: PropTypes.string,
     onClick: PropTypes.func,
     show: PropTypes.bool,
     showText: PropTypes.bool,
-    status: PropTypes.string,
+    showToolTip: PropTypes.bool,
+    status: PropTypes.number,
     text: PropTypes.string,
     to: PropTypes.string,
     toolTip: PropTypes.string,
+    toolTipDisabled: PropTypes.string,
+    type: PropTypes.string,
   }),
 };
 
 IconsMenuItem.displayName = 'IconsMenuItem';
-export default memo(IconsMenuItem);
+export default IconsMenuItem;
 
 const StyledItem = styled.div`
   align-items: ${(props) =>
@@ -113,6 +125,9 @@ const StyledItem = styled.div`
     display: flex;
     align-items: center;
     text-decoration: none;
+  }
+  div:first-child {
+    display: block;
   }
 `;
 const StyledDiv = styled.div`

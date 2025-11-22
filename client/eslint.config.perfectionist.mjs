@@ -30,7 +30,6 @@ export default {
                 groups: [
                     'react',
                     { newlinesBetween: 1 },
-                    'tanstack',
                     'type',
                     'builtin',
                     'external',

@@ -1,9 +1,8 @@
-﻿import React from 'react';
+﻿import { msgFormatter } from 'app/util';
+import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
 import { connect } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
-
-import { msgFormatter } from 'app/util';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ToolTipIcon from '../ToolTipIcon';
 import Favorite from './Favorite';
@@ -25,7 +24,7 @@ const ViewHeader = ({
           quote?.VersionDescription ? ` - ${quote?.VersionDescription}` : ''
         }`;
 
-  const getShortVersionName = () => {
+  const shortVersionName = useMemo(() => {
     if (quote?.VersionID === 0) {
       return msgFormatter('originalVersion')();
     }
@@ -33,8 +32,7 @@ const ViewHeader = ({
       return `${quote?.VersionName.slice(0, 29)}...`;
     }
     return quote?.VersionName;
-  };
-  const shortVersionName = getShortVersionName();
+  }, [quote]);
 
   return (
     <WrapperDiv>

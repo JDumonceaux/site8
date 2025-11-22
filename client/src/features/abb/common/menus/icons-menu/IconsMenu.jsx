@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { msgFormatter } from 'app/util';
 import PropTypes from 'prop-types';
@@ -451,9 +451,6 @@ const IconsMenu = ({
     // isActive = Ex. Filtering is applied
     const isEnabled = item.isEnabled === undefined ? true : item.isEnabled;
     const show = item.show === undefined ? true : item.show;
-    const toolTip = isEnabled
-      ? item.toolTip || defaultProps.toolTip
-      : item.toolTipDisabled || defaultProps.toolTipDisabled;
 
     return {
       align: item.showText && item.showText === true ? 'start' : 'center',
@@ -470,22 +467,28 @@ const IconsMenu = ({
       onClick: item.onClick,
       show,
       showText: !!(item.showText || item.text),
+      showToolTip:
+        item.showToolTip !== undefined && item.showToolTip !== null
+          ? item.showToolTip
+          : true,
       status: item.status || 0,
       text: item.text || defaultProps.text,
       to: item.to,
-      toolTip,
+      toolTip: item.toolTip || defaultProps.toolTip,
+      toolTipDisabled: item.toolTipDisabled || defaultProps.toolTipDisabled,
       type: item.type,
     };
   }, []);
 
-  const updatedItems = Array.isArray(items)
-    ? items
-        .map((item, index) => ({
-          ...getDefaultProps(item),
-          key: item.key ?? item.id ?? index,
-        }))
-        .filter((item) => item.show)
-    : [];
+  const updatedItems = useMemo(() => {
+    if (!Array.isArray(items)) return [];
+    return items
+      .map((item, index) => ({
+        ...getDefaultProps(item),
+        key: item.key ?? item.id ?? index,
+      }))
+      .filter((item) => item.show);
+  }, [items, getDefaultProps]);
 
   // If no items are provided, return null to avoid rendering an empty list
   if (updatedItems.length === 0) {
@@ -535,6 +538,7 @@ IconsMenu.propTypes = {
       onClick: PropTypes.func,
       show: PropTypes.bool,
       showText: PropTypes.bool,
+      showToolTip: PropTypes.bool,
       status: PropTypes.number,
       text: PropTypes.string,
       to: PropTypes.string,

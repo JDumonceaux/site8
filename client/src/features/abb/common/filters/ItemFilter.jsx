@@ -1,6 +1,3 @@
-import React, { useCallback } from 'react';
-import { connect } from 'react-redux';
-
 import {
   resetQuoteItemFilters,
   toggleOrderedItem,
@@ -8,6 +5,9 @@ import {
 } from 'actions/QuoteActions';
 import { msgFormatter } from 'app/util';
 import FilterBar from 'empower-components/FilterBar';
+import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { connect } from 'react-redux';
 import useDebounceSearch from './useDebounceSearch';
 import useFilterBar from './useFilterBar';
 
@@ -53,41 +53,59 @@ const ItemFilter = ({
   const {
     handleChange: handleProductFamilyFilterFB,
     handleClear: handleProductFamilyFilterClearFB,
-    optionsWithCount: productFamilyOptionsFormatted,
-    values: productFamilyValues,
-  } = useFilterBar(productFamilyOptions, 'value', productFamilyValuesInit);
+    options: productFamilyOptionsFormatted,
+    selectedValues: productFamilyValues,
+  } = useFilterBar({
+    includeCount: true,
+    initialValues: productFamilyValuesInit,
+    items: productFamilyOptions,
+  });
 
   const {
     handleChange: handleTagsFilterFB,
     handleClear: handleTagsFilterClearFB,
     options: tagOptionsFormatted,
-    values: tagValues,
-  } = useFilterBar(tagOptions, 'value', tagValuesInit);
+    selectedValues: tagValues,
+  } = useFilterBar({
+    includeCount: true,
+    initialValues: tagValuesInit,
+    items: tagOptions,
+  });
 
   const {
     handleChange: handleItemGroupingsFilterFB,
     handleClear: handleItemGroupingsFilterClearFB,
     options: itemGroupingsOptionsFormatted,
-    values: itemGroupingsValues,
-  } = useFilterBar(itemGroupingsOptions, 'value', itemGroupingsValuesInit);
+    selectedValues: itemGroupingsValues,
+  } = useFilterBar({
+    initialValues: itemGroupingsValuesInit,
+    items: itemGroupingsOptions,
+  });
 
-  const handleProductFamilyFilter = (value) => {
-    handleProductFamilyFilterFB(value);
-    updateQuoteItemFilters('familyValues', value);
+  const mapObjectToArray = useCallback((obj) => {
+    return obj?.map((x) => x.value);
+  }, []);
+
+  const handleProductFamilyFilter = (obj) => {
+    handleProductFamilyFilterFB(obj);
+    updateQuoteItemFilters('familyValues', mapObjectToArray(obj));
   };
 
-  const handleTagsFilter = (value) => {
-    handleTagsFilterFB(value);
-    updateQuoteItemFilters('tagValues', value);
+  const handleTagsFilter = (obj) => {
+    handleTagsFilterFB(obj);
+    updateQuoteItemFilters('tagValues', mapObjectToArray(obj));
   };
 
-  const handleItemGroupingsFilter = (value) => {
-    handleItemGroupingsFilterFB(value);
-    updateQuoteItemFilters('productTagValues', value);
+  const handleItemGroupingsFilter = (obj) => {
+    handleItemGroupingsFilterFB(obj);
+    updateQuoteItemFilters('productTagValues', mapObjectToArray(obj));
   };
 
   const handleFilterClear = () => {
     handleSearchFilter(''); // Clear search using the debounced handler
+    handleItemGroupingsFilterClearFB();
+    handleTagsFilterClearFB();
+    handleProductFamilyFilterClearFB();
     resetQuoteItemFilters();
   };
 
@@ -176,6 +194,21 @@ const ItemFilter = ({
 };
 
 ItemFilter.displayName = 'ItemFilter';
+
+ItemFilter.propTypes = {
+  initFilterText: PropTypes.string,
+  itemGroupingsOptions: PropTypes.arrayOf(PropTypes.object),
+  itemGroupingsValuesInit: PropTypes.arrayOf(PropTypes.object),
+  productFamilyOptions: PropTypes.arrayOf(PropTypes.object),
+  productFamilyValuesInit: PropTypes.arrayOf(PropTypes.object),
+  resetQuoteItemFilters: PropTypes.func.isRequired,
+  show: PropTypes.bool,
+  tagOptions: PropTypes.arrayOf(PropTypes.object),
+  tagValuesInit: PropTypes.arrayOf(PropTypes.object),
+  toggleOrderedItem: PropTypes.func.isRequired,
+  toggleOrderedItems: PropTypes.bool,
+  updateQuoteItemFilters: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   initFilterText: state.Quote.quoteItemFilters.filterText,

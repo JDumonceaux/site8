@@ -1,12 +1,16 @@
-﻿import React from 'react';
-import { connect } from 'react-redux';
-
-import { closeQuote, openQuote } from 'actions/QuoteActions';
+﻿import { closeQuote, openQuote } from 'actions/QuoteActions';
 import { msgFormatter } from 'app/util';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
 import DropDownMenu from 'wwwroot/feature/common/DropDownMenu';
 
 const ViewStatus = ({ closeQuote, openQuote, quote }) => {
+  // Defensive: if quote is missing, render nothing
+  if (!quote || typeof quote !== 'object') {
+    return null;
+  }
+
   const handleCloseQuote = () => {
     closeQuote(quote.QuoteID);
   };
@@ -19,7 +23,7 @@ const ViewStatus = ({ closeQuote, openQuote, quote }) => {
 
   const isMenuEnabled = !(
     quote.StatusID === 8 || // Transferred
-    quote.StatusID === 2 || // Pending
+    quote.StatusID === 2 || // Price Pending
     quote.StatusID === 9 || // Versions_Out_Of_Sync
     quote.UserAuth === true
   );
@@ -37,21 +41,29 @@ const ViewStatus = ({ closeQuote, openQuote, quote }) => {
     },
   ];
 
-  let statusState = '';
+  let statusState;
   switch (quote.StatusID) {
     case 2: {
       // Pending
       statusState = 'error';
       break;
     }
-    case 4: // Won
-    case 6: {
+    case 3: // Submitted
+    case 8: // Transferred
+    case 9: {
+      // Versions_Out_Of_Sync
+      statusState = 'warning';
+      break;
+    }
+    case 4: {
       // Won
       statusState = 'info';
       break;
     }
-    case 5: {
-      // Closed
+    case 5: // Closed
+    case 6: // Won - Closed disabled
+    case 7: {
+      // Lost - Closed disabled
       statusState = 'disabled';
       break;
     }
