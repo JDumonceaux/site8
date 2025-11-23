@@ -25,10 +25,7 @@ const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
     <HeaderContainer>
       <SkipNav href="#main-content">Skip to main content</SkipNav>
 
-      <NavGroup
-        aria-label="Main"
-        role="navigation"
-      >
+      <NavGroup aria-label="Main navigation">
         {onMenuToggle ? (
           <MenuButton
             aria-label="Toggle navigation menu"

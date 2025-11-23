@@ -1,11 +1,10 @@
 // Tooltip.test.tsx
 import { fireEvent, render, screen } from '@testing-library/react';
-
 import type { AxeResults } from 'axe-core';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import Tooltip from './Tooltip';
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
-import 'jest-styled-components';
 
 describe('tooltip component', () => {
   beforeAll(() => {
@@ -25,7 +24,7 @@ describe('tooltip component', () => {
 
     render(
       <Tooltip
-        trigger={<button>Info</button>}
+        trigger={<button type="button">Info</button>}
         content="Details"
         triggerColor="hotpink"
       />,
@@ -63,7 +62,7 @@ describe('tooltip component', () => {
 
     const { container } = render(
       <Tooltip
-        trigger={<button>Hover me</button>}
+        trigger={<button type="button">Hover me</button>}
         content="Accessible"
       />,
     );

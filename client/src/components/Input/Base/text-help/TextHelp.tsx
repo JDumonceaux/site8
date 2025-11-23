@@ -12,10 +12,10 @@ export type TextHelpProps = LabelHTMLAttributes<HTMLDivElement> & {
   hasError?: boolean;
   /** Text to show when there is no error */
   helpText?: React.ReactNode | string | string[];
+  /** Whether to display the length counter */
+  isShowCounter?: boolean;
   /** Maximum allowed length */
   maxLength?: number;
-  /** Whether to display the length counter */
-  showCounter?: boolean;
 };
 
 const renderHelper = (message?: React.ReactNode | string | string[]) => {
@@ -26,8 +26,8 @@ const renderHelper = (message?: React.ReactNode | string | string[]) => {
     if (message.length > 1) {
       return (
         <ul>
-          {message.map((item, index) => (
-            <li key={index}>{item}</li>
+          {message.map((item) => (
+            <li key={item}>{item}</li>
           ))}
         </ul>
       );
@@ -47,8 +47,8 @@ const TextHelp = ({
   errorText,
   hasError = true,
   helpText,
+  isShowCounter = false,
   maxLength = 0,
-  showCounter = false,
   ...rest
 }: TextHelpProps): JSX.Element | null => {
   const content = hasError ? helpText : errorText;
@@ -56,10 +56,8 @@ const TextHelp = ({
   return (
     <Wrapper {...rest}>
       <Message $hasError={hasError}>{renderHelper(content)}</Message>
-      {showCounter ? (
-        <Counter>
-          {characterCount}/{maxLength}
-        </Counter>
+      {isShowCounter ? (
+        <Counter>{`${characterCount}/${maxLength}`}</Counter>
       ) : null}
     </Wrapper>
   );

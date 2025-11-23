@@ -4,8 +4,8 @@ import { useLocation } from 'react-router-dom';
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import { getURLPath } from '@lib/utils/helpers';
-import styled from 'styled-components';
 import ItemRender from './ItemRender';
+import styled from 'styled-components';
 
 type SubjectMenuProps = {
   readonly ref?: React.Ref<HTMLElement>;

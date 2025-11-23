@@ -3,7 +3,7 @@ import React, { type JSX } from 'react';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import Input from '@components/input/Input';
-import Layout from '@features/layouts/Layout/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import useForm from '@hooks/useForm';
 import styled from 'styled-components';
 

@@ -9,10 +9,10 @@ import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
-import Layout from '@features/layouts/Layout/Layout';
-import styled from 'styled-components';
-import type { Image } from '../../types';
+import Layout from '@features/layouts/layout/Layout';
+import type { Image } from '@shared/types';
 import useImageEdit from './useImageEdit';
+import styled from 'styled-components';
 
 const ImageEditPage = (): JSX.Element => {
   const parameters = useParams();

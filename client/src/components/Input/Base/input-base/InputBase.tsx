@@ -1,11 +1,11 @@
 import { type ChangeEvent, type JSX, type Ref, useRef, useState } from 'react';
 
 import useGetId from '@hooks/useGetId';
-import styled from 'styled-components';
-import type { KeyValue } from '@/types/KeyValue';
+import type { KeyValue } from '@shared/types/KeyValue';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../field-wrapper/FieldWrapper';
+import styled from 'styled-components';
 
 type InputRootProps = Omit<
   JSX.IntrinsicElements['input'],

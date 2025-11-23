@@ -48,8 +48,8 @@ const RenderCode = ({ children }: RenderCodeProps) => {
           onClick={handleCopy}
         >
           <CopyIcon
-            aria-hidden
-            focusable={false}
+            isAriaHidden
+            isFocusable={false}
           />
         </IconButton>
       </StyledHeader>

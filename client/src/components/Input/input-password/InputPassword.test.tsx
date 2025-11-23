@@ -1,11 +1,13 @@
 import * as Form from '@radix-ui/react-form';
 import { render, screen } from '@testing-library/react';
-
 import InputPassword from './InputPassword';
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 describe('inputPassword', () => {
   test('renders the input correctly', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">

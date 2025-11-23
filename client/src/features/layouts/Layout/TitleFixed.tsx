@@ -12,15 +12,7 @@ type TitleFixedProps = {
 };
 
 const TitleFixed = ({ children }: TitleFixedProps): JSX.Element | null => {
-  return (
-    <StickyHeading
-      aria-level={1}
-      data-testid="title"
-      role="heading"
-    >
-      {children}
-    </StickyHeading>
-  );
+  return <StickyHeading data-testid="title">{children}</StickyHeading>;
 };
 
 TitleFixed.displayName = 'TitleFixed';

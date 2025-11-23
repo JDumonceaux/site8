@@ -1,12 +1,13 @@
-import * as Form from '@radix-ui/react-form';
 import { type JSX, useActionState } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Input from '@components/input/Input';
-import styled from 'styled-components';
-import type { FormState } from '../../types';
-import type { Page } from '../../types/Page';
+import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
+import * as Form from '@radix-ui/react-form';
+import type { FormState } from '@shared/types';
+import type { Page } from '@shared/types/Page';
 import usePagePatch from './usePagePatch';
+import styled from 'styled-components';
 
 type PageEditFormProps = {
   readonly data?: null | Page;
@@ -45,7 +46,7 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
 
   const [data, action] = useActionState(patchItem, {
     fieldData: initData,
-  } as FormState);
+  } as FormState<typeof initData>);
 
   return (
     <LoadingWrapper

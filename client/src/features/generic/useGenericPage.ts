@@ -1,8 +1,7 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
-
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import { handleQueryError } from '@lib/utils/errorHandler';
-import type { Page } from '../../types';
+import type { Page } from '@shared/types';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 /**
  * Fetches a generic page by ID, with support for cancellation.

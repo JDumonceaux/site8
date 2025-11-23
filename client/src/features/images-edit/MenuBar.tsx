@@ -1,7 +1,7 @@
 import React, { type JSX } from 'react';
 
-import IconMenu from '@components/Icon-menu/IconMenu';
-import IconMenuItem from '@components/Icon-menu/IconMenuItem';
+import IconMenu from '@components/icon-menu/IconMenu';
+import IconMenuItem from '@components/icon-menu/IconMenuItem';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import { ServiceUrl } from '@lib/utils/constants';
 

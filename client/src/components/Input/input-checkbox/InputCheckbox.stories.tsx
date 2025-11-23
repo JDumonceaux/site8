@@ -1,6 +1,5 @@
 // InputCheckbox.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-
 import InputCheckbox, { type InputCheckboxProps } from './InputCheckbox';
 
 const meta: Meta<typeof InputCheckbox> = {

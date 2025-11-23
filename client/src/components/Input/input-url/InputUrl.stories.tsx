@@ -1,5 +1,4 @@
 import type { StoryObj } from '@storybook/react';
-
 import InputUrl from './InputUrl';
 
 const meta = {

@@ -1,6 +1,6 @@
-import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import type { JSX } from 'react';
 
+import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import Tooltip, { type TooltipBaseProps } from '../TooltipBase';
 
 /** Renders a question-mark icon trigger tooltip */

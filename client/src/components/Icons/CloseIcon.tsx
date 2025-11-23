@@ -1,19 +1,19 @@
 type IconProps = {
-  readonly ariaHidden?: boolean;
-  readonly focusable?: boolean;
+  readonly isAriaHidden?: boolean;
+  readonly isFocusable?: boolean;
 };
 
 export const CloseIcon = ({
-  ariaHidden = false,
-  focusable = true,
+  isAriaHidden = false,
+  isFocusable = true,
 }: IconProps) => {
   return (
     <svg
-      aria-hidden={ariaHidden}
+      aria-hidden={isAriaHidden}
       height="22px"
       id="Layer_1"
       width="22px"
-      focusable={focusable}
+      focusable={isFocusable}
       version="1.1"
       viewBox="0 0 22 22"
     >

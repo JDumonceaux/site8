@@ -1,6 +1,6 @@
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import type { JSX, ReactNode } from 'react';
 
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import styled from 'styled-components';
 
 export type IconMenuItemProps = DropdownMenu.DropdownMenuItemProps & {

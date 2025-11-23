@@ -1,15 +1,15 @@
 type IconProps = {
-  readonly ariaHidden?: boolean;
-  readonly focusable?: boolean;
+  readonly isAriaHidden?: boolean;
+  readonly isFocusable?: boolean;
 };
 
 export const NoteIcon = ({
-  ariaHidden = false,
-  focusable = true,
+  isAriaHidden = false,
+  isFocusable = true,
 }: IconProps) => {
   return (
     <svg
-      aria-hidden={ariaHidden}
+      aria-hidden={isAriaHidden}
       height="24px"
       id="Layer_1"
       width="24px"
@@ -18,7 +18,7 @@ export const NoteIcon = ({
       xmlSpace="preserve"
       y="0px"
       enableBackground="new 0 0 24 24"
-      focusable={focusable}
+      focusable={isFocusable}
       version="1.1"
       viewBox="0 0 24 24"
     >

@@ -1,4 +1,3 @@
-import { QueryClient } from '@tanstack/react-query';
 import { lazy, useMemo } from 'react';
 import {
   createBrowserRouter,
@@ -7,6 +6,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import { QueryClient } from '@tanstack/react-query';
 import { pageLoader } from '../features/page-edit/pagePrefetch';
 import ErrorPage from '../features/site/ErrorPage';
 import ProtectedRoute from './ProtectedRoute';
@@ -15,16 +15,16 @@ import ProtectedRoute from './ProtectedRoute';
 // Layouts
 // ---------------------
 const AuthLayout = lazy(
-  async () => import('../features/layouts/AuthLayout/AuthLayout'),
+  async () => import('../features/layouts/auth-layout/AuthLayout'),
 );
 const HomeLayout = lazy(
-  async () => import('../features/layouts/HomeLayout/HomeLayout'),
+  async () => import('../features/layouts/home-layout/HomeLayout'),
 );
 const GenericLayout = lazy(
-  async () => import('../features/layouts/GenericLayout/GenericLayout'),
+  async () => import('../features/layouts/generic-layout/GenericLayout'),
 );
 const PhotoLayout = lazy(
-  async () => import('../features/layouts/PhotoLayout/PhotoLayout'),
+  async () => import('../features/layouts/photo-layout/PhotoLayout'),
 );
 
 // ---------------------

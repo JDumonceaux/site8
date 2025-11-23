@@ -5,14 +5,14 @@ import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import Input from '@components/input/Input';
 import MenuBar from '@features/images-edit/MenuBar';
-import Layout from '@features/layouts/Layout/Layout';
-import styled from 'styled-components';
+import Layout from '@features/layouts/layout/Layout';
 import type { ItemAddExt } from './ItemAdd';
 import ItemDetail from './ItemDetail';
 import RightMenu from './RightMenu';
 import useArtists from './useArtists';
 import useItems from './useItems';
 import useItemsAddPage from './useItemsAddPage';
+import styled from 'styled-components';
 
 const ItemsAddPage = (): JSX.Element => {
   const {

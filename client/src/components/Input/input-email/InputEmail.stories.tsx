@@ -1,7 +1,5 @@
 // InputEmail.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { action } from '@storybook/addon-actions';
 import InputEmail, { type InputEmailProps } from './InputEmail';
 
 const meta: Meta<typeof InputEmail> = {
@@ -25,7 +23,6 @@ type Story = StoryObj<typeof InputEmail>;
 export const Default: Story = {
   args: {
     id: 'email-default',
-    onChange: action('onChange'),
     placeholder: 'example@example.com',
     value: '',
   } as InputEmailProps,
@@ -34,7 +31,6 @@ export const Default: Story = {
 export const WithValue: Story = {
   args: {
     id: 'email-with-value',
-    onChange: action('onChange'),
     value: 'user@example.com',
   } as InputEmailProps,
 };
@@ -43,7 +39,6 @@ export const Multiple: Story = {
   args: {
     id: 'email-multiple',
     multiple: true,
-    onChange: action('onChange'),
     value: 'user1@example.com, user2@example.com',
   } as InputEmailProps,
 };
@@ -51,7 +46,6 @@ export const Multiple: Story = {
 export const WithPattern: Story = {
   args: {
     id: 'email-pattern',
-    onChange: action('onChange'),
     pattern: String.raw`[a-z0-9._%+-]+@example\.com`,
     placeholder: 'name@example.com',
   } as InputEmailProps,

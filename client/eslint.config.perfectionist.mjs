@@ -20,36 +20,36 @@ export default {
                 customGroups:
                     [
                         {
-                            selector: "type",
+                            elementNamePattern: ["^react$", "^react-+"],
                             groupName: "react",
-                            elementNamePattern: ["react", "react-*"],
-                            newlinesInside: 0
-
+                            newlinesInside: 0,
+                            selector: "import"
+                        },
+                        {
+                            elementNamePattern: "^@radix-ui",
+                            groupName: "radix",
+                            newlinesInside: 0,
+                            selector: "import"
+                        },
+                        {
+                            elementNamePattern: "^styled",
+                            groupName: "styled",
+                            newlinesInside: 0,
+                            selector: "import"
                         }
                     ],
+                fallbackSort: { type: 'unsorted' },
                 groups: [
                     'react',
                     { newlinesBetween: 1 },
-                    'type',
-                    'builtin',
                     'external',
-                    'internal-type',
-                    'internal',
-                    'parent-type',
-                    'parent',
-                    'sibling-type',
-                    'sibling',
-                    'side-effect',
-                    'style',
-                    'object',
                     'unknown',
+                    'styled',
                 ],
                 newlinesBetween: 0,
                 order: 'asc',
-                fallbackSort: { type: 'alphabetical', order: 'asc' },
                 partitionByNewLine: false,
-                type: 'natural',
-                tsconfig: { rootDir: './', filename: './tsconfig.json' }
+                type: 'alphabetical',
             },
         ],
         'perfectionist/sort-interfaces': ['error', { order: 'asc', type: 'natural' }],

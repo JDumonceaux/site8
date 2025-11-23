@@ -1,11 +1,10 @@
 // InputColor.test.tsx
 import { fireEvent, render } from '@testing-library/react';
-
 import type { AxeResults } from 'axe-core';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import InputColor from './InputColor';
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
-import 'jest-styled-components';
 
 describe('inputColor component', () => {
   beforeAll(() => {

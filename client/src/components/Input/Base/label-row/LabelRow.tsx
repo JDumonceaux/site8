@@ -1,9 +1,9 @@
-import * as Label from '@radix-ui/react-label';
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import type { JSX, LabelHTMLAttributes, Ref } from 'react';
 
-import styled from 'styled-components';
+import * as Label from '@radix-ui/react-label';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import Tooltip, { type TooltipProps } from '../tooltip/Tooltip';
+import styled from 'styled-components';
 
 /* Note: If you use htmlFor (or for) attribute,
    clicking on the label doesn't seem to select the input */

@@ -1,11 +1,11 @@
-import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
-import { Cross1Icon } from '@radix-ui/react-icons';
-import type { IconProps } from '@radix-ui/react-icons/dist/types';
 import type { HTMLAttributes, JSX, MouseEventHandler, ReactNode } from 'react';
 import { forwardRef } from 'react';
 
-import styled from 'styled-components';
+import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
+import { Cross1Icon } from '@radix-ui/react-icons';
+import type { IconProps } from '@radix-ui/react-icons/dist/types';
 import Tooltip from '../tooltip/TooltipBase';
+import styled from 'styled-components';
 
 type ClearAdornmentProps = {
   /** Tooltip text for screen readers */

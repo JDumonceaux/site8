@@ -1,11 +1,13 @@
 import * as Form from '@radix-ui/react-form';
 import { fireEvent, render, screen } from '@testing-library/react';
-
 import InputText from './InputText';
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 describe('inputText', () => {
   test('renders the input correctly', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">
@@ -23,6 +25,8 @@ describe('inputText', () => {
   });
 
   test('input value changes on user input', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">
@@ -39,7 +43,7 @@ describe('inputText', () => {
     expect(inputElement).toHaveValue('Hello');
   });
 
-  // test('submits the correct value', () => {
+  // ...existing code...
   //   const handleSubmit = jest.fn();
   //   render(
   //     <Form.Root>
@@ -57,7 +61,9 @@ describe('inputText', () => {
   // });
 
   // Required
-  test('shows validation message on invalid input', () => {
+  test('shows required validation message', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">
@@ -78,7 +84,9 @@ describe('inputText', () => {
   });
 
   // MinLength
-  test('shows validation message on invalid input', () => {
+  test('shows minLength validation message', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">
@@ -99,7 +107,9 @@ describe('inputText', () => {
   });
 
   // MaxLength
-  test('shows validation message on invalid input', () => {
+  test('shows maxLength validation message', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">
@@ -120,7 +130,9 @@ describe('inputText', () => {
   });
 
   // Pattern
-  test('shows validation message on invalid input', () => {
+  test('shows pattern validation message', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">
@@ -141,7 +153,7 @@ describe('inputText', () => {
   });
 
   // Focus
-  // test('handles focus and blur events', () => {
+  // ...existing code...
   //   render(<InputText id="test" />);
   //   const inputElement = screen.getByRole('textbox');
   //   fireEvent.focus(inputElement);
@@ -149,7 +161,7 @@ describe('inputText', () => {
   // });
 
   // Blur
-  // test('handles focus and blur events', () => {
+  // ...existing code...
   //   render(<InputText id="test" />);
   //   const inputElement = screen.getByRole('textbox');
   //   fireEvent.focus(inputElement);
@@ -159,6 +171,8 @@ describe('inputText', () => {
   // });
 
   test('apply different styles when input is focused', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">
@@ -187,6 +201,8 @@ describe('inputText', () => {
   });
 
   test('applies error style when input is invalid', () => {
+    expect.hasAssertions();
+
     render(
       <Form.Root>
         <Form.Field name="test">

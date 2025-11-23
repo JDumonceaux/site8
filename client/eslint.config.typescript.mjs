@@ -100,6 +100,8 @@ export default {
         '@typescript-eslint/promise-function-async': 'error',
         '@typescript-eslint/require-array-sort-compare': 'error',
         '@typescript-eslint/return-await': 'error',
+        // old code
+        '@typescript-eslint/unbound-method': 'off',
         '@typescript-eslint/unified-signatures': 'off', //
         '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
     },

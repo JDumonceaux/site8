@@ -1,14 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { ListItem } from '../../types';
-import type { ArtistWithItems } from '../../types/ArtistWithItems';
+import type { ListItem } from '@shared/types';
+import type { ArtistWithItems } from '@shared/types/ArtistWithItems';
+import { useQuery } from '@tanstack/react-query';
 
 /**
  * Represents the return value of the useArtistItems hook.
  */
-interface UseArtistItemsReturn {
+type UseArtistItemsReturn = {
   /** The artist data along with their items. */
   data: ArtistWithItems | undefined;
   /** The error object if the query fails. */
@@ -19,15 +19,15 @@ interface UseArtistItemsReturn {
   isLoading: boolean;
   /** A memoized list of items formatted for UI lists. */
   itemsAsListItem: ListItem[];
-}
+};
 
 /**
  * Options for the useArtistItems hook.
  */
-interface UseArtistItemsOptions {
+type UseArtistItemsOptions = {
   /** Whether to enable the query. Defaults to true. */
   enabled?: boolean;
-}
+};
 
 /**
  * Helper function to fetch artist items.
@@ -94,9 +94,9 @@ const useArtistItems = (
   const itemsAsListItem = useMemo(
     () =>
       (data?.items ?? [])
-        .toSorted((a, b) => (a.title ?? '').localeCompare(b.title ?? ''))
+        .toSorted((a, b) => a.title.localeCompare(b.title))
         .map((x, index) => ({
-          display: x.title ?? '',
+          display: x.title,
           key: index,
           value: x.id,
         })),

@@ -9,10 +9,10 @@ import {
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Switch from '@components/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
-import { IMAGE_BASE } from '@lib/utils/constants';
-import styled from 'styled-components';
-import type { Image } from '@/types';
 import useUnmatchedImages from '@features/items-add/useUnmatchedImages';
+import { IMAGE_BASE } from '@lib/utils/constants';
+import type { Image } from '@shared/types/Image';
+import styled from 'styled-components';
 
 export type ImageSelectorProps = {
   onSelectImage: (image: Image | undefined) => void;

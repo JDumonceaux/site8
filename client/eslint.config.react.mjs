@@ -111,7 +111,8 @@ export default {
         'react/jsx-no-script-url': 'error',
         'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
         'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
-        'react/jsx-one-expression-per-line': ['error', { allow: 'single-child' }], // Missing recommended rule
+        // Conflict with formatting
+        'react/jsx-one-expression-per-line': ['off', { allow: 'single-child' }], // Missing recommended rule
         'react/jsx-pascal-case': 'error',
         'react/jsx-props-no-multi-spaces': 'error', // Missing recommended rule
         'react/jsx-props-no-spread-multi': 'error',

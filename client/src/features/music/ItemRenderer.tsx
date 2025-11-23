@@ -1,7 +1,5 @@
-import React, { type JSX } from 'react';
-
+import type { MusicItem } from '@shared/types/MusicItem';
 import styled from 'styled-components';
-import type { MusicItem } from '../../types/MusicItem';
 
 /**
  * Props for rendering a single music item in a virtual list.
@@ -11,8 +9,6 @@ type ItemRendererProps = {
   data: { items: MusicItem[] };
   /** Index of the item to render */
   index: number;
-  /** Inline style for positioning provided by the virtual list */
-  style: React.CSSProperties;
 };
 
 /**
@@ -21,24 +17,21 @@ type ItemRendererProps = {
 const ItemRenderer = ({
   data,
   index,
-  style,
-}: ItemRendererProps): JSX.Element | null => {
+}: ItemRendererProps): null | React.ReactElement => {
   const item = data.items[index];
 
   return (
-    <Container
-      aria-label={`Music item ${index + 1}: ${item.description}`}
-      style={style}
-      role="listitem"
-    >
-      <Description>{item.description}</Description>
-      <VideoFrame
-        src={item.url}
-        title={item.description}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        sandbox="allow-scripts allow-same-origin allow-presentation"
-      />
-    </Container>
+    <li aria-label={`Music item ${index + 1}: ${item.description}`}>
+      <Container>
+        <Description>{item.description}</Description>
+        <VideoFrame
+          src={item.url}
+          title={item.description}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          sandbox="allow-scripts allow-same-origin allow-presentation"
+        />
+      </Container>
+    </li>
   );
 };
 

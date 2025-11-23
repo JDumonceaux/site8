@@ -1,7 +1,7 @@
 import React from 'react';
 
+import type { ListItem } from '@shared/types/ListItem';
 import styled from 'styled-components';
-import type { ListItem } from '../../types/ListItem';
 
 type Props = {
   readonly handleClick: (error: React.MouseEvent<HTMLButtonElement>) => void;

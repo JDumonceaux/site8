@@ -33,10 +33,7 @@ const LoadingWrapper = ({
         aria-busy="true"
         aria-label="Saving"
       >
-        <ProgressBar
-          aria-valuetext="Saving…"
-          role="progressbar"
-        />
+        <ProgressBar aria-valuetext="Saving…" />
         <Message>Saving…</Message>
       </StateContainer>
     );
@@ -50,10 +47,7 @@ const LoadingWrapper = ({
         aria-busy="true"
         aria-label="Loading"
       >
-        <ProgressBar
-          aria-valuetext={valueText}
-          role="progressbar"
-        />
+        <ProgressBar aria-valuetext={valueText} />
         <Message>{loadingText}</Message>
         {fallback}
       </StateContainer>
@@ -110,7 +104,7 @@ const ErrorMessage = styled(Message)`
   color: var(--palette-error);
 `;
 
-const ProgressBar = styled.div`
+const ProgressBar = styled.progress`
   width: 100%;
   height: 1.25rem;
   background: #f2f2f2;
@@ -118,6 +112,18 @@ const ProgressBar = styled.div`
   background-size: 300% 100%;
   animation: ${slide} 2s infinite linear;
   border-radius: 0.25rem;
+  border: none;
+  appearance: none;
+  &::-webkit-progress-bar {
+    background: #f2f2f2;
+    border-radius: 0.25rem;
+  }
+  &::-webkit-progress-value {
+    background: transparent;
+  }
+  &::-moz-progress-bar {
+    background: transparent;
+  }
 `;
 
 const ErrorBar = styled.div`

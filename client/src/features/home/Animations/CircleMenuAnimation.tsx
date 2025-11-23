@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import { keyframes, styled } from 'styled-components';
 import LinkButton from '../link-button/LinkButton';
+import { keyframes, styled } from 'styled-components';
 
 const CircleMenuAnimation = (): JSX.Element => {
   return (

@@ -22,7 +22,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import useAppSettings from '@features/app/useAppSettings';
-import Layout from '@features/layouts/Layout/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import SortableItem from '@features/tests/SortableItem';
 import useTestsEdit from '@features/tests/useTestsEdit';
 import styled from 'styled-components';

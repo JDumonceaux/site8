@@ -5,7 +5,12 @@ import styled, { keyframes } from 'styled-components';
 
 export type FallbackProps = {
   /** Number of loading lines to render (integer between 1 and 10) */
-  lines?: number;
+  numberOfLines?: number;
+};
+
+type Line = {
+  id: string;
+  width: number;
 };
 
 const MIN_LINES = 1;
@@ -15,31 +20,34 @@ const DEFAULT_LINES = 5;
 /**
  * Renders a series of placeholder loading lines with a shimmer effect.
  */
-const Fallback = ({ lines = DEFAULT_LINES }: FallbackProps): JSX.Element => {
+const Fallback = ({
+  numberOfLines = DEFAULT_LINES,
+}: FallbackProps): JSX.Element => {
   // runtime-validate & clamp
-  const raw = Math.floor(lines);
+  const raw = Math.floor(numberOfLines);
   let count = raw;
   if (raw < MIN_LINES || raw > MAX_LINES) {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
-        `Fallback: 'lines' must be an integer between ${MIN_LINES} and ${MAX_LINES}, ` +
-          `but got ${lines}. Clamping to range.`,
+        `Fallback: 'numberOfLines' must be an integer between ${MIN_LINES} and ${MAX_LINES}, ` +
+          `but got ${numberOfLines}. Clamping to range.`,
       );
     }
     count = Math.min(MAX_LINES, Math.max(MIN_LINES, raw));
   }
 
-  const widths = Array.from({ length: count }).map(
-    (_, index) => 100 - (index % 3) * 10,
-  );
+  const loadingLines: Line[] = Array.from({ length: count }, (_, i) => ({
+    id: `line-${i}`,
+    width: 100 - (i % 3) * 10,
+  }));
 
   return (
     <LoadingContainer aria-live="polite">
       <PageTitle title="Loading…" />
-      {widths.map((w, index) => (
+      {loadingLines.map((line) => (
         <LoadingLine
-          key={index}
-          $width={w}
+          key={line.id}
+          $width={line.width}
           data-testid="fallback-line"
         />
       ))}

@@ -2,8 +2,8 @@ import type { JSX } from 'react';
 import { useCallback, useEffect } from 'react';
 
 import Button from '@components/core/button/Button';
-import styled from 'styled-components';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
+import styled from 'styled-components';
 
 const SNACKBAR_HEIGHT = '2.5rem';
 const SNACKBAR_PADDING = '1rem';
@@ -40,9 +40,7 @@ const Snackbar = (): JSX.Element | null => {
     };
 
     globalThis.addEventListener('keydown', handleEscape);
-    return () => {
-      globalThis.removeEventListener('keydown', handleEscape);
-    };
+    globalThis.removeEventListener('keydown', handleEscape);
   }, [data?.isOpen, handleClose]);
 
   if (!data?.isOpen) {

@@ -1,6 +1,6 @@
-import * as Form from '@radix-ui/react-form';
 import type { JSX } from 'react';
 
+import * as Form from '@radix-ui/react-form';
 import styled from 'styled-components';
 
 // Notes: The minlength and maxlength constraints are only checked on

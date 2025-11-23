@@ -1,5 +1,4 @@
 import type { StoryObj } from '@storybook/react';
-
 import InputPassword from './InputPassword';
 
 const meta = {

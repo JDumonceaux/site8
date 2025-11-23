@@ -1,10 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
+import type { FormErrors, FormState, Page } from '@shared/types';
+import { type PageEdit, PageEditSchema } from '@shared/types/PageEditSchema';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import type { FormErrors, FormState, Page } from '../../types';
-import { type PageEdit, PageEditSchema } from '../../types/PageEditSchema';
 
 const usePagePatch = () => {
   const queryClient = useQueryClient();

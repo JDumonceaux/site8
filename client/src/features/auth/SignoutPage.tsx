@@ -4,8 +4,8 @@ import Button from '@components/core/button/Button';
 import Meta from '@components/core/meta/Meta';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import styled from 'styled-components';
 import AuthContainer from './AuthContainer';
+import styled from 'styled-components';
 
 const SignOutpPage = (): JSX.Element => {
   const title = 'Sign-Out';

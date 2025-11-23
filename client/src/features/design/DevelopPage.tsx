@@ -6,10 +6,10 @@ import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import EmailAdornment from '@components/input/base/adornments/EmailAdornment';
 import Input from '@components/input/Input';
-import Layout from '@features/layouts/Layout/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import useForm from '@hooks/useForm';
-import styled from 'styled-components';
 import { z } from 'zod';
+import styled from 'styled-components';
 
 // Define Zod Shape
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Used for type inference

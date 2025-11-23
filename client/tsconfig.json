@@ -13,21 +13,21 @@
     "jsx": "react-jsx",
 
     // Set baseUrl to project root and alias src/
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       //"@/*": ["src/*"],
-      "@app/*": ["src/app/*"],
-      "@components/*": ["src/components/*"],
-      "@content/*": ["src/content/*"],
-      "@features/*": ["src/features/*"],
-      "@features/auth/*": ["src/features/auth/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@lib/*": ["src/lib/*"],
-      "@providers/*": ["src/providers/*"],
-      "@store/*": ["src/store/*"],
-      "@styles/*": ["src/styles/*"],
-      "@types/*": ["src/types/*"],
-      "@unused/*": ["src/unused/*"]
+      "@app/*": ["app/*"],
+      "@components/*": ["components/*"],
+      "@content/*": ["content/*"],
+      "@features/*": ["features/*"],
+      "@hooks/*": ["hooks/*"],
+      "@lib/*": ["lib/*"],
+      "@providers/*": ["providers/*"],
+      "@shared/*": ["shared/*"],
+      "@store/*": ["store/*"],
+      "@styles/*": ["styles/*"],
+      // @types does not work
+      "@unused/*": ["unused/*"]
     },
 
     // Allow JSON and TS extensions

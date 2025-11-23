@@ -4,9 +4,9 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
-import Layout from '@features/layouts/Layout/Layout';
-import styled from 'styled-components';
+import Layout from '@features/layouts/layout/Layout';
 import useTests from './useTests';
+import styled from 'styled-components';
 
 const TestsPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useTests();

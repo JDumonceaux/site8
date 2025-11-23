@@ -26,14 +26,14 @@ export const ErrorFallback = ({
   resetErrorBoundary,
 }: FallbackProps): JSX.Element => (
   <ErrorContainer
-    role="alert"
     aria-live="assertive"
+    role="alert"
   >
     <ErrorTitle>Something went wrong</ErrorTitle>
-    <ErrorMessage>{error.message}</ErrorMessage>
+    <ErrorMessage>{typeof error === 'object' && error && 'message' in error ? (error as { message?: string }).message : String(error)}</ErrorMessage>
     <RetryButton
-      onClick={resetErrorBoundary}
       type="button"
+      onClick={resetErrorBoundary}
     >
       Try again
     </RetryButton>

@@ -1,4 +1,3 @@
-import * as Form from '@radix-ui/react-form';
 import { type JSX, useActionState } from 'react';
 
 import Button from '@components/core/button/Button';
@@ -6,10 +5,11 @@ import Meta from '@components/core/meta/Meta';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import styled from 'styled-components';
-import type { FormState } from '../../types';
-import type { ChangePassword } from '../../types/Auth';
+import * as Form from '@radix-ui/react-form';
+import type { FormState } from '@shared/types';
+import type { ChangePassword } from '@shared/types/Auth';
 import AuthContainer from './AuthContainer';
+import styled from 'styled-components';
 
 const ChangePasswordPage = (): JSX.Element => {
   const title = 'Change Password';

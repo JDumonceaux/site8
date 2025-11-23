@@ -7,10 +7,10 @@ import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
-import styled from 'styled-components';
+import { deleteCode } from '@shared/types/Auth';
 import { z } from 'zod';
-import { deleteCode } from '../../types/Auth';
 import AuthContainer from './AuthContainer';
+import styled from 'styled-components';
 
 const schema = z.object({
   deleteCode,

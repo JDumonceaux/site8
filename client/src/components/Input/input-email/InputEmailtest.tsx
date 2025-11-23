@@ -1,7 +1,7 @@
 import * as Form from '@radix-ui/react-form';
 import { fireEvent, render, screen } from '@testing-library/react';
-
 import InputEmail from './InputEmail';
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
 
 describe('InputEmail', () => {

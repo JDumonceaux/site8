@@ -1,14 +1,13 @@
 // Tooltip.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-
 import Tooltip from './Tooltip';
-import TooltipAsterix from './Tooltips/TooltipAsterix';
-import TooltipQuestionMark from './Tooltips/TooltipQuestionMark';
+import TooltipAsterix from './tooltips/TooltipAsterix';
+import TooltipQuestionMark from './tooltips/TooltipQuestionMark';
 
 const meta: Meta<typeof Tooltip> = {
   argTypes: {
     delayDuration: { control: 'number' },
-    disableHoverableContent: { control: 'boolean' },
+    isHoverableContentDisabled: { control: 'boolean' },
     triggerColor: { control: 'color' },
   },
   component: Tooltip,
@@ -21,14 +20,14 @@ type Story = StoryObj<typeof Tooltip>;
 export const Default: Story = {
   args: {
     content: 'Tooltip content',
-    trigger: <button>Hover me</button>,
+    trigger: <button type="button">Hover me</button>,
   },
 };
 
 export const Colored: Story = {
   args: {
     content: 'Colored Tooltip',
-    trigger: <button>Hover me</button>,
+    trigger: <button type="button">Hover me</button>,
     triggerColor: 'green',
   },
 };
@@ -37,7 +36,7 @@ export const Delayed: Story = {
   args: {
     content: 'Delayed Tooltip',
     delayDuration: 500,
-    trigger: <button>Hover me</button>,
+    trigger: <button type="button">Hover me</button>,
   },
 };
 

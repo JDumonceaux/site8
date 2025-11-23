@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
+import type { Video } from '@shared/types/Video';
 import styled from 'styled-components';
-import type { Video } from '../../types/Video';
 
 /** Responsive video embed with title */
 const VideoEmbed = ({

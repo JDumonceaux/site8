@@ -1,8 +1,9 @@
-import * as React from 'react';
-
-import type { LoaderSizeProps } from './helpers/props';
 import { createAnimation } from './helpers/animation';
+import type { LoaderSizeProps } from './helpers/props';
 import { cssValue, parseLengthAndUnit } from './helpers/unitConverter';
+import styled from 'styled-components';
+
+const defaultCssOverride = {};
 
 const right = createAnimation(
   'RingLoader',
@@ -16,9 +17,39 @@ const left = createAnimation(
   'left',
 );
 
+const Wrapper = styled.span<{
+  size: number | string;
+}>`
+  display: inherit;
+  height: ${({ size }) => cssValue(size)};
+  position: relative;
+  width: ${({ size }) => cssValue(size)};
+`;
+
+const Ring = styled.span<{
+  color: string;
+  index: number;
+  size: number;
+  speedMultiplier: number;
+  unit: string;
+}>`
+  animation: ${({ index }) => (index === 1 ? right : left)}
+    ${({ speedMultiplier }) => 2 / speedMultiplier}s 0s infinite linear;
+  animation-fill-mode: forwards;
+  border: ${({ color, size, unit }) => `${size / 10}${unit} solid ${color}`};
+  border-radius: 100%;
+  height: ${({ size, unit }) => `${size}${unit}`};
+  left: 0;
+  opacity: 0.4;
+  perspective: 800px;
+  position: absolute;
+  top: 0;
+  width: ${({ size, unit }) => `${size}${unit}`};
+`;
+
 const RingLoader = ({
   color = '#000000',
-  cssOverride = {},
+  cssOverride: _cssOverride = defaultCssOverride,
   loading = true,
   size = 60,
   speedMultiplier = 1,
@@ -26,42 +57,30 @@ const RingLoader = ({
 }: LoaderSizeProps) => {
   const { unit, value } = parseLengthAndUnit(size);
 
-  const wrapper: React.CSSProperties = {
-    display: 'inherit',
-    height: cssValue(size),
-    position: 'relative',
-    width: cssValue(size),
-    ...cssOverride,
-  };
-
-  const style = (index: number): React.CSSProperties => {
-    return {
-      animation: `${index === 1 ? right : left} ${2 / speedMultiplier}s 0s infinite linear`,
-      animationFillMode: 'forwards',
-      border: `${value / 10}${unit} solid ${color}`,
-      borderRadius: '100%',
-      height: `${value}${unit}`,
-      left: '0',
-      opacity: '0.4',
-      perspective: '800px',
-      position: 'absolute',
-      top: '0',
-      width: `${value}${unit}`,
-    };
-  };
-
   if (!loading) {
     return null;
   }
 
   return (
-    <span
-      style={wrapper}
+    <Wrapper
+      size={size}
       {...additionalprops}
     >
-      <span style={style(1)} />
-      <span style={style(2)} />
-    </span>
+      <Ring
+        index={1}
+        size={value}
+        speedMultiplier={speedMultiplier}
+        unit={unit}
+        color={color}
+      />
+      <Ring
+        index={2}
+        size={value}
+        speedMultiplier={speedMultiplier}
+        unit={unit}
+        color={color}
+      />
+    </Wrapper>
   );
 };
 

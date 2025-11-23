@@ -3,13 +3,13 @@ import { type JSX, Suspense } from 'react';
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
-import Layout from '@features/layouts/Layout/Layout';
-import styled from 'styled-components';
 import useArtistsItems from '@features/items-add/useArtistsItems';
+import Layout from '@features/layouts/layout/Layout';
 import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
 import useImagesEditPage from './useImagesEditPage';
+import styled from 'styled-components';
 
 const ImagesEditPage = (): JSX.Element => {
   const title = 'Edit Images';

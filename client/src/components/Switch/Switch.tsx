@@ -1,7 +1,6 @@
-import * as radixSwitch from '@radix-ui/react-switch';
-import type { JSX } from 'react';
 import { forwardRef } from 'react';
 
+import * as radixSwitch from '@radix-ui/react-switch';
 import styled from 'styled-components';
 
 export type SwitchProps = {
@@ -14,7 +13,7 @@ export type SwitchProps = {
  * A labeled toggle switch component.
  */
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ id, label, onCheckedChange, ...rest }, ref): JSX.Element => (
+  ({ id, label, onCheckedChange, ...rest }, ref) => (
     <StyledWrapper>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
       <StyledSwitchRoot

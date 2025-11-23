@@ -1,5 +1,4 @@
-import type { JSX, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, type JSX, type ReactNode } from 'react';
 import type { LinkProps as BaseLinkProps, To } from 'react-router-dom';
 
 import StyledLink from '../styled-link/StyledLink';

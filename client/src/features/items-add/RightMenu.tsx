@@ -1,13 +1,12 @@
-import { memo, type JSX } from 'react';
+import { type JSX, memo } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import useArtistItems from './useArtistItems';
 import styled from 'styled-components';
 
-import useArtistItems from './useArtistItems';
-
-interface RightMenuProps {
+type RightMenuProps = {
   readonly artistId?: string;
-}
+};
 
 const RightMenu = ({ artistId }: RightMenuProps): JSX.Element => {
   const { error, isError, isLoading, itemsAsListItem } = useArtistItems(
@@ -24,12 +23,12 @@ const RightMenu = ({ artistId }: RightMenuProps): JSX.Element => {
       >
         {itemsAsListItem.length > 0 ? (
           <StyledList
-            role="list"
             aria-label="Artist items"
+            as="ul"
           >
             {itemsAsListItem.map((item) => (
               <StyledListItem key={item.key}>
-                {item.display || 'Untitled'}
+                {item.display ?? 'Untitled'}
               </StyledListItem>
             ))}
           </StyledList>

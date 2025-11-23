@@ -4,11 +4,11 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
-import Layout from '@features/layouts/Layout/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import { getSRC, sanitizeUrl } from '@lib/utils/helpers';
-import styled from 'styled-components';
-import type { Image } from '../../types/Image';
+import type { Image } from '@shared/types/Image';
 import useImages from '../images-edit/useImages';
+import styled from 'styled-components';
 
 const GenericImagePage = (): JSX.Element => {
   const { data, isError, isLoading } = useImages();

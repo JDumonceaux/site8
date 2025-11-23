@@ -1,34 +1,32 @@
 import type { JSX } from 'react';
 
+import type { FieldError } from '@shared/types/FieldError';
 import styled from 'styled-components';
-import type { FieldError } from '../../types';
 
 export type FooterRowProps = {
   /** Validation errors for the field */
   errors?: FieldError[];
   /** Current length of the field value */
   fieldLength?: number;
+  /** Whether to display the length counter */
+  isShowCounter?: boolean;
   /** Maximum allowed length */
   maxLength?: number;
-  /** Whether to display the length counter */
-  showCounter?: boolean;
 };
 
 const FooterRow = ({
   errors,
   fieldLength = 0,
+  isShowCounter = false,
   maxLength = 0,
-  showCounter = false,
 }: FooterRowProps): JSX.Element => {
   const errorMessage = errors?.[0]?.message ?? null;
 
   return (
     <Row>
       <ErrorText>{errorMessage}</ErrorText>
-      {showCounter ? (
-        <Counter>
-          {fieldLength}/{maxLength}
-        </Counter>
+      {isShowCounter ? (
+        <Counter>{`${fieldLength}/${maxLength}`}</Counter>
       ) : null}
     </Row>
   );

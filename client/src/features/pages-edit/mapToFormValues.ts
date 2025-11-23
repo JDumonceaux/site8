@@ -1,4 +1,4 @@
-import type { MenuItem } from '../../types/MenuItem';
+import type { MenuItem } from '@shared/types/MenuItem';
 
 export const mapToFormValues = (items: MenuItem[]) =>
   items.map(({ id, lineId, name, parentItem, type }) => ({

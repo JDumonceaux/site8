@@ -1,11 +1,11 @@
 import { type JSX, type SelectHTMLAttributes, useRef } from 'react';
 
 import useGetId from '@hooks/useGetId';
-import styled from 'styled-components';
-import type { ListItem } from '@/types/ListItem';
+import type { ListItem } from '@shared/types/ListItem';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../base/field-wrapper/FieldWrapper';
+import styled from 'styled-components';
 
 type InputSelectProps = {
   readonly allowedCharacters?: RegExp;

@@ -8,7 +8,7 @@ import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import Switch from '@components/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
-import Layout from '@features/layouts/Layout/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import styled from 'styled-components';
 import { mapToFormValues } from './mapToFormValues';
 import MenuAdd from './MenuAdd';

@@ -1,11 +1,11 @@
 import type { ChangeEvent, JSX } from 'react';
 
-import IconMenu from '@components/Icon-menu/IconMenu';
-import IconMenuItem from '@components/Icon-menu/IconMenuItem';
+import IconMenu from '@components/icon-menu/IconMenu';
+import IconMenuItem from '@components/icon-menu/IconMenuItem';
 import Input from '@components/input/Input';
-import styled from 'styled-components';
-import type { KeyValue } from '../../types/KeyValue';
+import type { KeyValue } from '@shared/types/KeyValue';
 import type { ItemAddExt } from './ItemAdd';
+import styled from 'styled-components';
 
 type Props = {
   readonly item: ItemAddExt;

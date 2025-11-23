@@ -1,11 +1,11 @@
 import type { JSX } from 'react';
 
 import HomeMenu from '@features/home/HomeMenu';
-import Layout from '@features/layouts/Layout/Layout';
-import styled from 'styled-components';
+import Layout from '@features/layouts/layout/Layout';
 import CircleAnimation from './animations/CircleAnimation';
 import CircleMenuAnimation from './animations/CircleMenuAnimation';
 import TitleAnimation from './animations/TitleAnimation';
+import styled from 'styled-components';
 
 // Use named const arrow function with explicit return type
 export const HomeScreen5 = (): JSX.Element | null => (

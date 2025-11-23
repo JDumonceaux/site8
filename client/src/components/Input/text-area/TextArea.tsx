@@ -6,10 +6,10 @@ import {
 } from 'react';
 
 import useGetId from '@hooks/useGetId';
-import styled from 'styled-components';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../base/field-wrapper/FieldWrapper';
+import styled from 'styled-components';
 
 // Most attributes have an effect on only
 // a specific subset of input types. In addition, the way some

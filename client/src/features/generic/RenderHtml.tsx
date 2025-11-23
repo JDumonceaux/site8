@@ -4,7 +4,6 @@ import parse, {
   Element,
   type HTMLReactParserOptions,
 } from 'html-react-parser';
-
 import RenderCode from './RenderCode';
 
 type RenderHtmlProps = {

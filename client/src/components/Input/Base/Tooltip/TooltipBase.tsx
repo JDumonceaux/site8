@@ -1,6 +1,6 @@
-import * as TooltipRadix from '@radix-ui/react-tooltip';
 import type { JSX, ReactNode } from 'react';
 
+import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { keyframes, styled } from 'styled-components';
 
 export type TooltipBaseProps = {
@@ -11,7 +11,7 @@ export type TooltipBaseProps = {
   /** Delay before showing tooltip (ms), defaults to 0 */
   delayDuration?: number;
   /** Disable hoverable content in provider */
-  disableHoverableContent?: boolean;
+  isHoverableContentDisabled?: boolean;
   /** Props for the Tooltip.Root */
   tooltipProps?: TooltipRadix.TooltipProps;
   /** Element that triggers the tooltip */
@@ -27,7 +27,7 @@ const TooltipBase = ({
   content,
   tooltipProps,
   delayDuration = tooltipProps?.delayDuration ?? 0,
-  disableHoverableContent = false,
+  isHoverableContentDisabled = false,
   trigger,
   triggerColor,
   triggerProps,
@@ -36,7 +36,7 @@ const TooltipBase = ({
   if (!content || !trigger) return null;
 
   return (
-    <TooltipRadix.Provider disableHoverableContent={disableHoverableContent}>
+    <TooltipRadix.Provider disableHoverableContent={isHoverableContentDisabled}>
       <TooltipRadix.Root
         {...tooltipProps}
         delayDuration={delayDuration}

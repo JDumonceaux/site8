@@ -1,6 +1,5 @@
 // InputCounter.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-
 import InputCounter, { type InputCounterProps } from './InputCounter';
 
 const meta: Meta<typeof InputCounter> = {
@@ -9,8 +8,8 @@ const meta: Meta<typeof InputCounter> = {
     assistiveLabel: { control: 'text' },
     characterCount: { control: 'number' },
     id: { control: 'text' },
+    isShowCounter: { control: 'boolean' },
     maxLength: { control: 'number' },
-    showCounter: { control: 'boolean' },
   },
   component: InputCounter,
   title: '@components/InputCounter',
@@ -26,8 +25,8 @@ export const RightAligned: Story = {
     assistiveLabel: 'Characters used',
     characterCount: 5,
     id: 'counter1',
+    isShowCounter: true,
     maxLength: 10,
-    showCounter: true,
   } as InputCounterProps,
 };
 
@@ -42,6 +41,6 @@ export const LeftAligned: Story = {
 export const Hidden: Story = {
   args: {
     id: 'counter-hidden',
-    showCounter: false,
+    isShowCounter: false,
   } as InputCounterProps,
 };

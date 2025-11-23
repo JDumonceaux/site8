@@ -8,7 +8,6 @@ export type InputEmailProps = Omit<
 > & {
   readonly type?: 'email';
 };
-
 // Remove: 'autocapitalize', 'height', 'src', 'step', 'width'
 // Valid: multiple, pattern, value
 

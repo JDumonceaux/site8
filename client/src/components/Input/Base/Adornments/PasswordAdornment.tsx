@@ -1,6 +1,6 @@
+import { forwardRef, type JSX, type SVGProps } from 'react';
+
 import { LockClosedIcon as Icon } from '@radix-ui/react-icons';
-import type { JSX, SVGProps } from 'react';
-import { forwardRef } from 'react';
 
 export type PasswordAdornmentProps = Readonly<
   Omit<SVGProps<SVGSVGElement>, 'children' | 'data-testid' | 'ref'>

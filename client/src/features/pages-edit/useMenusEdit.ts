@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Menu } from '../../types';
+import type { Menu } from '@shared/types';
+import { useQuery } from '@tanstack/react-query';
 
 // Helper function to fetch menus edit data with support for aborting
 const fetchData = async ({

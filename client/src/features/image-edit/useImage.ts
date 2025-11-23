@@ -1,8 +1,7 @@
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
-
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import { handleQueryError } from '@lib/utils/errorHandler';
-import type { Image } from '../../types';
+import type { Image } from '@shared/types';
+import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 /**
  * Fetches an image by ID with support for cancellation.

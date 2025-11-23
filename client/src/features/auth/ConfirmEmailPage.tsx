@@ -6,9 +6,9 @@ import Input from '@components/input/Input';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
-import styled from 'styled-components';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
+import styled from 'styled-components';
 
 const schema = z.object({
   authenticationCode: z.string().length(6, 'Code must be 6 digits'),

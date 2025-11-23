@@ -7,12 +7,7 @@ import styled from 'styled-components';
 
 /** Accessible fallback displayed during lazy-loading */
 const LoadingFallback = (): JSX.Element => (
-  <div
-    aria-live="polite"
-    role="status"
-  >
-    Loading…
-  </div>
+  <output aria-live="polite">Loading…</output>
 );
 
 /** Error fallback for unexpected rendering errors */

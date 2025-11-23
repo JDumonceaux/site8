@@ -1,6 +1,6 @@
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
+import type { MenuEdit } from '@shared/types';
 import { z } from 'zod';
-import type { MenuEdit } from '../../types';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
 import useTestMenus from './useTestMenus';

@@ -1,19 +1,19 @@
 type IconProps = {
-  readonly ariaHidden?: boolean;
-  readonly focusable?: boolean;
+  readonly isAriaHidden?: boolean;
+  readonly isFocusable?: boolean;
 };
 
 export const GoogleIcon = ({
-  ariaHidden = false,
-  focusable = true,
+  isAriaHidden = false,
+  isFocusable = true,
 }: IconProps) => {
   return (
     <svg
-      aria-hidden={ariaHidden}
+      aria-hidden={isAriaHidden}
       height="20"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
-      focusable={focusable}
+      focusable={isFocusable}
       viewBox="0 0 46 46"
     >
       <path

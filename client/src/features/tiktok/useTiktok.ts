@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Page } from '../../types';
+import type { Page } from '@shared/types';
+import { useQuery } from '@tanstack/react-query';
 
 export type UseTiktokResult = {
   data?: Page;

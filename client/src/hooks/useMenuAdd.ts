@@ -3,7 +3,7 @@ import type { ChangeEvent } from 'react';
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
 import { z } from 'zod';
-import type { MenuAdd } from '../types';
+import type { MenuAdd } from '../shared/types';
 import { useAxios } from './axios/useAxios';
 import useForm from './useForm';
 

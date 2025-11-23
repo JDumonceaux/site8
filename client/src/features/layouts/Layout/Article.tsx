@@ -1,5 +1,4 @@
-import { memo, type JSX } from 'react';
-import type { HTMLAttributes, ReactNode } from 'react';
+import { type HTMLAttributes, type JSX, memo, type ReactNode } from 'react';
 
 import styled from 'styled-components';
 

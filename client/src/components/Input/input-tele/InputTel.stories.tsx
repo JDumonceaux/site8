@@ -1,5 +1,4 @@
 import type { StoryObj } from '@storybook/react';
-
 import InputTel from './InputTel';
 
 const meta = {

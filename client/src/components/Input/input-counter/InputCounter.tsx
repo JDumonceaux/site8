@@ -1,6 +1,6 @@
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import type { HTMLAttributes, JSX } from 'react';
 
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import styled from 'styled-components';
 
 export type InputCounterProps = HTMLAttributes<HTMLDivElement> & {
@@ -9,8 +9,8 @@ export type InputCounterProps = HTMLAttributes<HTMLDivElement> & {
   readonly assistiveLabel?: string;
   readonly characterCount?: number;
   readonly id: string;
+  readonly isShowCounter?: boolean;
   readonly maxLength?: number;
-  readonly showCounter?: boolean;
 };
 
 const InputCounter = ({
@@ -18,11 +18,11 @@ const InputCounter = ({
   assistiveLabel = 'Character count',
   characterCount = 0,
   id,
+  isShowCounter = false,
   maxLength = 0,
-  showCounter = false,
   ...rest
 }: InputCounterProps): JSX.Element | null => {
-  if (!showCounter) return null;
+  if (!isShowCounter) return null;
 
   return (
     <Counter
@@ -33,7 +33,7 @@ const InputCounter = ({
       {...rest}
     >
       <VisuallyHidden>{assistiveLabel}:</VisuallyHidden>
-      {` ${characterCount} / ${maxLength}`}
+      {`${characterCount} / ${maxLength}`}
     </Counter>
   );
 };

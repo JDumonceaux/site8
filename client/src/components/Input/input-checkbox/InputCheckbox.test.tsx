@@ -1,11 +1,10 @@
 // InputCheckbox.test.tsx
 import { fireEvent, render, screen } from '@testing-library/react';
-
 import type { AxeResults } from 'axe-core';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import InputCheckbox from './InputCheckbox';
+// eslint-disable-next-line import/no-unassigned-import
 import '@testing-library/jest-dom';
-import 'jest-styled-components';
 
 describe('inputCheckbox component', () => {
   beforeAll(() => {
@@ -22,6 +21,7 @@ describe('inputCheckbox component', () => {
         id="chk1"
         label="Agree to terms"
         lineId="line1"
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         onChange={() => {}}
       />,
     );
@@ -86,6 +86,7 @@ describe('inputCheckbox component', () => {
         id="chk4"
         label="Test"
         lineId="r4"
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         onChange={() => {}}
       />,
     );
@@ -103,6 +104,7 @@ describe('inputCheckbox component', () => {
         id="chk5"
         label="Foo"
         lineId="r5"
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         onChange={() => {}}
       />,
     );

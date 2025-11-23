@@ -1,6 +1,5 @@
 import type { HTMLAttributes, JSX, ReactNode } from 'react';
 
-import styled from 'styled-components';
 import EndAdornment, {
   type EndAdornmentProps,
 } from '../adornments/EndAdornment';
@@ -9,6 +8,7 @@ import StartAdornment, {
 } from '../adornments/StartAdornment';
 import FooterRow, { type FooterRowProps } from '../footer-row/FooterRow';
 import LabelRow, { type LabelRowProps } from '../label-row/LabelRow';
+import styled from 'styled-components';
 
 export type FieldWrapperProps = Omit<
   HTMLAttributes<HTMLDivElement>,

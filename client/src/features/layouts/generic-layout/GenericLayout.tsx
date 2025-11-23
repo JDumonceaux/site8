@@ -4,10 +4,9 @@ import { Outlet } from 'react-router-dom';
 
 import Avatar from '@components/core/avatar/Avatar';
 import Header from '@components/core/header/Header';
-import styled from 'styled-components';
-
 import AppInitializer from '@features/app/app-initializer/AppInitializer';
 import Snackbar from '@features/app/snackbar/Snackbar';
+import styled from 'styled-components';
 
 /**
  * Accessible fallback shown while the page is lazy-loading.
@@ -30,14 +29,18 @@ const ErrorFallback = ({
   resetErrorBoundary,
 }: FallbackProps): JSX.Element => (
   <ErrorContainer
-    role="alert"
     aria-live="assertive"
+    role="alert"
   >
     <ErrorTitle>Something went wrong</ErrorTitle>
-    <ErrorMessage>{error.message}</ErrorMessage>
+    <ErrorMessage>
+      {typeof error === 'object' && error && 'message' in error
+        ? (error as { message?: string }).message
+        : String(error)}
+    </ErrorMessage>
     <RetryButton
-      onClick={resetErrorBoundary}
       type="button"
+      onClick={resetErrorBoundary}
     >
       Try again
     </RetryButton>

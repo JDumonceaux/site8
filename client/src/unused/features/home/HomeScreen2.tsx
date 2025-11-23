@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
 import Meta from '@components/core/meta/Meta';
-import Layout from '@features/layouts/Layout/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import { keyframes, styled } from 'styled-components';
 
 const HomeScreen2 = (): JSX.Element | null => {
