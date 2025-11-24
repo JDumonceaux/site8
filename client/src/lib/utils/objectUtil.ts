@@ -6,26 +6,25 @@
 export const getDefaultObject = <T extends Record<string, any>>(
   obj: T,
 ): Partial<T> => {
-  const defaultObj: Partial<T> = {};
-  for (const key in obj) {
-    if (Object.hasOwn(obj, key)) {
-      const value = obj[key];
-      if (typeof value === 'string') {
-        defaultObj[key] = '' as any;
-      } else if (typeof value === 'number') {
-        defaultObj[key] = 0 as any;
-      } else if (typeof value === 'boolean') {
-        defaultObj[key] = false as any;
-      } else if (Array.isArray(value)) {
-        defaultObj[key] = [] as any;
-      } else if (value !== null && typeof value === 'object') {
-        defaultObj[key] = {} as any;
-      } else {
-        defaultObj[key] = null as any;
-      }
+  const defaultObj = {} as Record<string, unknown>;
+  for (const key of Object.keys(obj)) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const value = obj[key];
+    if (typeof value === 'string') {
+      defaultObj[key] = '';
+    } else if (typeof value === 'number') {
+      defaultObj[key] = 0;
+    } else if (typeof value === 'boolean') {
+      defaultObj[key] = false;
+    } else if (Array.isArray(value)) {
+      defaultObj[key] = [];
+    } else if (value !== null && typeof value === 'object') {
+      defaultObj[key] = {};
+    } else {
+      defaultObj[key] = null;
     }
   }
-  return defaultObj;
+  return defaultObj as Partial<T>;
 };
 
 /**
@@ -43,13 +42,12 @@ export const isDeepEqual = (
     const value1 = object1[key];
     const value2 = object2[key];
 
-    const areBothObjects =
+    if (
       value1 !== null &&
       value2 !== null &&
       typeof value1 === 'object' &&
-      typeof value2 === 'object';
-
-    if (areBothObjects) {
+      typeof value2 === 'object'
+    ) {
       if (
         !isDeepEqual(
           value1 as Record<string, unknown>,
@@ -105,8 +103,8 @@ export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
  * Returns a new object with all string attributes trimmed.
  */
 export const trimAttributes = <T>(obj: T): T => {
-  const trimmedObj: Record<string, unknown> =
-    typeof obj === 'object' && obj !== null ? { ...obj } : {};
+  if (typeof obj !== 'object' || obj === null) return obj;
+  const trimmedObj: Record<string, unknown> = { ...obj };
   for (const key of Object.keys(trimmedObj)) {
     if (typeof trimmedObj[key] === 'string') {
       trimmedObj[key] = trimmedObj[key].trim();
@@ -119,14 +117,12 @@ export const trimAttributes = <T>(obj: T): T => {
  * Returns a new object with keys sorted in alphabetical order.
  */
 export const sortObjectKeys = <T>(obj: T): T => {
-  return Object.keys(obj as Record<string, unknown>)
-    .toSorted()
-    .reduce((accumulator, key) => {
-      (accumulator as Record<string, unknown>)[key] = (
-        obj as Record<string, unknown>
-      )[key];
-      return accumulator;
-    }, {} as T);
+  const sortedKeys = Object.keys(obj as Record<string, unknown>).toSorted();
+  const sortedObj: Record<string, unknown> = {};
+  for (const key of sortedKeys) {
+    sortedObj[key] = (obj as Record<string, unknown>)[key];
+  }
+  return sortedObj as T;
 };
 
 /**
@@ -144,11 +140,10 @@ export type IdType = {
  * Returns a new object with these modifications.
  */
 export const cleanUpData = <T extends IdType>(data: T): T => {
-  const cleanedData = removeEmptyAttributes(data) as T;
+  const cleanedData = removeEmptyAttributes(data);
   const sortedData = sortObjectKeys(cleanedData);
   const trimmedData = trimAttributes(sortedData);
-  const { id, ...rest } = trimmedData;
-  return { id, ...rest } as T;
+  return { ...trimmedData } as T;
 };
 
 /**
@@ -161,7 +156,7 @@ export const getNextId = (
   if (!items || items.length === 0) {
     return undefined;
   }
-  const sortedArray = items.toSorted((a, b) => a.id - b.id);
+  const sortedArray = [...items].toSorted((a, b) => a.id - b.id);
   let expectedId = sortedArray[0].id;
   for (const item of sortedArray) {
     if (item.id !== expectedId) {
@@ -181,15 +176,15 @@ export const getNextIdFromPos = (
   start: number,
 ): undefined | { index: number; value: number } => {
   if (!items || items.length === 0) return undefined;
-  const sortedArray = items.toSorted((a, b) => a.id - b.id);
+  const sortedArray = [...items].toSorted((a, b) => a.id - b.id);
   const startingItem = sortedArray[start];
-  let expectedId = startingItem.id || 1;
+  let expectedId = startingItem.id;
 
   for (let index = start; index < sortedArray.length; index++) {
     if (sortedArray[index].id !== expectedId) {
-      return { index: index, value: expectedId };
+      return { index, value: expectedId };
     }
     expectedId++;
   }
-  return { index: 0, value: expectedId };
+  return { index: sortedArray.length, value: expectedId };
 };

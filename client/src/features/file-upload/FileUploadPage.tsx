@@ -1,8 +1,8 @@
 import { type ChangeEvent, type JSX, useState } from 'react';
 
-import Meta from '@components/core/meta/Meta';
+import Meta from '@components/core/meta-temp/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
-import Layout from '@features/layouts/layout/Layout';
+import Layout from '@features/layouts/layout-temp/Layout';
 import axios from 'axios';
 
 type UploadStatus = 'error' | 'idle' | 'success' | 'uploading';

@@ -1,6 +1,6 @@
 import { useEffect, useState, useTransition } from 'react';
 
-import useSnackbar from '@features/app/snackbar/useSnackbar';
+import useSnackbar from '@features/app/snackbar-temp/useSnackbar';
 import useFormArray from '@hooks/useFormArray';
 import { getSRC } from '@lib/utils/helpers';
 import { getDefaultObject, isDeepEqual } from '@lib/utils/objectUtil';

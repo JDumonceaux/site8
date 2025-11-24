@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
-import Meta from '@components/core/meta/Meta';
+import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
+import Meta from '@components/core/meta-temp/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
-import Switch from '@components/switch/Switch';
+import Switch from '@components/switch-temp/Switch';
 import useAppSettings from '@features/app/useAppSettings';
-import Layout from '@features/layouts/layout/Layout';
-import styled from 'styled-components';
+import Layout from '@features/layouts/layout-temp/Layout';
 import { mapToFormValues } from './mapToFormValues';
 import MenuAdd from './MenuAdd';
 import PageRow from './PageRow';
 import usePagesEdit from './usePagesEdit';
+import styled from 'styled-components';
 
 /**
  * Page for editing site pages and menu structure.

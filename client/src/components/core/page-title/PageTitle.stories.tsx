@@ -1,6 +1,5 @@
 // PageTitle.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-
 import PageTitle from './PageTitle';
 
 const meta: Meta<typeof PageTitle> = {

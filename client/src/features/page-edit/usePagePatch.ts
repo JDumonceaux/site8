@@ -1,4 +1,4 @@
-import useSnackbar from '@features/app/snackbar/useSnackbar';
+import useSnackbar from '@features/app/snackbar-temp/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
 import type { FormErrors, FormState, Page } from '@shared/types';
 import { type PageEdit, PageEditSchema } from '@shared/types/PageEditSchema';

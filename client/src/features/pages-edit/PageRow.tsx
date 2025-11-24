@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import Input from '@components/input/Input';
+import Input from '@components/input-temp/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import type { MenuItem } from '@shared/types';
 import styled from 'styled-components';

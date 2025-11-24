@@ -3,7 +3,7 @@ import {
   createSlice,
   type PayloadAction,
 } from '@reduxjs/toolkit';
-import type { Snackbar } from '../features/app/snackbar/useSnackbar';
+import type { Snackbar } from '../features/app/snackbar-temp/useSnackbar';
 import type { RootState } from './store';
 
 /** Shape of the `snackbar` slice state. */

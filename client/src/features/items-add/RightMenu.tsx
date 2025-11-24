@@ -1,6 +1,6 @@
 import { type JSX, memo } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
 import useArtistItems from './useArtistItems';
 import styled from 'styled-components';
 

@@ -2,7 +2,7 @@ import { type JSX, memo, Suspense } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-import Header from '@components/core/header/Header';
+import Header from '@components/core/header-temp/Header';
 import styled from 'styled-components';
 
 /**
@@ -30,7 +30,11 @@ export const ErrorFallback = ({
     role="alert"
   >
     <ErrorTitle>Something went wrong</ErrorTitle>
-    <ErrorMessage>{typeof error === 'object' && error && 'message' in error ? (error as { message?: string }).message : String(error)}</ErrorMessage>
+    <ErrorMessage>
+      {typeof error === 'object' && error && 'message' in error
+        ? (error as { message?: string }).message
+        : String(error)}
+    </ErrorMessage>
     <RetryButton
       type="button"
       onClick={resetErrorBoundary}

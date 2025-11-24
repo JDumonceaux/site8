@@ -1,11 +1,11 @@
 import { type JSX, useEffect, useState } from 'react';
 
-import Meta from '@components/core/meta/Meta';
+import Meta from '@components/core/meta-temp/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
-import Input from '@components/input/Input';
+import Input from '@components/input-temp/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
-import Switch from '@components/switch/Switch';
+import Switch from '@components/switch-temp/Switch';
 import {
   closestCenter,
   DndContext,
@@ -22,7 +22,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import useAppSettings from '@features/app/useAppSettings';
-import Layout from '@features/layouts/layout/Layout';
+import Layout from '@features/layouts/layout-temp/Layout';
 import SortableItem from '@features/tests/SortableItem';
 import useTestsEdit from '@features/tests/useTestsEdit';
 import styled from 'styled-components';

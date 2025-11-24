@@ -1,9 +1,9 @@
 import { type JSX, Suspense } from 'react';
 
-import Meta from '@components/core/meta/Meta';
+import Meta from '@components/core/meta-temp/Meta';
 import PageTitle from '@components/core/page-title/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
-import Layout from '@features/layouts/layout/Layout';
+import Layout from '@features/layouts/layout-temp/Layout';
 import type { Image } from '@shared/types/Image';
 import type { Video } from '@shared/types/Video';
 import ImageBlock from './ImageBlock';

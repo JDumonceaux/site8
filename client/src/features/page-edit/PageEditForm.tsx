@@ -1,7 +1,7 @@
 import { type JSX, useActionState } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
-import Input from '@components/input/Input';
+import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
+import Input from '@components/input-temp/Input';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import * as Form from '@radix-ui/react-form';
 import type { FormState } from '@shared/types';

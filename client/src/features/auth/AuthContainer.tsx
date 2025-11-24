@@ -1,6 +1,6 @@
 import type { JSX, ReactNode } from 'react';
 
-import Layout from '@features/layouts/layout/Layout';
+import Layout from '@features/layouts/layout-temp/Layout';
 import styled from 'styled-components';
 
 export type AuthContainerProps = {

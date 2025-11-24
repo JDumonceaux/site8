@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { Music } from '@shared/types/Music';
+import { useQuery } from '@tanstack/react-query';
 
 /**
  * Fetches music data from the API, supporting cancellation via AbortSignal.
