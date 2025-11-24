@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // InputCheckbox.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import InputCheckbox, { type InputCheckboxProps } from './InputCheckbox';

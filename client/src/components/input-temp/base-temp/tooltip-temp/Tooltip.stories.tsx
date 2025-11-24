@@ -1,8 +1,8 @@
 // Tooltip.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import Tooltip from './Tooltip';
-import TooltipAsterix from './tooltips/TooltipAsterix';
-import TooltipQuestionMark from './tooltips/TooltipQuestionMark';
+import TooltipAsterix from './tooltips-temp/TooltipAsterix';
+import TooltipQuestionMark from './tooltips-temp/TooltipQuestionMark';
 
 const meta: Meta<typeof Tooltip> = {
   argTypes: {
@@ -41,7 +41,7 @@ export const Delayed: Story = {
 };
 
 export const Asterix: StoryObj<typeof TooltipAsterix> = {
-  render: (args) => (
+  render: (args: React.ComponentProps<typeof TooltipAsterix>) => (
     <TooltipAsterix
       {...args}
       content="Required field"
@@ -50,7 +50,7 @@ export const Asterix: StoryObj<typeof TooltipAsterix> = {
 };
 
 export const QuestionMark: StoryObj<typeof TooltipQuestionMark> = {
-  render: (args) => (
+  render: (args: React.ComponentProps<typeof TooltipQuestionMark>) => (
     <TooltipQuestionMark
       {...args}
       content="More info"

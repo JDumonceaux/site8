@@ -1,6 +1,13 @@
-/* eslint-disable react/forbid-dom-props */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { Meta, StoryObj } from '@storybook/react';
 import LoadingWrapper from './LoadingWrapper';
+import styled from 'styled-components';
+
+const MainContent = styled.div`
+  background: #eef;
+  border-radius: 0.25rem;
+  padding: 1rem;
+`;
 
 const meta: Meta<typeof LoadingWrapper> = {
   argTypes: {
@@ -21,17 +28,9 @@ export default meta;
 type Story = StoryObj<typeof LoadingWrapper>;
 
 const Template: Story = {
-  render: (args) => (
+  render: (args: React.ComponentProps<typeof LoadingWrapper>) => (
     <LoadingWrapper {...args}>
-      <div
-        style={{
-          background: '#eef',
-          borderRadius: '0.25rem',
-          padding: '1rem',
-        }}
-      >
-        Here is the main content
-      </div>
+      <MainContent>Here is the main content</MainContent>
     </LoadingWrapper>
   ),
 };
@@ -43,16 +42,20 @@ export const Default: Story = {
 
 export const Saving: Story = {
   ...Template,
-  args: { isSaving: true },
+  args: { isSaving: true } as React.ComponentProps<typeof LoadingWrapper>,
 };
+
+const FallbackContent = styled(MainContent)`
+  margin-top: 0.5rem;
+`;
 
 export const Loading: Story = {
   ...Template,
   args: {
-    fallback: <div style={{ marginTop: '0.5rem' }}>Loading placeholder</div>,
+    fallback: <FallbackContent>Loading placeholder</FallbackContent>,
     isLoading: true,
     loadingText: 'Please wait…',
-  },
+  } as React.ComponentProps<typeof LoadingWrapper>,
 };
 
 export const Pending: Story = {
@@ -60,7 +63,7 @@ export const Pending: Story = {
   args: {
     isPending: true,
     loadingText: 'Fetching data…',
-  },
+  } as React.ComponentProps<typeof LoadingWrapper>,
 };
 
 export const ErrorString: Story = {
@@ -68,7 +71,7 @@ export const ErrorString: Story = {
   args: {
     error: 'Something went wrong',
     isError: true,
-  },
+  } as React.ComponentProps<typeof LoadingWrapper>,
 };
 
 export const ErrorInstance: Story = {

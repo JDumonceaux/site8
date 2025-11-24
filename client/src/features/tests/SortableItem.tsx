@@ -1,7 +1,8 @@
-import type { CSSProperties, JSX, ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import styled from 'styled-components';
 
 export type SortableItemProps = {
   /** Row contents */
@@ -13,27 +14,33 @@ export type SortableItemProps = {
 /**
  * A table row that can be reordered via drag-and-drop.
  */
-const SortableItem = ({
-  children,
-  id,
-}: SortableItemProps): JSX.Element | null => {
+const SortableItem = ({ children, id }: SortableItemProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
   const style: CSSProperties = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+    transform: transform ? CSS.Transform.toString(transform) : undefined,
+    transition: transition ?? undefined,
   };
 
+  const StyledTr = styled.tr<{
+    $transform?: string;
+    $transition?: string;
+  }>`
+    ${({ $transform }) => $transform && `transform: ${$transform};`}
+    ${({ $transition }) => $transition && `transition: ${$transition};`}
+  `;
+
   return (
-    <tr
+    <StyledTr
       ref={setNodeRef}
-      style={style}
+      $transform={style.transform}
+      $transition={style.transition}
       {...attributes}
       {...listeners}
     >
       {children}
-    </tr>
+    </StyledTr>
   );
 };
 

@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 
 import TooltipBase, { type TooltipBaseProps } from './TooltipBase';
-import TooltipAsterix from './tooltips/TooltipAsterix';
-import TooltipQuestionMark from './tooltips/TooltipQuestionMark';
+import TooltipAsterix from './tooltips-temp/TooltipAsterix';
+import TooltipQuestionMark from './tooltips-temp/TooltipQuestionMark';
 
 export type TooltipProps = TooltipBaseProps;
 
