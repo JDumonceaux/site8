@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-
 import { ServiceUrl } from '@lib/utils/constants';
 import type { Images } from '@shared/types';
+import { useQuery } from '@tanstack/react-query';
 
 const useImagesEdit = () => {
   const { data, isError, isPending } = useQuery({

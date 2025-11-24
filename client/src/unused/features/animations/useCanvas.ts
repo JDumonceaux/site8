@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 
-const useCanvas = (draw: any) => {
+const useCanvas = (
+  draw: (context: CanvasRenderingContext2D | null, frameCount: number) => void,
+) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -11,7 +13,9 @@ const useCanvas = (draw: any) => {
 
     const render = () => {
       frameCount += 1;
-      draw(context, frameCount);
+      if (context) {
+        draw(context, frameCount);
+      }
       animationFrameId = globalThis.requestAnimationFrame(render);
     };
     render();

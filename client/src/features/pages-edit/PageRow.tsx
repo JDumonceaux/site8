@@ -10,10 +10,7 @@ type PageRowProps = {
   item: MenuItem;
 };
 
-const PageRow = ({
-  getDefaultProps,
-  item,
-}: PageRowProps): JSX.Element | null => {
+const PageRow = ({ getDefaultProps, item }: PageRowProps): JSX.Element => {
   const isPage = item.type === 'page';
   const levelPrefix =
     {

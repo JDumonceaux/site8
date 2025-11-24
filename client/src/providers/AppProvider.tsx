@@ -1,9 +1,9 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Suspense, useMemo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import RingLoader from '@components/core/loading-spinner/RingLoader';
 import MainErrorFallback from '@components/core/MainErrorFallback';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReduxProvider from './ReduxProvider';
 
 type AppProviderProps = {

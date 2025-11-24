@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { type JSX, useCallback, useEffect, useRef } from 'react';
+
+import styled from 'styled-components';
 
 type Canvas2Props = {
   readonly backgroundColor?: string;
@@ -12,20 +14,18 @@ export const Canvas2 = ({
   width = '100%',
 }: Canvas2Props): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
+  const contextRef = useRef<CanvasRenderingContext2D | null>(null);
 
-  const resizeCanvas = (context: {
-    canvas: any;
-    scale: (argument0: number, argument1: number) => void;
-  }) => {
-    const { canvas } = context;
-    const { height, width } = canvas.getBoundingClientRect();
+  const resizeCanvas = (canvasContext: CanvasRenderingContext2D) => {
+    const { canvas } = canvasContext;
+    const { height: rectHeight, width: rectWidth } =
+      canvas.getBoundingClientRect();
 
-    if (canvas.width !== width || canvas.height !== height) {
+    if (canvas.width !== rectWidth || canvas.height !== rectHeight) {
       const { devicePixelRatio: ratio = 1 } = globalThis;
-      canvas.width = width * ratio;
-      canvas.height = height * ratio;
-      context.scale(ratio, ratio);
+      canvas.width = rectWidth * ratio;
+      canvas.height = rectHeight * ratio;
+      canvasContext.scale(ratio, ratio);
       return true;
     }
     return false;
@@ -35,29 +35,30 @@ export const Canvas2 = ({
     //i.e. value other than null or undefined
     if (canvasRef.current) {
       const canvas = canvasRef.current;
-      const context_ = canvas.getContext('2d');
-      setContext(context_);
+      const canvasContext = canvas.getContext('2d');
+      contextRef.current = canvasContext;
     }
   }, []);
 
-  const draw = (frameCount: number) => {
+  const draw = useCallback((frameCount: number) => {
+    const context = contextRef.current;
     if (context === null) return;
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     context.fillStyle = '#000000';
     context.beginPath();
     context.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
     context.fill();
-  };
+  }, []);
 
   useEffect(() => {
     let frameCount = 0;
     let animationFrameId: number;
 
     // Check if null context has been replaced on component mount
-    if (context) {
+    if (contextRef.current) {
       //Our draw came here
       const render = () => {
-        resizeCanvas(context);
+        resizeCanvas(contextRef.current as CanvasRenderingContext2D);
         frameCount += 1;
         draw(frameCount);
         animationFrameId = globalThis.requestAnimationFrame(render);
@@ -67,14 +68,26 @@ export const Canvas2 = ({
     return () => {
       globalThis.cancelAnimationFrame(animationFrameId);
     };
-  }, [draw, context]);
+  }, [draw]);
 
   return (
-    <canvas
+    <StyledCanvas
       ref={canvasRef}
-      style={{ backgroundColor, height, width }}
+      $height={height}
+      $width={width}
+      $backgroundColor={backgroundColor}
     >
       Canvas not supported
-    </canvas>
+    </StyledCanvas>
   );
 };
+
+const StyledCanvas = styled.canvas<{
+  $backgroundColor: string;
+  $height: string;
+  $width: string;
+}>`
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  height: ${({ $height }) => $height};
+  width: ${({ $width }) => $width};
+`;
