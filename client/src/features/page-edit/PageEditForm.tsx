@@ -44,9 +44,23 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
 
   const { error, isError, isPending, patchItem } = usePagePatch();
 
-  const [data, action] = useActionState(patchItem, {
+  const actionState = useActionState(patchItem, {
     fieldData: initData,
   } as FormState<typeof initData>);
+
+  const data =
+    Array.isArray(actionState) &&
+    actionState[0] &&
+    typeof actionState[0] === 'object' &&
+    'fieldData' in actionState[0]
+      ? (actionState[0] as FormState<typeof initData>)
+      : undefined;
+  const action = Array.isArray(actionState) ? actionState[1] : undefined;
+
+  // Type guard to check if data is not an error object
+  if (!data) {
+    return <div>Error...</div>;
+  }
 
   return (
     <LoadingWrapper
@@ -68,12 +82,12 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
           id="id"
           name="id"
           type="hidden"
-          value={data.fieldData.id}
+          value={data.fieldData?.id}
         />
         <Input.Text
           required
           spellCheck
-          defaultValue={data.fieldData.title}
+          defaultValue={data.fieldData?.title}
           id="title"
           label="Title"
           maxLength={500}
@@ -87,13 +101,13 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
           // value={formValues.name}
         />
         <Input.Text
-          defaultValue={data.fieldData.to}
+          defaultValue={data.fieldData?.to ?? ''}
           id="to"
           labelProps={{ label: 'To' }}
           placeholder="Enter a route"
         />
         <Input.Text
-          defaultValue={data.fieldData.url}
+          defaultValue={data.fieldData?.url ?? ''}
           id="url"
           labelProps={{ label: 'URL' }}
           placeholder="Enter a url"
@@ -107,19 +121,19 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
         {/* <ToolMenu onClick={handeTextInsert} /> */}
         <Input.TextArea
           spellCheck
-          defaultValue={data.fieldData.text}
+          defaultValue={data.fieldData?.text ?? ''}
           id="text"
           labelProps={{ label: 'Text' }}
           //onBlur={handeTextAreaBlur}
           rows={30}
         />
         <Input.Text
-          defaultValue={data.fieldData.reading_time}
+          defaultValue={data.fieldData?.reading_time ?? ''}
           id="reading_time"
           labelProps={{ label: 'Reading Time' }}
         />
         <Input.Text
-          defaultValue={data.fieldData.readability_score}
+          defaultValue={data.fieldData?.readability_score ?? ''}
           id="readability_score"
           labelProps={{ label: 'Readability Score' }}
         />

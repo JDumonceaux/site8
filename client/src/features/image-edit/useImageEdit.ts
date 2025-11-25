@@ -1,10 +1,4 @@
-import {
-  type ChangeEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { useAxios } from '@hooks/axios-temp/useAxios';
 import useForm from '@hooks/useForm';
@@ -33,27 +27,25 @@ type UseImageEditReturn = {
   validateForm: () => boolean;
 };
 
+// Consistent default form shape
+const defaultForm: FormType = {
+  fileName: '',
+  folder: '',
+  id: 0,
+  location: '',
+  name: '',
+  official_url: '',
+  src: '',
+};
+
 /**
  * Hook for editing an Image entity, handling form state, validation, and persistence.
  */
-export const useImageEdit = (rawId: null | string): UseImageEditReturn => {
+export const useImageEdit = (
+  rawId: null | string,
+): Readonly<UseImageEditReturn> => {
   const { patchData, putData } = useAxios<Image>();
   const { data: imageData } = useImage(rawId);
-
-  // Form defaults
-  const defaultForm: FormType = useMemo(
-    () => ({
-      description: '',
-      fileName: '',
-      folder: '',
-      id: 0,
-      location: '',
-      name: '',
-      official_url: '',
-      tags: '',
-    }),
-    [],
-  );
 
   const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
     useForm<FormType>(defaultForm);
@@ -70,12 +62,13 @@ export const useImageEdit = (rawId: null | string): UseImageEditReturn => {
       folder: imageData.folder ?? '',
       id: imageData.id,
       location: imageData.location ?? '',
+      name: imageData.title ?? '',
       official_url: imageData.official_url ?? '',
       src: getSRC(imageData.folder, imageData.fileName),
     };
     setFormValues(formData);
     setOriginalValues(imageData);
-  }, [imageData, defaultForm, setFormValues]);
+  }, [imageData, setFormValues]);
 
   // Form helpers
   const getDefaultProps = useCallback(
@@ -145,14 +138,14 @@ export const useImageEdit = (rawId: null | string): UseImageEditReturn => {
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }, [defaultForm, originalValues, setErrors, setFormValues]);
+  }, [originalValues, setErrors, setFormValues]);
 
   const clearForm = useCallback(() => {
     setFormValues(defaultForm);
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }, [defaultForm, setErrors, setFormValues]);
+  }, [setErrors, setFormValues]);
 
   // Update unsaved flag when values change
   useEffect(() => {
@@ -160,14 +153,21 @@ export const useImageEdit = (rawId: null | string): UseImageEditReturn => {
       setIsSaved(false);
       return;
     }
-
-    const hasChanges =
-      formValues.fileName !== (originalValues.fileName ?? '') ||
-      formValues.folder !== (originalValues.folder ?? '') ||
-      formValues.location !== (originalValues.location ?? '') ||
-      formValues.name !== (originalValues.title ?? '') ||
-      formValues.official_url !== (originalValues.official_url ?? '');
-
+    // Deep equality check for all fields
+    const keys = Object.keys(defaultForm) as (keyof FormType)[];
+    const hasChanges = keys.some((key) => {
+      if (key === 'src') {
+        // src is derived, compare with calculated value
+        return (
+          formValues.src !==
+          getSRC(originalValues.folder, originalValues.fileName)
+        );
+      }
+      if (key === 'name') {
+        return formValues.name !== (originalValues.title ?? '');
+      }
+      return formValues[key] !== (originalValues[key as keyof Image] ?? '');
+    });
     setIsSaved(!hasChanges);
   }, [formValues, originalValues]);
 
@@ -180,7 +180,7 @@ export const useImageEdit = (rawId: null | string): UseImageEditReturn => {
     resetForm,
     saveItem,
     validateForm,
-  };
+  } as const;
 };
 
 export default useImageEdit;
