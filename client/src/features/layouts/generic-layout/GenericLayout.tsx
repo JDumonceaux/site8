@@ -2,8 +2,8 @@ import { type JSX, memo, Suspense } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-import Avatar from '@components/core/avatar-temp/Avatar';
-import Header from '@components/core/header-temp/Header';
+import Avatar from '@components/core/avatar/Avatar';
+import Header from '@components/core/header/Header';
 import AppInitializer from '@features/app/app-initializer/AppInitializer';
 import Snackbar from '@features/app/snackbar-temp/Snackbar';
 import styled from 'styled-components';

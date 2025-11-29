@@ -2,7 +2,7 @@ import { type JSX, memo, Suspense } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
-import Header from '@components/core/header-temp/Header';
+import Header from '@components/core/header/Header';
 import styled from 'styled-components';
 
 /**

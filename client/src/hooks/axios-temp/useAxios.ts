@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useEffectEvent, useRef, useState } from 'react';
 
 import { AcceptHeader, PreferHeader } from '@lib/utils/constants';
 import axios from 'axios';
@@ -45,10 +45,13 @@ export const useAxios = <T>() => {
   };
 
   // Clean up if component unmounts
-  useEffect(() => {
+  const cleanupEvent = useEffectEvent(() => {
     const controller = abortControllerRef.current;
+    controller?.abort();
+  });
+  useEffect(() => {
     return () => {
-      controller?.abort();
+      cleanupEvent();
     };
   }, []);
 

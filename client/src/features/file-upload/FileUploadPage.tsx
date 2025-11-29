@@ -1,7 +1,7 @@
 import { type ChangeEvent, type JSX, useState } from 'react';
 
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout-temp/Layout';
 import axios from 'axios';
 

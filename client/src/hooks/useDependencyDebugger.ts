@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useEffectEvent, useRef } from 'react';
 
 const compareInputs = <T extends Record<string, any>>(
   inputKeys: (keyof T)[],
@@ -25,10 +25,13 @@ export const useDependencyDebugger = <T extends Record<string, any>>(
 ): void => {
   const oldInputsRef = useRef(inputs);
 
-  useEffect(() => {
+  const debugInputsEvent = useEffectEvent(() => {
     const oldInputs = oldInputsRef.current;
     const inputKeysArray = Object.keys(inputs) as (keyof T)[];
     compareInputs(inputKeysArray, oldInputs, inputs);
     oldInputsRef.current = inputs;
+  });
+  useEffect(() => {
+    debugInputsEvent();
   }, [inputs]);
 };

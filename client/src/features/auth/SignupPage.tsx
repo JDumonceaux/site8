@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 
-import Button from '@components/core/button-temp/Button';
-import Meta from '@components/core/meta-temp/Meta';
-import Input from '@components/input-temp/Input';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
+import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';

@@ -1,18 +1,17 @@
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useEffectEvent, useState, useTransition } from 'react';
 
 import useSnackbar from '@features/app/snackbar-temp/useSnackbar';
 import useFormArray from '@hooks/useFormArray';
 import { getSRC } from '@lib/utils/helpers';
-import { getDefaultObject, isDeepEqual } from '@lib/utils/objectUtil';
+import { getDefaultObject } from '@lib/utils/objectUtil';
 import type { Image } from '@shared/types';
-import type { ImageAdd, ImageAddExt } from './ImageAdd';
+import type { ImageAddExt } from './ImageAdd';
 import useImagesEdit from './useImagesEdit';
 
 const useImagesEditPage = () => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
   const [displayData, setDisplayData] = useState<Image[]>([]);
-  const [originalValues, setOriginalValues] = useState<ImageAddExt[]>([]);
 
   const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
@@ -22,6 +21,35 @@ const useImagesEditPage = () => {
     useFormArray<ImageAddExt>();
 
   const { data, isError } = useImagesEdit();
+
+  // Map data to form values (move above usage)
+  const mapDataToForm = (items: Image[] | undefined) => {
+    if (!items) {
+      return [];
+    }
+    const defaultExt: ImageAddExt = {
+      delete: false,
+      fileName: '',
+      folder: '',
+      id: 0,
+      isDuplicate: false,
+      isSelected: false,
+      itemId: 0,
+      lineId: 0,
+      official_url: '',
+      src: '',
+    };
+    const returnValue: ImageAddExt[] | undefined = items.map((x, index) => {
+      const temp = getDefaultObject(defaultExt) as ImageAddExt;
+      return {
+        ...temp,
+        ...x,
+        lineId: index + 1,
+        src: getSRC(x.folder, x.fileName),
+      };
+    });
+    return returnValue;
+  };
 
   // Filter and sort data
   const filterAndSortData = () => {
@@ -39,33 +67,21 @@ const useImagesEditPage = () => {
     setDisplayData(trimmedData ?? []);
   };
 
-  useEffect(() => {
+  const filterAndSortDataEvent = useEffectEvent(() => {
     filterAndSortData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+  useEffect(() => {
+    filterAndSortDataEvent();
   }, [filter, data?.items]);
 
   useEffect(() => {
     // The full set of items
     const temp = mapDataToForm(displayData);
     setFormValues(temp);
-    setOriginalValues(temp);
+    // setOriginalValues(temp); // Avoid cascading renders
   }, [displayData, setFormValues]);
 
-  const mapDataToForm = (items: Image[] | undefined) => {
-    if (!items) {
-      return [];
-    }
-    const returnValue: ImageAddExt[] | undefined = items.map((x, index) => {
-      const temp = getDefaultObject() as ImageAddExt;
-      return {
-        ...temp,
-        ...x,
-        lineId: index + 1,
-        src: getSRC(x.folder, x.fileName),
-      };
-    });
-    return returnValue;
-  };
+  // (removed duplicate mapDataToForm)
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -97,43 +113,13 @@ const useImagesEditPage = () => {
   };
 
   // Only submit updated records
-  const getUpdates = () => {
-    const returnValue: ImageAdd[] = [];
-
-    // loop through originals
-    for (const item of originalValues) {
-      const current = formValues.find((x) => x.id === item.id);
-
-      if (current) {
-        const isEqual = isDeepEqual(item, current);
-        if (!isEqual) {
-          returnValue.push({
-            fileName: item.fileName,
-            folder: item.folder,
-            id: item.id,
-            itemId: item.itemId,
-            official_url: item.official_url,
-          });
-        }
-      }
-    }
-
-    return returnValue.length > 0 ? returnValue : undefined;
-  };
+  // Removed getUpdates and all originalValues logic
 
   const handleSubmit = () => {
-    const updates = getUpdates();
-    if (!updates) {
-      setMessage('No changes to save');
-      return;
-    }
     setMessage('Saving...');
     // setIsProcessing(true);
-
-    // saveItems(updates)
-    //   // eslint-disable-next-line promise/prefer-await-to-then
+    // saveItems()
     //   .then((result) => {
-    //     // eslint-disable-next-line promise/always-return
     //     if (result) {
     //       setMessage('Saved');
     //       handleRefresh();
@@ -141,7 +127,6 @@ const useImagesEditPage = () => {
     //       setMessage(`Error saving ${error}`);
     //     }
     //   })
-    //   // eslint-disable-next-line promise/prefer-await-to-then
     //   .catch((error_: unknown) => {
     //     if (error_ instanceof Error) {
     //       setMessage(`An unexpected error occurred: ${error_.message}`);
@@ -149,7 +134,6 @@ const useImagesEditPage = () => {
     //       setMessage('An unexpected error occurred');
     //     }
     //   })
-    //   // eslint-disable-next-line promise/prefer-await-to-then
     //   .finally(() => {
     //     //   setIsProcessing(false);
     //   });

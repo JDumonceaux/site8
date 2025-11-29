@@ -1,15 +1,18 @@
-import { type JSX, useEffect, useState, useTransition } from 'react';
-import { List } from 'react-window';
+import {
+  type JSX,
+  useEffect,
+  useEffectEvent,
+  useState,
+  useTransition,
+} from 'react';
 
-import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout-temp/Layout';
 import ItemRenderer from './ItemRenderer';
 import useMusic from './useMusic';
 import styled from 'styled-components';
-
-const ROW_HEIGHT = 220;
 
 /**
  * Displays a list of favorite YouTube videos in a virtualized scrollable list,
@@ -23,11 +26,14 @@ const MusicPage = (): JSX.Element | null => {
   const [isPending, startTransition] = useTransition();
   const [items, setItems] = useState(data?.items ?? []);
 
-  useEffect(() => {
+  const updateItemsEvent = useEffectEvent(() => {
     startTransition(() => {
       setItems(data?.items ?? []);
     });
-  }, [data?.items, startTransition]);
+  });
+  useEffect(() => {
+    updateItemsEvent();
+  }, [data?.items]);
 
   return (
     <>
@@ -49,16 +55,15 @@ const MusicPage = (): JSX.Element | null => {
             isLoading={isLoading}
           >
             {items.length > 0 ? (
-              <List
-                height={600}
-                itemData={{ items }}
-                itemSize={ROW_HEIGHT}
-                width="100%"
-                itemCount={items.length}
-                overscanCount={15}
-              >
-                {ItemRenderer}
-              </List>
+              <ul>
+                {items.map((item, index) => (
+                  <ItemRenderer
+                    key={item.id}
+                    data={{ items }}
+                    index={index}
+                  />
+                ))}
+              </ul>
             ) : (
               <EmptyPlaceholder>No videos available.</EmptyPlaceholder>
             )}

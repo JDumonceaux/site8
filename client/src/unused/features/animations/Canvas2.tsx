@@ -1,4 +1,4 @@
-import { type JSX, useCallback, useEffect, useRef } from 'react';
+import { type JSX, useEffect, useEffectEvent, useRef } from 'react';
 
 import styled from 'styled-components';
 
@@ -40,7 +40,7 @@ export const Canvas2 = ({
     }
   }, []);
 
-  const draw = useCallback((frameCount: number) => {
+  const draw = useEffectEvent((frameCount: number) => {
     const context = contextRef.current;
     if (context === null) return;
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -48,15 +48,13 @@ export const Canvas2 = ({
     context.beginPath();
     context.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
     context.fill();
-  }, []);
+  });
 
   useEffect(() => {
     let frameCount = 0;
     let animationFrameId: number;
 
-    // Check if null context has been replaced on component mount
     if (contextRef.current) {
-      //Our draw came here
       const render = () => {
         resizeCanvas(contextRef.current as CanvasRenderingContext2D);
         frameCount += 1;
@@ -68,7 +66,7 @@ export const Canvas2 = ({
     return () => {
       globalThis.cancelAnimationFrame(animationFrameId);
     };
-  }, [draw]);
+  }, []);
 
   return (
     <StyledCanvas

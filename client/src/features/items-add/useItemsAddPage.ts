@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 
 import useSnackbar from '@features/app/snackbar-temp/useSnackbar';
 import { useAxios } from '@hooks/axios-temp/useAxios';
@@ -66,12 +66,14 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
     year: '',
   });
 
-  useEffect(() => {
+  const setInitialItemsEvent = useEffectEvent(() => {
     const items = Array.from({ length: ITEM_COUNT }, (_, index) =>
       createDefaultItem(index + 1),
     );
     setFormValues(items);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+  useEffect(() => {
+    setInitialItemsEvent();
   }, []);
 
   const handleClear = () => {

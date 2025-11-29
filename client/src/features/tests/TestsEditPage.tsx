@@ -1,8 +1,8 @@
-import { type JSX, useEffect, useState } from 'react';
+import { type JSX, useEffect, useEffectEvent, useState } from 'react';
 
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
-import Input from '@components/input-temp/Input';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
+import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import Switch from '@components/switch-temp/Switch';
@@ -42,7 +42,7 @@ const TestsEditPage = (): JSX.Element | null => {
 
   const { setShowPages, showPages } = useAppSettings();
 
-  useEffect(() => {
+  const setFormValuesEvent = useEffectEvent(() => {
     const returnValue = data?.map((item) => ({
       action: '',
       id: item.id,
@@ -58,7 +58,10 @@ const TestsEditPage = (): JSX.Element | null => {
     if (returnValue) {
       setFormValues(returnValue);
     }
-  }, [data, setFormValues]);
+  });
+  useEffect(() => {
+    setFormValuesEvent();
+  }, [data]);
 
   const onShowPages = (checked: boolean) => {
     setShowPages(checked);

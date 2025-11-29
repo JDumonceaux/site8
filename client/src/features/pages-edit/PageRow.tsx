@@ -1,22 +1,24 @@
 import type { JSX } from 'react';
 
-import Input from '@components/input-temp/Input';
+import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import type { MenuItem } from '@shared/types';
+import usePagesEdit from './usePagesEdit';
 import styled from 'styled-components';
 
 type PageRowProps = {
-  getDefaultProps: (lineId: string, field: string) => any;
   item: MenuItem;
 };
 
-const PageRow = ({ getDefaultProps, item }: PageRowProps): JSX.Element => {
+const PageRow = ({ item }: PageRowProps): JSX.Element => {
+  const { getDefaultProps } = usePagesEdit();
   const isPage = item.type === 'page';
   const levelPrefix =
-    {
+    ({
       menu: ' -- ',
       page: ' ---- ',
-    }[item.type] || '';
+      root: '',
+    } as const)[item.type];
 
   return (
     <StyledTr>
@@ -44,13 +46,15 @@ const PageRow = ({ getDefaultProps, item }: PageRowProps): JSX.Element => {
       <td>
         {item.type === 'page' ? null : (
           <>
+            <label htmlFor={`parentSortby-${item.lineId}`}>Sort by</label>
             <Input.Text
               {...getDefaultProps(item.lineId, 'parentSortby')}
-              list="sortTypes"
+              id={`parentSortby-${item.lineId}`}
+              list={`sortTypes-${item.lineId}`}
             />
-            <datalist id="sortTypes">
-              <option value="seq" />
-              <option value="name" />
+            <datalist id={`sortTypes-${item.lineId}`}>
+              <option value="seq">Sequence</option>
+              <option value="name">Name</option>
             </datalist>
           </>
         )}

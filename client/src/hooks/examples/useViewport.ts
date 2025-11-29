@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 
 export const MOBILE = 'MOBILE';
 export const TABLET = 'TABLET';
@@ -17,27 +17,27 @@ const getInitialViewport = () => {
 
 export const useViewport = () => {
   const [viewport, setViewport] = useState(getInitialViewport);
+  const handleResizeEvent = useEffectEvent(() => {
+    const width = window.innerWidth;
+    setViewport({ device: getDevice(width), width });
+  });
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
     const handleResize = () => {
       if (timeoutId !== undefined) {
         clearTimeout(timeoutId);
       }
       timeoutId = setTimeout(() => {
-        const width = window.innerWidth;
-        setViewport({ device: getDevice(width), width });
+        handleResizeEvent();
       }, 150);
     };
-
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
       clearTimeout(timeoutId);
     };
   }, []);
-
   return { viewport };
 };
 

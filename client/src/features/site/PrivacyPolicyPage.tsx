@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import Meta from '@components/core/meta-temp/Meta';
+import Meta from '@components/core/meta/Meta';
 
 /**
  * Privacy Policy page – outlines data collection practices.

@@ -5,8 +5,11 @@ export const mapToFormValues = (items: MenuItem[]) =>
     id,
     lineId,
     name,
-    parentId: parentItem.id.toString(),
-    parentSeq: parentItem.seq.toString(),
+    parentId:
+      typeof parentItem.id === 'string'
+        ? Number.parseInt(parentItem.id, 10)
+        : parentItem.id,
+    parentSeq: String(parentItem.seq),
     parentSortby: parentItem.sortby ?? '',
     type,
   }));

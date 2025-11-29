@@ -1,8 +1,8 @@
 import React, { type JSX } from 'react';
 
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
-import Input from '@components/input-temp/Input';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
+import Input from '@components/input/Input';
 import Layout from '@features/layouts/layout-temp/Layout';
 import useForm from '@hooks/useForm';
 import styled from 'styled-components';

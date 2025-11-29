@@ -1,11 +1,11 @@
-import { type JSX, useEffect, useRef } from 'react';
+import { type JSX, useEffect, useEffectEvent, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
-import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
 import ImageSelector from '@components/custom/image-selector/ImageSelector';
-import Input from '@components/input-temp/Input';
+import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import useSnackbar from '@features/app/snackbar-temp/useSnackbar';
@@ -49,9 +49,11 @@ const ImageEditPage = (): JSX.Element => {
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
 
   const inputTitleRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
+  const focusInputEvent = useEffectEvent(() => {
     inputTitleRef.current?.focus();
+  });
+  useEffect(() => {
+    focusInputEvent();
   }, []);
 
   return (

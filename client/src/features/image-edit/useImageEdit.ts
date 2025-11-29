@@ -1,4 +1,5 @@
 import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { useEffectEvent } from 'react';
 
 import { useAxios } from '@hooks/axios-temp/useAxios';
 import useForm from '@hooks/useForm';
@@ -50,9 +51,6 @@ export const useImageEdit = (
   const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
     useForm<FormType>(defaultForm);
 
-  // Keep original for reset
-  const [originalValues, setOriginalValues] = useState<Image | null>(null);
-
   // Initialize or update form when data arrives
   useEffect(() => {
     if (!imageData) return;
@@ -67,7 +65,6 @@ export const useImageEdit = (
       src: getSRC(imageData.folder, imageData.fileName),
     };
     setFormValues(formData);
-    setOriginalValues(imageData);
   }, [imageData, setFormValues]);
 
   // Form helpers
@@ -123,22 +120,22 @@ export const useImageEdit = (
   }, [formValues, patchData, putData, validateForm]);
 
   const resetForm = useCallback(() => {
-    if (originalValues) {
+    if (imageData) {
       const formData: FormType = {
         ...defaultForm,
-        fileName: originalValues.fileName ?? '',
-        folder: originalValues.folder ?? '',
-        id: originalValues.id,
-        location: originalValues.location ?? '',
-        official_url: originalValues.official_url ?? '',
-        src: getSRC(originalValues.folder, originalValues.fileName),
+        fileName: imageData.fileName ?? '',
+        folder: imageData.folder ?? '',
+        id: imageData.id,
+        location: imageData.location ?? '',
+        official_url: imageData.official_url ?? '',
+        src: getSRC(imageData.folder, imageData.fileName),
       };
       setFormValues(formData);
     }
     setIsSaved(true);
     setIsProcessing(false);
     setErrors(null);
-  }, [originalValues, setErrors, setFormValues]);
+  }, [imageData, setErrors, setFormValues]);
 
   const clearForm = useCallback(() => {
     setFormValues(defaultForm);
@@ -148,8 +145,8 @@ export const useImageEdit = (
   }, [setErrors, setFormValues]);
 
   // Update unsaved flag when values change
-  useEffect(() => {
-    if (!originalValues) {
+  const checkUnsaved = useEffectEvent(() => {
+    if (!imageData) {
       setIsSaved(false);
       return;
     }
@@ -158,18 +155,19 @@ export const useImageEdit = (
     const hasChanges = keys.some((key) => {
       if (key === 'src') {
         // src is derived, compare with calculated value
-        return (
-          formValues.src !==
-          getSRC(originalValues.folder, originalValues.fileName)
-        );
+        return formValues.src !== getSRC(imageData.folder, imageData.fileName);
       }
       if (key === 'name') {
-        return formValues.name !== (originalValues.title ?? '');
+        return formValues.name !== (imageData.title ?? '');
       }
-      return formValues[key] !== (originalValues[key as keyof Image] ?? '');
+      return formValues[key] !== (imageData[key as keyof Image] ?? '');
     });
     setIsSaved(!hasChanges);
-  }, [formValues, originalValues]);
+  });
+
+  useEffect(() => {
+    checkUnsaved();
+  }, [formValues, imageData]);
 
   return {
     clearForm,

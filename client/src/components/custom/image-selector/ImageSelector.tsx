@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 
-import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Switch from '@components/switch-temp/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import useUnmatchedImages from '@features/items-add/useUnmatchedImages';

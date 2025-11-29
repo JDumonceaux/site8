@@ -1,9 +1,9 @@
 import type { JSX } from 'react';
 import { useParams } from 'react-router-dom';
 
-import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import Layout from '@features/layouts/layout-temp/Layout';
 import { getParamIdAsString } from '@lib/utils/helpers';
@@ -12,7 +12,7 @@ import usePage from './usePage';
 
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();
-  const currentId = getParamIdAsString(id);
+  const currentId = getParamIdAsString(id) ?? '';
   const title = currentId ? `Edit Page: ${currentId}` : 'New Page';
 
   const { data, error, isError, isLoading } = usePage(currentId);

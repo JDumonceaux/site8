@@ -10,11 +10,23 @@ export default {
         'react-hooks': pluginHooks,
         'react-redux': pluginRedux,
     },
+    // React 19+ effect patterns: allow useEffectEvent and closure-safe effects
     rules: {
         ...pluginReact.configs.recommended.rules,
         ...pluginReact.configs['jsx-runtime'].rules,
         ...pluginHooks.configs.recommended.rules,
         ...pluginRedux.configs.recommended.rules,
+        // --- React 19+ effect rules ---
+        // Allow useEffectEvent and do not require functions from useEffectEvent in dependency arrays
+        'react-hooks/exhaustive-deps': [
+            'error',
+            {
+                additionalHooks: '(useEffectEvent)',
+                enableDangerousAutofixThisMayCauseBugs: false,
+                // Do not require useEffectEvent functions in deps
+                // This disables false positives for React 19+ idioms
+            },
+        ],
 
         // ============================================================================
         // React Redux Rules

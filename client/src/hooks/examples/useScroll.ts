@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useEffectEvent, useRef, useState } from 'react';
 
 const useScroll = ({
   isWindow = false,
@@ -27,7 +27,7 @@ const useScroll = ({
     }
   };
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = useEffectEvent(() => {
     if (ref.current) {
       let bottomStatus = false;
       if (ref.current instanceof Window) {
@@ -41,7 +41,7 @@ const useScroll = ({
       }
       setIsAtBottom(bottomStatus);
     }
-  }, [threshold]);
+  });
 
   useEffect(() => {
     if (isWindow) {
@@ -53,9 +53,9 @@ const useScroll = ({
     return () => {
       // No cleanup needed for non-window case
     };
-  }, [isWindow, handleScroll]);
+  }, [isWindow]);
 
-  return { goBottom, goTop, handleScroll, isAtBottom, ref };
+  return { goBottom, goTop, isAtBottom, ref };
 };
 
 export default useScroll;

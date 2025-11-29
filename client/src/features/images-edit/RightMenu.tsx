@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
-import Input from '@components/input-temp/Input';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Input from '@components/input/Input';
 import useImageFolder from '@features/images-edit/useImageFolder';
 import FolderButton from './FolderButton';
 import styled from 'styled-components';

@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useEffectEvent } from 'react';
 
 /**
  * Hook that preloads a set of resources with appropriate priorities.
  * Extracted for single-responsibility and easier testing.
  */
 export const usePreloadResources = () => {
-  useEffect(() => {
+  const preloadResourcesEvent = useEffectEvent(() => {
     const resources = [
       // These are not loading fast enough to be useful
       //{ as: 'script', href: '/lib/utils/i18.js', priority: 'high' },
@@ -24,5 +24,8 @@ export const usePreloadResources = () => {
       }
       document.head.append(link);
     }
+  });
+  useEffect(() => {
+    preloadResourcesEvent();
   }, []);
 };

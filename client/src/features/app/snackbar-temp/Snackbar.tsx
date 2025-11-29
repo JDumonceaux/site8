@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useEffectEvent } from 'react';
 
-import Button from '@components/core/button-temp/Button';
+import Button from '@components/core/button/Button';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
 import styled from 'styled-components';
 
@@ -28,20 +28,18 @@ const Snackbar = (): JSX.Element | null => {
     }
   }, [closeSnackbar]);
 
+  const handleEscapeEvent = useEffectEvent((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      handleClose();
+    }
+  });
   useEffect(() => {
     if (!data?.isOpen) {
       return;
     }
-
-    const handleEscape = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape') {
-        handleClose();
-      }
-    };
-
-    globalThis.addEventListener('keydown', handleEscape);
-    globalThis.removeEventListener('keydown', handleEscape);
-  }, [data?.isOpen, handleClose]);
+    globalThis.addEventListener('keydown', handleEscapeEvent);
+    return void globalThis.removeEventListener('keydown', handleEscapeEvent);
+  }, [data?.isOpen]);
 
   if (!data?.isOpen) {
     return null;

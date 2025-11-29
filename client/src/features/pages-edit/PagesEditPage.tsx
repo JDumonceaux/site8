@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useEffectEvent } from 'react';
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import Switch from '@components/switch-temp/Switch';
@@ -22,7 +22,6 @@ const PagesEditPage = (): JSX.Element | null => {
   const {
     data = [],
     error,
-    getDefaultProps,
     handleSave,
     isError,
     isLoading,
@@ -34,9 +33,12 @@ const PagesEditPage = (): JSX.Element | null => {
 
   // Initialize form values when data changes
   const formValues = mapToFormValues(data);
-  useEffect(() => {
+  const setFormValuesEvent = useEffectEvent(() => {
     setFormValues(formValues);
-  }, [formValues, setFormValues]);
+  });
+  useEffect(() => {
+    setFormValuesEvent();
+  }, [formValues]);
 
   const onToggleShowPages = (checked: boolean) => {
     setShowPages(checked);
@@ -64,7 +66,9 @@ const PagesEditPage = (): JSX.Element | null => {
               <StyledSaveButton
                 data-testid="button-save"
                 type="submit"
-                onClick={handleSave}
+                onClick={() => {
+                  void handleSave();
+                }}
               >
                 Save
               </StyledSaveButton>
@@ -91,7 +95,6 @@ const PagesEditPage = (): JSX.Element | null => {
                   <PageRow
                     key={item.lineId}
                     item={item}
-                    getDefaultProps={getDefaultProps}
                   />
                 ))}
               </tbody>

@@ -1,9 +1,9 @@
 import { type JSX, useDeferredValue } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 
-import LoadingWrapper from '@components/core/loading-temp/LoadingWrapper';
-import Meta from '@components/core/meta-temp/Meta';
-import PageTitle from '@components/core/page-title/PageTitle';
+import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import Meta from '@components/core/meta/Meta';
+import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout-temp/Layout';
 import RenderHtml from './RenderHtml';
 import SubjectMenu from './SubjectMenu';

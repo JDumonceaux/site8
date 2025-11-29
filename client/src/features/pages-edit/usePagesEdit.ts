@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { useAxios } from '@hooks/axios-temp/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
@@ -24,7 +22,7 @@ type FormKeys = keyof FormType;
 type SortByType = 'name' | 'seq';
 
 const usePagesEdit = () => {
-  const [localItems, setLocalItems] = useState<MenuItem[] | undefined>();
+  // Derived localItems from data
   const { patchData } = useAxios<MenuEdit[]>();
 
   const { data, error, isError, isLoading } = useMenusEdit();
@@ -39,12 +37,10 @@ const usePagesEdit = () => {
     setIsSaved,
   } = useFormArray<FormType>();
 
-  // Save to local - adding local index
-  useEffect(() => {
-    setLocalItems(
-      data?.items?.map((x, index) => ({ ...x, lineId: index + 1 })),
-    );
-  }, [data?.items, setLocalItems]);
+  const localItems = data?.items?.map((x, index) => ({
+    ...x,
+    lineId: index + 1,
+  }));
 
   const mapFormTypeToMenuEdit = (item: FormType): MenuEdit | undefined => ({
     id: item.id,

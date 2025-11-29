@@ -1,7 +1,7 @@
-import { type FormEvent, type JSX, useEffect } from 'react';
+import { type FormEvent, type JSX, useEffect, useEffectEvent } from 'react';
 
-import Button from '@components/core/button-temp/Button';
-import Meta from '@components/core/meta-temp/Meta';
+import Button from '@components/core/button/Button';
+import Meta from '@components/core/meta/Meta';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import AuthContainer from './AuthContainer';
@@ -13,9 +13,12 @@ const SignOutpPage = (): JSX.Element => {
   const { authFetchAuthSession, authorized, authSignOut, error, isLoading } =
     useAuth();
 
-  useEffect(() => {
+  const fetchAuthSessionEvent = useEffectEvent(() => {
     void authFetchAuthSession();
-  }, [authFetchAuthSession]);
+  });
+  useEffect(() => {
+    fetchAuthSessionEvent();
+  }, []);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
