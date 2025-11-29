@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@storybook/addon-actions": "^9.0.8",
-    "eslint": "^9.39.1",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-you-might-not-need-an-effect": "^0.7.0"
-  }
-}
