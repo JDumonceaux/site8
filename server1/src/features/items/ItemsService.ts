@@ -16,7 +16,7 @@ export class ItemsService {
   private readonly fileName = 'items.json';
   private readonly filePath: string = '';
 
-  private constructor() {
+  public constructor() {
     this.filePath = FilePath.getDataDir(this.fileName);
   }
 

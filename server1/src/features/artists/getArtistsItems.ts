@@ -4,7 +4,7 @@ import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
 import type { ArtistsItems } from '../../types/ArtistsItems.js';
 import type { Request, Response } from 'express';
 
-const getArtistsItems = async (
+export const getArtistsItems = async (
   _req: Request,
   res: Response<ArtistsItems>,
 ): Promise<void> => {
@@ -25,5 +25,3 @@ const getArtistsItems = async (
     res.sendStatus(500);
   }
 };
-
-export default getArtistsItems;

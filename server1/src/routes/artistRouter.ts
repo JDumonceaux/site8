@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { requireNumericId } from 'src/middleware/requireNumericId.js';
+import { requireNumericId } from '../middleware/requireNumericId.js';
 
 import { getArtist } from '../features/artist/getArtist.js';
 import { asyncHandler } from '../lib/utils/routerUtils.js';

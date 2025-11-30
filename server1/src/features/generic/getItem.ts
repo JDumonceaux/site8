@@ -1,4 +1,4 @@
-import { RESPONSES } from '@/lib/utils/constants.js';
+import { RESPONSES } from '../../lib/utils/constants.js';
 
 import { GenericService } from './GenericService.js';
 import { Logger } from '../../lib/utils/logger.js';

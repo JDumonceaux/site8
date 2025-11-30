@@ -1,4 +1,4 @@
-import { getItemsService } from '@/lib/utils/ServiceFactory.js';
+import { getItemsService } from '../../lib/utils/ServiceFactory.js';
 
 import { Logger } from '../../lib/utils/logger.js';
 

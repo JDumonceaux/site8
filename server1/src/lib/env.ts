@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 const envSchema = z.object({
-  BASE_URL: z.string().url(),
-  PORT: z.coerce.number().int().positive().default(3000),
+  BASE_URL: z.string().url().default('http://localhost:3005'),
+  PORT: z.coerce.number().int().positive().default(3005),
   USE_AUTH: z
     .string()
     .default('false')

@@ -12,7 +12,7 @@ export class BookmarksService {
   private readonly fileName = 'bookmarks.json';
   private readonly filePath: string;
 
-  private constructor() {
+  public constructor() {
     this.filePath = FilePath.getDataDir(this.fileName);
   }
 

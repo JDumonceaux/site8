@@ -77,7 +77,7 @@ export class ArtistsService {
   private cacheTimestamp = 0;
   private cacheTTL = 5000; // 5 seconds (no longer readonly)
 
-  protected constructor(fileName = 'items.json') {
+  public constructor(fileName = 'items.json') {
     this.filePath = FilePath.getDataDir(fileName);
     this.fileService = getFileService();
   }
