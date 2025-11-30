@@ -1,7 +1,7 @@
 import { type JSX, useState } from 'react';
 
-import PasswordAdornment from '../base/adornments-temp/PasswordAdornment';
-import ShowAdornment from '../base/adornments-temp/ShowAdornment';
+import PasswordAdornment from '../base/adornments/PasswordAdornment';
+import ShowAdornment from '../base/adornments/ShowAdornment';
 import InputBase, { type InputBaseProps } from '../base/input-base/InputBase';
 
 export type InputPasswordProps = {

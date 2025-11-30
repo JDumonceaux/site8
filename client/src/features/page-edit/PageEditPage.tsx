@@ -5,7 +5,7 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import StyledLink from '@components/link/styled-link/StyledLink';
-import Layout from '@features/layouts/layout-temp/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import { getParamIdAsString } from '@lib/utils/helpers';
 import PageEditForm from './PageEditForm';
 import usePage from './usePage';

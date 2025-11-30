@@ -1,4 +1,4 @@
-import { useAxios } from '@hooks/axios-temp/useAxios';
+import { useAxios } from '@hooks/axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import type { MenuEdit, MenuItem } from '@shared/types';

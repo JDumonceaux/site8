@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import HomeMenu from '@features/home/HomeMenu';
-import Layout from '@features/layouts/layout-temp/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import { MatrixBG } from '@unused/features/animations/MatrixBG';
 import styled from 'styled-components';
 

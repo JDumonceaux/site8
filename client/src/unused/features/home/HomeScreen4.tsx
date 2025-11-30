@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
 import HomeMenu from '@features/home/HomeMenu';
-import TitleAnimation from '../../../features/home/animations-temp/TitleAnimation';
+import TitleAnimation from '../../../features/home/animations/TitleAnimation';
 import PinkGraphic from './PinkGraphic';
 import { keyframes, styled } from 'styled-components';
 

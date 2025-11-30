@@ -4,7 +4,7 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
-import Layout from '@features/layouts/layout-temp/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import { getSRC, sanitizeUrl } from '@lib/utils/helpers';
 import type { Image } from '@shared/types/Image';
 import useImages from '../images-edit/useImages';

@@ -5,7 +5,7 @@ import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Input from '@components/input/Input';
 import MenuBar from '@features/images-edit/MenuBar';
-import Layout from '@features/layouts/layout-temp/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import type { ItemAddExt } from './ItemAdd';
 import ItemDetail from './ItemDetail';
 import RightMenu from './RightMenu';

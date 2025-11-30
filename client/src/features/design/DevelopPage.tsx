@@ -6,7 +6,7 @@ import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import EmailAdornment from '@components/input/base/adornments/EmailAdornment';
 import Input from '@components/input/Input';
-import Layout from '@features/layouts/layout-temp/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import useForm from '@hooks/useForm';
 import { z } from 'zod';
 import styled from 'styled-components';

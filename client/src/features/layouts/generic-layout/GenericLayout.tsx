@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Avatar from '@components/core/avatar/Avatar';
 import Header from '@components/core/header/Header';
 import AppInitializer from '@features/app/app-initializer/AppInitializer';
-import Snackbar from '@features/app/snackbar-temp/Snackbar';
+import Snackbar from '@features/app/snackbar/Snackbar';
 import styled from 'styled-components';
 
 /**

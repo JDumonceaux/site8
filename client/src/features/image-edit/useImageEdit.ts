@@ -1,7 +1,7 @@
 import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useEffectEvent } from 'react';
 
-import { useAxios } from '@hooks/axios-temp/useAxios';
+import { useAxios } from '@hooks/axios/useAxios';
 import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
 import { getSRC } from '@lib/utils/helpers';

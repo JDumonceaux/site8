@@ -1,6 +1,6 @@
 import type { JSX, ReactNode } from 'react';
 
-import { MenuIcon } from '@components/icons-temp/MenuIcon';
+import { MenuIcon } from '@components/icons/MenuIcon';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import { APP_NAME } from '@lib/utils/constants';
 import styled from 'styled-components';

@@ -9,7 +9,7 @@ import {
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
-import Layout from '@features/layouts/layout-temp/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import ItemRenderer from './ItemRenderer';
 import useMusic from './useMusic';
 import styled from 'styled-components';

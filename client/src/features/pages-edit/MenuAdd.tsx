@@ -2,7 +2,7 @@ import { type JSX, startTransition } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Input from '@components/input/Input';
-import useSnackbar from '@features/app/snackbar-temp/useSnackbar';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useMenuAdd from '@hooks/useMenuAdd';
 /**
  * Represents a form for adding a single menu item.

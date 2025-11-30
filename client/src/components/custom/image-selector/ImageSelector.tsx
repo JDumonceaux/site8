@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
-import Switch from '@components/switch-temp/Switch';
+import Switch from '@components/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import useUnmatchedImages from '@features/items-add/useUnmatchedImages';
 import { IMAGE_BASE } from '@lib/utils/constants';

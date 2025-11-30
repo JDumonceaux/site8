@@ -5,7 +5,7 @@ import PageTitle from '@components/core/page/PageTitle';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
-import Switch from '@components/switch-temp/Switch';
+import Switch from '@components/switch/Switch';
 import {
   closestCenter,
   DndContext,
@@ -22,7 +22,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import useAppSettings from '@features/app/useAppSettings';
-import Layout from '@features/layouts/layout-temp/Layout';
+import Layout from '@features/layouts/layout/Layout';
 import SortableItem from '@features/tests/SortableItem';
 import useTestsEdit from '@features/tests/useTestsEdit';
 import styled from 'styled-components';
