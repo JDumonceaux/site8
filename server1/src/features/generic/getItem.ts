@@ -10,10 +10,13 @@ export const getItemByName = async (
   res: Response,
 ): Promise<void> => {
   const { name, parent } = req.params;
-  Logger.info(`Generic: getItemByName called: ${parent}/${name}`);
+  const actualParent = parent || 'generic';
+  Logger.info(`Generic: getItemByName called: ${actualParent}/${name}`);
 
-  if (!name || !parent) {
-    Logger.info(`Generic: getItemByName -> invalid param: ${parent}/${name}`);
+  if (!name) {
+    Logger.info(
+      `Generic: getItemByName -> invalid param: ${actualParent}/${name}`,
+    );
     res.status(400).json({ error: RESPONSES.INVALID_PARAM });
     return;
   }
@@ -21,7 +24,7 @@ export const getItemByName = async (
   const service = new GenericService();
 
   try {
-    const response = await service.getItem(parent, name);
+    const response = await service.getItem(actualParent, name);
     if (response) {
       res.status(200).json(response);
     } else {
