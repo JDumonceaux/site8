@@ -1,5 +1,5 @@
-export const getDefaultObject = <T extends Record<string, unknown>>(
-  obj: T,
+export const getDefaultObject = (
+  obj: Record<string, unknown>,
 ): Record<string, unknown> => {
   const result: Record<string, unknown> = {};
 
@@ -77,8 +77,8 @@ export const cleanUpData = <T extends Record<string, unknown>>(data: T): T => {
   return trimmed;
 };
 
-export const getNextId = <T extends IdType>(
-  items: readonly T[] | undefined,
+export const getNextId = (
+  items: readonly IdType[] | undefined,
 ): number | undefined => {
   if (!items?.length) {
     return undefined;
@@ -91,6 +91,7 @@ export const getNextId = <T extends IdType>(
     return undefined;
   }
 
+  // eslint-disable-next-line @typescript-eslint/prefer-for-of -- Need index iteration for ID finding
   for (let i = 0; i < sorted.length; i++) {
     if (!sorted.find((x) => x.id === nextId)) {
       return nextId;
@@ -101,10 +102,10 @@ export const getNextId = <T extends IdType>(
   return nextId;
 };
 
-export const getNextIdFromPos = <T extends IdType>(
-  items: readonly T[] | undefined,
+export const getNextIdFromPos = (
+  items: readonly IdType[] | undefined,
   start: number,
-): { readonly value: number; readonly index: number } | undefined => {
+): { readonly index: number; readonly value: number } | undefined => {
   if (!items?.length) {
     return undefined;
   }
@@ -112,16 +113,14 @@ export const getNextIdFromPos = <T extends IdType>(
   const sorted = [...items].sort((a, b) => a.id - b.id);
   let nextId = sorted.length > start ? sorted[start]?.id : 1;
 
-  if (nextId === undefined) {
-    nextId = 1;
-  }
+  nextId ??= 1;
 
   for (let i = start; i < sorted.length; i++) {
     if (!sorted.find((x) => x.id === nextId)) {
-      return { value: nextId, index: i };
+      return { index: i, value: nextId };
     }
     nextId++;
   }
 
-  return { value: nextId, index: 0 };
+  return { index: 0, value: nextId };
 };

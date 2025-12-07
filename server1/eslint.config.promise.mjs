@@ -13,6 +13,7 @@ export default {
         // Project-specific overrides (not included in recommended or with custom levels)
         'promise/avoid-new': 'warn',
         'promise/no-multiple-resolved': 'warn',
+        // False positives in some scenarios
         'promise/prefer-await-to-callbacks': 'warn',
         'promise/prefer-await-to-then': 'warn',
         'promise/spec-only': 'warn',

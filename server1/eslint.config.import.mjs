@@ -34,13 +34,13 @@ export default {
         'import/no-anonymous-default-export': [
             'warn',
             {
-                allowArray: false,
-                allowArrowFunction: false,
                 allowAnonymousClass: false,
                 allowAnonymousFunction: false,
+                allowArray: false,
+                allowArrowFunction: false,
                 allowCallExpression: true,
-                allowNew: false,
                 allowLiteral: false,
+                allowNew: false,
                 allowObject: true, // Allow for ESLint config files and simple exports
             },
         ],
@@ -75,7 +75,8 @@ export default {
         'import/no-named-as-default-member': 'off',
         'import/no-named-default': 'error',
         'import/no-namespace': 'off',
-        'import/no-nodejs-modules': 'warn',
+        // Not applicable in our codebase
+        'import/no-nodejs-modules': 'off',
         'import/no-relative-packages': 'error',
         'import/no-relative-parent-imports': 'off',
         'import/no-restricted-paths': [
@@ -119,7 +120,6 @@ export default {
             // Too much trouble.
             'off',
             {
-                unusedExports: true,
                 ignoreExports: [
                     '**/*.config.{js,mjs,ts}',
                     '**/*.config.*.{js,mjs,ts}',
@@ -132,32 +132,20 @@ export default {
                     '**/*.test.{ts,js}',
                     '**/*.spec.{ts,js}',
                 ],
+                unusedExports: true,
             },
         ],
         'import/no-useless-path-segments': 'error',
         'import/no-webpack-loader-syntax': 'error',
-        'import/order': [
-            'error',
-            {
-                alphabetize: {
-                    caseInsensitive: true,
-                    order: 'asc',
-                },
-                groups: ['builtin', 'external', 'internal', ['parent', 'sibling'], 'index', 'type'],
-                'newlines-between': 'always',
-                pathGroups: [
-                    {
-                        group: 'external',
-                        pattern: 'react',
-                        position: 'before',
-                    },
-                ],
-                pathGroupsExcludedImportTypes: ['react'],
-            },
-        ],
+        // Let perfectionist handle
+        'import/order': 'off',
         'import/prefer-default-export': 'off',
     },
     settings: {
+        'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx'], // Missing extensions setting
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx'],
+        },
         'import/resolver': {
             node: {
                 extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'], // Added .ts and .tsx
@@ -166,10 +154,6 @@ export default {
                 alwaysTryTypes: true,
                 project: './tsconfig.json',
             },
-        },
-        'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx'], // Missing extensions setting
-        'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.tsx'],
         },
     },
 };

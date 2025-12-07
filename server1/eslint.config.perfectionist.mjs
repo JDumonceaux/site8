@@ -58,6 +58,7 @@ export default {
         'perfectionist/sort-objects': ['warn', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-sets': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-switch-case': ['error', { order: 'asc', type: 'natural' }],
-        'perfectionist/sort-union-types': ['error', { order: 'asc', type: 'natural' }],
+        // too restrictive for now
+        'perfectionist/sort-union-types': ['off', { order: 'asc', type: 'natural' }],
     },
 };

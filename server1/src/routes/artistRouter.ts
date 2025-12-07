@@ -1,9 +1,8 @@
 import express from 'express';
 
-import { requireNumericId } from '../middleware/requireNumericId.js';
-
 import { getArtist } from '../features/artist/getArtist.js';
 import { asyncHandler } from '../lib/utils/routerUtils.js';
+import { requireNumericId } from '../middleware/requireNumericId.js';
 
 const VALIDATION_MIDDLEWARE = [requireNumericId];
 

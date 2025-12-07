@@ -1,3 +1,4 @@
+/* eslint-disable import/no-restricted-paths, import/no-cycle */
 import { ArtistsService } from '../../features/artists/ArtistsService.js';
 import { BookmarksService } from '../../features/bookmarks/BookmarksService.js';
 import { BuildService } from '../../features/build/BuildService.js';
@@ -7,6 +8,7 @@ import { ImagesFileService } from '../../features/images/ImagesFileService.js';
 import { ImagesService } from '../../features/images/ImagesService.js';
 import { ItemsService } from '../../features/items/ItemsService.js';
 import { MenuService } from '../../features/menu/MenuService.js';
+import { MusicService } from '../../features/music/MusicService.js';
 import { PageFileService } from '../../features/page/PageFileService.js';
 import { PageService } from '../../features/page/PageService.js';
 import { PagesService } from '../../features/pages/PagesService.js';
@@ -14,21 +16,22 @@ import { PhotosService } from '../../features/photos/PhotosService.js';
 import { PrettierService } from '../../features/prettier/PrettierService.js';
 import { TestsService } from '../../features/tests/TestsService.js';
 
-let artistsService: ArtistsService | null = null;
-let bookmarksService: BookmarksService | null = null;
-let buildService: BuildService | null = null;
-let fileService: FileService | null = null;
-let imageService: ImageService | null = null;
-let imagesFileService: ImagesFileService | null = null;
-let imagesService: ImagesService | null = null;
-let itemsService: ItemsService | null = null;
-let menuService: MenuService | null = null;
-let pageService: PageService | null = null;
-let pageFileService: PageFileService | null = null;
-let pagesService: PagesService | null = null;
-let photosService: PhotosService | null = null;
-let prettierService: PrettierService | null = null;
-let testsService: TestsService | null = null;
+let artistsService: null | ArtistsService = null;
+let bookmarksService: null | BookmarksService = null;
+let buildService: null | BuildService = null;
+let fileService: null | FileService = null;
+let imageService: null | ImageService = null;
+let imagesFileService: null | ImagesFileService = null;
+let imagesService: null | ImagesService = null;
+let itemsService: null | ItemsService = null;
+let menuService: null | MenuService = null;
+let musicService: null | MusicService = null;
+let pageFileService: null | PageFileService = null;
+let pageService: null | PageService = null;
+let pagesService: null | PagesService = null;
+let photosService: null | PhotosService = null;
+let prettierService: null | PrettierService = null;
+let testsService: null | TestsService = null;
 
 export const getArtistsService = (): ArtistsService => {
   artistsService ??= new ArtistsService();
@@ -73,6 +76,11 @@ export const getItemsService = (): ItemsService => {
 export const getMenuService = (): MenuService => {
   menuService ??= new MenuService();
   return menuService;
+};
+
+export const getMusicService = (): MusicService => {
+  musicService ??= new MusicService();
+  return musicService;
 };
 
 export const getPageService = (): PageService => {

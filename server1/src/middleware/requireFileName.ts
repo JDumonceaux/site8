@@ -1,6 +1,6 @@
-import { Logger } from '../lib/utils/logger.js';
-
 import type { NextFunction, Request, Response } from 'express';
+
+import { Logger } from '../lib/utils/logger.js';
 
 export const requireFileName = (
   req: Request,

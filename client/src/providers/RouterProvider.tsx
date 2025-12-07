@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import MusicPage from '@features/music/MusicPage';
 import { QueryClient } from '@tanstack/react-query';
 import { pageLoader } from '../features/page-edit/pagePrefetch';
 import ErrorPage from '../features/site/ErrorPage';
@@ -294,6 +295,17 @@ const createAppRouter = (queryClient: QueryClient) => {
             <Route
               element={<InputPage />}
               path="input"
+            />
+          </Route>
+
+          {/* Music */}
+          <Route
+            element={<GenericLayout />}
+            path="music"
+          >
+            <Route
+              index
+              element={<MusicPage />}
             />
           </Route>
 

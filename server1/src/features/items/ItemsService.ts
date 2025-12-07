@@ -1,8 +1,4 @@
-import { readFile, writeFile } from 'fs/promises';
-
-import { Logger } from '../../lib/utils/logger.js';
-import { getNextId } from '../../lib/utils/objectUtil.js';
-import FilePath from '../files/FilePath.js';
+import { readFile, writeFile } from 'node:fs/promises';
 
 import type { Item } from '../../types/Item.js';
 import type { ItemAdd } from '../../types/ItemAdd.js';
@@ -11,6 +7,10 @@ import type { ItemEdit } from '../../types/ItemEdit.js';
 import type { Items } from '../../types/Items.js';
 import type { ItemsArtists } from '../../types/ItemsArtists.js';
 import type { ItemsFile } from '../../types/ItemsFile.js';
+
+import { Logger } from '../../lib/utils/logger.js';
+import { getNextId } from '../../lib/utils/objectUtil.js';
+import FilePath from '../files/FilePath.js';
 
 export class ItemsService {
   private readonly fileName = 'items.json';
@@ -21,35 +21,9 @@ export class ItemsService {
   }
 
   // Get all data
-  private async readFile(): Promise<ItemsFile | undefined> {
-    try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as ItemsFile;
-    } catch (error) {
-      Logger.error(`ItemsService: readFile -> ${error}`);
-    }
-    return undefined;
-  }
-
-  // Write to file
-  public async writeFile(data: Readonly<ItemsFile>): Promise<boolean> {
-    Logger.info(`ItemsService: writeFile -> `);
-
-    try {
-      await writeFile(this.filePath, JSON.stringify(data, null, 2), {
-        encoding: 'utf8',
-      });
-      return Promise.resolve(true);
-    } catch (error) {
-      Logger.error(`ItemsService: writeFile. Error -> ${error}`);
-      return Promise.reject(new Error(`Write file failed. Error: ${error}`));
-    }
-  }
-
-  // Get all data
   public async getItems(): Promise<Items | undefined> {
     const ret = await this.readFile();
-    return { metadata: ret?.metadata || { title: 'items' }, items: ret?.items };
+    return { items: ret?.items, metadata: ret?.metadata ?? { title: 'items' } };
   }
 
   public async getItemsArtists(): Promise<ItemsArtists | undefined> {
@@ -75,20 +49,22 @@ export class ItemsService {
         });
       }
     });
-    return { metadata: items.metadata || { title: 'items' }, items: ret };
+    return { items: ret, metadata: items.metadata };
   }
 
   public async getNextId(): Promise<number | undefined> {
     try {
       const data = await this.readFile();
-      return getNextId<Item>(data?.items);
+      return getNextId(data?.items);
     } catch (error) {
-      Logger.error(`ItemsService: getItems -> ${error}`);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`ItemsService: getNextId -> ${errorMessage}`);
       return undefined;
     }
   }
 
-  public async patchItems(_items: readonly ItemEdit[]): Promise<boolean> {
+  public patchItems(_items: readonly ItemEdit[]): boolean {
     //    const itemsTemp = await this.readFile();
 
     // Get the updated records
@@ -142,33 +118,67 @@ export class ItemsService {
     return true;
   }
 
-  public async putItems(items: readonly ItemAdd[]) {
+  public async putItems(items: readonly ItemAdd[]): Promise<boolean> {
     try {
       if (!Array.isArray(items)) {
-        return Promise.reject(
-          new Error(`Put Items failed. Data is not an array`),
-        );
+        throw new Error('Put Items failed. Data is not an array');
       }
 
       const data = await this.readFile();
       const updates: Item[] = data?.items ? [...data.items] : [];
       for (const item of items) {
-        const id = (await this.getNextId()) || 1;
+        const id = (await this.getNextId()) ?? 1;
         updates.push({
           ...item,
           id,
-        });
+        } as Item);
       }
 
       const ret = await this.writeFile({
         ...data,
-        metadata: data?.metadata || { title: 'Items' },
         items: updates,
+        metadata: data?.metadata ?? { title: 'Items' },
       });
-      return Promise.resolve(ret);
+      return ret;
     } catch (error) {
-      Logger.error(`ItemsService: Put Items -> ${error}`);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`ItemsService: Put Items -> ${errorMessage}`);
+      return Promise.reject(
+        new Error(`Put Items failed. Error: ${errorMessage}`),
+      );
     }
-    return Promise.reject(new Error(`Put Items failed. Error: unknown`));
+  }
+
+  // Write to file
+  public async writeFile(data: Readonly<ItemsFile>): Promise<boolean> {
+    Logger.info(`ItemsService: writeFile -> `);
+
+    try {
+      await writeFile(this.filePath, JSON.stringify(data, null, 2), {
+        encoding: 'utf8',
+      });
+      return true;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`ItemsService: writeFile. Error -> ${errorMessage}`);
+      return Promise.reject(
+        new Error(`Write file failed. Error: ${errorMessage}`),
+      );
+    }
+  }
+
+  // Get all data
+  private async readFile(): Promise<ItemsFile | undefined> {
+    try {
+      const results = await readFile(this.filePath, { encoding: 'utf8' });
+      return JSON.parse(results) as ItemsFile;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`ItemsService: readFile -> ${errorMessage}`);
+    }
+    return undefined;
   }
 }

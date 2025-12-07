@@ -29,7 +29,8 @@ export default {
         '@typescript-eslint/array-type': 'error',
         '@typescript-eslint/ban-tslint-comment': 'error',
         '@typescript-eslint/class-literal-property-style': 'error',
-        '@typescript-eslint/class-methods-use-this': 'error',
+        // No "this, no class methods"
+        '@typescript-eslint/class-methods-use-this': 'off',
         '@typescript-eslint/consistent-generic-constructors': 'error',
         '@typescript-eslint/consistent-indexed-object-style': 'error',
         '@typescript-eslint/consistent-return': 'error',
@@ -47,13 +48,13 @@ export default {
         '@typescript-eslint/naming-convention': [
             'off',
             {
-                selector: 'variableLike',
                 format: ['camelCase', 'UPPER_CASE'],
                 leadingUnderscore: 'allow',
+                selector: 'variableLike',
             },
             {
-                selector: 'typeLike',
                 format: ['PascalCase'],
+                selector: 'typeLike',
             },
         ],
         '@typescript-eslint/no-confusing-non-null-assertion': 'error',
@@ -72,6 +73,8 @@ export default {
         '@typescript-eslint/no-invalid-this': 'error',
         '@typescript-eslint/no-invalid-void-type': 'error',
         '@typescript-eslint/no-meaningless-void-operator': 'error',
+        // False positives with Promises and certain callbacks
+        '@typescript-eslint/no-misused-promises': 'off',
         '@typescript-eslint/no-mixed-enums': 'error',
         '@typescript-eslint/no-non-null-assertion': 'error',
         '@typescript-eslint/no-redeclare': 'error',

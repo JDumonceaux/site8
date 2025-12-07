@@ -1,6 +1,6 @@
-import { Logger } from '../lib/utils/logger.js';
-
 import type { RequestHandler } from 'express';
+
+import { Logger } from '../lib/utils/logger.js';
 
 export const requireId: RequestHandler = (req, res, next): void => {
   const { id } = req.params;
