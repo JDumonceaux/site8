@@ -1,10 +1,10 @@
 import express from 'express';
 
+import { getArtists } from '../features/artists/getArtists.js';
 import { getArtistsItems } from '../features/artists/getArtistsItems.js';
-import { getItems } from '../features/artists/getItems.js';
 import { asyncHandler } from '../lib/utils/routerUtils.js';
 
 export const artistsRouter = express.Router();
 
-artistsRouter.get('/', asyncHandler(getItems));
+artistsRouter.get('/', asyncHandler(getArtists));
 artistsRouter.get('/items', asyncHandler(getArtistsItems));

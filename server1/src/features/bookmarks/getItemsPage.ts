@@ -1,8 +1,9 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
+import type { Request, Response } from 'express';
 
 import type { Bookmarks } from '../../types/Bookmarks.js';
-import type { Request, Response } from 'express';
+
+import { Logger } from '../../lib/utils/logger.js';
+import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
 
 export const getItemsPage = async (
   req: Request,

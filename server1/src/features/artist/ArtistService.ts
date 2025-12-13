@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
-import { Logger } from '../../lib/utils/logger.js';
-import { getFileService } from '../../lib/utils/ServiceFactory.js';
-import FilePath from '../files/FilePath.js';
-
 import type { ItemsFile } from '../../types/ItemsFile.js';
+
+import { BaseDataService } from '../../lib/services/BaseDataService.js';
+import { Logger } from '../../lib/utils/logger.js';
+import FilePath from '../files/FilePath.js';
 
 // ============================================================================
 // Zod Validation Schemas
@@ -18,9 +18,9 @@ const ArtistSchema = z.object({
 });
 
 const ItemSchema = z.object({
+  artistId: z.number().int().positive('Artist ID must be a positive integer'),
   id: z.number().int().positive('Item ID must be a positive integer'),
   title: z.string().min(1, 'Item title is required'),
-  artistId: z.number().int().positive('Artist ID must be a positive integer'),
   // Add other fields as needed
 });
 
@@ -30,94 +30,35 @@ const MetadataSchema = z.object({
 });
 
 const ItemsFileSchema = z.object({
-  metadata: MetadataSchema.optional(),
   artists: z.array(ArtistSchema).default([]),
   items: z.array(ItemSchema).default([]),
+  metadata: MetadataSchema,
 });
-
-class ValidationError extends Error {
-  public constructor(
-    message: string,
-    public validationErrors: string[],
-  ) {
-    super(message);
-    this.name = 'ValidationError';
-  }
-}
 
 // ============================================================================
 // Service Class
 // ============================================================================
-class ArtistService {
-  private readonly filePath: string;
-  private readonly fileService: ReturnType<typeof getFileService>;
-  private readonly DEFAULT_METADATA = { title: 'artists' };
-
-  // Cache configuration - made mutable for setCacheTTL
-  private cache: ItemsFile | null = null;
-  private cacheTimestamp = 0;
-  private cacheTTL = 5000; // 5 seconds (no longer readonly)
-
+class ArtistService extends BaseDataService<ItemsFile> {
   public constructor(fileName = 'items.json') {
-    this.filePath = FilePath.getDataDir(fileName);
-    this.fileService = getFileService();
+    super({
+      cacheTTL: 5000,
+      defaultMetadata: { title: 'artists' },
+      enableCache: true,
+      filePath: FilePath.getDataDir(fileName),
+      serviceName: 'ArtistService',
+      validationSchema: ItemsFileSchema,
+    });
   }
 
   // ============================================================================
   // Public Methods
   // ============================================================================
 
-  // Validates and writes the items file to disk, then invalidates cache.
-  public async writeFile(data: ItemsFile): Promise<void> {
-    try {
-      // Validate data structure before writing
-      const validationResult = ItemsFileSchema.safeParse(data);
-
-      if (!validationResult.success) {
-        const errors = validationResult.error.issues
-          .map((err) => `${err.path.join('.')}: ${err.message}`)
-          .join('; ');
-        throw new ValidationError(
-          `Invalid data structure: ${errors}`,
-          errors.split('; '),
-        );
-      }
-
-      const validatedData = validationResult.data;
-
-      await this.fileService.writeFile<ItemsFile>(
-        validatedData as ItemsFile,
-        this.filePath,
-      );
-
-      // Invalidate cache after successful write
-      this.invalidateCache();
-
-      Logger.info(
-        `Successfully wrote ${validatedData.artists.length} artists and ${validatedData.items.length} items to ${this.filePath}`,
-      );
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`Failed to write file at ${this.filePath}: ${errorMessage}`);
-
-      if (error instanceof Error) {
-        throw new Error(`Error writing artists file: ${errorMessage}`, {
-          cause: error,
-        });
-      }
-      throw new Error(`Error writing artists file: ${errorMessage}`);
-    }
-  }
-
-  // Invalidates the internal cache, forcing next read to fetch from disk.
-  public invalidateCache(): void {
-    this.cache = null;
-    this.cacheTimestamp = 0;
-    Logger.debug('Cache invalidated');
-  }
-
-  // Checks if an artist exists by ID.
+  /**
+   * Checks if an artist exists by ID
+   * @param artistId - The artist ID to check
+   * @returns True if artist exists
+   */
   public async artistExists(artistId: number): Promise<boolean> {
     try {
       // Validate input first
@@ -133,140 +74,21 @@ class ArtistService {
     }
   }
 
-  // Gets the cache status for monitoring/debugging.
-  public getCacheStatus(): {
-    isCached: boolean;
-    age: number;
-    ttl: number;
-    size: number | null;
-  } {
-    const now = Date.now();
-    const age = this.cache ? now - this.cacheTimestamp : 0;
-
-    return {
-      isCached: !!this.cache && age < this.cacheTTL,
-      age,
-      ttl: this.cacheTTL,
-      size: this.cache
-        ? (this.cache.artists?.length ?? 0) + (this.cache.items?.length ?? 0)
-        : null,
-    };
+  /**
+   * Gets all artists with their items
+   * @returns ItemsFile data
+   */
+  public async getItems(): Promise<ItemsFile> {
+    return this.readFile();
   }
 
-  // Refreshes the cache by forcing a new read from disk.
-  public async refreshCache(): Promise<void> {
-    this.invalidateCache();
-    await this.readFile(); // Populate cache with fresh data
-    Logger.info('Cache refreshed from disk');
-  }
-
-  // Configures cache TTL (useful for testing or different environments).
-  public setCacheTTL(ttlMs: number): void {
-    if (ttlMs < 0) {
-      throw new Error('Cache TTL must be non-negative');
-    }
-
-    const oldTTL = this.cacheTTL;
-    this.cacheTTL = ttlMs;
-
-    Logger.debug(`Cache TTL changed from ${oldTTL}ms to ${ttlMs}ms`);
-
-    // If new TTL is shorter and cache is now expired, invalidate it
-    if (this.cache && ttlMs > 0) {
-      const now = Date.now();
-      const age = now - this.cacheTimestamp;
-      if (age >= ttlMs) {
-        this.invalidateCache();
-        Logger.debug('Cache invalidated due to reduced TTL');
-      }
-    }
-  }
-
-  // Gets detailed information about the service instance.
-  public getServiceInfo(): {
-    filePath: string;
-    cacheTTL: number;
-    cacheStatus: {
-      isCached: boolean;
-      age: number;
-      ttl: number;
-      size: number | null;
-    };
-  } {
-    return {
-      filePath: this.filePath,
-      cacheTTL: this.cacheTTL,
-      cacheStatus: this.getCacheStatus(),
-    };
-  }
-
-  // ============================================================================
-  // Private Methods
-  // ============================================================================
-
-  // Reads and validates the items file from disk with optional caching.
-  private async readFile(): Promise<ItemsFile> {
-    try {
-      // Check cache first
-      const now = Date.now();
-      if (this.cache && now - this.cacheTimestamp < this.cacheTTL) {
-        Logger.debug('Returning cached artists data');
-        return this.cache;
-      }
-
-      Logger.debug(`Reading artists file from ${this.filePath}`);
-      const rawData = await this.fileService.readFile<unknown>(this.filePath);
-
-      if (!rawData) {
-        throw new Error('File data is undefined or null');
-      }
-
-      // Validate data structure using Zod
-      const validationResult = ItemsFileSchema.safeParse(rawData);
-
-      if (!validationResult.success) {
-        const errors = validationResult.error.issues
-          .map((err) => `${err.path.join('.')}: ${err.message}`)
-          .join('; ');
-        Logger.error(`Data validation failed: ${errors}`);
-        throw new ValidationError(
-          `Invalid file structure: ${errors}`,
-          errors.split('; '),
-        );
-      }
-
-      const validatedData = validationResult.data;
-
-      // Ensure defaults for optional fields
-      const data: ItemsFile = {
-        metadata: validatedData.metadata ?? this.DEFAULT_METADATA,
-        artists: validatedData.artists,
-        items: validatedData.items,
-      };
-
-      // Update cache
-      this.cache = data;
-      this.cacheTimestamp = now;
-
-      Logger.info(
-        `Successfully loaded ${data.artists?.length ?? 0} artists and ${data.items?.length ?? 0} items`,
-      );
-
-      return data;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`Failed to read file at ${this.filePath}: ${errorMessage}`);
-
-      // Re-throw with context but preserve original error
-      if (error instanceof Error) {
-        throw new Error(`Error reading artists file: ${errorMessage}`, {
-          cause: error,
-        });
-      }
-      throw new Error(`Error reading artists file: ${errorMessage}`);
-    }
+  /**
+   * Updates the artists data file
+   * @param data - New artists data
+   */
+  public async updateItems(data: ItemsFile): Promise<void> {
+    return this.writeFile(data);
   }
 }
 
-export { ArtistService, ValidationError };
+export { ArtistService };

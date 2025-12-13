@@ -1,38 +1,40 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getImageService } from '../../lib/utils/ServiceFactory.js';
+import type { Request } from 'express';
 
 import type { Image } from '../../types/Image.js';
-import type { Request, Response } from 'express';
 
-export const getItem = async (
-  req: Request,
-  res: Response<Image>,
-): Promise<void> => {
-  try {
-    const { id } = req.params;
-    Logger.info(`Image: Get Item called: ${id}`);
+import { createGetHandlerWithParams } from '../../lib/utils/createGetHandler.js';
+import { getImageService } from '../../lib/utils/ServiceFactory.js';
 
-    if (!id) {
-      res.status(400).json({ message: 'Invalid ID' } as unknown as Image);
-      return;
-    }
-
-    const tempId = Number.parseInt(id, 10);
-    if (isNaN(tempId)) {
-      res.status(400).json({ message: 'Invalid ID' } as unknown as Image);
-      return;
-    }
-
+/**
+ * Retrieves a specific image by ID
+ */
+export const getItem = createGetHandlerWithParams<Image>({
+  errorResponse: {
+    fileName: '',
+    id: 0,
+    itemId: 0,
+  },
+  getData: async (req: Request) => {
+    const id = req.params['id'] as string;
+    const imageId = Number.parseInt(id, 10);
     const service = getImageService();
-    const response = await service.getItem(tempId);
-
-    if (response) {
-      res.status(200).json(response);
-    } else {
-      res.sendStatus(204);
+    const result = await service.getItem(imageId);
+    return result ?? { fileName: '', id: 0, itemId: 0 };
+  },
+  handlerName: 'getItem',
+  return204OnEmpty: false,
+  validateParams: (req: Request) => {
+    const { id } = req.params;
+    if (!id) {
+      return { errorMessage: 'Missing image id parameter', isValid: false };
     }
-  } catch (error) {
-    Logger.error('Image: Get Item failed', error);
-    res.sendStatus(500);
-  }
-};
+    const imageId = Number.parseInt(id, 10);
+    if (isNaN(imageId)) {
+      return {
+        errorMessage: 'Invalid image id - must be a number',
+        isValid: false,
+      };
+    }
+    return { isValid: true };
+  },
+});

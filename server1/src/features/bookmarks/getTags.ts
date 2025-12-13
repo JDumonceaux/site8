@@ -1,26 +1,21 @@
-import { Logger } from '../../lib/utils/logger.js';
+import type { BookmarksTags } from '../../types/BookmarksTags.js';
+
+import { createGetHandler } from '../../lib/utils/createGetHandler.js';
 import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
 
-import type { BookmarksTags } from '../../types/BookmarksTags.js';
-import type { Request, Response } from 'express';
-
-export const getTags = async (
-  _req: Request,
-  res: Response<BookmarksTags>,
-): Promise<void> => {
-  try {
-    Logger.info('Bookmarks: Get Tags called');
+/**
+ * Retrieves all bookmarks organized by tags
+ */
+export const getTags = createGetHandler<BookmarksTags>({
+  errorResponse: {
+    metadata: { title: 'Bookmarks Tags' },
+  },
+  getData: async () => {
     const service = getBookmarksService();
-    const tags = await service.getAllItemsByTag();
-
-    // if the service returns an empty array respond with 204 No Content
-    if (Array.isArray(tags) && tags.length === 0) {
-      res.sendStatus(204);
-      return;
-    }
-    res.status(200).json(tags);
-  } catch (error) {
-    Logger.error('Bookmarks: Get Tags failed', error);
-    res.sendStatus(500);
-  }
-};
+    const result = await service.getAllItemsByTag();
+    return result ?? { metadata: { title: 'Bookmarks Tags' } };
+  },
+  getItemCount: (data) => data.items?.length ?? 0,
+  handlerName: 'getTags',
+  return204OnEmpty: true,
+});
