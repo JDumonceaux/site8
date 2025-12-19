@@ -8,8 +8,8 @@ import express, {
 import RateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
-import { env } from './lib/env.js';
-import { Logger } from './lib/utils/logger.js';
+import { env } from './utils/env.js';
+import { Logger } from './utils/logger.js';
 import { artistRouter } from './routes/artistRouter.js';
 import { artistsRouter } from './routes/artistsRouter.js';
 import { bookmarksRouter } from './routes/bookmarksRouter.js';

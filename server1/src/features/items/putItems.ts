@@ -1,5 +1,5 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getItemsService } from '../../lib/utils/ServiceFactory.js';
+import { Logger } from '../../utils/logger.js';
+import { getItemsService } from '../../utils/ServiceFactory.js';
 
 import type { ItemAdd } from '../../types/ItemAdd.js';
 import type { Request, Response } from 'express';

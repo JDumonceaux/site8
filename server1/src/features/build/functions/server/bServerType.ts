@@ -1,12 +1,13 @@
 import path from 'path';
 
-import { Logger } from '../../../../lib/utils/logger.js';
+import type { FieldType } from '../../Features.js';
+
+import { Logger } from '../../../../utils/logger.js';
+// eslint-disable-next-line import/no-cycle
 import {
   getFileService,
   getPrettierService,
-} from '../../../../lib/utils/ServiceFactory.js';
-
-import type { FieldType } from '../../Features.js';
+} from '../../../../utils/ServiceFactory.js';
 
 export const buildServerType = async (data: FieldType, targetPath: string) => {
   Logger.debug(`Build Server Type called`);
@@ -18,9 +19,9 @@ export const buildServerType = async (data: FieldType, targetPath: string) => {
   // Start
   ret.push(`export type ${data.name} = {`);
 
-  const fields = data?.fields?.toSorted((a, b) => a.name.localeCompare(b.name));
+  const fields = data.fields.toSorted((a, b) => a.name.localeCompare(b.name));
 
-  fields?.forEach((field) => {
+  fields.forEach((field) => {
     ret.push(`readonly '${field.name}: ${field.type};`);
   });
 

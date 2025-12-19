@@ -1,26 +1,15 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getItemsService } from '../../lib/utils/ServiceFactory.js';
-
 import type { Items } from '../../types/Items.js';
-import type { Request, Response } from 'express';
 
-export const getItems = async (
-  _req: Request<unknown, unknown, unknown, unknown>,
-  res: Response<Items>,
-): Promise<void> => {
-  Logger.info(`Items: Get Items called: `);
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getItemsService } from '../../utils/ServiceFactory.js';
 
-  const service = getItemsService();
-
-  try {
-    const response = await service.getItems();
-    if (response) {
-      res.status(200).json(response);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (error) {
-    Logger.error('Items: Get Items error:', error);
-    res.sendStatus(500);
-  }
-};
+export const getItems = createGetHandler<Items>({
+  errorResponse: { items: [], metadata: { title: 'Items' } },
+  getData: async () => {
+    const data = await getItemsService().getItems();
+    return data ?? { items: [], metadata: { title: 'Items' } };
+  },
+  getItemCount: (data) => data.items?.length ?? 0,
+  handlerName: 'Items:getItems',
+  return204OnEmpty: true,
+});

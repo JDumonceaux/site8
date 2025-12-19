@@ -1,8 +1,9 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getImagesService } from '../../lib/utils/ServiceFactory.js';
+import type { Request, Response } from 'express';
 
 import type { Images } from '../../types/Images.js';
-import type { Request, Response } from 'express';
+
+import { Logger } from '../../utils/logger.js';
+import { getImagesService } from '../../utils/ServiceFactory.js';
 
 export const patchItems = async (
   req: Request,
@@ -14,10 +15,6 @@ export const patchItems = async (
 
   Logger.info(`Images: Patch Images called: `);
 
-  if (!data) {
-    res.sendStatus(400);
-    return;
-  }
   try {
     const service = getImagesService();
     await service.updateItems(data.items);

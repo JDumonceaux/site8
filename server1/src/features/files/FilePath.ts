@@ -31,34 +31,34 @@ const FilePath = {
 
   getAppRootAbsolute: (): string => appRootAbsolute,
 
-  getImageDirAbsolute: (): string =>
-    joinPath(appRootAbsolute, 'client', 'public', 'images'),
-
-  getDataDirAbsolute: (): string =>
-    joinPath(appRootAbsolute, 'server1', 'data'),
-
-  getDataDir: (fileName: string): string =>
-    joinPath(FilePath.getDataDirAbsolute(), fileName),
+  getClientFeatures: (): string =>
+    joinPath(appRootAbsolute, 'client', 'src', '@features'),
 
   getClientRoot: (): string => joinPath(appRootAbsolute, 'client'),
 
-  getServerRoot: (): string => joinPath(appRootAbsolute, 'server1'),
-
   getClientSrc: (): string => joinPath(appRootAbsolute, 'client', 'src'),
-
-  getServerSrc: (): string => joinPath(appRootAbsolute, 'server1', 'src'),
 
   getClientTypes: (): string =>
     joinPath(appRootAbsolute, 'client', 'src', 'types'),
 
-  getServerTypes: (): string =>
-    joinPath(appRootAbsolute, 'server1', 'src', 'types'),
+  getDataDir: (fileName: string): string =>
+    joinPath(FilePath.getDataDirAbsolute(), fileName),
 
-  getClientFeatures: (): string =>
-    joinPath(appRootAbsolute, 'client', 'src', '@features'),
+  getDataDirAbsolute: (): string =>
+    joinPath(appRootAbsolute, 'server1', 'data'),
+
+  getImageDirAbsolute: (): string =>
+    joinPath(appRootAbsolute, 'client', 'public', 'images'),
 
   getServerFeatures: (): string =>
     joinPath(appRootAbsolute, 'server1', 'src', '@features'),
+
+  getServerRoot: (): string => joinPath(appRootAbsolute, 'server1'),
+
+  getServerSrc: (): string => joinPath(appRootAbsolute, 'server1', 'src'),
+
+  getServerTypes: (): string =>
+    joinPath(appRootAbsolute, 'server1', 'src', 'types'),
 };
 
 export default FilePath;

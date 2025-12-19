@@ -2,8 +2,8 @@ import type { Request } from 'express';
 
 import type { Image } from '../../types/Image.js';
 
-import { createGetHandlerWithParams } from '../../lib/utils/createGetHandler.js';
-import { getImageService } from '../../lib/utils/ServiceFactory.js';
+import { createGetHandlerWithParams } from '../../lib/http/genericHandlers.js';
+import { getImageService } from '../../utils/ServiceFactory.js';
 
 /**
  * Retrieves a specific image by ID

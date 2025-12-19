@@ -2,13 +2,13 @@ import type { Request, Response } from 'express';
 
 import type { ItemEdit } from '../../types/ItemEdit.js';
 
-import { Logger } from '../../lib/utils/logger.js';
-import { getItemsService } from '../../lib/utils/ServiceFactory.js';
+import { Logger } from '../../utils/logger.js';
+import { getItemsService } from '../../utils/ServiceFactory.js';
 
-export const patchItems = (
+export const patchItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
   res: Response<boolean | string>,
-): void => {
+): Promise<void> => {
   const data = req.body as ItemEdit[];
 
   Logger.info(`Items: Patch Items called: `);
@@ -21,7 +21,7 @@ export const patchItems = (
   const service = getItemsService();
 
   try {
-    const response = service.patchItems(data);
+    const response = await service.patchItems(data);
     if (response) {
       res.status(200).send();
     } else {

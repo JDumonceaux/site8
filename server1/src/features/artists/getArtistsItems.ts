@@ -1,11 +1,8 @@
 import type { ArtistsItems } from '../../types/ArtistsItems.js';
 
-import { createGetHandler } from '../../lib/utils/createGetHandler.js';
-import { getArtistsService } from '../../lib/utils/ServiceFactory.js';
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getArtistsService } from '../../utils/ServiceFactory.js';
 
-/**
- * Retrieves all artists with their associated items
- */
 export const getArtistsItems = createGetHandler<ArtistsItems>({
   errorResponse: {
     items: undefined,

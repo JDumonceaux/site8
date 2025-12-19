@@ -1,9 +1,9 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { PageFileService } from '../page/PageFileService.js';
-import { PagesService } from '../pages/PagesService.js';
-
 import type { PageMenu } from '../../types/PageMenu.js';
 import type { PageText } from '../../types/PageText.js';
+
+import { Logger } from '../../utils/logger.js';
+import { PageFileService } from '../page/PageFileService.js';
+import { PagesService } from '../pages/PagesService.js';
 
 export class GenericService {
   // get matching file (i.e. contents)
@@ -31,7 +31,6 @@ export class GenericService {
   }
 
   // Get Item
-  // eslint-disable-next-line @typescript-eslint/class-methods-use-this
   public async getItem(
     parent: string,
     name: string,

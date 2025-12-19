@@ -1,7 +1,7 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getBuildService } from '../../lib/utils/ServiceFactory.js';
-
 import type { NextFunction, Request, Response } from 'express';
+
+import { Logger } from '../../utils/logger.js';
+import { getBuildService } from '../../utils/ServiceFactory.js';
 
 const service = getBuildService();
 
@@ -12,12 +12,8 @@ export const buildFeature = async (
 ): Promise<void> => {
   Logger.debug('Build Feature called');
   try {
-    const response = await service.build('artist2');
-    if (response) {
-      res.status(200).json(response);
-    } else {
-      res.status(204).send();
-    }
+    await service.build('artist2');
+    res.status(200).json({ message: 'Build completed successfully' });
   } catch (error) {
     Logger.error('Error building feature', error);
     next(error);

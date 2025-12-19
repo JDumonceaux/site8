@@ -1,24 +1,9 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getImagesService } from '../../lib/utils/ServiceFactory.js';
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getImagesService } from '../../utils/ServiceFactory.js';
 
-import type { Request, Response } from 'express';
-
-export const getReindex = async (
-  _req: Request,
-  res: Response<boolean>,
-): Promise<void> => {
-  Logger.info('Images: Get Reindex called');
-
-  try {
-    const service = getImagesService();
-    const result = await service.fixIndex();
-    if (result) {
-      res.status(200).json(result);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (error) {
-    Logger.error('Images: Get Reindex error:', error);
-    res.sendStatus(500);
-  }
-};
+export const getReindex = createGetHandler<boolean>({
+  errorResponse: false,
+  getData: async () => getImagesService().fixIndex(),
+  handlerName: 'Images:getReindex',
+  return204OnEmpty: true,
+});

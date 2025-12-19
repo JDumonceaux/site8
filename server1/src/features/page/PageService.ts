@@ -2,9 +2,9 @@ import { z } from 'zod';
 
 import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
 import { PageFileService } from './PageFileService.js';
-import { Logger } from '../../lib/utils/logger.js';
-import { cleanUpData } from '../../lib/utils/objectUtil.js';
-import { safeParse } from '../../lib/utils/zodHelper.js';
+import { Logger } from '../../utils/logger.js';
+import { cleanUpData } from '../../utils/objectUtil.js';
+import { safeParse } from '../../utils/zodHelper.js';
 import { PagesService } from '../pages/PagesService.js';
 
 import type { PageEdit } from '../../types/Page.js';
@@ -52,8 +52,8 @@ export class PageService {
     return this.pagesService.getItems();
   }
 
-  private async writeItems(newData: Pages): Promise<boolean> {
-    return this.pagesService.writeFile(newData);
+  private async writeItems(newData: Pages): Promise<void> {
+    await this.pagesService.writeData(newData);
   }
 
   public async getItem(id: number): Promise<PageText | undefined> {
@@ -154,11 +154,7 @@ export class PageService {
         items: [...(pages.items ?? []), newItem],
       };
 
-      const result = await this.writeItems(updatedFile);
-
-      if (!result) {
-        throw new Error(`Failed to add item with id: ${id}`);
-      }
+      await this.writeItems(updatedFile);
 
       return id;
     } catch (error) {
@@ -200,11 +196,7 @@ export class PageService {
         items: [...filteredItems, newItem],
       };
 
-      const result = await this.writeItems(updatedFile);
-
-      if (!result) {
-        throw new Error(`Failed to update item with id: ${item.id}`);
-      }
+      await this.writeItems(updatedFile);
 
       return item.id;
     } catch (error) {

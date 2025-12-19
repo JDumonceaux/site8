@@ -1,30 +1,22 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getFileService } from '../../lib/utils/ServiceFactory.js';
+import { createGetHandlerWithParams } from '../../lib/http/genericHandlers.js';
+import { getFileService } from '../../utils/ServiceFactory.js';
 
-import type { Request, Response } from 'express';
-
-const service = getFileService();
-
-export const getFile = async (req: Request, res: Response): Promise<void> => {
-  Logger.debug('Get File called');
-  try {
+export const getFile = createGetHandlerWithParams<unknown>({
+  errorResponse: {},
+  getData: async (req) => {
     const { filename } = req.params;
-
-    if (!filename) {
-      res.status(400).json({ error: 'Invalid filename' });
-      return;
-    }
-
-    const filePath = filename.trim() + '.json';
+    const filePath = (filename ?? '').trim() + '.json';
+    const service = getFileService();
     const fileData = await service.getFile(filePath);
-
-    if (fileData) {
-      res.status(200).json(fileData);
-    } else {
-      res.sendStatus(204);
+    return fileData ?? {};
+  },
+  handlerName: 'Files:getFile',
+  return204OnEmpty: true,
+  validateParams: (req) => {
+    const { filename } = req.params;
+    if (!filename) {
+      return { errorMessage: 'Invalid filename', isValid: false };
     }
-  } catch (error) {
-    Logger.error('Get File failed', error);
-    res.sendStatus(500);
-  }
-};
+    return { isValid: true };
+  },
+});

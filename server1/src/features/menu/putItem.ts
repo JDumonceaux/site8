@@ -1,8 +1,5 @@
-import { Logger } from '../../lib/utils/logger.js';
-import {
-  getPagesService,
-  getMenuService,
-} from '../../lib/utils/ServiceFactory.js';
+import { Logger } from '../../utils/logger.js';
+import { getPagesService, getMenuService } from '../../utils/ServiceFactory.js';
 
 import type { MenuAdd } from '../../types/MenuAdd.js';
 import type { Request, Response } from 'express';

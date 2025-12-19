@@ -1,7 +1,7 @@
 import type { Bookmarks } from '../../types/Bookmarks.js';
 
-import { createGetHandler } from '../../lib/utils/createGetHandler.js';
-import { getBookmarksService } from '../../lib/utils/ServiceFactory.js';
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getBookmarksService } from '../../utils/ServiceFactory.js';
 
 /**
  * Retrieves all bookmarks

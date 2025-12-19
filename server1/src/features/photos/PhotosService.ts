@@ -1,22 +1,21 @@
-import { readFile } from 'fs/promises';
-
-import { Logger } from '../../lib/utils/logger.js';
-import FilePath from '../files/FilePath.js';
-
 import type { Photos } from '../../types/Photos.js';
 
-export class PhotosService {
-  private readonly FILE_NAME = 'photos.json';
-  private readonly filePath: string;
+// eslint-disable-next-line import/no-cycle
+import { BaseDataService } from '../../services/BaseDataService.js';
+import { Logger } from '../../utils/logger.js';
+import FilePath from '../files/FilePath.js';
 
-  constructor() {
-    this.filePath = FilePath.getDataDir(this.FILE_NAME);
+export class PhotosService extends BaseDataService<Photos> {
+  public constructor() {
+    super({
+      filePath: FilePath.getDataDir('photos.json'),
+      serviceName: 'PhotosService',
+    });
   }
 
   public async getItems(): Promise<Photos | undefined> {
     try {
-      const data = await readFile(this.filePath, { encoding: 'utf8' });
-      const parsedData = JSON.parse(data) as Photos;
+      const parsedData = await this.readFile();
 
       Logger.info('PhotosService: Successfully retrieved photos');
       return parsedData;
@@ -25,7 +24,7 @@ export class PhotosService {
         error instanceof Error ? error.message : String(error);
       Logger.error(
         `PhotosService: Error reading photos file - ${errorMessage}`,
-        { error, filePath: this.filePath },
+        { error },
       );
       return undefined;
     }

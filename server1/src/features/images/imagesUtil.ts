@@ -1,7 +1,7 @@
-import { FOLDERS_TO_IGNORE } from '../../lib/utils/constants.js';
-import { cleanUpData, getNextIdFromPos } from '../../lib/utils/objectUtil.js';
-
 import type { Image } from '../../types/Image.js';
+
+import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
+import { cleanUpData, getNextIdFromPos } from '../../utils/objectUtil.js';
 
 export const getNewItems = (
   prevItems: Image[] | undefined,
@@ -40,9 +40,9 @@ export const getNewIds = (items: Image[] | undefined): Image[] | undefined => {
     if (item.id > 0) {
       return item;
     }
-    const nextIdObj = getNextIdFromPos<Image>(items, startPos) || {
-      value: 0,
+    const nextIdObj = getNextIdFromPos(items, startPos) ?? {
       index: 0,
+      value: 0,
     };
     startPos = nextIdObj.index;
     return { ...item, id: nextIdObj.value };

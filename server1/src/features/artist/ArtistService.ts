@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 import type { ItemsFile } from '../../types/ItemsFile.js';
 
-import { BaseDataService } from '../../lib/services/BaseDataService.js';
-import { Logger } from '../../lib/utils/logger.js';
+import { BaseDataService } from '../../services/BaseDataService.js';
+import { Logger } from '../../utils/logger.js';
 import FilePath from '../files/FilePath.js';
 
 // ============================================================================

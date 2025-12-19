@@ -1,25 +1,15 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getImagesService } from '../../lib/utils/ServiceFactory.js';
-
 import type { Images } from '../../types/Images.js';
-import type { Request, Response } from 'express';
 
-export const getScan = async (
-  _req: Request,
-  res: Response<Images>,
-): Promise<void> => {
-  Logger.info('Images: Get Scan called');
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getImagesService } from '../../utils/ServiceFactory.js';
 
-  try {
-    const service = getImagesService();
-    const response = await service.scanForNewItems();
-    if (response) {
-      res.status(200).json(response);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (error) {
-    Logger.error('Images: Get Scan error:', error);
-    res.sendStatus(500);
-  }
-};
+export const getScan = createGetHandler<Images>({
+  errorResponse: { items: [], metadata: { title: 'Images' } },
+  getData: async () => {
+    const data = await getImagesService().scanForNewItems();
+    return data ?? { items: [], metadata: { title: 'Images' } };
+  },
+  getItemCount: (data) => data.items?.length ?? 0,
+  handlerName: 'Images:getScan',
+  return204OnEmpty: true,
+});

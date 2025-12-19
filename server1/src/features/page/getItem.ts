@@ -1,41 +1,31 @@
-import { PageService } from './PageService.js';
-import { parseRequestId } from '../../lib/utils/helperUtils.js';
-import { Logger } from '../../lib/utils/logger.js';
-
 import type { PageText } from '../../types/PageText.js';
-import type { Request, Response } from 'express';
 
-export const getItem = async (
-  req: Request,
-  res: Response<PageText>,
-): Promise<void> => {
-  const { id } = req.params;
+import { createGetHandlerWithParams } from '../../lib/http/genericHandlers.js';
+import { parseRequestId } from '../../utils/helperUtils.js';
 
-  Logger.info(`Page: Get Item called: ${id}`);
+import { PageService } from './PageService.js';
 
-  if (!id) {
-    res.status(400).json({ message: 'Invalid ID' } as unknown as PageText);
-    return;
-  }
+export const getItem = createGetHandlerWithParams<PageText>({
+  errorResponse: { message: 'Page not found' } as unknown as PageText,
+  getData: async (req) => {
+    const { id } = req.params;
+    const { id: idNum, isValid } = parseRequestId(id?.trim() ?? '');
 
-  const { id: idNum, isValid } = parseRequestId(id.trim());
-  if (!isValid || !idNum) {
-    Logger.info(`pageRouter: get by id -> invalid param: ${id}`);
-    // res.status(400).json({ error: Responses.INVALID_ID });
-    return;
-  }
-
-  const service = new PageService();
-
-  try {
-    const response = await service.getItemCompleteById(idNum);
-    if (response) {
-      res.status(200).json(response);
-    } else {
-      res.status(204).send();
+    if (!isValid || !idNum) {
+      return { message: 'Invalid ID' } as unknown as PageText;
     }
-  } catch (error) {
-    Logger.error('Page: Get Item error:', error);
-    res.sendStatus(500);
-  }
-};
+
+    const service = new PageService();
+    const result = await service.getItemCompleteById(idNum);
+    return result ?? ({ message: 'Page not found' } as unknown as PageText);
+  },
+  handlerName: 'Page:getItem',
+  return204OnEmpty: false,
+  validateParams: (req) => {
+    const { id } = req.params;
+    if (!id) {
+      return { errorMessage: 'Invalid ID', isValid: false };
+    }
+    return { isValid: true };
+  },
+});

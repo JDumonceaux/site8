@@ -1,7 +1,7 @@
 import type { MusicItems } from '../../types/MusicItems.js';
 
-import { createGetHandler } from '../../lib/utils/createGetHandler.js';
-import { getMusicService } from '../../lib/utils/ServiceFactory.js';
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getMusicService } from '../../utils/ServiceFactory.js';
 
 /**
  * Retrieves all music items

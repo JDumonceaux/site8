@@ -1,12 +1,12 @@
 import path from 'path';
 
-import { Logger } from '../../../../lib/utils/logger.js';
+import type { FieldType } from '../../Features.js';
+
+import { Logger } from '../../../../utils/logger.js';
 import {
   getFileService,
   getPrettierService,
-} from '../../../../lib/utils/ServiceFactory.js';
-
-import type { FieldType } from '../../Features.js';
+} from '../../../../utils/ServiceFactory.js';
 
 export const buildServerType = async (data: FieldType, targetPath: string) => {
   Logger.debug(`Build Server Service called`);
@@ -16,8 +16,8 @@ export const buildServerType = async (data: FieldType, targetPath: string) => {
   const ret: string[] = [];
 
   // Imports
-  ret.push(`import { Logger } from '../../lib/utils/logger.js';`);
-  ret.push(`import { cleanUpData } from '../../lib/utils/objectUtil.js';`);
+  ret.push(`import { Logger } from '../../utils/logger.js';`);
+  ret.push(`import { cleanUpData } from '../../utils/objectUtil.js';`);
   ret.push(`import { Image } from '../../types/Image.js';`);
   ret.push(`import { Images } from '../../types/Images.js';`);
 
@@ -27,9 +27,9 @@ export const buildServerType = async (data: FieldType, targetPath: string) => {
   // getItem
 
   // Fields
-  const fields = data?.fields?.toSorted((a, b) => a.name.localeCompare(b.name));
+  const fields = data.fields.toSorted((a, b) => a.name.localeCompare(b.name));
 
-  fields?.forEach((field) => {
+  fields.forEach((field) => {
     ret.push(`readonly '${field.name}: ${field.type};`);
   });
 

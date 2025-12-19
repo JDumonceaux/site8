@@ -2,7 +2,7 @@ import express from 'express';
 
 import { getArtists } from '../features/artists/getArtists.js';
 import { getArtistsItems } from '../features/artists/getArtistsItems.js';
-import { asyncHandler } from '../lib/utils/routerUtils.js';
+import { asyncHandler } from '../utils/routerUtils.js';
 
 export const artistsRouter = express.Router();
 

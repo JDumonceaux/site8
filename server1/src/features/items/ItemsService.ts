@@ -8,8 +8,8 @@ import type { Items } from '../../types/Items.js';
 import type { ItemsArtists } from '../../types/ItemsArtists.js';
 import type { ItemsFile } from '../../types/ItemsFile.js';
 
-import { Logger } from '../../lib/utils/logger.js';
-import { getNextId } from '../../lib/utils/objectUtil.js';
+import { Logger } from '../../utils/logger.js';
+import { getNextId } from '../../utils/objectUtil.js';
 import FilePath from '../files/FilePath.js';
 
 export class ItemsService {

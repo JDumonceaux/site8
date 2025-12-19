@@ -1,6 +1,6 @@
 import { PageFileService } from './PageFileService.js';
 import { PageService } from './PageService.js';
-import { Logger } from '../../lib/utils/logger.js';
+import { Logger } from '../../utils/logger.js';
 
 import type { PageEdit } from '../../types/Page.js';
 import type { Request, Response } from 'express';

@@ -1,45 +1,47 @@
 import path from 'path';
 
-import { buildServerType } from './functions/server/bServerType.js';
-import { Logger } from '../../lib/utils/logger.js';
-import { getFileService } from '../../lib/utils/ServiceFactory.js';
-import FilePath from '../files/FilePath.js';
-
 import type { Features } from './Features.js';
 
-export class BuildService {
-  private readonly fileName = '@features.json';
-  private readonly filePath: string = '';
+// eslint-disable-next-line import/no-cycle
+import { BaseDataService } from '../../services/BaseDataService.js';
+import { Logger } from '../../utils/logger.js';
+import { getFileService } from '../../utils/ServiceFactory.js';
+import FilePath from '../files/FilePath.js';
 
-  constructor() {
-    this.filePath = path.join(
-      FilePath.getServerFeatures(),
-      'build',
-      this.fileName,
-    );
+import { buildServerType } from './functions/server/bServerType.js';
+
+export class BuildService extends BaseDataService<Features> {
+  public constructor() {
+    super({
+      filePath: path.join(
+        FilePath.getServerFeatures(),
+        'build',
+        '@features.json',
+      ),
+      serviceName: 'BuildService',
+    });
   }
 
-  public async build(feature: string) {
+  public async build(feature: string): Promise<void> {
     Logger.info(`BuildService: build -> ${feature}`);
     const service = getFileService();
-    const ret = await service.readFile<Features>(this.filePath);
+    const ret = await this.readFile();
 
-    if (!ret) {
-      return Promise.resolve(undefined);
-    }
-    const curr = ret.features?.find((f) => f.name === feature);
+    const curr = ret.features.find((f) => f.name === feature);
 
     if (!curr) {
-      return Promise.resolve(undefined);
+      return;
     }
 
     service.createFolder(path.join(FilePath.getServerFeatures(), curr.name));
 
     service.createFolder(path.join(FilePath.getClientFeatures(), curr.name));
 
-    curr.types?.forEach((type) => {
-      buildServerType(type, FilePath.getServerTypes());
-    });
+    if (curr.types) {
+      for (const type of curr.types) {
+        await buildServerType(type, FilePath.getServerTypes());
+      }
+    }
     //    buildServerType(curr, FilePath.getClientTypes());
   }
 }

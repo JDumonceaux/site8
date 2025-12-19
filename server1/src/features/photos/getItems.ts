@@ -1,34 +1,27 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getPhotosService } from '../../lib/utils/ServiceFactory.js';
-
 import type { Photos } from '../../types/Photos.js';
-import type { Request, Response } from 'express';
 
-export const getItems = async (
-  _req: Request,
-  res: Response<Photos>,
-): Promise<void> => {
-  try {
-    Logger.info('Photos: Fetching items');
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getPhotosService } from '../../utils/ServiceFactory.js';
 
-    const service = getPhotosService();
-    const items = await service.getItems();
-
-    if (!items) {
-      Logger.warn('Photos: No items found');
-      res.status(404).json({
-        title: 'No photos found',
+export const getItems = createGetHandler<Photos>({
+  errorResponse: {
+    items: [],
+    metadata: { title: 'Photos' },
+    sets: [],
+    title: 'Photos',
+  },
+  getData: async () => {
+    const data = await getPhotosService().getItems();
+    return (
+      data ?? {
         items: [],
+        metadata: { title: 'Photos' },
         sets: [],
-        metadata: { title: 'No photos found' },
-      });
-      return;
-    }
-
-    Logger.info('Photos: Successfully retrieved items');
-    res.status(200).json(items);
-  } catch (error) {
-    Logger.error('Photos: Get Items error:', error);
-    res.sendStatus(500);
-  }
-};
+        title: 'Photos',
+      }
+    );
+  },
+  getItemCount: (data) => data.items.length,
+  handlerName: 'Photos:getItems',
+  return204OnEmpty: false,
+});

@@ -8,7 +8,7 @@ import { getListDuplicates } from '../features/images/getListDuplicates.js';
 import { getReindex } from '../features/images/getReindex.js';
 import { getScan } from '../features/images/getScan.js';
 import { patchItems } from '../features/images/patchItems.js';
-import { asyncHandler } from '../lib/utils/routerUtils.js';
+import { asyncHandler } from '../utils/routerUtils.js';
 
 export const imagesRouter = express.Router();
 

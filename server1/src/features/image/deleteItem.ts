@@ -1,7 +1,7 @@
-import { RESPONSES } from '../../lib/utils/constants.js';
-import { parseRequestId } from '../../lib/utils/helperUtils.js';
-import { Logger } from '../../lib/utils/logger.js';
-import { getImageService } from '../../lib/utils/ServiceFactory.js';
+import { RESPONSES } from '../../utils/constants.js';
+import { parseRequestId } from '../../utils/helperUtils.js';
+import { Logger } from '../../utils/logger.js';
+import { getImageService } from '../../utils/ServiceFactory.js';
 
 import type { Image } from '../../types/Image.js';
 import type { Request, Response } from 'express';

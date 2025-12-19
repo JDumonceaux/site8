@@ -1,4 +1,4 @@
-import { Logger } from '../../lib/utils/logger.js';
+import { Logger } from '../../utils/logger.js';
 
 import type { Request, Response } from 'express';
 

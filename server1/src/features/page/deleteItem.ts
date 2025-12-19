@@ -1,9 +1,9 @@
-import { parseRequestId } from '../../lib/utils/helperUtils.js';
-import { Logger } from '../../lib/utils/logger.js';
+import { parseRequestId } from '../../utils/helperUtils.js';
+import { Logger } from '../../utils/logger.js';
 import {
   getPageFileService,
   getPageService,
-} from '../../lib/utils/ServiceFactory.js';
+} from '../../utils/ServiceFactory.js';
 
 import type { Request, Response } from 'express';
 

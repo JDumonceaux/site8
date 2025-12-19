@@ -1,38 +1,32 @@
-import { readFile } from 'fs/promises';
-
-import { Logger } from '../../lib/utils/logger.js';
-import FilePath from '../files/FilePath.js';
-
 import type { Bookmark } from '../../types/Bookmark.js';
 import type { Bookmarks } from '../../types/Bookmarks.js';
 import type { BookmarksTag } from '../../types/BookmarksTag.js';
 import type { BookmarksTags } from '../../types/BookmarksTags.js';
 
-export class BookmarksService {
-  private readonly fileName = 'bookmarks.json';
-  private readonly filePath: string;
+// eslint-disable-next-line import/no-cycle
+import { BaseDataService } from '../../services/BaseDataService.js';
+import { Logger } from '../../utils/logger.js';
+import FilePath from '../files/FilePath.js';
 
+export class BookmarksService extends BaseDataService<Bookmarks> {
   public constructor() {
-    this.filePath = FilePath.getDataDir(this.fileName);
-  }
-
-  // Private helper to read and parse the bookmarks file
-  private async readBookmarksData(): Promise<Bookmarks> {
-    const fileData = await readFile(this.filePath, { encoding: 'utf8' });
-    return JSON.parse(fileData) as Bookmarks;
+    super({
+      filePath: FilePath.getDataDir('bookmarks.json'),
+      serviceName: 'BookmarksService',
+    });
   }
 
   public async getAllItems(): Promise<Bookmarks | undefined> {
     Logger.info(`BookmarkService: getAllItems called`);
 
     try {
-      const data = await this.readBookmarksData();
+      const data = await this.readFile();
       const sortedItems: Bookmark[] = data.items.toSorted((a, b) =>
         a.name.localeCompare(b.name),
       );
-      return { metadata: data.metadata, items: sortedItems };
+      return { items: sortedItems, metadata: data.metadata };
     } catch (error) {
-      Logger.error(`BookmarkService: getAllItems --> Error: ${error}`);
+      Logger.error(`BookmarkService: getAllItems --> Error: ${String(error)}`);
       return undefined;
     }
   }
@@ -41,7 +35,7 @@ export class BookmarksService {
     Logger.info(`BookmarkService: getAllItemsByTag called`);
 
     try {
-      const data = await this.readBookmarksData();
+      const data = await this.readFile();
 
       // Clean up and normalize tags in bookmarks
       const normalizedItems = this.cleanUpAndNormalizeTags(data.items);
@@ -60,9 +54,11 @@ export class BookmarksService {
         normalizedItems,
         uniqueTags,
       );
-      return { metadata: data.metadata, items: remappedBookmarks ?? [] };
+      return { items: remappedBookmarks ?? [], metadata: data.metadata };
     } catch (error) {
-      Logger.error(`BookmarkService: getAllItemsByTag --> Error: ${error}`);
+      Logger.error(
+        `BookmarkService: getAllItemsByTag --> Error: ${String(error)}`,
+      );
       return undefined;
     }
   }
@@ -73,7 +69,7 @@ export class BookmarksService {
     Logger.info(`BookmarkService: getBookmarksForPage called`);
 
     try {
-      const data = await this.readBookmarksData();
+      const data = await this.readFile();
       const searchId = parseInt(pageId, 10);
       const filteredItems = data.items.filter((x) =>
         x.page?.includes(searchId),
@@ -81,33 +77,11 @@ export class BookmarksService {
       const sortedItems: Bookmark[] = filteredItems.toSorted((a, b) =>
         a.name.localeCompare(b.name),
       );
-      return { metadata: data.metadata, items: sortedItems };
+      return { items: sortedItems, metadata: data.metadata };
     } catch (error) {
-      Logger.error(`BookmarkService: getBookmarksForPage --> Error: ${error}`);
-      return undefined;
-    }
-  }
-
-  // Private helper to get unique tags from bookmarks
-  private getUniqueTags(items: Bookmark[] | undefined): string[] | undefined {
-    if (!items) {
-      return undefined;
-    }
-    try {
-      const uniqueTags = items.reduce<string[]>((acc: string[], item) => {
-        if (item.tags) {
-          item.tags.forEach((tag) => {
-            if (!acc.includes(tag)) {
-              acc.push(tag);
-            }
-          });
-        }
-        return acc;
-      }, []);
-      Object.freeze(uniqueTags);
-      return uniqueTags.toSorted();
-    } catch (error) {
-      Logger.error(`BookmarkService: getUniqueTags --> Error: ${error}`);
+      Logger.error(
+        `BookmarkService: getBookmarksForPage --> Error: ${String(error)}`,
+      );
       return undefined;
     }
   }
@@ -134,7 +108,33 @@ export class BookmarksService {
       });
     } catch (error) {
       Logger.error(
-        `BookmarkService: cleanUpAndNormalizeTags --> Error: ${error}`,
+        `BookmarkService: cleanUpAndNormalizeTags --> Error: ${String(error)}`,
+      );
+      return undefined;
+    }
+  }
+
+  // Private helper to get unique tags from bookmarks
+  private getUniqueTags(items: Bookmark[] | undefined): string[] | undefined {
+    if (!items) {
+      return undefined;
+    }
+    try {
+      const uniqueTags = items.reduce<string[]>((acc: string[], item) => {
+        if (item.tags) {
+          item.tags.forEach((tag) => {
+            if (!acc.includes(tag)) {
+              acc.push(tag);
+            }
+          });
+        }
+        return acc;
+      }, []);
+      Object.freeze(uniqueTags);
+      return uniqueTags.toSorted();
+    } catch (error) {
+      Logger.error(
+        `BookmarkService: getUniqueTags --> Error: ${String(error)}`,
       );
       return undefined;
     }
@@ -157,12 +157,14 @@ export class BookmarksService {
           a.name.localeCompare(b.name),
         );
         return {
-          tag,
           items: sortedItems,
+          tag,
         };
       });
     } catch (error) {
-      Logger.error(`BookmarkService: remapBookmarks --> Error: ${error}`);
+      Logger.error(
+        `BookmarkService: remapBookmarks --> Error: ${String(error)}`,
+      );
       return undefined;
     }
   }

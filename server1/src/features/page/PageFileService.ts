@@ -1,7 +1,7 @@
 import { existsSync } from 'fs';
 import { readFile, unlink, writeFile } from 'fs/promises';
 
-import { Logger } from '../../lib/utils/logger.js';
+import { Logger } from '../../utils/logger.js';
 import FilePath from '../files/FilePath.js';
 
 export class PageFileService {

@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, realpathSync, writeFileSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 
-import { Logger } from '../../lib/utils/logger.js';
+import { Logger } from '../../utils/logger.js';
 /* eslint-disable-next-line perfectionist/sort-imports */
 import FilePath from './FilePath.js';
 

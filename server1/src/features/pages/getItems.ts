@@ -1,33 +1,15 @@
-import { Logger } from '../../lib/utils/logger.js';
-import { getPagesService } from '../../lib/utils/ServiceFactory.js';
-
 import type { Pages } from '../../types/Pages.js';
-import type { Request, Response } from 'express';
 
-export const getItems = async (
-  _req: Request,
-  res: Response<Pages>,
-): Promise<void> => {
-  try {
-    Logger.info('Pages: Get Items called');
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { getPagesService } from '../../utils/ServiceFactory.js';
 
-    const service = getPagesService();
-    const response = await service.getItems();
-
-    if (!response) {
-      Logger.warn('Pages: No items found');
-      res
-        .status(404)
-        .json({ items: [], metadata: { title: 'No pages found' } });
-      return;
-    }
-
-    Logger.info(
-      `Pages: Successfully retrieved ${response.items?.length ?? 0} items`,
-    );
-    res.status(200).json(response);
-  } catch (error) {
-    Logger.error('Pages: Get Items error:', error);
-    res.sendStatus(500);
-  }
-};
+export const getItems = createGetHandler<Pages>({
+  errorResponse: { items: [], metadata: { title: 'Pages' } },
+  getData: async () => {
+    const data = await getPagesService().getItems();
+    return data ?? { items: [], metadata: { title: 'Pages' } };
+  },
+  getItemCount: (data) => data.items.length,
+  handlerName: 'Pages:getItems',
+  return204OnEmpty: false,
+});
