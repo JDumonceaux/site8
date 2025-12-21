@@ -69,6 +69,7 @@ const PrivacyPolicyPage = lazy(
 const BookmarkPage = lazy(
   async () => import('../features/bookmarks/BookmarkPage'),
 );
+const TravelPage = lazy(async () => import('../features/travel/TravelPage'));
 const GenericPage = lazy(async () => import('../features/generic/GenericPage'));
 const GenericImagePage = lazy(
   async () => import('../features/generic/GenericImagePage'),
@@ -317,6 +318,17 @@ const createAppRouter = (queryClient: QueryClient) => {
             <Route
               index
               element={<BookmarkPage />}
+            />
+          </Route>
+
+          {/* Travel */}
+          <Route
+            element={<GenericLayout />}
+            path="travel"
+          >
+            <Route
+              index
+              element={<TravelPage />}
             />
           </Route>
 

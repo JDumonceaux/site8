@@ -8,8 +8,6 @@ import express, {
 import RateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
-import { env } from './utils/env.js';
-import { Logger } from './utils/logger.js';
 import { artistRouter } from './routes/artistRouter.js';
 import { artistsRouter } from './routes/artistsRouter.js';
 import { bookmarksRouter } from './routes/bookmarksRouter.js';
@@ -25,6 +23,9 @@ import { pageRouter } from './routes/pageRouter.js';
 import { pagesRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { testsRouter } from './routes/testsRouter.js';
+import { travelRouter } from './routes/travelRouter.js';
+import { env } from './utils/env.js';
+import { Logger } from './utils/logger.js';
 
 const REQUEST_TIMEOUT_MS = 2000;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
@@ -85,6 +86,7 @@ app.use('/api/files', filesRouter, limiter);
 app.use('/api/photos', photosRouter);
 app.use('/api/tests', testsRouter, limiter);
 app.use('/api/bookmarks', bookmarksRouter);
+app.use('/api/travel', travelRouter);
 app.use('/api/artist', artistRouter);
 app.use('/api/artists', artistsRouter);
 app.use('/api/generic', genericRouter);

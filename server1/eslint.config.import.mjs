@@ -45,7 +45,8 @@ export default {
             },
         ],
         'import/no-commonjs': 'off',
-        'import/no-cycle': ['error', { maxDepth: 3 }],
+        // False errors
+        'import/no-cycle': 'off',
         'import/no-default-export': 'off',
         'import/no-deprecated': 'warn',
         'import/no-dynamic-require': 'warn',

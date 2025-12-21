@@ -1,0 +1,338 @@
+{
+  "metadata": {
+    "title": "Travel Destinations"
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "Paris, France",
+      "description": "The City of Light - famous for the Eiffel Tower, Louvre Museum, and exquisite cuisine.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "tags": ["Europe", "City"],
+      "latitude": 48.8566,
+      "longitude": 2.3522
+    },
+    {
+      "id": 2,
+      "name": "Le Procope",
+      "description": "The oldest café in Paris.  Since 1686, Le Procope has been a true symbol of French gastronomy and the Parisian art of living. Located in the heart of Saint-Germain-des-Prés, this legendary restaurant has stood the test of time, welcoming renowned literary and artistic figures.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "13 Rue de l'Ancienne Comédie, 75006 Paris, France",
+      "type": "Restaurant",
+      "tags": ["Paris", "Restaurant", "Fine Dining"],
+      "official_url": "https://www.procope.com/en/",
+      "urls": [
+        {
+          "type": "Official Website",
+          "name": "",
+          "url": "https://www.procope.com/en/"
+        },
+        {
+          "type": "History",
+          "name": "'Le Procope, the oldest and the most revolutionary café in Paris'",
+          "url": "https://www.relaisdulouvre.com/en/le-procope-the-oldest-and-the-most-revolutionary-cafe-in-paris/"
+        }
+      ],
+      "images": [
+        {
+          "id": 1653,
+          "type": "primary",
+          "description": "Le Procope - Exterior"
+        },
+        {
+          "id": 1654,
+          "type": "primary",
+          "description": "Le Procope - Interior"
+        }
+      ],
+      "latitude": 48.8532,
+      "longitude": 2.3387
+    },
+    {
+      "id": 3,
+      "name": "Le Train Bleu",
+      "description": "Historic Belle Époque restaurant inside Gare de Lyon, renowned for its ornate gilded decor, frescoes, and classic French cuisine.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "Place Louis-Armand, 75012 Paris, France",
+      "type": "Restaurant",
+      "tags": ["Paris", "Restaurant", "Fine Dining", "Historic"],
+      "official_url": "https://www.le-train-bleu.com/",
+      "latitude": 48.8447,
+      "longitude": 2.3736,
+      "images": [
+        {
+          "id": 1655,
+          "type": "primary",
+          "description": "Le Train Bleu"
+        },
+        {
+          "id": 1656,
+          "type": "primary",
+          "description": "Le Train Bleu"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Les Deux Magots",
+      "description": "Legendary café in Saint-Germain-des-Prés, famous for its intellectual and artistic clientele including Hemingway, Sartre, and Picasso.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "6 Place Saint-Germain des Prés, 75006 Paris, France",
+      "type": "Café",
+      "tags": ["Paris", "Café", "Historic", "Literary"],
+      "official_url": "https://www.lesdeuxmagots.fr/",
+      "latitude": 48.8539,
+      "longitude": 2.333
+    },
+    {
+      "id": 5,
+      "name": "Napoleon's Tomb",
+      "description": "The final resting place of Napoleon Bonaparte, located under the golden dome of Les Invalides, featuring an impressive red quartzite sarcophagus.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "129 Rue de Grenelle, 75007 Paris, France",
+      "type": "Monument",
+      "tags": ["Paris", "History", "Monument", "Architecture"],
+      "latitude": 48.8555,
+      "longitude": 2.3125
+    },
+    {
+      "id": 6,
+      "name": "The Louvre",
+      "description": "The world's largest art museum and a historic monument in Paris, home to thousands of works including the Mona Lisa and Venus de Milo.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "Rue de Rivoli, 75001 Paris, France",
+      "type": "Museum",
+      "tags": ["Paris", "Museum", "Art", "Culture"],
+      "official_url": "https://www.louvre.fr/",
+      "latitude": 48.8606,
+      "longitude": 2.3376
+    },
+    {
+      "id": 7,
+      "name": "Musée d'Orsay",
+      "description": "World-renowned museum housed in a former railway station, featuring the finest collection of Impressionist and Post-Impressionist masterpieces.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "1 Rue de la Légion d'Honneur, 75007 Paris, France",
+      "type": "Museum",
+      "tags": ["Paris", "Museum", "Art", "Impressionism"],
+      "official_url": "https://www.musee-orsay.fr/",
+      "latitude": 48.86,
+      "longitude": 2.3266
+    },
+    {
+      "id": 8,
+      "name": "Musée de l'Orangerie",
+      "description": "Art gallery featuring Monet's famous Water Lilies murals and an impressive collection of Impressionist and Post-Impressionist paintings.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "Jardin des Tuileries, 75001 Paris, France",
+      "type": "Museum",
+      "tags": ["Paris", "Museum", "Art", "Monet"],
+      "official_url": "https://www.musee-orangerie.fr/",
+      "latitude": 48.8638,
+      "longitude": 2.3226
+    },
+    {
+      "id": 9,
+      "name": "Notre-Dame de Paris",
+      "description": "Medieval Catholic cathedral and masterpiece of French Gothic architecture, famous for its stunning rose windows, gargoyles, and historical significance.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004 Paris, France",
+      "type": "Cathedral",
+      "tags": ["Paris", "Architecture", "Historic", "Gothic"],
+      "latitude": 48.853,
+      "longitude": 2.3499
+    },
+    {
+      "id": 10,
+      "name": "Sainte-Chapelle",
+      "description": "Gothic royal chapel renowned for its breathtaking stained glass windows depicting biblical scenes in vivid colors.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "8 Boulevard du Palais, 75001 Paris, France",
+      "type": "Chapel",
+      "tags": ["Paris", "Architecture", "Historic", "Gothic"],
+      "official_url": "https://www.sainte-chapelle.fr/",
+      "latitude": 48.8554,
+      "longitude": 2.345
+    },
+    {
+      "id": 11,
+      "name": "Sacré-Cœur Basilica",
+      "description": "Iconic white-domed basilica atop Montmartre hill, offering panoramic views of Paris and stunning Romano-Byzantine architecture.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "35 Rue du Chevalier de la Barre, 75018 Paris, France",
+      "type": "Basilica",
+      "tags": ["Paris", "Architecture", "Historic", "Views"],
+      "official_url": "https://www.sacre-coeur-montmartre.com/",
+      "latitude": 48.8867,
+      "longitude": 2.3431
+    },
+    {
+      "id": 12,
+      "name": "L'Oiseau Blanc",
+      "description": "Michelin-starred rooftop restaurant atop The Peninsula Paris, offering refined French cuisine and spectacular views of the Eiffel Tower.",
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "address": "19 Avenue Kléber, 75116 Paris, France",
+      "type": "Restaurant",
+      "tags": [
+        "Paris",
+        "Restaurant",
+        "Fine Dining",
+        "Michelin Star",
+        "Rooftop"
+      ],
+      "official_url": "https://www.peninsula.com/en/paris/5-star-luxury-hotel-16th-arrondissement/dining/loiseau-blanc-restaurant",
+      "latitude": 48.8719,
+      "longitude": 2.293
+    },
+    {
+      "id": 13,
+      "name": "Stift Sankt Florian",
+      "description": "Augustinian monastery in Upper Austria, one of the largest and most impressive Baroque monasteries in the country. Home to the magnificent Bruckner Organ and the composer's final resting place.",
+      "city": "Sankt Florian",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Stiftstraße 1, 4490 Sankt Florian, Austria",
+      "type": "Monastery",
+      "tags": ["Austria", "Monastery", "Baroque", "Architecture", "Music"],
+      "official_url": "https://www.stift-st-florian.at/",
+      "latitude": 48.2058,
+      "longitude": 14.3783
+    },
+    {
+      "id": 14,
+      "name": "Stift Melk",
+      "description": "Spectacular Benedictine abbey overlooking the Danube River, one of the most famous monastic sites in the world. UNESCO World Heritage Site featuring stunning Baroque architecture and a magnificent library.",
+      "city": "Melk",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Abt-Berthold-Dietmayr-Straße 1, 3390 Melk, Austria",
+      "type": "Abbey",
+      "tags": ["Austria", "Abbey", "Baroque", "UNESCO", "Danube"],
+      "official_url": "https://www.stiftmelk.at/",
+      "latitude": 48.2274,
+      "longitude": 15.3294
+    },
+    {
+      "id": 15,
+      "name": "Stift Seitenstetten",
+      "description": "Benedictine monastery known as the 'Four Seasons Garden' for its beautiful gardens. Features Baroque architecture, an impressive library, and art collections.",
+      "city": "Seitenstetten",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Am Klosterberg 1, 3353 Seitenstetten, Austria",
+      "type": "Monastery",
+      "tags": ["Austria", "Monastery", "Baroque", "Gardens"],
+      "official_url": "https://www.stift-seitenstetten.at/",
+      "latitude": 48.0358,
+      "longitude": 14.6525
+    },
+    {
+      "id": 16,
+      "name": "Stift Kremsmünster",
+      "description": "Benedictine monastery founded in 777, featuring the famous Mathematical Tower (one of the first high-rise buildings in Europe), fish ponds, and extensive art collections.",
+      "city": "Kremsmünster",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Stift 1, 4550 Kremsmünster, Austria",
+      "type": "Monastery",
+      "tags": ["Austria", "Monastery", "Historic", "Observatory"],
+      "official_url": "https://www.stift-kremsmuenster.at/",
+      "latitude": 48.0528,
+      "longitude": 14.1294
+    },
+    {
+      "id": 17,
+      "name": "Stift Zwettl",
+      "description": "Cistercian monastery founded in 1138, showcasing both Romanesque and Baroque architectural styles. Features beautiful cloisters, a Gothic church, and peaceful gardens.",
+      "city": "Zwettl",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Stift Zwettl 1, 3910 Zwettl, Austria",
+      "type": "Monastery",
+      "tags": ["Austria", "Monastery", "Cistercian", "Gothic", "Baroque"],
+      "official_url": "https://www.stift-zwettl.at/",
+      "latitude": 48.6106,
+      "longitude": 15.1903
+    },
+    {
+      "id": 18,
+      "name": "Stift Altenburg",
+      "description": "Benedictine abbey renowned for its magnificent Baroque library, colorful frescoes by Paul Troger, and the 'Crypt of Death' with its thought-provoking memento mori theme.",
+      "city": "Altenburg",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Abt-Placidus-Much-Straße 1, 3591 Altenburg, Austria",
+      "type": "Abbey",
+      "tags": ["Austria", "Abbey", "Baroque", "Library", "Art"],
+      "official_url": "https://www.stift-altenburg.at/",
+      "latitude": 48.6436,
+      "longitude": 15.6681
+    },
+    {
+      "id": 19,
+      "name": "Stift Göttweig",
+      "description": "Benedictine monastery perched on a hill overlooking the Danube Valley, known as the 'Austrian Montecassino'. Features stunning Baroque architecture, frescoes, and panoramic views.",
+      "city": "Göttweig",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Stift Göttweig 1, 3511 Furth bei Göttweig, Austria",
+      "type": "Monastery",
+      "tags": ["Austria", "Monastery", "Baroque", "Danube", "Views"],
+      "official_url": "https://www.stiftgoettweig.at/",
+      "latitude": 48.365,
+      "longitude": 15.5897
+    },
+    {
+      "id": 20,
+      "name": "Stift Sankt Lambrecht",
+      "description": "Benedictine abbey in Styria founded in 1076, featuring Romanesque and Gothic elements. Houses a notable art collection and the Fish Museum showcasing local wildlife.",
+      "city": "Sankt Lambrecht",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Hauptstraße 1, 8813 Sankt Lambrecht, Austria",
+      "type": "Abbey",
+      "tags": ["Austria", "Abbey", "Romanesque", "Gothic", "Museum"],
+      "official_url": "https://www.stift-stlambrecht.at/",
+      "latitude": 47.0667,
+      "longitude": 14.3
+    },
+    {
+      "id": 21,
+      "name": "Nymphenburg Palace",
+      "description": "Magnificent Baroque palace and summer residence of the Bavarian rulers. Features opulent state rooms, the Gallery of Beauties, stunning park grounds with pavilions, and the Marstallmuseum showcasing royal carriages and sleighs.",
+      "city": "Munich",
+      "country": "Germany",
+      "continent": "Europe",
+      "address": "Schloß Nymphenburg 1, 80638 München, Germany",
+      "type": "Palace",
+      "tags": ["Germany", "Palace", "Baroque", "Museum", "Gardens"],
+      "official_url": "https://www.schloss-nymphenburg.de/",
+      "latitude": 48.1583,
+      "longitude": 11.5031
+    }
+  ]
+}

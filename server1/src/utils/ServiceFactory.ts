@@ -15,6 +15,7 @@ import { PagesService } from '../features/pages/PagesService.js';
 import { PhotosService } from '../features/photos/PhotosService.js';
 import { PrettierService } from '../features/prettier/PrettierService.js';
 import { TestsService } from '../features/tests/TestsService.js';
+import { TravelService } from '../features/travel/TravelService.js';
 
 let artistsService: null | ArtistsService = null;
 let bookmarksService: null | BookmarksService = null;
@@ -32,6 +33,7 @@ let pagesService: null | PagesService = null;
 let photosService: null | PhotosService = null;
 let prettierService: null | PrettierService = null;
 let testsService: null | TestsService = null;
+let travelService: null | TravelService = null;
 
 export const getArtistsService = (): ArtistsService => {
   artistsService ??= new ArtistsService();
@@ -111,4 +113,9 @@ export const getPrettierService = (): PrettierService => {
 export const getTestsService = (): TestsService => {
   testsService ??= new TestsService();
   return testsService;
+};
+
+export const getTravelService = (): TravelService => {
+  travelService ??= new TravelService();
+  return travelService;
 };

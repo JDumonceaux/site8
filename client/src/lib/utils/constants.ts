@@ -67,6 +67,7 @@ export enum ServiceUrl {
   ENDPOINT_PAGE = `${API_ROOT}/page`,
   ENDPOINT_PHOTOS = `${API_ROOT}/photos`,
   ENDPOINT_TESTS = `${API_ROOT}/tests`,
+  ENDPOINT_TRAVEL = `${API_ROOT}/travel`,
 }
 
 /* -------------------------------------------------------------------------- */
