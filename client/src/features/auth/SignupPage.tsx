@@ -7,7 +7,7 @@ import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
-import { emailAddress, password } from '@shared/types/Auth';
+import { emailAddress, password } from '@types/Auth';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';

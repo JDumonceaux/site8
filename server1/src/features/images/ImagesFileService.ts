@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { existsSync, mkdirSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 
@@ -111,9 +110,10 @@ export class ImagesFileService {
         `ImagesFileService: moveItems. -> (${items ? items.length : 0}) to move.`,
       );
 
-      const updates = items?.filter((x) => x.originalFolder !== x.folder);
+      const updates: readonly ImageEdit[] = []; //items?.filter((x) => x.originalFolder !== x.folder);
 
-      if (!updates) {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      if (!updates || updates.length === 0) {
         Logger.info(`ImagesFileService: moveItems. -> no items to update`);
         return true;
       }
@@ -126,9 +126,12 @@ export class ImagesFileService {
           return false;
         }
 
+        const { originalFolder } = item as ImageEdit & {
+          originalFolder?: string;
+        };
         const currLocation = path.join(
           this.imageDir,
-          item.originalFolder ?? '',
+          originalFolder ?? '',
           item.fileName,
         );
         const moveTo = path.join(this.imageDir, item.folder, item.fileName);

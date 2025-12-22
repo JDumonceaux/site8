@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { readFile, writeFile } from 'fs/promises';
 
 import type { Image } from '../../types/Image.js';
@@ -45,10 +44,13 @@ export class ImagesService {
     try {
       const item = await this.readFile();
 
-      const fixedItems = item?.items?.map((x) => ({
-        ...x,
-        fileName: x.fileName ? x.fileName.toLowerCase() : x.fileName,
-      }));
+      const fixedItems = item?.items?.map((x) => {
+        const fixed = { ...x };
+        if (x.fileName) {
+          fixed.fileName = x.fileName.toLowerCase();
+        }
+        return fixed;
+      });
 
       const data: Images = {
         items: fixedItems,
@@ -97,8 +99,8 @@ export class ImagesService {
         ?.map((x) => x.fileName)
         .filter((x, i, a) => a.indexOf(x) !== i);
 
-      // Filter out null
-      const filtered = duplicates?.filter((x) => x);
+      // Filter out null and undefined
+      const filtered = duplicates?.filter((x): x is string => x !== undefined);
 
       return filtered && filtered.length > 0 ? filtered : 'No duplicates found';
     } catch (error) {

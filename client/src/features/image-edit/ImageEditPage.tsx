@@ -10,7 +10,7 @@ import StyledLink from '@components/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import Layout from '@features/layouts/layout/Layout';
-import type { Image } from '@shared/types';
+import type { Image } from '@types';
 import useImageEdit from './useImageEdit';
 import styled from 'styled-components';
 

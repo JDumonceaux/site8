@@ -4,8 +4,8 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Input from '@components/input/Input';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import * as Form from '@radix-ui/react-form';
-import type { FormState } from '@shared/types';
-import type { Page } from '@shared/types/Page';
+import type { FormState } from '@types';
+import type { Page } from '@types/Page';
 import usePagePatch from './usePagePatch';
 import styled from 'styled-components';
 

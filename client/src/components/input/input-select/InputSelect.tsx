@@ -1,7 +1,7 @@
 import { type JSX, type SelectHTMLAttributes, useRef } from 'react';
 
 import useGetId from '@hooks/useGetId';
-import type { ListItem } from '@shared/types/ListItem';
+import type { ListItem } from '@types/ListItem';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../base/field-wrapper/FieldWrapper';

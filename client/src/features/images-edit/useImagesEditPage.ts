@@ -4,7 +4,7 @@ import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useFormArray from '@hooks/useFormArray';
 import { getSRC } from '@lib/utils/helpers';
 import { getDefaultObject } from '@lib/utils/objectUtil';
-import type { Image } from '@shared/types';
+import type { Image } from '@types';
 import type { ImageAddExt } from './ImageAdd';
 import useImagesEdit from './useImagesEdit';
 

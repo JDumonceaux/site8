@@ -12,7 +12,6 @@ export const getItem = createGetHandlerWithParams<Image>({
   errorResponse: {
     fileName: '',
     id: 0,
-    itemId: 0,
   },
   getData: async (req: Request) => {
     const id = req.params['id'] as string;

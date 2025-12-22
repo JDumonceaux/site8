@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
-import type { MenuItem } from '@shared/types';
+import type { MenuItem } from '@types';
 import usePagesEdit from './usePagesEdit';
 import styled from 'styled-components';
 

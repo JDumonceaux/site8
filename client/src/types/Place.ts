@@ -1,17 +1,12 @@
+import type { Image } from './Image';
+
 export type PlaceUrl = {
+  readonly alt?: string;
+  readonly description?: string;
   readonly name?: string;
+  readonly role?: string;
   readonly type?: string;
   readonly url: string;
-};
-
-export type PlaceImage = {
-  readonly description?: string;
-  readonly fileName?: string;
-  readonly folder?: string;
-  readonly id: number;
-  readonly location?: string;
-  readonly name?: string;
-  readonly type?: string;
 };
 
 export type Place = {
@@ -19,15 +14,14 @@ export type Place = {
   readonly city?: string;
   readonly continent?: string;
   readonly country?: string;
+  readonly date?: string;
   readonly description?: string;
   readonly id: number;
-  readonly image_gallery?: number[];
-  readonly image_primary?: number;
-  readonly images?: PlaceImage[];
+  readonly images?: Image[];
   readonly latitude?: number;
   readonly longitude?: number;
   readonly name: string;
-  readonly official_url?: string;
+  readonly parent_id?: number;
   readonly tags?: string[];
   readonly type?: string;
   readonly urls?: PlaceUrl[];

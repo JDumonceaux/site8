@@ -1,6 +1,6 @@
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import { handleQueryError } from '@lib/utils/errorHandler';
-import type { Image } from '@shared/types';
+import type { Image } from '@types';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 /**

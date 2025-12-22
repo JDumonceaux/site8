@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import type { FieldError } from '@shared/types/FieldError';
+import type { FieldError } from '@types/FieldError';
 import styled from 'styled-components';
 
 export type FooterRowProps = {

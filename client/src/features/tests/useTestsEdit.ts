@@ -1,6 +1,6 @@
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Test } from '@shared/types/Test';
-import type { Tests } from '@shared/types/Tests';
+import type { Test } from '@types/Test';
+import type { Tests } from '@types/Tests';
 import { z } from 'zod';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';

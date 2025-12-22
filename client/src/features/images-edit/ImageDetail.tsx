@@ -3,7 +3,7 @@ import React, { type JSX } from 'react';
 import IconMenu from '@components/icon-menu/IconMenu';
 import IconMenuItem from '@components/icon-menu/IconMenuItem';
 import Input from '@components/input/Input';
-import type { ListItem } from '@shared/types';
+import type { ListItem } from '@types';
 import type { ImageAddExt } from './ImageAdd';
 import styled from 'styled-components';
 

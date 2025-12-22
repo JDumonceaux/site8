@@ -17,7 +17,17 @@ export class ImageService {
         throw new Error('addItem -> No data found');
       }
       const idNew = (await imagesService.getNextId()) ?? 0;
-      const newItem = { ...updatedItem, id: idNew };
+      // Ensure all required Image properties are present and not undefined
+      const newItem: Image = {
+        alt: updatedItem.alt ?? '',
+        create_date: updatedItem.create_date ?? '',
+        description: updatedItem.description ?? '',
+        edit_date: updatedItem.edit_date ?? '',
+        fileName: updatedItem.fileName ?? '',
+        folder: updatedItem.folder ?? '',
+        id: idNew,
+        url: updatedItem.url ?? '',
+      };
 
       const updatedFile: Images = {
         items: [...(currentData.items ?? []), newItem],

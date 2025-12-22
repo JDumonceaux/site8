@@ -1,5 +1,5 @@
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Music } from '@shared/types/Music';
+import type { Music } from '@types/Music';
 import { useQuery } from '@tanstack/react-query';
 
 /**

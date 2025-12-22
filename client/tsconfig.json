@@ -26,7 +26,7 @@
       "@shared/*": ["shared/*"],
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],
-      // @types does not work
+      "@types/*": ["types/*"],
       "@unused/*": ["unused/*"]
     },
 

@@ -6,7 +6,7 @@ import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
 import { getSRC } from '@lib/utils/helpers';
 import { safeParse } from '@lib/utils/zodHelper';
-import type { Image } from '@shared/types/Image';
+import type { Image } from '@types/Image';
 import imageEditSchema, { type FormKeys, type FormType } from './schema';
 import useImage from './useImage';
 

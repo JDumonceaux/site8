@@ -60,7 +60,7 @@ export class TravelService extends BaseDataService<Places> {
         // Map each image reference to its full data from images.json
         // Filter to only include images with type = 'primary'
         const enrichedImages = place.images
-          .filter((imgRef) => imgRef.type === 'primary')
+          .filter((imgRef) => imgRef.role === 'primary')
           .map((imgRef) => {
             const fullImageData = imageMap.get(imgRef.id);
             if (!fullImageData) {

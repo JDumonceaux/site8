@@ -13358,7 +13358,7 @@
       "folder": "cartoons",
       "isNewItem": false,
       "name": "Yogi Bear",
-      "tags": ["cartoons"]
+      "tags": ["Cartoons"]
     },
     {
       "id": 1653,
@@ -13369,7 +13369,7 @@
       "location": "Paris, France",
       "name": "Le Procope - Exterior",
       "description": "Historic cobblestone street with traditional Parisian cafes and restaurants",
-      "tags": ["Paris", "France", "cafe", "street", "architecture"]
+      "tags": ["Paris", "France", "Cafe", "Street", "Architecture"]
     },
     {
       "id": 1654,
@@ -13380,7 +13380,7 @@
       "location": "Paris, France",
       "name": "Le Procope - Interior",
       "description": "Elegant historic restaurant interior with ornate decor, chandeliers, and traditional French dining ambiance",
-      "tags": ["Paris", "France", "restaurant", "interior", "dining"]
+      "tags": ["Paris", "France", "Restaurant", "Interior", "Dining"]
     },
     {
       "id": 1655,
@@ -13394,10 +13394,10 @@
       "tags": [
         "Paris",
         "France",
-        "restaurant",
-        "interior",
+        "Restaurant",
+        "Interior",
         "Belle Époque",
-        "dining"
+        "Dining"
       ]
     },
     {
@@ -13409,7 +13409,65 @@
       "location": "Paris, France",
       "name": "Le Train Bleu - Ceiling",
       "description": "Ornate gilded ceiling with painted frescoes depicting cherubs and celestial scenes in elaborate gold frames",
-      "tags": ["Paris", "France", "restaurant", "ceiling", "fresco", "art"]
+      "tags": ["Paris", "France", "Restaurant", "Ceiling", "Fresco", "Art"]
+    },
+    {
+      "id": 1657,
+      "create_date": "2025-12-21T00:00:00.000Z",
+      "edit_date": "2025-12-21T00:00:00.000Z",
+      "fileName": "edinburgh_castle.jpg",
+      "folder": "2025\\travel",
+      "location": "Edinburgh, Scotland",
+      "name": "Edinburgh Castle",
+      "description": "Historic Edinburgh Castle perched dramatically on volcanic rock overlooking the city with Ross Fountain in foreground",
+      "tags": ["Edinburgh", "Scotland", "Castle", "Landmark"]
+    },
+    {
+      "id": 1658,
+      "create_date": "2025-12-21T00:00:00.000Z",
+      "edit_date": "2025-12-21T00:00:00.000Z",
+      "fileName": "edinburgh_tattoo.jpg",
+      "folder": "2025\\travel",
+      "location": "Edinburgh, Scotland",
+      "name": "Royal Edinburgh Military Tattoo",
+      "description": "Spectacular military tattoo performance on Edinburgh Castle esplanade with fireworks, military bands in formation, and large crowd",
+      "tags": ["Edinburgh", "Scotland", "Military Tattoo", "Event"]
+    },
+    {
+      "id": 1659,
+      "create_date": "2025-12-21T00:00:00.000Z",
+      "edit_date": "2025-12-21T00:00:00.000Z",
+      "fileName": "royal_mile.jpg",
+      "folder": "2025\\travel",
+      "location": "Edinburgh, Scotland",
+      "name": "The Royal Mile",
+      "description": "Historic Royal Mile street in Edinburgh's Old Town with traditional architecture, shops, and Edinburgh Castle visible in background",
+      "tags": [
+        "Edinburgh",
+        "Scotland",
+        "Royal Mile",
+        "Historic Street",
+        "Old Town"
+      ]
+    },
+    {
+      "id": 1660,
+      "create_date": "2025-12-21T00:00:00.000Z",
+      "edit_date": "2025-12-21T00:00:00.000Z",
+      "fileName": "mamma_mia_the_party.jpg",
+      "folder": "2025\\travel",
+      "location": "London, United Kingdom",
+      "name": "Mamma Mia! The Party",
+      "description": "Vibrant immersive theatre performance with colorful disco lights, performers on raised platforms, and audience dining in Greek taverna setting",
+      "tags": [
+        "London",
+        "Theatre",
+        "Mamma Mia",
+        "ABBA",
+        "Entertainment",
+        "Dining",
+        "Party"
+      ]
     }
   ]
 }

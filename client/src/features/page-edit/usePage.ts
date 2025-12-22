@@ -1,5 +1,5 @@
 import { USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Page } from '@shared/types';
+import type { Page } from '@types';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPageById } from './api';
 

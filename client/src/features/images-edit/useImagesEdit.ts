@@ -1,5 +1,5 @@
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Images } from '@shared/types';
+import type { Images } from '@types';
 import { useQuery } from '@tanstack/react-query';
 
 const useImagesEdit = () => {

@@ -1,4 +1,4 @@
-import type { MusicItem } from '@shared/types/MusicItem';
+import type { MusicItem } from '@types/MusicItem';
 import styled from 'styled-components';
 
 /**

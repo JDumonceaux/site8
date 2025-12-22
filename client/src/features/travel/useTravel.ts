@@ -1,5 +1,5 @@
 import { QueryTime, ServiceUrl } from '@lib/utils/constants';
-import type { Places } from '@shared/types/Places';
+import type { Places } from '@types/Places';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchData = async (): Promise<Places> => {

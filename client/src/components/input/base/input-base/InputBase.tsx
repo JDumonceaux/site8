@@ -1,7 +1,7 @@
 import { type ChangeEvent, type JSX, type Ref, useRef, useState } from 'react';
 
 import useGetId from '@hooks/useGetId';
-import type { KeyValue } from '@shared/types/KeyValue';
+import type { KeyValue } from '@types/KeyValue';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../field-wrapper/FieldWrapper';

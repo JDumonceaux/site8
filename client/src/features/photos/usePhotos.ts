@@ -1,5 +1,5 @@
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Photos } from '@shared/types';
+import type { Photos } from '@types';
 import { useQuery } from '@tanstack/react-query';
 
 // Helper function to fetch photos with support for cancellation
