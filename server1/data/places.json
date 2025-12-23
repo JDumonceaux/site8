@@ -497,7 +497,8 @@
         }
       ],
       "latitude": 51.5029,
-      "longitude": 0.0031
+      "longitude": 0.0031,
+      "bucket_list": true
     },
     {
       "id": 24,
@@ -526,7 +527,8 @@
         }
       ],
       "latitude": 55.9486,
-      "longitude": -3.1999
+      "longitude": -3.1999,
+      "bucket_list": true
     },
     {
       "id": 25,
@@ -544,7 +546,8 @@
         }
       ],
       "latitude": 55.9533,
-      "longitude": -3.1883
+      "longitude": -3.1883,
+      "bucket_list": true
     },
     {
       "id": 26,
@@ -573,6 +576,228 @@
       "latitude": 55.9506,
       "longitude": -3.1883,
       "parent_id": 25
+    },
+    {
+      "id": 27,
+      "name": "Kunsthistorisches Museum Cafe",
+      "description": "Elegant cafe located in the grand cupola hall of the Kunsthistorisches Museum, featuring stunning Renaissance-style architecture with marble columns and ornate decorations.",
+      "city": "Vienna",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Maria-Theresien-Platz, 1010 Wien, Austria",
+      "type": "Cafe",
+      "tags": ["Vienna", "Cafe", "Museum", "Architecture", "Art"],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.khm.at/en/visit/museum-cafe/"
+        }
+      ],
+      "images": [
+        {
+          "id": 1662,
+          "role": "primary",
+          "description": "Kunsthistorisches Museum Cafe"
+        }
+      ],
+      "latitude": 48.2038,
+      "longitude": 16.3614
+    },
+    {
+      "id": 28,
+      "name": "The Scotsman Picturehouse",
+      "description": "Independent cinema housed in the historic former Scotsman newspaper building on the Royal Mile. Features three screens showing art house films, blockbusters, and live broadcasts in a beautifully restored setting.",
+      "city": "Edinburgh",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "address": "20 North Bridge, Edinburgh EH1 1TR, United Kingdom",
+      "type": "Cinema",
+      "tags": ["Edinburgh", "Cinema", "Historic", "Entertainment"],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.picturehouses.com/cinema/scotsman-picturehouse"
+        }
+      ],
+      "images": [
+        {
+          "id": 1668,
+          "role": "primary",
+          "description": "The Scotsman Picturehouse - Cinema"
+        }
+      ],
+      "latitude": 55.9509,
+      "longitude": -3.1887,
+      "parent_id": 25
+    },
+    {
+      "id": 29,
+      "name": "Kölner Dom Christmas Market",
+      "description": "One of the most famous Christmas markets in Germany, located in the shadow of the magnificent Cologne Cathedral. Features traditional German crafts, mulled wine, seasonal treats, and festive atmosphere.",
+      "notes": "Runs roughly from mid-November (around Nov 17) to December 23, 2026",
+      "city": "Cologne",
+      "country": "Germany",
+      "continent": "Europe",
+      "address": "Roncalliplatz, 50667 Köln, Germany",
+      "type": "Christmas Market",
+      "tags": [
+        "Cologne",
+        "Christmas Market",
+        "Seasonal",
+        "Traditional",
+        "Shopping"
+      ],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.cologne-tourism.com/see-experience/christmas-markets/"
+        }
+      ],
+      "images": [
+        {
+          "id": 1664,
+          "role": "primary",
+          "description": "Kölner Dom Christmas Market"
+        }
+      ],
+      "latitude": 50.9413,
+      "longitude": 6.9583
+    },
+    {
+      "id": 30,
+      "name": "Cologne Cathedral",
+      "description": "Magnificent Gothic cathedral and UNESCO World Heritage Site, one of the largest cathedrals in Europe. Construction began in 1248 and took over 600 years to complete. Features stunning twin spires, intricate stone carvings, and beautiful stained glass windows.",
+      "city": "Cologne",
+      "country": "Germany",
+      "continent": "Europe",
+      "address": "Domkloster 4, 50667 Köln, Germany",
+      "type": "Cathedral",
+      "tags": [
+        "Cologne",
+        "Cathedral",
+        "Gothic",
+        "UNESCO",
+        "Architecture",
+        "Historic"
+      ],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.koelner-dom.de/en/"
+        }
+      ],
+      "images": [
+        {
+          "id": 1663,
+          "role": "primary",
+          "description": "Cologne Cathedral - Night"
+        }
+      ],
+      "latitude": 50.9413,
+      "longitude": 6.9582
+    },
+    {
+      "id": 31,
+      "name": "Vasa Museum",
+      "description": "Maritime museum housing the almost fully intact 17th-century warship Vasa that sank on her maiden voyage in 1628. The ship was salvaged in 1961 and is the world's only preserved 17th-century ship, displayed with thousands of artifacts.",
+      "city": "Stockholm",
+      "country": "Sweden",
+      "continent": "Europe",
+      "address": "Galärvarvsvägen 14, 115 21 Stockholm, Sweden",
+      "type": "Museum",
+      "tags": ["Stockholm", "Museum", "Maritime", "Historic", "Ship"],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.vasamuseet.se/en"
+        }
+      ],
+      "images": [
+        {
+          "id": 1666,
+          "role": "primary",
+          "description": "Vasa Museum - Ship View 1"
+        },
+        {
+          "id": 1667,
+          "role": "primary",
+          "description": "Vasa Museum - Ship View 2"
+        }
+      ],
+      "latitude": 59.328,
+      "longitude": 18.0916,
+      "bucket_list": true
+    },
+    {
+      "id": 32,
+      "name": "Loen Skylift Restaurant",
+      "description": "Mountain-top restaurant at 1,011 meters above sea level, reached by the Loen Skylift cable car. Offers breathtaking panoramic views over Nordfjord, Lake Lovatnet, and the surrounding Norwegian mountains while serving Nordic cuisine.",
+      "notes": "Take the Loen Skylift cable car to edge of Mount Hoven to reach the restaurant.",
+      "city": "Loen",
+      "country": "Norway",
+      "continent": "Europe",
+      "address": "Hoven, 6789 Loen, Norway",
+      "type": "Restaurant",
+      "tags": [
+        "Norway",
+        "Restaurant",
+        "Mountain",
+        "Scenic Views",
+        "Nordic Cuisine"
+      ],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.loenskylift.com/en/"
+        }
+      ],
+      "images": [
+        {
+          "id": 1665,
+          "role": "primary",
+          "description": "Loen Skylift Restaurant - Interior"
+        },
+        {
+          "id": 1669,
+          "role": "primary",
+          "description": "Loen Skylift Restaurant - Exterior"
+        }
+      ],
+      "latitude": 61.8725,
+      "longitude": 6.8158
+    },
+    {
+      "id": 33,
+      "name": "Café Gerstner",
+      "description": "Historic Viennese café and konditorei established in 1847, known for its elegant atmosphere, exquisite pastries, and traditional Viennese coffee culture. Located in the heart of Vienna near the State Opera.",
+      "city": "Vienna",
+      "country": "Austria",
+      "continent": "Europe",
+      "address": "Kärntner Str. 51, 1010 Wien, Austria",
+      "type": "Cafe",
+      "tags": ["Vienna", "Cafe", "Historic", "Pastries", "Fine Dining"],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.gerstner-konditorei.at/"
+        }
+      ],
+      "images": [
+        {
+          "id": 1661,
+          "role": "primary",
+          "description": "Café Gerstner - Interior"
+        }
+      ],
+      "latitude": 48.2031,
+      "longitude": 16.3704
     }
   ]
 }

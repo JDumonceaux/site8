@@ -13468,6 +13468,112 @@
         "Dining",
         "Party"
       ]
+    },
+    {
+      "id": 1661,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "cafe_gerstner.jpg",
+      "folder": "2025\\travel",
+      "location": "Vienna, Austria",
+      "name": "Café Gerstner",
+      "description": "Elegant interior of historic Viennese café with ornate ceiling, chandeliers, and burgundy velvet seating",
+      "tags": ["Vienna", "Cafe", "Interior", "Historic", "Elegant"]
+    },
+    {
+      "id": 1662,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "kunsthistorisches_museum_cafe.jpg",
+      "folder": "2025\\travel",
+      "location": "Vienna, Austria",
+      "name": "Kunsthistorisches Museum Cafe",
+      "description": "Grand cupola hall cafe with circular red seating arrangement, marble columns, and ornate Renaissance-style architecture viewed from above",
+      "tags": ["Vienna", "Museum", "Cafe", "Architecture", "Interior"]
+    },
+    {
+      "id": 1663,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "cologne_cathedral.jpg",
+      "folder": "2025\\travel",
+      "location": "Cologne, Germany",
+      "name": "Cologne Cathedral",
+      "description": "Illuminated Gothic twin spires of Cologne Cathedral at night with dramatic sky",
+      "tags": ["Cologne", "Cathedral", "Gothic", "Night", "Architecture"]
+    },
+    {
+      "id": 1664,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "kolner_dom_christmas_market.jpg",
+      "folder": "2025\\travel",
+      "location": "Cologne, Germany",
+      "name": "Kölner Dom Christmas Market",
+      "description": "Festive Christmas market with red-lit stalls in front of illuminated Cologne Cathedral at night",
+      "tags": ["Cologne", "Christmas Market", "Cathedral", "Night", "Festive"]
+    },
+    {
+      "id": 1665,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "loen_skylift_restaurant.jpg",
+      "folder": "2025\\travel",
+      "location": "Loen, Norway",
+      "name": "Loen Skylift Restaurant",
+      "description": "Mountain-top restaurant interior with floor-to-ceiling windows offering panoramic views of snow-capped Norwegian mountains and fjord",
+      "tags": ["Norway", "Restaurant", "Mountain", "Views", "Interior"]
+    },
+    {
+      "id": 1666,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "vasa_museum_1.jpg",
+      "folder": "2025\\travel",
+      "location": "Stockholm, Sweden",
+      "name": "Vasa Museum",
+      "description": "Preserved 17th-century warship Vasa displayed in museum, showing ornately carved stern with golden decorations",
+      "tags": ["Stockholm", "Museum", "Ship", "Maritime", "Historic"]
+    },
+    {
+      "id": 1667,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "vasa_museum_2.jpg",
+      "folder": "2025\\travel",
+      "location": "Stockholm, Sweden",
+      "name": "Vasa Museum",
+      "description": "Close-up view of the massive wooden hull of the Vasa warship displayed in the museum",
+      "tags": ["Stockholm", "Museum", "Ship", "Maritime", "Historic"]
+    },
+    {
+      "id": 1668,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "scotsman_picturehouse.jpg",
+      "folder": "2025\\travel",
+      "location": "Edinburgh, United Kingdom",
+      "name": "The Scotsman Picturehouse",
+      "description": "Luxurious cinema interior with plush red velvet seats, ornate geometric ceiling, and atmospheric lighting",
+      "tags": ["Edinburgh", "Cinema", "Interior", "Historic", "Luxury"]
+    },
+    {
+      "id": 1669,
+      "create_date": "2025-12-22T00:00:00.000Z",
+      "edit_date": "2025-12-22T00:00:00.000Z",
+      "fileName": "loen_skylift_restaurant2.jpg",
+      "folder": "2025\\travel",
+      "location": "Loen, Norway",
+      "name": "Loen Skylift Restaurant",
+      "description": "Modern glass restaurant building perched on mountain edge at night, with dramatic views over fjord and valley below",
+      "tags": [
+        "Norway",
+        "Restaurant",
+        "Mountain",
+        "Modern",
+        "Architecture",
+        "Night"
+      ]
     }
   ]
 }
