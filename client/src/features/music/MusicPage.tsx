@@ -1,10 +1,4 @@
-import {
-  type JSX,
-  useEffect,
-  useEffectEvent,
-  useState,
-  useTransition,
-} from 'react';
+import type { JSX } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
@@ -15,25 +9,11 @@ import useMusic from './useMusic';
 import styled from 'styled-components';
 
 /**
- * Displays a list of favorite YouTube videos in a virtualized scrollable list,
- * leveraging useTransition to defer updating the list when new data arrives.
+ * Displays a list of favorite YouTube videos.
  */
 const MusicPage = (): JSX.Element | null => {
   const title = 'YouTube Videos';
   const { data, error, isError, isLoading } = useMusic();
-
-  // Transition for deferring heavy list updates
-  const [isPending, startTransition] = useTransition();
-  const [items, setItems] = useState(data?.items ?? []);
-
-  const updateItemsEvent = useEffectEvent(() => {
-    startTransition(() => {
-      setItems(data?.items ?? []);
-    });
-  });
-  useEffect(() => {
-    updateItemsEvent();
-  }, [data?.items]);
 
   return (
     <>
@@ -41,10 +21,7 @@ const MusicPage = (): JSX.Element | null => {
       <Layout.Main>
         <PageTitle title={title} />
 
-        <Section
-          aria-busy={isPending}
-          aria-label="Favorite YouTube videos"
-        >
+        <Section aria-label="Favorite YouTube videos">
           <Description>
             These are some of my favorite YouTube videos.
           </Description>
@@ -54,12 +31,12 @@ const MusicPage = (): JSX.Element | null => {
             isError={isError}
             isLoading={isLoading}
           >
-            {items.length > 0 ? (
+            {data?.items && data.items.length > 0 ? (
               <ul>
-                {items.map((item, index) => (
+                {data.items.map((item, index) => (
                   <ItemRenderer
                     key={item.id}
-                    data={{ items }}
+                    data={data}
                     index={index}
                   />
                 ))}

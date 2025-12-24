@@ -1,6 +1,3 @@
-import { z } from 'zod';
-
-import type { MenuAdd } from '../../types/MenuAdd.js';
 import type { MenuItem } from '../../types/MenuItem.js';
 import type { Menus } from '../../types/Menus.js';
 import type { PageMenu } from '../../types/PageMenu.js';
@@ -8,61 +5,11 @@ import type { Pages } from '../../types/Pages.js';
 import type { Parent } from '../../types/Parent.js';
 
 import { Logger } from '../../utils/logger.js';
-import { cleanUpData } from '../../utils/objectUtil.js';
-import { safeParse } from '../../utils/zodHelper.js';
-// eslint-disable-next-line import/no-cycle
 import { PagesService } from '../pages/PagesService.js';
 
 import { mapPageMenuToMenuItem } from './mapPageMenuToMenuItem.js';
 
-const menuAddSchema = z
-  .object({
-    id: z.number(),
-    name: z
-      .string({ message: 'Name must be a string' })
-      .min(1, 'Name is required.')
-      .max(500, 'Name max length exceeded: 500')
-      .trim(),
-    parentItems: z
-      .object({
-        id: z.number(),
-        seq: z.number(),
-      })
-      .array()
-      .min(1),
-    to: z.string().trim().optional(),
-    url: z.string().trim().optional(),
-  })
-  .refine(
-    (data) => data.to ?? data.url,
-    'Either to or url should be filled in.',
-  );
-type addData = z.infer<typeof menuAddSchema>;
-
 export class MenuService {
-  // Add item
-  public async addItem(item: MenuAdd): Promise<boolean> {
-    Logger.info(`MenuService: addItem ->`);
-
-    // Get all items
-    const pages = await new PagesService().getItems();
-    if (!pages) {
-      return Promise.reject(new Error('No items found'));
-    }
-
-    // Remove undefined values and sort
-    const newItem = cleanUpData<MenuAdd>(item);
-    // Validate data
-    const valid = safeParse<addData>(menuAddSchema, newItem);
-    if (valid.error) {
-      throw new Error(`addItem -> ${JSON.stringify(valid.error)}`);
-    }
-
-    // Add - Note: This is incomplete as we can't directly write to PagesService
-    // TODO: Expose a public write method in PagesService
-    return true;
-  }
-
   // 0. Get Menu | Admin > Pages
   public async getMenu(): Promise<Menus | undefined> {
     Logger.info(`MenuService: getMenu -> `);
@@ -72,7 +19,7 @@ export class MenuService {
       if (!data?.items) {
         return undefined;
       }
-      const ret = this.buildMenu(data.items);
+      const ret = this.buildRecursiveMenu(data.items);
       return {
         items: ret ?? [],
         metadata: data.metadata,
@@ -83,16 +30,80 @@ export class MenuService {
     }
   }
 
-  // 1. Get built menu
-  private buildMenu(items?: readonly PageMenu[]): MenuItem[] | undefined {
+  // 2. Build children recursively for a given parent
+  private buildChildren(
+    parentId: number,
+    menus: readonly PageMenu[],
+    pages: readonly PageMenu[],
+    allItems: readonly PageMenu[],
+  ): MenuItem[] | undefined {
+    try {
+      // Find direct children (both menus and pages)
+      const childMenus: MenuItem[] = [];
+      const childPages: MenuItem[] = [];
+
+      // Find child menus
+      menus.forEach((menu) => {
+        menu.parentItems?.forEach((parent) => {
+          if (parent.id === parentId) {
+            const menuItem = mapPageMenuToMenuItem(menu, parent);
+            // Recursively build this menu's children
+            const children = this.buildChildren(
+              menu.id,
+              menus,
+              pages,
+              allItems,
+            );
+            const itemWithChildren: MenuItem = children
+              ? { ...menuItem, items: children }
+              : menuItem;
+            childMenus.push(itemWithChildren);
+          }
+        });
+      });
+
+      // Find child pages
+      pages.forEach((page) => {
+        page.parentItems?.forEach((parent) => {
+          if (parent.id === parentId) {
+            childPages.push(mapPageMenuToMenuItem(page, parent));
+          }
+        });
+      });
+
+      // Combine and sort children
+      const allChildren = [...childMenus, ...childPages];
+
+      if (allChildren.length === 0) {
+        return undefined;
+      }
+
+      // Sort by parent sortBy preference
+      const parent = allItems.find((x) => x.id === parentId);
+      const sortBy = parent?.parentItems?.[0]?.sortBy ?? 'name';
+
+      const sorted =
+        sortBy === 'seq'
+          ? allChildren.toSorted(
+              (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
+            )
+          : allChildren.toSorted((a, b) => a.title.localeCompare(b.title));
+
+      return sorted;
+    } catch (error) {
+      Logger.error(`MenuService: buildChildren -> ${String(error)}`);
+      return undefined;
+    }
+  }
+
+  // 1. Build recursive menu structure
+  private buildRecursiveMenu(
+    items?: readonly PageMenu[],
+  ): MenuItem[] | undefined {
     try {
       if (!items) {
         return undefined;
       }
-      // Segment the data
-      const rootMenus = items.filter((x) => x.type === 'root');
-      const menus = items.filter((x) => x.type === 'menu');
-      const pages = items.filter((x) => x.type === 'page');
 
       const defaultParent = {
         id: 0,
@@ -100,102 +111,43 @@ export class MenuService {
         sortBy: 'name',
       } as Parent;
 
-      // Convert root menus to menu items and sort by seq
-      const rootMenusTemp = rootMenus
+      // Segment the data
+      const rootMenus = items.filter((x) => x.type === 'root');
+      const menus = items.filter((x) => x.type === 'menu');
+      const pages = items.filter((x) => x.type === 'page');
+
+      // Build root menu items
+      const rootMenuItems = rootMenus
         .map((item) =>
           mapPageMenuToMenuItem(item, item.parentItems?.[0] ?? defaultParent),
         )
         .toSorted((a, b) => a.title.localeCompare(b.title));
 
-      // Loop through root menus
-      const arr: MenuItem[] = [];
-      rootMenusTemp.forEach((item) => {
-        // Add the root menu to the return array
-        arr.push(item);
-        // Find the children of the root menu
-        const ret2: MenuItem[] = [];
-        menus.map((menu) => {
-          menu.parentItems?.forEach((parent) => {
-            if (item.id === parent.id) {
-              ret2.push(mapPageMenuToMenuItem(menu, parent));
-            }
-          });
-        });
-        // Sort the menu items as specified by parent
-        const sorted =
-          item.parentItem?.sortBy === 'seq'
-            ? ret2.toSorted(
-                (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
-              )
-            : ret2.toSorted((a, b) => a.title.localeCompare(b.title));
-        // Add the menu items to the return array
-        arr.push(...sorted);
+      // Recursively build children for each root menu
+      const menuTree: MenuItem[] = rootMenuItems.map((rootItem) => {
+        const children = this.buildChildren(rootItem.id, menus, pages, items);
+        return children ? { ...rootItem, items: children } : rootItem;
       });
 
-      // Add the page items to the return array
-      const menusPlusPages = this.getPages(arr, pages) ?? [];
-
-      // Add in orphans
+      // Add orphans (items without parents)
       const menuOrphans = menus
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => ({ ...x, issue: 'no parent' }))
         .map((x) => mapPageMenuToMenuItem(x, defaultParent));
+
       const pageOrphans = pages
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => ({ ...x, issue: 'no parent' }))
         .map((x) => mapPageMenuToMenuItem(x, defaultParent));
 
-      const ret: MenuItem[] = menusPlusPages.concat(
-        ...menuOrphans,
-        ...pageOrphans,
-      );
-
-      return ret.length > 0 ? ret : undefined;
+      const result = [...menuTree, ...menuOrphans, ...pageOrphans];
+      return result.length > 0 ? result : undefined;
     } catch (error) {
-      Logger.error(`MenuService: buildMenu -> ${String(error)}`);
+      Logger.error(`MenuService: buildRecursiveMenu -> ${String(error)}`);
+      return undefined;
     }
-    return undefined;
   }
 
   // 0. Get all data
   private async getItems(): Promise<Pages | undefined> {
     return new PagesService().getItems();
-  }
-
-  //  2. Add children to the menu
-  private getPages(items?: readonly MenuItem[], pages?: readonly PageMenu[]) {
-    try {
-      if (!items || items.length === 0 || !pages || pages.length === 0) {
-        return items;
-      }
-      const ret: MenuItem[] = [];
-      items.forEach((item) => {
-        // Add current parent
-        ret.push(item);
-
-        const p: MenuItem[] = [];
-        pages.forEach((x) => {
-          x.parentItems?.forEach((parent) => {
-            if (item.id === parent.id) {
-              p.push(mapPageMenuToMenuItem(x, parent));
-            }
-          });
-        });
-
-        // Sort items
-        const sorted =
-          item.parentItem?.sortBy === 'seq'
-            ? p.toSorted(
-                (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
-              )
-            : p.toSorted((a, b) => a.title.localeCompare(b.title));
-        // Add to return
-        ret.push(...sorted);
-      });
-      return ret;
-    } catch (error) {
-      Logger.error(`MenuService: getPages --> Error: ${String(error)}`);
-      throw error;
-    }
   }
 }

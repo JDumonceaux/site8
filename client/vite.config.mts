@@ -19,6 +19,17 @@ export default defineConfig({
   ].filter((p): p is Plugin => !!p), // CHANGED: typed filter instead of Boolean
   resolve: {
     alias: {
+      '@app': '/src/app',
+      '@components': '/src/components',
+      '@content': '/src/content',
+      '@features': '/src/features',
+      '@hooks': '/src/hooks',
+      '@lib': '/src/lib',
+      '@providers': '/src/providers',
+      '@store': '/src/store',
+      '@styles': '/src/styles',
+      '@types': '/src/types',
+      '@unused': '/src/unused',
       components: '/src/components',
       content: '/src/content',
       features: '/src/features',

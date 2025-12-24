@@ -3,7 +3,7 @@ import type { Item } from './Item.js';
 import type { Metadata } from './Metadata.js';
 
 export type ItemsFile = {
-  readonly metadata: Metadata;
   readonly artists?: Artist[] | undefined;
   readonly items: Item[] | undefined;
+  readonly metadata: Metadata;
 };

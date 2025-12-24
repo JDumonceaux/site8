@@ -36,8 +36,9 @@ export default Main;
 
 // Styled component for the main layout
 const MainContainer = styled.main`
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  padding: 1rem;
+  max-width: 1920px;
+  margin: 50px auto 0;
+  min-height: 100vh;
+  color: var(--palette-text);
+  background-color: var(--palette-background);
 `;

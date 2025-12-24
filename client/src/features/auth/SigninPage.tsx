@@ -1,55 +1,34 @@
-import type { JSX } from 'react';
+import { type JSX, useActionState } from 'react';
 
 import Button from '@components/core/button/Button';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import useForm from '@hooks/useForm';
-import { safeParse } from '@lib/utils/zodHelper';
 import { emailAddress, password } from '@types/Auth';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import styled from 'styled-components';
+import { StyledBottomMsg, StyledForm } from './AuthFormStyles';
+import { createFormAction } from './authFormHelpers';
+import FormMessage from './FormMessage';
 
 const schema = z.object({
   emailAddress,
   password,
 });
 
+type FormValues = z.infer<typeof schema>;
+
 const SigninPage = (): JSX.Element => {
   const title = 'Sign-In';
 
-  type FormValues = z.infer<typeof schema>;
-  type FormKeys = keyof FormValues;
+  const { authSignIn } = useAuth();
 
-  const { authSignIn, error, isLoading } = useAuth();
+  const signInAction = createFormAction(schema, async (data: FormValues) => {
+    await authSignIn(data.emailAddress, data.password);
+  });
 
-  const defaultFormValues: FormValues = {
-    emailAddress: '',
-    password: '',
-  };
-
-  const { formValues, getDefaultProps } =
-    useForm<FormValues>(defaultFormValues);
-
-  const validateForm = () => {
-    const result = safeParse<FormValues>(schema, formValues);
-    return result.success;
-  };
-
-  const handleSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    if (!validateForm()) return;
-
-    void (async () => {
-      try {
-        await authSignIn(formValues.emailAddress, formValues.password);
-      } catch {
-        // Handle sign-in error
-      }
-    })();
-  };
+  const [state, formAction, isPending] = useActionState(signInAction, {});
 
   return (
     <>
@@ -62,29 +41,36 @@ const SigninPage = (): JSX.Element => {
           />
         }
         title="Sign In"
-        error={error}
       >
         <StyledForm
           noValidate
-          onSubmit={handleSubmit}
+          action={formAction}
         >
+          <FormMessage message={state.message} />
           <Input.Email
             required
+            errorText={state.errors?.emailAddress}
             label="Email Address"
             multiple={false}
             spellCheck="false"
             autoComplete="email"
             inputMode="email"
+            name="emailAddress"
             placeholder="Enter Email Address"
-            {...getDefaultProps('emailAddress' as FormKeys)}
           />
           <Input.Password
+            errorText={state.errors?.password}
             label="Password"
+            name="password"
             autoComplete="current-password"
             placeholder="Enter Password"
-            {...getDefaultProps('password' as FormKeys)}
           />
-          <Button id="login">{isLoading ? 'Processing' : 'Submit'}</Button>
+          <Button
+            disabled={isPending}
+            id="login"
+          >
+            {isPending ? 'Processing' : 'Submit'}
+          </Button>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/signup">Sign up</StyledLink>
@@ -97,13 +83,3 @@ const SigninPage = (): JSX.Element => {
 
 SigninPage.displayName = 'SigninPage';
 export default SigninPage;
-
-const StyledForm = styled.form`
-  padding: 20px 0;
-`;
-
-const StyledBottomMsg = styled.div`
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-between;
-`;

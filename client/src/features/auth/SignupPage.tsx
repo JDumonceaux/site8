@@ -1,15 +1,16 @@
-import type { JSX } from 'react';
+import { type JSX, useActionState } from 'react';
 
 import Button from '@components/core/button/Button';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
-import useForm from '@hooks/useForm';
-import { safeParse } from '@lib/utils/zodHelper';
 import { emailAddress, password } from '@types/Auth';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
+import { InstDiv, StyledBottomMsg, StyledForm } from './AuthFormStyles';
+import { createFormAction } from './authFormHelpers';
+import FormMessage from './FormMessage';
 import styled from 'styled-components';
 
 const schema = z.object({
@@ -17,40 +18,18 @@ const schema = z.object({
   password,
 });
 
+type FormValues = z.infer<typeof schema>;
+
 const SignupPage = (): JSX.Element => {
   const title = 'Sign-Up';
 
-  type FormValues = z.infer<typeof schema>;
-  type FormKeys = keyof FormValues;
+  const { authSignInWithRedirect, authSignUp } = useAuth();
 
-  const { authSignInWithRedirect, authSignUp, error, isLoading } = useAuth();
+  const signUpAction = createFormAction(schema, async (data: FormValues) => {
+    await authSignUp(data.emailAddress, data.password);
+  });
 
-  const defaultFormValues: FormValues = {
-    emailAddress: '',
-    password: '',
-  };
-
-  const { formValues, getDefaultProps } =
-    useForm<FormValues>(defaultFormValues);
-
-  const validateForm = () => {
-    const result = safeParse<FormValues>(schema, formValues);
-
-    return result.success;
-  };
-
-  const handleSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    if (!validateForm()) return;
-
-    void (async () => {
-      try {
-        await authSignUp(formValues.emailAddress, formValues.password);
-      } catch {
-        // Handle sign-in error
-      }
-    })();
-  };
+  const [state, formAction, isPending] = useActionState(signUpAction, {});
 
   const handleClick = (provider: SocialProvider) => {
     void (async () => {
@@ -74,7 +53,6 @@ const SignupPage = (): JSX.Element => {
           />
         }
         title="Sign Up"
-        error={error}
       >
         <Button
           id="login"
@@ -102,22 +80,25 @@ const SignupPage = (): JSX.Element => {
         </Button>
         <StyledForm
           noValidate
-          onSubmit={handleSubmit}
+          action={formAction}
         >
+          <FormMessage message={state.message} />
           <Input.Email
             required
+            errorText={state.errors?.emailAddress}
             label="Email Address"
             multiple={false}
             spellCheck="false"
             autoComplete="email"
+            name="emailAddress"
             placeholder="Enter your email"
-            {...getDefaultProps('emailAddress' as FormKeys)}
           />
           <Input.Password
+            errorText={state.errors?.password}
             label="Password"
+            name="password"
             autoComplete="new-password"
             placeholder="Enter your password"
-            {...getDefaultProps('password' as FormKeys)}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your
@@ -126,8 +107,9 @@ const SignupPage = (): JSX.Element => {
           <Button
             id="login"
             variant="secondary"
+            disabled={isPending}
           >
-            {isLoading ? 'Processing' : 'Submit'}
+            {isPending ? 'Processing' : 'Submit'}
           </Button>
         </StyledForm>
         <TermsDiv>
@@ -137,10 +119,10 @@ const SignupPage = (): JSX.Element => {
           <StyledLink to="/cookie-use">Cookie Use Policy</StyledLink> of this
           site.
         </TermsDiv>
-        <StyledBottomMsg>
+        <StyledBottomMsgCenter>
           Already have an account?
           <StyledLink to="/signin">Sign in</StyledLink>
-        </StyledBottomMsg>
+        </StyledBottomMsgCenter>
       </AuthContainer>
     </>
   );
@@ -149,20 +131,12 @@ const SignupPage = (): JSX.Element => {
 SignupPage.displayName = 'SignupPage';
 export default SignupPage;
 
-const StyledForm = styled.form`
-  padding: 20px 0;
-`;
-const StyledBottomMsg = styled.div`
+const StyledBottomMsgCenter = styled.div`
   padding: 20px 0;
   text-align: center;
 `;
+
 const TermsDiv = styled.div`
   padding: 16px 0;
   font-size: 0.7rem;
-`;
-const InstDiv = styled.div`
-  padding: 16px 0;
-  font-size: 0.9rem;
-  text-wrap: pretty;
-  text-align: center;
 `;

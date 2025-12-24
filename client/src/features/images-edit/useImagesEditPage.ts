@@ -1,26 +1,32 @@
-import { useEffect, useEffectEvent, useState, useTransition } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useFormArray from '@hooks/useFormArray';
 import { getSRC } from '@lib/utils/helpers';
 import { getDefaultObject } from '@lib/utils/objectUtil';
-import type { Image } from '@types';
+import type { FormState, Image } from '@types';
 import type { ImageAddExt } from './ImageAdd';
 import useImagesEdit from './useImagesEdit';
 
-const useImagesEditPage = () => {
+const useImagesEditPage = (submitState: FormState<null>) => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
   const [displayData, setDisplayData] = useState<Image[]>([]);
 
-  const [isPending, startTransition] = useTransition();
   const { setMessage } = useSnackbar();
 
   // Create a form
   const { formValues, getFieldValue, setFieldValue, setFormValues } =
     useFormArray<ImageAddExt>();
 
-  const { data, isError } = useImagesEdit();
+  const { data, isError, isPending } = useImagesEdit();
+
+  // Show messages from form submission
+  useEffect(() => {
+    if (submitState.message) {
+      setMessage(submitState.message);
+    }
+  }, [submitState.message, setMessage]);
 
   // Map data to form values (move above usage)
   const mapDataToForm = (items: Image[] | undefined) => {
@@ -106,44 +112,15 @@ const useImagesEditPage = () => {
 
   const handleRefresh = () => {
     setMessage('Updating...');
-    startTransition(() => {
-      // fetchData();
-    });
+    // TODO: Implement refresh logic
+    // queryClient.invalidateQueries({ queryKey: ['images-edit'] });
     setMessage('Done');
-  };
-
-  // Only submit updated records
-  // Removed getUpdates and all originalValues logic
-
-  const handleSubmit = () => {
-    setMessage('Saving...');
-    // setIsProcessing(true);
-    // saveItems()
-    //   .then((result) => {
-    //     if (result) {
-    //       setMessage('Saved');
-    //       handleRefresh();
-    //     } else {
-    //       setMessage(`Error saving ${error}`);
-    //     }
-    //   })
-    //   .catch((error_: unknown) => {
-    //     if (error_ instanceof Error) {
-    //       setMessage(`An unexpected error occurred: ${error_.message}`);
-    //     } else {
-    //       setMessage('An unexpected error occurred');
-    //     }
-    //   })
-    //   .finally(() => {
-    //     //   setIsProcessing(false);
-    //   });
   };
 
   const handleScan = () => {
     setMessage('Scanning...');
-    startTransition(() => {
-      //  scanForNewItems();
-    });
+    // TODO: Implement scan logic
+    // await scanForNewItems();
     setMessage('Done');
   };
 
@@ -186,7 +163,6 @@ const useImagesEditPage = () => {
     currentFilter: filter,
     currentFolder,
     data: formValues,
-    // isPending,
     getFieldValue,
     handleChange,
     handleDelete,
@@ -195,8 +171,6 @@ const useImagesEditPage = () => {
     handleFolderSelect,
     handleRefresh,
     handleScan,
-    handleSubmit,
-    // data,
     isError,
     isPending,
     setFieldValue,

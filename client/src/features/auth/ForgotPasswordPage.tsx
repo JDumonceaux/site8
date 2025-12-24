@@ -1,56 +1,39 @@
-import React, { type JSX } from 'react';
+import { type JSX, useActionState } from 'react';
 
 import Button from '@components/core/button/Button';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import useForm from '@hooks/useForm';
-import { safeParse } from '@lib/utils/zodHelper';
-import { emailAddress, password } from '@types/Auth';
+import { emailAddress } from '@types/Auth';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import styled from 'styled-components';
-
-// Define Zod Shape
+import { InstDiv, StyledBottomMsg, StyledForm } from './AuthFormStyles';
+import { createFormAction } from './authFormHelpers';
+import FormMessage from './FormMessage';
 const schema = z.object({
   emailAddress,
-  password,
 });
+
+type FormValues = z.infer<typeof schema>;
 
 const ForgotPasswordPage = (): JSX.Element => {
   const title = 'Forgot Password';
 
-  type FormValues = z.infer<typeof schema>;
+  const { authResetPassword } = useAuth();
 
-  const { authResetPassword, error, isLoading } = useAuth();
+  const resetPasswordAction = createFormAction(
+    schema,
+    async (data: FormValues) => {
+      await authResetPassword(data.emailAddress);
+    },
+    'Password reset email sent',
+  );
 
-  const defaultFormValues: FormValues = {
-    emailAddress: '',
-    password: '',
-  };
-
-  const { formValues, getDefaultProps, setErrors } =
-    useForm<FormValues>(defaultFormValues);
-
-  const validateForm = () => {
-    const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.error?.issues ?? null);
-    return result.success;
-  };
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (validateForm()) {
-      void (async () => {
-        try {
-          await authResetPassword(formValues.emailAddress);
-        } catch {
-          // Handle error
-        }
-      })();
-    }
-  };
+  const [state, formAction, isPending] = useActionState(
+    resetPasswordAction,
+    {},
+  );
 
   return (
     <>
@@ -63,31 +46,33 @@ const ForgotPasswordPage = (): JSX.Element => {
           />
         }
         title="Forgot Password"
-        error={error}
       >
         <StyledForm
           noValidate
-          onSubmit={handleSubmit}
+          action={formAction}
         >
+          <FormMessage message={state.message} />
           <Input.Email
             required
+            errorText={state.errors?.emailAddress}
             label="Email Address"
             multiple={false}
             spellCheck="false"
             autoComplete="email"
             inputMode="email"
+            name="emailAddress"
             placeholder="Enter Email Address"
-            {...getDefaultProps('emailAddress')}
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your
             account.
           </InstDiv>
           <Button
+            disabled={isPending}
             id="login"
             type="submit"
           >
-            {isLoading ? 'Processing' : 'Request Password Change'}
+            {isPending ? 'Processing' : 'Request Password Change'}
           </Button>
         </StyledForm>
         <StyledBottomMsg>
@@ -100,20 +85,3 @@ const ForgotPasswordPage = (): JSX.Element => {
 };
 
 export default ForgotPasswordPage;
-
-const StyledForm = styled.form`
-  padding: 20px 0;
-`;
-
-const InstDiv = styled.div`
-  padding: 16px 0;
-  font-size: 0.9rem;
-  text-wrap: pretty;
-  text-align: center;
-`;
-
-const StyledBottomMsg = styled.div`
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-between;
-`;

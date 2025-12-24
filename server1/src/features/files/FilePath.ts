@@ -50,6 +50,9 @@ const FilePath = {
   getImageDirAbsolute: (): string =>
     joinPath(appRootAbsolute, 'client', 'public', 'images'),
 
+  getPagesDir: (fileName: string): string =>
+    joinPath(FilePath.getDataDirAbsolute(), 'pages', fileName),
+
   getServerFeatures: (): string =>
     joinPath(appRootAbsolute, 'server1', 'src', '@features'),
 

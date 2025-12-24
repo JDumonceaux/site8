@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import { getURLPath } from '@lib/utils/helpers';
+import type { MenuItem } from '../../types/MenuItem';
 import ItemRender from './ItemRender';
 import styled from 'styled-components';
 
@@ -12,20 +13,27 @@ type SubjectMenuProps = {
 };
 
 const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
-  const { getMenu, getOtherMenus, isError, isLoading } = useMenu();
+  const { findMenuItem, getRootMenuItems, isError, isLoading } = useMenu();
   const { pathname } = useLocation();
 
   const [pn1] = getURLPath(pathname) ?? [];
-  const data = getMenu(pn1);
-  const data2 = getOtherMenus(data?.id ?? 0);
+  const currentItem = pn1 ? findMenuItem(pn1) : undefined;
+  const rootItems = getRootMenuItems();
 
-  const mappedData2 = data2.map((x) => (
-    <ItemRender
-      key={x.id}
-      item={x}
-      level={1}
-    />
-  ));
+  // Render menu items recursively
+  const renderMenuItems = (items?: MenuItem[], level = 1): JSX.Element[] => {
+    if (!items) return [];
+
+    return items.map((item) => (
+      <ItemRender
+        key={item.id}
+        item={item}
+        level={level}
+      >
+        {item.items ? renderMenuItems(item.items, level + 1) : null}
+      </ItemRender>
+    ));
+  };
 
   return (
     <StyledNav ref={ref}>
@@ -34,18 +42,16 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
           isError={isError}
           isLoading={isLoading}
         >
-          <ItemRender
-            item={data}
-            level={0}
-          />
-          <br />
-          <br />
-          <ItemRender
-            item={data}
-            level={0}
-          >
-            {mappedData2}
-          </ItemRender>
+          {currentItem ? (
+            <ItemRender
+              item={currentItem}
+              level={0}
+            >
+              {currentItem.items ? renderMenuItems(currentItem.items, 1) : null}
+            </ItemRender>
+          ) : (
+            <>{renderMenuItems(rootItems, 0)}</>
+          )}
         </LoadingWrapper>
       </StyledContent>
     </StyledNav>

@@ -18,8 +18,8 @@ const HomeMenu = (): JSX.Element => {
         {data?.items?.map((x) => {
           switch (x.type) {
             case 'menu': {
-              tempTo = x.to ? `${tempTo}/${x.to}` : tempTo;
-              return <StyledMenuDiv key={x.id}>{x.name}</StyledMenuDiv>;
+              tempTo = x.url ? `${tempTo}/${x.url}` : tempTo;
+              return <StyledMenuDiv key={x.id}>{x.title}</StyledMenuDiv>;
             }
             case 'page': {
               return (
@@ -32,8 +32,8 @@ const HomeMenu = (): JSX.Element => {
               );
             }
             case 'root': {
-              tempTo = x.to ?? '';
-              return <StyledRootDiv key={x.id}>{x.name}</StyledRootDiv>;
+              tempTo = x.url ?? '';
+              return <StyledRootDiv key={x.id}>{x.title}</StyledRootDiv>;
             }
             default: {
               return null;

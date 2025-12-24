@@ -8,12 +8,8 @@ export const mapPageMenuToMenuItem = (
 ): MenuItem => {
   return {
     id: item.id,
-    issue: undefined,
-    line: 0,
     parentItem: currParent,
     title: item.title,
-    to: item.to,
-    toComplete: item.toComplete,
     type: item.type,
     url: item.url,
   };

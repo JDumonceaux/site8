@@ -7,11 +7,10 @@ import styled from 'styled-components';
 type ItemsProps = {
   readonly data?: null | Places;
   readonly id?: number;
-  readonly isLoading?: boolean;
 };
 
 // Items component displays a list of travel destinations
-const Items = ({ data, id, isLoading }: ItemsProps): JSX.Element | null => {
+const Items = ({ data, id }: ItemsProps): JSX.Element | null => {
   // TODO: TEMPORARY - Remove this delay after testing skeleton
   const [showDelay, setShowDelay] = useState(true);
 
@@ -24,7 +23,7 @@ const Items = ({ data, id, isLoading }: ItemsProps): JSX.Element | null => {
     };
   }, []);
 
-  if (isLoading || showDelay) {
+  if (showDelay) {
     return <Skeleton />;
   }
 

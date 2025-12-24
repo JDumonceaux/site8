@@ -1,12 +1,14 @@
 import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useEffectEvent } from 'react';
 
-import { useAxios } from '@hooks/axios/useAxios';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
 import { getSRC } from '@lib/utils/helpers';
 import { safeParse } from '@lib/utils/zodHelper';
 import type { Image } from '@types/Image';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 import imageEditSchema, { type FormKeys, type FormType } from './schema';
 import useImage from './useImage';
 
@@ -45,11 +47,37 @@ const defaultForm: FormType = {
 export const useImageEdit = (
   rawId: null | string,
 ): Readonly<UseImageEditReturn> => {
-  const { patchData, putData } = useAxios<Image>();
+  const queryClient = useQueryClient();
+  const { setMessage } = useSnackbar();
   const { data: imageData } = useImage(rawId);
 
   const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
     useForm<FormType>(defaultForm);
+
+  // TanStack Query mutation for saving images
+  const mutation = useMutation({
+    mutationFn: async (payload: Image) => {
+      if (payload.id > 0) {
+        return axios.patch<Image>(
+          `${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`,
+          payload,
+        );
+      }
+      return axios.put<Image>(ServiceUrl.ENDPOINT_IMAGE, payload);
+    },
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        setMessage(`Error: ${error.message}`);
+      } else {
+        setMessage('Failed to save image');
+      }
+    },
+    onSuccess: () => {
+      setMessage('Saved successfully');
+      queryClient.invalidateQueries({ queryKey: ['image'] });
+      setIsSaved(true);
+    },
+  });
 
   // Initialize or update form when data arrives
   useEffect(() => {
@@ -90,11 +118,9 @@ export const useImageEdit = (
 
   // Save state
   const [isSaved, setIsSaved] = useState(true);
-  const [isProcessing, setIsProcessing] = useState(false);
 
   const saveItem = useCallback(async () => {
     if (!validateForm()) return false;
-    setIsProcessing(true);
 
     const payload: Image = {
       fileName: formValues.fileName,
@@ -106,18 +132,13 @@ export const useImageEdit = (
     };
 
     try {
-      await (payload.id > 0
-        ? patchData(`${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`, payload)
-        : putData(ServiceUrl.ENDPOINT_IMAGE, payload));
-      setIsSaved(true);
+      await mutation.mutateAsync(payload);
       return true;
     } catch (error) {
       console.error('Failed to save image:', error);
       return false;
-    } finally {
-      setIsProcessing(false);
     }
-  }, [formValues, patchData, putData, validateForm]);
+  }, [formValues, mutation, validateForm]);
 
   const resetForm = useCallback(() => {
     if (imageData) {
@@ -173,7 +194,7 @@ export const useImageEdit = (
     clearForm,
     formValues,
     getDefaultProps,
-    isProcessing,
+    isProcessing: mutation.isPending,
     isSaved,
     resetForm,
     saveItem,

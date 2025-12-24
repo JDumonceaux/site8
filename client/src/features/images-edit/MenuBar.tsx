@@ -10,7 +10,7 @@ type Props = {
   readonly handleClear?: () => void;
   readonly handleRefresh?: () => void;
   readonly handleScan?: () => void;
-  readonly handleSubmit?: () => void;
+  readonly isSubmitting?: boolean;
 };
 
 const MenuBar = ({
@@ -18,7 +18,7 @@ const MenuBar = ({
   handleClear,
   handleRefresh,
   handleScan,
-  handleSubmit,
+  isSubmitting,
 }: Props): JSX.Element => {
   const renderButton = (
     testId: string,
@@ -79,7 +79,13 @@ const MenuBar = ({
       <div>
         {renderButton('button-refresh', handleRefresh, 'button', 'Refresh')}
         {renderButton('button-clear', handleClear, 'button', 'Clear')}
-        {renderButton('button-save', handleSubmit, 'submit', 'Save')}
+        <StyledPlainButton
+          data-testid="button-save"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Saving...' : 'Save'}
+        </StyledPlainButton>
       </div>
     </div>
   );

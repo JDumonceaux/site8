@@ -14,9 +14,9 @@ const FileUploadPage = (): JSX.Element => {
   const [status, setStatus] = useState<UploadStatus>('idle');
   const [uploadProgress, setUploadProgress] = useState(0);
 
-  const handleFileChange = (error: ChangeEvent<HTMLInputElement>) => {
-    if (error.target.files) {
-      setFile(error.target.files[0]);
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
     }
   };
 

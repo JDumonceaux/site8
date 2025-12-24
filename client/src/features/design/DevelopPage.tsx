@@ -47,9 +47,9 @@ const pageSchema = z.object({
   year: z.string().min(10).optional(),
 });
 
-const handleSubmit = (error: React.FormEvent) => {
-  error.stopPropagation();
-  error.preventDefault();
+const handleSubmit = (event: React.FormEvent) => {
+  event.stopPropagation();
+  event.preventDefault();
   // handleSave();
 };
 

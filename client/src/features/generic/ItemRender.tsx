@@ -1,12 +1,12 @@
 import React, { type JSX } from 'react';
 
 import StyledNavLink from '@components/link/styled-nav-link/StyledNavLink';
-import type { MenuItem } from '@types';
+import type { MenuItem } from '../../types/MenuItem';
 import styled from 'styled-components';
 
 type ItemRenderProps = {
   readonly children?: React.ReactNode;
-  readonly item: MenuItem | undefined;
+  readonly item: MenuItem;
   readonly level: number;
 };
 
@@ -15,10 +15,6 @@ const ItemRender = ({
   item,
   level,
 }: ItemRenderProps): JSX.Element | null => {
-  if (!item) {
-    return null;
-  }
-
   let content: React.ReactNode;
 
   if (item.type === 'menu') {
@@ -29,10 +25,10 @@ const ItemRender = ({
     };
 
     const Component = menuComponents[level];
-    content = item.toComplete ? (
-      <Component to={item.toComplete}>{item.name}</Component>
+    content = item.url ? (
+      <Component to={item.url}>{item.title}</Component>
     ) : (
-      <div>{item.name}</div>
+      <div>{item.title}</div>
     );
   } else if (item.type === 'page') {
     const pageComponents: Record<number, typeof StyledNavLink> = {
@@ -42,13 +38,13 @@ const ItemRender = ({
     };
 
     const Component = pageComponents[level];
-    content = item.toComplete ? (
-      <Component to={item.toComplete}>{item.name}</Component>
+    content = item.url ? (
+      <Component to={item.url}>{item.title}</Component>
     ) : (
-      <div>{item.name}</div>
+      <div>{item.title}</div>
     );
   } else {
-    content = <div>{item.name}</div>;
+    content = <div>{item.title}</div>;
   }
 
   return (

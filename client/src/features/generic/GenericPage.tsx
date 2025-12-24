@@ -20,8 +20,8 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
 
   const query = useGenericPage(x.pathname.slice(1));
 
-  // Type assertion to handle react-query's type narrowing
-  const pageData: Page | undefined = query.data;
+  const pageData: Page | undefined =
+    query.isSuccess && query.data ? query.data : undefined;
   const deferredData = useDeferredValue(pageData);
 
   const pageTitle: string = deferredData?.title ?? title ?? '';
@@ -29,7 +29,7 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
   return (
     <>
       <Meta title={pageTitle} />
-      <Layout.Main>
+      <Layout.TwoColumn>
         <Layout.Menu>
           <SubjectMenu />
         </Layout.Menu>
@@ -55,7 +55,7 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
           </LoadingWrapper>
           <Layout.Aside />
         </Layout.Content>
-      </Layout.Main>
+      </Layout.TwoColumn>
     </>
   );
 };

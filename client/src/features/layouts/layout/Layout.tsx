@@ -9,6 +9,7 @@ import Main from './Main';
 import Menu from './Menu';
 import Section from './Section';
 import TitleFixed from './TitleFixed';
+import TwoColumn from './TwoColumn';
 
 type LayoutComponent = {
   Article: typeof Article;
@@ -20,6 +21,7 @@ type LayoutComponent = {
   Menu: typeof Menu;
   Section: typeof Section;
   TitleFixed: typeof TitleFixed;
+  TwoColumn: typeof TwoColumn;
 } & React.FC;
 
 const Layout: LayoutComponent = (): React.ReactElement => <>Not defined</>;
@@ -33,5 +35,5 @@ Layout.Main = Main;
 Layout.Menu = Menu;
 Layout.Section = Section;
 Layout.TitleFixed = TitleFixed;
-
+Layout.TwoColumn = TwoColumn;
 export default Layout;

@@ -1,4 +1,4 @@
-import { type JSX, Suspense } from 'react';
+import { type JSX, Suspense, useActionState } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
@@ -10,9 +10,36 @@ import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
 import useImagesEditPage from './useImagesEditPage';
 import styled from 'styled-components';
+import type { FormState } from '@types';
+
+const submitAction = async (
+  _prevState: unknown,
+  _formData: FormData,
+): Promise<FormState<null>> => {
+  try {
+    // TODO: Implement save logic
+    // const updates = JSON.parse(formData.get('updates') as string);
+    // await saveItems(updates);
+
+    return {
+      fieldData: null,
+      message: 'Saved successfully',
+    };
+  } catch (error) {
+    return {
+      fieldData: null,
+      message: error instanceof Error ? error.message : 'Failed to save',
+    };
+  }
+};
 
 const ImagesEditPage = (): JSX.Element => {
   const title = 'Edit Images';
+
+  const [submitState, submitFormAction, isSubmitting] = useActionState(
+    submitAction,
+    { fieldData: null },
+  );
 
   const {
     currentFilter,
@@ -25,10 +52,9 @@ const ImagesEditPage = (): JSX.Element => {
     handleFolderChange,
     handleRefresh,
     handleScan,
-    handleSubmit,
     isError,
     isPending,
-  } = useImagesEditPage();
+  } = useImagesEditPage(submitState);
 
   const { itemsAsListItem } = useArtistsItems();
 
@@ -40,19 +66,19 @@ const ImagesEditPage = (): JSX.Element => {
           <MenuBar
             handleRefresh={handleRefresh}
             handleScan={handleScan}
-            handleSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
           />
         </PageTitle>
       </Layout.TitleFixed>
       <Layout.Flex>
         <Layout.Content>
           <LoadingWrapper
-            isPending={isPending}
+            isPending={isPending || isSubmitting}
             isError={isError}
           >
             <StyledForm
               noValidate
-              onSubmit={handleSubmit}
+              action={submitFormAction}
             >
               {data.map((item) => (
                 <ImageDetail
