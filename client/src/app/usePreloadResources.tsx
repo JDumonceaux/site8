@@ -1,31 +1,25 @@
 import { useEffect, useEffectEvent } from 'react';
+import { preinit, preload } from 'react-dom';
 
 /**
- * Hook that preloads a set of resources with appropriate priorities.
+ * Hook that preloads critical resources using React 19 APIs.
  * Extracted for single-responsibility and easier testing.
  */
 export const usePreloadResources = () => {
   const preloadResourcesEvent = useEffectEvent(() => {
-    const resources = [
-      // These are not loading fast enough to be useful
-      //{ as: 'script', href: '/lib/utils/i18.js', priority: 'high' },
-      //{ as: 'style', href: '/styles/reset.css', priority: 'low' },
-      //{ as: 'style', href: '/styles/main.css', priority: 'high' },
-    ] as const;
+    // Preinit critical stylesheets (blocking, high priority)
+    preinit('/styles/reset.css', { as: 'style', precedence: 'high' });
+    preinit('/styles/main.css', { as: 'style', precedence: 'high' });
 
-    for (const { as, href, priority } of resources) {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = as;
-      link.href = href;
-      // Only set fetchPriority if supported
-      if ('fetchPriority' in link) {
-        link.fetchPriority = priority;
-      }
-      document.head.append(link);
-    }
+    // Preload API endpoints that will be needed soon
+    preload('/api/menu', { as: 'fetch', integrity: '' });
+    preload('/api/user', { as: 'fetch', integrity: '' });
+
+    // Preload fonts if you have custom fonts
+    // preload('/fonts/CustomFont.woff2', { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
   });
+
   useEffect(() => {
     preloadResourcesEvent();
-  }, []);
+  }, [preloadResourcesEvent]);
 };

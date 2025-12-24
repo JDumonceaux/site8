@@ -1,4 +1,10 @@
-import { type ChangeEvent, useCallback, useEffect, useState } from 'react';
+import {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useOptimistic,
+  useState,
+} from 'react';
 import { useEffectEvent } from 'react';
 
 import useSnackbar from '@features/app/snackbar/useSnackbar';
@@ -116,8 +122,12 @@ export const useImageEdit = (
     return result.success;
   }, [formValues, setErrors]);
 
-  // Save state
+  // Save state with optimistic updates
   const [isSaved, setIsSaved] = useState(true);
+  const [optimisticSaved, setOptimisticSaved] = useOptimistic(
+    isSaved,
+    (_state, newValue: boolean) => newValue,
+  );
 
   const saveItem = useCallback(async () => {
     if (!validateForm()) return false;
@@ -132,13 +142,17 @@ export const useImageEdit = (
     };
 
     try {
+      // Optimistically show as saved
+      setOptimisticSaved(true);
       await mutation.mutateAsync(payload);
       return true;
     } catch (error) {
+      // Revert optimistic update on error
+      setOptimisticSaved(false);
       console.error('Failed to save image:', error);
       return false;
     }
-  }, [formValues, mutation, validateForm]);
+  }, [formValues, mutation, setOptimisticSaved, validateForm]);
 
   const resetForm = useCallback(() => {
     if (imageData) {
@@ -195,7 +209,7 @@ export const useImageEdit = (
     formValues,
     getDefaultProps,
     isProcessing: mutation.isPending,
-    isSaved,
+    isSaved: optimisticSaved,
     resetForm,
     saveItem,
     validateForm,

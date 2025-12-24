@@ -1,7 +1,6 @@
 import type { JSX } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
-import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
 import Items from './Items';
@@ -17,7 +16,11 @@ const TravelPage = (): JSX.Element => {
 
   return (
     <>
-      <Meta title={title} />
+      <title>{title}</title>
+      <meta
+        name="description"
+        content="Explore amazing destinations around the world."
+      />
       <Layout.Main>
         <PageTitle title={title} />
         <section>
