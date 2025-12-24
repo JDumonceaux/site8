@@ -4,7 +4,7 @@ import type { MenuAdd } from '../../types/MenuAdd.js';
 import type { MenuItem } from '../../types/MenuItem.js';
 import type { Menus } from '../../types/Menus.js';
 import type { PageMenu } from '../../types/PageMenu.js';
-import type { PagesIndex } from '../../types/PagesIndex.js';
+import type { Pages } from '../../types/Pages.js';
 import type { Parent } from '../../types/Parent.js';
 
 import { Logger } from '../../utils/logger.js';
@@ -67,8 +67,8 @@ export class MenuService {
   public async getMenu(): Promise<Menus | undefined> {
     Logger.info(`MenuService: getMenu -> `);
     try {
-      // 1. Get all the data from pagesIndex.json
-      const data: PagesIndex | undefined = await this.getItems();
+      // 1. Get all the data from pages.json
+      const data: Pages | undefined = await this.getItems();
       if (!data?.items) {
         return undefined;
       }
@@ -158,7 +158,7 @@ export class MenuService {
   }
 
   // 0. Get all data
-  private async getItems(): Promise<PagesIndex | undefined> {
+  private async getItems(): Promise<Pages | undefined> {
     return new PagesService().getItems();
   }
 

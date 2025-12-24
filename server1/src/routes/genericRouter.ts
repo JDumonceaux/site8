@@ -1,17 +1,29 @@
 import express from 'express';
 
 import { getItemByName } from '../features/generic/getItem.js';
-import { asyncHandler } from '../utils/routerUtils.js';
 import { requireName } from '../middleware/requireName.js';
+import { asyncHandler } from '../utils/routerUtils.js';
 
 const VALIDATION_MIDDLEWARE = [requireName];
 
+/**
+ * Router for generic page retrieval endpoints
+ * Handles fetching pages by name with optional parent context
+ */
 export const genericRouter = express.Router();
 
-// Single parameter route (e.g., /api/generic/accessibility)
+/**
+ * GET /:name
+ * Retrieves a page item by name without parent context
+ * Example: GET /api/generic/accessibility
+ */
 genericRouter.get('/:name', VALIDATION_MIDDLEWARE, asyncHandler(getItemByName));
 
-// Two parameter route (e.g., /api/generic/parent/name)
+/**
+ * GET /:parent/:name
+ * Retrieves a page item by name within a specific parent context
+ * Example: GET /api/generic/react/hooks
+ */
 genericRouter.get(
   '/:parent/:name',
   VALIDATION_MIDDLEWARE,

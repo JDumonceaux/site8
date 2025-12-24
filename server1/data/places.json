@@ -798,6 +798,53 @@
       ],
       "latitude": 48.2031,
       "longitude": 16.3704
+    },
+    {
+      "id": 34,
+      "name": "Arles Amphitheatre",
+      "description": "A Roman amphitheatre built in 90 AD, one of the best-preserved Roman monuments in Arles. Still used today for bullfights and concerts.",
+      "city": "Arles",
+      "country": "France",
+      "continent": "Europe",
+      "address": "1 Rond-Point des Arènes, 13200 Arles, France",
+      "type": "Historical Landmark",
+      "tags": [
+        "Arles",
+        "Roman",
+        "Historic",
+        "Architecture",
+        "UNESCO",
+        "Rhône River"
+      ],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.arenes-arles.com/"
+        }
+      ],
+      "latitude": 43.6773,
+      "longitude": 4.6309
+    },
+    {
+      "id": 35,
+      "name": "Café Van Gogh",
+      "description": "The famous yellow café immortalized in Vincent van Gogh's 1888 painting 'Café Terrace at Night'. Located in Place du Forum, it remains a popular tourist destination.",
+      "city": "Arles",
+      "country": "France",
+      "continent": "Europe",
+      "address": "11 Place du Forum, 13200 Arles, France",
+      "type": "Cafe",
+      "tags": ["Arles", "Cafe", "Historic", "Art", "Van Gogh", "Rhône River"],
+      "urls": [
+        {
+          "role": "Official Website",
+          "name": "",
+          "url": "https://www.cafelesoirarles.com/"
+        }
+      ],
+      "latitude": 43.6761,
+      "longitude": 4.6275
     }
   ]
 }

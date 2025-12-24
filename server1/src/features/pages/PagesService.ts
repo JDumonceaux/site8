@@ -1,138 +1,53 @@
 import type { MenuEdit } from '../../types/MenuEdit.js';
 import type { PageMenu } from '../../types/PageMenu.js';
-import type { PagesIndex } from '../../types/PagesIndex.js';
+import type { Pages } from '../../types/Pages.js';
 import type { ParentSortby } from '../../types/ParentSortby.js';
 
-// eslint-disable-next-line import/no-cycle
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { isValidArray } from '../../utils/helperUtils.js';
 import { Logger } from '../../utils/logger.js';
-import { cleanUpData, getNextId } from '../../utils/objectUtil.js';
+import { cleanUpData } from '../../utils/objectUtil.js';
 import FilePath from '../files/FilePath.js';
 
-export class PagesService extends BaseDataService<PagesIndex> {
+export class PagesService extends BaseDataService<Pages> {
   public constructor() {
     super({
-      filePath: FilePath.getDataDir('pagesIndex.json'),
+      filePath: FilePath.getDataDir('pages.json'),
       serviceName: 'PagesService',
     });
   }
 
-  public async fixAllEntries(): Promise<void> {
-    Logger.info('PagesService: fixAllEntries');
-
-    try {
-      const pages = await this.getItems();
-
-      if (!pages?.items) {
-        throw new Error('No items found');
-      }
-
-      const cleanedItems = pages.items.map((item) =>
-        cleanUpData<PageMenu>(item),
-      );
-      const newData = { ...pages, items: cleanedItems };
-
-      await this.writeFile(newData);
-      Logger.info('PagesService: Successfully fixed all entries');
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`PagesService: Error fixing entries - ${errorMessage}`, {
-        error,
-      });
-      throw error;
-    }
+  /**
+   * Fixes all entries by cleaning up data
+   */
+  public override async fixAllEntries(): Promise<void> {
+    await super.fixAllEntries<PageMenu>((item) => cleanUpData<PageMenu>(item));
   }
 
-  public async getItems(): Promise<PagesIndex | undefined> {
-    Logger.info('PagesService: getItems');
-
-    try {
-      const parsedData = await this.readFile();
-      Logger.info('PagesService: Successfully retrieved items');
-      return parsedData;
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        Logger.error(`PagesService: Invalid JSON - ${error.message}`, {
-          error,
-        });
-      } else {
-        const errorMessage =
-          error instanceof Error ? error.message : String(error);
-        Logger.error(`PagesService: Error reading items - ${errorMessage}`, {
-          error,
-        });
-      }
-      return undefined;
-    }
-  }
-
-  public async getNextId(): Promise<number | undefined> {
-    Logger.info('PagesService: getNextId');
-
-    try {
-      const data = await this.getItems();
-      const nextId = getNextId(data?.items);
-
-      Logger.info(`PagesService: Next ID is ${nextId ?? 'undefined'}`);
-      return nextId;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`PagesService: Error getting next ID - ${errorMessage}`, {
-        error,
-      });
-      return undefined;
-    }
-  }
-
-  public async listDuplicates(): Promise<{ readonly items: string[] }> {
-    Logger.info('PagesService: listDuplicates');
-
-    try {
-      const data = await this.getItems();
-
-      if (!data?.items) {
-        return { items: [] };
-      }
-
-      const allIds = data.items.map((x) => x.id.toString());
-      const duplicates = allIds.filter((x, i, arr) => arr.indexOf(x) !== i);
-      const filtered = [...new Set(duplicates)].filter((x) => x);
-
-      Logger.info(`PagesService: Found ${filtered.length} duplicates`);
-      return { items: filtered };
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`PagesService: Error listing duplicates - ${errorMessage}`, {
-        error,
-      });
-      throw error;
-    }
-  }
-
+  /**
+   * Updates menu items with new parent relationships
+   */
   public async updateItems(items: readonly MenuEdit[]): Promise<void> {
     Logger.info('PagesService: updateItems');
 
     try {
-      const pages = await this.getItems();
+      const pages: Pages | undefined = await this.getItems();
 
       if (!pages?.items) {
         throw new Error('No items found');
       }
 
-      const updatedItems = pages.items.map((item) => {
+      const updatedItems: PageMenu[] = pages.items.map((item: PageMenu) => {
         const updates = items.filter((x) => x.id === item.id);
         const hasUpdates = isValidArray(updates);
         const updatedParentItems = hasUpdates
           ? this.getUpdatedParentItems(updates, item)
           : undefined;
 
-        return updatedParentItems
-          ? { ...item, parentItems: updatedParentItems }
-          : item;
+        if (updatedParentItems) {
+          return { ...item, parentItems: updatedParentItems } as PageMenu;
+        }
+        return item;
       });
 
       await this.writeFile({ ...pages, items: updatedItems });
@@ -145,11 +60,6 @@ export class PagesService extends BaseDataService<PagesIndex> {
       });
       throw error;
     }
-  }
-
-  public async writeData(data: PagesIndex): Promise<void> {
-    Logger.info('PagesService: writeData');
-    await this.writeFile(data);
   }
 
   private getUpdatedParentItems(

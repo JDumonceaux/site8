@@ -86,6 +86,8 @@ export default {
         '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
         '@typescript-eslint/no-unnecessary-type-arguments': 'error',
         '@typescript-eslint/no-unnecessary-type-parameters': 'error',
+        // too restrictive in some cases
+        '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
         '@typescript-eslint/no-useless-constructor': 'error',
         '@typescript-eslint/no-useless-empty-export': 'error',

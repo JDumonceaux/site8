@@ -13,7 +13,7 @@ export class PhotosService extends BaseDataService<Photos> {
     });
   }
 
-  public async getItems(): Promise<Photos | undefined> {
+  public override async getItems(): Promise<Photos | undefined> {
     try {
       const parsedData = await this.readFile();
 

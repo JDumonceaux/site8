@@ -325,4 +325,141 @@ export abstract class BaseDataService<T> {
       );
     }
   }
+
+  // ============================================================================
+  // Generic CRUD Operations
+  // ============================================================================
+
+  /**
+   * Gets all items from the data file
+   * @returns The data from the file or undefined on error
+   */
+  public async getItems(): Promise<T | undefined> {
+    Logger.info(`${this.serviceName}: getItems`);
+
+    try {
+      const parsedData = await this.readFile();
+      Logger.info(`${this.serviceName}: Successfully retrieved items`);
+      return parsedData;
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        Logger.error(`${this.serviceName}: Invalid JSON - ${error.message}`, {
+          error,
+        });
+      } else {
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        Logger.error(
+          `${this.serviceName}: Error reading items - ${errorMessage}`,
+          { error },
+        );
+      }
+      return undefined;
+    }
+  }
+
+  /**
+   * Writes data to the file
+   * @param data - Data to write
+   */
+  public async writeData(data: T): Promise<void> {
+    Logger.info(`${this.serviceName}: writeData`);
+    await this.writeFile(data);
+  }
+
+  /**
+   * Gets the next available ID from items array
+   * @returns Next available ID or undefined on error
+   */
+  public async getNextId(): Promise<number | undefined> {
+    Logger.info(`${this.serviceName}: getNextId`);
+
+    try {
+      const data = await this.getItems();
+      const items = (data as { items?: Array<{ id: number }> })?.items;
+
+      if (!items || items.length === 0) {
+        return 1;
+      }
+
+      const maxId = Math.max(...items.map((item) => item.id));
+      const nextId = maxId + 1;
+
+      Logger.info(`${this.serviceName}: Next ID is ${nextId}`);
+      return nextId;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `${this.serviceName}: Error getting next ID - ${errorMessage}`,
+        { error },
+      );
+      return undefined;
+    }
+  }
+
+  /**
+   * Lists duplicate IDs in the items array
+   * @returns Object containing array of duplicate ID strings
+   */
+  public async listDuplicates(): Promise<{ readonly items: string[] }> {
+    Logger.info(`${this.serviceName}: listDuplicates`);
+
+    try {
+      const data = await this.getItems();
+      const items = (data as { items?: Array<{ id: number }> })?.items;
+
+      if (!items) {
+        return { items: [] };
+      }
+
+      const allIds = items.map((x) => x.id.toString());
+      const duplicates = allIds.filter((x, i, arr) => arr.indexOf(x) !== i);
+      const filtered = [...new Set(duplicates)].filter((x) => x);
+
+      Logger.info(`${this.serviceName}: Found ${filtered.length} duplicates`);
+      return { items: filtered };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `${this.serviceName}: Error listing duplicates - ${errorMessage}`,
+        { error },
+      );
+      throw error;
+    }
+  }
+
+  /**
+   * Fixes all entries by applying a cleanup function to each item
+   * @param cleanupFn - Function to clean up each item
+   */
+  public async fixAllEntries<TItem>(
+    cleanupFn: (item: TItem) => TItem,
+  ): Promise<void> {
+    Logger.info(`${this.serviceName}: fixAllEntries`);
+
+    try {
+      const data = await this.getItems();
+      const dataWithItems = data as { items?: TItem[] };
+
+      if (!dataWithItems?.items) {
+        throw new Error('No items found');
+      }
+
+      const cleanedItems = dataWithItems.items.map((item) => cleanupFn(item));
+      const newData = { ...data, items: cleanedItems } as T;
+
+      await this.writeFile(newData);
+      Logger.info(`${this.serviceName}: Successfully fixed all entries`);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(
+        `${this.serviceName}: Error fixing entries - ${errorMessage}`,
+        { error },
+      );
+      throw error;
+    }
+  }
 }

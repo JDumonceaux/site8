@@ -6,74 +6,108 @@ import { PageFileService } from '../page/PageFileService.js';
 import { PagesService } from '../pages/PagesService.js';
 
 export class GenericService {
-  // get matching file (i.e. contents)
-  private static async getFile(id: number): Promise<string | undefined> {
-    Logger.info(`GenericService: getFile -> ${id}`);
-    const item = await new PageFileService().getFile(id);
-    return item;
+  /**
+   * Finds a page that matches the name and has the specified parent
+   */
+  private static findPageWithParent(
+    pages: readonly PageMenu[],
+    parentIds: number[],
+  ): PageMenu | undefined {
+    for (const page of pages) {
+      if (!page.parentItems) {
+        continue;
+      }
+
+      const hasMatchingParent = page.parentItems.some((parentItem) =>
+        parentIds.includes(parentItem.id),
+      );
+
+      if (hasMatchingParent) {
+        return page;
+      }
+    }
+
+    return undefined;
   }
 
-  // Get ids for possible parents
+  /**
+   * Gets file contents for a given page ID
+   */
+  private static async getFile(id: number): Promise<string | undefined> {
+    Logger.info(`GenericService: getFile -> ${id}`);
+    return new PageFileService().getFile(id);
+  }
+
+  /**
+   * Finds all page IDs that match the given parent name
+   */
   private static getParentIds(
     parentName: string,
     items: readonly PageMenu[] | undefined,
   ): number[] | undefined {
     if (!items || items.length === 0) {
-      Logger.warn(`GenericService: getParentId -> items is empty`);
+      Logger.warn(`GenericService: getParentIds -> items is empty`);
       return undefined;
     }
-    const ret = items.filter((x) => x.to === parentName);
-    if (ret.length === 0) {
-      Logger.warn(`GenericService: getParentId -> no parent found`);
+
+    const matchingParents = items.filter((x) => x.to === parentName);
+    if (matchingParents.length === 0) {
+      Logger.warn(
+        `GenericService: getParentIds -> no parent found for '${parentName}'`,
+      );
       return undefined;
     }
-    return ret.map((x) => x.id);
+
+    return matchingParents.map((x) => x.id);
   }
 
-  // Get Item
+  /**
+   * Retrieves a page item by parent and name, with optional file content
+   */
   public async getItem(
     parent: string,
     name: string,
   ): Promise<PageText | PageMenu | undefined> {
     Logger.info(`GenericService: getItem -> ${parent}/${name}`);
-    const items = await new PagesService().getItems();
 
-    // Find items
-    const ret = items?.items.filter((x) => x.to === name);
-    if (!ret || ret.length === 0) {
-      Logger.warn(`GenericService: getItem -> no items found`);
+    const data = await new PagesService().getItems();
+    if (!data?.items) {
+      Logger.warn(`GenericService: getItem -> no data available`);
       return undefined;
     }
-    // Find parent id
-    const parentIds = GenericService.getParentIds(parent, items?.items);
-    if (!parentIds) {
-      return ret[0];
+
+    // Find all pages matching the name
+    const matchingPages = data.items.filter((x) => x.to === name);
+    if (matchingPages.length === 0) {
+      Logger.warn(`GenericService: getItem -> no items found for '${name}'`);
+      return undefined;
     }
-    // Find a parent match
-    const match = (() => {
-      for (const x of ret) {
-        if (x.parentItems) {
-          for (const p of x.parentItems) {
-            for (const id of parentIds) {
-              if (p.id === id) {
-                return x;
-              }
-            }
-          }
-        }
+
+    // If only one match, return it
+    if (matchingPages.length === 1) {
+      const selectedPage = matchingPages[0] as PageMenu;
+      const fileContent = await GenericService.getFile(selectedPage.id);
+      if (fileContent) {
+        return { ...selectedPage, text: fileContent } as PageText;
       }
-      return ret[0];
-    })();
+      return selectedPage;
+    }
 
-    if (!match) {
-      Logger.warn(`GenericService: getItem -> no parent match`);
-      return undefined;
+    // Multiple matches - try to find by parent context
+    // We know matchingPages has at least 2 items at this point
+    const firstMatch = matchingPages[0] as PageMenu;
+    const parentIds = GenericService.getParentIds(parent, data.items);
+    const selectedPage =
+      (parentIds
+        ? GenericService.findPageWithParent(matchingPages, parentIds)
+        : null) ?? firstMatch;
+
+    // Try to get file content
+    const fileContent = await GenericService.getFile(selectedPage.id);
+    if (fileContent) {
+      return { ...selectedPage, text: fileContent } as PageText;
     }
-    // Get file (i.e. contents)
-    const file = await GenericService.getFile(match.id);
-    if (file) {
-      return { ...match, text: file };
-    }
-    return match;
+
+    return selectedPage;
   }
 }

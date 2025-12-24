@@ -5,6 +5,7 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
+import type { Page } from '../../types/Page';
 import RenderHtml from './RenderHtml';
 import SubjectMenu from './SubjectMenu';
 import useGenericPage from './useGenericPage';
@@ -17,13 +18,13 @@ type GenericPageProps = {
 const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
   const x = useLocation();
 
-  const { data, error, isError, isLoading } = useGenericPage(
-    x.pathname.slice(1),
-  );
+  const query = useGenericPage(x.pathname.slice(1));
 
-  const deferredData = useDeferredValue(data);
+  // Type assertion to handle react-query's type narrowing
+  const pageData: Page | undefined = query.data;
+  const deferredData = useDeferredValue(pageData);
 
-  const pageTitle = deferredData?.title ?? title;
+  const pageTitle: string = deferredData?.title ?? title ?? '';
 
   return (
     <>
@@ -34,17 +35,21 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
         </Layout.Menu>
         <Layout.Content>
           <LoadingWrapper
-            error={error}
-            isError={isError}
-            isLoading={isLoading}
+            error={query.error ?? null}
+            isError={query.isError}
+            isLoading={query.isLoading}
             loadingText="Loading ..."
           >
             <Layout.Article>
               <PageTitle title={pageTitle}>
-                <BaseLink to={`/admin/page/edit/${data?.id}`}>Edit</BaseLink>
+                <BaseLink
+                  to={`/admin/page/edit/${pageData?.id ? String(pageData.id) : ''}`}
+                >
+                  Edit
+                </BaseLink>
               </PageTitle>
               <StyledSection>
-                <RenderHtml text={deferredData?.text} />
+                <RenderHtml text={deferredData?.text ?? undefined} />
               </StyledSection>
             </Layout.Article>
           </LoadingWrapper>

@@ -19,7 +19,7 @@ export class TestsService extends BaseDataService<Tests> {
     });
   }
 
-  public async getItems(): Promise<Tests | undefined> {
+  public override async getItems(): Promise<Tests | undefined> {
     try {
       const rawData = await this.readFile();
 

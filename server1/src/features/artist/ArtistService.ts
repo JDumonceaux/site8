@@ -78,7 +78,7 @@ class ArtistService extends BaseDataService<ItemsFile> {
    * Gets all artists with their items
    * @returns ItemsFile data
    */
-  public async getItems(): Promise<ItemsFile> {
+  public override async getItems(): Promise<ItemsFile> {
     return this.readFile();
   }
 

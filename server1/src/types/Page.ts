@@ -1,32 +1,27 @@
-import { z } from 'zod';
+export type Parent = {
+  readonly id: number;
+  readonly seq: number;
+  readonly sortBy?: string;
+};
 
-const Parent = z.object({
-  id: z.number(),
-  seq: z.number(),
-  sortBy: z.string().optional(),
-});
-
-export const PageSchema = z.object({
-  id: z.number(),
-  title: z.string(),
-  to: z.string().optional(),
-  toComplete: z.string().optional(),
-  url: z.string().optional(),
-  edit_date: z.date().optional(),
-  create_date: z.date().optional(),
-  reading_time: z.string().optional(),
-  readability_score: z.string().optional(),
-  parentItems: Parent.array().optional(),
-  file: z.boolean().optional(),
-  type: z.literal('page'),
-  issue: z.string().optional(),
-  line: z.number(),
-});
-
-export type Page = z.infer<typeof PageSchema>;
+export type Page = {
+  readonly create_date?: Date;
+  readonly edit_date?: Date;
+  readonly file?: boolean;
+  readonly id: number;
+  readonly issue?: string;
+  readonly line?: number;
+  readonly parentItems?: Parent[];
+  readonly readability_score?: string;
+  readonly reading_time?: string;
+  readonly text?: string;
+  readonly title: string;
+  readonly to?: string;
+  readonly toComplete?: string;
+  readonly type: 'page' | 'root' | 'menu';
+  readonly url?: string;
+};
 
 export type PageEdit = {
   readonly text?: string;
 } & Page;
-
-export const PageSchemaAdd = PageSchema.omit({ id: true });

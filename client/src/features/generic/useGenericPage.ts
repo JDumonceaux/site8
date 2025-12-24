@@ -25,16 +25,7 @@ const fetchGenericPage = async (
  * Hook to load a generic page by ID.
  * Only runs when `id` is truthy, and automatically cancels on unmount or key change.
  */
-export const useGenericPage = (
-  id: string,
-): {
-  data?: Page;
-  error: unknown;
-  isError: boolean;
-  isFetching: boolean;
-  isLoading: boolean;
-  refetch: () => Promise<unknown>;
-} => {
+export const useGenericPage = (id: string): UseQueryResult<Page, unknown> => {
   const query: UseQueryResult<Page, unknown> = useQuery({
     enabled: Boolean(id),
     queryFn: async ({ signal }) => fetchGenericPage(id, signal),
@@ -42,14 +33,7 @@ export const useGenericPage = (
     ...USEQUERY_DEFAULT_OPTIONS,
   });
 
-  return {
-    data: query.data,
-    error: query.error,
-    isError: query.isError,
-    isFetching: query.isFetching,
-    isLoading: query.isLoading,
-    refetch: query.refetch,
-  };
+  return query;
 };
 
 export default useGenericPage;
