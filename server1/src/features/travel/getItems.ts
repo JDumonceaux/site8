@@ -16,7 +16,7 @@ export const getItems = createGetHandler<Places>({
     const result = await service.getPlacesWithImages();
     return result ?? { items: [], metadata: { title: 'Travel' } };
   },
-  getItemCount: (data) => data.items.length,
+  getItemCount: (data) => data.items?.length ?? 0,
   handlerName: 'getItems',
   return204OnEmpty: true,
 });

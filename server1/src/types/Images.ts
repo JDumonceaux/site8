@@ -1,12 +1,6 @@
+import type { Collection } from './Collection.js';
 import type { Image, ImageEdit } from './Image.js';
-import type { Metadata } from './Metadata.js';
 
-export type Images = {
-  readonly items: Image[] | undefined;
-  readonly metadata: Metadata;
-};
+export type Images = Collection<Image>;
 
-export type ImagesEdit = {
-  readonly items: ImageEdit[] | undefined;
-  readonly metadata: Metadata;
-};
+export type ImagesEdit = Collection<ImageEdit>;

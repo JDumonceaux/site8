@@ -1,8 +1,7 @@
-import express from 'express';
-
 import { getItems } from '../features/photos/getItems.js';
-import { asyncHandler } from '../utils/routerUtils.js';
+import { createSimpleRouter } from './createSimpleRouter.js';
 
-export const photosRouter = express.Router();
-
-photosRouter.get('/', asyncHandler(getItems));
+export const photosRouter = createSimpleRouter({
+  getItemsHandler: getItems,
+  routerName: 'photos',
+});

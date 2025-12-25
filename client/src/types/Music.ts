@@ -1,7 +1,4 @@
-import type { Metadata } from './Metadata';
+import type { Collection } from './Collection';
 import type { MusicItem } from './MusicItem';
 
-export type Music = {
-  readonly items: MusicItem[];
-  readonly metadata: Metadata;
-};
+export type Music = Collection<MusicItem>;

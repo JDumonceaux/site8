@@ -1,8 +1,8 @@
 export type Artist = {
-  readonly birth?: string;
-  readonly death?: string;
+  readonly born?: string;
+  readonly died?: string;
   readonly fullName?: string;
   readonly id: number;
   readonly name: string;
-  readonly sortName: string;
+  readonly sortName?: string;
 };

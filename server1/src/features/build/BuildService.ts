@@ -18,7 +18,6 @@ export class BuildService extends BaseDataService<Features> {
         'build',
         '@features.json',
       ),
-      serviceName: 'BuildService',
     });
   }
 

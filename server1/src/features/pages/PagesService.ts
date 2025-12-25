@@ -9,7 +9,6 @@ export class PagesService extends BaseDataService<Pages> {
   public constructor() {
     super({
       filePath: FilePath.getDataDir('pages.json'),
-      serviceName: 'PagesService',
     });
   }
 

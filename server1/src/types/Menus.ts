@@ -1,7 +1,4 @@
+import type { Collection } from './Collection.js';
 import type { MenuItem } from './MenuItem.js';
-import type { Metadata } from './Metadata.js';
 
-export type Menus = {
-  readonly items?: MenuItem[];
-  readonly metadata: Metadata;
-};
+export type Menus = Collection<MenuItem>;

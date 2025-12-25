@@ -3,7 +3,6 @@ import type { Bookmarks } from '../../types/Bookmarks.js';
 import type { BookmarksTag } from '../../types/BookmarksTag.js';
 import type { BookmarksTags } from '../../types/BookmarksTags.js';
 
-// eslint-disable-next-line import/no-cycle
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import FilePath from '../files/FilePath.js';
@@ -12,7 +11,6 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
   public constructor() {
     super({
       filePath: FilePath.getDataDir('bookmarks.json'),
-      serviceName: 'BookmarksService',
     });
   }
 
@@ -21,7 +19,7 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
 
     try {
       const data = await this.readFile();
-      const sortedItems: Bookmark[] = data.items.toSorted((a, b) =>
+      const sortedItems: Bookmark[] = (data.items ?? []).toSorted((a, b) =>
         a.name.localeCompare(b.name),
       );
       return { items: sortedItems, metadata: data.metadata };
@@ -71,7 +69,7 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
     try {
       const data = await this.readFile();
       const searchId = parseInt(pageId, 10);
-      const filteredItems = data.items.filter((x) =>
+      const filteredItems = (data.items ?? []).filter((x) =>
         x.page?.includes(searchId),
       );
       const sortedItems: Bookmark[] = filteredItems.toSorted((a, b) =>

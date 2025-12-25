@@ -1,30 +1,21 @@
-import type { NextFunction, Request, Response } from 'express';
+import { createValidator } from './createValidator.js';
 
-import { Logger } from '../utils/logger.js';
+export const requireNumericId = createValidator({
+  paramName: 'id',
+  validate: (value) => {
+    if (!value?.trim()) {
+      return { isValid: false, errorMessage: 'Id is required' };
+    }
 
-export const requireNumericId = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
-  const { id } = req.params;
+    const numericId = Number(value);
 
-  Logger.debug(`Require numeric id middleware received value=${id}`);
+    if (isNaN(numericId) || numericId <= 0 || !Number.isInteger(numericId)) {
+      return {
+        isValid: false,
+        errorMessage: 'Id must be a positive integer',
+      };
+    }
 
-  if (!id?.trim()) {
-    Logger.warn(`Missing or empty id parameter`);
-    res.status(400).json({ message: 'Id is required' });
-  }
-
-  const numericId = Number(id);
-
-  if (isNaN(numericId) || numericId <= 0 || !Number.isInteger(numericId)) {
-    Logger.warn(`Invalid numeric id parameter: ${id}`);
-    res.status(400).json({
-      message: 'Id must be a positive integer',
-    });
-    return;
-  }
-
-  next();
-};
+    return { isValid: true };
+  },
+});

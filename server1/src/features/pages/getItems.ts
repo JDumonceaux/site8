@@ -1,15 +1,11 @@
-import type { Pages } from '../../types/Pages.js';
+import type { PageMenu } from '../../types/PageMenu.js';
 
-import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getPagesService } from '../../utils/ServiceFactory.js';
 
-export const getItems = createGetHandler<Pages>({
-  errorResponse: { items: [], metadata: { title: 'Pages' } },
-  getData: async () => {
-    const data = await getPagesService().getItems();
-    return data ?? { items: [], metadata: { title: 'Pages' } };
-  },
-  getItemCount: (data) => data.items.length,
+export const getItems = createCollectionHandler<PageMenu>({
+  defaultTitle: 'Pages',
+  getService: getPagesService,
   handlerName: 'Pages:getItems',
   return204OnEmpty: false,
 });

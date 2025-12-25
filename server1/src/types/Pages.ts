@@ -1,7 +1,5 @@
-import type { Metadata } from './Metadata.js';
+import type { Collection } from './Collection.js';
 import type { PageMenu } from './PageMenu.js';
 
-export type Pages = {
-  readonly metadata: Metadata;
-  readonly items: PageMenu[];
-};
+/** Collection with non-optional items array for Pages */
+export type Pages = Collection<PageMenu>;

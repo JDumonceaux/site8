@@ -1,22 +1,16 @@
-import type { Bookmarks } from '../../types/Bookmarks.js';
+import type { Bookmark } from '../../types/Bookmark.js';
 
-import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getBookmarksService } from '../../utils/ServiceFactory.js';
 
-/**
- * Retrieves all bookmarks
- */
-export const getItems = createGetHandler<Bookmarks>({
-  errorResponse: {
-    items: [],
-    metadata: { title: 'Bookmarks' },
-  },
-  getData: async () => {
-    const service = getBookmarksService();
-    const result = await service.getAllItems();
-    return result ?? { items: [], metadata: { title: 'Bookmarks' } };
-  },
-  getItemCount: (data) => data.items.length,
-  handlerName: 'getItems',
+/** Wrapper to adapt getAllItems to getItems interface */
+const bookmarksServiceAdapter = () => ({
+  getItems: async () => getBookmarksService().getAllItems(),
+});
+
+export const getItems = createCollectionHandler<Bookmark>({
+  defaultTitle: 'Bookmarks',
+  getService: bookmarksServiceAdapter,
+  handlerName: 'Bookmarks:getItems',
   return204OnEmpty: true,
 });

@@ -20,7 +20,8 @@ export const TestSchema = z
     /** Arbitrary text */
     text: z.string().optional(),
     /** ‘section’ or ‘test’ */
-    type: z.enum(['section', 'test']).optional(),
+    type: z.enum(['section', 'test']).optional() /** Test value */,
+    value: z.string().optional(),
   })
   .strict()
   .readonly();

@@ -1,8 +1,7 @@
-import { Suspense, useMemo } from 'react';
+import { useMemo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import RingLoader from '../components/core/loading-spinner/RingLoader';
 import MainErrorFallback from '../components/core/MainErrorFallback';
 import ReduxProvider from './ReduxProvider';
 
@@ -77,19 +76,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
     >
       <ReduxProvider>
         <QueryClientProvider client={queryClient}>
-          <Suspense
-            fallback={
-              <output
-                aria-label="Loading application"
-                className="flex items-center justify-center min-h-screen"
-              >
-                <RingLoader />
-                <span className="sr-only">Loading application...</span>
-              </output>
-            }
-          >
-            {children}
-          </Suspense>
+          {children}
         </QueryClientProvider>
       </ReduxProvider>
     </ErrorBoundary>

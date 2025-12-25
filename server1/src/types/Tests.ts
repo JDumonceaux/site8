@@ -1,7 +1,4 @@
-import type { Metadata } from './Metadata.js';
+import type { Collection } from './Collection.js';
 import type { Test } from './Test.js';
 
-export type Tests = {
-  readonly metadata: Metadata;
-  readonly items?: Test[];
-};
+export type Tests = Collection<Test>;

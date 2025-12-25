@@ -10,7 +10,6 @@ export class TravelService extends BaseDataService<Places> {
   public constructor() {
     super({
       filePath: FilePath.getDataDir('places.json'),
-      serviceName: 'TravelService',
     });
   }
 
@@ -19,8 +18,8 @@ export class TravelService extends BaseDataService<Places> {
 
     try {
       const data = await this.readFile();
-      const sortedItems: Place[] = data.items.toSorted((a: Place, b: Place) =>
-        a.name.localeCompare(b.name),
+      const sortedItems: Place[] = (data.items ?? []).toSorted(
+        (a: Place, b: Place) => a.name.localeCompare(b.name),
       );
       return { items: sortedItems, metadata: data.metadata };
     } catch (error) {
@@ -49,10 +48,12 @@ export class TravelService extends BaseDataService<Places> {
       }
 
       // Create a map of image IDs to full image objects for quick lookup
-      const imageMap = new Map(imagesData.items.map((img) => [img.id, img]));
+      const imageMap = new Map(
+        (imagesData.items ?? []).map((img) => [img.id, img]),
+      );
 
       // Enrich places with full image data
-      const enrichedItems = placesData.items.map((place) => {
+      const enrichedItems = (placesData.items ?? []).map((place) => {
         if (!place.images || place.images.length === 0) {
           return place;
         }

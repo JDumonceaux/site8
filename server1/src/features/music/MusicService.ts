@@ -12,7 +12,6 @@ export class MusicService extends BaseDataService<MusicItems> {
   public constructor() {
     super({
       filePath: FilePath.getDataDir('music.json'),
-      serviceName: 'MusicService',
     });
   }
 

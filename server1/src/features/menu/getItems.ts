@@ -1,15 +1,16 @@
-import type { Menus } from '../../types/Menus.js';
+import type { MenuItem } from '../../types/MenuItem.js';
 
-import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getMenuService } from '../../utils/ServiceFactory.js';
 
-export const getItems = createGetHandler<Menus>({
-  errorResponse: { items: [], metadata: { title: 'Menu' } },
-  getData: async () => {
-    const data = await getMenuService().getMenu();
-    return data ?? { items: [], metadata: { title: 'Menu' } };
-  },
-  getItemCount: (data) => data.items?.length ?? 0,
+/** Wrapper to adapt getMenu to getItems interface */
+const menuServiceAdapter = () => ({
+  getItems: () => getMenuService().getMenu(),
+});
+
+export const getItems = createCollectionHandler<MenuItem>({
+  defaultTitle: 'Menu',
+  getService: menuServiceAdapter,
   handlerName: 'Menu:getItems',
   return204OnEmpty: true,
 });

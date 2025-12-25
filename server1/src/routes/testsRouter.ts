@@ -1,8 +1,7 @@
-import express from 'express';
-
 import { getItems } from '../features/tests/getItems.js';
-import { asyncHandler } from '../utils/routerUtils.js';
+import { createSimpleRouter } from './createSimpleRouter.js';
 
-export const testsRouter = express.Router();
-
-testsRouter.get('/', asyncHandler(getItems));
+export const testsRouter = createSimpleRouter({
+  getItemsHandler: getItems,
+  routerName: 'tests',
+});

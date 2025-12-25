@@ -1,4 +1,4 @@
-import { type JSX, lazy, StrictMode, Suspense } from 'react';
+import { type JSX, lazy, Suspense } from 'react';
 
 import AppProvider from '@providers/AppProvider';
 import { usePreloadResources } from './usePreloadResources';
@@ -13,15 +13,13 @@ const App = (): JSX.Element => {
   usePreloadResources();
 
   return (
-    <StrictMode>
-      <AppProvider>
-        <Suspense
-          fallback={<output aria-live="polite">Loading application…</output>}
-        >
-          <AppRouter />
-        </Suspense>
-      </AppProvider>
-    </StrictMode>
+    <AppProvider>
+      <Suspense
+        fallback={<output aria-live="polite">Loading application…</output>}
+      >
+        <AppRouter />
+      </Suspense>
+    </AppProvider>
   );
 };
 

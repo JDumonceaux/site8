@@ -5,6 +5,7 @@ export type Test = {
   readonly id: number;
   readonly name: string;
   readonly text?: string;
+  readonly value?: string;
   readonly type?: 'section' | 'test';
   readonly level?: 'page' | 'project';
   readonly projectType?: ['react', 'nodejs'];

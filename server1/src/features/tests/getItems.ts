@@ -1,15 +1,11 @@
-import type { Tests } from '../../types/Tests.js';
+import type { Test } from '../../types/Test.js';
 
-import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getTestsService } from '../../utils/ServiceFactory.js';
 
-export const getItems = createGetHandler<Tests>({
-  errorResponse: { items: [], metadata: { title: 'Tests' } },
-  getData: async () => {
-    const data = await getTestsService().getItems();
-    return data ?? { items: [], metadata: { title: 'Tests' } };
-  },
-  getItemCount: (data) => data.items?.length ?? 0,
+export const getItems = createCollectionHandler<Test>({
+  defaultTitle: 'Tests',
+  getService: getTestsService,
   handlerName: 'Tests:getItems',
   return204OnEmpty: false,
 });

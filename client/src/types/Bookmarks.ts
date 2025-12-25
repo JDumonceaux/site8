@@ -1,7 +1,4 @@
 import type { Bookmark } from './Bookmark';
-import type { Metadata } from './Metadata';
+import type { Collection } from './Collection';
 
-export type Bookmarks = {
-  readonly items: Bookmark[];
-  readonly metadata: Metadata;
-};
+export type Bookmarks = Collection<Bookmark>;

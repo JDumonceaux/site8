@@ -1,31 +1,21 @@
-import type { NextFunction, Request, Response } from 'express';
-
-import { Logger } from '../utils/logger.js';
+import { createValidator } from './createValidator.js';
 
 const MAX_NAME_LENGTH = 255;
 
-export const requireName = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-): void => {
-  const { name } = req.params;
+export const requireName = createValidator({
+  paramName: 'name',
+  validate: (value) => {
+    if (!value?.trim()) {
+      return { isValid: false, errorMessage: 'Name is required' };
+    }
 
-  Logger.debug(`Require name middleware received value=${name}`);
+    if (value.length > MAX_NAME_LENGTH) {
+      return {
+        isValid: false,
+        errorMessage: `Name must not exceed ${MAX_NAME_LENGTH} characters`,
+      };
+    }
 
-  if (!name?.trim()) {
-    Logger.warn(`Missing or empty name parameter`);
-    res.status(400).json({ message: 'Name is required' });
-    return;
-  }
-
-  if (name.length > MAX_NAME_LENGTH) {
-    Logger.warn(`Name parameter too long: ${name.length} characters`);
-    res.status(400).json({
-      message: `Name must not exceed ${MAX_NAME_LENGTH} characters`,
-    });
-    return;
-  }
-
-  next();
-};
+    return { isValid: true };
+  },
+});

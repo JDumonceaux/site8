@@ -1,7 +1,4 @@
 import type { Artist } from './Artist';
-import type { Metadata } from './Metadata';
+import type { Collection } from './Collection';
 
-export type Artists = {
-  readonly items: Artist[] | undefined;
-  readonly metadata: Metadata;
-};
+export type Artists = Collection<Artist>;

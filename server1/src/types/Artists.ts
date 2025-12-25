@@ -1,7 +1,4 @@
 import type { Artist } from './Artist.js';
-import type { Metadata } from './Metadata.js';
+import type { Collection } from './Collection.js';
 
-export type Artists = {
-  readonly metadata: Metadata;
-  readonly items: Artist[] | undefined;
-};
+export type Artists = Collection<Artist>;

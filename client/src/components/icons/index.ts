@@ -10,3 +10,4 @@ export * from './MenuIcon';
 export * from './MoreVertIcon';
 export * from './NoteIcon';
 export * from './SelectIcon';
+export type * from './types';

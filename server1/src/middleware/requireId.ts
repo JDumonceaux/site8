@@ -1,17 +1,11 @@
-import type { RequestHandler } from 'express';
+import { createValidator } from './createValidator.js';
 
-import { Logger } from '../utils/logger.js';
-
-export const requireId: RequestHandler = (req, res, next): void => {
-  const { id } = req.params;
-
-  Logger.debug(`Require id middleware received value=${id}`);
-
-  if (typeof id !== 'string' || id.trim() === '') {
-    Logger.warn(`Missing or empty id parameter`);
-    res.status(400).json({ message: 'Id is required' });
-    return;
-  }
-
-  next();
-};
+export const requireId = createValidator({
+  paramName: 'id',
+  validate: (value) => {
+    if (typeof value !== 'string' || value.trim() === '') {
+      return { isValid: false, errorMessage: 'Id is required' };
+    }
+    return { isValid: true };
+  },
+});

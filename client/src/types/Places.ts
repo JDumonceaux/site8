@@ -1,7 +1,4 @@
-import type { Metadata } from './Metadata';
+import type { Collection } from './Collection';
 import type { Place } from './Place';
 
-export type Places = {
-  readonly items: Place[];
-  readonly metadata: Metadata;
-};
+export type Places = Collection<Place>;

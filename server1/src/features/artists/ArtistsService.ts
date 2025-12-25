@@ -65,7 +65,6 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
       defaultMetadata: { title: 'artists' },
       enableCache: true,
       filePath: FilePath.getDataDir(fileName),
-      serviceName: 'ArtistsService',
       validationSchema: ItemsFileSchema,
     });
   }
@@ -117,7 +116,7 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
 
     // Sort artists by their sortName property
     const sortedArtists = [...(data.artists ?? [])].sort((a, b) =>
-      a.sortName.localeCompare(b.sortName, undefined, {
+      (a.sortName ?? a.name).localeCompare(b.sortName ?? b.name, undefined, {
         numeric: true,
         sensitivity: 'base',
       }),

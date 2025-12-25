@@ -1,7 +1,5 @@
 import type { Bookmark } from './Bookmark.js';
-import type { Metadata } from './Metadata.js';
+import type { RequiredCollection } from './Collection.js';
 
-export type Bookmarks = {
-  readonly metadata: Metadata;
-  readonly items: Bookmark[];
-};
+/** Collection with required items array for Bookmarks */
+export type Bookmarks = RequiredCollection<Bookmark>;

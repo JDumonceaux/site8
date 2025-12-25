@@ -13,3 +13,5 @@ export const PagesSchema = z
   .readonly();
 
 export type Pages = z.infer<typeof PagesSchema>;
+
+/** Note: Pages follows Collection<PageMenu> pattern from server */

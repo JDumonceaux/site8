@@ -13,3 +13,5 @@ export const TestsSchema = z
   .readonly();
 
 export type Tests = z.infer<typeof TestsSchema>;
+
+/** Note: Tests follows Collection<Test> pattern */

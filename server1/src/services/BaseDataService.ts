@@ -73,13 +73,20 @@ export abstract class BaseDataService<T> {
   protected constructor(config: BaseDataServiceConfig<T>) {
     this.filePath = config.filePath;
     this.fileService = getFileService();
-    this.serviceName =
-      config.serviceName ??
+
+    // Auto-derive serviceName from class name (this.constructor.name) if not provided
+    // Falls back to filename if class name is just 'Object' or unavailable
+    const className = this.constructor.name;
+    const fileBasedName =
       config.filePath
         .split(/[\\/]/)
         .pop()
-        ?.replace(/\.json$/, '') ??
-      'DataService';
+        ?.replace(/\.json$/, '') ?? 'DataService';
+
+    this.serviceName =
+      config.serviceName ??
+      (className && className !== 'Object' ? className : fileBasedName);
+
     this.enableCache = config.enableCache ?? false;
     this.cacheTTL = config.cacheTTL ?? 5000;
     this.validationSchema = config.validationSchema ?? undefined;

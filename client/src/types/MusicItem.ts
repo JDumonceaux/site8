@@ -1,4 +1,5 @@
 export type MusicItem = {
+  readonly channel?: string;
   readonly description?: string;
   readonly display?: string;
   readonly id: number;

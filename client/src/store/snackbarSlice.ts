@@ -17,32 +17,30 @@ const initialState: SnackbarState = {
   data: null,
 };
 
-/**
- * Manages the global snackbar (toast) notification.
- */
+/** Manages the global snackbar (toast) notification. */
 const snackbarSlice = createSlice({
   initialState,
   name: 'snackbar',
   reducers: {
     /**
-     * Hide/clear the current snackbar.
+     * Set or clear the snackbar.
      * @param state Current slice state
+     * @param action Payload is null to hide, or a Snackbar to show
      */
-    hideSnackbar: (state) => {
-      state.data = null;
-    },
-    /**
-     * Show a new snackbar.
-     * @param state Current slice state
-     * @param action Payload must be a valid Snackbar
-     */
-    showSnackbar: (state, action: PayloadAction<Snackbar>) => {
+    setSnackbar: (state, action: PayloadAction<null | Snackbar>) => {
       state.data = action.payload;
     },
   },
 });
 
-export const { hideSnackbar, showSnackbar } = snackbarSlice.actions;
+export const { setSnackbar } = snackbarSlice.actions;
+
+/** Convenience action creator to show a snackbar */
+export const showSnackbar = (snackbar: Snackbar) => setSnackbar(snackbar);
+
+/** Convenience action creator to hide the snackbar */
+export const hideSnackbar = () => setSnackbar(null);
+
 export default snackbarSlice.reducer;
 
 /** Root selector — returns the entire slice. */

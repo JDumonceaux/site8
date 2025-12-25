@@ -15,7 +15,6 @@ export class TestsService extends BaseDataService<Tests> {
   public constructor() {
     super({
       filePath: FilePath.getDataDir('tests.json'),
-      serviceName: 'TestsService',
     });
   }
 

@@ -1,7 +1,4 @@
-import type { Metadata } from './Metadata.js';
+import type { Collection } from './Collection.js';
 import type { MusicItem } from './MusicItem.js';
 
-export type MusicItems = {
-  readonly items: MusicItem[] | undefined;
-  readonly metadata: Metadata;
-};
+export type MusicItems = Collection<MusicItem>;

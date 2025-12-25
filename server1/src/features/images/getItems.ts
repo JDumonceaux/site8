@@ -1,15 +1,11 @@
-import type { Images } from '../../types/Images.js';
+import type { Image } from '../../types/Image.js';
 
-import { createGetHandler } from '../../lib/http/genericHandlers.js';
+import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
 
-export const getItems = createGetHandler<Images>({
-  errorResponse: { items: [], metadata: { title: 'Images' } },
-  getData: async () => {
-    const data = await getImagesService().getItems();
-    return data ?? { items: [], metadata: { title: 'Images' } };
-  },
-  getItemCount: (data) => data.items?.length ?? 0,
+export const getItems = createCollectionHandler<Image>({
+  defaultTitle: 'Images',
+  getService: getImagesService,
   handlerName: 'Images:getItems',
   return204OnEmpty: true,
 });

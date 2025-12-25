@@ -45,7 +45,6 @@ class ArtistService extends BaseDataService<ItemsFile> {
       defaultMetadata: { title: 'artists' },
       enableCache: true,
       filePath: FilePath.getDataDir(fileName),
-      serviceName: 'ArtistService',
       validationSchema: ItemsFileSchema,
     });
   }

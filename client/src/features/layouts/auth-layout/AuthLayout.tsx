@@ -1,28 +1,13 @@
-import { type JSX, memo, Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { Outlet } from 'react-router-dom';
+import { type JSX, memo } from 'react';
 
 import Header from '@components/core/header/Header';
-import {
-  ErrorFallback,
-  LoadingFallback,
-} from '@features/layouts/common/LayoutFallbacks';
-import Layout from '@features/layouts/layout/Layout';
+import BaseLayout from '@features/layouts/base-layout/BaseLayout';
 
 /**
  * Layout wrapper for authentication-related routes.
  * Provides error boundary and suspense for lazy-loaded routes.
  */
-const AuthLayout = (): JSX.Element => (
-  <ErrorBoundary FallbackComponent={ErrorFallback}>
-    <Header />
-    <Layout.Main>
-      <Suspense fallback={<LoadingFallback />}>
-        <Outlet />
-      </Suspense>
-    </Layout.Main>
-  </ErrorBoundary>
-);
+const AuthLayout = (): JSX.Element => <BaseLayout header={<Header />} />;
 
 AuthLayout.displayName = 'AuthLayout';
 export default memo(AuthLayout);

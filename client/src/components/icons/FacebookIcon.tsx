@@ -1,7 +1,4 @@
-type IconProps = {
-  readonly isAriaHidden?: boolean;
-  readonly isFocusable?: boolean;
-};
+import type { IconProps } from './types';
 
 export const FacebookIcon = ({
   isAriaHidden = false,

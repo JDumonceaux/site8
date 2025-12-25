@@ -9,7 +9,6 @@ export class PhotosService extends BaseDataService<Photos> {
   public constructor() {
     super({
       filePath: FilePath.getDataDir('photos.json'),
-      serviceName: 'PhotosService',
     });
   }
 
