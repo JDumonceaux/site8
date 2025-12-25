@@ -1,8 +1,9 @@
-import { Logger } from '../../utils/logger.js';
-import { getItemsService } from '../../utils/ServiceFactory.js';
+import type { Request, Response } from 'express';
 
 import type { ItemAdd } from '../../types/ItemAdd.js';
-import type { Request, Response } from 'express';
+
+import { Logger } from '../../utils/logger.js';
+import { getItemsService } from '../../utils/ServiceFactory.js';
 
 export const putItems = async (
   req: Request<unknown, unknown, unknown, unknown>,
@@ -11,10 +12,6 @@ export const putItems = async (
   const data = req.body as ItemAdd[];
 
   Logger.info(`Items: Put Items called: `);
-
-  if (!data) {
-    throw new Error('No data to change.');
-  }
 
   const service = getItemsService();
 

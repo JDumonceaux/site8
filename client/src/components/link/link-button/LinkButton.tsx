@@ -1,4 +1,4 @@
-import { forwardRef, type JSX, type ReactNode } from 'react';
+import type { JSX, ReactNode, Ref } from 'react';
 import type { LinkProps as BaseLinkProps, To } from 'react-router-dom';
 
 import StyledLink from '../styled-link/StyledLink';
@@ -8,32 +8,37 @@ export type LinkButtonProps = {
   readonly children: ReactNode;
   /** Destination URL */
   readonly to: To;
+  /** Ref to the anchor element */
+  readonly ref?: Ref<HTMLAnchorElement>;
 } & Omit<BaseLinkProps, 'children' | 'to'>;
 
 /**
  * A link styled as a button.
  * Provides button-like appearance while maintaining link semantics for navigation.
  */
-const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ children, to, ...rest }, ref): JSX.Element => {
-    // Combine rel attributes, ensuring security for target="_blank"
-    const rel =
-      rest.target === '_blank'
-        ? `noopener noreferrer${rest.rel ? ` ${rest.rel}` : ''}`
-        : rest.rel;
+const LinkButton = ({
+  children,
+  ref,
+  to,
+  ...rest
+}: LinkButtonProps): JSX.Element => {
+  // Combine rel attributes, ensuring security for target="_blank"
+  const rel =
+    rest.target === '_blank'
+      ? `noopener noreferrer${rest.rel ? ` ${rest.rel}` : ''}`
+      : rest.rel;
 
-    return (
-      <StyledLink
-        ref={ref}
-        rel={rel}
-        to={to}
-        {...rest}
-      >
-        {children}
-      </StyledLink>
-    );
-  },
-);
+  return (
+    <StyledLink
+      ref={ref}
+      rel={rel}
+      to={to}
+      {...rest}
+    >
+      {children}
+    </StyledLink>
+  );
+};
 
 LinkButton.displayName = 'LinkButton';
 export default LinkButton;

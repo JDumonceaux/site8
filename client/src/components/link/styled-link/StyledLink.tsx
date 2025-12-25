@@ -1,5 +1,4 @@
-import type { JSX, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import type { JSX, ReactNode, Ref } from 'react';
 import {
   Link as BaseLink,
   type LinkProps as BaseLinkProps,
@@ -10,6 +9,7 @@ import styled from 'styled-components';
 export type StyledLinkProps = BaseLinkProps & {
   readonly 'aria-label'?: string;
   readonly children: ReactNode;
+  readonly ref?: Ref<HTMLAnchorElement>;
   readonly variant?: 'dark' | 'light';
 };
 
@@ -18,20 +18,21 @@ export type StyledLinkProps = BaseLinkProps & {
  *
  * Note: Pseudo classes must be in the following order: link, visited, hover, active
  */
-const StyledLink = forwardRef<HTMLAnchorElement, StyledLinkProps>(
-  (
-    { 'aria-label': ariaLabel, children, variant = 'light', ...rest },
-    ref,
-  ): JSX.Element => (
-    <StyledBaseLink
-      ref={ref}
-      $variant={variant}
-      aria-label={ariaLabel}
-      {...rest}
-    >
-      {children}
-    </StyledBaseLink>
-  ),
+const StyledLink = ({
+  'aria-label': ariaLabel,
+  children,
+  ref,
+  variant = 'light',
+  ...rest
+}: StyledLinkProps): JSX.Element => (
+  <StyledBaseLink
+    ref={ref}
+    $variant={variant}
+    aria-label={ariaLabel}
+    {...rest}
+  >
+    {children}
+  </StyledBaseLink>
 );
 
 StyledLink.displayName = 'StyledLink';

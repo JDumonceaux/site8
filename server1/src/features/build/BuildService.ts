@@ -2,7 +2,6 @@ import path from 'path';
 
 import type { Features } from './Features.js';
 
-// eslint-disable-next-line import/no-cycle
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getFileService } from '../../utils/ServiceFactory.js';

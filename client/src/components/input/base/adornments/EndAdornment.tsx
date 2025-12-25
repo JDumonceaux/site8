@@ -1,27 +1,29 @@
-import type { HTMLAttributes, JSX, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import type { HTMLAttributes, JSX, ReactNode, Ref } from 'react';
 
 import styled from 'styled-components';
 
 export type EndAdornmentProps = HTMLAttributes<HTMLDivElement> & {
   readonly children?: ReactNode;
+  readonly ref?: Ref<HTMLDivElement>;
 };
 
-const EndAdornment = forwardRef<HTMLDivElement, EndAdornmentProps>(
-  ({ children, ...rest }, ref): JSX.Element | null => {
-    if (!children) return null;
+const EndAdornment = ({
+  children,
+  ref,
+  ...rest
+}: EndAdornmentProps): JSX.Element | null => {
+  if (!children) return null;
 
-    return (
-      <Wrapper
-        ref={ref}
-        {...rest}
-      >
-        <Content>{children}</Content>
-        <Separator aria-hidden="true" />
-      </Wrapper>
-    );
-  },
-);
+  return (
+    <Wrapper
+      ref={ref}
+      {...rest}
+    >
+      <Content>{children}</Content>
+      <Separator aria-hidden="true" />
+    </Wrapper>
+  );
+};
 
 EndAdornment.displayName = 'EndAdornment';
 export default EndAdornment;

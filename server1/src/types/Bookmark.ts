@@ -1,9 +1,9 @@
 export type Bookmark = {
-  readonly id: number;
-  readonly url: string;
-  readonly name: string;
   readonly description?: string;
-  readonly tags?: string[];
-  readonly rank?: number;
+  readonly id: number;
+  readonly name: string;
   readonly page?: number[];
+  readonly rank?: number;
+  readonly tags?: string[];
+  readonly url: string;
 };

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as ESLint from 'eslint';
 
 import { Logger } from '../../utils/logger.js';

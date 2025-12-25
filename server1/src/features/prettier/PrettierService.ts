@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as prettier from 'prettier';
 
 import { Logger } from '../../utils/logger.js';
@@ -5,12 +6,12 @@ import { Logger } from '../../utils/logger.js';
 export class PrettierService {
   public async formatCode(code: string, filePath: string): Promise<string> {
     try {
-      if (!code?.trim()) {
+      if (!code.trim()) {
         Logger.warn('PrettierService: Empty code provided');
         return code;
       }
 
-      if (!filePath?.trim()) {
+      if (!filePath.trim()) {
         Logger.warn('PrettierService: Empty file path provided');
         return code;
       }

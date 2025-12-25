@@ -17,19 +17,19 @@ export type Image = {
 };
 
 export const ImageEditSchema = z.object({
-  alt: z.string().optional(),
-  create_date: z.string().optional(),
-  description: z.string().optional(),
-  edit_date: z.string().optional(),
-  fileName: z.string().optional(),
-  folder: z.string().optional(),
+  alt: z.string().nullish(),
+  create_date: z.string().nullish(),
+  description: z.string().nullish(),
+  edit_date: z.string().nullish(),
+  fileName: z.string().nullish(),
+  folder: z.string().nullish(),
   id: z.number(),
-  location: z.string().optional(),
-  name: z.string().optional(),
-  official_url: z.string().optional(),
-  role: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  url: z.string().optional(),
+  location: z.string().nullish(),
+  name: z.string().nullish(),
+  official_url: z.string().nullish(),
+  role: z.string().nullish(),
+  tags: z.array(z.string()).nullish(),
+  url: z.string().nullish(),
 });
 
 export type ImageEdit = z.infer<typeof ImageEditSchema>;

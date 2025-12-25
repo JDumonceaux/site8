@@ -1,9 +1,11 @@
-import { PageFileService } from './PageFileService.js';
-import { PageService } from './PageService.js';
-import { Logger } from '../../utils/logger.js';
+import type { Request, Response } from 'express';
 
 import type { PageEdit } from '../../types/Page.js';
-import type { Request, Response } from 'express';
+
+import { Logger } from '../../utils/logger.js';
+
+import { PageFileService } from './PageFileService.js';
+import { PageService } from './PageService.js';
 
 export const patchItem = async (
   req: Request<unknown, unknown, PageEdit, unknown>,

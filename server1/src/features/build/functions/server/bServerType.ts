@@ -3,7 +3,7 @@ import path from 'path';
 import type { FieldType } from '../../Features.js';
 
 import { Logger } from '../../../../utils/logger.js';
-// eslint-disable-next-line import/no-cycle
+
 import {
   getFileService,
   getPrettierService,

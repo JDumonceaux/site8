@@ -1,23 +1,26 @@
-import type { ButtonHTMLAttributes, JSX, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import type { ButtonHTMLAttributes, JSX, ReactNode, Ref } from 'react';
 
 import styled from 'styled-components';
 
 export type StyledPlainButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Button content */
   readonly children?: ReactNode;
+  /** Ref to the button element */
+  readonly ref?: Ref<HTMLButtonElement>;
 };
 
 /** A plain button styled as a link */
-const StyledPlainButton = forwardRef<HTMLButtonElement, StyledPlainButtonProps>(
-  ({ children, ...rest }, ref): JSX.Element => (
-    <StyledButton
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </StyledButton>
-  ),
+const StyledPlainButton = ({
+  children,
+  ref,
+  ...rest
+}: StyledPlainButtonProps): JSX.Element => (
+  <StyledButton
+    ref={ref}
+    {...rest}
+  >
+    {children}
+  </StyledButton>
 );
 
 StyledPlainButton.displayName = 'StyledPlainButton';

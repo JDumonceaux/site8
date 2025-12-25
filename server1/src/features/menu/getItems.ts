@@ -5,7 +5,7 @@ import { getMenuService } from '../../utils/ServiceFactory.js';
 
 /** Wrapper to adapt getMenu to getItems interface */
 const menuServiceAdapter = () => ({
-  getItems: () => getMenuService().getMenu(),
+  getItems: async () => getMenuService().getMenu(),
 });
 
 export const getItems = createCollectionHandler<MenuItem>({

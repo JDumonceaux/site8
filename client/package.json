@@ -46,7 +46,6 @@
     "cross-spawn": "^7.0.6",
     "date-fns": "^4.1.0",
     "dompurify": "^3.3.1",
-    "empower-components": "file:D:/empower-components",
     "html-react-parser": "^5.2.11",
     "i18next": "^25.7.3",
     "react": "^19.2.3",

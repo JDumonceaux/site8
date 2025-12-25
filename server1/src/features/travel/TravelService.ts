@@ -48,9 +48,7 @@ export class TravelService extends BaseDataService<Places> {
       }
 
       // Create a map of image IDs to full image objects for quick lookup
-      const imageMap = new Map(
-        (imagesData.items ?? []).map((img) => [img.id, img]),
-      );
+      const imageMap = new Map(imagesData.items.map((img) => [img.id, img]));
 
       // Enrich places with full image data
       const enrichedItems = (placesData.items ?? []).map((place) => {

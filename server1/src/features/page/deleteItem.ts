@@ -1,11 +1,11 @@
+import type { Request, Response } from 'express';
+
 import { parseRequestId } from '../../utils/helperUtils.js';
 import { Logger } from '../../utils/logger.js';
 import {
   getPageFileService,
   getPageService,
 } from '../../utils/ServiceFactory.js';
-
-import type { Request, Response } from 'express';
 
 export const deleteItem = async (
   req: Request,

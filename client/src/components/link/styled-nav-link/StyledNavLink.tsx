@@ -1,5 +1,4 @@
-import type { JSX } from 'react';
-import { forwardRef } from 'react';
+import type { JSX, Ref } from 'react';
 import { NavLink, type NavLinkProps } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -17,6 +16,7 @@ type Variant = 'dark' | 'light';
  */
 export type StyledNavLinkProps = Omit<NavLinkProps, 'aria-current'> & {
   readonly 'aria-label'?: string;
+  readonly ref?: Ref<HTMLAnchorElement>;
   readonly variant?: Variant;
 };
 
@@ -24,20 +24,20 @@ export type StyledNavLinkProps = Omit<NavLinkProps, 'aria-current'> & {
  * A styled wrapper around react-router's NavLink.
  * Respects active state (automatic aria-current), and supports two color variants.
  */
-const StyledNavLink = forwardRef<HTMLAnchorElement, StyledNavLinkProps>(
-  (
-    { 'aria-label': ariaLabel, variant = 'light', ...navProps },
-    ref,
-  ): JSX.Element => (
-    <Link
-      ref={ref}
-      aria-label={ariaLabel}
-      variant={variant}
-      {...navProps}
-      // NavLink will add aria-current="page" when active
-      end={navProps.end ?? false}
-    />
-  ),
+const StyledNavLink = ({
+  'aria-label': ariaLabel,
+  ref,
+  variant = 'light',
+  ...navProps
+}: StyledNavLinkProps): JSX.Element => (
+  <Link
+    ref={ref}
+    aria-label={ariaLabel}
+    variant={variant}
+    {...navProps}
+    // NavLink will add aria-current="page" when active
+    end={navProps.end ?? false}
+  />
 );
 
 StyledNavLink.displayName = 'StyledNavLink';

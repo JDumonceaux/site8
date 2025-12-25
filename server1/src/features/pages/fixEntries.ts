@@ -1,7 +1,7 @@
+import type { Request, Response } from 'express';
+
 import { Logger } from '../../utils/logger.js';
 import { getPagesService } from '../../utils/ServiceFactory.js';
-
-import type { Request, Response } from 'express';
 
 export const fixEntries = async (
   _req: Request,

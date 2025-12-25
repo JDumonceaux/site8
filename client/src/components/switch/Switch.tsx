@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import type { Ref } from 'react';
 
 import * as radixSwitch from '@radix-ui/react-switch';
 import styled from 'styled-components';
@@ -7,25 +7,24 @@ export type SwitchProps = {
   readonly id: string;
   readonly label: string;
   readonly onCheckedChange?: (checked: boolean) => void;
+  readonly ref?: Ref<HTMLButtonElement>;
 } & radixSwitch.SwitchProps;
 
 /**
  * A labeled toggle switch component.
  */
-const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ id, label, onCheckedChange, ...rest }, ref) => (
-    <StyledWrapper>
-      <StyledLabel htmlFor={id}>{label}</StyledLabel>
-      <StyledSwitchRoot
-        ref={ref}
-        id={id}
-        onCheckedChange={onCheckedChange}
-        {...rest}
-      >
-        <StyledSwitchThumb />
-      </StyledSwitchRoot>
-    </StyledWrapper>
-  ),
+const Switch = ({ id, label, onCheckedChange, ref, ...rest }: SwitchProps) => (
+  <StyledWrapper>
+    <StyledLabel htmlFor={id}>{label}</StyledLabel>
+    <StyledSwitchRoot
+      ref={ref}
+      id={id}
+      onCheckedChange={onCheckedChange}
+      {...rest}
+    >
+      <StyledSwitchThumb />
+    </StyledSwitchRoot>
+  </StyledWrapper>
 );
 
 Switch.displayName = 'Switch';

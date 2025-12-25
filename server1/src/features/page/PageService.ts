@@ -1,16 +1,17 @@
 import { z } from 'zod';
 
-import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
-import { PageFileService } from './PageFileService.js';
+import type { PageEdit } from '../../types/Page.js';
+import type { PageMenu } from '../../types/PageMenu.js';
+import type { Pages } from '../../types/Pages.js';
+import type { PageText } from '../../types/PageText.js';
+
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
 import { safeParse } from '../../utils/zodHelper.js';
 import { PagesService } from '../pages/PagesService.js';
 
-import type { PageEdit } from '../../types/Page.js';
-import type { PageMenu } from '../../types/PageMenu.js';
-import type { Pages } from '../../types/Pages.js';
-import type { PageText } from '../../types/PageText.js';
+import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
+import { PageFileService } from './PageFileService.js';
 
 const PAGE_ADD_SCHEMA = z
   .object({
@@ -22,8 +23,6 @@ const PAGE_ADD_SCHEMA = z
       .min(1, 'Name is required.')
       .max(500, 'Name max length exceeded: 500')
       .trim(),
-    to: z.string().trim().optional(),
-    url: z.string().trim().optional(),
     parentItems: z
       .object({
         id: z.number(),
@@ -31,6 +30,8 @@ const PAGE_ADD_SCHEMA = z
       })
       .array()
       .min(1),
+    to: z.string().trim().optional(),
+    url: z.string().trim().optional(),
   })
   .refine(
     (data) => data.to ?? data.url,
@@ -40,64 +41,12 @@ const PAGE_ADD_SCHEMA = z
 type AddData = z.infer<typeof PAGE_ADD_SCHEMA>;
 
 export class PageService {
-  private readonly pagesService: PagesService;
   private readonly pageFileService: PageFileService;
+  private readonly pagesService: PagesService;
 
-  constructor() {
+  public constructor() {
     this.pagesService = new PagesService();
     this.pageFileService = new PageFileService();
-  }
-
-  private async getItems(): Promise<Pages | undefined> {
-    return this.pagesService.getItems();
-  }
-
-  private async writeItems(newData: Pages): Promise<void> {
-    await this.pagesService.writeData(newData);
-  }
-
-  public async getItem(id: number): Promise<PageText | undefined> {
-    Logger.info(`PageService: getItem -> ${id}`);
-
-    const items = await this.getItems();
-    const item = items?.items?.find((x) => x.id === id);
-
-    return mapPageMenuToPageText(item);
-  }
-
-  private async getItemWithFile(
-    item: PageMenu | undefined,
-  ): Promise<PageText | undefined> {
-    Logger.info('PageService: getItemWithFile');
-
-    if (!item || item.id === 0) {
-      throw new Error('Item not found');
-    }
-
-    const file = await this.pageFileService.getFile(item.id);
-    const result = mapPageMenuToPageText(item);
-
-    return result ? { ...result, text: file } : undefined;
-  }
-
-  public async getItemCompleteByName(
-    name: string,
-  ): Promise<PageText | undefined> {
-    Logger.info(`PageService: getItemCompleteByName -> ${name}`);
-
-    const items = await this.getItems();
-    const item = items?.items?.find((x) => x.to === name);
-
-    return this.getItemWithFile(item);
-  }
-
-  public async getItemCompleteById(id: number): Promise<PageText | undefined> {
-    Logger.info(`PageService: getItemCompleteById -> ${id}`);
-
-    const items = await this.getItems();
-    const item = items?.items?.find((x) => x.id === id);
-
-    return this.getItemWithFile(item);
   }
 
   public async addItem(item: PageEdit): Promise<number> {
@@ -105,10 +54,6 @@ export class PageService {
 
     try {
       const updatedItem = cleanUpData<PageEdit>(item);
-
-      if (!updatedItem) {
-        throw new Error('Invalid item');
-      }
 
       // Transform the item to match the validation schema
       const parentItems = updatedItem.parentItems?.map(({ id, seq }) => ({
@@ -125,9 +70,9 @@ export class PageService {
       const validationData = {
         id: updatedItem.id,
         name: updatedItem.title,
+        parentItems,
         to: updatedItem.to,
         url: updatedItem.url,
-        parentItems,
       };
 
       const valid = safeParse<AddData>(PAGE_ADD_SCHEMA, validationData);
@@ -142,7 +87,7 @@ export class PageService {
         throw new Error('Index file not found');
       }
 
-      const { text, id, ...rest } = updatedItem;
+      const { id, text, ...rest } = updatedItem;
       const newItem = {
         id,
         ...rest,
@@ -164,48 +109,6 @@ export class PageService {
         error,
       });
       throw new Error(`Failed to add item: ${errorMessage}`);
-    }
-  }
-
-  public async updateItem(item: PageEdit): Promise<number> {
-    Logger.info('PageService: updateItem');
-
-    try {
-      const updatedItem = cleanUpData<PageEdit>(item);
-
-      if (!updatedItem) {
-        throw new Error('Invalid item');
-      }
-
-      const pages = await this.getItems();
-
-      if (!pages) {
-        throw new Error('Index file not found');
-      }
-
-      const filteredItems = pages.items?.filter((x) => x.id !== item.id) ?? [];
-      const { text, create_date, ...rest } = updatedItem;
-
-      const newItem = {
-        ...rest,
-        ...(text && text.length > 0 ? { file: true } : {}),
-      };
-
-      const updatedFile: Pages = {
-        ...pages,
-        items: [...filteredItems, newItem],
-      };
-
-      await this.writeItems(updatedFile);
-
-      return item.id;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`PageService: Error updating item - ${errorMessage}`, {
-        error,
-      });
-      throw new Error(`Failed to update item: ${errorMessage}`);
     }
   }
 
@@ -237,5 +140,95 @@ export class PageService {
       });
       throw new Error(`Failed to delete item with id: ${id}`);
     }
+  }
+
+  public async getItem(id: number): Promise<PageText | undefined> {
+    Logger.info(`PageService: getItem -> ${id}`);
+
+    const items = await this.getItems();
+    const item = items?.items?.find((x) => x.id === id);
+
+    return mapPageMenuToPageText(item);
+  }
+
+  public async getItemCompleteById(id: number): Promise<PageText | undefined> {
+    Logger.info(`PageService: getItemCompleteById -> ${id}`);
+
+    const items = await this.getItems();
+    const item = items?.items?.find((x) => x.id === id);
+
+    return this.getItemWithFile(item);
+  }
+
+  public async getItemCompleteByName(
+    name: string,
+  ): Promise<PageText | undefined> {
+    Logger.info(`PageService: getItemCompleteByName -> ${name}`);
+
+    const items = await this.getItems();
+    const item = items?.items?.find((x) => x.to === name);
+
+    return this.getItemWithFile(item);
+  }
+
+  public async updateItem(item: PageEdit): Promise<number> {
+    Logger.info('PageService: updateItem');
+
+    try {
+      const updatedItem = cleanUpData<PageEdit>(item);
+
+      const pages = await this.getItems();
+
+      if (!pages) {
+        throw new Error('Index file not found');
+      }
+
+      const filteredItems = pages.items?.filter((x) => x.id !== item.id) ?? [];
+      const { text, ...rest } = updatedItem;
+
+      const newItem = {
+        ...rest,
+        ...(text && text.length > 0 ? { file: true } : {}),
+      };
+
+      const updatedFile: Pages = {
+        ...pages,
+        items: [...filteredItems, newItem],
+      };
+
+      await this.writeItems(updatedFile);
+
+      return item.id;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`PageService: Error updating item - ${errorMessage}`, {
+        error,
+      });
+      throw new Error(`Failed to update item: ${errorMessage}`);
+    }
+  }
+
+  private async getItems(): Promise<Pages | undefined> {
+    return this.pagesService.getItems();
+  }
+
+  private async getItemWithFile(
+    item: PageMenu | undefined,
+  ): Promise<PageText | undefined> {
+    Logger.info('PageService: getItemWithFile');
+
+    if (!item || item.id === 0) {
+      throw new Error('Item not found');
+    }
+
+    const file = await this.pageFileService.getFile(item.id);
+    const result = mapPageMenuToPageText(item);
+
+    return result ? { ...result, text: file } : undefined;
+  }
+
+  private async writeItems(newData: Pages): Promise<void> {
+    await this.pagesService.writeData(newData);
   }
 }

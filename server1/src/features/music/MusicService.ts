@@ -1,6 +1,5 @@
 import type { MusicItems } from '../../types/MusicItems.js';
 
-// eslint-disable-next-line import/no-cycle
 import { BaseDataService } from '../../services/BaseDataService.js';
 import FilePath from '../files/FilePath.js';
 

@@ -1,7 +1,6 @@
 import type { Test } from '../../types/Test.js';
 import type { Tests } from '../../types/Tests.js';
 
-// eslint-disable-next-line import/no-cycle
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import FilePath from '../files/FilePath.js';

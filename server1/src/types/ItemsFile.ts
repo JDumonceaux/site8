@@ -1,9 +1,13 @@
-import type { Artist } from './Artist.js';
-import type { Item } from './Item.js';
-import type { Metadata } from './Metadata.js';
+import { z } from 'zod';
 
-export type ItemsFile = {
-  readonly artists?: Artist[] | undefined;
-  readonly items: Item[] | undefined;
-  readonly metadata: Metadata;
-};
+import { ArtistSchema } from './Artist.js';
+import { ItemSchema } from './Item.js';
+import { MetadataSchema } from './Metadata.js';
+
+export const ItemsFileSchema = z.object({
+  artists: z.array(ArtistSchema).default([]),
+  items: z.array(ItemSchema).default([]),
+  metadata: MetadataSchema,
+});
+
+export type ItemsFile = z.infer<typeof ItemsFileSchema>;

@@ -1,10 +1,11 @@
+import type { Request, Response } from 'express';
+
+import type { Image } from '../../types/Image.js';
+
 import { RESPONSES } from '../../utils/constants.js';
 import { parseRequestId } from '../../utils/helperUtils.js';
 import { Logger } from '../../utils/logger.js';
 import { getImageService } from '../../utils/ServiceFactory.js';
-
-import type { Image } from '../../types/Image.js';
-import type { Request, Response } from 'express';
 
 export const deleteItem = async (
   req: Request,

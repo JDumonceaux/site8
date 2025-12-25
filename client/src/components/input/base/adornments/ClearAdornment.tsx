@@ -1,5 +1,4 @@
-import type { HTMLAttributes, JSX, MouseEventHandler, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import type { HTMLAttributes, JSX, MouseEventHandler, ReactNode, Ref } from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon } from '@radix-ui/react-icons';
@@ -18,36 +17,35 @@ type ClearAdornmentProps = {
   readonly label?: string;
   /** Click handler */
   readonly onClick: MouseEventHandler<HTMLButtonElement>;
+  /** Ref to the button element */
+  readonly ref?: Ref<HTMLButtonElement>;
 } & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'>;
 
-const ClearAdornment = forwardRef<HTMLButtonElement, ClearAdornmentProps>(
-  (
-    {
-      ariaLabel = 'clear contents',
-      icon,
-      iconProps,
-      label = 'Clear contents',
-      onClick,
-      ...rest
-    },
-    ref,
-  ): JSX.Element => (
-    <Tooltip
-      trigger={
-        <TriggerButton
-          ref={ref}
-          type="button"
-          onClick={onClick}
-          {...rest}
-        >
-          <AccessibleIcon label={label}>
-            {icon ?? <Cross1Icon {...iconProps} />}
-          </AccessibleIcon>
-        </TriggerButton>
-      }
-      aria-label={ariaLabel}
-      content={label}
-    />
+const ClearAdornment = ({
+  ariaLabel = 'clear contents',
+  icon,
+  iconProps,
+  label = 'Clear contents',
+  onClick,
+  ref,
+  ...rest
+}: ClearAdornmentProps): JSX.Element => (
+  <Tooltip
+    trigger={
+      <TriggerButton
+        ref={ref}
+        type="button"
+        onClick={onClick}
+        {...rest}
+      >
+        <AccessibleIcon label={label}>
+          {icon ?? <Cross1Icon {...iconProps} />}
+        </AccessibleIcon>
+      </TriggerButton>
+    }
+    aria-label={ariaLabel}
+    content={label}
+  />
   ),
 );
 

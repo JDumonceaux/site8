@@ -1,6 +1,5 @@
 import type { Photos } from '../../types/Photos.js';
 
-// eslint-disable-next-line import/no-cycle
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import FilePath from '../files/FilePath.js';

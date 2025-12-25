@@ -5,10 +5,10 @@ import type { ItemEdit } from '../../types/ItemEdit.js';
 import { Logger } from '../../utils/logger.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
-export const patchItems = async (
+export const patchItems = (
   req: Request<unknown, unknown, unknown, unknown>,
   res: Response<boolean | string>,
-): Promise<void> => {
+): void => {
   const data = req.body as ItemEdit[];
 
   Logger.info(`Items: Patch Items called: `);
@@ -21,7 +21,7 @@ export const patchItems = async (
   const service = getItemsService();
 
   try {
-    const response = await service.patchItems(data);
+    const response = service.patchItems(data);
     if (response) {
       res.status(200).send();
     } else {

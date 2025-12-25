@@ -1,21 +1,25 @@
-import type { HTMLAttributes, JSX } from 'react';
-import { forwardRef } from 'react';
+import type { HTMLAttributes, JSX, Ref } from 'react';
 
 import { PhoneIcon as Icon } from '@components/icons/PhoneIcon';
 import styled from 'styled-components';
 
-export type PhoneAdornmentProps = Readonly<HTMLAttributes<HTMLDivElement>>;
+export type PhoneAdornmentProps = Readonly<
+  HTMLAttributes<HTMLDivElement> & {
+    ref?: Ref<HTMLDivElement>;
+  }
+>;
 
-const PhoneAdornment = forwardRef<HTMLDivElement, PhoneAdornmentProps>(
-  (props, ref): JSX.Element => (
-    <Container
-      ref={ref}
-      data-testid="phone-icon"
-      {...props}
-    >
-      <StyledIcon />
-    </Container>
-  ),
+const PhoneAdornment = ({
+  ref,
+  ...props
+}: PhoneAdornmentProps): JSX.Element => (
+  <Container
+    ref={ref}
+    data-testid="phone-icon"
+    {...props}
+  >
+    <StyledIcon />
+  </Container>
 );
 
 PhoneAdornment.displayName = 'PhoneAdornment';

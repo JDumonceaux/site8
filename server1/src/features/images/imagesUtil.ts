@@ -29,7 +29,9 @@ export const getNewItems = (
     cleanUpData<Image>({ ...item }),
   );
 
-  return newItemsWithFlag.sort((a, b) => (a.fileName ?? '').localeCompare(b.fileName ?? ''));
+  return newItemsWithFlag.sort((a, b) =>
+    (a.fileName ?? '').localeCompare(b.fileName ?? ''),
+  );
 };
 
 export const getNewIds = (items: Image[] | undefined): Image[] | undefined => {
