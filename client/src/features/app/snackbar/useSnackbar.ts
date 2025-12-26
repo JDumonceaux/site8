@@ -4,6 +4,16 @@ import { SNACKBAR_DEFAULT_DURATION } from '@lib/utils/constants';
 import { hideSnackbar, showSnackbar } from '@store/snackbarSlice';
 import type { AppDispatch, RootState } from '@store/store';
 
+export const SnackbarVariant = {
+  ERROR: 'error',
+  INFO: 'info',
+  SUCCESS: 'success',
+  WARNING: 'warning',
+} as const satisfies Record<string, string>;
+
+export type SnackbarVariant =
+  (typeof SnackbarVariant)[keyof typeof SnackbarVariant];
+
 export type Snackbar = {
   contents: null | React.ReactNode;
   isOpen: boolean;
@@ -11,13 +21,6 @@ export type Snackbar = {
   showCloseButton?: boolean;
   variant?: SnackbarVariant;
 };
-
-export enum SnackbarVariant {
-  ERROR = 'error',
-  INFO = 'info',
-  SUCCESS = 'success',
-  WARNING = 'warning',
-}
 
 const initialState: Snackbar = {
   contents: null,

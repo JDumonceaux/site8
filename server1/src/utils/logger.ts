@@ -57,16 +57,17 @@ const transports: winston.transport[] = [
   new winston.transports.Console(OPTIONS.console),
 ];
 
-let format = winston.format.json();
+const format = Environment.isLocal()
+  ? winston.format.combine(
+      winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
+      winston.format.printf(
+        (info) => `[${info['timestamp']}] ${info.level}: ${info.message}`,
+      ),
+    )
+  : winston.format.json();
 
 if (Environment.isLocal()) {
   transports.push(new winston.transports.File(OPTIONS.file));
-  format = winston.format.combine(
-    winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
-    winston.format.printf(
-      (info) => `[${info['timestamp']}] ${info.level}: ${info.message}`,
-    ),
-  );
 }
 
 export const Logger = winston.createLogger({

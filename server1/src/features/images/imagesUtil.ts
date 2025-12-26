@@ -29,7 +29,7 @@ export const getNewItems = (
     cleanUpData<Image>({ ...item }),
   );
 
-  return newItemsWithFlag.sort((a, b) =>
+  return newItemsWithFlag.toSorted((a, b) =>
     (a.fileName ?? '').localeCompare(b.fileName ?? ''),
   );
 };

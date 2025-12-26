@@ -1,21 +1,22 @@
-import { readFile, writeFile } from 'fs/promises';
-
 import type { Image } from '../../types/Image.js';
 import type { Images } from '../../types/Images.js';
 
+import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import { cleanUpData, getNextId } from '../../utils/objectUtil.js';
+import {
+  cleanUpData,
+  getNextId as getNextIdUtil,
+} from '../../utils/objectUtil.js';
 import FilePath from '../files/FilePath.js';
 
 import { ImagesFileService } from './ImagesFileService.js';
 import { getNewIds, getNewItems } from './imagesUtil.js';
 
-export class ImagesService {
-  private readonly fileName = 'images.json';
-  private readonly filePath: string = '';
-
+export class ImagesService extends BaseDataService<Images> {
   public constructor() {
-    this.filePath = FilePath.getDataDir(this.fileName);
+    super({
+      filePath: FilePath.getDataDir('images.json'),
+    });
   }
 
   public async fixIndex(): Promise<boolean> {
@@ -32,7 +33,7 @@ export class ImagesService {
         metadata: item?.metadata ?? { title: 'Images' },
       };
 
-      await this.writeFile(data);
+      await this.writeData(data);
       return true;
     } catch (error) {
       Logger.error(`ImagesService: fixIndex -> ${String(error)}`);
@@ -57,7 +58,7 @@ export class ImagesService {
         metadata: item?.metadata ?? { title: 'Images' },
       };
 
-      await this.writeFile(data);
+      await this.writeData(data);
       return true;
     } catch (error) {
       Logger.error(`ImagesService: fixNames -> ${String(error)}`);
@@ -65,10 +66,8 @@ export class ImagesService {
     }
   }
 
-  // Get all data
-  public async getItems(): Promise<Images | undefined> {
-    return this.readFile();
-  }
+  // Get all data - uses BaseDataService implementation
+  // Override not needed as base class provides this functionality
 
   // Yes, this is a duplicate of getItems.  It's here for clarity and in case
   // we need to add additional logic to getItems in the future.
@@ -81,17 +80,19 @@ export class ImagesService {
     return { ...items };
   }
 
-  public async getNextId(): Promise<number | undefined> {
+  public override async getNextId(): Promise<number | undefined> {
     try {
       const data = await this.readFile();
-      return getNextId(data?.items);
+      return getNextIdUtil(data?.items);
     } catch (error) {
-      Logger.error(`ImagesService: getItems -> ${String(error)}`);
+      Logger.error(`ImagesService: getNextId -> ${String(error)}`);
       return undefined;
     }
   }
 
-  public async listDuplicates(): Promise<string[] | string | undefined> {
+  public override async listDuplicates(): Promise<{
+    readonly items: string[];
+  }> {
     try {
       const item = await this.readFile();
 
@@ -102,10 +103,10 @@ export class ImagesService {
       // Filter out null and undefined
       const filtered = duplicates?.filter((x): x is string => x !== undefined);
 
-      return filtered && filtered.length > 0 ? filtered : 'No duplicates found';
+      return { items: filtered ?? [] };
     } catch (error) {
       Logger.error(`ImagesService: listDuplicates -> ${String(error)}`);
-      return 'No duplicates found';
+      return { items: [] };
     }
   }
 
@@ -190,26 +191,9 @@ export class ImagesService {
       })
       .filter(Boolean);
 
-    const results = await this.writeFile({ ...images, items: data });
-    if (!results) {
-      throw new Error('ImagesService: updateItems -> Failed to update index.');
-    }
+    await this.writeData({ ...images, items: data });
 
     return true;
-  }
-
-  public async writeFile(data: Readonly<Images>): Promise<boolean> {
-    Logger.info(`ImagesService: writeFile -> `);
-
-    try {
-      await writeFile(this.filePath, JSON.stringify(data, null, 2), {
-        encoding: 'utf8',
-      });
-      return true;
-    } catch (error) {
-      Logger.error(`ImagesService: writeFile. Error -> ${String(error)}`);
-      throw new Error(`Write file failed. Error: ${String(error)}`);
-    }
   }
 
   // Get Items to sort into folders
@@ -220,17 +204,6 @@ export class ImagesService {
       throw new Error('getNewItems > Index file not loaded');
     }
     return { ...ret };
-  }
-
-  // Get all data
-  private async readFile(): Promise<Images | undefined> {
-    try {
-      const results = await readFile(this.filePath, { encoding: 'utf8' });
-      return JSON.parse(results) as Images;
-    } catch (error) {
-      Logger.error(`ImagesService: readFile -> ${String(error)}`);
-    }
-    return undefined;
   }
 
   /**
@@ -255,7 +228,7 @@ export class ImagesService {
       const modifiedItems = getNewIds(allItems);
       // Write back file
       const data = { ...prev, items: modifiedItems };
-      await this.writeFile(data);
+      await this.writeData(data);
       return true;
     } catch (error) {
       Logger.error(

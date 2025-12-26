@@ -48,11 +48,11 @@ const ErrorContainer = styled.div`
   max-width: 600px;
   background: #fee;
   color: #900;
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
 `;
 
 const ErrorTitle = styled.p`
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 1.125rem;
   margin: 0 0 0.5rem 0;
 `;
@@ -61,7 +61,7 @@ const ErrorMessage = styled.pre`
   margin: 0 0 1rem 0;
   padding: 0.5rem;
   background: #fdd;
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
   overflow-x: auto;
   font-size: 0.875rem;
   white-space: pre-wrap;
@@ -81,11 +81,6 @@ const RetryButton = styled.button`
 
   &:hover {
     background: #0056b3;
-  }
-
-  &:focus-visible {
-    outline: 2px solid #0056b3;
-    outline-offset: 2px;
   }
 
   &:active {

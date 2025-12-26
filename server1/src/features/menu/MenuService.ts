@@ -4,12 +4,22 @@ import type { PageMenu } from '../../types/PageMenu.js';
 import type { Pages } from '../../types/Pages.js';
 import type { Parent } from '../../types/Parent.js';
 
+import type { IDataService } from '../../services/IDataService.js';
 import { Logger } from '../../utils/logger.js';
-import { PagesService } from '../pages/PagesService.js';
 
 import { mapPageMenuToMenuItem } from './mapPageMenuToMenuItem.js';
 
 export class MenuService {
+  private readonly pagesService: IDataService<Pages>;
+
+  /**
+   * Creates a new MenuService instance with dependency injection
+   * @param pagesService - Service for accessing pages data
+   */
+  public constructor(pagesService: IDataService<Pages>) {
+    this.pagesService = pagesService;
+  }
+
   // 0. Get Menu | Admin > Pages
   public async getMenu(): Promise<Menus | undefined> {
     Logger.info(`MenuService: getMenu -> `);
@@ -39,37 +49,31 @@ export class MenuService {
   ): MenuItem[] | undefined {
     try {
       // Find direct children (both menus and pages)
-      const childMenus: MenuItem[] = [];
-      const childPages: MenuItem[] = [];
-
       // Find child menus
-      menus.forEach((menu) => {
-        menu.parentItems?.forEach((parent) => {
-          if (parent.id === parentId) {
-            const menuItem = mapPageMenuToMenuItem(menu, parent);
-            // Recursively build this menu's children
-            const children = this.buildChildren(
-              menu.id,
-              menus,
-              pages,
-              allItems,
-            );
-            const itemWithChildren: MenuItem = children
-              ? { ...menuItem, items: children }
-              : menuItem;
-            childMenus.push(itemWithChildren);
-          }
-        });
-      });
+      const childMenus: MenuItem[] = menus.flatMap(
+        (menu) =>
+          menu.parentItems
+            ?.filter((parent) => parent.id === parentId)
+            .map((parent) => {
+              const menuItem = mapPageMenuToMenuItem(menu, parent);
+              // Recursively build this menu's children
+              const children = this.buildChildren(
+                menu.id,
+                menus,
+                pages,
+                allItems,
+              );
+              return children ? { ...menuItem, items: children } : menuItem;
+            }) ?? [],
+      );
 
       // Find child pages
-      pages.forEach((page) => {
-        page.parentItems?.forEach((parent) => {
-          if (parent.id === parentId) {
-            childPages.push(mapPageMenuToMenuItem(page, parent));
-          }
-        });
-      });
+      const childPages: MenuItem[] = pages.flatMap(
+        (page) =>
+          page.parentItems
+            ?.filter((parent) => parent.id === parentId)
+            .map((parent) => mapPageMenuToMenuItem(page, parent)) ?? [],
+      );
 
       // Combine and sort children
       const allChildren = [...childMenus, ...childPages];
@@ -111,10 +115,11 @@ export class MenuService {
         sortBy: 'name',
       } as Parent;
 
-      // Segment the data
-      const rootMenus = items.filter((x) => x.type === 'root');
-      const menus = items.filter((x) => x.type === 'menu');
-      const pages = items.filter((x) => x.type === 'page');
+      // Segment the data using Object.groupBy (ES2024/2025)
+      const grouped = Object.groupBy(items, (item) => item.type);
+      const rootMenus = grouped.root ?? [];
+      const menus = grouped.menu ?? [];
+      const pages = grouped.page ?? [];
 
       // Build root menu items
       const rootMenuItems = rootMenus
@@ -148,6 +153,6 @@ export class MenuService {
 
   // 0. Get all data
   private async getItems(): Promise<Pages | undefined> {
-    return new PagesService().getItems();
+    return this.pagesService.getItems();
   }
 }

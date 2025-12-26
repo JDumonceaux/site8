@@ -81,7 +81,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
   font-family: inherit;
   line-height: 1;
   cursor: pointer;

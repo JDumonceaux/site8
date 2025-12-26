@@ -126,6 +126,7 @@ const Count = styled.div`
 
 const Grid = styled.div`
   display: grid;
+  /* Using auto-fit for responsive columns */
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 0.5rem;
 `;
@@ -134,7 +135,7 @@ const ImageButton = styled.button<{ $selected: boolean }>`
   padding: 0;
   border: ${({ $selected }) =>
     $selected ? '2px solid var(--focus-ring-color)' : '1px solid #ddd'};
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
   overflow: hidden;
   background: transparent;
   cursor: pointer;
@@ -146,7 +147,7 @@ const ImageButton = styled.button<{ $selected: boolean }>`
   }
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-outline-width) solid var(--focus-ring-color);
     outline-offset: 2px;
   }
 `;

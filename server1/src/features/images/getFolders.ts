@@ -5,7 +5,7 @@ export const getFolders = createGetHandler<string[]>({
   errorResponse: [],
   getData: async () => {
     const folders = getImagesFileService().getFolders();
-    return Promise.resolve(folders ?? []);
+    return Promise.try(() => folders ?? []);
   },
   getItemCount: (data) => data.length,
   handlerName: 'Images:getFolders',

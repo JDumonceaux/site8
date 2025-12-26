@@ -79,7 +79,7 @@ const StyledTextArea = styled.textarea`
   line-height: 20px;
   padding: 6px;
   border: 1px solid var(--input-border-color, #ccc);
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
   width: 100%;
 
   &:focus,

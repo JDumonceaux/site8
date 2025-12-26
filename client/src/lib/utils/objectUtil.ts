@@ -3,7 +3,7 @@
  * where each value is replaced by a default based on its type.
  * For example, string values become '', numbers become 0, booleans become false, etc.
  */
-export const getDefaultObject = <T extends Record<string, any>>(
+export const getDefaultObject = <const T extends Record<string, any>>(
   obj: T,
 ): Partial<T> => {
   const defaultObj = {} as Record<string, unknown>;

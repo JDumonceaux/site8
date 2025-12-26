@@ -46,7 +46,7 @@ export default IconMenu;
 
 const StyledButton = styled.button`
   font-family: inherit;
-  border-radius: 50%;
+  border-radius: var(--border-radius-circle);
   width: 35px;
   height: 35px;
   display: inline-flex;
@@ -67,7 +67,7 @@ const StyledMenuContent = styled(DropdownMenu.Content)`
   min-width: 220px;
   background-color: var(--palette-grey-10);
   border: 1px solid var(--palette-samp);
-  border-radius: 6px;
+  border-radius: var(--border-radius-md);
   padding: 0.5rem;
   box-shadow:
     0px 10px 38px -10px rgba(22, 23, 24, 0.35),

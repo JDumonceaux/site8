@@ -120,11 +120,8 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
     try {
       const uniqueTags = items.reduce<string[]>((acc: string[], item) => {
         if (item.tags) {
-          item.tags.forEach((tag) => {
-            if (!acc.includes(tag)) {
-              acc.push(tag);
-            }
-          });
+          const newTags = item.tags.filter((tag) => !acc.includes(tag));
+          return [...acc, ...newTags];
         }
         return acc;
       }, []);

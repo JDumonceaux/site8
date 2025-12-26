@@ -47,11 +47,6 @@ const StyledButton = styled.button`
     text-underline-position: under;
   }
 
-  &:focus-visible {
-    outline: 2px solid ${OUTLINE_COLOR};
-    outline-offset: 2px;
-  }
-
   &:disabled {
     cursor: not-allowed;
     opacity: 0.6;

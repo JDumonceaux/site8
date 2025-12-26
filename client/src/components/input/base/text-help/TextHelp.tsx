@@ -85,6 +85,6 @@ const Message = styled.div<{ $hasError: boolean }>`
 `;
 
 const Counter = styled.div`
-  margin-left: 1rem;
+  margin-inline-start: 1rem;
   color: var(--input-helper-font-color, #000);
 `;

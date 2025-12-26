@@ -53,7 +53,7 @@ const StyledNav = styled.nav`
   color: var(--palette-text-dark);
 `;
 const StyledRootDiv = styled.div`
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 1rem;
   text-transform: uppercase;
   padding: 12px 12px 6px 12px;
@@ -61,7 +61,7 @@ const StyledRootDiv = styled.div`
   break-inside: avoid;
 `;
 const StyledPageDiv = styled(NavLink)`
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 1rem;
   padding: 6px 12px 6px 36px;
   background-color: var(--navbar-light-primary);
@@ -70,7 +70,7 @@ const StyledPageDiv = styled(NavLink)`
   display: block;
 `;
 const StyledMenuDiv = styled.div`
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 1rem;
   padding: 12px 12px 6px 18px;
   background-color: var(--navbar-light-primary);

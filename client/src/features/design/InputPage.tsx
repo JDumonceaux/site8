@@ -368,6 +368,9 @@ const Grid = styled.div`
 `;
 const GridItem = styled.div`
   --gap: 2em;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: span 1;
   --line-offset: calc(var(--gap) / 2);
   --line-thickness: 1px;
   --line-color: #dcdcdc;

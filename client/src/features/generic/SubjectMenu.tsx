@@ -21,10 +21,13 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   const rootItems = getRootMenuItems();
 
   // Render menu items recursively
-  const renderMenuItems = (items?: MenuItem[], level = 1): JSX.Element[] => {
+  const renderMenuItems = (
+    items?: Iterable<MenuItem>,
+    level = 1,
+  ): JSX.Element[] => {
     if (!items) return [];
 
-    return items.map((item) => (
+    return Array.from(items).map((item) => (
       <ItemRender
         key={item.id}
         item={item}

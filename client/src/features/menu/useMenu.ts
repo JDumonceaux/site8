@@ -30,7 +30,9 @@ const useMenu = (): UseMenuReturn => {
 
   // Recursively search for a menu item by 'url' property
   const findMenuItem = (url: string): MenuItem | undefined => {
-    const searchInItems = (items?: MenuItem[]): MenuItem | undefined => {
+    const searchInItems = (
+      items?: Iterable<MenuItem>,
+    ): MenuItem | undefined => {
       if (!items) return undefined;
 
       for (const item of items) {

@@ -31,18 +31,18 @@ const Main = styled.main`
 const StyledDiv = styled.div`
   background-image: linear-gradient(
     135deg,
-    var(--gradient-color-1, hsl(240deg 10% 83%)) 0%,
-    var(--gradient-color-2, hsl(211deg 10% 74%)) 9%,
-    var(--gradient-color-3, hsl(195deg 10% 60%)) 17%,
-    var(--gradient-color-4, hsl(188deg 10% 50%)) 24%,
-    var(--gradient-color-5, hsl(184deg 10% 50%)) 32%,
-    var(--gradient-color-6, hsl(179deg 10% 49%)) 39%,
-    var(--gradient-color-7, hsl(173deg 10% 50%)) 46%,
-    var(--gradient-color-8, hsl(167deg 10% 50%)) 55%,
-    var(--gradient-color-9, hsl(156deg 10% 58%)) 64%,
-    var(--gradient-color-10, hsl(135deg 10% 67%)) 75%,
-    var(--gradient-color-11, hsl(105deg 10% 67%)) 87%,
-    var(--gradient-color-12, hsl(81deg 10% 20%)) 100%
+    var(--gradient-color-1, oklch(83% 0.01 240)) 0%,
+    var(--gradient-color-2, oklch(74% 0.01 211)) 9%,
+    var(--gradient-color-3, oklch(60% 0.01 195)) 17%,
+    var(--gradient-color-4, oklch(50% 0.01 188)) 24%,
+    var(--gradient-color-5, oklch(50% 0.01 184)) 32%,
+    var(--gradient-color-6, oklch(49% 0.01 179)) 39%,
+    var(--gradient-color-7, oklch(50% 0.01 173)) 46%,
+    var(--gradient-color-8, oklch(50% 0.01 167)) 55%,
+    var(--gradient-color-9, oklch(58% 0.01 156)) 64%,
+    var(--gradient-color-10, oklch(67% 0.01 135)) 75%,
+    var(--gradient-color-11, oklch(67% 0.01 105)) 87%,
+    var(--gradient-color-12, oklch(20% 0.01 81)) 100%
   );
   width: 100%;
 `;

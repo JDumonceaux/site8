@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactElement } from 'react';
 
 import Article from './Article';
 import Aside from './Aside';
@@ -22,9 +22,9 @@ type LayoutComponent = {
   Section: typeof Section;
   TitleFixed: typeof TitleFixed;
   TwoColumn: typeof TwoColumn;
-} & React.FC;
+} & (() => ReactElement);
 
-const Layout: LayoutComponent = (): React.ReactElement => <>Not defined</>;
+const Layout: LayoutComponent = (): ReactElement => <>Not defined</>;
 
 Layout.Article = Article;
 Layout.Aside = Aside;

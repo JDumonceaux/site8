@@ -41,7 +41,7 @@ export default InputToggle;
 const Wrapper = styled.div`
   margin-bottom: 16px;
   > label {
-    margin-left: 8px;
+    margin-inline-start: 8px;
   }
 `;
 

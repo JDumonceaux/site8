@@ -98,7 +98,7 @@ const StyledDialog = styled.dialog<{ readonly $variant: SnackbarVariant }>`
 
 const Message = styled.div`
   flex: 1;
-  margin-right: ${MESSAGE_MARGIN};
+  margin-inline-end: ${MESSAGE_MARGIN};
   font-size: ${MESSAGE_FONT_SIZE};
   overflow: hidden;
   text-overflow: ellipsis;

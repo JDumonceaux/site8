@@ -64,7 +64,7 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
     const data = await this.readFile();
 
     // Sort artists by their sortName property
-    const sortedArtists = [...(data.artists ?? [])].sort((a, b) =>
+    const sortedArtists = (data.artists ?? []).toSorted((a, b) =>
       (a.sortName ?? a.name).localeCompare(b.sortName ?? b.name, undefined, {
         numeric: true,
         sensitivity: 'base',
@@ -99,7 +99,7 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
    * @returns {T[]} Sorted copy of items
    */
   private sortItemsByTitle<T extends { title: string }>(items: T[]): T[] {
-    return [...items].sort((a, b) =>
+    return items.toSorted((a, b) =>
       a.title.localeCompare(b.title, undefined, {
         numeric: true, // Handle numbers in strings correctly
         sensitivity: 'base',

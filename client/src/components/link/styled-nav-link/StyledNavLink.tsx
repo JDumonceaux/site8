@@ -55,11 +55,6 @@ const Link = styled(NavLink)<{ readonly variant: Variant }>`
     opacity: 0.8;
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--palette-black);
-    outline-offset: 2px;
-  }
-
   &.active {
     font-weight: bold;
     /* aria-current="page" is automatically set by NavLink */

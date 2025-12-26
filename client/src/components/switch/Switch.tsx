@@ -34,7 +34,6 @@ const COLOR_TRACK_OFF = 'var(--palette-grey-10)';
 const COLOR_TRACK_ON = 'var(--palette-black)';
 const COLOR_THUMB = 'var(--palette-main-color)';
 const COLOR_TEXT = 'var(--palette-text)';
-const SHADOW_COLOR = 'var(--palette-grey-10)';
 const OUTLINE_COLOR = 'var(--palette-black)';
 
 const StyledWrapper = styled.div`
@@ -43,7 +42,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledLabel = styled.label`
-  padding-right: 15px;
+  padding-inline-end: 15px;
   color: ${COLOR_TEXT};
   font-size: inherit;
   cursor: pointer;
@@ -53,15 +52,15 @@ const StyledSwitchRoot = styled(radixSwitch.Root)`
   width: 42px;
   height: 25px;
   background-color: ${COLOR_TRACK_OFF};
-  border-radius: 9999px;
+  border-radius: var(--border-radius-pill);
   position: relative;
-  box-shadow: 0 2px 10px ${SHADOW_COLOR};
+  box-shadow: var(--shadow-lg);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 
   &:focus-visible {
-    outline: 2px solid ${OUTLINE_COLOR};
-    outline-offset: 2px;
+    outline: var(--focus-outline-width) solid ${OUTLINE_COLOR};
+    outline-offset: var(--focus-outline-offset);
   }
 
   &[data-state='checked'] {
@@ -79,8 +78,8 @@ const StyledSwitchThumb = styled(radixSwitch.Thumb)`
   width: 21px;
   height: 21px;
   background-color: ${COLOR_THUMB};
-  border-radius: 9999px;
-  box-shadow: 0 2px 2px ${SHADOW_COLOR};
+  border-radius: var(--border-radius-pill);
+  box-shadow: var(--shadow-sm);
   transform: translateX(2px);
   will-change: transform;
 

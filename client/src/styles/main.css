@@ -1,7 +1,15 @@
 /* ----------------------------------------------------------------------------
+   CSS Cascade Layers for Better Organization
+   ---------------------------------------------------------------------------- */
+@layer reset, base, components, utilities;
+
+/* ----------------------------------------------------------------------------
    Global CSS Variables & Custom Properties
    ---------------------------------------------------------------------------- */
    :root {
+    /* Color Scheme Support */
+    color-scheme: light dark;
+    
     /* Rendering and Font Smoothing */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -11,13 +19,13 @@
     /* Core Colors */
     --color-error: #ff0000;
     --color-required: #be3455;
-    --color-white: #ffffff;
-    --color-black: #000000;
+    --color-white: light-dark(#ffffff, #1f1f29);
+    --color-black: light-dark(#000000, #f5f5fa);
   
     /* Input Styles */
-    --input-background-color: var(--color-white);
-    --input-background-focus-color: #e1e1e1;
-    --input-color: #212121;
+    --input-background-color: light-dark(#ffffff, #2a2a2a);
+    --input-background-focus-color: light-dark(#e1e1e1, #3a3a3a);
+    --input-color: light-dark(#212121, #e0e0e0);
     --input-error-color: var(--color-error);
     --input-border-radius: 4px;
     --input-border-color: #bebebe;
@@ -45,22 +53,22 @@
     --status-error: var(--color-error);
   
     /* Text & Background */
-    --text-primary-color: #1f1f1f;
-    --text-primary-muted-color: #5d5d5d;
-    --page-background-color: #f5f5f5;
+    --text-primary-color: light-dark(#1f1f1f, #e0e0e0);
+    --text-primary-muted-color: light-dark(#5d5d5d, #a0a0a0);
+    --page-background-color: light-dark(#f5f5f5, #1a1a1a);
   
     /* Animation */
     --speed: 500ms;
   
     /* Palette */
-    --palette-text: #1f1f29;
-    --palette-dark-text: #f2f3f4;
-    --palette-background: #f2f3f4;
+    --palette-text: light-dark(#1f1f29, #e0e0e0);
+    --palette-dark-text: light-dark(#f2f3f4, #2a2a2a);
+    --palette-background: light-dark(#f2f3f4, #1a1a1a);
     --palette-main-color: #be3455;
     --palette-error: #751c31;
-    --palette-border: #181818;
+    --palette-border: light-dark(#181818, #e0e0e0);
     --palette-page-title: #be3455;
-    --palette-dark-background: #181818;
+    --palette-dark-background: light-dark(#181818, #2a2a2a);
     --palette-var: #0ab4b4;
     --palette-samp: #a8a8a8;
     --palette-kbd: #888888;
@@ -88,11 +96,49 @@
     /* Snackbar */
     --snackbar-background: #465262;
     --snackbar-color: #f2f3f4;
+
+    /* Design Tokens - Border Radius */
+    --border-radius-sm: 3px;
+    --border-radius-md: 4px;
+    --border-radius-lg: 8px;
+    --border-radius-xl: 18px;
+    --border-radius-circle: 50%;
+    --border-radius-pill: 9999px;
+
+    /* Design Tokens - Box Shadows */
+    --shadow-sm: 0 2px 2px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 2px 8px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 2px 10px rgb(0 0 0 / 0.15);
+    --shadow-elevated: 0 0 20px rgb(0 0 0 / 0.15);
+
+    /* Design Tokens - Typography Scale */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+
+    /* Design Tokens - Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Design Tokens - Borders */
+    --border-light: light-dark(#e0e0e0, #3a3a3a);
+    --border-medium: light-dark(#bebebe, #5a5a5a);
+    --border-dark: light-dark(#ccc, #666);
+
+    /* Design Tokens - Focus */
+    --focus-outline-color: light-dark(var(--palette-black), var(--palette-white));
+    --focus-outline-width: 2px;
+    --focus-outline-offset: 2px;
   }
   
   /* ----------------------------------------------------------------------------
      CSS @property Declarations for Custom Properties
      ---------------------------------------------------------------------------- */
+  @layer base {
   @property --color-error {
     syntax: '<color>';
     inherits: false;
@@ -113,16 +159,31 @@
     inherits: false;
     initial-value: black;
   }
+  }
   
   /* ----------------------------------------------------------------------------
      Base Styles
      ---------------------------------------------------------------------------- */
+  @layer base {
   html,
   body {
     font-family: 'Inter', sans-serif;
     font-size: 1rem; /* default browser font size (16px) */
     margin: 0;
     padding: 0;
+  }
+
+  /* Global Focus Styles */
+  *:focus-visible {
+    outline: var(--focus-outline-width) solid var(--focus-outline-color);
+    outline-offset: var(--focus-outline-offset);
+  }
+
+  /* Reset focus for elements that handle it themselves */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
   }
   
   a:link,
@@ -183,10 +244,12 @@
     display: block;
     max-width: 100%;
   }
+  }
   
   /* ----------------------------------------------------------------------------
      Table Styles
      ---------------------------------------------------------------------------- */
+  @layer components {
   table {
     width: 100%;
     border-collapse: collapse;
@@ -194,7 +257,7 @@
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgb(0 0 0 / 0.15);
   }
   
   table thead tr {
@@ -224,4 +287,4 @@
     font-weight: bold;
     color: #009879;
   }
-  
+  }

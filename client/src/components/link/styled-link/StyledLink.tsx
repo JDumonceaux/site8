@@ -62,11 +62,6 @@ const StyledBaseLink = styled(BaseLink)<{
     opacity: 0.6;
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--palette-black);
-    outline-offset: 2px;
-  }
-
   &[aria-disabled='true'] {
     opacity: 0.6;
     cursor: not-allowed;

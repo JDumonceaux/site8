@@ -26,7 +26,7 @@ export const getDefaultObject = (
   return result;
 };
 
-export const removeEmptyAttributes = <T extends Record<string, unknown>>(
+export const removeEmptyAttributes = <const T extends Record<string, unknown>>(
   obj: T,
 ): Partial<T> => {
   const filtered = Object.entries(obj)
@@ -54,7 +54,7 @@ export const trimAttributes = <T extends Record<string, unknown>>(
 export const sortObjectKeys = <T extends Record<string, unknown>>(
   obj: T,
 ): T => {
-  const sortedKeys = Object.keys(obj).sort();
+  const sortedKeys = Object.keys(obj).toSorted();
   const entries = sortedKeys.map((key) => [key, obj[key]]);
 
   return Object.fromEntries(entries) as T;
@@ -84,19 +84,19 @@ export const getNextId = (
     return undefined;
   }
 
-  const sorted = [...items].sort((a, b) => a.id - b.id);
-  let nextId = sorted[0]?.id;
+  const sorted = items.toSorted((a, b) => a.id - b.id);
+  const firstId = sorted[0]?.id;
 
-  if (nextId === undefined) {
+  if (firstId === undefined) {
     return undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/prefer-for-of -- Need index iteration for ID finding
   for (let i = 0; i < sorted.length; i++) {
+    const nextId = firstId + i;
     if (!sorted.find((x) => x.id === nextId)) {
       return nextId;
     }
-    nextId++;
   }
 
   return nextId;
@@ -110,12 +110,11 @@ export const getNextIdFromPos = (
     return undefined;
   }
 
-  const sorted = [...items].sort((a, b) => a.id - b.id);
-  let nextId = sorted.length > start ? sorted[start]?.id : 1;
-
-  nextId ??= 1;
+  const sorted = items.toSorted((a, b) => a.id - b.id);
+  const startId = (sorted.length > start ? sorted[start]?.id : 1) ?? 1;
 
   for (let i = start; i < sorted.length; i++) {
+    const nextId = startId + (i - start);
     if (!sorted.find((x) => x.id === nextId)) {
       return { index: i, value: nextId };
     }

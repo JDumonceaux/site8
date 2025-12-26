@@ -49,6 +49,6 @@ const StyledSubMenu = styled.div`
   align-items: baseline;
   justify-content: left;
   button {
-    margin-right: 0.5rem;
+    margin-inline-end: 0.5rem;
   }
 `;

@@ -659,6 +659,127 @@
       "text": "",
       "goal": "",
       "projectType": ["web", "react"]
+    },
+    {
+      "level": "project",
+      "id": 556,
+      "type": "maintenance",
+      "name": "Chat: Typescript Improvements",
+      "text": "Using typescript [latest version], are there any improvements that can be implemented?",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 557,
+      "type": "maintenance",
+      "name": "Chat: Javascript Improvements",
+      "text": "Using javascript ES2025, are there any improvements that can be be implemented?",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 558,
+      "type": "maintenance",
+      "name": "Chat: Javascript Improvements2",
+      "text": "Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 559,
+      "type": "maintenance",
+      "name": "Chat: Javascript ES2023 Array Method Improvements",
+      "text": "Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 560,
+      "type": "maintenance",
+      "name": "Chat: Javascript Iterable Type Updates",
+      "text": "Update to use Iterable where applicable.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 561,
+      "type": "maintenance",
+      "name": "Chat: Javascript Iterable Type Updates",
+      "text": "Update to use RegExp.escape where applicable.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 562,
+      "type": "maintenance",
+      "name": "Chat: Javascript RegExp.escape Implementation",
+      "text": "Update to use RegExp.escape where applicable.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 563,
+      "type": "maintenance",
+      "name": "Chat: Javascript RegExp.escape Implementation",
+      "text": "Update to use Promise.try where applicable.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 564,
+      "type": "maintenance",
+      "name": "Chat: Javascript Iteratable",
+      "text": "Implement Temporal API.",
+      "notes": "12/25/2025 - Limited browser support.  Check compatibility before implementing (caniuse.com)",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 565,
+      "type": "maintenance",
+      "name": "Chat: React Improvements",
+      "text": "Are there react 19.2.3 enhancements that can be made?",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 566,
+      "type": "maintenance",
+      "name": "Chat: HTML5",
+      "text": "Is the latest and appropriate HTML5 elements used?",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 567,
+      "type": "maintenance",
+      "name": "Chat: CSS",
+      "text": "Are there improvements to CSS that can be made?",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 568,
+      "type": "maintenance",
+      "name": "Chat: Styles",
+      "text": "Are there any styles defined in components that should be moved to main.css?",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 569,
+      "type": "maintenance",
+      "name": "Chat: Immutable",
+      "text": "Look for opportunties to improve Immutability in codebase.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 570,
+      "type": "maintenance",
+      "name": "Chat: SOLID",
+      "text": "Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase.",
+      "projectType": ["chat"]
     }
   ]
 }

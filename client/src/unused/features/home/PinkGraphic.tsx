@@ -214,7 +214,7 @@ const GenLine = styled.div<{
   background-color: ${(props) => props.color};
   z-index: ${(props) => props.z};
   box-shadow: ${(props) =>
-    props.boxShadow ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none'};
+    props.boxShadow ? 'rgb(0 0 0 / 0.35) 0px 5px 15px' : 'none'};
 `;
 const GenLineAnim = styled(GenLine)`
   animation-duration: 1.5s;
@@ -224,7 +224,7 @@ const GenLineAnim = styled(GenLine)`
 
 const DiagLine = styled(GenLine)`
   transform: rotate(-45deg);
-  box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 5px 2px rgb(0 0 0 / 0.5);
 `;
 
 const Dot = styled.div<{ color: string; left: number; top: number }>`
@@ -236,5 +236,5 @@ const Dot = styled.div<{ color: string; left: number; top: number }>`
   border-radius: 50%;
   background-color: ${(props) => props.color};
   z-index: 2;
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 0.75);
 `;

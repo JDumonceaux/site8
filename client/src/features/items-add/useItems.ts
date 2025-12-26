@@ -3,13 +3,14 @@ import type { Items, ListItem } from '@types';
 import type { KeyValue } from '@types/KeyValue';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchData = async (): Promise<Items> => {
-  const response = await fetch(ServiceUrl.ENDPOINT_ITEMS);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.statusText}`);
-  }
-  return response.json() as Promise<Items>;
-};
+const fetchData = (): Promise<Items> =>
+  Promise.try(async () => {
+    const response = await fetch(ServiceUrl.ENDPOINT_ITEMS);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+    return response.json() as Promise<Items>;
+  });
 
 const useItems = () => {
   const { data, error, isError, isLoading } = useQuery<Items>({
@@ -20,20 +21,28 @@ const useItems = () => {
 
   const items = data?.items ?? [];
 
-  const artists = [...new Set(items.map((x) => x.artist))]
-    .filter((x): x is string => !!x)
+  const artists = new Set(items.map((x) => x.artist))
+    .difference(new Set([null, undefined, '']))
+    .values()
+    .toArray()
     .toSorted((a, b) => a.localeCompare(b));
 
-  const locations = [...new Set(items.map((x) => x.location))]
-    .filter((x): x is string => !!x)
+  const locations = new Set(items.map((x) => x.location))
+    .difference(new Set([null, undefined, '']))
+    .values()
+    .toArray()
     .toSorted((a, b) => a.localeCompare(b));
 
-  const titles = [...new Set(items.map((x) => x.title))]
-    .filter((x): x is string => !!x)
+  const titles = new Set(items.map((x) => x.title))
+    .difference(new Set([null, undefined, '']))
+    .values()
+    .toArray()
     .toSorted((a, b) => a.localeCompare(b));
 
-  const periods = [...new Set(items.map((x) => x.artisticPeriod))]
-    .filter((x): x is string => !!x)
+  const periods = new Set(items.map((x) => x.artisticPeriod))
+    .difference(new Set([null, undefined, '']))
+    .values()
+    .toArray()
     .toSorted((a, b) => a.localeCompare(b));
 
   const getNamesFiltered = (artist: string) =>

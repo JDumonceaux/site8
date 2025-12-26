@@ -16,10 +16,13 @@ export const parseRequestId = (value: string | undefined): ParseIdResult => {
   return { isValid, id: isValid ? id : undefined };
 };
 
-export const isValidArray = (arr: unknown[] | undefined): boolean => {
+export const isValidArray = (arr: Iterable<unknown> | undefined): boolean => {
   return Array.isArray(arr) && arr.length > 0;
 };
 
-export const removeItem = <T>(arr: readonly T[], value: T): readonly T[] => {
+export const removeItem = <const T>(
+  arr: readonly T[],
+  value: T,
+): readonly T[] => {
   return arr.filter((item) => item !== value);
 };

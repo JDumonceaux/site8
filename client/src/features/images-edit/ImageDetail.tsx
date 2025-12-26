@@ -102,7 +102,7 @@ export default ImageDetail;
 
 const StyledImgContainer = styled.div`
   display: flex;
-  margin-right: 20px;
+  margin-inline-end: 20px;
   width: 250px;
 `;
 const StyledImg = styled.img`

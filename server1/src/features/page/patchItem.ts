@@ -22,9 +22,10 @@ export const patchItem = async (
     // }
 
     // Meta data and text are stored in separate files - therefore two updates are needed.
-    const promise1 = service.updateItem(item);
-    const promise2 = fileService.updateFile(item.id, item.text);
-    const results = await Promise.allSettled([promise1, promise2]);
+    const results = await Promise.allSettled([
+      Promise.try(() => service.updateItem(item)),
+      Promise.try(() => fileService.updateFile(item.id, item.text)),
+    ]);
 
     // If any update failed, log and return an error response.
     for (const result of results) {

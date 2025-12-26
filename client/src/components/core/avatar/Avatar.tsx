@@ -86,7 +86,7 @@ const Root = styled(RadixAvatarRoot)<{ size: number }>`
   justify-content: center;
   overflow: hidden;
   user-select: none;
-  border-radius: 50%;
+  border-radius: var(--border-radius-circle);
   background-color: var(--black-a3);
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;

@@ -28,7 +28,7 @@ export const combineParent = (
 ): string => {
   if (!items) return '';
   const values = items.flatMap((item) =>
-    [item.id, item.seq].filter((v): v is number => v !== undefined).map(String),
+    [item.id, item.seq].filter((v) => v !== undefined).map(String),
   );
   return values.length > 0 ? values.join(',') : '0,0';
 };
@@ -58,8 +58,9 @@ export const splitParent = (
 /**
  * Checks if the given array is valid (not null/undefined and contains at least one element).
  */
-export const isValidArray = (array: null | undefined | unknown[]): boolean =>
-  Array.isArray(array) && array.length > 0;
+export const isValidArray = (
+  array: Iterable<unknown> | null | undefined,
+): boolean => Array.isArray(array) && array.length > 0;
 
 /**
  * Constructs a source URL for an image, using an optional folder and fileName.

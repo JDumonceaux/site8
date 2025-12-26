@@ -47,7 +47,7 @@ export class TestsService extends BaseDataService<Tests> {
       return [];
     }
 
-    return [...items].sort((a, b) => {
+    return items.toSorted((a, b) => {
       const parentDiff = a.parentId - b.parentId;
       return parentDiff !== 0 ? parentDiff : a.parentSeq - b.parentSeq;
     });

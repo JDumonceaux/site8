@@ -77,7 +77,7 @@ export class TravelService extends BaseDataService<Places> {
               name: fullImageData.name,
             };
           })
-          .filter((img): img is NonNullable<typeof img> => img !== null);
+          .filter((img) => img !== null);
 
         return {
           ...place,

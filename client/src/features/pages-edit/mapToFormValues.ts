@@ -1,7 +1,7 @@
 import type { MenuItem } from '@types/MenuItem';
 
-export const mapToFormValues = (items: MenuItem[]) =>
-  items.map(({ id, lineId, name, parentItem, type }) => ({
+export const mapToFormValues = (items: Iterable<MenuItem>) =>
+  Array.from(items).map(({ id, lineId, name, parentItem, type }) => ({
     id,
     lineId,
     name,

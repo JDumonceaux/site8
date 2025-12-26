@@ -81,18 +81,18 @@ const StyledMenu0 = styled(StyledMenuLink)`
   }
 `;
 const StyledMenu1 = styled(StyledMenuLink)`
-  padding-left: 20px;
+  padding-inline-start: 20px;
 `;
 const StyledMenu2 = styled(StyledMenuLink)`
-  padding-left: 30px;
+  padding-inline-start: 30px;
 `;
 
 const StyledPage0 = styled(StyledMenuLink)`
-  padding-left: 20px;
+  padding-inline-start: 20px;
 `;
 const StyledPage1 = styled(StyledMenuLink)`
-  padding-left: 20px;
+  padding-inline-start: 20px;
 `;
 const StyledPage2 = styled(StyledMenuLink)`
-  padding-left: 30px;
+  padding-inline-start: 30px;
 `;

@@ -103,12 +103,12 @@ export default Items;
 const StyledCard = styled.div`
   margin-bottom: 1.5rem;
   padding: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
   background-color: #fff;
 
   &:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
   }
 `;
 
@@ -134,26 +134,26 @@ const StyledImage = styled.img`
   width: 200px;
   height: 150px;
   object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-light);
 `;
 
 const StyledHeading = styled.h3`
   font-size: 1.25rem;
   margin: 0 0 0.5em 0;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: #333;
 `;
 
 const StyledLocation = styled.div`
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: #666;
   margin-bottom: 0.5rem;
   font-style: italic;
 `;
 
 const StyledAddress = styled.div`
-  font-size: 0.85rem;
+  font-size: var(--font-size-xs);
   color: #888;
   margin-bottom: 0.5rem;
 `;

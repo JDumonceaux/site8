@@ -33,8 +33,8 @@ const StyledElement = styled.button<{
   width: 200px;
   min-height: 36px;
   padding: 6px 16px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   line-height: normal;
   letter-spacing: 1.25px;
   border: none;

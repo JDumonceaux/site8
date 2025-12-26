@@ -76,7 +76,11 @@ export const getItemsService = (): ItemsService => {
 };
 
 export const getMenuService = (): MenuService => {
-  menuService ??= new MenuService();
+  if (!menuService) {
+    // Inject PagesService dependency
+    const pagesServiceInstance = getPagesService();
+    menuService = new MenuService(pagesServiceInstance);
+  }
   return menuService;
 };
 

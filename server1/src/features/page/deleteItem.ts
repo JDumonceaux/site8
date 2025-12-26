@@ -32,8 +32,8 @@ export const deleteItem = async (
 
   try {
     await Promise.all([
-      service.deleteItem(idNum),
-      fileService.deleteFile(idNum),
+      Promise.try(() => service.deleteItem(idNum)),
+      Promise.try(() => fileService.deleteFile(idNum)),
     ]);
     res.sendStatus(200);
   } catch (error) {

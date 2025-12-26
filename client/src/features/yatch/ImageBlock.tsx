@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ type ImageBlockProps = {
   title?: string;
 };
 
-const ImageBlock: React.FC<ImageBlockProps> = ({ alt, src, title }) => {
+const ImageBlock = ({ alt, src, title }: ImageBlockProps) => {
   if (!src) return null;
 
   return (

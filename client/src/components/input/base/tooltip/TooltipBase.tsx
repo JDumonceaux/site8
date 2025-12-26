@@ -105,10 +105,10 @@ const slideDownAndFade = keyframes`
 `;
 
 const StyledContent = styled(TooltipRadix.Content)`
-  border-radius: 18px;
+  border-radius: var(--border-radius-xl);
   border: 1px solid var(--tooltip-border-color);
   padding: 6px 18px;
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   line-height: 1;
   color: var(--tooltip-label-color);
   background-color: var(--tooltip-background-color, #000);

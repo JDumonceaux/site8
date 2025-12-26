@@ -53,6 +53,6 @@ const StyledChildren = styled.div`
   align-items: baseline;
 
   & > * + * {
-    margin-left: 0.75rem;
+    margin-inline-start: 0.75rem;
   }
 `;

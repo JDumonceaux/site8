@@ -27,12 +27,15 @@ import {
   updatePassword,
 } from 'aws-amplify/auth';
 
-export const enum SocialProvider {
-  AMAZON = 'Amazon',
-  APPLE = 'Apple',
-  FACEBOOK = 'Facebook',
-  GOOGLE = 'Google',
-}
+export const SocialProvider = {
+  AMAZON: 'Amazon',
+  APPLE: 'Apple',
+  FACEBOOK: 'Facebook',
+  GOOGLE: 'Google',
+} as const satisfies Record<string, string>;
+
+export type SocialProvider =
+  (typeof SocialProvider)[keyof typeof SocialProvider];
 
 // In Amplify the localStorage is the default storage mechanism.
 // It saves the tokens in the browser's localStorage.
