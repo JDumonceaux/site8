@@ -102,8 +102,6 @@ app.use('/api/menus', menuRouter, mutationLimiter);
 app.use('/api/page', pageRouter, mutationLimiter);
 app.use('/api/build', buildRouter, mutationLimiter);
 
-// Express error handler middleware requires this 4-parameter signature
-// eslint-disable-next-line prefer-arrow-functions/prefer-arrow-functions
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Unhandled error', { error: err.message, stack: err.stack });
   if (res.headersSent) {
