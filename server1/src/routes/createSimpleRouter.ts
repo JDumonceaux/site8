@@ -1,10 +1,10 @@
-import express, { type Router } from 'express';
+import express, { type Request, type Response, type Router } from 'express';
 
 import { asyncHandler } from '../utils/routerUtils.js';
 
 type SimpleRouterConfig = {
   /** The handler function to call for GET / */
-  getItemsHandler: (...args: any[]) => any;
+  getItemsHandler: (req: Request, res: Response) => Promise<void> | void;
   /** Name for the router (used for logging) */
   routerName?: string;
 };

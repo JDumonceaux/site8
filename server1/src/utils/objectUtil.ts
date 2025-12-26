@@ -99,7 +99,7 @@ export const getNextId = (
     }
   }
 
-  return nextId;
+  return firstId + sorted.length;
 };
 
 export const getNextIdFromPos = (
@@ -118,8 +118,7 @@ export const getNextIdFromPos = (
     if (!sorted.find((x) => x.id === nextId)) {
       return { index: i, value: nextId };
     }
-    nextId++;
   }
 
-  return { index: 0, value: nextId };
+  return { index: 0, value: startId + (sorted.length - start) };
 };

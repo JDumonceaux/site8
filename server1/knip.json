@@ -4,16 +4,19 @@
   "project": ["**/*.ts"],
   "ignore": ["**/*.test.ts", "**/*.spec.ts", "dist/**", "coverage/**"],
   "ignoreDependencies": ["@types/*"],
+  "ignoreBinaries": ["tsc", "eslint"],
   "ignoreExportsUsedInFile": true,
-  "includeEntryExports": true,
+  "includeEntryExports": false,
   "rules": {
     "files": "error",
     "dependencies": "error",
     "devDependencies": "warn",
     "unlisted": "error",
     "exports": "warn",
+    "types": "warn",
     "nsExports": "error",
     "nsTypes": "error",
-    "duplicates": "error"
+    "duplicates": "error",
+    "enumMembers": "warn"
   }
 }

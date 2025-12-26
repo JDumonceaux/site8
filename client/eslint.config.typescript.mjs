@@ -27,6 +27,7 @@ export default {
         // Enforce consistent type definitions
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': 'error',
+        '@typescript-eslint/await-thenable': 'error',
         '@typescript-eslint/ban-tslint-comment': 'error',
         '@typescript-eslint/class-literal-property-style': 'error',
         '@typescript-eslint/class-methods-use-this': 'error',
@@ -67,6 +68,7 @@ export default {
         // Please document the reason for using 'any' in code comments when it is used.
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-extraneous-class': 'error',
+        '@typescript-eslint/no-floating-promises': 'error',
         '@typescript-eslint/no-import-type-side-effects': 'error',
         '@typescript-eslint/no-inferrable-types': 'error',
         '@typescript-eslint/no-invalid-this': 'error',
@@ -100,6 +102,11 @@ export default {
         '@typescript-eslint/promise-function-async': 'error',
         '@typescript-eslint/require-array-sort-compare': 'error',
         '@typescript-eslint/return-await': 'error',
+        '@typescript-eslint/strict-boolean-expressions': ['error', {
+            allowString: false,
+            allowNumber: false,
+            allowNullableObject: false,
+        }],
         // old code
         '@typescript-eslint/unbound-method': 'off',
         '@typescript-eslint/unified-signatures': 'off', //

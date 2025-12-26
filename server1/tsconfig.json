@@ -3,13 +3,14 @@
   "display": "Node.js Configuration for 2024",
   "compilerOptions": {
     /* Language and Environment */
-    "lib": ["ESNext"],
+    "lib": ["ES2024"],
     "target": "es2024",
     
     /* Modules */
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
     
     /* Emit */
     "outDir": "dist",
@@ -19,6 +20,8 @@
     "removeComments": false,
     "importHelpers": true,
     "newLine": "lf",
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     
     /* Interop Constraints */
     "esModuleInterop": true,
@@ -37,6 +40,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
+    "noUncheckedSideEffectImports": true,
     // Too strict for existing codebase
     // "exactOptionalPropertyTypes": true,
     

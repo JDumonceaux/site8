@@ -67,7 +67,7 @@ const useForm = <T>(initialValues: T) => {
   ) => {
     const { id, value } = e.target;
     if (!id) {
-      console.warn('No id found in event target');
+      // Skip elements without id attribute
       return;
     }
     setFieldValue(id as FormKeys<T>, value);

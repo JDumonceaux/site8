@@ -3,7 +3,6 @@ import { ServiceUrl } from '@lib/utils/constants';
 import type { FormErrors, FormState } from '@types';
 import { PageEditSchema, type PageEdit } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 
 const usePagePatch = () => {
   const queryClient = useQueryClient();
@@ -12,10 +11,16 @@ const usePagePatch = () => {
   // Send the data to the server
   const mutation = useMutation({
     mutationFn: async (data: PageEdit) => {
-      if (data.id && data.id > 0) {
-        return axios.patch<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data);
+      const method = data.id && data.id > 0 ? 'PATCH' : 'POST';
+      const response = await fetch(ServiceUrl.ENDPOINT_PAGE, {
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        method,
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return axios.post<PageEdit>(ServiceUrl.ENDPOINT_PAGE, data);
+      return response.json() as Promise<PageEdit>;
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {

@@ -16,6 +16,8 @@ export default {
         ...pluginReact.configs['jsx-runtime'].rules,
         ...pluginHooks.configs.recommended.rules,
         ...pluginRedux.configs.recommended.rules,
+        // --- React 19+ Compiler (from react-hooks plugin v5.0.0+) ---
+        'react-hooks/react-compiler': 'error',
         // --- React 19+ effect rules ---
         // Allow useEffectEvent and do not require functions from useEffectEvent in dependency arrays
         'react-hooks/exhaustive-deps': 'warn',
@@ -149,10 +151,11 @@ export default {
         'react/no-adjacent-inline-elements': 'error',
         'react/no-array-index-key': 'error',
         'react/no-arrow-function-lifecycle': 'error',
-        'react/no-children-prop': 'error', // Missing recommended rule
+        'react/no-children-prop': 'error',
+        'react/no-unstable-nested-components': 'error',
         'react/no-danger': 'error',
-        'react/no-danger-with-children': 'error', // Missing recommended rule
-        'react/no-deprecated': 'error', // Missing recommended rule
+        'react/no-danger-with-children': 'error',
+        'react/no-deprecated': 'error'
         'react/no-did-mount-set-state': 'error',
         'react/no-did-update-set-state': 'error',
         'react/no-find-dom-node': 'error', // Missing recommended rule
@@ -166,10 +169,9 @@ export default {
         'react/no-string-refs': 'error', // Missing recommended rule
         'react/no-this-in-sfc': 'error',
         'react/no-typos': 'error',
-        'react/no-unescaped-entities': 'error', // Missing recommended rule
-        'react/no-unknown-property': 'error', // Missing recommended rule
+        'react/no-unescaped-entities': 'error',
+        'react/no-unknown-property': 'error',
         'react/no-unsafe': 'error',
-        'react/no-unstable-nested-components': 'error',
         'react/no-unused-class-component-methods': 'error',
         'react/no-unused-prop-types': 'error',
         'react/no-unused-state': 'error',

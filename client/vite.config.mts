@@ -1,22 +1,21 @@
 import { defineConfig, type Plugin } from 'vite';
+import react from '@vitejs/plugin-react';
 import tsConfigPaths from 'vite-tsconfig-paths';
 import { analyzer } from 'vite-bundle-analyzer';
 
-// Vite 7.1.9 validated - CHANGED: Updated to use vite-bundle-analyzer instead of rollup-plugin-analyzer
+// Using vite-bundle-analyzer for bundle analysis
 const analyzePlugin: Plugin | undefined =
   process.env.ANALYZE === 'true'
     ? analyzer({
-        analyzerMode: 'static', // ADDED: Required for vite-bundle-analyzer
-        openAnalyzer: false, // ADDED: Prevents auto-opening browser
+        analyzerMode: 'static',
+        openAnalyzer: false,
       })
     : undefined;
 
-export default defineConfig({
-  plugins: [
-    tsConfigPaths(), // unchanged
-    analyzePlugin, // CHANGED: extracted & typed for clarity
-    // The type guard below ensures only valid plugins are included, avoiding undefined values in the plugins array.
-  ].filter((p): p is Plugin => !!p), // CHANGED: typed filter instead of Boolean
+export default defineConfig(({ mode }) => ({
+  plugins: [react(), tsConfigPaths(), analyzePlugin].filter(
+    (p): p is Plugin => !!p,
+  ),
   resolve: {
     alias: {
       '@app': '/src/app',
@@ -45,9 +44,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: false,
+    sourcemap: mode === 'development',
     minify: 'esbuild',
-    target: 'es2022',
+    target: 'es2024',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -79,6 +80,13 @@ export default defineConfig({
       },
     },
   },
-  // Uncomment the block below to enable Vitest configuration for unit testing:
-  // test: { globals: true, environment: 'jsdom', watch: false },
-});
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom'],
+    exclude: ['react-scan'],
+  },
+  preview: {
+    port: 4173,
+    strictPort: false,
+    open: false,
+  },
+}));

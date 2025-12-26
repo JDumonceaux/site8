@@ -1,19 +1,28 @@
 # Exclude the Prettier configuration file itself to avoid formatting conflicts
 .prettierrc.cjs
+.prettierignore
 
 # Exclude all vscode settings and configurations to avoid conflicts with local development environments
 # This includes settings for extensions, themes, and other IDE-specific configurations
-.vscode
+.vscode/*
+!.vscode/extensions.json
 
 # Exclude all node_modules directories to avoid formatting issues with third-party libraries
 node_modules
-**/node_modules
 
 # Exclude all build and distribution directories to avoid formatting issues with generated files
 build
 dist
 .next
 out
+.cache
+.parcel-cache
+
+# Exclude generated/minified files
+*.min.js
+*.min.css
+*.bundle.js
+*.chunk.js
 
 # Exclude all log files to avoid formatting issues with runtime logs
 *.log
@@ -26,6 +35,7 @@ logs
 # Exclude all coverage reports to avoid formatting issues with test coverage files
 coverage
 .nyc_output
+.eslintcache
 
 # Exclude all environment variable files to avoid formatting issues with sensitive information
 .env
@@ -42,8 +52,11 @@ pnpm-lock.yaml
 *.js.map
 *.d.ts.map
 
-# Exclude data directories
-data
+# Exclude bundle analysis and reports
+stats.html
+bundle-analyzer-report.html
+
+# Exclude public directory
 public
 
 # Exclude generated documentation

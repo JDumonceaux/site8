@@ -13,5 +13,21 @@
     "coverage/**",
     "node_modules/**",
     "public/**"
-  ]
+  ],
+  "ignoreDependencies": ["@types/*"],
+  "ignoreBinaries": ["vite", "tsc", "eslint", "vitest"],
+  "ignoreExportsUsedInFile": true,
+  "includeEntryExports": false,
+  "rules": {
+    "files": "error",
+    "dependencies": "error",
+    "devDependencies": "warn",
+    "unlisted": "error",
+    "exports": "warn",
+    "types": "warn",
+    "nsExports": "error",
+    "nsTypes": "error",
+    "duplicates": "error",
+    "enumMembers": "warn"
+  }
 }

@@ -11,22 +11,6 @@ type ItemsProps = {
 
 // Items component displays a list of travel destinations
 const Items = memo(({ data, id }: ItemsProps): JSX.Element | null => {
-  // TODO: TEMPORARY - Remove this delay after testing skeleton
-  const [showDelay, setShowDelay] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowDelay(false);
-    }, 3000); // 3 second delay to test skeleton
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-  if (showDelay) {
-    return <Skeleton />;
-  }
-
   if (!data) {
     return null;
   }

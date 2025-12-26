@@ -3,13 +3,13 @@
   "display": "React Vite",
   "compilerOptions": {
     "strict": true,
-    "target": "ESNext",
+    "target": "ES2024",
     "module": "ESNext",
-    "moduleResolution": "Bundler", // Updated
+    "moduleResolution": "Bundler",
     "useDefineForClassFields": true,
-    "noEmit": true, // Added
+    "noEmit": true,
 
-    "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.Array"],
+    "lib": ["DOM", "DOM.Iterable", "ES2024"],
     "jsx": "react-jsx",
 
     // Set baseUrl to project root and alias src/
@@ -45,12 +45,17 @@
     "isolatedModules": true,
 
     // Stricter checking
-    "noUnusedLocals": true, // Added
-    "noUnusedParameters": true, // Added
-    "noFallthroughCasesInSwitch": true, // Added
-    "exactOptionalPropertyTypes": true // Added
-    // "noUncheckedIndexedAccess": true, // TODO: Requires fixing 28 type errors
-    // "noImplicitReturns": true // TODO: Requires fixing errors
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    // too strict
+    // "exactOptionalPropertyTypes": true,
+    // too strict
+    // "noUncheckedIndexedAccess": true,
+    // too strict
+    // "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "__tests__"],

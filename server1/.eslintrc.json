@@ -1,9 +1,0 @@
-{
-  "ignorePatterns": [
-    "dist/**",
-    "node_modules/**",
-    "coverage/**",
-    "bin/**",
-    "data/**"
-  ]
-}

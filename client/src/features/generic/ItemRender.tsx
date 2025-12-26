@@ -18,7 +18,13 @@ const ItemRender = ({
   let content: React.ReactNode;
 
   if (item.type === 'menu') {
-    const menuComponents: Record<number, typeof StyledNavLink> = {
+    const menuComponents: Record<
+      number,
+      React.ComponentType<{
+        readonly children: React.ReactNode;
+        readonly to: string;
+      }>
+    > = {
       0: StyledMenu0,
       1: StyledMenu1,
       2: StyledMenu2,
@@ -31,7 +37,13 @@ const ItemRender = ({
       <div>{item.title}</div>
     );
   } else if (item.type === 'page') {
-    const pageComponents: Record<number, typeof StyledNavLink> = {
+    const pageComponents: Record<
+      number,
+      React.ComponentType<{
+        readonly children: React.ReactNode;
+        readonly to: string;
+      }>
+    > = {
       0: StyledPage0,
       1: StyledPage1,
       2: StyledPage2,

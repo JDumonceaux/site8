@@ -29,7 +29,6 @@ export default {
       // Ensure consistent formatting for JavaScript module config files
       files: '*.mjs',
       options: {
-        parser: 'babel',
         semi: true,
         singleQuote: true,
         trailingComma: 'all',
@@ -85,6 +84,13 @@ export default {
   trailingComma: 'all',                // Use trailing commas wherever possible (ES5+)
 
   useTabs: false,                      // Use spaces instead of tabs for indentation
+
+  useTabs: false,                      // Use spaces instead of tabs for indentation
+
+  // ----------------------------------------------------------------------------
+  // Experimental Features
+  // ----------------------------------------------------------------------------
+  experimentalTernaries: false,        // Disable experimental ternary formatting (opt-in when stable)
 
   // ----------------------------------------------------------------------------
   // Vue-Specific (if applicable)

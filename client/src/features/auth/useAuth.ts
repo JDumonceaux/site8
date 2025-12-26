@@ -108,7 +108,7 @@ const useAuth = () => {
       case 'CONFIRM_RESET_PASSWORD_WITH_CODE': {
         // The user needs to complete the sign-in process with a code
         const { codeDeliveryDetails } = step;
-        console.log('Code sent to :', codeDeliveryDetails.deliveryMedium);
+        // Code delivery details available in codeDeliveryDetails.deliveryMedium
         break;
       }
       case 'DONE': {
@@ -178,7 +178,6 @@ const useAuth = () => {
   };
 
   const handleSignUpStep = (step: SignUpOutput['nextStep']) => {
-    console.log('step.signUpStep', step.signUpStep);
     switch (step.signUpStep) {
       case 'COMPLETE_AUTO_SIGN_IN': {
         // The user needs to complete the sign-in process with a code

@@ -2,7 +2,6 @@
 
 # dependencies
 node_modules
-**/node_modules
 .pnp
 .pnp.js
 .yarn/cache
@@ -18,11 +17,18 @@ node_modules
 # production
 /build
 /dist
+/bin
 
 # TypeScript
 *.tsbuildinfo
 *.js.map
 *.d.ts.map
+
+# Cache
+.eslintcache
+
+# Stats
+stats.html
 
 # misc
 .DS_Store
@@ -50,7 +56,9 @@ lerna-debug.log*
 pnpm-debug.log*
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+.vscode/settings.json
 .idea/
 *.sublime-project
 *.sublime-workspace

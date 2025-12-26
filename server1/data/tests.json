@@ -1043,6 +1043,150 @@
       "text": "Javascript Version - ES2024",
       "value": "check tsconfig.json and update target and lib to 'es2024' (lower case)",
       "projectType": ["chat"]
+    },
+    {
+      "id": 604,
+      "name": "Consistency",
+      "text": "Component Display Name",
+      "value": "Add a display name to every component if missing.  Add the name before the component export.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 605,
+      "name": "Quality",
+      "text": "Update eslint configs",
+      "value": "Review eslint.config files.  Suggest changes and additional linters.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 606,
+      "name": "Quality",
+      "text": "Biome",
+      "value": "Replace ESLint and Prettier with Biome",
+      "projectType": ["future"]
+    },
+    {
+      "id": 607,
+      "name": "Quality",
+      "text": "Deprecate",
+      "value": "Are there any deprecated Typescript or Javascript functions being used?",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 608,
+      "name": "Quality",
+      "text": "Update eslint configs",
+      "value": "Review eslint.config files.  Are there any deprecated or missing rules?",
+      "projectType": ["chat"]
+    },
+
+    {
+      "id": 609,
+      "name": "Quality",
+      "text": "Update eslint configs",
+      "value": "Review eslint.config files.  Are there any conflicting or duplicate rules?",
+      "projectType": ["chat"]
+    },
+
+    {
+      "id": 610,
+      "name": "Quality",
+      "text": "Anti-Patterns",
+      "value": "Review the code for anti-patterns and suggest improvements.",
+      "projectType": ["chat"]
+    },
+
+    {
+      "id": 611,
+      "name": "Quality",
+      "text": "Package.json - libraries",
+      "value": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 612,
+      "name": "Quality",
+      "text": "vite.config.mts",
+      "value": "Read the vite.config.mts file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+
+    {
+      "id": 613,
+      "name": "Quality",
+      "text": "vitetest.config.ts",
+      "value": "Read the vitest.config.ts file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 614,
+      "name": "Quality",
+      "text": "tsconfig.node.json",
+      "value": "Read the tsconfig.node.json file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 615,
+      "name": "Quality",
+      "text": "Unused Files",
+      "value": "Are there any files at the src/ level not being used?",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 616,
+      "name": "Quality",
+      "text": "tsconfig.json",
+      "value": "Read the tsconfig.json file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 617,
+      "name": "Quality",
+      "text": "knip.json",
+      "value": "Read the knip.json file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 618,
+      "name": "Quality",
+      "text": "index.html",
+      "value": "Read the index.html file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 619,
+      "name": "Quality",
+      "text": ".gitignore",
+      "value": "Read the .gitignore file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 620,
+      "name": "Quality",
+      "text": ".prettierignore",
+      "value": "Read the .prettierignore file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 621,
+      "name": "Quality",
+      "text": ".prettierrc.mjs",
+      "value": "Read the .prettierrc.mjs file and suggest improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 622,
+      "name": "Quality",
+      "text": "babel.cjs",
+      "value": "Check if babel.cjs is needed (Vitest uses Vite, not Babel). Delete if unused.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 623,
+      "name": "Quality",
+      "text": "Legacy ESLint Rules",
+      "value": "Check if eslint_rules/ directory is used. Delete if migrated to flat config.",
+      "projectType": ["chat"]
     }
   ]
 }

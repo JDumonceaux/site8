@@ -29,7 +29,6 @@ import { Logger } from './utils/logger.js';
 
 const REQUEST_TIMEOUT_MS = 2000;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-const RATE_LIMIT_MAX_REQUESTS = 100;
 const JSON_SIZE_LIMIT = '10mb';
 const HSTS_MAX_AGE = 86_400; // 24 hours in seconds
 
@@ -103,6 +102,8 @@ app.use('/api/menus', menuRouter, mutationLimiter);
 app.use('/api/page', pageRouter, mutationLimiter);
 app.use('/api/build', buildRouter, mutationLimiter);
 
+// Express error handler middleware requires this 4-parameter signature
+// eslint-disable-next-line prefer-arrow-functions/prefer-arrow-functions
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Unhandled error', { error: err.message, stack: err.stack });
   if (res.headersSent) {
@@ -132,5 +133,5 @@ const server = app.listen(env.PORT, () => {
 
 server.on('error', (error: Error) => {
   Logger.error(`Failed to start server: ${error.message}`, error);
-  process.exit(1);
+  throw new Error(`Server startup failed: ${error.message}`);
 });

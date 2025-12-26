@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
     "composite": true,
+    "target": "ES2024",
     "module": "ESNext",
-    "moduleResolution": "Node"
+    "moduleResolution": "Bundler",
+    "lib": ["ES2024"],
+    "skipLibCheck": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["vite.config.mts"]
+  "include": ["vite.config.mts", "vitest.config.ts"]
 }

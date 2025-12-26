@@ -142,7 +142,7 @@ export default {
         'no-script-url': 'error',
         'no-self-compare': 'error',
         'no-sequences': 'error',
-        'no-shadow': 'error',
+        'no-shadow': 'off', // Disabled in favor of @typescript-eslint/no-shadow
         'no-template-curly-in-string': 'error',
         'no-throw-literal': 'error',
         'no-undef': 'off',

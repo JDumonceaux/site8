@@ -61,7 +61,6 @@ export default {
                     '**/*.stories.{js,jsx,ts,tsx}',
                     'vite.config.*',
                     'vitest.config.*',
-                    'jest.config.*',
                     'webpack.config.*',
                 ],
                 optionalDependencies: false,

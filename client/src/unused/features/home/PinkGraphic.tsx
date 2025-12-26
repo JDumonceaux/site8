@@ -2,20 +2,34 @@ import type { JSX } from 'react';
 
 import { keyframes, styled } from 'styled-components';
 
+// Grid layout constants
+const GRID_COLUMNS = 6;
+const ARRAY_SIZE_20 = 20;
+const ARRAY_SIZE_36 = 36;
+
+// Animation constants
+const ANIMATION_DURATION = '1.5s';
+const ANIMATION_TIMING = 'cubic-bezier(0.17, 0.67, 0.9, 1)';
+const ANIMATION_TIMING_ALT = 'cubic-bezier(0.17, 0.67, 0.9, 1.2)';
+const ANIMATION_TRANSLATE_START = '-800px';
+const ANIMATION_TRANSLATE_MID = '-50%';
+const ANIMATION_TRANSLATE_END = '0%';
+
+// Circle dimensions
+const CIRCLE_HEIGHT = 240;
+const CIRCLE_WIDTH = 480;
+const CIRCLE_RADIUS = `${CIRCLE_HEIGHT}px`;
+
+// Pure functional approach - no mutable state
 const generateDots = (
   array: number[],
   color: string,
   xOffset: number,
   yOffset: number,
 ) => {
-  let x = -1;
-  let y = 0;
-  return array.map((item) => {
-    x += 1;
-    if (x > 5) {
-      x = 0;
-      y += 1;
-    }
+  return array.map((item, index) => {
+    const x = index % GRID_COLUMNS;
+    const y = Math.floor(index / GRID_COLUMNS);
     return (
       <Dot
         key={item}
@@ -27,13 +41,14 @@ const generateDots = (
   });
 };
 
-const PinkGraphic = (): JSX.Element => {
-  const myArray20 = Array.from({ length: 20 }, (_, index) => index + 1);
-  const myArray36 = Array.from({ length: 36 }, (_, index) => index + 1);
+// Static arrays - no need to regenerate on each render
+const ARRAY_20 = Array.from({ length: ARRAY_SIZE_20 }, (_, index) => index + 1);
+const ARRAY_36 = Array.from({ length: ARRAY_SIZE_36 }, (_, index) => index + 1);
 
+const PinkGraphic = (): JSX.Element => {
   return (
     <StyledDiv>
-      {myArray20.map((item, index) => (
+      {ARRAY_20.map((item, index) => (
         <WhiteLine
           key={item}
           index={index}
@@ -162,25 +177,25 @@ const WhiteLine = styled.div<{ index: number }>`
   background-color: #fff;
 `;
 const lpcAnimation = keyframes`
- 0% { transform: translateX(-800px);}
- 100% { transform: translateX(-50%); }
+ 0% { transform: translateX(${ANIMATION_TRANSLATE_START});}
+ 100% { transform: translateX(${ANIMATION_TRANSLATE_MID}); }
 `;
 const lpcAnimation2 = keyframes`
- 0% { transform: translateX(-800px);}
- 100% { transform: translateX(0%); }
+ 0% { transform: translateX(${ANIMATION_TRANSLATE_START});}
+ 100% { transform: translateX(${ANIMATION_TRANSLATE_END}); }
 `;
 const LargePinkCircle = styled.div`
   position: fixed;
   top: ${CENTER_TOP};
   left: ${CENTER_LEFT};
-  transform: translateX(-50%);
-  height: 240px;
-  width: 480px;
-  border-radius: 0 0 240px 240px;
+  transform: translateX(${ANIMATION_TRANSLATE_MID});
+  height: ${CIRCLE_HEIGHT}px;
+  width: ${CIRCLE_WIDTH}px;
+  border-radius: 0 0 ${CIRCLE_RADIUS} ${CIRCLE_RADIUS};
   background-color: #9d6060;
   z-index: 0;
-  animation-duration: 1.5s;
-  animation-timing-function: cubic-bezier(0.17, 0.67, 0.9, 1.2);
+  animation-duration: ${ANIMATION_DURATION};
+  animation-timing-function: ${ANIMATION_TIMING_ALT};
   animation-name: ${lpcAnimation};
 `;
 const LargeGrayTriangle = styled.div`
@@ -192,8 +207,8 @@ const LargeGrayTriangle = styled.div`
   background: #808080;
   clip-path: polygon(0 0, 100% 50%, 0 100%);
   z-index: 1;
-  animation-duration: 1.5s;
-  animation-timing-function: cubic-bezier(0.17, 0.67, 0.9, 1);
+  animation-duration: ${ANIMATION_DURATION};
+  animation-timing-function: ${ANIMATION_TIMING};
   animation-name: ${lpcAnimation2};
 `;
 
@@ -217,8 +232,8 @@ const GenLine = styled.div<{
     props.boxShadow ? 'rgb(0 0 0 / 0.35) 0px 5px 15px' : 'none'};
 `;
 const GenLineAnim = styled(GenLine)`
-  animation-duration: 1.5s;
-  animation-timing-function: cubic-bezier(0.17, 0.67, 0.9, 1);
+  animation-duration: ${ANIMATION_DURATION};
+  animation-timing-function: ${ANIMATION_TIMING};
   animation-name: ${lpcAnimation2};
 `;
 

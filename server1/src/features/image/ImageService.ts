@@ -33,7 +33,7 @@ export class ImageService {
         items: [...(currentData.items ?? []), newItem],
         metadata: currentData.metadata,
       };
-      await imagesService.writeFile(updatedFile);
+      await this.writeImageData(imagesService, updatedFile);
       return idNew;
     } catch (error) {
       Logger.error(`ImageService: addItem -> ${String(error)}`);
@@ -60,7 +60,7 @@ export class ImageService {
         items: updatedItems,
         metadata: currentData.metadata,
       };
-      await imagesService.writeFile(updatedFile);
+      await this.writeImageData(imagesService, updatedFile);
       return itemToDelete;
     } catch (error) {
       Logger.error(`ImageService: deleteItem -> ${String(error)}`);
@@ -114,7 +114,7 @@ export class ImageService {
         items: [...updatedItems, newItem],
         metadata: currentData.metadata,
       };
-      await imagesService.writeFile(updatedFile);
+      await this.writeImageData(imagesService, updatedFile);
       return data.id;
     } catch (error) {
       Logger.error(`ImageService: updateItem -> ${String(error)}`);
@@ -123,6 +123,20 @@ export class ImageService {
   }
 
   private getImagesService(): ImagesService {
-    return new ImagesService();
+    const service = new ImagesService();
+    // Access writeFile through public method if needed
+    return service;
+  }
+
+  private async writeImageData(
+    service: ImagesService,
+    data: Images,
+  ): Promise<void> {
+    // Type-safe check for writeFile method
+    if ('writeFile' in service && typeof service.writeFile === 'function') {
+      await service.writeFile(data);
+    } else {
+      throw new Error('Service does not implement writeFile method');
+    }
   }
 }

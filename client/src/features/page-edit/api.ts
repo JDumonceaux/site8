@@ -7,7 +7,6 @@ export const fetchPageById = async (
   id: string,
   signal?: AbortSignal,
 ): Promise<Page> => {
-  console.log('fetchPageById', id);
   const res = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`, { signal });
   if (!res.ok) {
     handleQueryError(res);
