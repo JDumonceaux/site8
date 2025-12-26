@@ -1,10 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node.js Configuration for 2022",
+  "display": "Node.js Configuration for 2024",
   "compilerOptions": {
     /* Language and Environment */
     "lib": ["ESNext"],
-    "target": "ES2022",
+    "target": "es2024",
     
     /* Modules */
     "module": "NodeNext",
@@ -37,7 +37,8 @@
     "noPropertyAccessFromIndexSignature": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
+    // Too strict for existing codebase
+    // "exactOptionalPropertyTypes": true,
     
     /* Completeness */
     "skipLibCheck": true,

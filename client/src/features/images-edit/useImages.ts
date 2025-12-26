@@ -1,5 +1,5 @@
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Images } from '@types/Images';
+import type { Images } from '@types';
 import { useQuery } from '@tanstack/react-query';
 
 /**

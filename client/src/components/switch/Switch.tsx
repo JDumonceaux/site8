@@ -19,7 +19,7 @@ const Switch = ({ id, label, onCheckedChange, ref, ...rest }: SwitchProps) => (
     <StyledSwitchRoot
       ref={ref}
       id={id}
-      onCheckedChange={onCheckedChange}
+      {...(onCheckedChange !== undefined && { onCheckedChange })}
       {...rest}
     >
       <StyledSwitchThumb />

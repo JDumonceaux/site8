@@ -61,7 +61,7 @@ const useImagesEditPage = (submitState: FormState<null>) => {
   const filterAndSortData = () => {
     const temp =
       filter && filter.length > 0
-        ? data?.items.filter((x) => x.folder === filter)
+        ? data?.items?.filter((x) => x.folder === filter)
         : data?.items;
     const filteredImageType = temp?.filter(
       (x) =>

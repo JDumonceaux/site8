@@ -53,7 +53,7 @@ export const TextArea = ({
 
   return (
     <FieldWrapper
-      isRequired={required}
+      {...(required !== undefined && { isRequired: required })}
       {...(rest as FieldWrapperProps)}
     >
       <StyledTextArea

@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import type { Video } from '@types/Video';
+import type { Video } from '@types';
 import styled from 'styled-components';
 
 /** Responsive video embed with title */

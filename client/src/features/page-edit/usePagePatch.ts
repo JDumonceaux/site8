@@ -1,6 +1,6 @@
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
-import type { FormErrors, FormState, Page } from '@types';
+import type { FormErrors, FormState } from '@types';
 import { PageEditSchema, type PageEdit } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
@@ -46,7 +46,7 @@ const usePagePatch = () => {
   const patchItem = async (
     _prevState: unknown,
     formData: FormData,
-  ): Promise<FormState> => {
+  ): Promise<FormState<null>> => {
     const temp = Object.fromEntries(formData.entries());
     const data: PageEdit = { ...temp, id: Number(temp.id) } as PageEdit;
 
@@ -68,20 +68,20 @@ const usePagePatch = () => {
         fieldData: data,
         fields: tempErrors,
         message: 'Validation error: Invalid data',
-      } as unknown as FormState;
+      } as unknown as FormState<null>;
     }
 
     try {
       await mutation.mutateAsync(data);
       return {
-        fieldData: data as unknown as Page,
+        fieldData: null,
         message: 'Data saved successfully!',
-      } as FormState;
+      } as FormState<null>;
     } catch (error) {
       return {
-        fieldData: {},
+        fieldData: null,
         message: `Error saving data: ${(error as Error).message}`,
-      } as FormState;
+      } as FormState<null>;
     }
   };
 

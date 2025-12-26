@@ -35,10 +35,7 @@ const ItemsAddPage = (): JSX.Element => {
       <Meta title={title} />
       <Layout.TitleFixed>
         <PageTitle title={title}>
-          <MenuBar
-            handleClear={handleClear}
-            handleSubmit={handleSubmit}
-          />
+          <MenuBar handleClear={handleClear} />
         </PageTitle>
       </Layout.TitleFixed>
 

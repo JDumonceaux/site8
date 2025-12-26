@@ -1,4 +1,7 @@
-import type { MusicItem } from '@types/MusicItem';
+import { memo } from 'react';
+
+// Update the import path below to the actual location of MusicItem type
+import type { MusicItem } from '../../types/MusicItem';
 import styled from 'styled-components';
 
 /**
@@ -6,7 +9,7 @@ import styled from 'styled-components';
  */
 type ItemRendererProps = {
   /** Data object containing the array of music items */
-  data: { items: MusicItem[] };
+  data: { items?: MusicItem[] };
   /** Index of the item to render */
   index: number;
 };
@@ -14,26 +17,27 @@ type ItemRendererProps = {
 /**
  * Renders a single music item with description and embedded video.
  */
-const ItemRenderer = ({
-  data,
-  index,
-}: ItemRendererProps): null | React.ReactElement => {
-  const item = data.items[index];
+const ItemRenderer = memo(
+  ({ data, index }: ItemRendererProps): null | React.ReactElement => {
+    const item = data.items?.[index];
 
-  return (
-    <li aria-label={`Music item ${index + 1}: ${item.description}`}>
-      <Container>
-        <Description>{item.description}</Description>
-        <VideoFrame
-          src={item.url}
-          title={item.description}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          sandbox="allow-scripts allow-same-origin allow-presentation"
-        />
-      </Container>
-    </li>
-  );
-};
+    if (!item) return null;
+
+    return (
+      <li aria-label={`Music item ${index + 1}: ${item.description}`}>
+        <Container>
+          <Description>{item.description}</Description>
+          <VideoFrame
+            src={item.url}
+            title={item.description}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            sandbox="allow-scripts allow-same-origin allow-presentation"
+          />
+        </Container>
+      </li>
+    );
+  },
+);
 
 ItemRenderer.displayName = 'ItemRenderer';
 export default ItemRenderer;

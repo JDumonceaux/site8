@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import type { AppSettings } from '@types/AppSettings';
+import type { AppSettings } from '@types';
 import { save } from 'store/appSlice';
 import type { AppDispatch, RootState } from 'store/store';
 

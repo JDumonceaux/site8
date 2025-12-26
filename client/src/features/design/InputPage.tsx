@@ -141,7 +141,7 @@ const InputPage = (): JSX.Element => {
                 id="select153"
                 label="Select"
                 value={getFieldValue('field153')}
-                labelProps={{ description: 'This is a required field' }}
+                labelProps={LABEL_REQUIRED_FIELD}
                 onChange={(error) => {
                   setFieldValue('field153', error.target.value);
                 }}
@@ -356,6 +356,9 @@ const InputPage = (): JSX.Element => {
     </>
   );
 };
+
+// Constant label props to prevent re-renders
+const LABEL_REQUIRED_FIELD = { description: 'This is a required field' };
 
 export default InputPage;
 

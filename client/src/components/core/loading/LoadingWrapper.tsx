@@ -1,5 +1,6 @@
 import type { JSX, ReactNode } from 'react';
 
+import { getUserFriendlyErrorMessage } from '@lib/utils/errorLogger';
 import styled, { keyframes } from 'styled-components';
 
 export type LoadingWrapperProps = {
@@ -56,12 +57,9 @@ const LoadingWrapper = ({
 
   // Error state
   if (error || isError) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : typeof error === 'string'
-          ? error
-          : 'An unknown error occurred.';
+    const message = error
+      ? getUserFriendlyErrorMessage(error)
+      : 'An error occurred.';
     return (
       <StateContainer>
         <ErrorBar

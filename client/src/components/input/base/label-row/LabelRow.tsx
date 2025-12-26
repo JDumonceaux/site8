@@ -1,4 +1,4 @@
-import type { JSX, LabelHTMLAttributes, Ref } from 'react';
+import { memo, type JSX, type LabelHTMLAttributes, type Ref } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
@@ -30,43 +30,45 @@ export type LabelRowProps = Omit<
   tooltipProps?: TooltipProps;
 };
 
-const LabelRow = ({
-  description,
-  endAdornment,
-  id,
-  isRequired = false,
-  label,
-  ref,
-  requiredText,
-  tooltipProps,
-  ...rest
-}: LabelRowProps): JSX.Element => {
-  return (
-    <Label.Root
-      ref={ref}
-      htmlFor={id}
-      {...rest}
-    >
-      <Row>
-        <Text>
-          {label}
-          {isRequired ? (
-            <>
-              <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
-              <Tooltip.Asterix
-                content="Required"
-                triggerColor="var(--color-required)"
-                {...tooltipProps}
-              />
-            </>
-          ) : null}
-        </Text>
-        {description ? <Tooltip.QuestionMark content={description} /> : null}
-        {endAdornment}
-      </Row>
-    </Label.Root>
-  );
-};
+const LabelRow = memo(
+  ({
+    description,
+    endAdornment,
+    id,
+    isRequired = false,
+    label,
+    ref,
+    requiredText,
+    tooltipProps,
+    ...rest
+  }: LabelRowProps): JSX.Element => {
+    return (
+      <Label.Root
+        ref={ref}
+        htmlFor={id}
+        {...rest}
+      >
+        <Row>
+          <Text>
+            {label}
+            {isRequired ? (
+              <>
+                <VisuallyHidden.Root>{requiredText}</VisuallyHidden.Root>
+                <Tooltip.Asterix
+                  content="Required"
+                  triggerColor="var(--color-required)"
+                  {...tooltipProps}
+                />
+              </>
+            ) : null}
+          </Text>
+          {description ? <Tooltip.QuestionMark content={description} /> : null}
+          {endAdornment}
+        </Row>
+      </Label.Root>
+    );
+  },
+);
 
 LabelRow.displayName = 'LabelRow';
 export default LabelRow;

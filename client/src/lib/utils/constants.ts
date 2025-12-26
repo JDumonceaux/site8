@@ -49,7 +49,7 @@ export type PreferHeader = (typeof PreferHeader)[keyof typeof PreferHeader];
 /* -------------------------------------------------------------------------- */
 /*                          API and Route Constants                           */
 /* -------------------------------------------------------------------------- */
-const API_ROOT = `http://localhost:3005/api`;
+const API_ROOT = import.meta.env.VITE_API_URL || 'http://localhost:3005/api';
 
 export const IMAGE_BASE = '/images';
 

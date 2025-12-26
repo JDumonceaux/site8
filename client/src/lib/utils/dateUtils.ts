@@ -33,7 +33,7 @@ const parseDateTimeString = (
   raw: string,
   delim: string,
 ): null | RegExpExecArray => {
-  const escapedDelim = RegExp.escape(delim);
+  const escapedDelim = delim.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = String.raw`^(\d{1,2})${escapedDelim}(\d{1,2})${escapedDelim}(\d{4})\s+(\d{1,2}):(\d{2})(?:\s*([AaPp][Mm]))?$`;
   const re = new RegExp(pattern, 'u');
   const m = re.exec(raw);

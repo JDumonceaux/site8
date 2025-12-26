@@ -1,4 +1,4 @@
-import { QueryTime, ServiceUrl } from '@lib/utils/constants';
+import { QueryTime, QueryTimeComputed, ServiceUrl } from '@lib/utils/constants';
 import { useQuery } from '@tanstack/react-query';
 import type { Bookmarks } from '../../types/Bookmarks';
 
@@ -26,7 +26,7 @@ const useBookmarks = (): UseBookmarksResult => {
   const queryKey = ['bookmarks'];
 
   const query = useQuery<Bookmarks>({
-    gcTime: QueryTime.GC_TIME,
+    gcTime: QueryTimeComputed.GC_TIME,
     queryFn: fetchData,
     queryKey,
     refetchInterval: 0,
@@ -35,8 +35,8 @@ const useBookmarks = (): UseBookmarksResult => {
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
-    staleTime: QueryTime.STALE_TIME,
+    retryDelay: QueryTimeComputed.RETRY_DELAY,
+    staleTime: QueryTimeComputed.STALE_TIME,
   });
 
   return {

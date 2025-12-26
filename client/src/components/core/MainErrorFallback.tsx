@@ -1,6 +1,7 @@
-import type { JSX } from 'react';
+import { useEffect, type JSX } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 
+import { getUserFriendlyErrorMessage, logError } from '@lib/utils/errorLogger';
 import styled from 'styled-components';
 
 export type MainErrorFallbackProps = {
@@ -11,10 +12,18 @@ export type MainErrorFallbackProps = {
 } & FallbackProps;
 
 const MainErrorFallback = ({
+  error,
   message,
   onRetry,
   resetErrorBoundary,
 }: MainErrorFallbackProps): JSX.Element => {
+  // Log error when component mounts
+  useEffect(() => {
+    logError(error, { componentName: 'MainErrorFallback' });
+  }, [error]);
+
+  const userMessage = message || getUserFriendlyErrorMessage(error);
+
   const handleRetry = (): void => {
     if (onRetry) {
       onRetry();
@@ -32,7 +41,11 @@ const MainErrorFallback = ({
       role="alertdialog"
     >
       <Title id="error-title">Oops! Something went wrong.</Title>
-      {message ? <Message id="error-message">{message}</Message> : null}
+      <Message id="error-message">{userMessage}</Message>
+      <HelpText>
+        If this problem persists, please try refreshing the page or contact
+        support.
+      </HelpText>
       <RetryButton
         type="button"
         onClick={handleRetry}
@@ -70,6 +83,15 @@ const Message = styled.p`
   margin: 0 0 1rem;
   text-align: center;
   max-width: 28rem;
+  font-size: 1rem;
+`;
+
+const HelpText = styled.p`
+  margin: 0 0 1.5rem;
+  text-align: center;
+  max-width: 28rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
 `;
 
 const RetryButton = styled.button`

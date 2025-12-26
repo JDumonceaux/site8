@@ -2,6 +2,7 @@ import type { ChangeEvent } from 'react';
 
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
+import type { MenuAdd } from '@types';
 import { z } from 'zod';
 
 import { useAxios } from './axios/useAxios';
@@ -72,8 +73,8 @@ const useMenuEdit = () => {
     setIsProcessing(true);
     const result = await putData(ServiceUrl.ENDPOINT_MENUS, data);
     setIsProcessing(false);
-    setIsSaved(result);
-    return result;
+    setIsSaved(!!result);
+    return !!result;
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

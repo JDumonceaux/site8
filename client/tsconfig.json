@@ -47,7 +47,10 @@
     // Stricter checking
     "noUnusedLocals": true, // Added
     "noUnusedParameters": true, // Added
-    "noFallthroughCasesInSwitch": true // Added
+    "noFallthroughCasesInSwitch": true, // Added
+    "exactOptionalPropertyTypes": true // Added
+    // "noUncheckedIndexedAccess": true, // TODO: Requires fixing 28 type errors
+    // "noImplicitReturns": true // TODO: Requires fixing errors
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "__tests__"],

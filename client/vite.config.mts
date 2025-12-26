@@ -44,15 +44,37 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets', // unchanged
-    sourcemap: false, // unchanged (set true for debugging if needed)
-    minify: 'esbuild', // unchanged
-    target: 'es2022', // unchanged
+    assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'esbuild',
+    target: 'es2022',
     rollupOptions: {
       output: {
         manualChunks(id) {
-          return undefined; // Intentionally let Vite handle chunking for non-vendor modules
-          return undefined; // ADDED: explicit for clarity
+          // Vendor chunking for better caching
+          if (id.includes('node_modules')) {
+            // Large libraries get their own chunks
+            if (id.includes('@aws-amplify')) {
+              return 'vendor-amplify';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'vendor-radix';
+            }
+            if (id.includes('@tanstack/react-query')) {
+              return 'vendor-react-query';
+            }
+            if (id.includes('styled-components')) {
+              return 'vendor-styled';
+            }
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('react-router')) {
+              return 'vendor-router';
+            }
+            // All other vendor code
+            return 'vendor';
+          }
         },
       },
     },

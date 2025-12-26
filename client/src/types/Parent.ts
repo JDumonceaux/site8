@@ -6,6 +6,8 @@ export const ParentSchema = z
     id: z.number(),
     /** Sequence number */
     seq: z.number(),
+    /** Sort by field */
+    sortby: z.string().optional(),
   })
   .strict()
   .readonly();

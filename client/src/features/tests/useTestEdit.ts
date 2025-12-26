@@ -1,5 +1,5 @@
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
-
+import type { MenuEdit } from '@types';
 import { z } from 'zod';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
@@ -50,16 +50,10 @@ const useTestEdit = () => {
       if (originalItem) {
         const x: MenuEdit = {
           ...originalItem,
-          newParent: {
-            id: 0,
-            seq: 0,
-            sortby: 'name',
-          },
-          priorParent: {
-            id: Number.parseInt(item.parent, 10),
-            seq: Number.parseInt(item.seq, 10),
-            sortby: item.sortby as SortByType,
-          },
+          newParent: true,
+          parentId: Number.parseInt(item.parent, 10),
+          parentSeq: Number.parseInt(item.seq, 10),
+          parentSortby: item.sortby as SortByType,
         };
         returnValue.push(x);
       }
@@ -76,7 +70,7 @@ const useTestEdit = () => {
       return false;
     }
     const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
-    setIsSaved(result);
+    setIsSaved(!!result);
     return result;
   };
 

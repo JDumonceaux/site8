@@ -1,4 +1,10 @@
-import type { HTMLAttributes, JSX, MouseEventHandler, ReactNode, Ref } from 'react';
+import type {
+  HTMLAttributes,
+  JSX,
+  MouseEventHandler,
+  ReactNode,
+  Ref,
+} from 'react';
 
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import { Cross1Icon } from '@radix-ui/react-icons';
@@ -46,7 +52,6 @@ const ClearAdornment = ({
     aria-label={ariaLabel}
     content={label}
   />
-  ),
 );
 
 ClearAdornment.displayName = 'ClearAdornment';

@@ -1,6 +1,6 @@
 import type { LoaderFunction } from 'react-router-dom';
 
-import { QueryTime } from '@lib/utils/constants';
+import { QueryTimeComputed } from '@lib/utils/constants';
 import { assertIdParam } from '@lib/utils/helpers';
 import type { QueryClient } from '@tanstack/react-query';
 import { fetchPageById } from './api';
@@ -9,7 +9,7 @@ const prefetchPage = async (queryClient: QueryClient, id: string) => {
   await queryClient.prefetchQuery({
     queryFn: async () => fetchPageById(id),
     queryKey: ['page', id],
-    staleTime: QueryTime.STALE_TIME_PREFETCH,
+    staleTime: QueryTimeComputed.STALE_TIME_PREFETCH,
   });
 };
 

@@ -1,7 +1,14 @@
-import { type ChangeEvent, type JSX, type Ref, useRef, useState } from 'react';
+import {
+  type ChangeEvent,
+  type JSX,
+  type Ref,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import useGetId from '@hooks/useGetId';
-import type { KeyValue } from '@types/KeyValue';
+import type { KeyValue } from '@types';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../field-wrapper/FieldWrapper';
@@ -57,21 +64,24 @@ const InputBase = ({
     onChange?.(e);
   };
 
-  const fieldWrapperProps: FieldWrapperProps = {
-    ...footerProps,
-    errors,
-    labelProps: {
-      ...labelProps,
-      htmlFor: generatedId,
-      id: `${generatedId}-label`,
-    },
-  };
+  const fieldWrapperProps: FieldWrapperProps = useMemo(
+    () => ({
+      ...footerProps,
+      ...(errors !== undefined && { errors }),
+      labelProps: {
+        ...labelProps,
+        htmlFor: generatedId,
+        id: `${generatedId}-label`,
+      },
+    }),
+    [errors, footerProps, generatedId, labelProps],
+  );
 
   return (
     <FieldWrapper
       {...fieldWrapperProps}
       fieldLength={fieldLength}
-      isRequired={isRequired}
+      {...(isRequired !== undefined && { isRequired })}
     >
       <StyledInput
         autoComplete="off"

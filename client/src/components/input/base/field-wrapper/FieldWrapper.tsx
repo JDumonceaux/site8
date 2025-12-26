@@ -1,4 +1,4 @@
-import type { HTMLAttributes, JSX, ReactNode } from 'react';
+import { memo, type HTMLAttributes, type JSX, type ReactNode } from 'react';
 
 import EndAdornment, {
   type EndAdornmentProps,
@@ -33,40 +33,42 @@ export type FieldWrapperProps = Omit<
 
 const EMPTY_LABEL_PROPS: Omit<LabelRowProps, 'children'> = {};
 
-const FieldWrapper = ({
-  children,
-  endAdornment,
-  endAdornmentProps,
-  id,
-  isRequired = false,
-  label,
-  labelProps = EMPTY_LABEL_PROPS,
-  startAdornment,
-  startAdornmentProps,
-  ...footerProps
-}: FieldWrapperProps): JSX.Element => {
-  return (
-    <Container id={id}>
-      <LabelRow
-        isRequired={isRequired}
-        label={label}
-        {...labelProps}
-      />
-      <InputRow>
-        {startAdornment ? (
-          <StartAdornment {...startAdornmentProps}>
-            {startAdornment}
-          </StartAdornment>
-        ) : null}
-        {children}
-        {endAdornment ? (
-          <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
-        ) : null}
-      </InputRow>
-      <FooterRow {...footerProps} />
-    </Container>
-  );
-};
+const FieldWrapper = memo(
+  ({
+    children,
+    endAdornment,
+    endAdornmentProps,
+    id,
+    isRequired = false,
+    label,
+    labelProps = EMPTY_LABEL_PROPS,
+    startAdornment,
+    startAdornmentProps,
+    ...footerProps
+  }: FieldWrapperProps): JSX.Element => {
+    return (
+      <Container id={id}>
+        <LabelRow
+          isRequired={isRequired}
+          {...(label !== undefined && { label })}
+          {...labelProps}
+        />
+        <InputRow>
+          {startAdornment ? (
+            <StartAdornment {...startAdornmentProps}>
+              {startAdornment}
+            </StartAdornment>
+          ) : null}
+          {children}
+          {endAdornment ? (
+            <EndAdornment {...endAdornmentProps}>{endAdornment}</EndAdornment>
+          ) : null}
+        </InputRow>
+        <FooterRow {...footerProps} />
+      </Container>
+    );
+  },
+);
 
 FieldWrapper.displayName = 'FieldWrapper';
 export default FieldWrapper;

@@ -21,5 +21,5 @@ export const usePreloadResources = () => {
 
   useEffect(() => {
     preloadResourcesEvent();
-  }, [preloadResourcesEvent]);
+  }, []);
 };

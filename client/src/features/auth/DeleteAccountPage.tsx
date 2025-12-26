@@ -5,7 +5,7 @@ import Meta from '@components/core/meta/Meta';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import { deleteCode } from '@types/Auth';
+import { deleteCode } from '@types';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import { StyledBottomMsg, StyledForm } from './AuthFormStyles';
@@ -15,8 +15,6 @@ import FormMessage from './FormMessage';
 const schema = z.object({
   deleteCode,
 });
-
-type FormValues = z.infer<typeof schema>;
 
 const DeleteAccountPage = (): JSX.Element => {
   const title = 'Delete Account';
@@ -51,14 +49,16 @@ const DeleteAccountPage = (): JSX.Element => {
           noValidate
           action={formAction}
         >
-          <FormMessage message={state.message} />
+          {state.message && <FormMessage message={state.message} />}
           <div>
             Are you sure you want to delete your account? You will lose access
             and all data.
           </div>
           <Input.Text
             required
-            errorText={state.errors?.deleteCode}
+            {...(state.errors?.deleteCode && {
+              errors: [{ message: state.errors.deleteCode }],
+            })}
             label="Please enter 'delete' to confirm"
             spellCheck="false"
             autoComplete="off"

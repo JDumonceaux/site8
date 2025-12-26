@@ -1,27 +1,35 @@
-export type Parent = {
-  readonly id: number;
-  readonly seq: number;
-  readonly sortBy?: string;
-};
+import { z } from 'zod';
 
-export type Page = {
-  readonly create_date?: Date;
-  readonly edit_date?: Date;
-  readonly file?: boolean;
-  readonly id: number;
-  readonly issue?: string;
-  readonly line?: number;
-  readonly parentItems?: Parent[];
-  readonly readability_score?: string;
-  readonly reading_time?: string;
-  readonly text?: string;
-  readonly title: string;
-  readonly to?: string;
-  readonly toComplete?: string;
-  readonly type: 'page' | 'root' | 'menu';
-  readonly url?: string;
-};
+const ParentSchema = z.object({
+  id: z.number().int().positive(),
+  seq: z.number().int(),
+  sortBy: z.string().optional(),
+});
 
-export type PageEdit = {
-  readonly text?: string;
-} & Page;
+export type Parent = z.infer<typeof ParentSchema>;
+
+const PageSchema = z.object({
+  create_date: z.date().optional(),
+  edit_date: z.date().optional(),
+  file: z.boolean().optional(),
+  id: z.number().int().positive(),
+  issue: z.string().optional(),
+  line: z.number().int().optional(),
+  parentItems: z.array(ParentSchema).optional(),
+  readability_score: z.string().optional(),
+  reading_time: z.string().optional(),
+  text: z.string().optional(),
+  title: z.string().min(1),
+  to: z.string().optional(),
+  toComplete: z.string().optional(),
+  type: z.enum(['page', 'root', 'menu']),
+  url: z.string().optional(),
+});
+
+export type Page = z.infer<typeof PageSchema>;
+
+export const PageEditSchema = PageSchema.extend({
+  text: z.string().optional(),
+});
+
+export type PageEdit = z.infer<typeof PageEditSchema>;

@@ -7,7 +7,7 @@ import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import * as Form from '@radix-ui/react-form';
 import type { FormState } from '@types';
-import type { ChangePassword } from '@types/Auth';
+import type { ChangePassword } from '@types';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';
 

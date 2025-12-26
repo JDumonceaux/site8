@@ -2,6 +2,7 @@ import type { JSX } from 'react';
 import { useCallback, useEffect, useEffectEvent } from 'react';
 
 import Button from '@components/core/button/Button';
+import { logError } from '@lib/utils/errorLogger';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
 import styled from 'styled-components';
 
@@ -22,9 +23,7 @@ const Snackbar = (): JSX.Element | null => {
     try {
       closeSnackbar();
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      console.error('Error closing snackbar:', errorMessage);
+      logError(error, { componentName: 'Snackbar', action: 'close' });
     }
   }, [closeSnackbar]);
 

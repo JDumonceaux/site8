@@ -2,7 +2,9 @@ import { useMemo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import MainErrorFallback from '../components/core/MainErrorFallback';
+import { logError } from '../lib/utils/errorLogger';
 import ReduxProvider from './ReduxProvider';
 
 type AppProviderProps = {
@@ -29,12 +31,19 @@ const AppProvider = ({ children }: AppProviderProps) => {
       new QueryClient({
         defaultOptions: {
           mutations: {
-            // Retry mutations once
+            // Retry mutations once on network errors
             retry: 1,
+            // Optimistic updates network mode
+            networkMode: 'online',
+            onError: (error) => {
+              logError(error, { context: 'mutation' });
+            },
           },
           queries: {
             // Cache time: how long inactive data stays in cache (10 minutes)
             gcTime: 10 * 60 * 1000,
+            // Network mode: fail fast on network errors
+            networkMode: 'online',
             // Don't refetch on reconnect by default
             refetchOnReconnect: false,
             // Refetch on window focus for better UX
@@ -50,6 +59,9 @@ const AppProvider = ({ children }: AppProviderProps) => {
               }
               return failureCount < 3;
             },
+            // Longer retry delay for better UX
+            retryDelay: (attemptIndex) =>
+              Math.min(1000 * 2 ** attemptIndex, 30000),
             // Stale time: how long data stays fresh (5 minutes)
             staleTime: 5 * 60 * 1000,
           },
@@ -62,11 +74,10 @@ const AppProvider = ({ children }: AppProviderProps) => {
     <ErrorBoundary
       FallbackComponent={MainErrorFallback}
       onError={(error, errorInfo) => {
-        // Log errors for monitoring (replace with your error reporting service)
-        console.error('Application Error:', error, errorInfo);
-
-        // You could send to error reporting service here:
-        // errorReportingService.captureException(error, { extra: errorInfo });
+        logError(error, {
+          componentName: 'AppProvider',
+          componentStack: errorInfo.componentStack,
+        });
       }}
       onReset={() => {
         // Optional: Clear any application state on error reset
@@ -77,6 +88,12 @@ const AppProvider = ({ children }: AppProviderProps) => {
       <ReduxProvider>
         <QueryClientProvider client={queryClient}>
           {children}
+          {import.meta.env.DEV ? (
+            <ReactQueryDevtools
+              buttonPosition="bottom-left"
+              initialIsOpen={false}
+            />
+          ) : null}
         </QueryClientProvider>
       </ReduxProvider>
     </ErrorBoundary>

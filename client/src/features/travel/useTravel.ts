@@ -1,5 +1,5 @@
-import { QueryTime, ServiceUrl } from '@lib/utils/constants';
-import type { Places } from '@types/Places';
+import { QueryTime, QueryTimeComputed, ServiceUrl } from '@lib/utils/constants';
+import type { Places } from '@types';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchData = async (): Promise<Places> => {
@@ -28,7 +28,7 @@ const useTravel = (): UseTravelResult => {
   const queryKey = ['travel'];
 
   const query = useQuery<Places>({
-    gcTime: QueryTime.GC_TIME,
+    gcTime: QueryTimeComputed.GC_TIME,
     queryFn: fetchData,
     queryKey,
     refetchInterval: 0,
@@ -37,8 +37,8 @@ const useTravel = (): UseTravelResult => {
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     retry: QueryTime.RETRY,
-    retryDelay: QueryTime.RETRY_DELAY,
-    staleTime: QueryTime.STALE_TIME,
+    retryDelay: QueryTimeComputed.RETRY_DELAY,
+    staleTime: QueryTimeComputed.STALE_TIME,
   });
 
   return {

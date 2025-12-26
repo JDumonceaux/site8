@@ -1,15 +1,15 @@
-import type { MenuItem } from '@types/MenuItem';
+import type { MenuItem } from '@types';
 
 export const mapToFormValues = (items: Iterable<MenuItem>) =>
   Array.from(items).map(({ id, lineId, name, parentItem, type }) => ({
     id,
-    lineId,
+    lineId: lineId ?? 0,
     name,
     parentId:
-      typeof parentItem.id === 'string'
+      parentItem && typeof parentItem.id === 'string'
         ? Number.parseInt(parentItem.id, 10)
-        : parentItem.id,
-    parentSeq: String(parentItem.seq),
-    parentSortby: parentItem.sortby ?? '',
+        : (parentItem?.id ?? 0),
+    parentSeq: String(parentItem?.seq ?? 0),
+    parentSortby: parentItem?.sortby ?? '',
     type,
   }));

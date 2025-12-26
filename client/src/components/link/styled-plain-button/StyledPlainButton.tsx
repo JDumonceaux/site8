@@ -28,7 +28,6 @@ export default StyledPlainButton;
 
 const COLOR_TEXT = 'var(--palette-text)';
 const COLOR_LINK_HOVER = 'var(--palette-text)';
-const OUTLINE_COLOR = 'var(--palette-black)';
 
 const StyledButton = styled.button`
   display: inline-block;

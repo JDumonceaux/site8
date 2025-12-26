@@ -4,6 +4,7 @@ import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
+import { logError } from '@lib/utils/errorLogger';
 import BookmarkList from './BookmarkList';
 import useBookmarks from './useBookmarks';
 
@@ -12,7 +13,7 @@ const BookmarkPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useBookmarks();
 
   if (isError && error) {
-    console.error('BookmarkPage: Error loading bookmarks', error);
+    logError(error, { componentName: 'BookmarkPage', action: 'loadBookmarks' });
   }
 
   return (

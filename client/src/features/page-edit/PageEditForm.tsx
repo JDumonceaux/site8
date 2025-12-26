@@ -5,7 +5,7 @@ import Input from '@components/input/Input';
 import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
 import * as Form from '@radix-ui/react-form';
 import type { FormState } from '@types';
-import type { Page } from '@types/Page';
+import type { Page } from '../../types/Page';
 import usePagePatch from './usePagePatch';
 import styled from 'styled-components';
 
@@ -87,34 +87,38 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
         <Input.Text
           required
           spellCheck
-          defaultValue={data.fieldData?.title}
+          {...(data.fieldData?.title !== undefined && {
+            defaultValue: data.fieldData.title,
+          })}
           id="title"
           label="Title"
           maxLength={500}
           // errors={getFieldErrors('name')}
           minLength={10}
-          errors={data.fields?.title.errors}
+          {...(data.fields?.title.errors && {
+            errors: data.fields.title.errors,
+          })}
           // onBlur={handeNameOnBlur}
           // onChange={handleChange}
-          labelProps={{ label: 'Title' }}
+          labelProps={LABEL_TITLE}
           placeholder="Enter a title"
           // value={formValues.name}
         />
         <Input.Text
           defaultValue={data.fieldData?.to ?? ''}
           id="to"
-          labelProps={{ label: 'To' }}
+          labelProps={LABEL_TO}
           placeholder="Enter a route"
         />
         <Input.Text
           defaultValue={data.fieldData?.url ?? ''}
           id="url"
-          labelProps={{ label: 'URL' }}
+          labelProps={LABEL_URL}
           placeholder="Enter a url"
         />
         <Input.Text
           id="parent"
-          labelProps={{ label: 'Parent' }}
+          labelProps={LABEL_PARENT}
           //defaultValue={data?.fieldData.parentItems}
           placeholder="Enter a menu id"
         />
@@ -123,19 +127,19 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
           spellCheck
           defaultValue={data.fieldData?.text ?? ''}
           id="text"
-          labelProps={{ label: 'Text' }}
+          labelProps={LABEL_TEXT}
           //onBlur={handeTextAreaBlur}
           rows={30}
         />
         <Input.Text
           defaultValue={data.fieldData?.reading_time ?? ''}
           id="reading_time"
-          labelProps={{ label: 'Reading Time' }}
+          labelProps={LABEL_READING_TIME}
         />
         <Input.Text
           defaultValue={data.fieldData?.readability_score ?? ''}
           id="readability_score"
-          labelProps={{ label: 'Readability Score' }}
+          labelProps={LABEL_READABILITY_SCORE}
         />
       </Form.Root>
     </LoadingWrapper>
@@ -145,6 +149,15 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
 PageEditForm.displayName = 'PageEditForm';
 
 export default PageEditForm;
+
+// Constant label props to prevent re-renders
+const LABEL_TITLE = { label: 'Title' };
+const LABEL_TO = { label: 'To' };
+const LABEL_URL = { label: 'URL' };
+const LABEL_PARENT = { label: 'Parent' };
+const LABEL_TEXT = { label: 'Text' };
+const LABEL_READING_TIME = { label: 'Reading Time' };
+const LABEL_READABILITY_SCORE = { label: 'Readability Score' };
 
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: 400;

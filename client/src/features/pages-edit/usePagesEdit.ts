@@ -1,7 +1,7 @@
 import { useAxios } from '@hooks/axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
-import type { MenuItem } from '@types';
+import type { MenuEdit, MenuItem } from '@types';
 import { z } from 'zod';
 import useMenusEdit from './useMenusEdit';
 
@@ -44,13 +44,11 @@ const usePagesEdit = () => {
 
   const mapFormTypeToMenuEdit = (item: FormType): MenuEdit | undefined => ({
     id: item.id,
-    newParent: {
-      id: item.parentId,
-      seq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
-      sortby: item.parentSortby as SortByType,
-    },
-    // Temporary filler
-    priorParent: { id: 0, seq: 0, sortby: 'name' as SortByType },
+    lineId: item.lineId,
+    newParent: true,
+    parentId: item.parentId,
+    parentSeq: Number.isNaN(item.parentSeq) ? 0 : Number(item.parentSeq),
+    parentSortby: item.parentSortby as SortByType,
   });
 
   const shouldUpdate = (
@@ -61,16 +59,29 @@ const usePagesEdit = () => {
       return false;
     }
     const { parentItem } = originalItem;
-    const { newParent } = newItem;
+    const { parentId, parentSeq, parentSortby } = newItem;
 
-    const { id, seq, sortby } = newParent;
-    if (id && Number.isInteger(id) && id > -1 && parentItem.id !== id) {
+    if (
+      parentId &&
+      Number.isInteger(parentId) &&
+      parentId > -1 &&
+      parentItem?.id !== parentId
+    ) {
       return true;
     }
-    if (seq && Number.isInteger(seq) && seq > -1 && parentItem.seq !== seq) {
+    if (
+      parentSeq &&
+      Number.isInteger(parentSeq) &&
+      parentSeq > -1 &&
+      parentItem?.seq !== parentSeq
+    ) {
       return true;
     }
-    if (sortby && sortby.length > 0 && parentItem.sortby !== sortby) {
+    if (
+      parentSortby &&
+      parentSortby.length > 0 &&
+      parentItem?.sortby !== parentSortby
+    ) {
       return true;
     }
     return false;
@@ -109,7 +120,7 @@ const usePagesEdit = () => {
     // setIsProcessing(true);
     const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
     // setIsProcessing(false);
-    setIsSaved(result);
+    setIsSaved(!!result);
     return result;
   };
 

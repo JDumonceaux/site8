@@ -1,3 +1,6 @@
-import type { Item } from './Item.js';
+import { ItemSchema } from './Item.js';
+import { z } from 'zod';
 
-export type ItemAdd = Omit<Item, 'id'> & {};
+export const ItemAddSchema = ItemSchema.omit({ id: true });
+
+export type ItemAdd = z.infer<typeof ItemAddSchema>;

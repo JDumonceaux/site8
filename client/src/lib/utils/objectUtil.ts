@@ -102,12 +102,14 @@ export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
 /**
  * Returns a new object with all string attributes trimmed.
  */
-export const trimAttributes = <T>(obj: T): T => {
+export const trimAttributes = <T extends Record<string, unknown>>(
+  obj: T,
+): T => {
   if (typeof obj !== 'object' || obj === null) return obj;
   const trimmedObj: Record<string, unknown> = { ...obj };
   for (const key of Object.keys(trimmedObj)) {
     if (typeof trimmedObj[key] === 'string') {
-      trimmedObj[key] = trimmedObj[key].trim();
+      trimmedObj[key] = (trimmedObj[key] as string).trim();
     }
   }
   return trimmedObj as T;

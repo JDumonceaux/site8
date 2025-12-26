@@ -2,7 +2,9 @@ import {
   type JSX,
   type KeyboardEvent,
   type MouseEvent,
+  useCallback,
   useDeferredValue,
+  useMemo,
   useState,
 } from 'react';
 
@@ -11,7 +13,7 @@ import Switch from '@components/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import useUnmatchedImages from '@features/items-add/useUnmatchedImages';
 import { IMAGE_BASE } from '@lib/utils/constants';
-import type { Image } from '@types/Image';
+import type { Image } from '@types';
 import styled from 'styled-components';
 
 export type ImageSelectorProps = {
@@ -23,37 +25,50 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
   const { data } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();
 
-  const handleShowAll = (): void => {
+  const handleShowAll = useCallback((): void => {
     setSelectedItem(undefined);
-  };
+  }, []);
 
-  const handleShowUnmatched = (checked: boolean): void => {
-    setShowUnmatched(checked);
-  };
+  const handleShowUnmatched = useCallback(
+    (checked: boolean): void => {
+      setShowUnmatched(checked);
+    },
+    [setShowUnmatched],
+  );
 
-  const handleSelect = (e: MouseEvent<HTMLButtonElement>): void => {
-    e.preventDefault();
-    const id = Number(e.currentTarget.id);
-    const item = data?.items.find((x) => x.id === id);
-    setSelectedItem(item);
-    onSelectImage(item);
-  };
-
-  const handleKeyboardSelect = (e: KeyboardEvent<HTMLButtonElement>): void => {
-    if (e.key === 'Enter') {
+  const handleSelect = useCallback(
+    (e: MouseEvent<HTMLButtonElement>): void => {
       e.preventDefault();
       const id = Number(e.currentTarget.id);
-      const item = data?.items.find((x) => x.id === id);
+      const item = data?.items?.find((x) => x.id === id);
       setSelectedItem(item);
       onSelectImage(item);
-    }
-  };
+    },
+    [data?.items, onSelectImage],
+  );
 
-  const filteredData = data
-    ? selectedItem
-      ? data.items.filter((x) => x.id === selectedItem.id)
-      : data.items
-    : [];
+  const handleKeyboardSelect = useCallback(
+    (e: KeyboardEvent<HTMLButtonElement>): void => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const id = Number(e.currentTarget.id);
+        const item = data?.items?.find((x) => x.id === id);
+        setSelectedItem(item);
+        onSelectImage(item);
+      }
+    },
+    [data?.items, onSelectImage],
+  );
+
+  const filteredData = useMemo(
+    () =>
+      data
+        ? selectedItem
+          ? (data.items?.filter((x) => x.id === selectedItem.id) ?? [])
+          : (data.items ?? [])
+        : [],
+    [data, selectedItem],
+  );
 
   const itemCount = useDeferredValue(filteredData.length);
 
@@ -73,7 +88,7 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
           Show All
         </button>
         <Switch
-          checked={showUnmatched}
+          {...(showUnmatched !== undefined && { checked: showUnmatched })}
           id="showUnmatched"
           label={showUnmatched ? 'Hide Unmatched' : 'Show Unmatched'}
           onCheckedChange={handleShowUnmatched}

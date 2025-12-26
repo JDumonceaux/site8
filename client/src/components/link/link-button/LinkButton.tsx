@@ -28,12 +28,16 @@ const LinkButton = ({
       ? `noopener noreferrer${rest.rel ? ` ${rest.rel}` : ''}`
       : rest.rel;
 
+  // Extract aria-label to handle undefined properly
+  const { 'aria-label': ariaLabel, ...restWithoutAriaLabel } = rest;
+
   return (
     <StyledLink
       ref={ref}
       rel={rel}
       to={to}
-      {...rest}
+      {...(ariaLabel !== undefined && { 'aria-label': ariaLabel })}
+      {...restWithoutAriaLabel}
     >
       {children}
     </StyledLink>

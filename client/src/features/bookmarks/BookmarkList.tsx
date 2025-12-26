@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { memo, type JSX } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ type BookmarkItem = {
 };
 
 type Bookmarks = {
-  items: BookmarkItem[];
+  items?: BookmarkItem[];
 };
 
 type BookmarkListProps = {
@@ -19,25 +19,27 @@ type BookmarkListProps = {
 };
 
 // BookmarkList component displays a list of bookmarks
-const BookmarkList = ({ data, id }: BookmarkListProps): JSX.Element | null => {
-  if (!data) {
-    return null;
-  }
+const BookmarkList = memo(
+  ({ data, id }: BookmarkListProps): JSX.Element | null => {
+    if (!data) {
+      return null;
+    }
 
-  return (
-    <>
-      {id ? <div>{id}</div> : null}
-      {data.items.map((item) => (
-        <div key={item.id}>
-          <StyledHeading>
-            <a href={item.url}>{item.name}</a>
-          </StyledHeading>
-          <p>{item.description}</p>
-        </div>
-      ))}
-    </>
-  );
-};
+    return (
+      <>
+        {id ? <div>{id}</div> : null}
+        {data.items?.map((item) => (
+          <div key={item.id}>
+            <StyledHeading>
+              <a href={item.url}>{item.name}</a>
+            </StyledHeading>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </>
+    );
+  },
+);
 
 BookmarkList.displayName = 'BookmarkList';
 

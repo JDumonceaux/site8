@@ -39,16 +39,13 @@ export const Default: Story = {
 export const FallbackInitials: Story = {
   args: {
     alt: 'Jane Doe',
-    src: undefined,
   },
   name: 'Fallback → Initials',
 };
 
 export const CustomChild: Story = {
   args: {
-    alt: undefined,
     children: <span>👤</span>,
-    src: undefined,
   },
   name: 'Custom Child',
 };

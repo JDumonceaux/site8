@@ -13,12 +13,13 @@ type PageRowProps = {
 const PageRow = ({ item }: PageRowProps): JSX.Element => {
   const { getDefaultProps } = usePagesEdit();
   const isPage = item.type === 'page';
-  const levelPrefix =
-    ({
+  const levelPrefix = (
+    {
       menu: ' -- ',
       page: ' ---- ',
       root: '',
-    } as const)[item.type];
+    } as const
+  )[item.type];
 
   return (
     <StyledTr>
@@ -37,22 +38,22 @@ const PageRow = ({ item }: PageRowProps): JSX.Element => {
       </td>
       <td>
         {item.type === 'root' ? null : (
-          <Input.Text {...getDefaultProps(item.lineId, 'parentId')} />
+          <Input.Text {...getDefaultProps(item.lineId ?? 0, 'parentId')} />
         )}
       </td>
       <td>
-        <Input.Text {...getDefaultProps(item.lineId, 'parentSeq')} />
+        <Input.Text {...getDefaultProps(item.lineId ?? 0, 'parentSeq')} />
       </td>
       <td>
         {item.type === 'page' ? null : (
           <>
-            <label htmlFor={`parentSortby-${item.lineId}`}>Sort by</label>
+            <label htmlFor={`parentSortby-${item.lineId ?? 0}`}>Sort by</label>
             <Input.Text
-              {...getDefaultProps(item.lineId, 'parentSortby')}
-              id={`parentSortby-${item.lineId}`}
-              list={`sortTypes-${item.lineId}`}
+              {...getDefaultProps(item.lineId ?? 0, 'parentSortby')}
+              id={`parentSortby-${item.lineId ?? 0}`}
+              list={`sortTypes-${item.lineId ?? 0}`}
             />
-            <datalist id={`sortTypes-${item.lineId}`}>
+            <datalist id={`sortTypes-${item.lineId ?? 0}`}>
               <option value="seq">Sequence</option>
               <option value="name">Name</option>
             </datalist>
@@ -61,7 +62,7 @@ const PageRow = ({ item }: PageRowProps): JSX.Element => {
       </td>
       <td>
         {item.type}
-        {item.issue ? '-I' : ''} -{item.lineId}
+        {item.issue ? '-I' : ''} -{item.lineId ?? 0}
       </td>
     </StyledTr>
   );

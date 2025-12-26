@@ -1,6 +1,6 @@
-import type { JSX } from 'react';
+import { type JSX, memo } from 'react';
 
-import type { FieldError } from '@types/FieldError';
+import type { FieldError } from '@types';
 import styled from 'styled-components';
 
 export type FooterRowProps = {
@@ -14,23 +14,25 @@ export type FooterRowProps = {
   maxLength?: number;
 };
 
-const FooterRow = ({
-  errors,
-  fieldLength = 0,
-  isShowCounter = false,
-  maxLength = 0,
-}: FooterRowProps): JSX.Element => {
-  const errorMessage = errors?.[0]?.message ?? null;
+const FooterRow = memo(
+  ({
+    errors,
+    fieldLength = 0,
+    isShowCounter = false,
+    maxLength = 0,
+  }: FooterRowProps): JSX.Element => {
+    const errorMessage = errors?.[0]?.message ?? null;
 
-  return (
-    <Row>
-      <ErrorText>{errorMessage}</ErrorText>
-      {isShowCounter ? (
-        <Counter>{`${fieldLength}/${maxLength}`}</Counter>
-      ) : null}
-    </Row>
-  );
-};
+    return (
+      <Row>
+        <ErrorText>{errorMessage}</ErrorText>
+        {isShowCounter ? (
+          <Counter>{`${fieldLength}/${maxLength}`}</Counter>
+        ) : null}
+      </Row>
+    );
+  },
+);
 
 FooterRow.displayName = 'FooterRow';
 export default FooterRow;

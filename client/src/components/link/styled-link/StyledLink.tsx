@@ -28,7 +28,7 @@ const StyledLink = ({
   <StyledBaseLink
     ref={ref}
     $variant={variant}
-    aria-label={ariaLabel}
+    {...(ariaLabel !== undefined && { 'aria-label': ariaLabel })}
     {...rest}
   >
     {children}

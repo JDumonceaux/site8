@@ -1,6 +1,6 @@
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Test } from '@types/Test';
-import type { Tests } from '@types/Tests';
+import type { Test } from '@types';
+import type { Tests } from '@types';
 import { z } from 'zod';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
@@ -95,7 +95,7 @@ const useTestsEdit = () => {
     //setIsProcessing(true);
     const result = await patchData(ServiceUrl.ENDPOINT_TESTS, updates);
     //setIsProcessing(false);
-    setIsSaved(result);
+    setIsSaved(!!result);
     return result;
   };
 

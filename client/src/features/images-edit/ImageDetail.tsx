@@ -57,7 +57,7 @@ const ImageDetail = ({
         <Input.Select
           data-id="itemId"
           data-line={item.lineId}
-          dataList={names}
+          {...(names !== undefined && { dataList: names })}
           value={itemIdValue}
           onChange={onChange}
           placeholder="Item"

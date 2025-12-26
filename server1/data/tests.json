@@ -722,6 +722,7 @@
       "type": "maintenance",
       "name": "Chat: Javascript RegExp.escape Implementation",
       "text": "Update to use Promise.try where applicable.",
+      "notes": "Caused errors - RegExp.escape()  ECMAScript 2025",
       "projectType": ["chat"]
     },
     {
@@ -779,6 +780,268 @@
       "type": "maintenance",
       "name": "Chat: SOLID",
       "text": "Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 571,
+      "type": "maintenance",
+      "name": "Chat: Class Components",
+      "text": "Convert any class components to functional components and hooks.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 572,
+      "type": "maintenance",
+      "name": "Chat: Lazy Loading",
+      "text": "Implement lazy loading components.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 573,
+      "type": "maintenance",
+      "name": "Chat: Re-renders",
+      "text": "Look for any unnecessary re-renders.",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 574,
+      "type": "maintenance",
+      "name": "Scripts: Type Check",
+      "text": "npm run type-check",
+      "projectType": ["scripts", "react"]
+    },
+    {
+      "level": "project",
+      "id": 575,
+      "type": "maintenance",
+      "name": "Scripts: Lint",
+      "text": "npm run lint",
+      "projectType": ["scripts", "react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 576,
+      "type": "maintenance",
+      "name": "Scripts: Lint Fix",
+      "text": "npm run lint:fix",
+      "projectType": ["scripts", "react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 577,
+      "type": "maintenance",
+      "name": "Scripts: Knip",
+      "text": "npm run knip",
+      "notes": "Find unused files, dependencies, and exports",
+      "projectType": ["scripts", "react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 578,
+      "type": "maintenance",
+      "name": "Scripts: Format",
+      "text": "npm run format",
+      "projectType": ["scripts", "react"]
+    },
+    {
+      "level": "project",
+      "id": 579,
+      "type": "maintenance",
+      "name": "Scripts: Build",
+      "text": "npm run build",
+      "notes": "Production build with optimization",
+      "projectType": ["scripts", "react", "nodejs"]
+    },
+    {
+      "level": "project",
+      "id": 580,
+      "type": "maintenance",
+      "name": "Scripts: Preview",
+      "text": "npm run preview",
+      "notes": "Preview production build locally",
+      "projectType": ["scripts", "react"]
+    },
+    {
+      "level": "project",
+      "id": 581,
+      "type": "maintenance",
+      "name": "Scripts: Clean",
+      "text": "npm run clean",
+      "notes": "Remove dist and coverage folders",
+      "projectType": ["scripts", "react"]
+    },
+    {
+      "level": "project",
+      "id": 582,
+      "type": "maintenance",
+      "name": "Chat: Error Handling",
+      "text": "Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 583,
+      "type": "maintenance",
+      "name": "Chat: Accessibility",
+      "text": "Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 584,
+      "type": "maintenance",
+      "name": "Chat: React Query Optimization",
+      "text": "Review and optimize React Query usage - check staleTime, cacheTime, retry logic, and identify opportunities for prefetching",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 585,
+      "type": "maintenance",
+      "name": "Chat: Custom Hooks",
+      "text": "Identify opportunities to create custom hooks to reduce duplication and improve code reusability",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 586,
+      "type": "maintenance",
+      "name": "Chat: API Security",
+      "text": "Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 587,
+      "type": "maintenance",
+      "name": "Chat: Bundle Size",
+      "text": "Analyze bundle size and suggest code splitting opportunities beyond lazy loading",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 588,
+      "type": "maintenance",
+      "name": "Chat: TypeScript Strict Mode",
+      "text": "Review TypeScript strict mode usage and suggest enabling stricter compiler options",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 589,
+      "type": "maintenance",
+      "name": "Chat: Prop Drilling",
+      "text": "Identify prop drilling issues and suggest Context API or state management improvements",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 590,
+      "type": "maintenance",
+      "name": "Chat: Styled Components Performance",
+      "text": "Review styled-components usage and identify performance issues or patterns to improve",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 591,
+      "type": "maintenance",
+      "name": "Chat: Testing",
+      "text": "Suggest implementing React Testing Library tests for critical user flows",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 592,
+      "type": "maintenance",
+      "name": "Chat: Form Validation",
+      "text": "Review form validation patterns and suggest consistency improvements using Zod or similar",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 593,
+      "type": "maintenance",
+      "name": "Chat: SSR/SSG",
+      "text": "Identify opportunities for Server-Side Rendering or Static Site Generation",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 594,
+      "type": "maintenance",
+      "name": "Chat: Image Optimization",
+      "text": "Review and optimize image loading strategies (lazy loading, responsive images, WebP)",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 595,
+      "type": "maintenance",
+      "name": "Chat: API Caching",
+      "text": "Analyze API response caching strategies and suggest improvements",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 596,
+      "type": "maintenance",
+      "name": "Chat: Memory Leaks",
+      "text": "Check for memory leaks - useEffect cleanup, event listeners, subscriptions",
+      "projectType": ["chat"]
+    },
+    {
+      "level": "project",
+      "id": 597,
+      "type": "maintenance",
+      "name": "Chat: Build",
+      "text": "execute npm run build and fix all errors",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 598,
+      "name": "Quick Wins",
+      "text": "TypeScript Enhancement",
+      "value": "Add 3 strict flags to client tsconfig: noUncheckedIndexedAccess, noImplicitReturns, exactOptionalPropertyTypes",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 599,
+      "name": "Quick Wins",
+      "text": "Security Audit",
+      "value": "Verify sanitizeFilePath is applied to all file upload/manipulation endpoints",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 600,
+      "name": "Architectural Changes",
+      "text": "CSRF Protection",
+      "value": "Implement CSRF token generation and validation for mutation endpoints - future implementation",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 601,
+      "name": "Architectural Changes",
+      "text": "Authentication Middleware",
+      "value": "Implement authentication and authorization middleware (JWT, sessions, or OAuth) - future implementation",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 602,
+      "name": "Architectural Changes",
+      "text": "WAF Rules",
+      "value": "Configure Web Application Firewall rules for production deployment - future implementation",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 603,
+      "name": "Quick Wins",
+      "text": "Javascript Version - ES2024",
+      "value": "check tsconfig.json and update target and lib to 'es2024' (lower case)",
       "projectType": ["chat"]
     }
   ]

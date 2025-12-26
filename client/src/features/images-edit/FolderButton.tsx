@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { ListItem } from '@types/ListItem';
+import type { ListItem } from '@types';
 import styled from 'styled-components';
 
 type Props = {

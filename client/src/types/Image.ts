@@ -10,6 +10,8 @@ export type Image = {
   readonly name?: string;
   readonly official_url?: string;
   readonly role?: string;
+  readonly src?: string;
   readonly tags?: string[];
+  readonly title?: string;
   readonly url?: string;
 };

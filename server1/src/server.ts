@@ -65,10 +65,11 @@ app.use((req, res, next) => {
   next();
 });
 
-const limiter = RateLimit({
+// Stricter rate limiter for mutation endpoints (POST, PUT, PATCH, DELETE)
+const mutationLimiter = RateLimit({
   legacyHeaders: false,
-  max: RATE_LIMIT_MAX_REQUESTS,
-  message: 'Rate limit reached',
+  max: 30, // 30 mutations per 15 minutes (more restrictive)
+  message: 'Mutation rate limit exceeded. Please try again later.',
   standardHeaders: 'draft-7',
   statusCode: 429,
   windowMs: RATE_LIMIT_WINDOW_MS,
@@ -82,22 +83,25 @@ app.use((_req, res, next) => {
   );
   next();
 });
-app.use('/api/files', filesRouter, limiter);
+// Read-heavy routes with general rate limiting
 app.use('/api/photos', photosRouter);
-app.use('/api/tests', testsRouter, limiter);
 app.use('/api/bookmarks', bookmarksRouter);
 app.use('/api/travel', travelRouter);
 app.use('/api/artist', artistRouter);
 app.use('/api/artists', artistsRouter);
 app.use('/api/generic', genericRouter);
-app.use('/api/image', imageRouter);
-app.use('/api/images', imagesRouter);
-app.use('/api/items', itemsRouter);
-app.use('/api/menus', menuRouter);
 app.use('/api/music', musicRouter);
-app.use('/api/page', pageRouter, limiter);
 app.use('/api/pages', pagesRouter);
-app.use('/api/build', buildRouter);
+
+// Write-heavy routes with stricter mutation rate limiting
+app.use('/api/files', filesRouter, mutationLimiter);
+app.use('/api/tests', testsRouter, mutationLimiter);
+app.use('/api/image', imageRouter, mutationLimiter);
+app.use('/api/images', imagesRouter, mutationLimiter);
+app.use('/api/items', itemsRouter, mutationLimiter);
+app.use('/api/menus', menuRouter, mutationLimiter);
+app.use('/api/page', pageRouter, mutationLimiter);
+app.use('/api/build', buildRouter, mutationLimiter);
 
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Unhandled error', { error: err.message, stack: err.stack });
@@ -105,7 +109,17 @@ app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
     next(err);
     return;
   }
-  res.status(500).json({ error: { message: 'Internal Server Error' } });
+
+  // Sanitize error messages in production
+  const isDevelopment = env.NODE_ENV === 'development';
+  const errorMessage = isDevelopment ? err.message : 'Internal Server Error';
+
+  res.status(500).json({
+    error: {
+      message: errorMessage,
+      ...(isDevelopment && { stack: err.stack }),
+    },
+  });
 });
 
 app.use('*', (_req: Request, res: Response) => {

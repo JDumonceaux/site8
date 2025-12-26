@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { memo, type JSX, useCallback, useMemo } from 'react';
 
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import Input from '@components/input/Input';
@@ -13,73 +13,86 @@ type Props = {
   readonly onFilterSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const RightMenu = ({
-  currentFilter,
-  currentFolder,
-  onClick,
-  onFilterSelect,
-}: Props): JSX.Element => {
-  const { data, isError, isPending } = useImageFolder();
+const RightMenu = memo(
+  ({
+    currentFilter,
+    currentFolder,
+    onClick,
+    onFilterSelect,
+  }: Props): JSX.Element => {
+    const { data, isError, isPending } = useImageFolder();
 
-  const filterData = data?.map((x) => ({
-    key: x.id,
-    value: x.value,
-  }));
+    const filterData = useMemo(
+      () =>
+        data?.map((x) => ({
+          key: x.id,
+          value: x.value,
+        })),
+      [data],
+    );
 
-  const handleButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const { id } = event.currentTarget.dataset;
-    if (id) {
-      const tempId = Number(id);
-      const item = data?.find((x) => x.id === tempId);
-      onClick(item?.value);
-    }
-  };
+    const handleButton = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        const { id } = event.currentTarget.dataset;
+        if (id) {
+          const tempId = Number(id);
+          const item = data?.find((x) => x.id === tempId);
+          onClick(item?.value);
+        }
+      },
+      [data, onClick],
+    );
 
-  const renderedButtons = filterData?.map((item) => (
-    <FolderButton
-      key={item.key}
-      handleClick={handleButton}
-      isActive={item.value === currentFolder}
-      item={item}
-    />
-  ));
+    const renderedButtons = useMemo(
+      () =>
+        filterData?.map((item) => (
+          <FolderButton
+            key={item.key}
+            handleClick={handleButton}
+            isActive={item.value === currentFolder}
+            item={item}
+          />
+        )),
+      [currentFolder, filterData, handleButton],
+    );
 
-  let renderStyledButton: React.ReactNode;
-  renderStyledButton = currentFolder ? (
-    <StyledButton
-      data-id={currentFolder}
-      type="button"
-      onClick={handleButton}
-    >
-      {currentFolder}
-    </StyledButton>
-  ) : (
-    <div>Select Folder ({data?.length})</div>
-  );
-
-  return (
-    <StickyMenu>
-      <FilterDiv>
-        <Input.Select
-          dataList={filterData}
-          label="Filter"
-          value={currentFilter}
-          onChange={onFilterSelect}
-        />
-      </FilterDiv>
-      <StyledHeader>
-        <div>{renderStyledButton}</div>
-      </StyledHeader>
-      <hr />
-      <LoadingWrapper
-        isPending={isPending}
-        isError={isError}
+    let renderStyledButton: React.ReactNode;
+    renderStyledButton = currentFolder ? (
+      <StyledButton
+        data-id={currentFolder}
+        type="button"
+        onClick={handleButton}
       >
-        {renderedButtons}
-      </LoadingWrapper>
-    </StickyMenu>
-  );
-};
+        {currentFolder}
+      </StyledButton>
+    ) : (
+      <div>Select Folder ({data?.length})</div>
+    );
+
+    return (
+      <StickyMenu>
+        <FilterDiv>
+          <Input.Select
+            dataList={filterData}
+            label="Filter"
+            value={currentFilter}
+            onChange={onFilterSelect}
+          />
+        </FilterDiv>
+        <StyledHeader>
+          <div>{renderStyledButton}</div>
+        </StyledHeader>
+        <hr />
+        <LoadingWrapper
+          isPending={isPending}
+          isError={isError}
+        >
+          {renderedButtons}
+        </LoadingWrapper>
+      </StickyMenu>
+    );
+  },
+);
 
 RightMenu.displayName = 'RightMenu';
 export default RightMenu;

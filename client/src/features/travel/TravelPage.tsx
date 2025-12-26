@@ -3,6 +3,7 @@ import type { JSX } from 'react';
 import LoadingWrapper from '@components/core/loading/LoadingWrapper';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
+import { logError } from '@lib/utils/errorLogger';
 import Items from './Items';
 import useTravel from './useTravel';
 
@@ -11,7 +12,10 @@ const TravelPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useTravel();
 
   if (isError && error) {
-    console.error('TravelPage: Error loading travel destinations', error);
+    logError(error, {
+      componentName: 'TravelPage',
+      action: 'loadDestinations',
+    });
   }
 
   return (

@@ -42,7 +42,7 @@ const TooltipBase = ({
         delayDuration={delayDuration}
       >
         <StyledTrigger
-          $color={triggerColor}
+          {...(triggerColor !== undefined && { $color: triggerColor })}
           {...triggerProps}
         >
           {trigger}

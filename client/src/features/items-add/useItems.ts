@@ -1,6 +1,6 @@
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { Items, ListItem } from '@types';
-import type { KeyValue } from '@types/KeyValue';
+import type { KeyValue } from '@types';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchData = (): Promise<Items> =>
@@ -25,24 +25,28 @@ const useItems = () => {
     .difference(new Set([null, undefined, '']))
     .values()
     .toArray()
+    .filter((a): a is string => a !== undefined)
     .toSorted((a, b) => a.localeCompare(b));
 
   const locations = new Set(items.map((x) => x.location))
     .difference(new Set([null, undefined, '']))
     .values()
     .toArray()
+    .filter((a): a is string => a !== undefined)
     .toSorted((a, b) => a.localeCompare(b));
 
   const titles = new Set(items.map((x) => x.title))
     .difference(new Set([null, undefined, '']))
     .values()
     .toArray()
+    .filter((a): a is string => a !== undefined)
     .toSorted((a, b) => a.localeCompare(b));
 
   const periods = new Set(items.map((x) => x.artisticPeriod))
     .difference(new Set([null, undefined, '']))
     .values()
     .toArray()
+    .filter((a): a is string => a !== undefined)
     .toSorted((a, b) => a.localeCompare(b));
 
   const getNamesFiltered = (artist: string) =>

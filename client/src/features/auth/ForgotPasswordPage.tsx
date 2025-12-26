@@ -5,7 +5,7 @@ import Meta from '@components/core/meta/Meta';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import { emailAddress } from '@types/Auth';
+import { emailAddress } from '@types';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import { InstDiv, StyledBottomMsg, StyledForm } from './AuthFormStyles';
@@ -51,10 +51,12 @@ const ForgotPasswordPage = (): JSX.Element => {
           noValidate
           action={formAction}
         >
-          <FormMessage message={state.message} />
+          {state.message && <FormMessage message={state.message} />}
           <Input.Email
             required
-            errorText={state.errors?.emailAddress}
+            {...(state.errors?.email && {
+              errors: [{ message: state.errors.email }],
+            })}
             label="Email Address"
             multiple={false}
             spellCheck="false"

@@ -5,10 +5,10 @@ import Meta from '@components/core/meta/Meta';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
-import { emailAddress, password } from '@types/Auth';
+import { emailAddress, password } from '@types';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import { InstDiv, StyledBottomMsg, StyledForm } from './AuthFormStyles';
+import { InstDiv, StyledForm } from './AuthFormStyles';
 import { createFormAction } from './authFormHelpers';
 import FormMessage from './FormMessage';
 import styled from 'styled-components';
@@ -82,19 +82,23 @@ const SignupPage = (): JSX.Element => {
           noValidate
           action={formAction}
         >
-          <FormMessage message={state.message} />
+          {state.message && <FormMessage message={state.message} />}
           <Input.Email
             required
-            errorText={state.errors?.emailAddress}
+            {...(state.errors?.emailAddress && {
+              errors: [{ message: state.errors.emailAddress }],
+            })}
             label="Email Address"
             multiple={false}
             spellCheck="false"
             autoComplete="email"
             name="emailAddress"
-            placeholder="Enter your email"
+            placeholder="Enter Email Address"
           />
           <Input.Password
-            errorText={state.errors?.password}
+            {...(state.errors?.password && {
+              errors: [{ message: state.errors.password }],
+            })}
             label="Password"
             name="password"
             autoComplete="new-password"

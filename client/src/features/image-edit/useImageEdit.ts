@@ -12,7 +12,7 @@ import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
 import { getSRC } from '@lib/utils/helpers';
 import { safeParse } from '@lib/utils/zodHelper';
-import type { Image } from '@types/Image';
+import type { Image } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import imageEditSchema, { type FormKeys, type FormType } from './schema';
@@ -168,14 +168,12 @@ export const useImageEdit = (
       setFormValues(formData);
     }
     setIsSaved(true);
-    setIsProcessing(false);
     setErrors(null);
   }, [imageData, setErrors, setFormValues]);
 
   const clearForm = useCallback(() => {
     setFormValues(defaultForm);
     setIsSaved(true);
-    setIsProcessing(false);
     setErrors(null);
   }, [setErrors, setFormValues]);
 

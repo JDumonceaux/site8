@@ -1,4 +1,4 @@
-import { type JSX, useEffect, useState } from 'react';
+import { memo, type JSX, useEffect, useState } from 'react';
 
 import type { Places } from '../../types/Places';
 import Skeleton from './Skeleton';
@@ -10,7 +10,7 @@ type ItemsProps = {
 };
 
 // Items component displays a list of travel destinations
-const Items = ({ data, id }: ItemsProps): JSX.Element | null => {
+const Items = memo(({ data, id }: ItemsProps): JSX.Element | null => {
   // TODO: TEMPORARY - Remove this delay after testing skeleton
   const [showDelay, setShowDelay] = useState(true);
 
@@ -34,7 +34,7 @@ const Items = ({ data, id }: ItemsProps): JSX.Element | null => {
   return (
     <>
       {id ? <div>{id}</div> : null}
-      {data.items.map((item) => (
+      {data.items?.map((item) => (
         <StyledCard key={item.id}>
           <StyledCardContent>
             <StyledTextContent>
@@ -94,7 +94,7 @@ const Items = ({ data, id }: ItemsProps): JSX.Element | null => {
       ))}
     </>
   );
-};
+});
 
 Items.displayName = 'Items';
 

@@ -4,7 +4,7 @@ import Fallback from './Fallback';
 
 const meta: Meta<typeof Fallback> = {
   argTypes: {
-    lines: {
+    numberOfLines: {
       control: { max: 20, min: 1, step: 1, type: 'number' },
       defaultValue: 5,
       description:
@@ -35,28 +35,28 @@ export const Default: Story = {
 
 export const CustomCount: Story = {
   args: {
-    lines: 8,
+    numberOfLines: 8,
   },
   name: 'Custom (8 lines)',
 };
 
 export const FractionalInput: Story = {
   args: {
-    lines: 3.7,
+    numberOfLines: 3.7,
   },
   name: 'Fractional (3.7 ➔ 3 lines)',
 };
 
 export const BelowMinimum: Story = {
   args: {
-    lines: 0,
+    numberOfLines: 0,
   },
   name: 'Below Min (0 ➔ clamps to 1)',
 };
 
 export const AboveMaximum: Story = {
   args: {
-    lines: 100,
+    numberOfLines: 100,
   },
   name: 'Above Max (100 ➔ clamps to 20)',
 };

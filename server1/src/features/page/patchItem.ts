@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 
 import type { PageEdit } from '../../types/Page.js';
+import { PageEditSchema } from '../../types/Page.js';
 
 import { Logger } from '../../utils/logger.js';
 
@@ -14,12 +15,19 @@ export const patchItem = async (
   try {
     const service = new PageService();
     const fileService = new PageFileService();
-    const item: PageEdit = req.body;
 
-    // TODO - validate the item against Zod schema
-    // if (!isValid) {
-    //   return res.status(400).json({ error: Responses.INVALID_ID });
-    // }
+    // Validate request body against Zod schema
+    const validationResult = PageEditSchema.safeParse(req.body);
+    if (!validationResult.success) {
+      const errorMessage = validationResult.error.issues
+        .map((err) => `${err.path.join('.')}: ${err.message}`)
+        .join(', ');
+      Logger.warn(`Page patch validation failed: ${errorMessage}`);
+      res.status(400).json({ error: `Validation error: ${errorMessage}` });
+      return;
+    }
+
+    const item = validationResult.data;
 
     // Meta data and text are stored in separate files - therefore two updates are needed.
     const results = await Promise.allSettled([

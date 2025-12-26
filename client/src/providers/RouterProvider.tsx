@@ -6,10 +6,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import MusicPage from '@features/music/MusicPage';
 import { QueryClient } from '@tanstack/react-query';
 import { pageLoader } from '../features/page-edit/pagePrefetch';
-import ErrorPage from '../features/site/ErrorPage';
 import ProtectedRoute from './ProtectedRoute';
 
 // ---------------------
@@ -34,6 +32,7 @@ const PhotoLayout = lazy(
 const Home = lazy(async () => import('../features/home/HomePage'));
 const NotFound = lazy(async () => import('../features/site/NotFoundPage'));
 const Sitemap = lazy(async () => import('../features/site/SitemapPage'));
+const ErrorPage = lazy(async () => import('../features/site/ErrorPage'));
 
 // Auth Pages (Should NOT be protected)
 const SigninPage = lazy(async () => import('../features/auth/SigninPage'));
@@ -78,6 +77,7 @@ const PhotoPage = lazy(async () => import('../features/photos/PhotoPage'));
 const TikTokPage = lazy(async () => import('../features/tiktok/TikTokPage'));
 const YachtsPage = lazy(async () => import('../features/yatch/YachtsPage'));
 const TestsPage = lazy(async () => import('../features/tests/TestsPage'));
+const MusicPage = lazy(async () => import('../features/music/MusicPage'));
 
 // Design Pages
 const InputPage = lazy(async () => import('../features/design/InputPage'));

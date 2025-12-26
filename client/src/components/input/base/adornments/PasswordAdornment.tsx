@@ -11,13 +11,20 @@ export type PasswordAdornmentProps = Readonly<
 const PasswordAdornment = ({
   ref,
   ...props
-}: PasswordAdornmentProps): JSX.Element => (
-  <Icon
-    ref={ref}
-    data-testid="password-icon"
-    {...props}
-  />
-);
+}: PasswordAdornmentProps): JSX.Element => {
+  // Filter out undefined values to comply with exactOptionalPropertyTypes
+  const filteredProps = Object.fromEntries(
+    Object.entries(props).filter(([_, value]) => value !== undefined),
+  ) as SVGProps<SVGSVGElement>;
+
+  return (
+    <Icon
+      ref={ref}
+      data-testid="password-icon"
+      {...filteredProps}
+    />
+  );
+};
 
 PasswordAdornment.displayName = 'PasswordAdornment';
 export default PasswordAdornment;
