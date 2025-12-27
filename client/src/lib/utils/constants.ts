@@ -1,13 +1,12 @@
 /* -------------------------------------------------------------------------- */
 /*                               App Metadata                                 */
-/* -------------------------------------------------------------------------- */
+/* -----------------------------------------------------------------U--------- */
 export const APP_AUTHOR = 'ReactTotal.io';
-export const APP_COPYRIGHT = 'Copyright © 2023 ReactTotal.io';
+export const APP_COPYRIGHT = 'Copyright © 2026 ReactTotal.io';
 export const APP_COPYRIGHT_NOTICE = `${APP_COPYRIGHT} ${APP_AUTHOR}`;
 export const APP_COPYRIGHT_NOTICE_LONG = `${APP_COPYRIGHT} ${APP_AUTHOR} - All rights reserved.`;
 export const APP_COPYRIGHT_YEAR = new Date().getFullYear();
-export const APP_DESCRIPTION =
-  'ReactTotal.io - React, TypeScript, Node.js, Express, MongoDB';
+export const APP_DESCRIPTION = 'ReactTotal.io - React, TypeScript, Node.js';
 export const APP_NAME = 'ReactTotal.io';
 export const APP_VERSION = '0.0.1';
 
