@@ -1,7 +1,7 @@
 import { memo, type JSX, useCallback, useMemo } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
-import Input from '@components/input/Input';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
+import Input from '@components/ui/input/Input';
 import useImageFolder from '@features/images-edit/useImageFolder';
 import FolderButton from './FolderButton';
 import styled from 'styled-components';
@@ -143,3 +143,4 @@ const FilterDiv = styled.div`
     }
   }
 `;
+

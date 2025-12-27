@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
+import Input from '@components/ui/input/Input';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import type { MenuItem } from '@types';
 import usePagesEdit from './usePagesEdit';
 import styled from 'styled-components';
@@ -76,3 +76,4 @@ const StyledTr = styled.tr`
     padding: 3px 15px;
   }
 `;
+

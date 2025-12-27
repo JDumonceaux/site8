@@ -1,8 +1,8 @@
 import React, { type JSX } from 'react';
 
-import Button from '@components/core/button/Button';
+import Button from '@components/ui/button/Button';
 import Meta from '@components/core/meta/Meta';
-import Input from '@components/input/Input';
+import Input from '@components/ui/input/Input';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
 import { safeParse } from '@lib/utils/zodHelper';
@@ -49,6 +49,7 @@ const ConfirmEmailPage = (): JSX.Element => {
         );
         // Handle successful confirmation
       } catch (error_) {
+        // eslint-disable-next-line no-console
         console.error('Error confirming sign up:', error_);
       }
     })();
@@ -59,6 +60,7 @@ const ConfirmEmailPage = (): JSX.Element => {
       try {
         await authResendConfirmationCode(formValues.emailAddress);
       } catch (error_) {
+        // eslint-disable-next-line no-console
         console.error('Error resending code:', error_);
       }
     })();
@@ -140,3 +142,4 @@ const StyledBottomMsg = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+

@@ -3,7 +3,7 @@ import type { Tests } from '../../types/Tests.js';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 type ExpandedTest = Test & {
   readonly parentId: number;

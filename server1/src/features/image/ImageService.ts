@@ -132,11 +132,6 @@ export class ImageService {
     service: ImagesService,
     data: Images,
   ): Promise<void> {
-    // Type-safe check for writeFile method
-    if ('writeFile' in service && typeof service.writeFile === 'function') {
-      await service.writeFile(data);
-    } else {
-      throw new Error('Service does not implement writeFile method');
-    }
+    await service.writeData(data);
   }
 }

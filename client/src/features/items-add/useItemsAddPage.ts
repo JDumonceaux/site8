@@ -95,12 +95,14 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
     const { id, line } = dataset;
 
     if (!id || !line) {
+      // eslint-disable-next-line no-console
       console.error('Missing data attributes: id or line');
       return;
     }
 
     const lineNumber = Number(line);
     if (Number.isNaN(lineNumber)) {
+      // eslint-disable-next-line no-console
       console.error('Invalid line number:', line);
       return;
     }
@@ -112,6 +114,7 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
     const artistIdNumber = Number(artistId);
 
     if (!artistIdNumber || Number.isNaN(artistIdNumber)) {
+      // eslint-disable-next-line no-console
       console.error('Invalid artist ID:', artistId);
       return null;
     }
@@ -167,6 +170,7 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
             ? `An unexpected error occurred: ${error_.message}`
             : 'An unexpected error occurred';
         setMessage(errorMessage);
+        // eslint-disable-next-line no-console
         console.error('Error saving items:', error_);
       }
     })();

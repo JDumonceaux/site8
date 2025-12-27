@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getItemByName } from '../features/generic/getItem.js';
+import { getItemByName } from '../lib/generic/getItem.js';
 import { requireName } from '../middleware/requireName.js';
 import { asyncHandler } from '../utils/routerUtils.js';
 

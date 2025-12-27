@@ -1,9 +1,9 @@
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/core/button/Button';
+import Button from '@components/ui/button/Button';
 import Meta from '@components/core/meta/Meta';
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
+import Input from '@components/ui/input/Input';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import { emailAddress } from '@types';
 import { z } from 'zod';
@@ -87,3 +87,4 @@ const ForgotPasswordPage = (): JSX.Element => {
 };
 
 export default ForgotPasswordPage;
+

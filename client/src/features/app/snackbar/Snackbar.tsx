@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useCallback, useEffect, useEffectEvent } from 'react';
 
-import Button from '@components/core/button/Button';
+import Button from '@components/ui/button/Button';
 import { logError } from '@lib/utils/errorLogger';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
 import styled from 'styled-components';
@@ -110,3 +110,4 @@ const CloseButton = styled(Button)`
   font-size: 1.5rem;
   line-height: 1;
 `;
+

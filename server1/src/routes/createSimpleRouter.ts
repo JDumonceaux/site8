@@ -4,7 +4,7 @@ import { asyncHandler } from '../utils/routerUtils.js';
 
 type SimpleRouterConfig = {
   /** The handler function to call for GET / */
-  getItemsHandler: (req: Request, res: Response) => Promise<void> | void;
+  getItemsHandler: (req: Request, res: Response) => Promise<void>;
   /** Name for the router (used for logging) */
   routerName?: string;
 };

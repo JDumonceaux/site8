@@ -1,9 +1,9 @@
 import { type JSX, Suspense } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
-import Input from '@components/input/Input';
+import Input from '@components/ui/input/Input';
 import MenuBar from '@features/images-edit/MenuBar';
 import Layout from '@features/layouts/layout/Layout';
 import type { ItemAddExt } from './ItemAdd';
@@ -82,3 +82,4 @@ export default ItemsAddPage;
 const StyledForm = styled.form`
   width: 100%;
 `;
+

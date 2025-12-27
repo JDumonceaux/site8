@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
 import Meta from '@components/core/meta/Meta';
-import StyledNavLink from '@components/link/styled-nav-link/StyledNavLink';
+import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 
 const SitemapPage = (): JSX.Element | null => (
   <>
@@ -26,3 +26,4 @@ const SitemapPage = (): JSX.Element | null => (
 
 SitemapPage.displayName = 'SitemapPage';
 export default SitemapPage;
+

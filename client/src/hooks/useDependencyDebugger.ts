@@ -19,7 +19,23 @@ const compareInputs = <T extends Record<string, any>>(
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+/**
+ * Development hook for debugging dependency changes
+ *
+ * Logs which dependencies changed between renders, helping identify
+ * unnecessary re-renders or missing dependencies.
+ *
+ * **Note:** Only use in development for debugging purposes
+ *
+ * @template T - Object containing dependencies to track
+ * @param inputs - Object with dependencies to monitor
+ *
+ * @example
+ * ```typescript
+ * useDependencyDebugger({ user, isLoading, settings });
+ * // Console output: "Change detected: isLoading old: false new: true"
+ * ```
+ */
 export const useDependencyDebugger = <T extends Record<string, any>>(
   inputs: T,
 ): void => {

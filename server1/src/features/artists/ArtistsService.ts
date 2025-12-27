@@ -7,7 +7,7 @@ import type { ItemsFile } from '../../types/ItemsFile.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { ItemsFileSchema } from '../../types/ItemsFile.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 // ============================================================================
 // Custom Error Classes
@@ -64,7 +64,7 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
     const data = await this.readFile();
 
     // Sort artists by their sortName property
-    const sortedArtists = (data.artists ?? []).toSorted((a, b) =>
+    const sortedArtists = data.artists.toSorted((a, b) =>
       (a.sortName ?? a.name).localeCompare(b.sortName ?? b.name, undefined, {
         numeric: true,
         sensitivity: 'base',
@@ -72,9 +72,7 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
     );
 
     const artistsItems = sortedArtists.map((artist) => {
-      const items = (data.items ?? []).filter(
-        (item) => item.artistId === artist.id,
-      );
+      const items = data.items.filter((item) => item.artistId === artist.id);
       return {
         artist,
         items: this.sortItemsByTitle(items),

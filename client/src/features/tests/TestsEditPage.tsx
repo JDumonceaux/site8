@@ -2,10 +2,10 @@ import { type JSX, useEffect, useEffectEvent, useState } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
-import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
-import Switch from '@components/switch/Switch';
+import Input from '@components/ui/input/Input';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
+import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
+import Switch from '@components/ui/switch/Switch';
 import {
   closestCenter,
   DndContext,
@@ -196,3 +196,4 @@ export default TestsEditPage;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: bold;
 `;
+

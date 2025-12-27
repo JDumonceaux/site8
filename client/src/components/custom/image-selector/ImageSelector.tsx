@@ -8,8 +8,8 @@ import {
   useState,
 } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
-import Switch from '@components/switch/Switch';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
+import Switch from '@components/ui/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import useUnmatchedImages from '@features/items-add/useUnmatchedImages';
 import { IMAGE_BASE } from '@lib/utils/constants';
@@ -166,3 +166,4 @@ const ImageButton = styled.button<{ $selected: boolean }>`
     outline-offset: 2px;
   }
 `;
+

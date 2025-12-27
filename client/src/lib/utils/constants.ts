@@ -25,7 +25,7 @@ export const QueryTimeComputed = {
   GC_TIME: QueryTime.FIVE_MINUTES,
   RETRY_DELAY: QueryTime.ONE_SECOND,
   STALE_TIME: QueryTime.FIVE_MINUTES,
-  STALE_TIME_PREFETCH: 1000 * 60, // 1 minutes
+  STALE_TIME_PREFETCH: 1000 * 60, // 1 minute
 } as const satisfies Record<string, number>;
 
 export type QueryTime = (typeof QueryTime)[keyof typeof QueryTime];
@@ -49,7 +49,7 @@ export type PreferHeader = (typeof PreferHeader)[keyof typeof PreferHeader];
 /* -------------------------------------------------------------------------- */
 /*                          API and Route Constants                           */
 /* -------------------------------------------------------------------------- */
-const API_ROOT = import.meta.env.VITE_API_URL || 'http://localhost:3005/api';
+const API_ROOT = import.meta.env['VITE_API_URL'] || 'http://localhost:3005/api';
 
 export const IMAGE_BASE = '/images';
 
@@ -92,6 +92,17 @@ export const MAX_PASSWORD_LENGTH = 60;
 export const MIN_PASSWORD_LENGTH = 8;
 export const REQUIRED_FIELD = 'Required Field';
 export const SNACKBAR_DEFAULT_DURATION = 3000;
+
+/* -------------------------------------------------------------------------- */
+/*                              UI Component Defaults                         */
+/* -------------------------------------------------------------------------- */
+export const UI_DEFAULTS = {
+  AVATAR_DEFAULT_DELAY: 600,
+  AVATAR_DEFAULT_SIZE: 40,
+  FALLBACK_DEFAULT_LINES: 5,
+  FALLBACK_MAX_LINES: 20,
+  FALLBACK_MIN_LINES: 1,
+} as const;
 
 /* -------------------------------------------------------------------------- */
 /*                         Authentication Error Messages                      */

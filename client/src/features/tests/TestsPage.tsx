@@ -1,6 +1,6 @@
 import { type JSX, Suspense } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
@@ -75,3 +75,4 @@ export default TestsPage;
 const StyledActionRow = styled.tr`
   font-weight: bold;
 `;
+

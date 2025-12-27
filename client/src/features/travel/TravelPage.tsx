@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorLogger';
@@ -43,3 +43,4 @@ const TravelPage = (): JSX.Element => {
 };
 
 export default TravelPage;
+

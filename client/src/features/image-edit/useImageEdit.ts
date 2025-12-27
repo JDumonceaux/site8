@@ -149,6 +149,7 @@ export const useImageEdit = (
     } catch (error) {
       // Revert optimistic update on error
       setOptimisticSaved(false);
+      // eslint-disable-next-line no-console
       console.error('Failed to save image:', error);
       return false;
     }

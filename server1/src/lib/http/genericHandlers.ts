@@ -1,8 +1,10 @@
 import type { Request, Response } from 'express';
 import type { z } from 'zod';
 
-import { PREFER_HEADER } from '../../utils/constants.js';
 import { Logger } from '../../utils/logger.js';
+import { PreferHeaderHandler } from './PreferHeaderHandler.js';
+import { RequestValidator } from './RequestValidator.js';
+import { ResponseHelper } from './ResponseHelper.js';
 
 /**
  * Configuration for creating a generic GET handler without parameters
@@ -94,27 +96,16 @@ export const createGetHandler = <T>(config: GetHandlerConfig<T>) => {
         const itemCount = getItemCount(data);
 
         if (itemCount === 0) {
-          Logger.info(`${handlerName}: No items found`);
-          res.sendStatus(204);
+          ResponseHelper.noContent(res, handlerName, 'No items found');
           return;
         }
 
-        Logger.info(
-          `${handlerName}: Successfully retrieved ${itemCount} items`,
-        );
+        ResponseHelper.ok(res, data, handlerName, itemCount);
       } else {
-        Logger.info(`${handlerName}: Successfully retrieved data`);
+        ResponseHelper.ok(res, data, handlerName);
       }
-
-      res.status(200).json(data);
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
-      Logger.error(`${handlerName}: Failed to retrieve data`, {
-        error: errorMessage,
-      });
-
-      res.status(500).json(errorResponse);
+      ResponseHelper.internalError(res, handlerName, error, errorResponse);
     }
   };
 };
@@ -169,10 +160,11 @@ export const createGetHandlerWithParams = <T>(
       if (validateParams) {
         const validation = validateParams(req);
         if (!validation.isValid) {
-          Logger.warn(
-            `${handlerName}: ${validation.errorMessage ?? 'Invalid parameters'}`,
+          ResponseHelper.badRequest(
+            res as Response<{ error: string }>,
+            validation.errorMessage ?? 'Invalid parameters',
+            handlerName,
           );
-          res.status(400).json(errorResponse);
           return;
         }
       }
@@ -186,27 +178,16 @@ export const createGetHandlerWithParams = <T>(
         const itemCount = getItemCount(data);
 
         if (itemCount === 0) {
-          Logger.info(`${handlerName}: No items found`);
-          res.sendStatus(204);
+          ResponseHelper.noContent(res, handlerName, 'No items found');
           return;
         }
 
-        Logger.info(
-          `${handlerName}: Successfully retrieved ${itemCount} items`,
-        );
+        ResponseHelper.ok(res, data, handlerName, itemCount);
       } else {
-        Logger.info(`${handlerName}: Successfully retrieved data`);
+        ResponseHelper.ok(res, data, handlerName);
       }
-
-      res.status(200).json(data);
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
-      Logger.error(`${handlerName}: Failed to retrieve data`, {
-        error: errorMessage,
-      });
-
-      res.status(500).json(errorResponse);
+      ResponseHelper.internalError(res, handlerName, error, errorResponse);
     }
   };
 };
@@ -222,50 +203,43 @@ export const createPatchHandler = <T>({
     res: Response<T | { error: string }>,
   ): Promise<void> => {
     try {
-      const { id } = req.params;
-      const prefer = req.get('Prefer');
-      const returnRepresentation = prefer === PREFER_HEADER.REPRESENTATION;
+      const returnRepresentation = PreferHeaderHandler.wantsRepresentation(req);
 
-      if (!id) {
-        res.status(400).json({ error: 'ID parameter is required' });
+      // Validate ID parameter
+      const idValidation = RequestValidator.validateIdParam(req);
+      if (!idValidation.isValid) {
+        ResponseHelper.badRequest(res, idValidation.errorMessage!);
+        return;
+      }
+      const id = idValidation.data!;
+
+      // Validate request body with ID
+      const validation = RequestValidator.validateBodyWithData(req, schema, {
+        id,
+      });
+      if (!validation.isValid) {
+        ResponseHelper.badRequest(res, validation.errorMessage!);
         return;
       }
 
-      const requestData = { ...(req.body as Record<string, unknown>), id };
-      const validationResult = schema.safeParse(requestData);
-
-      if (!validationResult.success) {
-        const errorMessage = validationResult.error.issues
-          .map(
-            (err: { message: string; path: PropertyKey[] }) =>
-              `${err.path.join('.')}: ${err.message}`,
-          )
-          .join(', ');
-        res.status(400).json({ error: `Validation error: ${errorMessage}` });
-        return;
-      }
+      let data = validation.data as Record<string, unknown>;
 
       // Convert string IDs to numbers
-      const data: Record<string, unknown> = {
-        ...(validationResult.data as Record<string, unknown>),
-      };
-      for (const field of idFields) {
-        if (data[field] && typeof data[field] === 'string') {
-          const num = Number(data[field]);
-          if (isNaN(num)) {
-            res.status(400).json({ error: `${field} must be a valid number` });
-            return;
-          }
-          data[field] = num;
-        }
+      const idConversion = RequestValidator.convertIdsToNumbers(data, idFields);
+      if (!idConversion.isValid) {
+        ResponseHelper.badRequest(res, idConversion.errorMessage!);
+        return;
       }
+      data = idConversion.data!;
 
       // Ensure ID consistency between URL and body
-      const validatedData = validationResult.data as { id?: string };
-      if (validatedData.id && validatedData.id !== id) {
-        res
-          .status(400)
-          .json({ error: 'ID in request body must match ID in URL' });
+      const validatedData = data as { id?: string };
+      const consistencyCheck = RequestValidator.validateIdConsistency(
+        id,
+        validatedData.id,
+      );
+      if (!consistencyCheck.isValid) {
+        ResponseHelper.badRequest(res, consistencyCheck.errorMessage!);
         return;
       }
 
@@ -279,29 +253,31 @@ export const createPatchHandler = <T>({
         if (returnRepresentation) {
           const result = await service.getItem(updatedId);
           if (!result) {
-            res.status(404).json({ error: 'Item not found after update' });
+            ResponseHelper.notFound(res, 'Item not found after update');
             return;
           }
-          res.status(200).json(result);
+          ResponseHelper.ok(res, result, serviceName);
           return;
         }
-        res.sendStatus(204);
+        ResponseHelper.noContent(res, serviceName);
       } catch (serviceError) {
-        if (serviceError instanceof Error) {
-          if (serviceError.message.includes('not found')) {
-            res.status(404).json({ error: 'Item not found' });
-            return;
-          }
-          if (serviceError.message.includes('validation')) {
-            res.status(400).json({ error: serviceError.message });
-            return;
-          }
+        if (ResponseHelper.isNotFoundError(serviceError)) {
+          ResponseHelper.notFound(res);
+          return;
+        }
+        if (ResponseHelper.isValidationError(serviceError)) {
+          ResponseHelper.badRequest(
+            res,
+            serviceError instanceof Error
+              ? serviceError.message
+              : 'Validation error',
+          );
+          return;
         }
         throw serviceError;
       }
     } catch (error) {
-      Logger.error(`Error in ${serviceName} patchItem:`, error);
-      res.sendStatus(500);
+      ResponseHelper.internalError(res, serviceName, error);
     }
   };
 };
@@ -327,22 +303,16 @@ export const createPostHandler = <T, TAdd>({
     res: Response<T | { error: string }>,
   ): Promise<void> => {
     try {
-      const prefer = req.get('Prefer');
-      const returnRepresentation = prefer === PREFER_HEADER.REPRESENTATION;
+      const returnRepresentation = PreferHeaderHandler.wantsRepresentation(req);
 
-      const validationResult = schema.safeParse(req.body);
-      if (!validationResult.success) {
-        const errorMessage = validationResult.error.issues
-          .map(
-            (err: { message: string; path: PropertyKey[] }) =>
-              `${err.path.join('.')}: ${err.message}`,
-          )
-          .join(', ');
-        res.status(400).json({ error: `Validation error: ${errorMessage}` });
+      // Validate request body
+      const validation = RequestValidator.validateBody(req, schema);
+      if (!validation.isValid) {
+        ResponseHelper.badRequest(res, validation.errorMessage!);
         return;
       }
 
-      const { data } = validationResult;
+      const data = validation.data!;
       Logger.info(`${serviceName}: Post Item called (create new)`);
 
       const service = getService();
@@ -353,35 +323,39 @@ export const createPostHandler = <T, TAdd>({
         if (returnRepresentation) {
           const newItem = await service.getItem(newId);
           if (!newItem) {
-            res.status(500).json({ error: 'Failed to retrieve created item' });
+            ResponseHelper.internalError(
+              res,
+              serviceName,
+              new Error('Failed to retrieve created item'),
+            );
             return;
           }
-          res.setHeader('Location', `${resourcePath}/${newId}`);
-          res.status(201).json(newItem);
+          ResponseHelper.created(res, resourcePath, newId, newItem);
           return;
         }
 
-        res.setHeader('Location', `${resourcePath}/${newId}`);
-        res.status(201).send();
+        ResponseHelper.created(res, resourcePath, newId);
       } catch (serviceError) {
-        if (serviceError instanceof Error) {
-          if (serviceError.message.includes('validation')) {
-            res.status(400).json({ error: serviceError.message });
-            return;
-          }
-          if (
-            serviceError.message.includes('duplicate') ||
-            serviceError.message.includes('already exists')
-          ) {
-            res.status(409).json({ error: serviceError.message });
-            return;
-          }
+        if (ResponseHelper.isValidationError(serviceError)) {
+          ResponseHelper.badRequest(
+            res,
+            serviceError instanceof Error
+              ? serviceError.message
+              : 'Validation error',
+          );
+          return;
+        }
+        if (ResponseHelper.isConflictError(serviceError)) {
+          ResponseHelper.conflict(
+            res,
+            serviceError instanceof Error ? serviceError.message : 'Conflict',
+          );
+          return;
         }
         throw serviceError;
       }
     } catch (error) {
-      Logger.error(`${serviceName}: Post Item error:`, error);
-      res.sendStatus(500);
+      ResponseHelper.internalError(res, serviceName, error);
     }
   };
 };
@@ -407,22 +381,16 @@ export const createPutHandler = <T, TAdd>({
     res: Response<T | { error: string }>,
   ): Promise<void> => {
     try {
-      const prefer = req.get('Prefer');
-      const returnRepresentation = prefer === PREFER_HEADER.REPRESENTATION;
+      const returnRepresentation = PreferHeaderHandler.wantsRepresentation(req);
 
-      const validationResult = schema.safeParse(req.body);
-      if (!validationResult.success) {
-        const errorMessage = validationResult.error.issues
-          .map(
-            (err: { message: string; path: PropertyKey[] }) =>
-              `${err.path.join('.')}: ${err.message}`,
-          )
-          .join(', ');
-        res.status(400).json({ error: `Validation error: ${errorMessage}` });
+      // Validate request body
+      const validation = RequestValidator.validateBody(req, schema);
+      if (!validation.isValid) {
+        ResponseHelper.badRequest(res, validation.errorMessage!);
         return;
       }
 
-      const { data } = validationResult;
+      const data = validation.data!;
       Logger.info(`${serviceName}: Put Item called`);
 
       const service = getService();
@@ -431,18 +399,16 @@ export const createPutHandler = <T, TAdd>({
       if (returnRepresentation) {
         const newItem = await service.getItem(newId);
         if (newItem) {
-          res.status(200).json(newItem);
+          ResponseHelper.ok(res, newItem, serviceName);
           return;
         }
-        res.status(404).json({ error: 'Created item not found' });
+        ResponseHelper.notFound(res, 'Created item not found');
         return;
       }
 
-      res.setHeader('Location', `${resourcePath}/${newId}`);
-      res.status(201).send();
+      ResponseHelper.created(res, resourcePath, newId);
     } catch (error) {
-      Logger.error(`${serviceName}: Put Item error:`, error);
-      res.sendStatus(500);
+      ResponseHelper.internalError(res, serviceName, error);
     }
   };
 };

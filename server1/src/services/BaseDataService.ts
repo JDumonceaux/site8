@@ -2,21 +2,13 @@ import type { z } from 'zod';
 
 import type { IDataService } from './IDataService.js';
 
-import { Logger } from '../utils/logger.js';
 import { getFileService } from '../utils/ServiceFactory.js';
+import { CacheManager } from './CacheManager.js';
+import { DataValidator, ValidationError } from './DataValidator.js';
+import { ErrorHandler } from './ErrorHandler.js';
 
-/**
- * Custom validation error with detailed validation messages
- */
-export class ValidationError extends Error {
-  public constructor(
-    message: string,
-    public validationErrors: string[],
-  ) {
-    super(message);
-    this.name = 'ValidationError';
-  }
-}
+// Re-export ValidationError for backward compatibility
+export { ValidationError };
 
 /**
  * Configuration options for BaseDataService
@@ -62,15 +54,11 @@ export type BaseDataServiceConfig<T> = {
  * ```
  */
 export abstract class BaseDataService<T> implements IDataService<T> {
-  private cache: T | null = null;
-  private cacheTimestamp = 0;
-  private cacheTTL: number;
-  private readonly defaultMetadata: Record<string, unknown> | undefined;
-  private readonly enableCache: boolean;
+  private readonly cacheManager: CacheManager<T>;
+  private readonly errorHandler: ErrorHandler;
   private readonly filePath: string;
   private readonly fileService: ReturnType<typeof getFileService>;
-  private readonly serviceName: string;
-  private readonly validationSchema: z.ZodType<T> | undefined;
+  private readonly validator: DataValidator<T>;
 
   protected constructor(config: BaseDataServiceConfig<T>) {
     this.filePath = config.filePath;
@@ -85,14 +73,24 @@ export abstract class BaseDataService<T> implements IDataService<T> {
         .pop()
         ?.replace(/\.json$/, '') ?? 'DataService';
 
-    this.serviceName =
+    const serviceName =
       config.serviceName ??
       (className && className !== 'Object' ? className : fileBasedName);
 
-    this.enableCache = config.enableCache ?? false;
-    this.cacheTTL = config.cacheTTL ?? 5000;
-    this.validationSchema = config.validationSchema ?? undefined;
-    this.defaultMetadata = config.defaultMetadata ?? undefined;
+    // Initialize utility classes
+    this.cacheManager = new CacheManager<T>({
+      cacheTTL: config.cacheTTL ?? 5000,
+      enabled: config.enableCache ?? false,
+      serviceName,
+    });
+
+    this.validator = new DataValidator<T>({
+      defaultMetadata: config.defaultMetadata,
+      serviceName,
+      validationSchema: config.validationSchema,
+    });
+
+    this.errorHandler = new ErrorHandler({ serviceName });
   }
 
   // ============================================================================
@@ -106,7 +104,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
   public async fixAllEntries<TItem>(
     cleanupFn: (item: TItem) => TItem,
   ): Promise<void> {
-    Logger.info(`${this.serviceName}: fixAllEntries`);
+    this.errorHandler.info('fixAllEntries');
 
     try {
       const data = await this.getItems();
@@ -120,15 +118,9 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       const newData = { ...data, items: cleanedItems } as T;
 
       await this.writeFile(newData);
-      Logger.info(`${this.serviceName}: Successfully fixed all entries`);
+      this.errorHandler.info('Successfully fixed all entries');
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(
-        `${this.serviceName}: Error fixing entries - ${errorMessage}`,
-        { error },
-      );
-      throw error;
+      this.errorHandler.handle(error, 'fixing entries');
     }
   }
 
@@ -142,15 +134,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
     isEnabled: boolean;
     ttl: number;
   } {
-    const now = Date.now();
-    const age = this.cache ? now - this.cacheTimestamp : 0;
-
-    return {
-      age,
-      isCached: !!this.cache && age < this.cacheTTL,
-      isEnabled: this.enableCache,
-      ttl: this.cacheTTL,
-    };
+    return this.cacheManager.getStatus();
   }
 
   /**
@@ -158,26 +142,18 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * @returns The data from the file or undefined on error
    */
   public async getItems(): Promise<T | undefined> {
-    Logger.info(`${this.serviceName}: getItems`);
+    this.errorHandler.info('getItems');
 
     try {
       const parsedData = await this.readFile();
-      Logger.info(`${this.serviceName}: Successfully retrieved items`);
+      this.errorHandler.info('Successfully retrieved items');
       return parsedData;
     } catch (error) {
       if (error instanceof SyntaxError) {
-        Logger.error(`${this.serviceName}: Invalid JSON - ${error.message}`, {
-          error,
-        });
+        this.errorHandler.handle(error, 'parsing JSON');
       } else {
-        const errorMessage =
-          error instanceof Error ? error.message : String(error);
-        Logger.error(
-          `${this.serviceName}: Error reading items - ${errorMessage}`,
-          { error },
-        );
+        this.errorHandler.handle(error, 'reading items');
       }
-      return undefined;
     }
   }
 
@@ -186,7 +162,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * @returns Next available ID or undefined on error
    */
   public async getNextId(): Promise<number | undefined> {
-    Logger.info(`${this.serviceName}: getNextId`);
+    this.errorHandler.info('getNextId');
 
     try {
       const data = await this.getItems();
@@ -199,16 +175,10 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       const maxId = Math.max(...items.map((item) => item.id));
       const nextId = maxId + 1;
 
-      Logger.info(`${this.serviceName}: Next ID is ${nextId}`);
+      this.errorHandler.info(`Next ID is ${nextId}`);
       return nextId;
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(
-        `${this.serviceName}: Error getting next ID - ${errorMessage}`,
-        { error },
-      );
-      return undefined;
+      this.errorHandler.handle(error, 'getting next ID');
     }
   }
 
@@ -229,7 +199,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
     return {
       cacheStatus: this.getCacheStatus(),
       filePath: this.filePath,
-      serviceName: this.serviceName,
+      serviceName: this.errorHandler['serviceName'],
     };
   }
 
@@ -241,13 +211,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * Invalidates the cache, forcing next read from disk
    */
   public invalidateCache(): void {
-    if (!this.enableCache) {
-      return;
-    }
-
-    this.cache = null;
-    this.cacheTimestamp = 0;
-    Logger.debug(`${this.serviceName}: Cache invalidated`);
+    this.cacheManager.invalidate();
   }
 
   /**
@@ -255,7 +219,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * @returns Object containing array of duplicate ID strings
    */
   public async listDuplicates(): Promise<{ readonly items: string[] }> {
-    Logger.info(`${this.serviceName}: listDuplicates`);
+    this.errorHandler.info('listDuplicates');
 
     try {
       const data = await this.getItems();
@@ -272,16 +236,10 @@ export abstract class BaseDataService<T> implements IDataService<T> {
         .values()
         .toArray();
 
-      Logger.info(`${this.serviceName}: Found ${filtered.length} duplicates`);
+      this.errorHandler.info(`Found ${filtered.length} duplicates`);
       return { items: filtered };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(
-        `${this.serviceName}: Error listing duplicates - ${errorMessage}`,
-        { error },
-      );
-      throw error;
+      this.errorHandler.handle(error, 'listing duplicates');
     }
   }
 
@@ -293,14 +251,9 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * Refreshes the cache by reading from disk
    */
   public async refreshCache(): Promise<void> {
-    if (!this.enableCache) {
-      Logger.debug(`${this.serviceName}: Cache not enabled, skipping refresh`);
-      return;
-    }
-
-    this.invalidateCache();
+    this.cacheManager.invalidate();
     await this.readFile();
-    Logger.info(`${this.serviceName}: Cache refreshed from disk`);
+    this.errorHandler.info('Cache refreshed from disk');
   }
 
   /**
@@ -308,28 +261,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * @param ttlMs - New TTL in milliseconds
    */
   public setCacheTTL(ttlMs: number): void {
-    if (ttlMs < 0) {
-      throw new Error('Cache TTL must be non-negative');
-    }
-
-    const oldTTL = this.cacheTTL;
-    this.cacheTTL = ttlMs;
-
-    Logger.debug(
-      `${this.serviceName}: Cache TTL changed from ${oldTTL}ms to ${ttlMs}ms`,
-    );
-
-    // Invalidate cache if new TTL makes it expired
-    if (this.cache && ttlMs > 0) {
-      const now = Date.now();
-      const age = now - this.cacheTimestamp;
-      if (age >= ttlMs) {
-        this.invalidateCache();
-        Logger.debug(
-          `${this.serviceName}: Cache invalidated due to reduced TTL`,
-        );
-      }
-    }
+    this.cacheManager.setTTL(ttlMs);
   }
 
   /**
@@ -337,7 +269,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * @param data - Data to write
    */
   public async writeData(data: T): Promise<void> {
-    Logger.info(`${this.serviceName}: writeData`);
+    this.errorHandler.info('writeData');
     await this.writeFile(data);
   }
 
@@ -349,78 +281,28 @@ export abstract class BaseDataService<T> implements IDataService<T> {
   protected async readFile(): Promise<T> {
     try {
       // Check cache first if enabled
-      if (this.enableCache) {
-        const now = Date.now();
-        if (this.cache && now - this.cacheTimestamp < this.cacheTTL) {
-          Logger.debug(`${this.serviceName}: Returning cached data`);
-          return this.cache;
-        }
+      const cachedData = this.cacheManager.get();
+      if (cachedData) {
+        return cachedData;
       }
 
-      Logger.debug(`${this.serviceName}: Reading file from ${this.filePath}`);
+      this.errorHandler.info(`Reading file from ${this.filePath}`);
       const rawData = await this.fileService.readFile<unknown>(this.filePath);
 
       if (!rawData) {
         throw new Error('File data is undefined or null');
       }
 
-      // Validate if schema provided
-      let data: T;
-      if (this.validationSchema) {
-        const validationResult = this.validationSchema.safeParse(rawData);
-
-        if (!validationResult.success) {
-          const errors = validationResult.error.issues
-            .map((err) => `${err.path.join('.')}: ${err.message}`)
-            .join('; ');
-          Logger.error(
-            `${this.serviceName}: Data validation failed - ${errors}`,
-          );
-          throw new ValidationError(
-            `Invalid file structure: ${errors}`,
-            errors.split('; '),
-          );
-        }
-
-        const { data: validatedData } = validationResult;
-        data = validatedData;
-
-        // Apply default metadata if configured
-        if (this.defaultMetadata && typeof data === 'object' && data !== null) {
-          const dataObj = data as Record<string, unknown>;
-          if (!dataObj['metadata']) {
-            (data as Record<string, unknown>)['metadata'] =
-              this.defaultMetadata;
-          }
-        }
-      } else {
-        data = rawData as T;
-      }
+      // Validate data
+      const data = this.validator.validate(rawData);
 
       // Update cache if enabled
-      if (this.enableCache) {
-        this.cache = data;
-        this.cacheTimestamp = Date.now();
-      }
+      this.cacheManager.set(data);
 
-      Logger.info(`${this.serviceName}: Successfully loaded data`);
+      this.errorHandler.info('Successfully loaded data');
       return data;
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(
-        `${this.serviceName}: Failed to read file at ${this.filePath} - ${errorMessage}`,
-      );
-
-      if (error instanceof Error) {
-        throw new Error(
-          `Error reading ${this.serviceName} file: ${errorMessage}`,
-          { cause: error },
-        );
-      }
-      throw new Error(
-        `Error reading ${this.serviceName} file: ${errorMessage}`,
-      );
+      this.errorHandler.handle(error, `reading file at ${this.filePath}`);
     }
   }
 
@@ -431,47 +313,17 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    */
   protected async writeFile(data: T): Promise<void> {
     try {
-      // Validate if schema provided
-      if (this.validationSchema) {
-        const validationResult = this.validationSchema.safeParse(data);
-
-        if (!validationResult.success) {
-          const errors = validationResult.error.issues
-            .map((err) => `${err.path.join('.')}: ${err.message}`)
-            .join('; ');
-          throw new ValidationError(
-            `Invalid data structure: ${errors}`,
-            errors.split('; '),
-          );
-        }
-      }
+      // Validate data
+      this.validator.validate(data);
 
       await this.fileService.writeFile(data, this.filePath);
 
       // Invalidate cache after successful write
-      if (this.enableCache) {
-        this.invalidateCache();
-      }
+      this.cacheManager.invalidate();
 
-      Logger.info(
-        `${this.serviceName}: Successfully wrote data to ${this.filePath}`,
-      );
+      this.errorHandler.info(`Successfully wrote data to ${this.filePath}`);
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(
-        `${this.serviceName}: Failed to write file at ${this.filePath} - ${errorMessage}`,
-      );
-
-      if (error instanceof Error) {
-        throw new Error(
-          `Error writing ${this.serviceName} file: ${errorMessage}`,
-          { cause: error },
-        );
-      }
-      throw new Error(
-        `Error writing ${this.serviceName} file: ${errorMessage}`,
-      );
+      this.errorHandler.handle(error, `writing file at ${this.filePath}`);
     }
   }
 }

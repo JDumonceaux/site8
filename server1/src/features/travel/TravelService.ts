@@ -4,7 +4,7 @@ import type { Places } from '../../types/Places.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class TravelService extends BaseDataService<Places> {
   public constructor() {

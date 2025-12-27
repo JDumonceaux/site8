@@ -1,10 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node.js Configuration for 2024",
+  "display": "Node.js Configuration for 2025",
   "compilerOptions": {
     /* Language and Environment */
-    "lib": ["ES2024"],
-    "target": "es2024",
+    "lib": ["esnext"],
+    "target": "esnext",
     
     /* Modules */
     "module": "NodeNext",

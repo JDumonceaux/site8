@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import styled from 'styled-components';
 
@@ -77,3 +77,4 @@ const StyledMenuDiv = styled.div`
   break-inside: avoid;
   border-bottom: 1px solid var(--navbar-light-secondary);
 `;
+

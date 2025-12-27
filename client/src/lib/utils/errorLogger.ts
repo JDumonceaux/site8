@@ -30,6 +30,7 @@ export const logError = (
 
   // Log to console
   if (severity === 'error') {
+    // eslint-disable-next-line no-console
     console.error('[Error Logger]', errorInfo);
   } else if (severity === 'warning') {
     console.warn('[Error Logger]', errorInfo);

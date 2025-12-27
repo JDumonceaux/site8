@@ -6,7 +6,7 @@ import type { Images } from '../../types/Images.js';
 
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 import { ImagesService } from './ImagesService.js';
 
@@ -144,7 +144,9 @@ export class ImagesFileService {
             mkdirSync(moveToPath);
           }
         } catch (err) {
-          console.error(err);
+          Logger.error(
+            `ImagesFileService: Error creating folder -> ${String(err)}`,
+          );
         }
 
         if (existsSync(moveTo)) {

@@ -1,6 +1,6 @@
 import { type JSX, Suspense, useDeferredValue } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
@@ -65,3 +65,4 @@ const StyledImage = styled.img`
   height: 200px;
   width: 200px;
 `;
+

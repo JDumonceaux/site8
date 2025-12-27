@@ -10,8 +10,7 @@ if (!container) throw new Error('Root element with id="root" not found');
 // Create a React root with recoverable-error handling
 const root = createRoot(container, {
   onRecoverableError: (error: unknown, errorInfo) => {
-    // Won’t unmount the whole tree—just logs
-    console.error('Recoverable React error:', error, errorInfo);
+    // Won’t unmount the whole tree—just logs    // eslint-disable-next-line no-console    console.error('Recoverable React error:', error, errorInfo);
   },
 });
 

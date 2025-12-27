@@ -6,7 +6,52 @@ type IdType = {
 
 type FieldValue = boolean | null | number | string;
 
-const useFormArray = <T extends IdType>() => {
+/**
+ * Return type for useFormArray hook
+ */
+export type UseFormArrayReturn<T extends IdType> = {
+  /** Clear all form items */
+  clearForm: () => void;
+  /** Current form values array */
+  formValues: T[];
+  /** Get field value for a specific line item */
+  getFieldValue: (lineId: number, fieldName: keyof T) => string;
+  /** Get all items with lineId */
+  getIndex: () => IdType[];
+  /** Get a specific item by lineId */
+  getItem: (lineId: number) => null | T;
+  /** Whether form has been saved (not dirty) */
+  isSaved: boolean;
+  /** Set a field value for a specific line item */
+  setFieldValue: (
+    lineId: number,
+    fieldName: keyof T,
+    value: FieldValue,
+  ) => void;
+  /** Set entire form values array */
+  setFormValues: (values: T[]) => void;
+  /** Set saved state */
+  setIsSaved: (value: boolean) => void;
+  /** Set or update a complete item */
+  setItem: (lineId: number, item: T) => void;
+};
+
+/**
+ * Custom hook for managing array-based form state
+ *
+ * Designed for forms with multiple items, each identified by a unique lineId.
+ * Useful for todo lists, table rows, or any multi-item form.
+ *
+ * @template T - The item type (must extend IdType with lineId property)
+ * @returns Form array state and handlers
+ *
+ * @example
+ * ```typescript
+ * type TodoItem = { lineId: number; text: string; done: boolean };
+ * const { formValues, setFieldValue, getItem } = useFormArray<TodoItem>();
+ * ```
+ */
+const useFormArray = <T extends IdType>(): UseFormArrayReturn<T> => {
   const [formValues, setFormValues] = useState<T[]>([]);
   const [isSaved, setIsSaved] = useState<boolean>(true);
 

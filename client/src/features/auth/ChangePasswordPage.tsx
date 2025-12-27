@@ -1,9 +1,9 @@
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/core/button/Button';
+import Button from '@components/ui/button/Button';
 import Meta from '@components/core/meta/Meta';
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
+import Input from '@components/ui/input/Input';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import * as Form from '@radix-ui/react-form';
 import type { FormState } from '@types';
@@ -90,3 +90,4 @@ const StyledBottomMsg = styled.div`
   padding: 20px 0;
   text-align: center;
 `;
+

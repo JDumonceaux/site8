@@ -1,7 +1,7 @@
 import type { MusicItems } from '../../types/MusicItems.js';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 /**
  * Service for managing music items.

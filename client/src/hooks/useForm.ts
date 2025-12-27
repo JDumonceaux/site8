@@ -5,7 +5,83 @@ import type { z } from 'zod';
 type FormKeys<T> = keyof T;
 type FieldValue = boolean | null | number | string;
 
-const useForm = <T>(initialValues: T) => {
+/**
+ * Return type for useForm hook
+ */
+export type UseFormReturn<T> = {
+  /** Current errors from validation */
+  errors: null | z.ZodIssue[];
+  /** Current form values */
+  formValues: T;
+  /** Get default props for an input field (id, value, onChange) */
+  getDefaultProps: (fieldName: FormKeys<T>) => {
+    'data-id': FormKeys<T>;
+    'data-line': number;
+    onChange: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void;
+    value: string;
+  };
+  /** Get errors for a specific field */
+  getFieldErrors: (fieldName: FormKeys<T>) => null | string | string[];
+  /** Get field value as string */
+  getFieldValue: (fieldName: FormKeys<T>) => string;
+  /** Get field value as boolean */
+  getFieldValueBoolean: (fieldName: FormKeys<T>) => boolean;
+  /** Get field value as number */
+  getFieldValueNumber: (fieldName: FormKeys<T>) => number;
+  /** Handle input change events */
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  /** Clear all form values */
+  handleClearAll: () => void;
+  /** Clear a specific field */
+  handleClearField: (fieldName: FormKeys<T>) => void;
+  /** Reset form to initial values */
+  handleReset: () => void;
+  /** Check if a field has errors */
+  hasError: (fieldName: FormKeys<T>) => boolean;
+  /** Check if form is valid (no errors) */
+  isFormValid: () => boolean;
+  /** Whether form is currently being processed/submitted */
+  isProcessing: boolean;
+  /** Whether form has been saved (not dirty) */
+  isSaved: boolean;
+  /** Set validation errors */
+  setErrors: (errors: null | z.ZodIssue[]) => void;
+  /** Set a single field value */
+  setFieldValue: (fieldName: FormKeys<T>, value: FieldValue) => void;
+  /** Set entire form values */
+  setFormValues: (values: T) => void;
+  /** Set processing state */
+  setIsProcessing: (value: boolean) => void;
+  /** Set saved state */
+  setIsSaved: (value: boolean) => void;
+};
+
+/**
+ * Custom hook for managing single-object form state
+ *
+ * Provides comprehensive form management including:
+ * - Type-safe field access
+ * - Validation error handling
+ * - Dirty state tracking
+ * - Common form operations
+ *
+ * @template T - The form data type
+ * @param initialValues - Initial form values
+ * @returns Form state and handlers
+ *
+ * @example
+ * ```typescript
+ * const { formValues, setFieldValue, handleSubmit } = useForm({
+ *   name: '',
+ *   email: ''
+ * });
+ * ```
+ */
+const useForm = <T>(initialValues: T): UseFormReturn<T> => {
   const [formValues, setFormValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<null | z.core.$ZodIssue[]>(null);
   const [isSaved, setIsSaved] = useState<boolean>(true);

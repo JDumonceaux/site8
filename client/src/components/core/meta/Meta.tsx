@@ -62,310 +62,275 @@ type MetaProps = {
   yandexVerification?: string;
 };
 
-/** Tag builder functions */
-const buildCharsetTag = (charset: string): JSX.Element => (
+/**
+ * Configuration for a single meta/link tag or group of tags
+ */
+type TagConfig = {
+  /** Function that builds the tag(s) from the prop value */
+  builder: (value: string) => JSX.Element | JSX.Element[];
+  /** Property key in MetaProps */
+  key: keyof MetaProps;
+};
+
+/**
+ * Generic tag builder for meta tags
+ */
+const createMetaTag = (
+  key: string,
+  name: string,
+  content: string,
+): JSX.Element => (
   <meta
-    key="charset"
-    charSet={charset}
+    key={key}
+    name={name}
+    content={content}
   />
 );
 
-const buildViewportTag = (viewport: string): JSX.Element => (
+/**
+ * Generic tag builder for property-based meta tags (OpenGraph)
+ */
+const createPropertyTag = (
+  key: string,
+  property: string,
+  content: string,
+): JSX.Element => (
   <meta
-    key="viewport"
-    name="viewport"
-    content={viewport}
+    key={key}
+    property={property}
+    content={content}
   />
 );
 
-const buildTitleTags = (title: string): JSX.Element[] => [
-  <title key="title">{title}</title>,
-  <meta
-    key="og:title"
-    content={title}
-    property="og:title"
-  />,
-  <meta
-    key="twitter:title"
-    name="twitter:title"
-    content={title}
-  />,
-];
-
-const buildTypeTags = (cardType: MetaProps['type']): JSX.Element[] => [
-  <meta
-    key="og:type"
-    content={cardType}
-    property="og:type"
-  />,
-  <meta
-    key="twitter:card"
-    name="twitter:card"
-    content={cardType}
-  />,
-];
-
-const buildDescriptionTags = (description: string): JSX.Element[] => [
-  <meta
-    key="description"
-    name="description"
-    content={description}
-  />,
-  <meta
-    key="og:description"
-    content={description}
-    property="og:description"
-  />,
-  <meta
-    key="twitter:description"
-    name="twitter:description"
-    content={description}
-  />,
-];
-
-const buildCreatorTag = (creator: string): JSX.Element => (
-  <meta
-    key="twitter:creator"
-    name="twitter:creator"
-    content={creator}
-  />
-);
-
-const buildRobotsTag = (robots: string): JSX.Element => (
-  <meta
-    key="robots"
-    name="robots"
-    content={robots}
-  />
-);
-
-const buildAuthorTag = (author: string): JSX.Element => (
-  <meta
-    key="author"
-    name="author"
-    content={author}
-  />
-);
-
-const buildThemeColorTag = (themeColor: string): JSX.Element => (
-  <meta
-    key="theme-color"
-    name="theme-color"
-    content={themeColor}
-  />
-);
-
-const buildKeywordsTag = (keywords: string): JSX.Element => (
-  <meta
-    key="keywords"
-    name="keywords"
-    content={keywords}
-  />
-);
-
-const buildCanonicalLink = (canonical: string): JSX.Element => (
+/**
+ * Generic tag builder for link tags
+ */
+const createLinkTag = (key: string, rel: string, href: string): JSX.Element => (
   <link
-    href={canonical}
-    key="canonical"
-    rel="canonical"
+    key={key}
+    rel={rel}
+    href={href}
   />
 );
 
-const buildOgUrlTag = (ogUrl: string): JSX.Element => (
+/**
+ * Generic tag builder for http-equiv meta tags
+ */
+const createHttpEquivTag = (
+  key: string,
+  httpEquiv: string,
+  content: string,
+): JSX.Element => (
   <meta
-    key="og:url"
-    content={ogUrl}
-    property="og:url"
-  />
-);
-
-const buildSiteNameTag = (siteName: string): JSX.Element => (
-  <meta
-    key="og:site_name"
-    content={siteName}
-    property="og:site_name"
-  />
-);
-
-const buildOgImageTags = (ogImage: string): JSX.Element[] => [
-  <meta
-    key="og:image"
-    content={ogImage}
-    property="og:image"
-  />,
-  <meta
-    key="twitter:image"
-    name="twitter:image"
-    content={ogImage}
-  />,
-];
-
-const buildOgLocaleTag = (locale: string): JSX.Element => (
-  <meta
-    key="og:locale"
-    content={locale}
-    property="og:locale"
-  />
-);
-
-const buildTwitterSiteTag = (twitterSite: string): JSX.Element => (
-  <meta
-    key="twitter:site"
-    name="twitter:site"
-    content={twitterSite}
-  />
-);
-
-const buildTwitterImageAltTag = (alt: string): JSX.Element => (
-  <meta
-    key="twitter:image:alt"
-    name="twitter:image:alt"
-    content={alt}
-  />
-);
-
-const buildMobileWebAppCapableTag = (value: string): JSX.Element => (
-  <meta
-    key="mobile-web-app-capable"
-    name="mobile-web-app-capable"
-    content={value}
-  />
-);
-
-const buildAppleMobileWebAppCapableTag = (value: string): JSX.Element => (
-  <meta
-    key="apple-mobile-web-app-capable"
-    name="apple-mobile-web-app-capable"
-    content={value}
-  />
-);
-
-const buildAppleTouchIconLink = (icon: string): JSX.Element => (
-  <link
-    href={icon}
-    key="apple-touch-icon"
-    rel="apple-touch-icon"
-  />
-);
-
-const buildManifestLink = (manifest: string): JSX.Element => (
-  <link
-    href={manifest}
-    key="manifest"
-    rel="manifest"
-  />
-);
-
-const buildMsTileColorTag = (color: string): JSX.Element => (
-  <meta
-    key="msapplication-TileColor"
-    name="msapplication-TileColor"
-    content={color}
-  />
-);
-
-const buildMsTileImageTag = (image: string): JSX.Element => (
-  <meta
-    key="msapplication-TileImage"
-    name="msapplication-TileImage"
-    content={image}
-  />
-);
-
-const buildGoogleSiteVerificationTag = (token: string): JSX.Element => (
-  <meta
-    key="google-site-verification"
-    name="google-site-verification"
-    content={token}
-  />
-);
-
-const buildYandexVerificationTag = (token: string): JSX.Element => (
-  <meta
-    key="yandex-verification"
-    name="yandex-verification"
-    content={token}
-  />
-);
-
-const buildHttpEquivTag = (httpEquiv: string, content: string): JSX.Element => (
-  <meta
-    key={`http-equiv-${httpEquiv}`}
+    key={key}
     httpEquiv={httpEquiv}
     content={content}
   />
 );
 
 /**
- * Renders all specified meta and link tags in head.
+ * Tag configurations mapping prop names to their builder functions
  */
-const Meta = ({
-  appleMobileWebAppCapable,
-  appleTouchIcon,
-  author,
-  canonical,
-  charset,
-  contentLanguage,
-  description,
-  googleSiteVerification,
-  keywords,
-  manifest,
-  mobileWebAppCapable,
-  msTileColor,
-  msTileImage,
-  name,
-  ogImage,
-  ogLocale,
-  ogUrl,
-  refresh,
-  robots,
-  siteName,
-  themeColor,
-  title,
-  twitterImageAlt,
-  twitterSite,
-  type: cardType,
-  viewport,
-  xUaCompatible,
-  yandexVerification,
-}: MetaProps): JSX.Element => {
+const tagConfigs: TagConfig[] = [
+  {
+    builder: (value: string) => (
+      <meta
+        key="charset"
+        charSet={value}
+      />
+    ),
+    key: 'charset',
+  },
+  {
+    builder: (value: string) => createMetaTag('viewport', 'viewport', value),
+    key: 'viewport',
+  },
+  {
+    builder: (value: string) => [
+      <title key="title">{value}</title>,
+      createPropertyTag('og:title', 'og:title', value),
+      createMetaTag('twitter:title', 'twitter:title', value),
+    ],
+    key: 'title',
+  },
+  {
+    builder: (value: string) => [
+      createMetaTag('description', 'description', value),
+      createPropertyTag('og:description', 'og:description', value),
+      createMetaTag('twitter:description', 'twitter:description', value),
+    ],
+    key: 'description',
+  },
+  {
+    builder: (value: string) => [
+      createPropertyTag('og:type', 'og:type', value),
+      createMetaTag('twitter:card', 'twitter:card', value),
+    ],
+    key: 'type',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag('twitter:creator', 'twitter:creator', value),
+    key: 'name',
+  },
+  {
+    builder: (value: string) => createMetaTag('author', 'author', value),
+    key: 'author',
+  },
+  {
+    builder: (value: string) => createMetaTag('robots', 'robots', value),
+    key: 'robots',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag('theme-color', 'theme-color', value),
+    key: 'themeColor',
+  },
+  {
+    builder: (value: string) => createMetaTag('keywords', 'keywords', value),
+    key: 'keywords',
+  },
+  {
+    builder: (value: string) => createLinkTag('canonical', 'canonical', value),
+    key: 'canonical',
+  },
+  {
+    builder: (value: string) => createPropertyTag('og:url', 'og:url', value),
+    key: 'ogUrl',
+  },
+  {
+    builder: (value: string) =>
+      createPropertyTag('og:site_name', 'og:site_name', value),
+    key: 'siteName',
+  },
+  {
+    builder: (value: string) => [
+      createPropertyTag('og:image', 'og:image', value),
+      createMetaTag('twitter:image', 'twitter:image', value),
+    ],
+    key: 'ogImage',
+  },
+  {
+    builder: (value: string) =>
+      createPropertyTag('og:locale', 'og:locale', value),
+    key: 'ogLocale',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag('twitter:site', 'twitter:site', value),
+    key: 'twitterSite',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag('twitter:image:alt', 'twitter:image:alt', value),
+    key: 'twitterImageAlt',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag('mobile-web-app-capable', 'mobile-web-app-capable', value),
+    key: 'mobileWebAppCapable',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag(
+        'apple-mobile-web-app-capable',
+        'apple-mobile-web-app-capable',
+        value,
+      ),
+    key: 'appleMobileWebAppCapable',
+  },
+  {
+    builder: (value: string) =>
+      createLinkTag('apple-touch-icon', 'apple-touch-icon', value),
+    key: 'appleTouchIcon',
+  },
+  {
+    builder: (value: string) => createLinkTag('manifest', 'manifest', value),
+    key: 'manifest',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag(
+        'msapplication-TileColor',
+        'msapplication-TileColor',
+        value,
+      ),
+    key: 'msTileColor',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag(
+        'msapplication-TileImage',
+        'msapplication-TileImage',
+        value,
+      ),
+    key: 'msTileImage',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag(
+        'google-site-verification',
+        'google-site-verification',
+        value,
+      ),
+    key: 'googleSiteVerification',
+  },
+  {
+    builder: (value: string) =>
+      createMetaTag('yandex-verification', 'yandex-verification', value),
+    key: 'yandexVerification',
+  },
+  {
+    builder: (value: string) =>
+      createHttpEquivTag(
+        'http-equiv-X-UA-Compatible',
+        'X-UA-Compatible',
+        value,
+      ),
+    key: 'xUaCompatible',
+  },
+  {
+    builder: (value: string) =>
+      createHttpEquivTag(
+        'http-equiv-Content-Language',
+        'Content-Language',
+        value,
+      ),
+    key: 'contentLanguage',
+  },
+  {
+    builder: (value: string) =>
+      createHttpEquivTag('http-equiv-refresh', 'refresh', value),
+    key: 'refresh',
+  },
+];
+
+/**
+ * Builds tags from configuration and props
+ */
+const buildTags = (props: MetaProps): JSX.Element[] => {
   const tags: JSX.Element[] = [];
 
-  if (charset) tags.push(buildCharsetTag(charset));
-  if (viewport) tags.push(buildViewportTag(viewport));
-  if (title) tags.push(...buildTitleTags(title));
-  if (description) tags.push(...buildDescriptionTags(description));
-  if (cardType) tags.push(...buildTypeTags(cardType));
-  if (name) tags.push(buildCreatorTag(name));
-  if (author) tags.push(buildAuthorTag(author));
-  if (robots) tags.push(buildRobotsTag(robots));
-  if (themeColor) tags.push(buildThemeColorTag(themeColor));
-  if (keywords) tags.push(buildKeywordsTag(keywords));
-  if (canonical) tags.push(buildCanonicalLink(canonical));
-  if (ogUrl) tags.push(buildOgUrlTag(ogUrl));
-  if (siteName) tags.push(buildSiteNameTag(siteName));
-  if (ogImage) tags.push(...buildOgImageTags(ogImage));
-  if (ogLocale) tags.push(buildOgLocaleTag(ogLocale));
-  if (twitterSite) tags.push(buildTwitterSiteTag(twitterSite));
-  if (twitterImageAlt) tags.push(buildTwitterImageAltTag(twitterImageAlt));
-  if (mobileWebAppCapable)
-    tags.push(buildMobileWebAppCapableTag(mobileWebAppCapable));
-  if (appleMobileWebAppCapable)
-    tags.push(buildAppleMobileWebAppCapableTag(appleMobileWebAppCapable));
-  if (appleTouchIcon) tags.push(buildAppleTouchIconLink(appleTouchIcon));
-  if (manifest) tags.push(buildManifestLink(manifest));
-  if (msTileColor) tags.push(buildMsTileColorTag(msTileColor));
-  if (msTileImage) tags.push(buildMsTileImageTag(msTileImage));
-  if (googleSiteVerification)
-    tags.push(buildGoogleSiteVerificationTag(googleSiteVerification));
-  if (yandexVerification)
-    tags.push(buildYandexVerificationTag(yandexVerification));
-  if (xUaCompatible)
-    tags.push(buildHttpEquivTag('X-UA-Compatible', xUaCompatible));
-  if (contentLanguage)
-    tags.push(buildHttpEquivTag('Content-Language', contentLanguage));
-  if (refresh) tags.push(buildHttpEquivTag('refresh', refresh));
+  for (const config of tagConfigs) {
+    const value = props[config.key];
+    if (value) {
+      const result = config.builder(value as string);
+      if (Array.isArray(result)) {
+        tags.push(...result);
+      } else {
+        tags.push(result);
+      }
+    }
+  }
 
+  return tags;
+};
+
+/**
+ * Renders all specified meta and link tags in head.
+ */
+const Meta = (props: MetaProps): JSX.Element => {
+  const tags = buildTags(props);
   return <>{tags}</>;
 };
 

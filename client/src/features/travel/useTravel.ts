@@ -12,7 +12,7 @@ const fetchData = async (): Promise<Places> => {
     }
     return (await response.json()) as Places;
   } catch (error) {
-    console.error('useTravel: Error fetching travel destinations', error);
+    // eslint-disable-next-line no-console    console.error('useTravel: Error fetching travel destinations', error);
     throw error;
   }
 };

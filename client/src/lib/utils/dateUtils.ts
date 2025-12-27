@@ -38,6 +38,7 @@ const parseDateTimeString = (
   const re = new RegExp(pattern, 'u');
   const m = re.exec(raw);
   if (!m) {
+    // eslint-disable-next-line no-console
     console.error(`getDateTime: format mismatch for "${raw}"`);
   }
   return m;
@@ -62,6 +63,7 @@ const extractParts = (
   const minute = Number(minStr);
 
   if ([month, day, year, hour, minute].some(Number.isNaN)) {
+    // eslint-disable-next-line no-console
     console.error('getDateTime: non-numeric value', {
       day,
       hour,
@@ -107,6 +109,7 @@ const validateParts = (parts: {
     minute >= 0 &&
     minute <= 59;
   if (!ok) {
+    // eslint-disable-next-line no-console
     console.error('getDateTime: out-of-range value', parts);
   }
   return ok;

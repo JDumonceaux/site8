@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { buildFeature } from '../features/build/buildFeature.js';
+import { buildFeature } from '../services/build/buildFeature.js';
 import { asyncHandler } from '../utils/routerUtils.js';
 
 export const buildRouter = express.Router();

@@ -2,7 +2,7 @@ import type { Photos } from '../../types/Photos.js';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class PhotosService extends BaseDataService<Photos> {
   public constructor() {

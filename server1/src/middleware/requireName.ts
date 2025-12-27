@@ -1,18 +1,18 @@
-import { createValidator } from './createValidator.js';
+import { VALIDATION_LIMITS } from '../utils/constants.js';
 
-const MAX_NAME_LENGTH = 255;
+import { createValidator } from './createValidator.js';
 
 export const requireName = createValidator({
   paramName: 'name',
   validate: (value) => {
     if (!value?.trim()) {
-      return { isValid: false, errorMessage: 'Name is required' };
+      return { errorMessage: 'Name is required', isValid: false };
     }
 
-    if (value.length > MAX_NAME_LENGTH) {
+    if (value.length > VALIDATION_LIMITS.MAX_NAME_LENGTH) {
       return {
+        errorMessage: `Name must not exceed ${VALIDATION_LIMITS.MAX_NAME_LENGTH} characters`,
         isValid: false,
-        errorMessage: `Name must not exceed ${MAX_NAME_LENGTH} characters`,
       };
     }
 

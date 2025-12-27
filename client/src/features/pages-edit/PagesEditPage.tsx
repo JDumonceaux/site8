@@ -1,12 +1,12 @@
 import { useEffect, useEffectEvent } from 'react';
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
-import StyledLink from '@components/link/styled-link/StyledLink';
-import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
-import Switch from '@components/switch/Switch';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
+import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
+import Switch from '@components/ui/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import Layout from '@features/layouts/layout/Layout';
 import { mapToFormValues } from './mapToFormValues';
@@ -113,3 +113,4 @@ export default PagesEditPage;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: bold;
 `;
+

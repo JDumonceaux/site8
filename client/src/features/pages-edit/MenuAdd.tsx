@@ -1,7 +1,7 @@
 import { type JSX, startTransition } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
-import Input from '@components/input/Input';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
+import Input from '@components/ui/input/Input';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useMenuAdd from '@hooks/useMenuAdd';
 /**
@@ -124,3 +124,4 @@ const MenuAdd = (): JSX.Element => {
 };
 
 export default MenuAdd;
+

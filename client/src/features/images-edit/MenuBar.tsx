@@ -2,7 +2,7 @@ import React, { type JSX } from 'react';
 
 import IconMenu from '@components/icon-menu/IconMenu';
 import IconMenuItem from '@components/icon-menu/IconMenuItem';
-import StyledPlainButton from '@components/link/styled-plain-button/StyledPlainButton';
+import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
 import { ServiceUrl } from '@lib/utils/constants';
 
 type Props = {
@@ -93,3 +93,4 @@ const MenuBar = ({
 MenuBar.displayName = 'MenuBar';
 
 export default MenuBar;
+

@@ -1,35 +1,36 @@
 import React, { useRef } from 'react';
 
-import IconButton from '@components/core/button/icon-button/IconButton';
-import { CopyIcon } from '@components/icons/CopyIcon';
+import IconButton from '@components/ui/button/icon-button/IconButton';
+import { CopyIcon } from '@components/ui/icons/CopyIcon';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import styled from 'styled-components';
 
 type RenderCodeProps = {
   readonly children?: React.ReactNode;
 };
 
-const copyToClipboard = async (text: string) => {
-  try {
-    const permissionStatus = await navigator.permissions.query({
-      name: 'clipboard-write' as PermissionName,
-    });
-    if (
-      permissionStatus.state === 'granted' ||
-      permissionStatus.state === 'prompt'
-    ) {
-      await navigator.clipboard.writeText(text);
-
-      alert('Copied.');
-    } else {
-      alert('Copy to clipboard is not supported.');
-    }
-  } catch {
-    alert('Failed to copy.');
-  }
-};
-
 const RenderCode = ({ children }: RenderCodeProps) => {
   const ref = useRef<HTMLElement>(null);
+  const { setMessage, setErrorMessage } = useSnackbar();
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      const permissionStatus = await navigator.permissions.query({
+        name: 'clipboard-write' as PermissionName,
+      });
+      if (
+        permissionStatus.state === 'granted' ||
+        permissionStatus.state === 'prompt'
+      ) {
+        await navigator.clipboard.writeText(text);
+        setMessage('Copied to clipboard');
+      } else {
+        setErrorMessage('Copy to clipboard is not supported');
+      }
+    } catch {
+      setErrorMessage('Failed to copy');
+    }
+  };
 
   const handleCopy = () => {
     const text = ref.current?.textContent;

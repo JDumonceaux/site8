@@ -26,8 +26,7 @@
       "@shared/*": ["shared/*"],
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],
-      "@types": ["types"],
-      "@unused/*": ["unused/*"]
+      "@types": ["types"]
     },
 
     // Allow JSON and TS extensions

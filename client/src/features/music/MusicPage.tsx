@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
@@ -69,3 +69,4 @@ const EmptyPlaceholder = styled.div`
   color: var(--palette-muted, #666);
   padding: 2rem 0;
 `;
+

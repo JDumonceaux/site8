@@ -1,0 +1,180 @@
+import { lazy } from 'react';
+import { Route } from 'react-router-dom';
+
+import ProtectedRoute from '../ProtectedRoute';
+
+// ---------------------
+// Layouts
+// ---------------------
+const GenericLayout = lazy(
+  async () => import('../../features/layouts/generic-layout/GenericLayout'),
+);
+const PhotoLayout = lazy(
+  async () => import('../../features/layouts/photo-layout/PhotoLayout'),
+);
+
+// ---------------------
+// Content Pages
+// ---------------------
+const BookmarkPage = lazy(
+  async () => import('../../features/bookmarks/BookmarkPage'),
+);
+const TravelPage = lazy(async () => import('../../features/travel/TravelPage'));
+const GenericPage = lazy(
+  async () => import('../../features/generic/GenericPage'),
+);
+const GenericImagePage = lazy(
+  async () => import('../../features/generic/GenericImagePage'),
+);
+const PhotoPage = lazy(async () => import('../../features/photos/PhotoPage'));
+const TikTokPage = lazy(async () => import('../../features/tiktok/TikTokPage'));
+const YachtsPage = lazy(async () => import('../../features/yatch/YachtsPage'));
+const TestsPage = lazy(async () => import('../../features/tests/TestsPage'));
+const MusicPage = lazy(async () => import('../../features/music/MusicPage'));
+
+/**
+ * Protected content routes that require authentication
+ * Includes generic pages, fun section, design tools, music, bookmarks, travel, and testing
+ */
+export const protectedContentRoutes = (
+  <Route element={<ProtectedRoute />}>
+    {/* Content Routes */}
+    <Route element={<GenericLayout />}>
+      <Route
+        element={<GenericPage />}
+        path="accessibility/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="aws/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="code-snippets/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="html/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="interview-questions/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="javascript/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="management/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="nextjs/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="nodejs/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="programming/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path=":lang?/programming/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="python/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="react/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="react-a-z/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="typescript/*"
+      />
+      <Route
+        element={<GenericPage />}
+        path="web/*"
+      />
+
+      {/* Fun Section */}
+      <Route path="fun">
+        <Route
+          element={<TikTokPage />}
+          path="tiktok"
+        />
+        <Route
+          element={<YachtsPage />}
+          path="yachts"
+        />
+        <Route
+          element={<GenericImagePage />}
+          path="images"
+        />
+        <Route element={<PhotoLayout />}>
+          <Route
+            element={<PhotoPage />}
+            path="photos"
+          />
+        </Route>
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route
+        element={<GenericPage />}
+        path=":lang?/fun/*"
+      />
+    </Route>
+
+    {/* Music */}
+    <Route
+      element={<GenericLayout />}
+      path="music"
+    >
+      <Route
+        index
+        element={<MusicPage />}
+      />
+    </Route>
+
+    {/* Bookmarks */}
+    <Route
+      element={<GenericLayout />}
+      path="bookmarks"
+    >
+      <Route
+        index
+        element={<BookmarkPage />}
+      />
+    </Route>
+
+    {/* Travel */}
+    <Route
+      element={<GenericLayout />}
+      path="travel"
+    >
+      <Route
+        index
+        element={<TravelPage />}
+      />
+    </Route>
+
+    {/* Testing */}
+    <Route element={<GenericLayout />}>
+      <Route
+        element={<TestsPage />}
+        path="react/testing/test-grid"
+      />
+    </Route>
+  </Route>
+);

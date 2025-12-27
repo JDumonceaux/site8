@@ -28,7 +28,6 @@ export default defineConfig(({ mode }) => ({
       '@store': '/src/store',
       '@styles': '/src/styles',
       '@types': '/src/types',
-      '@unused': '/src/unused',
       components: '/src/components',
       content: '/src/content',
       features: '/src/features',

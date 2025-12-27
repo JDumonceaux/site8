@@ -9,7 +9,7 @@ import type { ItemsFile } from '../../types/ItemsFile.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getNextId as getNextIdUtil } from '../../utils/objectUtil.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class ItemsService extends BaseDataService<ItemsFile> {
   public constructor() {

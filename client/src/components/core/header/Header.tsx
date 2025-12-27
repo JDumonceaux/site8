@@ -1,7 +1,7 @@
 import type { JSX, ReactNode } from 'react';
 
-import { MenuIcon } from '@components/icons/MenuIcon';
-import StyledLink from '@components/link/styled-link/StyledLink';
+import { MenuIcon } from '@components/ui/icons/MenuIcon';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import { APP_NAME } from '@lib/utils/constants';
 import styled from 'styled-components';
 
@@ -133,3 +133,4 @@ const AvatarGroup = styled.div`
   align-items: center;
   gap: 0.75rem;
 `;
+

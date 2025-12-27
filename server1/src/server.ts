@@ -24,21 +24,22 @@ import { pagesRouter } from './routes/pagesRouter.js';
 import { photosRouter } from './routes/photosRouter.js';
 import { testsRouter } from './routes/testsRouter.js';
 import { travelRouter } from './routes/travelRouter.js';
+import { SERVER_CONFIG } from './utils/constants.js';
 import { env } from './utils/env.js';
 import { Logger } from './utils/logger.js';
-
-const REQUEST_TIMEOUT_MS = 2000;
-const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-const JSON_SIZE_LIMIT = '10mb';
-const HSTS_MAX_AGE = 86_400; // 24 hours in seconds
 
 const app = express();
 
 app.set('x-powered-by', false);
 app.set('etag', false);
 
-app.use(express.json({ limit: JSON_SIZE_LIMIT }));
-app.use(express.urlencoded({ extended: true, limit: JSON_SIZE_LIMIT }));
+app.use(express.json({ limit: SERVER_CONFIG.JSON_SIZE_LIMIT }));
+app.use(
+  express.urlencoded({
+    extended: true,
+    limit: SERVER_CONFIG.JSON_SIZE_LIMIT,
+  }),
+);
 app.use(cors());
 app.use(
   helmet({
@@ -49,14 +50,14 @@ app.use(
     },
     hsts: {
       includeSubDomains: false,
-      maxAge: HSTS_MAX_AGE,
+      maxAge: SERVER_CONFIG.HSTS_MAX_AGE,
     },
   }),
 );
 app.use(compression());
 
 app.use((req, res, next) => {
-  res.setTimeout(REQUEST_TIMEOUT_MS, () => {
+  res.setTimeout(SERVER_CONFIG.REQUEST_TIMEOUT_MS, () => {
     Logger.warn('Request timeout', { method: req.method, url: req.url });
     res.status(408).send('Request Timeout');
     req.socket.destroy();
@@ -67,11 +68,11 @@ app.use((req, res, next) => {
 // Stricter rate limiter for mutation endpoints (POST, PUT, PATCH, DELETE)
 const mutationLimiter = RateLimit({
   legacyHeaders: false,
-  max: 30, // 30 mutations per 15 minutes (more restrictive)
+  max: SERVER_CONFIG.MUTATION_RATE_LIMIT,
   message: 'Mutation rate limit exceeded. Please try again later.',
   standardHeaders: 'draft-7',
   statusCode: 429,
-  windowMs: RATE_LIMIT_WINDOW_MS,
+  windowMs: SERVER_CONFIG.RATE_LIMIT_WINDOW_MS,
 });
 
 app.use((_req, res, next) => {

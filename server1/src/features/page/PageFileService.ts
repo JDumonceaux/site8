@@ -2,7 +2,7 @@ import { existsSync } from 'fs';
 import { readFile, unlink, writeFile } from 'fs/promises';
 
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class PageFileService {
   public async addFile(id: number, text: string | undefined): Promise<boolean> {

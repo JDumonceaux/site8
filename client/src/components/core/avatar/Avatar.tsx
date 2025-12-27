@@ -7,6 +7,7 @@ import {
   Avatar as RadixAvatarRoot,
 } from '@radix-ui/react-avatar';
 import styled from 'styled-components';
+import { UI_DEFAULTS } from '@lib/utils/constants';
 
 /**
  * Props for our Avatar:
@@ -28,9 +29,6 @@ export type AvatarProps = Omit<RadixAvatarProps, 'delayMs'> & {
   style?: CSSProperties;
 };
 
-const DEFAULT_SIZE = 40;
-const DEFAULT_DELAY = 600;
-
 const getInitials = (name?: string): string =>
   name
     ?.trim()
@@ -47,8 +45,8 @@ const Avatar = ({
   alt,
   children,
   dataTestId,
-  delayMs = DEFAULT_DELAY,
-  size = DEFAULT_SIZE,
+  delayMs = UI_DEFAULTS.AVATAR_DEFAULT_DELAY,
+  size = UI_DEFAULTS.AVATAR_DEFAULT_SIZE,
   src,
   ...rest
 }: AvatarProps): JSX.Element | null => {

@@ -1,8 +1,8 @@
 import { type FormEvent, type JSX, useEffect, useEffectEvent } from 'react';
 
-import Button from '@components/core/button/Button';
+import Button from '@components/ui/button/Button';
 import Meta from '@components/core/meta/Meta';
-import StyledLink from '@components/link/styled-link/StyledLink';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';
@@ -82,3 +82,4 @@ const StyledError = styled.div`
   padding: 20px 0;
   border: 1px solid #ff0000;
 `;
+

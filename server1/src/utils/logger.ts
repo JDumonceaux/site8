@@ -4,51 +4,49 @@
  */
 import winston from 'winston';
 
+import { LOG_CONFIG } from './constants.js';
 import { Environment } from './Environment.js';
 
 type FileTransportOptions = {
-  readonly level: string;
+  readonly colorize: boolean;
   readonly filename: string;
   readonly handleExceptions: boolean;
   readonly json: boolean;
-  readonly maxsize: number;
+  readonly level: string;
   readonly maxFiles: number;
-  readonly colorize: boolean;
+  readonly maxsize: number;
   readonly timestamp: boolean;
 };
 
 type ConsoleTransportOptions = {
-  readonly level: string;
+  readonly colorize: boolean;
   readonly handleExceptions: boolean;
   readonly json: boolean;
-  readonly colorize: boolean;
+  readonly level: string;
   readonly timestamp: boolean;
 };
 
 type LoggerOptions = {
-  readonly file: FileTransportOptions;
   readonly console: ConsoleTransportOptions;
+  readonly file: FileTransportOptions;
 };
-
-const MAX_LOG_FILE_SIZE = 5242880;
-const MAX_LOG_FILES = 5;
 
 const OPTIONS: LoggerOptions = {
   file: {
-    level: 'info',
+    colorize: false,
     filename: 'local.log',
     handleExceptions: true,
     json: true,
-    maxsize: MAX_LOG_FILE_SIZE,
-    maxFiles: MAX_LOG_FILES,
-    colorize: false,
+    level: 'info',
+    maxFiles: LOG_CONFIG.MAX_LOG_FILES,
+    maxsize: LOG_CONFIG.MAX_LOG_FILE_SIZE,
     timestamp: true,
   },
   console: {
-    level: 'debug',
+    colorize: true,
     handleExceptions: true,
     json: true,
-    colorize: true,
+    level: 'debug',
     timestamp: true,
   },
 };

@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 
 import PageTitle from '@components/core/page/PageTitle';
+import { UI_DEFAULTS } from '@lib/utils/constants';
 import styled, { keyframes } from 'styled-components';
 
 export type FallbackProps = {
@@ -13,27 +14,29 @@ type Line = {
   width: number;
 };
 
-const MIN_LINES = 1;
-const MAX_LINES = 20;
-const DEFAULT_LINES = 5;
-
 /**
  * Renders a series of placeholder loading lines with a shimmer effect.
  */
 const Fallback = ({
-  numberOfLines = DEFAULT_LINES,
+  numberOfLines = UI_DEFAULTS.FALLBACK_DEFAULT_LINES,
 }: FallbackProps): JSX.Element => {
   // runtime-validate & clamp
   const raw = Math.floor(numberOfLines);
   let count = raw;
-  if (raw < MIN_LINES || raw > MAX_LINES) {
+  if (
+    raw < UI_DEFAULTS.FALLBACK_MIN_LINES ||
+    raw > UI_DEFAULTS.FALLBACK_MAX_LINES
+  ) {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
-        `Fallback: 'numberOfLines' must be an integer between ${MIN_LINES} and ${MAX_LINES}, ` +
+        `Fallback: 'numberOfLines' must be an integer between ${UI_DEFAULTS.FALLBACK_MIN_LINES} and ${UI_DEFAULTS.FALLBACK_MAX_LINES}, ` +
           `but got ${numberOfLines}. Clamping to range.`,
       );
     }
-    count = Math.min(MAX_LINES, Math.max(MIN_LINES, raw));
+    count = Math.min(
+      UI_DEFAULTS.FALLBACK_MAX_LINES,
+      Math.max(UI_DEFAULTS.FALLBACK_MIN_LINES, raw),
+    );
   }
 
   const loadingLines: Line[] = Array.from({ length: count }, (_, i) => ({

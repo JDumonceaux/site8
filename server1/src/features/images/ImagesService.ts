@@ -1,4 +1,4 @@
-import type { Image } from '../../types/Image.js';
+import type { Image } from '@site8/shared';
 import type { Images } from '../../types/Images.js';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
@@ -7,7 +7,7 @@ import {
   cleanUpData,
   getNextId as getNextIdUtil,
 } from '../../utils/objectUtil.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 import { ImagesFileService } from './ImagesFileService.js';
 import { getNewIds, getNewItems } from './imagesUtil.js';

@@ -1,9 +1,9 @@
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/core/button/Button';
+import Button from '@components/ui/button/Button';
 import Meta from '@components/core/meta/Meta';
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
+import Input from '@components/ui/input/Input';
+import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
 import { emailAddress, password } from '@types';
 import { z } from 'zod';
@@ -36,6 +36,7 @@ const SignupPage = (): JSX.Element => {
       try {
         await authSignInWithRedirect(provider);
       } catch (error_) {
+        // eslint-disable-next-line no-console
         console.error('Error during social sign-in:', error_);
         // Handle error appropriately, e.g., show a notification
       }
@@ -144,3 +145,4 @@ const TermsDiv = styled.div`
   padding: 16px 0;
   font-size: 0.7rem;
 `;
+

@@ -3,7 +3,7 @@ import type { Pages } from '../../types/Pages.js';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class PagesService extends BaseDataService<Pages> {
   public constructor() {

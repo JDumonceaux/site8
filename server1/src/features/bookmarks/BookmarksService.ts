@@ -5,7 +5,7 @@ import type { BookmarksTags } from '../../types/BookmarksTags.js';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../files/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class BookmarksService extends BaseDataService<Bookmarks> {
   public constructor() {
@@ -19,7 +19,7 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
 
     try {
       const data = await this.readFile();
-      const sortedItems: Bookmark[] = (data.items ?? []).toSorted((a, b) =>
+      const sortedItems: Bookmark[] = data.items.toSorted((a, b) =>
         a.name.localeCompare(b.name),
       );
       return { items: sortedItems, metadata: data.metadata };
@@ -69,7 +69,7 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
     try {
       const data = await this.readFile();
       const searchId = parseInt(pageId, 10);
-      const filteredItems = (data.items ?? []).filter((x) =>
+      const filteredItems = data.items.filter((x) =>
         x.page?.includes(searchId),
       );
       const sortedItems: Bookmark[] = filteredItems.toSorted((a, b) =>

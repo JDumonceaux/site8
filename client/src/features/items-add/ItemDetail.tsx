@@ -2,7 +2,7 @@ import type { ChangeEvent, JSX } from 'react';
 
 import IconMenu from '@components/icon-menu/IconMenu';
 import IconMenuItem from '@components/icon-menu/IconMenuItem';
-import Input from '@components/input/Input';
+import Input from '@components/ui/input/Input';
 import type { KeyValue } from '@types';
 import type { ItemAddExt } from './ItemAdd';
 import styled from 'styled-components';
@@ -105,3 +105,4 @@ const StyledRow = styled.div`
 const StyledOuterRow = styled.div`
   flex-grow: 1;
 `;
+

@@ -10,6 +10,7 @@ const fetchData = async (): Promise<Bookmarks> => {
     }
     return (await response.json()) as Bookmarks;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('useBookmarks: Error fetching bookmarks', error);
     throw error;
   }

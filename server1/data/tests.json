@@ -1040,8 +1040,9 @@
     {
       "id": 603,
       "name": "Quick Wins",
-      "text": "Javascript Version - ES2024",
-      "value": "check tsconfig.json and update target and lib to 'es2024' (lower case)",
+      "text": "Javascript Version - esnext",
+      "value": "check tsconfig.json and update target and lib to 'esnext' (lower case)",
+      "notes": "12/1/2025 - 'es2025' is not supported by Vite.  Use 'esnext' instead. This is need for features like Promise.try",
       "projectType": ["chat"]
     },
     {
@@ -1186,6 +1187,49 @@
       "name": "Quality",
       "text": "Legacy ESLint Rules",
       "value": "Check if eslint_rules/ directory is used. Delete if migrated to flat config.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 624,
+      "name": "Metrics",
+      "text": "Maintainability Index",
+      "value": "Calculate the maintainability index of the codebase and suggest improvements if below 85.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 625,
+      "name": "Metrics",
+      "text": "Cylclomatic Complexity",
+      "value": "Calculate the cyclomatic complexity of the codebase.",
+      "notes": "12/27/2025: Total Files 471, Average Complexity: 4.53.  Results: Excellent.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 626,
+      "name": "Metrics",
+      "text": "Code Smells",
+      "value": "Look for code smells in client and server codebases.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 627,
+      "name": "Metrics",
+      "text": "Code Duplication",
+      "value": "Look for code duplication in client and server codebases and recommend refactoring.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 628,
+      "name": "Metrics",
+      "text": "Security",
+      "value": "Look for security vulnerabilities in client and server codebases and recommend improvements.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 629,
+      "name": "Metrics",
+      "text": "Structural",
+      "value": "Look for structural issues in client and server codebases and recommend improvements.",
       "projectType": ["chat"]
     }
   ]

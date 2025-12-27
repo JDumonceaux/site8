@@ -1,6 +1,6 @@
 import { type JSX, Suspense, useActionState } from 'react';
 
-import LoadingWrapper from '@components/core/loading/LoadingWrapper';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import useArtistsItems from '@features/items-add/useArtistsItems';
@@ -114,3 +114,4 @@ export default ImagesEditPage;
 const StyledForm = styled.form`
   width: 100%;
 `;
+
