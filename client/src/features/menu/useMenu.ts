@@ -30,22 +30,10 @@ const useMenu = (): UseMenuReturn => {
 
   // Recursively search for a menu item by 'url' property
   const findMenuItem = (url: string): MenuItem | undefined => {
-    const searchInItems = (
-      items?: Iterable<MenuItem>,
-    ): MenuItem | undefined => {
-      if (!items) return undefined;
-
-      for (const item of items) {
-        if (item.url === url) return item;
-        if (item.items) {
-          const found = searchInItems(item.items);
-          if (found) return found;
-        }
-      }
-      return undefined;
-    };
-
-    return searchInItems(data?.items);
+    if (!data?.items) return undefined;
+    return Array.from(data.items).find(
+      (item) => item.title.toLowerCase() === url.toLowerCase(),
+    );
   };
 
   // Get root level menu items

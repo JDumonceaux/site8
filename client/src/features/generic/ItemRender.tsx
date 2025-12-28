@@ -6,14 +6,20 @@ import styled from 'styled-components';
 
 type ItemRenderProps = {
   readonly children?: React.ReactNode;
+  readonly hasChildren?: boolean;
+  readonly isExpanded?: boolean;
   readonly item: MenuItem;
   readonly level: number;
+  readonly onToggle?: () => void;
 };
 
 const ItemRender = ({
   children,
+  hasChildren = false,
+  isExpanded = false,
   item,
   level,
+  onToggle,
 }: ItemRenderProps): JSX.Element | null => {
   let content: React.ReactNode;
 
@@ -31,11 +37,23 @@ const ItemRender = ({
     };
 
     const Component = menuComponents[level];
-    content = item.url ? (
-      <Component to={item.url}>{item.title}</Component>
-    ) : (
-      <div>{item.title}</div>
-    );
+
+    // If has children, make it clickable to expand/collapse
+    if (hasChildren && onToggle) {
+      content = (
+        <StyledMenuButton
+          onClick={onToggle}
+          level={level}
+        >
+          <span>{item.title}</span>
+          <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
+        </StyledMenuButton>
+      );
+    } else if (item.url) {
+      content = <Component to={item.url}>{item.title}</Component>;
+    } else {
+      content = <div>{item.title}</div>;
+    }
   } else if (item.type === 'page') {
     const pageComponents: Record<
       number,
@@ -50,11 +68,23 @@ const ItemRender = ({
     };
 
     const Component = pageComponents[level];
-    content = item.url ? (
-      <Component to={item.url}>{item.title}</Component>
-    ) : (
-      <div>{item.title}</div>
-    );
+
+    // If has children, make it clickable to expand/collapse
+    if (hasChildren && onToggle) {
+      content = (
+        <StyledMenuButton
+          onClick={onToggle}
+          level={level}
+        >
+          <span>{item.title}</span>
+          <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
+        </StyledMenuButton>
+      );
+    } else if (item.url) {
+      content = <Component to={item.url}>{item.title}</Component>;
+    } else {
+      content = <div>{item.title}</div>;
+    }
   } else {
     content = <div>{item.title}</div>;
   }
@@ -109,3 +139,37 @@ const StyledPage2 = styled(StyledMenuLink)`
   padding-inline-start: 30px;
 `;
 
+const StyledMenuButton = styled.button<{ level: number }>`
+  background: none;
+  border: none;
+  color: var(--palette-dark-text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: ${({ level }) => {
+    if (level === 0) return '12px';
+    if (level === 1) return '12px 12px 12px 20px';
+    return '12px 12px 12px 30px';
+  }};
+  margin-bottom: 4px;
+  text-align: left;
+  font-size: inherit;
+  font-family: inherit;
+
+  &:hover {
+    background: var(--navbar-dark-secondary);
+  }
+
+  &:focus {
+    outline: 2px solid var(--palette-primary);
+    outline-offset: -2px;
+  }
+`;
+
+const StyledIcon = styled.span`
+  font-size: 0.75em;
+  margin-left: 8px;
+  transition: transform 0.2s;
+`;

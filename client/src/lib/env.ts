@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 /**
  * Environment variables schema with validation and transformation.

@@ -48,6 +48,9 @@ export class MenuService {
     allItems: readonly PageMenu[],
   ): MenuItem[] | undefined {
     try {
+      // Find the parent item
+      const parentItem = allItems.find((x) => x.id === parentId);
+
       // Find direct children (both menus and pages)
       // Find child menus
       const childMenus: MenuItem[] = menus.flatMap(
@@ -55,7 +58,8 @@ export class MenuService {
           menu.parentItems
             ?.filter((parent) => parent.id === parentId)
             .map((parent) => {
-              const menuItem = mapPageMenuToMenuItem(menu, parent);
+              const url = this.constructUrl(menu, parentItem);
+              const menuItem = mapPageMenuToMenuItem(menu, parent, url);
               // Recursively build this menu's children
               const children = this.buildChildren(
                 menu.id,
@@ -72,7 +76,10 @@ export class MenuService {
         (page) =>
           page.parentItems
             ?.filter((parent) => parent.id === parentId)
-            .map((parent) => mapPageMenuToMenuItem(page, parent)) ?? [],
+            .map((parent) => {
+              const url = this.constructUrl(page, parentItem);
+              return mapPageMenuToMenuItem(page, parent, url);
+            }) ?? [],
       );
 
       // Combine and sort children
@@ -123,9 +130,14 @@ export class MenuService {
 
       // Build root menu items
       const rootMenuItems = rootMenus
-        .map((item) =>
-          mapPageMenuToMenuItem(item, item.parentItems?.[0] ?? defaultParent),
-        )
+        .map((item) => {
+          const url = this.constructUrl(item);
+          return mapPageMenuToMenuItem(
+            item,
+            item.parentItems?.[0] ?? defaultParent,
+            url,
+          );
+        })
         .toSorted((a, b) => a.title.localeCompare(b.title));
 
       // Recursively build children for each root menu
@@ -137,11 +149,11 @@ export class MenuService {
       // Add orphans (items without parents)
       const menuOrphans = menus
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => mapPageMenuToMenuItem(x, defaultParent));
+        .map((x) => mapPageMenuToMenuItem(x, defaultParent, undefined));
 
       const pageOrphans = pages
         .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => mapPageMenuToMenuItem(x, defaultParent));
+        .map((x) => mapPageMenuToMenuItem(x, defaultParent, undefined));
 
       const result = [...menuTree, ...menuOrphans, ...pageOrphans];
       return result.length > 0 ? result : undefined;
@@ -154,5 +166,18 @@ export class MenuService {
   // 0. Get all data
   private async getItems(): Promise<Pages | undefined> {
     return this.pagesService.getItems();
+  }
+
+  // Helper method to construct URL
+  private constructUrl(
+    item: PageMenu,
+    parentItem?: PageMenu,
+  ): string | undefined {
+    if (item.type === 'root') {
+      return `/${item.title.toLowerCase().replace(/\s+/g, '-')}`;
+    } else if (item.type === 'page' && parentItem) {
+      return `/${parentItem.title.toLowerCase().replace(/\s+/g, '-')}/${item.title.toLowerCase().replace(/\s+/g, '-')}`;
+    }
+    return item.url;
   }
 }

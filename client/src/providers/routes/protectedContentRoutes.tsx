@@ -54,6 +54,10 @@ export const protectedContentRoutes = (
       />
       <Route
         element={<GenericPage />}
+        path="design/*"
+      />
+      <Route
+        element={<GenericPage />}
         path="html/*"
       />
       <Route
@@ -105,34 +109,27 @@ export const protectedContentRoutes = (
         path="web/*"
       />
 
-      {/* Fun Section */}
-      <Route path="fun">
+      <Route
+        element={<TikTokPage />}
+        path="tiktok"
+      />
+      <Route
+        element={<YachtsPage />}
+        path="yachts"
+      />
+      <Route
+        element={<GenericImagePage />}
+        path="images"
+      />
+      <Route element={<PhotoLayout />}>
         <Route
-          element={<TikTokPage />}
-          path="tiktok"
-        />
-        <Route
-          element={<YachtsPage />}
-          path="yachts"
-        />
-        <Route
-          element={<GenericImagePage />}
-          path="images"
-        />
-        <Route element={<PhotoLayout />}>
-          <Route
-            element={<PhotoPage />}
-            path="photos"
-          />
-        </Route>
-        <Route
-          element={<GenericPage />}
-          path="*"
+          element={<PhotoPage />}
+          path="photos"
         />
       </Route>
       <Route
         element={<GenericPage />}
-        path=":lang?/fun/*"
+        path="*"
       />
     </Route>
 

@@ -63,6 +63,7 @@ export class GenericService {
 
   /**
    * Retrieves a page item by parent and name, with optional file content
+   * If name is a numeric ID, looks up by ID instead
    */
   public async getItem(
     parent: string,
@@ -73,6 +74,24 @@ export class GenericService {
     const data = await new PagesService().getItems();
     if (!data?.items) {
       Logger.warn(`GenericService: getItem -> no data available`);
+      return undefined;
+    }
+
+    // Check if name is a numeric ID
+    const numericId = Number(name);
+    if (!isNaN(numericId) && String(numericId) === name) {
+      Logger.info(`GenericService: getItem -> Looking up by ID: ${numericId}`);
+      const pageById = data.items.find((x) => x.id === numericId);
+      if (pageById) {
+        const fileContent = await GenericService.getFile(pageById.id);
+        if (fileContent) {
+          return { ...pageById, text: fileContent } as PageText;
+        }
+        return pageById;
+      }
+      Logger.warn(
+        `GenericService: getItem -> no page found with ID ${numericId}`,
+      );
       return undefined;
     }
 

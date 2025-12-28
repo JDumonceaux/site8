@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => ({
     (p): p is Plugin => !!p,
   ),
   resolve: {
+    dedupe: ['react', 'react-dom', 'react-router-dom'],
     alias: {
       '@app': '/src/app',
       '@components': '/src/components',
@@ -53,6 +54,14 @@ export default defineConfig(({ mode }) => ({
         manualChunks(id) {
           // Vendor chunking for better caching
           if (id.includes('node_modules')) {
+            // React must stay together to avoid multiple instances
+            if (
+              id.includes('react') ||
+              id.includes('react-dom') ||
+              id.includes('react-router')
+            ) {
+              return 'vendor-react';
+            }
             // Large libraries get their own chunks
             if (id.includes('@aws-amplify')) {
               return 'vendor-amplify';
@@ -66,21 +75,42 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('styled-components')) {
               return 'vendor-styled';
             }
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor-react';
+            if (id.includes('zod')) {
+              return 'vendor-zod';
             }
-            if (id.includes('react-router')) {
-              return 'vendor-router';
+            if (id.includes('date-fns')) {
+              return 'vendor-date';
+            }
+            if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) {
+              return 'vendor-redux';
             }
             // All other vendor code
             return 'vendor';
           }
+
+          // Code split large feature modules
+          if (id.includes('/src/features/')) {
+            const featureName = id.split('/features/')[1]?.split('/')[0];
+            if (featureName) {
+              return `feature-${featureName}`;
+            }
+          }
         },
+        // Optimize asset names for caching
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom'],
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@tanstack/react-query',
+      'styled-components',
+    ],
     exclude: ['react-scan'],
   },
   preview: {

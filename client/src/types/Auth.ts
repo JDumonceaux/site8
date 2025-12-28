@@ -16,7 +16,6 @@ export const deleteCode = z
 
 export const emailAddress = z
   .string({
-    error: AUTH_ERROR_MESSAGES.emailInvalidType,
     message: AUTH_ERROR_MESSAGES.emailRequired,
   })
   .min(1, REQUIRED_FIELD)
@@ -25,7 +24,6 @@ export const emailAddress = z
 
 export const password = z
   .string({
-    error: AUTH_ERROR_MESSAGES.passwordInvalidType,
     message: AUTH_ERROR_MESSAGES.passwordRequired,
   })
   .min(

@@ -14,8 +14,8 @@ const CircleMenuAnimation = (): JSX.Element => {
       <Button6 to="/maintenance">Maintenance</Button6>
       <Button7 to="/security">Security</Button7>
       <Button8 to="/aws">AWS</Button8>
-      <Button9 to="/javascript">JavaScript5</Button9>
-      <Button10 to="/stuff">Me Stuff</Button10>
+      <Button9 to="/fun/tiktok">TikTok</Button9>
+      <Button10 to="/photos">Photos</Button10>
     </>
   );
 };
