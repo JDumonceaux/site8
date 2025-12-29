@@ -5,7 +5,7 @@ import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import FilePath from '../../lib/filesystem/FilePath.js';
 
-type ExpandedTest = Test & {
+type ExpandedTest = Omit<Test, 'parentId'> & {
   readonly parentId: number;
   readonly parentSeq: number;
 };
@@ -35,7 +35,8 @@ export class TestsService extends BaseDataService<Tests> {
 
       const items = this.sortItems(expanded);
 
-      return { ...rawData, items: [...items] };
+      // Cast back to Test[] for return type compatibility
+      return { ...rawData, items: items as unknown as Test[] };
     } catch (error) {
       Logger.error(`TestsService: getItems --> Error: ${String(error)}`);
       return undefined;

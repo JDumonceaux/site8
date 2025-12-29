@@ -98,7 +98,9 @@ export class MenuService {
           ? allChildren.toSorted(
               (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
             )
-          : allChildren.toSorted((a, b) => a.title.localeCompare(b.title));
+          : allChildren.toSorted((a, b) =>
+              (a.title ?? '').localeCompare(b.title ?? ''),
+            );
 
       return sorted;
     } catch (error) {
@@ -138,7 +140,7 @@ export class MenuService {
             url,
           );
         })
-        .toSorted((a, b) => a.title.localeCompare(b.title));
+        .toSorted((a, b) => (a.title ?? '').localeCompare(b.title ?? ''));
 
       // Recursively build children for each root menu
       const menuTree: MenuItem[] = rootMenuItems.map((rootItem) => {

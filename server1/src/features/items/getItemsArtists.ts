@@ -4,10 +4,10 @@ import { createGetHandler } from '../../lib/http/genericHandlers.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
 export const getItemsArtists = createGetHandler<Items>({
-  errorResponse: { items: [], metadata: { title: 'Items' } },
+  errorResponse: { artists: [], items: [], metadata: { title: 'Items' } },
   getData: async () => {
     const data = await getItemsService().getAllItems();
-    return data ?? { items: [], metadata: { title: 'Items' } };
+    return data ?? { artists: [], items: [], metadata: { title: 'Items' } };
   },
   getItemCount: (data) => data.items?.length ?? 0,
   handlerName: 'Items:getItemsArtists',
