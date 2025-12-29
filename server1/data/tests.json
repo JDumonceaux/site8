@@ -928,6 +928,7 @@
       "type": "maintenance",
       "name": "Chat: TypeScript Strict Mode",
       "text": "Review TypeScript strict mode usage and suggest enabling stricter compiler options",
+      "notes": "Some of these feel too strict: e.g., noImplicitAny, strictNullChecks, strictFunctionTypes",
       "projectType": ["chat"]
     },
     {

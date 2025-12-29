@@ -1,6 +1,6 @@
-import type { MenuItem } from '../../types/MenuItem.js';
-import type { PageMenu } from '../../types/PageMenu.js';
-import type { Parent } from '../../types/Parent.js';
+import type { MenuItem } from '@site8/shared';
+import type { PageMenu } from '@site8/shared';
+import type { Parent } from '@site8/shared';
 
 export const mapPageMenuToMenuItem = (
   item: PageMenu,

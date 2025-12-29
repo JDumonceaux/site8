@@ -1,4 +1,4 @@
-import type { Test } from '../../types/Test.js';
+import type { Test } from '@site8/shared';
 
 import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getTestsService } from '../../utils/ServiceFactory.js';

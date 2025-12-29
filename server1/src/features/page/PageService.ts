@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import type { PageEdit } from '../../types/Page.js';
-import type { PageMenu } from '../../types/PageMenu.js';
-import type { Pages } from '../../types/Pages.js';
+import type { PageEdit } from '@site8/shared';
+import type { PageMenu } from '@site8/shared';
+import type { Pages } from '@site8/shared';
 import type { PageText } from '../../types/PageText.js';
 
 import { Logger } from '../../utils/logger.js';

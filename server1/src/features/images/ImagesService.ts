@@ -1,5 +1,5 @@
 import type { Image } from '@site8/shared';
-import type { Images } from '../../types/Images.js';
+import type { Images } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';

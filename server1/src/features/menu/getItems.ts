@@ -1,4 +1,4 @@
-import type { MenuItem } from '../../types/MenuItem.js';
+import type { MenuItem } from '@site8/shared';
 
 import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getMenuService } from '../../utils/ServiceFactory.js';

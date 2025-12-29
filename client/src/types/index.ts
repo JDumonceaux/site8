@@ -1,17 +1,26 @@
+// Re-export types from shared package
+export type {
+  Artists,
+  ArtistWithItems,
+  BookmarksTags,
+  Image,
+  Images,
+  MenuItem,
+  Page,
+  PageEdit,
+  Pages,
+  Photos,
+  Places,
+  Test,
+  Tests,
+} from '@site8/shared';
+
+// Export client-specific types
 export type * from './AppSettings';
 export type * from './Art';
-export type * from './Artist';
-export type * from './Artists';
 export type * from './ArtistsItems';
-export type * from './ArtistWithItems';
-export type * from './ArtItem';
 export type * from './Auth';
 export { deleteCode, emailAddress, password } from './Auth';
-export type * from './Bookmark';
-export type * from './Bookmarks';
-export type * from './BookmarksTag';
-export type * from './BookmarksTags';
-export type * from './Collection';
 export type * from './common';
 export type * from './FieldError';
 export type * from './FieldErrors';
@@ -19,33 +28,17 @@ export type * from './Folder';
 export type * from './FormErrors';
 export type * from './FormState';
 export type * from './IdValue';
-export type * from './Image';
-export type * from './ImageEdit';
-export type * from './Images';
-export type * from './Item';
 export type * from './Items';
 export type * from './KeyValue';
 export type * from './ListItem';
 export type * from './Menu';
 export type * from './MenuAdd';
 export type * from './MenuEdit';
-export type * from './MenuItem';
-export type * from './Metadata';
 export type * from './Music';
-export type * from './MusicItem';
-export type { Page } from './Page';
 export type * from './PageEditSchema';
 export { PageEditSchema } from './PageEditSchema';
-export type * from './Pages';
+export type * from './PageSchema';
+export { PageSchema } from './PageSchema';
 export type * from './PageSummary';
-export type { Parent } from './Parent';
-export { ParentSchema } from './Parent';
 export type * from './ParentSortby';
-export type * from './Photo';
-export type * from './Photos';
-export type * from './PhotoSet';
-export type * from './Place';
-export type * from './Places';
-export type * from './Test';
-export type * from './Tests';
 export type * from './Video';

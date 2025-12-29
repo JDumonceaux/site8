@@ -1,4 +1,4 @@
-import type { Image } from '../../types/Image.js';
+import type { Image } from '@site8/shared';
 
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
 import { cleanUpData, getNextIdFromPos } from '../../utils/objectUtil.js';

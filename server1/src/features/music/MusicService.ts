@@ -1,4 +1,4 @@
-import type { MusicItems } from '../../types/MusicItems.js';
+import type { MusicItems } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import FilePath from '../../lib/filesystem/FilePath.js';

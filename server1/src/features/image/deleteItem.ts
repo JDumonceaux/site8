@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import type { Image } from '../../types/Image.js';
+import type { Image } from '@site8/shared';
 
 import { RESPONSES } from '../../utils/constants.js';
 import { parseRequestId } from '../../utils/helperUtils.js';

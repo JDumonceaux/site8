@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
-import type { PageEdit } from '../../types/Page.js';
-import { PageEditSchema } from '../../types/Page.js';
+import type { PageEdit } from '@site8/shared';
+import { PageEditSchema } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 

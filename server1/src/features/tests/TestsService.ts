@@ -1,5 +1,5 @@
-import type { Test } from '../../types/Test.js';
-import type { Tests } from '../../types/Tests.js';
+import type { Test } from '@site8/shared';
+import type { Tests } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';

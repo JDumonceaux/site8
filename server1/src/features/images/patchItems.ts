@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import type { Images } from '../../types/Images.js';
+import type { Images } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';

@@ -1,7 +1,7 @@
-import type { Bookmark } from '../../types/Bookmark.js';
-import type { Bookmarks } from '../../types/Bookmarks.js';
-import type { BookmarksTag } from '../../types/BookmarksTag.js';
-import type { BookmarksTags } from '../../types/BookmarksTags.js';
+import type { Bookmark } from '@site8/shared';
+import type { Bookmarks } from '@site8/shared';
+import type { BookmarksTag } from '@site8/shared';
+import type { BookmarksTags } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';

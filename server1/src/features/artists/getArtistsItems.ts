@@ -1,4 +1,4 @@
-import type { ArtistsItems } from '../../types/ArtistsItems.js';
+import type { ArtistsItems } from '@site8/shared';
 
 import { createGetHandler } from '../../lib/http/genericHandlers.js';
 import { getArtistsService } from '../../utils/ServiceFactory.js';

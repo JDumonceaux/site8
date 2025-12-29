@@ -1,14 +1,13 @@
+import { parseId } from '@site8/shared';
 import { IMAGE_BASE } from './constants';
 
 /**
  * Returns a string representation of a numeric id if valid, otherwise undefined.
+ * @deprecated Use parseId from @site8/shared directly
  */
 export const getParamIdAsString = (id?: string): string | undefined => {
-  if (!id?.trim()) return undefined;
-  const parsedId = Number.parseInt(id, 10);
-  return !Number.isNaN(parsedId) && parsedId > 0
-    ? parsedId.toString()
-    : undefined;
+  const result = parseId(id);
+  return result.isValid ? result.id?.toString() : undefined;
 };
 
 /**

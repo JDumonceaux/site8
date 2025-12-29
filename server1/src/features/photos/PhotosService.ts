@@ -1,4 +1,4 @@
-import type { Photos } from '../../types/Photos.js';
+import type { Photos } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';

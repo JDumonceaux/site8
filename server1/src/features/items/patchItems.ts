@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { ItemEditSchema } from '../../types/ItemEdit.js';
+import { ItemEditSchema } from '@site8/shared';
 import { z } from 'zod';
 
 import { Logger } from '../../utils/logger.js';

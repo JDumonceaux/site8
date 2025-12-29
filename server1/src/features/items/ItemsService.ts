@@ -1,10 +1,10 @@
-import type { Item } from '../../types/Item.js';
-import type { ItemAdd } from '../../types/ItemAdd.js';
-import type { ItemArtist } from '../../types/ItemArtist.js';
-import type { ItemEdit } from '../../types/ItemEdit.js';
+import type { Item } from '@site8/shared';
+import type { ItemAdd } from '@site8/shared';
+import type { ItemArtist } from '@site8/shared';
+import type { ItemEdit } from '@site8/shared';
 import type { Items } from '../../types/Items.js';
-import type { ItemsArtists } from '../../types/ItemsArtists.js';
-import type { ItemsFile } from '../../types/ItemsFile.js';
+import type { ItemsArtists } from '@site8/shared';
+import type { ItemsFile } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';

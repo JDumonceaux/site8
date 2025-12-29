@@ -1,4 +1,4 @@
-import type { Bookmark } from '../../types/Bookmark.js';
+import type { Bookmark } from '@site8/shared';
 
 import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getBookmarksService } from '../../utils/ServiceFactory.js';

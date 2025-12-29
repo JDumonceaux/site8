@@ -1,5 +1,5 @@
-import type { Image, ImageAdd } from '../../types/Image.js';
-import type { Images } from '../../types/Images.js';
+import type { Image, ImageAdd } from '@site8/shared';
+import type { Images } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
