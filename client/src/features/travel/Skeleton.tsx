@@ -47,7 +47,12 @@ const shimmer = keyframes`
 `;
 
 const SkeletonBase = styled.div`
-  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background: linear-gradient(
+    to right,
+    var(--hover-background) 8%,
+    var(--border-light) 18%,
+    var(--hover-background) 33%
+  );
   background-size: 800px 104px;
   animation: ${shimmer} 1.5s ease-in-out infinite;
   border-radius: 4px;
@@ -56,9 +61,9 @@ const SkeletonBase = styled.div`
 const SkeletonCard = styled.div`
   margin-bottom: 1.5rem;
   padding: 1rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-light);
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--surface-background-color);
 `;
 
 const SkeletonCardContent = styled.div`

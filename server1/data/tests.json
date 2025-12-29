@@ -1253,6 +1253,27 @@
       "text": "Sequential ids",
       "value": "Ensure that all ids in the data are sequential and unique to maintain data integrity.",
       "projectType": ["chat"]
+    },
+    {
+      "id": 632,
+      "name": "Style",
+      "text": "Light-Dark Mode Consistency",
+      "value": "Add light-dark() function to main.css for consistent theming.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 633,
+      "name": "Style",
+      "text": "Central Color Variables",
+      "value": "Replace all named colors in components with CSS variables defined in main.css for easier theming and maintenance.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 634,
+      "name": "Style",
+      "text": "Useless CSS Removal",
+      "value": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance.",
+      "projectType": ["chat"]
     }
   ]
 }

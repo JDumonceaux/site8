@@ -66,6 +66,7 @@ const StyledTrigger = styled(TooltipRadix.Trigger)<{ $color?: string }>`
   position: relative;
   padding: 0 4px;
   color: ${({ $color }) => $color ?? 'var(--text-primary-color)'};
+  background-color: transparent;
   z-index: 1;
 `;
 

@@ -25,7 +25,7 @@ const StyledMenuItem = styled(DropdownMenu.Item)`
   padding: 0 5px 0 25px;
   font-size: 13px;
   line-height: 1;
-  color: var(--violet-11);
+  color: var(--palette-main-color);
   border-radius: 3px;
   position: relative;
   user-select: none;

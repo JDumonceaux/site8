@@ -85,7 +85,7 @@ const StyledDialog = styled.dialog<{ readonly $variant: SnackbarVariant }>`
       ? 'var(--snackbar-color)'
       : 'var(--palette-error)'};
   border-radius: ${SNACKBAR_BORDER_RADIUS} ${SNACKBAR_BORDER_RADIUS} 0 0;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-elevated);
   z-index: 1000;
   border: none;
   margin: 0;

@@ -6,168 +6,186 @@
 /* ----------------------------------------------------------------------------
    Global CSS Variables & Custom Properties
    ---------------------------------------------------------------------------- */
-   :root {
-    /* Color Scheme Support */
-    color-scheme: light dark;
-    
-    /* Rendering and Font Smoothing */
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-  
-    /* Core Colors */
-    --color-error: #ff0000;
-    --color-required: #be3455;
-    --color-white: light-dark(#ffffff, #1f1f29);
-    --color-black: light-dark(#000000, #f5f5fa);
-  
-    /* Input Styles */
-    --input-background-color: light-dark(#ffffff, #2a2a2a);
-    --input-background-focus-color: light-dark(#e1e1e1, #3a3a3a);
-    --input-color: light-dark(#212121, #e0e0e0);
-    --input-error-color: var(--color-error);
-    --input-border-radius: 4px;
-    --input-border-color: #bebebe;
-    --input-border-required-color: var(--color-required);
-    --input-border-focus-color: #5d5d5d;
-    --input-border-hover-color: #7f7f7f;
-    --input-label-color: #212121;
-    --input-placeholder-color: #b7b7b7;
-    --input-adornment-color: #838383;
-    --input-helper-font-size: 0.75rem;
-    --input-helper-font-color: #5d5d5d;
-    --input-helper-error-color: var(--color-error);
-    --input-icon-color: #5d5d5d;
-  
-    /* Tooltip Styles */
-    --tooltip-label-color: #0f456e;
-    --tooltip-background-color: #e5e5e5;
-    --tooltip-border-color: #0f456e;
-    --tooltip-arrow-color: #0f456e;
-  
-    /* Status Colors */
-    --status-info: #2196f3;
-    --status-success: #21a67a;
-    --status-warning: #ff000f;
-    --status-error: var(--color-error);
-  
-    /* Text & Background */
-    --text-primary-color: light-dark(#1f1f1f, #e0e0e0);
-    --text-primary-muted-color: light-dark(#5d5d5d, #a0a0a0);
-    --page-background-color: light-dark(#f5f5f5, #1a1a1a);
-  
-    /* Animation */
-    --speed: 500ms;
-  
-    /* Palette */
-    --palette-text: light-dark(#1f1f29, #e0e0e0);
-    --palette-dark-text: light-dark(#f2f3f4, #2a2a2a);
-    --palette-background: light-dark(#f2f3f4, #1a1a1a);
-    --palette-main-color: #be3455;
-    --palette-error: #751c31;
-    --palette-border: light-dark(#181818, #e0e0e0);
-    --palette-page-title: #be3455;
-    --palette-dark-background: light-dark(#181818, #2a2a2a);
-    --palette-var: #0ab4b4;
-    --palette-samp: #a8a8a8;
-    --palette-kbd: #888888;
-    --palette-border-color: #383838;
-    --palette-code: #a8a8a8;
-    --main-color-d3: #751c31;
-    --palette-menu-color: #d8d8d8;
-    --palette-grey-10: #d8d8d8;
-    --palette-grey-100: #585858;
-    --palette-grey-dark: #4b4b4b;
-    --palette-white: #f5f5fa;
-    --palette-black: #1f1f29;
-    --palette-label: rgb(102, 102, 102);
-  
-    /* Navbar */
-    --navbar-width: 256px;
-    --navbar-width-min: 80px;
-    --navbar-text: #f2f3f4;
-    --navbar-dark-primary: #18283b;
-    --navbar-dark-secondary: #465262;
-    --navbar-dark-3: #747e89;
-    --navbar-light-primary: #f5f6fa;
-    --navbar-light-secondary: #8392a5;
-  
-    /* Snackbar */
-    --snackbar-background: #465262;
-    --snackbar-color: #f2f3f4;
+:root {
+  /* Color Scheme Support */
+  color-scheme: light dark;
 
-    /* Design Tokens - Border Radius */
-    --border-radius-sm: 3px;
-    --border-radius-md: 4px;
-    --border-radius-lg: 8px;
-    --border-radius-xl: 18px;
-    --border-radius-circle: 50%;
-    --border-radius-pill: 9999px;
+  /* Rendering and Font Smoothing */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 
-    /* Design Tokens - Box Shadows */
-    --shadow-sm: 0 2px 2px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 2px 8px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 2px 10px rgb(0 0 0 / 0.15);
-    --shadow-elevated: 0 0 20px rgb(0 0 0 / 0.15);
+  /* Core Colors */
+  --color-error: #ff0000;
+  --color-required: #be3455;
+  --color-white: light-dark(#ffffff, #1f1f29);
+  --color-black: light-dark(#000000, #f5f5fa);
 
-    /* Design Tokens - Typography Scale */
-    --font-size-xs: 0.75rem;    /* 12px */
-    --font-size-sm: 0.875rem;   /* 14px */
-    --font-size-base: 1rem;     /* 16px */
-    --font-size-lg: 1.125rem;   /* 18px */
-    --font-size-xl: 1.25rem;    /* 20px */
+  /* Input Styles */
+  --input-background-color: #e7e7e7;
+  --input-background-focus-color: #f5f5f5;
+  --input-color: #212121;
+  --input-error-color: var(--color-error);
+  --input-border-radius: 4px;
+  --input-border-color: light-dark(#bebebe, #5a5a5a);
+  --input-border-required-color: var(--color-required);
+  --input-border-focus-color: light-dark(#5d5d5d, #a0a0a0);
+  --input-border-hover-color: light-dark(#7f7f7f, #8a8a8a);
+  --input-label-color: light-dark(#212121, #e0e0e0);
+  --input-placeholder-color: light-dark(#b7b7b7, #6a6a6a);
+  --input-adornment-color: light-dark(#838383, #a0a0a0);
+  --input-helper-font-size: 0.75rem;
+  --input-helper-font-color: light-dark(#5d5d5d, #a0a0a0);
+  --input-helper-error-color: var(--color-error);
+  --input-icon-color: light-dark(#5d5d5d, #a0a0a0);
+  /* Status Colors */
+  --status-info: light-dark(#2196f3, #64b5f6);
+  --status-success: light-dark(#21a67a, #4caf50);
+  --status-warning: light-dark(#ff6f00, #ffa726);
+  --status-error: var(--color-error);
 
-    /* Design Tokens - Font Weights */
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
+  /* Text & Background */
+  --text-primary-color: light-dark(#1f1f1f, #e0e0e0);
+  --text-secondary-color: light-dark(#5d5d5d, #a0a0a0);
+  --text-tertiary-color: light-dark(#838383, #888888);
+  --text-primary-muted-color: light-dark(#5d5d5d, #a0a0a0);
+  --text-inverted-color: light-dark(#ffffff, #1f1f29);
+  --page-background-color: light-dark(#f5f5f5, #1a1a1a);
+  --surface-background-color: light-dark(#ffffff, #2a2a2a);
+  --surface-elevated-color: light-dark(#fafafa, #2f2f2f);
 
-    /* Design Tokens - Borders */
-    --border-light: light-dark(#e0e0e0, #3a3a3a);
-    --border-medium: light-dark(#bebebe, #5a5a5a);
-    --border-dark: light-dark(#ccc, #666);
+  /* Palette */
+  --palette-text: light-dark(#1f1f29, #e0e0e0);
+  --palette-dark-text: light-dark(#f2f3f4, #2a2a2a);
+  --palette-background: light-dark(#f2f3f4, #1a1a1a);
+  --palette-main-color: #be3455;
+  --palette-error: #751c31;
+  --palette-border: light-dark(#181818, #e0e0e0);
+  --palette-page-title: #be3455;
+  --palette-dark-background: light-dark(#181818, #2a2a2a);
+  --palette-var: #0ab4b4;
+  --palette-samp: #a8a8a8;
+  --palette-kbd: #888888;
+  --palette-code: #a8a8a8;
+  --palette-grey-10: #d8d8d8;
+  --palette-grey-20: #e8e8e8;
+  --palette-grey-100: #585858;
+  --palette-white: #f5f5fa;
+  --palette-black: #1f1f29;
 
-    /* Design Tokens - Focus */
-    --focus-outline-color: light-dark(var(--palette-black), var(--palette-white));
-    --focus-outline-width: 2px;
-    --focus-outline-offset: 2px;
-  }
-  
-  /* ----------------------------------------------------------------------------
+  /* Alpha Colors */
+  --black-a3: rgb(0 0 0 / 0.03);
+  --black-a7: rgb(0 0 0 / 0.07);
+
+  /* Navbar */
+  --navbar-width: 256px;
+  --navbar-width-min: 80px;
+  --navbar-text: light-dark(#212121, #f2f3f4);
+  --navbar-background: light-dark(#ffffff, #18283b);
+  --navbar-dark-primary: light-dark(#f5f6fa, #18283b);
+  --navbar-dark-secondary: light-dark(#8392a5, #465262);
+  --navbar-dark-3: light-dark(#5d5d5d, #747e89);
+  --navbar-light-primary: light-dark(#f5f6fa, #2a2a2a);
+  --navbar-light-secondary: light-dark(#8392a5, #a0a0a0);
+  --navbar-hover: light-dark(#f5f5f5, #2a3542);
+  --navbar-active: light-dark(#e8e8e8, #364555);
+
+  /* Tooltip Styles */
+  --tooltip-label-color: light-dark(#0f456e, #64b5f6);
+  --tooltip-background-color: light-dark(#e5e5e5, #2a2a2a);
+  --tooltip-border-color: light-dark(#0f456e, #64b5f6);
+  --tooltip-arrow-color: light-dark(#0f456e, #64b5f6);
+
+  /* Snackbar */
+  --snackbar-background: light-dark(#465262, #2a3542);
+  --snackbar-color: light-dark(#f2f3f4, #e0e0e0);
+
+  /* Divider & Separator */
+  --divider-color: light-dark(#e0e0e0, #3a3a3a);
+
+  /* Link Colors */
+  --link-color: light-dark(#0000ee, #6699ff);
+  --link-hover: light-dark(#0000cc, #5588ee);
+
+  /* Interactive Element Colors */
+  --hover-background: light-dark(#f5f5f5, #2f2f2f);
+  --disabled-background: light-dark(#f5f5f5, #1f1f1f);
+  --disabled-text: light-dark(#b0b0b0, #606060);
+
+  /* Backdrop */
+  --backdrop-color: light-dark(rgb(0 0 0 / 0.3), rgb(0 0 0 / 0.6));
+  /* Design Tokens - Border Radius */
+  --border-radius-sm: 3px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 18px;
+  --border-radius-circle: 50%;
+  --border-radius-pill: 9999px;
+
+  /* Design Tokens - Box Shadows */
+  --shadow-sm: 0 2px 2px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 2px 8px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 2px 10px rgb(0 0 0 / 0.15);
+  --shadow-elevated: 0 0 20px rgb(0 0 0 / 0.15);
+
+  /* Design Tokens - Typography Scale */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+
+  /* Design Tokens - Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Design Tokens - Borders */
+  --border-light: light-dark(#e0e0e0, #3a3a3a);
+  --border-medium: light-dark(#bebebe, #5a5a5a);
+  --border-dark: light-dark(#ccc, #666);
+
+  /* Design Tokens - Focus */
+  --focus-outline-color: light-dark(var(--palette-black), var(--palette-white));
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------------------
      CSS @property Declarations for Custom Properties
      ---------------------------------------------------------------------------- */
-  @layer base {
+@layer base {
   @property --color-error {
-    syntax: '<color>';
+    syntax: "<color>";
     inherits: false;
     initial-value: red;
   }
   @property --color-required {
-    syntax: '<color>';
+    syntax: "<color>";
     inherits: false;
     initial-value: red;
   }
   @property --color-white {
-    syntax: '<color>';
+    syntax: "<color>";
     inherits: false;
     initial-value: white;
   }
   @property --color-black {
-    syntax: '<color>';
+    syntax: "<color>";
     inherits: false;
     initial-value: black;
   }
-  }
-  
-  /* ----------------------------------------------------------------------------
+}
+
+/* ----------------------------------------------------------------------------
      Base Styles
      ---------------------------------------------------------------------------- */
-  @layer base {
+@layer base {
   html,
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 1rem; /* default browser font size (16px) */
     margin: 0;
     padding: 0;
@@ -185,71 +203,72 @@
   select:focus-visible {
     outline: none;
   }
-  
+
   a:link,
   a:visited {
-    color: #0000ee;
+    color: var(--link-color);
     background-color: transparent;
     text-decoration: none;
   }
-  
+
   a:hover,
   a:active {
+    color: var(--link-hover);
     text-decoration: underline;
     text-underline-position: under;
     /* text-underline-offset: 0.2em; */
   }
-  
+
   hr {
-    border: 1px solid #585858;
+    border: 1px solid light-dark(#585858, #4a4a4a);
   }
-  
+
   ol,
   ul {
     margin-block-start: 1em;
     margin-block-end: 1em;
     padding-inline-start: 20px;
   }
-  
+
   em {
     font-weight: 700;
     color: var(--palette-main-color);
   }
-  
+
   h1 {
-    font-family: 'Roboto Slab', serif;
+    font-family: "Roboto Slab", serif;
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #000;
+    color: light-dark(#000, #e0e0e0);
     /* Use appropriate properties or vendor prefixes if necessary */
   }
-  
+
   h2 {
-    font-family: 'Roboto Slab', serif;
+    font-family: "Roboto Slab", serif;
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #585858;
+    color: light-dark(#585858, #a0a0a0);
   }
-  
+
   p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     line-height: 1.3em;
     margin-bottom: 1rem;
-    color: #383838;
+    color: light-dark(#383838, #b0b0b0);
   }
-  
+
   img {
     display: block;
     max-width: 100%;
   }
-  }
-  
-  /* ----------------------------------------------------------------------------
+}
+
+/* ----------------------------------------------------------------------------
      Table Styles
      ---------------------------------------------------------------------------- */
-  @layer components {
+@layer components {
   table {
     width: 100%;
     border-collapse: collapse;
@@ -259,32 +278,32 @@
     min-width: 400px;
     box-shadow: 0 0 20px rgb(0 0 0 / 0.15);
   }
-  
+
   table thead tr {
-    background-color: #009879;
+    background-color: light-dark(#009879, #00644f);
     color: #ffffff;
     text-align: left;
   }
-  
+
   table th,
   table td {
     padding: 12px 15px;
   }
-  
+
   table tbody tr {
-    border-bottom: 1px solid #2f2d2d;
+    border-bottom: 1px solid light-dark(#dddddd, #3a3a3a);
   }
-  
+
   table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: light-dark(#f3f3f3, #2a2a2a);
   }
-  
+
   table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid light-dark(#009879, #00644f);
   }
-  
+
   table tbody tr.active-row {
     font-weight: bold;
-    color: #009879;
+    color: light-dark(#009879, #4caf50);
   }
-  }
+}

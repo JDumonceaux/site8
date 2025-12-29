@@ -105,15 +105,20 @@ const ErrorMessage = styled(Message)`
 const ProgressBar = styled.progress`
   width: 100%;
   height: 1.25rem;
-  background: #f2f2f2;
-  background-image: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%);
+  background: var(--surface-background-color);
+  background-image: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.1) 33%,
+    rgb(0 0 0 / 0.3) 50%,
+    rgb(0 0 0 / 0.1) 66%
+  );
   background-size: 300% 100%;
   animation: ${slide} 2s infinite linear;
   border-radius: 0.25rem;
   border: none;
   appearance: none;
   &::-webkit-progress-bar {
-    background: #f2f2f2;
+    background: var(--surface-background-color);
     border-radius: 0.25rem;
   }
   &::-webkit-progress-value {

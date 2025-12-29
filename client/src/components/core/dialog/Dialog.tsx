@@ -131,12 +131,12 @@ const Content = styled(RadixDialog.Content)<{
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
+  background: var(--surface-background-color);
   border-radius: 8px;
   border-top: 6px solid ${({ 'data-variant': v }) => BorderColor[v]};
   max-width: ${({ 'data-size': s }) => MaxWidth[s]};
   width: calc(100% - 2rem);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-elevated);
   outline: none;
   display: flex;
   flex-direction: column;

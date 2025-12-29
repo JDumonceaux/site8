@@ -52,8 +52,8 @@ const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--violet-11);
-  background-color: #fff;
+  color: var(--palette-main-color);
+  background-color: var(--color-white);
   box-shadow: 0 2px 10px var(--black-a7);
   cursor: pointer;
 

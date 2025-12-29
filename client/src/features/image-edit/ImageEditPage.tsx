@@ -211,7 +211,7 @@ const StyledImageDisplay = styled.div`
   border: 1px solid var(--border-light, #e0e0e0);
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
+  background: var(--surface-background-color);
 `;
 
 const StyledImage = styled.img`
@@ -226,19 +226,19 @@ const StyledImageInfo = styled.div`
     margin: 0 0 0.75rem 0;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary-color);
   }
   p {
     margin: 0.25rem 0;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-secondary-color);
   }
 `;
 
 const StyledPlaceholder = styled.div`
   padding: 2rem;
   text-align: center;
-  color: #999;
+  color: var(--text-tertiary-color);
   border: 1px dashed var(--border-light, #e0e0e0);
   border-radius: 8px;
 `;

@@ -60,21 +60,20 @@ const StyledList = styled.ul`
 
 const StyledListItem = styled.li`
   padding: 8px 12px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-light);
 
   &:last-child {
     border-bottom: none;
   }
 
   &:hover {
-    background-color: #f5f5f5;
+    background-color: var(--hover-background);
   }
 `;
 
 const EmptyState = styled.div`
   padding: 20px;
   text-align: center;
-  color: #666;
+  color: var(--text-secondary-color);
   font-style: italic;
 `;
-

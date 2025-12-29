@@ -47,7 +47,7 @@ const StyledButton = styled.button<{ $color: string }>`
     transform 100ms ease;
 
   &:hover:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--hover-background);
     transform: scale(1.05);
   }
 

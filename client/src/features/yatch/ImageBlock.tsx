@@ -32,8 +32,8 @@ const Section = styled.div`
 `;
 
 const Title = styled.div`
-  color: #fff;
-  background: #585858;
+  color: var(--text-inverted-color);
+  background: var(--text-secondary-color);
   padding: 12px 16px 6px;
   text-align: center;
   margin-top: 2px;

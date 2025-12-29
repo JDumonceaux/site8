@@ -61,7 +61,7 @@ const ToggleLabel = styled.label`
     position: absolute;
     cursor: pointer;
     inset: 0;
-    background-color: #ccc;
+    background-color: var(--disabled-background);
     transition: background-color 0.4s;
     border-radius: 34px;
   }
@@ -73,13 +73,13 @@ const ToggleLabel = styled.label`
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--color-white);
     transition: transform 0.4s;
     border-radius: 50%;
   }
 
   > input:checked + span {
-    background-color: #2196f3;
+    background-color: var(--status-info);
   }
 
   > input:checked + span::before {

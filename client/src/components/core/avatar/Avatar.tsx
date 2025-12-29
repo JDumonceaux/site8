@@ -103,8 +103,8 @@ const Fallback = styled(RadixAvatarFallback)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  color: var(--violet-11);
+  background-color: var(--color-white);
+  color: var(--palette-main-color);
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;

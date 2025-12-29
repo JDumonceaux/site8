@@ -89,7 +89,7 @@ const StyledCard = styled.div`
   padding: 1rem;
   border: 1px solid var(--border-light);
   border-radius: var(--border-radius-lg);
-  background-color: #fff;
+  background-color: var(--surface-background-color);
 
   &:hover {
     box-shadow: var(--shadow-md);
@@ -126,19 +126,19 @@ const StyledHeading = styled.h3`
   font-size: 1.25rem;
   margin: 0 0 0.5em 0;
   font-weight: var(--font-weight-semibold);
-  color: #333;
+  color: var(--text-primary-color);
 `;
 
 const StyledLocation = styled.div`
   font-size: var(--font-size-sm);
-  color: #666;
+  color: var(--text-secondary-color);
   margin-bottom: 0.5rem;
   font-style: italic;
 `;
 
 const StyledAddress = styled.div`
   font-size: var(--font-size-xs);
-  color: #888;
+  color: var(--text-tertiary-color);
   margin-bottom: 0.5rem;
 `;
 
@@ -151,7 +151,7 @@ const StyledUrls = styled.div`
 
 const StyledUrlLink = styled.a`
   font-size: 0.9rem;
-  color: #0066cc;
+  color: var(--link-color);
   text-decoration: none;
 
   &:hover {
@@ -168,8 +168,8 @@ const StyledTags = styled.div`
 
 const StyledTag = styled.span`
   padding: 0.25rem 0.5rem;
-  background-color: #f0f0f0;
+  background-color: var(--hover-background);
   border-radius: 4px;
   font-size: 0.85rem;
-  color: #555;
+  color: var(--text-secondary-color);
 `;
