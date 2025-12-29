@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import { getURLPath } from '@lib/utils/helpers';
-import type { MenuItem } from '../../types/MenuItem';
+import type { MenuItem } from '@site8/shared';
 import ItemRender from './ItemRender';
 import styled from 'styled-components';
 
@@ -85,4 +85,3 @@ const StyledContent = styled.div`
   overflow-x: hidden;
   transition: width 0.2s;
 `;
-

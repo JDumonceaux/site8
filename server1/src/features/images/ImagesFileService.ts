@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 
-import type { Image, ImageEdit } from '../../types/Image.js';
-import type { Images } from '../../types/Images.js';
+import type { Image, ImageEdit } from '@site8/shared';
+import type { Images } from '@site8/shared';
 
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
 import { Logger } from '../../utils/logger.js';

@@ -1,6 +1,6 @@
 import type { Request } from 'express';
 
-import type { Image } from '../../types/Image.js';
+import type { Image } from '@site8/shared';
 
 import { createGetHandlerWithParams } from '../../lib/http/genericHandlers.js';
 import { getImageService } from '../../utils/ServiceFactory.js';

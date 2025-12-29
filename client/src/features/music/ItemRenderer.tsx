@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 // Update the import path below to the actual location of MusicItem type
-import type { MusicItem } from '../../types/MusicItem';
+import type { MusicItem } from '@site8/shared';
 import styled from 'styled-components';
 
 /**

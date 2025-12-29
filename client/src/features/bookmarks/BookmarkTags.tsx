@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import type { BookmarksTags } from '../../types/BookmarksTags';
+import type { BookmarksTags } from '@site8/shared';
 
 type BookmarksTagsProps = {
   readonly data: BookmarksTags | undefined;

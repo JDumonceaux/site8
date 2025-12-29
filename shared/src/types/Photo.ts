@@ -10,4 +10,5 @@ export type Photo = {
   readonly photo_date?: string;
   readonly set?: number[];
   readonly tags?: string[];
+  readonly url?: string;
 };

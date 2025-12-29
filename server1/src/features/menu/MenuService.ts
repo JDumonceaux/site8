@@ -1,8 +1,8 @@
-import type { MenuItem } from '../../types/MenuItem.js';
-import type { Menus } from '../../types/Menus.js';
-import type { PageMenu } from '../../types/PageMenu.js';
-import type { Pages } from '../../types/Pages.js';
-import type { Parent } from '../../types/Parent.js';
+import type { MenuItem } from '@site8/shared';
+import type { Menus } from '@site8/shared';
+import type { PageMenu } from '@site8/shared';
+import type { Pages } from '@site8/shared';
+import type { Parent } from '@site8/shared';
 
 import type { IDataService } from '../../services/IDataService.js';
 import { Logger } from '../../utils/logger.js';

@@ -1,6 +1,6 @@
 import { memo, type JSX, useEffect, useState } from 'react';
 
-import type { Places } from '../../types/Places';
+import type { Places } from '@site8/shared';
 import Skeleton from './Skeleton';
 import styled from 'styled-components';
 

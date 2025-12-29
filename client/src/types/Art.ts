@@ -1,4 +1,3 @@
-import type { ArtItem } from './ArtItem';
-import type { Collection } from './Collection';
+import type { ArtItem, Collection } from '@site8/shared';
 
 export type Art = Collection<ArtItem>;

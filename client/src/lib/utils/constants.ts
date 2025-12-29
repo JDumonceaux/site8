@@ -34,16 +34,12 @@ export type QueryTimeComputed =
 /* -------------------------------------------------------------------------- */
 /*                             Request Headers                                */
 /* -------------------------------------------------------------------------- */
-export const AcceptHeader = {
-  JSON: 'application/json',
-} as const satisfies Record<string, string>;
-
-export const PreferHeader = {
-  REPRESENTATION: 'return=representation',
-} as const satisfies Record<string, string>;
-
-export type AcceptHeader = (typeof AcceptHeader)[keyof typeof AcceptHeader];
-export type PreferHeader = (typeof PreferHeader)[keyof typeof PreferHeader];
+// Moved to @site8/shared
+export { AcceptHeader, PreferHeader } from '@site8/shared';
+export type {
+  AcceptHeader as AcceptHeaderType,
+  PreferHeader as PreferHeaderType,
+} from '@site8/shared';
 
 /* -------------------------------------------------------------------------- */
 /*                          API and Route Constants                           */

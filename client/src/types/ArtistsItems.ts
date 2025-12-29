@@ -1,5 +1,4 @@
-import type { ArtistWithItems } from './ArtistWithItems';
-import type { Metadata } from './Metadata';
+import type { ArtistWithItems, Metadata } from '@site8/shared';
 
 export type ArtistsItems = {
   readonly items: ArtistWithItems[] | undefined;

@@ -1,4 +1,4 @@
-import type { PageMenu } from '../../types/PageMenu.js';
+import type { PageMenu } from '@site8/shared';
 import type { PageText } from '../../types/PageText.js';
 
 import { Logger } from '../../utils/logger.js';

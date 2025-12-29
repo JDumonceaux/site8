@@ -1,4 +1,4 @@
-import type { Item } from '../../types/Item.js';
+import type { Item } from '@site8/shared';
 
 import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';

@@ -5,7 +5,7 @@ import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
-import type { Page } from '../../types/Page';
+import type { Page } from '@site8/shared';
 import RenderHtml from './RenderHtml';
 import SubjectMenu from './SubjectMenu';
 import useGenericPage from './useGenericPage';
@@ -71,4 +71,3 @@ const StyledSection = styled.section`
     }
   }
 `;
-

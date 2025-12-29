@@ -1,4 +1,4 @@
-import type { MusicItem } from '../../types/MusicItem.js';
+import type { MusicItem } from '@site8/shared';
 
 import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getMusicService } from '../../utils/ServiceFactory.js';

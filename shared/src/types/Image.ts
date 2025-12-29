@@ -46,3 +46,13 @@ export const ImageEditSchema = z.object({
  * Image edit type
  */
 export type ImageEdit = z.infer<typeof ImageEditSchema>;
+
+/**
+ * Image add schema for validation - omits id for new images
+ */
+export const ImageAddSchema = ImageEditSchema.omit({ id: true });
+
+/**
+ * Image add type
+ */
+export type ImageAdd = z.infer<typeof ImageAddSchema>;

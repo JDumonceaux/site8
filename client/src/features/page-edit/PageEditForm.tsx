@@ -5,7 +5,7 @@ import Input from '@components/ui/input/Input';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
 import * as Form from '@radix-ui/react-form';
 import type { FormState } from '@types';
-import type { Page } from '../../types/Page';
+import type { Page } from '@site8/shared';
 import usePagePatch from './usePagePatch';
 import styled from 'styled-components';
 
@@ -167,4 +167,3 @@ const StyledButtonWrapper = styled.div`
   justify-content: flex-end;
   margin-bottom: 20px;
 `;
-

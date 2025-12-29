@@ -1,4 +1,4 @@
-import type { PageMenu } from '../../types/PageMenu.js';
+import type { PageMenu } from '@site8/shared';
 
 import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getPagesService } from '../../utils/ServiceFactory.js';

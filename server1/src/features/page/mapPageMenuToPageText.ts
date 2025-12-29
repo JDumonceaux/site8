@@ -1,4 +1,4 @@
-import type { PageMenu } from '../../types/PageMenu.js';
+import type { PageMenu } from '@site8/shared';
 import type { PageText } from '../../types/PageText.js';
 
 export const mapPageMenuToPageText = (

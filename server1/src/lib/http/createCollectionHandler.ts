@@ -1,4 +1,4 @@
-import type { Collection } from '../../types/Collection.js';
+import type { Collection } from '@site8/shared';
 
 import { createGetHandler } from './genericHandlers.js';
 

@@ -1,7 +1,7 @@
 import React, { type JSX } from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
-import type { MenuItem } from '../../types/MenuItem';
+import type { MenuItem } from '@site8/shared';
 import styled from 'styled-components';
 
 type ItemRenderProps = {
@@ -108,4 +108,3 @@ const StyledPage1 = styled(StyledMenuLink)`
 const StyledPage2 = styled(StyledMenuLink)`
   padding-inline-start: 30px;
 `;
-

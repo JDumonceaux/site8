@@ -1,11 +1,11 @@
 import type { z } from 'zod';
 
-import type { Artists } from '../../types/Artists.js';
-import type { ArtistsItems } from '../../types/ArtistsItems.js';
-import type { ItemsFile } from '../../types/ItemsFile.js';
+import type { Artists } from '@site8/shared';
+import type { ArtistsItems } from '@site8/shared';
+import type { ItemsFile } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
-import { ItemsFileSchema } from '../../types/ItemsFile.js';
+import { ItemsFileSchema } from '@site8/shared';
 import { Logger } from '../../utils/logger.js';
 import FilePath from '../../lib/filesystem/FilePath.js';
 

@@ -1,4 +1,4 @@
-import type { BookmarksTags } from '../../types/BookmarksTags.js';
+import type { BookmarksTags } from '@site8/shared';
 
 import { createGetHandler } from '../../lib/http/genericHandlers.js';
 import { getBookmarksService } from '../../utils/ServiceFactory.js';

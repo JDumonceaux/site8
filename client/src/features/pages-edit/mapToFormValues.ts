@@ -10,6 +10,6 @@ export const mapToFormValues = (items: Iterable<MenuItem>) =>
         ? Number.parseInt(parentItem.id, 10)
         : (parentItem?.id ?? 0),
     parentSeq: String(parentItem?.seq ?? 0),
-    parentSortby: parentItem?.sortby ?? '',
+    parentSortby: parentItem?.sortBy ?? '',
     type,
   }));

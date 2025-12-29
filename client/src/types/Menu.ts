@@ -1,5 +1,4 @@
-import type { MenuItem } from './MenuItem';
-import type { Metadata } from './Metadata';
+import type { MenuItem, Metadata } from '@site8/shared';
 
 export type Menu = {
   readonly items?: MenuItem[];

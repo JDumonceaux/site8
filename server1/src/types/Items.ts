@@ -1,4 +1,13 @@
-import type { Collection } from './Collection.js';
-import type { Item } from './Item.js';
+import type { Item } from '@site8/shared';
+import type { ItemArtist } from '@site8/shared';
+import type { Metadata } from '@site8/shared';
 
-export type Items = Collection<Item>;
+/**
+ * Server-specific Items type
+ * Extended collection with both items and artists
+ */
+export type Items = {
+  readonly artists: ItemArtist[];
+  readonly items: Item[];
+  readonly metadata: Metadata;
+};

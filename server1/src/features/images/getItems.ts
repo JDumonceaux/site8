@@ -1,4 +1,4 @@
-import type { Image } from '../../types/Image.js';
+import type { Image } from '@site8/shared';
 
 import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';

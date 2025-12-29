@@ -1,5 +1,5 @@
-import type { Place } from '../../types/Place.js';
-import type { Places } from '../../types/Places.js';
+import type { Place } from '@site8/shared';
+import type { Places } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';

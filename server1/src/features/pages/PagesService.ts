@@ -1,5 +1,5 @@
-import type { PageMenu } from '../../types/PageMenu.js';
-import type { Pages } from '../../types/Pages.js';
+import type { PageMenu } from '@site8/shared';
+import type { Pages } from '@site8/shared';
 
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { cleanUpData } from '../../utils/objectUtil.js';

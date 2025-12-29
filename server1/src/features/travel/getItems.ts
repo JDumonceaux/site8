@@ -1,4 +1,4 @@
-import type { Places } from '../../types/Places.js';
+import type { Places } from '@site8/shared';
 
 import { createGetHandler } from '../../lib/http/genericHandlers.js';
 import { getTravelService } from '../../utils/ServiceFactory.js';
