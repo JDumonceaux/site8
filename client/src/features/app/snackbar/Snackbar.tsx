@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useCallback, useEffect, useEffectEvent } from 'react';
+import { useEffect, useEffectEvent } from 'react';
 
 import Button from '@components/ui/button/Button';
 import { logError } from '@lib/utils/errorLogger';
@@ -19,13 +19,13 @@ const MESSAGE_FONT_SIZE = '0.875rem';
 const Snackbar = (): JSX.Element | null => {
   const { closeSnackbar, data } = useSnackbar();
 
-  const handleClose = useCallback(() => {
+  const handleClose = useEffectEvent(() => {
     try {
       closeSnackbar();
     } catch (error) {
       logError(error, { componentName: 'Snackbar', action: 'close' });
     }
-  }, [closeSnackbar]);
+  });
 
   const handleEscapeEvent = useEffectEvent((event: KeyboardEvent) => {
     if (event.key === 'Escape') {
@@ -110,4 +110,3 @@ const CloseButton = styled(Button)`
   font-size: 1.5rem;
   line-height: 1;
 `;
-

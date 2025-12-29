@@ -5,8 +5,7 @@ import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
-import type { Page } from '../../types/Page';
-import type { MenuItem } from '../../types/MenuItem';
+import type { Page, MenuItem } from '@site8/shared';
 import RenderHtml from './RenderHtml';
 import SubjectMenu from './SubjectMenu';
 import useGenericPage from './useGenericPage';
@@ -27,14 +26,14 @@ const findMenuItemByPath = (
 
   // Find parent item
   const parent = items.find(
-    (item) => item.title.toLowerCase().replace(/\s+/g, '-') === parentName,
+    (item) => item.title?.toLowerCase().replace(/\s+/g, '-') === parentName,
   );
 
   if (!parent?.items) return undefined;
 
   // Find child item
   return parent.items.find(
-    (item) => item.title.toLowerCase().replace(/\s+/g, '-') === pageName,
+    (item) => item.title?.toLowerCase().replace(/\s+/g, '-') === pageName,
   );
 };
 

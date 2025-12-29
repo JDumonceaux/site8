@@ -22,7 +22,7 @@
       "@features/*": ["features/*"],
       "@hooks/*": ["hooks/*"],
       "@lib/*": ["lib/*"],
-      "@providers/*": ["providers/*"],
+      "@providers/*": ["app/providers/*"],
       "@shared/*": ["shared/*"],
       "@store/*": ["store/*"],
       "@styles/*": ["styles/*"],

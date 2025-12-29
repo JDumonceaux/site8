@@ -1,4 +1,4 @@
-import { memo, type JSX, useEffect, useState } from 'react';
+import { memo, type JSX } from 'react';
 
 import type { Places } from '@site8/shared';
 import Skeleton from './Skeleton';

@@ -4,7 +4,7 @@ import AppProvider from '@providers/AppProvider';
 import { usePreloadResources } from './usePreloadResources';
 
 // Lazy‐load the router for code-splitting
-const AppRouter = lazy(async () => import('@providers/RouterProvider'));
+const AppRouter = lazy(async () => import('./RouterProvider'));
 
 /**
  * Root application component

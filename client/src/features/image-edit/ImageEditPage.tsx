@@ -4,13 +4,11 @@ import { useParams } from 'react-router-dom';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
-import ImageSelector from '@components/custom/image-selector/ImageSelector';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import Layout from '@features/layouts/layout/Layout';
-import type { Image } from '@types';
 import useImageEdit from './useImageEdit';
 import styled from 'styled-components';
 
@@ -40,12 +38,6 @@ const ImageEditPage = (): JSX.Element => {
     })();
   };
 
-  const handleSelectImage = (item: Image | undefined) => {
-    if (item) {
-      setMessage(`Image selected: ${item.title ?? item.fileName ?? 'Unknown'}`);
-    }
-  };
-
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
 
   const inputTitleRef = useRef<HTMLInputElement>(null);
@@ -62,15 +54,6 @@ const ImageEditPage = (): JSX.Element => {
       <Layout.Main>
         <Layout.Section>
           <PageTitle title={title}>
-            {isSaved ? null : (
-              <StyledPlainButton
-                data-testid="button-save"
-                type="submit"
-                onClick={handleSubmit}
-              >
-                Save
-              </StyledPlainButton>
-            )}
             <StyledLink
               data-testid="nav-new"
               to="/admin/image/edit"
@@ -89,6 +72,14 @@ const ImageEditPage = (): JSX.Element => {
               onClick={resetForm}
             >
               Reset
+            </StyledPlainButton>
+            <StyledPlainButton
+              data-testid="button-save-bottom"
+              disabled={isSaved}
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Save
             </StyledPlainButton>
           </PageTitle>
           <LoadingWrapper isLoading={isProcessing}>
@@ -167,7 +158,30 @@ const ImageEditPage = (): JSX.Element => {
                 </form>
               </FormContainer>
               <ImageContainer>
-                <ImageSelector onSelectImage={handleSelectImage} />
+                {formValues.src ? (
+                  <StyledImageDisplay>
+                    <StyledImage
+                      alt={
+                        formValues.name ||
+                        formValues.fileName ||
+                        'Image preview'
+                      }
+                      src={formValues.src}
+                    />
+                    <StyledImageInfo>
+                      {formValues.name && <h3>{formValues.name}</h3>}
+                      {formValues.folder && <p>Folder: {formValues.folder}</p>}
+                      {formValues.fileName && (
+                        <p>File: {formValues.fileName}</p>
+                      )}
+                      {formValues.location && (
+                        <p>Location: {formValues.location}</p>
+                      )}
+                    </StyledImageInfo>
+                  </StyledImageDisplay>
+                ) : (
+                  <StyledPlaceholder>No image to display</StyledPlaceholder>
+                )}
               </ImageContainer>
             </StyledContainer>
           </LoadingWrapper>
@@ -185,8 +199,46 @@ const StyledContainer = styled.div`
 `;
 const ImageContainer = styled.div`
   flex-basis: 30%;
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
 `;
 const FormContainer = styled.div`
   flex-basis: 70%;
 `;
 
+const StyledImageDisplay = styled.div`
+  border: 1px solid var(--border-light, #e0e0e0);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
+const StyledImageInfo = styled.div`
+  padding: 1rem;
+  h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+`;
+
+const StyledPlaceholder = styled.div`
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  border: 1px dashed var(--border-light, #e0e0e0);
+  border-radius: 8px;
+`;

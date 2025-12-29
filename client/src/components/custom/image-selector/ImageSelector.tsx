@@ -2,8 +2,8 @@ import {
   type JSX,
   type KeyboardEvent,
   type MouseEvent,
-  useCallback,
   useDeferredValue,
+  useEffectEvent,
   useMemo,
   useState,
 } from 'react';
@@ -25,18 +25,15 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
   const { data } = useUnmatchedImages();
   const [selectedItem, setSelectedItem] = useState<Image | undefined>();
 
-  const handleShowAll = useCallback((): void => {
+  const handleShowAll = useEffectEvent((): void => {
     setSelectedItem(undefined);
-  }, []);
+  });
 
-  const handleShowUnmatched = useCallback(
-    (checked: boolean): void => {
-      setShowUnmatched(checked);
-    },
-    [setShowUnmatched],
-  );
+  const handleShowUnmatched = useEffectEvent((checked: boolean): void => {
+    setShowUnmatched(checked);
+  });
 
-  const handleSelect = useCallback(
+  const handleSelect = useEffectEvent(
     (e: MouseEvent<HTMLButtonElement>): void => {
       e.preventDefault();
       const id = Number(e.currentTarget.id);
@@ -44,10 +41,9 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
       setSelectedItem(item);
       onSelectImage(item);
     },
-    [data?.items, onSelectImage],
   );
 
-  const handleKeyboardSelect = useCallback(
+  const handleKeyboardSelect = useEffectEvent(
     (e: KeyboardEvent<HTMLButtonElement>): void => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -57,7 +53,6 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
         onSelectImage(item);
       }
     },
-    [data?.items, onSelectImage],
   );
 
   const filteredData = useMemo(
@@ -166,4 +161,3 @@ const ImageButton = styled.button<{ $selected: boolean }>`
     outline-offset: 2px;
   }
 `;
-

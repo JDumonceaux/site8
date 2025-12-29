@@ -1,7 +1,7 @@
 import type { JSX, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
-import store from '../store/store';
+import store from '../../store/store';
 
 type ReduxProviderProps = {
   /** React nodes to be wrapped by the Redux store provider */

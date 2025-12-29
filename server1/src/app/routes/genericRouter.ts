@@ -1,8 +1,8 @@
 import express from 'express';
 
-import { getItemByName } from '../lib/generic/getItem.js';
-import { requireName } from '../middleware/requireName.js';
-import { asyncHandler } from '../utils/routerUtils.js';
+import { getItemByName } from '../../lib/generic/getItem.js';
+import { requireName } from '../../middleware/requireName.js';
+import { asyncHandler } from '../../utils/routerUtils.js';
 
 const VALIDATION_MIDDLEWARE = [requireName];
 

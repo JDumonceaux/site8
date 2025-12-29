@@ -25,6 +25,7 @@ type Props = {
     event: React.ChangeEvent<HTMLInputElement>,
   ) => void;
   readonly onDelete: (lineId: number) => void;
+  readonly onSelect?: (lineId: number) => void;
 };
 
 const ImageDetail = ({
@@ -34,9 +35,14 @@ const ImageDetail = ({
   onChange,
   onChangeCheckbox,
   onDelete,
+  onSelect,
 }: Props): JSX.Element => {
   const handleOnDelete = () => {
     onDelete(item.lineId);
+  };
+
+  const handleImageClick = () => {
+    onSelect?.(item.lineId);
   };
 
   const fileNameValue = getFieldValue(item.lineId, 'fileName');
@@ -46,7 +52,7 @@ const ImageDetail = ({
 
   return (
     <StyledRow $deleted={item.delete ? 'true' : 'false'}>
-      <StyledImgContainer>
+      <StyledImgContainer onClick={handleImageClick}>
         <StyledImg
           alt="unknown"
           src={item.src}
@@ -104,6 +110,11 @@ const StyledImgContainer = styled.div`
   display: flex;
   margin-inline-end: 20px;
   width: 250px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 const StyledImg = styled.img`
   max-width: 250px;
@@ -126,4 +137,3 @@ const StyledRow = styled.div<{
 const StyledOuterRow = styled.div`
   flex-grow: 1;
 `;
-

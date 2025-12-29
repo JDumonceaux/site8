@@ -3,8 +3,8 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import MainErrorFallback from '../components/core/MainErrorFallback';
-import { logError } from '../lib/utils/errorLogger';
+import MainErrorFallback from '../../components/core/MainErrorFallback';
+import { logError } from '../../lib/utils/errorLogger';
 import ReduxProvider from './ReduxProvider';
 
 type AppProviderProps = {

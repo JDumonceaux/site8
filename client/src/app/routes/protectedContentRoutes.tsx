@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../providers/ProtectedRoute';
 
 // ---------------------
 // Layouts
@@ -20,6 +20,7 @@ const BookmarkPage = lazy(
   async () => import('../../features/bookmarks/BookmarkPage'),
 );
 const TravelPage = lazy(async () => import('../../features/travel/TravelPage'));
+const ImagesPage = lazy(async () => import('../../features/images/ImagesPage'));
 const GenericPage = lazy(
   async () => import('../../features/generic/GenericPage'),
 );
@@ -163,6 +164,35 @@ export const protectedContentRoutes = (
       <Route
         index
         element={<TravelPage />}
+      />
+      <Route
+        path=":country"
+        element={<TravelPage />}
+      />
+      <Route
+        path=":country/:city"
+        element={<TravelPage />}
+      />
+      <Route
+        path=":country/:city/:item"
+        element={<TravelPage />}
+      />
+    </Route>
+
+    {/* Images Gallery */}
+    <Route element={<GenericLayout />}>
+      <Route
+        index
+        element={<ImagesPage />}
+        path="images"
+      />
+      <Route
+        path="images/:folder"
+        element={<ImagesPage />}
+      />
+      <Route
+        path="images/tag/:tag"
+        element={<ImagesPage />}
       />
     </Route>
 

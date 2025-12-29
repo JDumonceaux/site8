@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import type { QueryClient } from '@tanstack/react-query';
 
 import { pageLoader } from '../../features/page-edit/pagePrefetch';
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../providers/ProtectedRoute';
 
 // ---------------------
 // Layout

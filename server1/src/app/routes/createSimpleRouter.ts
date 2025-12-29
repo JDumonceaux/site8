@@ -1,6 +1,6 @@
 import express, { type Request, type Response, type Router } from 'express';
 
-import { asyncHandler } from '../utils/routerUtils.js';
+import { asyncHandler } from '../../utils/routerUtils.js';
 
 type SimpleRouterConfig = {
   /** The handler function to call for GET / */

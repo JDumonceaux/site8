@@ -1,11 +1,10 @@
 import {
   type ChangeEvent,
-  useCallback,
   useEffect,
+  useEffectEvent,
   useOptimistic,
   useState,
 } from 'react';
-import { useEffectEvent } from 'react';
 
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useForm from '@hooks/useForm';
@@ -14,7 +13,6 @@ import { getSRC } from '@lib/utils/helpers';
 import { safeParse } from '@lib/utils/zodHelper';
 import type { Image } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 import imageEditSchema, { type FormKeys, type FormType } from './schema';
 import useImage from './useImage';
 
@@ -63,13 +61,23 @@ export const useImageEdit = (
   // TanStack Query mutation for saving images
   const mutation = useMutation({
     mutationFn: async (payload: Image) => {
-      if (payload.id > 0) {
-        return axios.patch<Image>(
-          `${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`,
-          payload,
-        );
+      const url =
+        payload.id > 0
+          ? `${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`
+          : ServiceUrl.ENDPOINT_IMAGE;
+      const method = payload.id > 0 ? 'PATCH' : 'PUT';
+
+      const response = await fetch(url, {
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' },
+        method,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return axios.put<Image>(ServiceUrl.ENDPOINT_IMAGE, payload);
+
+      return (await response.json()) as Image;
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
@@ -102,25 +110,20 @@ export const useImageEdit = (
   }, [imageData, setFormValues]);
 
   // Form helpers
-  const getDefaultProps = useCallback(
-    (field: FormKeys) => ({
-      'data-id': field,
-      'data-line': 0,
-      onChange: (
-        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-      ) => {
-        setFieldValue(field, event.target.value);
-      },
-      value: getFieldValue(field),
-    }),
-    [getFieldValue, setFieldValue],
-  );
+  const getDefaultProps = (field: FormKeys) => ({
+    'data-id': field,
+    'data-line': 0,
+    onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFieldValue(field, event.target.value);
+    },
+    value: getFieldValue(field),
+  });
 
-  const validateForm = useCallback(() => {
+  const validateForm = useEffectEvent(() => {
     const result = safeParse<FormType>(imageEditSchema, formValues);
     setErrors(result.success ? null : (result.error?.issues ?? null));
     return result.success;
-  }, [formValues, setErrors]);
+  });
 
   // Save state with optimistic updates
   const [isSaved, setIsSaved] = useState(true);
@@ -129,7 +132,7 @@ export const useImageEdit = (
     (_state, newValue: boolean) => newValue,
   );
 
-  const saveItem = useCallback(async () => {
+  const saveItem = useEffectEvent(async () => {
     if (!validateForm()) return false;
 
     const payload: Image = {
@@ -153,9 +156,9 @@ export const useImageEdit = (
       console.error('Failed to save image:', error);
       return false;
     }
-  }, [formValues, mutation, setOptimisticSaved, validateForm]);
+  });
 
-  const resetForm = useCallback(() => {
+  const resetForm = useEffectEvent(() => {
     if (imageData) {
       const formData: FormType = {
         ...defaultForm,
@@ -170,13 +173,13 @@ export const useImageEdit = (
     }
     setIsSaved(true);
     setErrors(null);
-  }, [imageData, setErrors, setFormValues]);
+  });
 
-  const clearForm = useCallback(() => {
+  const clearForm = useEffectEvent(() => {
     setFormValues(defaultForm);
     setIsSaved(true);
     setErrors(null);
-  }, [setErrors, setFormValues]);
+  });
 
   // Update unsaved flag when values change
   const checkUnsaved = useEffectEvent(() => {

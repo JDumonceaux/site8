@@ -1232,6 +1232,27 @@
       "text": "Structural",
       "value": "Look for structural issues in client and server codebases and recommend improvements.",
       "projectType": ["chat"]
+    },
+    {
+      "id": 630,
+      "name": "Update",
+      "text": "useEffectEvent",
+      "value": "useEffectEvent is stable.  Look for opportunities in the code to use this function.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 631,
+      "name": "Update",
+      "text": "Skeleton",
+      "value": "Create Skeleton components for loading states to improve user experience during data fetching.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 631,
+      "name": "Data Quality",
+      "text": "Sequential ids",
+      "value": "Ensure that all ids in the data are sequential and unique to maintain data integrity.",
+      "projectType": ["chat"]
     }
   ]
 }

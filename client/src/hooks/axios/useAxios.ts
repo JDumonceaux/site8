@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useEffectEvent, useState } from 'react';
 
 import { useAsyncOperation } from '../useAsyncOperation';
 
@@ -14,49 +14,43 @@ export const useAxios = <T>(): UseAxiosReturn<T> => {
   const [data, setData] = useState<null | T>(null);
   const { execute, error, isLoading } = useAsyncOperation<Error>();
 
-  const patchData = useCallback(
-    async (url: string, payload: unknown) => {
-      const result = await execute(async () => {
-        const response = await fetch(url, {
-          body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'application/json' },
-          method: 'PATCH',
-        });
-        if (!response.ok)
-          throw new Error(`HTTP error! status: ${response.status}`);
-        return (await response.json()) as T;
+  const patchData = useEffectEvent(async (url: string, payload: unknown) => {
+    const result = await execute(async () => {
+      const response = await fetch(url, {
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PATCH',
       });
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
+      return (await response.json()) as T;
+    });
 
-      if (result) {
-        setData(result);
-        return result;
-      }
-      return null;
-    },
-    [execute],
-  );
+    if (result) {
+      setData(result);
+      return result;
+    }
+    return null;
+  });
 
-  const putData = useCallback(
-    async (url: string, payload: unknown) => {
-      const result = await execute(async () => {
-        const response = await fetch(url, {
-          body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'application/json' },
-          method: 'PUT',
-        });
-        if (!response.ok)
-          throw new Error(`HTTP error! status: ${response.status}`);
-        return (await response.json()) as T;
+  const putData = useEffectEvent(async (url: string, payload: unknown) => {
+    const result = await execute(async () => {
+      const response = await fetch(url, {
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'PUT',
       });
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
+      return (await response.json()) as T;
+    });
 
-      if (result) {
-        setData(result);
-        return result;
-      }
-      return null;
-    },
-    [execute],
-  );
+    if (result) {
+      setData(result);
+      return result;
+    }
+    return null;
+  });
 
   return { data, error, isLoading, patchData, putData };
 };
