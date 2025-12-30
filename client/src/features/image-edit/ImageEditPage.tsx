@@ -8,6 +8,7 @@ import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
+import { getSRC } from '@lib/utils/helpers';
 import Layout from '@features/layouts/layout/Layout';
 import useImageEdit from './useImageEdit';
 import styled from 'styled-components';
@@ -40,10 +41,17 @@ const ImageEditPage = (): JSX.Element => {
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
 
+  const previewSrc =
+    (formValues.url && formValues.url.trim()) ||
+    (formValues.fileName
+      ? getSRC(formValues.folder ?? '', formValues.fileName ?? '')
+      : '');
+
   const inputTitleRef = useRef<HTMLInputElement>(null);
   const focusInputEvent = useEffectEvent(() => {
     inputTitleRef.current?.focus();
   });
+
   useEffect(() => {
     focusInputEvent();
   }, []);
@@ -94,22 +102,13 @@ const ImageEditPage = (): JSX.Element => {
                     isRequired
                     spellCheck
                     enterKeyHint="next"
-                    label="Short Title"
+                    label="Name"
                     autoCapitalize="off"
                     inputMode="text"
                     {...getDefaultProps('name')}
                   />
                   <Input.Text
-                    isRequired
-                    spellCheck
-                    enterKeyHint="next"
-                    label="Location"
-                    autoCapitalize="off"
-                    inputMode="text"
-                    {...getDefaultProps('location')}
-                  />
-                  <Input.Text
-                    isRequired
+                    isRequired={false}
                     spellCheck
                     enterKeyHint="next"
                     label="File Name"
@@ -118,27 +117,16 @@ const ImageEditPage = (): JSX.Element => {
                     {...getDefaultProps('fileName')}
                   />
                   <Input.Text
-                    isRequired
-                    spellCheck
-                    enterKeyHint="next"
-                    label="SRC"
-                    autoCapitalize="off"
-                    inputMode="text"
-                    {...getDefaultProps('src')}
-                  />
-                  <Input.Text
                     isRequired={false}
                     label="Folder"
                     {...getDefaultProps('folder')}
                   />
                   <Input.Text
-                    spellCheck
                     enterKeyHint="next"
-                    isRequired={false}
-                    label="Official URL"
+                    label="URL"
                     autoCapitalize="off"
-                    inputMode="url"
-                    {...getDefaultProps('official_url')}
+                    inputMode="text"
+                    {...getDefaultProps('url')}
                   />
                   <Input.Text
                     spellCheck
@@ -152,13 +140,13 @@ const ImageEditPage = (): JSX.Element => {
                   <Input.TextArea
                     spellCheck
                     label="Description"
-                    rows={30}
+                    rows={10}
                     {...getDefaultProps('description')}
                   />
                 </form>
               </FormContainer>
               <ImageContainer>
-                {formValues.src ? (
+                {previewSrc ? (
                   <StyledImageDisplay>
                     <StyledImage
                       alt={
@@ -166,16 +154,13 @@ const ImageEditPage = (): JSX.Element => {
                         formValues.fileName ||
                         'Image preview'
                       }
-                      src={formValues.src}
+                      src={previewSrc}
                     />
                     <StyledImageInfo>
                       {formValues.name && <h3>{formValues.name}</h3>}
                       {formValues.folder && <p>Folder: {formValues.folder}</p>}
                       {formValues.fileName && (
                         <p>File: {formValues.fileName}</p>
-                      )}
-                      {formValues.location && (
-                        <p>Location: {formValues.location}</p>
                       )}
                     </StyledImageInfo>
                   </StyledImageDisplay>

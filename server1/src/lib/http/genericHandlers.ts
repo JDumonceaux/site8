@@ -248,7 +248,11 @@ export const createPatchHandler = <T>({
       const service = getService();
 
       try {
-        const updatedId = await service.updateItem(data as T);
+        // Prefer `patchItem` when available on the service, fall back to `updateItem` for compatibility
+        const updatedId =
+          typeof (service as any).patchItem === 'function'
+            ? await (service as any).patchItem(data as T)
+            : await service.updateItem(data as T);
 
         if (returnRepresentation) {
           const result = await service.getItem(updatedId);

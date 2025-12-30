@@ -3,9 +3,9 @@ import express from 'express';
 import { deleteItem } from '../../features/image/deleteItem.js';
 import { getItem } from '../../features/image/getItem.js';
 import { patchItem } from '../../features/image/patchItem.js';
-import { putItem } from '../../features/image/putItem.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 import { requireNumericId } from '../../middleware/requireNumericId.js';
+import { postItem } from '../../features/image/postItem.js';
 
 const VALIDATION_MIDDLEWARE = [requireNumericId];
 
@@ -13,5 +13,9 @@ export const imageRouter = express.Router();
 
 imageRouter.get('/:id', VALIDATION_MIDDLEWARE, asyncHandler(getItem));
 imageRouter.delete('/:id', VALIDATION_MIDDLEWARE, asyncHandler(deleteItem));
-imageRouter.put('/', asyncHandler(putItem));
+// Full update
+// imageRouter.put('/', asyncHandler(putItem));
+// Partial update
 imageRouter.patch('/', asyncHandler(patchItem));
+// Create New Resource
+imageRouter.post('/', asyncHandler(postItem));

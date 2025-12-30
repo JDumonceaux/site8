@@ -4,42 +4,58 @@ import { z } from "zod";
  * Image type - represents an image with metadata
  */
 export type Image = {
-  readonly alt?: string;
-  readonly create_date?: string;
-  readonly description?: string;
-  readonly edit_date?: string;
+  readonly id: number;
+  readonly name?: string;
   readonly fileName?: string;
   readonly folder?: string;
-  readonly id: number;
-  readonly location?: string;
-  readonly name?: string;
-  readonly official_url?: string;
-  readonly role?: string;
-  readonly src?: string;
-  readonly tags?: string[];
-  readonly title?: string;
   readonly url?: string;
+  readonly tags?: string;
+  readonly description?: string;
+  readonly width?: number;
+  readonly height?: number;
+  readonly size?: number;
 };
 
 /**
  * Image edit schema for validation
  */
+const urlPattern = /^https?:\/\/.+/i;
+
 export const ImageEditSchema = z.object({
-  alt: z.string().nullish(),
-  create_date: z.string().nullish(),
-  description: z.string().nullish(),
-  edit_date: z.string().nullish(),
-  fileName: z.string().nullish(),
-  folder: z.string().nullish(),
   id: z.number(),
-  location: z.string().nullish(),
-  name: z.string().nullish(),
-  official_url: z.string().nullish(),
-  role: z.string().nullish(),
-  src: z.string().nullish(),
-  tags: z.array(z.string()).nullish(),
-  title: z.string().nullish(),
-  url: z.string().nullish(),
+  name: z
+    .string({ message: "Name must be a string" })
+    .trim()
+    .max(100, "Name max length exceeded: 100")
+    .optional(),
+  fileName: z
+    .string({ message: "File name must be a string" })
+    .trim()
+    .max(255, "File name max length exceeded: 255")
+    .optional(),
+  folder: z
+    .string({ message: "Folder must be a string" })
+    .trim()
+    .max(255, "Folder max length exceeded: 255")
+    .optional(),
+  url: z
+    .string({ message: "URL must be a string" })
+    .trim()
+    .max(500, "URL max length exceeded: 500")
+    .optional()
+    .refine((v) => !v || urlPattern.test(v), {
+      message: "Must be a valid URL",
+    }),
+  tags: z
+    .string({ message: "Tags must be a string" })
+    .trim()
+    .max(500, "Tags max length exceeded: 500")
+    .optional(),
+  description: z
+    .string({ message: "Description must be a string" })
+    .trim()
+    .max(2000, "Description max length exceeded: 2000")
+    .optional(),
 });
 
 /**

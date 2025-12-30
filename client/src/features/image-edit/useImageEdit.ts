@@ -9,11 +9,21 @@ import {
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
-import { getSRC } from '@lib/utils/helpers';
 import { safeParse } from '@lib/utils/zodHelper';
-import type { Image } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import imageEditSchema, { type FormKeys, type FormType } from './schema';
+import { ImageEditSchema } from '@site8/shared';
+
+// Local form type — keep minimal allowed props to avoid mismatches with built dist types
+type FormType = {
+  id: number;
+  name?: string;
+  fileName?: string;
+  folder?: string;
+  url?: string;
+  tags?: string;
+  description?: string;
+};
+type FormKeys = keyof FormType;
 import useImage from './useImage';
 
 type UseImageEditReturn = {
@@ -36,13 +46,13 @@ type UseImageEditReturn = {
 
 // Consistent default form shape
 const defaultForm: FormType = {
+  id: 0,
+  name: '',
   fileName: '',
   folder: '',
-  id: 0,
-  location: '',
-  name: '',
-  official_url: '',
-  src: '',
+  url: '',
+  tags: '',
+  description: '',
 };
 
 /**
@@ -60,12 +70,12 @@ export const useImageEdit = (
 
   // TanStack Query mutation for saving images
   const mutation = useMutation({
-    mutationFn: async (payload: Image) => {
+    mutationFn: async (payload: any) => {
       const url =
         payload.id > 0
           ? `${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`
           : ServiceUrl.ENDPOINT_IMAGE;
-      const method = payload.id > 0 ? 'PATCH' : 'PUT';
+      const method = 'PATCH';
 
       const response = await fetch(url, {
         body: JSON.stringify(payload),
@@ -77,7 +87,7 @@ export const useImageEdit = (
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return (await response.json()) as Image;
+      return (await response.json()) as any;
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
@@ -101,10 +111,12 @@ export const useImageEdit = (
       fileName: imageData.fileName ?? '',
       folder: imageData.folder ?? '',
       id: imageData.id,
-      location: imageData.location ?? '',
-      name: imageData.title ?? '',
-      official_url: imageData.official_url ?? '',
-      src: getSRC(imageData.folder, imageData.fileName),
+      name: (imageData as any).title ?? imageData.name ?? '',
+      url: (imageData as any).url ?? (imageData as any).official_url ?? '',
+      tags: Array.isArray((imageData as any).tags)
+        ? (imageData as any).tags.join(',')
+        : ((imageData as any).tags ?? ''),
+      description: (imageData as any).description ?? '',
     };
     setFormValues(formData);
   }, [imageData, setFormValues]);
@@ -120,7 +132,7 @@ export const useImageEdit = (
   });
 
   const validateForm = useEffectEvent(() => {
-    const result = safeParse<FormType>(imageEditSchema, formValues);
+    const result = safeParse<FormType>(ImageEditSchema, formValues);
     setErrors(result.success ? null : (result.error?.issues ?? null));
     return result.success;
   });
@@ -135,13 +147,14 @@ export const useImageEdit = (
   const saveItem = useEffectEvent(async () => {
     if (!validateForm()) return false;
 
-    const payload: Image = {
+    const payload: Partial<FormType> & { id: number } = {
+      id: formValues.id,
       fileName: formValues.fileName,
       folder: formValues.folder,
-      id: formValues.id,
-      location: formValues.location,
-      official_url: formValues.official_url,
-      title: formValues.name,
+      name: formValues.name,
+      url: formValues.url,
+      tags: formValues.tags,
+      description: formValues.description,
     };
 
     try {
@@ -165,9 +178,12 @@ export const useImageEdit = (
         fileName: imageData.fileName ?? '',
         folder: imageData.folder ?? '',
         id: imageData.id,
-        location: imageData.location ?? '',
-        official_url: imageData.official_url ?? '',
-        src: getSRC(imageData.folder, imageData.fileName),
+        name: (imageData as any).title ?? imageData.name ?? '',
+        url: (imageData as any).url ?? (imageData as any).official_url ?? '',
+        tags: Array.isArray((imageData as any).tags)
+          ? (imageData as any).tags.join(',')
+          : ((imageData as any).tags ?? ''),
+        description: (imageData as any).description ?? '',
       };
       setFormValues(formData);
     }
@@ -190,14 +206,12 @@ export const useImageEdit = (
     // Deep equality check for all fields
     const keys = Object.keys(defaultForm) as (keyof FormType)[];
     const hasChanges = keys.some((key) => {
-      if (key === 'src') {
-        // src is derived, compare with calculated value
-        return formValues.src !== getSRC(imageData.folder, imageData.fileName);
-      }
       if (key === 'name') {
-        return formValues.name !== (imageData.title ?? '');
+        return (
+          formValues.name !== ((imageData as any).title ?? imageData.name ?? '')
+        );
       }
-      return formValues[key] !== (imageData[key as keyof Image] ?? '');
+      return formValues[key] !== ((imageData as any)[key as string] ?? '');
     });
     setIsSaved(!hasChanges);
   });
