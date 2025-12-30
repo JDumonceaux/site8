@@ -141,17 +141,25 @@ export class RequestValidator {
    */
   public static validateIdConsistency(
     urlId: string,
-    bodyId?: string,
+    bodyId?: string | number,
   ): ValidationResult<void> {
-    if (bodyId && bodyId !== urlId) {
-      return {
-        errorMessage: 'ID in request body must match ID in URL',
-        isValid: false,
-      };
+    if (bodyId === undefined || bodyId === null) {
+      return { isValid: true };
+    }
+
+    const numUrl = Number(urlId);
+    const numBody = Number(bodyId as any);
+    if (
+      Number.isFinite(numUrl) &&
+      Number.isFinite(numBody) &&
+      numUrl === numBody
+    ) {
+      return { isValid: true };
     }
 
     return {
-      isValid: true,
+      errorMessage: 'ID in request body must match ID in URL',
+      isValid: false,
     };
   }
 }

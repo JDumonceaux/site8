@@ -213,9 +213,11 @@ export const createPatchHandler = <T>({
       }
       const id = idValidation.data!;
 
-      // Validate request body with ID
+      // Validate request body with ID. Ensure the id passed into the
+      // validation is a number (Zod expects numeric `id`). Convert here
+      // before merging so validation errors report correctly.
       const validation = RequestValidator.validateBodyWithData(req, schema, {
-        id,
+        id: Number(id),
       });
       if (!validation.isValid) {
         ResponseHelper.badRequest(res, validation.errorMessage!);

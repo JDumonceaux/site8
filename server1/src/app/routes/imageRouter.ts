@@ -16,6 +16,7 @@ imageRouter.delete('/:id', VALIDATION_MIDDLEWARE, asyncHandler(deleteItem));
 // Full update
 // imageRouter.put('/', asyncHandler(putItem));
 // Partial update
-imageRouter.patch('/', asyncHandler(patchItem));
+// Partial update (expects id param)
+imageRouter.patch('/:id', VALIDATION_MIDDLEWARE, asyncHandler(patchItem));
 // Create New Resource
 imageRouter.post('/', asyncHandler(postItem));

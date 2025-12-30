@@ -220,7 +220,7 @@ export class ImageService {
 
       const handle = await fs.promises.open(filePath, 'r');
       try {
-        const toRead = Math.min(65536, size);
+        const toRead = Math.min(16384, size);
         const { buffer } = await handle.read({ length: toRead, position: 0 });
         const dims = this.parseImageDimensions(Buffer.from(buffer));
         return { width: dims?.width, height: dims?.height, size };

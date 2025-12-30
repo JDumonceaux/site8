@@ -73,7 +73,7 @@ export class TravelService extends BaseDataService<Places> {
               ...imgRef,
               fileName: fullImageData.fileName,
               folder: fullImageData.folder,
-              location: fullImageData.location,
+              //  location: fullImageData.location,
               name: fullImageData.name,
             };
           })
