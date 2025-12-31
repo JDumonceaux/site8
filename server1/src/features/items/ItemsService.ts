@@ -20,11 +20,11 @@ export class ItemsService extends BaseDataService<ItemsFile> {
 
   // Get all data - returns only items and metadata (not artists)
   public async getAllItems(): Promise<Items | undefined> {
-    const ret = await this.readFile();
+    const fileData = await this.readFile();
     return {
-      artists: ret?.artists ?? [],
-      items: ret?.items ?? [],
-      metadata: ret?.metadata ?? { title: 'items' },
+      artists: fileData?.artists ?? [],
+      items: fileData?.items ?? [],
+      metadata: fileData?.metadata ?? { title: 'items' },
     };
   }
 

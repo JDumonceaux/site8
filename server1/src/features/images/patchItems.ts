@@ -9,8 +9,6 @@ export const patchItems = async (
   req: Request,
   res: Response<Images>,
 ): Promise<void> => {
-  //const Prefer = req.get('Prefer');
-  //const returnRepresentation = Prefer === PreferHeader.REPRESENTATION;
   const data = req.body as Images;
 
   Logger.info(`Images: Patch Images called: `);
@@ -23,12 +21,4 @@ export const patchItems = async (
     Logger.error('Images: Patch Items error:', error);
     res.sendStatus(500);
   }
-
-  // if (returnRepresentation) {
-  //   const ret = await service.getItem(id);
-  //   // 201 Created
-  //   res.status(201).json(ret);
-  // } else {
-  //   res.status(201).json({ results: Responses.SUCCESS });
-  // }
 };

@@ -8,6 +8,44 @@ import FilePath from '../../lib/filesystem/FilePath.js';
 import fs from 'fs';
 import path from 'path';
 
+/**
+ * Constants for image file parsing
+ */
+const IMAGE_CONSTANTS = {
+  MAX_HEADER_BYTES: 16384,
+  PNG: {
+    MIN_HEADER_SIZE: 24,
+    SIGNATURE: 0x89504e47,
+    WIDTH_OFFSET: 16,
+    HEIGHT_OFFSET: 20,
+  },
+  GIF: {
+    MIN_HEADER_SIZE: 10,
+    SIGNATURE: 'GIF',
+    WIDTH_OFFSET: 6,
+    HEIGHT_OFFSET: 8,
+  },
+  JPEG: {
+    MIN_HEADER_SIZE: 2,
+    MARKER_START: 0xff,
+    SOI_MARKER: 0xd8,
+    INVALID_SOF_MARKERS: [0xc4, 0xc8, 0xcc],
+    SOF_MIN: 0xc0,
+    SOF_MAX: 0xcf,
+    HEIGHT_OFFSET: 5,
+    WIDTH_OFFSET: 7,
+  },
+} as const;
+
+/**
+ * Extended type for ImageAdd with optional alternative property names
+ */
+type ImageAddExtended = ImageAdd & {
+  title?: string;
+  official_url?: string;
+  description?: string;
+};
+
 export class ImageService {
   public async addItem(data: ImageAdd): Promise<number> {
     Logger.info('ImageService: addItem ->');
@@ -20,19 +58,22 @@ export class ImageService {
         throw new Error('addItem -> No data found');
       }
       const idNew = (await imagesService.getNextId()) ?? 0;
+
+      // Normalize the input data with proper typing
+      const extended = updatedItem as ImageAddExtended;
+
       // Build new Image using allowed properties only
       const baseItem: Image = {
         id: idNew,
-        name: (updatedItem as any).title ?? (updatedItem as any).name ?? '',
+        name: extended.title ?? extended.name ?? '',
         fileName: updatedItem.fileName ?? '',
         folder: updatedItem.folder ?? '',
-        url:
-          (updatedItem as any).url ?? (updatedItem as any).official_url ?? '',
+        url: extended.url ?? extended.official_url ?? '',
         // Normalize tags to a string if present as array
-        tags: Array.isArray((updatedItem as any).tags)
-          ? (updatedItem as any).tags.join(',')
-          : ((updatedItem as any).tags ?? ''),
-        description: (updatedItem as any).description ?? '',
+        tags: Array.isArray(extended.tags)
+          ? extended.tags.join(',')
+          : (extended.tags ?? ''),
+        description: extended.description ?? '',
       };
 
       // If fileName is provided, attempt to read file metrics and add them
@@ -132,55 +173,17 @@ export class ImageService {
         throw new Error('patchItem -> No data found');
       }
 
-      const matches = currentData.items.filter((x) => x.id === data.id);
-      if (matches.length === 0) {
-        throw new Error(`patchItem -> Item with id ${data.id} not found`);
-      }
-      if (matches.length > 1) {
-        throw new Error(
-          `patchItem -> Multiple items with id ${data.id} found: ${matches.length}`,
-        );
-      }
-      const existing = matches[0]!;
-
-      // Merge existing item with provided fields (patch semantics)
-      const mergedBase: Image = {
-        ...existing,
-        ...updatedItem,
-        id: existing.id,
-      };
-
-      // If a filename is present (either updated or existing), attempt to read metrics
-      const fileNameToCheck =
-        (updatedItem as any).fileName ?? existing.fileName ?? '';
-      const folderToCheck =
-        (updatedItem as any).folder ?? existing.folder ?? '';
-      let metrics: { width?: number; height?: number; size?: number } | null =
-        null;
-
-      if (fileNameToCheck) {
-        metrics = await this.getImageFileMetricsIfExists(
-          fileNameToCheck,
-          folderToCheck,
-        );
-      }
-
-      const mergedWithMetrics = { ...mergedBase, ...(metrics ?? {}) };
-      const mergedSanitized = this.pickImageFields(mergedWithMetrics);
-      const mergedRecord = {
-        ...(mergedSanitized as Record<string, unknown>),
-      } as Record<string, unknown>;
-      this.removeEmptyAttributesExceptId(mergedRecord);
-      const finalMerged = mergedRecord as Image;
-
-      const updatedItems = currentData.items.map((it) =>
-        it.id === finalMerged.id ? finalMerged : it,
+      const existing = this.findExistingItem(currentData.items, data.id);
+      const mergedWithMetrics = await this.mergeWithFileMetrics(
+        existing,
+        updatedItem,
       );
+      const finalMerged = this.sanitizeImageItem(mergedWithMetrics);
 
-      const updatedFile: Images = {
-        items: updatedItems,
-        metadata: currentData.metadata,
-      };
+      const updatedFile = this.replaceItemInCollection(
+        currentData,
+        finalMerged,
+      );
 
       await this.writeImageData(imagesService, updatedFile);
       return finalMerged.id;
@@ -188,6 +191,79 @@ export class ImageService {
       Logger.error(`ImageService: patchItem -> ${String(error)}`);
       throw new Error('patch failed');
     }
+  }
+
+  /**
+   * Find existing item by ID with validation
+   */
+  private findExistingItem(items: readonly Image[], id: number): Image {
+    const matches = items.filter((x) => x.id === id);
+    if (matches.length === 0) {
+      throw new Error(`patchItem -> Item with id ${id} not found`);
+    }
+    if (matches.length > 1) {
+      throw new Error(
+        `patchItem -> Multiple items with id ${id} found: ${matches.length}`,
+      );
+    }
+    return matches[0]!;
+  }
+
+  /**
+   * Merge existing item with updates and enrich with file metrics
+   */
+  private async mergeWithFileMetrics(
+    existing: Image,
+    updatedItem: Partial<Image>,
+  ): Promise<Image> {
+    const mergedBase: Image = {
+      ...existing,
+      ...updatedItem,
+      id: existing.id,
+    };
+
+    const updatedPartial = updatedItem as Partial<Image>;
+    const fileNameToCheck = updatedPartial.fileName ?? existing.fileName ?? '';
+    const folderToCheck = updatedPartial.folder ?? existing.folder ?? '';
+
+    if (fileNameToCheck) {
+      const metrics = await this.getImageFileMetricsIfExists(
+        fileNameToCheck,
+        folderToCheck,
+      );
+      return { ...mergedBase, ...(metrics ?? {}) };
+    }
+
+    return mergedBase;
+  }
+
+  /**
+   * Sanitize image item by picking valid fields and removing empty attributes
+   */
+  private sanitizeImageItem(item: Image): Image {
+    const sanitized = this.pickImageFields(item);
+    const record = {
+      ...(sanitized as Record<string, unknown>),
+    } as Record<string, unknown>;
+    this.removeEmptyAttributesExceptId(record);
+    return record as Image;
+  }
+
+  /**
+   * Replace an item in the collection and return updated Images
+   */
+  private replaceItemInCollection(
+    currentData: Images,
+    updatedItem: Image,
+  ): Images {
+    const updatedItems = currentData.items.map((it) =>
+      it.id === updatedItem.id ? updatedItem : it,
+    );
+
+    return {
+      items: updatedItems,
+      metadata: currentData.metadata,
+    };
   }
 
   // Backwards-compatible alias for callers expecting updateItem
@@ -220,7 +296,7 @@ export class ImageService {
 
       const handle = await fs.promises.open(filePath, 'r');
       try {
-        const toRead = Math.min(16384, size);
+        const toRead = Math.min(IMAGE_CONSTANTS.MAX_HEADER_BYTES, size);
         const { buffer } = await handle.read({ length: toRead, position: 0 });
         const dims = this.parseImageDimensions(Buffer.from(buffer));
         return { width: dims?.width, height: dims?.height, size };
@@ -237,61 +313,125 @@ export class ImageService {
   private parseImageDimensions(
     buf: Buffer,
   ): { width: number; height: number } | null {
-    if (!buf || buf.length < 10) return null;
+    if (!buf || buf.length < IMAGE_CONSTANTS.GIF.MIN_HEADER_SIZE) return null;
 
-    // PNG
-    if (buf.length >= 24 && buf.readUInt32BE(0) === 0x89504e47) {
-      // PNG signature matches
+    return (
+      this.parsePngDimensions(buf) ||
+      this.parseGifDimensions(buf) ||
+      this.parseJpegDimensions(buf) ||
+      null
+    );
+  }
+
+  /**
+   * Parse PNG image dimensions
+   */
+  private parsePngDimensions(
+    buf: Buffer,
+  ): { width: number; height: number } | null {
+    if (
+      buf.length >= IMAGE_CONSTANTS.PNG.MIN_HEADER_SIZE &&
+      buf.readUInt32BE(0) === IMAGE_CONSTANTS.PNG.SIGNATURE
+    ) {
       try {
-        const width = buf.readUInt32BE(16);
-        const height = buf.readUInt32BE(20);
+        const width = buf.readUInt32BE(IMAGE_CONSTANTS.PNG.WIDTH_OFFSET);
+        const height = buf.readUInt32BE(IMAGE_CONSTANTS.PNG.HEIGHT_OFFSET);
         if (width && height) return { width, height };
       } catch {
         // fallthrough
       }
     }
+    return null;
+  }
 
-    // GIF
-    if (buf.length >= 10 && buf.toString('ascii', 0, 3) === 'GIF') {
-      const width = buf.readUInt16LE(6);
-      const height = buf.readUInt16LE(8);
+  /**
+   * Parse GIF image dimensions
+   */
+  private parseGifDimensions(
+    buf: Buffer,
+  ): { width: number; height: number } | null {
+    if (
+      buf.length >= IMAGE_CONSTANTS.GIF.MIN_HEADER_SIZE &&
+      buf.toString('ascii', 0, 3) === IMAGE_CONSTANTS.GIF.SIGNATURE
+    ) {
+      const width = buf.readUInt16LE(IMAGE_CONSTANTS.GIF.WIDTH_OFFSET);
+      const height = buf.readUInt16LE(IMAGE_CONSTANTS.GIF.HEIGHT_OFFSET);
       return { width, height };
     }
+    return null;
+  }
 
-    // JPEG - look for SOF markers
-    if (buf.length >= 2 && buf[0] === 0xff && buf[1] === 0xd8) {
-      let offset = 2;
-      while (offset < buf.length) {
-        if (buf[offset] !== 0xff) {
-          offset++;
-          continue;
-        }
-        if (offset + 1 >= buf.length) break;
-        const marker = buf[offset + 1];
-        // 0xC0..0xCF are SOF markers (not all), SOF0 (0xC0) and SOF2 (0xC2) commonly
-        if (
-          marker !== undefined &&
-          marker >= 0xc0 &&
-          marker <= 0xcf &&
-          marker !== 0xc4 &&
-          marker !== 0xc8 &&
-          marker !== 0xcc
-        ) {
-          // length is two bytes after marker
-          if (offset + 5 >= buf.length) break;
-          if (offset + 7 >= buf.length) break;
-          const height = buf.readUInt16BE(offset + 5);
-          const width = buf.readUInt16BE(offset + 7);
-          return { width, height };
-        } else {
-          if (offset + 4 >= buf.length) break;
-          const blockLength = buf.readUInt16BE(offset + 2);
-          offset += 2 + blockLength;
-        }
+  /**
+   * Parse JPEG image dimensions by looking for SOF markers
+   */
+  private parseJpegDimensions(
+    buf: Buffer,
+  ): { width: number; height: number } | null {
+    if (
+      buf.length < IMAGE_CONSTANTS.JPEG.MIN_HEADER_SIZE ||
+      buf[0] !== IMAGE_CONSTANTS.JPEG.MARKER_START ||
+      buf[1] !== IMAGE_CONSTANTS.JPEG.SOI_MARKER
+    ) {
+      return null;
+    }
+
+    let offset = 2;
+    while (offset < buf.length) {
+      if (buf[offset] !== IMAGE_CONSTANTS.JPEG.MARKER_START) {
+        offset++;
+        continue;
+      }
+      if (offset + 1 >= buf.length) break;
+
+      const marker = buf[offset + 1];
+      if (this.isValidJpegSOFMarker(marker)) {
+        const dimensions = this.extractJpegDimensions(buf, offset);
+        if (dimensions) return dimensions;
+      } else {
+        const blockLength = this.getJpegBlockLength(buf, offset);
+        if (blockLength === null) break;
+        offset += 2 + blockLength;
       }
     }
 
     return null;
+  }
+
+  /**
+   * Check if marker is a valid JPEG SOF (Start of Frame) marker
+   */
+  private isValidJpegSOFMarker(marker: number | undefined): boolean {
+    return (
+      marker !== undefined &&
+      marker >= IMAGE_CONSTANTS.JPEG.SOF_MIN &&
+      marker <= IMAGE_CONSTANTS.JPEG.SOF_MAX &&
+      !IMAGE_CONSTANTS.JPEG.INVALID_SOF_MARKERS.includes(marker)
+    );
+  }
+
+  /**
+   * Extract dimensions from JPEG SOF marker
+   */
+  private extractJpegDimensions(
+    buf: Buffer,
+    offset: number,
+  ): { width: number; height: number } | null {
+    if (offset + IMAGE_CONSTANTS.JPEG.HEIGHT_OFFSET >= buf.length) return null;
+    if (offset + IMAGE_CONSTANTS.JPEG.WIDTH_OFFSET >= buf.length) return null;
+
+    const height = buf.readUInt16BE(
+      offset + IMAGE_CONSTANTS.JPEG.HEIGHT_OFFSET,
+    );
+    const width = buf.readUInt16BE(offset + IMAGE_CONSTANTS.JPEG.WIDTH_OFFSET);
+    return { width, height };
+  }
+
+  /**
+   * Get JPEG block length from buffer
+   */
+  private getJpegBlockLength(buf: Buffer, offset: number): number | null {
+    if (offset + 4 >= buf.length) return null;
+    return buf.readUInt16BE(offset + 2);
   }
 
   private removeEmptyAttributesExceptId(obj: Record<string, unknown>): void {
@@ -338,19 +478,19 @@ export class ImageService {
     keys: Array<keyof T>,
     defaults: Partial<T> = {},
   ): T {
-    const ret: Record<string, unknown> = {};
+    const result: Record<string, unknown> = {};
     for (const k of keys) {
       const key = String(k);
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        ret[key] = obj[key];
+        result[key] = obj[key];
       } else if (Object.prototype.hasOwnProperty.call(defaults, key)) {
-        ret[key] = (defaults as Record<string, unknown>)[key];
+        result[key] = (defaults as Record<string, unknown>)[key];
       } else {
-        ret[key] = undefined;
+        result[key] = undefined;
       }
     }
 
-    return cleanUpData(ret as any) as T;
+    return cleanUpData(result as T) as T;
   }
 
   private async writeImageData(

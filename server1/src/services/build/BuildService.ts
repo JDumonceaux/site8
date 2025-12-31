@@ -23,9 +23,9 @@ export class BuildService extends BaseDataService<Features> {
   public async build(feature: string): Promise<void> {
     Logger.info(`BuildService: build -> ${feature}`);
     const service = getFileService();
-    const ret = await this.readFile();
+    const buildData = await this.readFile();
 
-    const curr = ret.features.find((f) => f.name === feature);
+    const curr = buildData.features.find((f) => f.name === feature);
 
     if (!curr) {
       return;
@@ -40,6 +40,5 @@ export class BuildService extends BaseDataService<Features> {
         await buildServerType(type, FilePath.getServerTypes());
       }
     }
-    //    buildServerType(curr, FilePath.getClientTypes());
   }
 }

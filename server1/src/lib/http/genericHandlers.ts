@@ -205,20 +205,8 @@ export const createPatchHandler = <T>({
     try {
       const returnRepresentation = PreferHeaderHandler.wantsRepresentation(req);
 
-      // Validate ID parameter
-      const idValidation = RequestValidator.validateIdParam(req);
-      if (!idValidation.isValid) {
-        ResponseHelper.badRequest(res, idValidation.errorMessage!);
-        return;
-      }
-      const id = idValidation.data!;
-
-      // Validate request body with ID. Ensure the id passed into the
-      // validation is a number (Zod expects numeric `id`). Convert here
-      // before merging so validation errors report correctly.
-      const validation = RequestValidator.validateBodyWithData(req, schema, {
-        id: Number(id),
-      });
+      // Validate request body (ID should be in body, not URL)
+      const validation = RequestValidator.validateBody(req, schema);
       if (!validation.isValid) {
         ResponseHelper.badRequest(res, validation.errorMessage!);
         return;
@@ -234,14 +222,10 @@ export const createPatchHandler = <T>({
       }
       data = idConversion.data!;
 
-      // Ensure ID consistency between URL and body
-      const validatedData = data as { id?: string };
-      const consistencyCheck = RequestValidator.validateIdConsistency(
-        id,
-        validatedData.id,
-      );
-      if (!consistencyCheck.isValid) {
-        ResponseHelper.badRequest(res, consistencyCheck.errorMessage!);
+      // Validate ID exists in body
+      const id = (data as any).id;
+      if (!id) {
+        ResponseHelper.badRequest(res, 'ID is required in request body');
         return;
       }
 

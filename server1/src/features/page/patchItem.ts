@@ -54,25 +54,3 @@ export const patchItem = async (
     res.sendStatus(500);
   }
 };
-// const { id } = req.params;
-// Logger.info(`Page: Delete Item called: ${id}`);
-// const { id: idNum, isValid } = parseRequestId(id.trim());
-// if (!isValid || !idNum) {
-//   Logger.info(`Page: Delete Item -> invalid param id: ${id}`);
-//   //res.status(400).json({ error: Responses.INVALID_ID });
-//   return res.end();
-// }
-// const service = new PageService();
-// const fileService = new PageFileService();
-// await Promise.all([service.deleteItem(idNum), fileService.deleteFile(idNum)])
-//   .then((response) => {
-//     if (response) {
-//       res.status(200).json(response);
-//     } else {
-//       res.json(response);
-//     }
-//   })
-//   .catch((error: Error) => {
-//     return next(error);
-//   });
-// };

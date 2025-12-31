@@ -36,8 +36,10 @@ export class ImagesService extends BaseDataService<Images> {
       await this.writeData(data);
       return true;
     } catch (error) {
-      Logger.error(`ImagesService: fixIndex -> ${String(error)}`);
-      return false;
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`ImagesService: fixIndex -> ${errorMessage}`, { error });
+      throw new Error(`Failed to fix index: ${errorMessage}`);
     }
   }
 
@@ -61,8 +63,10 @@ export class ImagesService extends BaseDataService<Images> {
       await this.writeData(data);
       return true;
     } catch (error) {
-      Logger.error(`ImagesService: fixNames -> ${String(error)}`);
-      return false;
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`ImagesService: fixNames -> ${errorMessage}`, { error });
+      throw new Error(`Failed to fix names: ${errorMessage}`);
     }
   }
 
@@ -134,11 +138,23 @@ export class ImagesService extends BaseDataService<Images> {
       throw new Error('ImagesService: updateItems -> Unable to load index');
     }
 
-    const imageItems: Image[] = images.items;
+    const updatedItems = this.prepareUpdatedItems(items, images.items);
+    await this.moveItemFiles(updatedItems);
+    const updatedData = this.replaceUpdatedItems(images, updatedItems);
 
-    // Get the updated records
-    const updatedItems: Image[] = items.map((item: Image) => {
-      const currItems = imageItems.filter((x) => x.id === item.id);
+    await this.writeData(updatedData);
+    return true;
+  }
+
+  /**
+   * Prepare updated items by merging with existing data
+   */
+  private prepareUpdatedItems(
+    items: readonly Image[],
+    currentItems: readonly Image[],
+  ): Image[] {
+    return items.map((item: Image) => {
+      const currItems = currentItems.filter((x) => x.id === item.id);
 
       if (currItems.length === 0) {
         throw new Error(
@@ -152,13 +168,13 @@ export class ImagesService extends BaseDataService<Images> {
         );
       }
 
-      // Create a replacement item
       const [currItem] = currItems;
       if (!currItem) {
         throw new Error(
           `ImagesService: updateItems -> Unexpected undefined item`,
         );
       }
+
       return {
         ...currItem,
         ...item,
@@ -166,44 +182,46 @@ export class ImagesService extends BaseDataService<Images> {
         originalFolder: currItem.folder,
       } as Image;
     });
+  }
 
-    // Move the files to a new directory
+  /**
+   * Move files to new directories
+   */
+  private async moveItemFiles(updatedItems: Image[]): Promise<void> {
     const fileMoved = new ImagesFileService().moveItems(updatedItems);
     if (!fileMoved) {
       throw new Error(
         'ImagesService: updateItems -> Unable to move file: ${item.fileName}',
       );
     }
+  }
 
-    // Replace the changed records in the original data
+  /**
+   * Replace updated items in the collection
+   */
+  private replaceUpdatedItems(images: Images, updatedItems: Image[]): Images {
     const data: Image[] = images.items
       .map((x) => {
         const foundItem = updatedItems.find((y) => y.id === x.id);
-        const addItem = () => {
-          if (foundItem) {
-            const { ...rest } = foundItem;
-            return cleanUpData<Image>({ ...rest });
-          }
-          return undefined;
-        };
-        const newItem = addItem();
-        return newItem ?? x;
+        if (foundItem) {
+          const { ...rest } = foundItem;
+          return cleanUpData<Image>({ ...rest });
+        }
+        return x;
       })
       .filter(Boolean);
 
-    await this.writeData({ ...images, items: data });
-
-    return true;
+    return { ...images, items: data };
   }
 
   // Get Items to sort into folders
   private async getNewItems(): Promise<Images | undefined> {
     // Get current items
-    const ret = await this.readFile();
-    if (!ret) {
+    const imageData = await this.readFile();
+    if (!imageData) {
       throw new Error('getNewItems > Index file not loaded');
     }
-    return { ...ret };
+    return { ...imageData };
   }
 
   /**

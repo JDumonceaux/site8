@@ -12,11 +12,11 @@ const VALIDATION_MIDDLEWARE = [requireNumericId];
 export const imageRouter = express.Router();
 
 imageRouter.get('/:id', VALIDATION_MIDDLEWARE, asyncHandler(getItem));
-imageRouter.delete('/:id', VALIDATION_MIDDLEWARE, asyncHandler(deleteItem));
+// DELETE and PATCH use request body for data (no URL parameters)
+imageRouter.delete('/', asyncHandler(deleteItem));
 // Full update
 // imageRouter.put('/', asyncHandler(putItem));
 // Partial update
-// Partial update (expects id param)
-imageRouter.patch('/:id', VALIDATION_MIDDLEWARE, asyncHandler(patchItem));
+imageRouter.patch('/', asyncHandler(patchItem));
 // Create New Resource
 imageRouter.post('/', asyncHandler(postItem));

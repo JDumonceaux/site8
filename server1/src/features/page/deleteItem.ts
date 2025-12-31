@@ -11,7 +11,7 @@ export const deleteItem = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
-  const { id } = req.params;
+  const { id } = req.body;
 
   Logger.info(`Page: Delete Item called: ${id}`);
 
@@ -20,9 +20,9 @@ export const deleteItem = async (
     return;
   }
 
-  const { id: idNum, isValid } = parseRequestId(id.trim());
+  const { id: idNum, isValid } = parseRequestId(id.toString().trim());
   if (!isValid || typeof idNum !== 'number') {
-    Logger.info(`Page: Delete Item -> invalid param id: ${id}`);
+    Logger.info(`Page: Delete Item -> invalid body id: ${id}`);
     res.status(400).json({ error: 'Invalid id' });
     return;
   }

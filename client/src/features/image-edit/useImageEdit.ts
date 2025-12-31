@@ -71,13 +71,11 @@ export const useImageEdit = (
   // TanStack Query mutation for saving images
   const mutation = useMutation({
     mutationFn: async (payload: any) => {
-      const url =
-        payload.id > 0
-          ? `${ServiceUrl.ENDPOINT_IMAGE}/${payload.id}`
-          : ServiceUrl.ENDPOINT_IMAGE;
-      const method = 'PATCH';
+      // Use POST for new items (id === 0), PATCH for updates
+      // All data (including ID) goes in request body, not URL
+      const method = payload.id > 0 ? 'PATCH' : 'POST';
 
-      const response = await fetch(url, {
+      const response = await fetch(ServiceUrl.ENDPOINT_IMAGE, {
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' },
         method,

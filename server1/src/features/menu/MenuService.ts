@@ -29,9 +29,9 @@ export class MenuService {
       if (!data?.items) {
         return undefined;
       }
-      const ret = this.buildRecursiveMenu(data.items);
+      const menuTree = this.buildRecursiveMenu(data.items);
       return {
-        items: ret ?? [],
+        items: menuTree ?? [],
         metadata: data.metadata,
       };
     } catch (error) {

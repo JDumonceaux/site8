@@ -24,8 +24,12 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
       );
       return { items: sortedItems, metadata: data.metadata };
     } catch (error) {
-      Logger.error(`BookmarkService: getAllItems --> Error: ${String(error)}`);
-      return undefined;
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`BookmarkService: getAllItems -> ${errorMessage}`, {
+        error,
+      });
+      throw new Error(`Failed to get all items: ${errorMessage}`);
     }
   }
 
@@ -54,10 +58,12 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
       );
       return { items: remappedBookmarks ?? [], metadata: data.metadata };
     } catch (error) {
-      Logger.error(
-        `BookmarkService: getAllItemsByTag --> Error: ${String(error)}`,
-      );
-      return undefined;
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      Logger.error(`BookmarkService: getAllItemsByTag -> ${errorMessage}`, {
+        error,
+      });
+      throw new Error(`Failed to get items by tag: ${errorMessage}`);
     }
   }
 

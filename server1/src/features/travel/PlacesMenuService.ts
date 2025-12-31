@@ -5,6 +5,14 @@ import { Logger } from '../../utils/logger.js';
 import { TravelService } from './TravelService.js';
 
 /**
+ * ID generation constants for hierarchical menu structure
+ */
+const ID_MULTIPLIER = {
+  COUNTRY_TO_CITY: 1000,
+  CITY_TO_PLACE: 1000,
+} as const;
+
+/**
  * Service for building a recursive menu structure from places data
  * Hierarchy: Country > City > Place Name
  */
@@ -117,7 +125,7 @@ export class PlacesMenuService {
     for (const [city, cityPlaces] of Array.from(citiesMap.entries()).sort(
       ([a], [b]) => a.localeCompare(b),
     )) {
-      const cityId = countryId * 1000 + cityIdOffset;
+      const cityId = countryId * ID_MULTIPLIER.COUNTRY_TO_CITY + cityIdOffset;
       const citySlug = this.slugify(city);
       const cityUrl = `/travel/${countrySlug}/${citySlug}`;
 
@@ -156,7 +164,7 @@ export class PlacesMenuService {
     return places
       .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
       .map((place, index) => {
-        const placeId = cityId * 1000 + index + 1;
+        const placeId = cityId * ID_MULTIPLIER.CITY_TO_PLACE + index + 1;
         const placeSlug = this.slugify(place.name);
         const placeUrl = `/travel/${countrySlug}/${citySlug}/${placeSlug}`;
 

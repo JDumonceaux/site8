@@ -12,18 +12,18 @@ export const deleteItem = async (
   res: Response<Image | Error>,
 ): Promise<void> => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     Logger.info(`Image: Delete Item called: ${id}`);
 
     if (!id) {
-      Logger.info(`Image: Delete invalid param -> id: ${id}`);
+      Logger.info(`Image: Delete invalid body -> id: ${id}`);
       res.status(400).send(new Error(RESPONSES.INVALID_ID));
       return;
     }
 
-    const { id: idNum, isValid } = parseRequestId(id.trim());
+    const { id: idNum, isValid } = parseRequestId(id.toString().trim());
     if (!isValid || !idNum) {
-      Logger.info(`Image: Delete invalid param -> id: ${id}`);
+      Logger.info(`Image: Delete invalid body -> id: ${id}`);
       res.status(400).send(new Error(RESPONSES.INVALID_ID));
       return;
     }

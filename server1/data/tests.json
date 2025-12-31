@@ -1274,6 +1274,27 @@
       "text": "Useless CSS Removal",
       "value": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance.",
       "projectType": ["chat"]
+    },
+    {
+      "id": 635,
+      "name": "Structure",
+      "text": "API End points",
+      "value": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 636,
+      "name": "Structure",
+      "text": "API End points - Parameters",
+      "value": "Review all the Server API end points to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.  Fix any related routers and services.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 637,
+      "name": "Structure",
+      "text": "API End points - Parameters Client",
+      "value": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.",
+      "projectType": ["chat"]
     }
   ]
 }
