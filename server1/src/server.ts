@@ -122,7 +122,7 @@ app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-app.use('*', (_req: Request, res: Response) => {
+app.use((_req: Request, res: Response) => {
   res.status(404).send('API Not Found');
 });
 
