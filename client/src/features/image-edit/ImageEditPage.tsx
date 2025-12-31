@@ -7,45 +7,54 @@ import PageTitle from '@components/core/page/PageTitle';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
-import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { getSRC } from '@lib/utils/helpers';
 import Layout from '@features/layouts/layout/Layout';
 import useImageEdit from './useImageEdit';
+import ImagePreview from './ImagePreview';
 import styled from 'styled-components';
+import type { ImageEdit } from '@site8/shared';
+
+// Route constants
+const ROUTES = {
+  IMAGE_LIST: '/admin/images',
+} as const;
+
+// Helper to compute preview source
+const getPreviewSrc = (formValues: ImageEdit): string => {
+  if (formValues.ext_url?.trim()) {
+    return formValues.ext_url.trim();
+  }
+  const result = getSRC(formValues.folder, formValues.fileName);
+  return result || '';
+};
 
 const ImageEditPage = (): JSX.Element => {
-  const parameters = useParams();
-  const { id } = parameters as { id: string };
+  const { id } = useParams<{ id: string }>();
   const {
+    clearForm,
     formValues,
     getDefaultProps,
     isProcessing,
     isSaved,
     resetForm,
     saveItem,
-  } = useImageEdit(id);
-
-  const { setMessage } = useSnackbar();
+  } = useImageEdit(id ?? null);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.stopPropagation();
     event.preventDefault();
-    setMessage('Saving...');
-    void (async () => {
-      const success = await saveItem();
-      if (success) {
-        setMessage('Saved successfully');
-      }
-    })();
+    if (!isSaved) {
+      void saveItem();
+    }
+  };
+
+  const handleClearForm = () => {
+    clearForm();
+    inputTitleRef.current?.focus();
   };
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
-
-  const previewSrc =
-    (formValues.url && formValues.url.trim()) ||
-    (formValues.fileName
-      ? getSRC(formValues.folder ?? '', formValues.fileName ?? '')
-      : '');
+  const previewSrc = getPreviewSrc(formValues);
 
   const inputTitleRef = useRef<HTMLInputElement>(null);
   const focusInputEvent = useEffectEvent(() => {
@@ -62,28 +71,31 @@ const ImageEditPage = (): JSX.Element => {
       <Layout.Main>
         <Layout.Section>
           <PageTitle title={title}>
-            <StyledLink
-              data-testid="nav-new"
-              to="/admin/image/edit"
+            <StyledPlainButton
+              data-testid="button-clear"
+              disabled={isProcessing}
+              type="button"
+              onClick={handleClearForm}
             >
-              New
-            </StyledLink>
+              Clear
+            </StyledPlainButton>
             <StyledLink
               data-testid="nav-list"
-              to="/admin/images"
+              to={ROUTES.IMAGE_LIST}
             >
               List
             </StyledLink>
             <StyledPlainButton
               data-testid="button-reset"
+              disabled={isSaved || isProcessing}
               type="reset"
               onClick={resetForm}
             >
               Reset
             </StyledPlainButton>
             <StyledPlainButton
-              data-testid="button-save-bottom"
-              disabled={isSaved}
+              data-testid="button-save"
+              disabled={isSaved || isProcessing}
               type="submit"
               onClick={handleSubmit}
             >
@@ -99,6 +111,7 @@ const ImageEditPage = (): JSX.Element => {
                 >
                   <Input.Text
                     ref={inputTitleRef}
+                    disabled={isProcessing}
                     isRequired
                     spellCheck
                     enterKeyHint="next"
@@ -108,6 +121,7 @@ const ImageEditPage = (): JSX.Element => {
                     {...getDefaultProps('name')}
                   />
                   <Input.Text
+                    disabled={isProcessing}
                     isRequired={false}
                     spellCheck
                     enterKeyHint="next"
@@ -117,27 +131,21 @@ const ImageEditPage = (): JSX.Element => {
                     {...getDefaultProps('fileName')}
                   />
                   <Input.Text
+                    disabled={isProcessing}
                     isRequired={false}
                     label="Folder"
                     {...getDefaultProps('folder')}
                   />
                   <Input.Text
+                    disabled={isProcessing}
                     enterKeyHint="next"
-                    label="URL"
+                    label="External URL"
                     autoCapitalize="off"
                     inputMode="text"
-                    {...getDefaultProps('url')}
-                  />
-                  <Input.Text
-                    spellCheck
-                    enterKeyHint="next"
-                    isRequired={false}
-                    label="Tags"
-                    autoCapitalize="off"
-                    inputMode="text"
-                    {...getDefaultProps('tags')}
+                    {...getDefaultProps('ext_url')}
                   />
                   <Input.TextArea
+                    disabled={isProcessing}
                     spellCheck
                     label="Description"
                     rows={10}
@@ -145,29 +153,10 @@ const ImageEditPage = (): JSX.Element => {
                   />
                 </form>
               </FormContainer>
-              <ImageContainer>
-                {previewSrc ? (
-                  <StyledImageDisplay>
-                    <StyledImage
-                      alt={
-                        formValues.name ||
-                        formValues.fileName ||
-                        'Image preview'
-                      }
-                      src={previewSrc}
-                    />
-                    <StyledImageInfo>
-                      {formValues.name && <h3>{formValues.name}</h3>}
-                      {formValues.folder && <p>Folder: {formValues.folder}</p>}
-                      {formValues.fileName && (
-                        <p>File: {formValues.fileName}</p>
-                      )}
-                    </StyledImageInfo>
-                  </StyledImageDisplay>
-                ) : (
-                  <StyledPlaceholder>No image to display</StyledPlaceholder>
-                )}
-              </ImageContainer>
+              <ImagePreview
+                formValues={formValues}
+                previewSrc={previewSrc}
+              />
             </StyledContainer>
           </LoadingWrapper>
         </Layout.Section>
@@ -182,48 +171,7 @@ const StyledContainer = styled.div`
   display: flex;
   column-gap: 20px;
 `;
-const ImageContainer = styled.div`
-  flex-basis: 30%;
-  position: sticky;
-  top: 100px;
-  align-self: flex-start;
-`;
+
 const FormContainer = styled.div`
   flex-basis: 70%;
-`;
-
-const StyledImageDisplay = styled.div`
-  border: 1px solid var(--border-light, #e0e0e0);
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--surface-background-color);
-`;
-
-const StyledImage = styled.img`
-  width: 100%;
-  height: auto;
-  display: block;
-`;
-
-const StyledImageInfo = styled.div`
-  padding: 1rem;
-  h3 {
-    margin: 0 0 0.75rem 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary-color);
-  }
-  p {
-    margin: 0.25rem 0;
-    font-size: 0.9rem;
-    color: var(--text-secondary-color);
-  }
-`;
-
-const StyledPlaceholder = styled.div`
-  padding: 2rem;
-  text-align: center;
-  color: var(--text-tertiary-color);
-  border: 1px dashed var(--border-light, #e0e0e0);
-  border-radius: 8px;
 `;

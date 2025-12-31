@@ -8,12 +8,9 @@ export type Image = {
   readonly name?: string;
   readonly fileName?: string;
   readonly folder?: string;
-  readonly url?: string;
+  readonly ext_url?: string;
   readonly tags?: string;
   readonly description?: string;
-  readonly width?: number;
-  readonly height?: number;
-  readonly size?: number;
 };
 
 /**
@@ -38,7 +35,7 @@ export const ImageEditSchema = z.object({
     .trim()
     .max(255, "Folder max length exceeded: 255")
     .optional(),
-  url: z
+  ext_url: z
     .string({ message: "URL must be a string" })
     .trim()
     .max(500, "URL max length exceeded: 500")
@@ -46,11 +43,6 @@ export const ImageEditSchema = z.object({
     .refine((v) => !v || urlPattern.test(v), {
       message: "Must be a valid URL",
     }),
-  tags: z
-    .string({ message: "Tags must be a string" })
-    .trim()
-    .max(500, "Tags max length exceeded: 500")
-    .optional(),
   description: z
     .string({ message: "Description must be a string" })
     .trim()

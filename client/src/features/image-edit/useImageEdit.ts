@@ -11,24 +11,14 @@ import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ImageEditSchema } from '@site8/shared';
+import { type ImageEdit, ImageEditSchema } from '@site8/shared';
 
-// Local form type — keep minimal allowed props to avoid mismatches with built dist types
-type FormType = {
-  id: number;
-  name?: string;
-  fileName?: string;
-  folder?: string;
-  url?: string;
-  tags?: string;
-  description?: string;
-};
-type FormKeys = keyof FormType;
+type FormKeys = keyof ImageEdit;
 import useImage from './useImage';
 
 type UseImageEditReturn = {
   clearForm: () => void;
-  formValues: FormType;
+  formValues: ImageEdit;
   getDefaultProps: (field: FormKeys) => {
     'data-id': FormKeys;
     'data-line': number;
@@ -45,15 +35,25 @@ type UseImageEditReturn = {
 };
 
 // Consistent default form shape
-const defaultForm: FormType = {
+const defaultForm: ImageEdit = {
   id: 0,
   name: '',
   fileName: '',
   folder: '',
-  url: '',
-  tags: '',
+  ext_url: '',
   description: '',
 };
+
+// Helper to map imageData to form structure
+const mapToFormData = (data: any): ImageEdit => ({
+  ...defaultForm,
+  id: data.id,
+  name: data.name ?? '',
+  fileName: data.fileName ?? '',
+  folder: data.folder ?? '',
+  ext_url: data.ext_url ?? '',
+  description: data.description ?? '',
+});
 
 /**
  * Hook for editing an Image entity, handling form state, validation, and persistence.
@@ -66,11 +66,11 @@ export const useImageEdit = (
   const { data: imageData } = useImage(rawId);
 
   const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
-    useForm<FormType>(defaultForm);
+    useForm<ImageEdit>(defaultForm);
 
   // TanStack Query mutation for saving images
   const mutation = useMutation({
-    mutationFn: async (payload: any) => {
+    mutationFn: async (payload: ImageEdit) => {
       // Use POST for new items (id === 0), PATCH for updates
       // All data (including ID) goes in request body, not URL
       const method = payload.id > 0 ? 'PATCH' : 'POST';
@@ -85,7 +85,7 @@ export const useImageEdit = (
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return (await response.json()) as any;
+      return (await response.json()) as ImageEdit;
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
@@ -97,26 +97,13 @@ export const useImageEdit = (
     onSuccess: () => {
       setMessage('Saved successfully');
       queryClient.invalidateQueries({ queryKey: ['image'] });
-      setIsSaved(true);
     },
   });
 
   // Initialize or update form when data arrives
   useEffect(() => {
     if (!imageData) return;
-    const formData: FormType = {
-      ...defaultForm,
-      fileName: imageData.fileName ?? '',
-      folder: imageData.folder ?? '',
-      id: imageData.id,
-      name: (imageData as any).title ?? imageData.name ?? '',
-      url: (imageData as any).url ?? (imageData as any).official_url ?? '',
-      tags: Array.isArray((imageData as any).tags)
-        ? (imageData as any).tags.join(',')
-        : ((imageData as any).tags ?? ''),
-      description: (imageData as any).description ?? '',
-    };
-    setFormValues(formData);
+    setFormValues(mapToFormData(imageData));
   }, [imageData, setFormValues]);
 
   // Form helpers
@@ -130,13 +117,13 @@ export const useImageEdit = (
   });
 
   const validateForm = useEffectEvent(() => {
-    const result = safeParse<FormType>(ImageEditSchema, formValues);
+    const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
     setErrors(result.success ? null : (result.error?.issues ?? null));
     return result.success;
   });
 
   // Save state with optimistic updates
-  const [isSaved, setIsSaved] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
   const [optimisticSaved, setOptimisticSaved] = useOptimistic(
     isSaved,
     (_state, newValue: boolean) => newValue,
@@ -145,13 +132,12 @@ export const useImageEdit = (
   const saveItem = useEffectEvent(async () => {
     if (!validateForm()) return false;
 
-    const payload: Partial<FormType> & { id: number } = {
+    const payload: ImageEdit = {
       id: formValues.id,
+      name: formValues.name,
       fileName: formValues.fileName,
       folder: formValues.folder,
-      name: formValues.name,
-      url: formValues.url,
-      tags: formValues.tags,
+      ext_url: formValues.ext_url,
       description: formValues.description,
     };
 
@@ -171,19 +157,7 @@ export const useImageEdit = (
 
   const resetForm = useEffectEvent(() => {
     if (imageData) {
-      const formData: FormType = {
-        ...defaultForm,
-        fileName: imageData.fileName ?? '',
-        folder: imageData.folder ?? '',
-        id: imageData.id,
-        name: (imageData as any).title ?? imageData.name ?? '',
-        url: (imageData as any).url ?? (imageData as any).official_url ?? '',
-        tags: Array.isArray((imageData as any).tags)
-          ? (imageData as any).tags.join(',')
-          : ((imageData as any).tags ?? ''),
-        description: (imageData as any).description ?? '',
-      };
-      setFormValues(formData);
+      setFormValues(mapToFormData(imageData));
     }
     setIsSaved(true);
     setErrors(null);
@@ -201,16 +175,11 @@ export const useImageEdit = (
       setIsSaved(false);
       return;
     }
-    // Deep equality check for all fields
-    const keys = Object.keys(defaultForm) as (keyof FormType)[];
-    const hasChanges = keys.some((key) => {
-      if (key === 'name') {
-        return (
-          formValues.name !== ((imageData as any).title ?? imageData.name ?? '')
-        );
-      }
-      return formValues[key] !== ((imageData as any)[key as string] ?? '');
-    });
+    // Compare form values with mapped image data
+    const currentData = mapToFormData(imageData);
+    const hasChanges = (Object.keys(defaultForm) as (keyof ImageEdit)[]).some(
+      (key) => formValues[key] !== currentData[key],
+    );
     setIsSaved(!hasChanges);
   });
 

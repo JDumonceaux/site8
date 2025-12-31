@@ -200,7 +200,7 @@ export class ImagesService extends BaseDataService<Images> {
    * Replace updated items in the collection
    */
   private replaceUpdatedItems(images: Images, updatedItems: Image[]): Images {
-    const data: Image[] = images.items
+    const data: Image[] = (images.items ?? [])
       .map((x) => {
         const foundItem = updatedItems.find((y) => y.id === x.id);
         if (foundItem) {
@@ -209,7 +209,7 @@ export class ImagesService extends BaseDataService<Images> {
         }
         return x;
       })
-      .filter(Boolean);
+      .filter(Boolean) as Image[];
 
     return { ...images, items: data };
   }
