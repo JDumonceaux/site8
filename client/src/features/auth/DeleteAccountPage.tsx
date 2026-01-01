@@ -1,6 +1,6 @@
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/ui/button/Button';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
@@ -28,10 +28,7 @@ const DeleteAccountPage = (): JSX.Element => {
     'Account deleted successfully',
   );
 
-  const [state, formAction, isPending] = useActionState(
-    deleteAccountAction,
-    {},
-  );
+  const [state, formAction] = useActionState(deleteAccountAction, {});
 
   return (
     <>
@@ -66,12 +63,7 @@ const DeleteAccountPage = (): JSX.Element => {
             name="deleteCode"
             placeholder="delete"
           />
-          <Button
-            disabled={isPending}
-            id="login"
-          >
-            {isPending ? 'Processing' : 'Delete Account'}
-          </Button>
+          <SubmitButton id="login">Delete Account</SubmitButton>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/">Cancel</StyledLink>
@@ -83,4 +75,3 @@ const DeleteAccountPage = (): JSX.Element => {
 
 DeleteAccountPage.displayName = 'DeleteAccountPage';
 export default DeleteAccountPage;
-

@@ -1,26 +1,15 @@
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import { ServiceUrl } from '@lib/utils/constants';
+import { createQueryHook } from '@hooks/createQueryHook';
 import type { Photos } from '@types';
-import { useQuery } from '@tanstack/react-query';
 
-// Helper function to fetch photos with support for cancellation
-const fetchData = async ({
-  signal,
-}: {
-  signal: AbortSignal;
-}): Promise<Photos> => {
-  const response = await fetch(ServiceUrl.ENDPOINT_PHOTOS, { signal });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch photos: ${response.statusText}`);
-  }
-  return response.json() as Promise<Photos>;
-};
+// Create the photos query hook using the factory
+const usePhotosQuery = createQueryHook<Photos>({
+  endpoint: ServiceUrl.ENDPOINT_PHOTOS,
+  queryKey: ['photos'],
+});
 
 const usePhotos = () => {
-  const query = useQuery<Photos>({
-    queryFn: fetchData,
-    queryKey: ['photos'],
-    ...USEQUERY_DEFAULT_OPTIONS,
-  });
+  const query = usePhotosQuery();
 
   return {
     data: query.data,

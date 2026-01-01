@@ -2,7 +2,7 @@ import { type JSX, useActionState } from 'react';
 
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Input from '@components/ui/input/Input';
-import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
+import FormSaveButton from '@components/ui/button/FormSaveButton';
 import * as Form from '@radix-ui/react-form';
 import type { FormState } from '@types';
 import type { Page } from '@site8/shared';
@@ -70,12 +70,7 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
     >
       <Form.Root action={action}>
         <StyledButtonWrapper>
-          <StyledSaveButton
-            data-testid="button-save"
-            type="submit"
-          >
-            Save
-          </StyledSaveButton>
+          <FormSaveButton data-testid="button-save">Save</FormSaveButton>
         </StyledButtonWrapper>
 
         <input
@@ -159,9 +154,6 @@ const LABEL_TEXT = { label: 'Text' };
 const LABEL_READING_TIME = { label: 'Reading Time' };
 const LABEL_READABILITY_SCORE = { label: 'Readability Score' };
 
-const StyledSaveButton = styled(StyledPlainButton)`
-  font-weight: 400;
-`;
 const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;

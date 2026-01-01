@@ -48,9 +48,9 @@ export const patchItem = async (
 
     // Return success (optionally fetch and return the updated item)
     // const ret = await service.getItemCompleteById(item.id);
-    res.status(200).json({ message: 'Success' });
+    res.sendStatus(204);
   } catch (error) {
     Logger.error('Page: Patch Item error:', error);
-    res.sendStatus(500);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

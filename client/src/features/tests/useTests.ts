@@ -1,26 +1,15 @@
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import { ServiceUrl } from '@lib/utils/constants';
+import { createQueryHook } from '@hooks/createQueryHook';
 import type { Tests } from '@types';
-import { useQuery } from '@tanstack/react-query';
 
-// Helper function to fetch test menus data with support for cancellation
-const fetchTests = async ({
-  signal,
-}: {
-  signal: AbortSignal;
-}): Promise<Tests> => {
-  const response = await fetch(ServiceUrl.ENDPOINT_TESTS, { signal });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch tests: ${response.statusText}`);
-  }
-  return response.json() as Promise<Tests>;
-};
+// Create the tests query hook using the factory
+const useTestsQuery = createQueryHook<Tests>({
+  endpoint: ServiceUrl.ENDPOINT_TESTS,
+  queryKey: ['tests'],
+});
 
 const useTestMenus = () => {
-  const query = useQuery<Tests>({
-    queryFn: fetchTests,
-    queryKey: ['tests'],
-    ...USEQUERY_DEFAULT_OPTIONS,
-  });
+  const query = useTestsQuery();
 
   return {
     data: query.data,

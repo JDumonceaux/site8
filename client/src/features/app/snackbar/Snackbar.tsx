@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 import { useEffect, useEffectEvent } from 'react';
 
 import Button from '@components/ui/button/Button';
-import { logError } from '@lib/utils/errorLogger';
+import { logError } from '@lib/utils/errorHandler';
 import useSnackbar, { SnackbarVariant } from './useSnackbar';
 import styled from 'styled-components';
 

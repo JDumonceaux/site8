@@ -1,3 +1,5 @@
+import { useActionState, useOptimistic } from 'react';
+
 import { useAxios } from '@hooks/axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
@@ -21,6 +23,11 @@ type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 type SortByType = 'name' | 'seq';
 
+type FormState = {
+  message?: string;
+  success?: boolean;
+};
+
 const usePagesEdit = () => {
   // Derived localItems from data
   const { patchData } = useAxios<MenuEdit[]>();
@@ -36,6 +43,12 @@ const usePagesEdit = () => {
     setFormValues,
     setIsSaved,
   } = useFormArray<FormType>();
+
+  // Optimistic update for saved state
+  const [optimisticSaved, setOptimisticSaved] = useOptimistic(
+    isSaved,
+    (_state, newValue: boolean) => newValue,
+  );
 
   const localItems = data?.items?.map((x, index) => ({
     ...x,
@@ -117,12 +130,68 @@ const usePagesEdit = () => {
     if (!updates) {
       return false;
     }
-    // setIsProcessing(true);
+    // Optimistically mark as saved
+    setOptimisticSaved(true);
     const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
-    // setIsProcessing(false);
-    setIsSaved(!!result);
+    if (!result) {
+      // Revert optimistic state on error
+      setIsSaved(false);
+    } else {
+      setIsSaved(true);
+    }
     return result;
   };
+
+  // Action function for useActionState
+  const submitAction = async (
+    _prevState: FormState,
+    _formData: FormData,
+  ): Promise<FormState> => {
+    try {
+      const updates = getUpdates();
+      if (!updates) {
+        return {
+          message: 'No updates to save',
+          success: false,
+        };
+      }
+
+      // Optimistically mark as saved
+      setOptimisticSaved(true);
+      const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
+
+      if (!result) {
+        // Revert optimistic state on error
+        setIsSaved(false);
+        return {
+          message: 'Failed to save pages',
+          success: false,
+        };
+      }
+
+      setIsSaved(true);
+      return {
+        message: 'Pages saved successfully',
+        success: true,
+      };
+    } catch (error_: unknown) {
+      // Revert optimistic state on error
+      setIsSaved(false);
+      const errorMessage =
+        error_ instanceof Error
+          ? `Error saving pages: ${error_.message}`
+          : 'An unexpected error occurred';
+      return {
+        message: errorMessage,
+        success: false,
+      };
+    }
+  };
+
+  const [actionState, formAction, isPending] = useActionState<
+    FormState,
+    FormData
+  >(submitAction, {});
 
   const handleChange = (id: number, fieldName: FormKeys, value: string) => {
     setFieldValue(id, fieldName, value);
@@ -143,15 +212,18 @@ const usePagesEdit = () => {
   });
 
   return {
+    actionState,
     data: localItems,
     error,
+    formAction,
     getDefaultProps,
     getFieldValue,
     handleChange,
     handleSave,
     isError,
     isLoading,
-    isSaved,
+    isPending,
+    isSaved: optimisticSaved,
     pageSchema,
     setFieldValue,
     setFormValues,

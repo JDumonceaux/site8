@@ -1,20 +1,45 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import App from './app/App';
+import App from './app/app';
+import { logError } from './lib/utils/errorLogger';
 
 // Grab the root container (must match your index.html)
 const container = document.querySelector('#root');
 if (!container) throw new Error('Root element with id="root" not found');
 
-// Create a React root with recoverable-error handling
+// Create a React root with comprehensive error handling (React 19)
 const root = createRoot(container, {
+  // Called when React catches an error in an Error Boundary
+  onCaughtError: (error: unknown, errorInfo) => {
+    logError(error, {
+      context: 'ErrorBoundaryCaught',
+      componentStack: errorInfo.componentStack,
+    });
+  },
+
+  // Called when an error is thrown and NOT caught by any Error Boundary
+  onUncaughtError: (error: unknown, errorInfo) => {
+    logError(error, {
+      context: 'UncaughtError',
+      componentStack: errorInfo.componentStack,
+      severity: 'fatal',
+    });
+  },
+
+  // Called when React automatically recovers from errors
   onRecoverableError: (error: unknown, errorInfo) => {
-    // Won’t unmount the whole tree—just logs    // eslint-disable-next-line no-console    console.error('Recoverable React error:', error, errorInfo);
+    logError(
+      error,
+      {
+        context: 'RecoverableError',
+        componentStack: errorInfo.componentStack,
+      },
+      'warning',
+    );
   },
 });
 
-// Initial render
 root.render(
   <StrictMode>
     <App />

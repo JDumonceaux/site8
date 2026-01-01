@@ -66,7 +66,6 @@ const ImagesEditPage = (): JSX.Element => {
           <MenuBar
             handleRefresh={handleRefresh}
             handleScan={handleScan}
-            isSubmitting={isSubmitting}
           />
         </PageTitle>
       </Layout.TitleFixed>
@@ -114,4 +113,3 @@ export default ImagesEditPage;
 const StyledForm = styled.form`
   width: 100%;
 `;
-

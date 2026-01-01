@@ -1,5 +1,11 @@
-import type { JSX } from 'react';
-import React, { useEffect, useEffectEvent, useMemo, useState } from 'react';
+import {
+  type JSX,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useState,
+  useTransition,
+} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,6 +29,8 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
   }>();
   const { getRootMenuItems: rootItems, isError, isLoading } = useTravelMenu();
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
+  const [isNavigationPending, startNavigationTransition] = useTransition();
+  const [isExpansionPending, startExpansionTransition] = useTransition();
 
   // Find and expand menu items based on URL parameters
   useEffect(() => {
@@ -89,11 +97,14 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
     }
 
     // Update expanded items if we found matches or clear if no URL params
-    if (itemsToExpand.size > 0) {
-      setExpandedItems(itemsToExpand);
-    } else if (!country && !city && !item) {
-      setExpandedItems(new Set());
-    }
+    // Mark as non-urgent to keep UI responsive during expansion
+    startExpansionTransition(() => {
+      if (itemsToExpand.size > 0) {
+        setExpandedItems(itemsToExpand);
+      } else if (!country && !city && !item) {
+        setExpandedItems(new Set());
+      }
+    });
   }, [country, city, item, rootItems]);
 
   const toggleExpanded = useEffectEvent((itemId: number): void => {
@@ -112,7 +123,10 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
     // Navigate to the item's URL if it exists
     if (item.to || item.url) {
       const url = item.to || item.url || '';
-      navigate(url);
+      // Mark navigation as non-urgent to keep UI responsive
+      startNavigationTransition(() => {
+        navigate(url);
+      });
     }
 
     // If item has no children, it's a place (leaf node)

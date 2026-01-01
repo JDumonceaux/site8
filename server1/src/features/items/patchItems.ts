@@ -28,7 +28,7 @@ export const patchItems = async (
   Logger.info(`Items: Patch Items called: `);
 
   if (!Array.isArray(data) || data.length === 0) {
-    res.status(400).send('No valid data to change.');
+    res.status(400).json({ error: 'No valid data to change.' });
     return;
   }
 
@@ -37,13 +37,13 @@ export const patchItems = async (
   try {
     const response = service.patchItems(data);
     if (response) {
-      res.status(200).send();
+      res.sendStatus(204);
     } else {
-      res.status(500).send('Edit failed');
+      res.status(500).json({ error: 'Edit failed' });
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     Logger.error('Items: Patch Items error:', errorMessage);
-    res.status(500).send(errorMessage);
+    res.status(500).json({ error: errorMessage });
   }
 };

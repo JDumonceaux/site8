@@ -1,21 +1,12 @@
-import { QueryTime, QueryTimeComputed, ServiceUrl } from '@lib/utils/constants';
+import { ServiceUrl } from '@lib/utils/constants';
+import { createQueryHook } from '@hooks/createQueryHook';
 import type { Places } from '@types';
-import { useQuery } from '@tanstack/react-query';
 
-const fetchData = async (): Promise<Places> => {
-  try {
-    const response = await fetch(ServiceUrl.ENDPOINT_TRAVEL as string);
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch travel destinations: ${response.statusText}`,
-      );
-    }
-    return (await response.json()) as Places;
-  } catch (error) {
-    // eslint-disable-next-line no-console    console.error('useTravel: Error fetching travel destinations', error);
-    throw error;
-  }
-};
+// Create the travel query hook using the factory
+const useTravelQuery = createQueryHook<Places>({
+  endpoint: ServiceUrl.ENDPOINT_TRAVEL,
+  queryKey: ['travel'],
+});
 
 type UseTravelResult = {
   data: Places | undefined;
@@ -25,21 +16,7 @@ type UseTravelResult = {
 };
 
 const useTravel = (): UseTravelResult => {
-  const queryKey = ['travel'];
-
-  const query = useQuery<Places>({
-    gcTime: QueryTimeComputed.GC_TIME,
-    queryFn: fetchData,
-    queryKey,
-    refetchInterval: 0,
-    refetchIntervalInBackground: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    retry: QueryTime.RETRY,
-    retryDelay: QueryTimeComputed.RETRY_DELAY,
-    staleTime: QueryTimeComputed.STALE_TIME,
-  });
+  const query = useTravelQuery();
 
   return {
     data: query.data,

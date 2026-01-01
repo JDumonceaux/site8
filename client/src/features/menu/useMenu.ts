@@ -1,16 +1,13 @@
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import { useQuery } from '@tanstack/react-query';
+import { ServiceUrl } from '@lib/utils/constants';
+import { createQueryHook } from '@hooks/createQueryHook';
 import type { Menu } from '../../types/Menu';
 import type { MenuItem } from '@site8/shared';
 
-// Helper function to fetch menus
-const fetchMenu = async (): Promise<Menu> => {
-  const res = await fetch(ServiceUrl.ENDPOINT_MENUS);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch menus: ${res.statusText}`);
-  }
-  return res.json() as Promise<Menu>;
-};
+// Create the base query hook using the factory
+const useMenuQuery = createQueryHook<Menu>({
+  endpoint: ServiceUrl.ENDPOINT_MENUS,
+  queryKey: ['menu'],
+});
 
 export type UseMenuReturn = {
   data?: Menu;
@@ -22,11 +19,7 @@ export type UseMenuReturn = {
 };
 
 const useMenu = (): UseMenuReturn => {
-  const { data, error, isError, isLoading } = useQuery<Menu>({
-    queryFn: fetchMenu,
-    queryKey: ['menu'],
-    ...USEQUERY_DEFAULT_OPTIONS,
-  });
+  const { data, error, isError, isLoading } = useMenuQuery();
 
   // Recursively search for a menu item by 'url' property
   const findMenuItem = (url: string): MenuItem | undefined => {

@@ -1295,6 +1295,133 @@
       "text": "API End points - Parameters Client",
       "value": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.",
       "projectType": ["chat"]
+    },
+    {
+      "id": 638,
+      "name": "Update",
+      "text": "React 19 - useActionState",
+      "value": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 639,
+      "name": "Update",
+      "text": "React 19 - useTransition",
+      "value": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 641,
+      "name": "Update",
+      "text": "React 19 - useFormState",
+      "value": "Remove useFormState",
+      "notes": "Removed in 19.2.3",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 640,
+      "name": "Update",
+      "text": "React 19 - useOptimisitic",
+      "value": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 642,
+      "name": "Update",
+      "text": "React 19 - use",
+      "value": "Review all the code to identify opportunities to use the new use hook introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 643,
+      "name": "Update",
+      "text": "React 19 - Context.Provider",
+      "value": "Review all the code to update Context.Provider to Context introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 644,
+      "name": "Update",
+      "text": "React 19 - Cleanup functions for ref",
+      "value": "Review all the code to update cleanup functions for ref introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 645,
+      "name": "Update",
+      "text": "React 19 - useDeferredValue",
+      "value": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 646,
+      "name": "Update",
+      "text": "React 19 - Stylesheet Precedence",
+      "value": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 647,
+      "name": "Update",
+      "text": "React 19 - Resource Preloading",
+      "value": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 648,
+      "name": "Update",
+      "text": "React 19 - Errors onCaughtError, onUncaughtError, onRecoverableError",
+      "value": "Review all the code to identify opportunities to use the error handling changes introduced in React 19.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 649,
+      "name": "Update",
+      "text": "React 19 - New JSX Transform",
+      "value": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 650,
+      "name": "Update - Run Once",
+      "text": "React 19 - CodeModes",
+      "value": "run replace-reactdom-render",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 651,
+      "name": "Update - Run Once",
+      "text": "React 19 - CodeModes",
+      "value": "run replace-string-ref",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 652,
+      "name": "Update - Run Once",
+      "text": "React 19 - CodeModes",
+      "value": "run replace-act-import",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 653,
+      "name": "Update - Run Once",
+      "text": "React 19 - CodeModes",
+      "value": "run replace-use-form-state",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 654,
+      "name": "Update - Run Once",
+      "text": "React 19 - CodeModes",
+      "value": "run prop-types-typescript",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 655,
+      "name": "Update - Run Once",
+      "text": "React 19 - CodeModes",
+      "value": "run types-react-codemod",
+      "projectType": ["chat"]
     }
   ]
 }

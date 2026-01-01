@@ -1,3 +1,5 @@
+import { useActionState } from 'react';
+
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import type { MenuEdit } from '@types';
 import { z } from 'zod';
@@ -22,6 +24,11 @@ const pageSchema = z.object({
 // Create a type from the schema
 type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
+
+type FormState = {
+  message?: string;
+  success?: boolean;
+};
 
 const useTestEdit = () => {
   const { data, isError } = useTestMenus();
@@ -74,6 +81,53 @@ const useTestEdit = () => {
     return result;
   };
 
+  // Action function for useActionState
+  const submitAction = async (
+    _prevState: FormState,
+    _formData: FormData,
+  ): Promise<FormState> => {
+    try {
+      const updates = getUpdates();
+      if (!updates) {
+        return {
+          message: 'No updates to save',
+          success: false,
+        };
+      }
+
+      const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
+
+      if (!result) {
+        setIsSaved(false);
+        return {
+          message: 'Failed to save test edits',
+          success: false,
+        };
+      }
+
+      setIsSaved(true);
+      return {
+        message: 'Test edits saved successfully',
+        success: true,
+      };
+    } catch (error_: unknown) {
+      setIsSaved(false);
+      const errorMessage =
+        error_ instanceof Error
+          ? `Error saving test edits: ${error_.message}`
+          : 'An unexpected error occurred';
+      return {
+        message: errorMessage,
+        success: false,
+      };
+    }
+  };
+
+  const [actionState, formAction, isPending] = useActionState<
+    FormState,
+    FormData
+  >(submitAction, {});
+
   const handleChange = (id: number, fieldName: FormKeys, value: string) => {
     setFieldValue(id, fieldName, value);
   };
@@ -94,12 +148,15 @@ const useTestEdit = () => {
   const filteredData = data?.items;
 
   return {
+    actionState,
     data: filteredData,
+    formAction,
     getFieldValue,
     getStandardInputTextAttributes,
     handleChange,
     handleSave,
     isError,
+    isPending,
     isSaved,
     pageSchema,
     setFieldValue,

@@ -40,12 +40,55 @@ app.use(
     limit: SERVER_CONFIG.JSON_SIZE_LIMIT,
   }),
 );
-app.use(cors());
+
+// CORS configuration - restrict origins based on environment
+const allowedOrigins =
+  env.NODE_ENV === 'production'
+    ? [env.BASE_URL] // Add production domains as needed
+    : [
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'http://localhost:3005',
+      ];
+
+app.use(
+  cors({
+    credentials: true,
+    maxAge: 86400, // 24 hours
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, etc.)
+      if (!origin) {
+        callback(null, true);
+        return;
+      }
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        Logger.warn(`CORS blocked origin: ${origin}`);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  }),
+);
+
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
+        'base-uri': ["'self'"],
+        'connect-src': ["'self'", env.BASE_URL],
+        'default-src': ["'self'"],
+        'font-src': ["'self'", 'https://fonts.gstatic.com'],
+        'form-action': ["'self'"],
+        'frame-ancestors': ["'none'"],
+        'img-src': ["'self'", 'data:', 'https:'],
         'script-src': ["'self'"],
+        'style-src': [
+          "'self'",
+          "'unsafe-inline'",
+          'https://fonts.googleapis.com',
+        ],
       },
     },
     hsts: {
@@ -55,6 +98,19 @@ app.use(
   }),
 );
 app.use(compression());
+
+// Additional security headers
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader(
+    'Permissions-Policy',
+    'geolocation=(), microphone=(), camera=()',
+  );
+  next();
+});
 
 app.use((req, res, next) => {
   res.setTimeout(SERVER_CONFIG.REQUEST_TIMEOUT_MS, () => {

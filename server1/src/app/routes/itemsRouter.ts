@@ -11,4 +11,4 @@ export const itemsRouter = express.Router();
 itemsRouter.get('/', asyncHandler(getItems));
 itemsRouter.put('/', asyncHandler(putItems));
 itemsRouter.patch('/', asyncHandler(patchItems));
-itemsRouter.get('/itemsartists', asyncHandler(getItemsArtists));
+itemsRouter.get('/items-artists', asyncHandler(getItemsArtists));

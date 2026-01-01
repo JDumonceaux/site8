@@ -16,7 +16,7 @@ export const deleteItem = async (
   Logger.info(`Page: Delete Item called: ${id}`);
 
   if (!id) {
-    res.status(400).json({ message: 'Invalid ID' } as unknown);
+    res.status(400).json({ error: 'Invalid ID' });
     return;
   }
 
@@ -35,11 +35,11 @@ export const deleteItem = async (
       Promise.try(() => service.deleteItem(idNum)),
       Promise.try(() => fileService.deleteFile(idNum)),
     ]);
-    res.sendStatus(200);
+    res.sendStatus(204);
   } catch (error) {
     Logger.info(
       `Page: Delete Item -> error deleting id ${idNum}: ${(error as Error).message}`,
     );
-    res.sendStatus(500);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

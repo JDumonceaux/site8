@@ -1,5 +1,6 @@
 import {
   type ChangeEvent,
+  useActionState,
   useEffect,
   useEffectEvent,
   useOptimistic,
@@ -16,8 +17,15 @@ import { type ImageEdit, ImageEditSchema } from '@site8/shared';
 type FormKeys = keyof ImageEdit;
 import useImage from './useImage';
 
+type ActionState = {
+  message?: string;
+  success?: boolean;
+};
+
 type UseImageEditReturn = {
+  actionState: ActionState;
   clearForm: () => void;
+  formAction: (formData: FormData) => void;
   formValues: ImageEdit;
   getDefaultProps: (field: FormKeys) => {
     'data-id': FormKeys;
@@ -27,10 +35,10 @@ type UseImageEditReturn = {
     ) => void;
     value: string;
   };
+  isPending: boolean;
   isProcessing: boolean;
   isSaved: boolean;
   resetForm: () => void;
-  saveItem: () => Promise<boolean>;
   validateForm: () => boolean;
 };
 
@@ -68,6 +76,13 @@ export const useImageEdit = (
   const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
     useForm<ImageEdit>(defaultForm);
 
+  // Save state with optimistic updates
+  const [isSaved, setIsSaved] = useState(false);
+  const [optimisticSaved, setOptimisticSaved] = useOptimistic(
+    isSaved,
+    (_state, newValue: boolean) => newValue,
+  );
+
   // TanStack Query mutation for saving images
   const mutation = useMutation({
     mutationFn: async (payload: ImageEdit) => {
@@ -100,6 +115,49 @@ export const useImageEdit = (
     },
   });
 
+  // Form action for useActionState (defined after mutation)
+  const submitAction = useEffectEvent(
+    async (
+      _prevState: ActionState,
+      _formData: FormData,
+    ): Promise<ActionState> => {
+      try {
+        // Validate form
+        const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
+        if (!result.success) {
+          setErrors(result.error?.issues ?? null);
+          return { message: 'Validation failed', success: false };
+        }
+
+        // Build payload from formValues
+        const payload: ImageEdit = {
+          id: formValues.id,
+          name: formValues.name,
+          fileName: formValues.fileName,
+          folder: formValues.folder,
+          ext_url: formValues.ext_url,
+          description: formValues.description,
+        };
+
+        // Optimistically show as saved
+        setOptimisticSaved(true);
+        await mutation.mutateAsync(payload);
+        return { message: 'Success', success: true };
+      } catch (error) {
+        // Revert optimistic update on error
+        setOptimisticSaved(false);
+        const message =
+          error instanceof Error ? error.message : 'Failed to save image';
+        return { message, success: false };
+      }
+    },
+  );
+
+  const [actionState, formAction, isPending] = useActionState<
+    ActionState,
+    FormData
+  >(submitAction, { success: undefined });
+
   // Initialize or update form when data arrives
   useEffect(() => {
     if (!imageData) return;
@@ -120,39 +178,6 @@ export const useImageEdit = (
     const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
     setErrors(result.success ? null : (result.error?.issues ?? null));
     return result.success;
-  });
-
-  // Save state with optimistic updates
-  const [isSaved, setIsSaved] = useState(false);
-  const [optimisticSaved, setOptimisticSaved] = useOptimistic(
-    isSaved,
-    (_state, newValue: boolean) => newValue,
-  );
-
-  const saveItem = useEffectEvent(async () => {
-    if (!validateForm()) return false;
-
-    const payload: ImageEdit = {
-      id: formValues.id,
-      name: formValues.name,
-      fileName: formValues.fileName,
-      folder: formValues.folder,
-      ext_url: formValues.ext_url,
-      description: formValues.description,
-    };
-
-    try {
-      // Optimistically show as saved
-      setOptimisticSaved(true);
-      await mutation.mutateAsync(payload);
-      return true;
-    } catch (error) {
-      // Revert optimistic update on error
-      setOptimisticSaved(false);
-      // eslint-disable-next-line no-console
-      console.error('Failed to save image:', error);
-      return false;
-    }
   });
 
   const resetForm = useEffectEvent(() => {
@@ -188,13 +213,15 @@ export const useImageEdit = (
   }, [formValues, imageData]);
 
   return {
+    actionState,
     clearForm,
+    formAction,
     formValues,
     getDefaultProps,
-    isProcessing: mutation.isPending,
+    isPending,
+    isProcessing: mutation.isPending || isPending,
     isSaved: optimisticSaved,
     resetForm,
-    saveItem,
     validateForm,
   } as const;
 };

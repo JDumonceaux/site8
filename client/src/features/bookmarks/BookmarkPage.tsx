@@ -4,7 +4,7 @@ import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
-import { logError } from '@lib/utils/errorLogger';
+import { logError } from '@lib/utils/errorHandler';
 import BookmarkList from './BookmarkList';
 import useBookmarks from './useBookmarks';
 
@@ -37,4 +37,3 @@ const BookmarkPage = (): JSX.Element => {
 };
 
 export default BookmarkPage;
-

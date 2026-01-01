@@ -1,6 +1,6 @@
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/ui/button/Button';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
@@ -30,10 +30,7 @@ const ForgotPasswordPage = (): JSX.Element => {
     'Password reset email sent',
   );
 
-  const [state, formAction, isPending] = useActionState(
-    resetPasswordAction,
-    {},
-  );
+  const [state, formAction] = useActionState(resetPasswordAction, {});
 
   return (
     <>
@@ -69,13 +66,12 @@ const ForgotPasswordPage = (): JSX.Element => {
             You will be sent a validation code via email to confirm your
             account.
           </InstDiv>
-          <Button
-            disabled={isPending}
+          <SubmitButton
             id="login"
-            type="submit"
+            loadingText="Processing"
           >
-            {isPending ? 'Processing' : 'Request Password Change'}
-          </Button>
+            Request Password Change
+          </SubmitButton>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/signin">Sign in</StyledLink>
@@ -87,4 +83,3 @@ const ForgotPasswordPage = (): JSX.Element => {
 };
 
 export default ForgotPasswordPage;
-

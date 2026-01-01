@@ -1,8 +1,9 @@
-import React, { type JSX } from 'react';
+import type { JSX } from 'react';
 
 import IconMenu from '@components/icon-menu/IconMenu';
 import IconMenuItem from '@components/icon-menu/IconMenuItem';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
+import FormSaveButton from '@components/ui/button/FormSaveButton';
 import { ServiceUrl } from '@lib/utils/constants';
 
 type Props = {
@@ -10,7 +11,6 @@ type Props = {
   readonly handleClear?: () => void;
   readonly handleRefresh?: () => void;
   readonly handleScan?: () => void;
-  readonly isSubmitting?: boolean;
 };
 
 const MenuBar = ({
@@ -18,7 +18,6 @@ const MenuBar = ({
   handleClear,
   handleRefresh,
   handleScan,
-  isSubmitting,
 }: Props): JSX.Element => {
   const renderButton = (
     testId: string,
@@ -80,17 +79,10 @@ const MenuBar = ({
         {renderButton('button-refresh', handleRefresh, 'button', 'Refresh')}
         {renderButton('button-clear', handleClear, 'button', 'Clear')}
         <StyledPlainButton
-          data-testid="button-save"
-          type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'Saving...' : 'Save'}
-        </StyledPlainButton>
-      </div>
+         FormSaveButton data-testid="button-save">Save</FormSave
     </div>
   );
 };
 MenuBar.displayName = 'MenuBar';
 
 export default MenuBar;
-

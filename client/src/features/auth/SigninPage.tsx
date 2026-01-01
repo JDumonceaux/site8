@@ -1,6 +1,6 @@
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/ui/button/Button';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
@@ -28,7 +28,7 @@ const SigninPage = (): JSX.Element => {
     await authSignIn(data.emailAddress, data.password);
   });
 
-  const [state, formAction, isPending] = useActionState(signInAction, {});
+  const [state, formAction] = useActionState(signInAction, {});
 
   return (
     <>
@@ -69,12 +69,7 @@ const SigninPage = (): JSX.Element => {
             autoComplete="current-password"
             placeholder="Enter Password"
           />
-          <Button
-            disabled={isPending}
-            id="login"
-          >
-            {isPending ? 'Processing' : 'Submit'}
-          </Button>
+          <SubmitButton id="login">Submit</SubmitButton>
         </StyledForm>
         <StyledBottomMsg>
           <StyledLink to="/signup">Sign up</StyledLink>
@@ -87,4 +82,3 @@ const SigninPage = (): JSX.Element => {
 
 SigninPage.displayName = 'SigninPage';
 export default SigninPage;
-

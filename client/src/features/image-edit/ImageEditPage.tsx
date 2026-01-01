@@ -7,6 +7,8 @@ import PageTitle from '@components/core/page/PageTitle';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
+import FormSaveButton from '@components/ui/button/FormSaveButton';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { getSRC } from '@lib/utils/helpers';
 import Layout from '@features/layouts/layout/Layout';
 import useImageEdit from './useImageEdit';
@@ -31,22 +33,25 @@ const getPreviewSrc = (formValues: ImageEdit): string => {
 const ImageEditPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
   const {
+    actionState,
     clearForm,
+    formAction,
     formValues,
     getDefaultProps,
+    isPending,
     isProcessing,
     isSaved,
     resetForm,
-    saveItem,
   } = useImageEdit(id ?? null);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.stopPropagation();
-    event.preventDefault();
-    if (!isSaved) {
-      void saveItem();
+  const { setMessage } = useSnackbar();
+
+  // Show snackbar messages from action state
+  useEffect(() => {
+    if (actionState.message) {
+      setMessage(actionState.message);
     }
-  };
+  }, [actionState.message, setMessage]);
 
   const handleClearForm = () => {
     clearForm();
@@ -73,7 +78,7 @@ const ImageEditPage = (): JSX.Element => {
           <PageTitle title={title}>
             <StyledPlainButton
               data-testid="button-clear"
-              disabled={isProcessing}
+              disabled={isPending || isProcessing}
               type="button"
               onClick={handleClearForm}
             >
@@ -87,31 +92,31 @@ const ImageEditPage = (): JSX.Element => {
             </StyledLink>
             <StyledPlainButton
               data-testid="button-reset"
-              disabled={isSaved || isProcessing}
+              disabled={isSaved || isPending || isProcessing}
               type="reset"
               onClick={resetForm}
             >
               Reset
             </StyledPlainButton>
-            <StyledPlainButton
+            <FormSaveButton
               data-testid="button-save"
-              disabled={isSaved || isProcessing}
-              type="submit"
-              onClick={handleSubmit}
+              disabled={isSaved}
+              form="image-edit-form"
             >
               Save
-            </StyledPlainButton>
+            </FormSaveButton>
           </PageTitle>
           <LoadingWrapper isLoading={isProcessing}>
             <StyledContainer>
               <FormContainer>
                 <form
+                  id="image-edit-form"
+                  action={formAction}
                   noValidate
-                  onSubmit={handleSubmit}
                 >
                   <Input.Text
                     ref={inputTitleRef}
-                    disabled={isProcessing}
+                    disabled={isPending || isProcessing}
                     isRequired
                     spellCheck
                     enterKeyHint="next"
@@ -121,7 +126,7 @@ const ImageEditPage = (): JSX.Element => {
                     {...getDefaultProps('name')}
                   />
                   <Input.Text
-                    disabled={isProcessing}
+                    disabled={isPending || isProcessing}
                     isRequired={false}
                     spellCheck
                     enterKeyHint="next"
@@ -131,13 +136,13 @@ const ImageEditPage = (): JSX.Element => {
                     {...getDefaultProps('fileName')}
                   />
                   <Input.Text
-                    disabled={isProcessing}
+                    disabled={isPending || isProcessing}
                     isRequired={false}
                     label="Folder"
                     {...getDefaultProps('folder')}
                   />
                   <Input.Text
-                    disabled={isProcessing}
+                    disabled={isPending || isProcessing}
                     enterKeyHint="next"
                     label="External URL"
                     autoCapitalize="off"
@@ -145,7 +150,7 @@ const ImageEditPage = (): JSX.Element => {
                     {...getDefaultProps('ext_url')}
                   />
                   <Input.TextArea
-                    disabled={isProcessing}
+                    disabled={isPending || isProcessing}
                     spellCheck
                     label="Description"
                     rows={10}

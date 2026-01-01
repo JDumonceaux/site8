@@ -49,7 +49,18 @@ export class FileService {
   public async getFile(filePath: string): Promise<string | undefined> {
     Logger.info(`FileService: getFile -> ${filePath}`);
     try {
-      return await readFile(filePath, { encoding: 'utf8' });
+      // Prevent path traversal attacks
+      const resolvedPath = realpathSync(filePath);
+      const allowedDir = realpathSync(FilePath.getDataDir(''));
+
+      if (!resolvedPath.startsWith(allowedDir)) {
+        Logger.error(
+          `FileService: getFile: ${filePath} --> Invalid file path attempt: ${resolvedPath}`,
+        );
+        throw new Error('Access denied: Invalid file path');
+      }
+
+      return await readFile(resolvedPath, { encoding: 'utf8' });
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);

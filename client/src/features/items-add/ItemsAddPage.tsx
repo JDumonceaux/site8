@@ -16,12 +16,13 @@ import styled from 'styled-components';
 
 const ItemsAddPage = (): JSX.Element => {
   const {
+    actionState,
     artistId,
     data,
+    formAction,
     handleChange,
     handleClear,
     handleFilterChange,
-    handleSubmit,
   } = useItemsAddPage();
 
   const { locationsIndexed, periodsIndexed, titlesIndexed } = useItems();
@@ -50,7 +51,7 @@ const ItemsAddPage = (): JSX.Element => {
             />
             <StyledForm
               noValidate
-              onSubmit={handleSubmit}
+              action={formAction}
             >
               {data.map((item: ItemAddExt) => (
                 <ItemDetail
@@ -82,4 +83,3 @@ export default ItemsAddPage;
 const StyledForm = styled.form`
   width: 100%;
 `;
-

@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useState } from 'react';
+import { useEffect, useEffectEvent, useState, useTransition } from 'react';
 
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useFormArray from '@hooks/useFormArray';
@@ -12,6 +12,7 @@ const useImagesEditPage = (submitState: FormState<null>) => {
   const [filter, setFilter] = useState<string>('sort');
   const [currentFolder, setCurrentFolder] = useState<string>('');
   const [displayData, setDisplayData] = useState<Image[]>([]);
+  const [isFilterPending, startFilterTransition] = useTransition();
 
   const { setMessage } = useSnackbar();
 
@@ -70,7 +71,11 @@ const useImagesEditPage = (submitState: FormState<null>) => {
     );
     const sortedData = filteredImageType?.toSorted((a, b) => b.id - a.id);
     const trimmedData = sortedData?.slice(0, 100);
-    setDisplayData(trimmedData ?? []);
+
+    // Mark as non-urgent to keep UI responsive during filtering
+    startFilterTransition(() => {
+      setDisplayData(trimmedData ?? []);
+    });
   };
 
   const filterAndSortDataEvent = useEffectEvent(() => {
@@ -172,6 +177,7 @@ const useImagesEditPage = (submitState: FormState<null>) => {
     handleRefresh,
     handleScan,
     isError,
+    isFilterPending,
     isPending,
     setFieldValue,
   };
