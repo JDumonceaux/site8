@@ -106,15 +106,12 @@ const StyledMenuLink = styled(StyledNavLink)`
   &:visited,
   &:hover,
   &:active {
-    color: var(--palette-dark-text);
+    color: var(--navbar-text);
   }
   display: inline-block;
   width: 100%;
   padding: 12px;
   margin-bottom: 4px;
-  // &.active {
-  //   background: var(--navbar-dark-secondary);
-  // }
 `;
 const StyledMenu0 = styled(StyledMenuLink)`
   padding: 12px;
@@ -142,7 +139,7 @@ const StyledPage2 = styled(StyledMenuLink)`
 const StyledMenuButton = styled.button<{ level: number }>`
   background: none;
   border: none;
-  color: var(--palette-dark-text);
+  color: var(--navbar-text);
   cursor: pointer;
   display: flex;
   justify-content: space-between;

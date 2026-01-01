@@ -81,7 +81,7 @@
   /* Navbar */
   --navbar-width: 256px;
   --navbar-width-min: 80px;
-  --navbar-text: light-dark(#212121, #f2f3f4);
+  --navbar-text: light-dark(#f2f3f4, #f2f3f4);
   --navbar-background: light-dark(#ffffff, #18283b);
   --navbar-dark-primary: light-dark(#f5f6fa, #18283b);
   --navbar-dark-secondary: light-dark(#8392a5, #465262);
