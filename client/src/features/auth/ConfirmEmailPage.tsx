@@ -1,4 +1,5 @@
-import React, { type JSX } from 'react';
+import type { JSX } from 'react';
+import { useActionState } from 'react';
 
 import Button from '@components/ui/button/Button';
 import Meta from '@components/core/meta/Meta';
@@ -9,6 +10,16 @@ import { safeParse } from '@lib/utils/zodHelper';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';
+
+const schema = z.object({
+  authenticationCode: z.string().length(6, 'Code must be 6 digits'),
+  emailAddress: z.string().pipe(z.email({ message: 'Invalid email address' })),
+});
+
+type FormState = {
+  message?: string;
+  success?: boolean;
+};
 
 const schema = z.object({
   authenticationCode: z.string().length(6, 'Code must be 6 digits'),
@@ -37,23 +48,45 @@ const ConfirmEmailPage = (): JSX.Element => {
     return result.success;
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (!validateForm()) return;
-
-    void (async () => {
-      try {
-        await authConfirmSignUp(
-          formValues.emailAddress,
-          formValues.authenticationCode,
-        );
-        // Handle successful confirmation
-      } catch (error_) {
-        // eslint-disable-next-line no-console
-        console.error('Error confirming sign up:', error_);
+  // Action function for useActionState
+  const submitAction = async (
+    _prevState: FormState,
+    _formData: FormData,
+  ): Promise<FormState> => {
+    try {
+      // Validate form
+      if (!validateForm()) {
+        return {
+          message: 'Validation failed. Please check the form fields.',
+          success: false,
+        };
       }
-    })();
+
+      await authConfirmSignUp(
+        formValues.emailAddress,
+        formValues.authenticationCode,
+      );
+
+      return {
+        message: 'Email confirmed successfully',
+        success: true,
+      };
+    } catch (error_: unknown) {
+      const errorMessage =
+        error_ instanceof Error
+          ? `Error confirming sign up: ${error_.message}`
+          : 'An unexpected error occurred';
+      return {
+        message: errorMessage,
+        success: false,
+      };
+    }
   };
+
+  const [actionState, formAction, isPending] = useActionState<
+    FormState,
+    FormData
+  >(submitAction, {});
 
   const handleResend = () => {
     void (async () => {
@@ -83,11 +116,11 @@ const ConfirmEmailPage = (): JSX.Element => {
           />
         }
         title="Confirm Email"
-        error={error}
+        error={actionState.message || error}
       >
         <StyledForm
           noValidate
-          onSubmit={handleSubmit}
+          action={formAction}
         >
           <Input.Email
             required
@@ -114,7 +147,7 @@ const ConfirmEmailPage = (): JSX.Element => {
             id="login"
             type="submit"
           >
-            {isLoading ? 'Processing' : 'Submit'}
+            {isPending || isLoading ? 'Processing' : 'Submit'}
           </Button>
 
           <StyledBottomMsg>
@@ -142,4 +175,3 @@ const StyledBottomMsg = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-

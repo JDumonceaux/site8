@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import { useActionState } from 'react';
 
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
@@ -21,6 +22,11 @@ type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 type SortByType = 'name' | 'seq';
 type MenuType = 'menu' | 'root';
+
+type FormState = {
+  message?: string;
+  success?: boolean;
+};
 
 // Default form values
 const initialFormValues: FormType = {
@@ -77,6 +83,56 @@ const useMenuEdit = () => {
     return !!result;
   };
 
+  // Action function for useActionState
+  const submitAction = async (
+    _prevState: FormState,
+    _formData: FormData,
+  ): Promise<FormState> => {
+    try {
+      // Validate form
+      const validationResult = safeParse<FormType>(pageSchema, formValues);
+      if (!validationResult.success) {
+        setErrors(validationResult.error?.issues ?? null);
+        return {
+          message: 'Validation failed. Please check the form fields.',
+          success: false,
+        };
+      }
+
+      const data = getUpdates();
+      const result = await putData(ServiceUrl.ENDPOINT_MENUS, data);
+
+      if (!result) {
+        setIsSaved(false);
+        return {
+          message: 'Failed to add menu',
+          success: false,
+        };
+      }
+
+      setIsSaved(true);
+      return {
+        message: 'Menu added successfully',
+        success: true,
+      };
+    } catch (error_: unknown) {
+      setIsSaved(false);
+      const errorMessage =
+        error_ instanceof Error
+          ? `Error adding menu: ${error_.message}`
+          : 'An unexpected error occurred';
+      return {
+        message: errorMessage,
+        success: false,
+      };
+    }
+  };
+
+  const [actionState, formAction, isPending] = useActionState<
+    FormState,
+    FormData
+  >(submitAction, {});
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFieldValue(name as FormKeys, value);
@@ -94,13 +150,16 @@ const useMenuEdit = () => {
   };
 
   return {
+    actionState,
     clearForm,
     error,
+    formAction,
     formValues,
     getFieldValue,
     getStandardInputTextAttributes,
     handleInputChange,
     isLoading,
+    isPending,
     isProcessing,
     isSaved,
     pageSchema,

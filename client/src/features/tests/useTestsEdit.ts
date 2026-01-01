@@ -1,3 +1,5 @@
+import { useActionState, useOptimistic } from 'react';
+
 import { ServiceUrl } from '@lib/utils/constants';
 import type { Test } from '@types';
 import type { Tests } from '@types';
@@ -24,6 +26,11 @@ const pageSchema = z.object({
 type FormType = z.infer<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
+type FormState = {
+  message?: string;
+  success?: boolean;
+};
+
 const useTestsEdit = () => {
   const { patchData } = useAxios<Tests>();
 
@@ -41,6 +48,12 @@ const useTestsEdit = () => {
     setFormValues,
     setIsSaved,
   } = useFormArray<FormType>();
+
+  // Optimistic update for saved state
+  const [optimisticSaved, setOptimisticSaved] = useOptimistic(
+    isSaved,
+    (_state, newValue: boolean) => newValue,
+  );
 
   const getDefaultProps = (lineId: number, fieldName: FormKeys) => ({
     'data-id': fieldName,
@@ -86,36 +99,80 @@ const useTestsEdit = () => {
   //   return result.success;
   // };
 
-  // Handle save
-  const submitForm = async () => {
-    const updates = getUpdates();
-    if (!updates) {
-      return false;
+  // Action function for useActionState
+  const submitAction = async (
+    _prevState: FormState,
+    _formData: FormData,
+  ): Promise<FormState> => {
+    try {
+      const updates = getUpdates();
+      if (!updates) {
+        return {
+          message: 'No updates to save',
+          success: false,
+        };
+      }
+
+      // Optimistically mark as saved
+      setOptimisticSaved(true);
+      const result = await patchData(ServiceUrl.ENDPOINT_TESTS, updates);
+
+      if (!result) {
+        // Revert optimistic state on error
+        setIsSaved(false);
+        return {
+          message: 'Failed to save tests',
+          success: false,
+        };
+      }
+
+      setIsSaved(true);
+      return {
+        message: 'Tests saved successfully',
+        success: true,
+      };
+    } catch (error_: unknown) {
+      // Revert optimistic state on error
+      setIsSaved(false);
+      const errorMessage =
+        error_ instanceof Error
+          ? `Error saving tests: ${error_.message}`
+          : 'An unexpected error occurred';
+      return {
+        message: errorMessage,
+        success: false,
+      };
     }
-    //setIsProcessing(true);
-    const result = await patchData(ServiceUrl.ENDPOINT_TESTS, updates);
-    //setIsProcessing(false);
-    setIsSaved(!!result);
-    return result;
+  };
+
+  const [actionState, formAction, isPending] = useActionState<
+    FormState,
+    FormData
+  >(submitAction, {});
+
+  // Handle save (kept for backward compatibility)
+  const handleSave = async () => {
+    // Create a FormData object and invoke formAction
+    const formData = new FormData();
+    formAction(formData);
+    return actionState.success ?? false;
   };
 
   const handleChange = (id: number, fieldName: FormKeys, value: string) => {
     setFieldValue(id, fieldName, value);
   };
 
-  const handleSave = async () => {
-    const returnValue = await submitForm();
-    return returnValue;
-  };
-
   return {
+    actionState,
     data: localItems,
+    formAction,
     getDefaultProps,
     getFieldValue,
     handleChange,
     handleSave,
     isError,
-    isSaved,
+    isPending,
+    isSaved: optimisticSaved,
     pageSchema,
     setFieldValue,
     setFormValues,

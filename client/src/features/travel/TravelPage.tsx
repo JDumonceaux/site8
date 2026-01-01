@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
-import { logError } from '@lib/utils/errorLogger';
+import { logError } from '@lib/utils/errorHandler';
 import Items from './Items';
 import TravelMenu from './TravelMenu';
 import useTravel from './useTravel';

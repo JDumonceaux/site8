@@ -1,5 +1,5 @@
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import { useQuery } from '@tanstack/react-query';
+import { ServiceUrl } from '@lib/utils/constants';
+import { createQueryHook } from '@hooks/createQueryHook';
 import { useMemo } from 'react';
 import type { MenuItem } from '@site8/shared';
 
@@ -11,14 +11,11 @@ type TravelMenuResponse = {
   };
 };
 
-// Helper function to fetch travel menu
-const fetchTravelMenu = async (): Promise<TravelMenuResponse> => {
-  const res = await fetch(`${ServiceUrl.ENDPOINT_TRAVEL}/menu`);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch travel menu: ${res.statusText}`);
-  }
-  return res.json() as Promise<TravelMenuResponse>;
-};
+// Create the travel menu query hook using the factory
+const useTravelMenuQuery = createQueryHook<TravelMenuResponse>({
+  endpoint: `${ServiceUrl.ENDPOINT_TRAVEL}/menu`,
+  queryKey: ['travel-menu'],
+});
 
 export type UseTravelMenuReturn = {
   data?: TravelMenuResponse;
@@ -30,11 +27,7 @@ export type UseTravelMenuReturn = {
 };
 
 const useTravelMenu = (): UseTravelMenuReturn => {
-  const { data, error, isError, isLoading } = useQuery<TravelMenuResponse>({
-    queryFn: fetchTravelMenu,
-    queryKey: ['travel-menu'],
-    ...USEQUERY_DEFAULT_OPTIONS,
-  });
+  const { data, error, isError, isLoading } = useTravelMenuQuery();
 
   // Recursively search for a menu item by ID
   const findMenuItemRecursive = (

@@ -1,6 +1,6 @@
 import { type JSX, useActionState } from 'react';
 
-import Button from '@components/ui/button/Button';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
@@ -74,7 +74,7 @@ const ChangePasswordPage = (): JSX.Element => {
             label="Confirm Password"
             placeholder="Confirm password"
           />
-          <Button id="submit">Submit</Button>
+          <SubmitButton id="submit">Submit</SubmitButton>
         </Form.Root>
         <StyledBottomMsg>
           <StyledLink to="/">Cancel</StyledLink>
@@ -90,4 +90,3 @@ const StyledBottomMsg = styled.div`
   padding: 20px 0;
   text-align: center;
 `;
-

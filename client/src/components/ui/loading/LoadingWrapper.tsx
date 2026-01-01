@@ -1,6 +1,6 @@
 import type { JSX, ReactNode } from 'react';
 
-import { getUserFriendlyErrorMessage } from '@lib/utils/errorLogger';
+import { getUserFriendlyErrorMessage } from '@lib/utils/errorHandler';
 import styled, { keyframes } from 'styled-components';
 
 export type LoadingWrapperProps = {

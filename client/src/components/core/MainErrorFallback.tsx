@@ -1,7 +1,7 @@
 import { useEffect, type JSX } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 
-import { getUserFriendlyErrorMessage, logError } from '@lib/utils/errorLogger';
+import { getUserFriendlyErrorMessage, logError } from '@lib/utils/errorHandler';
 import styled from 'styled-components';
 
 export type MainErrorFallbackProps = {

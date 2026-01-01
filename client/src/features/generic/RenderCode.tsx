@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 import IconButton from '@components/ui/button/icon-button/IconButton';
 import { CopyIcon } from '@components/ui/icons/CopyIcon';

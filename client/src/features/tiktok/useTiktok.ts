@@ -1,6 +1,6 @@
-import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
+import { ServiceUrl } from '@lib/utils/constants';
+import { createParameterizedQueryHook } from '@hooks/createQueryHook';
 import type { Page } from '@types';
-import { useQuery } from '@tanstack/react-query';
 
 export type UseTiktokResult = {
   data?: Page;
@@ -10,28 +10,17 @@ export type UseTiktokResult = {
 };
 
 /**
- * Fetches a Page by ID from the API, supporting an AbortSignal.
+ * Custom hook to load TikTok page data using createParameterizedQueryHook factory.
  */
-const fetchPageById = async (
-  id: string,
-  signal?: AbortSignal,
-): Promise<Page> => {
-  const res = await fetch(`${ServiceUrl.ENDPOINT_PAGE}/${id}`, { signal });
-  if (!res.ok) {
-    throw new Error(`Failed to fetch page ${id}: ${res.statusText}`);
-  }
-  return res.json() as Promise<Page>;
-};
-
-/**
- * Custom hook to load TikTok page data.
- */
-export const useTiktok: (id: string) => UseTiktokResult = (id) => {
-  const query = useQuery<Page>({
-    queryFn: async ({ signal }) => fetchPageById(id, signal),
+const useTiktokQuery = createParameterizedQueryHook<Page, { id: string }>(
+  ({ id }) => ({
+    endpoint: `${ServiceUrl.ENDPOINT_PAGE}/${id}`,
     queryKey: ['tiktok', id],
-    ...USEQUERY_DEFAULT_OPTIONS,
-  });
+  }),
+);
+
+export const useTiktok: (id: string) => UseTiktokResult = (id) => {
+  const query = useTiktokQuery({ id });
 
   return {
     data: query.data,

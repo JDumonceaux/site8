@@ -9,7 +9,7 @@ import { getImageService } from '../../utils/ServiceFactory.js';
 
 export const deleteItem = async (
   req: Request,
-  res: Response<Image | Error>,
+  res: Response<Image | { error: string }>,
 ): Promise<void> => {
   try {
     const { id } = req.body;
@@ -17,14 +17,14 @@ export const deleteItem = async (
 
     if (!id) {
       Logger.info(`Image: Delete invalid body -> id: ${id}`);
-      res.status(400).send(new Error(RESPONSES.INVALID_ID));
+      res.status(400).json({ error: RESPONSES.INVALID_ID });
       return;
     }
 
     const { id: idNum, isValid } = parseRequestId(id.toString().trim());
     if (!isValid || !idNum) {
       Logger.info(`Image: Delete invalid body -> id: ${id}`);
-      res.status(400).send(new Error(RESPONSES.INVALID_ID));
+      res.status(400).json({ error: RESPONSES.INVALID_ID });
       return;
     }
 
@@ -33,10 +33,10 @@ export const deleteItem = async (
     if (deletedItem) {
       res.status(200).json(deletedItem);
     } else {
-      res.status(404).send(new Error(RESPONSES.NOT_FOUND));
+      res.status(404).json({ error: RESPONSES.NOT_FOUND });
     }
   } catch (error) {
     Logger.error('Image: Delete Item error:', error);
-    res.sendStatus(500);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import React, { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
@@ -17,6 +17,7 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   const { findMenuItem, getRootMenuItems, isError, isLoading } = useMenu();
   const { pathname } = useLocation();
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
+  const [isExpansionPending, startExpansionTransition] = useTransition();
 
   const [pn1] = getURLPath(pathname) ?? [];
 
@@ -26,10 +27,13 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   // Auto-expand the current item if it exists
   React.useEffect(() => {
     if (currentItem && currentItem.items && currentItem.items.length > 0) {
-      setExpandedItems((prev) => {
-        const newSet = new Set(prev);
-        newSet.add(currentItem.id);
-        return newSet;
+      // Mark expansion as non-urgent to keep UI responsive
+      startExpansionTransition(() => {
+        setExpandedItems((prev) => {
+          const newSet = new Set(prev);
+          newSet.add(currentItem.id);
+          return newSet;
+        });
       });
     }
   }, [currentItem]);

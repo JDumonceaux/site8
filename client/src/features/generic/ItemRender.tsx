@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import type { JSX } from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 import type { MenuItem } from '@site8/shared';

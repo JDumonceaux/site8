@@ -1,6 +1,7 @@
 import { type JSX, useActionState } from 'react';
 
 import Button from '@components/ui/button/Button';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
@@ -29,7 +30,7 @@ const SignupPage = (): JSX.Element => {
     await authSignUp(data.emailAddress, data.password);
   });
 
-  const [state, formAction, isPending] = useActionState(signUpAction, {});
+  const [state, formAction] = useActionState(signUpAction, {});
 
   const handleClick = (provider: SocialProvider) => {
     void (async () => {
@@ -109,13 +110,12 @@ const SignupPage = (): JSX.Element => {
             You will be sent a validation code via email to confirm your
             account.
           </InstDiv>
-          <Button
+          <SubmitButton
             id="login"
             variant="secondary"
-            disabled={isPending}
           >
-            {isPending ? 'Processing' : 'Submit'}
-          </Button>
+            Submit
+          </SubmitButton>
         </StyledForm>
         <TermsDiv>
           By clicking &quot;Submit&quot; you are agreeing to the{' '}
@@ -145,4 +145,3 @@ const TermsDiv = styled.div`
   padding: 16px 0;
   font-size: 0.7rem;
 `;
-

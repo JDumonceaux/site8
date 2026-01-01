@@ -43,16 +43,11 @@
       type="image/x-icon"
     />
 
-    <link
-      rel="preload"
-      href="/src/styles/reset.css"
-      as="style"
-    />
-    <link
-      rel="preload"
-      href="/src/styles/main.css"
-      as="style"
-    />
+    <!-- 
+      Note: Stylesheets and preconnects are managed by React 19's preinit/preconnect APIs
+      in usePreloadResources hook for better control and precedence management.
+      Keeping Google Fonts link here as fallback, but React will deduplicate it.
+    -->
     <link
       rel="stylesheet"
       href="/src/styles/reset.css"
@@ -62,18 +57,7 @@
       href="/src/styles/main.css"
     />
 
-    <!-- Preconnect to Google Fonts for performance -->
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-
-    <!-- Google Fonts Stylesheet-->
+    <!-- Google Fonts Stylesheet -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&family=Roboto+Slab&family=Shadows+Into+Light&display=swap"

@@ -1,4 +1,10 @@
-import { useEffect, useEffectEvent, useState } from 'react';
+import {
+  useActionState,
+  useEffect,
+  useEffectEvent,
+  useOptimistic,
+  useState,
+} from 'react';
 
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { useAxios } from '@hooks/axios/useAxios';
@@ -9,9 +15,16 @@ import type { ItemAdd, ItemAddExt } from './ItemAdd';
 
 const ITEM_COUNT = 10;
 
+type FormState = {
+  message?: string;
+  success?: boolean;
+};
+
 type UseItemsAddPageReturn = {
+  readonly actionState: FormState;
   readonly artistId: string;
   readonly data: ItemAddExt[];
+  readonly formAction: (formData: FormData) => void;
   readonly getFieldValue: (
     lineId: number,
     fieldName: keyof ItemAddExt,
@@ -23,8 +36,9 @@ type UseItemsAddPageReturn = {
   readonly handleFilterChange: (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => void;
-  readonly handleSubmit: () => void;
+  readonly isPending: boolean;
   readonly isLoading: boolean;
+  readonly isSaving: boolean;
   readonly setFieldValue: (
     lineId: number,
     fieldName: keyof ItemAddExt,
@@ -37,8 +51,13 @@ type UseItemsAddPageReturn = {
  * @returns State and handlers for the items add page
  */
 const useItemsAddPage = (): UseItemsAddPageReturn => {
-  const { setErrorMessage, setMessage } = useSnackbar();
+  const { setMessage } = useSnackbar();
   const [artistId, setArtistId] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
+  const [optimisticSaving, setOptimisticSaving] = useOptimistic(
+    isSaving,
+    (_state, newValue: boolean) => newValue,
+  );
 
   const {
     formValues,
@@ -146,44 +165,71 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
     return filtered.length > 0 ? filtered : null;
   };
 
-  const handleSubmit = (): void => {
-    const updates = getUpdates();
+  // Action function for useActionState
+  const submitAction = async (
+    _prevState: FormState,
+    _formData: FormData,
+  ): Promise<FormState> => {
+    try {
+      const updates = getUpdates();
 
-    if (!updates) {
-      setErrorMessage('No changes to save');
-      return;
-    }
-
-    setMessage('Saving...');
-
-    void (async () => {
-      try {
-        const result = await saveItems(updates);
-        if (result) {
-          setMessage('Items saved successfully');
-        } else {
-          setMessage(error ? `Error saving: ${error}` : 'Error saving items');
-        }
-      } catch (error_: unknown) {
-        const errorMessage =
-          error_ instanceof Error
-            ? `An unexpected error occurred: ${error_.message}`
-            : 'An unexpected error occurred';
-        setMessage(errorMessage);
-        // eslint-disable-next-line no-console
-        console.error('Error saving items:', error_);
+      if (!updates) {
+        return {
+          message:
+            'No valid items to save. Please ensure all items have a title.',
+          success: false,
+        };
       }
-    })();
+
+      // Optimistically show saving state
+      setOptimisticSaving(true);
+      setMessage('Saving...');
+
+      const cleanedData = removeEmptyAttributesArray(updates);
+      const result = await putData(ServiceUrl.ENDPOINT_ITEMS, cleanedData);
+
+      if (result) {
+        setIsSaving(false);
+        setMessage('Items saved successfully');
+        return { message: 'Items saved successfully', success: true };
+      } else {
+        setIsSaving(false);
+        const errorMessage = error
+          ? `Error saving: ${error}`
+          : 'Error saving items';
+        setMessage(errorMessage);
+        return { message: errorMessage, success: false };
+      }
+    } catch (error_: unknown) {
+      // Revert optimistic state on error
+      setIsSaving(false);
+      const errorMessage =
+        error_ instanceof Error
+          ? `An unexpected error occurred: ${error_.message}`
+          : 'An unexpected error occurred';
+      setMessage(errorMessage);
+      // eslint-disable-next-line no-console
+      console.error('Error saving items:', error_);
+      return { message: errorMessage, success: false };
+    }
   };
 
+  const [actionState, formAction, isPending] = useActionState<
+    FormState,
+    FormData
+  >(submitAction, {});
+
   return {
+    actionState,
     artistId,
     data: formValues,
+    formAction,
     getFieldValue,
     handleChange,
     handleClear,
     handleFilterChange,
-    handleSubmit,
+    isPending,
+    isSaving: optimisticSaving,
     isLoading,
     setFieldValue,
   };

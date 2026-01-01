@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import type { JSX } from 'react';
 
 import IconMenu from '@components/icon-menu/IconMenu';
 import IconMenuItem from '@components/icon-menu/IconMenuItem';
