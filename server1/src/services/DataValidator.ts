@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import type { ZodType } from 'zod';
 
 import { Logger } from '../utils/logger.js';
 
@@ -24,7 +24,7 @@ export type ValidatorConfig<T> = {
   /** Service name for logging */
   serviceName: string;
   /** Zod schema for validation */
-  validationSchema?: z.ZodType<T>;
+  validationSchema?: ZodType<T>;
 };
 
 /**
@@ -34,7 +34,7 @@ export type ValidatorConfig<T> = {
 export class DataValidator<T> {
   private readonly defaultMetadata: Record<string, unknown> | undefined;
   private readonly serviceName: string;
-  private readonly validationSchema: z.ZodType<T> | undefined;
+  private readonly validationSchema: ZodType<T> | undefined;
 
   public constructor(config: ValidatorConfig<T>) {
     this.serviceName = config.serviceName;

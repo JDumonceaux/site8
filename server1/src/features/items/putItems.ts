@@ -4,40 +4,33 @@ import { ItemAddSchema } from '@site8/shared';
 import { z } from 'zod';
 
 import { Logger } from '../../utils/logger.js';
+import { RequestValidator } from '../../lib/http/RequestValidator.js';
+import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
+const ItemAddArraySchema = z.array(ItemAddSchema);
+
+/**
+ * Handles PUT requests to create or replace multiple items
+ * Note: Custom implementation required for array handling
+ * @param req - Express request containing array of ItemAdd objects in body
+ * @param res - Express response with boolean result on success or error object
+ */
 export const putItems = async (
-  req: Request<unknown, unknown, unknown, unknown>,
+  req: Request,
   res: Response<boolean | { error: string }>,
 ): Promise<void> => {
-  // Validate request body as array of ItemAdd
-  const ItemAddArraySchema = z.array(ItemAddSchema);
-  const validationResult = ItemAddArraySchema.safeParse(req.body);
-
-  if (!validationResult.success) {
-    const errorMessage = validationResult.error.issues
-      .map((err) => `${err.path.join('.')}: ${err.message}`)
-      .join(', ');
-    Logger.warn(`Items put validation failed: ${errorMessage}`);
-    res.status(400).json({ error: `Validation error: ${errorMessage}` });
+  // Validate request body as array using standardized validator
+  const validation = RequestValidator.validateBody(req, ItemAddArraySchema);
+  if (!validation.isValid) {
+    ResponseHelper.badRequest(res, validation.errorMessage!);
     return;
   }
 
-  const data = validationResult.data;
-
-  Logger.info(`Items: Put Items called: `);
+  const data = validation.data!;
+  Logger.info('Items: Put Items called');
 
   const service = getItemsService();
-
-  try {
-    const response = await service.putItems(data);
-    if (response) {
-      res.status(200).json(response);
-    } else {
-      res.json(response);
-    }
-  } catch (error) {
-    Logger.error('Items: Put Items error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+  const response = await service.putItems(data);
+  res.json(response);
 };

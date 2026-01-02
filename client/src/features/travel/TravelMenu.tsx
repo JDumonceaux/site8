@@ -1,11 +1,4 @@
-import {
-  type JSX,
-  useEffect,
-  useEffectEvent,
-  useMemo,
-  useState,
-  useTransition,
-} from 'react';
+import { type JSX, useEffectEvent, useMemo, useTransition } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -13,6 +6,7 @@ import type { MenuItem } from '@site8/shared';
 
 import ItemRender from '@features/generic/ItemRender';
 import TravelMenuSkeleton from './TravelMenuSkeleton';
+import useMenuExpansion from './useMenuExpansion';
 import useTravelMenu from './useTravelMenu';
 
 type TravelMenuProps = {
@@ -28,84 +22,13 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
     item?: string;
   }>();
   const { getRootMenuItems: rootItems, isError, isLoading } = useTravelMenu();
-  const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
-  const [isNavigationPending, startNavigationTransition] = useTransition();
-  const [isExpansionPending, startExpansionTransition] = useTransition();
-
-  // Find and expand menu items based on URL parameters
-  useEffect(() => {
-    if (!rootItems || rootItems.length === 0) return;
-
-    const itemsToExpand = new Set<number>();
-
-    // Helper function to search for menu items by URL segments
-    const findItemsByUrl = (
-      items: MenuItem[],
-      searchCountry?: string,
-      searchCity?: string,
-      searchItem?: string,
-    ): void => {
-      for (const menuItem of items) {
-        // Check if this item matches the country
-        if (searchCountry && menuItem.url) {
-          const urlParts = menuItem.url.split('/').filter(Boolean);
-          const itemCountrySlug = urlParts[1]; // /travel/[country]
-
-          if (itemCountrySlug === searchCountry) {
-            itemsToExpand.add(menuItem.id);
-
-            // If we have a city to search for, look in children
-            if (searchCity && menuItem.items) {
-              for (const cityItem of menuItem.items) {
-                const cityUrlParts = (cityItem.url || '')
-                  .split('/')
-                  .filter(Boolean);
-                const itemCitySlug = cityUrlParts[2]; // /travel/country/[city]
-
-                if (itemCitySlug === searchCity) {
-                  itemsToExpand.add(cityItem.id);
-
-                  // If we have an item to search for, look in city children
-                  if (searchItem && cityItem.items) {
-                    for (const placeItem of cityItem.items) {
-                      const placeUrlParts = (placeItem.url || '')
-                        .split('/')
-                        .filter(Boolean);
-                      const itemPlaceSlug = placeUrlParts[3]; // /travel/country/city/[item]
-
-                      if (itemPlaceSlug === searchItem) {
-                        itemsToExpand.add(placeItem.id);
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        // Recursively search children
-        if (menuItem.items) {
-          findItemsByUrl(menuItem.items, searchCountry, searchCity, searchItem);
-        }
-      }
-    };
-
-    // Search for items matching the current URL
-    if (country || city || item) {
-      findItemsByUrl(Array.from(rootItems), country, city, item);
-    }
-
-    // Update expanded items if we found matches or clear if no URL params
-    // Mark as non-urgent to keep UI responsive during expansion
-    startExpansionTransition(() => {
-      if (itemsToExpand.size > 0) {
-        setExpandedItems(itemsToExpand);
-      } else if (!country && !city && !item) {
-        setExpandedItems(new Set());
-      }
-    });
-  }, [country, city, item, rootItems]);
+  const { expandedItems, setExpandedItems } = useMenuExpansion({
+    city,
+    country,
+    item,
+    rootItems,
+  });
+  const [, startNavigationTransition] = useTransition();
 
   const toggleExpanded = useEffectEvent((itemId: number): void => {
     setExpandedItems((prev) => {

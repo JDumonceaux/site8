@@ -1,5 +1,6 @@
 import { safeParse } from '@lib/utils/zodHelper';
 import type { z } from 'zod';
+import type { ZodError, ZodType } from 'zod';
 
 export type SimpleFormState = {
   errors?: Record<string, string>;
@@ -7,14 +8,14 @@ export type SimpleFormState = {
 };
 
 export const formatValidationErrors = (
-  error: z.ZodError,
+  error: ZodError,
 ): Record<string, string> => {
   return Object.fromEntries(
     error.issues.map((issue) => [issue.path[0], issue.message]),
   );
 };
 
-export const createFormAction = <T extends z.ZodType>(
+export const createFormAction = <T extends ZodType>(
   schema: T,
   authFn: (data: z.infer<T>) => Promise<void>,
   successMessage = 'Success',

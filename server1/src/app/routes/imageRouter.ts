@@ -11,7 +11,11 @@ const VALIDATION_MIDDLEWARE = [requireNumericId];
 
 export const imageRouter = express.Router();
 
-imageRouter.get('/:id', VALIDATION_MIDDLEWARE, asyncHandler(getItem));
+imageRouter.get<{ id: string }>(
+  '/:id',
+  VALIDATION_MIDDLEWARE,
+  asyncHandler(getItem),
+);
 // DELETE and PATCH use request body for data (no URL parameters)
 imageRouter.delete('/', asyncHandler(deleteItem));
 // Full update

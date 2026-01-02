@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import type { z } from 'zod';
+import type { ZodType } from 'zod';
 
 import { Logger } from '../../utils/logger.js';
 import { PreferHeaderHandler } from './PreferHeaderHandler.js';
@@ -49,7 +49,15 @@ type PatchOptions<T> = {
     updateItem: (data: T) => Promise<number>;
   };
   idFields?: string[];
-  schema: z.ZodType<any>;
+  schema: ZodType<any>;
+  serviceName: string;
+};
+
+type DeleteOptions<T> = {
+  getService: () => {
+    deleteItem: (id: number) => Promise<T | undefined>;
+  };
+  returnDeleted?: boolean;
   serviceName: string;
 };
 
@@ -278,7 +286,7 @@ type PostOptions<T, TAdd> = {
     getItem: (id: number) => Promise<T | undefined>;
   };
   resourcePath: string;
-  schema: z.ZodType<TAdd>;
+  schema: ZodType<TAdd>;
   serviceName: string;
 };
 
@@ -356,7 +364,7 @@ type PutOptions<T, TAdd> = {
     getItem: (id: number) => Promise<T | undefined>;
   };
   resourcePath: string;
-  schema: z.ZodType<TAdd>;
+  schema: ZodType<TAdd>;
   serviceName: string;
 };
 
@@ -397,6 +405,66 @@ export const createPutHandler = <T, TAdd>({
       }
 
       ResponseHelper.created(res, resourcePath, newId);
+    } catch (error) {
+      ResponseHelper.internalError(res, serviceName, error);
+    }
+  };
+};
+
+/**
+ * Creates a generic DELETE handler for Express routes
+ * @template T - The resource type
+ * @param config - Configuration for the handler
+ * @returns Express request handler
+ *
+ * @example
+ * ```typescript
+ * export const deleteItem = createDeleteHandler<Image>({
+ *   getService: getImageService,
+ *   serviceName: 'Image',
+ *   returnDeleted: true,
+ * });
+ * ```
+ */
+export const createDeleteHandler = <T>({
+  getService,
+  returnDeleted = false,
+  serviceName,
+}: DeleteOptions<T>) => {
+  return async (
+    req: Request,
+    res: Response<T | { error: string }>,
+  ): Promise<void> => {
+    try {
+      const { id } = req.body;
+
+      if (!id) {
+        ResponseHelper.badRequest(res, 'Invalid ID');
+        return;
+      }
+
+      // Parse and validate ID
+      const idNum = Number(id);
+      if (Number.isNaN(idNum) || idNum <= 0) {
+        ResponseHelper.badRequest(res, 'Invalid ID');
+        return;
+      }
+
+      Logger.info(`${serviceName}: Delete Item called: ${idNum}`);
+
+      const service = getService();
+      const deletedItem = await service.deleteItem(idNum);
+
+      if (!deletedItem) {
+        ResponseHelper.notFound(res, 'Item not found');
+        return;
+      }
+
+      if (returnDeleted) {
+        ResponseHelper.ok(res, deletedItem, serviceName);
+      } else {
+        ResponseHelper.noContent(res, serviceName);
+      }
     } catch (error) {
       ResponseHelper.internalError(res, serviceName, error);
     }

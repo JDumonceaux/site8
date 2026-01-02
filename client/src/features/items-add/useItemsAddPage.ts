@@ -10,6 +10,7 @@ import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { useAxios } from '@hooks/axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { ServiceUrl } from '@lib/utils/constants';
+import { logError } from '@lib/utils/errorHandler';
 import { removeEmptyAttributesArray } from '@lib/utils/objectUtil';
 import type { ItemAdd, ItemAddExt } from './ItemAdd';
 
@@ -114,15 +115,26 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
     const { id, line } = dataset;
 
     if (!id || !line) {
-      // eslint-disable-next-line no-console
-      console.error('Missing data attributes: id or line');
+      logError(
+        new Error('Missing data attributes'),
+        {
+          componentName: 'useItemsAddPage',
+          id,
+          line,
+          operation: 'handleChange',
+        },
+        'warning',
+      );
       return;
     }
 
     const lineNumber = Number(line);
     if (Number.isNaN(lineNumber)) {
-      // eslint-disable-next-line no-console
-      console.error('Invalid line number:', line);
+      logError(
+        new Error('Invalid line number'),
+        { componentName: 'useItemsAddPage', line, operation: 'handleChange' },
+        'warning',
+      );
       return;
     }
 
@@ -133,8 +145,11 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
     const artistIdNumber = Number(artistId);
 
     if (!artistIdNumber || Number.isNaN(artistIdNumber)) {
-      // eslint-disable-next-line no-console
-      console.error('Invalid artist ID:', artistId);
+      logError(
+        new Error('Invalid artist ID'),
+        { artistId, componentName: 'useItemsAddPage', operation: 'getUpdates' },
+        'warning',
+      );
       return null;
     }
 
@@ -208,8 +223,10 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
           ? `An unexpected error occurred: ${error_.message}`
           : 'An unexpected error occurred';
       setMessage(errorMessage);
-      // eslint-disable-next-line no-console
-      console.error('Error saving items:', error_);
+      logError(error_, {
+        componentName: 'useItemsAddPage',
+        operation: 'submitAction',
+      });
       return { message: errorMessage, success: false };
     }
   };

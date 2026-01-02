@@ -63,7 +63,7 @@ export const ServiceUrl = {
   ENDPOINT_IMAGES_FIX_FILE_NAMES: `${API_ROOT}/images/fix-file-names`,
   ENDPOINT_IMAGES_FIX_INDEX: `${API_ROOT}/images/fix-index`,
   ENDPOINT_IMAGES_FOLDERS: `${API_ROOT}/images/folders`,
-  ENDPOINT_IMAGES_LIST_DUPLICATES: `${API_ROOT}/images/list-duplicates`,
+  ENDPOINT_IMAGES_LIST_DUPLICATES: `${API_ROOT}/images/duplicates`,
   ENDPOINT_IMAGES_SCAN: `${API_ROOT}/images/scan`,
   ENDPOINT_IMAGES_UNMATCHED: `${API_ROOT}/images/unmatched`,
   ENDPOINT_ITEMS: `${API_ROOT}/items`,

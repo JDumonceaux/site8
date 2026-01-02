@@ -2,8 +2,10 @@ import type { PageMenu } from '@site8/shared';
 import type { PageText } from '../../types/PageText.js';
 
 import { Logger } from '../../utils/logger.js';
-import { PageFileService } from '../../features/page/PageFileService.js';
-import { PagesService } from '../../features/pages/PagesService.js';
+import {
+  getPageFileService,
+  getPagesService,
+} from '../../utils/ServiceFactory.js';
 
 export class GenericService {
   /**
@@ -35,7 +37,7 @@ export class GenericService {
    */
   private static async getFile(id: number): Promise<string | undefined> {
     Logger.info(`GenericService: getFile -> ${id}`);
-    return new PageFileService().getFile(id);
+    return getPageFileService().getFile(id);
   }
 
   /**
@@ -71,7 +73,7 @@ export class GenericService {
   ): Promise<PageText | PageMenu | undefined> {
     Logger.info(`GenericService: getItem -> ${parent}/${name}`);
 
-    const data = await new PagesService().getItems();
+    const data = await getPagesService().getItems();
     if (!data?.items) {
       Logger.warn(`GenericService: getItem -> no data available`);
       return undefined;

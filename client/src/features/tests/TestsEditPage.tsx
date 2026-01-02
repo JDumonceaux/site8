@@ -1,45 +1,20 @@
-import { type JSX, useEffect, useEffectEvent, useState } from 'react';
+import { type JSX, useEffect, useEffectEvent } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
-import Input from '@components/ui/input/Input';
-import StyledLink from '@components/ui/link/styled-link/StyledLink';
-import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
-import Switch from '@components/ui/switch/Switch';
-import {
-  closestCenter,
-  DndContext,
-  type DragEndEvent,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
 import useAppSettings from '@features/app/useAppSettings';
 import Layout from '@features/layouts/layout/Layout';
-import SortableItem from '@features/tests/SortableItem';
+import TestsEditHeader from '@features/tests/TestsEditHeader';
+import TestItemsTable from '@features/tests/TestItemsTable';
+import useTestsDragAndDrop from '@features/tests/useTestsDragAndDrop';
 import useTestsEdit from '@features/tests/useTestsEdit';
-import styled from 'styled-components';
 
 // Do not remove comments
 const TestsEditPage = (): JSX.Element | null => {
   const { data, getDefaultProps, handleSave, isSaved, setFormValues } =
     useTestsEdit();
 
-  const [items, setItems] = useState([1, 2, 3]);
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
-
+  const { handleDragEnd, items } = useTestsDragAndDrop();
   const { setShowPages, showPages } = useAppSettings();
 
   const setFormValuesEvent = useEffectEvent(() => {
@@ -59,29 +34,20 @@ const TestsEditPage = (): JSX.Element | null => {
       setFormValues(returnValue);
     }
   });
+
   useEffect(() => {
     setFormValuesEvent();
   }, [data]);
 
-  const onShowPages = (checked: boolean) => {
+  const handleShowPagesChange = (checked: boolean) => {
     setShowPages(checked);
-  };
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (active.id !== over?.id) {
-      setItems((itemsList) => {
-        const oldIndex = itemsList.indexOf(active.id as number);
-        const newIndex = itemsList.indexOf(over?.id as number);
-        return arrayMove(itemsList, oldIndex, newIndex);
-      });
-    }
   };
 
   const handleSaveClick = () => {
     void handleSave();
   };
+
+  if (!data) return null;
 
   return (
     <>
@@ -89,101 +55,19 @@ const TestsEditPage = (): JSX.Element | null => {
       <Layout.Main>
         <Layout.Section>
           <PageTitle title="Tests">
-            <Switch
-              checked={showPages}
-              id="showPages"
-              label={showPages ? 'Hide Pages' : 'Show Pages'}
-              onCheckedChange={(e) => {
-                onShowPages(e);
-              }}
+            <TestsEditHeader
+              isSaved={isSaved}
+              onSave={handleSaveClick}
+              onShowPagesChange={handleShowPagesChange}
+              showPages={showPages}
             />
-            <StyledLink
-              data-testid="nav-new"
-              to="/admin/page/edit"
-            >
-              New
-            </StyledLink>
-            {isSaved ? null : (
-              <StyledSaveButton
-                data-testid="button-save"
-                type="submit"
-                onClick={handleSaveClick}
-              >
-                Save
-              </StyledSaveButton>
-            )}
           </PageTitle>
-          <table>
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Text</th>
-                <th>Type</th>
-                <th>Level</th>
-                <th>Parent</th>
-                <th>Seq</th>
-                <th>Project Type</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <DndContext
-              collisionDetection={closestCenter}
-              onDragEnd={handleDragEnd}
-              sensors={sensors}
-            >
-              <SortableContext
-                items={items}
-                strategy={verticalListSortingStrategy}
-              >
-                <tbody>
-                  {data?.map((item) => (
-                    <SortableItem
-                      key={item.lineId}
-                      id={item.lineId}
-                    >
-                      <td>{item.id}</td>
-                      <td>
-                        <Input.Text {...getDefaultProps(item.lineId, 'name')} />
-                      </td>
-                      <td>
-                        <Input.Text {...getDefaultProps(item.lineId, 'text')} />
-                      </td>
-                      <td>
-                        <Input.Text {...getDefaultProps(item.lineId, 'type')} />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.lineId, 'level')}
-                        />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.lineId, 'parentId')}
-                        />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.lineId, 'parentSeq')}
-                        />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.lineId, 'projectType')}
-                        />
-                      </td>
-                      <td>
-                        <Input.Text
-                          {...getDefaultProps(item.lineId, 'action')}
-                        />
-                      </td>
-                    </SortableItem>
-                  ))}
-                </tbody>
-              </SortableContext>
-            </DndContext>
-          </table>
+          <TestItemsTable
+            data={data}
+            getDefaultProps={getDefaultProps}
+            items={items}
+            onDragEnd={handleDragEnd}
+          />
         </Layout.Section>
       </Layout.Main>
     </>
@@ -192,8 +76,3 @@ const TestsEditPage = (): JSX.Element | null => {
 
 TestsEditPage.displayName = 'TestsEditPage';
 export default TestsEditPage;
-
-const StyledSaveButton = styled(StyledPlainButton)`
-  font-weight: bold;
-`;
-

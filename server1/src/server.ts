@@ -8,7 +8,6 @@ import express, {
 import RateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
-import { artistRouter } from './app/routes/artistRouter.js';
 import { artistsRouter } from './app/routes/artistsRouter.js';
 import { bookmarksRouter } from './app/routes/bookmarksRouter.js';
 import { buildRouter } from './app/routes/buildRouter.js';
@@ -143,7 +142,6 @@ app.use((_req, res, next) => {
 app.use('/api/photos', photosRouter);
 app.use('/api/bookmarks', bookmarksRouter);
 app.use('/api/travel', travelRouter);
-app.use('/api/artist', artistRouter);
 app.use('/api/artists', artistsRouter);
 app.use('/api/generic', genericRouter);
 app.use('/api/music', musicRouter);
@@ -171,10 +169,8 @@ app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   const errorMessage = isDevelopment ? err.message : 'Internal Server Error';
 
   res.status(500).json({
-    error: {
-      message: errorMessage,
-      ...(isDevelopment && { stack: err.stack }),
-    },
+    error: errorMessage,
+    ...(isDevelopment && { stack: err.stack }),
   });
 });
 

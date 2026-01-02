@@ -1,3 +1,5 @@
+import { logError } from './errorHandler';
+
 /**
  * Parses a date-time string in `MM/DD/YYYY hh:mm` format (with optional AM/PM) into a Date.
  * @param dateString - Input string, e.g. "12/31/2023 11:59 PM".
@@ -38,8 +40,11 @@ const parseDateTimeString = (
   const re = new RegExp(pattern, 'u');
   const m = re.exec(raw);
   if (!m) {
-    // eslint-disable-next-line no-console
-    console.error(`getDateTime: format mismatch for "${raw}"`);
+    logError(
+      new Error(`Format mismatch for "${raw}"`),
+      { componentName: 'getDateTime', operation: 'parseRawString' },
+      'warning',
+    );
   }
   return m;
 };
@@ -63,14 +68,19 @@ const extractParts = (
   const minute = Number(minStr);
 
   if ([month, day, year, hour, minute].some(Number.isNaN)) {
-    // eslint-disable-next-line no-console
-    console.error('getDateTime: non-numeric value', {
-      day,
-      hour,
-      minute,
-      month,
-      year,
-    });
+    logError(
+      new Error('Non-numeric value in date string'),
+      {
+        componentName: 'getDateTime',
+        day,
+        hour,
+        minute,
+        month,
+        operation: 'extractParts',
+        year,
+      },
+      'warning',
+    );
     return null;
   }
 
@@ -109,8 +119,11 @@ const validateParts = (parts: {
     minute >= 0 &&
     minute <= 59;
   if (!ok) {
-    // eslint-disable-next-line no-console
-    console.error('getDateTime: out-of-range value', parts);
+    logError(
+      new Error('Out-of-range date value'),
+      { componentName: 'getDateTime', operation: 'isValidRange', parts },
+      'warning',
+    );
   }
   return ok;
 };

@@ -1,42 +1,10 @@
-import type { Request, Response } from 'express';
-
 import type { Image } from '@site8/shared';
 
-import { RESPONSES } from '../../utils/constants.js';
-import { parseRequestId } from '../../utils/helperUtils.js';
-import { Logger } from '../../utils/logger.js';
+import { createDeleteHandler } from '../../lib/http/genericHandlers.js';
 import { getImageService } from '../../utils/ServiceFactory.js';
 
-export const deleteItem = async (
-  req: Request,
-  res: Response<Image | { error: string }>,
-): Promise<void> => {
-  try {
-    const { id } = req.body;
-    Logger.info(`Image: Delete Item called: ${id}`);
-
-    if (!id) {
-      Logger.info(`Image: Delete invalid body -> id: ${id}`);
-      res.status(400).json({ error: RESPONSES.INVALID_ID });
-      return;
-    }
-
-    const { id: idNum, isValid } = parseRequestId(id.toString().trim());
-    if (!isValid || !idNum) {
-      Logger.info(`Image: Delete invalid body -> id: ${id}`);
-      res.status(400).json({ error: RESPONSES.INVALID_ID });
-      return;
-    }
-
-    const service = getImageService();
-    const deletedItem = await service.deleteItem(idNum);
-    if (deletedItem) {
-      res.status(200).json(deletedItem);
-    } else {
-      res.status(404).json({ error: RESPONSES.NOT_FOUND });
-    }
-  } catch (error) {
-    Logger.error('Image: Delete Item error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
+export const deleteItem = createDeleteHandler<Image>({
+  getService: getImageService,
+  returnDeleted: true,
+  serviceName: 'Image',
+});

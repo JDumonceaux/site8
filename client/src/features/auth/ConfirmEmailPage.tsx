@@ -6,6 +6,7 @@ import Meta from '@components/core/meta/Meta';
 import Input from '@components/ui/input/Input';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
+import { logError } from '@lib/utils/errorHandler';
 import { safeParse } from '@lib/utils/zodHelper';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
@@ -93,8 +94,10 @@ const ConfirmEmailPage = (): JSX.Element => {
       try {
         await authResendConfirmationCode(formValues.emailAddress);
       } catch (error_) {
-        // eslint-disable-next-line no-console
-        console.error('Error resending code:', error_);
+        logError(error_, {
+          componentName: 'ConfirmEmailPage',
+          operation: 'resendConfirmationCode',
+        });
       }
     })();
   };

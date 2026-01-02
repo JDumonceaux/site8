@@ -8,10 +8,14 @@ import type { PageText } from '../../types/PageText.js';
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
 import { safeParse } from '../../utils/zodHelper.js';
+import {
+  getPageFileService,
+  getPagesService,
+} from '../../utils/ServiceFactory.js';
 import { PagesService } from '../pages/PagesService.js';
+import { PageFileService } from './PageFileService.js';
 
 import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
-import { PageFileService } from './PageFileService.js';
 
 const PAGE_ADD_SCHEMA = z
   .object({
@@ -45,8 +49,8 @@ export class PageService {
   private readonly pagesService: PagesService;
 
   public constructor() {
-    this.pagesService = new PagesService();
-    this.pageFileService = new PageFileService();
+    this.pagesService = getPagesService();
+    this.pageFileService = getPageFileService();
   }
 
   public async addItem(item: PageEdit): Promise<number> {

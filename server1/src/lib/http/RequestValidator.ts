@@ -1,5 +1,5 @@
 import type { Request } from 'express';
-import type { z } from 'zod';
+import type { ZodType } from 'zod';
 
 /**
  * Result of request validation
@@ -25,7 +25,7 @@ export class RequestValidator {
    */
   public static validateBody<T>(
     req: Request,
-    schema: z.ZodType<T>,
+    schema: ZodType<T>,
   ): ValidationResult<T> {
     const validationResult = schema.safeParse(req.body);
 
@@ -55,7 +55,7 @@ export class RequestValidator {
    */
   public static validateBodyWithData<T>(
     req: Request,
-    schema: z.ZodType<T>,
+    schema: ZodType<T>,
     additionalData: Record<string, unknown>,
   ): ValidationResult<T> {
     const requestData = {
@@ -160,6 +160,44 @@ export class RequestValidator {
     return {
       errorMessage: 'ID in request body must match ID in URL',
       isValid: false,
+    };
+  }
+
+  /**
+   * Validates and parses ID from request body
+   * @param body - Request body containing id field
+   * @returns Validation result with parsed ID number or error message
+   */
+  public static validateId(
+    body: unknown,
+  ): ValidationResult<void> & { id?: number } {
+    if (!body || typeof body !== 'object' || !('id' in body)) {
+      return {
+        errorMessage: 'Invalid ID',
+        isValid: false,
+      };
+    }
+
+    const { id } = body as { id: unknown };
+
+    if (!id) {
+      return {
+        errorMessage: 'Invalid ID',
+        isValid: false,
+      };
+    }
+
+    const idNum = Number(id);
+    if (Number.isNaN(idNum) || idNum <= 0) {
+      return {
+        errorMessage: 'Invalid ID',
+        isValid: false,
+      };
+    }
+
+    return {
+      id: idNum,
+      isValid: true,
     };
   }
 }

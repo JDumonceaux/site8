@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import type { ZodType } from 'zod';
 
 import type { Artists } from '@site8/shared';
 import type { ArtistsItems } from '@site8/shared';
@@ -35,7 +35,7 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
       defaultMetadata: { title: 'artists' },
       enableCache: true,
       filePath: FilePath.getDataDir(fileName),
-      validationSchema: ItemsFileSchema as z.ZodType<ItemsFile>,
+      validationSchema: ItemsFileSchema as ZodType<ItemsFile>,
     });
   }
 

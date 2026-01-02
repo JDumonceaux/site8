@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './app/app';
-import { logError } from './lib/utils/errorLogger';
+import { logError } from './lib/utils/errorHandler';
 
 // Grab the root container (must match your index.html)
 const container = document.querySelector('#root');

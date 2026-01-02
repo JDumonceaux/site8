@@ -49,7 +49,7 @@ export const createValidator = (config: ValidatorConfig) => {
         `Validation failed for ${config.paramName}: ${result.errorMessage}`,
       );
       res.status(400).json({
-        message: result.errorMessage ?? `${config.paramName} validation failed`,
+        error: result.errorMessage ?? `${config.paramName} validation failed`,
       });
       return;
     }

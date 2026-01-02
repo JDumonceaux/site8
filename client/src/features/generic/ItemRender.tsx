@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { Fragment, type JSX } from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 import type { MenuItem } from '@site8/shared';
@@ -90,10 +90,10 @@ const ItemRender = ({
   }
 
   return (
-    <React.Fragment key={item.id}>
+    <Fragment key={item.id}>
       {content}
       {children}
-    </React.Fragment>
+    </Fragment>
   );
 };
 

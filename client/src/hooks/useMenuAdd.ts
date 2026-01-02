@@ -45,12 +45,10 @@ const useMenuEdit = () => {
     getFieldErrors,
     getFieldValue,
     hasError,
-    isProcessing,
     isSaved,
     setErrors,
     setFieldValue,
     setFormValues,
-    setIsProcessing,
     setIsSaved,
   } = useForm<FormType>(initialFormValues);
 
@@ -76,9 +74,7 @@ const useMenuEdit = () => {
 
   const submitForm = async (): Promise<boolean> => {
     const data = getUpdates();
-    setIsProcessing(true);
     const result = await putData(ServiceUrl.ENDPOINT_MENUS, data);
-    setIsProcessing(false);
     setIsSaved(!!result);
     return !!result;
   };
@@ -160,7 +156,6 @@ const useMenuEdit = () => {
     handleInputChange,
     isLoading,
     isPending,
-    isProcessing,
     isSaved,
     pageSchema,
     setFieldValue,

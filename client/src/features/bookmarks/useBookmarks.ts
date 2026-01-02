@@ -1,4 +1,5 @@
 import { QueryTime, QueryTimeComputed, ServiceUrl } from '@lib/utils/constants';
+import { logError } from '@lib/utils/errorHandler';
 import { useQuery } from '@tanstack/react-query';
 import type { Bookmarks } from '@site8/shared';
 
@@ -10,8 +11,7 @@ const fetchData = async (): Promise<Bookmarks> => {
     }
     return (await response.json()) as Bookmarks;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('useBookmarks: Error fetching bookmarks', error);
+    logError(error, { componentName: 'useBookmarks', operation: 'fetchData' });
     throw error;
   }
 };

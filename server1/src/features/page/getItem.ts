@@ -2,8 +2,7 @@ import type { PageText } from '../../types/PageText.js';
 
 import { createGetHandlerWithParams } from '../../lib/http/genericHandlers.js';
 import { parseRequestId } from '../../utils/helperUtils.js';
-
-import { PageService } from './PageService.js';
+import { getPageService } from '../../utils/ServiceFactory.js';
 
 export const getItem = createGetHandlerWithParams<PageText>({
   errorResponse: { message: 'Page not found' } as unknown as PageText,
@@ -15,7 +14,7 @@ export const getItem = createGetHandlerWithParams<PageText>({
       return { message: 'Invalid ID' } as unknown as PageText;
     }
 
-    const service = new PageService();
+    const service = getPageService();
     const result = await service.getItemCompleteById(idNum);
     return result ?? ({ message: 'Page not found' } as unknown as PageText);
   },

@@ -16,7 +16,7 @@ imagesRouter.get('/', asyncHandler(getItems));
 imagesRouter.get('/edit', asyncHandler(getItemsEdit));
 imagesRouter.get('/fix-file-names', asyncHandler(getFixFileNames));
 imagesRouter.get('/folders', asyncHandler(getFolders));
-imagesRouter.get('/list-duplicates', asyncHandler(getListDuplicates));
+imagesRouter.get('/duplicates', asyncHandler(getListDuplicates));
 imagesRouter.get('/reindex', asyncHandler(getReindex));
 imagesRouter.get('/scan', asyncHandler(getScan));
 imagesRouter.patch('/', asyncHandler(patchItems));

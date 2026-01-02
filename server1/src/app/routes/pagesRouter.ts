@@ -9,4 +9,4 @@ export const pagesRouter = express.Router();
 
 pagesRouter.get('/', asyncHandler(getItems));
 pagesRouter.get('/fix-entries', asyncHandler(fixEntries));
-pagesRouter.get('/list-duplicates', asyncHandler(listDuplicates));
+pagesRouter.get('/duplicates', asyncHandler(listDuplicates));

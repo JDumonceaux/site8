@@ -10,7 +10,7 @@ type FieldValue = boolean | null | number | string;
  */
 export type UseFormReturn<T> = {
   /** Current errors from validation */
-  errors: null | z.ZodIssue[];
+  errors: null | z.core.$ZodIssue[];
   /** Current form values */
   formValues: T;
   /** Get default props for an input field (id, value, onChange) */
@@ -44,18 +44,14 @@ export type UseFormReturn<T> = {
   hasError: (fieldName: FormKeys<T>) => boolean;
   /** Check if form is valid (no errors) */
   isFormValid: () => boolean;
-  /** Whether form is currently being processed/submitted */
-  isProcessing: boolean;
   /** Whether form has been saved (not dirty) */
   isSaved: boolean;
   /** Set validation errors */
-  setErrors: (errors: null | z.ZodIssue[]) => void;
+  setErrors: (errors: null | z.core.$ZodIssue[]) => void;
   /** Set a single field value */
   setFieldValue: (fieldName: FormKeys<T>, value: FieldValue) => void;
   /** Set entire form values */
   setFormValues: (values: T) => void;
-  /** Set processing state */
-  setIsProcessing: (value: boolean) => void;
   /** Set saved state */
   setIsSaved: (value: boolean) => void;
 };
@@ -85,14 +81,12 @@ const useForm = <T>(initialValues: T): UseFormReturn<T> => {
   const [formValues, setFormValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<null | z.core.$ZodIssue[]>(null);
   const [isSaved, setIsSaved] = useState<boolean>(true);
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   const setFieldValue = (fieldName: FormKeys<T>, value: FieldValue) => {
     setFormValues((prev) => ({
       ...prev,
       [fieldName]: value,
     }));
-    setIsSaved(false);
   };
 
   const getFieldValue = (fieldName: FormKeys<T>): string => {
@@ -155,15 +149,11 @@ const useForm = <T>(initialValues: T): UseFormReturn<T> => {
 
   const handleClearAll = () => {
     setFormValues({} as T);
-    setIsSaved(true);
-    setIsProcessing(false);
     setErrors(null);
   };
 
   const handleReset = () => {
     setFormValues(initialValues);
-    setIsSaved(true);
-    setIsProcessing(false);
     setErrors(null);
   };
 
@@ -181,12 +171,10 @@ const useForm = <T>(initialValues: T): UseFormReturn<T> => {
     handleReset,
     hasError,
     isFormValid,
-    isProcessing,
     isSaved,
     setErrors,
     setFieldValue,
     setFormValues,
-    setIsProcessing,
     setIsSaved,
   };
 };

@@ -1,8 +1,8 @@
-import express from 'express';
-
 import { getItems } from '../../features/menu/getItems.js';
-import { asyncHandler } from '../../utils/routerUtils.js';
 
-export const menuRouter = express.Router();
+import { createSimpleRouter } from './createSimpleRouter.js';
 
-menuRouter.get('/', asyncHandler(getItems));
+export const menuRouter = createSimpleRouter({
+  getItemsHandler: getItems,
+  routerName: 'menu',
+});

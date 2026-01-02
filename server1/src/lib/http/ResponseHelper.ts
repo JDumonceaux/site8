@@ -98,6 +98,19 @@ export class ResponseHelper {
   }
 
   /**
+   * Sends a 501 Not Implemented response
+   * @param res - Express response object
+   * @param errorMessage - Error message describing what is not implemented
+   */
+  public static notImplemented(
+    res: Response<{ error: string }>,
+    errorMessage = 'Not implemented',
+  ): void {
+    Logger.warn(`Not Implemented: ${errorMessage}`);
+    res.status(501).json({ error: errorMessage });
+  }
+
+  /**
    * Sends a 409 Conflict response
    * @param res - Express response object
    * @param errorMessage - Error message

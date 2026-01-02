@@ -46,7 +46,7 @@ const MenuBar = ({
             Scan for New
           </IconMenuItem>
         ) : null}
-        <IconMenuItem key="list-duplicates">
+        <IconMenuItem key="duplicates">
           <a
             href={ServiceUrl.ENDPOINT_IMAGES_LIST_DUPLICATES}
             rel="noreferrer"
@@ -78,8 +78,8 @@ const MenuBar = ({
       <div>
         {renderButton('button-refresh', handleRefresh, 'button', 'Refresh')}
         {renderButton('button-clear', handleClear, 'button', 'Clear')}
-        <StyledPlainButton
-         FormSaveButton data-testid="button-save">Save</FormSave
+        <FormSaveButton data-testid="button-save">Save</FormSaveButton>
+      </div>
     </div>
   );
 };

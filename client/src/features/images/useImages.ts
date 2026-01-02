@@ -1,4 +1,5 @@
 import { QueryTime, QueryTimeComputed, ServiceUrl } from '@lib/utils/constants';
+import { logError } from '@lib/utils/errorHandler';
 import type { Images } from '@site8/shared';
 import { useQuery } from '@tanstack/react-query';
 
@@ -10,8 +11,7 @@ const fetchData = async (): Promise<Images> => {
     }
     return (await response.json()) as Images;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('useImages: Error fetching images', error);
+    logError(error, { componentName: 'useImages', operation: 'fetchData' });
     throw error;
   }
 };

@@ -7,8 +7,7 @@ import type { Images } from '@site8/shared';
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
 import { Logger } from '../../utils/logger.js';
 import FilePath from '../../lib/filesystem/FilePath.js';
-
-import { ImagesService } from './ImagesService.js';
+import { getImagesService } from '../../utils/ServiceFactory.js';
 
 export class ImagesFileService {
   private readonly imageDir: string = '';
@@ -210,7 +209,7 @@ export class ImagesFileService {
     items: Image[] | undefined,
   ): Promise<Image[] | undefined> {
     try {
-      const service = new ImagesService();
+      const service = getImagesService();
       const data = await service.getItems();
 
       if (!data) {

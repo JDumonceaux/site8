@@ -3,6 +3,7 @@ import type { Images } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
+import { getImagesService } from '../../utils/ServiceFactory.js';
 import { ImagesService } from '../images/ImagesService.js';
 
 export class ImageService {
@@ -198,7 +199,7 @@ export class ImageService {
   }
 
   private getImagesService(): ImagesService {
-    const service = new ImagesService();
+    const service = getImagesService();
     // Access writeFile through public method if needed
     return service;
   }

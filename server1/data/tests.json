@@ -1422,6 +1422,120 @@
       "text": "React 19 - CodeModes",
       "value": "run types-react-codemod",
       "projectType": ["chat"]
+    },
+    {
+      "id": 656,
+      "name": "Update",
+      "text": "Zod",
+      "value": "Update all Zod deprecated methods and syntax to the latest version.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 657,
+      "name": "Update",
+      "text": "ZodIssue",
+      "value": "ZodeIssue is deprecated.  Update to use z.core.$ZodIssue",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 658,
+      "name": "Measurements",
+      "text": "Overall Consistency Score",
+      "value": "Calculate the Overall Consistency Score for the codebase.",
+      "notes": "01/01/2026: Score: 94/100 - Excellent consistency across coding styles, naming conventions, and file structures. Coding Style Consistency - Naming conventions, code formatting, patterns; File Structure Consistency - Directory organization, file naming; API Pattern Consistency - Handler patterns, error responses, validation; TypeScript Usage - Type annotations, generic usage; Import Patterns - Import organization, factory usage; Error Handling Consistency - ResponseHelper usage, error formats; Documentation Consistency - JSDoc comments, inline comments; Testing Patterns - Test structure (if tests exist)",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 659,
+      "name": "Reports",
+      "text": "API Router Consistency Analysis Report",
+      "value": "Run API Router Consistency Analysis Report for the codebase.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 660,
+      "name": "Fix",
+      "text": "API Router Consistency ",
+      "value": "Update Legacy manual handlers and Generic handler factories to simple router factory where appropriate.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 661,
+      "name": "Standards",
+      "text": "API Router Consistency - Kebab-case",
+      "value": "Standardize on **kebab-case** for all multi-word URL paths.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 662,
+      "name": "Standards",
+      "text": "API Router Consistency - Request Body",
+      "value": "Validate all mutation operations use request body for data.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 663,
+      "name": "Standards",
+      "text": "API Router Consistency - Request Body Structure",
+      "value": "Update Pattern 1: Legacy Manual Validation and Pattern 2: Zod Schema Validation (Items) to Pattern 3: Generic Handlers (Modern)",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 664,
+      "name": "Standards",
+      "text": "API Router Consistency - Response Structure Analysis",
+      "value": "Update Pattern 1: Collection Responses and Pattern 2: Single Item Responses to Recommended: `res.json(data)` for success with data, `res.sendStatus(204)` for success without data, `{ error: \"message\" }` for errors",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 665,
+      "name": "Standards",
+      "text": "API Router Consistency - Status Codes Analysis",
+      "value": "Status Codes Analysis: Update to modern handlers",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 666,
+      "name": "Standards",
+      "text": "API Router Consistency - Modern Error Responses",
+      "value": "Update to Modern Error Responses: `res.status(400).json({ error: 'message' })`",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 667,
+      "name": "Standards",
+      "text": "API Router Consistency - Error Response Formats",
+      "value": "Error Response Formats: Standardize on `{ error: 'message' }` format",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 668,
+      "name": "Standards",
+      "text": "API Router Consistency - Try-Catch Patterns",
+      "value": "Update all Try-Catch Patterns to Pattern 4: Generic Handler (Modern)",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 669,
+      "name": "Standards",
+      "text": "API Router Consistency - Error Logging",
+      "value": "Error Logging to use `ResponseHelper.internalError()`",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 670,
+      "name": "Standards",
+      "text": "API Router Consistency - Pattern Summary",
+      "value": "Pattern Summary: Update all legacy patterns to modern generic handlers",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 671,
+      "name": "Reports",
+      "text": "Code Smells Report",
+      "value": "Run Code Smells Report for the codebase.",
+      "notes": "01/02/2026: Server: 98/100  Client: 88/100",
+      "projectType": ["chat"]
     }
   ]
 }

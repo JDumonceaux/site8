@@ -1,56 +1,53 @@
 import type { Request, Response } from 'express';
 
-import type { PageEdit } from '@site8/shared';
 import { PageEditSchema } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
+import { RequestValidator } from '../../lib/http/RequestValidator.js';
+import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import {
+  getPageFileService,
+  getPageService,
+} from '../../utils/ServiceFactory.js';
 
-import { PageFileService } from './PageFileService.js';
-import { PageService } from './PageService.js';
-
+/**
+ * Handles PATCH requests to update a single page item
+ * Updates both page metadata (via PageService) and page text content (via PageFileService)
+ * Note: Custom implementation required due to dual-service update
+ * @param req - Express request with PageEdit object in body
+ * @param res - Express response with 204 No Content on success or error object
+ */
 export const patchItem = async (
-  req: Request<unknown, unknown, PageEdit, unknown>,
+  req: Request,
   res: Response<unknown>,
 ): Promise<void> => {
-  try {
-    const service = new PageService();
-    const fileService = new PageFileService();
+  // Validate request body using standardized validator
+  const validation = RequestValidator.validateBody(req, PageEditSchema);
+  if (!validation.isValid) {
+    ResponseHelper.badRequest(res, validation.errorMessage!);
+    return;
+  }
 
-    // Validate request body against Zod schema
-    const validationResult = PageEditSchema.safeParse(req.body);
-    if (!validationResult.success) {
-      const errorMessage = validationResult.error.issues
-        .map((err) => `${err.path.join('.')}: ${err.message}`)
-        .join(', ');
-      Logger.warn(`Page patch validation failed: ${errorMessage}`);
-      res.status(400).json({ error: `Validation error: ${errorMessage}` });
+  const item = validation.data!;
+  Logger.info(`Page: Patch Item called for ID: ${item.id}`);
+
+  const service = getPageService();
+  const fileService = getPageFileService();
+
+  // Meta data and text are stored in separate files - therefore two updates are needed.
+  const results = await Promise.allSettled([
+    Promise.try(() => service.updateItem(item)),
+    Promise.try(() => fileService.updateFile(item.id, item.text)),
+  ]);
+
+  // Check if any update failed
+  for (const result of results) {
+    if (result.status === 'rejected') {
+      const error = new Error(String(result.reason) || 'Update failed');
+      ResponseHelper.internalError(res, 'Page', error);
       return;
     }
-
-    const item = validationResult.data;
-
-    // Meta data and text are stored in separate files - therefore two updates are needed.
-    const results = await Promise.allSettled([
-      Promise.try(() => service.updateItem(item)),
-      Promise.try(() => fileService.updateFile(item.id, item.text)),
-    ]);
-
-    // If any update failed, log and return an error response.
-    for (const result of results) {
-      if (result.status === 'rejected') {
-        Logger.error(`pageRouter: patch -> Error: ${result.reason}`);
-        res
-          .status(400)
-          .json({ error: String(result.reason) || 'Update failed' });
-        return;
-      }
-    }
-
-    // Return success (optionally fetch and return the updated item)
-    // const ret = await service.getItemCompleteById(item.id);
-    res.sendStatus(204);
-  } catch (error) {
-    Logger.error('Page: Patch Item error:', error);
-    res.status(500).json({ error: 'Internal server error' });
   }
+
+  ResponseHelper.noContent(res, 'Page');
 };

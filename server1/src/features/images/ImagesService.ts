@@ -8,8 +8,7 @@ import {
   getNextId as getNextIdUtil,
 } from '../../utils/objectUtil.js';
 import FilePath from '../../lib/filesystem/FilePath.js';
-
-import { ImagesFileService } from './ImagesFileService.js';
+import { getImagesFileService } from '../../utils/ServiceFactory.js';
 import { getNewIds, getNewItems } from './imagesUtil.js';
 
 export class ImagesService extends BaseDataService<Images> {
@@ -188,7 +187,7 @@ export class ImagesService extends BaseDataService<Images> {
    * Move files to new directories
    */
   private async moveItemFiles(updatedItems: Image[]): Promise<void> {
-    const fileMoved = new ImagesFileService().moveItems(updatedItems);
+    const fileMoved = getImagesFileService().moveItems(updatedItems);
     if (!fileMoved) {
       throw new Error(
         'ImagesService: updateItems -> Unable to move file: ${item.fileName}',
@@ -231,7 +230,7 @@ export class ImagesService extends BaseDataService<Images> {
   private async updateIndexWithNewItems(): Promise<boolean> {
     try {
       // Get all images from /images directory
-      const images = new ImagesFileService().getItemsFromBaseDirectory();
+      const images = getImagesFileService().getItemsFromBaseDirectory();
       // Get current items
       const prev = await this.readFile();
       if (!prev) {

@@ -4,7 +4,6 @@ import {
   useEffect,
   useEffectEvent,
   useOptimistic,
-  useState,
 } from 'react';
 
 import useSnackbar from '@features/app/snackbar/useSnackbar';
@@ -53,15 +52,31 @@ const defaultForm: ImageEdit = {
 };
 
 // Helper to map imageData to form structure
-const mapToFormData = (data: any): ImageEdit => ({
-  ...defaultForm,
-  id: data.id,
-  name: data.name ?? '',
-  fileName: data.fileName ?? '',
-  folder: data.folder ?? '',
-  ext_url: data.ext_url ?? '',
-  description: data.description ?? '',
-});
+const mapToFormData = (data: unknown): ImageEdit => {
+  // Type guard to ensure data has expected structure
+  const isValidImageData = (value: unknown): value is Partial<ImageEdit> => {
+    return typeof value === 'object' && value !== null;
+  };
+
+  if (!isValidImageData(data)) {
+    return defaultForm;
+  }
+
+  return {
+    ...defaultForm,
+    id: typeof data.id === 'number' ? data.id : defaultForm.id,
+    name: typeof data.name === 'string' ? data.name : defaultForm.name,
+    fileName:
+      typeof data.fileName === 'string' ? data.fileName : defaultForm.fileName,
+    folder: typeof data.folder === 'string' ? data.folder : defaultForm.folder,
+    ext_url:
+      typeof data.ext_url === 'string' ? data.ext_url : defaultForm.ext_url,
+    description:
+      typeof data.description === 'string'
+        ? data.description
+        : defaultForm.description,
+  };
+};
 
 /**
  * Hook for editing an Image entity, handling form state, validation, and persistence.
@@ -73,11 +88,17 @@ export const useImageEdit = (
   const { setMessage } = useSnackbar();
   const { data: imageData } = useImage(rawId);
 
-  const { formValues, getFieldValue, setErrors, setFieldValue, setFormValues } =
-    useForm<ImageEdit>(defaultForm);
+  const {
+    formValues,
+    getFieldValue,
+    isSaved,
+    setErrors,
+    setFieldValue,
+    setFormValues,
+    setIsSaved,
+  } = useForm<ImageEdit>(defaultForm);
 
-  // Save state with optimistic updates
-  const [isSaved, setIsSaved] = useState(false);
+  // Optimistic updates for save state
   const [optimisticSaved, setOptimisticSaved] = useOptimistic(
     isSaved,
     (_state, newValue: boolean) => newValue,
@@ -116,42 +137,40 @@ export const useImageEdit = (
   });
 
   // Form action for useActionState (defined after mutation)
-  const submitAction = useEffectEvent(
-    async (
-      _prevState: ActionState,
-      _formData: FormData,
-    ): Promise<ActionState> => {
-      try {
-        // Validate form
-        const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
-        if (!result.success) {
-          setErrors(result.error?.issues ?? null);
-          return { message: 'Validation failed', success: false };
-        }
-
-        // Build payload from formValues
-        const payload: ImageEdit = {
-          id: formValues.id,
-          name: formValues.name,
-          fileName: formValues.fileName,
-          folder: formValues.folder,
-          ext_url: formValues.ext_url,
-          description: formValues.description,
-        };
-
-        // Optimistically show as saved
-        setOptimisticSaved(true);
-        await mutation.mutateAsync(payload);
-        return { message: 'Success', success: true };
-      } catch (error) {
-        // Revert optimistic update on error
-        setOptimisticSaved(false);
-        const message =
-          error instanceof Error ? error.message : 'Failed to save image';
-        return { message, success: false };
+  const submitAction = async (
+    _prevState: ActionState,
+    _formData: FormData,
+  ): Promise<ActionState> => {
+    try {
+      // Validate form
+      const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
+      if (!result.success) {
+        setErrors(result.error?.issues ?? null);
+        return { message: 'Validation failed', success: false };
       }
-    },
-  );
+
+      // Build payload from formValues
+      const payload: ImageEdit = {
+        id: formValues.id,
+        name: formValues.name,
+        fileName: formValues.fileName,
+        folder: formValues.folder,
+        ext_url: formValues.ext_url,
+        description: formValues.description,
+      };
+
+      // Optimistically show as saved
+      setOptimisticSaved(true);
+      await mutation.mutateAsync(payload);
+      return { message: 'Success', success: true };
+    } catch (error) {
+      // Revert optimistic update on error
+      setOptimisticSaved(false);
+      const message =
+        error instanceof Error ? error.message : 'Failed to save image';
+      return { message, success: false };
+    }
+  };
 
   const [actionState, formAction, isPending] = useActionState<
     ActionState,
@@ -162,7 +181,7 @@ export const useImageEdit = (
   useEffect(() => {
     if (!imageData) return;
     setFormValues(mapToFormData(imageData));
-  }, [imageData, setFormValues]);
+  }, [imageData]);
 
   // Form helpers
   const getDefaultProps = (field: FormKeys) => ({
@@ -194,9 +213,10 @@ export const useImageEdit = (
     setErrors(null);
   });
 
-  // Update unsaved flag when values change
-  const checkUnsaved = useEffectEvent(() => {
+  // Update saved flag when form values differ from server data
+  useEffect(() => {
     if (!imageData) {
+      // No server data yet, consider unsaved
       setIsSaved(false);
       return;
     }
@@ -206,11 +226,7 @@ export const useImageEdit = (
       (key) => formValues[key] !== currentData[key],
     );
     setIsSaved(!hasChanges);
-  });
-
-  useEffect(() => {
-    checkUnsaved();
-  }, [formValues, imageData]);
+  }, [formValues, imageData, setIsSaved]);
 
   return {
     actionState,

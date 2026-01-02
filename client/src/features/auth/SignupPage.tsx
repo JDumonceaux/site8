@@ -6,6 +6,7 @@ import Meta from '@components/core/meta/Meta';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth, { SocialProvider } from '@features/auth/useAuth';
+import { logError } from '@lib/utils/errorHandler';
 import { emailAddress, password } from '@types';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
@@ -37,8 +38,11 @@ const SignupPage = (): JSX.Element => {
       try {
         await authSignInWithRedirect(provider);
       } catch (error_) {
-        // eslint-disable-next-line no-console
-        console.error('Error during social sign-in:', error_);
+        logError(error_, {
+          componentName: 'SignupPage',
+          operation: 'socialSignIn',
+          provider,
+        });
         // Handle error appropriately, e.g., show a notification
       }
     })();

@@ -2,9 +2,9 @@ import express from 'express';
 
 import { getItems } from '../../features/travel/getItems.js';
 import { PlacesMenuService } from '../../features/travel/PlacesMenuService.js';
-import { TravelService } from '../../features/travel/TravelService.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 import { Logger } from '../../utils/logger.js';
+import { getTravelService } from '../../utils/ServiceFactory.js';
 
 export const travelRouter = express.Router();
 
@@ -17,7 +17,7 @@ travelRouter.get(
   asyncHandler(async (_req, res) => {
     Logger.info('GET /api/travel/menu');
 
-    const travelService = new TravelService();
+    const travelService = getTravelService();
     const placesMenuService = new PlacesMenuService(travelService);
     const menu = await placesMenuService.getPlacesMenu();
 

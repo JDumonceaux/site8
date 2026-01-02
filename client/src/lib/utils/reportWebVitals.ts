@@ -1,5 +1,7 @@
 import type { MetricType } from 'web-vitals';
 
+import { logError } from './errorHandler';
+
 /**
  * Reports web vitals by dynamically importing the 'web-vitals' library
  * and calling the provided callback for each metric.
@@ -18,8 +20,7 @@ const reportWebVitals = async (
     //   onLCP(onPerfEntry);
     //   onTTFB(onPerfEntry);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error importing web-vitals:', error);
+    logError(error, { componentName: 'reportWebVitals' });
   }
 };
 

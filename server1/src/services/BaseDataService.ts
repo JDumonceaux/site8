@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import type { ZodType } from 'zod';
 
 import type { IDataService } from './IDataService.js';
 
@@ -25,7 +25,7 @@ export type BaseDataServiceConfig<T> = {
   /** Service name for logging (default: derived from filePath) */
   serviceName?: string;
   /** Zod schema for validation (optional) */
-  validationSchema?: z.ZodType<T>;
+  validationSchema?: ZodType<T>;
 };
 
 /**

@@ -1,10 +1,10 @@
-import type { z, Schema } from 'zod';
+import type { Schema, ZodError, ZodFormattedError } from 'zod';
 
 export type ParseResult<T> = {
   readonly success: boolean;
   readonly data: T | null;
-  readonly error: z.ZodError<T> | null;
-  readonly errorFormatted: z.ZodFormattedError<T> | null;
+  readonly error: ZodError<T> | null;
+  readonly errorFormatted: ZodFormattedError<T> | null;
 };
 
 export const safeParse = <T>(

@@ -3,6 +3,12 @@ import type { Image } from '@site8/shared';
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
 import { cleanUpData, getNextIdFromPos } from '../../utils/objectUtil.js';
 
+/**
+ * Filters and processes new image items by removing duplicates and ignored folders
+ * @param prevItems - Existing image items to check for duplicates
+ * @param newItems - New image items to process
+ * @returns Filtered and sorted array of new unique images, or undefined if newItems is undefined
+ */
 export const getNewItems = (
   prevItems: Image[] | undefined,
   newItems: Image[] | undefined,
@@ -34,6 +40,11 @@ export const getNewItems = (
   );
 };
 
+/**
+ * Assigns new IDs to image items that don't have valid IDs (id <= 0)
+ * @param items - Array of image items to process
+ * @returns Array with newly assigned sequential IDs, or undefined if items is undefined
+ */
 export const getNewIds = (items: Image[] | undefined): Image[] | undefined => {
   if (!items) return undefined;
 

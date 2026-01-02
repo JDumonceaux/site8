@@ -1,45 +1,42 @@
 import type { Request, Response } from 'express';
 
-import { parseRequestId } from '../../utils/helperUtils.js';
 import { Logger } from '../../utils/logger.js';
+import { RequestValidator } from '../../lib/http/RequestValidator.js';
+import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
 import {
   getPageFileService,
   getPageService,
 } from '../../utils/ServiceFactory.js';
 
+/**
+ * Handles DELETE requests to remove a page item
+ * Deletes both page metadata and page text file
+ * Note: Custom implementation required due to dual-service deletion
+ * @param req - Express request with id in body
+ * @param res - Express response with 204 No Content on success or error object
+ */
 export const deleteItem = async (
   req: Request,
-  res: Response,
+  res: Response<{ error: string }>,
 ): Promise<void> => {
-  const { id } = req.body;
-
-  Logger.info(`Page: Delete Item called: ${id}`);
-
-  if (!id) {
-    res.status(400).json({ error: 'Invalid ID' });
+  // Validate ID using standardized validator
+  const idValidation = RequestValidator.validateId(req.body);
+  if (!idValidation.isValid) {
+    ResponseHelper.badRequest(res, idValidation.errorMessage!);
     return;
   }
 
-  const { id: idNum, isValid } = parseRequestId(id.toString().trim());
-  if (!isValid || typeof idNum !== 'number') {
-    Logger.info(`Page: Delete Item -> invalid body id: ${id}`);
-    res.status(400).json({ error: 'Invalid id' });
-    return;
-  }
+  const idNum = idValidation.id!;
+  Logger.info(`Page: Delete Item called: ${idNum}`);
 
   const service = getPageService();
   const fileService = getPageFileService();
 
-  try {
-    await Promise.all([
-      Promise.try(() => service.deleteItem(idNum)),
-      Promise.try(() => fileService.deleteFile(idNum)),
-    ]);
-    res.sendStatus(204);
-  } catch (error) {
-    Logger.info(
-      `Page: Delete Item -> error deleting id ${idNum}: ${(error as Error).message}`,
-    );
-    res.status(500).json({ error: 'Internal server error' });
-  }
+  // Delete from both services (metadata and text file)
+  await Promise.all([
+    Promise.try(() => service.deleteItem(idNum)),
+    Promise.try(() => fileService.deleteFile(idNum)),
+  ]);
+
+  ResponseHelper.noContent(res, 'Page');
 };
