@@ -1,7 +1,7 @@
 // eslint.config.regexp.mjs
 import pluginRegexp from 'eslint-plugin-regexp';
 
-export default {
+const config = {
     name: 'Site8-regexp',
     plugins: {
         regexp: pluginRegexp,
@@ -17,3 +17,5 @@ export default {
         'regexp/prefer-quantifier': 'error',
     },
 };
+
+export default config;

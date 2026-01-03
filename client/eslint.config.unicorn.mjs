@@ -1,7 +1,7 @@
 // eslint.config.unicorn.mjs
 import pluginUnicorn from 'eslint-plugin-unicorn';
 
-export default {
+const config = {
     name: 'Site8-unicorn',
     plugins: {
         unicorn: pluginUnicorn,
@@ -54,3 +54,5 @@ export default {
         ],
     },
 };
+
+export default config;

@@ -2,7 +2,7 @@
 import pluginSecurity from 'eslint-plugin-security';
 import pluginNoSecrets from 'eslint-plugin-no-secrets';
 
-export default {
+const config = {
     name: 'Site8-security',
     plugins: {
         security: pluginSecurity,
@@ -23,3 +23,5 @@ export default {
         'security/detect-pseudoRandomBytes': 'error',
     },
 };
+
+export default config;

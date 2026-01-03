@@ -1,7 +1,7 @@
 // eslint.config.perfectionist.mjs
 import pluginPerfectionist from 'eslint-plugin-perfectionist';
 
-export default {
+const config = {
     name: 'Site8-perfectionist',
     plugins: {
         perfectionist: pluginPerfectionist,
@@ -48,3 +48,5 @@ export default {
         'perfectionist/sort-union-types': ['off', { order: 'asc', type: 'natural' }],
     },
 };
+
+export default config;

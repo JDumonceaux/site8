@@ -1,7 +1,7 @@
 // eslint.config.promise.mjs
 import pluginPromise from 'eslint-plugin-promise';
 
-export default {
+const config = {
     name: 'Site8-promise',
     plugins: {
         promise: pluginPromise,
@@ -22,3 +22,5 @@ export default {
         'promise/spec-only': 'off',
     },
 };
+
+export default config;

@@ -1,7 +1,7 @@
 // eslint.config.jsx-a11y.mjs
 import pluginA11y from 'eslint-plugin-jsx-a11y';
 
-export default {
+const config = {
     name: 'Site8-jsx-a11y',
     plugins: {
         'jsx-a11y': pluginA11y,
@@ -139,3 +139,5 @@ export default {
         // Note: Deprecated rules removed (accessible-emoji, label-has-for, no-onchange)
     },
 };
+
+export default config;

@@ -2,7 +2,7 @@
 import js from '@eslint/js';
 import globals from 'globals';
 
-export default {
+const config = {
     files: ['**/*.{js,jsx,mjs}'],
     ignores: ['dist/**', 'node_modules/**', 'build/**', 'public/**', 'coverage/**', 'stats.html'],
     languageOptions: {
@@ -262,3 +262,5 @@ export default {
         yoda: 'error',
     },
 };
+
+export default config;

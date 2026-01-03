@@ -1,7 +1,7 @@
 // eslint.config.performance.mjs
 import pluginReactPerf from 'eslint-plugin-react-perf';
 
-export default {
+const config = {
     name: 'Site8-performance',
     plugins: {
         'react-perf': pluginReactPerf,
@@ -13,3 +13,5 @@ export default {
         'react-perf/jsx-no-jsx-as-prop': 'warn',
     },
 };
+
+export default config;

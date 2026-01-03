@@ -3,7 +3,7 @@ import pluginReact from 'eslint-plugin-react';
 import pluginHooks from 'eslint-plugin-react-hooks';
 import pluginRedux from 'eslint-plugin-react-redux';
 
-export default {
+const config = {
     name: 'Site8-react',
     plugins: {
         react: pluginReact,
@@ -205,3 +205,5 @@ export default {
         },
     },
 };
+
+export default config;

@@ -1,7 +1,7 @@
 // eslint.config.react-query.mjs
 import pluginReactQuery from '@tanstack/eslint-plugin-query';
 
-export default {
+const config = {
     name: 'Site8-react-query',
     plugins: {
         '@tanstack/query': pluginReactQuery,
@@ -10,3 +10,5 @@ export default {
         ...pluginReactQuery.configs.recommended.rules,
     },
 };
+
+export default config;

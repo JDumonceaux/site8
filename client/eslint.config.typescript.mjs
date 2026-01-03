@@ -2,7 +2,7 @@
 import pluginTypescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 
-export default {
+const config = {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
         ecmaVersion: 'latest',
@@ -116,3 +116,5 @@ export default {
         react: { version: 'detect' }
     },
 };
+
+export default config;

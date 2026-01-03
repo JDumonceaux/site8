@@ -1,7 +1,7 @@
 // eslint.config.react-effect.mjs
 import pluginYouMightNotNeedAnEffect from 'eslint-plugin-react-you-might-not-need-an-effect';
 
-export default {
+const config = {
     name: 'Site8-react-effect',
     plugins: {
         'react-you-might-not-need-an-effect': pluginYouMightNotNeedAnEffect,
@@ -11,3 +11,5 @@ export default {
         ...pluginYouMightNotNeedAnEffect.configs.recommended.rules,
     },
 };
+
+export default config;

@@ -1,7 +1,7 @@
 // eslint.config.node.mjs
 import pluginNode from 'eslint-plugin-n';
 
-export default {
+const config = {
     name: 'Site8-node',
     plugins: {
         n: pluginNode,
@@ -21,3 +21,5 @@ export default {
         'n/prefer-promises/fs': 'error',
     },
 };
+
+export default config;

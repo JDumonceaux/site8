@@ -1,7 +1,7 @@
 // eslint.config.check-file.mjs
 import pluginCheckFile from 'eslint-plugin-check-file';
 
-export default {
+const config = {
     files: ['**/*.{ts}'],
     name: 'Site8-check-file',
     plugins: {
@@ -32,3 +32,5 @@ export default {
         ],
     },
 };
+
+export default config;

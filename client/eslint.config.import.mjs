@@ -1,7 +1,7 @@
 // eslint.config.import.mjs
 import importPlugin from 'eslint-plugin-import';
 
-export default {
+const config = {
     name: 'Site8-import',
     plugins: {
         import: importPlugin,
@@ -126,9 +126,9 @@ export default {
         'import/no-webpack-loader-syntax': 'error',
         // using perfectionist for import sorting
         'import/order': 'off',
+        'import/prefer-default-export': 'off', // Consider based on your preference
         // using perfectionist for import sorting
         'import/sort-imports': 'off',
-        'import/prefer-default-export': 'off', // Consider based on your preference
     },
     settings: {
         'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx'], // Missing extensions setting
@@ -146,3 +146,5 @@ export default {
         },
     },
 };
+
+export default config;

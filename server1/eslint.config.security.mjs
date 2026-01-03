@@ -2,7 +2,7 @@ import pluginNoSecrets from 'eslint-plugin-no-secrets';
 // eslint.config.security.mjs
 import pluginSecurity from 'eslint-plugin-security';
 
-export default {
+const config = {
     name: 'Site8-security',
     plugins: {
         'no-secrets': pluginNoSecrets,
@@ -23,3 +23,5 @@ export default {
         'security/detect-unsafe-regex': 'error',
     },
 };
+
+export default config;

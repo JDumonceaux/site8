@@ -2,7 +2,7 @@
 // eslint.config.import.mjs
 import importPlugin from 'eslint-plugin-import';
 
-export default {
+const config = {
     name: 'Site8-import',
     plugins: {
         import: importPlugin,
@@ -158,3 +158,5 @@ export default {
         },
     },
 };
+
+export default config;

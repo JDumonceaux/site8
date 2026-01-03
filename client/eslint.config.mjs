@@ -15,7 +15,7 @@ import securityConfig from './eslint.config.security.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
 import unicornConfig from './eslint.config.unicorn.mjs';
 
-export default [
+const config = [
     javascriptConfig,
     checkFileConfig,
     importConfig,
@@ -41,3 +41,5 @@ export default [
             '@typescript-eslint/no-explicit-any': 'off',
         },
     },];
+
+export default config;
