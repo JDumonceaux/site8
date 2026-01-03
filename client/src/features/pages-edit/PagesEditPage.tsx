@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent } from 'react';
+import { useCallback, useEffect, useEffectEvent } from 'react';
 import type { JSX } from 'react';
 
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
@@ -44,6 +44,10 @@ const PagesEditPage = (): JSX.Element | null => {
     setShowPages(checked);
   };
 
+  const handleSaveClick = useCallback(() => {
+    void handleSave();
+  }, [handleSave]);
+
   return (
     <>
       <Meta title="Pages" />
@@ -66,9 +70,7 @@ const PagesEditPage = (): JSX.Element | null => {
               <StyledSaveButton
                 data-testid="button-save"
                 type="submit"
-                onClick={() => {
-                  void handleSave();
-                }}
+                onClick={handleSaveClick}
               >
                 Save
               </StyledSaveButton>
@@ -113,4 +115,3 @@ export default PagesEditPage;
 const StyledSaveButton = styled(StyledPlainButton)`
   font-weight: bold;
 `;
-

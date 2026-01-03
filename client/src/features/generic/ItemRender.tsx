@@ -1,4 +1,4 @@
-import { Fragment, type JSX } from 'react';
+import { Fragment, memo, type JSX } from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 import type { MenuItem } from '@site8/shared';
@@ -13,89 +13,91 @@ type ItemRenderProps = {
   readonly onToggle?: () => void;
 };
 
-const ItemRender = ({
-  children,
-  hasChildren = false,
-  isExpanded = false,
-  item,
-  level,
-  onToggle,
-}: ItemRenderProps): JSX.Element | null => {
-  let content: React.ReactNode;
+const ItemRender = memo(
+  ({
+    children,
+    hasChildren = false,
+    isExpanded = false,
+    item,
+    level,
+    onToggle,
+  }: ItemRenderProps): JSX.Element | null => {
+    let content: React.ReactNode;
 
-  if (item.type === 'menu') {
-    const menuComponents: Record<
-      number,
-      React.ComponentType<{
-        readonly children: React.ReactNode;
-        readonly to: string;
-      }>
-    > = {
-      0: StyledMenu0,
-      1: StyledMenu1,
-      2: StyledMenu2,
-    };
+    if (item.type === 'menu') {
+      const menuComponents: Record<
+        number,
+        React.ComponentType<{
+          readonly children: React.ReactNode;
+          readonly to: string;
+        }>
+      > = {
+        0: StyledMenu0,
+        1: StyledMenu1,
+        2: StyledMenu2,
+      };
 
-    const Component = menuComponents[level];
+      const Component = menuComponents[level];
 
-    // If has children, make it clickable to expand/collapse
-    if (hasChildren && onToggle) {
-      content = (
-        <StyledMenuButton
-          onClick={onToggle}
-          level={level}
-        >
-          <span>{item.title}</span>
-          <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
-        </StyledMenuButton>
-      );
-    } else if (item.url) {
-      content = <Component to={item.url}>{item.title}</Component>;
+      // If has children, make it clickable to expand/collapse
+      if (hasChildren && onToggle) {
+        content = (
+          <StyledMenuButton
+            onClick={onToggle}
+            level={level}
+          >
+            <span>{item.title}</span>
+            <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
+          </StyledMenuButton>
+        );
+      } else if (item.url) {
+        content = <Component to={item.url}>{item.title}</Component>;
+      } else {
+        content = <div>{item.title}</div>;
+      }
+    } else if (item.type === 'page') {
+      const pageComponents: Record<
+        number,
+        React.ComponentType<{
+          readonly children: React.ReactNode;
+          readonly to: string;
+        }>
+      > = {
+        0: StyledPage0,
+        1: StyledPage1,
+        2: StyledPage2,
+      };
+
+      const Component = pageComponents[level];
+
+      // If has children, make it clickable to expand/collapse
+      if (hasChildren && onToggle) {
+        content = (
+          <StyledMenuButton
+            onClick={onToggle}
+            level={level}
+          >
+            <span>{item.title}</span>
+            <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
+          </StyledMenuButton>
+        );
+      } else if (item.url) {
+        content = <Component to={item.url}>{item.title}</Component>;
+      } else {
+        content = <div>{item.title}</div>;
+      }
     } else {
       content = <div>{item.title}</div>;
     }
-  } else if (item.type === 'page') {
-    const pageComponents: Record<
-      number,
-      React.ComponentType<{
-        readonly children: React.ReactNode;
-        readonly to: string;
-      }>
-    > = {
-      0: StyledPage0,
-      1: StyledPage1,
-      2: StyledPage2,
-    };
 
-    const Component = pageComponents[level];
-
-    // If has children, make it clickable to expand/collapse
-    if (hasChildren && onToggle) {
-      content = (
-        <StyledMenuButton
-          onClick={onToggle}
-          level={level}
-        >
-          <span>{item.title}</span>
-          <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
-        </StyledMenuButton>
-      );
-    } else if (item.url) {
-      content = <Component to={item.url}>{item.title}</Component>;
-    } else {
-      content = <div>{item.title}</div>;
-    }
-  } else {
-    content = <div>{item.title}</div>;
-  }
-
-  return (
-    <Fragment key={item.id}>
-      {content}
-      {children}
-    </Fragment>
-  );
-};
+    return (
+      <Fragment key={item.id}>
+        {content}
+        {children}
+      </Fragment>
+    );
+  },
+);
 
 ItemRender.displayName = 'ItemRender';
 

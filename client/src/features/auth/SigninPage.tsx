@@ -53,7 +53,6 @@ const SigninPage = (): JSX.Element => {
               errors: [{ message: state.errors.emailAddress }],
             })}
             label="Email Address"
-            multiple={false}
             spellCheck="false"
             autoComplete="email"
             inputMode="email"

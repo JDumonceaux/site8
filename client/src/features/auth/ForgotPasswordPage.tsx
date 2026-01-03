@@ -55,7 +55,6 @@ const ForgotPasswordPage = (): JSX.Element => {
               errors: [{ message: state.errors.email }],
             })}
             label="Email Address"
-            multiple={false}
             spellCheck="false"
             autoComplete="email"
             inputMode="email"

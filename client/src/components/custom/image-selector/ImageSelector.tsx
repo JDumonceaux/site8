@@ -72,12 +72,6 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
       <Controls>
         <button
           type="button"
-          onClick={() => null}
-        >
-          Refresh
-        </button>
-        <button
-          type="button"
           onClick={handleShowAll}
         >
           Show All

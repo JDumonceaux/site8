@@ -1,4 +1,4 @@
-import { type ChangeEvent, type JSX, useState } from 'react';
+import { type ChangeEvent, type JSX, useCallback, useState } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
@@ -46,6 +46,10 @@ const FileUploadPage = (): JSX.Element => {
     }
   };
 
+  const handleUploadClick = useCallback(() => {
+    void handleFileUpload();
+  }, [file]);
+
   return (
     <>
       <Meta title={title} />
@@ -71,9 +75,7 @@ const FileUploadPage = (): JSX.Element => {
           {file && status !== 'uploading' ? (
             <button
               type="button"
-              onClick={() => {
-                void handleFileUpload();
-              }}
+              onClick={handleUploadClick}
             >
               Upload
             </button>

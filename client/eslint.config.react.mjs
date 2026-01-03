@@ -155,7 +155,7 @@ export default {
         'react/no-unstable-nested-components': 'error',
         'react/no-danger': 'error',
         'react/no-danger-with-children': 'error',
-        'react/no-deprecated': 'error'
+        'react/no-deprecated': 'error',
         'react/no-did-mount-set-state': 'error',
         'react/no-did-update-set-state': 'error',
         'react/no-find-dom-node': 'error', // Missing recommended rule

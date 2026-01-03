@@ -1,86 +1,86 @@
-{
+﻿{
   "metadata": {
     "title": "Tests"
   },
   "items": [
     {
-      "id": 501,
+      "id": 1,
       "name": "Media Queries",
       "text": "Media Type",
       "value": "All"
     },
     {
-      "id": 502,
+      "id": 2,
       "name": "Media Queries",
       "text": "Media Type",
       "value": "Print"
     },
     {
-      "id": 503,
+      "id": 3,
       "name": "Media Queries",
       "text": "Media Type",
       "value": "Screen"
     },
     {
-      "id": 504,
+      "id": 4,
       "name": "Media Queries",
       "text": "Orientation",
       "value": "Portrait"
     },
     {
-      "id": 505,
+      "id": 5,
       "name": "Media Queries",
       "text": "Orientation",
       "value": "Landscape"
     },
     {
-      "id": 506,
+      "id": 6,
       "name": "Media Queries",
       "text": "Prefers Color Scheme",
       "value": "light"
     },
     {
-      "id": 507,
+      "id": 7,
       "name": "Media Queries",
       "text": "Prefers Color Scheme",
       "value": "dark"
     },
     {
-      "id": 199,
+      "id": 8,
       "name": "Code",
       "projectType": ["react"],
       "type": "section",
       "parentId": [0, 2]
     },
     {
-      "id": 1101,
+      "id": 9,
       "name": "Styles",
       "text": "Check for unused styles",
       "type": "test",
-      "parentId": [199, 2]
+      "parentId": [8, 2]
     },
     {
-      "id": 1102,
+      "id": 10,
       "name": "Styles",
       "text": "Check for invalid styles (browser inspect)",
       "type": "test",
-      "parentId": [199, 3]
+      "parentId": [8, 3]
     },
     {
-      "id": 1103,
+      "id": 11,
       "name": "Styles",
       "text": "Check for styles that are overwritten (browser inspect)",
       "type": "test",
-      "parentId": [199, 2]
+      "parentId": [8, 2]
     },
     {
-      "id": 1104,
+      "id": 12,
       "name": "Check for Pure Functions",
       "type": "test",
-      "parentId": [199, 2]
+      "parentId": [8, 2]
     },
     {
-      "id": 200,
+      "id": 13,
       "name": "HTML Header",
       "value": "Validate Entries",
       "level": "page",
@@ -89,152 +89,151 @@
       "parentId": [0, 1]
     },
     {
-      "id": 1105,
+      "id": 14,
       "name": "Check for Open Graph",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 10]
+      "parentId": [13, 10]
     },
     {
-      "id": 1106,
+      "id": 15,
       "name": "Doc Type",
       "text": "",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 1]
+      "parentId": [13, 1]
     },
     {
-      "id": 1107,
+      "id": 16,
       "name": "Language",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 2]
+      "parentId": [13, 2]
     },
-
     {
-      "id": 1108,
+      "id": 17,
       "name": "Language - change language",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 3]
+      "parentId": [13, 3]
     },
     {
-      "id": 1109,
+      "id": 18,
       "name": "Encoding",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 4]
+      "parentId": [13, 4]
     },
     {
-      "id": 1110,
+      "id": 19,
       "name": "Author",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 5]
+      "parentId": [13, 5]
     },
     {
-      "id": 1111,
+      "id": 20,
       "name": "Keywords",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 6]
+      "parentId": [13, 6]
     },
     {
-      "id": 1112,
+      "id": 21,
       "name": "Title",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 7]
+      "parentId": [13, 7]
     },
     {
-      "id": 1113,
+      "id": 22,
       "name": "Description",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 8]
+      "parentId": [13, 8]
     },
     {
-      "id": 1114,
+      "id": 23,
       "name": "Favicon",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 9]
+      "parentId": [13, 9]
     },
     {
-      "id": 1115,
+      "id": 24,
       "name": "Publish Date",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 11]
+      "parentId": [13, 11]
     },
     {
-      "id": 1116,
+      "id": 25,
       "name": "Canonical URL",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 12]
+      "parentId": [13, 12]
     },
     {
-      "id": 1117,
+      "id": 26,
       "name": "Viewport",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 13]
+      "parentId": [13, 13]
     },
     {
-      "id": 1117,
+      "id": 27,
       "name": "Open Graph Coding",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 14]
+      "parentId": [13, 14]
     },
     {
-      "id": 1118,
+      "id": 28,
       "name": "Base Element",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 15]
+      "parentId": [13, 15]
     },
     {
-      "id": 1119,
+      "id": 29,
       "name": "Stylesheet Ref",
       "text": "Remove type from stylesheet ref (no longer required)",
       "level": "page",
       "projectType": ["react"],
       "type": "test",
-      "parentId": [200, 16]
+      "parentId": [13, 16]
     },
     {
-      "id": 1200,
+      "id": 30,
       "name": "Images",
       "text": "Accessibility",
       "value": "Empty alt",
       "projectType": ["react"]
     },
     {
-      "id": 1200,
+      "id": 31,
       "name": "Images",
       "text": "Accessibility",
       "value": "Valid alt",
       "projectType": ["react"]
     },
     {
-      "id": 1200,
+      "id": 32,
       "name": "Images",
       "text": "Accessibility",
       "value": "Valid title",
@@ -243,17 +242,16 @@
     {
       "level": "page",
       "seq": 100,
-      "id": 501,
+      "id": 33,
       "type": "section",
       "name": "Lighthouse",
       "text": "Chrome DevTools:  Run tests.",
       "projectType": ["react"]
     },
-
     {
       "level": "page",
       "seq": 101,
-      "id": 506,
+      "id": 34,
       "type": "section",
       "name": "React Components",
       "text": "Chrome DevTools:  Run tests.",
@@ -262,7 +260,7 @@
     {
       "level": "page",
       "seq": 102,
-      "id": 507,
+      "id": 35,
       "type": "section",
       "name": "React Profiler",
       "text": "Chrome DevTools:  Run tests.",
@@ -271,7 +269,7 @@
     {
       "level": "page",
       "seq": 103,
-      "id": 508,
+      "id": 36,
       "type": "section",
       "name": "Performance Insights",
       "text": "Chrome DevTools:  Run tests.",
@@ -279,7 +277,7 @@
     },
     {
       "level": "page",
-      "id": 509,
+      "id": 37,
       "type": "section",
       "name": "Performance",
       "text": "Chrome DevTools:  Run tests.",
@@ -287,7 +285,7 @@
     },
     {
       "level": "page",
-      "id": 510,
+      "id": 38,
       "type": "section",
       "name": "Redux",
       "text": "Chrome DevTools: Validate state - Check for unused state",
@@ -295,7 +293,7 @@
     },
     {
       "level": "page",
-      "id": 511,
+      "id": 39,
       "type": "section",
       "name": "Network",
       "text": "Chrome DevTools: Check network tab for missing files (images), connection issues, etc.",
@@ -303,7 +301,7 @@
     },
     {
       "level": "page",
-      "id": 515,
+      "id": 40,
       "type": "section",
       "name": "ColorBlindy",
       "text": "Test for color blindness.",
@@ -311,8 +309,7 @@
     },
     {
       "level": "page",
-
-      "id": 520,
+      "id": 41,
       "type": "section",
       "name": "Console",
       "text": "Chrome DevTools: Check for errors",
@@ -320,34 +317,33 @@
     },
     {
       "level": "page",
-      "id": 512,
+      "id": 42,
       "type": "section",
       "name": "Inspect",
       "text": "Inspect style: Click through elements to check for unused or invalid styles.",
       "projectType": ["react"]
     },
-
     {
       "level": "project",
-      "id": 505,
+      "id": 43,
       "type": "section",
       "name": "ESLint",
       "text": ".eslintrc.json or eslintrc.cjs file",
       "projectType": ["react"]
     },
     {
-      "id": 507,
+      "id": 44,
       "level": "project",
       "seq": 1000,
-      "parentId": [505, 506],
+      "parentId": [5, 506],
       "type": "test",
       "name": "ESLint - Object Property Shorthand",
-      "text": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
+      "text": "Set \u0027object-shorthand\u0027 to \u0027always\u0027 or \u0027warn\u0027 in \u0027rules\u0027 section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
       "projectType": ["react"]
     },
     {
       "level": "project",
-      "id": 506,
+      "id": 45,
       "type": "section",
       "name": "ESLint",
       "text": ".eslintrc.json or eslintrc.cjs file",
@@ -355,7 +351,7 @@
     },
     {
       "level": "project",
-      "id": 521,
+      "id": 46,
       "type": "section",
       "name": "SEO",
       "text": "",
@@ -363,7 +359,7 @@
     },
     {
       "level": "project",
-      "id": 522,
+      "id": 47,
       "type": "test",
       "name": "Robot.txt",
       "text": "",
@@ -371,7 +367,7 @@
     },
     {
       "level": "project",
-      "id": 523,
+      "id": 48,
       "type": "test",
       "name": "Sitemap.xml",
       "text": "",
@@ -379,7 +375,7 @@
     },
     {
       "level": "project",
-      "id": 524,
+      "id": 49,
       "type": "test",
       "name": "Semantic HTML",
       "text": "",
@@ -387,7 +383,7 @@
     },
     {
       "level": "project",
-      "id": 525,
+      "id": 50,
       "type": "test",
       "name": "Optimized Page Speed",
       "text": "",
@@ -395,7 +391,7 @@
     },
     {
       "level": "project",
-      "id": 526,
+      "id": 51,
       "type": "test",
       "name": "Meta Tags",
       "text": "",
@@ -403,7 +399,7 @@
     },
     {
       "level": "project",
-      "id": 527,
+      "id": 52,
       "type": "test",
       "name": "Accessibility",
       "text": "",
@@ -411,7 +407,7 @@
     },
     {
       "level": "project",
-      "id": 528,
+      "id": 53,
       "type": "test",
       "name": "Mobile Friendly",
       "text": "",
@@ -419,7 +415,7 @@
     },
     {
       "level": "project",
-      "id": 529,
+      "id": 54,
       "type": "test",
       "name": "Quality Content",
       "text": "",
@@ -427,7 +423,7 @@
     },
     {
       "level": "project",
-      "id": 530,
+      "id": 55,
       "type": "test",
       "name": "npm audit",
       "text": "",
@@ -435,7 +431,7 @@
     },
     {
       "level": "project",
-      "id": 531,
+      "id": 56,
       "type": "test",
       "name": "npm outdated",
       "text": "",
@@ -443,7 +439,7 @@
     },
     {
       "level": "project",
-      "id": 532,
+      "id": 57,
       "type": "test",
       "name": "Synk",
       "text": "",
@@ -451,23 +447,23 @@
     },
     {
       "level": "project",
-      "id": 533,
+      "id": 58,
       "type": "maintenance",
       "name": "TSConfig.json",
-      "text": "Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>",
+      "text": "Check for new and deprecated options \u003ca href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\"\u003eTypescript\u003c/a\u003e",
       "projectType": ["react", "nodejs"]
     },
     {
       "level": "project",
-      "id": 534,
+      "id": 59,
       "type": "test",
       "name": "Security Headers",
-      "text": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
+      "text": "Online Test - \u003ca href=\"https://securityheaders.com/\"\u003eSecurity Headers\u003c/a\u003e",
       "projectType": ["react", "nodejs"]
     },
     {
       "level": "component",
-      "id": 535,
+      "id": 60,
       "type": "test",
       "name": "Cyclomatic Complexity",
       "text": "",
@@ -476,7 +472,7 @@
     },
     {
       "level": "component",
-      "id": 536,
+      "id": 61,
       "type": "test",
       "name": "Code Smells",
       "text": "",
@@ -485,7 +481,7 @@
     },
     {
       "level": "component",
-      "id": 537,
+      "id": 62,
       "type": "test",
       "name": "SRP - Single Responsibility Principle",
       "text": "",
@@ -494,7 +490,7 @@
     },
     {
       "level": "project",
-      "id": 538,
+      "id": 63,
       "type": "maintenance",
       "name": "npm doctor",
       "text": "Validate npm environment",
@@ -502,16 +498,15 @@
     },
     {
       "level": "project",
-      "id": 538,
+      "id": 64,
       "type": "maintenance",
       "name": "npm dedupe",
       "text": "Consolidate package tree",
       "projectType": ["react", "nodejs"]
     },
-
     {
       "level": "project",
-      "id": 539,
+      "id": 65,
       "type": "maintenance",
       "name": "npm audit",
       "text": "Check for package vulnerabilities",
@@ -519,7 +514,7 @@
     },
     {
       "level": "project",
-      "id": 540,
+      "id": 66,
       "type": "maintenance",
       "name": "npm outdated",
       "text": "Check for package updates",
@@ -527,7 +522,7 @@
     },
     {
       "level": "project",
-      "id": 541,
+      "id": 67,
       "type": "maintenance",
       "name": "npm prune",
       "text": "Remove unused packages",
@@ -535,7 +530,7 @@
     },
     {
       "level": "page",
-      "id": 542,
+      "id": 68,
       "type": "performance",
       "name": "Cumulative Layout Shift (CLS)",
       "text": "visual stability of a page as it loads",
@@ -544,7 +539,7 @@
     },
     {
       "level": "page",
-      "id": 543,
+      "id": 69,
       "type": "performance",
       "name": "Interaction to Next Paint (INP)",
       "text": "measures user interface responsiveness.  replaces First Input Delay (FID) ",
@@ -553,7 +548,7 @@
     },
     {
       "level": "page",
-      "id": 544,
+      "id": 70,
       "type": "performance",
       "name": "Largest Contentful Paint (LCP)",
       "text": "time between the browser starting to load a page and the largest content element appearing",
@@ -562,7 +557,7 @@
     },
     {
       "level": "field",
-      "id": 545,
+      "id": 71,
       "type": "test",
       "name": "Input - Hover",
       "text": "",
@@ -571,7 +566,7 @@
     },
     {
       "level": "field",
-      "id": 546,
+      "id": 72,
       "type": "test",
       "name": "Input - Focus",
       "text": "",
@@ -580,7 +575,7 @@
     },
     {
       "level": "field",
-      "id": 547,
+      "id": 73,
       "type": "test",
       "name": "Input - Selection",
       "text": "",
@@ -589,7 +584,7 @@
     },
     {
       "level": "field",
-      "id": 548,
+      "id": 74,
       "type": "test",
       "name": "Input - Spelling-error",
       "text": "",
@@ -598,7 +593,7 @@
     },
     {
       "level": "field",
-      "id": 549,
+      "id": 75,
       "type": "test",
       "name": "Input - Grammar",
       "text": "",
@@ -607,7 +602,7 @@
     },
     {
       "level": "field",
-      "id": 550,
+      "id": 76,
       "type": "test",
       "name": "Input - Placeholder",
       "text": "",
@@ -616,17 +611,16 @@
     },
     {
       "level": "field",
-      "id": 551,
+      "id": 77,
       "type": "test",
       "name": "Input - Error",
       "text": "",
       "goal": "",
       "projectType": ["web", "react", "acccessibiilty"]
     },
-
     {
       "level": "field",
-      "id": 552,
+      "id": 78,
       "type": "test",
       "name": "Input - Click on Label",
       "text": "",
@@ -635,7 +629,7 @@
     },
     {
       "level": "field",
-      "id": 553,
+      "id": 79,
       "type": "test",
       "name": "WCAG Checklist",
       "text": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist",
@@ -644,7 +638,7 @@
     },
     {
       "level": "field",
-      "id": 554,
+      "id": 80,
       "type": "test",
       "name": "Delete entry",
       "text": "1. Enter value 2. Save 3. Delete value 4. Save",
@@ -653,7 +647,7 @@
     },
     {
       "level": "field",
-      "id": 555,
+      "id": 81,
       "type": "test",
       "name": "",
       "text": "",
@@ -662,7 +656,7 @@
     },
     {
       "level": "project",
-      "id": 556,
+      "id": 82,
       "type": "maintenance",
       "name": "Chat: Typescript Improvements",
       "text": "Using typescript [latest version], are there any improvements that can be implemented?",
@@ -670,7 +664,7 @@
     },
     {
       "level": "project",
-      "id": 557,
+      "id": 83,
       "type": "maintenance",
       "name": "Chat: Javascript Improvements",
       "text": "Using javascript ES2025, are there any improvements that can be be implemented?",
@@ -678,7 +672,7 @@
     },
     {
       "level": "project",
-      "id": 558,
+      "id": 84,
       "type": "maintenance",
       "name": "Chat: Javascript Improvements2",
       "text": "Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
@@ -686,7 +680,7 @@
     },
     {
       "level": "project",
-      "id": 559,
+      "id": 85,
       "type": "maintenance",
       "name": "Chat: Javascript ES2023 Array Method Improvements",
       "text": "Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
@@ -694,7 +688,7 @@
     },
     {
       "level": "project",
-      "id": 560,
+      "id": 86,
       "type": "maintenance",
       "name": "Chat: Javascript Iterable Type Updates",
       "text": "Update to use Iterable where applicable.",
@@ -702,7 +696,7 @@
     },
     {
       "level": "project",
-      "id": 561,
+      "id": 87,
       "type": "maintenance",
       "name": "Chat: Javascript Iterable Type Updates",
       "text": "Update to use RegExp.escape where applicable.",
@@ -710,7 +704,7 @@
     },
     {
       "level": "project",
-      "id": 562,
+      "id": 88,
       "type": "maintenance",
       "name": "Chat: Javascript RegExp.escape Implementation",
       "text": "Update to use RegExp.escape where applicable.",
@@ -718,7 +712,7 @@
     },
     {
       "level": "project",
-      "id": 563,
+      "id": 89,
       "type": "maintenance",
       "name": "Chat: Javascript RegExp.escape Implementation",
       "text": "Update to use Promise.try where applicable.",
@@ -727,7 +721,7 @@
     },
     {
       "level": "project",
-      "id": 564,
+      "id": 90,
       "type": "maintenance",
       "name": "Chat: Javascript Iteratable",
       "text": "Implement Temporal API.",
@@ -736,7 +730,7 @@
     },
     {
       "level": "project",
-      "id": 565,
+      "id": 91,
       "type": "maintenance",
       "name": "Chat: React Improvements",
       "text": "Are there react 19.2.3 enhancements that can be made?",
@@ -744,7 +738,7 @@
     },
     {
       "level": "project",
-      "id": 566,
+      "id": 92,
       "type": "maintenance",
       "name": "Chat: HTML5",
       "text": "Is the latest and appropriate HTML5 elements used?",
@@ -752,7 +746,7 @@
     },
     {
       "level": "project",
-      "id": 567,
+      "id": 93,
       "type": "maintenance",
       "name": "Chat: CSS",
       "text": "Are there improvements to CSS that can be made?",
@@ -760,7 +754,7 @@
     },
     {
       "level": "project",
-      "id": 568,
+      "id": 94,
       "type": "maintenance",
       "name": "Chat: Styles",
       "text": "Are there any styles defined in components that should be moved to main.css?",
@@ -768,7 +762,7 @@
     },
     {
       "level": "project",
-      "id": 569,
+      "id": 95,
       "type": "maintenance",
       "name": "Chat: Immutable",
       "text": "Look for opportunties to improve Immutability in codebase.",
@@ -776,7 +770,7 @@
     },
     {
       "level": "project",
-      "id": 570,
+      "id": 96,
       "type": "maintenance",
       "name": "Chat: SOLID",
       "text": "Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase.",
@@ -784,7 +778,7 @@
     },
     {
       "level": "project",
-      "id": 571,
+      "id": 97,
       "type": "maintenance",
       "name": "Chat: Class Components",
       "text": "Convert any class components to functional components and hooks.",
@@ -792,7 +786,7 @@
     },
     {
       "level": "project",
-      "id": 572,
+      "id": 98,
       "type": "maintenance",
       "name": "Chat: Lazy Loading",
       "text": "Implement lazy loading components.",
@@ -800,7 +794,7 @@
     },
     {
       "level": "project",
-      "id": 573,
+      "id": 99,
       "type": "maintenance",
       "name": "Chat: Re-renders",
       "text": "Look for any unnecessary re-renders.",
@@ -808,7 +802,7 @@
     },
     {
       "level": "project",
-      "id": 574,
+      "id": 100,
       "type": "maintenance",
       "name": "Scripts: Type Check",
       "text": "npm run type-check",
@@ -816,7 +810,7 @@
     },
     {
       "level": "project",
-      "id": 575,
+      "id": 101,
       "type": "maintenance",
       "name": "Scripts: Lint",
       "text": "npm run lint",
@@ -824,7 +818,7 @@
     },
     {
       "level": "project",
-      "id": 576,
+      "id": 102,
       "type": "maintenance",
       "name": "Scripts: Lint Fix",
       "text": "npm run lint:fix",
@@ -832,7 +826,7 @@
     },
     {
       "level": "project",
-      "id": 577,
+      "id": 103,
       "type": "maintenance",
       "name": "Scripts: Knip",
       "text": "npm run knip",
@@ -841,7 +835,7 @@
     },
     {
       "level": "project",
-      "id": 578,
+      "id": 104,
       "type": "maintenance",
       "name": "Scripts: Format",
       "text": "npm run format",
@@ -849,7 +843,7 @@
     },
     {
       "level": "project",
-      "id": 579,
+      "id": 105,
       "type": "maintenance",
       "name": "Scripts: Build",
       "text": "npm run build",
@@ -858,7 +852,7 @@
     },
     {
       "level": "project",
-      "id": 580,
+      "id": 106,
       "type": "maintenance",
       "name": "Scripts: Preview",
       "text": "npm run preview",
@@ -867,7 +861,7 @@
     },
     {
       "level": "project",
-      "id": 581,
+      "id": 107,
       "type": "maintenance",
       "name": "Scripts: Clean",
       "text": "npm run clean",
@@ -876,7 +870,7 @@
     },
     {
       "level": "project",
-      "id": 582,
+      "id": 108,
       "type": "maintenance",
       "name": "Chat: Error Handling",
       "text": "Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery",
@@ -884,7 +878,7 @@
     },
     {
       "level": "project",
-      "id": 583,
+      "id": 109,
       "type": "maintenance",
       "name": "Chat: Accessibility",
       "text": "Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support",
@@ -892,7 +886,7 @@
     },
     {
       "level": "project",
-      "id": 584,
+      "id": 110,
       "type": "maintenance",
       "name": "Chat: React Query Optimization",
       "text": "Review and optimize React Query usage - check staleTime, cacheTime, retry logic, and identify opportunities for prefetching",
@@ -900,7 +894,7 @@
     },
     {
       "level": "project",
-      "id": 585,
+      "id": 111,
       "type": "maintenance",
       "name": "Chat: Custom Hooks",
       "text": "Identify opportunities to create custom hooks to reduce duplication and improve code reusability",
@@ -908,7 +902,7 @@
     },
     {
       "level": "project",
-      "id": 586,
+      "id": 112,
       "type": "maintenance",
       "name": "Chat: API Security",
       "text": "Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure",
@@ -916,7 +910,7 @@
     },
     {
       "level": "project",
-      "id": 587,
+      "id": 113,
       "type": "maintenance",
       "name": "Chat: Bundle Size",
       "text": "Analyze bundle size and suggest code splitting opportunities beyond lazy loading",
@@ -924,7 +918,7 @@
     },
     {
       "level": "project",
-      "id": 588,
+      "id": 114,
       "type": "maintenance",
       "name": "Chat: TypeScript Strict Mode",
       "text": "Review TypeScript strict mode usage and suggest enabling stricter compiler options",
@@ -933,7 +927,7 @@
     },
     {
       "level": "project",
-      "id": 589,
+      "id": 115,
       "type": "maintenance",
       "name": "Chat: Prop Drilling",
       "text": "Identify prop drilling issues and suggest Context API or state management improvements",
@@ -941,7 +935,7 @@
     },
     {
       "level": "project",
-      "id": 590,
+      "id": 116,
       "type": "maintenance",
       "name": "Chat: Styled Components Performance",
       "text": "Review styled-components usage and identify performance issues or patterns to improve",
@@ -949,7 +943,7 @@
     },
     {
       "level": "project",
-      "id": 591,
+      "id": 117,
       "type": "maintenance",
       "name": "Chat: Testing",
       "text": "Suggest implementing React Testing Library tests for critical user flows",
@@ -957,7 +951,7 @@
     },
     {
       "level": "project",
-      "id": 592,
+      "id": 118,
       "type": "maintenance",
       "name": "Chat: Form Validation",
       "text": "Review form validation patterns and suggest consistency improvements using Zod or similar",
@@ -965,7 +959,7 @@
     },
     {
       "level": "project",
-      "id": 593,
+      "id": 119,
       "type": "maintenance",
       "name": "Chat: SSR/SSG",
       "text": "Identify opportunities for Server-Side Rendering or Static Site Generation",
@@ -973,7 +967,7 @@
     },
     {
       "level": "project",
-      "id": 594,
+      "id": 120,
       "type": "maintenance",
       "name": "Chat: Image Optimization",
       "text": "Review and optimize image loading strategies (lazy loading, responsive images, WebP)",
@@ -981,7 +975,7 @@
     },
     {
       "level": "project",
-      "id": 595,
+      "id": 121,
       "type": "maintenance",
       "name": "Chat: API Caching",
       "text": "Analyze API response caching strategies and suggest improvements",
@@ -989,7 +983,7 @@
     },
     {
       "level": "project",
-      "id": 596,
+      "id": 122,
       "type": "maintenance",
       "name": "Chat: Memory Leaks",
       "text": "Check for memory leaks - useEffect cleanup, event listeners, subscriptions",
@@ -997,208 +991,204 @@
     },
     {
       "level": "project",
-      "id": 597,
+      "id": 123,
       "type": "maintenance",
       "name": "Chat: Build",
       "text": "execute npm run build and fix all errors",
       "projectType": ["chat"]
     },
     {
-      "id": 598,
+      "id": 124,
       "name": "Quick Wins",
       "text": "TypeScript Enhancement",
       "value": "Add 3 strict flags to client tsconfig: noUncheckedIndexedAccess, noImplicitReturns, exactOptionalPropertyTypes",
       "projectType": ["chat"]
     },
     {
-      "id": 599,
+      "id": 125,
       "name": "Quick Wins",
       "text": "Security Audit",
       "value": "Verify sanitizeFilePath is applied to all file upload/manipulation endpoints",
       "projectType": ["chat"]
     },
     {
-      "id": 600,
+      "id": 126,
       "name": "Architectural Changes",
       "text": "CSRF Protection",
       "value": "Implement CSRF token generation and validation for mutation endpoints - future implementation",
       "projectType": ["chat"]
     },
     {
-      "id": 601,
+      "id": 127,
       "name": "Architectural Changes",
       "text": "Authentication Middleware",
       "value": "Implement authentication and authorization middleware (JWT, sessions, or OAuth) - future implementation",
       "projectType": ["chat"]
     },
     {
-      "id": 602,
+      "id": 128,
       "name": "Architectural Changes",
       "text": "WAF Rules",
       "value": "Configure Web Application Firewall rules for production deployment - future implementation",
       "projectType": ["chat"]
     },
     {
-      "id": 603,
+      "id": 129,
       "name": "Quick Wins",
       "text": "Javascript Version - esnext",
-      "value": "check tsconfig.json and update target and lib to 'esnext' (lower case)",
-      "notes": "12/1/2025 - 'es2025' is not supported by Vite.  Use 'esnext' instead. This is need for features like Promise.try",
+      "value": "check tsconfig.json and update target and lib to \u0027esnext\u0027 (lower case)",
+      "notes": "12/1/2025 - \u0027es2025\u0027 is not supported by Vite.  Use \u0027esnext\u0027 instead. This is need for features like Promise.try",
       "projectType": ["chat"]
     },
     {
-      "id": 604,
+      "id": 130,
       "name": "Consistency",
       "text": "Component Display Name",
       "value": "Add a display name to every component if missing.  Add the name before the component export.",
       "projectType": ["chat"]
     },
     {
-      "id": 605,
+      "id": 131,
       "name": "Quality",
       "text": "Update eslint configs",
       "value": "Review eslint.config files.  Suggest changes and additional linters.",
       "projectType": ["chat"]
     },
     {
-      "id": 606,
+      "id": 132,
       "name": "Quality",
       "text": "Biome",
       "value": "Replace ESLint and Prettier with Biome",
       "projectType": ["future"]
     },
     {
-      "id": 607,
+      "id": 133,
       "name": "Quality",
       "text": "Deprecate",
       "value": "Are there any deprecated Typescript or Javascript functions being used?",
       "projectType": ["chat"]
     },
     {
-      "id": 608,
+      "id": 134,
       "name": "Quality",
       "text": "Update eslint configs",
       "value": "Review eslint.config files.  Are there any deprecated or missing rules?",
       "projectType": ["chat"]
     },
-
     {
-      "id": 609,
+      "id": 135,
       "name": "Quality",
       "text": "Update eslint configs",
       "value": "Review eslint.config files.  Are there any conflicting or duplicate rules?",
       "projectType": ["chat"]
     },
-
     {
-      "id": 610,
+      "id": 136,
       "name": "Quality",
       "text": "Anti-Patterns",
       "value": "Review the code for anti-patterns and suggest improvements.",
       "projectType": ["chat"]
     },
-
     {
-      "id": 611,
+      "id": 137,
       "name": "Quality",
       "text": "Package.json - libraries",
       "value": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?",
       "projectType": ["chat"]
     },
     {
-      "id": 612,
+      "id": 138,
       "name": "Quality",
       "text": "vite.config.mts",
       "value": "Read the vite.config.mts file and suggest improvements.",
       "projectType": ["chat"]
     },
-
     {
-      "id": 613,
+      "id": 139,
       "name": "Quality",
       "text": "vitetest.config.ts",
       "value": "Read the vitest.config.ts file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 614,
+      "id": 140,
       "name": "Quality",
       "text": "tsconfig.node.json",
       "value": "Read the tsconfig.node.json file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 615,
+      "id": 141,
       "name": "Quality",
       "text": "Unused Files",
       "value": "Are there any files at the src/ level not being used?",
       "projectType": ["chat"]
     },
     {
-      "id": 616,
+      "id": 142,
       "name": "Quality",
       "text": "tsconfig.json",
       "value": "Read the tsconfig.json file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 617,
+      "id": 143,
       "name": "Quality",
       "text": "knip.json",
       "value": "Read the knip.json file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 618,
+      "id": 144,
       "name": "Quality",
       "text": "index.html",
       "value": "Read the index.html file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 619,
+      "id": 145,
       "name": "Quality",
       "text": ".gitignore",
       "value": "Read the .gitignore file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 620,
+      "id": 146,
       "name": "Quality",
       "text": ".prettierignore",
       "value": "Read the .prettierignore file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 621,
+      "id": 147,
       "name": "Quality",
       "text": ".prettierrc.mjs",
       "value": "Read the .prettierrc.mjs file and suggest improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 622,
+      "id": 148,
       "name": "Quality",
       "text": "babel.cjs",
       "value": "Check if babel.cjs is needed (Vitest uses Vite, not Babel). Delete if unused.",
       "projectType": ["chat"]
     },
     {
-      "id": 623,
+      "id": 149,
       "name": "Quality",
       "text": "Legacy ESLint Rules",
       "value": "Check if eslint_rules/ directory is used. Delete if migrated to flat config.",
       "projectType": ["chat"]
     },
     {
-      "id": 624,
+      "id": 150,
       "name": "Metrics",
       "text": "Maintainability Index",
       "value": "Calculate the maintainability index of the codebase and suggest improvements if below 85.",
       "projectType": ["chat"]
     },
     {
-      "id": 625,
+      "id": 151,
       "name": "Metrics",
       "text": "Cylclomatic Complexity",
       "value": "Calculate the cyclomatic complexity of the codebase.",
@@ -1206,112 +1196,112 @@
       "projectType": ["chat"]
     },
     {
-      "id": 626,
+      "id": 152,
       "name": "Metrics",
       "text": "Code Smells",
       "value": "Look for code smells in client and server codebases.",
       "projectType": ["chat"]
     },
     {
-      "id": 627,
+      "id": 153,
       "name": "Metrics",
       "text": "Code Duplication",
       "value": "Look for code duplication in client and server codebases and recommend refactoring.",
       "projectType": ["chat"]
     },
     {
-      "id": 628,
+      "id": 154,
       "name": "Metrics",
       "text": "Security",
       "value": "Look for security vulnerabilities in client and server codebases and recommend improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 629,
+      "id": 155,
       "name": "Metrics",
       "text": "Structural",
       "value": "Look for structural issues in client and server codebases and recommend improvements.",
       "projectType": ["chat"]
     },
     {
-      "id": 630,
+      "id": 156,
       "name": "Update",
       "text": "useEffectEvent",
       "value": "useEffectEvent is stable.  Look for opportunities in the code to use this function.",
       "projectType": ["chat"]
     },
     {
-      "id": 631,
+      "id": 157,
       "name": "Update",
       "text": "Skeleton",
       "value": "Create Skeleton components for loading states to improve user experience during data fetching.",
       "projectType": ["chat"]
     },
     {
-      "id": 631,
+      "id": 158,
       "name": "Data Quality",
       "text": "Sequential ids",
       "value": "Ensure that all ids in the data are sequential and unique to maintain data integrity.",
       "projectType": ["chat"]
     },
     {
-      "id": 632,
+      "id": 159,
       "name": "Style",
       "text": "Light-Dark Mode Consistency",
       "value": "Add light-dark() function to main.css for consistent theming.",
       "projectType": ["chat"]
     },
     {
-      "id": 633,
+      "id": 160,
       "name": "Style",
       "text": "Central Color Variables",
       "value": "Replace all named colors in components with CSS variables defined in main.css for easier theming and maintenance.",
       "projectType": ["chat"]
     },
     {
-      "id": 634,
+      "id": 161,
       "name": "Style",
       "text": "Useless CSS Removal",
       "value": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance.",
       "projectType": ["chat"]
     },
     {
-      "id": 635,
+      "id": 162,
       "name": "Structure",
       "text": "API End points",
       "value": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling.",
       "projectType": ["chat"]
     },
     {
-      "id": 636,
+      "id": 163,
       "name": "Structure",
       "text": "API End points - Parameters",
       "value": "Review all the Server API end points to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.  Fix any related routers and services.",
       "projectType": ["chat"]
     },
     {
-      "id": 637,
+      "id": 164,
       "name": "Structure",
       "text": "API End points - Parameters Client",
       "value": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.",
       "projectType": ["chat"]
     },
     {
-      "id": 638,
+      "id": 165,
       "name": "Update",
       "text": "React 19 - useActionState",
       "value": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 639,
+      "id": 166,
       "name": "Update",
       "text": "React 19 - useTransition",
       "value": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 641,
+      "id": 167,
       "name": "Update",
       "text": "React 19 - useFormState",
       "value": "Remove useFormState",
@@ -1319,126 +1309,126 @@
       "projectType": ["chat"]
     },
     {
-      "id": 640,
+      "id": 168,
       "name": "Update",
       "text": "React 19 - useOptimisitic",
       "value": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 642,
+      "id": 169,
       "name": "Update",
       "text": "React 19 - use",
       "value": "Review all the code to identify opportunities to use the new use hook introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 643,
+      "id": 170,
       "name": "Update",
       "text": "React 19 - Context.Provider",
       "value": "Review all the code to update Context.Provider to Context introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 644,
+      "id": 171,
       "name": "Update",
       "text": "React 19 - Cleanup functions for ref",
       "value": "Review all the code to update cleanup functions for ref introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 645,
+      "id": 172,
       "name": "Update",
       "text": "React 19 - useDeferredValue",
       "value": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 646,
+      "id": 173,
       "name": "Update",
       "text": "React 19 - Stylesheet Precedence",
       "value": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 647,
+      "id": 174,
       "name": "Update",
       "text": "React 19 - Resource Preloading",
       "value": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 648,
+      "id": 175,
       "name": "Update",
       "text": "React 19 - Errors onCaughtError, onUncaughtError, onRecoverableError",
       "value": "Review all the code to identify opportunities to use the error handling changes introduced in React 19.",
       "projectType": ["chat"]
     },
     {
-      "id": 649,
+      "id": 176,
       "name": "Update",
       "text": "React 19 - New JSX Transform",
       "value": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly.",
       "projectType": ["chat"]
     },
     {
-      "id": 650,
+      "id": 177,
       "name": "Update - Run Once",
       "text": "React 19 - CodeModes",
       "value": "run replace-reactdom-render",
       "projectType": ["chat"]
     },
     {
-      "id": 651,
+      "id": 178,
       "name": "Update - Run Once",
       "text": "React 19 - CodeModes",
       "value": "run replace-string-ref",
       "projectType": ["chat"]
     },
     {
-      "id": 652,
+      "id": 179,
       "name": "Update - Run Once",
       "text": "React 19 - CodeModes",
       "value": "run replace-act-import",
       "projectType": ["chat"]
     },
     {
-      "id": 653,
+      "id": 180,
       "name": "Update - Run Once",
       "text": "React 19 - CodeModes",
       "value": "run replace-use-form-state",
       "projectType": ["chat"]
     },
     {
-      "id": 654,
+      "id": 181,
       "name": "Update - Run Once",
       "text": "React 19 - CodeModes",
       "value": "run prop-types-typescript",
       "projectType": ["chat"]
     },
     {
-      "id": 655,
+      "id": 182,
       "name": "Update - Run Once",
       "text": "React 19 - CodeModes",
       "value": "run types-react-codemod",
       "projectType": ["chat"]
     },
     {
-      "id": 656,
+      "id": 183,
       "name": "Update",
       "text": "Zod",
       "value": "Update all Zod deprecated methods and syntax to the latest version.",
       "projectType": ["chat"]
     },
     {
-      "id": 657,
+      "id": 184,
       "name": "Update",
       "text": "ZodIssue",
       "value": "ZodeIssue is deprecated.  Update to use z.core.$ZodIssue",
       "projectType": ["chat"]
     },
     {
-      "id": 658,
+      "id": 185,
       "name": "Measurements",
       "text": "Overall Consistency Score",
       "value": "Calculate the Overall Consistency Score for the codebase.",
@@ -1446,95 +1436,206 @@
       "projectType": ["chat"]
     },
     {
-      "id": 659,
+      "id": 186,
       "name": "Reports",
       "text": "API Router Consistency Analysis Report",
       "value": "Run API Router Consistency Analysis Report for the codebase.",
       "projectType": ["chat"]
     },
     {
-      "id": 660,
+      "id": 187,
       "name": "Fix",
       "text": "API Router Consistency ",
       "value": "Update Legacy manual handlers and Generic handler factories to simple router factory where appropriate.",
       "projectType": ["chat"]
     },
     {
-      "id": 661,
+      "id": 188,
       "name": "Standards",
       "text": "API Router Consistency - Kebab-case",
       "value": "Standardize on **kebab-case** for all multi-word URL paths.",
       "projectType": ["chat"]
     },
     {
-      "id": 662,
+      "id": 189,
       "name": "Standards",
       "text": "API Router Consistency - Request Body",
       "value": "Validate all mutation operations use request body for data.",
       "projectType": ["chat"]
     },
     {
-      "id": 663,
+      "id": 190,
       "name": "Standards",
       "text": "API Router Consistency - Request Body Structure",
       "value": "Update Pattern 1: Legacy Manual Validation and Pattern 2: Zod Schema Validation (Items) to Pattern 3: Generic Handlers (Modern)",
       "projectType": ["chat"]
     },
     {
-      "id": 664,
+      "id": 191,
       "name": "Standards",
       "text": "API Router Consistency - Response Structure Analysis",
       "value": "Update Pattern 1: Collection Responses and Pattern 2: Single Item Responses to Recommended: `res.json(data)` for success with data, `res.sendStatus(204)` for success without data, `{ error: \"message\" }` for errors",
       "projectType": ["chat"]
     },
     {
-      "id": 665,
+      "id": 192,
       "name": "Standards",
       "text": "API Router Consistency - Status Codes Analysis",
       "value": "Status Codes Analysis: Update to modern handlers",
       "projectType": ["chat"]
     },
     {
-      "id": 666,
+      "id": 193,
       "name": "Standards",
       "text": "API Router Consistency - Modern Error Responses",
-      "value": "Update to Modern Error Responses: `res.status(400).json({ error: 'message' })`",
+      "value": "Update to Modern Error Responses: `res.status(400).json({ error: \u0027message\u0027 })`",
       "projectType": ["chat"]
     },
     {
-      "id": 667,
+      "id": 194,
       "name": "Standards",
       "text": "API Router Consistency - Error Response Formats",
-      "value": "Error Response Formats: Standardize on `{ error: 'message' }` format",
+      "value": "Error Response Formats: Standardize on `{ error: \u0027message\u0027 }` format",
       "projectType": ["chat"]
     },
     {
-      "id": 668,
+      "id": 195,
       "name": "Standards",
       "text": "API Router Consistency - Try-Catch Patterns",
       "value": "Update all Try-Catch Patterns to Pattern 4: Generic Handler (Modern)",
       "projectType": ["chat"]
     },
     {
-      "id": 669,
+      "id": 196,
       "name": "Standards",
       "text": "API Router Consistency - Error Logging",
       "value": "Error Logging to use `ResponseHelper.internalError()`",
       "projectType": ["chat"]
     },
     {
-      "id": 670,
+      "id": 197,
       "name": "Standards",
       "text": "API Router Consistency - Pattern Summary",
       "value": "Pattern Summary: Update all legacy patterns to modern generic handlers",
       "projectType": ["chat"]
     },
     {
-      "id": 671,
+      "id": 198,
       "name": "Reports",
       "text": "Code Smells Report",
       "value": "Run Code Smells Report for the codebase.",
       "notes": "01/02/2026: Server: 98/100  Client: 88/100",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 199,
+      "name": "Standards",
+      "text": "Prop Drilling",
+      "value": "Validate there is no excessive prop drilling in the codebase.",
+      "notes": "01/02/2026: Validated - 95/100 score, excellent architecture with custom hooks pattern",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 200,
+      "name": "Updates",
+      "text": "Events - Deprecated Event Handlers",
+      "value": "Validate there are no deprecated event handlers - such as onkeypress - in the codebase.",
+      "notes": "01/02/2026: Validated - Zero deprecated event handlers found, all using modern onKeyDown",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 201,
+      "name": "Updates",
+      "text": "React - Deprecated Event Handlers",
+      "value": "Validate there are no deprecated event handlers and modern react pattern are used.",
+      "notes": "01/02/2026: Validated - 100% modern React 19 patterns, zero class components, zero deprecated APIs",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 202,
+      "name": "Updates",
+      "text": "ESLint",
+      "value": "Update ESLint configuration and rules for modern event handlers.",
+      "notes": "01/02/2026: Updated - Removed deprecated onKeyPress from jsx-a11y rules",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 203,
+      "name": "Quality",
+      "text": "Improvements",
+      "value": "Please suggest optimizations to improve its performance. For each suggestion, explain the expected improvement and any trade-offs.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 204,
+      "name": "Testing",
+      "text": "Generate Unit Tests",
+      "value": "Generate unit tests for the following function:\n[paste function]\n\nInclude tests for:\n1. Normal expected inputs\n2. Edge cases\n3. Invalid inputs\n\nUse [preferred testing framework] syntax.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 205,
+      "name": "Quality",
+      "text": "Component Instability",
+      "value": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 206,
+      "name": "Quality",
+      "text": "Package.json - Duplicate Libraries",
+      "value": "Review the package.json files for duplicate libraries - libraries that perform the same function(s) but are different packages. Suggest consolidating to a single library where possible.",
+      "notes": "01/02/2026: Score 98/100 - Excellent. Zero functional duplicates. TypeScript version aligned (5.9.3). Consider workspace for husky/prettier/eslint deduplication (optional).",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 207,
+      "name": "Quality",
+      "text": "Package Imports",
+      "value": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 208,
+      "name": "Quality",
+      "text": "Clean JSX",
+      "value": "Review codebase to ensure clean JSX - suggest improvements to remove unnecessary fragments, redundant attributes, and unused variables.",
+      "notes": "01/02/2026: Score 88/100 - Very Good. 8 redundant boolean attributes (={false}) to remove. Zero unused variables. Fragment patterns with Meta are correct React 18+ practice. Key usage excellent (95%+).",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 209,
+      "name": "Quality",
+      "text": "Performance",
+      "value": "Here\u0027s a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion.",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 210,
+      "name": "Quality",
+      "text": "Code Review",
+      "value": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code].",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 211,
+      "name": "Quality",
+      "text": "Array Index as Key",
+      "value": "Array Index as Key",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 212,
+      "name": "Quality",
+      "text": "Fragment Pattern with Meta",
+      "value": "Fragment Pattern with Meta",
+      "projectType": ["chat"]
+    },
+    {
+      "id": 213,
+      "name": "Quality",
+      "text": "Redundant Boolean Attributes",
+      "value": "Redundant Boolean Attributes",
       "projectType": ["chat"]
     }
   ]

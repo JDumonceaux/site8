@@ -127,7 +127,6 @@ const ImageEditPage = (): JSX.Element => {
                   />
                   <Input.Text
                     disabled={isPending || isProcessing}
-                    isRequired={false}
                     spellCheck
                     enterKeyHint="next"
                     label="File Name"
@@ -137,7 +136,6 @@ const ImageEditPage = (): JSX.Element => {
                   />
                   <Input.Text
                     disabled={isPending || isProcessing}
-                    isRequired={false}
                     label="Folder"
                     {...getDefaultProps('folder')}
                   />

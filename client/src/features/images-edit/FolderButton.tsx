@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import type { ListItem } from '@types';
 import styled from 'styled-components';
 
@@ -7,28 +9,26 @@ type Props = {
   readonly item: ListItem;
 };
 
-const FolderButton = ({
-  handleClick,
-  isActive,
-  item,
-}: Props): React.JSX.Element =>
-  isActive ? (
-    <StyledActiveButton
-      data-id={item.key}
-      type="button"
-      onClick={handleClick}
-    >
-      {item.value}
-    </StyledActiveButton>
-  ) : (
-    <StyledButton
-      data-id={item.key}
-      type="button"
-      onClick={handleClick}
-    >
-      {item.value}
-    </StyledButton>
-  );
+const FolderButton = memo(
+  ({ handleClick, isActive, item }: Props): React.JSX.Element =>
+    isActive ? (
+      <StyledActiveButton
+        data-id={item.key}
+        type="button"
+        onClick={handleClick}
+      >
+        {item.value}
+      </StyledActiveButton>
+    ) : (
+      <StyledButton
+        data-id={item.key}
+        type="button"
+        onClick={handleClick}
+      >
+        {item.value}
+      </StyledButton>
+    ),
+);
 
 FolderButton.displayName = 'FolderButton';
 

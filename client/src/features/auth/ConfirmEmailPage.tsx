@@ -128,7 +128,6 @@ const ConfirmEmailPage = (): JSX.Element => {
           <Input.Email
             required
             label="Email Address"
-            multiple={false}
             spellCheck="false"
             autoComplete="email"
             inputMode="email"

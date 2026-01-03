@@ -1,4 +1,4 @@
-import { type JSX, useActionState } from 'react';
+import { type JSX, useActionState, useCallback } from 'react';
 
 import Button from '@components/ui/button/Button';
 import SubmitButton from '@components/ui/button/SubmitButton';
@@ -48,6 +48,18 @@ const SignupPage = (): JSX.Element => {
     })();
   };
 
+  const handleAmazonClick = useCallback(() => {
+    handleClick(SocialProvider.AMAZON);
+  }, [authSignInWithRedirect]);
+
+  const handleFacebookClick = useCallback(() => {
+    handleClick(SocialProvider.FACEBOOK);
+  }, [authSignInWithRedirect]);
+
+  const handleGoogleClick = useCallback(() => {
+    handleClick(SocialProvider.GOOGLE);
+  }, [authSignInWithRedirect]);
+
   return (
     <>
       <Meta title={title} />
@@ -62,25 +74,19 @@ const SignupPage = (): JSX.Element => {
       >
         <Button
           id="login"
-          onClick={() => {
-            handleClick(SocialProvider.AMAZON);
-          }}
+          onClick={handleAmazonClick}
         >
           Sign up with Amazon
         </Button>
         <Button
           id="login"
-          onClick={() => {
-            handleClick(SocialProvider.FACEBOOK);
-          }}
+          onClick={handleFacebookClick}
         >
           Sign up with Facebook
         </Button>
         <Button
           id="login"
-          onClick={() => {
-            handleClick(SocialProvider.GOOGLE);
-          }}
+          onClick={handleGoogleClick}
         >
           Sign up with Google
         </Button>
@@ -95,7 +101,6 @@ const SignupPage = (): JSX.Element => {
               errors: [{ message: state.errors.emailAddress }],
             })}
             label="Email Address"
-            multiple={false}
             spellCheck="false"
             autoComplete="email"
             name="emailAddress"

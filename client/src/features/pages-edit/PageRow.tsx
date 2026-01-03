@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { memo, type JSX } from 'react';
 
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
@@ -10,7 +10,7 @@ type PageRowProps = {
   item: MenuItem;
 };
 
-const PageRow = ({ item }: PageRowProps): JSX.Element => {
+const PageRow = memo(({ item }: PageRowProps): JSX.Element => {
   const { getDefaultProps } = usePagesEdit();
   const isPage = item.type === 'page';
   const levelPrefix = (
@@ -66,7 +66,7 @@ const PageRow = ({ item }: PageRowProps): JSX.Element => {
       </td>
     </StyledTr>
   );
-};
+});
 
 PageRow.displayName = 'PageRow';
 export default PageRow;
@@ -76,4 +76,3 @@ const StyledTr = styled.tr`
     padding: 3px 15px;
   }
 `;
-
