@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { ListItem } from '@types';
-import type { ArtistWithItems } from '@types';
 import { useQuery } from '@tanstack/react-query';
+import type { ArtistWithItems , ListItem } from '@types';
+
 
 /**
  * Represents the return value of the useArtistItems hook.

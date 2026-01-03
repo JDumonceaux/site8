@@ -26,7 +26,7 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
 
   // Auto-expand the current item if it exists
   React.useEffect(() => {
-    if (currentItem && currentItem.items && currentItem.items.length > 0) {
+    if (currentItem?.items && currentItem.items.length > 0) {
       // Mark expansion as non-urgent to keep UI responsive
       startExpansionTransition(() => {
         setExpandedItems((prev) => {
@@ -63,12 +63,12 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
 
       return (
         <ItemRender
-          key={item.id}
-          item={item}
-          level={level}
-          isExpanded={isExpanded}
           hasChildren={hasChildren}
-          onToggle={() => toggleExpanded(item.id)}
+          isExpanded={isExpanded}
+          item={item}
+          key={item.id}
+          level={level}
+          onToggle={() => { toggleExpanded(item.id); }}
         >
           {hasChildren && isExpanded
             ? renderMenuItems(item.items, level + 1)
@@ -87,13 +87,13 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
         >
           {currentItem ? (
             <ItemRender
+              hasChildren={
+                currentItem.items === undefined ? null : currentItem.items.length > 0
+              }
+              isExpanded={expandedItems.has(currentItem.id)}
               item={currentItem}
               level={0}
-              isExpanded={expandedItems.has(currentItem.id)}
-              hasChildren={
-                currentItem.items !== undefined && currentItem.items.length > 0
-              }
-              onToggle={() => toggleExpanded(currentItem.id)}
+              onToggle={() => { toggleExpanded(currentItem.id); }}
             >
               {currentItem.items && expandedItems.has(currentItem.id)
                 ? renderMenuItems(currentItem.items, 1)

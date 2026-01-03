@@ -49,9 +49,9 @@ const Fallback = ({
       <PageTitle title="Loading…" />
       {loadingLines.map((line) => (
         <LoadingLine
-          key={line.id}
           $width={line.width}
           data-testid="fallback-line"
+          key={line.id}
         />
       ))}
     </LoadingContainer>

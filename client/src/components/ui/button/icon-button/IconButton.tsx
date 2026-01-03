@@ -19,9 +19,9 @@ const IconButton = ({
 }: IconButtonProps): JSX.Element => {
   return (
     <StyledButton
+      $color={color}
       aria-label={ariaLabel}
       type="button"
-      $color={color}
       {...rest}
     >
       {children}

@@ -1,15 +1,10 @@
-import type { Item } from '@site8/shared';
-import type { ItemAdd } from '@site8/shared';
-import type { ItemArtist } from '@site8/shared';
-import type { ItemEdit } from '@site8/shared';
 import type { Items } from '../../types/Items.js';
-import type { ItemsArtists } from '@site8/shared';
-import type { ItemsFile } from '@site8/shared';
+import type { Item , ItemAdd , ItemArtist , ItemEdit , ItemsArtists , ItemsFile } from '@site8/shared';
 
+import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getNextId as getNextIdUtil } from '../../utils/objectUtil.js';
-import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class ItemsService extends BaseDataService<ItemsFile> {
   public constructor() {

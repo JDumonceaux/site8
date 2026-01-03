@@ -23,7 +23,7 @@ const Snackbar = (): JSX.Element | null => {
     try {
       closeSnackbar();
     } catch (error) {
-      logError(error, { componentName: 'Snackbar', action: 'close' });
+      logError(error, { action: 'close', componentName: 'Snackbar' });
     }
   });
 
@@ -37,7 +37,7 @@ const Snackbar = (): JSX.Element | null => {
       return;
     }
     globalThis.addEventListener('keydown', handleEscapeEvent);
-    return void globalThis.removeEventListener('keydown', handleEscapeEvent);
+    globalThis.removeEventListener('keydown', handleEscapeEvent);
   }, [data?.isOpen]);
 
   if (!data?.isOpen) {
@@ -50,9 +50,9 @@ const Snackbar = (): JSX.Element | null => {
   return (
     <StyledDialog
       $variant={variant}
+      aria-atomic="true"
       aria-live="polite"
       data-testid="snackbar"
-      aria-atomic="true"
       onClose={handleClose}
       open
       role="alert"

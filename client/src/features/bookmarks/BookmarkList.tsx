@@ -1,4 +1,4 @@
-import { memo, type JSX } from 'react';
+import { type JSX, memo } from 'react';
 
 import styled from 'styled-components';
 

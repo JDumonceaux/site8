@@ -1,9 +1,8 @@
-import path from 'path';
-
 import type { FieldType } from '../../Features.js';
 
-import { Logger } from '../../../../utils/logger.js';
+import path from 'path';
 
+import { Logger } from '../../../../utils/logger.js';
 import {
   getFileService,
   getPrettierService,

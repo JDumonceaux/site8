@@ -109,7 +109,7 @@ export const trimAttributes = <T extends Record<string, unknown>>(
   const trimmedObj: Record<string, unknown> = { ...obj };
   for (const key of Object.keys(trimmedObj)) {
     if (typeof trimmedObj[key] === 'string') {
-      trimmedObj[key] = (trimmedObj[key] as string).trim();
+      trimmedObj[key] = (trimmedObj[key]).trim();
     }
   }
   return trimmedObj as T;

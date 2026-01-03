@@ -1,8 +1,8 @@
 import { type JSX, Suspense } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
 import useTests from './useTests';

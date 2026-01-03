@@ -2,9 +2,9 @@ import type { Request, Response } from 'express';
 
 import { PageEditSchema } from '@site8/shared';
 
-import { Logger } from '../../utils/logger.js';
 import { RequestValidator } from '../../lib/http/RequestValidator.js';
 import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { Logger } from '../../utils/logger.js';
 import {
   getPageFileService,
   getPageService,
@@ -36,8 +36,8 @@ export const patchItem = async (
 
   // Meta data and text are stored in separate files - therefore two updates are needed.
   const results = await Promise.allSettled([
-    Promise.try(() => service.updateItem(item)),
-    Promise.try(() => fileService.updateFile(item.id, item.text)),
+    Promise.try(async () => service.updateItem(item)),
+    Promise.try(async () => fileService.updateFile(item.id, item.text)),
   ]);
 
   // Check if any update failed

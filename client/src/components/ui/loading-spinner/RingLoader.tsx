@@ -67,18 +67,18 @@ const RingLoader = ({
       {...additionalprops}
     >
       <Ring
+        color={color}
         index={1}
         size={value}
         speedMultiplier={speedMultiplier}
         unit={unit}
-        color={color}
       />
       <Ring
+        color={color}
         index={2}
         size={value}
         speedMultiplier={speedMultiplier}
         unit={unit}
-        color={color}
       />
     </Wrapper>
   );

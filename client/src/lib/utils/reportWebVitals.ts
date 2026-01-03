@@ -1,5 +1,4 @@
 import type { MetricType } from 'web-vitals';
-
 import { logError } from './errorHandler';
 
 /**

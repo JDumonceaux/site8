@@ -7,8 +7,6 @@
 
 import { ArtistsService } from '../features/artists/ArtistsService.js';
 import { BookmarksService } from '../features/bookmarks/BookmarksService.js';
-import { BuildService } from '../services/build/BuildService.js';
-import { FileService } from '../lib/filesystem/FileService.js';
 import { ImageService } from '../features/image/ImageService.js';
 import { ImagesFileService } from '../features/images/ImagesFileService.js';
 import { ImagesService } from '../features/images/ImagesService.js';
@@ -19,25 +17,18 @@ import { PageFileService } from '../features/page/PageFileService.js';
 import { PageService } from '../features/page/PageService.js';
 import { PagesService } from '../features/pages/PagesService.js';
 import { PhotosService } from '../features/photos/PhotosService.js';
-import { PrettierService } from '../services/code-quality/PrettierService.js';
 import { TestsService } from '../features/tests/TestsService.js';
+import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
 import { TravelService } from '../features/travel/TravelService.js';
+import { FileService } from '../lib/filesystem/FileService.js';
+import { BuildService } from '../services/build/BuildService.js';
+import { PrettierService } from '../services/code-quality/PrettierService.js';
 
 /**
  * Service container that manages singleton instances
  */
 class ServiceContainer {
-  private readonly services: Map<string, unknown> = new Map();
-
-  /**
-   * Gets or creates a service instance
-   */
-  private getOrCreate<T>(key: string, factory: () => T): T {
-    if (!this.services.has(key)) {
-      this.services.set(key, factory());
-    }
-    return this.services.get(key) as T;
-  }
+  private readonly services = new Map<string, unknown>();
 
   public getArtistsService(): ArtistsService {
     return this.getOrCreate('ArtistsService', () => new ArtistsService());
@@ -82,12 +73,12 @@ class ServiceContainer {
     return this.getOrCreate('MusicService', () => new MusicService());
   }
 
-  public getPageService(): PageService {
-    return this.getOrCreate('PageService', () => new PageService());
-  }
-
   public getPageFileService(): PageFileService {
     return this.getOrCreate('PageFileService', () => new PageFileService());
+  }
+
+  public getPageService(): PageService {
+    return this.getOrCreate('PageService', () => new PageService());
   }
 
   public getPagesService(): PagesService {
@@ -96,6 +87,13 @@ class ServiceContainer {
 
   public getPhotosService(): PhotosService {
     return this.getOrCreate('PhotosService', () => new PhotosService());
+  }
+
+  public getPlacesMenuService(): PlacesMenuService {
+    return this.getOrCreate(
+      'PlacesMenuService',
+      () => new PlacesMenuService(this.getTravelService()),
+    );
   }
 
   public getPrettierService(): PrettierService {
@@ -115,6 +113,16 @@ class ServiceContainer {
    */
   public reset(): void {
     this.services.clear();
+  }
+
+  /**
+   * Gets or creates a service instance
+   */
+  private getOrCreate<T>(key: string, factory: () => T): T {
+    if (!this.services.has(key)) {
+      this.services.set(key, factory());
+    }
+    return this.services.get(key) as T;
   }
 }
 
@@ -142,6 +150,8 @@ export const getPageFileService = (): PageFileService =>
 export const getPagesService = (): PagesService => container.getPagesService();
 export const getPhotosService = (): PhotosService =>
   container.getPhotosService();
+export const getPlacesMenuService = (): PlacesMenuService =>
+  container.getPlacesMenuService();
 export const getPrettierService = (): PrettierService =>
   container.getPrettierService();
 export const getTestsService = (): TestsService => container.getTestsService();

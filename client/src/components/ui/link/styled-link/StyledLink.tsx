@@ -26,8 +26,8 @@ const StyledLink = ({
   ...rest
 }: StyledLinkProps): JSX.Element => (
   <StyledBaseLink
-    ref={ref}
     $variant={variant}
+    ref={ref}
     {...(ariaLabel !== undefined && { 'aria-label': ariaLabel })}
     {...rest}
   >

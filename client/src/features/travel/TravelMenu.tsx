@@ -1,13 +1,12 @@
 import { type JSX, useEffectEvent, useMemo, useTransition } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-
-import type { MenuItem } from '@site8/shared';
 
 import ItemRender from '@features/generic/ItemRender';
+import type { MenuItem } from '@site8/shared';
 import TravelMenuSkeleton from './TravelMenuSkeleton';
 import useMenuExpansion from './useMenuExpansion';
 import useTravelMenu from './useTravelMenu';
+import styled from 'styled-components';
 
 type TravelMenuProps = {
   readonly onPlaceSelect?: (placeId: number) => void;
@@ -16,9 +15,9 @@ type TravelMenuProps = {
 
 const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
   const navigate = useNavigate();
-  const { country, city, item } = useParams<{
-    country?: string;
+  const { city, country, item } = useParams<{
     city?: string;
+    country?: string;
     item?: string;
   }>();
   const { getRootMenuItems: rootItems, isError, isLoading } = useTravelMenu();
@@ -70,11 +69,11 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
 
         return (
           <ItemRender
-            key={item.id}
-            item={item}
-            level={level}
-            isExpanded={isExpanded}
             hasChildren={hasChildren}
+            isExpanded={isExpanded}
+            item={item}
+            key={item.id}
+            level={level}
             onToggle={() => {
               toggleExpanded(item.id);
               handleItemClick(item);

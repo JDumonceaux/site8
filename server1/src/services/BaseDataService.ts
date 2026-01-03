@@ -1,8 +1,8 @@
+import type { IDataService } from './IDataService.js';
 import type { ZodType } from 'zod';
 
-import type { IDataService } from './IDataService.js';
-
 import { getFileService } from '../utils/ServiceFactory.js';
+
 import { CacheManager } from './CacheManager.js';
 import { DataValidator, ValidationError } from './DataValidator.js';
 import { ErrorHandler } from './ErrorHandler.js';
@@ -199,7 +199,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
     return {
       cacheStatus: this.getCacheStatus(),
       filePath: this.filePath,
-      serviceName: this.errorHandler['serviceName'],
+      serviceName: this.errorHandler.serviceName,
     };
   }
 

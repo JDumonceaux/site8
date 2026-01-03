@@ -1,11 +1,11 @@
-import { memo, type JSX } from 'react';
+import { type JSX, memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { Images } from '@site8/shared';
 import styled from 'styled-components';
 
 type ItemsProps = {
-  readonly data?: null | Images;
+  readonly data?: Images | null;
   readonly id?: number;
 };
 
@@ -28,23 +28,20 @@ const Items = memo(({ data, id }: ItemsProps): JSX.Element | null => {
             {item.fileName && item.folder ? (
               <StyledImageContainer>
                 <StyledImage
-                  alt={item.alt ?? item.name ?? item.description ?? ''}
+                  alt={item.name ?? item.description ?? ''}
                   loading="lazy"
                   src={`/images/${item.folder}/${item.fileName}`}
-                  title={item.title ?? item.name ?? ''}
+                  title={item.name ?? ''}
                 />
               </StyledImageContainer>
             ) : null}
             <StyledCardContent>
               {item.name ? <StyledHeading>{item.name}</StyledHeading> : null}
               {item.description ? <p>{item.description}</p> : null}
-              {item.location ? (
-                <StyledLocation>{item.location}</StyledLocation>
-              ) : null}
-              {item.tags && item.tags.length > 0 ? (
+              {item.tags ? (
                 <StyledTags>
-                  {item.tags.map((tag) => (
-                    <StyledTag key={tag}>{tag}</StyledTag>
+                  {item.tags.split(',').map((tag) => (
+                    <StyledTag key={tag}>{tag.trim()}</StyledTag>
                   ))}
                 </StyledTags>
               ) : null}
@@ -105,13 +102,6 @@ const StyledHeading = styled.h3`
   margin: 0 0 0.5em 0;
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary-color);
-`;
-
-const StyledLocation = styled.div`
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary-color);
-  margin-top: 0.5rem;
-  font-style: italic;
 `;
 
 const StyledTags = styled.div`

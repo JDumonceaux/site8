@@ -1,7 +1,7 @@
-import { memo, type JSX, useCallback, useMemo } from 'react';
+import { type JSX, memo, useCallback, useMemo } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Input from '@components/ui/input/Input';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useImageFolder from '@features/images-edit/useImageFolder';
 import FolderButton from './FolderButton';
 import styled from 'styled-components';
@@ -47,10 +47,10 @@ const RightMenu = memo(
       () =>
         filterData?.map((item) => (
           <FolderButton
-            key={item.key}
             handleClick={handleButton}
             isActive={item.value === currentFolder}
             item={item}
+            key={item.key}
           />
         )),
       [currentFolder, filterData, handleButton],
@@ -60,8 +60,8 @@ const RightMenu = memo(
     renderStyledButton = currentFolder ? (
       <StyledButton
         data-id={currentFolder}
-        type="button"
         onClick={handleButton}
+        type="button"
       >
         {currentFolder}
       </StyledButton>
@@ -75,8 +75,8 @@ const RightMenu = memo(
           <Input.Select
             dataList={filterData}
             label="Filter"
-            value={currentFilter}
             onChange={onFilterSelect}
+            value={currentFilter}
           />
         </FilterDiv>
         <StyledHeader>
@@ -84,8 +84,8 @@ const RightMenu = memo(
         </StyledHeader>
         <hr />
         <LoadingWrapper
-          isPending={isPending}
           isError={isError}
+          isPending={isPending}
         >
           {renderedButtons}
         </LoadingWrapper>

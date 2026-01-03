@@ -1,14 +1,15 @@
-import { type JSX } from 'react';
+import type { JSX } from 'react';
 import { useFormStatus } from 'react-dom';
 
 import Button from './Button';
+import type { Variant } from './Button';
 
 type SubmitButtonProps = {
   readonly children?: React.ReactNode;
   readonly disabled?: boolean;
   readonly id?: string;
   readonly loadingText?: string;
-  readonly variant?: 'primary' | 'secondary' | 'tertiary';
+  readonly variant?: Variant;
 };
 
 /**

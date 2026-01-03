@@ -6,7 +6,6 @@ import {
   type ResetPasswordOutput,
   updatePassword,
 } from 'aws-amplify/auth';
-
 import { useAuthAsync } from './useAuthAsync';
 import type { AuthState } from './useAuthState';
 

@@ -56,11 +56,6 @@ export default {
         'perfectionist/sort-jsx-props': [
             'error',
             {
-                customGroups: {
-                    callback: 'on*',
-                    reserved: ['key', 'ref'],
-                },
-                groups: ['reserved', 'shorthand', 'multiline', 'unknown', 'callback'],
                 order: 'asc',
                 type: 'natural',
             },

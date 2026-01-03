@@ -1,4 +1,4 @@
-import { memo, type JSX } from 'react';
+import { type JSX, memo } from 'react';
 
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';

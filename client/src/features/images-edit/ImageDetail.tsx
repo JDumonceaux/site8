@@ -64,23 +64,23 @@ const ImageDetail = ({
           data-id="itemId"
           data-line={item.lineId}
           {...(names !== undefined && { dataList: names })}
-          value={itemIdValue}
           onChange={onChange}
           placeholder="Item"
+          value={itemIdValue}
         />
         <Input.Text
           data-id="fileName"
           data-line={item.lineId}
-          value={fileNameValue}
           onChange={onChange}
           placeholder="File Name"
+          value={fileNameValue}
         />
         <Input.Text
           data-id="folder"
           data-line={item.lineId}
-          value={folderValue}
           onChange={onChange}
           placeholder="Folder"
+          value={folderValue}
         />
         <IconMenu>
           <IconMenuItem onClick={handleOnDelete}>Delete</IconMenuItem>

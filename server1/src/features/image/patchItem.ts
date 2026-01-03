@@ -1,5 +1,6 @@
-import { createPatchHandler } from '../../lib/http/genericHandlers.js';
 import { ImageEditSchema } from '@site8/shared';
+
+import { createPatchHandler } from '../../lib/http/genericHandlers.js';
 import { getImageService } from '../../utils/ServiceFactory.js';
 
 export const patchItem = createPatchHandler({

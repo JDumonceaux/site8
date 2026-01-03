@@ -2,6 +2,7 @@ import type { Request, Response } from 'express';
 import type { ZodType } from 'zod';
 
 import { Logger } from '../../utils/logger.js';
+
 import { PreferHeaderHandler } from './PreferHeaderHandler.js';
 import { RequestValidator } from './RequestValidator.js';
 import { ResponseHelper } from './ResponseHelper.js';
@@ -231,7 +232,7 @@ export const createPatchHandler = <T>({
       data = idConversion.data!;
 
       // Validate ID exists in body
-      const id = (data as any).id;
+      const {id} = (data as any);
       if (!id) {
         ResponseHelper.badRequest(res, 'ID is required in request body');
         return;

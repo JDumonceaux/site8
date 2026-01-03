@@ -20,9 +20,9 @@ const IconMenu = ({ children }: IconMenuProps): JSX.Element => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <StyledButton
+          aria-haspopup="menu"
           aria-label="Customize options"
           type="button"
-          aria-haspopup="menu"
         >
           <DotsVerticalIcon />
         </StyledButton>

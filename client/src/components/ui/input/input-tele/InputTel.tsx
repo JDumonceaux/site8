@@ -22,9 +22,9 @@ export const InputTel = ({
   ...rest
 }: InputTelProps): JSX.Element | null => (
   <InputBase
-    type={type}
     autoComplete={autoComplete}
     startAdornment={<PhoneAdornment />}
+    type={type}
     {...rest}
   />
 );

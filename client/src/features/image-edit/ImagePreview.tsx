@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
-import styled from 'styled-components';
+
 import type { ImageEdit } from '@site8/shared';
+import styled from 'styled-components';
 
 type ImagePreviewProps = {
   readonly formValues: ImageEdit;
@@ -20,9 +21,9 @@ const ImagePreview = ({
             src={previewSrc}
           />
           <StyledImageInfo>
-            {formValues.name && <h3>{formValues.name}</h3>}
-            {formValues.folder && <p>Folder: {formValues.folder}</p>}
-            {formValues.fileName && <p>File: {formValues.fileName}</p>}
+            {formValues.name ? <h3>{formValues.name}</h3> : null}
+            {formValues.folder ? <p>Folder: {formValues.folder}</p> : null}
+            {formValues.fileName ? <p>File: {formValues.fileName}</p> : null}
           </StyledImageInfo>
         </StyledImageDisplay>
       ) : (

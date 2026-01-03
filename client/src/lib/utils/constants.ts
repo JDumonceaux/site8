@@ -27,8 +27,8 @@ export const QueryTimeComputed = {
   STALE_TIME_PREFETCH: 1000 * 60, // 1 minute
 } as const satisfies Record<string, number>;
 
-export type QueryTime = (typeof QueryTime)[keyof typeof QueryTime];
-export type QueryTimeComputed =
+export type QueryTimeValue = (typeof QueryTime)[keyof typeof QueryTime];
+export type QueryTimeComputedValue =
   (typeof QueryTimeComputed)[keyof typeof QueryTimeComputed];
 
 /* -------------------------------------------------------------------------- */
@@ -76,7 +76,7 @@ export const ServiceUrl = {
   ENDPOINT_TRAVEL: `${API_ROOT}/travel`,
 } as const satisfies Record<string, string>;
 
-export type ServiceUrl = (typeof ServiceUrl)[keyof typeof ServiceUrl];
+export type ServiceUrlValue = (typeof ServiceUrl)[keyof typeof ServiceUrl];
 
 /* -------------------------------------------------------------------------- */
 /*                              Field Constants                               */

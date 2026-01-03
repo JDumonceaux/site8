@@ -1,4 +1,4 @@
-import { Fragment, memo, type JSX } from 'react';
+import { Fragment, type JSX, memo } from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 import type { MenuItem } from '@site8/shared';
@@ -43,8 +43,8 @@ const ItemRender = memo(
       if (hasChildren && onToggle) {
         content = (
           <StyledMenuButton
-            onClick={onToggle}
             level={level}
+            onClick={onToggle}
           >
             <span>{item.title}</span>
             <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
@@ -74,8 +74,8 @@ const ItemRender = memo(
       if (hasChildren && onToggle) {
         content = (
           <StyledMenuButton
-            onClick={onToggle}
             level={level}
+            onClick={onToggle}
           >
             <span>{item.title}</span>
             <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>

@@ -37,11 +37,13 @@ const ClearAdornment = ({
   ...rest
 }: ClearAdornmentProps): JSX.Element => (
   <Tooltip
+    aria-label={ariaLabel}
+    content={label}
     trigger={
       <TriggerButton
+        onClick={onClick}
         ref={ref}
         type="button"
-        onClick={onClick}
         {...rest}
       >
         <AccessibleIcon label={label}>
@@ -49,8 +51,6 @@ const ClearAdornment = ({
         </AccessibleIcon>
       </TriggerButton>
     }
-    aria-label={ariaLabel}
-    content={label}
   />
 );
 

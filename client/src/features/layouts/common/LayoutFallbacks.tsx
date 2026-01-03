@@ -34,8 +34,8 @@ export const ErrorFallback = ({
         : String(error)}
     </ErrorMessage>
     <RetryButton
-      type="button"
       onClick={resetErrorBoundary}
+      type="button"
     >
       Try again
     </RetryButton>

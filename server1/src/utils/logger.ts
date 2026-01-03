@@ -32,6 +32,13 @@ type LoggerOptions = {
 };
 
 const OPTIONS: LoggerOptions = {
+  console: {
+    colorize: true,
+    handleExceptions: true,
+    json: true,
+    level: 'debug',
+    timestamp: true,
+  },
   file: {
     colorize: false,
     filename: 'local.log',
@@ -40,13 +47,6 @@ const OPTIONS: LoggerOptions = {
     level: 'info',
     maxFiles: LOG_CONFIG.MAX_LOG_FILES,
     maxsize: LOG_CONFIG.MAX_LOG_FILE_SIZE,
-    timestamp: true,
-  },
-  console: {
-    colorize: true,
-    handleExceptions: true,
-    json: true,
-    level: 'debug',
     timestamp: true,
   },
 };
@@ -69,10 +69,10 @@ if (Environment.isLocal()) {
 }
 
 export const Logger = winston.createLogger({
-  level: Environment.isProduction() ? 'info' : 'debug',
-  format,
-  transports,
   exitOnError: false,
+  format,
+  level: Environment.isProduction() ? 'info' : 'debug',
+  transports,
 });
 
 Logger.on('error', (error: Error) => {

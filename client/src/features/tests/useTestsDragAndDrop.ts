@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { arrayMove } from '@dnd-kit/sortable';
 import type { DragEndEvent } from '@dnd-kit/core';
+import { arrayMove } from '@dnd-kit/sortable';
 
 type UseTestsDragAndDropResult = {
   handleDragEnd: (event: DragEndEvent) => void;

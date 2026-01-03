@@ -1,16 +1,16 @@
 import { type JSX, Suspense, useActionState } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useArtistsItems from '@features/items-add/useArtistsItems';
 import Layout from '@features/layouts/layout/Layout';
+import type { FormState } from '@types';
 import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
 import RightMenu from './RightMenu';
 import useImagesEditPage from './useImagesEditPage';
 import styled from 'styled-components';
-import type { FormState } from '@types';
 
 const submitAction = async (
   _prevState: unknown,
@@ -72,18 +72,18 @@ const ImagesEditPage = (): JSX.Element => {
       <Layout.Flex>
         <Layout.Content>
           <LoadingWrapper
-            isPending={isPending || isSubmitting}
             isError={isError}
+            isPending={isPending || isSubmitting}
           >
             <StyledForm
-              noValidate
               action={submitFormAction}
+              noValidate
             >
               {data.map((item) => (
                 <ImageDetail
-                  key={item.lineId}
                   getFieldValue={getFieldValue}
                   item={item}
+                  key={item.lineId}
                   names={itemsAsListItem}
                   onChange={handleChange}
                   onDelete={handleDelete}

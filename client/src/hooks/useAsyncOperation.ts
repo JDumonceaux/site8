@@ -1,7 +1,7 @@
 import { useEffectEvent, useState } from 'react';
 
 type AsyncOperationState<TError = unknown> = {
-  error: TError | null;
+  error: null | TError;
   isLoading: boolean;
 };
 
@@ -16,16 +16,16 @@ type UseAsyncOperationReturn<TError = unknown> = {
    */
   clearError: () => void;
   /**
+   * Current error state
+   */
+  error: null | TError;
+  /**
    * Execute an async operation with automatic loading and error state management
    */
   execute: <T>(
     operation: () => Promise<T>,
     options?: AsyncOperationOptions<TError>,
   ) => Promise<T | undefined>;
-  /**
-   * Current error state
-   */
-  error: TError | null;
   /**
    * Whether an operation is currently in progress
    */

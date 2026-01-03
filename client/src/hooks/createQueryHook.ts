@@ -1,9 +1,9 @@
+import { USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import {
   useQuery,
   type UseQueryOptions,
   type UseQueryResult,
 } from '@tanstack/react-query';
-import { USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 
 /**
  * Configuration for creating a query hook
@@ -21,7 +21,7 @@ export type QueryHookConfig<TData> = {
    * Optional additional query options to override defaults
    */
   queryOptions?: Partial<
-    Omit<UseQueryOptions<TData, Error>, 'queryKey' | 'queryFn'>
+    Omit<UseQueryOptions<TData>, 'queryFn' | 'queryKey'>
   >;
 };
 
@@ -42,7 +42,7 @@ export const createQueryHook = <TData>({
   queryKey,
   queryOptions,
 }: QueryHookConfig<TData>) => {
-  return (signal?: AbortSignal): UseQueryResult<TData, Error> => {
+  return (signal?: AbortSignal): UseQueryResult<TData> => {
     const fetchData = async (): Promise<TData> => {
       const res = await fetch(endpoint, { signal });
       if (!res.ok) {
@@ -51,7 +51,7 @@ export const createQueryHook = <TData>({
       return res.json() as Promise<TData>;
     };
 
-    return useQuery<TData, Error>({
+    return useQuery<TData>({
       queryFn: fetchData,
       queryKey,
       ...USEQUERY_DEFAULT_OPTIONS,
@@ -80,7 +80,7 @@ export const createParameterizedQueryHook = <TData, TParams = undefined>(
   return (
     params: TParams,
     signal?: AbortSignal,
-  ): UseQueryResult<TData, Error> => {
+  ): UseQueryResult<TData> => {
     const config = configFactory(params);
     const hook = createQueryHook<TData>(config);
     return hook(signal);

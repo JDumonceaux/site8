@@ -17,8 +17,8 @@ const Switch = ({ id, label, onCheckedChange, ref, ...rest }: SwitchProps) => (
   <StyledWrapper>
     <StyledLabel htmlFor={id}>{label}</StyledLabel>
     <StyledSwitchRoot
-      ref={ref}
       id={id}
+      ref={ref}
       {...(onCheckedChange !== undefined && { onCheckedChange })}
       {...rest}
     >

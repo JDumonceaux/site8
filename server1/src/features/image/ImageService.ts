@@ -1,10 +1,9 @@
-import type { Image, ImageAdd, ImageEdit } from '@site8/shared';
-import type { Images } from '@site8/shared';
+import type { ImagesService } from '../images/ImagesService.js';
+import type { Image, ImageAdd, ImageEdit , Images } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
-import { ImagesService } from '../images/ImagesService.js';
 
 export class ImageService {
   public async addItem(data: ImageAdd): Promise<number> {
@@ -21,12 +20,12 @@ export class ImageService {
 
       // Build new Image using allowed properties only
       const baseItem: Image = {
-        id: idNew,
-        name: updatedItem.name ?? '',
+        description: updatedItem.description ?? '',
+        ext_url: '',
         fileName: updatedItem.fileName ?? '',
         folder: updatedItem.folder ?? '',
-        ext_url: '',
-        description: updatedItem.description ?? '',
+        id: idNew,
+        name: updatedItem.name ?? '',
       };
 
       const sanitizedNew = this.pickImageFields(baseItem);
@@ -145,6 +144,13 @@ export class ImageService {
     }
   }
 
+  // Backwards-compatible alias for callers expecting updateItem
+  public async updateItem(
+    data: Partial<ImageEdit> & { id: number },
+  ): Promise<number> {
+    return this.patchItem(data);
+  }
+
   /**
    * Find existing item by ID with validation
    */
@@ -161,47 +167,46 @@ export class ImageService {
     return matches[0]!;
   }
 
-  /**
-   * Sanitize image item by picking valid fields and removing empty attributes
-   */
-  private sanitizeImageItem(item: Image): Image {
-    const sanitized = this.pickImageFields(item);
-    const record = {
-      ...(sanitized as Record<string, unknown>),
-    } as Record<string, unknown>;
-    this.removeEmptyAttributesExceptId(record);
-    return record as Image;
-  }
-
-  /**
-   * Replace an item in the collection and return updated Images
-   */
-  private replaceItemInCollection(
-    currentData: Images,
-    updatedItem: Image,
-  ): Images {
-    const items = currentData.items ?? [];
-    const updatedItems = items.map((it) =>
-      it.id === updatedItem.id ? updatedItem : it,
-    );
-
-    return {
-      items: updatedItems,
-      metadata: currentData.metadata,
-    };
-  }
-
-  // Backwards-compatible alias for callers expecting updateItem
-  public async updateItem(
-    data: Partial<ImageEdit> & { id: number },
-  ): Promise<number> {
-    return this.patchItem(data);
-  }
-
   private getImagesService(): ImagesService {
     const service = getImagesService();
     // Access writeFile through public method if needed
     return service;
+  }
+
+  private pickFields<T extends Record<string, unknown>>(
+    obj: Record<string, unknown>,
+    keys: (keyof T)[],
+    defaults: Partial<T> = {},
+  ): T {
+    const result: Record<string, unknown> = {};
+    for (const k of keys) {
+      const key = String(k);
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        result[key] = obj[key];
+      } else if (Object.prototype.hasOwnProperty.call(defaults, key)) {
+        result[key] = (defaults as Record<string, unknown>)[key];
+      } else {
+        result[key] = undefined;
+      }
+    }
+
+    return cleanUpData(result as T);
+  }
+
+  private pickImageFields(obj: Record<string, unknown>): Image {
+    // Explicitly define allowed Image fields
+    const allowedKeys: (keyof Image)[] = [
+      'id',
+      'name',
+      'fileName',
+      'folder',
+      'ext_url',
+      'tags',
+      'description',
+    ];
+    return this.pickFields<Image>(obj, allowedKeys, {
+      id: (obj['id'] as number) ?? 0,
+    });
   }
 
   private removeEmptyAttributesExceptId(obj: Record<string, unknown>): void {
@@ -234,40 +239,34 @@ export class ImageService {
     }
   }
 
-  private pickImageFields(obj: Record<string, unknown>): Image {
-    // Explicitly define allowed Image fields
-    const allowedKeys: Array<keyof Image> = [
-      'id',
-      'name',
-      'fileName',
-      'folder',
-      'ext_url',
-      'tags',
-      'description',
-    ];
-    return this.pickFields<Image>(obj, allowedKeys, {
-      id: (obj['id'] as number) ?? 0,
-    });
+  /**
+   * Replace an item in the collection and return updated Images
+   */
+  private replaceItemInCollection(
+    currentData: Images,
+    updatedItem: Image,
+  ): Images {
+    const items = currentData.items ?? [];
+    const updatedItems = items.map((it) =>
+      it.id === updatedItem.id ? updatedItem : it,
+    );
+
+    return {
+      items: updatedItems,
+      metadata: currentData.metadata,
+    };
   }
 
-  private pickFields<T extends Record<string, unknown>>(
-    obj: Record<string, unknown>,
-    keys: Array<keyof T>,
-    defaults: Partial<T> = {},
-  ): T {
-    const result: Record<string, unknown> = {};
-    for (const k of keys) {
-      const key = String(k);
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        result[key] = obj[key];
-      } else if (Object.prototype.hasOwnProperty.call(defaults, key)) {
-        result[key] = (defaults as Record<string, unknown>)[key];
-      } else {
-        result[key] = undefined;
-      }
-    }
-
-    return cleanUpData(result as T) as T;
+  /**
+   * Sanitize image item by picking valid fields and removing empty attributes
+   */
+  private sanitizeImageItem(item: Image): Image {
+    const sanitized = this.pickImageFields(item);
+    const record = {
+      ...(sanitized as Record<string, unknown>),
+    } as Record<string, unknown>;
+    this.removeEmptyAttributesExceptId(record);
+    return record as Image;
   }
 
   private async writeImageData(

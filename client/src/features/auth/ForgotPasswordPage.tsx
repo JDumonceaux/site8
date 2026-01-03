@@ -1,16 +1,17 @@
 import { type JSX, useActionState } from 'react';
 
-import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import { emailAddress } from '@types';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import { InstDiv, StyledBottomMsg, StyledForm } from './AuthFormStyles';
 import { createFormAction } from './authFormHelpers';
+import { InstDiv, StyledBottomMsg, StyledForm } from './AuthFormStyles';
 import FormMessage from './FormMessage';
+
 const schema = z.object({
   emailAddress,
 });
@@ -45,21 +46,21 @@ const ForgotPasswordPage = (): JSX.Element => {
         title="Forgot Password"
       >
         <StyledForm
-          noValidate
           action={formAction}
+          noValidate
         >
-          {state.message && <FormMessage message={state.message} />}
+          {state.message ? <FormMessage message={state.message} /> : null}
           <Input.Email
             required
             {...(state.errors?.email && {
               errors: [{ message: state.errors.email }],
             })}
-            label="Email Address"
-            spellCheck="false"
             autoComplete="email"
             inputMode="email"
+            label="Email Address"
             name="emailAddress"
             placeholder="Enter Email Address"
+            spellCheck="false"
           />
           <InstDiv>
             You will be sent a validation code via email to confirm your

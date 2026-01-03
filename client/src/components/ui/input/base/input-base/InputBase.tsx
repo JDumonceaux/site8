@@ -88,17 +88,17 @@ const InputBase = ({
         {...(value === undefined ? { defaultValue } : { value })}
         {...(dataList ? { list: dataList.id } : {})}
         {...footerProps}
-        ref={refToUse}
         id={generatedId}
-        type={type}
         onChange={handleChange}
+        ref={refToUse}
+        type={type}
       />
       {dataList?.data ? (
         <datalist id={dataList.id}>
           {dataList.data.map(({ key, value: val }) => (
             <option
-              key={key}
               aria-label={val}
+              key={key}
               value={val}
             />
           ))}

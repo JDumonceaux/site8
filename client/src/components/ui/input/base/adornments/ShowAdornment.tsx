@@ -31,9 +31,9 @@ const ShowAdornment = ({
   return (
     <Toggle.Root
       {...rest}
-      ref={ref}
       aria-label={label}
       pressed={pressed}
+      ref={ref}
     >
       <AccessibleIcon label={label}>
         {pressed ? (

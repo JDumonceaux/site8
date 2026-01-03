@@ -1,8 +1,8 @@
 import express from 'express';
 
 import { getFile } from '../../lib/filesystem/getFile.js';
-import { asyncHandler } from '../../utils/routerUtils.js';
 import { requireFileName } from '../../middleware/requireFileName.js';
+import { asyncHandler } from '../../utils/routerUtils.js';
 
 const VALIDATION_MIDDLEWARE = [requireFileName];
 

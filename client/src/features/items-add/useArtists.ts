@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Artists } from '@types';
-import type { ListItem } from '@types';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
+import type { Artists , ListItem } from '@types';
+
 
 type UseArtistsReturn = {
   readonly artistsAsListItem: ListItem[];

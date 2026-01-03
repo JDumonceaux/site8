@@ -14,8 +14,8 @@ const PhoneAdornment = ({
   ...props
 }: PhoneAdornmentProps): JSX.Element => (
   <Container
-    ref={ref}
     data-testid="phone-icon"
+    ref={ref}
     {...props}
   >
     <StyledIcon />

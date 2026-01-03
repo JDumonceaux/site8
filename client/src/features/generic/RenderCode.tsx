@@ -11,7 +11,7 @@ type RenderCodeProps = {
 
 const RenderCode = ({ children }: RenderCodeProps) => {
   const ref = useRef<HTMLElement>(null);
-  const { setMessage, setErrorMessage } = useSnackbar();
+  const { setErrorMessage, setMessage } = useSnackbar();
 
   const copyToClipboard = async (text: string) => {
     try {

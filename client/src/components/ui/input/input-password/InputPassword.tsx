@@ -35,13 +35,13 @@ export const InputPassword = ({
 
   return (
     <InputBase
-      type={showPassword ? 'text' : 'password'}
       autoComplete={autoComplete}
+      type={showPassword ? 'text' : 'password'}
       {...rest}
       endAdornment={
         <ShowAdornment
-          pressed={showPassword}
           onPressedChange={handlePress}
+          pressed={showPassword}
         />
       }
       startAdornment={<PasswordAdornment />}

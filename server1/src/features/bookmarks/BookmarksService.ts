@@ -1,11 +1,8 @@
-import type { Bookmark } from '@site8/shared';
-import type { Bookmarks } from '@site8/shared';
-import type { BookmarksTag } from '@site8/shared';
-import type { BookmarksTags } from '@site8/shared';
+import type { Bookmark , Bookmarks , BookmarksTag , BookmarksTags } from '@site8/shared';
 
+import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class BookmarksService extends BaseDataService<Bookmarks> {
   public constructor() {

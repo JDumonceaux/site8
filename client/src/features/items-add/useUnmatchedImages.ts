@@ -1,6 +1,6 @@
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Images } from '@types';
 import { useQuery } from '@tanstack/react-query';
+import type { Images } from '@types';
 
 type UseUnmatchedImagesReturn = {
   readonly data: Images | undefined;

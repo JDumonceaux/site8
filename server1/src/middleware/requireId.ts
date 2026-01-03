@@ -4,7 +4,7 @@ export const requireId = createValidator({
   paramName: 'id',
   validate: (value) => {
     if (typeof value !== 'string' || value.trim() === '') {
-      return { isValid: false, errorMessage: 'Id is required' };
+      return { errorMessage: 'Id is required', isValid: false };
     }
     return { isValid: true };
   },

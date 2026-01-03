@@ -1,5 +1,5 @@
-import { ServiceUrl } from '@lib/utils/constants';
 import { createQueryHook } from '@hooks/createQueryHook';
+import { ServiceUrl } from '@lib/utils/constants';
 import type { Tests } from '@types';
 
 // Create the tests query hook using the factory

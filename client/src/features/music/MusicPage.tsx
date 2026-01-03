@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import ItemRenderer from './ItemRenderer';
 import useMusic from './useMusic';
@@ -35,9 +35,9 @@ const MusicPage = (): JSX.Element | null => {
               <ul>
                 {data.items.map((item, index) => (
                   <ItemRenderer
-                    key={item.id}
                     data={data}
                     index={index}
+                    key={item.id}
                   />
                 ))}
               </ul>

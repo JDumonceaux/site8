@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useEffectEvent } from 'react';
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Switch from '@components/ui/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import Layout from '@features/layouts/layout/Layout';
@@ -69,8 +69,8 @@ const PagesEditPage = (): JSX.Element | null => {
             {isSaved ? null : (
               <StyledSaveButton
                 data-testid="button-save"
-                type="submit"
                 onClick={handleSaveClick}
+                type="submit"
               >
                 Save
               </StyledSaveButton>
@@ -95,8 +95,8 @@ const PagesEditPage = (): JSX.Element | null => {
               <tbody>
                 {data.map((item) => (
                   <PageRow
-                    key={item.lineId}
                     item={item}
+                    key={item.lineId}
                   />
                 ))}
               </tbody>

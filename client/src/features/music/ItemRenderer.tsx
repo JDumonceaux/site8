@@ -28,10 +28,10 @@ const ItemRenderer = memo(
         <Container>
           <Description>{item.description}</Description>
           <VideoFrame
-            src={item.url}
-            title={item.description}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             sandbox="allow-scripts allow-same-origin allow-presentation"
+            src={item.url}
+            title={item.description}
           />
         </Container>
       </li>

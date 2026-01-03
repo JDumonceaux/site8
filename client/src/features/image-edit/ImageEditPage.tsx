@@ -1,20 +1,20 @@
 import { type JSX, useEffect, useEffectEvent, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import FormSaveButton from '@components/ui/button/FormSaveButton';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
-import FormSaveButton from '@components/ui/button/FormSaveButton';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
-import { getSRC } from '@lib/utils/helpers';
 import Layout from '@features/layouts/layout/Layout';
-import useImageEdit from './useImageEdit';
-import ImagePreview from './ImagePreview';
-import styled from 'styled-components';
+import { getSRC } from '@lib/utils/helpers';
 import type { ImageEdit } from '@site8/shared';
+import ImagePreview from './ImagePreview';
+import useImageEdit from './useImageEdit';
+import styled from 'styled-components';
 
 // Route constants
 const ROUTES = {
@@ -22,7 +22,7 @@ const ROUTES = {
 } as const;
 
 // Helper to compute preview source
-const getPreviewSrc = (formValues: ImageEdit): string => {
+const getPreviewSource = (formValues: ImageEdit): string => {
   if (formValues.ext_url?.trim()) {
     return formValues.ext_url.trim();
   }
@@ -59,7 +59,7 @@ const ImageEditPage = (): JSX.Element => {
   };
 
   const title = formValues.id ? `Edit Image ${formValues.id}` : 'New Image';
-  const previewSrc = getPreviewSrc(formValues);
+  const previewSource = getPreviewSource(formValues);
 
   const inputTitleRef = useRef<HTMLInputElement>(null);
   const focusInputEvent = useEffectEvent(() => {
@@ -79,8 +79,8 @@ const ImageEditPage = (): JSX.Element => {
             <StyledPlainButton
               data-testid="button-clear"
               disabled={isPending || isProcessing}
-              type="button"
               onClick={handleClearForm}
+              type="button"
             >
               Clear
             </StyledPlainButton>
@@ -93,8 +93,8 @@ const ImageEditPage = (): JSX.Element => {
             <StyledPlainButton
               data-testid="button-reset"
               disabled={isSaved || isPending || isProcessing}
-              type="reset"
               onClick={resetForm}
+              type="reset"
             >
               Reset
             </StyledPlainButton>
@@ -110,28 +110,28 @@ const ImageEditPage = (): JSX.Element => {
             <StyledContainer>
               <FormContainer>
                 <form
-                  id="image-edit-form"
                   action={formAction}
+                  id="image-edit-form"
                   noValidate
                 >
                   <Input.Text
-                    ref={inputTitleRef}
-                    disabled={isPending || isProcessing}
-                    isRequired
-                    spellCheck
-                    enterKeyHint="next"
-                    label="Name"
                     autoCapitalize="off"
+                    disabled={isPending || isProcessing}
+                    enterKeyHint="next"
                     inputMode="text"
+                    isRequired
+                    label="Name"
+                    ref={inputTitleRef}
+                    spellCheck
                     {...getDefaultProps('name')}
                   />
                   <Input.Text
-                    disabled={isPending || isProcessing}
-                    spellCheck
-                    enterKeyHint="next"
-                    label="File Name"
                     autoCapitalize="off"
+                    disabled={isPending || isProcessing}
+                    enterKeyHint="next"
                     inputMode="text"
+                    label="File Name"
+                    spellCheck
                     {...getDefaultProps('fileName')}
                   />
                   <Input.Text
@@ -140,25 +140,25 @@ const ImageEditPage = (): JSX.Element => {
                     {...getDefaultProps('folder')}
                   />
                   <Input.Text
+                    autoCapitalize="off"
                     disabled={isPending || isProcessing}
                     enterKeyHint="next"
-                    label="External URL"
-                    autoCapitalize="off"
                     inputMode="text"
+                    label="External URL"
                     {...getDefaultProps('ext_url')}
                   />
                   <Input.TextArea
                     disabled={isPending || isProcessing}
-                    spellCheck
                     label="Description"
                     rows={10}
+                    spellCheck
                     {...getDefaultProps('description')}
                   />
                 </form>
               </FormContainer>
               <ImagePreview
                 formValues={formValues}
-                previewSrc={previewSrc}
+                previewSrc={previewSource}
               />
             </StyledContainer>
           </LoadingWrapper>

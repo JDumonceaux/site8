@@ -1,6 +1,6 @@
-import { createGetHandlerWithParams } from '../../lib/http/genericHandlers.js';
-import { getFileService } from '../../utils/ServiceFactory.js';
 import { sanitizeFilePath } from '../../utils/fileNameUtil.js';
+import { getFileService } from '../../utils/ServiceFactory.js';
+import { createGetHandlerWithParams } from "../http/genericHandlers.js";
 
 export const getFile = createGetHandlerWithParams<unknown>({
   errorResponse: {},

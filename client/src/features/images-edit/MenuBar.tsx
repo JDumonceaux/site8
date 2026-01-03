@@ -2,8 +2,8 @@ import type { JSX } from 'react';
 
 import IconMenu from '@components/icon-menu/IconMenu';
 import IconMenuItem from '@components/icon-menu/IconMenuItem';
-import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
 import FormSaveButton from '@components/ui/button/FormSaveButton';
+import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
 import { ServiceUrl } from '@lib/utils/constants';
 
 type Props = {
@@ -28,8 +28,8 @@ const MenuBar = ({
     onClick ? (
       <StyledPlainButton
         data-testid={testId}
-        type={type}
         onClick={onClick}
+        type={type}
       >
         {label}
       </StyledPlainButton>

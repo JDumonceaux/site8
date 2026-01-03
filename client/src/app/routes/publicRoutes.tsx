@@ -35,8 +35,8 @@ export const publicRoutes = (
     {/* Home Page */}
     <Route element={<HomeLayout />}>
       <Route
-        index
         element={<Home />}
+        index
       />
     </Route>
 

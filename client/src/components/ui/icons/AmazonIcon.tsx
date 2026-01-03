@@ -7,11 +7,11 @@ export const AmazonIcon = ({
   return (
     <svg
       aria-hidden={isAriaHidden}
+      focusable={isFocusable}
       height="22"
+      viewBox="2.167 .438 251.038 259.969"
       width="22"
       xmlns="http://www.w3.org/2000/svg"
-      focusable={isFocusable}
-      viewBox="2.167 .438 251.038 259.969"
     >
       <link
         id="dark-mode-custom-link"

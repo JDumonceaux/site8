@@ -49,11 +49,11 @@ const ItemDetail = ({
           placeholder="Year"
         />
         <Input.Text
+          data-id="location"
+          data-line={item.lineId}
           dataList={
             locations ? { data: locations, id: 'locations' } : undefined
           }
-          data-id="location"
-          data-line={item.lineId}
           onChange={onChange}
           placeholder="Location"
         />

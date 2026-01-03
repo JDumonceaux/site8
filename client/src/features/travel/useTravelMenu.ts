@@ -1,6 +1,7 @@
-import { ServiceUrl } from '@lib/utils/constants';
-import { createQueryHook } from '@hooks/createQueryHook';
 import { useMemo } from 'react';
+
+import { createQueryHook } from '@hooks/createQueryHook';
+import { ServiceUrl } from '@lib/utils/constants';
 import type { MenuItem } from '@site8/shared';
 
 // Travel menu response type

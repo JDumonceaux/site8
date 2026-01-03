@@ -13,17 +13,8 @@ const root = createRoot(container, {
   // Called when React catches an error in an Error Boundary
   onCaughtError: (error: unknown, errorInfo) => {
     logError(error, {
+      componentStack: errorInfo.componentStack,
       context: 'ErrorBoundaryCaught',
-      componentStack: errorInfo.componentStack,
-    });
-  },
-
-  // Called when an error is thrown and NOT caught by any Error Boundary
-  onUncaughtError: (error: unknown, errorInfo) => {
-    logError(error, {
-      context: 'UncaughtError',
-      componentStack: errorInfo.componentStack,
-      severity: 'fatal',
     });
   },
 
@@ -32,11 +23,20 @@ const root = createRoot(container, {
     logError(
       error,
       {
-        context: 'RecoverableError',
         componentStack: errorInfo.componentStack,
+        context: 'RecoverableError',
       },
       'warning',
     );
+  },
+
+  // Called when an error is thrown and NOT caught by any Error Boundary
+  onUncaughtError: (error: unknown, errorInfo) => {
+    logError(error, {
+      componentStack: errorInfo.componentStack,
+      context: 'UncaughtError',
+      severity: 'fatal',
+    });
   },
 });
 

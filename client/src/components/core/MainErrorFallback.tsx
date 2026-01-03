@@ -1,4 +1,4 @@
-import { useEffect, type JSX } from 'react';
+import { type JSX, useEffect } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 
 import { getUserFriendlyErrorMessage, logError } from '@lib/utils/errorHandler';
@@ -47,8 +47,8 @@ const MainErrorFallback = ({
         support.
       </HelpText>
       <RetryButton
-        type="button"
         onClick={handleRetry}
+        type="button"
       >
         Retry
       </RetryButton>

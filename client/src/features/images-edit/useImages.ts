@@ -1,6 +1,6 @@
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Images } from '@types';
 import { useQuery } from '@tanstack/react-query';
+import type { Images } from '@types';
 
 /**
  * Fetches the Images payload from the API, supporting cancellation.

@@ -1,11 +1,11 @@
 import { type JSX, useActionState } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
-import Input from '@components/ui/input/Input';
 import FormSaveButton from '@components/ui/button/FormSaveButton';
+import Input from '@components/ui/input/Input';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import * as Form from '@radix-ui/react-form';
-import type { FormState } from '@types';
 import type { Page } from '@site8/shared';
+import type { FormState } from '@types';
 import usePagePatch from './usePagePatch';
 import styled from 'styled-components';
 
@@ -53,7 +53,7 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
     actionState[0] &&
     typeof actionState[0] === 'object' &&
     'fieldData' in actionState[0]
-      ? (actionState[0] as FormState<typeof initData>)
+      ? (actionState[0])
       : undefined;
   const action = Array.isArray(actionState) ? actionState[1] : undefined;
 
@@ -64,9 +64,9 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
 
   return (
     <LoadingWrapper
-      isSaving={isPending}
       error={error}
       isError={isError}
+      isSaving={isPending}
     >
       <Form.Root action={action}>
         <StyledButtonWrapper>
@@ -119,12 +119,12 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
         />
         {/* <ToolMenu onClick={handeTextInsert} /> */}
         <Input.TextArea
-          spellCheck
           defaultValue={data.fieldData?.text ?? ''}
           id="text"
           labelProps={LABEL_TEXT}
           //onBlur={handeTextAreaBlur}
           rows={30}
+          spellCheck
         />
         <Input.Text
           defaultValue={data.fieldData?.reading_time ?? ''}

@@ -1,10 +1,10 @@
 import type { Schema, ZodError, ZodFormattedError } from 'zod';
 
 export type ParseResult<T> = {
-  readonly success: boolean;
   readonly data: T | null;
   readonly error: ZodError<T> | null;
   readonly errorFormatted: ZodFormattedError<T> | null;
+  readonly success: boolean;
 };
 
 export const safeParse = <T>(
@@ -15,17 +15,17 @@ export const safeParse = <T>(
 
   if (!parsedData.success) {
     return {
-      success: false,
       data: null,
       error: parsedData.error,
       errorFormatted: parsedData.error.format(),
+      success: false,
     };
   }
 
   return {
-    success: true,
     data: parsedData.data,
     error: null,
     errorFormatted: null,
+    success: true,
   };
 };

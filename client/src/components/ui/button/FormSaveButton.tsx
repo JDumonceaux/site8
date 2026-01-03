@@ -1,4 +1,4 @@
-import { type JSX } from 'react';
+import type { JSX } from 'react';
 import { useFormStatus } from 'react-dom';
 
 import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPlainButton';
@@ -6,9 +6,9 @@ import StyledPlainButton from '@components/ui/link/styled-plain-button/StyledPla
 type FormSaveButtonProps = {
   readonly children?: React.ReactNode;
   readonly className?: string;
+  readonly 'data-testid'?: string;
   readonly disabled?: boolean;
   readonly form?: string;
-  readonly 'data-testid'?: string;
 };
 
 /**
@@ -19,9 +19,9 @@ type FormSaveButtonProps = {
 const FormSaveButton = ({
   children = 'Save',
   className,
+  'data-testid': dataTestId,
   disabled = false,
   form,
-  'data-testid': dataTestId,
 }: FormSaveButtonProps): JSX.Element => {
   const { pending } = useFormStatus();
 

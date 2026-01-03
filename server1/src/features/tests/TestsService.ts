@@ -1,9 +1,8 @@
-import type { Test } from '@site8/shared';
-import type { Tests } from '@site8/shared';
+import type { Test , Tests } from '@site8/shared';
 
+import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../../lib/filesystem/FilePath.js';
 
 type ExpandedTest = Omit<Test, 'parentId'> & {
   readonly parentId: number;

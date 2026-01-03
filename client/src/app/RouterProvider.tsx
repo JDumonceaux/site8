@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 import { QueryClient } from '@tanstack/react-query';
-
 import { adminRoutes } from './routes/adminRoutes';
 import { authRoutes } from './routes/authRoutes';
 import { protectedContentRoutes } from './routes/protectedContentRoutes';
@@ -26,8 +25,8 @@ const createAppRouter = (queryClient: QueryClient) => {
   return createBrowserRouter(
     createRoutesFromElements(
       <Route
-        path="/"
         errorElement={<ErrorPage />}
+        path="/"
       >
         {/* ===== PUBLIC ROUTES (No Authentication Required) ===== */}
         {publicRoutes}

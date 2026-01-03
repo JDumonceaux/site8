@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 import { useActionState } from 'react';
 
-import Button from '@components/ui/button/Button';
 import Meta from '@components/core/meta/Meta';
+import Button from '@components/ui/button/Button';
 import Input from '@components/ui/input/Input';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
@@ -112,6 +112,7 @@ const ConfirmEmailPage = (): JSX.Element => {
     <>
       <Meta title={title} />
       <AuthContainer
+        error={actionState.message || error}
         leftImage={
           <img
             alt=""
@@ -119,29 +120,28 @@ const ConfirmEmailPage = (): JSX.Element => {
           />
         }
         title="Confirm Email"
-        error={actionState.message || error}
       >
         <StyledForm
-          noValidate
           action={formAction}
+          noValidate
         >
           <Input.Email
-            required
-            label="Email Address"
-            spellCheck="false"
             autoComplete="email"
             inputMode="email"
+            label="Email Address"
             placeholder="Enter Email Address"
+            required
+            spellCheck="false"
             {...getDefaultProps('emailAddress')}
           />
 
           <Input.Number
-            label="Authentication Code"
-            maxLength={6}
-            spellCheck="false"
             autoComplete="one-time-code"
             inputMode="numeric"
+            label="Authentication Code"
+            maxLength={6}
             placeholder="Enter Authentication Code"
+            spellCheck="false"
             {...getStandardInputTextAttributes('authenticationCode')}
           />
 
@@ -154,8 +154,8 @@ const ConfirmEmailPage = (): JSX.Element => {
 
           <StyledBottomMsg>
             <button
-              type="button"
               onClick={handleResend}
+              type="button"
             >
               Resend Code
             </button>

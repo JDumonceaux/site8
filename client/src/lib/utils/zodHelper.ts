@@ -1,9 +1,9 @@
-import type { ZodError, ZodFormattedError, ZodType } from 'zod';
+import type { z, ZodError } from 'zod';
 
 export type SafeParseProps<T> = {
   data: null | T;
   error: null | ZodError<T>;
-  formattedError: null | ZodFormattedError<T>;
+  formattedError: null | z.core.$ZodFormattedError<T>;
   success: boolean;
 };
 
@@ -16,7 +16,7 @@ export type SafeParseProps<T> = {
  * @returns An object containing the parsed data, any validation error, and a success flag.
  */
 export const safeParse = <T>(
-  schema: ZodType,
+  schema: z.ZodType,
   inputData: unknown,
 ): SafeParseProps<T> => {
   const result = schema.safeParse(inputData);
@@ -31,7 +31,9 @@ export const safeParse = <T>(
   return {
     data: null,
     error: result.error as ZodError<T>,
-    formattedError: result.error.format() as ZodFormattedError<T>,
+    formattedError: z.treeifyError(
+      result.error,
+    ) as z.core.$ZodFormattedError<T>,
     success: false,
   };
 };

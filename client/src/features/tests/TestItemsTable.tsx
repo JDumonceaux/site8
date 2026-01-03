@@ -14,7 +14,6 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-
 import TestItemRow from './TestItemRow';
 
 type TestItem = {
@@ -88,9 +87,9 @@ const TestItemsTable = ({
           <tbody>
             {data.map((item) => (
               <TestItemRow
-                key={item.lineId}
                 getDefaultProps={getDefaultProps}
                 item={item}
+                key={item.lineId}
               />
             ))}
           </tbody>

@@ -31,8 +31,8 @@ const StyledNavLink = ({
   ...navProps
 }: StyledNavLinkProps): JSX.Element => (
   <Link
-    ref={ref}
     aria-label={ariaLabel}
+    ref={ref}
     variant={variant}
     {...navProps}
     // NavLink will add aria-current="page" when active

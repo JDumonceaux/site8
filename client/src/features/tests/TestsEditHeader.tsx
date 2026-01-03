@@ -39,8 +39,8 @@ const TestsEditHeader = ({
       {isSaved ? null : (
         <StyledSaveButton
           data-testid="button-save"
-          type="submit"
           onClick={onSave}
+          type="submit"
         >
           Save
         </StyledSaveButton>

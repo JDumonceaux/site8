@@ -7,14 +7,14 @@ export const HelpIcon = ({
   return (
     <svg
       aria-hidden={isAriaHidden}
-      height="16px"
-      id="Layer_1"
-      width="16px"
-      xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 16 16"
       focusable={isFocusable}
+      height="16px"
+      id="Layer_1"
       version="1.1"
       viewBox="0 0 50 50"
+      width="16px"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <circle
         cx="25"

@@ -1,14 +1,14 @@
-import type { Image } from '@site8/shared';
-import type { Images } from '@site8/shared';
+import type { Image , Images } from '@site8/shared';
 
+import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import {
   cleanUpData,
   getNextId as getNextIdUtil,
 } from '../../utils/objectUtil.js';
-import FilePath from '../../lib/filesystem/FilePath.js';
 import { getImagesFileService } from '../../utils/ServiceFactory.js';
+
 import { getNewIds, getNewItems } from './imagesUtil.js';
 
 export class ImagesService extends BaseDataService<Images> {
@@ -145,6 +145,28 @@ export class ImagesService extends BaseDataService<Images> {
     return true;
   }
 
+  // Get Items to sort into folders
+  private async getNewItems(): Promise<Images | undefined> {
+    // Get current items
+    const imageData = await this.readFile();
+    if (!imageData) {
+      throw new Error('getNewItems > Index file not loaded');
+    }
+    return { ...imageData };
+  }
+
+  /**
+   * Move files to new directories
+   */
+  private async moveItemFiles(updatedItems: Image[]): Promise<void> {
+    const fileMoved = getImagesFileService().moveItems(updatedItems);
+    if (!fileMoved) {
+      throw new Error(
+        'ImagesService: updateItems -> Unable to move file: ${item.fileName}',
+      );
+    }
+  }
+
   /**
    * Prepare updated items by merging with existing data
    */
@@ -184,18 +206,6 @@ export class ImagesService extends BaseDataService<Images> {
   }
 
   /**
-   * Move files to new directories
-   */
-  private async moveItemFiles(updatedItems: Image[]): Promise<void> {
-    const fileMoved = getImagesFileService().moveItems(updatedItems);
-    if (!fileMoved) {
-      throw new Error(
-        'ImagesService: updateItems -> Unable to move file: ${item.fileName}',
-      );
-    }
-  }
-
-  /**
    * Replace updated items in the collection
    */
   private replaceUpdatedItems(images: Images, updatedItems: Image[]): Images {
@@ -208,19 +218,9 @@ export class ImagesService extends BaseDataService<Images> {
         }
         return x;
       })
-      .filter(Boolean) as Image[];
+      .filter(Boolean);
 
     return { ...images, items: data };
-  }
-
-  // Get Items to sort into folders
-  private async getNewItems(): Promise<Images | undefined> {
-    // Get current items
-    const imageData = await this.readFile();
-    if (!imageData) {
-      throw new Error('getNewItems > Index file not loaded');
-    }
-    return { ...imageData };
   }
 
   /**

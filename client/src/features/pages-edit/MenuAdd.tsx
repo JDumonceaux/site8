@@ -1,7 +1,7 @@
 import { type JSX, startTransition } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Input from '@components/ui/input/Input';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useMenuAdd from '@hooks/useMenuAdd';
 /**
@@ -57,35 +57,35 @@ const MenuAdd = (): JSX.Element => {
             <td>
               <Input.Text
                 {...getStandardInputTextAttributes('name')}
-                required
-                spellCheck
                 autoCapitalize="off"
                 inputMode="text"
                 onChange={handleInputChange}
+                required
+                spellCheck
               />
             </td>
             <td>
               <Input.Text
                 {...getStandardInputTextAttributes('parent')}
-                required
                 inputMode="numeric"
                 onChange={handleInputChange}
+                required
               />
             </td>
             <td>
               <Input.Text
                 {...getStandardInputTextAttributes('seq')}
-                required
                 inputMode="numeric"
                 onChange={handleInputChange}
+                required
               />
             </td>
             <td>
               <Input.Text
                 {...getStandardInputTextAttributes('sortby')}
-                list="sortTypes"
                 autoCapitalize="off"
                 inputMode="text"
+                list="sortTypes"
                 onChange={handleInputChange}
               />
               <datalist id="sortTypes">
@@ -96,11 +96,11 @@ const MenuAdd = (): JSX.Element => {
             <td>
               <Input.Text
                 {...getStandardInputTextAttributes('type')}
-                required
-                list="menuTypes"
                 autoCapitalize="off"
                 inputMode="text"
+                list="menuTypes"
                 onChange={handleInputChange}
+                required
               />
               <datalist id="menuTypes">
                 <option value="menu" />
@@ -110,8 +110,8 @@ const MenuAdd = (): JSX.Element => {
             <td>
               <button
                 data-testid="insert-code"
-                type="submit"
                 onClick={handleSubmit}
+                type="submit"
               >
                 Save
               </button>

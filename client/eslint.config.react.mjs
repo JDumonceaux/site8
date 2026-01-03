@@ -16,8 +16,6 @@ export default {
         ...pluginReact.configs['jsx-runtime'].rules,
         ...pluginHooks.configs.recommended.rules,
         ...pluginRedux.configs.recommended.rules,
-        // --- React 19+ Compiler (from react-hooks plugin v5.0.0+) ---
-        'react-hooks/react-compiler': 'error',
         // --- React 19+ effect rules ---
         // Allow useEffectEvent and do not require functions from useEffectEvent in dependency arrays
         'react-hooks/exhaustive-deps': 'warn',

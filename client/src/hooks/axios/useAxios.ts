@@ -12,7 +12,7 @@ type UseAxiosReturn<T> = {
 
 export const useAxios = <T>(): UseAxiosReturn<T> => {
   const [data, setData] = useState<null | T>(null);
-  const { execute, error, isLoading } = useAsyncOperation<Error>();
+  const { error, execute, isLoading } = useAsyncOperation<Error>();
 
   const patchData = useEffectEvent(async (url: string, payload: unknown) => {
     const result = await execute(async () => {

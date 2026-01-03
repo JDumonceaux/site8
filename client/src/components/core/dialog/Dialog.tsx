@@ -87,9 +87,9 @@ const Dialog = ({
         <Overlay />
         <Content
           aria-labelledby={titleId}
+          aria-modal="true"
           data-size={size}
           data-variant={variant}
-          aria-modal="true"
           {...contentProps}
         >
           <Header>

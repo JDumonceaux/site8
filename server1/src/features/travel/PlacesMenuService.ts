@@ -1,15 +1,14 @@
-import type { MenuItem } from '@site8/shared';
-import type { Place, Places } from '@site8/shared';
+import type { TravelService } from './TravelService.js';
+import type { MenuItem , Place, Places } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
-import { TravelService } from './TravelService.js';
 
 /**
  * ID generation constants for hierarchical menu structure
  */
 const ID_MULTIPLIER = {
-  COUNTRY_TO_CITY: 1000,
   CITY_TO_PLACE: 1000,
+  COUNTRY_TO_CITY: 1000,
 } as const;
 
 /**
@@ -21,18 +20,6 @@ export class PlacesMenuService {
 
   public constructor(travelService: TravelService) {
     this.travelService = travelService;
-  }
-
-  /**
-   * Convert a string to URL-friendly slug (lowercase, hyphens)
-   */
-  private slugify(text: string): string {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '') // Remove special characters
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
   }
 
   /**
@@ -57,47 +44,6 @@ export class PlacesMenuService {
       );
       return undefined;
     }
-  }
-
-  /**
-   * Builds the recursive menu structure by grouping places by country and city
-   */
-  private buildRecursiveMenu(places: readonly Place[]): MenuItem[] {
-    // Group places by country
-    const countriesMap = new Map<string, Place[]>();
-
-    for (const place of places) {
-      if (!place.country) continue;
-
-      const countryPlaces = countriesMap.get(place.country) || [];
-      countryPlaces.push(place);
-      countriesMap.set(place.country, countryPlaces);
-    }
-
-    // Build country-level menu items
-    const countryMenuItems: MenuItem[] = [];
-    let countryId = 1;
-
-    for (const [country, countryPlaces] of Array.from(
-      countriesMap.entries(),
-    ).sort(([a], [b]) => a.localeCompare(b))) {
-      const countrySlug = this.slugify(country);
-      const countryUrl = `/travel/${countrySlug}`;
-      const countryItem: MenuItem = {
-        id: countryId,
-        label: country,
-        title: country,
-        type: 'menu',
-        to: countryUrl,
-        url: countryUrl,
-        items: this.buildCityMenuItems(countryPlaces, countryId, countrySlug),
-      };
-
-      countryMenuItems.push(countryItem);
-      countryId++;
-    }
-
-    return countryMenuItems;
   }
 
   /**
@@ -131,18 +77,18 @@ export class PlacesMenuService {
 
       const cityItem: MenuItem = {
         id: cityId,
-        label: city,
-        title: city,
-        type: 'menu',
-        to: cityUrl,
-        url: cityUrl,
-        parentItem: { id: countryId, seq: cityIdOffset },
         items: this.buildPlaceMenuItems(
           cityPlaces,
           cityId,
           countrySlug,
           citySlug,
         ),
+        label: city,
+        parentItem: { id: countryId, seq: cityIdOffset },
+        title: city,
+        to: cityUrl,
+        type: 'menu',
+        url: cityUrl,
       };
 
       cityMenuItems.push(cityItem);
@@ -171,14 +117,67 @@ export class PlacesMenuService {
         return {
           id: placeId,
           label: place.name,
-          title: place.name,
-          type: 'page',
-          to: placeUrl,
-          url: placeUrl,
-          parentItem: { id: cityId, seq: index + 1 },
           // Store the original place ID for reference
           lineId: place.id,
+          parentItem: { id: cityId, seq: index + 1 },
+          title: place.name,
+          to: placeUrl,
+          type: 'page',
+          url: placeUrl,
         } satisfies MenuItem;
       });
+  }
+
+  /**
+   * Builds the recursive menu structure by grouping places by country and city
+   */
+  private buildRecursiveMenu(places: readonly Place[]): MenuItem[] {
+    // Group places by country
+    const countriesMap = new Map<string, Place[]>();
+
+    for (const place of places) {
+      if (!place.country) continue;
+
+      const countryPlaces = countriesMap.get(place.country) || [];
+      countryPlaces.push(place);
+      countriesMap.set(place.country, countryPlaces);
+    }
+
+    // Build country-level menu items
+    const countryMenuItems: MenuItem[] = [];
+    let countryId = 1;
+
+    for (const [country, countryPlaces] of Array.from(
+      countriesMap.entries(),
+    ).sort(([a], [b]) => a.localeCompare(b))) {
+      const countrySlug = this.slugify(country);
+      const countryUrl = `/travel/${countrySlug}`;
+      const countryItem: MenuItem = {
+        id: countryId,
+        items: this.buildCityMenuItems(countryPlaces, countryId, countrySlug),
+        label: country,
+        title: country,
+        to: countryUrl,
+        type: 'menu',
+        url: countryUrl,
+      };
+
+      countryMenuItems.push(countryItem);
+      countryId++;
+    }
+
+    return countryMenuItems;
+  }
+
+  /**
+   * Convert a string to URL-friendly slug (lowercase, hyphens)
+   */
+  private slugify(text: string): string {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
   }
 }

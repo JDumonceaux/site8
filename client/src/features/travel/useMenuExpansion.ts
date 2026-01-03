@@ -65,12 +65,7 @@ const useMenuExpansion = ({
  * @param pathSegments - URL segments to match (e.g., ['france', 'paris', 'eiffel-tower'])
  * @param currentDepth - Current depth in the menu hierarchy (0 = country, 1 = city, 2 = place)
  */
-function findItemsByUrlPath(
-  items: MenuItem[],
-  itemsToExpand: Set<number>,
-  pathSegments: string[],
-  currentDepth = 0,
-): void {
+const findItemsByUrlPath = (items: MenuItem[], itemsToExpand: Set<number>, pathSegments: string[], currentDepth = 0): void => {
   const targetSegment = pathSegments[currentDepth];
   if (!targetSegment) return;
 
@@ -100,6 +95,6 @@ function findItemsByUrlPath(
       }
     }
   }
-}
+};
 
 export default useMenuExpansion;

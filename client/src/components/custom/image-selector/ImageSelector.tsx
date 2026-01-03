@@ -71,8 +71,8 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
     <>
       <Controls>
         <button
-          type="button"
           onClick={handleShowAll}
+          type="button"
         >
           Show All
         </button>
@@ -89,12 +89,12 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
         <Grid>
           {filteredData.map((item) => (
             <ImageButton
-              key={item.id}
               $selected={selectedItem?.id === item.id}
               id={String(item.id)}
-              type="button"
+              key={item.id}
               onClick={handleSelect}
               onKeyDown={handleKeyboardSelect}
+              type="button"
             >
               <img
                 alt=""

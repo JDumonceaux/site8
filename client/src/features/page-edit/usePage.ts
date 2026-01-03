@@ -1,6 +1,6 @@
 import { USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import type { Page } from '@types';
 import { useQuery } from '@tanstack/react-query';
+import type { Page } from '@types';
 import { fetchPageById } from './api';
 
 const usePage = (id: string) => {

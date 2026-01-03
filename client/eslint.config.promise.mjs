@@ -18,5 +18,7 @@ export default {
         'promise/prefer-await-to-callbacks': 'warn',
         'promise/prefer-await-to-then': 'warn',
         'promise/prefer-catch': 'warn',
+        // Allow Promise.try as it's a recommended TC39 Stage 2 proposal
+        'promise/spec-only': 'off',
     },
 };

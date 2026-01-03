@@ -1,5 +1,6 @@
 import type { CSSProperties, JSX } from 'react';
 
+import { UI_DEFAULTS } from '@lib/utils/constants';
 import {
   AvatarFallback as RadixAvatarFallback,
   AvatarImage as RadixAvatarImage,
@@ -7,7 +8,6 @@ import {
   Avatar as RadixAvatarRoot,
 } from '@radix-ui/react-avatar';
 import styled from 'styled-components';
-import { UI_DEFAULTS } from '@lib/utils/constants';
 
 /**
  * Props for our Avatar:

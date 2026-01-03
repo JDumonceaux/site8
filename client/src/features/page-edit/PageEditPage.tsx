@@ -1,10 +1,10 @@
 import type { JSX } from 'react';
 import { useParams } from 'react-router-dom';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import { getParamIdAsString } from '@lib/utils/helpers';
 import PageEditForm from './PageEditForm';

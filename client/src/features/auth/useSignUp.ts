@@ -6,7 +6,6 @@ import {
   signUp,
   type SignUpOutput,
 } from 'aws-amplify/auth';
-
 import { useAuthAsync } from './useAuthAsync';
 import type { AuthState } from './useAuthState';
 

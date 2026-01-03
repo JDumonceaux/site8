@@ -57,10 +57,10 @@ export const TextArea = ({
       {...(rest as FieldWrapperProps)}
     >
       <StyledTextArea
-        ref={localRef}
         id={currentId}
         name={currentId}
         onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
+        ref={localRef}
         rows={rows}
         {...(textAreaProps as TextAreaRootProps)}
       />

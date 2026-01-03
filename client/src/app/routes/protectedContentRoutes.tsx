@@ -140,8 +140,8 @@ export const protectedContentRoutes = (
       path="music"
     >
       <Route
-        index
         element={<MusicPage />}
+        index
       />
     </Route>
 
@@ -151,8 +151,8 @@ export const protectedContentRoutes = (
       path="bookmarks"
     >
       <Route
-        index
         element={<BookmarkPage />}
+        index
       />
     </Route>
 
@@ -162,37 +162,37 @@ export const protectedContentRoutes = (
       path="travel"
     >
       <Route
+        element={<TravelPage />}
         index
-        element={<TravelPage />}
       />
       <Route
+        element={<TravelPage />}
         path=":country"
-        element={<TravelPage />}
       />
       <Route
+        element={<TravelPage />}
         path=":country/:city"
-        element={<TravelPage />}
       />
       <Route
-        path=":country/:city/:item"
         element={<TravelPage />}
+        path=":country/:city/:item"
       />
     </Route>
 
     {/* Images Gallery */}
     <Route element={<GenericLayout />}>
       <Route
-        index
         element={<ImagesPage />}
+        index
         path="images"
       />
       <Route
-        path="images/:folder"
         element={<ImagesPage />}
+        path="images/:folder"
       />
       <Route
-        path="images/tag/:tag"
         element={<ImagesPage />}
+        path="images/tag/:tag"
       />
     </Route>
 

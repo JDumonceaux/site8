@@ -3,9 +3,9 @@ import type { Request, Response } from 'express';
 import { ImageEditSchema } from '@site8/shared';
 import { z } from 'zod';
 
-import { Logger } from '../../utils/logger.js';
 import { RequestValidator } from '../../lib/http/RequestValidator.js';
 import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { Logger } from '../../utils/logger.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
 
 // Schema for Images collection with array of ImageEdit

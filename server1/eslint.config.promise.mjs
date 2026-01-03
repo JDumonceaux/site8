@@ -13,9 +13,10 @@ export default {
         // Project-specific overrides (not included in recommended or with custom levels)
         'promise/avoid-new': 'warn',
         'promise/no-multiple-resolved': 'warn',
-        // False positives in some scenarios
-        'promise/prefer-await-to-callbacks': 'warn',
+        // Disabled - Express middleware and library callbacks (CORS, error handlers) are legitimate uses
+        'promise/prefer-await-to-callbacks': 'off',
         'promise/prefer-await-to-then': 'warn',
-        'promise/spec-only': 'warn',
+        // Allow Promise.try as it's a recommended TC39 Stage 2 proposal
+        'promise/spec-only': 'off',
     },
 };

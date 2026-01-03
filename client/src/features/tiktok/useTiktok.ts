@@ -1,5 +1,5 @@
-import { ServiceUrl } from '@lib/utils/constants';
 import { createParameterizedQueryHook } from '@hooks/createQueryHook';
+import { ServiceUrl } from '@lib/utils/constants';
 import type { Page } from '@types';
 
 export type UseTiktokResult = {

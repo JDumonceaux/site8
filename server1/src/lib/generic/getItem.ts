@@ -1,7 +1,7 @@
 import type { Page } from '@site8/shared';
 
-import { createGetHandlerWithParams } from '../../lib/http/genericHandlers.js';
 import { Logger } from '../../utils/logger.js';
+import { createGetHandlerWithParams } from "../http/genericHandlers.js";
 
 import { GenericService } from './GenericService.js';
 

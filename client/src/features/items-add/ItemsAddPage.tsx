@@ -1,9 +1,9 @@
 import { type JSX, Suspense } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Input from '@components/ui/input/Input';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import MenuBar from '@features/images-edit/MenuBar';
 import Layout from '@features/layouts/layout/Layout';
 import type { ItemAddExt } from './ItemAdd';
@@ -45,20 +45,20 @@ const ItemsAddPage = (): JSX.Element => {
           <LoadingWrapper>
             <Input.Select
               dataList={artistsAsListItem}
-              value={artistId}
               onChange={handleFilterChange}
               placeholder="Artist"
+              value={artistId}
             />
             <StyledForm
-              noValidate
               action={formAction}
+              noValidate
             >
               {data.map((item: ItemAddExt) => (
                 <ItemDetail
-                  key={item.lineId}
                   item={item}
-                  names={titlesIndexed}
+                  key={item.lineId}
                   locations={locationsIndexed}
+                  names={titlesIndexed}
                   onChange={handleChange}
                   periods={periodsIndexed}
                 />

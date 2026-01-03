@@ -81,9 +81,9 @@ const createMetaTag = (
   content: string,
 ): JSX.Element => (
   <meta
+    content={content}
     key={key}
     name={name}
-    content={content}
   />
 );
 
@@ -96,9 +96,9 @@ const createPropertyTag = (
   content: string,
 ): JSX.Element => (
   <meta
+    content={content}
     key={key}
     property={property}
-    content={content}
   />
 );
 
@@ -107,9 +107,9 @@ const createPropertyTag = (
  */
 const createLinkTag = (key: string, rel: string, href: string): JSX.Element => (
   <link
+    href={href}
     key={key}
     rel={rel}
-    href={href}
   />
 );
 
@@ -122,9 +122,9 @@ const createHttpEquivTag = (
   content: string,
 ): JSX.Element => (
   <meta
-    key={key}
-    httpEquiv={httpEquiv}
     content={content}
+    httpEquiv={httpEquiv}
+    key={key}
   />
 );
 
@@ -135,8 +135,8 @@ const tagConfigs: TagConfig[] = [
   {
     builder: (value: string) => (
       <meta
-        key="charset"
         charSet={value}
+        key="charset"
       />
     ),
     key: 'charset',
@@ -314,7 +314,7 @@ const buildTags = (props: MetaProps): JSX.Element[] => {
   for (const config of tagConfigs) {
     const value = props[config.key];
     if (value) {
-      const result = config.builder(value as string);
+      const result = config.builder(value);
       if (Array.isArray(result)) {
         tags.push(...result);
       } else {

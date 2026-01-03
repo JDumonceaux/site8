@@ -2,7 +2,7 @@
 /*                              Error Messages                                */
 /* -------------------------------------------------------------------------- */
 // Re-export shared constants
-export { ERRORS, RESPONSES, REGEX, DATE_FORMATS } from '@site8/shared';
+export { DATE_FORMATS, ERRORS, REGEX, RESPONSES } from '@site8/shared';
 
 /* -------------------------------------------------------------------------- */
 /*                              HTTP Headers                                  */

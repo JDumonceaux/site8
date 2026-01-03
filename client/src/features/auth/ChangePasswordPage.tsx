@@ -1,13 +1,12 @@
 import { type JSX, useActionState } from 'react';
 
-import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import * as Form from '@radix-ui/react-form';
-import type { FormState } from '@types';
-import type { ChangePassword } from '@types';
+import type { ChangePassword , FormState } from '@types';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';
 
@@ -46,6 +45,7 @@ const ChangePasswordPage = (): JSX.Element => {
     <>
       <Meta title={title} />
       <AuthContainer
+        error={error}
         leftImage={
           <img
             alt=""
@@ -53,7 +53,6 @@ const ChangePasswordPage = (): JSX.Element => {
           />
         }
         title={title}
-        error={error}
       >
         <Form.Root action={formAction}>
           <Input.Password

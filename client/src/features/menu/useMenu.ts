@@ -1,7 +1,7 @@
-import { ServiceUrl } from '@lib/utils/constants';
 import { createQueryHook } from '@hooks/createQueryHook';
-import type { Menu } from '../../types/Menu';
+import { ServiceUrl } from '@lib/utils/constants';
 import type { MenuItem } from '@site8/shared';
+import type { Menu } from '../../types/Menu';
 
 // Create the base query hook using the factory
 const useMenuQuery = createQueryHook<Menu>({

@@ -108,10 +108,10 @@ export const Variants: Story = {
                 {...args}
                 isOpen={!!openMap[v]}
                 label={`Variant: ${v}`}
-                variant={v as keyof typeof VARIANTS}
                 onOpenChange={(o) => {
                   setOpenMap((prev) => ({ ...prev, [v]: o }));
                 }}
+                variant={v as keyof typeof VARIANTS}
               />
             </StoryContainer>
           ))}
@@ -148,10 +148,10 @@ export const Sizes: Story = {
                 {...args}
                 isOpen={!!openMap[s]}
                 label={`Size: ${s}`}
-                size={s as keyof typeof SIZES}
                 onOpenChange={(o) => {
                   setOpenMap((prev) => ({ ...prev, [s]: o }));
                 }}
+                size={s as keyof typeof SIZES}
               />
             </StoryContainer>
           ))}

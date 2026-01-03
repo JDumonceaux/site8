@@ -57,8 +57,8 @@ const FileUploadPage = (): JSX.Element => {
         <PageTitle title={title} />
         <section>
           <input
-            type="file"
             onChange={handleFileChange}
+            type="file"
           />
           {file ? (
             <div>
@@ -74,8 +74,8 @@ const FileUploadPage = (): JSX.Element => {
           ) : null}
           {file && status !== 'uploading' ? (
             <button
-              type="button"
               onClick={handleUploadClick}
+              type="button"
             >
               Upload
             </button>

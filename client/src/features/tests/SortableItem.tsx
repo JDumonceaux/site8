@@ -33,9 +33,9 @@ const SortableItem = ({ children, id }: SortableItemProps) => {
 
   return (
     <StyledTr
-      ref={setNodeRef}
       $transform={style.transform}
       $transition={style.transition}
+      ref={setNodeRef}
       {...attributes}
       {...listeners}
     >

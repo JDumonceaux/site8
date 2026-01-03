@@ -9,7 +9,10 @@ import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
 
-export default config = [
+export default [
+  {
+    ignores: ['dist/**', 'node_modules/**', '*.d.ts'],
+  },
   importConfig,
   tsConfig,
   checkFileConfig,
@@ -17,9 +20,30 @@ export default config = [
   regexpConfig,
   nodeConfig,
   perfectionistConfig,
-  preferArrowConfig,
+  ...preferArrowConfig,
   promiseConfig,
   jsConfig,
+  // Enforce preferred service usage and response helpers for server routes
+  {
+    files: ['src/**/*.ts', 'src/**/*.js', 'src/**/*.tsx'],
+    name: 'ServiceFactory-and-ResponseHelper-rules',
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          message:
+            "Instantiate services via ServiceFactory.get*Service() factory functions instead of using 'new <Service>()'.",
+          selector: "NewExpression[callee.name=/Service$/]",
+        },
+        {
+          message:
+            "Use ResponseHelper methods (ok/created/badRequest/notFound/internalError) instead of res.json()/res.send() in route handlers.",
+          selector:
+            "MemberExpression[object.name='res'][property.name=/^(json|send)$/]",
+        },
+      ],
+    },
+  },
   {
     files: ['**/*.test.ts', '**/*.spec.ts'],
     languageOptions: {

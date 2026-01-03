@@ -5,7 +5,7 @@ import { createValidator } from './createValidator.js';
 export const requireName = createValidator({
   paramName: 'name',
   validate: (value) => {
-    if (!value?.trim()) {
+    if (!value.trim()) {
       return { errorMessage: 'Name is required', isValid: false };
     }
 

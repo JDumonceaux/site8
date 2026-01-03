@@ -29,8 +29,8 @@ const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
         {onMenuToggle ? (
           <MenuButton
             aria-label="Toggle navigation menu"
-            type="button"
             onClick={handleMenuClick}
+            type="button"
           >
             <MenuIcon />
           </MenuButton>

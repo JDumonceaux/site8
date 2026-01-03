@@ -1,12 +1,11 @@
+import type { Image, ImageEdit , Images } from '@site8/shared';
+
 import { existsSync, mkdirSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 
-import type { Image, ImageEdit } from '@site8/shared';
-import type { Images } from '@site8/shared';
-
+import FilePath from '../../lib/filesystem/FilePath.js';
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../../lib/filesystem/FilePath.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
 
 export class ImagesFileService {

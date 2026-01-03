@@ -18,6 +18,37 @@ export type ValidationResult<T> = {
  */
 export class RequestValidator {
   /**
+   * Converts string ID fields to numbers in the data object
+   * @param data - Data object with potential string IDs
+   * @param idFields - Array of field names that should be numbers
+   * @returns Result with converted data or error message
+   */
+  public static convertIdsToNumbers<T extends Record<string, unknown>>(
+    data: T,
+    idFields: string[] = ['id', 'itemId'],
+  ): ValidationResult<T> {
+    const converted = { ...data } as Record<string, unknown>;
+
+    for (const field of idFields) {
+      if (converted[field] && typeof converted[field] === 'string') {
+        const num = Number(converted[field]);
+        if (isNaN(num)) {
+          return {
+            errorMessage: `${field} must be a valid number`,
+            isValid: false,
+          };
+        }
+        converted[field] = num;
+      }
+    }
+
+    return {
+      data: converted as T,
+      isValid: true,
+    };
+  }
+
+  /**
    * Validates request body against a Zod schema
    * @param req - Express request object
    * @param schema - Zod schema to validate against
@@ -82,53 +113,39 @@ export class RequestValidator {
   }
 
   /**
-   * Converts string ID fields to numbers in the data object
-   * @param data - Data object with potential string IDs
-   * @param idFields - Array of field names that should be numbers
-   * @returns Result with converted data or error message
+   * Validates and parses ID from request body
+   * @param body - Request body containing id field
+   * @returns Validation result with parsed ID number or error message
    */
-  public static convertIdsToNumbers<T extends Record<string, unknown>>(
-    data: T,
-    idFields: string[] = ['id', 'itemId'],
-  ): ValidationResult<T> {
-    const converted = { ...data } as Record<string, unknown>;
-
-    for (const field of idFields) {
-      if (converted[field] && typeof converted[field] === 'string') {
-        const num = Number(converted[field]);
-        if (isNaN(num)) {
-          return {
-            errorMessage: `${field} must be a valid number`,
-            isValid: false,
-          };
-        }
-        converted[field] = num;
-      }
+  public static validateId(
+    body: unknown,
+  ): ValidationResult<void> & { id?: number } {
+    if (!body || typeof body !== 'object' || !('id' in body)) {
+      return {
+        errorMessage: 'Invalid ID',
+        isValid: false,
+      };
     }
 
-    return {
-      data: converted as T,
-      isValid: true,
-    };
-  }
-
-  /**
-   * Validates that an ID parameter exists in the request
-   * @param req - Express request object
-   * @returns Validation result with ID or error message
-   */
-  public static validateIdParam(req: Request): ValidationResult<string> {
-    const { id } = req.params;
+    const { id } = body as { id: unknown };
 
     if (!id) {
       return {
-        errorMessage: 'ID parameter is required',
+        errorMessage: 'Invalid ID',
+        isValid: false,
+      };
+    }
+
+    const idNum = Number(id);
+    if (Number.isNaN(idNum) || idNum <= 0) {
+      return {
+        errorMessage: 'Invalid ID',
         isValid: false,
       };
     }
 
     return {
-      data: id,
+      id: idNum,
       isValid: true,
     };
   }
@@ -164,39 +181,22 @@ export class RequestValidator {
   }
 
   /**
-   * Validates and parses ID from request body
-   * @param body - Request body containing id field
-   * @returns Validation result with parsed ID number or error message
+   * Validates that an ID parameter exists in the request
+   * @param req - Express request object
+   * @returns Validation result with ID or error message
    */
-  public static validateId(
-    body: unknown,
-  ): ValidationResult<void> & { id?: number } {
-    if (!body || typeof body !== 'object' || !('id' in body)) {
-      return {
-        errorMessage: 'Invalid ID',
-        isValid: false,
-      };
-    }
-
-    const { id } = body as { id: unknown };
+  public static validateIdParam(req: Request): ValidationResult<string> {
+    const { id } = req.params;
 
     if (!id) {
       return {
-        errorMessage: 'Invalid ID',
-        isValid: false,
-      };
-    }
-
-    const idNum = Number(id);
-    if (Number.isNaN(idNum) || idNum <= 0) {
-      return {
-        errorMessage: 'Invalid ID',
+        errorMessage: 'ID parameter is required',
         isValid: false,
       };
     }
 
     return {
-      id: idNum,
+      data: id,
       isValid: true,
     };
   }

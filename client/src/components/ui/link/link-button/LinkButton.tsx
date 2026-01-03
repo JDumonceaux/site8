@@ -6,10 +6,10 @@ import StyledLink from '../styled-link/StyledLink';
 export type LinkButtonProps = {
   /** Button label */
   readonly children: ReactNode;
-  /** Destination URL */
-  readonly to: To;
   /** Ref to the anchor element */
   readonly ref?: Ref<HTMLAnchorElement>;
+  /** Destination URL */
+  readonly to: To;
 } & Omit<BaseLinkProps, 'children' | 'to'>;
 
 /**

@@ -133,11 +133,11 @@ const usePagesEdit = () => {
     // Optimistically mark as saved
     setOptimisticSaved(true);
     const result = await patchData(ServiceUrl.ENDPOINT_MENUS, updates);
-    if (!result) {
+    if (result) {
+      setIsSaved(true);
+    } else {
       // Revert optimistic state on error
       setIsSaved(false);
-    } else {
-      setIsSaved(true);
     }
     return result;
   };

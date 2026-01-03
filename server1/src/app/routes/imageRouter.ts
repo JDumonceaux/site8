@@ -3,9 +3,9 @@ import express from 'express';
 import { deleteItem } from '../../features/image/deleteItem.js';
 import { getItem } from '../../features/image/getItem.js';
 import { patchItem } from '../../features/image/patchItem.js';
-import { asyncHandler } from '../../utils/routerUtils.js';
-import { requireNumericId } from '../../middleware/requireNumericId.js';
 import { postItem } from '../../features/image/postItem.js';
+import { requireNumericId } from '../../middleware/requireNumericId.js';
+import { asyncHandler } from '../../utils/routerUtils.js';
 
 const VALIDATION_MIDDLEWARE = [requireNumericId];
 

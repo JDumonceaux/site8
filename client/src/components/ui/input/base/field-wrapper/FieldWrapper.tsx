@@ -1,4 +1,4 @@
-import { memo, type HTMLAttributes, type JSX, type ReactNode } from 'react';
+import { type HTMLAttributes, type JSX, memo, type ReactNode } from 'react';
 
 import EndAdornment, {
   type EndAdornmentProps,

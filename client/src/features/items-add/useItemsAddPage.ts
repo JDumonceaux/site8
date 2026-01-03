@@ -37,8 +37,8 @@ type UseItemsAddPageReturn = {
   readonly handleFilterChange: (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => void;
-  readonly isPending: boolean;
   readonly isLoading: boolean;
+  readonly isPending: boolean;
   readonly isSaving: boolean;
   readonly setFieldValue: (
     lineId: number,
@@ -245,9 +245,9 @@ const useItemsAddPage = (): UseItemsAddPageReturn => {
     handleChange,
     handleClear,
     handleFilterChange,
+    isLoading,
     isPending,
     isSaving: optimisticSaving,
-    isLoading,
     setFieldValue,
   };
 };

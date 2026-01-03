@@ -16,7 +16,7 @@ const isClientError = (
   errorValue: unknown,
 ): errorValue is { status: number } => {
   if (typeof errorValue !== 'object' || errorValue === null) return false;
-  const maybeStatus = (errorValue as Record<string, unknown>).status;
+  const maybeStatus = (errorValue as Record<string, unknown>)['status'];
   return typeof maybeStatus === 'number';
 };
 
@@ -31,13 +31,13 @@ const AppProvider = ({ children }: AppProviderProps) => {
       new QueryClient({
         defaultOptions: {
           mutations: {
-            // Retry mutations once on network errors
-            retry: 1,
             // Optimistic updates network mode
             networkMode: 'online',
             onError: (error) => {
               logError(error, { context: 'mutation' });
             },
+            // Retry mutations once on network errors
+            retry: 1,
           },
           queries: {
             // Cache time: how long inactive data stays in cache (10 minutes)
@@ -61,7 +61,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
             },
             // Longer retry delay for better UX
             retryDelay: (attemptIndex) =>
-              Math.min(1000 * 2 ** attemptIndex, 30000),
+              Math.min(1000 * 2 ** attemptIndex, 30_000),
             // Stale time: how long data stays fresh (5 minutes)
             staleTime: 5 * 60 * 1000,
           },

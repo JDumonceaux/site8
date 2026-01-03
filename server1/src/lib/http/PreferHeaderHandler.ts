@@ -8,6 +8,15 @@ import { PREFER_HEADER } from '../../utils/constants.js';
  */
 export class PreferHeaderHandler {
   /**
+   * Gets the Prefer header value from the request
+   * @param req - Express request object
+   * @returns Prefer header value or undefined
+   */
+  public static getPreferHeader(req: Request): string | undefined {
+    return req.get('Prefer');
+  }
+
+  /**
    * Checks if the Prefer header requests full representation in response
    * @param req - Express request object
    * @returns True if client prefers full representation (return=representation)
@@ -15,14 +24,5 @@ export class PreferHeaderHandler {
   public static wantsRepresentation(req: Request): boolean {
     const prefer = req.get('Prefer');
     return prefer === PREFER_HEADER.REPRESENTATION;
-  }
-
-  /**
-   * Gets the Prefer header value from the request
-   * @param req - Express request object
-   * @returns Prefer header value or undefined
-   */
-  public static getPreferHeader(req: Request): string | undefined {
-    return req.get('Prefer');
   }
 }

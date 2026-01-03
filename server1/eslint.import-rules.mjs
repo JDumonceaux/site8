@@ -32,13 +32,13 @@ export default {
     'import/no-anonymous-default-export': [
         'warn',
         {
-            allowArray: false,
-            allowArrowFunction: false,
             allowAnonymousClass: false,
             allowAnonymousFunction: false,
+            allowArray: false,
+            allowArrowFunction: false,
             allowCallExpression: true,
-            allowNew: false,
             allowLiteral: false,
+            allowNew: false,
             allowObject: false,
         },
     ],

@@ -1,15 +1,15 @@
 import { type JSX, useActionState } from 'react';
 
-import SubmitButton from '@components/ui/button/SubmitButton';
 import Meta from '@components/core/meta/Meta';
+import SubmitButton from '@components/ui/button/SubmitButton';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import { deleteCode } from '@types';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
-import { StyledBottomMsg, StyledForm } from './AuthFormStyles';
 import { createFormAction } from './authFormHelpers';
+import { StyledBottomMsg, StyledForm } from './AuthFormStyles';
 import FormMessage from './FormMessage';
 
 const schema = z.object({
@@ -43,10 +43,10 @@ const DeleteAccountPage = (): JSX.Element => {
         title="Delete Account"
       >
         <StyledForm
-          noValidate
           action={formAction}
+          noValidate
         >
-          {state.message && <FormMessage message={state.message} />}
+          {state.message ? <FormMessage message={state.message} /> : null}
           <div>
             Are you sure you want to delete your account? You will lose access
             and all data.
@@ -56,12 +56,12 @@ const DeleteAccountPage = (): JSX.Element => {
             {...(state.errors?.deleteCode && {
               errors: [{ message: state.errors.deleteCode }],
             })}
-            label="Please enter 'delete' to confirm"
-            spellCheck="false"
             autoComplete="off"
             inputMode="text"
+            label="Please enter 'delete' to confirm"
             name="deleteCode"
             placeholder="delete"
+            spellCheck="false"
           />
           <SubmitButton id="login">Delete Account</SubmitButton>
         </StyledForm>

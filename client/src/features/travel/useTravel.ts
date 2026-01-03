@@ -1,5 +1,5 @@
-import { ServiceUrl } from '@lib/utils/constants';
 import { createQueryHook } from '@hooks/createQueryHook';
+import { ServiceUrl } from '@lib/utils/constants';
 import type { Places } from '@types';
 
 // Create the travel query hook using the factory

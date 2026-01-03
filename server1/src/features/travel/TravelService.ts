@@ -1,10 +1,9 @@
-import type { Place } from '@site8/shared';
-import type { Places } from '@site8/shared';
+import type { Place , Places } from '@site8/shared';
 
+import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
-import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class TravelService extends BaseDataService<Places> {
   public constructor() {

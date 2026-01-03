@@ -1,14 +1,14 @@
 import type { JSX } from 'react';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import PageTitle from '@components/core/page/PageTitle';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import Items from './Items';
 import useImages from './useImages';
+import styled from 'styled-components';
 
 const ImagesPage = (): JSX.Element => {
   const { folder, tag } = useParams<{
@@ -20,14 +20,14 @@ const ImagesPage = (): JSX.Element => {
 
   if (isError && error) {
     logError(error, {
-      componentName: 'ImagesPage',
       action: 'loadImages',
+      componentName: 'ImagesPage',
     });
   }
 
   // Filter data based on URL parameters
   const filteredData = useMemo(() => {
-    if (!data || !data.items) return data;
+    if (!data?.items) return data;
 
     let filtered = data.items;
 
@@ -39,7 +39,7 @@ const ImagesPage = (): JSX.Element => {
     // Filter by tag
     if (tag) {
       filtered = filtered.filter(
-        (image) => image.tags && image.tags.includes(tag),
+        (image) => image.tags?.includes(tag),
       );
     }
 
@@ -61,8 +61,8 @@ const ImagesPage = (): JSX.Element => {
     <>
       <title>{pageTitle}</title>
       <meta
-        name="description"
         content="Browse our image gallery collection."
+        name="description"
       />
       <StyledPageLayout>
         <Layout.Main>

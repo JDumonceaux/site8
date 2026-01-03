@@ -2,7 +2,6 @@ import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 
 import type { QueryClient } from '@tanstack/react-query';
-
 import { pageLoader } from '../../features/page-edit/pagePrefetch';
 import ProtectedRoute from '../providers/ProtectedRoute';
 
@@ -55,8 +54,8 @@ export const adminRoutes = (queryClient: QueryClient) => (
       />
       <Route
         element={<PageEditPage />}
-        path="page/edit/:id"
         loader={pageLoader(queryClient)}
+        path="page/edit/:id"
       />
       <Route
         element={<ImageEditPage />}

@@ -1,4 +1,4 @@
-import { memo, type JSX, type LabelHTMLAttributes, type Ref } from 'react';
+import { type JSX, type LabelHTMLAttributes, memo, type Ref } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
@@ -44,8 +44,8 @@ const LabelRow = memo(
   }: LabelRowProps): JSX.Element => {
     return (
       <Label.Root
-        ref={ref}
         htmlFor={id}
+        ref={ref}
         {...rest}
       >
         <Row>

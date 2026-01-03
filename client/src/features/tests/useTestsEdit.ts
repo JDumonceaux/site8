@@ -1,8 +1,7 @@
 import { useActionState, useOptimistic } from 'react';
 
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Test } from '@types';
-import type { Tests } from '@types';
+import type { Test , Tests } from '@types';
 import { z } from 'zod';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';

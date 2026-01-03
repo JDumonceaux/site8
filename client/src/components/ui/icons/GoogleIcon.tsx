@@ -7,11 +7,11 @@ export const GoogleIcon = ({
   return (
     <svg
       aria-hidden={isAriaHidden}
+      focusable={isFocusable}
       height="20"
+      viewBox="0 0 46 46"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
-      focusable={isFocusable}
-      viewBox="0 0 46 46"
     >
       <path
         d="M23 8.9a12.75 12.75 0 0 1 8.9 3.4L38.37 6A22.1 22.1 0 0 0 23 0 23 23 0 0 0 2.45 12.68l7.44 5.78A13.9 13.9 0 0 1 23 8.9z"

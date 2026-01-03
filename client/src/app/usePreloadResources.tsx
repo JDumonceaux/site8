@@ -18,7 +18,7 @@ export const usePreloadResources = () => {
 
     // API server (if different from app origin)
     const apiUrl = import.meta.env['VITE_API_URL'];
-    if (apiUrl && !apiUrl.startsWith(window.location.origin)) {
+    if (apiUrl && !apiUrl.startsWith(globalThis.location.origin)) {
       preconnect(apiUrl);
     }
 

@@ -1,15 +1,15 @@
 import type { JSX } from 'react';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import PageTitle from '@components/core/page/PageTitle';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import Items from './Items';
 import TravelMenu from './TravelMenu';
 import useTravel from './useTravel';
+import styled from 'styled-components';
 
 /**
  * Slugify helper to match URL parameters to place data
@@ -18,15 +18,15 @@ const slugify = (text: string): string => {
   return text
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+    .replaceAll(/[^\s\w-]/g, '')
+    .replaceAll(/\s+/g, '-')
+    .replaceAll(/-+/g, '-');
 };
 
 const TravelPage = (): JSX.Element => {
-  const { country, city, item } = useParams<{
-    country?: string;
+  const { city, country, item } = useParams<{
     city?: string;
+    country?: string;
     item?: string;
   }>();
 
@@ -34,8 +34,8 @@ const TravelPage = (): JSX.Element => {
 
   if (isError && error) {
     logError(error, {
-      componentName: 'TravelPage',
       action: 'loadDestinations',
+      componentName: 'TravelPage',
     });
   }
 
@@ -83,8 +83,8 @@ const TravelPage = (): JSX.Element => {
     <>
       <title>{pageTitle}</title>
       <meta
-        name="description"
         content="Explore amazing destinations around the world."
+        name="description"
       />
       <StyledPageLayout>
         <StyledSidebar>

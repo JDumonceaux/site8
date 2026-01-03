@@ -4,8 +4,8 @@ import { deleteItem } from '../../features/page/deleteItem.js';
 import { getItem } from '../../features/page/getItem.js';
 import { patchItem } from '../../features/page/patchItem.js';
 import { putItem } from '../../features/page/putItem.js';
-import { asyncHandler } from '../../utils/routerUtils.js';
 import { requireId } from '../../middleware/requireId.js';
+import { asyncHandler } from '../../utils/routerUtils.js';
 
 const VALIDATION_MIDDLEWARE = [requireId];
 

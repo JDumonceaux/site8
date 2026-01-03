@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+
 import styled, { keyframes } from 'styled-components';
 
 /**

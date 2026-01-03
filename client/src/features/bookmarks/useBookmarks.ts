@@ -1,7 +1,7 @@
 import { QueryTime, QueryTimeComputed, ServiceUrl } from '@lib/utils/constants';
 import { logError } from '@lib/utils/errorHandler';
-import { useQuery } from '@tanstack/react-query';
 import type { Bookmarks } from '@site8/shared';
+import { useQuery } from '@tanstack/react-query';
 
 const fetchData = async (): Promise<Bookmarks> => {
   try {

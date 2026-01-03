@@ -1,8 +1,8 @@
 import type { Photos } from '@site8/shared';
 
+import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import FilePath from '../../lib/filesystem/FilePath.js';
 
 export class PhotosService extends BaseDataService<Photos> {
   public constructor() {

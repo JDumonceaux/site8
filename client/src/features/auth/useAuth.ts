@@ -4,7 +4,7 @@ import { useSession } from './useSession';
 import { useSignIn } from './useSignIn';
 import { useSignUp } from './useSignUp';
 
-export { SocialProvider, type SocialProvider } from './types';
+export type { SocialProvider } from './types';
 
 /**
  * Main authentication hook - composes smaller focused hooks
@@ -41,7 +41,36 @@ const useAuth = () => {
   return {
     // State
     accessToken: authState.accessToken,
+    // Sign-in operations
+    authAutoSignIn: signInOps.authAutoSignIn,
+    // Password management
+    authConfirmResetPassword: passwordOps.authConfirmResetPassword,
+    // Sign-up operations
+    authConfirmSignUp: async (eMailAddress: string, code: string) =>
+      signUpOps.authConfirmSignUp(eMailAddress, code, signInOps.authAutoSignIn),
+    // Session and user management
+    authDeleteUser: sessionOps.authDeleteUser,
+    authFetchAuthSession: sessionOps.authFetchAuthSession,
+    authFetchDevices: sessionOps.authFetchDevices,
+    authFetchUserAttributes: sessionOps.authFetchUserAttributes,
+    authForgetDevice: sessionOps.authForgetDevice,
+    authGetCurrentUser: sessionOps.authGetCurrentUser,
+
     authorized,
+    authRefreshAuthSession: sessionOps.authRefreshAuthSession,
+    authRememberDevice: sessionOps.authRememberDevice,
+    authResendConfirmationCode: signUpOps.authResendConfirmationCode,
+
+    authResetPassword: passwordOps.authResetPassword,
+    authSignIn: signInOps.authSignIn,
+    authSignInWithRedirect: signInOps.authSignInWithRedirect,
+
+    authSignOut: signInOps.authSignOut,
+    authSignUp: async (eMailAddress: string, password: string) =>
+      signUpOps.authSignUp(eMailAddress, password, signInOps.authAutoSignIn),
+    authUpdatePassword: passwordOps.authUpdatePassword,
+
+    currentAuthenticatedUser: sessionOps.currentAuthenticatedUser,
     email: authState.email,
     error: authState.error,
     idToken: authState.idToken,
@@ -50,35 +79,6 @@ const useAuth = () => {
     signInDetails: authState.signInDetails,
     userId: authState.userId,
     username: authState.username,
-
-    // Sign-in operations
-    authAutoSignIn: signInOps.authAutoSignIn,
-    authSignIn: signInOps.authSignIn,
-    authSignInWithRedirect: signInOps.authSignInWithRedirect,
-    authSignOut: signInOps.authSignOut,
-
-    // Sign-up operations
-    authConfirmSignUp: (eMailAddress: string, code: string) =>
-      signUpOps.authConfirmSignUp(eMailAddress, code, signInOps.authAutoSignIn),
-    authResendConfirmationCode: signUpOps.authResendConfirmationCode,
-    authSignUp: (eMailAddress: string, password: string) =>
-      signUpOps.authSignUp(eMailAddress, password, signInOps.authAutoSignIn),
-
-    // Password management
-    authConfirmResetPassword: passwordOps.authConfirmResetPassword,
-    authResetPassword: passwordOps.authResetPassword,
-    authUpdatePassword: passwordOps.authUpdatePassword,
-
-    // Session and user management
-    authDeleteUser: sessionOps.authDeleteUser,
-    authFetchAuthSession: sessionOps.authFetchAuthSession,
-    authFetchDevices: sessionOps.authFetchDevices,
-    authFetchUserAttributes: sessionOps.authFetchUserAttributes,
-    authForgetDevice: sessionOps.authForgetDevice,
-    authGetCurrentUser: sessionOps.authGetCurrentUser,
-    authRefreshAuthSession: sessionOps.authRefreshAuthSession,
-    authRememberDevice: sessionOps.authRememberDevice,
-    currentAuthenticatedUser: sessionOps.currentAuthenticatedUser,
   };
 };
 

@@ -7,10 +7,9 @@ import {
   signInWithRedirect,
   signOut,
 } from 'aws-amplify/auth';
-
+import type { SocialProvider } from './types';
 import { useAuthAsync } from './useAuthAsync';
 import type { AuthState } from './useAuthState';
-import type { SocialProvider } from './types';
 
 /**
  * Hook for sign-in operations

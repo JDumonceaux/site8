@@ -7,17 +7,17 @@ export const NoteIcon = ({
   return (
     <svg
       aria-hidden={isAriaHidden}
+      enableBackground="new 0 0 24 24"
+      focusable={isFocusable}
       height="24px"
       id="Layer_1"
+      version="1.1"
+      viewBox="0 0 24 24"
       width="24px"
       x="0px"
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
       y="0px"
-      enableBackground="new 0 0 24 24"
-      focusable={isFocusable}
-      version="1.1"
-      viewBox="0 0 24 24"
     >
       <g>
         <path

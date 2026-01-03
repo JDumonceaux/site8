@@ -1,10 +1,6 @@
-import type { MenuItem } from '@site8/shared';
-import type { Menus } from '@site8/shared';
-import type { PageMenu } from '@site8/shared';
-import type { Pages } from '@site8/shared';
-import type { Parent } from '@site8/shared';
-
 import type { IDataService } from '../../services/IDataService.js';
+import type { MenuItem , Menus , PageMenu , Pages , Parent } from '@site8/shared';
+
 import { Logger } from '../../utils/logger.js';
 
 import { mapPageMenuToMenuItem } from './mapPageMenuToMenuItem.js';
@@ -165,11 +161,6 @@ export class MenuService {
     }
   }
 
-  // 0. Get all data
-  private async getItems(): Promise<Pages | undefined> {
-    return this.pagesService.getItems();
-  }
-
   // Helper method to construct URL
   private constructUrl(
     item: PageMenu,
@@ -181,5 +172,10 @@ export class MenuService {
       return `/${parentItem.title.toLowerCase().replace(/\s+/g, '-')}/${item.title.toLowerCase().replace(/\s+/g, '-')}`;
     }
     return item.url;
+  }
+
+  // 0. Get all data
+  private async getItems(): Promise<Pages | undefined> {
+    return this.pagesService.getItems();
   }
 }

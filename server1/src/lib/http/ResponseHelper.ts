@@ -8,25 +8,32 @@ import { Logger } from '../../utils/logger.js';
  */
 export class ResponseHelper {
   /**
-   * Sends a 200 OK response with data
+   * Sends a 400 Bad Request response
    * @param res - Express response object
-   * @param data - Data to send
+   * @param errorMessage - Error message
    * @param handlerName - Name of the handler for logging
-   * @param itemCount - Optional item count for logging
    */
-  public static ok<T>(
-    res: Response<T>,
-    data: T,
-    handlerName: string,
-    itemCount?: number,
+  public static badRequest(
+    res: Response<{ error: string }>,
+    errorMessage: string,
+    handlerName?: string,
   ): void {
-    if (itemCount !== undefined) {
-      Logger.info(`${handlerName}: Successfully retrieved ${itemCount} items`);
-    } else {
-      Logger.info(`${handlerName}: Successfully retrieved data`);
+    if (handlerName) {
+      Logger.warn(`${handlerName}: ${errorMessage}`);
     }
+    res.status(400).json({ error: errorMessage });
+  }
 
-    res.status(200).json(data);
+  /**
+   * Sends a 409 Conflict response
+   * @param res - Express response object
+   * @param errorMessage - Error message
+   */
+  public static conflict(
+    res: Response<{ error: string }>,
+    errorMessage: string,
+  ): void {
+    res.status(409).json({ error: errorMessage });
   }
 
   /**
@@ -49,77 +56,6 @@ export class ResponseHelper {
     } else {
       res.status(201).send();
     }
-  }
-
-  /**
-   * Sends a 204 No Content response
-   * @param res - Express response object
-   * @param handlerName - Name of the handler for logging
-   * @param reason - Optional reason for 204 (e.g., "No items found")
-   */
-  public static noContent(
-    res: Response,
-    handlerName: string,
-    reason?: string,
-  ): void {
-    if (reason) {
-      Logger.info(`${handlerName}: ${reason}`);
-    }
-    res.sendStatus(204);
-  }
-
-  /**
-   * Sends a 400 Bad Request response
-   * @param res - Express response object
-   * @param errorMessage - Error message
-   * @param handlerName - Name of the handler for logging
-   */
-  public static badRequest(
-    res: Response<{ error: string }>,
-    errorMessage: string,
-    handlerName?: string,
-  ): void {
-    if (handlerName) {
-      Logger.warn(`${handlerName}: ${errorMessage}`);
-    }
-    res.status(400).json({ error: errorMessage });
-  }
-
-  /**
-   * Sends a 404 Not Found response
-   * @param res - Express response object
-   * @param errorMessage - Error message
-   */
-  public static notFound(
-    res: Response<{ error: string }>,
-    errorMessage = 'Item not found',
-  ): void {
-    res.status(404).json({ error: errorMessage });
-  }
-
-  /**
-   * Sends a 501 Not Implemented response
-   * @param res - Express response object
-   * @param errorMessage - Error message describing what is not implemented
-   */
-  public static notImplemented(
-    res: Response<{ error: string }>,
-    errorMessage = 'Not implemented',
-  ): void {
-    Logger.warn(`Not Implemented: ${errorMessage}`);
-    res.status(501).json({ error: errorMessage });
-  }
-
-  /**
-   * Sends a 409 Conflict response
-   * @param res - Express response object
-   * @param errorMessage - Error message
-   */
-  public static conflict(
-    res: Response<{ error: string }>,
-    errorMessage: string,
-  ): void {
-    res.status(409).json({ error: errorMessage });
   }
 
   /**
@@ -150,6 +86,19 @@ export class ResponseHelper {
   }
 
   /**
+   * Checks if service error indicates a duplicate/conflict error
+   * @param error - Error to check
+   * @returns True if error is a duplicate/conflict error
+   */
+  public static isConflictError(error: unknown): boolean {
+    return (
+      error instanceof Error &&
+      (error.message.includes('duplicate') ||
+        error.message.includes('already exists'))
+    );
+  }
+
+  /**
    * Checks if service error indicates a "not found" condition
    * @param error - Error to check
    * @returns True if error is a "not found" error
@@ -168,15 +117,66 @@ export class ResponseHelper {
   }
 
   /**
-   * Checks if service error indicates a duplicate/conflict error
-   * @param error - Error to check
-   * @returns True if error is a duplicate/conflict error
+   * Sends a 204 No Content response
+   * @param res - Express response object
+   * @param handlerName - Name of the handler for logging
+   * @param reason - Optional reason for 204 (e.g., "No items found")
    */
-  public static isConflictError(error: unknown): boolean {
-    return (
-      error instanceof Error &&
-      (error.message.includes('duplicate') ||
-        error.message.includes('already exists'))
-    );
+  public static noContent(
+    res: Response,
+    handlerName: string,
+    reason?: string,
+  ): void {
+    if (reason) {
+      Logger.info(`${handlerName}: ${reason}`);
+    }
+    res.sendStatus(204);
+  }
+
+  /**
+   * Sends a 404 Not Found response
+   * @param res - Express response object
+   * @param errorMessage - Error message
+   */
+  public static notFound(
+    res: Response<{ error: string }>,
+    errorMessage = 'Item not found',
+  ): void {
+    res.status(404).json({ error: errorMessage });
+  }
+
+  /**
+   * Sends a 501 Not Implemented response
+   * @param res - Express response object
+   * @param errorMessage - Error message describing what is not implemented
+   */
+  public static notImplemented(
+    res: Response<{ error: string }>,
+    errorMessage = 'Not implemented',
+  ): void {
+    Logger.warn(`Not Implemented: ${errorMessage}`);
+    res.status(501).json({ error: errorMessage });
+  }
+
+  /**
+   * Sends a 200 OK response with data
+   * @param res - Express response object
+   * @param data - Data to send
+   * @param handlerName - Name of the handler for logging
+   * @param itemCount - Optional item count for logging
+   */
+  public static ok<T>(
+    res: Response<T>,
+    data: T,
+    handlerName: string,
+    itemCount?: number,
+  ): void {
+    if (itemCount !== undefined) {
+      Logger.info(`${handlerName}: Successfully retrieved ${itemCount} items`);
+    } else {
+      Logger.info(`${handlerName}: Successfully retrieved data`);
+    }
+
+    res.status(200).json(data);
   }
 }

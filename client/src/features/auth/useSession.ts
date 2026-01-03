@@ -8,7 +8,6 @@ import {
   getCurrentUser,
   rememberDevice,
 } from 'aws-amplify/auth';
-
 import { useAuthAsync } from './useAuthAsync';
 import type { AuthState } from './useAuthState';
 
@@ -92,7 +91,7 @@ export const useSession = (authState: AuthState) => {
    */
   const authFetchDevices = async (): Promise<unknown> => {
     const result = await executeAuthOperation(async () => {
-      return await fetchDevices();
+      return fetchDevices();
     });
     return result ?? null;
   };

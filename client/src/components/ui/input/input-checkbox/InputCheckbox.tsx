@@ -50,8 +50,8 @@ const InputCheckbox = ({
         <input
           id={id}
           name={fieldName}
-          type={type}
           onChange={handleChange}
+          type={type}
           {...rest}
         />
         {label}

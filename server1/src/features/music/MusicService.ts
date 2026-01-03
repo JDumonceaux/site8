@@ -1,7 +1,7 @@
 import type { MusicItems } from '@site8/shared';
 
-import { BaseDataService } from '../../services/BaseDataService.js';
 import FilePath from '../../lib/filesystem/FilePath.js';
+import { BaseDataService } from '../../services/BaseDataService.js';
 
 /**
  * Service for managing music items.

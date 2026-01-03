@@ -1,5 +1,5 @@
-import type { PageMenu } from '@site8/shared';
 import type { PageText } from '../../types/PageText.js';
+import type { PageMenu } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 import {

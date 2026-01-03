@@ -1,4 +1,4 @@
-import { type JSX } from 'react';
+import type { JSX } from 'react';
 
 import AppInitializer from '@features/app/app-initializer/AppInitializer';
 import BaseLayout from '@features/layouts/base-layout/BaseLayout';

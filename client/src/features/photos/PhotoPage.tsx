@@ -1,8 +1,8 @@
 import { type JSX, useDeferredValue } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import { sanitizeUrl } from '@lib/utils/helpers';
 import usePhotos from './usePhotos';
@@ -32,14 +32,14 @@ const PhotoPage = (): JSX.Element | null => {
                 return (
                   <li key={id}>
                     <a
-                      href={safeUrl}
                       data-caption={description}
                       data-fancybox
+                      href={safeUrl}
                     >
                       <img
                         alt={description}
-                        src={safeUrl}
                         loading="lazy"
+                        src={safeUrl}
                       />
                     </a>
                   </li>

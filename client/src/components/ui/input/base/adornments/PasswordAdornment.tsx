@@ -19,8 +19,8 @@ const PasswordAdornment = ({
 
   return (
     <Icon
-      ref={ref}
       data-testid="password-icon"
+      ref={ref}
       {...filteredProps}
     />
   );

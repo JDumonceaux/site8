@@ -1,8 +1,8 @@
 import type { Request, Response } from 'express';
 
-import { Logger } from '../../utils/logger.js';
 import { RequestValidator } from '../../lib/http/RequestValidator.js';
 import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { Logger } from '../../utils/logger.js';
 import {
   getPageFileService,
   getPageService,
@@ -34,8 +34,8 @@ export const deleteItem = async (
 
   // Delete from both services (metadata and text file)
   await Promise.all([
-    Promise.try(() => service.deleteItem(idNum)),
-    Promise.try(() => fileService.deleteFile(idNum)),
+    Promise.try(async () => service.deleteItem(idNum)),
+    Promise.try(async () => fileService.deleteFile(idNum)),
   ]);
 
   ResponseHelper.noContent(res, 'Page');

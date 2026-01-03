@@ -1,7 +1,6 @@
-import { memo, type JSX } from 'react';
+import { type JSX, memo } from 'react';
 
 import type { Places } from '@site8/shared';
-import Skeleton from './Skeleton';
 import styled from 'styled-components';
 
 type ItemsProps = {
@@ -65,8 +64,8 @@ const Items = memo(({ data, id }: ItemsProps): JSX.Element | null => {
               <StyledImagesContainer>
                 {item.images.map((image) => (
                   <StyledImage
-                    key={image.id}
                     alt={image.description ?? image.name ?? item.name}
+                    key={image.id}
                     src={`/images/${image.folder ?? ''}/${image.fileName ?? ''}`}
                     title={image.name ?? image.description ?? ''}
                   />

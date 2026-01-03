@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import BookmarkList from './BookmarkList';
@@ -13,7 +13,7 @@ const BookmarkPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useBookmarks();
 
   if (isError && error) {
-    logError(error, { componentName: 'BookmarkPage', action: 'loadBookmarks' });
+    logError(error, { action: 'loadBookmarks', componentName: 'BookmarkPage' });
   }
 
   return (

@@ -14,16 +14,16 @@ const FolderButton = memo(
     isActive ? (
       <StyledActiveButton
         data-id={item.key}
-        type="button"
         onClick={handleClick}
+        type="button"
       >
         {item.value}
       </StyledActiveButton>
     ) : (
       <StyledButton
         data-id={item.key}
-        type="button"
         onClick={handleClick}
+        type="button"
       >
         {item.value}
       </StyledButton>

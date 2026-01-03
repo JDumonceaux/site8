@@ -1,8 +1,8 @@
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
-import type { FormErrors, FormState } from '@types';
-import { PageEditSchema, type PageEdit } from '@types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { FormErrors, FormState , type PageEdit, PageEditSchema } from '@types';
+
 
 const usePagePatch = () => {
   const queryClient = useQueryClient();

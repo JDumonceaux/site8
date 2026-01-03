@@ -15,11 +15,11 @@ const resources = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+ 
 i18n
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+   
   .use(initReactI18next) // passes i18n down to react-i18next
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+   
   .init({
     interpolation: {
       escapeValue: false, // react already safes from xss

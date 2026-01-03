@@ -10,11 +10,11 @@ import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/zodHelper';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { type ImageEdit, ImageEditSchema } from '@site8/shared';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useImage from './useImage';
 
 type FormKeys = keyof ImageEdit;
-import useImage from './useImage';
 
 type ActionState = {
   message?: string;
@@ -43,12 +43,12 @@ type UseImageEditReturn = {
 
 // Consistent default form shape
 const defaultForm: ImageEdit = {
-  id: 0,
-  name: '',
+  description: '',
+  ext_url: '',
   fileName: '',
   folder: '',
-  ext_url: '',
-  description: '',
+  id: 0,
+  name: '',
 };
 
 // Helper to map imageData to form structure
@@ -64,17 +64,17 @@ const mapToFormData = (data: unknown): ImageEdit => {
 
   return {
     ...defaultForm,
-    id: typeof data.id === 'number' ? data.id : defaultForm.id,
-    name: typeof data.name === 'string' ? data.name : defaultForm.name,
-    fileName:
-      typeof data.fileName === 'string' ? data.fileName : defaultForm.fileName,
-    folder: typeof data.folder === 'string' ? data.folder : defaultForm.folder,
-    ext_url:
-      typeof data.ext_url === 'string' ? data.ext_url : defaultForm.ext_url,
     description:
       typeof data.description === 'string'
         ? data.description
         : defaultForm.description,
+    ext_url:
+      typeof data.ext_url === 'string' ? data.ext_url : defaultForm.ext_url,
+    fileName:
+      typeof data.fileName === 'string' ? data.fileName : defaultForm.fileName,
+    folder: typeof data.folder === 'string' ? data.folder : defaultForm.folder,
+    id: typeof data.id === 'number' ? data.id : defaultForm.id,
+    name: typeof data.name === 'string' ? data.name : defaultForm.name,
   };
 };
 
@@ -151,12 +151,12 @@ export const useImageEdit = (
 
       // Build payload from formValues
       const payload: ImageEdit = {
-        id: formValues.id,
-        name: formValues.name,
+        description: formValues.description,
+        ext_url: formValues.ext_url,
         fileName: formValues.fileName,
         folder: formValues.folder,
-        ext_url: formValues.ext_url,
-        description: formValues.description,
+        id: formValues.id,
+        name: formValues.name,
       };
 
       // Optimistically show as saved

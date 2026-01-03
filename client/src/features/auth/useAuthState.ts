@@ -29,7 +29,7 @@ export const useAuthState = () => {
     }
   };
 
-  const clearError = () => setError(null);
+  const clearError = () => { setError(null); };
 
   return {
     accessToken,

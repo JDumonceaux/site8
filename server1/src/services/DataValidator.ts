@@ -43,24 +43,6 @@ export class DataValidator<T> {
   }
 
   /**
-   * Applies default metadata to data object if configured
-   * @param data - Data object to apply metadata to
-   * @returns Data with metadata applied
-   */
-  private applyDefaultMetadata(data: T): T {
-    if (!this.defaultMetadata || typeof data !== 'object' || data === null) {
-      return data;
-    }
-
-    const dataObj = data as Record<string, unknown>;
-    if (!dataObj['metadata']) {
-      (data as Record<string, unknown>)['metadata'] = this.defaultMetadata;
-    }
-
-    return data;
-  }
-
-  /**
    * Validates data against the schema (if provided)
    * @param data - Data to validate
    * @returns Validated data with metadata applied
@@ -89,5 +71,23 @@ export class DataValidator<T> {
     }
 
     return this.applyDefaultMetadata(validationResult.data);
+  }
+
+  /**
+   * Applies default metadata to data object if configured
+   * @param data - Data object to apply metadata to
+   * @returns Data with metadata applied
+   */
+  private applyDefaultMetadata(data: T): T {
+    if (!this.defaultMetadata || typeof data !== 'object' || data === null) {
+      return data;
+    }
+
+    const dataObj = data as Record<string, unknown>;
+    if (!dataObj['metadata']) {
+      (data as Record<string, unknown>)['metadata'] = this.defaultMetadata;
+    }
+
+    return data;
   }
 }
