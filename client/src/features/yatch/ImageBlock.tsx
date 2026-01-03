@@ -9,16 +9,16 @@ type ImageBlockProps = {
 };
 
 const ImageBlock = ({ alt, src, title }: ImageBlockProps) => {
-  if (!src) return null;
+  if (src == null || src.trim() === '') return null;
 
   return (
     <Section>
-      {title ? <Title>{title}</Title> : null}
+      {title != null && title !== '' ? <Title>{title}</Title> : null}
       <StyledImg
         alt={alt ?? title ?? ''}
-        src={src}
-        {...(title ? { title } : {})}
         loading="lazy"
+        src={src}
+        title={title != null && title !== '' ? title : undefined}
       />
     </Section>
   );

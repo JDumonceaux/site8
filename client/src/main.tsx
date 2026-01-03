@@ -6,7 +6,7 @@ import { logError } from './lib/utils/errorHandler';
 
 // Grab the root container (must match your index.html)
 const container = document.querySelector('#root');
-if (!container) throw new Error('Root element with id="root" not found');
+if (container == null) throw new Error('Root element with id="root" not found');
 
 // Create a React root with comprehensive error handling (React 19)
 const root = createRoot(container, {

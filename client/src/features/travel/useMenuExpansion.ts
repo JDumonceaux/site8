@@ -29,17 +29,23 @@ const useMenuExpansion = ({
   const [isExpansionPending, startExpansionTransition] = useTransition();
 
   useEffect(() => {
-    if (!rootItems) return;
+    if (rootItems == null) return;
 
     const itemsToExpand = new Set<number>();
     const items = Array.from(rootItems);
 
     // Search for items matching the current URL parameters
-    if (country || city || item) {
+    if (
+      (country != null && country !== '') ||
+      (city != null && city !== '') ||
+      (item != null && item !== '')
+    ) {
       findItemsByUrlPath(
         items,
         itemsToExpand,
-        [country, city, item].filter(Boolean) as string[],
+        [country, city, item].filter(
+          (s): s is string => s != null && s.trim() !== '',
+        ),
       );
     }
 
@@ -47,7 +53,11 @@ const useMenuExpansion = ({
     startExpansionTransition(() => {
       if (itemsToExpand.size > 0) {
         setExpandedItems(itemsToExpand);
-      } else if (!country && !city && !item) {
+      } else if (
+        (country == null || country === '') &&
+        (city == null || city === '') &&
+        (item == null || item === '')
+      ) {
         setExpandedItems(new Set());
       }
     });
@@ -65,12 +75,17 @@ const useMenuExpansion = ({
  * @param pathSegments - URL segments to match (e.g., ['france', 'paris', 'eiffel-tower'])
  * @param currentDepth - Current depth in the menu hierarchy (0 = country, 1 = city, 2 = place)
  */
-const findItemsByUrlPath = (items: MenuItem[], itemsToExpand: Set<number>, pathSegments: string[], currentDepth = 0): void => {
+const findItemsByUrlPath = (
+  items: MenuItem[],
+  itemsToExpand: Set<number>,
+  pathSegments: string[],
+  currentDepth = 0,
+): void => {
   const targetSegment = pathSegments[currentDepth];
-  if (!targetSegment) return;
+  if (targetSegment == null || targetSegment === '') return;
 
   for (const menuItem of items) {
-    if (!menuItem.url) continue;
+    if (menuItem.url == null || menuItem.url.trim() === '') continue;
 
     // Extract the slug at the current depth from the URL
     // URL format: /travel/country/city/place
@@ -83,7 +98,7 @@ const findItemsByUrlPath = (items: MenuItem[], itemsToExpand: Set<number>, pathS
       // If we have more segments to match, search children
       if (
         currentDepth < pathSegments.length - 1 &&
-        menuItem.items &&
+        menuItem.items != null &&
         menuItem.items.length > 0
       ) {
         findItemsByUrlPath(

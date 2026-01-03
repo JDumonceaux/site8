@@ -14,7 +14,8 @@ export const getParamIdAsString = (id?: string): string | undefined => {
  * Splits a URL path by '/' and returns all segments after the leading slash.
  */
 export const getURLPath = (url: string): string[] | undefined => {
-  return url ? url.split('/').slice(1) : undefined;
+  if (url.trim() === '') return undefined;
+  return url.split('/').slice(1);
 };
 
 /**
@@ -25,7 +26,7 @@ export const getURLPath = (url: string): string[] | undefined => {
 export const combineParent = (
   items?: { id?: number; seq?: number }[],
 ): string => {
-  if (!items) return '';
+  if (items == null) return '';
   const values = items.flatMap((item) =>
     [item.id, item.seq].filter((v) => v !== undefined).map(String),
   );
@@ -39,7 +40,7 @@ export const combineParent = (
 export const splitParent = (
   value?: string,
 ): undefined | { id: number; seq: number }[] => {
-  if (!value) return undefined;
+  if (value == null || value.trim() === '') return undefined;
   const parts = value.trim().split(',');
   if (parts.length % 2 !== 0) return undefined;
 
@@ -68,9 +69,12 @@ export const getSRC = (
   folder?: string,
   fileName?: string,
 ): string | undefined => {
-  if (!fileName?.trim()) return undefined;
+  if (fileName == null || fileName.trim() === '') return undefined;
   const trimmedFolder = folder?.trim();
-  const folderPath = trimmedFolder ? `/${trimmedFolder}` : '';
+  const folderPath =
+    trimmedFolder != null && trimmedFolder.length > 0
+      ? `/${trimmedFolder}`
+      : '';
   return `${IMAGE_BASE}${folderPath}/${fileName.trim()}`;
 };
 

@@ -109,7 +109,7 @@ export const trimAttributes = <T extends Record<string, unknown>>(
   const trimmedObj: Record<string, unknown> = { ...obj };
   for (const key of Object.keys(trimmedObj)) {
     if (typeof trimmedObj[key] === 'string') {
-      trimmedObj[key] = (trimmedObj[key]).trim();
+      trimmedObj[key] = trimmedObj[key].trim();
     }
   }
   return trimmedObj as T;
@@ -155,7 +155,7 @@ export const cleanUpData = <T extends IdType>(data: T): T => {
 export const getNextId = (
   items: readonly IdType[] | undefined,
 ): number | undefined => {
-  if (!items || items.length === 0) {
+  if (items == null || items.length === 0) {
     return undefined;
   }
   const sortedArray = [...items].toSorted((a, b) => a.id - b.id);
@@ -177,7 +177,7 @@ export const getNextIdFromPos = (
   items: readonly IdType[] | undefined,
   start: number,
 ): undefined | { index: number; value: number } => {
-  if (!items || items.length === 0) return undefined;
+  if (items == null || items.length === 0) return undefined;
   const sortedArray = [...items].toSorted((a, b) => a.id - b.id);
   const startingItem = sortedArray[start];
   let expectedId = startingItem.id;

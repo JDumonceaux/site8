@@ -199,7 +199,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
     return {
       cacheStatus: this.getCacheStatus(),
       filePath: this.filePath,
-      serviceName: this.errorHandler.serviceName,
+      serviceName: this.errorHandler.getServiceName(),
     };
   }
 

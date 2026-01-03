@@ -19,7 +19,7 @@ const useScroll = ({
   const goBottom = () => {
     const element =
       ref.current instanceof Window ? document.documentElement : ref.current;
-    if (ref.current && element && 'scrollHeight' in element) {
+    if (ref.current != null && element != null && 'scrollHeight' in element) {
       ref.current.scrollTo({
         behavior: smooth ? 'smooth' : 'auto',
         top: element.scrollHeight,
@@ -28,7 +28,7 @@ const useScroll = ({
   };
 
   const handleScroll = useEffectEvent(() => {
-    if (ref.current) {
+    if (ref.current != null) {
       let bottomStatus = false;
       if (ref.current instanceof Window) {
         const currentScrollTop = window.innerHeight + window.scrollY;

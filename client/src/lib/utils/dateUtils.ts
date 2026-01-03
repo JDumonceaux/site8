@@ -10,17 +10,17 @@ export const getDateTime = (
   dateString?: string,
   delimiter = '/',
 ): Date | null => {
-  if (!dateString?.trim()) {
+  if (dateString == null || dateString.trim() === '') {
     console.warn(`getDateTime: empty input`);
     return null;
   }
 
   const raw = dateString.trim();
   const match = parseDateTimeString(raw, delimiter);
-  if (!match) return null;
+  if (match == null) return null;
 
   const parts = extractParts(match);
-  if (!parts) return null;
+  if (parts == null) return null;
 
   parts.hour = adjustHour(parts.hour, parts.meridiem);
   if (!validateParts(parts)) return null;
@@ -39,7 +39,7 @@ const parseDateTimeString = (
   const pattern = String.raw`^(\d{1,2})${escapedDelim}(\d{1,2})${escapedDelim}(\d{4})\s+(\d{1,2}):(\d{2})(?:\s*([AaPp][Mm]))?$`;
   const re = new RegExp(pattern, 'u');
   const m = re.exec(raw);
-  if (!m) {
+  if (m == null) {
     logError(
       new Error(`Format mismatch for "${raw}"`),
       { componentName: 'getDateTime', operation: 'parseRawString' },
@@ -89,7 +89,7 @@ const extractParts = (
 
 /** Adjust 12-hour clock hour based on AM/PM indicator */
 const adjustHour = (hour: number, meridiem?: string): number => {
-  if (!meridiem) return hour;
+  if (meridiem == null || meridiem === '') return hour;
   const ampm = meridiem.toLowerCase();
   if (ampm === 'pm' && hour < 12) return hour + 12;
   if (ampm === 'am' && hour === 12) return 0;

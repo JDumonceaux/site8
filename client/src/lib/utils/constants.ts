@@ -44,7 +44,7 @@ export type {
 /* -------------------------------------------------------------------------- */
 /*                          API and Route Constants                           */
 /* -------------------------------------------------------------------------- */
-const API_ROOT = import.meta.env['VITE_API_URL'] || 'http://localhost:3005/api';
+const API_ROOT: string = (import.meta.env['VITE_API_URL'] as string | undefined) ?? 'http://localhost:3005/api';
 
 export const IMAGE_BASE = '/images';
 

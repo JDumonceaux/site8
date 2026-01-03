@@ -18,19 +18,26 @@ const TestsEditPage = (): JSX.Element | null => {
   const { setShowPages, showPages } = useAppSettings();
 
   const setFormValuesEvent = useEffectEvent(() => {
-    const returnValue = data?.map((item) => ({
-      action: '',
-      id: item.id,
-      level: item.level?.toString(),
-      lineId: item.lineId,
-      name: item.name,
-      parentId: item.parent.id.toString(),
-      parentSeq: item.parent.seq.toString(),
-      projectType: item.projectType?.toString(),
-      text: item.text,
-      type: item.type?.toString(),
-    }));
-    if (returnValue) {
+    const returnValue = data?.map((item) => {
+      const parent = item.parent as { id?: number; seq?: number } | undefined;
+      const parentId = parent?.id != null ? String(parent.id) : '';
+      const parentSeq = parent?.seq != null ? String(parent.seq) : '';
+
+      return {
+        action: '',
+        id: item.id,
+        level: item.level?.toString(),
+        lineId: item.lineId,
+        name: item.name,
+        parentId,
+        parentSeq,
+        projectType: item.projectType?.toString(),
+        text: item.text,
+        type: item.type?.toString(),
+      };
+    });
+
+    if (returnValue != null) {
       setFormValues(returnValue);
     }
   });
@@ -47,7 +54,7 @@ const TestsEditPage = (): JSX.Element | null => {
     void handleSave();
   };
 
-  if (!data) return null;
+  if (data == null) return null;
 
   return (
     <>
@@ -59,7 +66,7 @@ const TestsEditPage = (): JSX.Element | null => {
               isSaved={isSaved}
               onSave={handleSaveClick}
               onShowPagesChange={handleShowPagesChange}
-              showPages={showPages}
+              showPages={showPages ?? false}
             />
           </PageTitle>
           <TestItemsTable

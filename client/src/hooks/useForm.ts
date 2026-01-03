@@ -105,7 +105,7 @@ const useForm = <T>(initialValues: T): UseFormReturn<T> => {
   };
 
   const getFieldErrors = (fieldName: FormKeys<T>): null | string | string[] => {
-    if (!errors) return null;
+    if (errors == null) return null;
     const filteredErrors = errors.filter((issue) =>
       issue.path.includes(fieldName as string),
     );
@@ -126,17 +126,17 @@ const useForm = <T>(initialValues: T): UseFormReturn<T> => {
   });
 
   const hasError = (fieldName: FormKeys<T>): boolean =>
-    !!getFieldErrors(fieldName);
+    getFieldErrors(fieldName) != null;
 
   const isFormValid = (): boolean => {
-    return !errors || errors.length === 0;
+    return errors == null || errors.length === 0;
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { id, value } = e.target;
-    if (!id) {
+    if (id === '') {
       // Skip elements without id attribute
       return;
     }

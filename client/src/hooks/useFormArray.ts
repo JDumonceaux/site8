@@ -74,7 +74,7 @@ const useFormArray = <T extends IdType>(): UseFormArrayReturn<T> => {
 
   const getFieldValue = (lineId: number, fieldName: keyof T): string => {
     const item = formValues.find((x) => x.lineId === lineId);
-    return item ? String(item[fieldName]) : '';
+    return item == null ? '' : String(item[fieldName]);
   };
 
   const setItem = (lineId: number, item: T) => {
@@ -95,7 +95,7 @@ const useFormArray = <T extends IdType>(): UseFormArrayReturn<T> => {
     return index === -1 ? null : formValues[index];
   };
 
-  const getIndex = (): IdType[] => formValues.filter((x) => Boolean(x.lineId));
+  const getIndex = (): IdType[] => formValues;
 
   const clearForm = () => {
     setFormValues([]);

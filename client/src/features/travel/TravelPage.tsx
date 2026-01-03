@@ -32,7 +32,7 @@ const TravelPage = (): JSX.Element => {
 
   const { data, error, isError, isLoading } = useTravel();
 
-  if (isError && error) {
+  if (isError && error != null) {
     logError(error, {
       action: 'loadDestinations',
       componentName: 'TravelPage',
@@ -41,24 +41,24 @@ const TravelPage = (): JSX.Element => {
 
   // Filter data based on URL parameters
   const filteredData = useMemo(() => {
-    if (!data) return data;
+    if (data == null) return data;
 
     let filtered = data.items;
 
     // Filter by country
-    if (country) {
+    if (country != null && country !== '') {
       filtered = filtered.filter(
-        (place) => slugify(place.country || '') === country,
+        (place) => slugify(place.country ?? '') === country,
       );
     }
 
     // Filter by city
-    if (city) {
-      filtered = filtered.filter((place) => slugify(place.city || '') === city);
+    if (city != null && city !== '') {
+      filtered = filtered.filter((place) => slugify(place.city ?? '') === city);
     }
 
     // Filter by specific item
-    if (item) {
+    if (item != null && item !== '') {
       filtered = filtered.filter((place) => slugify(place.name) === item);
     }
 
@@ -67,13 +67,13 @@ const TravelPage = (): JSX.Element => {
 
   // Determine page title based on URL parameters
   const pageTitle = useMemo(() => {
-    if (item && filteredData?.items[0]) {
+    if (item != null && item !== '' && filteredData?.items[0] != null) {
       return filteredData.items[0].name;
     }
-    if (city && filteredData?.items[0]) {
+    if (city != null && city !== '' && filteredData?.items[0] != null) {
       return `${filteredData.items[0].city}, ${filteredData.items[0].country}`;
     }
-    if (country && filteredData?.items[0]) {
+    if (country != null && country !== '' && filteredData?.items[0] != null) {
       return filteredData.items[0].country;
     }
     return 'Travel Destinations';

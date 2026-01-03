@@ -1,0 +1,4 @@
+# Ignore Markdown and config files (linting not useful for these)
+**/*.md
+**/*.mjs
+.github/**

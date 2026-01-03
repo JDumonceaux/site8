@@ -39,22 +39,18 @@ const useTravelMenu = (): UseTravelMenuReturn => {
       if (item.id === id) {
         return item;
       }
-      if (item.items) {
+      if (item.items != null) {
         const found = findMenuItemRecursive(item.items, id);
-        if (found) return found;
+        if (found != null) return found;
       }
     }
     return undefined;
   };
 
-  const findMenuItem = useMemo(
-    () =>
-      (id: number): MenuItem | undefined => {
-        if (!data?.items) return undefined;
-        return findMenuItemRecursive(data.items, id);
-      },
-    [data?.items],
-  );
+  const findMenuItem = (id: number): MenuItem | undefined => {
+    if (data?.items == null) return undefined;
+    return findMenuItemRecursive(data.items, id);
+  };
 
   // Get root level menu items (countries) - memoized to prevent re-renders
   const getRootMenuItems = useMemo(() => data?.items ?? [], [data?.items]);

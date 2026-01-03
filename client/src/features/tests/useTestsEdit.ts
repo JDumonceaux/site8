@@ -1,7 +1,7 @@
 import { useActionState, useOptimistic } from 'react';
 
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Test , Tests } from '@types';
+import type { Test, Tests } from '@types';
 import { z } from 'zod';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
@@ -65,7 +65,7 @@ const useTestsEdit = () => {
 
   // Get the updates
   const getUpdates = (): null | Tests => {
-    if (!data?.items) {
+    if (data?.items == null) {
       return null;
     }
 
@@ -73,7 +73,7 @@ const useTestsEdit = () => {
     for (const item of formValues) {
       // Match on TempId = Id
       const originalItem = data.items.find((x) => x.id === item.id);
-      if (originalItem) {
+      if (originalItem != null) {
         // const x: Test = {
         //   ...originalItem,
         //   newParentId: parseInt(item.parent),
@@ -105,7 +105,7 @@ const useTestsEdit = () => {
   ): Promise<FormState> => {
     try {
       const updates = getUpdates();
-      if (!updates) {
+      if (updates == null) {
         return {
           message: 'No updates to save',
           success: false,
@@ -116,7 +116,7 @@ const useTestsEdit = () => {
       setOptimisticSaved(true);
       const result = await patchData(ServiceUrl.ENDPOINT_TESTS, updates);
 
-      if (!result) {
+      if (result == null) {
         // Revert optimistic state on error
         setIsSaved(false);
         return {
@@ -150,7 +150,7 @@ const useTestsEdit = () => {
   >(submitAction, {});
 
   // Handle save (kept for backward compatibility)
-  const handleSave = async () => {
+  const handleSave = () => {
     // Create a FormData object and invoke formAction
     const formData = new FormData();
     formAction(formData);

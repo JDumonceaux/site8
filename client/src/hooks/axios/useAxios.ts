@@ -26,7 +26,7 @@ export const useAxios = <T>(): UseAxiosReturn<T> => {
       return (await response.json()) as T;
     });
 
-    if (result) {
+    if (result != null) {
       setData(result);
       return result;
     }
@@ -45,7 +45,7 @@ export const useAxios = <T>(): UseAxiosReturn<T> => {
       return (await response.json()) as T;
     });
 
-    if (result) {
+    if (result != null) {
       setData(result);
       return result;
     }

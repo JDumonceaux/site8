@@ -20,7 +20,7 @@ export const env = envSchema.parse({
   BASE_URL: String(import.meta.env.VITE_BASE_URL),
   // BASE_URL is sourced from Vite environment variables defined in a `.env` file or through system environment variables.
   PORT:
-    import.meta.env.VITE_PORT &&
+    import.meta.env.VITE_PORT != null &&
     !Number.isNaN(Number(import.meta.env.VITE_PORT))
       ? Number(import.meta.env.VITE_PORT)
       : 3000,

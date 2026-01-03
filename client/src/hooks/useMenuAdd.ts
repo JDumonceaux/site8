@@ -74,8 +74,8 @@ const useMenuEdit = () => {
   const submitForm = async (): Promise<boolean> => {
     const data = getUpdates();
     const result = await putData(ServiceUrl.ENDPOINT_MENUS, data);
-    setIsSaved(!!result);
-    return !!result;
+    setIsSaved(result != null);
+    return result != null;
   };
 
   // Action function for useActionState
@@ -97,7 +97,7 @@ const useMenuEdit = () => {
       const data = getUpdates();
       const result = await putData(ServiceUrl.ENDPOINT_MENUS, data);
 
-      if (!result) {
+      if (result == null) {
         setIsSaved(false);
         return {
           message: 'Failed to add menu',

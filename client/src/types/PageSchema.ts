@@ -26,6 +26,12 @@ export const PageSchema = z
     type: z.literal('page').optional(),
     url: z.string().optional(),
   })
-  .refine((data) => !!(data.to ?? data.url), {
-    message: 'Either to or url should be filled in.',
-  });
+  .refine(
+    (data) => {
+      const value = data.to ?? data.url;
+      return value != null && value.trim() !== '';
+    },
+    {
+      message: 'Either to or url should be filled in.',
+    },
+  );
