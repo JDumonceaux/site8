@@ -44,7 +44,9 @@ export type {
 /* -------------------------------------------------------------------------- */
 /*                          API and Route Constants                           */
 /* -------------------------------------------------------------------------- */
-const API_ROOT: string = (import.meta.env['VITE_API_URL'] as string | undefined) ?? 'http://localhost:3005/api';
+const API_ROOT: string =
+  (import.meta.env['VITE_API_URL'] as string | undefined) ??
+  'http://localhost:3005/api';
 
 export const IMAGE_BASE = '/images';
 
@@ -73,6 +75,7 @@ export const ServiceUrl = {
   ENDPOINT_PAGE: `${API_ROOT}/page`,
   ENDPOINT_PHOTOS: `${API_ROOT}/photos`,
   ENDPOINT_TESTS: `${API_ROOT}/tests`,
+  ENDPOINT_TESTS_AI: `${API_ROOT}/tests/ai`,
   ENDPOINT_TRAVEL: `${API_ROOT}/travel`,
 } as const satisfies Record<string, string>;
 

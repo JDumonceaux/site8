@@ -1,17 +1,18 @@
+import { useCallback, useEffect } from 'react';
+
+import Button from '@components/ui/button/Button';
 // Snackbar.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import { useEffect } from 'react';
 import Snackbar from './Snackbar';
 import useSnackbar from './useSnackbar';
-import Button from '@components/ui/button/Button';
 import styled from 'styled-components';
 
 const meta: Meta<typeof Snackbar> = {
   component: Snackbar,
-  title: '@features/Snackbar',
   parameters: {
     layout: 'fullscreen',
   },
+  title: '@features/Snackbar',
 };
 
 export default meta;
@@ -39,7 +40,45 @@ const ButtonGroup = styled.div`
 export const Interactive: Story = {
   render: () => {
     const SnackbarDemo = () => {
-      const { setMessage, setErrorMessage } = useSnackbar();
+      const { setErrorMessage, setMessage } = useSnackbar();
+
+      const handleShowInfo = useCallback(() => {
+        setMessage('This is an info message', 3000);
+      }, [setMessage]);
+
+      const handleShowError = useCallback(() => {
+        setErrorMessage('This is an error message', 3000);
+      }, [setErrorMessage]);
+
+      const handleShortMessage = useCallback(() => {
+        setMessage('Short', 3000);
+      }, [setMessage]);
+
+      const handleMediumMessage = useCallback(() => {
+        setMessage(
+          'This is a medium length message that provides more context',
+          3000,
+        );
+      }, [setMessage]);
+
+      const handleLongMessage = useCallback(() => {
+        setMessage(
+          'This is a very long message that demonstrates how the snackbar handles extensive text content and whether it truncates properly with ellipsis or wraps to multiple lines',
+          3000,
+        );
+      }, [setMessage]);
+
+      const handleDuration1s = useCallback(() => {
+        setMessage('Shows for 1 second', 1000);
+      }, [setMessage]);
+
+      const handleDuration3s = useCallback(() => {
+        setMessage('Shows for 3 seconds', 3000);
+      }, [setMessage]);
+
+      const handleDuration10s = useCallback(() => {
+        setMessage('Shows for 10 seconds', 10_000);
+      }, [setMessage]);
 
       return (
         <>
@@ -49,15 +88,13 @@ export const Interactive: Story = {
 
             <ButtonGroup>
               <Button
-                onClick={() => setMessage('This is an info message', 3000)}
+                onClick={handleShowInfo}
                 variant="primary"
               >
                 Show Info
               </Button>
               <Button
-                onClick={() =>
-                  setErrorMessage('This is an error message', 3000)
-                }
+                onClick={handleShowError}
                 variant="secondary"
               >
                 Show Error
@@ -67,29 +104,19 @@ export const Interactive: Story = {
             <h3>Message Length Tests</h3>
             <ButtonGroup>
               <Button
-                onClick={() => setMessage('Short', 3000)}
+                onClick={handleShortMessage}
                 variant="ghost"
               >
                 Short Message
               </Button>
               <Button
-                onClick={() =>
-                  setMessage(
-                    'This is a medium length message that provides more context',
-                    3000,
-                  )
-                }
+                onClick={handleMediumMessage}
                 variant="ghost"
               >
                 Medium Message
               </Button>
               <Button
-                onClick={() =>
-                  setMessage(
-                    'This is a very long message that demonstrates how the snackbar handles extensive text content and whether it truncates properly with ellipsis or wraps to multiple lines',
-                    3000,
-                  )
-                }
+                onClick={handleLongMessage}
                 variant="ghost"
               >
                 Long Message
@@ -99,19 +126,19 @@ export const Interactive: Story = {
             <h3>Duration Tests</h3>
             <ButtonGroup>
               <Button
-                onClick={() => setMessage('Shows for 1 second', 1000)}
+                onClick={handleDuration1s}
                 variant="discreet"
               >
                 1s Duration
               </Button>
               <Button
-                onClick={() => setMessage('Shows for 3 seconds', 3000)}
+                onClick={handleDuration3s}
                 variant="discreet"
               >
                 3s Duration
               </Button>
               <Button
-                onClick={() => setMessage('Shows for 10 seconds', 10000)}
+                onClick={handleDuration10s}
                 variant="discreet"
               >
                 10s Duration
@@ -141,7 +168,7 @@ export const InfoVariant: Story = {
       const { setMessage } = useSnackbar();
 
       useEffect(() => {
-        setMessage('This is an informational message', 10000);
+        setMessage('This is an informational message', 10_000);
       }, [setMessage]);
 
       return <Snackbar />;
@@ -160,7 +187,7 @@ export const ErrorVariant: Story = {
       const { setErrorMessage } = useSnackbar();
 
       useEffect(() => {
-        setErrorMessage('An error occurred during the operation', 10000);
+        setErrorMessage('An error occurred during the operation', 10_000);
       }, [setErrorMessage]);
 
       return <Snackbar />;
@@ -179,7 +206,7 @@ export const ShortMessage: Story = {
       const { setMessage } = useSnackbar();
 
       useEffect(() => {
-        setMessage('Saved!', 10000);
+        setMessage('Saved!', 10_000);
       }, [setMessage]);
 
       return <Snackbar />;
@@ -200,7 +227,7 @@ export const LongMessage: Story = {
       useEffect(() => {
         setMessage(
           'This is a very long message that demonstrates how the snackbar component handles extensive text content. The message should truncate with an ellipsis to maintain the single-line layout and prevent overflow issues in the UI.',
-          10000,
+          10_000,
         );
       }, [setMessage]);
 

@@ -1,4 +1,9 @@
+// This rule doesn't apply here, but ESLint is not able to detect that.
+/* eslint-disable react-redux/no-unused-prop-types */
+/* eslint-disable react/no-unused-prop-types */
 import type { JSX } from 'react';
+
+import { isNonEmptyString } from '@lib/utils/boolean-checks';
 
 /**
  * Props for Meta component defining various head and link tags.
@@ -313,7 +318,7 @@ const buildTags = (props: MetaProps): JSX.Element[] => {
 
   for (const config of tagConfigs) {
     const value = props[config.key];
-    if (value) {
+    if (isNonEmptyString(value)) {
       const result = config.builder(value);
       if (Array.isArray(result)) {
         tags.push(...result);

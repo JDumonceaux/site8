@@ -139,7 +139,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * Gets all items from the data file
    * @returns The data from the file or undefined on error
    */
-  public async getItems(): Promise<T | undefined> {
+  public async getItems(): Promise<T> {
     this.errorHandler.info('getItems');
 
     try {
@@ -147,26 +147,22 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       this.errorHandler.info('Successfully retrieved items');
       return parsedData;
     } catch (error) {
-      if (error instanceof SyntaxError) {
-        this.errorHandler.handle(error, 'parsing JSON');
-      } else {
-        this.errorHandler.handle(error, 'reading items');
-      }
-      return undefined;
+      const operation =
+        error instanceof SyntaxError ? 'parsing JSON' : 'reading items';
+      return this.errorHandler.handle(error, operation);
     }
   }
 
   /**
    * Gets the next available ID from items array
-   * @returns Next available ID or undefined on error
+   * @returns Next available ID or throws on error
    */
-  public async getNextId(): Promise<number | undefined> {
+  public async getNextId(): Promise<number> {
     this.errorHandler.info('getNextId');
 
     try {
       const data = await this.getItems();
-      const items =
-        data != null ? (data as { items?: { id: number }[] }).items : undefined;
+      const { items } = data as { items?: { id: number }[] };
 
       if (items == null || items.length === 0) {
         return 1;
@@ -178,8 +174,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       this.errorHandler.info(`Next ID is ${nextId}`);
       return nextId;
     } catch (error) {
-      this.errorHandler.handle(error, 'getting next ID');
-      return undefined;
+      return this.errorHandler.handle(error, 'getting next ID');
     }
   }
 
@@ -224,8 +219,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
 
     try {
       const data = await this.getItems();
-      const items =
-        data != null ? (data as { items?: { id: number }[] }).items : undefined;
+      const { items } = data as { items?: { id: number }[] };
 
       if (items == null) {
         return { items: [] };
@@ -241,8 +235,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       this.errorHandler.info(`Found ${filtered.length} duplicates`);
       return { items: filtered };
     } catch (error) {
-      this.errorHandler.handle(error, 'listing duplicates');
-      return { items: [] };
+      return this.errorHandler.handle(error, 'listing duplicates');
     }
   }
 

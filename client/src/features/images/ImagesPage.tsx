@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import PageTitle from '@components/core/page/PageTitle';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
+import { isNonEmptyString } from '@lib/utils/boolean-checks';
 import { logError } from '@lib/utils/errorHandler';
 import Items from './Items';
 import useImages from './useImages';
@@ -32,15 +33,13 @@ const ImagesPage = (): JSX.Element => {
     let filtered = data.items;
 
     // Filter by folder
-    if (folder) {
+    if (isNonEmptyString(folder)) {
       filtered = filtered.filter((image) => image.folder === folder);
     }
 
     // Filter by tag
-    if (tag) {
-      filtered = filtered.filter(
-        (image) => image.tags?.includes(tag),
-      );
+    if (isNonEmptyString(tag)) {
+      filtered = filtered.filter((image) => image.tags?.includes(tag));
     }
 
     return { ...data, items: filtered };
@@ -48,10 +47,10 @@ const ImagesPage = (): JSX.Element => {
 
   // Determine page title based on URL parameters
   const pageTitle = useMemo(() => {
-    if (folder) {
+    if (isNonEmptyString(folder)) {
       return `Images - ${folder}`;
     }
-    if (tag) {
+    if (isNonEmptyString(tag)) {
       return `Images - ${tag}`;
     }
     return 'Images Gallery';

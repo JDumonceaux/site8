@@ -1,4 +1,4 @@
-import type { Place , Places } from '@site8/shared';
+import type { Place, Places } from '@site8/shared';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';

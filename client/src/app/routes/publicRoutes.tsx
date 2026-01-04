@@ -4,11 +4,8 @@ import { Route } from 'react-router-dom';
 // ---------------------
 // Layouts
 // ---------------------
-const HomeLayout = lazy(
-  async () => import('../../features/layouts/home-layout/HomeLayout'),
-);
-const AuthLayout = lazy(
-  async () => import('../../features/layouts/auth-layout/AuthLayout'),
+const UnifiedLayout = lazy(
+  async () => import('../../features/layouts/unified-layout/UnifiedLayout'),
 );
 
 // ---------------------
@@ -33,7 +30,7 @@ const PrivacyPolicyPage = lazy(
 export const publicRoutes = (
   <>
     {/* Home Page */}
-    <Route element={<HomeLayout />}>
+    <Route element={<UnifiedLayout hasInitializer />}>
       <Route
         element={<Home />}
         index
@@ -47,7 +44,7 @@ export const publicRoutes = (
     />
 
     {/* Legal Pages */}
-    <Route element={<AuthLayout />}>
+    <Route element={<UnifiedLayout hasHeader />}>
       <Route
         element={<TermsOfUsePage />}
         path="terms-of-use"

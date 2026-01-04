@@ -6,7 +6,6 @@ import express, {
   type Response,
 } from 'express';
 import RateLimit from 'express-rate-limit';
-import helmet from 'helmet';
 
 import { artistsRouter } from './app/routes/artistsRouter.js';
 import { bookmarksRouter } from './app/routes/bookmarksRouter.js';
@@ -71,31 +70,6 @@ app.use(
   }),
 );
 
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        'base-uri': ["'self'"],
-        'connect-src': ["'self'", env.BASE_URL],
-        'default-src': ["'self'"],
-        'font-src': ["'self'", 'https://fonts.gstatic.com'],
-        'form-action': ["'self'"],
-        'frame-ancestors': ["'none'"],
-        'img-src': ["'self'", 'data:', 'https:'],
-        'script-src': ["'self'"],
-        'style-src': [
-          "'self'",
-          "'unsafe-inline'",
-          'https://fonts.googleapis.com',
-        ],
-      },
-    },
-    hsts: {
-      includeSubDomains: false,
-      maxAge: SERVER_CONFIG.HSTS_MAX_AGE,
-    },
-  }),
-);
 app.use(compression());
 
 // Additional security headers

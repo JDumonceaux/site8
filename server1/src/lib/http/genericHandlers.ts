@@ -8,6 +8,17 @@ import { RequestValidator } from './RequestValidator.js';
 import { ResponseHelper } from './ResponseHelper.js';
 
 /**
+ * Base service interface for CRUD operations
+ */
+type CrudService<T, TAdd = T> = {
+  addItem: (data: TAdd) => Promise<number>;
+  deleteItem: (id: number) => Promise<T | undefined>;
+  getItem: (id: number) => Promise<T | undefined>;
+  patchItem?: (data: T) => Promise<number>;
+  updateItem: (data: T) => Promise<number>;
+};
+
+/**
  * Configuration for creating a generic GET handler without parameters
  */
 type GetHandlerConfig<T> = {
@@ -45,19 +56,14 @@ type GetHandlerWithParamsConfig<T> = {
 };
 
 type PatchOptions<T> = {
-  getService: () => {
-    getItem: (id: number) => Promise<T | undefined>;
-    updateItem: (data: T) => Promise<number>;
-  };
+  getService: () => Partial<CrudService<T>>;
   idFields?: string[];
-  schema: ZodType<any>;
+  schema: ZodType<T>;
   serviceName: string;
 };
 
 type DeleteOptions<T> = {
-  getService: () => {
-    deleteItem: (id: number) => Promise<T | undefined>;
-  };
+  getService: () => Pick<CrudService<T>, 'deleteItem'>;
   returnDeleted?: boolean;
   serviceName: string;
 };
@@ -217,22 +223,36 @@ export const createPatchHandler = <T>({
       // Validate request body (ID should be in body, not URL)
       const validation = RequestValidator.validateBody(req, schema);
       if (!validation.isValid) {
-        ResponseHelper.badRequest(res, validation.errorMessage!);
+        ResponseHelper.badRequest(
+          res,
+          validation.errorMessage ?? 'Invalid request body',
+        );
         return;
       }
 
-      let data = validation.data as Record<string, unknown>;
+      const validatedData = validation.data as Record<string, unknown>;
 
       // Convert string IDs to numbers
-      const idConversion = RequestValidator.convertIdsToNumbers(data, idFields);
+      const idConversion = RequestValidator.convertIdsToNumbers(
+        validatedData,
+        idFields,
+      );
       if (!idConversion.isValid) {
-        ResponseHelper.badRequest(res, idConversion.errorMessage!);
+        ResponseHelper.badRequest(
+          res,
+          idConversion.errorMessage ?? 'Invalid ID format',
+        );
         return;
       }
-      data = idConversion.data!;
+
+      if (!idConversion.data) {
+        ResponseHelper.badRequest(res, 'Missing data after ID conversion');
+        return;
+      }
+      const { data } = idConversion;
 
       // Validate ID exists in body
-      const {id} = (data as any);
+      const id = typeof data['id'] === 'number' ? data['id'] : undefined;
       if (!id) {
         ResponseHelper.badRequest(res, 'ID is required in request body');
         return;
@@ -244,12 +264,29 @@ export const createPatchHandler = <T>({
 
       try {
         // Prefer `patchItem` when available on the service, fall back to `updateItem` for compatibility
-        const updatedId =
-          typeof (service as any).patchItem === 'function'
-            ? await (service as any).patchItem(data as T)
-            : await service.updateItem(data as T);
+        let updatedId: number;
+        if (service.patchItem) {
+          updatedId = await service.patchItem(data as T);
+        } else if (service.updateItem) {
+          updatedId = await service.updateItem(data as T);
+        } else {
+          ResponseHelper.internalError(
+            res,
+            serviceName,
+            new Error('Service missing update method'),
+          );
+          return;
+        }
 
         if (returnRepresentation) {
+          if (!service.getItem) {
+            ResponseHelper.internalError(
+              res,
+              serviceName,
+              new Error('Service missing getItem method'),
+            );
+            return;
+          }
           const result = await service.getItem(updatedId);
           if (!result) {
             ResponseHelper.notFound(res, 'Item not found after update');
@@ -282,10 +319,7 @@ export const createPatchHandler = <T>({
 };
 
 type PostOptions<T, TAdd> = {
-  getService: () => {
-    addItem: (data: TAdd) => Promise<number>;
-    getItem: (id: number) => Promise<T | undefined>;
-  };
+  getService: () => Pick<CrudService<T, TAdd>, 'addItem' | 'getItem'>;
   resourcePath: string;
   schema: ZodType<TAdd>;
   serviceName: string;
@@ -307,11 +341,18 @@ export const createPostHandler = <T, TAdd>({
       // Validate request body
       const validation = RequestValidator.validateBody(req, schema);
       if (!validation.isValid) {
-        ResponseHelper.badRequest(res, validation.errorMessage!);
+        ResponseHelper.badRequest(
+          res,
+          validation.errorMessage ?? 'Invalid request body',
+        );
         return;
       }
 
-      const data = validation.data!;
+      if (!validation.data) {
+        ResponseHelper.badRequest(res, 'Missing request data');
+        return;
+      }
+      const { data } = validation;
       Logger.info(`${serviceName}: Post Item called (create new)`);
 
       const service = getService();
@@ -359,15 +400,7 @@ export const createPostHandler = <T, TAdd>({
   };
 };
 
-type PutOptions<T, TAdd> = {
-  getService: () => {
-    addItem: (data: TAdd) => Promise<number>;
-    getItem: (id: number) => Promise<T | undefined>;
-  };
-  resourcePath: string;
-  schema: ZodType<TAdd>;
-  serviceName: string;
-};
+type PutOptions<T, TAdd> = PostOptions<T, TAdd>;
 
 export const createPutHandler = <T, TAdd>({
   getService,
@@ -385,11 +418,18 @@ export const createPutHandler = <T, TAdd>({
       // Validate request body
       const validation = RequestValidator.validateBody(req, schema);
       if (!validation.isValid) {
-        ResponseHelper.badRequest(res, validation.errorMessage!);
+        ResponseHelper.badRequest(
+          res,
+          validation.errorMessage ?? 'Invalid request body',
+        );
         return;
       }
 
-      const data = validation.data!;
+      if (!validation.data) {
+        ResponseHelper.badRequest(res, 'Missing request data');
+        return;
+      }
+      const { data } = validation;
       Logger.info(`${serviceName}: Put Item called`);
 
       const service = getService();
@@ -437,7 +477,11 @@ export const createDeleteHandler = <T>({
     res: Response<T | { error: string }>,
   ): Promise<void> => {
     try {
-      const { id } = req.body;
+      // Safely extract id from request body
+      const id =
+        req.body && typeof req.body === 'object'
+          ? (req.body as Record<string, unknown>)['id']
+          : undefined;
 
       if (!id) {
         ResponseHelper.badRequest(res, 'Invalid ID');

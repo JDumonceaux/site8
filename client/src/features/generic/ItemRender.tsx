@@ -1,11 +1,17 @@
-import { Fragment, type JSX, memo } from 'react';
+import {
+  type ComponentType,
+  Fragment,
+  type JSX,
+  memo,
+  type ReactNode,
+} from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 import type { MenuItem } from '@site8/shared';
 import styled from 'styled-components';
 
 type ItemRenderProps = {
-  readonly children?: React.ReactNode;
+  readonly children?: ReactNode;
   readonly hasChildren?: boolean;
   readonly isExpanded?: boolean;
   readonly item: MenuItem;
@@ -22,13 +28,13 @@ const ItemRender = memo(
     level,
     onToggle,
   }: ItemRenderProps): JSX.Element | null => {
-    let content: React.ReactNode;
+    let content: ReactNode;
 
     if (item.type === 'menu') {
       const menuComponents: Record<
         number,
-        React.ComponentType<{
-          readonly children: React.ReactNode;
+        ComponentType<{
+          readonly children: ReactNode;
           readonly to: string;
         }>
       > = {
@@ -58,8 +64,8 @@ const ItemRender = memo(
     } else if (item.type === 'page') {
       const pageComponents: Record<
         number,
-        React.ComponentType<{
-          readonly children: React.ReactNode;
+        ComponentType<{
+          readonly children: ReactNode;
           readonly to: string;
         }>
       > = {

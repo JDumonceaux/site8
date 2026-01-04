@@ -6,14 +6,16 @@ import PageTitle from '@components/core/page/PageTitle';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
-import { getParamIdAsString } from '@lib/utils/helpers';
+import { isEmpty } from '@lib/utils/boolean-checks';
+import { parseId } from '@site8/shared';
 import PageEditForm from './PageEditForm';
 import usePage from './usePage';
 
 const PageEditPage = (): JSX.Element => {
   const { id } = useParams();
-  const currentId = getParamIdAsString(id) ?? '';
-  const title = currentId ? `Edit Page: ${currentId}` : 'New Page';
+  const parsedId = parseId(id);
+  const currentId = parsedId.isValid ? String(parsedId.id) : '';
+  const title = isEmpty(currentId) ? 'New Page' : `Edit Page: ${currentId}`;
 
   const { data, error, isError, isLoading } = usePage(currentId);
 
@@ -50,4 +52,3 @@ const PageEditPage = (): JSX.Element => {
 };
 
 export default PageEditPage;
-

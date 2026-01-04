@@ -4,8 +4,8 @@ import { Route } from 'react-router-dom';
 // ---------------------
 // Layout
 // ---------------------
-const AuthLayout = lazy(
-  async () => import('../../features/layouts/auth-layout/AuthLayout'),
+const UnifiedLayout = lazy(
+  async () => import('../../features/layouts/unified-layout/UnifiedLayout'),
 );
 
 // ---------------------
@@ -32,7 +32,7 @@ const DeleteAccountPage = lazy(
  * Includes signin, signup, password management, and account deletion
  */
 export const authRoutes = (
-  <Route element={<AuthLayout />}>
+  <Route element={<UnifiedLayout hasHeader />}>
     <Route
       element={<SigninPage />}
       path="signin"

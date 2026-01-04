@@ -1,4 +1,4 @@
-import type { Test , Tests } from '@site8/shared';
+import type { Test, Tests } from '@site8/shared';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
@@ -16,7 +16,7 @@ export class TestsService extends BaseDataService<Tests> {
     });
   }
 
-  public override async getItems(): Promise<Tests | undefined> {
+  public override async getItems(): Promise<Tests> {
     try {
       const rawData = await this.readFile();
 
@@ -38,7 +38,7 @@ export class TestsService extends BaseDataService<Tests> {
       return { ...rawData, items: items as unknown as Test[] };
     } catch (error) {
       Logger.error(`TestsService: getItems --> Error: ${String(error)}`);
-      return undefined;
+      throw error;
     }
   }
 

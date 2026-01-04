@@ -102,11 +102,8 @@ const config = {
         '@typescript-eslint/promise-function-async': 'error',
         '@typescript-eslint/require-array-sort-compare': 'error',
         '@typescript-eslint/return-await': 'error',
-        '@typescript-eslint/strict-boolean-expressions': ['error', {
-            allowString: false,
-            allowNumber: false,
-            allowNullableObject: false,
-        }],
+        // Too restrictive
+        '@typescript-eslint/strict-boolean-expressions': 'off',
         // old code
         '@typescript-eslint/unbound-method': 'off',
         '@typescript-eslint/unified-signatures': 'off', //

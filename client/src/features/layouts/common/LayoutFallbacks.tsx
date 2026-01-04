@@ -29,7 +29,7 @@ export const ErrorFallback = ({
   >
     <ErrorTitle>Something went wrong</ErrorTitle>
     <ErrorMessage>
-      {typeof error === 'object' && error && 'message' in error
+      {typeof error === 'object' && 'message' in error
         ? (error as { message?: string }).message
         : String(error)}
     </ErrorMessage>

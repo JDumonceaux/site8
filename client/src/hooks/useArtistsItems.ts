@@ -36,11 +36,12 @@ const useArtistsItems = (): UseArtistsItemsReturn => {
 
   // Derive the list of items as ListItem[] using useMemo for performance
   const itemsAsListItem: ListItem[] = useMemo(() => {
-    if (!query.data?.items) {
+    const items = query.data?.items;
+    if (!items) {
       return [];
     }
 
-    const sortedItems = query.data.items.toSorted((a, b) => {
+    const sortedItems = items.toSorted((a, b) => {
       const sortNameA = a.artist.sortName ?? '';
       const sortNameB = b.artist.sortName ?? '';
       return sortNameA.localeCompare(sortNameB);
@@ -49,18 +50,16 @@ const useArtistsItems = (): UseArtistsItemsReturn => {
     const result: ListItem[] = [];
     let index = 0;
 
-    for (const artist of sortedItems) {
-      const items = artist.items?.filter(
-        (item) => item.artistId === artist.artist.id,
-      );
-
-      if (items) {
-        for (const item of items) {
+    for (const sortedItem of sortedItems) {
+      const name = sortedItem.artist.sortName ?? '';
+      if (sortedItem.items.length > 0) {
+        for (const item of sortedItem.items) {
           result.push({
-            display: `${artist.artist.sortName ?? 'Unknown'} - ${item.title}`,
-            key: index++,
-            value: item.id,
+            display: `${name}/${item.title}`,
+            key: index,
+            value: `${sortedItem.artist.id}|${item.id}`,
           });
+          index++;
         }
       }
     }
@@ -72,7 +71,7 @@ const useArtistsItems = (): UseArtistsItemsReturn => {
     data: query.data,
     error: query.error,
     isError: query.isError,
-    isLoading: query.isLoading,
+    isLoading: query.isPending,
     itemsAsListItem,
   };
 };
