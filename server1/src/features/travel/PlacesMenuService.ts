@@ -1,5 +1,5 @@
 import type { TravelService } from './TravelService.js';
-import type { MenuItem , Place, Places } from '@site8/shared';
+import type { MenuItem, Place, Places } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 
@@ -58,8 +58,8 @@ export class PlacesMenuService {
     const citiesMap = new Map<string, Place[]>();
 
     for (const place of places) {
-      const city = place.city || 'Unknown';
-      const cityPlaces = citiesMap.get(city) || [];
+      const city = place.city ?? 'Unknown';
+      const cityPlaces = citiesMap.get(city) ?? [];
       cityPlaces.push(place);
       citiesMap.set(city, cityPlaces);
     }
@@ -138,7 +138,7 @@ export class PlacesMenuService {
     for (const place of places) {
       if (!place.country) continue;
 
-      const countryPlaces = countriesMap.get(place.country) || [];
+      const countryPlaces = countriesMap.get(place.country) ?? [];
       countryPlaces.push(place);
       countriesMap.set(place.country, countryPlaces);
     }

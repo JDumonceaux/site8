@@ -9,7 +9,7 @@ export const getItemsArtists = createGetHandler<Items>({
     const data = await getItemsService().getAllItems();
     return data ?? { artists: [], items: [], metadata: { title: 'Items' } };
   },
-  getItemCount: (data) => data.items?.length ?? 0,
+  getItemCount: (data) => data.items.length,
   handlerName: 'Items:getItemsArtists',
   return204OnEmpty: true,
 });

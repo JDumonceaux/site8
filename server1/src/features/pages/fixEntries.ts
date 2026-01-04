@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { Logger } from '../../utils/logger.js';
+import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
 import { getPagesService } from '../../utils/ServiceFactory.js';
 
 /**
@@ -11,13 +11,14 @@ import { getPagesService } from '../../utils/ServiceFactory.js';
  */
 export const fixEntries = async (
   _req: Request,
-  res: Response,
+  res: Response<{ message: string }>,
 ): Promise<void> => {
-  Logger.info('Pages: Fix Entries called');
-
   const service = getPagesService();
   await service.fixAllEntries();
 
-  Logger.info('Pages: Successfully fixed all entries');
-  res.json({ message: 'Successfully fixed all entries' });
+  ResponseHelper.ok(
+    res,
+    { message: 'Successfully fixed all entries' },
+    'Pages: Fix Entries',
+  );
 };

@@ -2112,6 +2112,132 @@
       "folder": "2025\\travel",
       "name": "Loen Skylift Restaurant",
       "description": "Modern glass restaurant building perched on mountain edge at night, with dramatic views over fjord and valley below"
+    },
+    {
+      "id": 405,
+      "fileName": "malt_shovel_edinburgh.jpg",
+      "folder": "2025\\travel",
+      "name": "The Malt Shovel",
+      "description": "Traditional Scottish pub in Edinburgh's Old Town"
+    },
+    {
+      "id": 406,
+      "fileName": "classical_sculpture_hands.jpg",
+      "folder": "art",
+      "name": "Classical Marble Sculpture Detail",
+      "description": "White marble sculpture detail showing anatomically precise hands with dramatic lighting and muscular definition"
+    },
+    {
+      "id": 407,
+      "fileName": "stone_cottage_villa.jpg",
+      "folder": "architecture",
+      "name": "European Stone Cottage",
+      "description": "Charming two-story stone cottage with arched windows, balcony, and lush garden setting"
+    },
+    {
+      "id": 408,
+      "fileName": "gothic_victorian_mansion_cherry_blossoms.jpg",
+      "folder": "architecture",
+      "name": "Gothic Victorian Mansion",
+      "description": "Dark Victorian mansion with turrets and ornate details, surrounded by vibrant pink cherry blossom trees"
+    },
+    {
+      "id": 409,
+      "fileName": "art_deco_zeppelin_poster.jpg",
+      "folder": "art",
+      "name": "Zeppelin Art Deco Poster",
+      "description": "Art Deco style illustration featuring golden airship over geometric cityscape with dramatic lighting"
+    },
+    {
+      "id": 410,
+      "fileName": "art_deco_geometric_stairs.jpg",
+      "folder": "art",
+      "name": "Art Deco Architectural Illustration",
+      "description": "Minimalist black and white Art Deco design with silhouetted figure on geometric striped staircase"
+    },
+    {
+      "id": 411,
+      "fileName": "luxury_interior_reflecting_pool.jpg",
+      "folder": "architecture",
+      "name": "Luxury Interior with Reflecting Pool",
+      "description": "Grand interior space featuring reflecting pool, arched glass ceiling, classical columns, and symmetrical design"
+    },
+    {
+      "id": 412,
+      "fileName": "art_deco_woman_pearls_red.jpg",
+      "folder": "art",
+      "name": "Art Deco Woman with Pearls",
+      "description": "Stylized Art Deco illustration of elegant woman in black dress reclining against red background, adorned with pearl necklaces"
+    },
+    {
+      "id": 413,
+      "fileName": "whimsical_cottage_night.jpg",
+      "folder": "architecture",
+      "name": "Whimsical Fairytale Cottage",
+      "description": "Enchanting dark wood cottage with round windows, warm interior lighting, curved architecture, and lush garden surroundings"
+    },
+    {
+      "id": 414,
+      "fileName": "greenhouse_kitchen_conservatory.jpg",
+      "folder": "architecture",
+      "name": "Greenhouse Kitchen Conservatory",
+      "description": "Charming stone conservatory kitchen with glass ceiling, cobblestone floor, rustic wood cabinets, and garden views"
+    },
+    {
+      "id": 415,
+      "fileName": "metropolis_poster_1927.jpg",
+      "folder": "art",
+      "name": "Metropolis Poster 1927",
+      "description": "Iconic Art Deco poster for Fritz Lang's groundbreaking sci-fi film Metropolis, featuring geometric cityscape and stylized robot face"
+    },
+    {
+      "id": 416,
+      "fileName": "art_deco_teacup_geometric.jpg",
+      "folder": "art",
+      "name": "Art Deco Teacup",
+      "description": "Elegant Art Deco teacup and saucer with geometric gold and black design, ornate handle and decorative patterns"
+    },
+    {
+      "id": 417,
+      "fileName": "zeppelin_los_angeles_1924_poster.jpg",
+      "folder": "art",
+      "name": "Zeppelin Los Angeles 1924 Poster",
+      "description": "Vintage poster depicting Zeppelin airship over Los Angeles cityscape with crowd of onlookers below, Art Deco style illustration"
+    },
+    {
+      "id": 418,
+      "fileName": "giants_causeway_basalt_columns.jpg",
+      "folder": "2024\\travel",
+      "name": "Giant's Causeway",
+      "description": "Famous hexagonal basalt columns at Giant's Causeway in Northern Ireland, natural geological formation with dramatic coastal cliffs"
+    },
+    {
+      "id": 419,
+      "fileName": "dark_lakeside_mansion.jpg",
+      "folder": "architecture",
+      "name": "Dark Lakeside Mansion",
+      "description": "Dramatic Gothic revival mansion with stone construction, arched windows, warm interior lighting, and stone steps descending to waterfront"
+    },
+    {
+      "id": 420,
+      "fileName": "baroque_palace_gallery.jpg",
+      "folder": "architecture",
+      "name": "Baroque Palace Gallery",
+      "description": "Ornate baroque palace gallery with gilded decorations, frescoed vaulted ceiling, classical statues, and grand chandeliers"
+    },
+    {
+      "id": 421,
+      "fileName": "chateau_chenonceau_aerial.jpg",
+      "folder": "2024\\travel",
+      "name": "Château de Chenonceau",
+      "description": "Aerial view of the famous French Renaissance château built over the Cher River with distinctive arched bridge gallery"
+    },
+    {
+      "id": 422,
+      "fileName": "neuschwanstein_castle_winter.jpg",
+      "folder": "2024\\travel",
+      "name": "Neuschwanstein Castle Winter",
+      "description": "Neuschwanstein Castle in Bavaria, Germany covered in snow with dramatic mountain backdrop and winter forest surroundings"
     }
   ],
   "metadata": {

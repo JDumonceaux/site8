@@ -27,6 +27,7 @@ import { TestsService } from '../features/tests/TestsService.js';
 import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
 import { TravelService } from '../features/travel/TravelService.js';
 import { FileService } from '../lib/filesystem/FileService.js';
+import { GenericService } from '../lib/generic/GenericService.js';
 import { BuildService } from '../services/build/BuildService.js';
 import { PrettierService } from '../services/code-quality/PrettierService.js';
 
@@ -50,6 +51,10 @@ class ServiceContainer {
 
   public getFileService(): FileService {
     return this.getOrCreate('FileService', () => new FileService());
+  }
+
+  public getGenericService(): GenericService {
+    return this.getOrCreate('GenericService', () => new GenericService());
   }
 
   public getImageService(): ImageService {
@@ -142,6 +147,8 @@ export const getBookmarksService = (): BookmarksService =>
   container.getBookmarksService();
 export const getBuildService = (): BuildService => container.getBuildService();
 export const getFileService = (): FileService => container.getFileService();
+export const getGenericService = (): GenericService =>
+  container.getGenericService();
 export const getImageService = (): ImageService => container.getImageService();
 export const getImagesFileService = (): ImagesFileService =>
   container.getImagesFileService();

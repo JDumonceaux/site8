@@ -22,11 +22,16 @@ export const deleteItem = async (
   // Validate ID using standardized validator
   const idValidation = RequestValidator.validateId(req.body);
   if (!idValidation.isValid) {
-    ResponseHelper.badRequest(res, idValidation.errorMessage!);
+    ResponseHelper.badRequest(res, idValidation.errorMessage ?? 'Invalid ID');
     return;
   }
 
-  const idNum = idValidation.id!;
+  const idNum = idValidation.id;
+  if (idNum == null) {
+    ResponseHelper.badRequest(res, 'Invalid ID');
+    return;
+  }
+
   Logger.info(`Page: Delete Item called: ${idNum}`);
 
   const service = getPageService();

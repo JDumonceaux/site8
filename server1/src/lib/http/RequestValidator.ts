@@ -160,7 +160,7 @@ export class RequestValidator {
     urlId: string,
     bodyId?: string | number,
   ): ValidationResult<void> {
-    if (bodyId === undefined || bodyId === null) {
+    if (bodyId == null) {
       return { isValid: true };
     }
 

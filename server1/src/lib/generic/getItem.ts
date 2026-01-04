@@ -1,9 +1,8 @@
 import type { Page } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
-import { createGetHandlerWithParams } from "../http/genericHandlers.js";
-
-import { GenericService } from './GenericService.js';
+import { getGenericService } from '../../utils/ServiceFactory.js';
+import { createGetHandlerWithParams } from '../http/genericHandlers.js';
 
 /**
  * Handler for retrieving a page item by name and optional parent
@@ -19,7 +18,7 @@ export const getItemByName = createGetHandlerWithParams<Page>({
       `getItemByName: Fetching item '${name}' with parent '${actualParent}'`,
     );
 
-    const service = new GenericService();
+    const service = getGenericService();
     const result = await service.getItem(actualParent, name ?? '');
 
     if (!result) {

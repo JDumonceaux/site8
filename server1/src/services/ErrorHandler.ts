@@ -20,6 +20,13 @@ export class ErrorHandler {
   }
 
   /**
+   * Expose the configured service name for callers that need it.
+   */
+  public getServiceName(): string {
+    return this.serviceName;
+  }
+
+  /**
    * Handles errors with consistent logging and wrapping
    * @param error - Original error
    * @param operation - Operation that failed (e.g., "reading file", "writing data")
@@ -65,12 +72,5 @@ export class ErrorHandler {
    */
   public warn(message: string, context?: Record<string, unknown>): void {
     Logger.warn(`${this.serviceName}: ${message}`, context);
-  }
-
-  /**
-   * Expose the configured service name for callers that need it.
-   */
-  public getServiceName(): string {
-    return this.serviceName;
   }
 }

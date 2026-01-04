@@ -1,5 +1,12 @@
 import type { Items } from '../../types/Items.js';
-import type { Item , ItemAdd , ItemArtist , ItemEdit , ItemsArtists , ItemsFile } from '@site8/shared';
+import type {
+  Item,
+  ItemAdd,
+  ItemArtist,
+  ItemEdit,
+  ItemsArtists,
+  ItemsFile,
+} from '@site8/shared';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
@@ -17,41 +24,37 @@ export class ItemsService extends BaseDataService<ItemsFile> {
   public async getAllItems(): Promise<Items | undefined> {
     const fileData = await this.readFile();
     return {
-      artists: fileData?.artists ?? [],
-      items: fileData?.items ?? [],
-      metadata: fileData?.metadata ?? { title: 'items' },
+      artists: fileData.artists,
+      items: fileData.items,
+      metadata: fileData.metadata,
     };
   }
 
   public async getItemsArtists(): Promise<ItemsArtists | undefined> {
     // Get current items
     const items = await this.readFile();
-    if (!items) {
-      throw new Error('Item file not loaded');
-    }
 
-    const ret: ItemArtist[] =
-      items.items?.map((x) => {
-        const matchingArtist = items.artists?.find((y) => x.id === y.id);
-        if (matchingArtist) {
-          return {
-            ...x,
-            ...matchingArtist,
-          };
-        }
+    const ret: ItemArtist[] = items.items.map((x) => {
+      const matchingArtist = items.artists.find((y) => x.id === y.id);
+      if (matchingArtist) {
         return {
           ...x,
-          name: 'unknown',
-          sortName: 'unknown',
+          ...matchingArtist,
         };
-      }) ?? [];
+      }
+      return {
+        ...x,
+        name: 'unknown',
+        sortName: 'unknown',
+      };
+    });
     return { items: ret, metadata: items.metadata };
   }
 
   public override async getNextId(): Promise<number | undefined> {
     try {
       const data = await this.readFile();
-      return getNextIdUtil(data?.items);
+      return getNextIdUtil(data.items);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
@@ -121,7 +124,7 @@ export class ItemsService extends BaseDataService<ItemsFile> {
       }
 
       const data = await this.readFile();
-      const existingItems = data?.items ?? [];
+      const existingItems = data.items;
 
       const newItems = await Promise.all(
         items.map(async (item) => {
@@ -136,9 +139,9 @@ export class ItemsService extends BaseDataService<ItemsFile> {
       const updates: Item[] = [...existingItems, ...newItems];
 
       await this.writeData({
-        artists: data?.artists ?? [],
+        artists: data.artists,
         items: updates,
-        metadata: data?.metadata ?? { title: 'Items' },
+        metadata: data.metadata,
       } as ItemsFile);
       return true;
     } catch (error) {

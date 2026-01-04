@@ -6,7 +6,7 @@ export const getListDuplicates = createGetHandler<{ readonly items: string[] }>(
     errorResponse: { items: [] },
     getData: async () => {
       const data = await getImagesService().listDuplicates();
-      return data ?? { items: [] };
+      return data;
     },
     getItemCount: (data) => (Array.isArray(data) ? data.length : 1),
     handlerName: 'Images:getListDuplicates',

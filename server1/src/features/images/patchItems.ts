@@ -24,16 +24,24 @@ const ImagesSchema = z.object({
  */
 export const patchItems = async (
   req: Request,
-  res: Response<void | { error: string }>,
+  res: Response<{ error: string }>,
 ): Promise<void> => {
   // Validate request body using standardized validator
   const validation = RequestValidator.validateBody(req, ImagesSchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(res, validation.errorMessage!);
+    ResponseHelper.badRequest(
+      res,
+      validation.errorMessage ?? 'Invalid request body',
+    );
     return;
   }
 
-  const data = validation.data!;
+  const { data } = validation;
+  if (data == null) {
+    ResponseHelper.badRequest(res, 'Invalid request data');
+    return;
+  }
+
   Logger.info('Images: Patch Images called');
 
   const service = getImagesService();

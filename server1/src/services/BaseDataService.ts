@@ -67,11 +67,9 @@ export abstract class BaseDataService<T> implements IDataService<T> {
     // Auto-derive serviceName from class name (this.constructor.name) if not provided
     // Falls back to filename if class name is just 'Object' or unavailable
     const className = this.constructor.name;
-    const fileBasedName =
-      config.filePath
-        .split(/[\\/]/)
-        .pop()
-        ?.replace(/\.json$/, '') ?? 'DataService';
+    const pathParts = config.filePath.split(/[\\/]/);
+    const fileName = pathParts[pathParts.length - 1] ?? 'DataService';
+    const fileBasedName = fileName.replace(/\.json$/, '');
 
     const serviceName =
       config.serviceName ??
@@ -110,7 +108,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       const data = await this.getItems();
       const dataWithItems = data as { items?: TItem[] };
 
-      if (!dataWithItems?.items) {
+      if (dataWithItems.items == null) {
         throw new Error('No items found');
       }
 
@@ -154,6 +152,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       } else {
         this.errorHandler.handle(error, 'reading items');
       }
+      return undefined;
     }
   }
 
@@ -166,9 +165,10 @@ export abstract class BaseDataService<T> implements IDataService<T> {
 
     try {
       const data = await this.getItems();
-      const items = (data as { items?: { id: number }[] })?.items;
+      const items =
+        data != null ? (data as { items?: { id: number }[] }).items : undefined;
 
-      if (!items || items.length === 0) {
+      if (items == null || items.length === 0) {
         return 1;
       }
 
@@ -179,6 +179,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       return nextId;
     } catch (error) {
       this.errorHandler.handle(error, 'getting next ID');
+      return undefined;
     }
   }
 
@@ -223,9 +224,10 @@ export abstract class BaseDataService<T> implements IDataService<T> {
 
     try {
       const data = await this.getItems();
-      const items = (data as { items?: { id: number }[] })?.items;
+      const items =
+        data != null ? (data as { items?: { id: number }[] }).items : undefined;
 
-      if (!items) {
+      if (items == null) {
         return { items: [] };
       }
 
@@ -240,6 +242,7 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       return { items: filtered };
     } catch (error) {
       this.errorHandler.handle(error, 'listing duplicates');
+      return { items: [] };
     }
   }
 
@@ -302,7 +305,11 @@ export abstract class BaseDataService<T> implements IDataService<T> {
       this.errorHandler.info('Successfully loaded data');
       return data;
     } catch (error) {
-      this.errorHandler.handle(error, `reading file at ${this.filePath}`);
+      // errorHandler.handle() throws - this line satisfies linter but is unreachable
+      return this.errorHandler.handle(
+        error,
+        `reading file at ${this.filePath}`,
+      );
     }
   }
 

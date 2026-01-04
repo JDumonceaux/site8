@@ -1,5 +1,5 @@
 import type { ImagesService } from '../images/ImagesService.js';
-import type { Image, ImageAdd, ImageEdit , Images } from '@site8/shared';
+import type { Image, ImageAdd, ImageEdit, Images } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
@@ -113,7 +113,7 @@ export class ImageService {
       if (!currentData?.items) {
         throw new Error('patchItem -> No data found');
       }
-      const existing = this.findExistingItem(currentData.items ?? [], data.id);
+      const existing = this.findExistingItem(currentData.items, data.id);
       const mergedBase: Image = {
         ...existing,
         ...updatedItem,
@@ -164,7 +164,8 @@ export class ImageService {
         `patchItem -> Multiple items with id ${id} found: ${matches.length}`,
       );
     }
-    return matches[0]!;
+    const [foundItem] = matches;
+    return foundItem;
   }
 
   private getImagesService(): ImagesService {
@@ -205,7 +206,7 @@ export class ImageService {
       'description',
     ];
     return this.pickFields<Image>(obj, allowedKeys, {
-      id: (obj['id'] as number) ?? 0,
+      id: obj['id'] as number,
     });
   }
 
@@ -231,7 +232,7 @@ export class ImageService {
         continue;
       }
       if (typeof val === 'object') {
-        if (val && Object.keys(val as Record<string, unknown>).length === 0) {
+        if (Object.keys(val as Record<string, unknown>).length === 0) {
           delete obj[key];
         }
         continue;

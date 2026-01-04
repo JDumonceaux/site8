@@ -24,11 +24,19 @@ export const patchItem = async (
   // Validate request body using standardized validator
   const validation = RequestValidator.validateBody(req, PageEditSchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(res, validation.errorMessage!);
+    ResponseHelper.badRequest(
+      res,
+      validation.errorMessage ?? 'Invalid request body',
+    );
     return;
   }
 
-  const item = validation.data!;
+  const item = validation.data;
+  if (item == null) {
+    ResponseHelper.badRequest(res, 'Invalid request data');
+    return;
+  }
+
   Logger.info(`Page: Patch Item called for ID: ${item.id}`);
 
   const service = getPageService();

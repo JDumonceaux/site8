@@ -12,7 +12,7 @@ export const getItemsPage = createGetHandlerWithParams<Bookmarks>({
     return result ?? { items: [], metadata: { title: 'Bookmarks' } };
   },
   getItemCount: (data) =>
-    Array.isArray(data) ? data.length : (data.items?.length ?? 0),
+    Array.isArray(data) ? data.length : data.items.length,
   handlerName: 'Bookmarks:getItemsPage',
   return204OnEmpty: true,
   validateParams: (req) => {

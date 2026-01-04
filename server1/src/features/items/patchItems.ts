@@ -16,18 +16,26 @@ const ItemEditArraySchema = z.array(ItemEditSchema);
  * @param req - Express request containing array of ItemEdit objects in body
  * @param res - Express response with 204 No Content on success or error object
  */
-export const patchItems = async (
+export const patchItems = (
   req: Request,
   res: Response<boolean | string | { error: string }>,
-): Promise<void> => {
+): void => {
   // Validate request body as array using standardized validator
   const validation = RequestValidator.validateBody(req, ItemEditArraySchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(res, validation.errorMessage!);
+    ResponseHelper.badRequest(
+      res,
+      validation.errorMessage ?? 'Invalid request body',
+    );
     return;
   }
 
-  const data = validation.data!;
+  const { data } = validation;
+  if (data == null) {
+    ResponseHelper.badRequest(res, 'Invalid request data');
+    return;
+  }
+
   Logger.info('Items: Patch Items called');
 
   if (!Array.isArray(data) || data.length === 0) {

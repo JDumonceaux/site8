@@ -5,7 +5,6 @@ import { z } from 'zod';
 
 import { RequestValidator } from '../../lib/http/RequestValidator.js';
 import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
-import { Logger } from '../../utils/logger.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
 const ItemAddArraySchema = z.array(ItemAddSchema);
@@ -23,14 +22,21 @@ export const putItems = async (
   // Validate request body as array using standardized validator
   const validation = RequestValidator.validateBody(req, ItemAddArraySchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(res, validation.errorMessage!);
+    ResponseHelper.badRequest(
+      res,
+      validation.errorMessage ?? 'Invalid request body',
+    );
     return;
   }
 
-  const data = validation.data!;
-  Logger.info('Items: Put Items called');
+  const { data } = validation;
+  if (data == null) {
+    ResponseHelper.badRequest(res, 'Invalid request data');
+    return;
+  }
 
   const service = getItemsService();
   const response = await service.putItems(data);
-  res.json(response);
+
+  ResponseHelper.ok(res, response, 'Items: Put Items');
 };
