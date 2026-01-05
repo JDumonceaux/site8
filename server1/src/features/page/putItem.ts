@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { notImplemented } from '../../lib/http/ResponseHelper.js';
 
 /**
  * Handles PUT requests to replace a page item completely
@@ -13,5 +13,5 @@ export const putItem = async (
   res: Response<{ error: string }>,
 ): Promise<void> => {
   // TODO: Implement full page update logic with PageService
-  ResponseHelper.notImplemented(res, 'Page PUT not yet implemented');
+  notImplemented(res, 'Page PUT not yet implemented');
 };

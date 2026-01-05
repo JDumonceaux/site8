@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { ok } from '../../lib/http/ResponseHelper.js';
 import { getPagesService } from '../../utils/ServiceFactory.js';
 
 /**
@@ -16,9 +16,5 @@ export const fixEntries = async (
   const service = getPagesService();
   await service.fixAllEntries();
 
-  ResponseHelper.ok(
-    res,
-    { message: 'Successfully fixed all entries' },
-    'Pages: Fix Entries',
-  );
+  ok(res, { message: 'Successfully fixed all entries' }, 'Pages: Fix Entries');
 };

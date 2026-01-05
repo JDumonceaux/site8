@@ -1,26 +1,26 @@
+import pluginNoSecrets from 'eslint-plugin-no-secrets';
 // eslint.config.security.mjs
 import pluginSecurity from 'eslint-plugin-security';
-import pluginNoSecrets from 'eslint-plugin-no-secrets';
 
 const config = {
     name: 'Site8-security',
     plugins: {
-        security: pluginSecurity,
         'no-secrets': pluginNoSecrets,
+        security: pluginSecurity,
     },
     rules: {
         ...pluginSecurity.configs.recommended.rules,
-        'no-secrets/no-secrets': ['error', { ignoreContent: ['^https://fonts\\.googleapis\\.com/', '^https://player\\.vimeo\\.com/'] }],
-        'security/detect-object-injection': 'off', // Disabled - too many false positives with TypeScript
-        'security/detect-non-literal-regexp': 'warn',
-        'security/detect-unsafe-regex': 'error',
+        'no-secrets/no-secrets': ['error', { ignoreContent: [String.raw`^https://fonts\.googleapis\.com/`, String.raw`^https://player\.vimeo\.com/`] }],
         'security/detect-buffer-noassert': 'error',
         'security/detect-child-process': 'error',
         'security/detect-disable-mustache-escape': 'error',
         'security/detect-eval-with-expression': 'error',
         'security/detect-new-buffer': 'error',
         'security/detect-no-csrf-before-method-override': 'error',
+        'security/detect-non-literal-regexp': 'warn',
+        'security/detect-object-injection': 'off', // Disabled - too many false positives with TypeScript
         'security/detect-pseudoRandomBytes': 'error',
+        'security/detect-unsafe-regex': 'error',
     },
 };
 

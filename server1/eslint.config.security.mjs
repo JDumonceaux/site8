@@ -18,7 +18,7 @@ const config = {
         'security/detect-new-buffer': 'error',
         'security/detect-no-csrf-before-method-override': 'error',
         'security/detect-non-literal-regexp': 'warn',
-        'security/detect-object-injection': 'warn',
+        'security/detect-object-injection': 'off', // Disabled - too many false positives with TypeScript
         'security/detect-pseudoRandomBytes': 'error',
         'security/detect-unsafe-regex': 'error',
     },

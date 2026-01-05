@@ -1,7 +1,7 @@
 // eslint.config.prefer-arrow-functions.mjs
 import pluginArrow from 'eslint-plugin-prefer-arrow-functions';
 
-export default [
+const config = [
     {
         name: 'Site8-prefer-arrow-functions',
         plugins: {
@@ -29,3 +29,5 @@ export default [
         },
     },
 ];
+
+export default config;

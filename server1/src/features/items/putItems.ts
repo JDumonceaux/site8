@@ -3,8 +3,8 @@ import type { Request, Response } from 'express';
 import { ItemAddSchema } from '@site8/shared';
 import { z } from 'zod';
 
-import { RequestValidator } from '../../lib/http/RequestValidator.js';
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { validateBody } from '../../lib/http/RequestValidator.js';
+import { badRequest, ok } from '../../lib/http/ResponseHelper.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
 const ItemAddArraySchema = z.array(ItemAddSchema);
@@ -20,23 +20,20 @@ export const putItems = async (
   res: Response<boolean | { error: string }>,
 ): Promise<void> => {
   // Validate request body as array using standardized validator
-  const validation = RequestValidator.validateBody(req, ItemAddArraySchema);
+  const validation = validateBody(req, ItemAddArraySchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(
-      res,
-      validation.errorMessage ?? 'Invalid request body',
-    );
+    badRequest(res, validation.errorMessage ?? 'Invalid request body');
     return;
   }
 
   const { data } = validation;
   if (data == null) {
-    ResponseHelper.badRequest(res, 'Invalid request data');
+    badRequest(res, 'Invalid request data');
     return;
   }
 
   const service = getItemsService();
   const response = await service.putItems(data);
 
-  ResponseHelper.ok(res, response, 'Items: Put Items');
+  ok(res, response, 'Items: Put Items');
 };

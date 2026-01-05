@@ -32,6 +32,11 @@ export const password = z
   )
   .max(MAX_PASSWORD_LENGTH, `Cannot exceed ${MAX_PASSWORD_LENGTH} characters`);
 
+export const SignInSchema = z.object({
+  emailAddress,
+  password,
+});
+
 export const ChangePasswordSchema = z
   .object({
     confirmPassword: password,
@@ -47,3 +52,7 @@ export type ChangePassword = z.infer<typeof ChangePasswordSchema>;
 export type Password = z.infer<typeof password>;
 export type EmailAddress = z.infer<typeof emailAddress>;
 export type DeleteCode = z.infer<typeof deleteCode>;
+export type SignIn = {
+  emailAddress: EmailAddress;
+  password: Password;
+};

@@ -5,28 +5,25 @@ import SubmitButton from '@components/ui/button/SubmitButton';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
-import { emailAddress, password } from '@types';
-import { z } from 'zod';
+import { type SignIn, SignInSchema } from '@types';
 import AuthContainer from './AuthContainer';
 import { createFormAction } from './authFormHelpers';
 import { StyledBottomMsg, StyledForm } from './AuthFormStyles';
 import FormMessage from './FormMessage';
 
-const schema = z.object({
-  emailAddress,
-  password,
-});
-
-type FormValues = z.infer<typeof schema>;
+type FormValues = SignIn;
 
 const SigninPage = (): JSX.Element => {
   const title = 'Sign-In';
 
   const { authSignIn } = useAuth();
 
-  const signInAction = createFormAction(schema, async (data: FormValues) => {
-    await authSignIn(data.emailAddress, data.password);
-  });
+  const signInAction = createFormAction(
+    SignInSchema,
+    async (data: FormValues) => {
+      await authSignIn(data.emailAddress, data.password);
+    },
+  );
 
   const [state, formAction] = useActionState(signInAction, {});
 
@@ -53,20 +50,30 @@ const SigninPage = (): JSX.Element => {
               errors: [{ message: state.errors.emailAddress }],
             })}
             autoComplete="email"
+            id="emailAddress"
             inputMode="email"
             label="Email Address"
-            name="emailAddress"
             placeholder="Enter Email Address"
             spellCheck="false"
+          />
+          <input
+            name="emailAddress"
+            type="hidden"
+            value=""
           />
           <Input.Password
             {...(state.errors?.password && {
               errors: [{ message: state.errors.password }],
             })}
             autoComplete="current-password"
+            id="password"
             label="Password"
-            name="password"
             placeholder="Enter Password"
+          />
+          <input
+            name="password"
+            type="hidden"
+            value=""
           />
           <SubmitButton id="login">Submit</SubmitButton>
         </StyledForm>

@@ -1,7 +1,7 @@
 import type { MenuItem } from '@site8/shared';
 import type { Request, Response } from 'express';
 
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { internalError, notFound, ok } from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import { getPlacesMenuService } from '../../utils/ServiceFactory.js';
 
@@ -23,17 +23,13 @@ export const getMenu = async (
     const menu = await placesMenuService.getPlacesMenu();
 
     if (!menu) {
-      ResponseHelper.notFound(res, 'Places menu not found');
+      notFound(res, 'Places menu not found');
       return;
     }
 
-    ResponseHelper.ok(
-      res,
-      { items: menu, metadata: { title: 'Travel' } },
-      handlerName,
-    );
+    ok(res, { items: menu, metadata: { title: 'Travel' } }, handlerName);
   } catch (error) {
-    ResponseHelper.internalError(res, handlerName, error, {
+    internalError(res, handlerName, error, {
       error: 'Failed to retrieve travel menu',
     });
   }

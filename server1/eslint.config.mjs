@@ -9,7 +9,7 @@ import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
 
-export default [
+const config = [
   {
     ignores: ['dist/**', 'node_modules/**', '*.d.ts'],
   },
@@ -57,4 +57,6 @@ export default [
     },
   },
 ];
+
+export default config;
 

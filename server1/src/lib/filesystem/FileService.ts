@@ -1,18 +1,39 @@
 import { existsSync, mkdirSync, realpathSync, writeFileSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 
 import { Logger } from '../../utils/logger.js';
-/* eslint-disable-next-line perfectionist/sort-imports */
+
 import FilePath from './FilePath.js';
 
 export class FileService {
   public createFolder(folderPath: string): boolean {
     Logger.info(`FileService: createFolder -> ${folderPath}`);
     try {
-      if (existsSync(folderPath)) {
+      // Validate path is within allowed directory
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Literal empty string
+      const allowedDir = realpathSync(FilePath.getDataDir(''));
+
+      // Try to resolve path, fallback to original if it doesn't exist yet
+      let pathToCheck: string;
+      try {
+        // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Need to validate path
+        pathToCheck = realpathSync(folderPath);
+      } catch {
+        // Path doesn't exist yet, use original
+        pathToCheck = folderPath;
+      }
+
+      if (!pathToCheck.startsWith(allowedDir)) {
+        throw new Error('Access denied: Invalid folder path');
+      }
+
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Path validated above
+      if (existsSync(pathToCheck)) {
         return true;
       }
-      mkdirSync(folderPath, { recursive: true });
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Path validated above
+      mkdirSync(pathToCheck, { recursive: true });
       return true;
     } catch (error) {
       const errorMessage =
@@ -27,15 +48,26 @@ export class FileService {
   public async getDataFile(fileName: string): Promise<string | undefined> {
     Logger.info(`FileService: getDataFile -> ${fileName}`);
     try {
-      const filePath = FilePath.getDataDir(fileName);
+      // Strip any directory components to prevent path traversal
+      const safeFileName = path.basename(fileName);
+      const dataDir = FilePath.getDataDir('');
+      const filePath = path.join(dataDir, safeFileName);
+
+      // Verify resolved path is within allowed directory
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Path validated above
       const resolvedPath = realpathSync(filePath);
-      if (!resolvedPath.startsWith(__dirname)) {
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Literal empty string
+      const allowedDir = realpathSync(dataDir);
+
+      if (!resolvedPath.startsWith(allowedDir)) {
         Logger.error(
           `FileService: getDataFile: ${fileName} --> Invalid file path: ${filePath}`,
         );
         return undefined;
       }
-      return await readFile(filePath, { encoding: 'utf8' });
+
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path validated above
+      return await readFile(resolvedPath, { encoding: 'utf8' });
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
@@ -50,7 +82,9 @@ export class FileService {
     Logger.info(`FileService: getFile -> ${filePath}`);
     try {
       // Prevent path traversal attacks
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Need to validate path
       const resolvedPath = realpathSync(filePath);
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Literal empty string
       const allowedDir = realpathSync(FilePath.getDataDir(''));
 
       if (!resolvedPath.startsWith(allowedDir)) {
@@ -60,6 +94,7 @@ export class FileService {
         throw new Error('Access denied: Invalid file path');
       }
 
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path validated above
       return await readFile(resolvedPath, { encoding: 'utf8' });
     } catch (error) {
       const errorMessage =
@@ -73,7 +108,18 @@ export class FileService {
 
   public async readFile<T>(filePath: string): Promise<T> {
     try {
-      const data = await readFile(filePath, { encoding: 'utf8' });
+      // Validate path is within allowed directory
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Need to validate path
+      const resolvedPath = realpathSync(filePath);
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Literal empty string
+      const allowedDir = realpathSync(FilePath.getDataDir(''));
+
+      if (!resolvedPath.startsWith(allowedDir)) {
+        throw new Error('Access denied: Invalid file path');
+      }
+
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path validated above
+      const data = await readFile(resolvedPath, { encoding: 'utf8' });
       return JSON.parse(data) as T;
     } catch (error) {
       const errorMessage =
@@ -86,7 +132,19 @@ export class FileService {
   public async writeFile(data: unknown, filePath: string): Promise<boolean> {
     try {
       Logger.info(`FileService: writeFile -> ${filePath}`);
-      await writeFile(filePath, JSON.stringify(data, null, 2), {
+
+      // Validate path is within allowed directory
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Need to validate path
+      const resolvedPath = realpathSync(filePath);
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Literal empty string
+      const allowedDir = realpathSync(FilePath.getDataDir(''));
+
+      if (!resolvedPath.startsWith(allowedDir)) {
+        throw new Error('Access denied: Invalid file path');
+      }
+
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path validated above
+      await writeFile(resolvedPath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
       });
       return true;
@@ -101,7 +159,19 @@ export class FileService {
   public writeFileSync(data: unknown, filePath: string): boolean {
     try {
       Logger.info(`FileService: writeFileSync -> ${filePath}`);
-      writeFileSync(filePath, JSON.stringify(data, null, 2), {
+
+      // Validate path is within allowed directory
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Need to validate path
+      const resolvedPath = realpathSync(filePath);
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Literal empty string
+      const allowedDir = realpathSync(FilePath.getDataDir(''));
+
+      if (!resolvedPath.startsWith(allowedDir)) {
+        throw new Error('Access denied: Invalid file path');
+      }
+
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Path validated above, sync needed for compatibility
+      writeFileSync(resolvedPath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
         flag: 'w',
       });

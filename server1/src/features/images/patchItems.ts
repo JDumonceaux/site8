@@ -3,8 +3,8 @@ import type { Request, Response } from 'express';
 import { ImageEditSchema } from '@site8/shared';
 import { z } from 'zod';
 
-import { RequestValidator } from '../../lib/http/RequestValidator.js';
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { validateBody } from '../../lib/http/RequestValidator.js';
+import { badRequest, noContent } from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
 
@@ -27,18 +27,15 @@ export const patchItems = async (
   res: Response<{ error: string }>,
 ): Promise<void> => {
   // Validate request body using standardized validator
-  const validation = RequestValidator.validateBody(req, ImagesSchema);
+  const validation = validateBody(req, ImagesSchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(
-      res,
-      validation.errorMessage ?? 'Invalid request body',
-    );
+    badRequest(res, validation.errorMessage ?? 'Invalid request body');
     return;
   }
 
   const { data } = validation;
   if (data == null) {
-    ResponseHelper.badRequest(res, 'Invalid request data');
+    badRequest(res, 'Invalid request data');
     return;
   }
 
@@ -47,5 +44,5 @@ export const patchItems = async (
   const service = getImagesService();
   await service.updateItems(data.items);
 
-  ResponseHelper.noContent(res, 'Images');
+  noContent(res, 'Images');
 };

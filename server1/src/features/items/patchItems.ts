@@ -3,8 +3,12 @@ import type { Request, Response } from 'express';
 import { ItemEditSchema } from '@site8/shared';
 import { z } from 'zod';
 
-import { RequestValidator } from '../../lib/http/RequestValidator.js';
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { validateBody } from '../../lib/http/RequestValidator.js';
+import {
+  badRequest,
+  internalError,
+  noContent,
+} from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
@@ -21,25 +25,22 @@ export const patchItems = async (
   res: Response<boolean | string | { error: string }>,
 ): Promise<void> => {
   // Validate request body as array using standardized validator
-  const validation = RequestValidator.validateBody(req, ItemEditArraySchema);
+  const validation = validateBody(req, ItemEditArraySchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(
-      res,
-      validation.errorMessage ?? 'Invalid request body',
-    );
+    badRequest(res, validation.errorMessage ?? 'Invalid request body');
     return;
   }
 
   const { data } = validation;
   if (data == null) {
-    ResponseHelper.badRequest(res, 'Invalid request data');
+    badRequest(res, 'Invalid request data');
     return;
   }
 
   Logger.info('Items: Patch Items called');
 
   if (!Array.isArray(data) || data.length === 0) {
-    ResponseHelper.badRequest(res, 'No valid data to change');
+    badRequest(res, 'No valid data to change');
     return;
   }
 
@@ -47,8 +48,8 @@ export const patchItems = async (
   const response = service.patchItems(data);
 
   if (response) {
-    ResponseHelper.noContent(res, 'Items');
+    noContent(res, 'Items');
   } else {
-    ResponseHelper.internalError(res, 'Items', new Error('Edit failed'));
+    internalError(res, 'Items', new Error('Edit failed'));
   }
 };

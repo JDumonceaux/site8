@@ -3,26 +3,19 @@ import type { Request } from 'express';
 import { PREFER_HEADER } from '../../utils/constants.js';
 
 /**
- * Handles Prefer header logic for HTTP requests
- * Supports RFC 7240 Prefer header patterns
+ * Gets the Prefer header value from the request
+ * @param req - Express request object
+ * @returns Prefer header value or undefined
  */
-export class PreferHeaderHandler {
-  /**
-   * Gets the Prefer header value from the request
-   * @param req - Express request object
-   * @returns Prefer header value or undefined
-   */
-  public static getPreferHeader(req: Request): string | undefined {
-    return req.get('Prefer');
-  }
+export const getPreferHeader = (req: Request): string | undefined =>
+  req.get('Prefer');
 
-  /**
-   * Checks if the Prefer header requests full representation in response
-   * @param req - Express request object
-   * @returns True if client prefers full representation (return=representation)
-   */
-  public static wantsRepresentation(req: Request): boolean {
-    const prefer = req.get('Prefer');
-    return prefer === PREFER_HEADER.REPRESENTATION;
-  }
-}
+/**
+ * Checks if the Prefer header requests full representation in response
+ * @param req - Express request object
+ * @returns True if client prefers full representation (return=representation)
+ */
+export const wantsRepresentation = (req: Request): boolean => {
+  const prefer = req.get('Prefer');
+  return prefer === PREFER_HEADER.REPRESENTATION;
+};

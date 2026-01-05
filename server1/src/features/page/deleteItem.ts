@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
-import { RequestValidator } from '../../lib/http/RequestValidator.js';
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { validateId } from '../../lib/http/RequestValidator.js';
+import { badRequest, noContent } from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import {
   getPageFileService,
@@ -20,15 +20,15 @@ export const deleteItem = async (
   res: Response<{ error: string }>,
 ): Promise<void> => {
   // Validate ID using standardized validator
-  const idValidation = RequestValidator.validateId(req.body);
+  const idValidation = validateId(req.body);
   if (!idValidation.isValid) {
-    ResponseHelper.badRequest(res, idValidation.errorMessage ?? 'Invalid ID');
+    badRequest(res, idValidation.errorMessage ?? 'Invalid ID');
     return;
   }
 
   const idNum = idValidation.id;
   if (idNum == null) {
-    ResponseHelper.badRequest(res, 'Invalid ID');
+    badRequest(res, 'Invalid ID');
     return;
   }
 
@@ -43,5 +43,5 @@ export const deleteItem = async (
     Promise.try(async () => fileService.deleteFile(idNum)),
   ]);
 
-  ResponseHelper.noContent(res, 'Page');
+  noContent(res, 'Page');
 };

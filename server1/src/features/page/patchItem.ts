@@ -2,8 +2,12 @@ import type { Request, Response } from 'express';
 
 import { PageEditSchema } from '@site8/shared';
 
-import { RequestValidator } from '../../lib/http/RequestValidator.js';
-import { ResponseHelper } from '../../lib/http/ResponseHelper.js';
+import { validateBody } from '../../lib/http/RequestValidator.js';
+import {
+  badRequest,
+  internalError,
+  noContent,
+} from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import {
   getPageFileService,
@@ -22,18 +26,15 @@ export const patchItem = async (
   res: Response<unknown>,
 ): Promise<void> => {
   // Validate request body using standardized validator
-  const validation = RequestValidator.validateBody(req, PageEditSchema);
+  const validation = validateBody(req, PageEditSchema);
   if (!validation.isValid) {
-    ResponseHelper.badRequest(
-      res,
-      validation.errorMessage ?? 'Invalid request body',
-    );
+    badRequest(res, validation.errorMessage ?? 'Invalid request body');
     return;
   }
 
   const item = validation.data;
   if (item == null) {
-    ResponseHelper.badRequest(res, 'Invalid request data');
+    badRequest(res, 'Invalid request data');
     return;
   }
 
@@ -52,10 +53,10 @@ export const patchItem = async (
   for (const result of results) {
     if (result.status === 'rejected') {
       const error = new Error(String(result.reason) || 'Update failed');
-      ResponseHelper.internalError(res, 'Page', error);
+      internalError(res, 'Page', error);
       return;
     }
   }
 
-  ResponseHelper.noContent(res, 'Page');
+  noContent(res, 'Page');
 };

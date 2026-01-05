@@ -3,9 +3,20 @@ import type { ZodType } from 'zod';
 
 import { Logger } from '../../utils/logger.js';
 
-import { PreferHeaderHandler } from './PreferHeaderHandler.js';
-import { RequestValidator } from './RequestValidator.js';
-import { ResponseHelper } from './ResponseHelper.js';
+import { wantsRepresentation } from './PreferHeaderHandler.js';
+import { convertIdsToNumbers, validateBody } from './RequestValidator.js';
+import {
+  badRequest,
+  conflict,
+  created,
+  internalError,
+  isConflictError,
+  isNotFoundError,
+  isValidationError,
+  noContent,
+  notFound,
+  ok,
+} from './ResponseHelper.js';
 
 /**
  * Base service interface for CRUD operations
@@ -111,16 +122,16 @@ export const createGetHandler = <T>(config: GetHandlerConfig<T>) => {
         const itemCount = getItemCount(data);
 
         if (itemCount === 0) {
-          ResponseHelper.noContent(res, handlerName, 'No items found');
+          noContent(res, handlerName, 'No items found');
           return;
         }
 
-        ResponseHelper.ok(res, data, handlerName, itemCount);
+        ok(res, data, handlerName, itemCount);
       } else {
-        ResponseHelper.ok(res, data, handlerName);
+        ok(res, data, handlerName);
       }
     } catch (error) {
-      ResponseHelper.internalError(res, handlerName, error, errorResponse);
+      internalError(res, handlerName, error, errorResponse);
     }
   };
 };
@@ -175,7 +186,7 @@ export const createGetHandlerWithParams = <T>(
       if (validateParams) {
         const validation = validateParams(req);
         if (!validation.isValid) {
-          ResponseHelper.badRequest(
+          badRequest(
             res as Response<{ error: string }>,
             validation.errorMessage ?? 'Invalid parameters',
             handlerName,
@@ -193,16 +204,16 @@ export const createGetHandlerWithParams = <T>(
         const itemCount = getItemCount(data);
 
         if (itemCount === 0) {
-          ResponseHelper.noContent(res, handlerName, 'No items found');
+          noContent(res, handlerName, 'No items found');
           return;
         }
 
-        ResponseHelper.ok(res, data, handlerName, itemCount);
+        ok(res, data, handlerName, itemCount);
       } else {
-        ResponseHelper.ok(res, data, handlerName);
+        ok(res, data, handlerName);
       }
     } catch (error) {
-      ResponseHelper.internalError(res, handlerName, error, errorResponse);
+      internalError(res, handlerName, error, errorResponse);
     }
   };
 };
@@ -218,35 +229,26 @@ export const createPatchHandler = <T>({
     res: Response<T | { error: string }>,
   ): Promise<void> => {
     try {
-      const returnRepresentation = PreferHeaderHandler.wantsRepresentation(req);
+      const returnRepresentation = wantsRepresentation(req);
 
       // Validate request body (ID should be in body, not URL)
-      const validation = RequestValidator.validateBody(req, schema);
+      const validation = validateBody(req, schema);
       if (!validation.isValid) {
-        ResponseHelper.badRequest(
-          res,
-          validation.errorMessage ?? 'Invalid request body',
-        );
+        badRequest(res, validation.errorMessage ?? 'Invalid request body');
         return;
       }
 
       const validatedData = validation.data as Record<string, unknown>;
 
       // Convert string IDs to numbers
-      const idConversion = RequestValidator.convertIdsToNumbers(
-        validatedData,
-        idFields,
-      );
+      const idConversion = convertIdsToNumbers(validatedData, idFields);
       if (!idConversion.isValid) {
-        ResponseHelper.badRequest(
-          res,
-          idConversion.errorMessage ?? 'Invalid ID format',
-        );
+        badRequest(res, idConversion.errorMessage ?? 'Invalid ID format');
         return;
       }
 
       if (!idConversion.data) {
-        ResponseHelper.badRequest(res, 'Missing data after ID conversion');
+        badRequest(res, 'Missing data after ID conversion');
         return;
       }
       const { data } = idConversion;
@@ -254,7 +256,7 @@ export const createPatchHandler = <T>({
       // Validate ID exists in body
       const id = typeof data['id'] === 'number' ? data['id'] : undefined;
       if (!id) {
-        ResponseHelper.badRequest(res, 'ID is required in request body');
+        badRequest(res, 'ID is required in request body');
         return;
       }
 
@@ -270,7 +272,7 @@ export const createPatchHandler = <T>({
         } else if (service.updateItem) {
           updatedId = await service.updateItem(data as T);
         } else {
-          ResponseHelper.internalError(
+          internalError(
             res,
             serviceName,
             new Error('Service missing update method'),
@@ -280,7 +282,7 @@ export const createPatchHandler = <T>({
 
         if (returnRepresentation) {
           if (!service.getItem) {
-            ResponseHelper.internalError(
+            internalError(
               res,
               serviceName,
               new Error('Service missing getItem method'),
@@ -289,20 +291,20 @@ export const createPatchHandler = <T>({
           }
           const result = await service.getItem(updatedId);
           if (!result) {
-            ResponseHelper.notFound(res, 'Item not found after update');
+            notFound(res, 'Item not found after update');
             return;
           }
-          ResponseHelper.ok(res, result, serviceName);
+          ok(res, result, serviceName);
           return;
         }
-        ResponseHelper.noContent(res, serviceName);
+        noContent(res, serviceName);
       } catch (serviceError) {
-        if (ResponseHelper.isNotFoundError(serviceError)) {
-          ResponseHelper.notFound(res);
+        if (isNotFoundError(serviceError)) {
+          notFound(res);
           return;
         }
-        if (ResponseHelper.isValidationError(serviceError)) {
-          ResponseHelper.badRequest(
+        if (isValidationError(serviceError)) {
+          badRequest(
             res,
             serviceError instanceof Error
               ? serviceError.message
@@ -313,7 +315,7 @@ export const createPatchHandler = <T>({
         throw serviceError;
       }
     } catch (error) {
-      ResponseHelper.internalError(res, serviceName, error);
+      internalError(res, serviceName, error);
     }
   };
 };
@@ -336,20 +338,17 @@ export const createPostHandler = <T, TAdd>({
     res: Response<T | { error: string }>,
   ): Promise<void> => {
     try {
-      const returnRepresentation = PreferHeaderHandler.wantsRepresentation(req);
+      const returnRepresentation = wantsRepresentation(req);
 
       // Validate request body
-      const validation = RequestValidator.validateBody(req, schema);
+      const validation = validateBody(req, schema);
       if (!validation.isValid) {
-        ResponseHelper.badRequest(
-          res,
-          validation.errorMessage ?? 'Invalid request body',
-        );
+        badRequest(res, validation.errorMessage ?? 'Invalid request body');
         return;
       }
 
       if (!validation.data) {
-        ResponseHelper.badRequest(res, 'Missing request data');
+        badRequest(res, 'Missing request data');
         return;
       }
       const { data } = validation;
@@ -363,21 +362,21 @@ export const createPostHandler = <T, TAdd>({
         if (returnRepresentation) {
           const newItem = await service.getItem(newId);
           if (!newItem) {
-            ResponseHelper.internalError(
+            internalError(
               res,
               serviceName,
               new Error('Failed to retrieve created item'),
             );
             return;
           }
-          ResponseHelper.created(res, resourcePath, newId, newItem);
+          created(res, resourcePath, newId, newItem);
           return;
         }
 
-        ResponseHelper.created(res, resourcePath, newId);
+        created(res, resourcePath, newId);
       } catch (serviceError) {
-        if (ResponseHelper.isValidationError(serviceError)) {
-          ResponseHelper.badRequest(
+        if (isValidationError(serviceError)) {
+          badRequest(
             res,
             serviceError instanceof Error
               ? serviceError.message
@@ -385,8 +384,8 @@ export const createPostHandler = <T, TAdd>({
           );
           return;
         }
-        if (ResponseHelper.isConflictError(serviceError)) {
-          ResponseHelper.conflict(
+        if (isConflictError(serviceError)) {
+          conflict(
             res,
             serviceError instanceof Error ? serviceError.message : 'Conflict',
           );
@@ -395,7 +394,7 @@ export const createPostHandler = <T, TAdd>({
         throw serviceError;
       }
     } catch (error) {
-      ResponseHelper.internalError(res, serviceName, error);
+      internalError(res, serviceName, error);
     }
   };
 };
@@ -413,20 +412,17 @@ export const createPutHandler = <T, TAdd>({
     res: Response<T | { error: string }>,
   ): Promise<void> => {
     try {
-      const returnRepresentation = PreferHeaderHandler.wantsRepresentation(req);
+      const returnRepresentation = wantsRepresentation(req);
 
       // Validate request body
-      const validation = RequestValidator.validateBody(req, schema);
+      const validation = validateBody(req, schema);
       if (!validation.isValid) {
-        ResponseHelper.badRequest(
-          res,
-          validation.errorMessage ?? 'Invalid request body',
-        );
+        badRequest(res, validation.errorMessage ?? 'Invalid request body');
         return;
       }
 
       if (!validation.data) {
-        ResponseHelper.badRequest(res, 'Missing request data');
+        badRequest(res, 'Missing request data');
         return;
       }
       const { data } = validation;
@@ -438,16 +434,16 @@ export const createPutHandler = <T, TAdd>({
       if (returnRepresentation) {
         const newItem = await service.getItem(newId);
         if (newItem) {
-          ResponseHelper.ok(res, newItem, serviceName);
+          ok(res, newItem, serviceName);
           return;
         }
-        ResponseHelper.notFound(res, 'Created item not found');
+        notFound(res, 'Created item not found');
         return;
       }
 
-      ResponseHelper.created(res, resourcePath, newId);
+      created(res, resourcePath, newId);
     } catch (error) {
-      ResponseHelper.internalError(res, serviceName, error);
+      internalError(res, serviceName, error);
     }
   };
 };
@@ -484,14 +480,14 @@ export const createDeleteHandler = <T>({
           : undefined;
 
       if (!id) {
-        ResponseHelper.badRequest(res, 'Invalid ID');
+        badRequest(res, 'Invalid ID');
         return;
       }
 
       // Parse and validate ID
       const idNum = Number(id);
       if (Number.isNaN(idNum) || idNum <= 0) {
-        ResponseHelper.badRequest(res, 'Invalid ID');
+        badRequest(res, 'Invalid ID');
         return;
       }
 
@@ -501,17 +497,17 @@ export const createDeleteHandler = <T>({
       const deletedItem = await service.deleteItem(idNum);
 
       if (!deletedItem) {
-        ResponseHelper.notFound(res, 'Item not found');
+        notFound(res, 'Item not found');
         return;
       }
 
       if (returnDeleted) {
-        ResponseHelper.ok(res, deletedItem, serviceName);
+        ok(res, deletedItem, serviceName);
       } else {
-        ResponseHelper.noContent(res, serviceName);
+        noContent(res, serviceName);
       }
     } catch (error) {
-      ResponseHelper.internalError(res, serviceName, error);
+      internalError(res, serviceName, error);
     }
   };
 };
