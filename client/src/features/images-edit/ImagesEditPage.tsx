@@ -3,8 +3,8 @@ import { type JSX, Suspense, useActionState } from 'react';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
-import useArtistsItems from '@hooks/useArtistsItems';
 import Layout from '@features/layouts/layout/Layout';
+import useArtistsItems from '@hooks/useArtistsItems';
 import type { FormState } from '@types';
 import ImageDetail from './ImageDetail';
 import MenuBar from './MenuBar';
@@ -12,10 +12,10 @@ import RightMenu from './RightMenu';
 import useImagesEditPage from './useImagesEditPage';
 import styled from 'styled-components';
 
-const submitAction = async (
+const submitAction = (
   _prevState: unknown,
   _formData: FormData,
-): Promise<FormState<null>> => {
+): FormState<null> => {
   try {
     // TODO: Implement save logic
     // const updates = JSON.parse(formData.get('updates') as string);

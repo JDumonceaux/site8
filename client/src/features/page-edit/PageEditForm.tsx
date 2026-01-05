@@ -50,10 +50,10 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
 
   const data =
     Array.isArray(actionState) &&
-    actionState[0] &&
     typeof actionState[0] === 'object' &&
+    actionState[0] &&
     'fieldData' in actionState[0]
-      ? (actionState[0])
+      ? actionState[0]
       : undefined;
   const action = Array.isArray(actionState) ? actionState[1] : undefined;
 

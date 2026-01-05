@@ -10,8 +10,8 @@ const config = {
     },
     rules: {
         ...pluginSecurity.configs.recommended.rules,
-        'no-secrets/no-secrets': 'error',
-        'security/detect-object-injection': 'warn', // Can be noisy, set to warn
+        'no-secrets/no-secrets': ['error', { ignoreContent: ['^https://fonts\\.googleapis\\.com/', '^https://player\\.vimeo\\.com/'] }],
+        'security/detect-object-injection': 'off', // Disabled - too many false positives with TypeScript
         'security/detect-non-literal-regexp': 'warn',
         'security/detect-unsafe-regex': 'error',
         'security/detect-buffer-noassert': 'error',

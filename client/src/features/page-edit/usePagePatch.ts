@@ -64,9 +64,7 @@ const usePagePatch = () => {
 
       for (const issue of validationResult.error.issues) {
         const fieldName = issue.path[0] as keyof FormErrors;
-        // eslint-disable-next-line security/detect-object-injection -- fieldName is validated as keyof FormErrors
         tempErrors[fieldName] = { errors: [] };
-        // eslint-disable-next-line security/detect-object-injection -- fieldName is validated as keyof FormErrors
         tempErrors[fieldName].errors?.push({
           message: issue.message,
         });

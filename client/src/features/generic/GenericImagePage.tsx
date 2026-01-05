@@ -39,11 +39,9 @@ const GenericImagePage = (): JSX.Element => {
                       src={getSRC(item.folder, item.fileName)}
                     />
                     <div>{item.fileName}</div>
-                    {item.official_url ? (
+                    {item.ext_url ? (
                       <div>
-                        <a href={sanitizeUrl(item.official_url)}>
-                          Offical Site
-                        </a>
+                        <a href={sanitizeUrl(item.ext_url)}>Official Site</a>
                       </div>
                     ) : null}
                     {/* <div>{item.tags}</div>  */}
@@ -65,4 +63,3 @@ const StyledImage = styled.img`
   height: 200px;
   width: 200px;
 `;
-

@@ -46,7 +46,6 @@ export const splitParent = (
 
   const result: { id: number; seq: number }[] = [];
   for (let index = 0; index < parts.length; index += 2) {
-    // eslint-disable-next-line security/detect-object-injection
     const id = Number.parseInt(parts[index], 10);
     const seq = Number.parseInt(parts[index + 1], 10);
     if (!Number.isNaN(id) && !Number.isNaN(seq)) {

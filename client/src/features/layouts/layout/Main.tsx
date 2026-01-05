@@ -1,4 +1,4 @@
-import { type JSX, useTransition } from 'react';
+import { type JSX, useCallback, useTransition } from 'react';
 
 import styled from 'styled-components';
 
@@ -14,11 +14,11 @@ const Main = ({ children }: MainProps): JSX.Element | null => {
   const [isPending, startTransition] = useTransition();
 
   // Optionally defer rendering heavy content
-  const renderContent = () => {
+  const renderContent = useCallback(() => {
     startTransition(() => {
       // No additional state updates needed; children render optimistically
     });
-  };
+  }, [startTransition]);
 
   return (
     <MainContainer

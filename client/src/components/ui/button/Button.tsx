@@ -50,6 +50,9 @@ const variantStyles: Record<Variant, ReturnType<typeof css>> = {
   `,
 };
 
+const getVariantStyles = (variant: Variant): ReturnType<typeof css> =>
+  variantStyles[variant];
+
 const sizeStyles: Record<Size, ReturnType<typeof css>> = {
   lg: css`
     font-size: 1.125rem;
@@ -73,6 +76,8 @@ const sizeStyles: Record<Size, ReturnType<typeof css>> = {
   `,
 };
 
+const getSizeStyles = (size: Size): ReturnType<typeof css> => sizeStyles[size];
+
 /**
  * Core styled `<button>` using only transient props
  */
@@ -89,8 +94,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     background-color 150ms ease,
     transform 100ms ease;
 
-  ${({ $variant }) => variantStyles[$variant]};
-  ${({ $size }) => sizeStyles[$size]};
+  ${({ $variant }) => getVariantStyles($variant)};
+  ${({ $size }) => getSizeStyles($size)};
   ${({ $fullWidth }) =>
     $fullWidth &&
     css`

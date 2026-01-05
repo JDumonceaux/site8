@@ -7,8 +7,8 @@ type FormSaveButtonProps = {
   readonly children?: React.ReactNode;
   readonly className?: string;
   readonly 'data-testid'?: string;
-  readonly disabled?: boolean;
   readonly form?: string;
+  readonly isDisabled?: boolean;
 };
 
 /**
@@ -20,8 +20,8 @@ const FormSaveButton = ({
   children = 'Save',
   className,
   'data-testid': dataTestId,
-  disabled = false,
   form,
+  isDisabled = false,
 }: FormSaveButtonProps): JSX.Element => {
   const { pending } = useFormStatus();
 
@@ -29,7 +29,7 @@ const FormSaveButton = ({
     <StyledPlainButton
       className={className}
       data-testid={dataTestId}
-      disabled={disabled || pending}
+      disabled={isDisabled || pending}
       form={form}
       type="submit"
     >

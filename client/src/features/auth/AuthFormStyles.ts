@@ -13,5 +13,5 @@ export const StyledBottomMsg = styled.div`
 export const InstDiv = styled.div`
   padding: 10px 0;
   font-size: 0.9em;
-  color: ${({ theme }) => theme.colors.textSecondary || '#666'};
+  color: var(--text-secondary, #666);
 `;

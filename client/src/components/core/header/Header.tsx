@@ -1,4 +1,5 @@
 import type { JSX, ReactNode } from 'react';
+import { useCallback } from 'react';
 
 import { MenuIcon } from '@components/ui/icons/MenuIcon';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
@@ -16,10 +17,13 @@ type HeaderProps = {
  * Page header with optional menu toggle and avatar slot.
  */
 const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
-  const handleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    onMenuToggle?.();
-  };
+  const handleMenuClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      onMenuToggle?.();
+    },
+    [onMenuToggle],
+  );
 
   return (
     <HeaderContainer>
@@ -133,4 +137,3 @@ const AvatarGroup = styled.div`
   align-items: center;
   gap: 0.75rem;
 `;
-

@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useActionState } from 'react';
+import { useActionState, useCallback } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import Button from '@components/ui/button/Button';
@@ -21,11 +21,6 @@ type FormState = {
   message?: string;
   success?: boolean;
 };
-
-const schema = z.object({
-  authenticationCode: z.string().length(6, 'Code must be 6 digits'),
-  emailAddress: z.string().pipe(z.email({ message: 'Invalid email address' })),
-});
 
 const ConfirmEmailPage = (): JSX.Element => {
   const title = 'Confirmation';
@@ -89,7 +84,7 @@ const ConfirmEmailPage = (): JSX.Element => {
     FormData
   >(submitAction, {});
 
-  const handleResend = () => {
+  const handleResend = useCallback(() => {
     void (async () => {
       try {
         await authResendConfirmationCode(formValues.emailAddress);
@@ -100,19 +95,35 @@ const ConfirmEmailPage = (): JSX.Element => {
         });
       }
     })();
+  }, [authResendConfirmationCode, formValues.emailAddress]);
+
+  const getFormValue = (fieldName: FormKeys): string => {
+    return formValues[fieldName];
   };
 
-  const getStandardInputTextAttributes = (fieldName: FormKeys) => ({
-    errorText: getFieldErrors(fieldName),
+  const getStandardInputTextAttributes = (
+    fieldName: FormKeys,
+  ): {
+    errorText: string | string[] | undefined;
+    id: string;
+    value: string;
+  } => ({
+    errorText: getFieldErrors(fieldName) ?? undefined,
     id: fieldName,
-    value: formValues[fieldName],
+    value: getFormValue(fieldName),
   });
 
   return (
     <>
       <Meta title={title} />
       <AuthContainer
-        error={actionState.message || error}
+        error={
+          actionState.message
+            ? undefined
+            : typeof error === 'string'
+              ? undefined
+              : error
+        }
         leftImage={
           <img
             alt=""

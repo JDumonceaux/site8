@@ -16,7 +16,7 @@ const isClientError = (
   errorValue: unknown,
 ): errorValue is { status: number } => {
   if (typeof errorValue !== 'object' || errorValue === null) return false;
-  const maybeStatus = (errorValue as Record<string, unknown>)['status'];
+  const maybeStatus = (errorValue as Record<string, unknown>).status;
   return typeof maybeStatus === 'number';
 };
 

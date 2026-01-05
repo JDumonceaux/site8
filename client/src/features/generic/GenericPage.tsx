@@ -63,8 +63,7 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
 
   console.log('query data in GenericPage:', pageId);
 
-  const pageData: Page | undefined =
-    query.isSuccess && query.data ? query.data : undefined;
+  const pageData: Page | undefined = query.data;
   const deferredData = useDeferredValue(pageData);
 
   const pageTitle: string = deferredData?.title ?? title ?? '';

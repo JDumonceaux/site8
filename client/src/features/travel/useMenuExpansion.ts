@@ -84,7 +84,6 @@ const findItemsByUrlPath = (
   // Check if we've exhausted the path segments
   if (currentDepth >= pathSegments.length) return;
 
-  // eslint-disable-next-line security/detect-object-injection -- `currentDepth` is a number and is controlled internally.
   const targetSegment = pathSegments[currentDepth];
 
   for (const menuItem of items) {

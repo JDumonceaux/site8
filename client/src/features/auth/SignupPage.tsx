@@ -5,9 +5,10 @@ import Button from '@components/ui/button/Button';
 import SubmitButton from '@components/ui/button/SubmitButton';
 import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
-import useAuth, { SocialProvider } from '@features/auth/useAuth';
+import { type SocialProvider, SocialProviders } from '@features/auth/types';
+import useAuth from '@features/auth/useAuth';
 import { logError } from '@lib/utils/errorHandler';
-import { emailAddress, password } from '@types';
+import type { emailAddress, password } from '@types';
 import { z } from 'zod';
 import AuthContainer from './AuthContainer';
 import { createFormAction } from './authFormHelpers';
@@ -33,32 +34,35 @@ const SignupPage = (): JSX.Element => {
 
   const [state, formAction] = useActionState(signUpAction, {});
 
-  const handleClick = (provider: SocialProvider) => {
-    void (async () => {
-      try {
-        await authSignInWithRedirect(provider);
-      } catch (error_) {
-        logError(error_, {
-          componentName: 'SignupPage',
-          operation: 'socialSignIn',
-          provider,
-        });
-        // Handle error appropriately, e.g., show a notification
-      }
-    })();
-  };
+  const handleClick = useCallback(
+    (provider: SocialProvider) => {
+      void (async () => {
+        try {
+          await authSignInWithRedirect(provider);
+        } catch (error_) {
+          logError(error_, {
+            componentName: 'SignupPage',
+            operation: 'socialSignIn',
+            provider,
+          });
+          // Handle error appropriately, e.g., show a notification
+        }
+      })();
+    },
+    [authSignInWithRedirect],
+  );
 
   const handleAmazonClick = useCallback(() => {
-    handleClick(SocialProvider.AMAZON);
-  }, [authSignInWithRedirect]);
+    handleClick(SocialProviders.AMAZON);
+  }, [handleClick]);
 
   const handleFacebookClick = useCallback(() => {
-    handleClick(SocialProvider.FACEBOOK);
-  }, [authSignInWithRedirect]);
+    handleClick(SocialProviders.FACEBOOK);
+  }, [handleClick]);
 
   const handleGoogleClick = useCallback(() => {
-    handleClick(SocialProvider.GOOGLE);
-  }, [authSignInWithRedirect]);
+    handleClick(SocialProviders.GOOGLE);
+  }, [handleClick]);
 
   return (
     <>
@@ -102,7 +106,6 @@ const SignupPage = (): JSX.Element => {
             })}
             autoComplete="email"
             label="Email Address"
-            name="emailAddress"
             placeholder="Enter Email Address"
             spellCheck="false"
           />
@@ -112,7 +115,6 @@ const SignupPage = (): JSX.Element => {
             })}
             autoComplete="new-password"
             label="Password"
-            name="password"
             placeholder="Enter your password"
           />
           <InstDiv>

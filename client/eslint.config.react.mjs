@@ -30,7 +30,7 @@ const config = {
         // ============================================================================
         // React Rules
         // ============================================================================
-        'react/boolean-prop-naming': ['error', { rule: '^(is|has|should|can|will|did)[A-Z]([A-Za-z0-9]?)+' }],
+        'react/boolean-prop-naming': ['error', { rule: '^(is|has|should|can|will|did|show)[A-Z]([A-Za-z0-9]?)+' }], // Added show
         'react/button-has-type': 'error',
         'react/checked-requires-onchange-or-readonly': 'error',
         'react/default-props-match-prop-types': 'error',

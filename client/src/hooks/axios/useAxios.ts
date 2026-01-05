@@ -1,4 +1,4 @@
-import { useEffectEvent, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { useAsyncOperation } from '../useAsyncOperation';
 
@@ -14,43 +14,49 @@ export const useAxios = <T>(): UseAxiosReturn<T> => {
   const [data, setData] = useState<null | T>(null);
   const { error, execute, isLoading } = useAsyncOperation<Error>();
 
-  const patchData = useEffectEvent(async (url: string, payload: unknown) => {
-    const result = await execute(async () => {
-      const response = await fetch(url, {
-        body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'PATCH',
+  const patchData = useCallback(
+    async (url: string, payload: unknown) => {
+      const result = await execute(async () => {
+        const response = await fetch(url, {
+          body: JSON.stringify(payload),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'PATCH',
+        });
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        return (await response.json()) as T;
       });
-      if (!response.ok)
-        throw new Error(`HTTP error! status: ${response.status}`);
-      return (await response.json()) as T;
-    });
 
-    if (result != null) {
-      setData(result);
-      return result;
-    }
-    return null;
-  });
+      if (result != null) {
+        setData(result);
+        return result;
+      }
+      return null;
+    },
+    [execute],
+  );
 
-  const putData = useEffectEvent(async (url: string, payload: unknown) => {
-    const result = await execute(async () => {
-      const response = await fetch(url, {
-        body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'PUT',
+  const putData = useCallback(
+    async (url: string, payload: unknown) => {
+      const result = await execute(async () => {
+        const response = await fetch(url, {
+          body: JSON.stringify(payload),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'PUT',
+        });
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
+        return (await response.json()) as T;
       });
-      if (!response.ok)
-        throw new Error(`HTTP error! status: ${response.status}`);
-      return (await response.json()) as T;
-    });
 
-    if (result != null) {
-      setData(result);
-      return result;
-    }
-    return null;
-  });
+      if (result != null) {
+        setData(result);
+        return result;
+      }
+      return null;
+    },
+    [execute],
+  );
 
   return { data, error, isLoading, patchData, putData };
 };

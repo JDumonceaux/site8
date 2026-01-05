@@ -9,8 +9,9 @@ const config = {
     rules: {
         'react-perf/jsx-no-new-object-as-prop': 'warn',
         'react-perf/jsx-no-new-array-as-prop': 'warn',
-        'react-perf/jsx-no-new-function-as-prop': 'warn',
-        'react-perf/jsx-no-jsx-as-prop': 'warn',
+        'react-perf/jsx-no-new-function-as-prop': 'off', // Disabled - useCallback is preferred but not always necessary
+        // Disabled for React Router v6 element prop pattern
+        'react-perf/jsx-no-jsx-as-prop': 'off',
     },
 };
 

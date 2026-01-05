@@ -27,7 +27,7 @@ const getPreviewSource = (formValues: ImageEdit): string => {
     return formValues.ext_url.trim();
   }
   const result = getSRC(formValues.folder, formValues.fileName);
-  return result || '';
+  return result ?? '';
 };
 
 const ImageEditPage = (): JSX.Element => {
@@ -100,8 +100,8 @@ const ImageEditPage = (): JSX.Element => {
             </StyledPlainButton>
             <FormSaveButton
               data-testid="button-save"
-              disabled={isSaved}
               form="image-edit-form"
+              isDisabled={isSaved}
             >
               Save
             </FormSaveButton>

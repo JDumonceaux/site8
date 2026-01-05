@@ -10,16 +10,17 @@ type PageRowProps = {
   item: MenuItem;
 };
 
+const getLevelPrefix = (type: MenuItem['type']): string => {
+  if (type === 'menu') return ' -- ';
+  if (type === 'page') return ' ---- ';
+  return '';
+};
+
 const PageRow = memo(({ item }: PageRowProps): JSX.Element => {
   const { getDefaultProps } = usePagesEdit();
   const isPage = item.type === 'page';
-  const levelPrefix = (
-    {
-      menu: ' -- ',
-      page: ' ---- ',
-      root: '',
-    } as const
-  )[item.type];
+
+  const levelPrefix = getLevelPrefix(item.type);
 
   return (
     <StyledTr>

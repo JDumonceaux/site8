@@ -70,7 +70,6 @@ const useAuth = () => {
       signUpOps.authSignUp(eMailAddress, password, signInOps.authAutoSignIn),
     authUpdatePassword: passwordOps.authUpdatePassword,
 
-    currentAuthenticatedUser: sessionOps.currentAuthenticatedUser,
     email: authState.email,
     error: authState.error,
     idToken: authState.idToken,

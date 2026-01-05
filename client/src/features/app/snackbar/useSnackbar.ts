@@ -4,7 +4,7 @@ import { SNACKBAR_DEFAULT_DURATION } from '@lib/utils/constants';
 import { hideSnackbar, showSnackbar } from '@store/snackbarSlice';
 import type { AppDispatch, RootState } from '@store/store';
 
-export const SnackbarVariant = {
+export const SnackbarVariants = {
   ERROR: 'error',
   INFO: 'info',
   SUCCESS: 'success',
@@ -12,7 +12,7 @@ export const SnackbarVariant = {
 } as const satisfies Record<string, string>;
 
 export type SnackbarVariant =
-  (typeof SnackbarVariant)[keyof typeof SnackbarVariant];
+  (typeof SnackbarVariants)[keyof typeof SnackbarVariants];
 
 export type Snackbar = {
   contents: null | React.ReactNode;
@@ -27,7 +27,7 @@ const initialState: Snackbar = {
   isOpen: false,
   openDurationMs: 0,
   showCloseButton: false,
-  variant: SnackbarVariant.INFO,
+  variant: SnackbarVariants.INFO,
 };
 
 const selectSnackbarData = (state: RootState) => state.snackbar.data;
@@ -63,7 +63,7 @@ const useSnackbar = (): UseSnackbarReturn => {
       isOpen: true,
       openDurationMs,
       showCloseButton: true,
-      variant: SnackbarVariant.ERROR,
+      variant: SnackbarVariants.ERROR,
     });
   };
 
@@ -77,7 +77,7 @@ const useSnackbar = (): UseSnackbarReturn => {
       isOpen: true,
       openDurationMs,
       showCloseButton: true,
-      variant: SnackbarVariant.INFO,
+      variant: SnackbarVariants.INFO,
     });
   };
 

@@ -22,7 +22,7 @@ const MainErrorFallback = ({
     logError(error, { componentName: 'MainErrorFallback' });
   }, [error]);
 
-  const userMessage = message || getUserFriendlyErrorMessage(error);
+  const userMessage = message ?? getUserFriendlyErrorMessage(error);
 
   const handleRetry = (): void => {
     if (onRetry) {

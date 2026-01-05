@@ -2,6 +2,7 @@ import {
   type ChangeEvent,
   type JSX,
   type Ref,
+  useCallback,
   useMemo,
   useRef,
   useState,
@@ -52,17 +53,20 @@ const InputBase = ({
   const internalRef = useRef<HTMLInputElement>(null);
   const refToUse = inputRef ?? internalRef;
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let newValue = e.target.value;
-    if (allowedCharacters) {
-      newValue = Array.from(newValue)
-        .filter((ch) => allowedCharacters.test(ch))
-        .join('');
-      e.target.value = newValue;
-    }
-    setFieldLength(newValue.length);
-    onChange?.(e);
-  };
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      let newValue = e.target.value;
+      if (allowedCharacters) {
+        newValue = Array.from(newValue)
+          .filter((ch) => allowedCharacters.test(ch))
+          .join('');
+        e.target.value = newValue;
+      }
+      setFieldLength(newValue.length);
+      onChange?.(e);
+    },
+    [allowedCharacters, onChange],
+  );
 
   const fieldWrapperProps: FieldWrapperProps = useMemo(
     () => ({

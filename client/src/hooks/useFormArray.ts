@@ -1,4 +1,3 @@
-/* eslint-disable security/detect-object-injection */
 import { useState } from 'react';
 
 type IdType = {

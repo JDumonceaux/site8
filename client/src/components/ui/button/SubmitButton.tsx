@@ -6,8 +6,8 @@ import type { Variant } from './Button';
 
 type SubmitButtonProps = {
   readonly children?: React.ReactNode;
-  readonly disabled?: boolean;
   readonly id?: string;
+  readonly isDisabled?: boolean;
   readonly loadingText?: string;
   readonly variant?: Variant;
 };
@@ -19,8 +19,8 @@ type SubmitButtonProps = {
  */
 const SubmitButton = ({
   children = 'Submit',
-  disabled = false,
   id,
+  isDisabled = false,
   loadingText = 'Processing',
   variant = 'primary',
 }: SubmitButtonProps): JSX.Element => {
@@ -28,7 +28,7 @@ const SubmitButton = ({
 
   return (
     <Button
-      disabled={disabled || pending}
+      disabled={isDisabled || pending}
       id={id}
       type="submit"
       variant={variant}

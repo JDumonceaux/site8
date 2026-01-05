@@ -48,6 +48,8 @@ const ICONS: Record<Variant, JSX.Element | null> = {
   warning: <i className="fa-solid fa-triangle-exclamation" />,
 };
 
+const getIcon = (variant: Variant): JSX.Element | null => ICONS[variant];
+
 const BorderColor: Record<Variant, string> = {
   default: 'var(--text-primary, #1f1f1f)',
   error: 'var(--status-error,   #ef3934)',
@@ -56,11 +58,15 @@ const BorderColor: Record<Variant, string> = {
   warning: 'var(--status-warning, #ff000f)',
 };
 
+const getBorderColor = (variant: Variant): string => BorderColor[variant];
+
 const MaxWidth: Record<Size, string> = {
   lg: '640px',
   md: '480px',
   sm: '320px',
 };
+
+const getMaxWidth = (size: Size): string => MaxWidth[size];
 
 /**
  * A controlled, accessible dialog using Radix UI.
@@ -93,7 +99,7 @@ const Dialog = ({
           {...contentProps}
         >
           <Header>
-            {ICONS[variant]}
+            {getIcon(variant)}
             <Title id={titleId}>{label}</Title>
           </Header>
           <Body>{children}</Body>
@@ -133,8 +139,8 @@ const Content = styled(RadixDialog.Content)<{
   transform: translateX(-50%);
   background: var(--surface-background-color);
   border-radius: 8px;
-  border-top: 6px solid ${({ 'data-variant': v }) => BorderColor[v]};
-  max-width: ${({ 'data-size': s }) => MaxWidth[s]};
+  border-top: 6px solid ${({ 'data-variant': v }) => getBorderColor(v)};
+  max-width: ${({ 'data-size': s }) => getMaxWidth(s)};
   width: calc(100% - 2rem);
   box-shadow: var(--shadow-elevated);
   outline: none;

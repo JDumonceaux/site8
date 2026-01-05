@@ -1,4 +1,3 @@
-/* eslint-disable security/detect-object-injection */
 /**
  * Returns a new object with the same keys as the provided object,
  * where each value is replaced by a default based on its type.

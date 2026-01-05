@@ -82,6 +82,7 @@ const useImagesEditPage = (submitState: FormState<null>) => {
   const filterAndSortDataEvent = useEffectEvent(() => {
     filterAndSortData();
   });
+
   useEffect(() => {
     filterAndSortDataEvent();
   }, [filter, data?.items]);

@@ -3,9 +3,13 @@ import { type ChangeEvent, type JSX, useCallback, useState } from 'react';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
-import axios from 'axios';
 
 type UploadStatus = 'error' | 'idle' | 'success' | 'uploading';
+
+type ProgressEvent = {
+  loaded: number;
+  total?: number;
+};
 
 const FileUploadPage = (): JSX.Element => {
   const title = 'File Upload';
@@ -20,7 +24,7 @@ const FileUploadPage = (): JSX.Element => {
     }
   };
 
-  const handleFileUpload = async () => {
+  const handleFileUpload = useCallback(async () => {
     if (!file) return;
 
     setStatus('uploading');
@@ -29,26 +33,26 @@ const FileUploadPage = (): JSX.Element => {
     formData.append('file', file);
 
     try {
-      await axios.post('https://httpbin.org/post', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress: (progressEvent) => {
-          const progress = progressEvent.total
-            ? Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            : 0;
-          setUploadProgress(progress);
-        },
+      const response = await fetch('https://httpbin.org/post', {
+        body: formData,
+        method: 'POST',
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       setStatus('success');
       setUploadProgress(100);
     } catch {
       setStatus('error');
       setUploadProgress(0);
     }
-  };
+  }, [file]);
 
   const handleUploadClick = useCallback(() => {
     void handleFileUpload();
-  }, [file]);
+  }, [handleFileUpload]);
 
   return (
     <>

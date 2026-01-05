@@ -17,7 +17,7 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   const { findMenuItem, getRootMenuItems, isError, isLoading } = useMenu();
   const { pathname } = useLocation();
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
-  const [isExpansionPending, startExpansionTransition] = useTransition();
+  const [_isExpansionPending, startExpansionTransition] = useTransition();
 
   const [pn1] = getURLPath(pathname) ?? [];
 
@@ -91,7 +91,7 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
             <ItemRender
               hasChildren={
                 currentItem.items === undefined
-                  ? null
+                  ? undefined
                   : currentItem.items.length > 0
               }
               isExpanded={expandedItems.has(currentItem.id)}

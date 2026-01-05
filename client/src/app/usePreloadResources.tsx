@@ -17,7 +17,7 @@ export const usePreloadResources = () => {
     preconnect('https://fonts.gstatic.com', { crossOrigin: 'anonymous' });
 
     // API server (if different from app origin)
-    const apiUrl = import.meta.env['VITE_API_URL'];
+    const apiUrl = import.meta.env.VITE_API_URL as string | undefined;
     if (apiUrl && !apiUrl.startsWith(globalThis.location.origin)) {
       preconnect(apiUrl);
     }
@@ -48,7 +48,7 @@ export const usePreloadResources = () => {
 
     // 6. Preload critical API endpoints (high-priority data)
     // Menu is loaded on app init via AppInitializer
-    preload(`${apiUrl || 'http://localhost:3005/api'}/menus`, {
+    preload(`${apiUrl ?? 'http://localhost:3005/api'}/menus`, {
       as: 'fetch',
       crossOrigin: 'anonymous',
     });

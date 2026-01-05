@@ -3,7 +3,8 @@ import { useCallback, useEffect } from 'react';
 
 import Button from '@components/ui/button/Button';
 import { logError } from '@lib/utils/errorHandler';
-import useSnackbar, { SnackbarVariant } from './useSnackbar';
+import useSnackbar, { SnackbarVariants } from './useSnackbar';
+import type { SnackbarVariant } from './useSnackbar';
 import styled from 'styled-components';
 
 const SNACKBAR_HEIGHT = '2.5rem';
@@ -48,7 +49,7 @@ const Snackbar = (): JSX.Element | null => {
   }
 
   const contents = data.contents ?? '';
-  const variant = data.variant ?? SnackbarVariant.INFO;
+  const variant = data.variant ?? SnackbarVariants.INFO;
 
   return (
     <StyledDialog
@@ -84,7 +85,7 @@ const StyledDialog = styled.dialog<{ readonly $variant: SnackbarVariant }>`
   height: ${SNACKBAR_HEIGHT};
   background: var(--snackbar-background);
   color: ${({ $variant }) =>
-    $variant === SnackbarVariant.INFO
+    $variant === SnackbarVariants.INFO
       ? 'var(--snackbar-color)'
       : 'var(--palette-error)'};
   border-radius: ${SNACKBAR_BORDER_RADIUS} ${SNACKBAR_BORDER_RADIUS} 0 0;

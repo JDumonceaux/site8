@@ -17,7 +17,7 @@ const ImagePreview = ({
       {previewSrc ? (
         <StyledImageDisplay>
           <StyledImage
-            alt={formValues.name || formValues.fileName || 'Image preview'}
+            alt={formValues.name ?? formValues.fileName ?? 'Image preview'}
             src={previewSrc}
           />
           <StyledImageInfo>

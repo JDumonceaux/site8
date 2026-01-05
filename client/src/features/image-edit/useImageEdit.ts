@@ -1,8 +1,8 @@
 import {
   type ChangeEvent,
   useActionState,
+  useCallback,
   useEffect,
-  useEffectEvent,
   useOptimistic,
 } from 'react';
 
@@ -132,7 +132,7 @@ export const useImageEdit = (
     },
     onSuccess: () => {
       setMessage('Saved successfully');
-      queryClient.invalidateQueries({ queryKey: ['image'] });
+      void queryClient.invalidateQueries({ queryKey: ['image'] });
     },
   });
 
@@ -181,7 +181,7 @@ export const useImageEdit = (
   useEffect(() => {
     if (!imageData) return;
     setFormValues(mapToFormData(imageData));
-  }, [imageData]);
+  }, [imageData, setFormValues]);
 
   // Form helpers
   const getDefaultProps = (field: FormKeys) => ({
@@ -193,25 +193,25 @@ export const useImageEdit = (
     value: getFieldValue(field),
   });
 
-  const validateForm = useEffectEvent(() => {
+  const validateForm = useCallback(() => {
     const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
     setErrors(result.success ? null : (result.error?.issues ?? null));
     return result.success;
-  });
+  }, [formValues, setErrors]);
 
-  const resetForm = useEffectEvent(() => {
+  const resetForm = useCallback(() => {
     if (imageData) {
       setFormValues(mapToFormData(imageData));
     }
     setIsSaved(true);
     setErrors(null);
-  });
+  }, [imageData, setFormValues, setIsSaved, setErrors]);
 
-  const clearForm = useEffectEvent(() => {
+  const clearForm = useCallback(() => {
     setFormValues(defaultForm);
     setIsSaved(true);
     setErrors(null);
-  });
+  }, [setFormValues, setIsSaved, setErrors]);
 
   // Update saved flag when form values differ from server data
   useEffect(() => {

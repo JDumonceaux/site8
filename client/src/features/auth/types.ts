@@ -2,7 +2,7 @@
  * Shared authentication types and constants
  */
 
-export const SocialProvider = {
+export const SocialProviders = {
   AMAZON: 'Amazon',
   APPLE: 'Apple',
   FACEBOOK: 'Facebook',
@@ -10,4 +10,4 @@ export const SocialProvider = {
 } as const satisfies Record<string, string>;
 
 export type SocialProvider =
-  (typeof SocialProvider)[keyof typeof SocialProvider];
+  (typeof SocialProviders)[keyof typeof SocialProviders];

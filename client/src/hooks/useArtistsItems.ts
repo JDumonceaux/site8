@@ -51,11 +51,11 @@ const useArtistsItems = (): UseArtistsItemsReturn => {
     let index = 0;
 
     for (const artist of sortedItems) {
-      const items = artist.items.filter(
+      const artistItems = artist.items.filter(
         (item) => item.artistId === artist.artist.id,
       );
 
-      for (const item of items) {
+      for (const item of artistItems) {
         result.push({
           display: `${artist.artist.sortName ?? 'Unknown'} - ${item.title}`,
           key: index++,

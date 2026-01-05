@@ -15,11 +15,21 @@ type ItemRendererProps = {
 };
 
 /**
+ * Helper function to safely access array item by index
+ */
+const getItemAtIndex = (
+  items: MusicItem[] | undefined,
+  index: number,
+): MusicItem | undefined => {
+  return items?.[index];
+};
+
+/**
  * Renders a single music item with description and embedded video.
  */
 const ItemRenderer = memo(
   ({ data, index }: ItemRendererProps): null | React.ReactElement => {
-    const item = data.items?.[index];
+    const item = getItemAtIndex(data.items, index);
 
     if (!item) return null;
 

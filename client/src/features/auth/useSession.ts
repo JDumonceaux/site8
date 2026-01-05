@@ -118,16 +118,6 @@ export const useSession = (authState: AuthState) => {
     });
   };
 
-  /**
-   * Get current authenticated user (duplicate function)
-   * @deprecated Use authGetCurrentUser instead
-   */
-  const currentAuthenticatedUser = async () => {
-    await executeAuthOperation(async () => {
-      await getCurrentUser();
-    });
-  };
-
   return {
     authDeleteUser,
     authFetchAuthSession,
@@ -137,6 +127,5 @@ export const useSession = (authState: AuthState) => {
     authGetCurrentUser,
     authRefreshAuthSession,
     authRememberDevice,
-    currentAuthenticatedUser,
   };
 };

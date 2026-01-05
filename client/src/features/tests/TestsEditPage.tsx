@@ -1,4 +1,4 @@
-import { type JSX, useEffect, useEffectEvent } from 'react';
+import { type JSX, useCallback, useEffect, useEffectEvent } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
@@ -19,9 +19,11 @@ const TestsEditPage = (): JSX.Element | null => {
 
   const setFormValuesEvent = useEffectEvent(() => {
     const returnValue = data?.map((item) => {
-      const parent = item.parent as { id?: number; seq?: number } | undefined;
-      const parentId = parent?.id != null ? String(parent.id) : '';
-      const parentSeq = parent?.seq != null ? String(parent.seq) : '';
+      const parent = item.parentItems?.[0] as
+        | undefined
+        | { id?: number; seq?: number };
+      const parentId = parent?.id ? String(parent.id) : '';
+      const parentSeq = parent?.seq ? String(parent.seq) : '';
 
       return {
         action: '',
@@ -46,13 +48,16 @@ const TestsEditPage = (): JSX.Element | null => {
     setFormValuesEvent();
   }, [data]);
 
-  const handleShowPagesChange = (checked: boolean) => {
-    setShowPages(checked);
-  };
+  const handleShowPagesChange = useCallback(
+    (checked: boolean) => {
+      setShowPages(checked);
+    },
+    [setShowPages],
+  );
 
-  const handleSaveClick = () => {
+  const handleSaveClick = useCallback(() => {
     void handleSave();
-  };
+  }, [handleSave]);
 
   if (data == null) return null;
 
