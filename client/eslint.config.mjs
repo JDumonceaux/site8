@@ -1,3 +1,4 @@
+import reactCompilerConfig from './eslint.config.react-compiler.mjs';
 import reactEffectConfig from './eslint.config.react-effect.mjs';
 import reactQueryConfig from './eslint.config.react-query.mjs';
 import reactConfig from './eslint.config.react.mjs';
@@ -27,6 +28,7 @@ const config = [
     perfectionistConfig,
     promiseConfig,
     reactConfig,
+    reactCompilerConfig,
     reactEffectConfig,
     performanceConfig,
     tsConfig,

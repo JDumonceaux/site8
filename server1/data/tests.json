@@ -1788,6 +1788,14 @@
       "tags": ["chat"],
       "prompt": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices.",
       "name": "Typescript-react.instructions.md Review"
+    },
+    {
+      "id": 229,
+      "groupIds": [11],
+      "level": "project",
+      "tags": ["chat"],
+      "prompt": "npm install -g npm@11.7.0.",
+      "name": "npm update"
     }
   ]
 }

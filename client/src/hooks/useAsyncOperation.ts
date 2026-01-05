@@ -1,4 +1,4 @@
-import { useEffectEvent, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 type AsyncOperationState<TError = unknown> = {
   error: null | TError;
@@ -63,11 +63,11 @@ export const useAsyncOperation = <
     isLoading: false,
   });
 
-  const clearError = useEffectEvent(() => {
+  const clearError = useCallback(() => {
     setState((prev) => ({ ...prev, error: null }));
-  });
+  }, []);
 
-  const execute = useEffectEvent(
+  const execute = useCallback(
     async <T>(
       operation: () => Promise<T>,
       options?: AsyncOperationOptions<TError>,
@@ -87,6 +87,7 @@ export const useAsyncOperation = <
         setState((prev) => ({ ...prev, isLoading: false }));
       }
     },
+    [],
   );
 
   return {

@@ -1,8 +1,8 @@
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { FormErrors, FormState , type PageEdit, PageEditSchema } from '@types';
-
+import type { FormErrors, FormState, PageEdit } from '@types';
+import { PageEditSchema } from '@types';
 
 const usePagePatch = () => {
   const queryClient = useQueryClient();
@@ -33,7 +33,7 @@ const usePagePatch = () => {
     },
     onSuccess: () => {
       setMessage('Saved');
-      queryClient.invalidateQueries({ queryKey: ['page'] });
+      void queryClient.invalidateQueries({ queryKey: ['page'] });
     },
   });
 
@@ -61,9 +61,12 @@ const usePagePatch = () => {
       const tempErrors: FormErrors = {};
 
       // Map each Zod issue into our FormErrors shape
+
       for (const issue of validationResult.error.issues) {
         const fieldName = issue.path[0] as keyof FormErrors;
+        // eslint-disable-next-line security/detect-object-injection -- fieldName is validated as keyof FormErrors
         tempErrors[fieldName] = { errors: [] };
+        // eslint-disable-next-line security/detect-object-injection -- fieldName is validated as keyof FormErrors
         tempErrors[fieldName].errors?.push({
           message: issue.message,
         });

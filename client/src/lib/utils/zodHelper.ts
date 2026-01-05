@@ -1,4 +1,4 @@
-import type { z, ZodError } from 'zod';
+import { z, type ZodError } from 'zod';
 
 export type SafeParseProps<T> = {
   data: null | T;
@@ -33,7 +33,7 @@ export const safeParse = <T>(
     error: result.error as ZodError<T>,
     formattedError: z.treeifyError(
       result.error,
-    ) as z.core.$ZodFormattedError<T>,
+    ) as unknown as z.core.$ZodFormattedError<T>,
     success: false,
   };
 };

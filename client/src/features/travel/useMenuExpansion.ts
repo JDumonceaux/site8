@@ -81,8 +81,11 @@ const findItemsByUrlPath = (
   pathSegments: string[],
   currentDepth = 0,
 ): void => {
+  // Check if we've exhausted the path segments
+  if (currentDepth >= pathSegments.length) return;
+
+  // eslint-disable-next-line security/detect-object-injection -- `currentDepth` is a number and is controlled internally.
   const targetSegment = pathSegments[currentDepth];
-  if (targetSegment == null || targetSegment === '') return;
 
   for (const menuItem of items) {
     if (menuItem.url == null || menuItem.url.trim() === '') continue;
@@ -96,18 +99,15 @@ const findItemsByUrlPath = (
       itemsToExpand.add(menuItem.id);
 
       // If we have more segments to match, search children
-      if (
-        currentDepth < pathSegments.length - 1 &&
-        menuItem.items != null &&
-        menuItem.items.length > 0
-      ) {
+      if (currentDepth < pathSegments.length - 1 && menuItem.items) {
         findItemsByUrlPath(
-          Array.from(menuItem.items),
+          menuItem.items,
           itemsToExpand,
           pathSegments,
           currentDepth + 1,
         );
       }
+      break; // Found a match at this level, no need to check other items
     }
   }
 };

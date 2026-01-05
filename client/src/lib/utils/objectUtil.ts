@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-object-injection */
 /**
  * Returns a new object with the same keys as the provided object,
  * where each value is replaced by a default based on its type.
@@ -105,7 +106,6 @@ export const removeEmptyAttributes = <T>(obj: T): Partial<T> => {
 export const trimAttributes = <T extends Record<string, unknown>>(
   obj: T,
 ): T => {
-  if (typeof obj !== 'object' || obj === null) return obj;
   const trimmedObj: Record<string, unknown> = { ...obj };
   for (const key of Object.keys(trimmedObj)) {
     if (typeof trimmedObj[key] === 'string') {

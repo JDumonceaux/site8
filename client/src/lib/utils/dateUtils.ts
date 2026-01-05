@@ -30,14 +30,25 @@ export const getDateTime = (
 
 // ——— Helpers ———
 
+/** Cache for regex patterns by delimiter */
+const regexCache = new Map<string, RegExp>();
+
 /** Split raw string via regex, return match groups or null */
 const parseDateTimeString = (
   raw: string,
   delim: string,
 ): null | RegExpExecArray => {
-  const escapedDelim = delim.replaceAll(/[$()*+.?[\\\]^{|}]/g, String.raw`\$&`);
-  const pattern = String.raw`^(\d{1,2})${escapedDelim}(\d{1,2})${escapedDelim}(\d{4})\s+(\d{1,2}):(\d{2})(?:\s*([AaPp][Mm]))?$`;
-  const re = new RegExp(pattern, 'u');
+  let re = regexCache.get(delim);
+  if (re == null) {
+    const escapedDelim = delim.replaceAll(
+      /[$()*+.?[\\\]^{|}]/g,
+      String.raw`\$&`,
+    );
+    const pattern = String.raw`^(\d{1,2})${escapedDelim}(\d{1,2})${escapedDelim}(\d{4})\s+(\d{1,2}):(\d{2})(?:\s*([AaPp][Mm]))?$`;
+    // eslint-disable-next-line security/detect-non-literal-regexp -- delimiter is escaped above
+    re = new RegExp(pattern, 'u');
+    regexCache.set(delim, re);
+  }
   const m = re.exec(raw);
   if (m == null) {
     logError(

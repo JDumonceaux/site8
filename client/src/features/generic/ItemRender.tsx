@@ -1,4 +1,4 @@
-import { Fragment, type JSX, memo } from 'react';
+import { Fragment, type JSX, useCallback } from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 import type { MenuItem } from '@site8/shared';
@@ -10,94 +10,144 @@ type ItemRenderProps = {
   readonly isExpanded?: boolean;
   readonly item: MenuItem;
   readonly level: number;
-  readonly onToggle?: () => void;
+  readonly onToggle?: (item: MenuItem) => void;
 };
 
-const ItemRender = memo(
-  ({
-    children,
-    hasChildren = false,
-    isExpanded = false,
-    item,
-    level,
-    onToggle,
-  }: ItemRenderProps): JSX.Element | null => {
-    let content: React.ReactNode;
-
-    if (item.type === 'menu') {
-      const menuComponents: Record<
-        number,
-        React.ComponentType<{
-          readonly children: React.ReactNode;
-          readonly to: string;
-        }>
-      > = {
-        0: StyledMenu0,
-        1: StyledMenu1,
-        2: StyledMenu2,
-      };
-
-      const Component = menuComponents[level];
-
-      // If has children, make it clickable to expand/collapse
-      if (hasChildren && onToggle) {
-        content = (
-          <StyledMenuButton
-            level={level}
-            onClick={onToggle}
-          >
-            <span>{item.title}</span>
-            <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
-          </StyledMenuButton>
+const StyledItem = ({
+  level,
+  to,
+  type,
+  ...props
+}: {
+  [key: string]: any;
+  level: number;
+  to: string;
+  type: 'menu' | 'page';
+}) => {
+  if (type === 'menu') {
+    switch (level) {
+      case 0: {
+        return (
+          <StyledMenu0
+            to={to}
+            {...props}
+          />
         );
-      } else if (item.url) {
-        content = <Component to={item.url}>{item.title}</Component>;
-      } else {
-        content = <div>{item.title}</div>;
       }
-    } else if (item.type === 'page') {
-      const pageComponents: Record<
-        number,
-        React.ComponentType<{
-          readonly children: React.ReactNode;
-          readonly to: string;
-        }>
-      > = {
-        0: StyledPage0,
-        1: StyledPage1,
-        2: StyledPage2,
-      };
-
-      const Component = pageComponents[level];
-
-      // If has children, make it clickable to expand/collapse
-      if (hasChildren && onToggle) {
-        content = (
-          <StyledMenuButton
-            level={level}
-            onClick={onToggle}
-          >
-            <span>{item.title}</span>
-            <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
-          </StyledMenuButton>
+      case 1: {
+        return (
+          <StyledMenu1
+            to={to}
+            {...props}
+          />
         );
-      } else if (item.url) {
-        content = <Component to={item.url}>{item.title}</Component>;
-      } else {
-        content = <div>{item.title}</div>;
       }
+      case 2: {
+        return (
+          <StyledMenu2
+            to={to}
+            {...props}
+          />
+        );
+      }
+      default: {
+        return (
+          <StyledMenu2
+            to={to}
+            {...props}
+          />
+        );
+      }
+    }
+  }
+  switch (level) {
+    case 0: {
+      return (
+        <StyledPage0
+          to={to}
+          {...props}
+        />
+      );
+    }
+    case 1: {
+      return (
+        <StyledPage1
+          to={to}
+          {...props}
+        />
+      );
+    }
+    case 2: {
+      return (
+        <StyledPage2
+          to={to}
+          {...props}
+        />
+      );
+    }
+    default: {
+      return (
+        <StyledPage2
+          to={to}
+          {...props}
+        />
+      );
+    }
+  }
+};
+
+const ItemRender = ({
+  children,
+  hasChildren = false,
+  isExpanded = false,
+  item,
+  level,
+  onToggle,
+}: ItemRenderProps): JSX.Element | null => {
+  const handleToggle = useCallback(() => {
+    if (onToggle != null) {
+      onToggle(item);
+    }
+  }, [item, onToggle]);
+
+  let content: React.ReactNode;
+
+  if (item.type === 'menu' || item.type === 'page') {
+    // If has children, make it clickable to expand/collapse
+    if (hasChildren && onToggle != null) {
+      content = (
+        <StyledMenuButton
+          level={level}
+          onClick={handleToggle}
+        >
+          <span>{item.title}</span>
+          <StyledIcon>{isExpanded ? '▼' : '▶'}</StyledIcon>
+        </StyledMenuButton>
+      );
+    } else if (item.url != null && item.url !== '') {
+      content = (
+        <StyledItem
+          level={level}
+          to={item.url}
+          type={item.type}
+        >
+          {item.title}
+        </StyledItem>
+      );
     } else {
       content = <div>{item.title}</div>;
     }
+  } else {
+    content = <div>{item.title}</div>;
+  }
 
-    return (
-      <Fragment key={item.id}>
-        {content}
-        {children}
-      </Fragment>
-    );
-  },
-);
+  return (
+    <Fragment key={item.id}>
+      {content}
+      {children}
+    </Fragment>
+  );
+};
 
 ItemRender.displayName = 'ItemRender';
 

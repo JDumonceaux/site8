@@ -1,4 +1,4 @@
-import { type JSX, useEffectEvent, useMemo, useTransition } from 'react';
+import { type JSX, useCallback, useMemo, useTransition } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import ItemRender from '@features/generic/ItemRender';
@@ -29,64 +29,74 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
   });
   const [, startNavigationTransition] = useTransition();
 
-  const toggleExpanded = useEffectEvent((itemId: number): void => {
-    setExpandedItems((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(itemId)) {
-        newSet.delete(itemId);
-      } else {
-        newSet.add(itemId);
+  const handleItemClick = useCallback(
+    (menuItem: MenuItem): void => {
+      // Navigate to the item's URL if it exists
+      if (menuItem.to != null || menuItem.url != null) {
+        const url = menuItem.to ?? menuItem.url ?? '';
+        // Mark navigation as non-urgent to keep UI responsive
+        startNavigationTransition(() => {
+          void navigate(url);
+        });
       }
-      return newSet;
-    });
-  });
 
-  const handleItemClick = useEffectEvent((item: MenuItem): void => {
-    // Navigate to the item's URL if it exists
-    if (item.to || item.url) {
-      const url = item.to || item.url || '';
-      // Mark navigation as non-urgent to keep UI responsive
-      startNavigationTransition(() => {
-        navigate(url);
+      // If item has no children, it's a place (leaf node)
+      // Call onPlaceSelect with the original place ID (stored in lineId)
+      if (
+        menuItem.lineId != null &&
+        menuItem.lineId !== 0 &&
+        onPlaceSelect != null
+      ) {
+        onPlaceSelect(menuItem.lineId);
+      }
+    },
+    [navigate, onPlaceSelect, startNavigationTransition],
+  );
+
+  const handleToggle = useCallback(
+    (menuItem: MenuItem): void => {
+      setExpandedItems((prev) => {
+        const newSet = new Set(prev);
+        if (newSet.has(menuItem.id)) {
+          newSet.delete(menuItem.id);
+        } else {
+          newSet.add(menuItem.id);
+        }
+        return newSet;
       });
-    }
-
-    // If item has no children, it's a place (leaf node)
-    // Call onPlaceSelect with the original place ID (stored in lineId)
-    if (item.lineId && onPlaceSelect) {
-      onPlaceSelect(item.lineId);
-    }
-  });
+      handleItemClick(menuItem);
+    },
+    [handleItemClick, setExpandedItems],
+  );
 
   // Render menu items recursively - memoized to prevent unnecessary re-renders
   const renderMenuItems = useMemo(() => {
     const render = (items?: Iterable<MenuItem>, level = 1): JSX.Element[] => {
-      if (!items) return [];
+      if (items == null) return [];
 
-      return Array.from(items).map((item) => {
-        const isExpanded = expandedItems.has(item.id);
-        const hasChildren = item.items && item.items.length > 0;
+      return Array.from(items).map((menuItem) => {
+        const isExpanded = expandedItems.has(menuItem.id);
+        const hasChildren = menuItem.items != null && menuItem.items.length > 0;
 
         return (
           <ItemRender
             hasChildren={hasChildren}
             isExpanded={isExpanded}
-            item={item}
-            key={item.id}
+            item={menuItem}
+            key={menuItem.id}
             level={level}
-            onToggle={() => {
-              toggleExpanded(item.id);
-              handleItemClick(item);
-            }}
+            onToggle={handleToggle}
           >
-            {hasChildren && isExpanded ? render(item.items, level + 1) : null}
+            {hasChildren && isExpanded
+              ? render(menuItem.items, level + 1)
+              : null}
           </ItemRender>
         );
       });
     };
 
     return render(rootItems, 0);
-  }, [expandedItems, rootItems]);
+  }, [expandedItems, handleToggle, rootItems]);
 
   return (
     <StyledNav ref={ref}>

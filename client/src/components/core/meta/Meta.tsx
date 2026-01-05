@@ -1,3 +1,5 @@
+/* eslint-disable react-redux/no-unused-prop-types */
+/* eslint-disable react/no-unused-prop-types */
 import type { JSX } from 'react';
 
 /**

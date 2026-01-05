@@ -50,18 +50,16 @@ const useArtistsItems = (): UseArtistsItemsReturn => {
     let index = 0;
 
     for (const artist of sortedItems) {
-      const items = artist.items?.filter(
+      const items = artist.items.filter(
         (item) => item.artistId === artist.artist.id,
       );
 
-      if (items) {
-        for (const item of items) {
-          result.push({
-            display: `${artist.artist.sortName ?? 'Unknown'} - ${item.title}`,
-            key: index++,
-            value: item.id,
-          });
-        }
+      for (const item of items) {
+        result.push({
+          display: `${artist.artist.sortName ?? 'Unknown'} - ${item.title}`,
+          key: index++,
+          value: item.id,
+        });
       }
     }
 

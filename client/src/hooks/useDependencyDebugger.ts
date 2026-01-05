@@ -1,9 +1,10 @@
+/* eslint-disable security/detect-object-injection */
 import { useEffect, useEffectEvent, useRef } from 'react';
 
-const compareInputs = <T extends Record<string, any>>(
-  inputKeys: (keyof T)[],
-  oldInputs: T,
-  newInputs: T,
+const compareInputs = (
+  inputKeys: string[],
+  oldInputs: Record<string, any>,
+  newInputs: Record<string, any>,
 ): void => {
   for (const key of inputKeys) {
     if (oldInputs[key] !== newInputs[key]) {
@@ -27,7 +28,6 @@ const compareInputs = <T extends Record<string, any>>(
  *
  * **Note:** Only use in development for debugging purposes
  *
- * @template T - Object containing dependencies to track
  * @param inputs - Object with dependencies to monitor
  *
  * @example
@@ -36,18 +36,18 @@ const compareInputs = <T extends Record<string, any>>(
  * // Console output: "Change detected: isLoading old: false new: true"
  * ```
  */
-export const useDependencyDebugger = <T extends Record<string, any>>(
-  inputs: T,
-): void => {
+export const useDependencyDebugger = (inputs: Record<string, any>): void => {
   const oldInputsRef = useRef(inputs);
 
   const debugInputsEvent = useEffectEvent(() => {
     const oldInputs = oldInputsRef.current;
-    const inputKeysArray = Object.keys(inputs) as (keyof T)[];
+    const inputKeysArray = Object.keys(inputs);
     compareInputs(inputKeysArray, oldInputs, inputs);
     oldInputsRef.current = inputs;
   });
+
   useEffect(() => {
+    // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-ref-to-parent
     debugInputsEvent();
   }, [inputs]);
 };

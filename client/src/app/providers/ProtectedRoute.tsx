@@ -6,10 +6,10 @@ import { Navigate, Outlet } from 'react-router-dom';
  */
 const ProtectedRoute = (): JSX.Element | null => {
   // TODO: Replace this with real authentication logic (e.g., useAuth hook/context).
-  const user = 1; // Dummy placeholder
+  const user: null | number = 1; // Dummy placeholder
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (!user) {
+  if (user === 0 || user == null) {
     return (
       <Navigate
         replace

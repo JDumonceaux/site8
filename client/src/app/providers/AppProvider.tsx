@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -70,20 +70,30 @@ const AppProvider = ({ children }: AppProviderProps) => {
     [],
   );
 
+  const handleError = useCallback(
+    (
+      error: Error,
+      errorInfo: { componentStack?: null | string | undefined },
+    ) => {
+      logError(error, {
+        componentName: 'AppProvider',
+        componentStack: errorInfo.componentStack,
+      });
+    },
+    [],
+  );
+
+  const handleReset = useCallback(() => {
+    // Optional: Clear any application state on error reset
+    // This could include clearing localStorage, resetting Redux, etc.
+    globalThis.location.reload();
+  }, []);
+
   return (
     <ErrorBoundary
       FallbackComponent={MainErrorFallback}
-      onError={(error, errorInfo) => {
-        logError(error, {
-          componentName: 'AppProvider',
-          componentStack: errorInfo.componentStack,
-        });
-      }}
-      onReset={() => {
-        // Optional: Clear any application state on error reset
-        // This could include clearing localStorage, resetting Redux, etc.
-        globalThis.location.reload();
-      }}
+      onError={handleError}
+      onReset={handleReset}
     >
       <ReduxProvider>
         <QueryClientProvider client={queryClient}>

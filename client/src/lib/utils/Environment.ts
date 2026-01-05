@@ -5,7 +5,7 @@
  */
 // eslint-disable-next-line unicorn/prevent-abbreviations
 const getEnvVar = (key: string): string | undefined => {
-  const val = process.env[key];
+  const val = process.env[key as keyof typeof process.env];
   if (val == null || val === '')
     console.warn(`Environment: missing variable ${key}`);
   return val;

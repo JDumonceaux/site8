@@ -15,8 +15,8 @@ const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 
 export const env = envSchema.parse({
-  BASE_URL: process.env['BASE_URL'],
-  NODE_ENV: process.env['NODE_ENV'],
-  PORT: process.env['PORT'],
-  USE_AUTH: process.env['USE_AUTH'],
+  BASE_URL: process.env.BASE_URL,
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: process.env.PORT,
+  USE_AUTH: process.env.USE_AUTH,
 });

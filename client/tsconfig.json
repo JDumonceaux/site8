@@ -54,7 +54,8 @@
     // "noUncheckedIndexedAccess": true,
     // too strict
     // "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
+    // too strict - requires item.[key] vs. item.key
+    // "noPropertyAccessFromIndexSignature": true,
     "noUncheckedSideEffectImports": true
   },
   "include": ["src"],
