@@ -34,7 +34,7 @@ const RightMenu = memo(
     const handleButton = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         const { id } = event.currentTarget.dataset;
-        if (id) {
+        if (isNonEmptyString(id)) {
           const tempId = Number(id);
           const item = data?.find((x) => x.id === tempId);
           onClick(item?.value);
@@ -143,4 +143,3 @@ const FilterDiv = styled.div`
     }
   }
 `;
-

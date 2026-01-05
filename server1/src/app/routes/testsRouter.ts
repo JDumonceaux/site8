@@ -1,8 +1,11 @@
+import { Router } from 'express';
+
 import { getItems } from '../../features/tests/getItems.js';
+import { getItemsAi } from '../../features/tests/getItemsAi.js';
 
-import { createSimpleRouter } from './createSimpleRouter.js';
+const testsRouter = Router();
 
-export const testsRouter = createSimpleRouter({
-  getItemsHandler: getItems,
-  routerName: 'tests',
-});
+testsRouter.get('/', getItems);
+testsRouter.get('/ai', getItemsAi);
+
+export { testsRouter };

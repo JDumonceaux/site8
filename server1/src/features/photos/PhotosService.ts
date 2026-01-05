@@ -11,7 +11,7 @@ export class PhotosService extends BaseDataService<Photos> {
     });
   }
 
-  public override async getItems(): Promise<Photos | undefined> {
+  public override async getItems(): Promise<Photos> {
     try {
       const parsedData = await this.readFile();
 
@@ -24,7 +24,7 @@ export class PhotosService extends BaseDataService<Photos> {
         `PhotosService: Error reading photos file - ${errorMessage}`,
         { error },
       );
-      return undefined;
+      throw error;
     }
   }
 }

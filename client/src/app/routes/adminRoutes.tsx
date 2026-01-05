@@ -8,8 +8,8 @@ import ProtectedRoute from '../providers/ProtectedRoute';
 // ---------------------
 // Layout
 // ---------------------
-const GenericLayout = lazy(
-  async () => import('../../features/layouts/generic-layout/GenericLayout'),
+const UnifiedLayout = lazy(
+  async () => import('../../features/layouts/unified-layout/UnifiedLayout'),
 );
 
 // ---------------------
@@ -20,9 +20,6 @@ const ImageEditPage = lazy(
 );
 const ImagesEditPage = lazy(
   async () => import('../../features/images-edit/ImagesEditPage'),
-);
-const ItemsAddPage = lazy(
-  async () => import('../../features/items-add/ItemsAddPage'),
 );
 const PageEditPage = lazy(
   async () => import('../../features/page-edit/PageEditPage'),
@@ -41,7 +38,13 @@ const TestsEditPage = lazy(
 export const adminRoutes = (queryClient: QueryClient) => (
   <Route element={<ProtectedRoute />}>
     <Route
-      element={<GenericLayout />}
+      element={
+        <UnifiedLayout
+          hasAvatar
+          hasHeader
+          hasInitializer
+        />
+      }
       path="admin"
     >
       <Route
@@ -76,10 +79,6 @@ export const adminRoutes = (queryClient: QueryClient) => (
       <Route
         element={<ImagesEditPage />}
         path="images/edit"
-      />
-      <Route
-        element={<ItemsAddPage />}
-        path="items/add"
       />
       <Route
         element={<TestsEditPage />}

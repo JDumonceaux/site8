@@ -82,7 +82,8 @@ const config = {
         '@typescript-eslint/no-restricted-types': 'error',
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
-        '@typescript-eslint/no-unnecessary-condition': 'error',
+        // Too Restrictive
+        '@typescript-eslint/no-unnecessary-condition': 'off',
         '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
         '@typescript-eslint/no-unnecessary-type-arguments': 'error',
         '@typescript-eslint/no-unnecessary-type-parameters': 'error',

@@ -1,5 +1,5 @@
-import type { JSX } from 'react';
-import { useState, useTransition } from 'react';
+import type { JSX, Ref } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
@@ -10,7 +10,7 @@ import ItemRender from './ItemRender';
 import styled from 'styled-components';
 
 type SubjectMenuProps = {
-  readonly ref?: React.Ref<HTMLElement>;
+  readonly ref?: Ref<HTMLElement>;
 };
 
 const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
@@ -25,7 +25,7 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   const rootItems = getRootMenuItems();
 
   // Auto-expand the current item if it exists
-  React.useEffect(() => {
+  useEffect(() => {
     if (currentItem?.items && currentItem.items.length > 0) {
       // Mark expansion as non-urgent to keep UI responsive
       startExpansionTransition(() => {
@@ -68,7 +68,9 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
           item={item}
           key={item.id}
           level={level}
-          onToggle={() => { toggleExpanded(item.id); }}
+          onToggle={() => {
+            toggleExpanded(item.id);
+          }}
         >
           {hasChildren && isExpanded
             ? renderMenuItems(item.items, level + 1)
@@ -88,12 +90,16 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
           {currentItem ? (
             <ItemRender
               hasChildren={
-                currentItem.items === undefined ? null : currentItem.items.length > 0
+                currentItem.items === undefined
+                  ? null
+                  : currentItem.items.length > 0
               }
               isExpanded={expandedItems.has(currentItem.id)}
               item={currentItem}
               level={0}
-              onToggle={() => { toggleExpanded(currentItem.id); }}
+              onToggle={() => {
+                toggleExpanded(currentItem.id);
+              }}
             >
               {currentItem.items && expandedItems.has(currentItem.id)
                 ? renderMenuItems(currentItem.items, 1)

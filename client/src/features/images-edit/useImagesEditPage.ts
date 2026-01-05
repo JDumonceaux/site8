@@ -2,6 +2,7 @@ import { useEffect, useEffectEvent, useState, useTransition } from 'react';
 
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useFormArray from '@hooks/useFormArray';
+import { isNonEmptyString } from '@lib/utils/boolean-checks';
 import { getSRC } from '@lib/utils/helpers';
 import { getDefaultObject } from '@lib/utils/objectUtil';
 import type { FormState, Image } from '@types';
@@ -103,7 +104,7 @@ const useImagesEditPage = (submitState: FormState<null>) => {
     const { id, line } = dataset;
     const lineNumber = Number(line);
     //  const fieldValue = type === 'checkbox' ? checked : value;
-    if (id) {
+    if (isNonEmptyString(id)) {
       setFieldValue(lineNumber, id as keyof ImageAddExt, value);
 
       if (type === 'checkbox' && id === 'isSelected') {

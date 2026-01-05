@@ -23,6 +23,7 @@ import { PageFileService } from '../features/page/PageFileService.js';
 import { PageService } from '../features/page/PageService.js';
 import { PagesService } from '../features/pages/PagesService.js';
 import { PhotosService } from '../features/photos/PhotosService.js';
+import { TestsAiService } from '../features/tests/TestsAiService.js';
 import { TestsService } from '../features/tests/TestsService.js';
 import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
 import { TravelService } from '../features/travel/TravelService.js';
@@ -111,6 +112,10 @@ class ServiceContainer {
     return this.getOrCreate('PrettierService', () => new PrettierService());
   }
 
+  public getTestsAiService(): TestsAiService {
+    return this.getOrCreate('TestsAiService', () => new TestsAiService());
+  }
+
   public getTestsService(): TestsService {
     return this.getOrCreate('TestsService', () => new TestsService());
   }
@@ -168,6 +173,8 @@ export const getPlacesMenuService = (): PlacesMenuService =>
 export const getPrettierService = (): PrettierService =>
   container.getPrettierService();
 export const getTestsService = (): TestsService => container.getTestsService();
+export const getTestsAiService = (): TestsAiService =>
+  container.getTestsAiService();
 export const getTravelService = (): TravelService =>
   container.getTravelService();
 

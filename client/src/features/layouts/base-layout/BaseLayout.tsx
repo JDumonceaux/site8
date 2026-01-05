@@ -1,4 +1,4 @@
-import { type JSX, memo, type ReactNode, Suspense } from 'react';
+import { type JSX, memo, type ReactNode, Suspense, useMemo } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 
@@ -30,17 +30,21 @@ type BaseLayoutProps = {
  *   header={<Header avatar={<Avatar />} />}
  * />
  */
-const BaseLayout = ({ header, initializer }: BaseLayoutProps): JSX.Element => (
-  <ErrorBoundary FallbackComponent={ErrorFallback}>
-    {initializer}
-    {header}
-    <Layout.Main>
-      <Suspense fallback={<LoadingFallback />}>
-        <Outlet />
-      </Suspense>
-    </Layout.Main>
-  </ErrorBoundary>
-);
+const BaseLayout = ({ header, initializer }: BaseLayoutProps): JSX.Element => {
+  const loadingFallback = useMemo(() => <LoadingFallback />, []);
+
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      {initializer}
+      {header}
+      <Layout.Main>
+        <Suspense fallback={loadingFallback}>
+          <Outlet />
+        </Suspense>
+      </Layout.Main>
+    </ErrorBoundary>
+  );
+};
 
 BaseLayout.displayName = 'BaseLayout';
 export default memo(BaseLayout);

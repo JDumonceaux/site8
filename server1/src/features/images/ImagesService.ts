@@ -22,7 +22,7 @@ export class ImagesService extends BaseDataService<Images> {
     try {
       const item = await this.readFile();
 
-      const fixedItems = item.items.map((x, index) => ({
+      const fixedItems = (item.items ?? []).map((x, index) => ({
         ...x,
         id: index + 1,
       }));
@@ -46,7 +46,7 @@ export class ImagesService extends BaseDataService<Images> {
     try {
       const item = await this.readFile();
 
-      const fixedItems = item.items.map((x) => {
+      const fixedItems = (item.items ?? []).map((x) => {
         const fixed = { ...x };
         if (x.fileName) {
           fixed.fileName = x.fileName.toLowerCase();
@@ -80,13 +80,14 @@ export class ImagesService extends BaseDataService<Images> {
     return { ...items };
   }
 
-  public override async getNextId(): Promise<number | undefined> {
+  public override async getNextId(): Promise<number> {
     try {
       const data = await this.readFile();
-      return getNextIdUtil(data.items);
+      const nextId = getNextIdUtil(data.items);
+      return nextId ?? 1;
     } catch (error) {
       Logger.error(`ImagesService: getNextId -> ${String(error)}`);
-      return undefined;
+      throw error;
     }
   }
 
@@ -96,7 +97,7 @@ export class ImagesService extends BaseDataService<Images> {
     try {
       const item = await this.readFile();
 
-      const duplicates = item.items
+      const duplicates = (item.items ?? [])
         .map((x) => x.fileName)
         .filter((x, i, a) => a.indexOf(x) !== i);
 
@@ -227,11 +228,11 @@ export class ImagesService extends BaseDataService<Images> {
       const images = getImagesFileService().getItemsFromBaseDirectory();
       // Get current items
       const prev = await this.readFile();
-      const currItems: Image[] = prev.items;
+      const currItems: Image[] = prev.items ?? [];
       // Get the items not already in the list
       const newItems = getNewItems(currItems, images);
       // Add the the new items to the existing items
-      const allItems = [...currItems, ...newItems];
+      const allItems = [...currItems, ...(newItems ?? [])];
       // Get ids for the new items
       const modifiedItems = getNewIds(allItems);
       // Write back file

@@ -51,15 +51,16 @@ export class ItemsService extends BaseDataService<ItemsFile> {
     return { items: ret, metadata: items.metadata };
   }
 
-  public override async getNextId(): Promise<number | undefined> {
+  public override async getNextId(): Promise<number> {
     try {
       const data = await this.readFile();
-      return getNextIdUtil(data.items);
+      const nextId = getNextIdUtil(data.items);
+      return nextId ?? 1;
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
       Logger.error(`ItemsService: getNextId -> ${errorMessage}`);
-      return undefined;
+      throw error;
     }
   }
 

@@ -13,10 +13,7 @@ export class ImageService {
     try {
       const updatedItem = cleanUpData<ImageAdd>(data);
       const currentData = await imagesService.getItems();
-      if (!currentData) {
-        throw new Error('addItem -> No data found');
-      }
-      const idNew = (await imagesService.getNextId()) ?? 0;
+      const idNew = await imagesService.getNextId();
 
       // Build new Image using allowed properties only
       const baseItem: Image = {
@@ -53,7 +50,7 @@ export class ImageService {
 
     try {
       const currentData = await imagesService.getItems();
-      if (!currentData?.items) {
+      if (!currentData.items) {
         throw new Error('deleteItem -> No data found');
       }
       const itemToDelete = currentData.items.find((item) => item.id === id);
@@ -80,7 +77,7 @@ export class ImageService {
 
     try {
       const response = await imagesService.getItems();
-      if (!response?.items) {
+      if (!response.items) {
         Logger.warn(
           `ImageService: No data found while fetching item with ID -> ${id}`,
         );
@@ -110,7 +107,7 @@ export class ImageService {
     try {
       const updatedItem = cleanUpData(data);
       const currentData = await imagesService.getItems();
-      if (!currentData?.items) {
+      if (!currentData.items) {
         throw new Error('patchItem -> No data found');
       }
       const existing = this.findExistingItem(currentData.items, data.id);
@@ -165,6 +162,9 @@ export class ImageService {
       );
     }
     const [foundItem] = matches;
+    if (!foundItem) {
+      throw new Error(`patchItem -> Item with id ${id} not found after filter`);
+    }
     return foundItem;
   }
 

@@ -5,7 +5,7 @@ import type { MenuItem } from '@site8/shared';
 import styled from 'styled-components';
 
 type ItemRenderProps = {
-  readonly children?: React.ReactNode;
+  readonly children?: ReactNode;
   readonly hasChildren?: boolean;
   readonly isExpanded?: boolean;
   readonly item: MenuItem;

@@ -11,7 +11,7 @@ import {
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Switch from '@components/ui/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
-import useUnmatchedImages from '@features/items-add/useUnmatchedImages';
+import useUnmatchedImages from '@hooks/useUnmatchedImages';
 import { IMAGE_BASE } from '@lib/utils/constants';
 import type { Image } from '@types';
 import styled from 'styled-components';

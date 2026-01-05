@@ -676,7 +676,7 @@
       "id": 82,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Typescript Improvements - Using typescript [latest version], are there any improvements that can be implemented?"
     },
     {
@@ -684,7 +684,7 @@
       "id": 83,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript Improvements - Using javascript ES2025, are there any improvements that can be be implemented?"
     },
     {
@@ -692,7 +692,7 @@
       "id": 84,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript Improvements2 - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable."
     },
     {
@@ -700,7 +700,7 @@
       "id": 85,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript ES2023 Array Method Improvements - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable."
     },
     {
@@ -708,7 +708,7 @@
       "id": 86,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript Iterable Type Updates - Update to use Iterable where applicable."
     },
     {
@@ -716,7 +716,7 @@
       "id": 87,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript Iterable Type Updates - Update to use RegExp.escape where applicable."
     },
     {
@@ -724,7 +724,7 @@
       "id": 88,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript RegExp.escape Implementation - Update to use RegExp.escape where applicable."
     },
     {
@@ -733,7 +733,7 @@
       "type": "maintenance",
       "notes": "Caused errors - RegExp.escape()  ECMAScript 2025",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript RegExp.escape Implementation - Update to use Promise.try where applicable."
     },
     {
@@ -742,7 +742,7 @@
       "type": "maintenance",
       "notes": "12/25/2025 - Limited browser support.  Check compatibility before implementing (caniuse.com)",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Javascript Iteratable - Implement Temporal API."
     },
     {
@@ -750,7 +750,7 @@
       "id": 91,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "React Improvements - Are there react 19.2.3 enhancements that can be made?"
     },
     {
@@ -758,7 +758,7 @@
       "id": 92,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "HTML5 - Is the latest and appropriate HTML5 elements used?"
     },
     {
@@ -766,7 +766,7 @@
       "id": 93,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "CSS - Are there improvements to CSS that can be made?"
     },
     {
@@ -774,7 +774,7 @@
       "id": 94,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Styles - Are there any styles defined in components that should be moved to main.css?"
     },
     {
@@ -782,7 +782,7 @@
       "id": 95,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Immutable - Look for opportunties to improve Immutability in codebase."
     },
     {
@@ -790,7 +790,7 @@
       "id": 96,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "SOLID - Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase."
     },
     {
@@ -798,7 +798,7 @@
       "id": 97,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Class Components - Convert any class components to functional components and hooks."
     },
     {
@@ -806,7 +806,7 @@
       "id": 98,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Lazy Loading - Implement lazy loading components."
     },
     {
@@ -814,7 +814,7 @@
       "id": 99,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Re-renders - Look for any unnecessary re-renders."
     },
     {
@@ -890,7 +890,7 @@
       "id": 108,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Error Handling - Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery"
     },
     {
@@ -898,7 +898,7 @@
       "id": 109,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Accessibility - Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support"
     },
     {
@@ -906,7 +906,7 @@
       "id": 110,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "React Query Optimization - Review and optimize React Query usage - check staleTime, cacheTime, retry logic, and identify opportunities for prefetching"
     },
     {
@@ -914,7 +914,7 @@
       "id": 111,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Custom Hooks - Identify opportunities to create custom hooks to reduce duplication and improve code reusability"
     },
     {
@@ -922,7 +922,7 @@
       "id": 112,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "API Security - Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure"
     },
     {
@@ -930,7 +930,7 @@
       "id": 113,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Bundle Size - Analyze bundle size and suggest code splitting opportunities beyond lazy loading"
     },
     {
@@ -939,7 +939,7 @@
       "type": "maintenance",
       "notes": "Some of these feel too strict: e.g., noImplicitAny, strictNullChecks, strictFunctionTypes",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "TypeScript Strict Mode - Review TypeScript strict mode usage and suggest enabling stricter compiler options"
     },
     {
@@ -947,7 +947,7 @@
       "id": 115,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Prop Drilling - Identify prop drilling issues and suggest Context API or state management improvements"
     },
     {
@@ -955,7 +955,7 @@
       "id": 116,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Styled Components Performance - Review styled-components usage and identify performance issues or patterns to improve"
     },
     {
@@ -963,7 +963,7 @@
       "id": 117,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Testing - Suggest implementing React Testing Library tests for critical user flows"
     },
     {
@@ -971,7 +971,7 @@
       "id": 118,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Form Validation - Review form validation patterns and suggest consistency improvements using Zod or similar"
     },
     {
@@ -979,7 +979,7 @@
       "id": 119,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "SSR/SSG - Identify opportunities for Server-Side Rendering or Static Site Generation"
     },
     {
@@ -987,7 +987,7 @@
       "id": 120,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Image Optimization - Review and optimize image loading strategies (lazy loading, responsive images, WebP)"
     },
     {
@@ -995,7 +995,7 @@
       "id": 121,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "API Caching - Analyze API response caching strategies and suggest improvements"
     },
     {
@@ -1003,7 +1003,7 @@
       "id": 122,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Memory Leaks - Check for memory leaks - useEffect cleanup, event listeners, subscriptions"
     },
     {
@@ -1011,57 +1011,57 @@
       "id": 123,
       "type": "maintenance",
       "groupIds": [17],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "name": "Build - execute npm run build and fix all errors"
     },
     {
       "id": 124,
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Add 3 strict flags to client tsconfig: noUncheckedIndexedAccess, noImplicitReturns, exactOptionalPropertyTypes",
       "name": "TypeScript Enhancement"
     },
     {
       "id": 125,
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Verify sanitizeFilePath is applied to all file upload/manipulation endpoints",
       "name": "Security Audit"
     },
     {
       "id": 126,
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Implement CSRF token generation and validation for mutation endpoints - future implementation",
       "name": "CSRF Protection"
     },
     {
       "id": 127,
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Implement authentication and authorization middleware (JWT, sessions, or OAuth) - future implementation",
       "name": "Authentication Middleware"
     },
     {
       "id": 128,
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Configure Web Application Firewall rules for production deployment - future implementation",
       "name": "WAF Rules"
     },
     {
       "id": 129,
       "notes": "12/1/2025 - \u0027es2025\u0027 is not supported by Vite.  Use \u0027esnext\u0027 instead. This is need for features like Promise.try",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "check tsconfig.json and update target and lib to \u0027esnext\u0027 (lower case)",
       "name": "Javascript Version - esnext"
     },
     {
       "id": 130,
       "groupIds": [1],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Add a display name to every component if missing.  Add the name before the component export.",
       "name": "Component Display Name"
     },
     {
       "id": 131,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Comprehensive ESLint review: 1) Suggest additional linters/plugins, 2) Check for deprecated or missing rules, 3) Identify conflicting or duplicate rules across config files, 4) Validate rule severity levels are appropriate.",
       "name": "ESLint Comprehensive Review"
     },
@@ -1075,119 +1075,119 @@
     {
       "id": 133,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Are there any deprecated Typescript or Javascript functions being used?",
       "name": "Deprecate"
     },
     {
       "id": 135,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review eslint.config files.  Are there any conflicting or duplicate rules?",
       "name": "Update eslint configs"
     },
     {
       "id": 136,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements.",
       "name": "Anti-Patterns"
     },
     {
       "id": 137,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?",
       "name": "Package.json - libraries"
     },
     {
       "id": 138,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the vite.config.mts file and suggest improvements.",
       "name": "vite.config.mts"
     },
     {
       "id": 139,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the vitest.config.ts file and suggest improvements.",
       "name": "vitetest.config.ts"
     },
     {
       "id": 140,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the tsconfig.node.json file and suggest improvements.",
       "name": "tsconfig.node.json"
     },
     {
       "id": 141,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Are there any files at the src/ level not being used?",
       "name": "Unused Files"
     },
     {
       "id": 142,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the tsconfig.json file and suggest improvements.",
       "name": "tsconfig.json"
     },
     {
       "id": 143,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the knip.json file and suggest improvements.",
       "name": "knip.json"
     },
     {
       "id": 144,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the index.html file and suggest improvements.",
       "name": "index.html"
     },
     {
       "id": 145,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the .gitignore file and suggest improvements.",
       "name": ".gitignore"
     },
     {
       "id": 146,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the .prettierignore file and suggest improvements.",
       "name": ".prettierignore"
     },
     {
       "id": 147,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Read the .prettierrc.mjs file and suggest improvements.",
       "name": ".prettierrc.mjs"
     },
     {
       "id": 148,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Check if babel.cjs is needed (Vitest uses Vite, not Babel). Delete if unused.",
       "name": "babel.cjs"
     },
     {
       "id": 149,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Check if eslint_rules/ directory is used. Delete if migrated to flat config.",
       "name": "Legacy ESLint Rules"
     },
     {
       "id": 150,
       "groupIds": [3],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Calculate the maintainability index of the codebase and suggest improvements if below 85.",
       "name": "Maintainability Index"
     },
@@ -1195,112 +1195,112 @@
       "id": 151,
       "groupIds": [3],
       "notes": "12/27/2025: Total Files 471, Average Complexity: 4.53.  Results: Excellent.",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Calculate the cyclomatic complexity of the codebase.",
       "name": "Cylclomatic Complexity"
     },
     {
       "id": 152,
       "groupIds": [3],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Look for code smells in client and server codebases.",
       "name": "Code Smells"
     },
     {
       "id": 153,
       "groupIds": [3],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Look for code duplication in client and server codebases and recommend refactoring.",
       "name": "Code Duplication"
     },
     {
       "id": 154,
       "groupIds": [3],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Look for security vulnerabilities in client and server codebases and recommend improvements.",
       "name": "Security"
     },
     {
       "id": 155,
       "groupIds": [3],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Look for structural issues in client and server codebases and recommend improvements.",
       "name": "Structural"
     },
     {
       "id": 156,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "useEffectEvent is stable.  Look for opportunities in the code to use this function.",
       "name": "useEffectEvent"
     },
     {
       "id": 157,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Create Skeleton components for loading states to improve user experience during data fetching.",
       "name": "Skeleton"
     },
     {
       "id": 158,
       "groupIds": [5],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Ensure that all ids in the data are sequential and unique to maintain data integrity.",
       "name": "Sequential ids"
     },
     {
       "id": 159,
       "groupIds": [6],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Add light-dark() function to main.css for consistent theming.",
       "name": "Light-Dark Mode Consistency"
     },
     {
       "id": 160,
       "groupIds": [6],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Replace all named colors in components with CSS variables defined in main.css for easier theming and maintenance.",
       "name": "Central Color Variables"
     },
     {
       "id": 161,
       "groupIds": [6],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance.",
       "name": "Useless CSS Removal"
     },
     {
       "id": 162,
       "groupIds": [7],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling.",
       "name": "API End points"
     },
     {
       "id": 163,
       "groupIds": [7],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the Server API end points to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.  Fix any related routers and services.",
       "name": "API End points - Parameters"
     },
     {
       "id": 164,
       "groupIds": [7],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.",
       "name": "API End points - Parameters Client"
     },
     {
       "id": 165,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19.",
       "name": "React 19 - useActionState"
     },
     {
       "id": 166,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19.",
       "name": "React 19 - useTransition"
     },
@@ -1308,126 +1308,126 @@
       "id": 167,
       "groupIds": [4],
       "notes": "Removed in 19.2.3",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Remove useFormState",
       "name": "React 19 - useFormState"
     },
     {
       "id": 168,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19.",
       "name": "React 19 - useOptimisitic"
     },
     {
       "id": 169,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the new use hook introduced in React 19.",
       "name": "React 19 - use"
     },
     {
       "id": 170,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to update Context.Provider to Context introduced in React 19.",
       "name": "React 19 - Context.Provider"
     },
     {
       "id": 171,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to update cleanup functions for ref introduced in React 19.",
       "name": "React 19 - Cleanup functions for ref"
     },
     {
       "id": 172,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19.",
       "name": "React 19 - useDeferredValue"
     },
     {
       "id": 173,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19.",
       "name": "React 19 - Stylesheet Precedence"
     },
     {
       "id": 174,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19.",
       "name": "React 19 - Resource Preloading"
     },
     {
       "id": 175,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to identify opportunities to use the error handling changes introduced in React 19.",
       "name": "React 19 - Errors onCaughtError, onUncaughtError, onRecoverableError"
     },
     {
       "id": 176,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly.",
       "name": "React 19 - New JSX Transform"
     },
     {
       "id": 177,
       "groupIds": [8],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "run replace-reactdom-render",
       "name": "React 19 - CodeModes"
     },
     {
       "id": 178,
       "groupIds": [8],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "run replace-string-ref",
       "name": "React 19 - CodeModes"
     },
     {
       "id": 179,
       "groupIds": [8],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "run replace-act-import",
       "name": "React 19 - CodeModes"
     },
     {
       "id": 180,
       "groupIds": [8],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "run replace-use-form-state",
       "name": "React 19 - CodeModes"
     },
     {
       "id": 181,
       "groupIds": [8],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "run prop-types-typescript",
       "name": "React 19 - CodeModes"
     },
     {
       "id": 182,
       "groupIds": [8],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "run types-react-codemod",
       "name": "React 19 - CodeModes"
     },
     {
       "id": 183,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Update all Zod deprecated methods and syntax to the latest version.",
       "name": "Zod"
     },
     {
       "id": 184,
       "groupIds": [4],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "ZodeIssue is deprecated.  Update to use z.core.$ZodIssue",
       "name": "ZodIssue"
     },
@@ -1435,91 +1435,91 @@
       "id": 185,
       "groupIds": [9],
       "notes": "01/01/2026: Score: 94/100 - Excellent consistency across coding styles, naming conventions, and file structures. Coding Style Consistency - Naming conventions, code formatting, patterns; File Structure Consistency - Directory organization, file naming; API Pattern Consistency - Handler patterns, error responses, validation; TypeScript Usage - Type annotations, generic usage; Import Patterns - Import organization, factory usage; Error Handling Consistency - ResponseHelper usage, error formats; Documentation Consistency - JSDoc comments, inline comments; Testing Patterns - Test structure (if tests exist)",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Calculate the Overall Consistency Score for the codebase.",
       "name": "Overall Consistency Score"
     },
     {
       "id": 186,
       "groupIds": [10],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Run API Router Consistency Analysis Report for the codebase.",
       "name": "API Router Consistency Analysis Report"
     },
     {
       "id": 187,
       "groupIds": [11],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Update Legacy manual handlers and Generic handler factories to simple router factory where appropriate.",
       "name": "API Router Consistency "
     },
     {
       "id": 188,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Standardize on **kebab-case** for all multi-word URL paths.",
       "name": "API Router Consistency - Kebab-case"
     },
     {
       "id": 189,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Validate all mutation operations use request body for data.",
       "name": "API Router Consistency - Request Body"
     },
     {
       "id": 190,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Update Pattern 1: Legacy Manual Validation and Pattern 2: Zod Schema Validation (Items) to Pattern 3: Generic Handlers (Modern)",
       "name": "API Router Consistency - Request Body Structure"
     },
     {
       "id": 191,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Update Pattern 1: Collection Responses and Pattern 2: Single Item Responses to Recommended: `res.json(data)` for success with data, `res.sendStatus(204)` for success without data, `{ error: \"message\" }` for errors",
       "name": "API Router Consistency - Response Structure Analysis"
     },
     {
       "id": 192,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Status Codes Analysis: Update to modern handlers",
       "name": "API Router Consistency - Status Codes Analysis"
     },
     {
       "id": 193,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Update to Modern Error Responses: `res.status(400).json({ error: \u0027message\u0027 })`",
       "name": "API Router Consistency - Modern Error Responses"
     },
     {
       "id": 194,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Error Response Formats: Standardize on `{ error: \u0027message\u0027 }` format",
       "name": "API Router Consistency - Error Response Formats"
     },
     {
       "id": 195,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Update all Try-Catch Patterns to Pattern 4: Generic Handler (Modern)",
       "name": "API Router Consistency - Try-Catch Patterns"
     },
     {
       "id": 196,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Error Logging to use `ResponseHelper.internalError()`",
       "name": "API Router Consistency - Error Logging"
     },
     {
       "id": 197,
       "groupIds": [12],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Pattern Summary: Update all legacy patterns to modern generic handlers",
       "name": "API Router Consistency - Pattern Summary"
     },
@@ -1527,7 +1527,7 @@
       "id": 198,
       "groupIds": [10],
       "notes": "01/02/2026: Server: 98/100  Client: 88/100",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Run Code Smells Report for the codebase.",
       "name": "Code Smells Report"
     },
@@ -1535,7 +1535,7 @@
       "id": 199,
       "groupIds": [12],
       "notes": "01/02/2026: Validated - 95/100 score, excellent architecture with custom hooks pattern",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Validate there is no excessive prop drilling in the codebase.",
       "name": "Prop Drilling"
     },
@@ -1543,7 +1543,7 @@
       "id": 200,
       "groupIds": [13],
       "notes": "01/02/2026: Validated - Zero deprecated event handlers found, all using modern onKeyDown. Modern React 19 patterns confirmed.",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Validate there are no deprecated event handlers (onKeyPress, componentWillMount, componentWillReceiveProps, etc.) in the codebase. Confirm modern React 19+ patterns and hooks are used throughout.",
       "name": "React - Deprecated APIs and Event Handlers"
     },
@@ -1551,28 +1551,28 @@
       "id": 202,
       "groupIds": [13],
       "notes": "01/02/2026: Updated - Removed deprecated onKeyPress from jsx-a11y rules",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Update ESLint configuration and rules for modern event handlers.",
       "name": "ESLint"
     },
     {
       "id": 203,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Analyze codebase for optimization opportunities: rendering performance (memoization, virtualization), bundle size (code splitting, lazy loading), API efficiency (caching, batching), memory usage (cleanup, leaks). For each suggestion, explain expected improvement and trade-offs.",
       "name": "Improvements"
     },
     {
       "id": 204,
       "groupIds": [14],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Generate unit tests for the following function:\n[paste function]\n\nInclude tests for:\n1. Normal expected inputs\n2. Edge cases\n3. Invalid inputs\n\nUse [preferred testing framework] syntax.",
       "name": "Generate Unit Tests"
     },
     {
       "id": 205,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them.",
       "name": "Component Instability"
     },
@@ -1580,14 +1580,14 @@
       "id": 206,
       "groupIds": [2],
       "notes": "01/02/2026: Score 98/100 - Excellent. Zero functional duplicates. TypeScript version aligned (5.9.3). Consider workspace for husky/prettier/eslint deduplication (optional).",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review the package.json files for duplicate libraries - libraries that perform the same function(s) but are different packages. Suggest consolidating to a single library where possible.",
       "name": "Package.json - Duplicate Libraries"
     },
     {
       "id": 207,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size.",
       "name": "Package Imports"
     },
@@ -1595,49 +1595,49 @@
       "id": 208,
       "groupIds": [2],
       "notes": "01/02/2026: Score 88/100 - Very Good. 8 redundant boolean attributes (={false}) to remove. Zero unused variables. Fragment patterns with Meta are correct React 18+ practice. Key usage excellent (95%+).",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review codebase to ensure clean JSX - suggest improvements to remove unnecessary fragments, redundant attributes, and unused variables.",
       "name": "Clean JSX"
     },
     {
       "id": 209,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Here\u0027s a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion.",
       "name": "Performance"
     },
     {
       "id": 210,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code].",
       "name": "Code Review"
     },
     {
       "id": 211,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Search for React components using array index as key prop (e.g., key={index}). Report occurrences and suggest using stable unique identifiers instead to prevent rendering bugs.",
       "name": "Array Index as Key"
     },
     {
       "id": 212,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review React components returning fragments containing only <Meta> or <Helmet> tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight.",
       "name": "Fragment Pattern with Meta"
     },
     {
       "id": 213,
       "groupIds": [2],
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Find and remove redundant boolean JSX attributes (e.g., disabled={true} should be disabled, hidden={false} should be omitted). Report count and suggest automatic fixes.",
       "name": "Redundant Boolean Attributes"
     },
     {
       "id": 214,
       "groupIds": [2],
-      "tags": ["chat", "security"],
+      "tags": ["ai", "security"],
       "prompt": "Scan for hardcoded secrets (API keys, passwords, tokens) in codebase and environment files. Verify .gitignore excludes sensitive files.",
       "name": "Secrets Detection",
       "testDate": "2026-01-03",
@@ -1736,7 +1736,7 @@
       "id": 223,
       "groupIds": [2],
       "level": "project",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Audit API endpoints documentation. Verify each endpoint has request/response examples, error codes, and authentication requirements documented.",
       "name": "API Documentation Audit",
       "testDate": "2026-01-03",
@@ -1747,7 +1747,7 @@
       "id": 224,
       "groupIds": [12],
       "level": "project",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review .gitignore completeness. Ensure all build artifacts, environment files, OS files, IDE configs, and dependency directories are excluded.",
       "name": "Gitignore Audit",
       "testDate": "2026-01-03",
@@ -1769,7 +1769,7 @@
       "id": 226,
       "groupIds": [11],
       "level": "project",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Allow and implement any TC39 Stage 2+ features in the codebase, ensuring compatibility with current build tools and environments. Such as Promise.try, Array.fromAsync, Iterator helpers, Set methods, Decimal,Temporal,Array grouping, Import attributes, Decorator metadata,RegExp.escape,and Symbol predicates. Update ESlint rules to allow these features.",
       "name": "Baseline 2025"
     },
@@ -1777,7 +1777,7 @@
       "id": 227,
       "groupIds": [11],
       "level": "project",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review general-coding.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices.",
       "name": "General-coding.instructions.md Review"
     },
@@ -1785,7 +1785,7 @@
       "id": 228,
       "groupIds": [11],
       "level": "project",
-      "tags": ["chat"],
+      "tags": ["ai"],
       "prompt": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices.",
       "name": "Typescript-react.instructions.md Review"
     },

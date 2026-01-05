@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useEffect, useEffectEvent } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import Button from '@components/ui/button/Button';
 import { logError } from '@lib/utils/errorHandler';
@@ -19,28 +19,31 @@ const MESSAGE_FONT_SIZE = '0.875rem';
 const Snackbar = (): JSX.Element | null => {
   const { closeSnackbar, data } = useSnackbar();
 
-  const handleClose = useEffectEvent(() => {
+  const handleClose = useCallback(() => {
     try {
       closeSnackbar();
     } catch (error) {
       logError(error, { action: 'close', componentName: 'Snackbar' });
     }
-  });
+  }, [closeSnackbar]);
 
-  const handleEscapeEvent = useEffectEvent((event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      handleClose();
+  useEffect((): (() => void) | undefined => {
+    if (data?.isOpen === true) {
+      const handleEscapeEvent = (event: KeyboardEvent): void => {
+        if (event.key === 'Escape') {
+          handleClose();
+        }
+      };
+      globalThis.addEventListener('keydown', handleEscapeEvent);
+      return () => {
+        globalThis.removeEventListener('keydown', handleEscapeEvent);
+      };
     }
-  });
-  useEffect(() => {
-    if (!data?.isOpen) {
-      return;
-    }
-    globalThis.addEventListener('keydown', handleEscapeEvent);
-    globalThis.removeEventListener('keydown', handleEscapeEvent);
-  }, [data?.isOpen]);
 
-  if (!data?.isOpen) {
+    return undefined;
+  }, [data?.isOpen, handleClose]);
+
+  if (data?.isOpen !== true) {
     return null;
   }
 

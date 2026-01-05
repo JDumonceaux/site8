@@ -36,7 +36,7 @@ export type { Place } from "./Place.js";
 export type { PlaceImage } from "./Place.js";
 export type { Places } from "./Places.js";
 export type { Test } from "./Test.js";
-export type { Tests } from "./Tests.js";
+export type { TestGroup, Tests } from "./Tests.js";
 
 // Re-export schemas
 export { ArtistSchema } from "./Artist.js";

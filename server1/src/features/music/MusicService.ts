@@ -18,12 +18,12 @@ export class MusicService extends BaseDataService<MusicItems> {
    * Retrieves all music items
    * @returns Music items with metadata
    */
-  public override async getItems(): Promise<MusicItems | undefined> {
+  public override async getItems(): Promise<MusicItems> {
     try {
       const data = await this.readFile();
       return data;
-    } catch {
-      return undefined;
+    } catch (error) {
+      throw error;
     }
   }
 

@@ -2,7 +2,16 @@ import type { Collection } from "./Collection.js";
 import type { Test } from "./Test.js";
 
 /**
- * Tests collection type
- * Wraps Test items in a Collection structure
+ * Test group type
  */
-export type Tests = Collection<Test>;
+export type TestGroup = {
+  readonly id: number;
+  readonly name: string;
+};
+
+/**
+ * Tests collection type with groups
+ */
+export type Tests = Collection<Test> & {
+  readonly groups?: TestGroup[];
+};
