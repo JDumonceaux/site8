@@ -151,21 +151,6 @@ const useImagesEditPage = (submitState: FormState<null>) => {
     setFilter(value === 'all' ? '' : value);
   };
 
-  // const getDifferenceString = (value?: string, update?: string) => {
-  //   const normalizedUpdate = update?.trim() ?? undefined;
-
-  //   if (value !== normalizedUpdate) {
-  //     return {
-  //       hasChange: true,
-  //       value: normalizedUpdate,
-  //     };
-  //   }
-  //   return {
-  //     hasChange: false,
-  //     value,
-  //   };
-  // };
-
   return {
     currentFilter: filter,
     currentFolder,
