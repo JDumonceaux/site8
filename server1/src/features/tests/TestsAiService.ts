@@ -8,6 +8,11 @@ type GroupedTest = Test & {
   readonly groupName?: string;
 };
 
+type TestGroupType = {
+  readonly id: number;
+  readonly name: string;
+};
+
 /**
  * Service for retrieving AI-tagged tests grouped and sorted alphabetically
  */
@@ -27,10 +32,10 @@ export class TestsAiService extends BaseDataService<Tests> {
       }
 
       // Filter items with 'ai' tag
-      const aiItems = rawData.items.filter(
-        (item): item is Test =>
-          Array.isArray(item.tags) && item.tags.includes('ai'),
-      );
+      const aiItems = rawData.items.filter((item): item is Test => {
+        const { tags } = item;
+        return Array.isArray(tags) && tags.includes('ai');
+      });
 
       if (aiItems.length === 0) {
         return { ...rawData, items: [] };
@@ -38,18 +43,33 @@ export class TestsAiService extends BaseDataService<Tests> {
 
       // Create a map of group IDs to group names
       const groupMap = new Map<number, string>();
-      if (rawData.groups) {
-        for (const group of rawData.groups) {
-          groupMap.set(group.id, group.name);
+      const { groups } = rawData;
+      if (groups !== undefined && Array.isArray(groups)) {
+        for (const group of groups) {
+          // Type guard to ensure group has required properties
+          if (
+            typeof group === 'object' &&
+            group !== null &&
+            'id' in group &&
+            'name' in group &&
+            typeof (group as TestGroupType).id === 'number' &&
+            typeof (group as TestGroupType).name === 'string'
+          ) {
+            const validGroup = group as TestGroupType;
+            groupMap.set(validGroup.id, validGroup.name);
+          }
         }
       }
 
       // Add group names to items
       const itemsWithGroups: GroupedTest[] = aiItems.map((item) => {
-        const groupId =
-          Array.isArray(item.groupIds) && item.groupIds.length > 0
-            ? item.groupIds[0]
-            : undefined;
+        const { groupIds } = item;
+        if (!groupIds || !Array.isArray(groupIds) || groupIds.length === 0) {
+          return { ...item, groupName: undefined };
+        }
+        const firstGroupId = groupIds[0] as unknown;
+        const groupId: number | undefined =
+          typeof firstGroupId === 'number' ? firstGroupId : undefined;
         const groupName =
           typeof groupId === 'number' ? groupMap.get(groupId) : undefined;
         return { ...item, groupName };

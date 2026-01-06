@@ -206,7 +206,7 @@ export class ImageService {
       'description',
     ];
     return this.pickFields<Image>(obj, allowedKeys, {
-      id: obj['id'] as number,
+      id: obj.id as number,
     });
   }
 
@@ -215,12 +215,14 @@ export class ImageService {
       if (key === 'id') continue;
       const val = obj[key];
       if (val === undefined || val === null) {
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete obj[key];
         continue;
       }
       if (typeof val === 'string') {
         const trimmed = val.trim();
         if (trimmed === '') {
+          // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
           delete obj[key];
         } else {
           obj[key] = trimmed;
@@ -228,11 +230,13 @@ export class ImageService {
         continue;
       }
       if (Array.isArray(val)) {
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         if (val.length === 0) delete obj[key];
         continue;
       }
       if (typeof val === 'object') {
         if (Object.keys(val as Record<string, unknown>).length === 0) {
+          // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
           delete obj[key];
         }
         continue;

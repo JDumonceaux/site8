@@ -37,7 +37,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    // too strict - requires item.[key] vs. item.key
+    // "noPropertyAccessFromIndexSignature": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
     "noUncheckedSideEffectImports": true,

@@ -1,14 +1,14 @@
-import type { Schema, ZodError, ZodFormattedError } from 'zod';
+import type { ZodError, ZodType } from 'zod';
 
 export type ParseResult<T> = {
   readonly data: T | null;
   readonly error: ZodError<T> | null;
-  readonly errorFormatted: ZodFormattedError<T> | null;
+  readonly errorFormatted: string | null;
   readonly success: boolean;
 };
 
 export const safeParse = <T>(
-  schema: Schema<T>,
+  schema: ZodType<T>,
   inputData: Partial<T>,
 ): ParseResult<T> => {
   const parsedData = schema.safeParse(inputData);
@@ -17,7 +17,7 @@ export const safeParse = <T>(
     return {
       data: null,
       error: parsedData.error,
-      errorFormatted: parsedData.error.format(),
+      errorFormatted: JSON.stringify(parsedData.error.errors),
       success: false,
     };
   }

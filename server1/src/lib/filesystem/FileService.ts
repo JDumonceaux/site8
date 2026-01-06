@@ -170,7 +170,7 @@ export class FileService {
         throw new Error('Access denied: Invalid file path');
       }
 
-      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Path validated above, sync needed for compatibility
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       writeFileSync(resolvedPath, JSON.stringify(data, null, 2), {
         encoding: 'utf8',
         flag: 'w',

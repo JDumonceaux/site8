@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const envSchema = z.object({
-  BASE_URL: z.string().default('http://localhost:3005').pipe(z.string().url()),
+  BASE_URL: z.url().default('http://localhost:3005' as never),
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
     .default('development'),
@@ -14,9 +14,13 @@ const envSchema = z.object({
 
 export type Env = z.infer<typeof envSchema>;
 
-export const env = envSchema.parse({
-  BASE_URL: process.env.BASE_URL,
-  NODE_ENV: process.env.NODE_ENV,
-  PORT: process.env.PORT,
-  USE_AUTH: process.env.USE_AUTH,
-});
+const parseEnv = (): Env => {
+  return envSchema.parse({
+    BASE_URL: process.env.BASE_URL,
+    NODE_ENV: process.env.NODE_ENV,
+    PORT: process.env.PORT,
+    USE_AUTH: process.env.USE_AUTH,
+  });
+};
+
+export const env: Env = parseEnv();

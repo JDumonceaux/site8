@@ -13,7 +13,7 @@ export const getItem = createGetHandlerWithParams<Image>({
     id: 0,
   },
   getData: async (req: Request) => {
-    const id = req.params['id'] as string;
+    const id = req.params.id as string;
     const imageId = Number.parseInt(id, 10);
     const service = getImageService();
     const result = await service.getItem(imageId);

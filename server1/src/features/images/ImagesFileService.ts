@@ -1,4 +1,4 @@
-import type { Image, ImageEdit , Images } from '@site8/shared';
+import type { Image, ImageEdit, Images } from '@site8/shared';
 
 import { existsSync, mkdirSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
@@ -19,6 +19,7 @@ export class ImagesFileService {
     try {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
       const items = readdirSync(this.imageDir, {
         encoding: 'utf8',
         recursive: true,
@@ -26,8 +27,10 @@ export class ImagesFileService {
 
       items.forEach((item) => {
         const itemPath = path.join(this.imageDir, item);
+        // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
         const stats = statSync(itemPath);
         if (stats.isFile()) {
+          // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
           renameSync(itemPath, itemPath.toLowerCase());
         }
       });
@@ -49,6 +52,7 @@ export class ImagesFileService {
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
       // NOTE: path is deprecated, but replacement - parentPath - isn't working
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
       const items = readdirSync(this.imageDir, {
         encoding: 'utf8',
         recursive: true,
@@ -110,7 +114,6 @@ export class ImagesFileService {
 
       const updates: readonly ImageEdit[] = []; //items?.filter((x) => x.originalFolder !== x.folder);
 
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (!updates || updates.length === 0) {
         Logger.info(`ImagesFileService: moveItems. -> no items to update`);
         return true;
@@ -137,8 +140,10 @@ export class ImagesFileService {
 
         // Create the folder if needed
         try {
+          // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
           if (!existsSync(moveToPath)) {
             Logger.info(`ImagesFileService: creating folder -> ${moveToPath}.`);
+            // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
             mkdirSync(moveToPath);
           }
         } catch (err) {
@@ -147,12 +152,14 @@ export class ImagesFileService {
           );
         }
 
+        // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
         if (existsSync(moveTo)) {
           Logger.warn(
             `ImagesFileService: Unable to move file -> ${moveTo} already exists.`,
           );
           return false;
         } else {
+          // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
           renameSync(currLocation, moveTo);
         }
       }
@@ -175,11 +182,13 @@ export class ImagesFileService {
 
       // All the files and all the directories
       // If encoding is missing, returns buffer vs. strings
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
       const items = readdirSync(fullPath, {
         encoding: 'utf8',
         recursive: true,
       }).filter((item) => {
         const itemPath = path.join(fullPath, item);
+        // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
         const stats = statSync(itemPath);
         return stats.isFile();
       });

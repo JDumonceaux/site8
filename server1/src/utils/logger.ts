@@ -60,7 +60,7 @@ const format = Environment.isLocal()
       winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
       winston.format.printf(
         (info) =>
-          `[${String(info['timestamp'])}] ${String(info.level)}: ${String(info.message)}`,
+          `[${String(info.timestamp)}] ${String(info.level)}: ${String(info.message)}`,
       ),
     )
   : winston.format.json();

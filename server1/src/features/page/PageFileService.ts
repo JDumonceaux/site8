@@ -26,7 +26,9 @@ export class PageFileService {
     }
 
     try {
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
       if (existsSync(filePath)) {
+        // eslint-disable-next-line security/detect-non-literal-fs-filename
         await unlink(filePath);
       } else {
         throw new Error(`deleteFile - File does not exist: ${filePath}`);
@@ -48,12 +50,14 @@ export class PageFileService {
 
     try {
       const filePath = this.getFileName(id);
+      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
       if (!existsSync(filePath)) {
         Logger.warn(
           `PageFileService: File does not exist for id ${id}, returning empty content`,
         );
         return '';
       }
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       return await readFile(filePath, 'utf8');
     } catch (error) {
       const errorMessage =
@@ -84,6 +88,7 @@ export class PageFileService {
   private async saveFile(id: number, text: string): Promise<boolean> {
     try {
       Logger.info(`PageFileService: saveFile id: ${id}`);
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       await writeFile(this.getFileName(id), text, {
         encoding: 'utf8',
         flag: 'w',

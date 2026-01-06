@@ -254,7 +254,7 @@ export const createPatchHandler = <T>({
       const { data } = idConversion;
 
       // Validate ID exists in body
-      const id = typeof data['id'] === 'number' ? data['id'] : undefined;
+      const id = typeof data.id === 'number' ? data.id : undefined;
       if (!id) {
         badRequest(res, 'ID is required in request body');
         return;
@@ -476,7 +476,7 @@ export const createDeleteHandler = <T>({
       // Safely extract id from request body
       const id =
         req.body && typeof req.body === 'object'
-          ? (req.body as Record<string, unknown>)['id']
+          ? (req.body as Record<string, unknown>).id
           : undefined;
 
       if (!id) {

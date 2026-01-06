@@ -84,8 +84,8 @@ export class DataValidator<T> {
     }
 
     const dataObj = data as Record<string, unknown>;
-    if (!dataObj['metadata']) {
-      (data as Record<string, unknown>)['metadata'] = this.defaultMetadata;
+    if (!dataObj.metadata) {
+      (data as Record<string, unknown>).metadata = this.defaultMetadata;
     }
 
     return data;

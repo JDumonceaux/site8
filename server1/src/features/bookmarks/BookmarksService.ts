@@ -1,4 +1,9 @@
-import type { Bookmark , Bookmarks , BookmarksTag , BookmarksTags } from '@site8/shared';
+import type {
+  Bookmark,
+  Bookmarks,
+  BookmarksTag,
+  BookmarksTags,
+} from '@site8/shared';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
@@ -109,6 +114,7 @@ export class BookmarksService extends BaseDataService<Bookmarks> {
       });
     } catch (error) {
       Logger.error(
+        // eslint-disable-next-line no-secrets/no-secrets -- Method name triggers false positive
         `BookmarkService: cleanUpAndNormalizeTags --> Error: ${String(error)}`,
       );
       return undefined;

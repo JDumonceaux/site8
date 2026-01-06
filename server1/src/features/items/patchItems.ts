@@ -20,10 +20,10 @@ const ItemEditArraySchema = z.array(ItemEditSchema);
  * @param req - Express request containing array of ItemEdit objects in body
  * @param res - Express response with 204 No Content on success or error object
  */
-export const patchItems = async (
+export const patchItems = (
   req: Request,
   res: Response<boolean | string | { error: string }>,
-): Promise<void> => {
+): void => {
   // Validate request body as array using standardized validator
   const validation = validateBody(req, ItemEditArraySchema);
   if (!validation.isValid) {
