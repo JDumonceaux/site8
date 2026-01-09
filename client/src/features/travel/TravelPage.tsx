@@ -2,6 +2,7 @@ import type { JSX } from 'react';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
@@ -9,7 +10,6 @@ import { logError } from '@lib/utils/errorHandler';
 import Items from './Items';
 import TravelMenu from './TravelMenu';
 import useTravel from './useTravel';
-import styled from 'styled-components';
 
 /**
  * Slugify helper to match URL parameters to place data
@@ -41,7 +41,7 @@ const TravelPage = (): JSX.Element => {
 
   // Filter data based on URL parameters
   const filteredData = useMemo(() => {
-    if (data == null) return data;
+    if (data?.items == null) return data;
 
     let filtered = data.items;
 
@@ -67,13 +67,13 @@ const TravelPage = (): JSX.Element => {
 
   // Determine page title based on URL parameters
   const pageTitle = useMemo(() => {
-    if (item != null && item !== '' && filteredData?.items[0] != null) {
+    if (item != null && item !== '' && filteredData?.items?.[0] != null) {
       return filteredData.items[0].name;
     }
-    if (city != null && city !== '' && filteredData?.items[0] != null) {
+    if (city != null && city !== '' && filteredData?.items?.[0] != null) {
       return `${filteredData.items[0].city}, ${filteredData.items[0].country}`;
     }
-    if (country != null && country !== '' && filteredData?.items[0] != null) {
+    if (country != null && country !== '' && filteredData?.items?.[0] != null) {
       return filteredData.items[0].country;
     }
     return 'Travel Destinations';
@@ -81,45 +81,31 @@ const TravelPage = (): JSX.Element => {
 
   return (
     <>
-      <title>{pageTitle}</title>
-      <meta
-        content="Explore amazing destinations around the world."
-        name="description"
+      <Meta
+        description="Explore amazing destinations around the world."
+        title={pageTitle}
       />
-      <StyledPageLayout>
-        <StyledSidebar>
+      <Layout.TwoColumn>
+        <Layout.Menu>
           <TravelMenu />
-        </StyledSidebar>
-        <Layout.Main>
-          <PageTitle title={pageTitle} />
-          <section>
-            <LoadingWrapper
-              error={error}
-              isError={isError}
-              isLoading={isLoading}
-            >
-              <Items data={filteredData} />
-            </LoadingWrapper>
-          </section>
-        </Layout.Main>
-      </StyledPageLayout>
+        </Layout.Menu>
+        <Layout.Content>
+          <Layout.Article>
+            <PageTitle title={pageTitle} />
+            <Layout.Section>
+              <LoadingWrapper
+                error={error}
+                isError={isError}
+                isLoading={isLoading}
+              >
+                <Items data={filteredData} />
+              </LoadingWrapper>
+            </Layout.Section>
+          </Layout.Article>
+        </Layout.Content>
+      </Layout.TwoColumn>
     </>
   );
 };
 
 export default TravelPage;
-
-const StyledPageLayout = styled.div`
-  display: flex;
-  min-height: 100vh;
-  gap: 1rem;
-`;
-
-const StyledSidebar = styled.aside`
-  width: 300px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-`;

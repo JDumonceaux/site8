@@ -1,114 +1,130 @@
-import { type JSX, useMemo } from 'react';
+import type { JSX } from 'react';
+import { useRef } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import IconButton from '@components/ui/button/icon-button/IconButton';
+import { CopyIcon } from '@components/ui/icons/CopyIcon';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
+import type { Test } from '@site8/shared';
 import useTestsAi from './useTestsAi';
 import styled from 'styled-components';
 
-type GroupedTest = {
-  readonly groupName?: string;
-  readonly items: {
-    readonly id: number;
-    readonly level?: string;
-    readonly name: string;
-    readonly notes?: string;
-    readonly prompt?: string;
-    readonly tags?: string[];
-    readonly type?: string;
-  }[];
+type CodeBlockProps = {
+  readonly code: string;
+};
+
+const CodeBlock = ({ code }: CodeBlockProps): JSX.Element => {
+  const codeRef = useRef<HTMLElement>(null);
+  const { setErrorMessage, setMessage } = useSnackbar();
+
+  const copyToClipboard = async (text: string): Promise<void> => {
+    try {
+      const permissionStatus = await navigator.permissions.query({
+        name: 'clipboard-write' as PermissionName,
+      });
+      if (
+        permissionStatus.state === 'granted' ||
+        permissionStatus.state === 'prompt'
+      ) {
+        await navigator.clipboard.writeText(text);
+        setMessage('Copied to clipboard');
+      } else {
+        setErrorMessage('Copy to clipboard is not supported');
+      }
+    } catch {
+      setErrorMessage('Failed to copy');
+    }
+  };
+
+  const handleCopy = (): void => {
+    const text = codeRef.current?.textContent;
+    if (text && text.trim().length > 0) {
+      void copyToClipboard(text);
+    }
+  };
+
+  return (
+    <CodeBlockContainer>
+      <CodeHeader>
+        <CodeLabel>Code</CodeLabel>
+        <IconButton
+          aria-label="Copy code to clipboard"
+          onClick={handleCopy}
+        >
+          <CopyIcon isAriaHidden />
+        </IconButton>
+      </CodeHeader>
+      <CodeContent>
+        <code ref={codeRef}>{code}</code>
+      </CodeContent>
+    </CodeBlockContainer>
+  );
 };
 
 const TestsAiPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useTestsAi();
 
-  const pageTitle = 'AI Tests';
-
-  // Group tests by their group names
-  const groupedTests = useMemo(() => {
-    if (!data?.items) {
-      return [];
-    }
-
-    const groups = new Map<string, GroupedTest['items']>();
-
-    for (const item of data.items) {
-      // Get group name from groups array if available
-      const groupId = item.groupIds?.[0];
-      const group = data.groups?.find((g) => g.id === groupId);
-      const groupName = group?.name ?? 'Other';
-
-      if (!groups.has(groupName)) {
-        groups.set(groupName, []);
-      }
-      groups.get(groupName)?.push(item);
-    }
-
-    // Convert to array and sort by group name
-    return Array.from(groups.entries())
-      .map(([groupName, items]) => ({ groupName, items }))
-      .toSorted((a, b) => a.groupName.localeCompare(b.groupName));
-  }, [data]);
+  const pageTitle = 'Quality Code';
 
   return (
     <>
       <Meta title={pageTitle} />
-      <Layout.Main>
+      <Layout.TwoColumn>
         <Layout.Menu>
           <SubjectMenu />
         </Layout.Menu>
-        <Layout.Article>
+        <Layout.Content>
           <LoadingWrapper
             error={error}
             isError={isError}
             isLoading={isLoading}
           >
-            <PageTitle title={pageTitle} />
-            <Layout.Section>
-              <TestsContainer>
-                {groupedTests.map((group) => (
-                  <GroupSection key={group.groupName}>
-                    <GroupTitle>{group.groupName}</GroupTitle>
-                    <TestList>
-                      {group.items.map((item) => (
-                        <TestItem key={item.id}>
-                          <TestItemHeader>
-                            <TestItemName>{item.name}</TestItemName>
-                            {item.tags && item.tags.length > 0 ? (
-                              <TagsContainer>
-                                {item.tags.map((tag) => (
-                                  <Tag key={tag}>{tag}</Tag>
-                                ))}
-                              </TagsContainer>
-                            ) : null}
-                          </TestItemHeader>
-                          {item.prompt ? (
-                            <TestPrompt>{item.prompt}</TestPrompt>
-                          ) : null}
-                          {item.notes ? (
-                            <TestNotes>{item.notes}</TestNotes>
-                          ) : null}
-                          <TestMeta>
-                            {item.type ? (
-                              <MetaItem>Type: {item.type}</MetaItem>
-                            ) : null}
-                            {item.level ? (
-                              <MetaItem>Level: {item.level}</MetaItem>
-                            ) : null}
-                            <MetaItem>ID: {item.id}</MetaItem>
-                          </TestMeta>
-                        </TestItem>
-                      ))}
-                    </TestList>
-                  </GroupSection>
-                ))}
-              </TestsContainer>
-            </Layout.Section>
+            <Layout.Article>
+              <PageTitle title={pageTitle} />
+              <Layout.Section>
+                <TestsContainer>
+                  {data?.groups
+                    ?.filter((group) => group.items && group.items.length > 0)
+                    .map((group) => (
+                      <GroupSection key={group.id}>
+                        <GroupTitle>{group.name}</GroupTitle>
+                        <TestList>
+                          {group.items?.map((item: Test) => (
+                            <TestItem key={item.id}>
+                              <TestItemHeader>
+                                <TestItemName>{item.name}</TestItemName>
+                                {item.tags && item.tags.length > 0 ? (
+                                  <TagsContainer>
+                                    {item.tags.map((tag: string) => (
+                                      <Tag key={tag}>{tag}</Tag>
+                                    ))}
+                                  </TagsContainer>
+                                ) : null}
+                              </TestItemHeader>
+                              {item.code != null && item.code !== '' ? (
+                                <CodeBlock code={item.code} />
+                              ) : null}
+                              {item.comments ? (
+                                <TestComments>{item.comments}</TestComments>
+                              ) : null}
+                              <TestMeta>
+                                <MetaItem>ID: {item.id}</MetaItem>
+                              </TestMeta>
+                            </TestItem>
+                          ))}
+                        </TestList>
+                      </GroupSection>
+                    ))}
+                </TestsContainer>
+              </Layout.Section>
+            </Layout.Article>
           </LoadingWrapper>
-        </Layout.Article>
-      </Layout.Main>
+        </Layout.Content>
+      </Layout.TwoColumn>
     </>
   );
 };
@@ -190,20 +206,53 @@ const Tag = styled.span`
   text-transform: uppercase;
 `;
 
-const TestPrompt = styled.p`
+const CodeBlockContainer = styled.div`
   margin: 0.5rem 0;
-  color: var(--text-primary-color);
-  line-height: 1.5;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
 `;
 
-const TestNotes = styled.p`
+const CodeHeader = styled.div`
+  background: var(--palette-kbd);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+`;
+
+const CodeLabel = styled.span`
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary-color);
+  text-transform: uppercase;
+`;
+
+const CodeContent = styled.pre`
+  margin: 0;
+  padding: 0.75rem;
+  background: var(--palette-dark-background);
+  color: var(--palette-dark-text);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  code {
+    font-family: inherit;
+  }
+`;
+
+const TestComments = styled.p`
   margin: 0.5rem 0;
   padding: 0.5rem;
   background: var(--background-color);
-  border-left: 3px solid var(--status-warning);
+  border-left: 3px solid var(--status-info);
   color: var(--text-secondary-color);
-  font-size: 0.9rem;
-  font-style: italic;
+  font-size: 0.85rem;
   border-radius: 4px;
 `;
 

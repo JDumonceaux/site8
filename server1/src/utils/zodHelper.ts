@@ -17,7 +17,7 @@ export const safeParse = <T>(
     return {
       data: null,
       error: parsedData.error,
-      errorFormatted: JSON.stringify(parsedData.error.errors),
+      errorFormatted: JSON.stringify(parsedData.error.issues),
       success: false,
     };
   }

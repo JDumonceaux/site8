@@ -1,16 +1,9 @@
-import { z } from "zod";
-
-/**
- * Metadata schema for collections
- */
-export const MetadataSchema = z.object({
-  description: z.string().nullish(),
-  subtitle: z.string().nullish(),
-  title: z.string().nullish(),
-});
-
-/**
- * Metadata type for collections
- * Contains descriptive information about a collection
- */
-export type Metadata = z.infer<typeof MetadataSchema>;
+export type Metadata = {
+  readonly description?: string;
+  readonly lastUpdated?: string;
+  readonly subtitle?: string;
+  readonly title: string;
+  readonly totalGroups?: number;
+  readonly totalItems?: number;
+  readonly version?: string;
+};
