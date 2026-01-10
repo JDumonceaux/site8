@@ -1,4 +1,4 @@
-{
+﻿{
   "metadata": {
     "title": "Tests",
     "version": "1.0.0",
@@ -13,6 +13,13 @@
       "tags": ["client"],
       "sectionIds": [{ "id": 8, "seq": 1 }],
       "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path)."
+    },
+    {
+      "id": 2,
+      "name": "Monthly Maintenance",
+      "tags": ["client", "server"],
+      "sectionIds": [{ "id": 17, "seq": 1 }],
+      "comments": "Maintenance steps to be performed on a monthly basis to ensure codebase health."
     }
   ],
   "sections": [
@@ -89,37 +96,86 @@
   "items": [
     {
       "id": 1,
-      "code": "Test responsive design works correctly for all media types (screen, print, speech).",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Test responsive design works correctly for all media types (screen, print, speech)."
+        }
+      ],
       "name": "Media Type"
     },
     {
       "id": 2,
-      "code": "Test print styles render correctly - verify page breaks, margins, and print-specific CSS.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Test print styles render correctly - verify page breaks, margins, and print-specific CSS."
+        }
+      ],
       "name": "Media Type"
     },
     {
       "id": 3,
-      "code": "Test screen display renders correctly across desktop, tablet, and mobile viewports.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Test screen display renders correctly across desktop, tablet, and mobile viewports."
+        }
+      ],
       "name": "Media Type"
     },
     {
       "id": 4,
-      "code": "Test layout adapts correctly for portrait orientation (mobile/tablet). Verify no horizontal overflow.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Test layout adapts correctly for portrait orientation (mobile/tablet). Verify no horizontal overflow."
+        }
+      ],
       "name": "Orientation"
     },
     {
       "id": 5,
-      "code": "Test layout utilizes landscape orientation effectively (wide screens). Verify readable line lengths.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Test layout utilizes landscape orientation effectively (wide screens). Verify readable line lengths."
+        }
+      ],
       "name": "Orientation"
     },
     {
       "id": 6,
-      "code": "Test light color scheme has sufficient contrast ratios (WCAG AA) and no visual artifacts.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Test light color scheme has sufficient contrast ratios (WCAG AA) and no visual artifacts."
+        }
+      ],
       "name": "Prefers Color Scheme"
     },
     {
       "id": 7,
-      "code": "Test dark color scheme has sufficient contrast ratios, no pure blacks/whites causing eye strain, and respects user preference.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Test dark color scheme has sufficient contrast ratios, no pure blacks/whites causing eye strain, and respects user preference."
+        }
+      ],
       "name": "Prefers Color Scheme"
     },
     {
@@ -160,7 +216,14 @@
       "type": "section",
       "parentId": [0, 1],
       "tags": ["react"],
-      "code": "Validate Entries"
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Validate Entries"
+        }
+      ]
     },
     {
       "id": 14,
@@ -293,19 +356,40 @@
     {
       "id": 30,
       "tags": ["react"],
-      "code": "Empty alt",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Empty alt"
+        }
+      ],
       "name": "Accessibility"
     },
     {
       "id": 31,
       "tags": ["react"],
-      "code": "Valid alt",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Valid alt"
+        }
+      ],
       "name": "Accessibility"
     },
     {
       "id": 32,
       "tags": ["react"],
-      "code": "Valid title",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Valid title"
+        }
+      ],
       "name": "Accessibility"
     },
     {
@@ -534,7 +618,14 @@
       "type": "maintenance",
       "groupIds": [17],
       "tags": ["react", "nodejs"],
-      "code": "Run 'npm doctor' to validate npm environment. Check: npm version, node version, git executable, permissions. Frequency: Monthly.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "terminal",
+          "content": "npm doctor"
+        }
+      ],
       "name": "npm doctor - Validate npm environment"
     },
     {
@@ -543,7 +634,14 @@
       "type": "maintenance",
       "groupIds": [17],
       "tags": ["react", "nodejs"],
-      "code": "Run 'npm dedupe' to consolidate duplicate packages in dependency tree. Reduces node_modules size. Frequency: After major dependency updates.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "terminal",
+          "content": "npm dedupe"
+        }
+      ],
       "name": "npm dedupe - Consolidate package tree"
     },
     {
@@ -552,7 +650,14 @@
       "type": "maintenance",
       "groupIds": [17],
       "tags": ["react", "nodejs"],
-      "code": "Run 'npm audit' to check for known security vulnerabilities in dependencies. Review and fix critical/high issues. Frequency: Weekly.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "terminal",
+          "content": "npm audit"
+        }
+      ],
       "name": "npm audit - Check for package vulnerabilities"
     },
     {
@@ -561,7 +666,14 @@
       "type": "maintenance",
       "groupIds": [17],
       "tags": ["react", "nodejs"],
-      "code": "Run 'npm outdated' to check for available package updates. Review breaking changes before updating. Frequency: Monthly.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "terminal",
+          "content": "npm outdated"
+        }
+      ],
       "name": "npm outdated - Check for package updates"
     },
     {
@@ -570,7 +682,14 @@
       "type": "maintenance",
       "groupIds": [17],
       "tags": ["react", "nodejs"],
-      "code": "Run 'npm prune' to remove packages not listed in package.json. Clean up after dependency removals. Frequency: After removing dependencies.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "terminal",
+          "content": "npm prune"
+        }
+      ],
       "name": "npm prune - Remove unused packages"
     },
     {
@@ -580,7 +699,14 @@
       "groupIds": [16],
       "goal": "0.1 or lower",
       "tags": ["react"],
-      "code": "Measure Cumulative Layout Shift using Chrome DevTools or PageSpeed Insights. Target: 0.1 or lower.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Measure Cumulative Layout Shift using Chrome DevTools or PageSpeed Insights. Target: 0.1 or lower."
+        }
+      ],
       "name": "Cumulative Layout Shift (CLS) - visual stability of a page as it loads"
     },
     {
@@ -590,7 +716,14 @@
       "groupIds": [16],
       "goal": "200ms or less",
       "tags": ["react"],
-      "code": "Measure Interaction to Next Paint using Chrome DevTools. Target: 200ms or less. Replace FID measurements.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Measure Interaction to Next Paint using Chrome DevTools. Target: 200ms or less. Replace FID measurements."
+        }
+      ],
       "name": "Interaction to Next Paint (INP) - measures user interface responsiveness.  replaces First Input Delay (FID)"
     },
     {
@@ -600,7 +733,14 @@
       "groupIds": [16],
       "goal": "2.5 seconds or less",
       "tags": ["react"],
-      "code": "Measure Largest Contentful Paint using Chrome DevTools or Lighthouse. Target: 2.5 seconds or less.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Measure Largest Contentful Paint using Chrome DevTools or Lighthouse. Target: 2.5 seconds or less."
+        }
+      ],
       "name": "Largest Contentful Paint (LCP) - time between the browser starting to load a page and the largest content element appearing"
     },
     {
@@ -1065,28 +1205,56 @@
       "id": 130,
       "groupIds": [1],
       "tags": ["ai"],
-      "code": "Add a display name to every component if missing.  Add the name before the component export.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Add a display name to every component if missing.  Add the name before the component export."
+        }
+      ],
       "name": "Component Display Name"
     },
     {
       "id": 131,
       "groupIds": [2],
       "tags": ["ai"],
-      "code": "Comprehensive ESLint review: 1) Suggest additional linters/plugins, 2) Check for deprecated or missing rules, 3) Identify conflicting or duplicate rules across config files, 4) Validate rule severity levels are appropriate.",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Comprehensive ESLint review: 1) Suggest additional linters/plugins, 2) Check for deprecated or missing rules, 3) Identify conflicting or duplicate rules across config files, 4) Validate rule severity levels are appropriate."
+        }
+      ],
       "name": "ESLint Comprehensive Review"
     },
     {
       "id": 132,
       "groupIds": [2],
       "tags": ["future"],
-      "code": "Replace ESLint and Prettier with Biome",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Replace ESLint and Prettier with Biome"
+        }
+      ],
       "name": "Biome"
     },
     {
       "id": 133,
       "groupIds": [2],
       "tags": ["ai"],
-      "code": "Are there any deprecated Typescript or Javascript functions being used?",
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "description",
+          "content": "Are there any deprecated Typescript or Javascript functions being used?"
+        }
+      ],
       "name": "Deprecate"
     },
     {
@@ -1801,6 +1969,21 @@
       "score": "90/100"
     },
     {
+      "id": 230,
+      "groupIds": [17],
+      "tags": ["code"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "terminal",
+          "content": "npm uninstall eslint-plugin-react-compiler"
+        }
+      ],
+      "name": "Remove eslint-plugin-react-compiler",
+      "comments": "This functionality has been merged into eslint-plugin-react as of v7.30.0. Remove eslint-plugin-react-compiler from package.json and update eslint-plugin-react to latest version if needed."
+    },
+    {
       "id": 222,
       "groupIds": [17],
       "level": "project",
@@ -1875,6 +2058,60 @@
       "tags": ["chat"],
       "code": "npm install -g npm@11.7.0.",
       "name": "npm update"
+    },
+    {
+      "id": 230,
+      "groupIds": [16],
+      "tags": ["code"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "AI",
+          "content": "Validate overrides are necessary in package.json files. Suggest removing unnecessary overrides to simplify dependency management."
+        }
+      ],
+      "name": "Package.json - Overrides",
+      "comments": "Overrides can complicate dependency resolution. Ensure each override is justified."
+    },
+    {
+      "id": 231,
+      "groupIds": [{ "id": 2, "seq": 2 }],
+      "tags": ["maintenance"],
+      "name": "Node Modules Cleanup",
+      "comments": "Stop the app and manually delete the node_modules directory in both client and server folders. Then run npm install in each folder to reinstall dependencies afresh."
+    },
+
+    {
+      "id": 232,
+      "groupIds": [{ "id": 2, "seq": 3 }],
+      "tags": ["maintenance"],
+      "name": "Dist Folder Cleanup",
+      "comments": "Stop the app and manually delete the dist directory in both client and server folders. Then run the build script in each folder to regenerate the distribution files."
+    },
+
+    {
+      "id": 233,
+      "groupIds": [{ "id": 2, "seq": 4 }],
+      "tags": ["maintenance"],
+      "name": "ESLint Health Check",
+      "comments": "ESLint has a habit of silently stopping. Ensure it is running correctly and address any issues promptly. Go to Ouput | ESLint console."
+    },
+    {
+      "id": 233,
+      "groupIds": [{ "id": 2, "seq": 1 }],
+      "tags": ["maintenance"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Rebuild the project from GitHub (or whatever source repo you are using). 1. Make a backup copy. 2. Delete the current project. 3. Restore and validate."
+        }
+      ],
+
+      "name": "Rebuild Project From Scratch",
+      "comments": "Validate that you have all your code in source control, that you have documentation on how to build the project, and a new developer can pick up the project and run with it."
     }
   ]
 }

@@ -1,8 +1,3 @@
-import reactCompilerConfig from './eslint.config.react-compiler.mjs';
-import reactEffectConfig from './eslint.config.react-effect.mjs';
-import reactQueryConfig from './eslint.config.react-query.mjs';
-import reactConfig from './eslint.config.react.mjs';
-
 import checkFileConfig from './eslint.config.check-file.mjs';
 import importConfig from './eslint.config.import.mjs';
 import javascriptConfig from './eslint.config.javascript.mjs';
@@ -11,6 +6,9 @@ import perfectionistConfig from './eslint.config.perfectionist.mjs';
 import performanceConfig from './eslint.config.performance.mjs';
 import preferArrowConfig from './eslint.config.prefer-arrow-functions.mjs';
 import promiseConfig from './eslint.config.promise.mjs';
+import reactEffectConfig from './eslint.config.react-effect.mjs';
+import reactQueryConfig from './eslint.config.react-query.mjs';
+import reactConfig from './eslint.config.react.mjs';
 import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
@@ -28,7 +26,6 @@ const config = [
     perfectionistConfig,
     promiseConfig,
     reactConfig,
-    reactCompilerConfig,
     reactEffectConfig,
     performanceConfig,
     tsConfig,
@@ -37,10 +34,10 @@ const config = [
     {
         files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
         rules: {
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-unsafe-assignment': 'off',
             '@typescript-eslint/no-unsafe-call': 'off',
             '@typescript-eslint/no-unsafe-member-access': 'off',
-            '@typescript-eslint/no-unsafe-assignment': 'off',
-            '@typescript-eslint/no-explicit-any': 'off',
         },
     },];
 

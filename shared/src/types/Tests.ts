@@ -28,8 +28,15 @@ export type TestGroup = {
 export type Test = {
   readonly id: number;
   readonly name: string;
-  readonly code?: string;
+  readonly code?: TestCode[];
   readonly seq?: number;
   readonly tags?: string[];
   readonly comments?: string;
+};
+
+export type TestCode = {
+  readonly content: string;
+  readonly id: number;
+  readonly seq: number;
+  readonly type: string;
 };

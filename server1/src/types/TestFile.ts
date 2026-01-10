@@ -1,10 +1,6 @@
 import type { Metadata } from '@site8/shared';
 
 /**
- * Types for the tests.json data structure
- */
-
-/**
  * Section reference with optional sequence number
  */
 export type SectionReference = {
@@ -32,31 +28,29 @@ export type TestSection = {
   readonly name: string;
 };
 
-/**
- * Base test item properties
- */
-type BaseTestItem = {
-  readonly code?: string;
+export type Test = {
+  readonly code?: TestCode[];
+  readonly comments?: string;
+  readonly groupIds?: { id: number; seq: number }[];
   readonly id: number;
-  readonly level?: string;
   readonly name: string;
-  readonly parentId?: readonly [number, number];
   readonly seq?: number;
   readonly tags?: readonly string[];
-  readonly type?: 'section' | 'test';
 };
 
-/**
- * Test item (union of all possible item structures)
- */
-export type TestItem = BaseTestItem;
+export type TestCode = {
+  readonly content: string;
+  readonly id: number;
+  readonly seq: number;
+  readonly type: string;
+};
 
 /**
  * Complete test file structure
  */
 export type TestFile = {
   readonly groups: readonly TestGroup[];
-  readonly items: readonly TestItem[];
+  readonly items: readonly Test[];
   readonly metadata: Metadata;
   readonly sections: readonly TestSection[];
 };
