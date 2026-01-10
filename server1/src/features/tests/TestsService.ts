@@ -1,45 +1,50 @@
-import type { Test, Tests } from '@site8/shared';
+import type { Collection, Test, Tests } from '@site8/shared';
+import type { TestFile } from '../../types/TestFile.js';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 
-type ExpandedTest = Omit<Test, 'parentId'> & {
+type ExpandedTest = Test & {
   readonly parentId: number;
   readonly parentSeq: number;
 };
 
-export class TestsService extends BaseDataService<Tests> {
+export class TestsService extends BaseDataService<TestFile> {
   public constructor() {
     super({
       filePath: FilePath.getDataDir('tests.json'),
     });
   }
 
-  public override async getItems(): Promise<Tests> {
+  public async getTestsData(): Promise<Tests> {
     try {
       const rawData = await this.readFile();
 
       const expanded: ExpandedTest[] =
-        rawData.items?.flatMap((item) => {
-          if (item.parentItems) {
-            return item.parentItems.map((parent) => ({
-              ...item,
-              parentId: parent.id,
-              parentSeq: parent.seq,
-            }));
-          }
-          return [{ ...item, parentId: 0, parentSeq: 0 }];
-        }) ?? [];
+        rawData.items?.map((item) => ({
+          ...item,
+          tags: item.tags ? [...item.tags] : undefined,
+          parentId: 0,
+          parentSeq: 0,
+        })) ?? [];
 
       const items = this.sortItems(expanded);
 
       // Cast back to Test[] for return type compatibility
       return { ...rawData, items: items as unknown as Test[] };
     } catch (error) {
-      Logger.error(`TestsService: getItems --> Error: ${String(error)}`);
+      Logger.error(`TestsService: getTestsData --> Error: ${String(error)}`);
       throw error;
     }
+  }
+
+  public async getCollection(): Promise<Collection<Test>> {
+    const data = await this.readFile();
+    return {
+      items: [...data.items] as Test[],
+      metadata: data.metadata,
+    };
   }
 
   private sortItems(items: readonly ExpandedTest[]): readonly ExpandedTest[] {

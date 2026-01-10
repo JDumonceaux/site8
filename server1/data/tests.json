@@ -2076,7 +2076,7 @@
     },
     {
       "id": 231,
-      "groupIds": [{ "id": 2, "seq": 2 }],
+      "groupIds": [{ "id": 2, "seq": 3 }],
       "tags": ["maintenance"],
       "name": "Node Modules Cleanup",
       "comments": "Stop the app and manually delete the node_modules directory in both client and server folders. Then run npm install in each folder to reinstall dependencies afresh."
@@ -2084,7 +2084,7 @@
 
     {
       "id": 232,
-      "groupIds": [{ "id": 2, "seq": 3 }],
+      "groupIds": [{ "id": 2, "seq": 4 }],
       "tags": ["maintenance"],
       "name": "Dist Folder Cleanup",
       "comments": "Stop the app and manually delete the dist directory in both client and server folders. Then run the build script in each folder to regenerate the distribution files."
@@ -2092,7 +2092,7 @@
 
     {
       "id": 233,
-      "groupIds": [{ "id": 2, "seq": 4 }],
+      "groupIds": [{ "id": 2, "seq": 5 }],
       "tags": ["maintenance"],
       "name": "ESLint Health Check",
       "comments": "ESLint has a habit of silently stopping. Ensure it is running correctly and address any issues promptly. Go to Ouput | ESLint console."
@@ -2112,6 +2112,22 @@
 
       "name": "Rebuild Project From Scratch",
       "comments": "Validate that you have all your code in source control, that you have documentation on how to build the project, and a new developer can pick up the project and run with it."
+    },
+    {
+      "id": 233,
+      "groupIds": [{ "id": 2, "seq": 2 }],
+      "tags": ["maintenance"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "node -v   nvm install  nvm use 24.12.0  https://nodejs.org/en/download"
+        }
+      ],
+
+      "name": "Node.js - Update",
+      "comments": "Make sure to update Node.js to the latest stable version (LTS) to benefit from performance improvements and security patches.  Note: Your team should all be on the same version."
     }
   ]
 }

@@ -5,30 +5,30 @@
     /* Language and Environment */
     "lib": ["esnext"],
     "target": "esnext",
-    
+
     /* Modules */
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
-    
+
     /* Emit */
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+    "incremental": false,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "removeComments": false,
     "importHelpers": true,
     "newLine": "lf",
-    "incremental": true,
-    "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    
+
     /* Interop Constraints */
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    
+
     /* Type Checking */
     "strict": true,
     "noUncheckedIndexedAccess": true,
@@ -44,10 +44,10 @@
     "noUncheckedSideEffectImports": true,
     // Too strict for existing codebase
     // "exactOptionalPropertyTypes": true,
-    
+
     /* Completeness */
     "skipLibCheck": true,
-    
+
     /* Path Mapping */
     "baseUrl": ".",
     "rootDir": "./src",
@@ -56,5 +56,11 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "coverage", "**/*.test.ts", "**/*.spec.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
 }

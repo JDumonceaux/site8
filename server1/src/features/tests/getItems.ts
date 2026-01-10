@@ -5,7 +5,9 @@ import { getTestsService } from '../../utils/ServiceFactory.js';
 
 export const getItems = createCollectionHandler<Test>({
   defaultTitle: 'Tests',
-  getService: getTestsService,
+  getService: () => ({
+    getItems: async () => getTestsService().getCollection(),
+  }),
   handlerName: 'Tests:getItems',
   return204OnEmpty: false,
 });
