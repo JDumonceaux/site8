@@ -1,95 +1,149 @@
-﻿{
+{
   "metadata": {
     "title": "Tests",
     "version": "1.0.0",
     "lastUpdated": "2026-01-03",
-    "totalItems": 223,
+    "totalItems": 242,
     "totalGroups": 17
   },
   "groups": [
     {
       "id": 1,
-      "name": "Codemod",
-      "tags": ["client"],
-      "sectionIds": [{ "id": 8, "seq": 1 }],
+      "name": "Unknown",
+      "sectionIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ],
       "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path)."
     },
     {
       "id": 2,
+      "name": "Codemod",
+      "tags": [
+        "client"
+      ],
+      "sectionIds": [
+        {
+          "id": 8,
+          "seq": 1
+        }
+      ],
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path)."
+    },
+    {
+      "id": 3,
       "name": "Monthly Maintenance",
-      "tags": ["client", "server"],
-      "sectionIds": [{ "id": 17, "seq": 1 }],
+      "tags": [
+        "client",
+        "server"
+      ],
+      "sectionIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
       "comments": "Maintenance steps to be performed on a monthly basis to ensure codebase health."
     }
   ],
   "sections": [
     {
       "id": 1,
-      "name": "Consistency"
+      "name": "Unknown"
     },
     {
       "id": 2,
-      "name": "Quality"
+      "name": "SEO"
     },
     {
       "id": 3,
-      "name": "Metrics"
+      "name": "Performance"
     },
     {
       "id": 4,
-      "name": "Update"
+      "name": "Best Practices"
     },
     {
       "id": 5,
-      "name": "Data Quality"
+      "name": "Security"
     },
     {
       "id": 6,
-      "name": "Style"
+      "name": "Code Quality"
     },
     {
       "id": 7,
-      "name": "Structure"
+      "name": "Maintainability"
     },
     {
       "id": 8,
+      "name": "Consistency"
+    },
+    {
+      "id": 9,
+      "name": "Quality"
+    },
+    {
+      "id": 10,
+      "name": "Metrics"
+    },
+    {
+      "id": 11,
+      "name": "Update"
+    },
+    {
+      "id": 12,
+      "name": "Data Quality"
+    },
+    {
+      "id": 13,
+      "name": "Style"
+    },
+    {
+      "id": 14,
+      "name": "Structure"
+    },
+    {
+      "id": 15,
       "name": "React 19 - Migration",
       "description": "Tests and updates related to migrating to React 19."
     },
     {
-      "id": 9,
+      "id": 16,
       "name": "Measurements"
     },
     {
-      "id": 10,
+      "id": 17,
       "name": "Reports"
     },
     {
-      "id": 11,
+      "id": 18,
       "name": "Fix"
     },
     {
-      "id": 12,
+      "id": 19,
       "name": "Standards"
     },
     {
-      "id": 13,
+      "id": 20,
       "name": "Update - Deprecation"
     },
     {
-      "id": 14,
+      "id": 21,
       "name": "Testing"
     },
     {
-      "id": 15,
+      "id": 22,
       "name": "Mobile Friendly"
     },
     {
-      "id": 16,
+      "id": 23,
       "name": "Performance"
     },
     {
-      "id": 17,
+      "id": 24,
       "name": "Maintenance"
     }
   ],
@@ -104,7 +158,13 @@
           "content": "Test responsive design works correctly for all media types (screen, print, speech)."
         }
       ],
-      "name": "Media Type"
+      "name": "Media Type",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 2,
@@ -116,7 +176,13 @@
           "content": "Test print styles render correctly - verify page breaks, margins, and print-specific CSS."
         }
       ],
-      "name": "Media Type"
+      "name": "Media Type",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 3,
@@ -128,7 +194,13 @@
           "content": "Test screen display renders correctly across desktop, tablet, and mobile viewports."
         }
       ],
-      "name": "Media Type"
+      "name": "Media Type",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 4,
@@ -140,7 +212,13 @@
           "content": "Test layout adapts correctly for portrait orientation (mobile/tablet). Verify no horizontal overflow."
         }
       ],
-      "name": "Orientation"
+      "name": "Orientation",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 5,
@@ -152,7 +230,13 @@
           "content": "Test layout utilizes landscape orientation effectively (wide screens). Verify readable line lengths."
         }
       ],
-      "name": "Orientation"
+      "name": "Orientation",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 6,
@@ -164,7 +248,13 @@
           "content": "Test light color scheme has sufficient contrast ratios (WCAG AA) and no visual artifacts."
         }
       ],
-      "name": "Prefers Color Scheme"
+      "name": "Prefers Color Scheme",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 7,
@@ -176,46 +266,73 @@
           "content": "Test dark color scheme has sufficient contrast ratios, no pure blacks/whites causing eye strain, and respects user preference."
         }
       ],
-      "name": "Prefers Color Scheme"
+      "name": "Prefers Color Scheme",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 8,
       "name": "Code",
-      "type": "section",
-      "parentId": [0, 2],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 9,
-      "type": "test",
-      "parentId": [8, 2],
-      "name": "Check for unused styles"
+      "name": "Check for unused styles",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 10,
-      "type": "test",
-      "parentId": [8, 3],
-      "name": "Check for invalid styles (browser inspect)"
+      "name": "Check for invalid styles (browser inspect)",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 11,
-      "type": "test",
-      "parentId": [8, 2],
-      "name": "Check for styles that are overwritten (browser inspect)"
+      "name": "Check for styles that are overwritten (browser inspect)",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 12,
       "name": "Check for Pure Functions",
-      "type": "test",
-      "parentId": [8, 2]
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 13,
       "name": "HTML Header",
-      "level": "page",
-      "type": "section",
-      "parentId": [0, 1],
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -223,139 +340,227 @@
           "type": "description",
           "content": "Validate Entries"
         }
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
       ]
     },
     {
       "id": 14,
       "name": "Check for Open Graph",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 10],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 15,
       "name": "Doc Type",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 1],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 16,
       "name": "Language",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 2],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 17,
       "name": "Language - change language",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 3],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 18,
       "name": "Encoding",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 4],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 19,
       "name": "Author",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 5],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 20,
       "name": "Keywords",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 6],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 21,
       "name": "Title",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 7],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 22,
       "name": "Description",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 8],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 23,
       "name": "Favicon",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 9],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 24,
       "name": "Publish Date",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 11],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 25,
       "name": "Canonical URL",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 12],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 26,
       "name": "Viewport",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 13],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 27,
       "name": "Open Graph Coding",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 14],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 28,
       "name": "Base Element",
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 15],
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 29,
-      "level": "page",
-      "type": "test",
-      "parentId": [13, 16],
-      "tags": ["react"],
-      "name": "Remove type from stylesheet ref (no longer required)"
+      "tags": [
+        "react"
+      ],
+      "name": "Remove type from stylesheet ref (no longer required)",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 30,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -364,11 +569,19 @@
           "content": "Empty alt"
         }
       ],
-      "name": "Accessibility"
+      "name": "Accessibility",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 31,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -377,11 +590,19 @@
           "content": "Valid alt"
         }
       ],
-      "name": "Accessibility"
+      "name": "Accessibility",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 32,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -390,234 +611,432 @@
           "content": "Valid title"
         }
       ],
-      "name": "Accessibility"
+      "name": "Accessibility",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "seq": 100,
       "id": 33,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools:  Run tests."
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools:  Run tests.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "seq": 101,
       "id": 34,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools:  Run tests."
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools:  Run tests.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "seq": 102,
       "id": 35,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools:  Run tests."
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools:  Run tests.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "seq": 103,
       "id": 36,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools:  Run tests."
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools:  Run tests.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "id": 37,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools:  Run tests."
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools:  Run tests.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "id": 38,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools: Validate state - Check for unused state"
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools: Validate state - Check for unused state",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "id": 39,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools: Check network tab for missing files (images), connection issues, etc."
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools: Check network tab for missing files (images), connection issues, etc.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "id": 40,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Test for color blindness."
+      "tags": [
+        "react"
+      ],
+      "name": "Test for color blindness.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "id": 41,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Chrome DevTools: Check for errors"
+      "tags": [
+        "react"
+      ],
+      "name": "Chrome DevTools: Check for errors",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "page",
       "id": 42,
-      "type": "section",
-      "tags": ["react"],
-      "name": "Inspect style: Click through elements to check for unused or invalid styles."
+      "tags": [
+        "react"
+      ],
+      "name": "Inspect style: Click through elements to check for unused or invalid styles.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 43,
-      "type": "section",
-      "tags": ["react"],
-      "name": ".eslintrc.json or eslintrc.cjs file"
+      "tags": [
+        "react"
+      ],
+      "name": ".eslintrc.json or eslintrc.cjs file",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 44,
-      "level": "project",
       "seq": 1000,
-      "parentId": [5, 506],
-      "type": "test",
-      "tags": ["react"],
-      "name": "Set \u0027object-shorthand\u0027 to \u0027always\u0027 or \u0027warn\u0027 in \u0027rules\u0027 section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner."
+      "tags": [
+        "react"
+      ],
+      "name": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 45,
-      "type": "section",
-      "tags": ["nodejs"],
-      "name": ".eslintrc.json or eslintrc.cjs file"
+      "tags": [
+        "nodejs"
+      ],
+      "name": ".eslintrc.json or eslintrc.cjs file",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 46,
-      "type": "section",
       "name": "SEO",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 47,
-      "type": "test",
       "name": "Robot.txt",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 48,
-      "type": "test",
       "name": "Sitemap.xml",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 49,
-      "type": "test",
       "name": "Semantic HTML",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 50,
-      "type": "test",
       "name": "Optimized Page Speed",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 51,
-      "type": "test",
       "name": "Meta Tags",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 52,
-      "type": "test",
       "name": "Accessibility",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 53,
-      "type": "test",
       "name": "Mobile Friendly",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 54,
-      "type": "test",
       "name": "Quality Content",
-      "tags": ["react"]
+      "tags": [
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 55,
-      "type": "test",
       "name": "npm audit",
-      "tags": ["react", "nodejs"]
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 56,
-      "type": "test",
       "name": "npm outdated",
-      "tags": ["react", "nodejs"]
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 57,
-      "type": "test",
       "name": "Synk",
-      "tags": ["react", "nodejs"]
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 58,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["react", "nodejs"],
-      "name": "TSConfig.json - Check for new and deprecated options \u003ca href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\"\u003eTypescript\u003c/a\u003e"
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "name": "TSConfig.json - Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>"
     },
     {
-      "level": "project",
       "id": 59,
-      "type": "test",
-      "tags": ["react", "nodejs"],
-      "name": "Online Test - \u003ca href=\"https://securityheaders.com/\"\u003eSecurity Headers\u003c/a\u003e"
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "name": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "component",
       "id": 60,
-      "type": "test",
       "name": "Cyclomatic Complexity",
       "goal": "1-4",
-      "tags": ["react", "nodejs"]
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "component",
       "id": 61,
-      "type": "test",
       "name": "Code Smells",
       "goal": "0",
-      "tags": ["react", "nodejs"]
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "component",
       "id": 62,
-      "type": "test",
       "name": "SRP - Single Responsibility Principle",
       "goal": "1 per function",
-      "tags": ["react", "nodejs"]
+      "tags": [
+        "react",
+        "nodejs"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 63,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -629,11 +1048,17 @@
       "name": "npm doctor - Validate npm environment"
     },
     {
-      "level": "project",
       "id": 64,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -645,11 +1070,17 @@
       "name": "npm dedupe - Consolidate package tree"
     },
     {
-      "level": "project",
       "id": 65,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -661,11 +1092,17 @@
       "name": "npm audit - Check for package vulnerabilities"
     },
     {
-      "level": "project",
       "id": 66,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -677,11 +1114,17 @@
       "name": "npm outdated - Check for package updates"
     },
     {
-      "level": "project",
       "id": 67,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -693,12 +1136,17 @@
       "name": "npm prune - Remove unused packages"
     },
     {
-      "level": "page",
       "id": 68,
-      "type": "performance",
-      "groupIds": [16],
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
       "goal": "0.1 or lower",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -710,12 +1158,17 @@
       "name": "Cumulative Layout Shift (CLS) - visual stability of a page as it loads"
     },
     {
-      "level": "page",
       "id": 69,
-      "type": "performance",
-      "groupIds": [16],
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
       "goal": "200ms or less",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -727,12 +1180,17 @@
       "name": "Interaction to Next Paint (INP) - measures user interface responsiveness.  replaces First Input Delay (FID)"
     },
     {
-      "level": "page",
       "id": 70,
-      "type": "performance",
-      "groupIds": [16],
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
       "goal": "2.5 seconds or less",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -744,467 +1202,872 @@
       "name": "Largest Contentful Paint (LCP) - time between the browser starting to load a page and the largest content element appearing"
     },
     {
-      "level": "field",
       "id": 71,
-      "type": "test",
       "name": "Input - Hover",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 72,
-      "type": "test",
       "name": "Input - Focus",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 73,
-      "type": "test",
       "name": "Input - Selection",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 74,
-      "type": "test",
       "name": "Input - Spelling-error",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 75,
-      "type": "test",
       "name": "Input - Grammar",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 76,
-      "type": "test",
       "name": "Input - Placeholder",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 77,
-      "type": "test",
       "name": "Input - Error",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 78,
-      "type": "test",
       "name": "Input - Click on Label",
       "goal": "Clicking the label sets focus to or activates the form control",
-      "tags": ["web", "react", "acccessibiilty"]
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 79,
-      "type": "test",
-      "tags": ["web", "react", "acccessibiilty"],
-      "name": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist"
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
+      "name": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 80,
-      "type": "test",
       "goal": "Validates correctly",
-      "tags": ["web", "react"],
-      "name": "1. Enter value 2. Save 3. Delete value 4. Save"
+      "tags": [
+        "web",
+        "react"
+      ],
+      "name": "1. Enter value 2. Save 3. Delete value 4. Save",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "field",
       "id": 81,
-      "type": "test",
-      "tags": ["web", "react"]
+      "tags": [
+        "web",
+        "react"
+      ],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
-      "level": "project",
       "id": 82,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Typescript Improvements - Using typescript [latest version], are there any improvements that can be implemented?"
     },
     {
-      "level": "project",
       "id": 83,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Improvements - Using javascript ES2025, are there any improvements that can be be implemented?"
     },
     {
-      "level": "project",
       "id": 84,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Improvements2 - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable."
     },
     {
-      "level": "project",
       "id": 85,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript ES2023 Array Method Improvements - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable."
     },
     {
-      "level": "project",
       "id": 86,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Iterable Type Updates - Update to use Iterable where applicable."
     },
     {
-      "level": "project",
       "id": 87,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Iterable Type Updates - Update to use RegExp.escape where applicable."
     },
     {
-      "level": "project",
       "id": 88,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript RegExp.escape Implementation - Update to use RegExp.escape where applicable."
     },
     {
-      "level": "project",
       "id": 89,
-      "type": "maintenance",
       "notes": "Caused errors - RegExp.escape()  ECMAScript 2025",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript RegExp.escape Implementation - Update to use Promise.try where applicable."
     },
     {
-      "level": "project",
       "id": 90,
-      "type": "maintenance",
       "notes": "12/25/2025 - Limited browser support.  Check compatibility before implementing (caniuse.com)",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Iteratable - Implement Temporal API."
     },
     {
-      "level": "project",
       "id": 91,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "React Improvements - Are there react 19.2.3 enhancements that can be made?"
     },
     {
-      "level": "project",
       "id": 92,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "HTML5 - Is the latest and appropriate HTML5 elements used?"
     },
     {
-      "level": "project",
       "id": 93,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "CSS - Are there improvements to CSS that can be made?"
     },
     {
-      "level": "project",
       "id": 94,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Styles - Are there any styles defined in components that should be moved to main.css?"
     },
     {
-      "level": "project",
       "id": 95,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Immutable - Look for opportunties to improve Immutability in codebase."
     },
     {
-      "level": "project",
       "id": 96,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "SOLID - Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase."
     },
     {
-      "level": "project",
       "id": 97,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Class Components - Convert any class components to functional components and hooks."
     },
     {
-      "level": "project",
       "id": 98,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Lazy Loading - Implement lazy loading components."
     },
     {
-      "level": "project",
       "id": 99,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Re-renders - Look for any unnecessary re-renders."
     },
     {
-      "level": "project",
       "id": 100,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["scripts", "react"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Type Check - npm run type-check"
     },
     {
-      "level": "project",
       "id": 101,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["scripts", "react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Lint - npm run lint"
     },
     {
-      "level": "project",
       "id": 102,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["scripts", "react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Lint Fix - npm run lint:fix"
     },
     {
-      "level": "project",
       "id": 103,
-      "type": "maintenance",
       "notes": "Find unused files, dependencies, and exports",
-      "groupIds": [17],
-      "tags": ["scripts", "react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Knip - npm run knip"
     },
     {
-      "level": "project",
       "id": 104,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["scripts", "react"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Format - npm run format"
     },
     {
-      "level": "project",
       "id": 105,
-      "type": "maintenance",
       "notes": "Production build with optimization",
-      "groupIds": [17],
-      "tags": ["scripts", "react", "nodejs"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Build - npm run build"
     },
     {
-      "level": "project",
       "id": 106,
-      "type": "maintenance",
       "notes": "Preview production build locally",
-      "groupIds": [17],
-      "tags": ["scripts", "react"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Preview - npm run preview"
     },
     {
-      "level": "project",
       "id": 107,
-      "type": "maintenance",
       "notes": "Remove dist and coverage folders",
-      "groupIds": [17],
-      "tags": ["scripts", "react"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Clean - npm run clean"
     },
     {
-      "level": "project",
       "id": 108,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Error Handling - Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery"
     },
     {
-      "level": "project",
       "id": 109,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Accessibility - Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support"
     },
     {
-      "level": "project",
       "id": 110,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "React Query Optimization - Review and optimize React Query usage - check staleTime, cacheTime, retry logic, and identify opportunities for prefetching"
     },
     {
-      "level": "project",
       "id": 111,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Custom Hooks - Identify opportunities to create custom hooks to reduce duplication and improve code reusability"
     },
     {
-      "level": "project",
       "id": 112,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "API Security - Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure"
     },
     {
-      "level": "project",
       "id": 113,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Bundle Size - Analyze bundle size and suggest code splitting opportunities beyond lazy loading"
     },
     {
-      "level": "project",
       "id": 114,
-      "type": "maintenance",
       "notes": "Some of these feel too strict: e.g., noImplicitAny, strictNullChecks, strictFunctionTypes",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "TypeScript Strict Mode - Review TypeScript strict mode usage and suggest enabling stricter compiler options"
     },
     {
-      "level": "project",
       "id": 115,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Prop Drilling - Identify prop drilling issues and suggest Context API or state management improvements"
     },
     {
-      "level": "project",
       "id": 116,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Styled Components Performance - Review styled-components usage and identify performance issues or patterns to improve"
     },
     {
-      "level": "project",
       "id": 117,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Testing - Suggest implementing React Testing Library tests for critical user flows"
     },
     {
-      "level": "project",
       "id": 118,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Form Validation - Review form validation patterns and suggest consistency improvements using Zod or similar"
     },
     {
-      "level": "project",
       "id": 119,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "SSR/SSG - Identify opportunities for Server-Side Rendering or Static Site Generation"
     },
     {
-      "level": "project",
       "id": 120,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Image Optimization - Review and optimize image loading strategies (lazy loading, responsive images, WebP)"
     },
     {
-      "level": "project",
       "id": 121,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "API Caching - Analyze API response caching strategies and suggest improvements"
     },
     {
-      "level": "project",
       "id": 122,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Memory Leaks - Check for memory leaks - useEffect cleanup, event listeners, subscriptions"
     },
     {
-      "level": "project",
       "id": 123,
-      "type": "maintenance",
-      "groupIds": [17],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "name": "Build - execute npm run build and fix all errors"
     },
     {
       "id": 124,
-      "tags": ["ai"],
-      "code": "Add 3 strict flags to client tsconfig: noUncheckedIndexedAccess, noImplicitReturns, exactOptionalPropertyTypes",
-      "name": "TypeScript Enhancement"
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Add 3 strict flags to client tsconfig: noUncheckedIndexedAccess, noImplicitReturns, exactOptionalPropertyTypes"
+        }
+      ],
+      "name": "TypeScript Enhancement",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 125,
-      "tags": ["ai"],
-      "code": "Verify sanitizeFilePath is applied to all file upload/manipulation endpoints",
-      "name": "Security Audit"
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Verify sanitizeFilePath is applied to all file upload/manipulation endpoints"
+        }
+      ],
+      "name": "Security Audit",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 126,
-      "tags": ["ai"],
-      "code": "Implement CSRF token generation and validation for mutation endpoints - future implementation",
-      "name": "CSRF Protection"
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Implement CSRF token generation and validation for mutation endpoints - future implementation"
+        }
+      ],
+      "name": "CSRF Protection",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 127,
-      "tags": ["ai"],
-      "code": "Implement authentication and authorization middleware (JWT, sessions, or OAuth) - future implementation",
-      "name": "Authentication Middleware"
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Implement authentication and authorization middleware (JWT, sessions, or OAuth) - future implementation"
+        }
+      ],
+      "name": "Authentication Middleware",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 128,
-      "tags": ["ai"],
-      "code": "Configure Web Application Firewall rules for production deployment - future implementation",
-      "name": "WAF Rules"
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Configure Web Application Firewall rules for production deployment - future implementation"
+        }
+      ],
+      "name": "WAF Rules",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 129,
-      "notes": "12/1/2025 - \u0027es2025\u0027 is not supported by Vite.  Use \u0027esnext\u0027 instead. This is need for features like Promise.try",
-      "tags": ["ai"],
-      "code": "check tsconfig.json and update target and lib to \u0027esnext\u0027 (lower case)",
-      "name": "Javascript Version - esnext"
+      "notes": "12/1/2025 - 'es2025' is not supported by Vite.  Use 'esnext' instead. This is need for features like Promise.try",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "check tsconfig.json and update target and lib to 'esnext' (lower case)"
+        }
+      ],
+      "name": "Javascript Version - esnext",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     },
     {
       "id": 130,
-      "groupIds": [1],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1217,8 +2080,15 @@
     },
     {
       "id": 131,
-      "groupIds": [2],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1231,8 +2101,15 @@
     },
     {
       "id": 132,
-      "groupIds": [2],
-      "tags": ["future"],
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "future"
+      ],
       "code": [
         {
           "id": 1,
@@ -1245,8 +2122,15 @@
     },
     {
       "id": 133,
-      "groupIds": [2],
-      "tags": ["ai"],
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1258,720 +2142,2035 @@
       "name": "Deprecate"
     },
     {
-      "id": 135,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Review eslint.config files.  Are there any conflicting or duplicate rules?",
+      "id": 134,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review eslint.config files.  Are there any conflicting or duplicate rules?"
+        }
+      ],
       "name": "Update eslint configs"
     },
     {
-      "id": 136,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements.",
+      "id": 135,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
+        }
+      ],
       "name": "Anti-Patterns"
     },
     {
-      "id": 137,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?",
+      "id": 136,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?"
+        }
+      ],
       "name": "Package.json - libraries"
     },
     {
-      "id": 138,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the vite.config.mts file and suggest improvements.",
+      "id": 137,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the vite.config.mts file and suggest improvements."
+        }
+      ],
       "name": "vite.config.mts"
     },
     {
-      "id": 139,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the vitest.config.ts file and suggest improvements.",
+      "id": 138,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the vitest.config.ts file and suggest improvements."
+        }
+      ],
       "name": "vitetest.config.ts"
     },
     {
-      "id": 140,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the tsconfig.node.json file and suggest improvements.",
+      "id": 139,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the tsconfig.node.json file and suggest improvements."
+        }
+      ],
       "name": "tsconfig.node.json"
     },
     {
-      "id": 141,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Are there any files at the src/ level not being used?",
+      "id": 140,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Are there any files at the src/ level not being used?"
+        }
+      ],
       "name": "Unused Files"
     },
     {
-      "id": 142,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the tsconfig.json file and suggest improvements.",
+      "id": 141,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the tsconfig.json file and suggest improvements."
+        }
+      ],
       "name": "tsconfig.json"
     },
     {
-      "id": 143,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the knip.json file and suggest improvements.",
+      "id": 142,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the knip.json file and suggest improvements."
+        }
+      ],
       "name": "knip.json"
     },
     {
-      "id": 144,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the index.html file and suggest improvements.",
+      "id": 143,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the index.html file and suggest improvements."
+        }
+      ],
       "name": "index.html"
     },
     {
-      "id": 145,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the .gitignore file and suggest improvements.",
+      "id": 144,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the .gitignore file and suggest improvements."
+        }
+      ],
       "name": ".gitignore"
     },
     {
-      "id": 146,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the .prettierignore file and suggest improvements.",
+      "id": 145,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the .prettierignore file and suggest improvements."
+        }
+      ],
       "name": ".prettierignore"
     },
     {
-      "id": 147,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Read the .prettierrc.mjs file and suggest improvements.",
+      "id": 146,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Read the .prettierrc.mjs file and suggest improvements."
+        }
+      ],
       "name": ".prettierrc.mjs"
     },
     {
-      "id": 148,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Check if babel.cjs is needed (Vitest uses Vite, not Babel). Delete if unused.",
+      "id": 147,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Check if babel.cjs is needed (Vitest uses Vite, not Babel). Delete if unused."
+        }
+      ],
       "name": "babel.cjs"
     },
     {
-      "id": 149,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Check if eslint_rules/ directory is used. Delete if migrated to flat config.",
+      "id": 148,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Check if eslint_rules/ directory is used. Delete if migrated to flat config."
+        }
+      ],
       "name": "Legacy ESLint Rules"
     },
     {
-      "id": 150,
-      "groupIds": [3],
-      "tags": ["ai"],
-      "code": "Calculate the maintainability index of the codebase and suggest improvements if below 85.",
+      "id": 149,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Calculate the maintainability index of the codebase and suggest improvements if below 85."
+        }
+      ],
       "name": "Maintainability Index"
     },
     {
-      "id": 151,
-      "groupIds": [3],
+      "id": 150,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
       "notes": "12/27/2025: Total Files 471, Average Complexity: 4.53.  Results: Excellent.",
-      "tags": ["ai"],
-      "code": "Calculate the cyclomatic complexity of the codebase.",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Calculate the cyclomatic complexity of the codebase."
+        }
+      ],
       "name": "Cylclomatic Complexity"
     },
     {
-      "id": 152,
-      "groupIds": [3],
-      "tags": ["ai"],
-      "code": "Look for code smells in client and server codebases.",
+      "id": 151,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Look for code smells in client and server codebases."
+        }
+      ],
       "name": "Code Smells"
     },
     {
-      "id": 153,
-      "groupIds": [3],
-      "tags": ["ai"],
-      "code": "Look for code duplication in client and server codebases and recommend refactoring.",
+      "id": 152,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Look for code duplication in client and server codebases and recommend refactoring."
+        }
+      ],
       "name": "Code Duplication"
     },
     {
-      "id": 154,
-      "groupIds": [3],
-      "tags": ["ai"],
-      "code": "Look for security vulnerabilities in client and server codebases and recommend improvements.",
+      "id": 153,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Look for security vulnerabilities in client and server codebases and recommend improvements."
+        }
+      ],
       "name": "Security"
     },
     {
-      "id": 155,
-      "groupIds": [3],
-      "tags": ["ai"],
-      "code": "Look for structural issues in client and server codebases and recommend improvements.",
+      "id": 154,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Look for structural issues in client and server codebases and recommend improvements."
+        }
+      ],
       "name": "Structural"
     },
     {
-      "id": 156,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "useEffectEvent is stable.  Look for opportunities in the code to use this function.",
+      "id": 155,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "useEffectEvent is stable.  Look for opportunities in the code to use this function."
+        }
+      ],
       "name": "useEffectEvent"
     },
     {
-      "id": 157,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Create Skeleton components for loading states to improve user experience during data fetching.",
+      "id": 156,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Create Skeleton components for loading states to improve user experience during data fetching."
+        }
+      ],
       "name": "Skeleton"
     },
     {
-      "id": 158,
-      "groupIds": [5],
-      "tags": ["ai"],
-      "code": "Ensure that all ids in the data are sequential and unique to maintain data integrity.",
+      "id": 157,
+      "groupIds": [
+        {
+          "id": 5,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Ensure that all ids in the data are sequential and unique to maintain data integrity."
+        }
+      ],
       "name": "Sequential ids"
     },
     {
-      "id": 159,
-      "groupIds": [6],
-      "tags": ["ai"],
-      "code": "Add light-dark() function to main.css for consistent theming.",
+      "id": 158,
+      "groupIds": [
+        {
+          "id": 6,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Add light-dark() function to main.css for consistent theming."
+        }
+      ],
       "name": "Light-Dark Mode Consistency"
     },
     {
-      "id": 160,
-      "groupIds": [6],
-      "tags": ["ai"],
-      "code": "Replace all named colors in components with CSS variables defined in main.css for easier theming and maintenance.",
+      "id": 159,
+      "groupIds": [
+        {
+          "id": 6,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Replace all named colors in components with CSS variables defined in main.css for easier theming and maintenance."
+        }
+      ],
       "name": "Central Color Variables"
     },
     {
-      "id": 161,
-      "groupIds": [6],
-      "tags": ["ai"],
-      "code": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance.",
+      "id": 160,
+      "groupIds": [
+        {
+          "id": 6,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance."
+        }
+      ],
       "name": "Useless CSS Removal"
     },
     {
-      "id": 162,
-      "groupIds": [7],
-      "tags": ["ai"],
-      "code": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling.",
+      "id": 161,
+      "groupIds": [
+        {
+          "id": 7,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling."
+        }
+      ],
       "name": "API End points"
     },
     {
-      "id": 163,
-      "groupIds": [7],
-      "tags": ["ai"],
-      "code": "Review all the Server API end points to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.  Fix any related routers and services.",
+      "id": 162,
+      "groupIds": [
+        {
+          "id": 7,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the Server API end points to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.  Fix any related routers and services."
+        }
+      ],
       "name": "API End points - Parameters"
     },
     {
-      "id": 164,
-      "groupIds": [7],
-      "tags": ["ai"],
-      "code": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.",
+      "id": 163,
+      "groupIds": [
+        {
+          "id": 7,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body."
+        }
+      ],
       "name": "API End points - Parameters Client"
     },
     {
-      "id": 165,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19.",
+      "id": 164,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19."
+        }
+      ],
       "name": "React 19 - useActionState"
     },
     {
-      "id": 166,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19.",
+      "id": 165,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19."
+        }
+      ],
       "name": "React 19 - useTransition"
     },
     {
-      "id": 167,
-      "groupIds": [4],
+      "id": 166,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
       "notes": "Removed in 19.2.3",
-      "tags": ["ai"],
-      "code": "Remove useFormState",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Remove useFormState"
+        }
+      ],
       "name": "React 19 - useFormState"
     },
     {
-      "id": 168,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19.",
+      "id": 167,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19."
+        }
+      ],
       "name": "React 19 - useOptimisitic"
     },
     {
-      "id": 169,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the new use hook introduced in React 19.",
+      "id": 168,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the new use hook introduced in React 19."
+        }
+      ],
       "name": "React 19 - use"
     },
     {
-      "id": 170,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to update Context.Provider to Context introduced in React 19.",
+      "id": 169,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to update Context.Provider to Context introduced in React 19."
+        }
+      ],
       "name": "React 19 - Context.Provider"
     },
     {
-      "id": 171,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to update cleanup functions for ref introduced in React 19.",
+      "id": 170,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to update cleanup functions for ref introduced in React 19."
+        }
+      ],
       "name": "React 19 - Cleanup functions for ref"
     },
     {
-      "id": 172,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19.",
+      "id": 171,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19."
+        }
+      ],
       "name": "React 19 - useDeferredValue"
     },
     {
-      "id": 173,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19.",
+      "id": 172,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19."
+        }
+      ],
       "name": "React 19 - Stylesheet Precedence"
     },
     {
-      "id": 174,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19.",
+      "id": 173,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19."
+        }
+      ],
       "name": "React 19 - Resource Preloading"
     },
     {
-      "id": 175,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to identify opportunities to use the error handling changes introduced in React 19.",
+      "id": 174,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to identify opportunities to use the error handling changes introduced in React 19."
+        }
+      ],
       "name": "React 19 - Errors onCaughtError, onUncaughtError, onRecoverableError"
     },
     {
-      "id": 176,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly.",
+      "id": 175,
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly."
+        }
+      ],
       "name": "React 19 - New JSX Transform"
     },
     {
-      "id": 177,
-      "groupIds": [{ "id": 1, "seq": 5 }],
-      "tags": ["code"],
-      "code": "run replace-reactdom-render",
+      "id": 176,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 5
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "run replace-reactdom-render"
+        }
+      ],
       "name": "React 19 - CodeMods"
     },
     {
-      "id": 234,
-      "groupIds": [{ "id": 1, "seq": 5 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/19/replace-use-form-state",
+      "id": 177,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 5
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/replace-use-form-state"
+        }
+      ],
       "name": "React 19 - CodeMods - replace-use-form-state",
       "comments": "This codemod will replace the usages of useFormState() to use useActionState(), introduced in React v19."
     },
-
     {
-      "id": 235,
-      "groupIds": [{ "id": 1, "seq": 5 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/19/use-context-hook",
+      "id": 178,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 5
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/use-context-hook"
+        }
+      ],
       "name": "React 19 - CodeMods - use-context-hook",
       "comments": "This codemod will convert the usage of useContext to the new hook format, introduced in React v19."
     },
-
     {
-      "id": 236,
-      "groupIds": [{ "id": 1, "seq": 1 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/19/migration-recipe",
+      "id": 179,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/migration-recipe"
+        }
+      ],
       "name": "React 19 - CodeMods - migration-recipe",
       "comments": "This codemod run the following: replace-reactdom-render replace-string-ref replace-act-import replace-use-form-state prop-types-typescript"
     },
     {
-      "id": 237,
-      "groupIds": [{ "id": 1, "seq": 2 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/19/replace-reactdom-render",
+      "id": 180,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 2
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/replace-reactdom-render"
+        }
+      ],
       "name": "React 19 - CodeMods - replace-reactdom-render",
       "comments": "Replaces usages of ReactDom.render() with createRoot(node).render()."
     },
-
     {
-      "id": 238,
-      "groupIds": [{ "id": 1, "seq": 3 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/19/replace-string-ref",
+      "id": 181,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 3
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/replace-string-ref"
+        }
+      ],
       "name": "React 19 - CodeMods - replace-string-ref",
       "comments": "Replaces deprecated string refs with callback refs."
     },
     {
-      "id": 239,
-      "groupIds": [{ "id": 1, "seq": 4 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/19/replace-act-import",
+      "id": 182,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 4
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/replace-act-import"
+        }
+      ],
       "name": "React 19 - CodeMods - replace-act-import",
       "comments": "Updates act import path from react-dom/test-utils to react."
     },
-
     {
-      "id": 240,
-      "groupIds": [{ "id": 1, "seq": 5 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/19/replace-use-form-state",
+      "id": 183,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 5
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/replace-use-form-state"
+        }
+      ],
       "name": "React 19 - CodeMods - replace-use-form-state",
       "comments": "Replaces usages of useFormState() to use useActionState()."
     },
     {
-      "id": 241,
-      "groupIds": [{ "id": 1, "seq": 6 }],
-      "tags": ["code"],
-      "code": "npx codemod@latest react/prop-types-typescript",
+      "id": 184,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 6
+        }
+      ],
+      "tags": [
+        "code"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/prop-types-typescript"
+        }
+      ],
       "name": "React 19 - CodeMods - prop-types-typescript",
       "comments": "Codemod to convert React PropTypes to TypeScript types. WARNING: If you're not using TypeScript already, don't run this."
     },
-
-    {
-      "id": 178,
-      "groupIds": [8],
-      "tags": ["ai"],
-      "code": "run replace-string-ref",
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 179,
-      "groupIds": [8],
-      "tags": ["ai"],
-      "code": "run replace-act-import",
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 180,
-      "groupIds": [8],
-      "tags": ["ai"],
-      "code": "run replace-use-form-state",
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 181,
-      "groupIds": [8],
-      "tags": ["ai"],
-      "code": "run prop-types-typescript",
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 182,
-      "groupIds": [8],
-      "tags": ["ai"],
-      "code": "run types-react-codemod",
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 183,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "Update all Zod deprecated methods and syntax to the latest version.",
-      "name": "Zod"
-    },
-    {
-      "id": 184,
-      "groupIds": [4],
-      "tags": ["ai"],
-      "code": "ZodeIssue is deprecated.  Update to use z.core.$ZodIssue",
-      "name": "ZodIssue"
-    },
     {
       "id": 185,
-      "groupIds": [9],
-      "notes": "01/01/2026: Score: 94/100 - Excellent consistency across coding styles, naming conventions, and file structures. Coding Style Consistency - Naming conventions, code formatting, patterns; File Structure Consistency - Directory organization, file naming; API Pattern Consistency - Handler patterns, error responses, validation; TypeScript Usage - Type annotations, generic usage; Import Patterns - Import organization, factory usage; Error Handling Consistency - ResponseHelper usage, error formats; Documentation Consistency - JSDoc comments, inline comments; Testing Patterns - Test structure (if tests exist)",
-      "tags": ["ai"],
-      "code": "Calculate the Overall Consistency Score for the codebase.",
-      "name": "Overall Consistency Score"
+      "groupIds": [
+        {
+          "id": 8,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "run replace-string-ref"
+        }
+      ],
+      "name": "React 19 - CodeMods"
     },
     {
       "id": 186,
-      "groupIds": [10],
-      "tags": ["ai"],
-      "code": "Run API Router Consistency Analysis Report for the codebase.",
-      "name": "API Router Consistency Analysis Report"
+      "groupIds": [
+        {
+          "id": 8,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "run replace-act-import"
+        }
+      ],
+      "name": "React 19 - CodeMods"
     },
     {
       "id": 187,
-      "groupIds": [11],
-      "tags": ["ai"],
-      "code": "Update Legacy manual handlers and Generic handler factories to simple router factory where appropriate.",
-      "name": "API Router Consistency "
+      "groupIds": [
+        {
+          "id": 8,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "run replace-use-form-state"
+        }
+      ],
+      "name": "React 19 - CodeMods"
     },
     {
       "id": 188,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Standardize on **kebab-case** for all multi-word URL paths.",
-      "name": "API Router Consistency - Kebab-case"
+      "groupIds": [
+        {
+          "id": 8,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "run prop-types-typescript"
+        }
+      ],
+      "name": "React 19 - CodeMods"
     },
     {
       "id": 189,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Validate all mutation operations use request body for data.",
-      "name": "API Router Consistency - Request Body"
+      "groupIds": [
+        {
+          "id": 8,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "run types-react-codemod"
+        }
+      ],
+      "name": "React 19 - CodeMods"
     },
     {
       "id": 190,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Update Pattern 1: Legacy Manual Validation and Pattern 2: Zod Schema Validation (Items) to Pattern 3: Generic Handlers (Modern)",
-      "name": "API Router Consistency - Request Body Structure"
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Update all Zod deprecated methods and syntax to the latest version."
+        }
+      ],
+      "name": "Zod"
     },
     {
       "id": 191,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Update Pattern 1: Collection Responses and Pattern 2: Single Item Responses to Recommended: `res.json(data)` for success with data, `res.sendStatus(204)` for success without data, `{ error: \"message\" }` for errors",
-      "name": "API Router Consistency - Response Structure Analysis"
+      "groupIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "ZodeIssue is deprecated.  Update to use z.core.$ZodIssue"
+        }
+      ],
+      "name": "ZodIssue"
     },
     {
       "id": 192,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Status Codes Analysis: Update to modern handlers",
-      "name": "API Router Consistency - Status Codes Analysis"
+      "groupIds": [
+        {
+          "id": 9,
+          "seq": 1
+        }
+      ],
+      "notes": "01/01/2026: Score: 94/100 - Excellent consistency across coding styles, naming conventions, and file structures. Coding Style Consistency - Naming conventions, code formatting, patterns; File Structure Consistency - Directory organization, file naming; API Pattern Consistency - Handler patterns, error responses, validation; TypeScript Usage - Type annotations, generic usage; Import Patterns - Import organization, factory usage; Error Handling Consistency - ResponseHelper usage, error formats; Documentation Consistency - JSDoc comments, inline comments; Testing Patterns - Test structure (if tests exist)",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Calculate the Overall Consistency Score for the codebase."
+        }
+      ],
+      "name": "Overall Consistency Score"
     },
     {
       "id": 193,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Update to Modern Error Responses: `res.status(400).json({ error: \u0027message\u0027 })`",
-      "name": "API Router Consistency - Modern Error Responses"
+      "groupIds": [
+        {
+          "id": 10,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Run API Router Consistency Analysis Report for the codebase."
+        }
+      ],
+      "name": "API Router Consistency Analysis Report"
     },
     {
       "id": 194,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Error Response Formats: Standardize on `{ error: \u0027message\u0027 }` format",
-      "name": "API Router Consistency - Error Response Formats"
+      "groupIds": [
+        {
+          "id": 11,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Update Legacy manual handlers and Generic handler factories to simple router factory where appropriate."
+        }
+      ],
+      "name": "API Router Consistency "
     },
     {
       "id": 195,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Update all Try-Catch Patterns to Pattern 4: Generic Handler (Modern)",
-      "name": "API Router Consistency - Try-Catch Patterns"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Standardize on **kebab-case** for all multi-word URL paths."
+        }
+      ],
+      "name": "API Router Consistency - Kebab-case"
     },
     {
       "id": 196,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Error Logging to use `ResponseHelper.internalError()`",
-      "name": "API Router Consistency - Error Logging"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Validate all mutation operations use request body for data."
+        }
+      ],
+      "name": "API Router Consistency - Request Body"
     },
     {
       "id": 197,
-      "groupIds": [12],
-      "tags": ["ai"],
-      "code": "Pattern Summary: Update all legacy patterns to modern generic handlers",
-      "name": "API Router Consistency - Pattern Summary"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Update Pattern 1: Legacy Manual Validation and Pattern 2: Zod Schema Validation (Items) to Pattern 3: Generic Handlers (Modern)"
+        }
+      ],
+      "name": "API Router Consistency - Request Body Structure"
     },
     {
       "id": 198,
-      "groupIds": [10],
-      "notes": "01/02/2026: Server: 98/100  Client: 88/100",
-      "tags": ["ai"],
-      "code": "Run Code Smells Report for the codebase.",
-      "name": "Code Smells Report"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Update Pattern 1: Collection Responses and Pattern 2: Single Item Responses to Recommended: `res.json(data)` for success with data, `res.sendStatus(204)` for success without data, `{ error: \"message\" }` for errors"
+        }
+      ],
+      "name": "API Router Consistency - Response Structure Analysis"
     },
     {
       "id": 199,
-      "groupIds": [12],
-      "notes": "01/02/2026: Validated - 95/100 score, excellent architecture with custom hooks pattern",
-      "tags": ["ai"],
-      "code": "Validate there is no excessive prop drilling in the codebase.",
-      "name": "Prop Drilling"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Status Codes Analysis: Update to modern handlers"
+        }
+      ],
+      "name": "API Router Consistency - Status Codes Analysis"
     },
     {
       "id": 200,
-      "groupIds": [13],
-      "notes": "01/02/2026: Validated - Zero deprecated event handlers found, all using modern onKeyDown. Modern React 19 patterns confirmed.",
-      "tags": ["ai"],
-      "code": "Validate there are no deprecated event handlers (onKeyPress, componentWillMount, componentWillReceiveProps, etc.) in the codebase. Confirm modern React 19+ patterns and hooks are used throughout.",
-      "name": "React - Deprecated APIs and Event Handlers"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Update to Modern Error Responses: `res.status(400).json({ error: 'message' })`"
+        }
+      ],
+      "name": "API Router Consistency - Modern Error Responses"
+    },
+    {
+      "id": 201,
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Error Response Formats: Standardize on `{ error: 'message' }` format"
+        }
+      ],
+      "name": "API Router Consistency - Error Response Formats"
     },
     {
       "id": 202,
-      "groupIds": [13],
-      "notes": "01/02/2026: Updated - Removed deprecated onKeyPress from jsx-a11y rules",
-      "tags": ["ai"],
-      "code": "Update ESLint configuration and rules for modern event handlers.",
-      "name": "ESLint"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Update all Try-Catch Patterns to Pattern 4: Generic Handler (Modern)"
+        }
+      ],
+      "name": "API Router Consistency - Try-Catch Patterns"
     },
     {
       "id": 203,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Analyze codebase for optimization opportunities: rendering performance (memoization, virtualization), bundle size (code splitting, lazy loading), API efficiency (caching, batching), memory usage (cleanup, leaks). For each suggestion, explain expected improvement and trade-offs.",
-      "name": "Improvements"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Error Logging to use `ResponseHelper.internalError()`"
+        }
+      ],
+      "name": "API Router Consistency - Error Logging"
     },
     {
       "id": 204,
-      "groupIds": [14],
-      "tags": ["ai"],
-      "code": "Generate unit tests for the following function:\n[paste function]\n\nInclude tests for:\n1. Normal expected inputs\n2. Edge cases\n3. Invalid inputs\n\nUse [preferred testing framework] syntax.",
-      "name": "Generate Unit Tests"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Pattern Summary: Update all legacy patterns to modern generic handlers"
+        }
+      ],
+      "name": "API Router Consistency - Pattern Summary"
     },
     {
       "id": 205,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them.",
-      "name": "Component Instability"
+      "groupIds": [
+        {
+          "id": 10,
+          "seq": 1
+        }
+      ],
+      "notes": "01/02/2026: Server: 98/100  Client: 88/100",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Run Code Smells Report for the codebase."
+        }
+      ],
+      "name": "Code Smells Report"
     },
     {
       "id": 206,
-      "groupIds": [2],
-      "notes": "01/02/2026: Score 98/100 - Excellent. Zero functional duplicates. TypeScript version aligned (5.9.3). Consider workspace for husky/prettier/eslint deduplication (optional).",
-      "tags": ["ai"],
-      "code": "Review the package.json files for duplicate libraries - libraries that perform the same function(s) but are different packages. Suggest consolidating to a single library where possible.",
-      "name": "Package.json - Duplicate Libraries"
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "notes": "01/02/2026: Validated - 95/100 score, excellent architecture with custom hooks pattern",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Validate there is no excessive prop drilling in the codebase."
+        }
+      ],
+      "name": "Prop Drilling"
     },
     {
       "id": 207,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size.",
-      "name": "Package Imports"
+      "groupIds": [
+        {
+          "id": 13,
+          "seq": 1
+        }
+      ],
+      "notes": "01/02/2026: Validated - Zero deprecated event handlers found, all using modern onKeyDown. Modern React 19 patterns confirmed.",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Validate there are no deprecated event handlers (onKeyPress, componentWillMount, componentWillReceiveProps, etc.) in the codebase. Confirm modern React 19+ patterns and hooks are used throughout."
+        }
+      ],
+      "name": "React - Deprecated APIs and Event Handlers"
     },
     {
       "id": 208,
-      "groupIds": [2],
-      "notes": "01/02/2026: Score 88/100 - Very Good. 8 redundant boolean attributes (={false}) to remove. Zero unused variables. Fragment patterns with Meta are correct React 18+ practice. Key usage excellent (95%+).",
-      "tags": ["ai"],
-      "code": "Review codebase to ensure clean JSX - suggest improvements to remove unnecessary fragments, redundant attributes, and unused variables.",
-      "name": "Clean JSX"
+      "groupIds": [
+        {
+          "id": 13,
+          "seq": 1
+        }
+      ],
+      "notes": "01/02/2026: Updated - Removed deprecated onKeyPress from jsx-a11y rules",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Update ESLint configuration and rules for modern event handlers."
+        }
+      ],
+      "name": "ESLint"
     },
     {
       "id": 209,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Here\u0027s a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion.",
-      "name": "Performance"
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Analyze codebase for optimization opportunities: rendering performance (memoization, virtualization), bundle size (code splitting, lazy loading), API efficiency (caching, batching), memory usage (cleanup, leaks). For each suggestion, explain expected improvement and trade-offs."
+        }
+      ],
+      "name": "Improvements"
     },
     {
       "id": 210,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code].",
-      "name": "Code Review"
+      "groupIds": [
+        {
+          "id": 14,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Generate unit tests for the following function:\n[paste function]\n\nInclude tests for:\n1. Normal expected inputs\n2. Edge cases\n3. Invalid inputs\n\nUse [preferred testing framework] syntax."
+        }
+      ],
+      "name": "Generate Unit Tests"
     },
     {
       "id": 211,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Search for React components using array index as key prop (e.g., key={index}). Report occurrences and suggest using stable unique identifiers instead to prevent rendering bugs.",
-      "name": "Array Index as Key"
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them."
+        }
+      ],
+      "name": "Component Instability"
     },
     {
       "id": 212,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Review React components returning fragments containing only <Meta> or <Helmet> tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight.",
-      "name": "Fragment Pattern with Meta"
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "notes": "01/02/2026: Score 98/100 - Excellent. Zero functional duplicates. TypeScript version aligned (5.9.3). Consider workspace for husky/prettier/eslint deduplication (optional).",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review the package.json files for duplicate libraries - libraries that perform the same function(s) but are different packages. Suggest consolidating to a single library where possible."
+        }
+      ],
+      "name": "Package.json - Duplicate Libraries"
     },
     {
       "id": 213,
-      "groupIds": [2],
-      "tags": ["ai"],
-      "code": "Find and remove redundant boolean JSX attributes (e.g., disabled={true} should be disabled, hidden={false} should be omitted). Report count and suggest automatic fixes.",
-      "name": "Redundant Boolean Attributes"
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size."
+        }
+      ],
+      "name": "Package Imports"
     },
     {
       "id": 214,
-      "groupIds": [2],
-      "tags": ["ai", "security"],
-      "code": "Scan for hardcoded secrets (API keys, passwords, tokens) in codebase and environment files. Verify .gitignore excludes sensitive files.",
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "notes": "01/02/2026: Score 88/100 - Very Good. 8 redundant boolean attributes (={false}) to remove. Zero unused variables. Fragment patterns with Meta are correct React 18+ practice. Key usage excellent (95%+).",
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review codebase to ensure clean JSX - suggest improvements to remove unnecessary fragments, redundant attributes, and unused variables."
+        }
+      ],
+      "name": "Clean JSX"
+    },
+    {
+      "id": 215,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Here's a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion."
+        }
+      ],
+      "name": "Performance"
+    },
+    {
+      "id": 216,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code]."
+        }
+      ],
+      "name": "Code Review"
+    },
+    {
+      "id": 217,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Search for React components using array index as key prop (e.g., key={index}). Report occurrences and suggest using stable unique identifiers instead to prevent rendering bugs."
+        }
+      ],
+      "name": "Array Index as Key"
+    },
+    {
+      "id": 218,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review React components returning fragments containing only <Meta> or <Helmet> tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight."
+        }
+      ],
+      "name": "Fragment Pattern with Meta"
+    },
+    {
+      "id": 219,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Find and remove redundant boolean JSX attributes (e.g., disabled={true} should be disabled, hidden={false} should be omitted). Report count and suggest automatic fixes."
+        }
+      ],
+      "name": "Redundant Boolean Attributes"
+    },
+    {
+      "id": 220,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai",
+        "security"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Scan for hardcoded secrets (API keys, passwords, tokens) in codebase and environment files. Verify .gitignore excludes sensitive files."
+        }
+      ],
       "name": "Secrets Detection",
       "testDate": "2026-01-03",
       "status": "Passed",
       "score": "100/100"
     },
     {
-      "id": 215,
-      "groupIds": [2],
-      "level": "page",
-      "tags": ["react", "accessibility"],
-      "code": "Run accessibility audit: Check for missing alt text, ARIA labels, keyboard navigation support, color contrast ratios (WCAG AA), and semantic HTML usage.",
+      "id": 221,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "accessibility"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Run accessibility audit: Check for missing alt text, ARIA labels, keyboard navigation support, color contrast ratios (WCAG AA), and semantic HTML usage."
+        }
+      ],
       "name": "A11y Comprehensive Audit",
       "testDate": "2026-01-03",
       "status": "Good - 10 images need alt text review",
       "score": "80/100"
     },
     {
-      "id": 216,
-      "groupIds": [16],
-      "level": "project",
-      "tags": ["react"],
-      "code": "Analyze bundle size using webpack-bundle-analyzer or vite-bundle-visualizer. Identify largest dependencies and suggest lazy loading or lighter alternatives.",
+      "id": 222,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Analyze bundle size using webpack-bundle-analyzer or vite-bundle-visualizer. Identify largest dependencies and suggest lazy loading or lighter alternatives."
+        }
+      ],
       "name": "Bundle Analysis",
       "testDate": "2026-01-03",
       "status": "Info - Largest deps: aws-amplify, 16 @radix-ui packages",
       "score": "N/A"
     },
     {
-      "id": 217,
-      "groupIds": [16],
-      "level": "project",
-      "tags": ["react"],
-      "code": "Identify unused CSS using PurgeCSS or similar. Report percentage of unused styles and suggest removal strategy.",
+      "id": 223,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Identify unused CSS using PurgeCSS or similar. Report percentage of unused styles and suggest removal strategy."
+        }
+      ],
       "name": "Unused CSS Detection",
       "testDate": "2026-01-03",
       "status": "Passed - Low risk (styled-components eliminates unused CSS)",
       "score": "100/100"
     },
     {
-      "id": 218,
-      "groupIds": [2],
-      "level": "project",
-      "tags": ["typescript"],
-      "code": "Audit for 'any' types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them.",
+      "id": 224,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "typescript"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Audit for 'any' types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
+        }
+      ],
       "name": "TypeScript 'any' Audit",
       "testDate": "2026-01-03",
       "status": "Passed - Zero 'any' types found",
       "score": "100/100"
     },
     {
-      "id": 219,
-      "groupIds": [2],
-      "level": "component",
-      "tags": ["typescript"],
-      "code": "Check for missing return types on functions. Add explicit return type annotations for better type safety and documentation.",
+      "id": 225,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "typescript"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Check for missing return types on functions. Add explicit return type annotations for better type safety and documentation."
+        }
+      ],
       "name": "Function Return Types",
       "testDate": "2026-01-03",
       "status": "Passed - All functions have return type annotations",
       "score": "100/100"
     },
     {
-      "id": 220,
-      "groupIds": [14],
-      "level": "project",
-      "tags": ["react", "testing"],
-      "code": "Calculate test coverage percentage for components, hooks, and utilities. Target: 80%+ coverage. Identify critical paths lacking tests.",
+      "id": 226,
+      "groupIds": [
+        {
+          "id": 14,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react",
+        "testing"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Calculate test coverage percentage for components, hooks, and utilities. Target: 80%+ coverage. Identify critical paths lacking tests."
+        }
+      ],
       "name": "Test Coverage Analysis",
       "testDate": "2026-01-03",
       "status": "Needs Work - Only 9 test files found, ~<20% coverage",
       "score": "20/100"
     },
     {
-      "id": 221,
-      "groupIds": [17],
-      "level": "project",
-      "tags": ["nodejs", "react"],
-      "code": "Check for unused dependencies in package.json using depcheck. Remove or document why each flagged dependency is needed. Frequency: Monthly.",
+      "id": 227,
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "nodejs",
+        "react"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Check for unused dependencies in package.json using depcheck. Remove or document why each flagged dependency is needed. Frequency: Monthly."
+        }
+      ],
       "name": "Unused Dependencies",
       "testDate": "2026-01-03",
       "status": "Passed - Manual review shows all dependencies in use",
       "score": "90/100"
     },
     {
-      "id": 230,
-      "groupIds": [17],
-      "tags": ["code"],
+      "id": 228,
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "code"
+      ],
       "code": [
         {
           "id": 1,
@@ -1984,85 +4183,196 @@
       "comments": "This functionality has been merged into eslint-plugin-react as of v7.30.0. Remove eslint-plugin-react-compiler from package.json and update eslint-plugin-react to latest version if needed."
     },
     {
-      "id": 222,
-      "groupIds": [17],
-      "level": "project",
-      "tags": ["nodejs"],
-      "code": "Verify package.json engines field specifies minimum Node.js and npm versions. Document in README.",
+      "id": 229,
+      "groupIds": [
+        {
+          "id": 17,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "nodejs"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Verify package.json engines field specifies minimum Node.js and npm versions. Document in README."
+        }
+      ],
       "name": "Node Version Requirements",
       "testDate": "2026-01-03",
       "status": "Passed - Engines field present: node >=20.0.0, npm >=10",
       "score": "100/100"
     },
     {
-      "id": 223,
-      "groupIds": [2],
-      "level": "project",
-      "tags": ["ai"],
-      "code": "Audit API endpoints documentation. Verify each endpoint has request/response examples, error codes, and authentication requirements documented.",
+      "id": 230,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Audit API endpoints documentation. Verify each endpoint has request/response examples, error codes, and authentication requirements documented."
+        }
+      ],
       "name": "API Documentation Audit",
       "testDate": "2026-01-03",
       "status": "Needs Work - No Swagger/OpenAPI specification found",
       "score": "30/100"
     },
     {
-      "id": 224,
-      "groupIds": [12],
-      "level": "project",
-      "tags": ["ai"],
-      "code": "Review .gitignore completeness. Ensure all build artifacts, environment files, OS files, IDE configs, and dependency directories are excluded.",
+      "id": 231,
+      "groupIds": [
+        {
+          "id": 12,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review .gitignore completeness. Ensure all build artifacts, environment files, OS files, IDE configs, and dependency directories are excluded."
+        }
+      ],
       "name": "Gitignore Audit",
       "testDate": "2026-01-03",
       "status": "Passed - Comprehensive .gitignore with proper organization",
       "score": "100/100"
     },
     {
-      "id": 225,
-      "groupIds": [11],
-      "level": "component",
-      "tags": ["react"],
-      "code": "Verify React Error Boundaries are implemented for main app sections. Ensure graceful error handling with user-friendly messages.",
+      "id": 232,
+      "groupIds": [
+        {
+          "id": 11,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "react"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Verify React Error Boundaries are implemented for main app sections. Ensure graceful error handling with user-friendly messages."
+        }
+      ],
       "name": "Error Boundary Coverage",
       "testDate": "2026-01-03",
       "status": "Passed - Error boundaries at app and layout levels with fallbacks",
       "score": "100/100"
     },
     {
-      "id": 226,
-      "groupIds": [11],
-      "level": "project",
-      "tags": ["ai"],
-      "code": "Allow and implement any TC39 Stage 2+ features in the codebase, ensuring compatibility with current build tools and environments. Such as Promise.try, Array.fromAsync, Iterator helpers, Set methods, Decimal,Temporal,Array grouping, Import attributes, Decorator metadata,RegExp.escape,and Symbol predicates. Update ESlint rules to allow these features.",
+      "id": 233,
+      "groupIds": [
+        {
+          "id": 11,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Allow and implement any TC39 Stage 2+ features in the codebase, ensuring compatibility with current build tools and environments. Such as Promise.try, Array.fromAsync, Iterator helpers, Set methods, Decimal,Temporal,Array grouping, Import attributes, Decorator metadata,RegExp.escape,and Symbol predicates. Update ESlint rules to allow these features."
+        }
+      ],
       "name": "Baseline 2025"
     },
     {
-      "id": 227,
-      "groupIds": [11],
-      "level": "project",
-      "tags": ["ai"],
-      "code": "Review general-coding.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices.",
+      "id": 234,
+      "groupIds": [
+        {
+          "id": 11,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review general-coding.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices."
+        }
+      ],
       "name": "General-coding.instructions.md Review"
     },
     {
-      "id": 228,
-      "groupIds": [11],
-      "level": "project",
-      "tags": ["ai"],
-      "code": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices.",
+      "id": 235,
+      "groupIds": [
+        {
+          "id": 11,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices."
+        }
+      ],
       "name": "Typescript-react.instructions.md Review"
     },
     {
-      "id": 229,
-      "groupIds": [11],
-      "level": "project",
-      "tags": ["chat"],
-      "code": "npm install -g npm@11.7.0.",
+      "id": 236,
+      "groupIds": [
+        {
+          "id": 11,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "chat"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npm install -g npm@11.7.0."
+        }
+      ],
       "name": "npm update"
     },
     {
-      "id": 230,
-      "groupIds": [16],
-      "tags": ["code"],
+      "id": 237,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "code"
+      ],
       "code": [
         {
           "id": 1,
@@ -2075,32 +4385,58 @@
       "comments": "Overrides can complicate dependency resolution. Ensure each override is justified."
     },
     {
-      "id": 231,
-      "groupIds": [{ "id": 2, "seq": 3 }],
-      "tags": ["maintenance"],
+      "id": 238,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 3
+        }
+      ],
+      "tags": [
+        "maintenance"
+      ],
       "name": "Node Modules Cleanup",
       "comments": "Stop the app and manually delete the node_modules directory in both client and server folders. Then run npm install in each folder to reinstall dependencies afresh."
     },
-
     {
-      "id": 232,
-      "groupIds": [{ "id": 2, "seq": 4 }],
-      "tags": ["maintenance"],
+      "id": 239,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 4
+        }
+      ],
+      "tags": [
+        "maintenance"
+      ],
       "name": "Dist Folder Cleanup",
       "comments": "Stop the app and manually delete the dist directory in both client and server folders. Then run the build script in each folder to regenerate the distribution files."
     },
-
     {
-      "id": 233,
-      "groupIds": [{ "id": 2, "seq": 5 }],
-      "tags": ["maintenance"],
+      "id": 240,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 5
+        }
+      ],
+      "tags": [
+        "maintenance"
+      ],
       "name": "ESLint Health Check",
       "comments": "ESLint has a habit of silently stopping. Ensure it is running correctly and address any issues promptly. Go to Ouput | ESLint console."
     },
     {
-      "id": 233,
-      "groupIds": [{ "id": 2, "seq": 1 }],
-      "tags": ["maintenance"],
+      "id": 241,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "maintenance"
+      ],
       "code": [
         {
           "id": 1,
@@ -2109,14 +4445,20 @@
           "content": "Rebuild the project from GitHub (or whatever source repo you are using). 1. Make a backup copy. 2. Delete the current project. 3. Restore and validate."
         }
       ],
-
       "name": "Rebuild Project From Scratch",
       "comments": "Validate that you have all your code in source control, that you have documentation on how to build the project, and a new developer can pick up the project and run with it."
     },
     {
-      "id": 233,
-      "groupIds": [{ "id": 2, "seq": 2 }],
-      "tags": ["maintenance"],
+      "id": 242,
+      "groupIds": [
+        {
+          "id": 2,
+          "seq": 2
+        }
+      ],
+      "tags": [
+        "maintenance"
+      ],
       "code": [
         {
           "id": 1,
@@ -2125,7 +4467,6 @@
           "content": "node -v   nvm install  nvm use 24.12.0  https://nodejs.org/en/download"
         }
       ],
-
       "name": "Node.js - Update",
       "comments": "Make sure to update Node.js to the latest stable version (LTS) to benefit from performance improvements and security patches.  Note: Your team should all be on the same version."
     }
