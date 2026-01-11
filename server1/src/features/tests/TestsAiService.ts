@@ -27,10 +27,10 @@ export class TestsAiService extends BaseDataService<Tests> {
 
       if (!testFile.items || !testFile.groups || !testFile.sections) {
         return {
-          items: [],
           metadata: {
             title: testFile.metadata?.title ?? FILTER_TAG,
           },
+          sections: [],
         };
       }
 
@@ -51,12 +51,12 @@ export class TestsAiService extends BaseDataService<Tests> {
 
       if (aiItems.length === 0) {
         return {
-          items: [],
           metadata: {
             title: testFile.metadata?.title ?? FILTER_TAG,
             totalGroups: 0,
             totalItems: 0,
           },
+          sections: [],
         };
       }
 
@@ -70,19 +70,37 @@ export class TestsAiService extends BaseDataService<Tests> {
       const populatedGroups: TestGroup[] = [];
 
       for (const group of testFile.groups) {
-        // Skip groups without 'code' tag
-        if (!group.tags?.includes(FILTER_TAG)) {
+        // Find all AI items that belong to this group
+        const groupItems: Test[] = [];
+
+        for (const fileItem of testFile.items) {
+          // Check if this item is in our AI items and belongs to this group
+          const aiItem = itemsMap.get(fileItem.id);
+          if (aiItem && fileItem.groupIds) {
+            const groupRef = fileItem.groupIds.find(
+              (ref) => ref.id === group.id,
+            );
+            if (groupRef) {
+              groupItems.push({
+                ...aiItem,
+                seq: groupRef.seq,
+              });
+            }
+          }
+        }
+
+        // Only include groups that have AI items
+        if (groupItems.length === 0) {
           continue;
         }
 
-        // Find all items that belong to this group
-        // Based on the file structure, we need to determine group membership differently
-        // For now, we'll collect all AI items and distribute them to groups later
+        // Sort items by seq
+        groupItems.sort((a, b) => (a.seq ?? 0) - (b.seq ?? 0));
 
         populatedGroups.push({
           comments: group.comments,
           id: group.id,
-          items: undefined, // Will be populated based on section relationships
+          items: groupItems,
           name: group.name,
           seq: undefined,
           tags: group.tags ? [...group.tags] : undefined,
@@ -93,7 +111,7 @@ export class TestsAiService extends BaseDataService<Tests> {
       const sections: TestSection[] = [];
 
       for (const section of testFile.sections) {
-        const groupsForSection: { item: TestGroup; seq: number }[] = [];
+        const groupsForSection: TestGroup[] = [];
 
         // Find groups that reference this section
         for (const group of populatedGroups) {
@@ -105,7 +123,7 @@ export class TestsAiService extends BaseDataService<Tests> {
           );
           if (sectionRef) {
             groupsForSection.push({
-              item: group,
+              ...group,
               seq: sectionRef.seq,
             });
           }
@@ -116,7 +134,7 @@ export class TestsAiService extends BaseDataService<Tests> {
         }
 
         // Sort groups by seq
-        groupsForSection.sort((a, b) => a.seq - b.seq);
+        groupsForSection.sort((a, b) => (a.seq ?? 0) - (b.seq ?? 0));
 
         sections.push({
           description: section.description,
@@ -127,12 +145,12 @@ export class TestsAiService extends BaseDataService<Tests> {
       }
 
       return {
-        items: sections,
         metadata: {
           title: testFile.metadata?.title ?? FILTER_TAG,
           totalGroups: sections.length,
           totalItems: aiItems.length,
         },
+        sections,
       };
     } catch (error) {
       Logger.error(`TestsAiService: getItems --> Error: ${String(error)}`);

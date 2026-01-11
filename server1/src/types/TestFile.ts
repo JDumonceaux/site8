@@ -16,7 +16,7 @@ export type TestGroup = {
   readonly id: number;
   readonly name: string;
   readonly sectionIds: readonly SectionReference[];
-  readonly tags: readonly string[];
+  readonly tags?: readonly string[];
 };
 
 /**

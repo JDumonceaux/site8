@@ -21,9 +21,7 @@
     {
       "id": 2,
       "name": "Codemod",
-      "tags": [
-        "client"
-      ],
+      "tags": ["client"],
       "sectionIds": [
         {
           "id": 8,
@@ -35,10 +33,7 @@
     {
       "id": 3,
       "name": "Monthly Maintenance",
-      "tags": [
-        "client",
-        "server"
-      ],
+      "tags": ["client", "server"],
       "sectionIds": [
         {
           "id": 17,
@@ -277,9 +272,7 @@
     {
       "id": 8,
       "name": "Code",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -330,9 +323,7 @@
     {
       "id": 13,
       "name": "HTML Header",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -351,9 +342,7 @@
     {
       "id": 14,
       "name": "Check for Open Graph",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -364,9 +353,7 @@
     {
       "id": 15,
       "name": "Doc Type",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -377,9 +364,7 @@
     {
       "id": 16,
       "name": "Language",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -390,9 +375,7 @@
     {
       "id": 17,
       "name": "Language - change language",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -403,9 +386,7 @@
     {
       "id": 18,
       "name": "Encoding",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -416,9 +397,7 @@
     {
       "id": 19,
       "name": "Author",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -429,9 +408,7 @@
     {
       "id": 20,
       "name": "Keywords",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -442,9 +419,7 @@
     {
       "id": 21,
       "name": "Title",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -455,9 +430,7 @@
     {
       "id": 22,
       "name": "Description",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -468,9 +441,7 @@
     {
       "id": 23,
       "name": "Favicon",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -481,9 +452,7 @@
     {
       "id": 24,
       "name": "Publish Date",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -494,9 +463,7 @@
     {
       "id": 25,
       "name": "Canonical URL",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -507,9 +474,7 @@
     {
       "id": 26,
       "name": "Viewport",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -520,9 +485,7 @@
     {
       "id": 27,
       "name": "Open Graph Coding",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -533,9 +496,7 @@
     {
       "id": 28,
       "name": "Base Element",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -545,9 +506,7 @@
     },
     {
       "id": 29,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Remove type from stylesheet ref (no longer required)",
       "groupIds": [
         {
@@ -558,9 +517,7 @@
     },
     {
       "id": 30,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -579,9 +536,7 @@
     },
     {
       "id": 31,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -600,9 +555,7 @@
     },
     {
       "id": 32,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -622,9 +575,7 @@
     {
       "seq": 100,
       "id": 33,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools:  Run tests.",
       "groupIds": [
         {
@@ -636,9 +587,7 @@
     {
       "seq": 101,
       "id": 34,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools:  Run tests.",
       "groupIds": [
         {
@@ -650,9 +599,7 @@
     {
       "seq": 102,
       "id": 35,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools:  Run tests.",
       "groupIds": [
         {
@@ -664,9 +611,7 @@
     {
       "seq": 103,
       "id": 36,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools:  Run tests.",
       "groupIds": [
         {
@@ -677,9 +622,7 @@
     },
     {
       "id": 37,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools:  Run tests.",
       "groupIds": [
         {
@@ -690,9 +633,7 @@
     },
     {
       "id": 38,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools: Validate state - Check for unused state",
       "groupIds": [
         {
@@ -703,9 +644,7 @@
     },
     {
       "id": 39,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools: Check network tab for missing files (images), connection issues, etc.",
       "groupIds": [
         {
@@ -716,9 +655,7 @@
     },
     {
       "id": 40,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Test for color blindness.",
       "groupIds": [
         {
@@ -729,9 +666,7 @@
     },
     {
       "id": 41,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Chrome DevTools: Check for errors",
       "groupIds": [
         {
@@ -742,9 +677,7 @@
     },
     {
       "id": 42,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Inspect style: Click through elements to check for unused or invalid styles.",
       "groupIds": [
         {
@@ -755,9 +688,7 @@
     },
     {
       "id": 43,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": ".eslintrc.json or eslintrc.cjs file",
       "groupIds": [
         {
@@ -769,9 +700,7 @@
     {
       "id": 44,
       "seq": 1000,
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "name": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
       "groupIds": [
         {
@@ -782,9 +711,7 @@
     },
     {
       "id": 45,
-      "tags": [
-        "nodejs"
-      ],
+      "tags": ["nodejs"],
       "name": ".eslintrc.json or eslintrc.cjs file",
       "groupIds": [
         {
@@ -796,9 +723,7 @@
     {
       "id": 46,
       "name": "SEO",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -809,9 +734,7 @@
     {
       "id": 47,
       "name": "Robot.txt",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -822,9 +745,7 @@
     {
       "id": 48,
       "name": "Sitemap.xml",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -835,9 +756,7 @@
     {
       "id": 49,
       "name": "Semantic HTML",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -848,9 +767,7 @@
     {
       "id": 50,
       "name": "Optimized Page Speed",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -861,9 +778,7 @@
     {
       "id": 51,
       "name": "Meta Tags",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -874,9 +789,7 @@
     {
       "id": 52,
       "name": "Accessibility",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -887,9 +800,7 @@
     {
       "id": 53,
       "name": "Mobile Friendly",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -900,9 +811,7 @@
     {
       "id": 54,
       "name": "Quality Content",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "groupIds": [
         {
           "id": 1,
@@ -913,10 +822,7 @@
     {
       "id": 55,
       "name": "npm audit",
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "groupIds": [
         {
           "id": 1,
@@ -927,10 +833,7 @@
     {
       "id": 56,
       "name": "npm outdated",
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "groupIds": [
         {
           "id": 1,
@@ -941,10 +844,7 @@
     {
       "id": 57,
       "name": "Synk",
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "groupIds": [
         {
           "id": 1,
@@ -960,18 +860,12 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "name": "TSConfig.json - Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>"
     },
     {
       "id": 59,
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "name": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
       "groupIds": [
         {
@@ -984,10 +878,7 @@
       "id": 60,
       "name": "Cyclomatic Complexity",
       "goal": "1-4",
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "groupIds": [
         {
           "id": 1,
@@ -999,10 +890,7 @@
       "id": 61,
       "name": "Code Smells",
       "goal": "0",
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "groupIds": [
         {
           "id": 1,
@@ -1014,10 +902,7 @@
       "id": 62,
       "name": "SRP - Single Responsibility Principle",
       "goal": "1 per function",
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "groupIds": [
         {
           "id": 1,
@@ -1033,10 +918,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "code": [
         {
           "id": 1,
@@ -1055,10 +937,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "code": [
         {
           "id": 1,
@@ -1077,10 +956,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "code": [
         {
           "id": 1,
@@ -1099,10 +975,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "code": [
         {
           "id": 1,
@@ -1121,10 +994,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "nodejs"
-      ],
+      "tags": ["react", "nodejs"],
       "code": [
         {
           "id": 1,
@@ -1144,9 +1014,7 @@
         }
       ],
       "goal": "0.1 or lower",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -1166,9 +1034,7 @@
         }
       ],
       "goal": "200ms or less",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -1188,9 +1054,7 @@
         }
       ],
       "goal": "2.5 seconds or less",
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -1204,11 +1068,7 @@
     {
       "id": 71,
       "name": "Input - Hover",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1219,11 +1079,7 @@
     {
       "id": 72,
       "name": "Input - Focus",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1234,11 +1090,7 @@
     {
       "id": 73,
       "name": "Input - Selection",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1249,11 +1101,7 @@
     {
       "id": 74,
       "name": "Input - Spelling-error",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1264,11 +1112,7 @@
     {
       "id": 75,
       "name": "Input - Grammar",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1279,11 +1123,7 @@
     {
       "id": 76,
       "name": "Input - Placeholder",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1294,11 +1134,7 @@
     {
       "id": 77,
       "name": "Input - Error",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1310,11 +1146,7 @@
       "id": 78,
       "name": "Input - Click on Label",
       "goal": "Clicking the label sets focus to or activates the form control",
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "groupIds": [
         {
           "id": 1,
@@ -1324,11 +1156,7 @@
     },
     {
       "id": 79,
-      "tags": [
-        "web",
-        "react",
-        "acccessibiilty"
-      ],
+      "tags": ["web", "react", "acccessibiilty"],
       "name": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist",
       "groupIds": [
         {
@@ -1340,10 +1168,7 @@
     {
       "id": 80,
       "goal": "Validates correctly",
-      "tags": [
-        "web",
-        "react"
-      ],
+      "tags": ["web", "react"],
       "name": "1. Enter value 2. Save 3. Delete value 4. Save",
       "groupIds": [
         {
@@ -1354,10 +1179,7 @@
     },
     {
       "id": 81,
-      "tags": [
-        "web",
-        "react"
-      ],
+      "tags": ["web", "react"],
       "groupIds": [
         {
           "id": 1,
@@ -1373,9 +1195,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Typescript Improvements - Using typescript [latest version], are there any improvements that can be implemented?"
     },
     {
@@ -1386,9 +1206,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript Improvements - Using javascript ES2025, are there any improvements that can be be implemented?"
     },
     {
@@ -1399,9 +1217,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript Improvements2 - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable."
     },
     {
@@ -1412,9 +1228,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript ES2023 Array Method Improvements - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable."
     },
     {
@@ -1425,9 +1239,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript Iterable Type Updates - Update to use Iterable where applicable."
     },
     {
@@ -1438,9 +1250,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript Iterable Type Updates - Update to use RegExp.escape where applicable."
     },
     {
@@ -1451,9 +1261,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript RegExp.escape Implementation - Update to use RegExp.escape where applicable."
     },
     {
@@ -1465,9 +1273,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript RegExp.escape Implementation - Update to use Promise.try where applicable."
     },
     {
@@ -1479,9 +1285,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Javascript Iteratable - Implement Temporal API."
     },
     {
@@ -1492,9 +1296,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "React Improvements - Are there react 19.2.3 enhancements that can be made?"
     },
     {
@@ -1505,9 +1307,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "HTML5 - Is the latest and appropriate HTML5 elements used?"
     },
     {
@@ -1518,9 +1318,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "CSS - Are there improvements to CSS that can be made?"
     },
     {
@@ -1531,9 +1329,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Styles - Are there any styles defined in components that should be moved to main.css?"
     },
     {
@@ -1544,9 +1340,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Immutable - Look for opportunties to improve Immutability in codebase."
     },
     {
@@ -1557,9 +1351,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "SOLID - Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase."
     },
     {
@@ -1570,9 +1362,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Class Components - Convert any class components to functional components and hooks."
     },
     {
@@ -1583,9 +1373,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Lazy Loading - Implement lazy loading components."
     },
     {
@@ -1596,9 +1384,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Re-renders - Look for any unnecessary re-renders."
     },
     {
@@ -1609,10 +1395,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react"
-      ],
+      "tags": ["scripts", "react"],
       "name": "Scripts: Type Check - npm run type-check"
     },
     {
@@ -1623,11 +1406,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react",
-        "nodejs"
-      ],
+      "tags": ["scripts", "react", "nodejs"],
       "name": "Scripts: Lint - npm run lint"
     },
     {
@@ -1638,11 +1417,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react",
-        "nodejs"
-      ],
+      "tags": ["scripts", "react", "nodejs"],
       "name": "Scripts: Lint Fix - npm run lint:fix"
     },
     {
@@ -1654,11 +1429,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react",
-        "nodejs"
-      ],
+      "tags": ["scripts", "react", "nodejs"],
       "name": "Scripts: Knip - npm run knip"
     },
     {
@@ -1669,10 +1440,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react"
-      ],
+      "tags": ["scripts", "react"],
       "name": "Scripts: Format - npm run format"
     },
     {
@@ -1684,11 +1452,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react",
-        "nodejs"
-      ],
+      "tags": ["scripts", "react", "nodejs"],
       "name": "Scripts: Build - npm run build"
     },
     {
@@ -1700,10 +1464,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react"
-      ],
+      "tags": ["scripts", "react"],
       "name": "Scripts: Preview - npm run preview"
     },
     {
@@ -1715,10 +1476,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "scripts",
-        "react"
-      ],
+      "tags": ["scripts", "react"],
       "name": "Scripts: Clean - npm run clean"
     },
     {
@@ -1729,9 +1487,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Error Handling - Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery"
     },
     {
@@ -1742,9 +1498,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Accessibility - Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support"
     },
     {
@@ -1755,9 +1509,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "React Query Optimization - Review and optimize React Query usage - check staleTime, cacheTime, retry logic, and identify opportunities for prefetching"
     },
     {
@@ -1768,9 +1520,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Custom Hooks - Identify opportunities to create custom hooks to reduce duplication and improve code reusability"
     },
     {
@@ -1781,9 +1531,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "API Security - Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure"
     },
     {
@@ -1794,9 +1542,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Bundle Size - Analyze bundle size and suggest code splitting opportunities beyond lazy loading"
     },
     {
@@ -1808,9 +1554,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "TypeScript Strict Mode - Review TypeScript strict mode usage and suggest enabling stricter compiler options"
     },
     {
@@ -1821,9 +1565,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Prop Drilling - Identify prop drilling issues and suggest Context API or state management improvements"
     },
     {
@@ -1834,9 +1576,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Styled Components Performance - Review styled-components usage and identify performance issues or patterns to improve"
     },
     {
@@ -1847,9 +1587,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Testing - Suggest implementing React Testing Library tests for critical user flows"
     },
     {
@@ -1860,9 +1598,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Form Validation - Review form validation patterns and suggest consistency improvements using Zod or similar"
     },
     {
@@ -1873,9 +1609,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "SSR/SSG - Identify opportunities for Server-Side Rendering or Static Site Generation"
     },
     {
@@ -1886,9 +1620,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Image Optimization - Review and optimize image loading strategies (lazy loading, responsive images, WebP)"
     },
     {
@@ -1899,9 +1631,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "API Caching - Analyze API response caching strategies and suggest improvements"
     },
     {
@@ -1912,9 +1642,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Memory Leaks - Check for memory leaks - useEffect cleanup, event listeners, subscriptions"
     },
     {
@@ -1925,16 +1653,12 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "name": "Build - execute npm run build and fix all errors"
     },
     {
       "id": 124,
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -1953,9 +1677,7 @@
     },
     {
       "id": 125,
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -1974,9 +1696,7 @@
     },
     {
       "id": 126,
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -1995,9 +1715,7 @@
     },
     {
       "id": 127,
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2016,9 +1734,7 @@
     },
     {
       "id": 128,
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2038,9 +1754,7 @@
     {
       "id": 129,
       "notes": "12/1/2025 - 'es2025' is not supported by Vite.  Use 'esnext' instead. This is need for features like Promise.try",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2065,9 +1779,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2086,9 +1798,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2107,9 +1817,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "future"
-      ],
+      "tags": ["future"],
       "code": [
         {
           "id": 1,
@@ -2128,9 +1836,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2149,9 +1855,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2170,9 +1874,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2191,9 +1893,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2212,9 +1912,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2233,9 +1931,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2254,9 +1950,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2275,9 +1969,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2296,9 +1988,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2317,9 +2007,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2338,9 +2026,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2359,9 +2045,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2380,9 +2064,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2401,9 +2083,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2422,9 +2102,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2443,9 +2121,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2464,9 +2140,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2486,9 +2160,7 @@
         }
       ],
       "notes": "12/27/2025: Total Files 471, Average Complexity: 4.53.  Results: Excellent.",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2507,9 +2179,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2528,9 +2198,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2549,9 +2217,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2570,9 +2236,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2591,9 +2255,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2612,9 +2274,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2633,9 +2293,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2654,9 +2312,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2675,9 +2331,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2696,9 +2350,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2717,9 +2369,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2738,9 +2388,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2759,9 +2407,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2780,9 +2426,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2801,9 +2445,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2823,9 +2465,7 @@
         }
       ],
       "notes": "Removed in 19.2.3",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2844,9 +2484,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2865,9 +2503,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2886,9 +2522,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2907,9 +2541,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2928,9 +2560,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2949,9 +2579,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2970,9 +2598,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -2991,9 +2617,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3012,9 +2636,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3033,9 +2655,7 @@
           "seq": 5
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3054,9 +2674,7 @@
           "seq": 5
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3076,9 +2694,7 @@
           "seq": 5
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3098,9 +2714,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3120,9 +2734,7 @@
           "seq": 2
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3142,9 +2754,7 @@
           "seq": 3
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3164,9 +2774,7 @@
           "seq": 4
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3186,9 +2794,7 @@
           "seq": 5
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3208,9 +2814,7 @@
           "seq": 6
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -3230,9 +2834,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3251,9 +2853,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3272,9 +2872,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3293,9 +2891,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3314,9 +2910,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3335,9 +2929,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3356,9 +2948,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3378,9 +2968,7 @@
         }
       ],
       "notes": "01/01/2026: Score: 94/100 - Excellent consistency across coding styles, naming conventions, and file structures. Coding Style Consistency - Naming conventions, code formatting, patterns; File Structure Consistency - Directory organization, file naming; API Pattern Consistency - Handler patterns, error responses, validation; TypeScript Usage - Type annotations, generic usage; Import Patterns - Import organization, factory usage; Error Handling Consistency - ResponseHelper usage, error formats; Documentation Consistency - JSDoc comments, inline comments; Testing Patterns - Test structure (if tests exist)",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3399,9 +2987,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3420,9 +3006,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3441,9 +3025,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3462,9 +3044,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3483,9 +3063,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3504,9 +3082,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3525,9 +3101,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3546,9 +3120,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3567,9 +3139,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3588,9 +3158,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3609,9 +3177,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3630,9 +3196,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3652,9 +3216,7 @@
         }
       ],
       "notes": "01/02/2026: Server: 98/100  Client: 88/100",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3674,9 +3236,7 @@
         }
       ],
       "notes": "01/02/2026: Validated - 95/100 score, excellent architecture with custom hooks pattern",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3696,9 +3256,7 @@
         }
       ],
       "notes": "01/02/2026: Validated - Zero deprecated event handlers found, all using modern onKeyDown. Modern React 19 patterns confirmed.",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3718,9 +3276,7 @@
         }
       ],
       "notes": "01/02/2026: Updated - Removed deprecated onKeyPress from jsx-a11y rules",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3739,9 +3295,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3760,9 +3314,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3781,9 +3333,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3803,9 +3353,7 @@
         }
       ],
       "notes": "01/02/2026: Score 98/100 - Excellent. Zero functional duplicates. TypeScript version aligned (5.9.3). Consider workspace for husky/prettier/eslint deduplication (optional).",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3824,9 +3372,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3846,9 +3392,7 @@
         }
       ],
       "notes": "01/02/2026: Score 88/100 - Very Good. 8 redundant boolean attributes (={false}) to remove. Zero unused variables. Fragment patterns with Meta are correct React 18+ practice. Key usage excellent (95%+).",
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3867,9 +3411,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3888,9 +3430,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3909,9 +3449,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3930,9 +3468,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3951,9 +3487,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -3972,10 +3506,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai",
-        "security"
-      ],
+      "tags": ["ai", "security"],
       "code": [
         {
           "id": 1,
@@ -3997,10 +3528,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "accessibility"
-      ],
+      "tags": ["react", "accessibility"],
       "code": [
         {
           "id": 1,
@@ -4022,9 +3550,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -4046,9 +3572,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -4070,9 +3594,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "typescript"
-      ],
+      "tags": ["typescript"],
       "code": [
         {
           "id": 1,
@@ -4094,9 +3616,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "typescript"
-      ],
+      "tags": ["typescript"],
       "code": [
         {
           "id": 1,
@@ -4118,10 +3638,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react",
-        "testing"
-      ],
+      "tags": ["react", "testing"],
       "code": [
         {
           "id": 1,
@@ -4143,10 +3660,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "nodejs",
-        "react"
-      ],
+      "tags": ["nodejs", "react"],
       "code": [
         {
           "id": 1,
@@ -4168,9 +3682,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -4190,9 +3702,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "nodejs"
-      ],
+      "tags": ["nodejs"],
       "code": [
         {
           "id": 1,
@@ -4214,9 +3724,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -4238,9 +3746,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -4262,9 +3768,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "react"
-      ],
+      "tags": ["react"],
       "code": [
         {
           "id": 1,
@@ -4286,9 +3790,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -4307,9 +3809,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -4328,9 +3828,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "ai"
-      ],
+      "tags": ["ai"],
       "code": [
         {
           "id": 1,
@@ -4349,9 +3847,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "chat"
-      ],
+      "tags": ["chat"],
       "code": [
         {
           "id": 1,
@@ -4370,9 +3866,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "code"
-      ],
+      "tags": ["code"],
       "code": [
         {
           "id": 1,
@@ -4392,9 +3886,7 @@
           "seq": 3
         }
       ],
-      "tags": [
-        "maintenance"
-      ],
+      "tags": ["maintenance"],
       "name": "Node Modules Cleanup",
       "comments": "Stop the app and manually delete the node_modules directory in both client and server folders. Then run npm install in each folder to reinstall dependencies afresh."
     },
@@ -4406,9 +3898,7 @@
           "seq": 4
         }
       ],
-      "tags": [
-        "maintenance"
-      ],
+      "tags": ["maintenance"],
       "name": "Dist Folder Cleanup",
       "comments": "Stop the app and manually delete the dist directory in both client and server folders. Then run the build script in each folder to regenerate the distribution files."
     },
@@ -4420,9 +3910,7 @@
           "seq": 5
         }
       ],
-      "tags": [
-        "maintenance"
-      ],
+      "tags": ["maintenance"],
       "name": "ESLint Health Check",
       "comments": "ESLint has a habit of silently stopping. Ensure it is running correctly and address any issues promptly. Go to Ouput | ESLint console."
     },
@@ -4434,9 +3922,7 @@
           "seq": 1
         }
       ],
-      "tags": [
-        "maintenance"
-      ],
+      "tags": ["maintenance"],
       "code": [
         {
           "id": 1,
@@ -4456,9 +3942,7 @@
           "seq": 2
         }
       ],
-      "tags": [
-        "maintenance"
-      ],
+      "tags": ["maintenance"],
       "code": [
         {
           "id": 1,
