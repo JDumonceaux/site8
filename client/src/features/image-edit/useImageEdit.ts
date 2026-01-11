@@ -9,7 +9,7 @@ import {
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import useForm from '@hooks/useForm';
 import { ServiceUrl } from '@lib/utils/constants';
-import { safeParse } from '@lib/utils/zodHelper';
+import { safeParse } from '@lib/utils/schemaHelper';
 import { type ImageEdit, ImageEditSchema } from '@site8/shared';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useImage from './useImage';
@@ -145,7 +145,7 @@ export const useImageEdit = (
       // Validate form
       const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
       if (!result.success) {
-        setErrors(result.error?.issues ?? null);
+        setErrors(result.error ?? null);
         return { message: 'Validation failed', success: false };
       }
 
@@ -195,7 +195,7 @@ export const useImageEdit = (
 
   const validateForm = useCallback(() => {
     const result = safeParse<ImageEdit>(ImageEditSchema, formValues);
-    setErrors(result.success ? null : (result.error?.issues ?? null));
+    setErrors(result.success ? null : (result.error ?? null));
     return result.success;
   }, [formValues, setErrors]);
 

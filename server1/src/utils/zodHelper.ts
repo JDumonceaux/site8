@@ -1,29 +1,30 @@
-import type { ZodError, ZodType } from 'zod';
+import type { BaseIssue, BaseSchema } from 'valibot';
+import { safeParse as valibotSafeParse } from 'valibot';
 
 export type ParseResult<T> = {
   readonly data: T | null;
-  readonly error: ZodError<T> | null;
+  readonly error: BaseIssue<unknown>[] | null;
   readonly errorFormatted: string | null;
   readonly success: boolean;
 };
 
 export const safeParse = <T>(
-  schema: ZodType<T>,
+  schema: BaseSchema<unknown, T, BaseIssue<unknown>>,
   inputData: Partial<T>,
 ): ParseResult<T> => {
-  const parsedData = schema.safeParse(inputData);
+  const parsedData = valibotSafeParse(schema, inputData);
 
   if (!parsedData.success) {
     return {
       data: null,
-      error: parsedData.error,
-      errorFormatted: JSON.stringify(parsedData.error.issues),
+      error: parsedData.issues,
+      errorFormatted: JSON.stringify(parsedData.issues),
       success: false,
     };
   }
 
   return {
-    data: parsedData.data,
+    data: parsedData.output,
     error: null,
     errorFormatted: null,
     success: true,

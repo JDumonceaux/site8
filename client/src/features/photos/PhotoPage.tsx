@@ -28,7 +28,7 @@ const PhotoPage = (): JSX.Element | null => {
           >
             <ul>
               {items.map(({ description, id, url }) => {
-                const safeUrl = sanitizeUrl(url);
+                const safeUrl = sanitizeUrl(url ?? '');
                 return (
                   <li key={id}>
                     <a
@@ -55,4 +55,3 @@ const PhotoPage = (): JSX.Element | null => {
 
 PhotoPage.displayName = 'PhotoPage';
 export default PhotoPage;
-

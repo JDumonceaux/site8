@@ -6,17 +6,17 @@ import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import { emailAddress } from '@types';
-import { z } from 'zod';
+import * as v from 'valibot';
 import AuthContainer from './AuthContainer';
 import { createFormAction } from './authFormHelpers';
 import { InstDiv, StyledBottomMsg, StyledForm } from './AuthFormStyles';
 import FormMessage from './FormMessage';
 
-const schema = z.object({
+const schema = v.object({
   emailAddress,
 });
 
-type FormValues = z.infer<typeof schema>;
+type FormValues = v.InferOutput<typeof schema>;
 
 const ForgotPasswordPage = (): JSX.Element => {
   const title = 'Forgot Password';
@@ -58,7 +58,6 @@ const ForgotPasswordPage = (): JSX.Element => {
             autoComplete="email"
             inputMode="email"
             label="Email Address"
-            name="emailAddress"
             placeholder="Enter Email Address"
             spellCheck="false"
           />

@@ -2,27 +2,27 @@ import { useActionState, useOptimistic } from 'react';
 
 import { ServiceUrl } from '@lib/utils/constants';
 import type { Test, Tests } from '@types';
-import { z } from 'zod';
+import * as v from 'valibot';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
 import useTests from './useTests';
 
-// Define Zod Shape
-const pageSchema = z.object({
-  action: z.string().optional(),
-  id: z.number(),
-  level: z.string().optional(),
-  lineId: z.number(),
-  name: z.string().optional(),
-  parentId: z.string().optional(),
-  parentSeq: z.string().optional(),
-  projectType: z.string().optional(),
-  text: z.string().optional(),
-  type: z.string().optional(),
+// Define Valibot Shape
+const pageSchema = v.object({
+  action: v.optional(v.string()),
+  id: v.number(),
+  level: v.optional(v.string()),
+  lineId: v.number(),
+  name: v.optional(v.string()),
+  parentId: v.optional(v.string()),
+  parentSeq: v.optional(v.string()),
+  projectType: v.optional(v.string()),
+  text: v.optional(v.string()),
+  type: v.optional(v.string()),
 });
 
 // Create a type from the schema
-type FormType = z.infer<typeof pageSchema>;
+type FormType = v.InferOutput<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
 type FormState = {

@@ -1,5 +1,6 @@
 import type { Request } from 'express';
-import type { ZodType } from 'zod';
+import type { BaseIssue, BaseSchema } from 'valibot';
+import { safeParse } from 'valibot';
 
 /**
  * Result of request validation
@@ -45,20 +46,26 @@ export const convertIdsToNumbers = <T extends Record<string, unknown>>(
 };
 
 /**
- * Validates request body against a Zod schema
+ * Validates request body against a Valibot schema
  * @param req - Express request object
- * @param schema - Zod schema to validate against
+ * @param schema - Valibot schema to validate against
  * @returns Validation result with data or error message
  */
 export const validateBody = <T>(
   req: Request,
-  schema: ZodType<T>,
+  schema: BaseSchema<unknown, T, BaseIssue<unknown>>,
 ): ValidationResult<T> => {
-  const validationResult = schema.safeParse(req.body);
+  const validationResult = safeParse(schema, req.body);
 
   if (!validationResult.success) {
-    const errorMessage = validationResult.error.issues
-      .map((err) => `${err.path.join('.')}: ${err.message}`)
+    const errorMessage = validationResult.issues
+      .map((err) => {
+        const path =
+          'path' in err && Array.isArray(err.path)
+            ? err.path.map((p) => p.key).join('.')
+            : '';
+        return `${path}: ${err.message}`;
+      })
       .join(', ');
 
     return {
@@ -68,7 +75,7 @@ export const validateBody = <T>(
   }
 
   return {
-    data: validationResult.data,
+    data: validationResult.output,
     isValid: true,
   };
 };
@@ -76,24 +83,30 @@ export const validateBody = <T>(
 /**
  * Validates request body with additional data merged in
  * @param req - Express request object
- * @param schema - Zod schema to validate against
+ * @param schema - Valibot schema to validate against
  * @param additionalData - Additional data to merge with request body
  * @returns Validation result with data or error message
  */
 export const validateBodyWithData = <T>(
   req: Request,
-  schema: ZodType<T>,
+  schema: BaseSchema<unknown, T, BaseIssue<unknown>>,
   additionalData: Record<string, unknown>,
 ): ValidationResult<T> => {
   const requestData = {
     ...(req.body as Record<string, unknown>),
     ...additionalData,
   };
-  const validationResult = schema.safeParse(requestData);
+  const validationResult = safeParse(schema, requestData);
 
   if (!validationResult.success) {
-    const errorMessage = validationResult.error.issues
-      .map((err) => `${err.path.join('.')}: ${err.message}`)
+    const errorMessage = validationResult.issues
+      .map((err) => {
+        const path =
+          'path' in err && Array.isArray(err.path)
+            ? err.path.map((p) => p.key).join('.')
+            : '';
+        return `${path}: ${err.message}`;
+      })
       .join(', ');
 
     return {
@@ -103,7 +116,7 @@ export const validateBodyWithData = <T>(
   }
 
   return {
-    data: validationResult.data,
+    data: validationResult.output,
     isValid: true,
   };
 };

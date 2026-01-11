@@ -2,27 +2,27 @@ import { useActionState } from 'react';
 
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import type { MenuEdit } from '@types';
-import { z } from 'zod';
+import * as v from 'valibot';
 import { useAxios } from '../../hooks/axios/useAxios';
 import useFormArray from '../../hooks/useFormArray';
 import useTestMenus from './useTestMenus';
 
 export type SortByType = 'name' | 'seq';
 
-// Define Zod Shape
-const pageSchema = z.object({
-  id: z.number(),
-  lineId: z.number(),
-  name: z.string().optional(),
-  parent: z.string().min(1, REQUIRED_FIELD),
-  seq: z.string(),
-  sortby: z.string(),
-  tempId: z.number(),
-  type: z.string(),
+// Define Valibot Shape
+const pageSchema = v.object({
+  id: v.number(),
+  lineId: v.number(),
+  name: v.optional(v.string()),
+  parent: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD)),
+  seq: v.string(),
+  sortby: v.string(),
+  tempId: v.number(),
+  type: v.string(),
 });
 
 // Create a type from the schema
-type FormType = z.infer<typeof pageSchema>;
+type FormType = v.InferOutput<typeof pageSchema>;
 type FormKeys = keyof FormType;
 
 type FormState = {

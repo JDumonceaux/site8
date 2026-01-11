@@ -1,5 +1,5 @@
-import type { Artists , ArtistsItems , ItemsFile } from '@site8/shared';
-import type { ZodType } from 'zod';
+import type { Artists, ArtistsItems, ItemsFile } from '@site8/shared';
+import type { BaseIssue, BaseSchema } from 'valibot';
 
 import { ItemsFileSchema } from '@site8/shared';
 
@@ -33,7 +33,11 @@ export class ArtistsService extends BaseDataService<ItemsFile> {
       defaultMetadata: { title: 'artists' },
       enableCache: true,
       filePath: FilePath.getDataDir(fileName),
-      validationSchema: ItemsFileSchema as ZodType<ItemsFile>,
+      validationSchema: ItemsFileSchema as BaseSchema<
+        unknown,
+        ItemsFile,
+        BaseIssue<unknown>
+      >,
     });
   }
 

@@ -1,16 +1,13 @@
-import { z } from 'zod';
+import * as v from 'valibot';
 
-export const VideoSchema = z
-  .object({
-    id: z.number(),
-    /** Accessible title for the iframe (defaults to `title`) */
-    iframeTitle: z.string().optional(),
-    /** Displayed heading above the video */
-    title: z.string(),
-    /** Source URL for the embedded video */
-    videoSrc: z.url(),
-  })
-  .strict()
-  .readonly();
+export const VideoSchema = v.object({
+  id: v.number(),
+  /** Accessible title for the iframe (defaults to `title`) */
+  iframeTitle: v.optional(v.string()),
+  /** Displayed heading above the video */
+  title: v.string(),
+  /** Source URL for the embedded video */
+  videoSrc: v.pipe(v.string(), v.url()),
+});
 
-export type Video = z.infer<typeof VideoSchema>;
+export type Video = v.InferOutput<typeof VideoSchema>;

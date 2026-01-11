@@ -1,5 +1,5 @@
 import type { IDataService } from './IDataService.js';
-import type { ZodType } from 'zod';
+import type { BaseIssue, BaseSchema } from 'valibot';
 
 import { getFileService } from '../utils/ServiceFactory.js';
 
@@ -24,8 +24,8 @@ export type BaseDataServiceConfig<T> = {
   filePath: string;
   /** Service name for logging (default: derived from filePath) */
   serviceName?: string;
-  /** Zod schema for validation (optional) */
-  validationSchema?: ZodType<T>;
+  /** Valibot schema for validation (optional) */
+  validationSchema?: BaseSchema<unknown, T, BaseIssue<unknown>>;
 };
 
 /**

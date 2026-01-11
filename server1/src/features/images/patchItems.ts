@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
 import { ImageEditSchema } from '@site8/shared';
-import { z } from 'zod';
+import * as v from 'valibot';
 
 import { validateBody } from '../../lib/http/RequestValidator.js';
 import { badRequest, noContent } from '../../lib/http/ResponseHelper.js';
@@ -9,10 +9,10 @@ import { Logger } from '../../utils/logger.js';
 import { getImagesService } from '../../utils/ServiceFactory.js';
 
 // Schema for Images collection with array of ImageEdit
-const ImagesSchema = z.object({
-  items: z.array(ImageEditSchema),
-  metadata: z.object({
-    title: z.string(),
+const ImagesSchema = v.object({
+  items: v.array(ImageEditSchema),
+  metadata: v.object({
+    title: v.string(),
   }),
 });
 

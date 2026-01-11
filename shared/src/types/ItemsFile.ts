@@ -1,4 +1,4 @@
-import { z } from "zod";
+import * as v from "valibot";
 import { ArtistSchema } from "./Artist.js";
 import { ItemSchema } from "./Item.js";
 import { MetadataSchema } from "./Metadata.js";
@@ -7,10 +7,10 @@ import { MetadataSchema } from "./Metadata.js";
  * ItemsFile schema for validation
  * Used for file-based item storage
  */
-export const ItemsFileSchema = z.object({
-  artists: z.array(ArtistSchema).default([]),
-  items: z.array(ItemSchema).default([]),
+export const ItemsFileSchema = v.object({
+  artists: v.optional(v.array(ArtistSchema), []),
+  items: v.optional(v.array(ItemSchema), []),
   metadata: MetadataSchema,
 });
 
-export type ItemsFile = z.infer<typeof ItemsFileSchema>;
+export type ItemsFile = v.InferOutput<typeof ItemsFileSchema>;

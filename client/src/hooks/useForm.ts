@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import type { z } from 'zod';
+import type { BaseIssue } from 'valibot';
 
 type FormKeys<T> = keyof T;
 type FieldValue = boolean | null | number | string;
@@ -10,7 +10,7 @@ type FieldValue = boolean | null | number | string;
  */
 export type UseFormReturn<T> = {
   /** Current errors from validation */
-  errors: null | z.core.$ZodIssue[];
+  errors: BaseIssue<unknown>[] | null;
   /** Current form values */
   formValues: T;
   /** Get default props for an input field (id, value, onChange) */
@@ -47,7 +47,7 @@ export type UseFormReturn<T> = {
   /** Whether form has been saved (not dirty) */
   isSaved: boolean;
   /** Set validation errors */
-  setErrors: (errors: null | z.core.$ZodIssue[]) => void;
+  setErrors: (errors: BaseIssue<unknown>[] | null) => void;
   /** Set a single field value */
   setFieldValue: (fieldName: FormKeys<T>, value: FieldValue) => void;
   /** Set entire form values */
@@ -79,7 +79,7 @@ export type UseFormReturn<T> = {
  */
 const useForm = <T>(initialValues: T): UseFormReturn<T> => {
   const [formValues, setFormValues] = useState<T>(initialValues);
-  const [errors, setErrors] = useState<null | z.core.$ZodIssue[]>(null);
+  const [errors, setErrors] = useState<BaseIssue<unknown>[] | null>(null);
   const [isSaved, setIsSaved] = useState<boolean>(true);
 
   const setFieldValue = (fieldName: FormKeys<T>, value: FieldValue) => {
@@ -106,9 +106,14 @@ const useForm = <T>(initialValues: T): UseFormReturn<T> => {
 
   const getFieldErrors = (fieldName: FormKeys<T>): null | string | string[] => {
     if (errors == null) return null;
-    const filteredErrors = errors.filter((issue) =>
-      issue.path.includes(fieldName as string),
-    );
+    const filteredErrors = errors.filter((issue) => {
+      if (!issue.path || issue.path.length === 0) return false;
+      const firstPath = issue.path[0];
+      if (typeof firstPath === 'object' && 'key' in firstPath) {
+        return firstPath.key === fieldName;
+      }
+      return false;
+    });
     return filteredErrors.length > 0
       ? filteredErrors.map((issue) => issue.message)
       : null;

@@ -1,4 +1,4 @@
-import { Fragment, type JSX, useCallback } from 'react';
+import { Fragment, type JSX, type ReactNode, useCallback } from 'react';
 
 import StyledNavLink from '@components/ui/link/styled-nav-link/StyledNavLink';
 import type { MenuItem } from '@site8/shared';

@@ -1,25 +1,26 @@
 import { REQUIRED_FIELD } from '@lib/utils/constants';
-import { z } from 'zod';
+import * as v from 'valibot';
 
-export const PageEditSchema = z
-  .object({
-    id: z.number(),
-    parent: z.string().min(1, REQUIRED_FIELD),
-    readability_score: z.string().optional(),
-    reading_time: z.string().optional(),
-    text: z.string().trim(),
-    title: z
-      .string({ message: 'Title must be a string' })
-      .min(1, REQUIRED_FIELD)
-      .max(500, 'Title max length exceeded: 500')
-      .trim(),
-    to: z.string(),
-    url: z.string().min(1, REQUIRED_FIELD).trim(),
-  })
-  .refine(
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    (data) => data.to ?? data.url,
+export const PageEditSchema = v.pipe(
+  v.object({
+    id: v.number(),
+    parent: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD)),
+    readability_score: v.optional(v.string()),
+    reading_time: v.optional(v.string()),
+    text: v.pipe(v.string(), v.trim()),
+    title: v.pipe(
+      v.string('Title must be a string'),
+      v.minLength(1, REQUIRED_FIELD),
+      v.maxLength(500, 'Title max length exceeded: 500'),
+      v.trim(),
+    ),
+    to: v.string(),
+    url: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD), v.trim()),
+  }),
+  v.check(
+    (data) => !!(data.to || data.url),
     'Either to or url should be filled in.',
-  );
+  ),
+);
 
-export type PageEdit = z.infer<typeof PageEditSchema>;
+export type PageEdit = v.InferOutput<typeof PageEditSchema>;

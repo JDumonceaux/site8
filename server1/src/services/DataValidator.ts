@@ -1,4 +1,5 @@
-import type { ZodType } from 'zod';
+import type { BaseIssue, BaseSchema } from 'valibot';
+import { safeParse } from 'valibot';
 
 import { Logger } from '../utils/logger.js';
 
@@ -23,18 +24,20 @@ export type ValidatorConfig<T> = {
   defaultMetadata?: Record<string, unknown>;
   /** Service name for logging */
   serviceName: string;
-  /** Zod schema for validation */
-  validationSchema?: ZodType<T>;
+  /** Valibot schema for validation */
+  validationSchema?: BaseSchema<unknown, T, BaseIssue<unknown>>;
 };
 
 /**
- * Handles data validation using Zod schemas
+ * Handles data validation using Valibot schemas
  * Manages schema validation, error formatting, and metadata application
  */
 export class DataValidator<T> {
   private readonly defaultMetadata: Record<string, unknown> | undefined;
   private readonly serviceName: string;
-  private readonly validationSchema: ZodType<T> | undefined;
+  private readonly validationSchema:
+    | BaseSchema<unknown, T, BaseIssue<unknown>>
+    | undefined;
 
   public constructor(config: ValidatorConfig<T>) {
     this.serviceName = config.serviceName;
@@ -55,11 +58,17 @@ export class DataValidator<T> {
     }
 
     // Validate with schema
-    const validationResult = this.validationSchema.safeParse(data);
+    const validationResult = safeParse(this.validationSchema, data);
 
     if (!validationResult.success) {
-      const errors = validationResult.error.issues
-        .map((err) => `${err.path.join('.')}: ${err.message}`)
+      const errors = validationResult.issues
+        .map((err) => {
+          const path =
+            'path' in err && Array.isArray(err.path)
+              ? err.path.map((p) => p.key).join('.')
+              : '';
+          return `${path}: ${err.message}`;
+        })
         .join('; ');
 
       Logger.error(`${this.serviceName}: Data validation failed - ${errors}`);
@@ -70,7 +79,7 @@ export class DataValidator<T> {
       );
     }
 
-    return this.applyDefaultMetadata(validationResult.data);
+    return this.applyDefaultMetadata(validationResult.output);
   }
 
   /**

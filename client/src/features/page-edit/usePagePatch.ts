@@ -1,5 +1,6 @@
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
+import { safeParse } from '@lib/utils/schemaHelper';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { FormErrors, FormState, PageEdit } from '@types';
 import { PageEditSchema } from '@types';
@@ -55,15 +56,22 @@ const usePagePatch = () => {
     const temp = Object.fromEntries(formData.entries());
     const data: PageEdit = { ...temp, id: Number(temp.id) } as PageEdit;
 
-    const validationResult = PageEditSchema.safeParse(data);
+    const validationResult = safeParse<PageEdit>(PageEditSchema, data);
 
     if (!validationResult.success) {
       const tempErrors: FormErrors = {};
 
-      // Map each Zod issue into our FormErrors shape
+      // Map each Valibot issue into our FormErrors shape
 
-      for (const issue of validationResult.error.issues) {
-        const fieldName = issue.path[0] as keyof FormErrors;
+      for (const issue of validationResult.error ?? []) {
+        const firstPath = issue.path?.[0];
+        if (
+          !firstPath ||
+          typeof firstPath !== 'object' ||
+          !('key' in firstPath)
+        )
+          continue;
+        const fieldName = firstPath.key as keyof FormErrors;
         tempErrors[fieldName] = { errors: [] };
         tempErrors[fieldName].errors?.push({
           message: issue.message,

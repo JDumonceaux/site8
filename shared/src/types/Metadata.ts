@@ -1,13 +1,13 @@
-import { z } from "zod";
+import * as v from "valibot";
 
-export const MetadataSchema = z.object({
-  description: z.string().optional(),
-  lastUpdated: z.string().optional(),
-  subtitle: z.string().optional(),
-  title: z.string(),
-  totalGroups: z.number().optional(),
-  totalItems: z.number().optional(),
-  version: z.string().optional(),
+export const MetadataSchema = v.object({
+  description: v.optional(v.string()),
+  lastUpdated: v.optional(v.string()),
+  subtitle: v.optional(v.string()),
+  title: v.string(),
+  totalGroups: v.optional(v.number()),
+  totalItems: v.optional(v.number()),
+  version: v.optional(v.string()),
 });
 
-export type Metadata = z.infer<typeof MetadataSchema>;
+export type Metadata = v.InferOutput<typeof MetadataSchema>;

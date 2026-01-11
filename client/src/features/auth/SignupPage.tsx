@@ -8,20 +8,20 @@ import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import { type SocialProvider, SocialProviders } from '@features/auth/types';
 import useAuth from '@features/auth/useAuth';
 import { logError } from '@lib/utils/errorHandler';
-import type { emailAddress, password } from '@types';
-import { z } from 'zod';
+import { emailAddress, password } from '@types';
+import * as v from 'valibot';
 import AuthContainer from './AuthContainer';
 import { createFormAction } from './authFormHelpers';
 import { InstDiv, StyledForm } from './AuthFormStyles';
 import FormMessage from './FormMessage';
 import styled from 'styled-components';
 
-const schema = z.object({
+const schema = v.object({
   emailAddress,
   password,
 });
 
-type FormValues = z.infer<typeof schema>;
+type FormValues = v.InferOutput<typeof schema>;
 
 const SignupPage = (): JSX.Element => {
   const title = 'Sign-Up';

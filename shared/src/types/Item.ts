@@ -1,22 +1,30 @@
-import { z } from "zod";
+import * as v from "valibot";
 
 /**
  * Item Schema for validation
  * Represents an art/music item with comprehensive metadata
  */
-export const ItemSchema = z.object({
-  artist: z.string().optional(),
-  artisticPeriod: z.string().optional(),
-  artistId: z.number().int().positive("Artist ID must be a positive integer"),
-  description: z.string().optional(),
-  id: z.number().int().positive("Item ID must be a positive integer"),
-  lineId: z.number().int().optional(),
-  location: z.string().optional(),
-  officialWebAddress: z.string().optional(),
-  tags: z.array(z.string()).optional(),
-  title: z.string().min(1, "Item title is required"),
-  year: z.string().optional(),
-  yearDisplay: z.string().optional(),
+export const ItemSchema = v.object({
+  artist: v.optional(v.string()),
+  artisticPeriod: v.optional(v.string()),
+  artistId: v.pipe(
+    v.number(),
+    v.integer(),
+    v.minValue(1, "Artist ID must be a positive integer")
+  ),
+  description: v.optional(v.string()),
+  id: v.pipe(
+    v.number(),
+    v.integer(),
+    v.minValue(1, "Item ID must be a positive integer")
+  ),
+  lineId: v.optional(v.pipe(v.number(), v.integer())),
+  location: v.optional(v.string()),
+  officialWebAddress: v.optional(v.string()),
+  tags: v.optional(v.array(v.string())),
+  title: v.pipe(v.string(), v.minLength(1, "Item title is required")),
+  year: v.optional(v.string()),
+  yearDisplay: v.optional(v.string()),
 });
 
-export type Item = z.infer<typeof ItemSchema>;
+export type Item = v.InferOutput<typeof ItemSchema>;

@@ -4,22 +4,24 @@ import { useAxios } from '@hooks/axios/useAxios';
 import useFormArray from '@hooks/useFormArray';
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import type { MenuEdit, MenuItem } from '@types';
-import { z } from 'zod';
+import * as v from 'valibot';
 import useMenusEdit from './useMenusEdit';
 
-// Define Zod Shape
-const pageSchema = z.object({
-  id: z.number(),
-  lineId: z.number(),
-  name: z.string().optional(),
-  parentId: z.number().min(1, { message: REQUIRED_FIELD }),
-  parentSeq: z.string(),
-  parentSortby: z.string(),
-  type: z.string(),
+// Define Valibot Shape
+const pageSchema = v.object({
+  id: v.number(),
+  lineId: v.number(),
+  name: v.optional(v.string()),
+  parentId: v.pipe(v.number(), v.minValue(1, REQUIRED_FIELD)),
+  parentSeq: v.string(),
+  parentSortby: v.string(),
+  type: v.optional(
+    v.union([v.literal('menu'), v.literal('page'), v.literal('root')]),
+  ),
 });
 
 // Create a type from the schema
-type FormType = z.infer<typeof pageSchema>;
+type FormType = v.InferOutput<typeof pageSchema>;
 type FormKeys = keyof FormType;
 type SortByType = 'name' | 'seq';
 
@@ -93,7 +95,7 @@ const usePagesEdit = () => {
     if (
       parentSortby &&
       parentSortby.length > 0 &&
-      parentItem?.sortby !== parentSortby
+      parentItem?.sortBy !== parentSortby
     ) {
       return true;
     }

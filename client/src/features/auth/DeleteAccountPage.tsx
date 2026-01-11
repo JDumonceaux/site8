@@ -6,13 +6,13 @@ import Input from '@components/ui/input/Input';
 import StyledLink from '@components/ui/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import { deleteCode } from '@types';
-import { z } from 'zod';
+import * as v from 'valibot';
 import AuthContainer from './AuthContainer';
 import { createFormAction } from './authFormHelpers';
 import { StyledBottomMsg, StyledForm } from './AuthFormStyles';
 import FormMessage from './FormMessage';
 
-const schema = z.object({
+const schema = v.object({
   deleteCode,
 });
 
@@ -59,7 +59,6 @@ const DeleteAccountPage = (): JSX.Element => {
             autoComplete="off"
             inputMode="text"
             label="Please enter 'delete' to confirm"
-            name="deleteCode"
             placeholder="delete"
             spellCheck="false"
           />

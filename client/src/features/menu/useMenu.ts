@@ -25,7 +25,7 @@ const useMenu = (): UseMenuReturn => {
   const findMenuItem = (url: string): MenuItem | undefined => {
     if (!data?.items) return undefined;
     return Array.from(data.items).find(
-      (item) => item.title.toLowerCase() === url.toLowerCase(),
+      (item) => item.title?.toLowerCase() === url.toLowerCase(),
     );
   };
 

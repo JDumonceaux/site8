@@ -1,6 +1,6 @@
-import { safeParse } from '@lib/utils/zodHelper';
-import type { z , ZodError, ZodType } from 'zod';
-
+import { safeParse } from '@lib/utils/schemaHelper';
+import type { BaseIssue, BaseSchema } from 'valibot';
+import { flatten } from 'valibot';
 
 export type SimpleFormState = {
   errors?: Record<string, string>;
@@ -8,16 +8,27 @@ export type SimpleFormState = {
 };
 
 export const formatValidationErrors = (
-  error: ZodError,
+  issues: BaseIssue<unknown>[],
 ): Record<string, string> => {
-  return Object.fromEntries(
-    error.issues.map((issue) => [issue.path[0], issue.message]),
+  if (issues.length === 0) return {};
+
+  const flattened = flatten(
+    issues as [BaseIssue<unknown>, ...BaseIssue<unknown>[]],
+  );
+  return Object.entries(flattened.nested ?? {}).reduce(
+    (acc, [key, value]) => {
+      if (value && value.length > 0) {
+        acc[key] = value[0];
+      }
+      return acc;
+    },
+    {} as Record<string, string>,
   );
 };
 
-export const createFormAction = <T extends ZodType>(
-  schema: T,
-  authFn: (data: z.infer<T>) => Promise<void>,
+export const createFormAction = <TInput, TOutput>(
+  schema: BaseSchema<TInput, TOutput, BaseIssue<unknown>>,
+  authFn: (data: TOutput) => Promise<void>,
   successMessage = 'Success',
 ) => {
   return async (
@@ -26,7 +37,7 @@ export const createFormAction = <T extends ZodType>(
   ): Promise<SimpleFormState> => {
     const data = Object.fromEntries(formData.entries());
 
-    const result = safeParse<z.infer<T>>(schema, data);
+    const result = safeParse<TOutput>(schema, data);
     if (!result.success || !result.data) {
       return {
         errors: result.error ? formatValidationErrors(result.error) : {},

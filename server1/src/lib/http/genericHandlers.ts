@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import type { ZodType } from 'zod';
+import type { BaseIssue, BaseSchema } from 'valibot';
 
 import { Logger } from '../../utils/logger.js';
 
@@ -69,7 +69,7 @@ type GetHandlerWithParamsConfig<T> = {
 type PatchOptions<T> = {
   getService: () => Partial<CrudService<T>>;
   idFields?: string[];
-  schema: ZodType<T>;
+  schema: BaseSchema<unknown, T, BaseIssue<unknown>>;
   serviceName: string;
 };
 
@@ -323,7 +323,7 @@ export const createPatchHandler = <T>({
 type PostOptions<T, TAdd> = {
   getService: () => Pick<CrudService<T, TAdd>, 'addItem' | 'getItem'>;
   resourcePath: string;
-  schema: ZodType<TAdd>;
+  schema: BaseSchema<unknown, TAdd, BaseIssue<unknown>>;
   serviceName: string;
 };
 

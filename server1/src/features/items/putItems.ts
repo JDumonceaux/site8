@@ -1,13 +1,13 @@
 import type { Request, Response } from 'express';
 
 import { ItemAddSchema } from '@site8/shared';
-import { z } from 'zod';
+import * as v from 'valibot';
 
 import { validateBody } from '../../lib/http/RequestValidator.js';
 import { badRequest, ok } from '../../lib/http/ResponseHelper.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
-const ItemAddArraySchema = z.array(ItemAddSchema);
+const ItemAddArraySchema = v.array(ItemAddSchema);
 
 /**
  * Handles PUT requests to create or replace multiple items

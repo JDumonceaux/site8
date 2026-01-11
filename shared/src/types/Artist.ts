@@ -1,18 +1,22 @@
-import { z } from "zod";
+import * as v from "valibot";
 
 /**
  * Artist schema for validation
  */
-export const ArtistSchema = z.object({
-  born: z.string().nullish(),
-  died: z.string().nullish(),
-  fullName: z.string().nullish(),
-  id: z.number().int().positive("Artist ID must be a positive integer"),
-  name: z.string().min(1, "Artist name is required"),
-  sortName: z.string().nullish(),
+export const ArtistSchema = v.object({
+  born: v.nullish(v.string()),
+  died: v.nullish(v.string()),
+  fullName: v.nullish(v.string()),
+  id: v.pipe(
+    v.number(),
+    v.integer(),
+    v.minValue(1, "Artist ID must be a positive integer")
+  ),
+  name: v.pipe(v.string(), v.minLength(1, "Artist name is required")),
+  sortName: v.nullish(v.string()),
 });
 
 /**
  * Artist type - represents an artist/creator
  */
-export type Artist = z.infer<typeof ArtistSchema>;
+export type Artist = v.InferOutput<typeof ArtistSchema>;

@@ -6,11 +6,6 @@ import Layout from '@features/layouts/layout/Layout';
 
 type UploadStatus = 'error' | 'idle' | 'success' | 'uploading';
 
-type ProgressEvent = {
-  loaded: number;
-  total?: number;
-};
-
 const FileUploadPage = (): JSX.Element => {
   const title = 'File Upload';
 

@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
 import { ItemEditSchema } from '@site8/shared';
-import { z } from 'zod';
+import * as v from 'valibot';
 
 import { validateBody } from '../../lib/http/RequestValidator.js';
 import {
@@ -12,7 +12,7 @@ import {
 import { Logger } from '../../utils/logger.js';
 import { getItemsService } from '../../utils/ServiceFactory.js';
 
-const ItemEditArraySchema = z.array(ItemEditSchema);
+const ItemEditArraySchema = v.array(ItemEditSchema);
 
 /**
  * Handles PATCH requests to update multiple item objects

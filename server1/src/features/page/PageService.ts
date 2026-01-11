@@ -1,9 +1,9 @@
 import type { PageText } from '../../types/PageText.js';
 import type { PagesService } from '../pages/PagesService.js';
 import type { PageFileService } from './PageFileService.js';
-import type { PageEdit , PageMenu , Pages } from '@site8/shared';
+import type { PageEdit, PageMenu, Pages } from '@site8/shared';
 
-import { z } from 'zod';
+import * as v from 'valibot';
 
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
@@ -15,32 +15,34 @@ import { safeParse } from '../../utils/zodHelper.js';
 
 import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
 
-const PAGE_ADD_SCHEMA = z
-  .object({
-    id: z.number(),
-    name: z
-      .string({
-        message: 'Name is required and must be a string',
-      })
-      .min(1, 'Name is required.')
-      .max(500, 'Name max length exceeded: 500')
-      .trim(),
-    parentItems: z
-      .object({
-        id: z.number(),
-        seq: z.number(),
-      })
-      .array()
-      .min(1),
-    to: z.string().trim().optional(),
-    url: z.string().trim().optional(),
-  })
-  .refine(
-    (data) => data.to ?? data.url,
+const PAGE_ADD_SCHEMA = v.pipe(
+  v.object({
+    id: v.number(),
+    name: v.pipe(
+      v.string('Name is required and must be a string'),
+      v.trim(),
+      v.minLength(1, 'Name is required.'),
+      v.maxLength(500, 'Name max length exceeded: 500'),
+    ),
+    parentItems: v.pipe(
+      v.array(
+        v.object({
+          id: v.number(),
+          seq: v.number(),
+        }),
+      ),
+      v.minLength(1),
+    ),
+    to: v.optional(v.pipe(v.string(), v.trim())),
+    url: v.optional(v.pipe(v.string(), v.trim())),
+  }),
+  v.check(
+    (data) => !!(data.to || data.url),
     'Either to or url should be filled in.',
-  );
+  ),
+);
 
-type AddData = z.infer<typeof PAGE_ADD_SCHEMA>;
+type AddData = v.InferOutput<typeof PAGE_ADD_SCHEMA>;
 
 export class PageService {
   private readonly pageFileService: PageFileService;

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import * as v from "valibot";
 
 /**
  * Image type - represents an image with metadata
@@ -18,49 +18,57 @@ export type Image = {
  */
 const urlPattern = /^https?:\/\/.+/i;
 
-export const ImageEditSchema = z.object({
-  id: z.number(),
-  name: z
-    .string({ message: "Name must be a string" })
-    .trim()
-    .max(100, "Name max length exceeded: 100")
-    .optional(),
-  fileName: z
-    .string({ message: "File name must be a string" })
-    .trim()
-    .max(255, "File name max length exceeded: 255")
-    .optional(),
-  folder: z
-    .string({ message: "Folder must be a string" })
-    .trim()
-    .max(255, "Folder max length exceeded: 255")
-    .optional(),
-  ext_url: z
-    .string({ message: "URL must be a string" })
-    .trim()
-    .max(500, "URL max length exceeded: 500")
-    .optional()
-    .refine((v) => !v || urlPattern.test(v), {
-      message: "Must be a valid URL",
-    }),
-  description: z
-    .string({ message: "Description must be a string" })
-    .trim()
-    .max(2000, "Description max length exceeded: 2000")
-    .optional(),
+export const ImageEditSchema = v.object({
+  id: v.number(),
+  name: v.optional(
+    v.pipe(
+      v.string("Name must be a string"),
+      v.trim(),
+      v.maxLength(100, "Name max length exceeded: 100")
+    )
+  ),
+  fileName: v.optional(
+    v.pipe(
+      v.string("File name must be a string"),
+      v.trim(),
+      v.maxLength(255, "File name max length exceeded: 255")
+    )
+  ),
+  folder: v.optional(
+    v.pipe(
+      v.string("Folder must be a string"),
+      v.trim(),
+      v.maxLength(255, "Folder max length exceeded: 255")
+    )
+  ),
+  ext_url: v.optional(
+    v.pipe(
+      v.string("URL must be a string"),
+      v.trim(),
+      v.maxLength(500, "URL max length exceeded: 500"),
+      v.check((v) => !v || urlPattern.test(v), "Must be a valid URL")
+    )
+  ),
+  description: v.optional(
+    v.pipe(
+      v.string("Description must be a string"),
+      v.trim(),
+      v.maxLength(2000, "Description max length exceeded: 2000")
+    )
+  ),
 });
 
 /**
  * Image edit type
  */
-export type ImageEdit = z.infer<typeof ImageEditSchema>;
+export type ImageEdit = v.InferOutput<typeof ImageEditSchema>;
 
 /**
  * Image add schema for validation - omits id for new images
  */
-export const ImageAddSchema = ImageEditSchema.omit({ id: true });
+export const ImageAddSchema = v.omit(ImageEditSchema, ["id"]);
 
 /**
  * Image add type
  */
-export type ImageAdd = z.infer<typeof ImageAddSchema>;
+export type ImageAdd = v.InferOutput<typeof ImageAddSchema>;

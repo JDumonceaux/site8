@@ -7,14 +7,14 @@ import Input from '@components/ui/input/Input';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
 import { logError } from '@lib/utils/errorHandler';
-import { safeParse } from '@lib/utils/zodHelper';
-import { z } from 'zod';
+import { safeParse } from '@lib/utils/schemaHelper';
+import * as v from 'valibot';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';
 
-const schema = z.object({
-  authenticationCode: z.string().length(6, 'Code must be 6 digits'),
-  emailAddress: z.string().pipe(z.email({ message: 'Invalid email address' })),
+const schema = v.object({
+  authenticationCode: v.pipe(v.string(), v.length(6, 'Code must be 6 digits')),
+  emailAddress: v.pipe(v.string(), v.email('Invalid email address')),
 });
 
 type FormState = {
@@ -27,7 +27,7 @@ const ConfirmEmailPage = (): JSX.Element => {
   const { authConfirmSignUp, authResendConfirmationCode, error, isLoading } =
     useAuth();
 
-  type FormValues = z.infer<typeof schema>;
+  type FormValues = v.InferOutput<typeof schema>;
   type FormKeys = keyof FormValues;
 
   const initialFormValues: FormValues = {
@@ -40,7 +40,7 @@ const ConfirmEmailPage = (): JSX.Element => {
 
   const validateForm = () => {
     const result = safeParse<FormValues>(schema, formValues);
-    setErrors(result.error?.issues ?? null);
+    setErrors(result.error ?? null);
     return result.success;
   };
 

@@ -2,22 +2,22 @@ import type { ChangeEvent } from 'react';
 import { useActionState } from 'react';
 
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
-import { safeParse } from '@lib/utils/zodHelper';
+import { safeParse } from '@lib/utils/schemaHelper';
 import type { MenuAdd } from '@types';
-import { z } from 'zod';
+import * as v from 'valibot';
 import { useAxios } from './axios/useAxios';
 import useForm from './useForm';
 
 // Validation schema
-const pageSchema = z.object({
-  name: z.string().min(1, REQUIRED_FIELD),
-  parent: z.string().min(1, REQUIRED_FIELD),
-  seq: z.string().min(1, REQUIRED_FIELD),
-  sortby: z.string().min(1, REQUIRED_FIELD),
-  type: z.string().min(1, REQUIRED_FIELD),
+const pageSchema = v.object({
+  name: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD)),
+  parent: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD)),
+  seq: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD)),
+  sortby: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD)),
+  type: v.pipe(v.string(), v.minLength(1, REQUIRED_FIELD)),
 });
 
-type FormType = z.infer<typeof pageSchema>;
+type FormType = v.InferOutput<typeof pageSchema>;
 type FormKeys = keyof FormType;
 type SortByType = 'name' | 'seq';
 type MenuType = 'menu' | 'root';
@@ -53,7 +53,7 @@ const useMenuEdit = () => {
 
   const validateForm = (): boolean => {
     const result = safeParse<FormType>(pageSchema, formValues);
-    setErrors(result.error?.issues ?? null);
+    setErrors(result.error);
     return result.success;
   };
 
