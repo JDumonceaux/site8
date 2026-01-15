@@ -7,7 +7,6 @@ export type Tests = {
   readonly sections?: TestSection[];
   readonly metadata: Metadata;
 };
-``;
 
 export type TestSection = {
   readonly id: number;

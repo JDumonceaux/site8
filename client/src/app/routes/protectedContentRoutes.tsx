@@ -31,6 +31,9 @@ const TestsPage = lazy(async () => import('../../features/tests/TestsPage'));
 const TestsAiPage = lazy(
   async () => import('../../features/tests/TestsAiPage'),
 );
+const TestsAiEditPage = lazy(
+  async () => import('../../features/tests/edit/TestsAiEditPage'),
+);
 const MusicPage = lazy(async () => import('../../features/music/MusicPage'));
 
 /**
@@ -247,6 +250,10 @@ export const protectedContentRoutes = (
       <Route
         element={<TestsAiPage />}
         path="tests/ai"
+      />
+      <Route
+        element={<TestsAiEditPage />}
+        path="tests/ai/edit"
       />
     </Route>
   </Route>

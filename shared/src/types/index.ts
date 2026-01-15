@@ -35,7 +35,7 @@ export type { PhotoSet } from "./PhotoSet.js";
 export type { Place } from "./Place.js";
 export type { PlaceImage } from "./Place.js";
 export type { Places } from "./Places.js";
-export type { TestGroup, TestSection, Tests, Test } from "./Tests.js";
+export type { TestGroup, TestSection, TestCode, Tests, Test } from "./Tests.js";
 
 // Re-export schemas
 export { ArtistSchema } from "./Artist.js";

@@ -28,26 +28,21 @@ export class TestsAiService extends BaseDataService<Tests> {
       if (!testFile.items || !testFile.groups || !testFile.sections) {
         return {
           metadata: {
-            title: testFile.metadata?.title ?? FILTER_TAG,
+            title: testFile.metadata?.title ?? '',
           },
           sections: [],
         };
       }
 
-      // Filter items with 'code' tag and map to Test type
-      const aiItems: Test[] = testFile.items
-        .filter((item) => {
-          const { tags } = item;
-          return Array.isArray(tags) && tags.includes(FILTER_TAG);
-        })
-        .map((item) => ({
-          code: item.code,
-          comments: undefined,
-          id: item.id,
-          name: item.name,
-          seq: item.seq,
-          tags: item.tags ? [...item.tags] : undefined,
-        }));
+      // Map all items to Test type
+      const aiItems: Test[] = testFile.items.map((item) => ({
+        code: item.code,
+        comments: item.comments,
+        id: item.id,
+        name: item.name,
+        seq: item.seq,
+        tags: item.tags ? [...item.tags] : undefined,
+      }));
 
       if (aiItems.length === 0) {
         return {
@@ -155,6 +150,113 @@ export class TestsAiService extends BaseDataService<Tests> {
     } catch (error) {
       Logger.error(`TestsAiService: getItems --> Error: ${String(error)}`);
       throw error;
+    }
+  }
+
+  /**
+   * Updates AI-tagged test items with new data
+   * Updates names, comments, tags, and reorders items based on seq values
+   * IDs remain immutable
+   *
+   * @param updatedData - The updated Tests data structure
+   * @returns Promise<boolean> - true if successful, false otherwise
+   */
+  public async updateItems(updatedData: Tests): Promise<boolean> {
+    try {
+      Logger.info('TestsAiService: updateItems: Starting update process');
+
+      const fileService = getFileService();
+      const testFile: TestFile = await fileService.readFile<TestFile>(
+        FilePath.getDataDir('tests.json'),
+      );
+
+      if (!testFile.items || !testFile.groups || !testFile.sections) {
+        Logger.error('TestsAiService: updateItems: Invalid file structure');
+        return false;
+      }
+
+      // Create a mutable copy of the test file
+      const updatedGroups = testFile.groups.map((g) => ({ ...g }));
+      const updatedItems = testFile.items.map((i) => ({ ...i }));
+      const updatedSections = testFile.sections.map((s) => ({ ...s }));
+
+      // Process each section
+      for (const section of updatedData.sections ?? []) {
+        // Process each group in the section
+        for (const group of section.groups ?? []) {
+          // Update group properties (name, comments)
+          const groupIndex = updatedGroups.findIndex((g) => g.id === group.id);
+          if (groupIndex !== -1) {
+            const existingGroup = updatedGroups[groupIndex];
+            if (existingGroup) {
+              updatedGroups[groupIndex] = {
+                ...existingGroup,
+                comments: group.comments,
+                name: group.name,
+              };
+            }
+          }
+
+          // Process each item in the group
+          for (const item of group.items ?? []) {
+            const itemIndex = updatedItems.findIndex((i) => i.id === item.id);
+
+            if (itemIndex !== -1) {
+              const existingItem = updatedItems[itemIndex];
+              if (!existingItem) continue;
+
+              // Update item properties (name, tags, comments)
+              const updatedItem = {
+                ...existingItem,
+                comments: item.comments,
+                name: item.name,
+                tags: item.tags ? [...item.tags] : existingItem.tags,
+              };
+
+              // Update groupIds to reflect new sequence order
+              if (existingItem.groupIds) {
+                updatedItem.groupIds = existingItem.groupIds.map((groupRef) => {
+                  if (groupRef.id === group.id) {
+                    return {
+                      id: groupRef.id,
+                      seq: item.seq ?? groupRef.seq,
+                    };
+                  }
+                  return groupRef;
+                });
+              }
+
+              updatedItems[itemIndex] = updatedItem;
+            }
+          }
+        }
+      }
+
+      // Create updated test file with mutable arrays
+      const updatedTestFile: TestFile = {
+        groups: updatedGroups,
+        items: updatedItems,
+        metadata: {
+          ...testFile.metadata,
+          lastUpdated: new Date().toISOString().split('T')[0],
+        },
+        sections: updatedSections,
+      };
+
+      // Write the updated file back
+      await fileService.writeFile(
+        updatedTestFile,
+        FilePath.getDataDir('tests.json'),
+      );
+
+      // Invalidate cache
+      this.invalidateCache();
+
+      Logger.info('TestsAiService: updateItems: Successfully updated items');
+      return true;
+    } catch (error) {
+      Logger.error(`TestsAiService: updateItems --> Error: ${String(error)}`);
+      return false;
     }
   }
 }

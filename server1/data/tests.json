@@ -2,8 +2,8 @@
   "metadata": {
     "title": "Tests",
     "version": "1.0.0",
-    "lastUpdated": "2026-01-03",
-    "totalItems": 242,
+    "lastUpdated": "2026-01-14",
+    "totalItems": 318,
     "totalGroups": 17
   },
   "groups": [
@@ -16,130 +16,67 @@
           "seq": 1
         }
       ],
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path)."
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path)."
     },
     {
       "id": 2,
-      "name": "Codemod",
-      "tags": ["client"],
-      "sectionIds": [
-        {
-          "id": 8,
-          "seq": 1
-        }
-      ],
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path)."
-    },
-    {
-      "id": 3,
       "name": "Monthly Maintenance",
       "tags": ["client", "server"],
       "sectionIds": [
         {
-          "id": 17,
+          "id": 2,
           "seq": 1
         }
       ],
       "comments": "Maintenance steps to be performed on a monthly basis to ensure codebase health."
+    },
+    {
+      "id": 4,
+      "name": "React 19 Upgrade",
+      "tags": ["client"],
+      "sectionIds": [
+        {
+          "id": 2,
+          "seq": 2
+        }
+      ],
+      "comments": "Steps to upgrade the codebase to React 19."
+    },
+    {
+      "id": 3,
+      "name": "CodeMods",
+      "tags": ["client"],
+      "sectionIds": [
+        {
+          "id": 2,
+          "seq": 1
+        }
+      ],
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path)."
+    },
+    {
+      "id": 5,
+      "name": "CodeMods",
+      "sectionIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ],
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path)."
     }
   ],
   "sections": [
     {
       "id": 1,
-      "name": "Unknown"
+      "name": "Unknown",
+      "seq": 100
     },
     {
       "id": 2,
-      "name": "SEO"
-    },
-    {
-      "id": 3,
-      "name": "Performance"
-    },
-    {
-      "id": 4,
-      "name": "Best Practices"
-    },
-    {
-      "id": 5,
-      "name": "Security"
-    },
-    {
-      "id": 6,
-      "name": "Code Quality"
-    },
-    {
-      "id": 7,
-      "name": "Maintainability"
-    },
-    {
-      "id": 8,
-      "name": "Consistency"
-    },
-    {
-      "id": 9,
-      "name": "Quality"
-    },
-    {
-      "id": 10,
-      "name": "Metrics"
-    },
-    {
-      "id": 11,
-      "name": "Update"
-    },
-    {
-      "id": 12,
-      "name": "Data Quality"
-    },
-    {
-      "id": 13,
-      "name": "Style"
-    },
-    {
-      "id": 14,
-      "name": "Structure"
-    },
-    {
-      "id": 15,
-      "name": "React 19 - Migration",
-      "description": "Tests and updates related to migrating to React 19."
-    },
-    {
-      "id": 16,
-      "name": "Measurements"
-    },
-    {
-      "id": 17,
-      "name": "Reports"
-    },
-    {
-      "id": 18,
-      "name": "Fix"
-    },
-    {
-      "id": 19,
-      "name": "Standards"
-    },
-    {
-      "id": 20,
-      "name": "Update - Deprecation"
-    },
-    {
-      "id": 21,
-      "name": "Testing"
-    },
-    {
-      "id": 22,
-      "name": "Mobile Friendly"
-    },
-    {
-      "id": 23,
-      "name": "Performance"
-    },
-    {
-      "id": 24,
-      "name": "Maintenance"
+      "name": "React 19 Upgrade",
+      "comments": "Steps to upgrade the codebase to React 19. (Note: Upgrade to 19.2 is another set.)",
+      "seq": 10
     }
   ],
   "items": [
@@ -701,7 +638,7 @@
       "id": 44,
       "seq": 1000,
       "tags": ["react"],
-      "name": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
+      "name": "Set \u0027object-shorthand\u0027 to \u0027always\u0027 or \u0027warn\u0027 in \u0027rules\u0027 section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
       "groupIds": [
         {
           "id": 1,
@@ -856,17 +793,17 @@
       "id": 58,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
       "tags": ["react", "nodejs"],
-      "name": "TSConfig.json - Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>"
+      "name": "TSConfig.json - Check for new and deprecated options \u003ca href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\"\u003eTypescript\u003c/a\u003e"
     },
     {
       "id": 59,
       "tags": ["react", "nodejs"],
-      "name": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
+      "name": "Online Test - \u003ca href=\"https://securityheaders.com/\"\u003eSecurity Headers\u003c/a\u003e",
       "groupIds": [
         {
           "id": 1,
@@ -914,7 +851,7 @@
       "id": 63,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -933,7 +870,7 @@
       "id": 64,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -952,7 +889,7 @@
       "id": 65,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -971,7 +908,7 @@
       "id": 66,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -990,7 +927,7 @@
       "id": 67,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1009,7 +946,7 @@
       "id": 68,
       "groupIds": [
         {
-          "id": 16,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1029,7 +966,7 @@
       "id": 69,
       "groupIds": [
         {
-          "id": 16,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1049,7 +986,7 @@
       "id": 70,
       "groupIds": [
         {
-          "id": 16,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1191,7 +1128,7 @@
       "id": 82,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1202,7 +1139,7 @@
       "id": 83,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1213,7 +1150,7 @@
       "id": 84,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1224,7 +1161,7 @@
       "id": 85,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1235,7 +1172,7 @@
       "id": 86,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1246,7 +1183,7 @@
       "id": 87,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1257,7 +1194,7 @@
       "id": 88,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1269,7 +1206,7 @@
       "notes": "Caused errors - RegExp.escape()  ECMAScript 2025",
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1281,7 +1218,7 @@
       "notes": "12/25/2025 - Limited browser support.  Check compatibility before implementing (caniuse.com)",
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1292,7 +1229,7 @@
       "id": 91,
       "groupIds": [
         {
-          "id": 17,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -1303,7 +1240,7 @@
       "id": 92,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1314,7 +1251,7 @@
       "id": 93,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1325,7 +1262,7 @@
       "id": 94,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1336,7 +1273,7 @@
       "id": 95,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1347,7 +1284,7 @@
       "id": 96,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1358,7 +1295,7 @@
       "id": 97,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1369,7 +1306,7 @@
       "id": 98,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1380,7 +1317,7 @@
       "id": 99,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1391,7 +1328,7 @@
       "id": 100,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1402,7 +1339,7 @@
       "id": 101,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1413,7 +1350,7 @@
       "id": 102,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1425,7 +1362,7 @@
       "notes": "Find unused files, dependencies, and exports",
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1436,7 +1373,7 @@
       "id": 104,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1448,7 +1385,7 @@
       "notes": "Production build with optimization",
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1460,7 +1397,7 @@
       "notes": "Preview production build locally",
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1472,7 +1409,7 @@
       "notes": "Remove dist and coverage folders",
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1483,7 +1420,7 @@
       "id": 108,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1494,7 +1431,7 @@
       "id": 109,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1505,7 +1442,7 @@
       "id": 110,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1516,7 +1453,7 @@
       "id": 111,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1527,7 +1464,7 @@
       "id": 112,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1538,7 +1475,7 @@
       "id": 113,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1550,7 +1487,7 @@
       "notes": "Some of these feel too strict: e.g., noImplicitAny, strictNullChecks, strictFunctionTypes",
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1561,7 +1498,7 @@
       "id": 115,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1572,7 +1509,7 @@
       "id": 116,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1583,7 +1520,7 @@
       "id": 117,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1594,7 +1531,7 @@
       "id": 118,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1605,7 +1542,7 @@
       "id": 119,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1616,7 +1553,7 @@
       "id": 120,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1627,7 +1564,7 @@
       "id": 121,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1638,7 +1575,7 @@
       "id": 122,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1649,7 +1586,7 @@
       "id": 123,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1753,14 +1690,14 @@
     },
     {
       "id": 129,
-      "notes": "12/1/2025 - 'es2025' is not supported by Vite.  Use 'esnext' instead. This is need for features like Promise.try",
+      "notes": "12/1/2025 - \u0027es2025\u0027 is not supported by Vite.  Use \u0027esnext\u0027 instead. This is need for features like Promise.try",
       "tags": ["ai"],
       "code": [
         {
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "check tsconfig.json and update target and lib to 'esnext' (lower case)"
+          "content": "check tsconfig.json and update target and lib to \u0027esnext\u0027 (lower case)"
         }
       ],
       "name": "Javascript Version - esnext",
@@ -1794,7 +1731,7 @@
       "id": 131,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1813,7 +1750,7 @@
       "id": 132,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1832,7 +1769,7 @@
       "id": 133,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1851,7 +1788,7 @@
       "id": 134,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1870,7 +1807,7 @@
       "id": 135,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1880,7 +1817,7 @@
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
+          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions \u003e50 lines) and suggest specific refactoring improvements."
         }
       ],
       "name": "Anti-Patterns"
@@ -1889,7 +1826,7 @@
       "id": 136,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1908,7 +1845,7 @@
       "id": 137,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1927,7 +1864,7 @@
       "id": 138,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1946,7 +1883,7 @@
       "id": 139,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1965,7 +1902,7 @@
       "id": 140,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -1984,7 +1921,7 @@
       "id": 141,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2003,7 +1940,7 @@
       "id": 142,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2022,7 +1959,7 @@
       "id": 143,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2041,7 +1978,7 @@
       "id": 144,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2060,7 +1997,7 @@
       "id": 145,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2079,7 +2016,7 @@
       "id": 146,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2098,7 +2035,7 @@
       "id": 147,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2117,7 +2054,7 @@
       "id": 148,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2136,7 +2073,7 @@
       "id": 149,
       "groupIds": [
         {
-          "id": 3,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2155,7 +2092,7 @@
       "id": 150,
       "groupIds": [
         {
-          "id": 3,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2175,7 +2112,7 @@
       "id": 151,
       "groupIds": [
         {
-          "id": 3,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2194,7 +2131,7 @@
       "id": 152,
       "groupIds": [
         {
-          "id": 3,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2213,7 +2150,7 @@
       "id": 153,
       "groupIds": [
         {
-          "id": 3,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2232,7 +2169,7 @@
       "id": 154,
       "groupIds": [
         {
-          "id": 3,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2251,7 +2188,7 @@
       "id": 155,
       "groupIds": [
         {
-          "id": 4,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2270,7 +2207,7 @@
       "id": 156,
       "groupIds": [
         {
-          "id": 4,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2289,7 +2226,7 @@
       "id": 157,
       "groupIds": [
         {
-          "id": 5,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2308,7 +2245,7 @@
       "id": 158,
       "groupIds": [
         {
-          "id": 6,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2327,7 +2264,7 @@
       "id": 159,
       "groupIds": [
         {
-          "id": 6,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2346,7 +2283,7 @@
       "id": 160,
       "groupIds": [
         {
-          "id": 6,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2365,7 +2302,7 @@
       "id": 161,
       "groupIds": [
         {
-          "id": 7,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2384,7 +2321,7 @@
       "id": 162,
       "groupIds": [
         {
-          "id": 7,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2403,7 +2340,7 @@
       "id": 163,
       "groupIds": [
         {
-          "id": 7,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2422,7 +2359,7 @@
       "id": 164,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2441,7 +2378,7 @@
       "id": 165,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2460,7 +2397,7 @@
       "id": 166,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2480,7 +2417,7 @@
       "id": 167,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2499,7 +2436,7 @@
       "id": 168,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2518,7 +2455,7 @@
       "id": 169,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2537,7 +2474,7 @@
       "id": 170,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2556,7 +2493,7 @@
       "id": 171,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2575,7 +2512,7 @@
       "id": 172,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2594,7 +2531,7 @@
       "id": 173,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2613,7 +2550,7 @@
       "id": 174,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2632,7 +2569,7 @@
       "id": 175,
       "groupIds": [
         {
-          "id": 4,
+          "id": 3,
           "seq": 1
         }
       ],
@@ -2651,34 +2588,34 @@
       "id": 176,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 5
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
-          "id": 1,
-          "seq": 1,
+          "id": 2,
+          "seq": 100,
           "type": "Instructions",
           "content": "run replace-reactdom-render"
         }
       ],
-      "name": "React 19 - CodeMods"
+      "name": "React 19 - CodeMods - replace-reactdom-render"
     },
     {
       "id": 177,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 5
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
-          "id": 1,
-          "seq": 1,
+          "id": 2,
+          "seq": 10,
           "type": "Instructions",
           "content": "npx codemod@latest react/19/replace-use-form-state"
         }
@@ -2690,11 +2627,11 @@
       "id": 178,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 5
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2710,11 +2647,11 @@
       "id": 179,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 1
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2730,11 +2667,11 @@
       "id": 180,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 2
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2750,11 +2687,11 @@
       "id": 181,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 3
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2770,11 +2707,11 @@
       "id": 182,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 4
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2790,11 +2727,11 @@
       "id": 183,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 5
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2810,11 +2747,11 @@
       "id": 184,
       "groupIds": [
         {
-          "id": 1,
+          "id": 3,
           "seq": 6
         }
       ],
-      "tags": ["code"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2824,21 +2761,21 @@
         }
       ],
       "name": "React 19 - CodeMods - prop-types-typescript",
-      "comments": "Codemod to convert React PropTypes to TypeScript types. WARNING: If you're not using TypeScript already, don't run this."
+      "comments": "Codemod to convert React PropTypes to TypeScript types. WARNING: If you\u0027re not using TypeScript already, don\u0027t run this."
     },
     {
       "id": 185,
       "groupIds": [
         {
-          "id": 8,
+          "id": 3,
           "seq": 1
         }
       ],
-      "tags": ["ai"],
+      "tags": ["codemods"],
       "code": [
         {
-          "id": 1,
-          "seq": 1,
+          "id": 2,
+          "seq": 7,
           "type": "Instructions",
           "content": "run replace-string-ref"
         }
@@ -2849,11 +2786,11 @@
       "id": 186,
       "groupIds": [
         {
-          "id": 8,
-          "seq": 1
+          "id": 3,
+          "seq": 8
         }
       ],
-      "tags": ["ai"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2868,11 +2805,11 @@
       "id": 187,
       "groupIds": [
         {
-          "id": 8,
-          "seq": 1
+          "id": 3,
+          "seq": 9
         }
       ],
-      "tags": ["ai"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2887,11 +2824,11 @@
       "id": 188,
       "groupIds": [
         {
-          "id": 8,
+          "id": 3,
           "seq": 1
         }
       ],
-      "tags": ["ai"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2906,11 +2843,11 @@
       "id": 189,
       "groupIds": [
         {
-          "id": 8,
+          "id": 3,
           "seq": 1
         }
       ],
-      "tags": ["ai"],
+      "tags": ["codemods"],
       "code": [
         {
           "id": 1,
@@ -2925,7 +2862,7 @@
       "id": 190,
       "groupIds": [
         {
-          "id": 4,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -2938,13 +2875,14 @@
           "content": "Update all Zod deprecated methods and syntax to the latest version."
         }
       ],
-      "name": "Zod"
+      "name": "Zod",
+      "comments": "Zod 4 has memory issues.  Stay with Zod 3 until resolved."
     },
     {
       "id": 191,
       "groupIds": [
         {
-          "id": 4,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3126,7 +3064,7 @@
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "Update to Modern Error Responses: `res.status(400).json({ error: 'message' })`"
+          "content": "Update to Modern Error Responses: `res.status(400).json({ error: \u0027message\u0027 })`"
         }
       ],
       "name": "API Router Consistency - Modern Error Responses"
@@ -3145,7 +3083,7 @@
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "Error Response Formats: Standardize on `{ error: 'message' }` format"
+          "content": "Error Response Formats: Standardize on `{ error: \u0027message\u0027 }` format"
         }
       ],
       "name": "API Router Consistency - Error Response Formats"
@@ -3291,7 +3229,7 @@
       "id": 209,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3329,7 +3267,7 @@
       "id": 211,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3348,7 +3286,7 @@
       "id": 212,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3368,7 +3306,7 @@
       "id": 213,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3387,7 +3325,7 @@
       "id": 214,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3407,7 +3345,7 @@
       "id": 215,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3417,7 +3355,7 @@
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "Here's a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion."
+          "content": "Here\u0027s a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion."
         }
       ],
       "name": "Performance"
@@ -3426,7 +3364,7 @@
       "id": 216,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3445,7 +3383,7 @@
       "id": 217,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3464,7 +3402,7 @@
       "id": 218,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3474,7 +3412,7 @@
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "Review React components returning fragments containing only <Meta> or <Helmet> tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight."
+          "content": "Review React components returning fragments containing only \u003cMeta\u003e or \u003cHelmet\u003e tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight."
         }
       ],
       "name": "Fragment Pattern with Meta"
@@ -3483,7 +3421,7 @@
       "id": 219,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3502,7 +3440,7 @@
       "id": 220,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3524,7 +3462,7 @@
       "id": 221,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3546,7 +3484,7 @@
       "id": 222,
       "groupIds": [
         {
-          "id": 16,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3568,7 +3506,7 @@
       "id": 223,
       "groupIds": [
         {
-          "id": 16,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3590,7 +3528,7 @@
       "id": 224,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3600,19 +3538,19 @@
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "Audit for 'any' types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
+          "content": "Audit for \u0027any\u0027 types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
         }
       ],
-      "name": "TypeScript 'any' Audit",
+      "name": "TypeScript \u0027any\u0027 Audit",
       "testDate": "2026-01-03",
-      "status": "Passed - Zero 'any' types found",
+      "status": "Passed - Zero \u0027any\u0027 types found",
       "score": "100/100"
     },
     {
       "id": 225,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3649,14 +3587,14 @@
       ],
       "name": "Test Coverage Analysis",
       "testDate": "2026-01-03",
-      "status": "Needs Work - Only 9 test files found, ~<20% coverage",
+      "status": "Needs Work - Only 9 test files found, ~\u003c20% coverage",
       "score": "20/100"
     },
     {
       "id": 227,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3678,7 +3616,7 @@
       "id": 228,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3698,7 +3636,7 @@
       "id": 229,
       "groupIds": [
         {
-          "id": 17,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3713,14 +3651,14 @@
       ],
       "name": "Node Version Requirements",
       "testDate": "2026-01-03",
-      "status": "Passed - Engines field present: node >=20.0.0, npm >=10",
+      "status": "Passed - Engines field present: node \u003e=20.0.0, npm \u003e=10",
       "score": "100/100"
     },
     {
       "id": 230,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3862,7 +3800,7 @@
       "id": 237,
       "groupIds": [
         {
-          "id": 16,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3882,7 +3820,7 @@
       "id": 238,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 3
         }
       ],
@@ -3894,7 +3832,7 @@
       "id": 239,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 4
         }
       ],
@@ -3906,7 +3844,7 @@
       "id": 240,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 5
         }
       ],
@@ -3918,7 +3856,7 @@
       "id": 241,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 1
         }
       ],
@@ -3938,7 +3876,7 @@
       "id": 242,
       "groupIds": [
         {
-          "id": 2,
+          "id": 1,
           "seq": 2
         }
       ],
@@ -3953,6 +3891,1526 @@
       ],
       "name": "Node.js - Update",
       "comments": "Make sure to update Node.js to the latest stable version (LTS) to benefit from performance improvements and security patches.  Note: Your team should all be on the same version."
+    },
+    {
+      "id": 243,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 6
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest class-to-function-component"
+        }
+      ],
+      "name": "React - CodeMods - class-to-function-component",
+      "comments": "Transform React class components to modern function components with hooks."
+    },
+    {
+      "id": 244,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 7
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/update-react-imports"
+        }
+      ],
+      "name": "React - CodeMods - update-react-imports",
+      "comments": "Transforms React imports to use named imports instead of default or namespace imports. This helps reduce bundle size by allowing better tree-shaking of unused React exports."
+    },
+    {
+      "id": 245,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 8
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/create-element-to-jsx"
+        }
+      ],
+      "name": "React - CodeMods - create-element-to-jsx",
+      "comments": "Transforms React.createElement calls into JSX syntax, making your code more readable and maintainable."
+    },
+    {
+      "id": 246,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 9
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/replace-react-test-renderer-import"
+        }
+      ],
+      "name": "React 19 - CodeMods - replace-react-test-renderer-import",
+      "comments": "Replaces react-test-renderer/shallow import with react-shallow-renderer."
+    },
+    {
+      "id": 247,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 10
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/replace-create-factory"
+        }
+      ],
+      "name": "React 19 - CodeMods - replace-create-factory",
+      "comments": "Replaces deprecated React.createFactory method with JSX."
+    },
+    {
+      "id": 248,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 11
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/remove-active-classname"
+        }
+      ],
+      "name": "React Router - CodeMods - remove-active-classname",
+      "comments": "Migration codemod for React Router v6 to remove activeClassName prop."
+    },
+    {
+      "id": 249,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 12
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/remove-active-style"
+        }
+      ],
+      "name": "React Router - CodeMods - remove-active-style",
+      "comments": "Migration codemod for React Router v6 to remove activeStyle prop."
+    },
+    {
+      "id": 250,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 13
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/remove-redirect-inside-switch"
+        }
+      ],
+      "name": "React Router - CodeMods - remove-redirect-inside-switch",
+      "comments": "Migration codemod for React Router v6 to remove Redirect components inside Switch."
+    },
+    {
+      "id": 251,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 14
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/move-hoc-to-global-scope"
+        }
+      ],
+      "name": "React Router - CodeMods - move-hoc-to-global-scope",
+      "comments": "Moves HOC calls to the global scope for better performance with React Router."
+    },
+    {
+      "id": 252,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 15
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/remove-memoization"
+        }
+      ],
+      "name": "React 19 - CodeMods - remove-memoization",
+      "comments": "Removes manual memoization hooks: useCallback, useMemo and memo. This goes hand in hand with React Compiler. Note: This is not a safe codemod, as the compiler isn\u0027t 1-1 with inserting useMemo/useCallback."
+    },
+    {
+      "id": 253,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 16
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/remove-legacy-context"
+        }
+      ],
+      "name": "React 19 - CodeMods - remove-legacy-context",
+      "comments": "Removes legacy context methods childContextTypes and getChildContext from React class components. Wraps rendered children with Context."
+    },
+    {
+      "id": 254,
+      "groupIds": [
+        {
+          "id": 3,
+          "seq": 17
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react/19/remove-forward-ref"
+        }
+      ],
+      "name": "React 19 - CodeMods - remove-forward-ref",
+      "comments": "React.forwardRef will be deprecated for Function Components in near future. This codemod removes forwardRef function."
+    },
+    {
+      "id": 255,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 18
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/use-route-match"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - use-route-match",
+      "comments": "Migration codemod for React Router v6 useRouteMatch."
+    },
+    {
+      "id": 256,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 19
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/use-params"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - use-params",
+      "comments": "Migration codemod for React Router v6 useParams."
+    },
+    {
+      "id": 257,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 20
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/use-navigate"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - use-navigate",
+      "comments": "Migration codemod for React Router v6 useNavigate."
+    },
+    {
+      "id": 258,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 21
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/use-location"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - use-location",
+      "comments": "Migration codemod for React Router v6 useLocation."
+    },
+    {
+      "id": 259,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 22
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/static-router-imports"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - static-router-imports",
+      "comments": "Migration codemod for React Router v6 StaticRouter imports."
+    },
+    {
+      "id": 260,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 23
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/rename-compat-imports"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - rename-compat-imports",
+      "comments": "Migration codemod for React Router v6 to rename compat imports."
+    },
+    {
+      "id": 261,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 24
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/remove-go-hooks"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - remove-go-hooks",
+      "comments": "Migration codemod for React Router v6 to remove deprecated go hooks."
+    },
+    {
+      "id": 262,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 25
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/remove-compat-router"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - remove-compat-router",
+      "comments": "Migration codemod for React Router v6 to remove compat router."
+    },
+    {
+      "id": 263,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 26
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/redirect-to-navigate"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - redirect-to-navigate",
+      "comments": "Migration codemod for React Router v6 to convert Redirect to Navigate."
+    },
+    {
+      "id": 264,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 27
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/navlink-exact-end"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - navlink-exact-end",
+      "comments": "Migration codemod for React Router v6 NavLink exact to end prop."
+    },
+    {
+      "id": 265,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 28
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/match-path-arguments"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - match-path-arguments",
+      "comments": "Migration codemod for React Router v6 matchPath arguments."
+    },
+    {
+      "id": 266,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 29
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/link-to-props"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - link-to-props",
+      "comments": "Migration codemod for React Router v6 Link to props."
+    },
+    {
+      "id": 267,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 30
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/compat-router"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - compat-router",
+      "comments": "Migration codemod for React Router v6 compat router."
+    },
+    {
+      "id": 268,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 31
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/compat-route"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - compat-route",
+      "comments": "Migration codemod for React Router v6 compat route."
+    },
+    {
+      "id": 269,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 32
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/wrap-with-switch"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - wrap-with-switch",
+      "comments": "Migration codemod for React Router v4 to wrap routes with Switch."
+    },
+    {
+      "id": 270,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 33
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/use-history-hook"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - use-history-hook",
+      "comments": "Deprecates browserHistory and uses history from useHistory hook instead."
+    },
+    {
+      "id": 271,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 34
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/replace-param-prop"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - replace-param-prop",
+      "comments": "Replaces params prop passed by react-router with match.params."
+    },
+    {
+      "id": 272,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 35
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/replace-nested-routes"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - replace-nested-routes",
+      "comments": "Deprecates nested Route components through the use of render prop of the parent Route component."
+    },
+    {
+      "id": 273,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 36
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/replace-location-query"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - replace-location-query",
+      "comments": "Replaces instances of location.query with parse(location.search), where parse is imported from query-string."
+    },
+    {
+      "id": 274,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 37
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/rename-imports"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - rename-imports",
+      "comments": "Replaces react-router import source with react-router-dom."
+    },
+    {
+      "id": 275,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 38
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/remove-with-props"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - remove-with-props",
+      "comments": "Migration codemod for React Router v4 to remove withProps."
+    },
+    {
+      "id": 276,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 39
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/index-route"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - index-route",
+      "comments": "Replaces IndexRoute with Route having exact prop set to true."
+    },
+    {
+      "id": 277,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 40
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/hash-router"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - hash-router",
+      "comments": "Replaces Router using hashHistory to HashRouter in v4."
+    },
+    {
+      "id": 278,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 41
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/create-hash-history"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - create-hash-history",
+      "comments": "Migration codemod for React Router v4 createHashHistory."
+    },
+    {
+      "id": 279,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 42
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/browser-router"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - browser-router",
+      "comments": "Replaces Router using browserHistory to BrowserRouter in v4."
+    },
+    {
+      "id": 280,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 43
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/4/add-exact-prop"
+        }
+      ],
+      "name": "React Router 4 - CodeMods - add-exact-prop",
+      "comments": "Adds exact prop to all instances of Route component."
+    },
+    {
+      "id": 281,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 44
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-redux/0/add-state-type"
+        }
+      ],
+      "name": "React Redux - CodeMods - add-state-type",
+      "comments": "Migration codemod for React Redux to add state type."
+    },
+    {
+      "id": 282,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 45
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest next/13/upsert-use-client-directive"
+        }
+      ],
+      "name": "Next.js 13 - CodeMods - upsert-use-client-directive",
+      "comments": "Adds \u0027use client\u0027 directive to files that contain only client-side code since Next.js 13.4."
+    },
+    {
+      "id": 283,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 46
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest next/13/replace-next-router"
+        }
+      ],
+      "name": "Next.js 13 - CodeMods - replace-next-router",
+      "comments": "Migrates useRouter hook from next/router to next/navigation hooks introduced in Next.js 13.4."
+    },
+    {
+      "id": 284,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 47
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest next/13/comment-deletable-files"
+        }
+      ],
+      "name": "Next.js 13 - CodeMods - comment-deletable-files",
+      "comments": "Adds comments to files that should be deleted when migrating from /pages to /app directory (_document, _app, _error)."
+    },
+    {
+      "id": 285,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 48
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/migration-recipe"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - migration-recipe",
+      "comments": "Complete migration recipe for React Router v7 with multiple codemods included."
+    },
+    {
+      "id": 286,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 49
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/route-wildcard-to-nested"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - route-wildcard-to-nested",
+      "comments": "Transforms route wildcards into nested routes for React Router v7."
+    },
+    {
+      "id": 287,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 50
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/relative-links"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - relative-links",
+      "comments": "Updates Link elements to include extra relative segment for React Router v7."
+    },
+    {
+      "id": 288,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 51
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/form-methods-post-get-to-uppercase"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - form-methods-post-get-to-uppercase",
+      "comments": "Converts form method strings (post, get) to uppercase as required by React Router v7."
+    },
+    {
+      "id": 289,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 52
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/errorfirst-mutation-reorder"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - errorfirst-mutation-reorder",
+      "comments": "Reorders error-first mutation signatures for compatibility with React Router v7."
+    },
+    {
+      "id": 290,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 53
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/add_v7_skipActionStatusRevalidation_Flag"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - add_v7_skipActionStatusRevalidation_Flag",
+      "comments": "Adds v7_skipActionStatusRevalidation flag for improved action handling."
+    },
+    {
+      "id": 291,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 54
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/add_v7_partialHydration_Flag"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - add_v7_partialHydration_Flag",
+      "comments": "Integrates the partialHydration flag to support enhanced hydration strategies."
+    },
+    {
+      "id": 292,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 55
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/add_v7_normalizeFormMethod"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - add_v7_normalizeFormMethod",
+      "comments": "Normalizes form methods to align with React Router v7 conventions."
+    },
+    {
+      "id": 293,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 56
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/add_v7_fetcherPersist_Flag"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - add_v7_fetcherPersist_Flag",
+      "comments": "Adds the fetcherPersist flag to improve data fetching mechanisms."
+    },
+    {
+      "id": 294,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 57
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/add_v7_startTransition_Flag"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - add_v7_startTransition_Flag",
+      "comments": "Introduces the startTransition flag to enhance transitions in routing."
+    },
+    {
+      "id": 295,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 58
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/add_v7_relativeSplatPath_Flag"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - add_v7_relativeSplatPath_Flag",
+      "comments": "Enables new behavior for relative path matching and linking for multi-segment splat paths."
+    },
+    {
+      "id": 296,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 59
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/useHistory-to-useNavigate"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - useHistory-to-useNavigate",
+      "comments": "Migrates useHistory to useNavigate in React Router v6. Replaces history.push, history.replace, go, goBack, and goForward."
+    },
+    {
+      "id": 297,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 60
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/switch-to-routes"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - switch-to-routes",
+      "comments": "Updates Switch components to Routes in React Router v6."
+    },
+    {
+      "id": 298,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 61
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/Migrate-StaticRouter-Import"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - Migrate-StaticRouter-Import",
+      "comments": "Updates imports of StaticRouter to use react-router-dom/server package."
+    },
+    {
+      "id": 299,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 62
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/seperate-link-state-prop"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - seperate-link-state-prop",
+      "comments": "Simplifies Link component by transforming to prop from object with pathname to a string."
+    },
+    {
+      "id": 300,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 63
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/replace-useRouteMatchWithUseMatch"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - replace-useRouteMatchWithUseMatch",
+      "comments": "Updates useRouteMatch to useMatch, changing strict to end and sensitive to caseSensitive."
+    },
+    {
+      "id": 301,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 64
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/reorder-matchpath-args"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - reorder-matchpath-args",
+      "comments": "Reorders arguments in matchPath function calls for React Router v6."
+    },
+    {
+      "id": 302,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 65
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/remove-activeStyleprops"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - remove-activeStyleprops",
+      "comments": "Updates NavLink components to use isActive function instead of separate style and activeStyle props."
+    },
+    {
+      "id": 303,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 66
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/update-relative-links"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - update-relative-links",
+      "comments": "Removes deprecated exact prop from Route and updates to use element prop. Updates dynamic Link paths."
+    },
+    {
+      "id": 304,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 67
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/5.1/redirect-to-navigate"
+        }
+      ],
+      "name": "React Router 5.1 - CodeMods - redirect-to-navigate",
+      "comments": "Updates deprecated Redirect components to the modern Navigate API."
+    },
+    {
+      "id": 305,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 68
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/react-router-config-to-use-routes"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - react-router-config-to-use-routes",
+      "comments": "Updates code using react-router-config to modern useRoutes API."
+    },
+    {
+      "id": 306,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 69
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/6/navlink-exact-to-end"
+        }
+      ],
+      "name": "React Router 6 - CodeMods - navlink-exact-to-end",
+      "comments": "Replaces deprecated exact prop in NavLink with modern end prop."
+    },
+    {
+      "id": 307,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 70
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/5.1/component-render-to-children"
+        }
+      ],
+      "name": "React Router 5.1 - CodeMods - component-render-to-children",
+      "comments": "Transforms Route components using render and component props into JSX with nested children."
+    },
+    {
+      "id": 308,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 71
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest react-router/7/update-imports"
+        }
+      ],
+      "name": "React Router 7 - CodeMods - update-imports",
+      "comments": "Updates imports from react-router-dom to react-router (v7 combines packages)."
+    },
+    {
+      "id": 309,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 72
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest gatsby/v5/removal-useNavigate-hook"
+        }
+      ],
+      "name": "Gatsby 5 - CodeMods - removal-useNavigate-hook",
+      "comments": "Replaces deprecated useNavigate hook from @gatsbyjs/reach-router with navigate function from gatsby."
+    },
+    {
+      "id": 310,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 73
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest typescript/remove-console"
+        }
+      ],
+      "name": "TypeScript - CodeMods - remove-console",
+      "comments": "Removes all console statements from your TypeScript and JavaScript files."
+    },
+    {
+      "id": 311,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 74
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/v5-migration-recipe"
+        }
+      ],
+      "name": "Express.js - CodeMods - v5-migration-recipe",
+      "comments": "Complete migration recipe to update Express.js v4 applications to be compatible with Express.js v5 by addressing deprecated APIs."
+    },
+    {
+      "id": 312,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 75
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/explicit-request-params"
+        }
+      ],
+      "name": "Express.js - CodeMods - explicit-request-params",
+      "comments": "Migrates usage of the legacy API req.param(name) to the current recommended approaches."
+    },
+    {
+      "id": 313,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 76
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/redirect-arg-order"
+        }
+      ],
+      "name": "Express.js - CodeMods - redirect-arg-order",
+      "comments": "Migrates usage of the legacy API res.redirect(url, status) to use the recommended argument order res.redirect(status, url)."
+    },
+    {
+      "id": 314,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 77
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/route-del-to-delete"
+        }
+      ],
+      "name": "Express.js - CodeMods - route-del-to-delete",
+      "comments": "Migrates usage of the legacy API app.del() to app.delete()."
+    },
+    {
+      "id": 315,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 78
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/pluralize-method-names"
+        }
+      ],
+      "name": "Express.js - CodeMods - pluralize-method-names",
+      "comments": "Migrates usage of deprecated singular request methods to their pluralized versions in Express.js applications."
+    },
+    {
+      "id": 316,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 79
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/status-send-order"
+        }
+      ],
+      "name": "Express.js - CodeMods - status-send-order",
+      "comments": "Migrates usage of the legacy APIs res.send(status), res.send(obj, status), res.json(obj, status) and res.jsonp(obj, status) to the current recommended approaches."
+    },
+    {
+      "id": 317,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 80
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/camelcase-sendfile"
+        }
+      ],
+      "name": "Express.js - CodeMods - camelcase-sendfile",
+      "comments": "Migrates usage of the legacy API res.sendfile(file) to res.sendFile(file)."
+    },
+    {
+      "id": 318,
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 81
+        }
+      ],
+      "tags": ["codemods"],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "Instructions",
+          "content": "npx codemod@latest @expressjs/back-redirect-deprecated"
+        }
+      ],
+      "name": "Express.js - CodeMods - back-redirect-deprecated",
+      "comments": "Migrates usage of the legacy APIs res.redirect(\u0027back\u0027) and res.location(\u0027back\u0027) to the current recommended approaches."
     }
   ]
 }
