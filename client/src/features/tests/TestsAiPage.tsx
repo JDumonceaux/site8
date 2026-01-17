@@ -6,6 +6,7 @@ import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import IconButton from '@components/ui/button/icon-button/IconButton';
 import { CopyIcon } from '@components/ui/icons/CopyIcon';
+import { EditIcon } from '@components/ui/icons/EditIcon';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import SubjectMenu from '@features/generic/SubjectMenu';
@@ -22,11 +23,13 @@ type CodeBlockProps = {
 
 type TestItemComponentProps = {
   readonly item: Test;
-  readonly onEdit: (item: Test) => void;
+  readonly groupId: number;
+  readonly onEdit: (item: Test, groupId: number) => void;
 };
 
 const TestItemComponent = ({
   item,
+  groupId,
   onEdit,
 }: TestItemComponentProps): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -36,7 +39,7 @@ const TestItemComponent = ({
   };
 
   const handleEdit = (): void => {
-    onEdit(item);
+    onEdit(item, groupId);
   };
 
   return (
@@ -56,12 +59,12 @@ const TestItemComponent = ({
             ))}
           </TagsContainer>
         ) : null}
-        <IconButton
+        <EditIconButton
           aria-label="Edit test item"
           onClick={handleEdit}
         >
-          <i className="fa-solid fa-pen-to-square" />
-        </IconButton>
+          <EditIcon isAriaHidden />
+        </EditIconButton>
       </TestItemHeader>
       {isExpanded ? (
         <>
@@ -139,6 +142,7 @@ const TestsAiPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useTestsAi();
   const { groups: allGroups } = useTestGroups();
   const [editingItem, setEditingItem] = useState<null | Test>(null);
+  const [editingGroupId, setEditingGroupId] = useState<number | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { setMessage } = useSnackbar();
 
@@ -146,20 +150,22 @@ const TestsAiPage = (): JSX.Element => {
 
   const sections: readonly TestSection[] = data?.sections ?? [];
 
-  const handleEditItem = useCallback((item: Test) => {
+  const handleEditItem = useCallback((item: Test, groupId: number) => {
     setEditingItem(item);
+    setEditingGroupId(groupId);
     setIsDialogOpen(true);
   }, []);
 
   const handleCloseDialog = useCallback(() => {
     setIsDialogOpen(false);
     setEditingItem(null);
+    setEditingGroupId(null);
   }, []);
 
   const handleSaveItem = useCallback(
-    (updatedItem: Test) => {
+    (updatedItem: Test, groupId: number) => {
       // TODO: Implement actual save logic (API call)
-      console.log('Saving item:', updatedItem);
+      console.log('Saving item:', updatedItem, 'to group:', groupId);
       setMessage('Item updated (save functionality to be implemented)');
       handleCloseDialog();
     },
@@ -220,6 +226,7 @@ const TestsAiPage = (): JSX.Element => {
                               <TestList>
                                 {group.items?.map((item: Test) => (
                                   <TestItemComponent
+                                    groupId={group.id}
                                     item={item}
                                     key={item.id}
                                     onEdit={handleEditItem}
@@ -238,6 +245,7 @@ const TestsAiPage = (): JSX.Element => {
       </Layout.TwoColumn>
       <TestItemEditDialog
         availableGroups={allGroups}
+        groupId={editingGroupId}
         isOpen={isDialogOpen}
         item={editingItem}
         key={editingItem?.id ?? 'new'}
@@ -344,6 +352,28 @@ const TestItemHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+`;
+
+const EditIconButton = styled(IconButton)`
+  color: var(--text-secondary-color);
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+
+  &:hover:not(:disabled) {
+    color: var(--status-info);
+    background-color: var(--hover-background);
+  }
+
+  &:focus {
+    outline: 2px solid var(--status-info);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-sm);
+  }
+
+  i {
+    display: block;
+  }
 `;
 
 const TestItemName = styled.div`

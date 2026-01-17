@@ -8,21 +8,26 @@ import styled from 'styled-components';
 
 type TestItemEditDialogProps = {
   readonly availableGroups: readonly TestGroup[];
+  readonly groupId: null | number;
   readonly isOpen: boolean;
   readonly item: null | Test;
   readonly onClose: () => void;
-  readonly onSave: (updatedItem: Test) => void;
+  readonly onSave: (updatedItem: Test, groupId: number) => void;
 };
 
 const TestItemEditDialog = ({
   availableGroups,
+  groupId,
   isOpen,
   item,
   onClose,
   onSave,
 }: TestItemEditDialogProps): JSX.Element => {
   const [name, setName] = useState(item?.name ?? '');
-  const [selectedGroupId, setSelectedGroupId] = useState<number>(1);
+  const defaultGroupId = availableGroups[0]?.id ?? 1;
+  const [selectedGroupId, setSelectedGroupId] = useState<number>(
+    groupId ?? defaultGroupId,
+  );
   const [comments, setComments] = useState(item?.comments ?? '');
   const [tags, setTags] = useState(item?.tags?.join(', ') ?? '');
 
@@ -39,9 +44,9 @@ const TestItemEditDialog = ({
         .filter((t) => t.length > 0),
     };
 
-    onSave(updatedItem);
+    onSave(updatedItem, selectedGroupId);
     onClose();
-  }, [item, name, comments, tags, onSave, onClose]);
+  }, [item, name, comments, tags, selectedGroupId, onSave, onClose]);
 
   const handleCancel = useCallback(() => {
     onClose();
@@ -97,7 +102,8 @@ const TestItemEditDialog = ({
                 key={group.id}
                 value={group.id}
               >
-                {group.name}
+                {group.sectionName ?? 'Unknown Section'} - {group.name} -{' '}
+                {group.id}
               </option>
             ))}
           </Select>

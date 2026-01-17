@@ -23,6 +23,8 @@ export type TestGroup = {
   readonly comments?: string;
   readonly tags?: string[];
   readonly seq?: number;
+  readonly sectionId?: number;
+  readonly sectionName?: string;
 };
 
 export type Test = {

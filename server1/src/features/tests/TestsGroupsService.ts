@@ -33,15 +33,45 @@ export class TestsGroupsService extends BaseDataService<TestGroupsResponse> {
         };
       }
 
-      // Map groups to TestGroup type and sort by name
+      // Create a map of section IDs to section names for quick lookup
+      const sectionMap = new Map<number, string>();
+      if (testFile.sections) {
+        for (const section of testFile.sections) {
+          sectionMap.set(section.id, section.name);
+        }
+      }
+
+      // Map groups to TestGroup type with section information and sort by section name, then group name
       const groups: TestGroup[] = testFile.groups
-        .map((group) => ({
-          comments: group.comments,
-          id: group.id,
-          name: group.name,
-          tags: group.tags ? [...group.tags] : undefined,
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name));
+        .map((group) => {
+          // Get the first section reference for this group
+          const primarySection = group.sectionIds?.[0];
+          const sectionId = primarySection?.id;
+          const sectionName =
+            sectionId !== undefined ? sectionMap.get(sectionId) : undefined;
+
+          return {
+            comments: group.comments,
+            id: group.id,
+            name: group.name,
+            sectionId,
+            sectionName,
+            tags: group.tags ? [...group.tags] : undefined,
+          };
+        })
+        .sort((a, b) => {
+          // Sort by section name first
+          const sectionA = a.sectionName ?? '';
+          const sectionB = b.sectionName ?? '';
+          const sectionCompare = sectionA.localeCompare(sectionB);
+
+          // If sections are the same, sort by group name
+          if (sectionCompare === 0) {
+            return a.name.localeCompare(b.name);
+          }
+
+          return sectionCompare;
+        });
 
       return {
         groups,
