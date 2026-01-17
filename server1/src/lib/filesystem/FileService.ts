@@ -119,7 +119,13 @@ export class FileService {
       }
 
       // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path validated above
-      const data = await readFile(resolvedPath, { encoding: 'utf8' });
+      let data = await readFile(resolvedPath, { encoding: 'utf8' });
+
+      // Remove BOM if present
+      if (data.charCodeAt(0) === 0xfeff) {
+        data = data.slice(1);
+      }
+
       return JSON.parse(data) as T;
     } catch (error) {
       const errorMessage =

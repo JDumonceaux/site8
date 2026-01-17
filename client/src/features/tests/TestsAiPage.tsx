@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Meta from '@components/core/meta/Meta';
@@ -11,6 +11,8 @@ import useSnackbar from '@features/app/snackbar/useSnackbar';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
 import type { Test, TestSection } from '@site8/shared';
+import TestItemEditDialog from './edit/dialog/TestItemEditDialog';
+import useTestGroups from './useTestGroups';
 import useTestsAi from './useTestsAi';
 import styled from 'styled-components';
 
@@ -20,13 +22,21 @@ type CodeBlockProps = {
 
 type TestItemComponentProps = {
   readonly item: Test;
+  readonly onEdit: (item: Test) => void;
 };
 
-const TestItemComponent = ({ item }: TestItemComponentProps): JSX.Element => {
+const TestItemComponent = ({
+  item,
+  onEdit,
+}: TestItemComponentProps): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpanded = (): void => {
     setIsExpanded((prev) => !prev);
+  };
+
+  const handleEdit = (): void => {
+    onEdit(item);
   };
 
   return (
@@ -46,6 +56,12 @@ const TestItemComponent = ({ item }: TestItemComponentProps): JSX.Element => {
             ))}
           </TagsContainer>
         ) : null}
+        <IconButton
+          aria-label="Edit test item"
+          onClick={handleEdit}
+        >
+          <i className="fa-solid fa-pen-to-square" />
+        </IconButton>
       </TestItemHeader>
       {isExpanded ? (
         <>
@@ -121,10 +137,34 @@ const CodeBlock = ({ code }: CodeBlockProps): JSX.Element => {
 
 const TestsAiPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useTestsAi();
+  const { groups: allGroups } = useTestGroups();
+  const [editingItem, setEditingItem] = useState<null | Test>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { setMessage } = useSnackbar();
 
   const pageTitle = 'Quality Code';
 
   const sections: readonly TestSection[] = data?.sections ?? [];
+
+  const handleEditItem = useCallback((item: Test) => {
+    setEditingItem(item);
+    setIsDialogOpen(true);
+  }, []);
+
+  const handleCloseDialog = useCallback(() => {
+    setIsDialogOpen(false);
+    setEditingItem(null);
+  }, []);
+
+  const handleSaveItem = useCallback(
+    (updatedItem: Test) => {
+      // TODO: Implement actual save logic (API call)
+      console.log('Saving item:', updatedItem);
+      setMessage('Item updated (save functionality to be implemented)');
+      handleCloseDialog();
+    },
+    [setMessage, handleCloseDialog],
+  );
 
   return (
     <>
@@ -167,6 +207,13 @@ const TestsAiPage = (): JSX.Element => {
                           .map((group) => (
                             <GroupSection key={group.id}>
                               <GroupTitle>{group.name}</GroupTitle>
+                              {group.tags && group.tags.length > 0 ? (
+                                <TagsContainer>
+                                  {group.tags.map((tag: string) => (
+                                    <Tag key={tag}>{tag}</Tag>
+                                  ))}
+                                </TagsContainer>
+                              ) : null}
                               {group.comments ? (
                                 <GroupComments>{group.comments}</GroupComments>
                               ) : null}
@@ -175,6 +222,7 @@ const TestsAiPage = (): JSX.Element => {
                                   <TestItemComponent
                                     item={item}
                                     key={item.id}
+                                    onEdit={handleEditItem}
                                   />
                                 ))}
                               </TestList>
@@ -188,6 +236,14 @@ const TestsAiPage = (): JSX.Element => {
           </LoadingWrapper>
         </Layout.Content>
       </Layout.TwoColumn>
+      <TestItemEditDialog
+        availableGroups={allGroups}
+        isOpen={isDialogOpen}
+        item={editingItem}
+        key={editingItem?.id ?? 'new'}
+        onClose={handleCloseDialog}
+        onSave={handleSaveItem}
+      />
     </>
   );
 };

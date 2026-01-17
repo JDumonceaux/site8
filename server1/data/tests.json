@@ -3,8 +3,7 @@
     "title": "Tests",
     "version": "1.0.0",
     "lastUpdated": "2026-01-14",
-    "totalItems": 318,
-    "totalGroups": 17
+    "totalItems": 318
   },
   "groups": [
     {
@@ -30,18 +29,7 @@
       ],
       "comments": "Maintenance steps to be performed on a monthly basis to ensure codebase health."
     },
-    {
-      "id": 4,
-      "name": "React 19 Upgrade",
-      "tags": ["client"],
-      "sectionIds": [
-        {
-          "id": 2,
-          "seq": 2
-        }
-      ],
-      "comments": "Steps to upgrade the codebase to React 19."
-    },
+
     {
       "id": 3,
       "name": "CodeMods",
@@ -55,15 +43,53 @@
       "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path)."
     },
     {
-      "id": 5,
-      "name": "CodeMods",
+      "id": 4,
+      "name": "AI",
+      "tags": ["client"],
       "sectionIds": [
         {
-          "id": 1,
+          "id": 2,
           "seq": 1
         }
       ],
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path)."
+      "comments": "AI prompts to improve code quality and development efficiency."
+    },
+
+    {
+      "id": 5,
+      "name": "AI",
+      "tags": ["client"],
+      "sectionIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
+      "comments": "AI prompts to improve code quality and development efficiency."
+    },
+    {
+      "id": 6,
+      "name": "AI",
+      "tags": ["server"],
+      "sectionIds": [
+        {
+          "id": 3,
+          "seq": 1
+        }
+      ],
+      "comments": "AI prompts to improve code quality and development efficiency."
+    },
+    {
+      "id": 7,
+      "name": "AI",
+      "tags": ["client"],
+      "sectionIds": [
+        {
+          "id": 4,
+          "seq": 1
+        }
+      ],
+      "comments": "AI prompts."
     }
   ],
   "sections": [
@@ -76,6 +102,18 @@
       "id": 2,
       "name": "React 19 Upgrade",
       "comments": "Steps to upgrade the codebase to React 19. (Note: Upgrade to 19.2 is another set.)",
+      "seq": 10
+    },
+    {
+      "id": 3,
+      "name": "Code Review",
+      "comments": "General code review tasks to ensure code quality and adherence to best practices.",
+      "seq": 10
+    },
+    {
+      "id": 4,
+      "name": "Performance",
+      "comments": "Measurements.",
       "seq": 10
     }
   ],
@@ -1229,7 +1267,7 @@
       "id": 91,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -1553,7 +1591,7 @@
       "id": 120,
       "groupIds": [
         {
-          "id": 1,
+          "id": 5,
           "seq": 1
         }
       ],
@@ -1564,7 +1602,7 @@
       "id": 121,
       "groupIds": [
         {
-          "id": 1,
+          "id": 6,
           "seq": 1
         }
       ],
@@ -1807,7 +1845,7 @@
       "id": 135,
       "groupIds": [
         {
-          "id": 1,
+          "id": 5,
           "seq": 1
         }
       ],
@@ -2092,7 +2130,7 @@
       "id": 150,
       "groupIds": [
         {
-          "id": 1,
+          "id": 7,
           "seq": 1
         }
       ],
@@ -2359,7 +2397,7 @@
       "id": 164,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2378,7 +2416,7 @@
       "id": 165,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2397,7 +2435,7 @@
       "id": 166,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2417,7 +2455,7 @@
       "id": 167,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2436,7 +2474,7 @@
       "id": 168,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2455,7 +2493,7 @@
       "id": 169,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2474,7 +2512,7 @@
       "id": 170,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2493,7 +2531,7 @@
       "id": 171,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2512,7 +2550,7 @@
       "id": 172,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2531,7 +2569,7 @@
       "id": 173,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2550,7 +2588,7 @@
       "id": 174,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2569,7 +2607,7 @@
       "id": 175,
       "groupIds": [
         {
-          "id": 3,
+          "id": 4,
           "seq": 1
         }
       ],
@@ -2763,82 +2801,7 @@
       "name": "React 19 - CodeMods - prop-types-typescript",
       "comments": "Codemod to convert React PropTypes to TypeScript types. WARNING: If you\u0027re not using TypeScript already, don\u0027t run this."
     },
-    {
-      "id": 185,
-      "groupIds": [
-        {
-          "id": 3,
-          "seq": 1
-        }
-      ],
-      "tags": ["codemods"],
-      "code": [
-        {
-          "id": 2,
-          "seq": 7,
-          "type": "Instructions",
-          "content": "run replace-string-ref"
-        }
-      ],
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 186,
-      "groupIds": [
-        {
-          "id": 3,
-          "seq": 8
-        }
-      ],
-      "tags": ["codemods"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "run replace-act-import"
-        }
-      ],
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 187,
-      "groupIds": [
-        {
-          "id": 3,
-          "seq": 9
-        }
-      ],
-      "tags": ["codemods"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "run replace-use-form-state"
-        }
-      ],
-      "name": "React 19 - CodeMods"
-    },
-    {
-      "id": 188,
-      "groupIds": [
-        {
-          "id": 3,
-          "seq": 1
-        }
-      ],
-      "tags": ["codemods"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "run prop-types-typescript"
-        }
-      ],
-      "name": "React 19 - CodeMods"
-    },
+
     {
       "id": 189,
       "groupIds": [
@@ -2856,7 +2819,7 @@
           "content": "run types-react-codemod"
         }
       ],
-      "name": "React 19 - CodeMods"
+      "name": "React 19 - CodeMods - types-react-codemod"
     },
     {
       "id": 190,

@@ -48,7 +48,6 @@ export class TestsAiService extends BaseDataService<Tests> {
         return {
           metadata: {
             title: testFile.metadata?.title ?? FILTER_TAG,
-            totalGroups: 0,
             totalItems: 0,
           },
           sections: [],
@@ -139,10 +138,38 @@ export class TestsAiService extends BaseDataService<Tests> {
         });
       }
 
+      // Sort sections by seq, then name
+      sections.sort((a, b) => {
+        const seqDiff = (a.seq ?? 0) - (b.seq ?? 0);
+        if (seqDiff !== 0) return seqDiff;
+        return (a.name ?? '').localeCompare(b.name ?? '');
+      });
+
+      // Sort groups within each section by seq, then name
+      for (const section of sections) {
+        if (section.groups) {
+          section.groups.sort((a, b) => {
+            const seqDiff = (a.seq ?? 0) - (b.seq ?? 0);
+            if (seqDiff !== 0) return seqDiff;
+            return (a.name ?? '').localeCompare(b.name ?? '');
+          });
+
+          // Sort items within each group by seq, then name
+          for (const group of section.groups) {
+            if (group.items) {
+              group.items.sort((a, b) => {
+                const seqDiff = (a.seq ?? 0) - (b.seq ?? 0);
+                if (seqDiff !== 0) return seqDiff;
+                return (a.name ?? '').localeCompare(b.name ?? '');
+              });
+            }
+          }
+        }
+      }
+
       return {
         metadata: {
           title: testFile.metadata?.title ?? FILTER_TAG,
-          totalGroups: sections.length,
           totalItems: aiItems.length,
         },
         sections,
