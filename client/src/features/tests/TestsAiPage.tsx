@@ -1,6 +1,5 @@
 import type { JSX } from 'react';
 import { useCallback, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
@@ -11,6 +10,7 @@ import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
+import { ServiceUrl } from '@lib/utils/constants';
 import type { Test, TestSection } from '@site8/shared';
 import TestItemEditDialog from './edit/dialog/TestItemEditDialog';
 import useTestGroups from './useTestGroups';
@@ -163,11 +163,40 @@ const TestsAiPage = (): JSX.Element => {
   }, []);
 
   const handleSaveItem = useCallback(
-    (updatedItem: Test, groupId: number) => {
-      // TODO: Implement actual save logic (API call)
-      console.log('Saving item:', updatedItem, 'to group:', groupId);
-      setMessage('Item updated (save functionality to be implemented)');
-      handleCloseDialog();
+    async (updatedItem: Test, groupId: number) => {
+      try {
+        const response = await fetch(
+          ServiceUrl.ENDPOINT_TEST_UPDATE(updatedItem.id),
+          {
+            body: JSON.stringify({
+              groupId,
+              item: {
+                comments: updatedItem.comments,
+                name: updatedItem.name,
+                tags: updatedItem.tags,
+              },
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            method: 'PUT',
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to update item');
+        }
+
+        setMessage('Item updated successfully');
+        handleCloseDialog();
+
+        // Refresh the data
+        window.location.reload();
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : 'Unknown error';
+        setMessage(`Failed to update item: ${errorMessage}`);
+      }
     },
     [setMessage, handleCloseDialog],
   );
@@ -187,9 +216,6 @@ const TestsAiPage = (): JSX.Element => {
           >
             <Layout.Article>
               <PageTitle title={pageTitle} />
-              <EditLinkContainer>
-                <EditLink to="/tests/ai/edit">Edit Mode</EditLink>
-              </EditLinkContainer>
               <Layout.Section>
                 <TestsContainer>
                   {sections
@@ -467,41 +493,4 @@ const TestMeta = styled.div`
 const MetaItem = styled.span`
   font-size: 0.875rem;
   color: var(--text-secondary-color);
-`;
-
-const EditLinkContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: var(--surface-background-color);
-  border-radius: var(--border-radius-md);
-  border: 1px solid var(--border-light);
-`;
-
-const EditLink = styled(Link)`
-  padding: 0.75rem 1.5rem;
-  background: var(--status-info);
-  color: var(--text-inverted-color);
-  text-decoration: none;
-  border-radius: var(--border-radius-sm);
-  font-size: 1rem;
-  font-weight: var(--font-weight-semibold);
-  transition:
-    background 0.2s ease,
-    transform 0.1s ease;
-
-  &:hover {
-    background: var(--status-info-hover);
-    transform: translateY(-1px);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-
-  &:focus {
-    outline: 2px solid var(--status-info);
-    outline-offset: 2px;
-  }
 `;

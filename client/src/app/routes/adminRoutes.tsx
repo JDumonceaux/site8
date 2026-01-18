@@ -27,9 +27,6 @@ const PageEditPage = lazy(
 const PagesEditPage = lazy(
   async () => import('../../features/pages-edit/PagesEditPage'),
 );
-const TestsEditPage = lazy(
-  async () => import('../../features/tests/TestsEditPage'),
-);
 
 /**
  * Admin routes that require authentication and admin role
@@ -79,10 +76,6 @@ export const adminRoutes = (queryClient: QueryClient) => (
       <Route
         element={<ImagesEditPage />}
         path="images/edit"
-      />
-      <Route
-        element={<TestsEditPage />}
-        path="tests/edit"
       />
     </Route>
   </Route>

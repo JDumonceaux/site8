@@ -31,7 +31,6 @@ export type { PageMenu } from "./PageMenu.js";
 export type { Pages } from "./Pages.js";
 export type { Photo } from "./Photo.js";
 export type { Photos } from "./Photos.js";
-export type { PhotoSet } from "./PhotoSet.js";
 export type { Place } from "./Place.js";
 export type { PlaceImage } from "./Place.js";
 export type { Places } from "./Places.js";

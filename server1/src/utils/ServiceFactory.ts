@@ -23,7 +23,7 @@ import { PageFileService } from '../features/page/PageFileService.js';
 import { PageService } from '../features/page/PageService.js';
 import { PagesService } from '../features/pages/PagesService.js';
 import { PhotosService } from '../features/photos/PhotosService.js';
-import { TestsAiService } from '../features/tests/TestsAiService.js';
+import { TestService } from '../features/test/TestService.js';
 import { TestsGroupsService } from '../features/tests/TestsGroupsService.js';
 import { TestsService } from '../features/tests/TestsService.js';
 import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
@@ -113,8 +113,8 @@ class ServiceContainer {
     return this.getOrCreate('PrettierService', () => new PrettierService());
   }
 
-  public getTestsAiService(): TestsAiService {
-    return this.getOrCreate('TestsAiService', () => new TestsAiService());
+  public getTestService(): TestService {
+    return this.getOrCreate('TestService', () => new TestService());
   }
 
   public getTestsGroupsService(): TestsGroupsService {
@@ -180,9 +180,8 @@ export const getPlacesMenuService = (): PlacesMenuService =>
   container.getPlacesMenuService();
 export const getPrettierService = (): PrettierService =>
   container.getPrettierService();
+export const getTestService = (): TestService => container.getTestService();
 export const getTestsService = (): TestsService => container.getTestsService();
-export const getTestsAiService = (): TestsAiService =>
-  container.getTestsAiService();
 export const getTestsGroupsService = (): TestsGroupsService =>
   container.getTestsGroupsService();
 export const getTravelService = (): TravelService =>
