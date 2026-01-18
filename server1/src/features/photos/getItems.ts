@@ -7,7 +7,6 @@ export const getItems = createGetHandler<Photos>({
   errorResponse: {
     items: [],
     metadata: { title: 'Photos' },
-    sets: [],
   },
   getData: async () => {
     const data = await getPhotosService().getItems();
@@ -15,7 +14,6 @@ export const getItems = createGetHandler<Photos>({
       data ?? {
         items: [],
         metadata: { title: 'Photos' },
-        sets: [],
       }
     );
   },

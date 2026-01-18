@@ -27,8 +27,8 @@ const GenericImagePage = lazy(
 const PhotoPage = lazy(async () => import('../../features/photos/PhotoPage'));
 const TikTokPage = lazy(async () => import('../../features/tiktok/TikTokPage'));
 const YachtsPage = lazy(async () => import('../../features/yatch/YachtsPage'));
-const TestsAiPage = lazy(
-  async () => import('../../features/tests/TestsAiPage'),
+const TestsPage = lazy(
+  async () => import('../../features/tests/TestsPage'),
 );
 const MusicPage = lazy(async () => import('../../features/music/MusicPage'));
 
@@ -240,7 +240,7 @@ export const protectedContentRoutes = (
       }
     >
       <Route
-        element={<TestsAiPage />}
+        element={<TestsPage />}
         path="tests/ai"
       />
     </Route>

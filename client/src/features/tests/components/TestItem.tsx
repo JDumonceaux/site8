@@ -1,0 +1,85 @@
+import type { JSX } from 'react';
+import { useState } from 'react';
+
+import { EditIcon } from '@components/ui/icons/EditIcon';
+import type { Test } from '@site8/shared';
+import {
+  EditIconButton,
+  MetaItem,
+  TestItem as StyledTestItem,
+  Tag,
+  TagsContainer,
+  TestComments,
+  TestItemHeader,
+  TestItemName,
+  TestMeta,
+  ToggleButton,
+} from '../TestsPage.styles';
+import CodeBlock from './CodeBlock';
+
+type TestItemProps = {
+  readonly groupId: number;
+  readonly item: Test;
+  readonly onEdit: (item: Test, groupId: number) => void;
+};
+
+const TestItem = ({ groupId, item, onEdit }: TestItemProps): JSX.Element => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpanded = (): void => {
+    setIsExpanded((prev) => !prev);
+  };
+
+  const handleEdit = (): void => {
+    onEdit(item, groupId);
+  };
+
+  return (
+    <StyledTestItem>
+      <TestItemHeader>
+        <ToggleButton
+          onClick={toggleExpanded}
+          type="button"
+        >
+          {isExpanded ? '▼' : '▶'}
+        </ToggleButton>
+        <TestItemName onClick={toggleExpanded}>{item.name}</TestItemName>
+        {item.tags && item.tags.length > 0 ? (
+          <TagsContainer>
+            {item.tags.map((tag: string) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </TagsContainer>
+        ) : null}
+        <EditIconButton
+          aria-label="Edit test item"
+          onClick={handleEdit}
+        >
+          <EditIcon isAriaHidden />
+        </EditIconButton>
+      </TestItemHeader>
+      {isExpanded ? (
+        <>
+          {item.code != null && item.code.length > 0 ? (
+            <>
+              {item.code
+                .toSorted((a, b) => a.seq - b.seq)
+                .map((codeBlock) => (
+                  <CodeBlock
+                    code={codeBlock.content}
+                    key={codeBlock.id}
+                  />
+                ))}
+            </>
+          ) : null}
+          {item.comments ? <TestComments>{item.comments}</TestComments> : null}
+          <TestMeta>
+            <MetaItem>ID: {item.id}</MetaItem>
+          </TestMeta>
+        </>
+      ) : null}
+    </StyledTestItem>
+  );
+};
+
+export default TestItem;

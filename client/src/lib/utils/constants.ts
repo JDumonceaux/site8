@@ -77,11 +77,16 @@ export const ServiceUrl = {
   ENDPOINT_TESTS: `${API_ROOT}/tests`,
   ENDPOINT_TESTS_AI: `${API_ROOT}/tests/ai`,
   ENDPOINT_TESTS_GROUPS: `${API_ROOT}/tests/groups`,
-  ENDPOINT_TEST_UPDATE: (id: number) => `${API_ROOT}/tests/${id}`,
   ENDPOINT_TRAVEL: `${API_ROOT}/travel`,
 } as const satisfies Record<string, string>;
 
 export type ServiceUrlValue = (typeof ServiceUrl)[keyof typeof ServiceUrl];
+
+// Dynamic endpoint helpers
+export const ENDPOINT_TEST_UPDATE = (id: number): string =>
+  `${API_ROOT}/tests/${id}`;
+export const ENDPOINT_TEST_DELETE = (id: number): string =>
+  `${API_ROOT}/tests/${id}`;
 
 /* -------------------------------------------------------------------------- */
 /*                              Field Constants                               */
@@ -115,6 +120,15 @@ export const AUTH_ERROR_MESSAGES = {
   maxLengthExceeded: 'Max length exceeded:',
   passwordInvalidType: 'Password must be a string',
   passwordRequired: 'Password is required.',
+} as const;
+
+/* -------------------------------------------------------------------------- */
+/*                             Form Constants                                 */
+/* -------------------------------------------------------------------------- */
+export const FORM_CONSTANTS = {
+  CODE_CONTENT_ROWS: 6,
+  COMMENTS_ROWS: 4,
+  DEFAULT_CODE_TYPE: 'javascript',
 } as const;
 
 /* -------------------------------------------------------------------------- */

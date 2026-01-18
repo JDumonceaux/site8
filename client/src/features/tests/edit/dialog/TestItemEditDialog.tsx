@@ -4,7 +4,23 @@ import { useCallback, useState } from 'react';
 import Dialog from '@components/core/dialog/Dialog';
 import Button from '@components/ui/button/Button';
 import type { Test, TestGroup } from '@site8/shared';
-import styled from 'styled-components';
+import CodeItemEditor from './components/CodeItemEditor';
+import { useCodeItemsManager } from './hooks/useCodeItemsManager';
+import {
+  EmptyMessage,
+  FooterButtons,
+  Form,
+  FormField,
+  Input,
+  Label,
+  LabelRow,
+  LeftButtons,
+  RightButtons,
+  ScrollableContent,
+  Select,
+  TextArea,
+} from './TestItemEditDialog.styles';
+import { formatTags, parseTags } from './utils';
 
 type TestItemEditDialogProps = {
   readonly availableGroups: readonly TestGroup[];
@@ -12,6 +28,7 @@ type TestItemEditDialogProps = {
   readonly isOpen: boolean;
   readonly item: null | Test;
   readonly onClose: () => void;
+  readonly onDelete?: (itemId: number) => void;
   readonly onSave: (updatedItem: Test, groupId: number) => void;
 };
 
@@ -21,6 +38,7 @@ const TestItemEditDialog = ({
   isOpen,
   item,
   onClose,
+  onDelete,
   onSave,
 }: TestItemEditDialogProps): JSX.Element => {
   const [name, setName] = useState(item?.name ?? '');
@@ -29,45 +47,83 @@ const TestItemEditDialog = ({
     groupId ?? defaultGroupId,
   );
   const [comments, setComments] = useState(item?.comments ?? '');
-  const [tags, setTags] = useState(item?.tags?.join(', ') ?? '');
+  const [tags, setTags] = useState(formatTags(item?.tags));
+
+  const {
+    codeItems,
+    handleAddCode,
+    handleDeleteCode,
+    handleMoveCodeDown,
+    handleMoveCodeUp,
+    handleUpdateCode,
+  } = useCodeItemsManager(item?.code);
 
   const handleSave = useCallback(() => {
     if (!item) return;
 
+    // Update seq values based on current order
+    const updatedCodeItems = codeItems.map((code, index) => ({
+      ...code,
+      seq: index + 1,
+    }));
+
     const updatedItem: Test = {
       ...item,
+      code: updatedCodeItems.length > 0 ? updatedCodeItems : undefined,
       comments: comments.trim() || undefined,
       name,
-      tags: tags
-        .split(',')
-        .map((t) => t.trim())
-        .filter((t) => t.length > 0),
+      tags: parseTags(tags),
     };
 
     onSave(updatedItem, selectedGroupId);
     onClose();
-  }, [item, name, comments, tags, selectedGroupId, onSave, onClose]);
+  }, [item, name, comments, tags, codeItems, selectedGroupId, onSave, onClose]);
 
   const handleCancel = useCallback(() => {
     onClose();
   }, [onClose]);
 
+  const handleDelete = useCallback(() => {
+    if (!item || !onDelete) return;
+
+    if (
+      globalThis.confirm(
+        `Are you sure you want to delete "${item.name}"? This action cannot be undone.`,
+      )
+    ) {
+      onDelete(item.id);
+      onClose();
+    }
+  }, [item, onDelete, onClose]);
+
   return (
     <Dialog
       footer={
         <FooterButtons>
-          <Button
-            onClick={handleCancel}
-            variant="secondary"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSave}
-            variant="primary"
-          >
-            Save
-          </Button>
+          <LeftButtons>
+            {onDelete ? (
+              <Button
+                onClick={handleDelete}
+                variant="secondary"
+              >
+                Delete
+              </Button>
+            ) : null}
+          </LeftButtons>
+          <RightButtons>
+            <Button
+              onClick={handleCancel}
+              variant="secondary"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSave}
+              variant="primary"
+            >
+              Save
+            </Button>
+          </RightButtons>
         </FooterButtons>
       }
       isOpen={isOpen}
@@ -75,136 +131,101 @@ const TestItemEditDialog = ({
       onOpenChange={onClose}
       size="lg"
     >
-      <Form>
-        <FormField>
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            type="text"
-            value={name}
-          />
-        </FormField>
+      <ScrollableContent>
+        <Form>
+          <FormField>
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              type="text"
+              value={name}
+            />
+          </FormField>
 
-        <FormField>
-          <Label htmlFor="group">Group</Label>
-          <Select
-            id="group"
-            onChange={(e) => {
-              setSelectedGroupId(Number(e.target.value));
-            }}
-            value={selectedGroupId}
-          >
-            {availableGroups.map((group) => (
-              <option
-                key={group.id}
-                value={group.id}
+          <FormField>
+            <Label htmlFor="group">Group</Label>
+            <Select
+              id="group"
+              onChange={(e) => {
+                setSelectedGroupId(Number(e.target.value));
+              }}
+              value={selectedGroupId}
+            >
+              {availableGroups.map((group) => (
+                <option
+                  key={group.id}
+                  value={group.id}
+                >
+                  {group.sectionName ?? 'Unknown Section'} - {group.name} -{' '}
+                  {group.id}
+                </option>
+              ))}
+            </Select>
+          </FormField>
+
+          <FormField>
+            <Label htmlFor="tags">Tags (comma-separated)</Label>
+            <Input
+              id="tags"
+              onChange={(e) => {
+                setTags(e.target.value);
+              }}
+              placeholder="e.g. ai, react, nodejs"
+              type="text"
+              value={tags}
+            />
+          </FormField>
+
+          <FormField>
+            <Label htmlFor="comments">Comments</Label>
+            <TextArea
+              id="comments"
+              onChange={(e) => {
+                setComments(e.target.value);
+              }}
+              rows={4}
+              value={comments}
+            />
+          </FormField>
+
+          <FormField>
+            <LabelRow>
+              <Label>Code Items</Label>
+              <Button
+                onClick={handleAddCode}
+                size="sm"
+                variant="primary"
               >
-                {group.sectionName ?? 'Unknown Section'} - {group.name} -{' '}
-                {group.id}
-              </option>
-            ))}
-          </Select>
-        </FormField>
-
-        <FormField>
-          <Label htmlFor="tags">Tags (comma-separated)</Label>
-          <Input
-            id="tags"
-            onChange={(e) => {
-              setTags(e.target.value);
-            }}
-            placeholder="e.g. ai, react, nodejs"
-            type="text"
-            value={tags}
-          />
-        </FormField>
-
-        <FormField>
-          <Label htmlFor="comments">Comments</Label>
-          <TextArea
-            id="comments"
-            onChange={(e) => {
-              setComments(e.target.value);
-            }}
-            rows={4}
-            value={comments}
-          />
-        </FormField>
-      </Form>
+                Add Code
+              </Button>
+            </LabelRow>
+            {codeItems.length === 0 ? (
+              <EmptyMessage>
+                No code items. Click &apos;Add Code&apos; to create one.
+              </EmptyMessage>
+            ) : (
+              codeItems.map((code, index) => (
+                <CodeItemEditor
+                  code={code}
+                  index={index}
+                  isFirst={index === 0}
+                  isLast={index === codeItems.length - 1}
+                  key={code.id}
+                  onDelete={handleDeleteCode}
+                  onMoveDown={handleMoveCodeDown}
+                  onMoveUp={handleMoveCodeUp}
+                  onUpdate={handleUpdateCode}
+                />
+              ))
+            )}
+          </FormField>
+        </Form>
+      </ScrollableContent>
     </Dialog>
   );
 };
 
 export default TestItemEditDialog;
-
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem 0;
-`;
-
-const FormField = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-
-const Label = styled.label`
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary-color);
-`;
-
-const Input = styled.input`
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-sm);
-  font-size: 1rem;
-  color: var(--text-primary-color);
-  background: var(--background-color);
-
-  &:focus {
-    outline: 2px solid var(--status-info);
-    outline-offset: 2px;
-  }
-`;
-
-const Select = styled.select`
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-sm);
-  font-size: 1rem;
-  color: var(--text-primary-color);
-  background: var(--background-color);
-
-  &:focus {
-    outline: 2px solid var(--status-info);
-    outline-offset: 2px;
-  }
-`;
-
-const TextArea = styled.textarea`
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-sm);
-  font-size: 1rem;
-  color: var(--text-primary-color);
-  background: var(--background-color);
-  font-family: inherit;
-  resize: vertical;
-
-  &:focus {
-    outline: 2px solid var(--status-info);
-    outline-offset: 2px;
-  }
-`;
-
-const FooterButtons = styled.div`
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-`;
