@@ -26,9 +26,7 @@ export const deleteItem = async (
       `Test:deleteItem: Processing delete request for item ${itemId}`,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const service = getTestService();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const success = await service.deleteItem(itemId);
 
     if (success) {

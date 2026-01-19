@@ -40,9 +40,7 @@ export const addItem = async (
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const service = getTestService();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const newId = await service.addItem(item, groupId);
 
     if (newId === null) {
@@ -51,7 +49,6 @@ export const addItem = async (
     }
 
     Logger.info(`Test:addItem: Successfully added item ${newId}`);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     ok(res, { id: newId }, 'Test: Add Item');
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);

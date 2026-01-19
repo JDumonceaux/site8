@@ -45,9 +45,7 @@ export const updateItem = async (
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const service = getTestService();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const success = await service.updateItem(itemId, item, groupId);
 
     if (success) {

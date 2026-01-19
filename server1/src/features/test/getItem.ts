@@ -22,9 +22,7 @@ export const getItem = async (req: Request, res: Response): Promise<void> => {
 
     Logger.info(`Test:getItem: Processing get request for item ${itemId}`);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const service = getTestService();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const item = await service.getItem(itemId);
 
     if (!item) {
@@ -34,6 +32,7 @@ export const getItem = async (req: Request, res: Response): Promise<void> => {
     }
 
     Logger.info(`Test:getItem: Successfully retrieved item ${itemId}`);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     ok(res, item, 'Test: Get Item');
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);

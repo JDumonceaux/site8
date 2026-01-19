@@ -61,22 +61,13 @@ export class TestService extends BaseDataService<TestFile> {
       }
       const newId = maxId + 1;
 
-      // Find the highest seq in the target group
-      let maxSeq = 0;
-      for (const item of testFile.items) {
-        const groupRef = item.groupIds?.find((ref) => ref.id === groupId);
-        if (groupRef && groupRef.seq > maxSeq) {
-          maxSeq = groupRef.seq;
-        }
-      }
-
       // Create new item
       const newItem = {
         ...itemData,
         groupIds: [
           {
             id: groupId,
-            seq: maxSeq + 1,
+            seq: (itemData as TestWithGroupIds).groupIds?.[0]?.seq ?? 1,
           },
         ],
         id: newId,
@@ -282,20 +273,11 @@ export class TestService extends BaseDataService<TestFile> {
       );
 
       if (!hasGroupMembership) {
-        // Find the highest seq in the target group
-        let maxSeq = 0;
-        for (const item of testFile.items) {
-          const groupRef = item.groupIds?.find((ref) => ref.id === newGroupId);
-          if (groupRef && groupRef.seq > maxSeq) {
-            maxSeq = groupRef.seq;
-          }
-        }
-
         // Add new group membership (replace existing or add new)
         updatedItem.groupIds = [
           {
             id: newGroupId,
-            seq: maxSeq + 1,
+            seq: 1,
           },
         ];
 

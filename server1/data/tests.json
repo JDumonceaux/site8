@@ -2,8 +2,8 @@
   "metadata": {
     "title": "Tests",
     "version": "1.0.0",
-    "lastUpdated": "2026-01-18",
-    "totalItems": 318
+    "lastUpdated": "2026-01-19",
+    "totalItems": 276
   },
   "groups": [
     {
@@ -174,7 +174,7 @@
     },
     {
       "id": 13,
-      "name": "ES2023",
+      "name": "ES2023 - client",
       "tags": [
         "client"
       ],
@@ -188,7 +188,7 @@
     },
     {
       "id": 14,
-      "name": "ES2024",
+      "name": "ES2024 - client",
       "tags": [
         "client"
       ],
@@ -202,7 +202,7 @@
     },
     {
       "id": 15,
-      "name": "ES2025",
+      "name": "ES2025 - client",
       "tags": [
         "client"
       ],
@@ -213,6 +213,31 @@
         }
       ],
       "comments": ""
+    },
+    {
+      "id": 16,
+      "name": "Work",
+      "sectionIds": [
+        {
+          "id": 6,
+          "seq": 1
+        }
+      ],
+      "comments": ""
+    },
+    {
+      "id": 17,
+      "name": "CodeMods",
+      "tags": [
+        "client"
+      ],
+      "sectionIds": [
+        {
+          "id": 8,
+          "seq": 1
+        }
+      ],
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path)."
     }
   ],
   "sections": [
@@ -249,6 +274,18 @@
       "id": 6,
       "name": "Javascript Upgrade",
       "comments": "",
+      "seq": 10
+    },
+    {
+      "id": 7,
+      "name": "Work",
+      "comments": "",
+      "seq": 10
+    },
+    {
+      "id": 8,
+      "name": "React Router 6 Upgrade",
+      "comments": "Steps to upgrade the codebase to React Router 6.",
       "seq": 10
     }
   ],
@@ -2015,7 +2052,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Add 3 strict flags to client tsconfig: noUncheckedIndexedAccess, noImplicitReturns, exactOptionalPropertyTypes"
         }
       ],
@@ -2036,7 +2073,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Verify sanitizeFilePath is applied to all file upload/manipulation endpoints"
         }
       ],
@@ -2057,7 +2094,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Implement CSRF token generation and validation for mutation endpoints - future implementation"
         }
       ],
@@ -2078,7 +2115,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Implement authentication and authorization middleware (JWT, sessions, or OAuth) - future implementation"
         }
       ],
@@ -2099,7 +2136,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Configure Web Application Firewall rules for production deployment - future implementation"
         }
       ],
@@ -2121,7 +2158,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "check tsconfig.json and update target and lib to 'esnext' (lower case)"
         }
       ],
@@ -2232,7 +2269,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review eslint.config files.  Are there any conflicting or duplicate rules?"
         }
       ],
@@ -2253,7 +2290,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
         }
       ],
@@ -2274,7 +2311,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?"
         }
       ],
@@ -2295,7 +2332,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the vite.config.mts file and suggest improvements."
         }
       ],
@@ -2316,7 +2353,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the vitest.config.ts file and suggest improvements."
         }
       ],
@@ -2337,7 +2374,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the tsconfig.node.json file and suggest improvements."
         }
       ],
@@ -2358,7 +2395,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Are there any files at the src/ level not being used?"
         }
       ],
@@ -2379,7 +2416,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the tsconfig.json file and suggest improvements."
         }
       ],
@@ -2400,7 +2437,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the knip.json file and suggest improvements."
         }
       ],
@@ -2421,7 +2458,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the index.html file and suggest improvements."
         }
       ],
@@ -2442,7 +2479,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the .gitignore file and suggest improvements."
         }
       ],
@@ -2463,7 +2500,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the .prettierignore file and suggest improvements."
         }
       ],
@@ -2484,7 +2521,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Read the .prettierrc.mjs file and suggest improvements."
         }
       ],
@@ -2505,7 +2542,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Check if babel.cjs is needed (Vitest uses Vite, not Babel). Delete if unused."
         }
       ],
@@ -2526,7 +2563,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Check if eslint_rules/ directory is used. Delete if migrated to flat config."
         }
       ],
@@ -2547,7 +2584,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Calculate the maintainability index of the codebase and suggest improvements if below 85."
         }
       ],
@@ -2573,7 +2610,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Calculate the cyclomatic complexity of the codebase."
         }
       ],
@@ -2594,7 +2631,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Look for code smells in client and server codebases."
         }
       ],
@@ -2615,7 +2652,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Look for code duplication in client and server codebases and recommend refactoring."
         }
       ],
@@ -2636,7 +2673,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Look for security vulnerabilities in client and server codebases and recommend improvements."
         }
       ],
@@ -2657,7 +2694,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Look for structural issues in client and server codebases and recommend improvements."
         }
       ],
@@ -2678,7 +2715,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "useEffectEvent is stable.  Look for opportunities in the code to use this function."
         }
       ],
@@ -2699,7 +2736,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Create Skeleton components for loading states to improve user experience during data fetching."
         }
       ],
@@ -2720,7 +2757,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Ensure that all ids in the data are sequential and unique to maintain data integrity."
         }
       ],
@@ -2741,7 +2778,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Add light-dark() function to main.css for consistent theming."
         }
       ],
@@ -2762,7 +2799,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Replace all named colors in components with CSS variables defined in main.css for easier theming and maintenance."
         }
       ],
@@ -2783,7 +2820,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance."
         }
       ],
@@ -2804,7 +2841,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling."
         }
       ],
@@ -2825,7 +2862,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the Server API end points to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.  Fix any related routers and services."
         }
       ],
@@ -2846,7 +2883,7 @@
         {
           "id": 5,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body."
         }
       ],
@@ -2867,7 +2904,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19."
         }
       ],
@@ -2888,7 +2925,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19."
         }
       ],
@@ -2910,7 +2947,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Remove useFormState"
         }
       ],
@@ -2931,7 +2968,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19."
         }
       ],
@@ -2952,7 +2989,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new use hook introduced in React 19."
         }
       ],
@@ -2973,7 +3010,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to update Context.Provider to Context introduced in React 19."
         }
       ],
@@ -2994,7 +3031,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to update cleanup functions for ref introduced in React 19."
         }
       ],
@@ -3015,7 +3052,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19."
         }
       ],
@@ -3036,7 +3073,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19."
         }
       ],
@@ -3057,7 +3094,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19."
         }
       ],
@@ -3078,7 +3115,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to identify opportunities to use the error handling changes introduced in React 19."
         }
       ],
@@ -3099,7 +3136,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly."
         }
       ],
@@ -3120,7 +3157,7 @@
         {
           "id": 2,
           "seq": 100,
-          "type": "Instructions",
+          "type": "code",
           "content": "run replace-reactdom-render"
         }
       ],
@@ -3141,7 +3178,7 @@
         {
           "id": 2,
           "seq": 10,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/replace-use-form-state"
         }
       ],
@@ -3163,7 +3200,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/use-context-hook"
         }
       ],
@@ -3185,7 +3222,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/migration-recipe"
         }
       ],
@@ -3207,7 +3244,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/replace-reactdom-render"
         }
       ],
@@ -3229,7 +3266,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/replace-string-ref"
         }
       ],
@@ -3251,7 +3288,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/replace-act-import"
         }
       ],
@@ -3273,7 +3310,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/replace-use-form-state"
         }
       ],
@@ -3295,7 +3332,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/prop-types-typescript"
         }
       ],
@@ -3317,7 +3354,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "run types-react-codemod"
         }
       ],
@@ -3338,7 +3375,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Update all Zod deprecated methods and syntax to the latest version."
         }
       ],
@@ -3360,7 +3397,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "ZodeIssue is deprecated.  Update to use z.core.$ZodIssue"
         }
       ],
@@ -3382,7 +3419,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Calculate the Overall Consistency Score for the codebase."
         }
       ],
@@ -3403,7 +3440,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Run API Router Consistency Analysis Report for the codebase."
         }
       ],
@@ -3424,7 +3461,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Update Legacy manual handlers and Generic handler factories to simple router factory where appropriate."
         }
       ],
@@ -3445,7 +3482,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Standardize on **kebab-case** for all multi-word URL paths."
         }
       ],
@@ -3466,7 +3503,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Validate all mutation operations use request body for data."
         }
       ],
@@ -3487,7 +3524,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Update Pattern 1: Legacy Manual Validation and Pattern 2: Zod Schema Validation (Items) to Pattern 3: Generic Handlers (Modern)"
         }
       ],
@@ -3508,7 +3545,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Update Pattern 1: Collection Responses and Pattern 2: Single Item Responses to Recommended: `res.json(data)` for success with data, `res.sendStatus(204)` for success without data, `{ error: \"message\" }` for errors"
         }
       ],
@@ -3529,7 +3566,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Status Codes Analysis: Update to modern handlers"
         }
       ],
@@ -3550,7 +3587,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Update to Modern Error Responses: `res.status(400).json({ error: 'message' })`"
         }
       ],
@@ -3571,7 +3608,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Error Response Formats: Standardize on `{ error: 'message' }` format"
         }
       ],
@@ -3592,7 +3629,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Update all Try-Catch Patterns to Pattern 4: Generic Handler (Modern)"
         }
       ],
@@ -3613,7 +3650,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Error Logging to use `ResponseHelper.internalError()`"
         }
       ],
@@ -3634,7 +3671,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Pattern Summary: Update all legacy patterns to modern generic handlers"
         }
       ],
@@ -3656,7 +3693,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Run Code Smells Report for the codebase."
         }
       ],
@@ -3678,7 +3715,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Validate there is no excessive prop drilling in the codebase."
         }
       ],
@@ -3700,7 +3737,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Validate there are no deprecated event handlers (onKeyPress, componentWillMount, componentWillReceiveProps, etc.) in the codebase. Confirm modern React 19+ patterns and hooks are used throughout."
         }
       ],
@@ -3722,7 +3759,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Update ESLint configuration and rules for modern event handlers."
         }
       ],
@@ -3743,7 +3780,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Analyze codebase for optimization opportunities: rendering performance (memoization, virtualization), bundle size (code splitting, lazy loading), API efficiency (caching, batching), memory usage (cleanup, leaks). For each suggestion, explain expected improvement and trade-offs."
         }
       ],
@@ -3764,7 +3801,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Generate unit tests for the following function:\n[paste function]\n\nInclude tests for:\n1. Normal expected inputs\n2. Edge cases\n3. Invalid inputs\n\nUse [preferred testing framework] syntax."
         }
       ],
@@ -3785,7 +3822,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them."
         }
       ],
@@ -3807,7 +3844,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review the package.json files for duplicate libraries - libraries that perform the same function(s) but are different packages. Suggest consolidating to a single library where possible."
         }
       ],
@@ -3828,7 +3865,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size."
         }
       ],
@@ -3850,7 +3887,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review codebase to ensure clean JSX - suggest improvements to remove unnecessary fragments, redundant attributes, and unused variables."
         }
       ],
@@ -3871,7 +3908,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Here's a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion."
         }
       ],
@@ -3892,7 +3929,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code]."
         }
       ],
@@ -3913,7 +3950,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Search for React components using array index as key prop (e.g., key={index}). Report occurrences and suggest using stable unique identifiers instead to prevent rendering bugs."
         }
       ],
@@ -3934,7 +3971,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review React components returning fragments containing only <Meta> or <Helmet> tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight."
         }
       ],
@@ -3955,7 +3992,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Find and remove redundant boolean JSX attributes (e.g., disabled={true} should be disabled, hidden={false} should be omitted). Report count and suggest automatic fixes."
         }
       ],
@@ -3977,7 +4014,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Scan for hardcoded secrets (API keys, passwords, tokens) in codebase and environment files. Verify .gitignore excludes sensitive files."
         }
       ],
@@ -4218,7 +4255,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Audit API endpoints documentation. Verify each endpoint has request/response examples, error codes, and authentication requirements documented."
         }
       ],
@@ -4242,7 +4279,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review .gitignore completeness. Ensure all build artifacts, environment files, OS files, IDE configs, and dependency directories are excluded."
         }
       ],
@@ -4290,7 +4327,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Allow and implement any TC39 Stage 2+ features in the codebase, ensuring compatibility with current build tools and environments. Such as Promise.try, Array.fromAsync, Iterator helpers, Set methods, Decimal,Temporal,Array grouping, Import attributes, Decorator metadata,RegExp.escape,and Symbol predicates. Update ESlint rules to allow these features."
         }
       ],
@@ -4311,7 +4348,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review general-coding.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices."
         }
       ],
@@ -4332,7 +4369,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "prompt",
           "content": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices."
         }
       ],
@@ -4482,7 +4519,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest class-to-function-component"
         }
       ],
@@ -4504,7 +4541,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/update-react-imports"
         }
       ],
@@ -4526,7 +4563,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/create-element-to-jsx"
         }
       ],
@@ -4548,7 +4585,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/replace-react-test-renderer-import"
         }
       ],
@@ -4570,56 +4607,12 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/replace-create-factory"
         }
       ],
       "name": "React 19 - CodeMods - replace-create-factory",
       "comments": "Replaces deprecated React.createFactory method with JSX."
-    },
-    {
-      "id": 248,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 11
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/remove-active-classname"
-        }
-      ],
-      "name": "React Router - CodeMods - remove-active-classname",
-      "comments": "Migration codemod for React Router v6 to remove activeClassName prop."
-    },
-    {
-      "id": 249,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 12
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/remove-active-style"
-        }
-      ],
-      "name": "React Router - CodeMods - remove-active-style",
-      "comments": "Migration codemod for React Router v6 to remove activeStyle prop."
     },
     {
       "id": 250,
@@ -4636,7 +4629,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/6/remove-redirect-inside-switch"
         }
       ],
@@ -4658,7 +4651,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/4/move-hoc-to-global-scope"
         }
       ],
@@ -4680,7 +4673,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/remove-memoization"
         }
       ],
@@ -4702,7 +4695,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/remove-legacy-context"
         }
       ],
@@ -4724,584 +4717,12 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react/19/remove-forward-ref"
         }
       ],
       "name": "React 19 - CodeMods - remove-forward-ref",
       "comments": "React.forwardRef will be deprecated for Function Components in near future. This codemod removes forwardRef function."
-    },
-    {
-      "id": 255,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 18
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/use-route-match"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - use-route-match",
-      "comments": "Migration codemod for React Router v6 useRouteMatch."
-    },
-    {
-      "id": 256,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 19
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/use-params"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - use-params",
-      "comments": "Migration codemod for React Router v6 useParams."
-    },
-    {
-      "id": 257,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 20
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/use-navigate"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - use-navigate",
-      "comments": "Migration codemod for React Router v6 useNavigate."
-    },
-    {
-      "id": 258,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 21
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/use-location"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - use-location",
-      "comments": "Migration codemod for React Router v6 useLocation."
-    },
-    {
-      "id": 259,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 22
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/static-router-imports"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - static-router-imports",
-      "comments": "Migration codemod for React Router v6 StaticRouter imports."
-    },
-    {
-      "id": 260,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 23
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/rename-compat-imports"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - rename-compat-imports",
-      "comments": "Migration codemod for React Router v6 to rename compat imports."
-    },
-    {
-      "id": 261,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 24
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/remove-go-hooks"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - remove-go-hooks",
-      "comments": "Migration codemod for React Router v6 to remove deprecated go hooks."
-    },
-    {
-      "id": 262,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 25
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/remove-compat-router"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - remove-compat-router",
-      "comments": "Migration codemod for React Router v6 to remove compat router."
-    },
-    {
-      "id": 263,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 26
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/redirect-to-navigate"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - redirect-to-navigate",
-      "comments": "Migration codemod for React Router v6 to convert Redirect to Navigate."
-    },
-    {
-      "id": 264,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 27
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/navlink-exact-end"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - navlink-exact-end",
-      "comments": "Migration codemod for React Router v6 NavLink exact to end prop."
-    },
-    {
-      "id": 265,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 28
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/match-path-arguments"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - match-path-arguments",
-      "comments": "Migration codemod for React Router v6 matchPath arguments."
-    },
-    {
-      "id": 266,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 29
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/link-to-props"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - link-to-props",
-      "comments": "Migration codemod for React Router v6 Link to props."
-    },
-    {
-      "id": 267,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 30
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/compat-router"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - compat-router",
-      "comments": "Migration codemod for React Router v6 compat router."
-    },
-    {
-      "id": 268,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 31
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/compat-route"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - compat-route",
-      "comments": "Migration codemod for React Router v6 compat route."
-    },
-    {
-      "id": 269,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 32
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/wrap-with-switch"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - wrap-with-switch",
-      "comments": "Migration codemod for React Router v4 to wrap routes with Switch."
-    },
-    {
-      "id": 270,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 33
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/use-history-hook"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - use-history-hook",
-      "comments": "Deprecates browserHistory and uses history from useHistory hook instead."
-    },
-    {
-      "id": 271,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 34
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/replace-param-prop"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - replace-param-prop",
-      "comments": "Replaces params prop passed by react-router with match.params."
-    },
-    {
-      "id": 272,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 35
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/replace-nested-routes"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - replace-nested-routes",
-      "comments": "Deprecates nested Route components through the use of render prop of the parent Route component."
-    },
-    {
-      "id": 273,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 36
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/replace-location-query"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - replace-location-query",
-      "comments": "Replaces instances of location.query with parse(location.search), where parse is imported from query-string."
-    },
-    {
-      "id": 274,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 37
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/rename-imports"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - rename-imports",
-      "comments": "Replaces react-router import source with react-router-dom."
-    },
-    {
-      "id": 275,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 38
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/remove-with-props"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - remove-with-props",
-      "comments": "Migration codemod for React Router v4 to remove withProps."
-    },
-    {
-      "id": 276,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 39
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/index-route"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - index-route",
-      "comments": "Replaces IndexRoute with Route having exact prop set to true."
-    },
-    {
-      "id": 277,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 40
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/hash-router"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - hash-router",
-      "comments": "Replaces Router using hashHistory to HashRouter in v4."
-    },
-    {
-      "id": 278,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 41
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/create-hash-history"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - create-hash-history",
-      "comments": "Migration codemod for React Router v4 createHashHistory."
-    },
-    {
-      "id": 279,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 42
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/browser-router"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - browser-router",
-      "comments": "Replaces Router using browserHistory to BrowserRouter in v4."
-    },
-    {
-      "id": 280,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 43
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/4/add-exact-prop"
-        }
-      ],
-      "name": "React Router 4 - CodeMods - add-exact-prop",
-      "comments": "Adds exact prop to all instances of Route component."
     },
     {
       "id": 281,
@@ -5318,7 +4739,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-redux/0/add-state-type"
         }
       ],
@@ -5326,76 +4747,10 @@
       "comments": "Migration codemod for React Redux to add state type."
     },
     {
-      "id": 282,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 45
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest next/13/upsert-use-client-directive"
-        }
-      ],
-      "name": "Next.js 13 - CodeMods - upsert-use-client-directive",
-      "comments": "Adds 'use client' directive to files that contain only client-side code since Next.js 13.4."
-    },
-    {
-      "id": 283,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 46
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest next/13/replace-next-router"
-        }
-      ],
-      "name": "Next.js 13 - CodeMods - replace-next-router",
-      "comments": "Migrates useRouter hook from next/router to next/navigation hooks introduced in Next.js 13.4."
-    },
-    {
-      "id": 284,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 47
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest next/13/comment-deletable-files"
-        }
-      ],
-      "name": "Next.js 13 - CodeMods - comment-deletable-files",
-      "comments": "Adds comments to files that should be deleted when migrating from /pages to /app directory (_document, _app, _error)."
-    },
-    {
       "id": 285,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 48
         }
       ],
@@ -5406,7 +4761,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/migration-recipe"
         }
       ],
@@ -5417,7 +4772,7 @@
       "id": 286,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 49
         }
       ],
@@ -5428,7 +4783,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/route-wildcard-to-nested"
         }
       ],
@@ -5439,7 +4794,7 @@
       "id": 287,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 50
         }
       ],
@@ -5450,7 +4805,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/relative-links"
         }
       ],
@@ -5461,7 +4816,7 @@
       "id": 288,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 51
         }
       ],
@@ -5472,7 +4827,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/form-methods-post-get-to-uppercase"
         }
       ],
@@ -5483,7 +4838,7 @@
       "id": 289,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 52
         }
       ],
@@ -5494,7 +4849,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/errorfirst-mutation-reorder"
         }
       ],
@@ -5505,7 +4860,7 @@
       "id": 290,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 53
         }
       ],
@@ -5516,7 +4871,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_skipActionStatusRevalidation_Flag"
         }
       ],
@@ -5527,7 +4882,7 @@
       "id": 291,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 54
         }
       ],
@@ -5538,7 +4893,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_partialHydration_Flag"
         }
       ],
@@ -5549,7 +4904,7 @@
       "id": 292,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 55
         }
       ],
@@ -5560,7 +4915,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_normalizeFormMethod"
         }
       ],
@@ -5571,7 +4926,7 @@
       "id": 293,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 56
         }
       ],
@@ -5582,7 +4937,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_fetcherPersist_Flag"
         }
       ],
@@ -5593,7 +4948,7 @@
       "id": 294,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 57
         }
       ],
@@ -5604,7 +4959,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_startTransition_Flag"
         }
       ],
@@ -5615,7 +4970,7 @@
       "id": 295,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 58
         }
       ],
@@ -5626,7 +4981,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_relativeSplatPath_Flag"
         }
       ],
@@ -5634,274 +4989,10 @@
       "comments": "Enables new behavior for relative path matching and linking for multi-segment splat paths."
     },
     {
-      "id": 296,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 59
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/useHistory-to-useNavigate"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - useHistory-to-useNavigate",
-      "comments": "Migrates useHistory to useNavigate in React Router v6. Replaces history.push, history.replace, go, goBack, and goForward."
-    },
-    {
-      "id": 297,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 60
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/switch-to-routes"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - switch-to-routes",
-      "comments": "Updates Switch components to Routes in React Router v6."
-    },
-    {
-      "id": 298,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 61
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/Migrate-StaticRouter-Import"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - Migrate-StaticRouter-Import",
-      "comments": "Updates imports of StaticRouter to use react-router-dom/server package."
-    },
-    {
-      "id": 299,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 62
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/seperate-link-state-prop"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - seperate-link-state-prop",
-      "comments": "Simplifies Link component by transforming to prop from object with pathname to a string."
-    },
-    {
-      "id": 300,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 63
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/replace-useRouteMatchWithUseMatch"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - replace-useRouteMatchWithUseMatch",
-      "comments": "Updates useRouteMatch to useMatch, changing strict to end and sensitive to caseSensitive."
-    },
-    {
-      "id": 301,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 64
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/reorder-matchpath-args"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - reorder-matchpath-args",
-      "comments": "Reorders arguments in matchPath function calls for React Router v6."
-    },
-    {
-      "id": 302,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 65
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/remove-activeStyleprops"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - remove-activeStyleprops",
-      "comments": "Updates NavLink components to use isActive function instead of separate style and activeStyle props."
-    },
-    {
-      "id": 303,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 66
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/update-relative-links"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - update-relative-links",
-      "comments": "Removes deprecated exact prop from Route and updates to use element prop. Updates dynamic Link paths."
-    },
-    {
-      "id": 304,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 67
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/5.1/redirect-to-navigate"
-        }
-      ],
-      "name": "React Router 5.1 - CodeMods - redirect-to-navigate",
-      "comments": "Updates deprecated Redirect components to the modern Navigate API."
-    },
-    {
-      "id": 305,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 68
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/react-router-config-to-use-routes"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - react-router-config-to-use-routes",
-      "comments": "Updates code using react-router-config to modern useRoutes API."
-    },
-    {
-      "id": 306,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 69
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/6/navlink-exact-to-end"
-        }
-      ],
-      "name": "React Router 6 - CodeMods - navlink-exact-to-end",
-      "comments": "Replaces deprecated exact prop in NavLink with modern end prop."
-    },
-    {
-      "id": 307,
-      "groupIds": [
-        {
-          "id": 1,
-          "seq": 70
-        }
-      ],
-      "tags": [
-        "codemods"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "Instructions",
-          "content": "npx codemod@latest react-router/5.1/component-render-to-children"
-        }
-      ],
-      "name": "React Router 5.1 - CodeMods - component-render-to-children",
-      "comments": "Transforms Route components using render and component props into JSX with nested children."
-    },
-    {
       "id": 308,
       "groupIds": [
         {
-          "id": 1,
+          "id": 17,
           "seq": 71
         }
       ],
@@ -5912,7 +5003,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest react-router/7/update-imports"
         }
       ],
@@ -5934,7 +5025,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest gatsby/v5/removal-useNavigate-hook"
         }
       ],
@@ -5956,7 +5047,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest typescript/remove-console"
         }
       ],
@@ -5978,7 +5069,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/v5-migration-recipe"
         }
       ],
@@ -6000,7 +5091,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/explicit-request-params"
         }
       ],
@@ -6022,7 +5113,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/redirect-arg-order"
         }
       ],
@@ -6044,7 +5135,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/route-del-to-delete"
         }
       ],
@@ -6066,7 +5157,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/pluralize-method-names"
         }
       ],
@@ -6088,7 +5179,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/status-send-order"
         }
       ],
@@ -6110,7 +5201,7 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/camelcase-sendfile"
         }
       ],
@@ -6132,12 +5223,144 @@
         {
           "id": 1,
           "seq": 1,
-          "type": "Instructions",
+          "type": "code",
           "content": "npx codemod@latest @expressjs/back-redirect-deprecated"
         }
       ],
       "name": "Express.js - CodeMods - back-redirect-deprecated",
       "comments": "Migrates usage of the legacy APIs res.redirect('back') and res.location('back') to the current recommended approaches."
+    },
+    {
+      "id": 319,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "code",
+          "content": "npx codemod@latest @expressjs/back-redirect-deprecated"
+        }
+      ],
+      "name": "Express.js - CodeMods - back-redirect-deprecated",
+      "comments": "Migrates usage of the legacy APIs res.redirect('back') and res.location('back') to the current recommended approaches."
+    },
+    {
+      "id": 320,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "codemods"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "code",
+          "content": "npx codemod@latest class-to-function-component <path>"
+        }
+      ],
+      "name": "React - CodeMods - class-to-function-component",
+      "comments": "Transform React class components to modern function components with hooks."
+    },
+    {
+      "id": 321,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "codemods"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "code",
+          "content": "npx codemod@latest react/update-react-imports <path>"
+        }
+      ],
+      "name": "React - CodeMods - update-react-imports",
+      "comments": "Transforms React imports to use named imports instead of default or namespace imports. This helps reduce bundle size by allowing better tree-shaking of unused React exports."
+    },
+    {
+      "id": 322,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "prompt",
+          "content": "Review this file for null/undefined checks"
+        }
+      ],
+      "name": "Null/undefined Checks",
+      "comments": ""
+    },
+    {
+      "id": 323,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "prompt",
+          "content": "Review for opportunities to break apart this component into smaller components"
+        }
+      ],
+      "name": "Overly complex components",
+      "comments": ""
+    },
+    {
+      "id": 327,
+      "groupIds": [
+        {
+          "id": 16,
+          "seq": 1
+        }
+      ],
+      "tags": [
+        "ai"
+      ],
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "prompt",
+          "content": "Using react 17, transform this class component to a function component using hooks.  Use arrow functions.  Do not add jdoc. Maintain any business logic.  Add comments where helpful."
+        }
+      ],
+      "name": "React - CodeMods - class-to-function-component",
+      "comments": "Transform React class components to modern function components with hooks."
     }
   ]
 }
