@@ -7,7 +7,6 @@ import express, {
 } from 'express';
 import RateLimit from 'express-rate-limit';
 
-import { artistsRouter } from './app/routes/artistsRouter.js';
 import { genericRouter } from './app/routes/genericRouter.js';
 import { menuRouter } from './app/routes/menuRouter.js';
 import { pageRouter } from './app/routes/pageRouter.js';
@@ -105,7 +104,6 @@ app.use((_req, res, next) => {
 });
 // Read-heavy routes with general rate limiting
 app.use('/api/travel', travelRouter);
-app.use('/api/artists', artistsRouter);
 app.use('/api/generic', genericRouter);
 
 // Write-heavy routes with stricter mutation rate limiting

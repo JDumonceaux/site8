@@ -11,15 +11,18 @@
 /* eslint-disable no-restricted-syntax */
 
 // NOTE: This is the correct format.  GPT 5.0 fixes are incorrect.
-import { ArtistsService } from '../features/artists/ArtistsService.js';
+import { ImagesFileService } from '../features/images/ImagesFileService.js';
+import { ImagesService } from '../features/images/ImagesService.js';
 import { MenuService } from '../features/menu/MenuService.js';
 import { PageFileService } from '../features/page/PageFileService.js';
 import { PageService } from '../features/page/PageService.js';
+import { PagesService } from '../features/pages/PagesService.js';
 import { TestService } from '../features/test/TestService.js';
 import { TestsGroupsService } from '../features/tests/TestsGroupsService.js';
 import { TestsService } from '../features/tests/TestsService.js';
 import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
 import { TravelService } from '../features/travel/TravelService.js';
+import { FileService } from '../lib/filesystem/FileService.js';
 import { GenericService } from '../lib/generic/GenericService.js';
 import { PrettierService } from '../services/code-quality/PrettierService.js';
 
@@ -29,16 +32,27 @@ import { PrettierService } from '../services/code-quality/PrettierService.js';
 class ServiceContainer {
   private readonly services = new Map<string, unknown>();
 
-  public getArtistsService(): ArtistsService {
-    return this.getOrCreate('ArtistsService', () => new ArtistsService());
+  public getFileService(): FileService {
+    return this.getOrCreate('FileService', () => new FileService());
   }
 
   public getGenericService(): GenericService {
     return this.getOrCreate('GenericService', () => new GenericService());
   }
 
+  public getImagesFileService(): ImagesFileService {
+    return this.getOrCreate('ImagesFileService', () => new ImagesFileService());
+  }
+
+  public getImagesService(): ImagesService {
+    return this.getOrCreate('ImagesService', () => new ImagesService());
+  }
+
   public getMenuService(): MenuService {
-    return this.getOrCreate('MenuService', () => new MenuService());
+    return this.getOrCreate(
+      'MenuService',
+      () => new MenuService(this.getPagesService()),
+    );
   }
 
   public getPageFileService(): PageFileService {
@@ -47,6 +61,10 @@ class ServiceContainer {
 
   public getPageService(): PageService {
     return this.getOrCreate('PageService', () => new PageService());
+  }
+
+  public getPagesService(): PagesService {
+    return this.getOrCreate('PagesService', () => new PagesService());
   }
 
   public getPlacesMenuService(): PlacesMenuService {
@@ -101,14 +119,18 @@ class ServiceContainer {
 const container = new ServiceContainer();
 
 // Export factory functions for backward compatibility
-export const getArtistsService = (): ArtistsService =>
-  container.getArtistsService();
+export const getFileService = (): FileService => container.getFileService();
 export const getGenericService = (): GenericService =>
   container.getGenericService();
+export const getImagesFileService = (): ImagesFileService =>
+  container.getImagesFileService();
+export const getImagesService = (): ImagesService =>
+  container.getImagesService();
 export const getMenuService = (): MenuService => container.getMenuService();
 export const getPageService = (): PageService => container.getPageService();
 export const getPageFileService = (): PageFileService =>
   container.getPageFileService();
+export const getPagesService = (): PagesService => container.getPagesService();
 export const getPlacesMenuService = (): PlacesMenuService =>
   container.getPlacesMenuService();
 export const getPrettierService = (): PrettierService =>

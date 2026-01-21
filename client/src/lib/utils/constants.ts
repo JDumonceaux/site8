@@ -54,7 +54,6 @@ export const IMAGE_BASE = '/images';
 /*                              Service URLs                                  */
 /* -------------------------------------------------------------------------- */
 export const ServiceUrl = {
-  ENDPOINT_ARTISTS_ITEMS: `${API_ROOT}/artists/items`,
   ENDPOINT_GENERIC: `${API_ROOT}/generic`,
   ENDPOINT_MENUS: `${API_ROOT}/menus`,
   ENDPOINT_MENUS_EDIT: `${API_ROOT}/menus/edit`,
