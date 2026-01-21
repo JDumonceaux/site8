@@ -13,28 +13,21 @@ const UnifiedLayout = lazy(
 // ---------------------
 // Content Pages
 // ---------------------
-const BookmarkPage = lazy(
-  async () => import('../../features/bookmarks/BookmarkPage'),
-);
 const TravelPage = lazy(async () => import('../../features/travel/TravelPage'));
-const ImagesPage = lazy(async () => import('../../features/images/ImagesPage'));
 const GenericPage = lazy(
   async () => import('../../features/generic/GenericPage'),
 );
 const GenericImagePage = lazy(
   async () => import('../../features/generic/GenericImagePage'),
 );
-const PhotoPage = lazy(async () => import('../../features/photos/PhotoPage'));
-const TikTokPage = lazy(async () => import('../../features/tiktok/TikTokPage'));
 const YachtsPage = lazy(async () => import('../../features/yatch/YachtsPage'));
 const TestsPage = lazy(
   async () => import('../../features/tests/TestsPage'),
 );
-const MusicPage = lazy(async () => import('../../features/music/MusicPage'));
 
 /**
  * Protected content routes that require authentication
- * Includes generic pages, fun section, design tools, music, bookmarks, travel, and testing
+ * Includes generic pages, fun section, design tools, travel, and testing
  */
 export const protectedContentRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -118,64 +111,16 @@ export const protectedContentRoutes = (
       />
 
       <Route
-        element={<TikTokPage />}
-        path="tiktok"
-      />
-      <Route
         element={<YachtsPage />}
         path="yachts"
       />
-      <Route
-        element={<GenericImagePage />}
-        path="images"
-      />
-      <Route element={<UnifiedLayout hasInitializer />}>
-        <Route
-          element={<PhotoPage />}
-          path="photos"
-        />
-      </Route>
       <Route
         element={<GenericPage />}
         path="*"
       />
     </Route>
 
-    {/* Music */}
-    <Route
-      element={
-        <UnifiedLayout
-          hasAvatar
-          hasHeader
-          hasInitializer
-        />
-      }
-      path="music"
-    >
-      <Route
-        element={<MusicPage />}
-        index
-      />
-    </Route>
-
-    {/* Bookmarks */}
-    <Route
-      element={
-        <UnifiedLayout
-          hasAvatar
-          hasHeader
-          hasInitializer
-        />
-      }
-      path="bookmarks"
-    >
-      <Route
-        element={<BookmarkPage />}
-        index
-      />
-    </Route>
-
-    {/* Travel */}
+    {/* Travel */}}
     <Route
       element={
         <UnifiedLayout
@@ -201,31 +146,6 @@ export const protectedContentRoutes = (
       <Route
         element={<TravelPage />}
         path=":country/:city/:item"
-      />
-    </Route>
-
-    {/* Images Gallery */}
-    <Route
-      element={
-        <UnifiedLayout
-          hasAvatar
-          hasHeader
-          hasInitializer
-        />
-      }
-    >
-      <Route
-        element={<ImagesPage />}
-        index
-        path="images"
-      />
-      <Route
-        element={<ImagesPage />}
-        path="images/:folder"
-      />
-      <Route
-        element={<ImagesPage />}
-        path="images/tag/:tag"
       />
     </Route>
 

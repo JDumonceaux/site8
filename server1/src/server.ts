@@ -8,18 +8,9 @@ import express, {
 import RateLimit from 'express-rate-limit';
 
 import { artistsRouter } from './app/routes/artistsRouter.js';
-import { bookmarksRouter } from './app/routes/bookmarksRouter.js';
-import { buildRouter } from './app/routes/buildRouter.js';
-import { filesRouter } from './app/routes/filesRouter.js';
 import { genericRouter } from './app/routes/genericRouter.js';
-import { imageRouter } from './app/routes/imageRouter.js';
-import { imagesRouter } from './app/routes/imagesRouter.js';
-import { itemsRouter } from './app/routes/itemsRouter.js';
 import { menuRouter } from './app/routes/menuRouter.js';
-import { musicRouter } from './app/routes/musicRouter.js';
 import { pageRouter } from './app/routes/pageRouter.js';
-import { pagesRouter } from './app/routes/pagesRouter.js';
-import { photosRouter } from './app/routes/photosRouter.js';
 import { testsRouter } from './app/routes/testsRouter.js';
 import { travelRouter } from './app/routes/travelRouter.js';
 import { SERVER_CONFIG } from './utils/constants.js';
@@ -113,23 +104,14 @@ app.use((_req, res, next) => {
   next();
 });
 // Read-heavy routes with general rate limiting
-app.use('/api/photos', photosRouter);
-app.use('/api/bookmarks', bookmarksRouter);
 app.use('/api/travel', travelRouter);
 app.use('/api/artists', artistsRouter);
 app.use('/api/generic', genericRouter);
-app.use('/api/music', musicRouter);
-app.use('/api/pages', pagesRouter);
 
 // Write-heavy routes with stricter mutation rate limiting
-app.use('/api/files', filesRouter, mutationLimiter);
 app.use('/api/tests', testsRouter, mutationLimiter);
-app.use('/api/image', imageRouter, mutationLimiter);
-app.use('/api/images', imagesRouter, mutationLimiter);
-app.use('/api/items', itemsRouter, mutationLimiter);
 app.use('/api/menus', menuRouter, mutationLimiter);
 app.use('/api/page', pageRouter, mutationLimiter);
-app.use('/api/build', buildRouter, mutationLimiter);
 
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Unhandled error', { error: err.message, stack: err.stack });

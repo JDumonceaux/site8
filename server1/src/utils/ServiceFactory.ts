@@ -12,25 +12,15 @@
 
 // NOTE: This is the correct format.  GPT 5.0 fixes are incorrect.
 import { ArtistsService } from '../features/artists/ArtistsService.js';
-import { BookmarksService } from '../features/bookmarks/BookmarksService.js';
-import { ImageService } from '../features/image/ImageService.js';
-import { ImagesFileService } from '../features/images/ImagesFileService.js';
-import { ImagesService } from '../features/images/ImagesService.js';
-import { ItemsService } from '../features/items/ItemsService.js';
 import { MenuService } from '../features/menu/MenuService.js';
-import { MusicService } from '../features/music/MusicService.js';
 import { PageFileService } from '../features/page/PageFileService.js';
 import { PageService } from '../features/page/PageService.js';
-import { PagesService } from '../features/pages/PagesService.js';
-import { PhotosService } from '../features/photos/PhotosService.js';
 import { TestService } from '../features/test/TestService.js';
 import { TestsGroupsService } from '../features/tests/TestsGroupsService.js';
 import { TestsService } from '../features/tests/TestsService.js';
 import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
 import { TravelService } from '../features/travel/TravelService.js';
-import { FileService } from '../lib/filesystem/FileService.js';
 import { GenericService } from '../lib/generic/GenericService.js';
-import { BuildService } from '../services/build/BuildService.js';
 import { PrettierService } from '../services/code-quality/PrettierService.js';
 
 /**
@@ -43,47 +33,12 @@ class ServiceContainer {
     return this.getOrCreate('ArtistsService', () => new ArtistsService());
   }
 
-  public getBookmarksService(): BookmarksService {
-    return this.getOrCreate('BookmarksService', () => new BookmarksService());
-  }
-
-  public getBuildService(): BuildService {
-    return this.getOrCreate('BuildService', () => new BuildService());
-  }
-
-  public getFileService(): FileService {
-    return this.getOrCreate('FileService', () => new FileService());
-  }
-
   public getGenericService(): GenericService {
     return this.getOrCreate('GenericService', () => new GenericService());
   }
 
-  public getImageService(): ImageService {
-    return this.getOrCreate('ImageService', () => new ImageService());
-  }
-
-  public getImagesFileService(): ImagesFileService {
-    return this.getOrCreate('ImagesFileService', () => new ImagesFileService());
-  }
-
-  public getImagesService(): ImagesService {
-    return this.getOrCreate('ImagesService', () => new ImagesService());
-  }
-
-  public getItemsService(): ItemsService {
-    return this.getOrCreate('ItemsService', () => new ItemsService());
-  }
-
   public getMenuService(): MenuService {
-    return this.getOrCreate(
-      'MenuService',
-      () => new MenuService(this.getPagesService()),
-    );
-  }
-
-  public getMusicService(): MusicService {
-    return this.getOrCreate('MusicService', () => new MusicService());
+    return this.getOrCreate('MenuService', () => new MenuService());
   }
 
   public getPageFileService(): PageFileService {
@@ -92,14 +47,6 @@ class ServiceContainer {
 
   public getPageService(): PageService {
     return this.getOrCreate('PageService', () => new PageService());
-  }
-
-  public getPagesService(): PagesService {
-    return this.getOrCreate('PagesService', () => new PagesService());
-  }
-
-  public getPhotosService(): PhotosService {
-    return this.getOrCreate('PhotosService', () => new PhotosService());
   }
 
   public getPlacesMenuService(): PlacesMenuService {
@@ -156,26 +103,12 @@ const container = new ServiceContainer();
 // Export factory functions for backward compatibility
 export const getArtistsService = (): ArtistsService =>
   container.getArtistsService();
-export const getBookmarksService = (): BookmarksService =>
-  container.getBookmarksService();
-export const getBuildService = (): BuildService => container.getBuildService();
-export const getFileService = (): FileService => container.getFileService();
 export const getGenericService = (): GenericService =>
   container.getGenericService();
-export const getImageService = (): ImageService => container.getImageService();
-export const getImagesFileService = (): ImagesFileService =>
-  container.getImagesFileService();
-export const getImagesService = (): ImagesService =>
-  container.getImagesService();
-export const getItemsService = (): ItemsService => container.getItemsService();
 export const getMenuService = (): MenuService => container.getMenuService();
-export const getMusicService = (): MusicService => container.getMusicService();
 export const getPageService = (): PageService => container.getPageService();
 export const getPageFileService = (): PageFileService =>
   container.getPageFileService();
-export const getPagesService = (): PagesService => container.getPagesService();
-export const getPhotosService = (): PhotosService =>
-  container.getPhotosService();
 export const getPlacesMenuService = (): PlacesMenuService =>
   container.getPlacesMenuService();
 export const getPrettierService = (): PrettierService =>

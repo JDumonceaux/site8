@@ -24,9 +24,6 @@ const ImagesEditPage = lazy(
 const PageEditPage = lazy(
   async () => import('../../features/page-edit/PageEditPage'),
 );
-const PagesEditPage = lazy(
-  async () => import('../../features/pages-edit/PagesEditPage'),
-);
 
 /**
  * Admin routes that require authentication and admin role
@@ -44,10 +41,6 @@ export const adminRoutes = (queryClient: QueryClient) => (
       }
       path="admin"
     >
-      <Route
-        element={<PagesEditPage />}
-        path="pages"
-      />
       <Route
         element={<PageEditPage />}
         path="page/edit"

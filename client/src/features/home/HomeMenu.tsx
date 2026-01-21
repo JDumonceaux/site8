@@ -33,11 +33,6 @@ const HomeMenu = (): JSX.Element => {
       <StyledPageDiv to="/management">Management</StyledPageDiv>
 
       <StyledRootDiv>Content & Media</StyledRootDiv>
-      <StyledPageDiv to="/bookmarks">Bookmarks</StyledPageDiv>
-      <StyledPageDiv to="/images">Images</StyledPageDiv>
-      <StyledPageDiv to="/music">Music</StyledPageDiv>
-      <StyledPageDiv to="/photos">Photos</StyledPageDiv>
-      <StyledPageDiv to="/tiktok">TikTok</StyledPageDiv>
       <StyledPageDiv to="/travel">Travel</StyledPageDiv>
       <StyledPageDiv to="/yachts">Yachts</StyledPageDiv>
 
