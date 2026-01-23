@@ -59,12 +59,22 @@ export class ImagesService extends BaseDataService<Images> {
   // Get all data - uses BaseDataService implementation
   // Override not needed as base class provides this functionality
 
+  /**
+   * Override getItems to extract items array from Collection structure
+   */
+  public override async getItems(): Promise<Images> {
+    const data = await this.readFile();
+    // The file has {items: Image[], metadata: {}} structure
+    // but Images type is Image[], so we need to extract items
+    return (data as unknown as { items: Images }).items ?? [];
+  }
+
   // Yes, this is a duplicate of getItems.  It's here for clarity and in case
   // we need to add additional logic to getItems in the future.
   public async getItemsEdit(): Promise<Images | undefined> {
     // Get current items
-    const items = await this.readFile();
-    return { ...items };
+    const items = await this.getItems();
+    return items;
   }
 
   public override async getNextId(): Promise<number> {

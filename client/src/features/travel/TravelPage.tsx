@@ -1,27 +1,16 @@
 import type { JSX } from 'react';
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import Items from './Items';
+import Skeleton from './Skeleton';
 import TravelMenu from './TravelMenu';
 import useTravel from './useTravel';
-
-/**
- * Slugify helper to match URL parameters to place data
- */
-const slugify = (text: string): string => {
-  return text
-    .toLowerCase()
-    .trim()
-    .replaceAll(/[^\s\w-]/g, '')
-    .replaceAll(/\s+/g, '-')
-    .replaceAll(/-+/g, '-');
-};
+import { useTravelFiltering } from './useTravelFiltering';
+import styled from 'styled-components';
 
 const TravelPage = (): JSX.Element => {
   const { city, country, item } = useParams<{
@@ -32,52 +21,19 @@ const TravelPage = (): JSX.Element => {
 
   const { data, error, isError, isLoading } = useTravel();
 
+  const { filteredData, pageTitle, sortedCountryGroups } = useTravelFiltering({
+    city,
+    country,
+    data,
+    item,
+  });
+
   if (isError && error != null) {
     logError(error, {
       action: 'loadDestinations',
       componentName: 'TravelPage',
     });
   }
-
-  // Filter data based on URL parameters
-  const filteredData = useMemo(() => {
-    if (data?.items == null) return data;
-
-    let filtered = data.items;
-
-    // Filter by country
-    if (country != null && country !== '') {
-      filtered = filtered.filter(
-        (place) => slugify(place.country ?? '') === country,
-      );
-    }
-
-    // Filter by city
-    if (city != null && city !== '') {
-      filtered = filtered.filter((place) => slugify(place.city ?? '') === city);
-    }
-
-    // Filter by specific item
-    if (item != null && item !== '') {
-      filtered = filtered.filter((place) => slugify(place.name) === item);
-    }
-
-    return { ...data, items: filtered };
-  }, [data, country, city, item]);
-
-  // Determine page title based on URL parameters
-  const pageTitle = useMemo(() => {
-    if (item != null && item !== '' && filteredData?.items?.[0] != null) {
-      return filteredData.items[0].name;
-    }
-    if (city != null && city !== '' && filteredData?.items?.[0] != null) {
-      return `${filteredData.items[0].city}, ${filteredData.items[0].country}`;
-    }
-    if (country != null && country !== '' && filteredData?.items?.[0] != null) {
-      return filteredData.items[0].country;
-    }
-    return 'Travel Destinations';
-  }, [country, city, item, filteredData]);
 
   return (
     <>
@@ -93,13 +49,24 @@ const TravelPage = (): JSX.Element => {
           <Layout.Article>
             <PageTitle title={pageTitle} />
             <Layout.Section>
-              <LoadingWrapper
-                error={error}
-                isError={isError}
-                isLoading={isLoading}
-              >
+              {isLoading ? (
+                <Skeleton />
+              ) : isError && error != null ? (
+                <div>Error loading travel destinations</div>
+              ) : sortedCountryGroups == null ? (
                 <Items data={filteredData} />
-              </LoadingWrapper>
+              ) : (
+                <>
+                  {sortedCountryGroups.map(
+                    ({ countryName, data: groupData }) => (
+                      <CountryGroup key={countryName}>
+                        <CountryHeading>{countryName}</CountryHeading>
+                        <Items data={groupData} />
+                      </CountryGroup>
+                    ),
+                  )}
+                </>
+              )}
             </Layout.Section>
           </Layout.Article>
         </Layout.Content>
@@ -109,3 +76,16 @@ const TravelPage = (): JSX.Element => {
 };
 
 export default TravelPage;
+
+const CountryGroup = styled.div`
+  margin-bottom: 2rem;
+`;
+
+const CountryHeading = styled.h2`
+  color: var(--text-primary, #333);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+`;

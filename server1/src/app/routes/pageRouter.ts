@@ -18,5 +18,5 @@ pageRouter.get<{ id: string }>(
 );
 // DELETE, PUT, and PATCH use request body for data (no URL parameters)
 pageRouter.delete('/', asyncHandler(deleteItem));
-pageRouter.put('/', asyncHandler(putItem));
+pageRouter.put('/', putItem);
 pageRouter.patch('/', asyncHandler(patchItem));

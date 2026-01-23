@@ -108,6 +108,15 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
         ) : (
           <>
             <StyledTitle>Travel Destinations</StyledTitle>
+            <AllSitesLink
+              onClick={() => {
+                startNavigationTransition(() => {
+                  void navigate('/travel');
+                });
+              }}
+            >
+              All Sites
+            </AllSitesLink>
             {renderMenuItems}
           </>
         )}
@@ -148,4 +157,26 @@ const StyledError = styled.div`
   padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
+`;
+
+const AllSitesLink = styled.button`
+  background: none;
+  border: none;
+  color: var(--navbar-text);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--navbar-hover, rgba(255, 255, 255, 0.1));
+    border-radius: 4px;
+  }
+
+  &:focus {
+    outline: 2px solid var(--focus-color, #4a90e2);
+    outline-offset: 2px;
+  }
 `;

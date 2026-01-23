@@ -36,8 +36,13 @@ export class TravelService extends BaseDataService<Places> {
 
     try {
       const placesData = await this.readFile();
+      Logger.info(
+        `TravelService: Loaded ${placesData.items?.length ?? 0} places`,
+      );
+
       const imagesService = getImagesService();
       const imagesData = await imagesService.getItems();
+      Logger.info(`TravelService: Loaded ${imagesData?.length ?? 0} images`);
 
       if (!imagesData || imagesData.length === 0) {
         Logger.warn(
@@ -87,6 +92,9 @@ export class TravelService extends BaseDataService<Places> {
         a.name.localeCompare(b.name),
       );
 
+      Logger.info(
+        `TravelService: Returning ${sortedItems.length} enriched places`,
+      );
       return { items: sortedItems, metadata: placesData.metadata };
     } catch (error) {
       Logger.error(
