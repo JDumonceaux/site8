@@ -7,11 +7,11 @@ import * as v from 'valibot';
 
 import { Logger } from '../../utils/logger.js';
 import { cleanUpData } from '../../utils/objectUtil.js';
+import { safeParse } from '../../utils/schemaHelper.js';
 import {
   getPageFileService,
   getPagesService,
 } from '../../utils/ServiceFactory.js';
-import { safeParse } from '../../utils/zodHelper.js';
 
 import { mapPageMenuToPageText } from './mapPageMenuToPageText.js';
 
@@ -37,7 +37,7 @@ const PAGE_ADD_SCHEMA = v.pipe(
     url: v.optional(v.pipe(v.string(), v.trim())),
   }),
   v.check(
-    (data) => !!(data.to || data.url),
+    (data) => !!(data.to ?? data.url),
     'Either to or url should be filled in.',
   ),
 );
@@ -82,7 +82,7 @@ export class PageService {
       const valid = safeParse<AddData>(PAGE_ADD_SCHEMA, validationData);
 
       if (valid.error) {
-        throw new Error(`Validation failed: ${valid.error}`);
+        throw new Error(`Validation failed: ${JSON.stringify(valid.error)}`);
       }
 
       const pages = await this.getItems();

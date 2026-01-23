@@ -1,4 +1,5 @@
 import type { BaseIssue, BaseSchema } from 'valibot';
+
 import { safeParse as valibotSafeParse } from 'valibot';
 
 export type ParseResult<T> = {

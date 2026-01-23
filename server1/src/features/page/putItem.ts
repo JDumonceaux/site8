@@ -8,10 +8,10 @@ import { notImplemented } from '../../lib/http/ResponseHelper.js';
  * @param res - Express response
  * @todo Implement full page update logic with PageService
  */
-export const putItem = async (
+export const putItem = (
   _req: Request,
   res: Response<{ error: string }>,
-): Promise<void> => {
+): void => {
   // TODO: Implement full page update logic with PageService
   notImplemented(res, 'Page PUT not yet implemented');
 };

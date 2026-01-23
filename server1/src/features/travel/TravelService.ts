@@ -39,7 +39,7 @@ export class TravelService extends BaseDataService<Places> {
       const imagesService = getImagesService();
       const imagesData = await imagesService.getItems();
 
-      if (!imagesData?.items) {
+      if (!imagesData || imagesData.length === 0) {
         Logger.warn(
           'TravelService: getPlacesWithImages -> No images data available',
         );
@@ -47,7 +47,7 @@ export class TravelService extends BaseDataService<Places> {
       }
 
       // Create a map of image IDs to full image objects for quick lookup
-      const imageMap = new Map(imagesData.items.map((img) => [img.id, img]));
+      const imageMap = new Map(imagesData.map((img) => [img.id, img] as const));
 
       // Enrich places with full image data
       const enrichedItems = (placesData.items ?? []).map((place) => {
@@ -70,10 +70,9 @@ export class TravelService extends BaseDataService<Places> {
 
             return {
               ...imgRef,
-              fileName: fullImageData.fileName,
-              folder: fullImageData.folder,
-              //  location: fullImageData.location,
-              name: fullImageData.name,
+              alt: fullImageData.alt,
+              src: fullImageData.src,
+              title: fullImageData.title,
             };
           })
           .filter((img) => img !== null);

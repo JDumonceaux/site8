@@ -58,7 +58,7 @@
     // "noPropertyAccessFromIndexSignature": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "vitest.config.ts"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist", "__tests__"],
   // Reference to node-specific tsconfig for project builds and type-checking
   "references": [{ "path": "./tsconfig.node.json" }]

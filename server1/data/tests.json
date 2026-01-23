@@ -7712,6 +7712,25 @@
           "seq": 1
         }
       ]
+    },
+    {
+      "id": 409,
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "npm",
+          "content": "npm run build"
+        }
+      ],
+      "name": "Run build script",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ],
+      "comments": "Validate that the project builds successfully without errors."
     }
   ]
 }

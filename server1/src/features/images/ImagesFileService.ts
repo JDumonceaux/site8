@@ -1,12 +1,10 @@
-import type { Image, ImageEdit, Images } from '@site8/shared';
+import type { ImageFile, ImageFileEdit } from './types.js';
 
 import { existsSync, mkdirSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
-import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
 import { Logger } from '../../utils/logger.js';
-import { getImagesService } from '../../utils/ServiceFactory.js';
 
 export class ImagesFileService {
   private readonly imageDir: string = '';
@@ -42,77 +40,23 @@ export class ImagesFileService {
     }
   }
 
-  /**
-   * Retrieves the list of folders in the specified path.
-   *
-   * @returns An array of folder names.
-   */
-  public getFolders() {
-    try {
-      // All the files and all the directories
-      // If encoding is missing, returns buffer vs. strings
-      // NOTE: path is deprecated, but replacement - parentPath - isn't working
-      // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
-      const items = readdirSync(this.imageDir, {
-        encoding: 'utf8',
-        recursive: true,
-        withFileTypes: true,
-      })
-        .filter((x) => x.isDirectory())
-        .map((x) => x.parentPath + '\\' + x.name)
-        .map((x) => x.substring(this.imageDir.length + 1).trim())
-        .filter((x) => !FOLDERS_TO_IGNORE.some((y) => x.startsWith(y)))
-        .toSorted((a, b) => a.localeCompare(b));
-      return items;
-    } catch (error) {
-      Logger.error(`ImagesFileService: getFolders -> ${String(error)}`);
-    }
-    return undefined;
-  }
-
   // Get all data
-  public getItemsFromBaseDirectory(): Image[] | undefined {
+  public getItemsFromBaseDirectory(): ImageFile[] | undefined {
     return this.getItemsFromDirectory(this.imageDir);
-  }
-
-  // Get "items" from 'sort' directory
-  public getItemsFromSortDirectory(): Image[] | undefined {
-    return this.getItemsFromDirectory(this.imageDir, 'sort');
-  }
-
-  // Get all data
-  public async getMatchedItems(): Promise<Images | undefined> {
-    try {
-      const items = this.getItemsFromBaseDirectory();
-      const x = await this.matchItems(items);
-      return { items: x, metadata: { title: 'Images' } };
-    } catch (error) {
-      Logger.error(`ImagesFileService: getMatchedItems -> ${String(error)}`);
-      return undefined;
-    }
-  }
-
-  /**
-   * Retrieves new items from the sort directory.
-   * @returns A Promise that resolves to an object of type Images or undefined.
-   */
-  public getNewItems(): Images | undefined {
-    const items = this.getItemsFromSortDirectory();
-    return { items: items, metadata: { title: 'Images' } };
   }
 
   /**
    * Moves the specified items to a new location.
-   * @param items - An array of ImageEdit objects representing the items to be moved.
+   * @param items - An array of ImageFileEdit objects representing the items to be moved.
    * @returns A Promise that resolves to a boolean indicating whether the move operation was successful.
    */
-  public moveItems(items: readonly ImageEdit[] | undefined): boolean {
+  public moveItems(items: readonly ImageFileEdit[] | undefined): boolean {
     try {
       Logger.info(
         `ImagesFileService: moveItems. -> (${items ? items.length : 0}) to move.`,
       );
 
-      const updates: readonly ImageEdit[] = []; //items?.filter((x) => x.originalFolder !== x.folder);
+      const updates: readonly ImageFileEdit[] = []; //items?.filter((x) => x.originalFolder !== x.folder);
       if (!updates || updates.length === 0) {
         Logger.info(`ImagesFileService: moveItems. -> no items to update`);
         return true;
@@ -126,9 +70,7 @@ export class ImagesFileService {
           return false;
         }
 
-        const { originalFolder } = item as ImageEdit & {
-          originalFolder?: string;
-        };
+        const { originalFolder } = item;
         const currLocation = path.join(
           this.imageDir,
           originalFolder ?? '',
@@ -172,7 +114,7 @@ export class ImagesFileService {
   private getItemsFromDirectory(
     basePath: string,
     addPath?: string,
-  ): Image[] | undefined {
+  ): ImageFile[] | undefined {
     try {
       const fullPath = addPath ? path.join(basePath, addPath) : basePath;
       Logger.info(
@@ -193,15 +135,15 @@ export class ImagesFileService {
       });
 
       // Return a list of images
-      const ret: Image[] = items.map((x) => {
+      const ret: ImageFile[] = items.map((x) => {
         return {
           fileName: path.basename(x),
           folder: path.dirname(x),
         };
-      }) as Image[];
+      });
 
       // Filter out 'site' folder
-      const filteredImages = ret.filter((x) => x.folder != 'site');
+      const filteredImages = ret.filter((x) => x.folder !== 'site');
 
       return filteredImages;
     } catch (error) {
@@ -210,41 +152,5 @@ export class ImagesFileService {
       );
     }
     return undefined;
-  }
-
-  private async matchItems(
-    items: Image[] | undefined,
-  ): Promise<Image[] | undefined> {
-    try {
-      const service = getImagesService();
-      const data = await service.getItems();
-
-      if (!data) {
-        return items;
-      }
-
-      if (!items) {
-        return undefined;
-      }
-
-      const ret = items.map((item) => {
-        // Try to match by src if present, otherwise fall back to filename
-        const itemSrc = (item as { src?: string }).src;
-        const matched = itemSrc
-          ? data.items?.find((x) => (x as { src?: string }).src === itemSrc)
-          : data.items?.find((x) => x.fileName === item.fileName);
-
-        return {
-          ...item,
-          isMatched: !!matched,
-          matchedId: matched?.id ?? 0,
-        } as Image;
-      });
-
-      return ret;
-    } catch (error) {
-      Logger.error(`ImagesFileService: matchItems -> ${String(error)}`);
-      return undefined;
-    }
   }
 }

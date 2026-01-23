@@ -1,3 +1,4 @@
+import type { ImageFile } from './types.js';
 import type { Image } from '@site8/shared';
 
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
@@ -10,9 +11,9 @@ import { cleanUpData, getNextIdFromPos } from '../../utils/objectUtil.js';
  * @returns Filtered and sorted array of new unique images, or undefined if newItems is undefined
  */
 export const getNewItems = (
-  prevItems: Image[] | undefined,
-  newItems: Image[] | undefined,
-): Image[] | undefined => {
+  prevItems: ImageFile[] | undefined,
+  newItems: ImageFile[] | undefined,
+): ImageFile[] | undefined => {
   if (!newItems) return undefined;
 
   const uniqueItems = newItems.filter((item) => {
@@ -32,7 +33,7 @@ export const getNewItems = (
   });
 
   const newItemsWithFlag = filteredItems.map((item) =>
-    cleanUpData<Image>({ ...item }),
+    cleanUpData<ImageFile>({ ...item }),
   );
 
   return newItemsWithFlag.toSorted((a, b) =>
