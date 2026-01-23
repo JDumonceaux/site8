@@ -21,4 +21,3 @@ export const Default: Story = {
     id: 'test',
   },
 };
-

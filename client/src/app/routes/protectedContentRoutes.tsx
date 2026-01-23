@@ -17,13 +17,8 @@ const TravelPage = lazy(async () => import('../../features/travel/TravelPage'));
 const GenericPage = lazy(
   async () => import('../../features/generic/GenericPage'),
 );
-const GenericImagePage = lazy(
-  async () => import('../../features/generic/GenericImagePage'),
-);
 const YachtsPage = lazy(async () => import('../../features/yatch/YachtsPage'));
-const TestsPage = lazy(
-  async () => import('../../features/tests/TestsPage'),
-);
+const TestsPage = lazy(async () => import('../../features/tests/TestsPage'));
 
 /**
  * Protected content routes that require authentication
@@ -41,75 +36,108 @@ export const protectedContentRoutes = (
         />
       }
     >
-      <Route
-        element={<GenericPage />}
-        path="accessibility/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="aws/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="code-snippets/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="design/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="html/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="interview-questions/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="javascript/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="management/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="nextjs/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="nodejs/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="programming/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path=":lang?/programming/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="python/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="react/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="react-a-z/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="typescript/*"
-      />
-      <Route
-        element={<GenericPage />}
-        path="web/*"
-      />
-
+      <Route path="accessibility">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="aws">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="code-snippets">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="design">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="html">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="interview-questions">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="javascript">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="management">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="nextjs">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="nodejs">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="programming">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path=":lang?/programming">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="python">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="react">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="react-a-z">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="typescript">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
+      <Route path="web">
+        <Route
+          element={<GenericPage />}
+          path="*"
+        />
+      </Route>
       <Route
         element={<YachtsPage />}
         path="yachts"
@@ -119,8 +147,7 @@ export const protectedContentRoutes = (
         path="*"
       />
     </Route>
-
-    {/* Travel */}}
+    {/* Travel */}
     <Route
       element={
         <UnifiedLayout
@@ -148,7 +175,6 @@ export const protectedContentRoutes = (
         path=":country/:city/:item"
       />
     </Route>
-
     {/* Testing */}
     <Route
       element={

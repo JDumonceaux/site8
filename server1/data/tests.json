@@ -219,6 +219,17 @@
         }
       ],
       "comments": "AI-assisted code quality and cleanup tasks"
+    },
+    {
+      "id": 19,
+      "name": "HTML",
+      "tags": ["client"],
+      "sectionIds": [
+        {
+          "id": 32,
+          "seq": 1
+        }
+      ]
     }
   ],
   "sections": [
@@ -405,6 +416,11 @@
       "id": 31,
       "name": "Dependency Management",
       "comments": "Vulnerability scanning, update strategies, breaking change reviews, license compliance, dependency size impact",
+      "seq": 10
+    },
+    {
+      "id": 32,
+      "name": "Stay Current",
       "seq": 10
     }
   ],
@@ -7605,6 +7621,79 @@
         }
       ],
       "comments": "Ensure data integrity with valid JSON syntax"
+    },
+    {
+      "id": 404,
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "code",
+          "content": "<geolocation onlocation=\"handleLocation(event)\" accuracymode=\"precise\">\n  <!-- Fallback content for browsers that do not support the element -->\n  <button onclick=\"navigator.geolocation.getCurrentPosition(handleLocation)\">\n    Use my location\n  </button>\n</geolocation>"
+        }
+      ],
+      "name": "HTML - Geolocation Tag",
+      "groupIds": [
+        {
+          "id": 19,
+          "seq": 1
+        }
+      ],
+      "comments": "Chrome 144 (Jan 2026) introduces the <geolocation> HTML tag for requesting user location with enhanced privacy controls."
+    },
+    {
+      "id": 405,
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "npx",
+          "content": "npx prettier --write \"**/*.tsx\""
+        }
+      ],
+      "name": "Run Prettier on TSX files",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
+    },
+    {
+      "id": 406,
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "npm",
+          "content": "npm run lint"
+        }
+      ],
+      "name": "Run ESLint on all files",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
+    },
+    {
+      "id": 407,
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "npm",
+          "content": "npm run lint:fix"
+        }
+      ],
+      "name": "Run ESLint on all files and fix",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     }
   ]
 }

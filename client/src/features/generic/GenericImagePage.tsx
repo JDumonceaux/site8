@@ -5,15 +5,16 @@ import PageTitle from '@components/core/page/PageTitle';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
-import { getSRC, sanitizeUrl } from '@lib/utils/helpers';
 import type { Image } from '@types';
-import useImages from '../images-edit/useImages';
 import styled from 'styled-components';
 
 const GenericImagePage = (): JSX.Element => {
-  const { data, isError, isLoading } = useImages();
+  // TODO: Replace with actual data fetching hook
+  const data: Image[] = [];
+  const isError = false;
+  const isLoading = false;
 
-  const deferredData = useDeferredValue<Image[]>(data?.items ?? []);
+  const deferredData = useDeferredValue<Image[]>(data);
 
   const pageTitle = 'Images';
 
@@ -35,16 +36,10 @@ const GenericImagePage = (): JSX.Element => {
                 {deferredData.map((item) => (
                   <div key={item.id}>
                     <StyledImage
-                      alt={item.fileName}
-                      src={getSRC(item.folder, item.fileName)}
+                      alt={item.alt}
+                      src={item.src}
                     />
-                    <div>{item.fileName}</div>
-                    {item.ext_url ? (
-                      <div>
-                        <a href={sanitizeUrl(item.ext_url)}>Official Site</a>
-                      </div>
-                    ) : null}
-                    {/* <div>{item.tags}</div>  */}
+                    <div>{item.title}</div>
                   </div>
                 ))}
               </Suspense>

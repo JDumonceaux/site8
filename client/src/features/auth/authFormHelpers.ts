@@ -15,14 +15,15 @@ export const formatValidationErrors = (
   const flattened = flatten(
     issues as [BaseIssue<unknown>, ...BaseIssue<unknown>[]],
   );
-  return Object.entries(flattened.nested ?? {}).reduce(
-    (acc, [key, value]) => {
+  return Object.entries(flattened.nested ?? {}).reduce<Record<string, string>>(
+    (accumulator, [key, value]) => {
       if (value && value.length > 0) {
-        acc[key] = value[0];
+        const [firstError] = value;
+        accumulator[key] = firstError;
       }
-      return acc;
+      return accumulator;
     },
-    {} as Record<string, string>,
+    {},
   );
 };
 

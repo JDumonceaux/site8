@@ -132,7 +132,7 @@ const SignupPage = (): JSX.Element => {
           By clicking &quot;Submit&quot; you are agreeing to the{' '}
           <StyledLink to="/terms-of-use">Terms of Use</StyledLink>,{' '}
           <StyledLink to="/privacy-policy">Privacy Policy</StyledLink>, and{' '}
-          <StyledLink to="/cookie-use">Cookie Use Policy</StyledLink> of this
+          <StyledLink to="/cookie-use">Cookie Use Policy</StyledLink>of this
           site.
         </TermsDiv>
         <StyledBottomMsgCenter>

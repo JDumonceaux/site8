@@ -18,24 +18,19 @@ const HomeMenu = (): JSX.Element => {
       <StyledPageDiv to="/react">React</StyledPageDiv>
       <StyledPageDiv to="/typescript">TypeScript</StyledPageDiv>
       <StyledPageDiv to="/web">Web</StyledPageDiv>
-
       <StyledRootDiv>Design & Development</StyledRootDiv>
       <StyledPageDiv to="/design">Design</StyledPageDiv>
       <StyledPageDiv to="/react-a-z">React A-Z</StyledPageDiv>
-
       <StyledRootDiv>Cloud & Infrastructure</StyledRootDiv>
       <StyledPageDiv to="/aws">AWS</StyledPageDiv>
-
       <StyledRootDiv>Career & Management</StyledRootDiv>
       <StyledPageDiv to="/interview-questions">
         Interview Questions
       </StyledPageDiv>
       <StyledPageDiv to="/management">Management</StyledPageDiv>
-
       <StyledRootDiv>Content & Media</StyledRootDiv>
       <StyledPageDiv to="/travel">Travel</StyledPageDiv>
       <StyledPageDiv to="/yachts">Yachts</StyledPageDiv>
-
       <StyledRootDiv>Testing</StyledRootDiv>
       <StyledPageDiv to="/react/testing/test-grid">Test Grid</StyledPageDiv>
     </StyledNav>

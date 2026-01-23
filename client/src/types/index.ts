@@ -17,7 +17,6 @@ export type * from './ListItem';
 export type * from './Menu';
 export type * from './MenuAdd';
 export type * from './MenuEdit';
-export type * from './Music';
 export * from './PageEditSchema';
 export type * from './PageSchema';
 export type * from './PageSummary';
@@ -27,13 +26,11 @@ export type * from './Video';
 export type {
   Artists,
   ArtistWithItems,
-  BookmarksTags,
   Image,
   Images,
   MenuItem,
   Page,
   Pages,
-  Photos,
   Places,
   Test,
   Tests,

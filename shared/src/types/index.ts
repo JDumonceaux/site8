@@ -9,6 +9,7 @@ export type { ArtistWithItems } from "./ArtistWithItems.js";
 export type { ArtistsItems } from "./ArtistsItems.js";
 export type { ArtItem } from "./ArtItem.js";
 export type { Collection, RequiredCollection } from "./Collection.js";
+export type { Image, Images } from "./Image.js";
 export type { Item } from "./Item.js";
 export type { ItemAdd } from "./ItemAdd.js";
 export type { ItemArtist } from "./ItemArtist.js";

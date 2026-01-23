@@ -10,17 +10,14 @@ const TravelMenuSkeleton = (): JSX.Element => {
   return (
     <StyledSkeletonContainer>
       <StyledTitle />
-
       {/* Country level items (3) */}
       <StyledCountryItem />
       <StyledCountryItem />
       <StyledCountryItem />
-
       {/* Show one expanded section with cities */}
       <StyledCountryItem />
       <StyledCityItem />
       <StyledCityItem />
-
       <StyledCountryItem />
       <StyledCountryItem />
     </StyledSkeletonContainer>

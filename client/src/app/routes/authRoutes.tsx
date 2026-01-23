@@ -49,7 +49,6 @@ export const authRoutes = (
       element={<ConfirmEmailPage />}
       path="confirm"
     />
-
     {/* Password Management */}
     <Route path="password">
       <Route
@@ -61,7 +60,6 @@ export const authRoutes = (
         path="change"
       />
     </Route>
-
     {/* Account Management */}
     <Route path="account">
       <Route

@@ -36,13 +36,11 @@ export const publicRoutes = (
         index
       />
     </Route>
-
     {/* Public Utility Routes */}
     <Route
       element={<Sitemap />}
       path="sitemap"
     />
-
     {/* Legal Pages */}
     <Route element={<UnifiedLayout hasHeader />}>
       <Route

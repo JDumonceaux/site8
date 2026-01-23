@@ -108,6 +108,7 @@ const useForm = <T>(initialValues: T): UseFormReturn<T> => {
     if (errors == null) return null;
     const filteredErrors = errors.filter((issue) => {
       if (!issue.path || issue.path.length === 0) return false;
+      // eslint-disable-next-line @typescript-eslint/prefer-destructuring
       const firstPath = issue.path[0];
       if (typeof firstPath === 'object' && 'key' in firstPath) {
         return firstPath.key === fieldName;

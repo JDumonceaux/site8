@@ -11,10 +11,7 @@ const currentYear = new Date().getFullYear();
 const Footer = (): JSX.Element => {
   return (
     <FooterContainer data-testid="footer">
-      <CopyrightText>
-        &copy;
-        {currentYear}
-      </CopyrightText>
+      <CopyrightText>©{currentYear}</CopyrightText>
     </FooterContainer>
   );
 };

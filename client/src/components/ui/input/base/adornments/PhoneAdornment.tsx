@@ -36,4 +36,3 @@ const StyledIcon = styled(Icon)`
   height: 15px;
   color: var(--input-icon-color);
 `;
-

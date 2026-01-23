@@ -55,6 +55,7 @@ export const IMAGE_BASE = '/images';
 /* -------------------------------------------------------------------------- */
 export const ServiceUrl = {
   ENDPOINT_GENERIC: `${API_ROOT}/generic`,
+  ENDPOINT_IMAGES_SCAN: `${API_ROOT}/images/scan`,
   ENDPOINT_MENUS: `${API_ROOT}/menus`,
   ENDPOINT_MENUS_EDIT: `${API_ROOT}/menus/edit`,
   ENDPOINT_PAGE: `${API_ROOT}/page`,

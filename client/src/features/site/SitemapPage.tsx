@@ -26,4 +26,3 @@ const SitemapPage = (): JSX.Element | null => (
 
 SitemapPage.displayName = 'SitemapPage';
 export default SitemapPage;
-

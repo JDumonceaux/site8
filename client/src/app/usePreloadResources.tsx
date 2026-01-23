@@ -10,7 +10,7 @@ export const usePreloadResources = () => {
     // 1. DNS Prefetch for external domains (earliest connection stage)
     prefetchDNS('https://fonts.googleapis.com');
     prefetchDNS('https://fonts.gstatic.com');
-    prefetchDNS('https://player.vimeo.com'); // Used in YachtsPage
+    prefetchDNS('https://player.vimeo.com');
 
     // 2. Preconnect to origins we'll fetch from (establishes full connection)
     preconnect('https://fonts.googleapis.com');

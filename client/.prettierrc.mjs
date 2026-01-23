@@ -17,6 +17,10 @@ export default {
   // ----------------------------------------------------------------------------
   endOfLine: 'lf',                     // Use LF line endings for consistency across platforms
   // ----------------------------------------------------------------------------
+  // Experimental Features
+  // ----------------------------------------------------------------------------
+  experimentalTernaries: false,        // Disable experimental ternary formatting (opt-in when stable)
+  // ----------------------------------------------------------------------------
   // JSX & HTML
   // ----------------------------------------------------------------------------
   htmlWhitespaceSensitivity: 'css',    // Respect CSS display property for HTML whitespace sensitivity
@@ -61,19 +65,20 @@ export default {
       },
     },
   ],
+
   // ----------------------------------------------------------------------------
   // Line Length & Wrapping
   // ----------------------------------------------------------------------------
   printWidth: 80,                      // Wrap lines at 80 characters
-
   proseWrap: 'preserve',               // Do not reformat markdown text automatically
   quoteProps: 'as-needed',             // Only quote object keys when required
+
   // ----------------------------------------------------------------------------
   // Quotes & Punctuation
   // ----------------------------------------------------------------------------
   semi: true,                          // Add semicolons at the end of statements
-
   singleAttributePerLine: true,        // Force one attribute per line in JSX/HTML for better readability
+
   singleQuote: true,                   // Use single quotes instead of double quotes
 
   // ----------------------------------------------------------------------------
@@ -86,11 +91,6 @@ export default {
   useTabs: false,                      // Use spaces instead of tabs for indentation
 
   useTabs: false,                      // Use spaces instead of tabs for indentation
-
-  // ----------------------------------------------------------------------------
-  // Experimental Features
-  // ----------------------------------------------------------------------------
-  experimentalTernaries: false,        // Disable experimental ternary formatting (opt-in when stable)
 
   // ----------------------------------------------------------------------------
   // Vue-Specific (if applicable)

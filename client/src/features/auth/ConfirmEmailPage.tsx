@@ -145,7 +145,6 @@ const ConfirmEmailPage = (): JSX.Element => {
             spellCheck="false"
             {...getDefaultProps('emailAddress')}
           />
-
           <Input.Number
             autoComplete="one-time-code"
             inputMode="numeric"
@@ -155,14 +154,12 @@ const ConfirmEmailPage = (): JSX.Element => {
             spellCheck="false"
             {...getStandardInputTextAttributes('authenticationCode')}
           />
-
           <Button
             id="login"
             type="submit"
           >
             {isPending || isLoading ? 'Processing' : 'Submit'}
           </Button>
-
           <StyledBottomMsg>
             <button
               onClick={handleResend}

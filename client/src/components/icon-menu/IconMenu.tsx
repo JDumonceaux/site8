@@ -27,7 +27,6 @@ const IconMenu = ({ children }: IconMenuProps): JSX.Element => {
           <DotsVerticalIcon />
         </StyledButton>
       </DropdownMenu.Trigger>
-
       <DropdownMenu.Portal>
         <StyledMenuContent
           align="start"

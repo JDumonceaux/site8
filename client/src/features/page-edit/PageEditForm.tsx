@@ -14,34 +14,6 @@ type PageEditFormProps = {
 };
 
 const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
-  // const [currentPositionStart, setCurrentPositionStart] = useState<number>(0);
-  // const [currentPositionEnd, setCurrentPositionEnd] = useState<number>(0);
-
-  // const handeTextInsert =
-  //   (action: string) => {
-  //     const result = insertHTML(
-  //       formValues.text,
-  //       currentPositionStart,
-  //       currentPositionEnd,
-  //       action,
-  //     );
-  //     setFieldValue('text', result);
-  //   };
-
-  // const handeNameOnBlur = () => {
-  //   if (formValues.name.length > 0 && formValues.to?.length === 0) {
-  //     const x = formValues.name.toLowerCase().replaceAll(' ', '-');
-  //     setFieldValue('to', x);
-  //   }
-  // };
-
-  // const handeTextAreaBlur =
-  //   (error: React.FocusEvent<HTMLTextAreaElement>) => {
-  //     setCurrentPositionStart(error.currentTarget.selectionStart);
-  //     setCurrentPositionEnd(error.currentTarget.selectionEnd);
-  //   }
-  // );
-
   const { error, isError, isPending, patchItem } = usePagePatch();
 
   const actionState = useActionState(patchItem, {
@@ -51,10 +23,10 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
   const data =
     Array.isArray(actionState) &&
     typeof actionState[0] === 'object' &&
-    actionState[0] &&
     'fieldData' in actionState[0]
       ? actionState[0]
       : undefined;
+
   const action = Array.isArray(actionState) ? actionState[1] : undefined;
 
   // Type guard to check if data is not an error object
@@ -72,7 +44,6 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
         <StyledButtonWrapper>
           <FormSaveButton data-testid="button-save">Save</FormSaveButton>
         </StyledButtonWrapper>
-
         <input
           id="id"
           name="id"
@@ -97,7 +68,6 @@ const PageEditForm = ({ data: initData }: PageEditFormProps): JSX.Element => {
           // onChange={handleChange}
           labelProps={LABEL_TITLE}
           placeholder="Enter a title"
-          // value={formValues.name}
         />
         <Input.Text
           defaultValue={data.fieldData?.to ?? ''}

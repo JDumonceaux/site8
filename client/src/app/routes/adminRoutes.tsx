@@ -15,12 +15,6 @@ const UnifiedLayout = lazy(
 // ---------------------
 // Admin Pages
 // ---------------------
-const ImageEditPage = lazy(
-  async () => import('../../features/image-edit/ImageEditPage'),
-);
-const ImagesEditPage = lazy(
-  async () => import('../../features/images-edit/ImagesEditPage'),
-);
 const PageEditPage = lazy(
   async () => import('../../features/page-edit/PageEditPage'),
 );
@@ -49,26 +43,6 @@ export const adminRoutes = (queryClient: QueryClient) => (
         element={<PageEditPage />}
         loader={pageLoader(queryClient)}
         path="page/edit/:id"
-      />
-      <Route
-        element={<ImageEditPage />}
-        path="image/edit"
-      />
-      <Route
-        element={<ImageEditPage />}
-        path="image/edit/:id"
-      />
-      <Route
-        element={<ImagesEditPage />}
-        path="images"
-      />
-      <Route
-        element={<ImagesEditPage />}
-        path="images/new"
-      />
-      <Route
-        element={<ImagesEditPage />}
-        path="images/edit"
       />
     </Route>
   </Route>

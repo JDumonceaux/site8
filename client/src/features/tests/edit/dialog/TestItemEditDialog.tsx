@@ -144,7 +144,6 @@ const TestItemEditDialog = ({
               value={name}
             />
           </FormField>
-
           <FormField>
             <Label htmlFor="group">Group</Label>
             <Select
@@ -159,13 +158,12 @@ const TestItemEditDialog = ({
                   key={group.id}
                   value={group.id}
                 >
-                  {group.sectionName ?? 'Unknown Section'} - {group.name} -{' '}
+                  {group.sectionName ?? 'Unknown Section'}- {group.name}-{' '}
                   {group.id}
                 </option>
               ))}
             </Select>
           </FormField>
-
           <FormField>
             <Label htmlFor="tags">Tags (comma-separated)</Label>
             <Input
@@ -178,7 +176,6 @@ const TestItemEditDialog = ({
               value={tags}
             />
           </FormField>
-
           <FormField>
             <Label htmlFor="comments">Comments</Label>
             <TextArea
@@ -190,7 +187,6 @@ const TestItemEditDialog = ({
               value={comments}
             />
           </FormField>
-
           <FormField>
             <LabelRow>
               <Label>Code Items</Label>

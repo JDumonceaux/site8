@@ -30,16 +30,12 @@ const createAppRouter = (queryClient: QueryClient) => {
       >
         {/* ===== PUBLIC ROUTES (No Authentication Required) ===== */}
         {publicRoutes}
-
         {/* ===== AUTHENTICATION ROUTES (For Unauthenticated Users) ===== */}
         {authRoutes}
-
         {/* ===== PROTECTED ROUTES (Authentication Required) ===== */}
         {protectedContentRoutes}
-
         {/* ===== ADMIN ROUTES (Admin Role Required) ===== */}
         {adminRoutes(queryClient)}
-
         {/* ===== FALLBACK ROUTES ===== */}
         <Route
           element={<NotFound />}
@@ -47,6 +43,16 @@ const createAppRouter = (queryClient: QueryClient) => {
         />
       </Route>,
     ),
+    {
+      future: {
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_relativeSplatPath: true,
+        v7_skipActionStatusRevalidation: true,
+        v7_startTransition: true,
+      },
+    },
   );
 };
 

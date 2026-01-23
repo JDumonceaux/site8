@@ -87,7 +87,7 @@ const useMenuEdit = () => {
       // Validate form
       const validationResult = safeParse<FormType>(pageSchema, formValues);
       if (!validationResult.success) {
-        setErrors(validationResult.error?.issues ?? null);
+        setErrors(validationResult.error ?? null);
         return {
           message: 'Validation failed. Please check the form fields.',
           success: false,

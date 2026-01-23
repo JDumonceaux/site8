@@ -69,9 +69,7 @@ const Button7 = styled(Button)`
 const Button8 = styled(Button)`
   animation-name: ${lpcAnimation('+ 280px', '+ 100px')};
 `;
-const Button9 = styled(Button)`
-  animation-name: ${lpcAnimation('+ 280px', '- 300px')};
-`;
+// Button9 removed - unused
 const Button10 = styled(Button)`
   animation-name: ${lpcAnimation('+ 350px', '- 100px')};
 `;

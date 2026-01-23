@@ -15,6 +15,10 @@ import tsConfig from './eslint.config.typescript.mjs';
 import unicornConfig from './eslint.config.unicorn.mjs';
 
 const config = [
+    // Ignore generated/vendor files
+    {
+        ignores: ['stats.html', 'dist/**', 'node_modules/**'],
+    },
     javascriptConfig,
     checkFileConfig,
     importConfig,

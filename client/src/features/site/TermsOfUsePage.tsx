@@ -20,15 +20,14 @@ const TermsOfUsePage = (): JSX.Element | null => {
               <time dateTime={lastUpdated}>March 21, 2024</time>
             </p>
           </header>
-
           <section>
             <h2>Agreement to Our Legal Terms</h2>
             <p>
-              We are <em>X</em> (“Company,” “we,” “us,” “our”). We operate the
+              We are <em>X</em>(“Company,” “we,” “us,” “our”). We operate the
               website example.com (the “Site”) and any related products and
               services that refer or link to these legal terms (collectively,
               the “Services”). You can contact us by email at{' '}
-              <a href={`mailto:${contactEmail}`}>{contactEmail}</a> or by mail
+              <a href={`mailto:${contactEmail}`}>{contactEmail}</a>or by mail
               to:
             </p>
             <address>
@@ -47,7 +46,6 @@ const TermsOfUsePage = (): JSX.Element | null => {
               </strong>
             </p>
           </section>
-
           <section>
             <h2>Supplemental Terms &amp; Updates</h2>
             <p>

@@ -47,7 +47,6 @@ export const Interactive: Story = {
           <DemoContainer>
             <h2>Snackbar Demo</h2>
             <p>Click buttons below to see different snackbar variants:</p>
-
             <ButtonGroup>
               <Button
                 onClick={() => {
@@ -66,7 +65,6 @@ export const Interactive: Story = {
                 Show Error
               </Button>
             </ButtonGroup>
-
             <h3>Message Length Tests</h3>
             <ButtonGroup>
               <Button
@@ -100,7 +98,6 @@ export const Interactive: Story = {
                 Long Message
               </Button>
             </ButtonGroup>
-
             <h3>Duration Tests</h3>
             <ButtonGroup>
               <Button
@@ -128,9 +125,8 @@ export const Interactive: Story = {
                 10s Duration
               </Button>
             </ButtonGroup>
-
             <p>
-              <strong>Keyboard Shortcut:</strong> Press <code>Escape</code> to
+              <strong>Keyboard Shortcut:</strong>Press <code>Escape</code>to
               close the snackbar
             </p>
           </DemoContainer>

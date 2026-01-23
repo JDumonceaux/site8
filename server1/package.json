@@ -18,7 +18,6 @@
     "lint:format": "pretty-quick --staged",
     "prepare": "husky",
     "prepare-commit-msg": "node tools/git-commit-message.js .git/COMMIT_EDITMSG",
-    "knip": "knip",
     "start:prod": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
@@ -57,7 +56,6 @@
     "eslint-plugin-security": "^3.0.1",
     "globals": "^17.0.0",
     "husky": "^9.1.7",
-    "knip": "^5.80.2",
     "prettier": "^3.7.4",
     "pretty-quick": "^4.2.2",
     "typescript": "^5.9.3",

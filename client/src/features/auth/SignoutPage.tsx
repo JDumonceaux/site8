@@ -82,4 +82,3 @@ const StyledError = styled.div`
   padding: 20px 0;
   border: 1px solid #ff0000;
 `;
-

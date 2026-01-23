@@ -12,7 +12,6 @@ import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import Switch from '@components/ui/switch/Switch';
 import useAppSettings from '@features/app/useAppSettings';
 import useUnmatchedImages from '@hooks/useUnmatchedImages';
-import { IMAGE_BASE } from '@lib/utils/constants';
 import type { Image } from '@types';
 import styled from 'styled-components';
 
@@ -40,11 +39,11 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
     (e: MouseEvent<HTMLButtonElement>): void => {
       e.preventDefault();
       const id = Number(e.currentTarget.id);
-      const item = data?.items?.find((x) => x.id === id);
+      const item = data?.find((x: Image) => x.id === id);
       setSelectedItem(item);
       onSelectImage(item);
     },
-    [data?.items, onSelectImage],
+    [data, onSelectImage],
   );
 
   const handleKeyboardSelect = useCallback(
@@ -52,20 +51,20 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
       if (e.key === 'Enter') {
         e.preventDefault();
         const id = Number(e.currentTarget.id);
-        const item = data?.items?.find((x) => x.id === id);
+        const item = data?.find((x: Image) => x.id === id);
         setSelectedItem(item);
         onSelectImage(item);
       }
     },
-    [data?.items, onSelectImage],
+    [data, onSelectImage],
   );
 
   const filteredData = useMemo(
     () =>
       data
         ? selectedItem
-          ? (data.items?.filter((x) => x.id === selectedItem.id) ?? [])
-          : (data.items ?? [])
+          ? data.filter((x: Image) => x.id === selectedItem.id)
+          : data
         : [],
     [data, selectedItem],
   );
@@ -89,7 +88,6 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
         />
         <Count>{itemCount}</Count>
       </Controls>
-
       <LoadingWrapper>
         <Grid>
           {filteredData.map((item) => (
@@ -102,8 +100,8 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
               type="button"
             >
               <img
-                alt=""
-                src={`${IMAGE_BASE}/${item.fileName}`}
+                alt={item.alt}
+                src={item.src}
               />
             </ImageButton>
           ))}

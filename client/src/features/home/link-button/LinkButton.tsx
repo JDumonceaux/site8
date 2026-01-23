@@ -55,4 +55,3 @@ const StyledElement = styled.button<{
     left: 12px;
   }
 `;
-

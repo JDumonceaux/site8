@@ -72,7 +72,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
 
   const handleError = useCallback(
     (
-      error: Error,
+      error: unknown,
       errorInfo: { componentStack?: null | string | undefined },
     ) => {
       logError(error, {

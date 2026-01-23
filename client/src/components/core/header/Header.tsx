@@ -28,7 +28,6 @@ const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
   return (
     <HeaderContainer>
       <SkipNav href="#main-content">Skip to main content</SkipNav>
-
       <NavGroup aria-label="Main navigation">
         {onMenuToggle ? (
           <MenuButton
@@ -39,7 +38,6 @@ const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
             <MenuIcon />
           </MenuButton>
         ) : null}
-
         <LogoLink
           aria-label={`${APP_NAME} Home`}
           to="/"
@@ -47,7 +45,6 @@ const Header = ({ avatar, onMenuToggle }: HeaderProps): JSX.Element => {
           {APP_NAME}
         </LogoLink>
       </NavGroup>
-
       <AvatarGroup aria-label="User menu">{avatar}</AvatarGroup>
     </HeaderContainer>
   );
