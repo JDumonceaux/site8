@@ -7694,6 +7694,24 @@
           "seq": 1
         }
       ]
+    },
+    {
+      "id": 408,
+      "code": [
+        {
+          "id": 1,
+          "seq": 1,
+          "type": "npm",
+          "content": "npm run lint:root"
+        }
+      ],
+      "name": "Run ESLint on root files",
+      "groupIds": [
+        {
+          "id": 1,
+          "seq": 1
+        }
+      ]
     }
   ]
 }

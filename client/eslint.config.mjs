@@ -17,7 +17,7 @@ import unicornConfig from './eslint.config.unicorn.mjs';
 const config = [
     // Ignore generated/vendor files
     {
-        ignores: ['stats.html', 'dist/**', 'node_modules/**'],
+        ignores: ['stats.html', 'vitest.config.ts', 'dist/**', 'node_modules/**'],
     },
     javascriptConfig,
     checkFileConfig,

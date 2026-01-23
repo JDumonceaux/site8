@@ -5,13 +5,11 @@ export default {
   // ----------------------------------------------------------------------------
   arrowParens: 'always',               // Always include parentheses around arrow function parameters
   bracketSameLine: false,              // Place the closing bracket of multi-line JSX elements on new line (React best practice)
-
   bracketSpacing: true,                // Print spaces between brackets in object literals
   // ----------------------------------------------------------------------------
   // Embedded Languages
   // ----------------------------------------------------------------------------
   embeddedLanguageFormatting: 'auto',  // Format embedded code (e.g., CSS in HTML) automatically
-
   // ----------------------------------------------------------------------------
   // Line Endings
   // ----------------------------------------------------------------------------
@@ -65,31 +63,23 @@ export default {
       },
     },
   ],
-
   // ----------------------------------------------------------------------------
   // Line Length & Wrapping
   // ----------------------------------------------------------------------------
   printWidth: 80,                      // Wrap lines at 80 characters
   proseWrap: 'preserve',               // Do not reformat markdown text automatically
   quoteProps: 'as-needed',             // Only quote object keys when required
-
   // ----------------------------------------------------------------------------
   // Quotes & Punctuation
   // ----------------------------------------------------------------------------
   semi: true,                          // Add semicolons at the end of statements
   singleAttributePerLine: true,        // Force one attribute per line in JSX/HTML for better readability
-
   singleQuote: true,                   // Use single quotes instead of double quotes
-
   // ----------------------------------------------------------------------------
   // Indentation & Spacing
   // ----------------------------------------------------------------------------
   tabWidth: 2,                         // Set the number of spaces per indentation level
-
   trailingComma: 'all',                // Use trailing commas wherever possible (ES5+)
-
-  useTabs: false,                      // Use spaces instead of tabs for indentation
-
   useTabs: false,                      // Use spaces instead of tabs for indentation
 
   // ----------------------------------------------------------------------------
