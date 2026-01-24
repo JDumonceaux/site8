@@ -9,7 +9,7 @@
     {
       "id": 1,
       "name": "Unknown",
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path).",
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path).",
       "sectionId": 1,
       "seq": 1
     },
@@ -25,7 +25,7 @@
       "id": 3,
       "name": "CodeMods",
       "tags": ["client"],
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path).",
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path).",
       "sectionId": 10,
       "seq": 1
     },
@@ -135,7 +135,7 @@
       "id": 17,
       "name": "CodeMods",
       "tags": ["client"],
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at \u003ca href=\"app.codemods.dev\" target=\"_blank\"\u003eapp.codemods.dev\u003c/a\u003e.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target \u003cpath\u003e (to target a specific file/path).",
+      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path).",
       "sectionId": 10,
       "seq": 2
     },
@@ -216,7 +216,7 @@
     },
     {
       "id": 30,
-      "name": "API Integration \u0026 Data Fetching",
+      "name": "API Integration & Data Fetching",
       "sectionId": 18,
       "seq": 1
     },
@@ -228,13 +228,13 @@
     },
     {
       "id": 32,
-      "name": "Error Handling \u0026 Logging",
+      "name": "Error Handling & Logging",
       "sectionId": 21,
       "seq": 1
     },
     {
       "id": 33,
-      "name": "Build \u0026 Deployment",
+      "name": "Build & Deployment",
       "sectionId": 22,
       "seq": 1
     },
@@ -252,7 +252,7 @@
     },
     {
       "id": 36,
-      "name": "Authentication \u0026 Authorization",
+      "name": "Authentication & Authorization",
       "sectionId": 26,
       "seq": 1
     },
@@ -276,7 +276,7 @@
     },
     {
       "id": 40,
-      "name": "Monitoring \u0026 Analytics",
+      "name": "Monitoring & Analytics",
       "sectionId": 30,
       "seq": 1
     }
@@ -385,13 +385,13 @@
     },
     {
       "id": 18,
-      "name": "API Integration \u0026 Data Fetching",
+      "name": "API Integration & Data Fetching",
       "comments": "React Query/SWR patterns, error handling, caching strategies, request deduplication, optimistic updates, polling/refetching",
       "seq": 10
     },
     {
       "id": 19,
-      "name": "Forms \u0026 Validation",
+      "name": "Forms & Validation",
       "comments": "Form libraries (React Hook Form, Formik), validation patterns, error messaging, accessibility in forms, controlled vs uncontrolled inputs",
       "seq": 10
     },
@@ -403,13 +403,13 @@
     },
     {
       "id": 21,
-      "name": "Error Handling \u0026 Logging",
+      "name": "Error Handling & Logging",
       "comments": "Error boundaries, error tracking (Sentry, LogRocket), user-friendly error messages, fallback UI, logging strategy",
       "seq": 10
     },
     {
       "id": 22,
-      "name": "Build \u0026 Deployment",
+      "name": "Build & Deployment",
       "comments": "Build optimization, CI/CD pipelines, environment management, deployment strategies, rollback procedures",
       "seq": 10
     },
@@ -427,13 +427,13 @@
     },
     {
       "id": 25,
-      "name": "SEO \u0026 Meta Tags",
+      "name": "SEO & Meta Tags",
       "comments": "OpenGraph tags, structured data, meta descriptions, canonical URLs, sitemap, robots.txt",
       "seq": 10
     },
     {
       "id": 26,
-      "name": "Authentication \u0026 Authorization",
+      "name": "Authentication & Authorization",
       "comments": "Auth patterns, token management, protected routes, role-based access, session handling, OAuth flows",
       "seq": 10
     },
@@ -457,7 +457,7 @@
     },
     {
       "id": 30,
-      "name": "Monitoring \u0026 Analytics",
+      "name": "Monitoring & Analytics",
       "comments": "Performance monitoring, user analytics, error tracking, A/B testing, feature flags",
       "seq": 10
     },
@@ -683,9 +683,9 @@
     {
       "id": 21,
       "name": "Favicon",
-      "tags": ["react"],
-      "comments": "Quality check for Favicon implementation",
-      "groupId": 18,
+      "tags": ["web"],
+      "comments": "Check for Favicon implementation",
+      "groupId": 23,
       "seq": 1
     },
     {
@@ -846,8 +846,8 @@
     {
       "id": 42,
       "tags": ["react"],
-      "name": "Set \u0027object-shorthand\u0027 to \u0027always\u0027 or \u0027warn\u0027 in \u0027rules\u0027 section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
-      "comments": "Quality check for Set \u0027object-shorthand\u0027 to \u0027always\u0027 or \u0027warn\u0027 in \u0027rules\u0027 section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner. implementation",
+      "name": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
+      "comments": "Quality check for Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner. implementation",
       "groupId": 18,
       "seq": 1
     },
@@ -961,7 +961,7 @@
     {
       "id": 56,
       "tags": ["react", "nodejs"],
-      "name": "TSConfig.json - Check for new and deprecated options \u003ca href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\"\u003eTypescript\u003c/a\u003e",
+      "name": "TSConfig.json - Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>",
       "comments": [
         "Remove outdated APIs and patterns to maintain code health",
         "Validate TypeScript compiler options for optimal strictness and compatibility",
@@ -973,8 +973,8 @@
     {
       "id": 57,
       "tags": ["react", "nodejs"],
-      "name": "Online Test - \u003ca href=\"https://securityheaders.com/\"\u003eSecurity Headers\u003c/a\u003e",
-      "comments": "Quality check for Online Test - \u003ca href=\"https://securityheaders.com/\"\u003eSecurity Headers\u003c/a\u003e implementation",
+      "name": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
+      "comments": "Quality check for Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a> implementation",
       "groupId": 18,
       "seq": 1
     },
@@ -1443,7 +1443,7 @@
       "id": 106,
       "tags": ["ai"],
       "name": "Error Handling - Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery",
-      "comments": "Leverage React 19\u0027s improved error handling capabilities",
+      "comments": "Leverage React 19's improved error handling capabilities",
       "groupId": 3,
       "seq": 1
     },
@@ -1650,14 +1650,14 @@
     },
     {
       "id": 127,
-      "notes": "12/1/2025 - \u0027es2025\u0027 is not supported by Vite.  Use \u0027esnext\u0027 instead. This is need for features like Promise.try",
+      "notes": "12/1/2025 - 'es2025' is not supported by Vite.  Use 'esnext' instead. This is need for features like Promise.try",
       "tags": ["ai"],
       "code": [
         {
           "id": 1,
           "seq": 1,
           "type": "prompt",
-          "content": "check tsconfig.json and update target and lib to \u0027esnext\u0027 (lower case)"
+          "content": "check tsconfig.json and update target and lib to 'esnext' (lower case)"
         }
       ],
       "name": "Javascript Version - esnext",
@@ -1753,7 +1753,7 @@
           "id": 1,
           "seq": 1,
           "type": "prompt",
-          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions \u003e50 lines) and suggest specific refactoring improvements."
+          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
         }
       ],
       "name": "Anti-Patterns",
@@ -2231,7 +2231,7 @@
         }
       ],
       "name": "React 19 - useActionState",
-      "comments": "Leverage React 19\u0027s useActionState for server actions and form state management",
+      "comments": "Leverage React 19's useActionState for server actions and form state management",
       "groupId": 3,
       "seq": 1
     },
@@ -2247,7 +2247,7 @@
         }
       ],
       "name": "React 19 - useTransition",
-      "comments": "Use React 19\u0027s enhanced useTransition for better concurrent rendering",
+      "comments": "Use React 19's enhanced useTransition for better concurrent rendering",
       "groupId": 3,
       "seq": 1
     },
@@ -2344,7 +2344,7 @@
         }
       ],
       "name": "React 19 - useDeferredValue",
-      "comments": "Apply React 19\u0027s useDeferredValue for improved performance on heavy computations",
+      "comments": "Apply React 19's useDeferredValue for improved performance on heavy computations",
       "groupId": 3,
       "seq": 1
     },
@@ -2360,7 +2360,7 @@
         }
       ],
       "name": "React 19 - Stylesheet Precedence",
-      "comments": "Implement React 19\u0027s stylesheet precedence for optimal CSS loading",
+      "comments": "Implement React 19's stylesheet precedence for optimal CSS loading",
       "groupId": 3,
       "seq": 1
     },
@@ -2376,7 +2376,7 @@
         }
       ],
       "name": "React 19 - Resource Preloading",
-      "comments": "Utilize React 19\u0027s built-in resource preloading features",
+      "comments": "Utilize React 19's built-in resource preloading features",
       "groupId": 3,
       "seq": 1
     },
@@ -2408,7 +2408,7 @@
         }
       ],
       "name": "React 19 - New JSX Transform",
-      "comments": "Ensure React 19\u0027s automatic JSX runtime is configured correctly",
+      "comments": "Ensure React 19's automatic JSX runtime is configured correctly",
       "groupId": 3,
       "seq": 1
     },
@@ -2741,7 +2741,7 @@
           "id": 1,
           "seq": 1,
           "type": "prompt",
-          "content": "Update to Modern Error Responses: `res.status(400).json({ error: \u0027message\u0027 })`"
+          "content": "Update to Modern Error Responses: `res.status(400).json({ error: 'message' })`"
         }
       ],
       "name": "API Router Consistency - Modern Error Responses",
@@ -2757,7 +2757,7 @@
           "id": 1,
           "seq": 1,
           "type": "prompt",
-          "content": "Error Response Formats: Standardize on `{ error: \u0027message\u0027 }` format"
+          "content": "Error Response Formats: Standardize on `{ error: 'message' }` format"
         }
       ],
       "name": "API Router Consistency - Error Response Formats",
@@ -2990,7 +2990,7 @@
           "id": 1,
           "seq": 1,
           "type": "prompt",
-          "content": "Here\u0027s a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion."
+          "content": "Here's a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion."
         }
       ],
       "name": "Performance",
@@ -3038,7 +3038,7 @@
           "id": 1,
           "seq": 1,
           "type": "prompt",
-          "content": "Review React components returning fragments containing only \u003cMeta\u003e or \u003cHelmet\u003e tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight."
+          "content": "Review React components returning fragments containing only <Meta> or <Helmet> tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight."
         }
       ],
       "name": "Fragment Pattern with Meta",
@@ -3146,14 +3146,14 @@
           "id": 1,
           "seq": 1,
           "type": "Instructions",
-          "content": "Audit for \u0027any\u0027 types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
+          "content": "Audit for 'any' types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
         }
       ],
-      "name": "TypeScript \u0027any\u0027 Audit",
+      "name": "TypeScript 'any' Audit",
       "testDate": "2026-01-03",
-      "status": "Passed - Zero \u0027any\u0027 types found",
+      "status": "Passed - Zero 'any' types found",
       "score": "100/100",
-      "comments": "Strengthen type safety by replacing \u0027any\u0027 with proper TypeScript types",
+      "comments": "Strengthen type safety by replacing 'any' with proper TypeScript types",
       "groupId": 18,
       "seq": 1
     },
@@ -3189,7 +3189,7 @@
       ],
       "name": "Test Coverage Analysis",
       "testDate": "2026-01-03",
-      "status": "Needs Work - Only 9 test files found, ~\u003c20% coverage",
+      "status": "Needs Work - Only 9 test files found, ~<20% coverage",
       "score": "20/100",
       "comments": "Quality check for Test Coverage Analysis implementation",
       "groupId": 22,
@@ -3243,7 +3243,7 @@
       ],
       "name": "Node Version Requirements",
       "testDate": "2026-01-03",
-      "status": "Passed - Engines field present: node \u003e=20.0.0, npm \u003e=10",
+      "status": "Passed - Engines field present: node >=20.0.0, npm >=10",
       "score": "100/100",
       "comments": "Quality check for Node Version Requirements implementation",
       "groupId": 11,
@@ -3998,7 +3998,7 @@
           "id": 1,
           "seq": 1,
           "type": "code",
-          "content": "npx codemod@latest class-to-function-component \u003cpath\u003e"
+          "content": "npx codemod@latest class-to-function-component <path>"
         }
       ],
       "name": "React - CodeMods - class-to-function-component",
@@ -4014,7 +4014,7 @@
           "id": 1,
           "seq": 1,
           "type": "code",
-          "content": "npx codemod@latest react/update-react-imports \u003cpath\u003e"
+          "content": "npx codemod@latest react/update-react-imports <path>"
         }
       ],
       "name": "React - CodeMods - update-react-imports",
@@ -4362,11 +4362,11 @@
           "id": 1,
           "seq": 1,
           "type": "description",
-          "content": "Audit for \u0027any\u0027 types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
+          "content": "Audit for 'any' types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
         }
       ],
-      "name": "Audit \u0027any\u0027 types",
-      "comments": "Strengthen type safety by replacing \u0027any\u0027 with proper TypeScript types",
+      "name": "Audit 'any' types",
+      "comments": "Strengthen type safety by replacing 'any' with proper TypeScript types",
       "groupId": 18,
       "seq": 1
     },
@@ -4765,7 +4765,7 @@
         }
       ],
       "name": "React 19 error handling",
-      "comments": "Leverage React 19\u0027s improved error handling capabilities",
+      "comments": "Leverage React 19's improved error handling capabilities",
       "groupId": 3,
       "seq": 1
     },
@@ -4780,7 +4780,7 @@
         }
       ],
       "name": "React 19 use hook",
-      "comments": "Adopt React 19\u0027s new \u0027use\u0027 hook for reading resources and promises",
+      "comments": "Adopt React 19's new 'use' hook for reading resources and promises",
       "groupId": 3,
       "seq": 1
     },
@@ -4795,7 +4795,7 @@
         }
       ],
       "name": "React 19 useDeferredValue",
-      "comments": "Apply React 19\u0027s useDeferredValue for improved performance on heavy computations",
+      "comments": "Apply React 19's useDeferredValue for improved performance on heavy computations",
       "groupId": 3,
       "seq": 1
     },
@@ -4810,7 +4810,7 @@
         }
       ],
       "name": "React 19 useOptimistic",
-      "comments": "Implement optimistic UI updates using React 19\u0027s useOptimistic hook",
+      "comments": "Implement optimistic UI updates using React 19's useOptimistic hook",
       "groupId": 3,
       "seq": 1
     },
@@ -4825,7 +4825,7 @@
         }
       ],
       "name": "React 19 useTransition",
-      "comments": "Use React 19\u0027s enhanced useTransition for better concurrent rendering",
+      "comments": "Use React 19's enhanced useTransition for better concurrent rendering",
       "groupId": 3,
       "seq": 1
     },
@@ -4840,7 +4840,7 @@
         }
       ],
       "name": "React 19 resource preloading",
-      "comments": "Utilize React 19\u0027s built-in resource preloading features",
+      "comments": "Utilize React 19's built-in resource preloading features",
       "groupId": 3,
       "seq": 1
     },
@@ -4855,7 +4855,7 @@
         }
       ],
       "name": "React 19 stylesheet precedence",
-      "comments": "Implement React 19\u0027s stylesheet precedence for optimal CSS loading",
+      "comments": "Implement React 19's stylesheet precedence for optimal CSS loading",
       "groupId": 3,
       "seq": 1
     },
@@ -4870,7 +4870,7 @@
         }
       ],
       "name": "React 19 useActionState",
-      "comments": "Leverage React 19\u0027s useActionState for server actions and form state management",
+      "comments": "Leverage React 19's useActionState for server actions and form state management",
       "groupId": 3,
       "seq": 1
     },
@@ -4885,7 +4885,7 @@
         }
       ],
       "name": "React 19 ref cleanup",
-      "comments": "Implement React 19\u0027s ref cleanup functions for proper resource disposal",
+      "comments": "Implement React 19's ref cleanup functions for proper resource disposal",
       "groupId": 3,
       "seq": 1
     },
@@ -4915,7 +4915,7 @@
         }
       ],
       "name": "React 19 JSX transform",
-      "comments": "Ensure React 19\u0027s automatic JSX runtime is configured correctly",
+      "comments": "Ensure React 19's automatic JSX runtime is configured correctly",
       "groupId": 3,
       "seq": 1
     },
@@ -4956,7 +4956,7 @@
           "id": 1,
           "seq": 1,
           "type": "description",
-          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions \u003e50 lines) and suggest specific refactoring improvements."
+          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
         }
       ],
       "name": "Review for anti-patterns",
@@ -5531,7 +5531,7 @@
         }
       ],
       "name": "React 19 error handling",
-      "comments": "Leverage React 19\u0027s improved error handling capabilities",
+      "comments": "Leverage React 19's improved error handling capabilities",
       "groupId": 3,
       "seq": 1
     },
@@ -5546,7 +5546,7 @@
         }
       ],
       "name": "React 19 use hook",
-      "comments": "Adopt React 19\u0027s new \u0027use\u0027 hook for reading resources and promises",
+      "comments": "Adopt React 19's new 'use' hook for reading resources and promises",
       "groupId": 3,
       "seq": 1
     },
@@ -5561,7 +5561,7 @@
         }
       ],
       "name": "React 19 useDeferredValue",
-      "comments": "Apply React 19\u0027s useDeferredValue for improved performance on heavy computations",
+      "comments": "Apply React 19's useDeferredValue for improved performance on heavy computations",
       "groupId": 3,
       "seq": 1
     },
@@ -5576,7 +5576,7 @@
         }
       ],
       "name": "React 19 useOptimistic",
-      "comments": "Implement optimistic UI updates using React 19\u0027s useOptimistic hook",
+      "comments": "Implement optimistic UI updates using React 19's useOptimistic hook",
       "groupId": 3,
       "seq": 1
     },
@@ -5591,7 +5591,7 @@
         }
       ],
       "name": "React 19 useTransition",
-      "comments": "Use React 19\u0027s enhanced useTransition for better concurrent rendering",
+      "comments": "Use React 19's enhanced useTransition for better concurrent rendering",
       "groupId": 3,
       "seq": 1
     },
@@ -5606,7 +5606,7 @@
         }
       ],
       "name": "React 19 resource preloading",
-      "comments": "Utilize React 19\u0027s built-in resource preloading features",
+      "comments": "Utilize React 19's built-in resource preloading features",
       "groupId": 3,
       "seq": 1
     },
@@ -5621,7 +5621,7 @@
         }
       ],
       "name": "React 19 stylesheet precedence",
-      "comments": "Implement React 19\u0027s stylesheet precedence for optimal CSS loading",
+      "comments": "Implement React 19's stylesheet precedence for optimal CSS loading",
       "groupId": 3,
       "seq": 1
     },
@@ -5636,7 +5636,7 @@
         }
       ],
       "name": "React 19 useActionState",
-      "comments": "Leverage React 19\u0027s useActionState for server actions and form state management",
+      "comments": "Leverage React 19's useActionState for server actions and form state management",
       "groupId": 3,
       "seq": 1
     },
@@ -5651,7 +5651,7 @@
         }
       ],
       "name": "React 19 ref cleanup",
-      "comments": "Implement React 19\u0027s ref cleanup functions for proper resource disposal",
+      "comments": "Implement React 19's ref cleanup functions for proper resource disposal",
       "groupId": 3,
       "seq": 1
     },
@@ -5681,7 +5681,7 @@
         }
       ],
       "name": "React 19 JSX transform",
-      "comments": "Ensure React 19\u0027s automatic JSX runtime is configured correctly",
+      "comments": "Ensure React 19's automatic JSX runtime is configured correctly",
       "groupId": 3,
       "seq": 1
     },
@@ -5737,7 +5737,7 @@
           "id": 1,
           "seq": 1,
           "type": "description",
-          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions \u003e50 lines) and suggest specific refactoring improvements."
+          "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
         }
       ],
       "name": "Review for anti-patterns",
@@ -5849,11 +5849,11 @@
           "id": 1,
           "seq": 1,
           "type": "code",
-          "content": "\u003cgeolocation onlocation=\"handleLocation(event)\" accuracymode=\"precise\"\u003e\n  \u003c!-- Fallback content for browsers that do not support the element --\u003e\n  \u003cbutton onclick=\"navigator.geolocation.getCurrentPosition(handleLocation)\"\u003e\n    Use my location\n  \u003c/button\u003e\n\u003c/geolocation\u003e"
+          "content": "<geolocation onlocation=\"handleLocation(event)\" accuracymode=\"precise\">\n  <!-- Fallback content for browsers that do not support the element -->\n  <button onclick=\"navigator.geolocation.getCurrentPosition(handleLocation)\">\n    Use my location\n  </button>\n</geolocation>"
         }
       ],
       "name": "Geolocation Tag",
-      "comments": "Chrome 144 (Jan 2026) introduces the \u003cgeolocation\u003e HTML tag for requesting user location with enhanced privacy controls.",
+      "comments": "Chrome 144 (Jan 2026) introduces the <geolocation> HTML tag for requesting user location with enhanced privacy controls.",
       "tags": ["future"],
       "groupId": 19,
       "seq": 1
@@ -5927,6 +5927,14 @@
       "name": "Run build script",
       "comments": "Validate that the project builds successfully without errors.",
       "groupId": 1,
+      "seq": 1
+    },
+    {
+      "id": 410,
+      "name": "Back to Top Button",
+      "comments": "https://www.youtube.com/watch?v=HXIHpDnsizk",
+      "tags": ["future"],
+      "groupId": 19,
       "seq": 1
     }
   ]
