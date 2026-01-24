@@ -1,13 +1,14 @@
-import type { Test } from '@site8/shared';
+import type { Tests } from '@site8/shared';
 
-import { createCollectionHandler } from '../../lib/http/createCollectionHandler.js';
+import { createGetHandler } from '../../lib/http/genericHandlers.js';
 import { getTestsService } from '../../utils/ServiceFactory.js';
 
-export const getItems = createCollectionHandler<Test>({
-  defaultTitle: 'Tests',
-  getService: () => ({
-    getItems: async () => getTestsService().getCollection(),
-  }),
+export const getItems = createGetHandler<Tests>({
+  errorResponse: { metadata: { title: 'Tests' }, sections: [] },
+  getData: async () => {
+    const service = getTestsService();
+    return service.getAiTests();
+  },
   handlerName: 'Tests:getItems',
   return204OnEmpty: false,
 });

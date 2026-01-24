@@ -60,7 +60,6 @@ export const ServiceUrl = {
   ENDPOINT_MENUS_EDIT: `${API_ROOT}/menus/edit`,
   ENDPOINT_PAGE: `${API_ROOT}/page`,
   ENDPOINT_TESTS: `${API_ROOT}/tests`,
-  ENDPOINT_TESTS_AI: `${API_ROOT}/tests/ai`,
   ENDPOINT_TESTS_GROUPS: `${API_ROOT}/tests/groups`,
   ENDPOINT_TRAVEL: `${API_ROOT}/travel`,
 } as const satisfies Record<string, string>;

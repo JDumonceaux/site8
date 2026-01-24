@@ -187,7 +187,7 @@ export const protectedContentRoutes = (
     >
       <Route
         element={<TestsPage />}
-        path="tests/ai"
+        path="tests"
       />
     </Route>
   </Route>
