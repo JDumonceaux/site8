@@ -1,4 +1,4 @@
-import type { Parent } from "./Page.js";
+import type { Parent } from "./Pages.js";
 
 /**
  * MenuItem type - represents a menu item in navigation

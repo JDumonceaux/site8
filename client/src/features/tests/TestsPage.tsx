@@ -30,12 +30,10 @@ import {
   TestList,
   TestsContainer,
 } from './TestsPage.styles';
-import useTestGroups from './useTestGroups';
 import useTests from './useTests';
 
 const TestsPage = (): JSX.Element => {
   const { data, error, isError, isLoading } = useTests();
-  const { groups: allGroups } = useTestGroups();
   const [editingItem, setEditingItem] = useState<null | Test>(null);
   const [editingGroupId, setEditingGroupId] = useState<null | number>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -239,7 +237,6 @@ const TestsPage = (): JSX.Element => {
         </Layout.Content>
       </Layout.TwoColumn>
       <TestItemEditDialog
-        availableGroups={allGroups}
         groupId={editingGroupId}
         isOpen={isDialogOpen}
         item={editingItem}

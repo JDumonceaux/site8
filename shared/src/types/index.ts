@@ -3,34 +3,17 @@
  * Exports all shared type definitions
  */
 
-export type { Artist } from "./Artist.js";
-export type { Artists } from "./Artists.js";
-export type { ArtistWithItems } from "./ArtistWithItems.js";
-export type { ArtistsItems } from "./ArtistsItems.js";
-export type { ArtItem } from "./ArtItem.js";
 export type { Collection, RequiredCollection } from "./Collection.js";
-export type { Image, Images } from "./Image.js";
-export type { Item } from "./Item.js";
-export type { ItemAdd } from "./ItemAdd.js";
-export type { ItemArtist } from "./ItemArtist.js";
-export type { ItemEdit } from "./ItemEdit.js";
-export type { ItemsArtists } from "./ItemsArtists.js";
-export type { ItemsFile } from "./ItemsFile.js";
-export type { Menus } from "./Menus.js";
+export type { Image, Images } from "./Images.js";
 export type { Metadata } from "./Metadata.js";
 export type { MenuItem } from "./MenuItem.js";
-export type { Page, PageEdit, Parent } from "./Page.js";
+export type { Menus } from "./Menus.js";
+export type { Page, PageEdit, Parent } from "./Pages.js";
 export type { PageMenu } from "./PageMenu.js";
 export type { Pages } from "./Pages.js";
-export type { Place } from "./Place.js";
-export type { PlaceImage } from "./Place.js";
+export type { Place, PlaceImage, PlaceUrl } from "./Places.js";
 export type { Places } from "./Places.js";
 export type { TestGroup, TestSection, TestCode, Tests, Test } from "./Tests.js";
 
 // Re-export schemas
-export { ArtistSchema } from "./Artist.js";
-export { ItemSchema } from "./Item.js";
-export { ItemAddSchema } from "./ItemAdd.js";
-export { ItemEditSchema } from "./ItemEdit.js";
-export { ItemsFileSchema } from "./ItemsFile.js";
-export { PageEditSchema, PageSchema, ParentSchema } from "./Page.js";
+export { PageEditSchema, PageSchema, ParentSchema } from "./Pages.js";

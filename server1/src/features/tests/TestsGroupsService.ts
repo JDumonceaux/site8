@@ -44,17 +44,13 @@ export class TestsGroupsService extends BaseDataService<TestGroupsResponse> {
       // Map groups to TestGroup type with section information and sort by section name, then group name
       const groups: TestGroup[] = testFile.groups
         .map((group) => {
-          // Get the first section reference for this group
-          const primarySection = group.sectionIds?.[0];
-          const sectionId = primarySection?.id;
-          const sectionName =
-            sectionId !== undefined ? sectionMap.get(sectionId) : undefined;
+          const sectionName = sectionMap.get(group.sectionId);
 
           return {
             comments: group.comments,
             id: group.id,
             name: group.name,
-            sectionId,
+            sectionId: group.sectionId,
             sectionName,
             tags: group.tags ? [...group.tags] : undefined,
           };

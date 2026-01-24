@@ -45,6 +45,7 @@ export class TestsService extends BaseDataService<TestFile> {
         (item: (typeof testFile.items)[number]) => ({
           code: item.code,
           comments: item.comments,
+          groupId: item.groupId,
           id: item.id,
           name: item.name,
           seq: item.seq,
@@ -78,16 +79,11 @@ export class TestsService extends BaseDataService<TestFile> {
         for (const fileItem of testFile.items) {
           // Check if this item is in our AI items and belongs to this group
           const aiItem = itemsMap.get(fileItem.id);
-          if (aiItem && fileItem.groupIds) {
-            const groupRef = fileItem.groupIds.find(
-              (ref: (typeof fileItem.groupIds)[number]) => ref.id === group.id,
-            );
-            if (groupRef) {
-              groupItems.push({
-                ...aiItem,
-                seq: groupRef.seq,
-              });
-            }
+          if (aiItem && fileItem.groupId === group.id) {
+            groupItems.push({
+              ...aiItem,
+              seq: fileItem.seq,
+            });
           }
         }
 
@@ -122,14 +118,10 @@ export class TestsService extends BaseDataService<TestFile> {
           );
           if (!fileGroup) continue;
 
-          const sectionRef = fileGroup.sectionIds.find(
-            (ref: (typeof fileGroup.sectionIds)[number]) =>
-              ref.id === section.id,
-          );
-          if (sectionRef) {
+          if (fileGroup.sectionId === section.id) {
             groupsForSection.push({
               ...group,
-              seq: sectionRef.seq,
+              seq: fileGroup.seq,
             });
           }
         }

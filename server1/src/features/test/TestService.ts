@@ -1,14 +1,9 @@
-import type { TestFile } from '../../types/TestFile.js';
-import type { Test } from '@site8/shared';
+import type { Test, TestFile } from '../../types/TestFile.js';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
-
-type TestWithGroupIds = Test & {
-  groupIds?: { id: number; seq: number }[];
-};
 
 /**
  * Service for managing individual test items
@@ -62,15 +57,11 @@ export class TestService extends BaseDataService<TestFile> {
       const newId = maxId + 1;
 
       // Create new item
-      const newItem = {
+      const newItem: Test = {
         ...itemData,
-        groupIds: [
-          {
-            id: groupId,
-            seq: (itemData as TestWithGroupIds).groupIds?.[0]?.seq ?? 1,
-          },
-        ],
+        groupId: groupId,
         id: newId,
+        seq: itemData.seq ?? 1,
       };
 
       // Create updated test file
@@ -168,9 +159,9 @@ export class TestService extends BaseDataService<TestFile> {
    * Gets a single test item by ID
    *
    * @param itemId - The ID of the test item to retrieve
-   * @returns Promise<TestWithGroupIds | null> - The test item or null if not found
+   * @returns Promise<Test | null> - The test item or null if not found
    */
-  public async getItem(itemId: number): Promise<TestWithGroupIds | null> {
+  public async getItem(itemId: number): Promise<Test | null> {
     try {
       Logger.info(`TestService: getItem: Retrieving item ${itemId}`);
 
@@ -194,7 +185,7 @@ export class TestService extends BaseDataService<TestFile> {
       Logger.info(
         `TestService: getItem: Successfully retrieved item ${itemId}`,
       );
-      return item as TestWithGroupIds;
+      return item;
     } catch (error) {
       Logger.error(`TestService: getItem --> Error: ${String(error)}`);
       return null;
@@ -267,26 +258,21 @@ export class TestService extends BaseDataService<TestFile> {
       };
 
       // Handle group membership changes
-      const currentGroupIds = existingItem.groupIds ?? [];
-      const hasGroupMembership = currentGroupIds.some(
-        (ref) => ref.id === newGroupId,
-      );
+      const currentGroupId = existingItem.groupId;
+      const hasGroupMembership = currentGroupId === newGroupId;
 
       if (!hasGroupMembership) {
-        // Add new group membership (replace existing or add new)
-        updatedItem.groupIds = [
-          {
-            id: newGroupId,
-            seq: 1,
-          },
-        ];
+        // Update group membership
+        updatedItem.groupId = newGroupId;
+        updatedItem.seq = 1;
 
         Logger.info(
           `TestService: updateItem: Moved item ${itemId} to group ${newGroupId}`,
         );
       } else {
-        // Keep existing group memberships
-        updatedItem.groupIds = currentGroupIds;
+        // Keep existing group membership
+        updatedItem.groupId = currentGroupId;
+        updatedItem.seq = existingItem.seq;
       }
 
       // Create mutable copy of items array with the updated item

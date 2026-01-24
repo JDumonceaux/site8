@@ -1,21 +1,14 @@
 import type { Metadata } from '@site8/shared';
 
 /**
- * Section reference with optional sequence number
- */
-export type SectionReference = {
-  readonly id: number;
-  readonly seq: number;
-};
-
-/**
  * Test group definition
  */
 export type TestGroup = {
   readonly comments?: string;
   readonly id: number;
   readonly name: string;
-  readonly sectionIds: readonly SectionReference[];
+  readonly sectionId: number;
+  readonly seq: number;
   readonly tags?: readonly string[];
 };
 
@@ -31,10 +24,10 @@ export type TestSection = {
 export type Test = {
   readonly code?: TestCode[];
   readonly comments?: string;
-  readonly groupIds?: { id: number; seq: number }[];
+  readonly groupId: number;
   readonly id: number;
   readonly name: string;
-  readonly seq?: number;
+  readonly seq: number;
   readonly tags?: readonly string[];
 };
 

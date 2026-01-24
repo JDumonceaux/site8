@@ -1,4 +1,4 @@
-import type { Test } from '@site8/shared';
+import type { Test } from '../../types/TestFile.js';
 import type { Request, Response } from 'express';
 
 import { badRequest, ok } from '../../lib/http/ResponseHelper.js';

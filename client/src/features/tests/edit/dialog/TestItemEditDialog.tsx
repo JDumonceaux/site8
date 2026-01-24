@@ -3,7 +3,8 @@ import { useCallback, useState } from 'react';
 
 import Dialog from '@components/core/dialog/Dialog';
 import Button from '@components/ui/button/Button';
-import type { Test, TestGroup } from '@site8/shared';
+import type { Test } from '@site8/shared';
+import useTestGroups from '../../useTestGroups';
 import CodeItemEditor from './components/CodeItemEditor';
 import { useCodeItemsManager } from './hooks/useCodeItemsManager';
 import {
@@ -23,7 +24,6 @@ import {
 import { formatTags, parseTags } from './utils';
 
 type TestItemEditDialogProps = {
-  readonly availableGroups: readonly TestGroup[];
   readonly groupId: null | number;
   readonly isOpen: boolean;
   readonly item: null | Test;
@@ -33,7 +33,6 @@ type TestItemEditDialogProps = {
 };
 
 const TestItemEditDialog = ({
-  availableGroups,
   groupId,
   isOpen,
   item,
@@ -41,6 +40,7 @@ const TestItemEditDialog = ({
   onDelete,
   onSave,
 }: TestItemEditDialogProps): JSX.Element => {
+  const { groups: availableGroups } = useTestGroups();
   const [name, setName] = useState(item?.name ?? '');
   const defaultGroupId = availableGroups[0]?.id ?? 1;
   const [selectedGroupId, setSelectedGroupId] = useState<number>(

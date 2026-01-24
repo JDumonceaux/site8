@@ -1,8 +1,6 @@
 // Export client-specific types
 export type * from './AppSettings';
 
-export type * from './Art';
-export type * from './ArtistsItems';
 export * from './Auth';
 export type * from './common';
 export type * from './FieldError';
@@ -11,7 +9,6 @@ export type * from './Folder';
 export type * from './FormErrors';
 export type * from './FormState';
 export type * from './IdValue';
-export type * from './Items';
 export type * from './KeyValue';
 export type * from './ListItem';
 export type * from './Menu';
@@ -24,8 +21,6 @@ export type * from './ParentSortby';
 export type * from './Video';
 // Re-export types from shared package
 export type {
-  Artists,
-  ArtistWithItems,
   Image,
   Images,
   MenuItem,

@@ -1,4 +1,4 @@
-import type { Page } from "./Page.js";
+import type { Page } from "./Pages.js";
 
 /**
  * PageMenu type
