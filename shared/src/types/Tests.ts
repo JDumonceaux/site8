@@ -42,3 +42,26 @@ export type TestCode = {
   readonly seq: number;
   readonly type: string;
 };
+
+/**
+ * TestGroup with item count for sections list
+ */
+export type TestsSectionGroup = {
+  readonly id: number;
+  readonly name: string;
+  readonly itemCount: number;
+  readonly comments?: string;
+  readonly tags?: string[];
+  readonly sectionId?: number;
+  readonly sectionName?: string;
+};
+
+/**
+ * TestSection with groups including item counts
+ */
+export type TestsSection = {
+  readonly id: number;
+  readonly name: string;
+  readonly description?: string;
+  readonly groups: TestsSectionGroup[];
+};

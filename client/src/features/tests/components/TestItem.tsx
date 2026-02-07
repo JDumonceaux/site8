@@ -34,8 +34,19 @@ const TestItem = ({ groupId, item, onEdit }: TestItemProps): JSX.Element => {
     onEdit(item, groupId);
   };
 
+  const handleDragStart = (event: React.DragEvent<HTMLLIElement>): void => {
+    event.dataTransfer.setData(
+      'application/json',
+      JSON.stringify({ itemId: item.id, currentGroupId: groupId }),
+    );
+    event.dataTransfer.effectAllowed = 'move';
+  };
+
   return (
-    <StyledTestItem>
+    <StyledTestItem
+      draggable
+      onDragStart={handleDragStart}
+    >
       <TestItemHeader>
         <ToggleButton
           onClick={toggleExpanded}

@@ -13,7 +13,15 @@ export type { PageMenu } from "./PageMenu.js";
 export type { Pages } from "./Pages.js";
 export type { Place, PlaceImage, PlaceUrl } from "./Places.js";
 export type { Places } from "./Places.js";
-export type { TestGroup, TestSection, TestCode, Tests, Test } from "./Tests.js";
+export type {
+  TestGroup,
+  TestSection,
+  TestCode,
+  Tests,
+  Test,
+  TestsSectionGroup,
+  TestsSection,
+} from "./Tests.js";
 
 // Re-export schemas
 export { PageEditSchema, PageSchema, ParentSchema } from "./Pages.js";

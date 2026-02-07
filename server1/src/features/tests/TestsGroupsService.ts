@@ -44,7 +44,7 @@ export class TestsGroupsService extends BaseDataService<TestGroupsResponse> {
       // Map groups to TestGroup type with section information and sort by section name, then group name
       const groups: TestGroup[] = testFile.groups
         .map((group) => {
-          const sectionName = sectionMap.get(group.sectionId);
+          const sectionName = sectionMap.get(group.sectionId) ?? 'Unknown';
 
           return {
             comments: group.comments,
@@ -56,9 +56,18 @@ export class TestsGroupsService extends BaseDataService<TestGroupsResponse> {
           };
         })
         .sort((a, b) => {
-          // Sort by section name first
-          const sectionA = a.sectionName ?? '';
-          const sectionB = b.sectionName ?? '';
+          // Sort by section name first (Unknown sections go to the end)
+          const sectionA = a.sectionName;
+          const sectionB = b.sectionName;
+
+          // Put "Unknown" sections at the end
+          if (sectionA === 'Unknown' && sectionB !== 'Unknown') {
+            return 1;
+          }
+          if (sectionA !== 'Unknown' && sectionB === 'Unknown') {
+            return -1;
+          }
+
           const sectionCompare = sectionA.localeCompare(sectionB);
 
           // If sections are the same, sort by group name

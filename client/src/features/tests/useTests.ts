@@ -4,7 +4,7 @@ import type { Tests } from '@types';
 
 // Create the tests query hook using the factory
 const useTestsQuery = createQueryHook<Tests>({
-  endpoint: ServiceUrl.ENDPOINT_TESTS,
+  endpoint: ServiceUrl.ENDPOINT_TESTS_SORTED,
   queryKey: ['tests'],
 });
 

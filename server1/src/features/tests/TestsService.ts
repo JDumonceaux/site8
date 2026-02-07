@@ -21,10 +21,57 @@ export class TestsService extends BaseDataService<TestFile> {
     });
   }
 
+  public async getCollection(): Promise<Collection<Test>> {
+    const data = await this.readFile();
+    return {
+      items: [...data.items] as Test[],
+      metadata: data.metadata,
+    };
+  }
+
+  public async getTests(): Promise<Collection<Test>> {
+    try {
+      const data = await this.readFile();
+      const items = data.items
+        .map((item) => ({
+          code: item.code,
+          comments: item.comments,
+          id: item.id,
+          name: item.name,
+          seq: item.seq,
+          tags: item.tags ? [...item.tags] : undefined,
+        }))
+        .sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
+
+      return {
+        items,
+        metadata: data.metadata,
+      };
+    } catch (error) {
+      Logger.error(`TestsService: getTests --> Error: ${String(error)}`);
+      throw error;
+    }
+  }
+
+  public async getTestsData(): Promise<Tests> {
+    try {
+      const rawData = await this.readFile();
+
+      // Return Tests structure with sections (empty for now since we don't have section mapping)
+      return {
+        metadata: rawData.metadata,
+        sections: [],
+      };
+    } catch (error) {
+      Logger.error(`TestsService: getTestsData --> Error: ${String(error)}`);
+      throw error;
+    }
+  }
+
   /**
-   * Get AI-tagged tests grouped and sorted alphabetically
+   * Get tests grouped and sorted alphabetically
    */
-  public async getAiTests(): Promise<Tests> {
+  public async getTestsSorted(): Promise<Tests> {
     try {
       const fileService = getFileService();
       const testFile: TestFile = await fileService.readFile<TestFile>(
@@ -40,12 +87,42 @@ export class TestsService extends BaseDataService<TestFile> {
         };
       }
 
+      const sectionsWithUnknown = [...testFile.sections];
+      const groupsWithUnknown = [...testFile.groups];
+      const unknownSection = sectionsWithUnknown.find(
+        (section) => (section.name ?? '').toLowerCase() === 'unknown',
+      );
+      const unknownSectionId = unknownSection
+        ? unknownSection.id
+        : Math.max(0, ...sectionsWithUnknown.map((section) => section.id)) + 1;
+
+      if (!unknownSection) {
+        sectionsWithUnknown.push({
+          id: unknownSectionId,
+          name: 'Unknown',
+        });
+      }
+
+      const unknownGroup = groupsWithUnknown.find(
+        (group) => (group.name ?? '').toLowerCase() === 'unknown',
+      );
+      const unknownGroupId = unknownGroup
+        ? unknownGroup.id
+        : Math.max(0, ...groupsWithUnknown.map((group) => group.id)) + 1;
+
+      if (!unknownGroup) {
+        groupsWithUnknown.push({
+          id: unknownGroupId,
+          name: 'Unknown',
+          sectionId: unknownSectionId,
+        });
+      }
+
       // Map all items to Test type
-      const aiItems: Test[] = testFile.items.map(
+      const items: Test[] = testFile.items.map(
         (item: (typeof testFile.items)[number]) => ({
           code: item.code,
           comments: item.comments,
-          groupId: item.groupId,
           id: item.id,
           name: item.name,
           seq: item.seq,
@@ -53,7 +130,18 @@ export class TestsService extends BaseDataService<TestFile> {
         }),
       );
 
-      if (aiItems.length === 0) {
+      const groupIds = new Set<number>(
+        groupsWithUnknown.map((group) => group.id),
+      );
+      const itemGroupIds = new Map<number, number>();
+      for (const fileItem of testFile.items) {
+        const groupId = groupIds.has(fileItem.groupId)
+          ? fileItem.groupId
+          : unknownGroupId;
+        itemGroupIds.set(fileItem.id, groupId);
+      }
+
+      if (items.length === 0) {
         return {
           metadata: {
             title: testFile.metadata?.title ?? FILTER_TAG,
@@ -65,29 +153,29 @@ export class TestsService extends BaseDataService<TestFile> {
 
       // Create a map of item id to Test for quick lookup
       const itemsMap = new Map<number, Test>();
-      for (const item of aiItems) {
+      for (const item of items) {
         itemsMap.set(item.id, item);
       }
 
       // Build groups with items from the flat structure
       const populatedGroups: TestGroup[] = [];
 
-      for (const group of testFile.groups) {
-        // Find all AI items that belong to this group
+      for (const group of groupsWithUnknown) {
+        // Find all items that belong to this group
         const groupItems: Test[] = [];
 
         for (const fileItem of testFile.items) {
-          // Check if this item is in our AI items and belongs to this group
-          const aiItem = itemsMap.get(fileItem.id);
-          if (aiItem && fileItem.groupId === group.id) {
+          // Check if this item is in our items and belongs to this group
+          const groupItem = itemsMap.get(fileItem.id);
+          if (groupItem && itemGroupIds.get(fileItem.id) === group.id) {
             groupItems.push({
-              ...aiItem,
+              ...groupItem,
               seq: fileItem.seq,
             });
           }
         }
 
-        // Only include groups that have AI items
+        // Only include groups that have items
         if (groupItems.length === 0) {
           continue;
         }
@@ -100,7 +188,6 @@ export class TestsService extends BaseDataService<TestFile> {
           id: group.id,
           items: groupItems,
           name: group.name,
-          seq: undefined,
           tags: group.tags ? [...group.tags] : undefined,
         });
       }
@@ -108,20 +195,19 @@ export class TestsService extends BaseDataService<TestFile> {
       // Build sections with groups
       const sections: TestSection[] = [];
 
-      for (const section of testFile.sections) {
+      for (const section of sectionsWithUnknown) {
         const groupsForSection: TestGroup[] = [];
 
         // Find groups that reference this section
         for (const group of populatedGroups) {
-          const fileGroup = testFile.groups.find(
-            (g: (typeof testFile.groups)[number]) => g.id === group.id,
+          const fileGroup = groupsWithUnknown.find(
+            (g: (typeof groupsWithUnknown)[number]) => g.id === group.id,
           );
           if (!fileGroup) continue;
 
           if (fileGroup.sectionId === section.id) {
             groupsForSection.push({
               ...group,
-              seq: fileGroup.seq,
             });
           }
         }
@@ -130,8 +216,10 @@ export class TestsService extends BaseDataService<TestFile> {
           continue;
         }
 
-        // Sort groups by seq
-        groupsForSection.sort((a, b) => (a.seq ?? 0) - (b.seq ?? 0));
+        // Sort groups by name
+        groupsForSection.sort((a, b) =>
+          (a.name ?? '').localeCompare(b.name ?? ''),
+        );
 
         sections.push({
           description: section.description,
@@ -141,19 +229,13 @@ export class TestsService extends BaseDataService<TestFile> {
         });
       }
 
-      // Sort sections by seq, then name
-      sections.sort((a, b) => {
-        const seqDiff = (a.seq ?? 0) - (b.seq ?? 0);
-        if (seqDiff !== 0) return seqDiff;
-        return (a.name ?? '').localeCompare(b.name ?? '');
-      });
+      // Sort sections by name
+      sections.sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
 
-      // Sort groups within each section by seq, then name
+      // Sort groups within each section by name
       for (const section of sections) {
         if (section.groups) {
           section.groups.sort((a, b) => {
-            const seqDiff = (a.seq ?? 0) - (b.seq ?? 0);
-            if (seqDiff !== 0) return seqDiff;
             return (a.name ?? '').localeCompare(b.name ?? '');
           });
 
@@ -173,35 +255,12 @@ export class TestsService extends BaseDataService<TestFile> {
       return {
         metadata: {
           title: testFile.metadata?.title ?? FILTER_TAG,
-          totalItems: aiItems.length,
+          totalItems: items.length,
         },
         sections,
       };
     } catch (error) {
-      Logger.error(`TestsService: getAiTests --> Error: ${String(error)}`);
-      throw error;
-    }
-  }
-
-  public async getCollection(): Promise<Collection<Test>> {
-    const data = await this.readFile();
-    return {
-      items: [...data.items] as Test[],
-      metadata: data.metadata,
-    };
-  }
-
-  public async getTestsData(): Promise<Tests> {
-    try {
-      const rawData = await this.readFile();
-
-      // Return Tests structure with sections (empty for now since we don't have section mapping)
-      return {
-        metadata: rawData.metadata,
-        sections: [],
-      };
-    } catch (error) {
-      Logger.error(`TestsService: getTestsData --> Error: ${String(error)}`);
+      Logger.error(`TestsService: getTestsSorted --> Error: ${String(error)}`);
       throw error;
     }
   }

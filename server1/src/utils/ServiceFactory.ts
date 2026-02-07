@@ -19,6 +19,7 @@ import { PageService } from '../features/page/PageService.js';
 import { PagesService } from '../features/pages/PagesService.js';
 import { TestService } from '../features/test/TestService.js';
 import { TestsGroupsService } from '../features/tests/TestsGroupsService.js';
+import { TestsSectionsService } from '../features/tests/TestsSectionsService.js';
 import { TestsService } from '../features/tests/TestsService.js';
 import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
 import { TravelService } from '../features/travel/TravelService.js';
@@ -89,6 +90,13 @@ class ServiceContainer {
     );
   }
 
+  public getTestsSectionsService(): TestsSectionsService {
+    return this.getOrCreate(
+      'TestsSectionsService',
+      () => new TestsSectionsService(),
+    );
+  }
+
   public getTestsService(): TestsService {
     return this.getOrCreate('TestsService', () => new TestsService());
   }
@@ -139,6 +147,8 @@ export const getTestService = (): TestService => container.getTestService();
 export const getTestsService = (): TestsService => container.getTestsService();
 export const getTestsGroupsService = (): TestsGroupsService =>
   container.getTestsGroupsService();
+export const getTestsSectionsService = (): TestsSectionsService =>
+  container.getTestsSectionsService();
 export const getTravelService = (): TravelService =>
   container.getTravelService();
 

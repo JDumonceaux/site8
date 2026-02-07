@@ -8,7 +8,6 @@ export type TestGroup = {
   readonly id: number;
   readonly name: string;
   readonly sectionId: number;
-  readonly seq: number;
   readonly tags?: readonly string[];
 };
 

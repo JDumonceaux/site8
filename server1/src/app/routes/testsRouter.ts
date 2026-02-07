@@ -5,12 +5,16 @@ import { deleteItem } from '../../features/test/deleteItem.js';
 import { getItem } from '../../features/test/getItem.js';
 import { updateItem } from '../../features/test/updateItem.js';
 import { getGroups } from '../../features/tests/getGroups.js';
-import { getItems } from '../../features/tests/getItems.js';
+import { getTestsSorted } from '../../features/tests/getItems.js';
+import { getSections } from '../../features/tests/getSections.js';
+import { getTests } from '../../features/tests/getTests.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
 const testsRouter = Router();
 
-testsRouter.get('/', getItems);
+testsRouter.get('/', getTests);
+testsRouter.get('/sorted', getTestsSorted);
+testsRouter.get('/sections', getSections);
 testsRouter.get('/groups', getGroups);
 testsRouter.post('/', asyncHandler(addItem));
 testsRouter.get<{ id: string }>('/:id', asyncHandler(getItem));
