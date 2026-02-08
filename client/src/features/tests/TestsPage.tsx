@@ -3,13 +3,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import IconButton from '@components/ui/button/icon-button/IconButton';
+import { FilterIcon } from '@components/ui/icons';
 import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import Layout from '@features/layouts/layout/Layout';
-import {
-  ENDPOINT_TEST_DELETE,
-  ENDPOINT_TEST_UPDATE,
-} from '@lib/utils/constants';
 import type { Test, TestsSection } from '@site8/shared';
 import SectionsGroupsList from './components/SectionsGroupsList';
 import SectionsGroupsSkeleton from './components/SectionsGroupsSkeleton';
@@ -18,16 +16,8 @@ import TestsSectionsList from './components/TestsSectionsList';
 import TestsSkeleton from './components/TestsSkeleton';
 import TestItemEditDialog from './edit/dialog/TestItemEditDialog';
 import { useTestFilters } from './hooks/useTestFilters';
-import {
-  FilterGroup,
-  FilterLabel,
-  FilterSection,
-  FilterSelect,
-  FilterTitle,
-  ToggleInput,
-  ToggleRow,
-  ToggleText,
-} from './TestsPage.styles';
+import TestFiltersDialog from './TestFiltersDialog';
+import useTestMutations from './useTestMutations';
 import useTests from './useTests';
 import useTestsList from './useTestsList';
 import useTestsSections from './useTestsSections';
@@ -50,6 +40,7 @@ const TestsPage = (): JSX.Element => {
   const [editingItem, setEditingItem] = useState<null | Test>(null);
   const [editingGroupId, setEditingGroupId] = useState<null | number>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isGrouped, setIsGrouped] = useState(() => {
     const stored = localStorage.getItem('testsViewGrouped');
     return stored === 'false' ? false : true;
@@ -112,100 +103,54 @@ const TestsPage = (): JSX.Element => {
     setEditingGroupId(null);
   }, []);
 
-  const handleSaveItem = useCallback(
-    async (updatedItem: Test, groupId: number) => {
-      try {
-        const response = await fetch(ENDPOINT_TEST_UPDATE(updatedItem.id), {
-          body: JSON.stringify({
-            groupId,
-            item: {
-              comments: updatedItem.comments,
-              name: updatedItem.name,
-              tags: updatedItem.tags,
-            },
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'PUT',
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to update item');
-        }
-
-        setMessage('Item updated successfully');
-        handleCloseDialog();
-
-        // Refresh the data
-        globalThis.location.reload();
-      } catch (error_) {
-        const errorMessage =
-          error_ instanceof Error ? error_.message : 'Unknown error';
-        setMessage(`Failed to update item: ${errorMessage}`);
-      }
+  const { deleteTest, moveTest, updateTest } = useTestMutations({
+    onDeleteError: (error: Error) => {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      setMessage(`Failed to delete item: ${errorMessage}`);
     },
-    [setMessage, handleCloseDialog],
+    onDeleteSuccess: () => {
+      setMessage('Item deleted successfully');
+      handleCloseDialog();
+    },
+    onMoveError: (error: Error) => {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      setErrorMessage(`Failed to move item: ${errorMessage}`);
+    },
+    onMoveSuccess: () => {
+      setMessage('Item moved successfully');
+    },
+    onUpdateError: (error: Error) => {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      setMessage(`Failed to update item: ${errorMessage}`);
+    },
+    onUpdateSuccess: () => {
+      setMessage('Item updated successfully');
+      handleCloseDialog();
+    },
+  });
+
+  const handleSaveItem = useCallback(
+    (updatedItem: Test, groupId: number) => {
+      updateTest({ groupId, item: updatedItem });
+    },
+    [updateTest],
   );
 
   const handleDeleteItem = useCallback(
-    async (itemId: number) => {
-      try {
-        const response = await fetch(ENDPOINT_TEST_DELETE(itemId), {
-          method: 'DELETE',
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to delete item');
-        }
-
-        setMessage('Item deleted successfully');
-        handleCloseDialog();
-
-        // Refresh the data
-        globalThis.location.reload();
-      } catch (error_) {
-        const errorMessage =
-          error_ instanceof Error ? error_.message : 'Unknown error';
-        setMessage(`Failed to delete item: ${errorMessage}`);
-      }
+    (itemId: number) => {
+      deleteTest(itemId);
     },
-    [setMessage, handleCloseDialog],
+    [deleteTest],
   );
 
   const handleMoveItem = useCallback(
-    async (itemId: number, newGroupId: number, currentGroupId: number) => {
-      if (newGroupId === currentGroupId) {
-        return;
-      }
-
-      try {
-        const response = await fetch(ENDPOINT_TEST_UPDATE(itemId), {
-          body: JSON.stringify({
-            groupId: newGroupId,
-            item: {},
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'PUT',
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to move item');
-        }
-
-        setMessage('Item moved successfully');
-
-        // Refresh the data
-        globalThis.location.reload();
-      } catch (error_) {
-        const errorMessage =
-          error_ instanceof Error ? error_.message : 'Unknown error';
-        setErrorMessage(`Failed to move item: ${errorMessage}`);
-      }
+    (itemId: number, newGroupId: number, currentGroupId: number) => {
+      moveTest({ currentGroupId, itemId, newGroupId });
     },
-    [setMessage, setErrorMessage],
+    [moveTest],
   );
 
   return (
@@ -218,68 +163,11 @@ const TestsPage = (): JSX.Element => {
               <SectionsGroupsSkeleton />
             ) : (
               <SectionsGroupsList
-                onMoveItem={(itemId, newGroupId, currentGroupId) => {
-                  void handleMoveItem(itemId, newGroupId, currentGroupId);
-                }}
+                onMoveItem={handleMoveItem}
                 sections={allSections}
               />
             )
           ) : null}
-          <FilterSection>
-            <FilterTitle>Filters</FilterTitle>
-            <ToggleRow>
-              <ToggleInput
-                checked={isGrouped}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setIsGrouped(event.target.checked);
-                }}
-                type="checkbox"
-              />
-              <ToggleText>Grouped</ToggleText>
-            </ToggleRow>
-            <FilterGroup>
-              <FilterLabel htmlFor="section-filter">Section:</FilterLabel>
-              <FilterSelect
-                disabled={!isGrouped}
-                id="section-filter"
-                onChange={(e) => {
-                  setSectionFilter(e.target.value);
-                }}
-                value={sectionFilter}
-              >
-                <option value="all">All Sections</option>
-                {sectionNames.map((name) => (
-                  <option
-                    key={name}
-                    value={name}
-                  >
-                    {name}
-                  </option>
-                ))}
-              </FilterSelect>
-            </FilterGroup>
-            <FilterGroup>
-              <FilterLabel htmlFor="tag-filter">Tag:</FilterLabel>
-              <FilterSelect
-                disabled={!isGrouped}
-                id="tag-filter"
-                onChange={(e) => {
-                  setTagFilter(e.target.value);
-                }}
-                value={tagFilter}
-              >
-                <option value="all">All Tags</option>
-                {allTags.map((tag) => (
-                  <option
-                    key={tag}
-                    value={tag}
-                  >
-                    {tag}
-                  </option>
-                ))}
-              </FilterSelect>
-            </FilterGroup>
-          </FilterSection>
         </Layout.Menu>
         <Layout.Content>
           <LoadingWrapper
@@ -290,7 +178,16 @@ const TestsPage = (): JSX.Element => {
             loadingText="Loading tests..."
           >
             <Layout.Article>
-              <PageTitle title={pageTitle} />
+              <PageTitle title={pageTitle}>
+                <IconButton
+                  aria-label="Open filters"
+                  onClick={() => {
+                    setIsSettingsOpen(true);
+                  }}
+                >
+                  <FilterIcon />
+                </IconButton>
+              </PageTitle>
               <Layout.Section>
                 {isGrouped ? (
                   <TestsSectionsList
@@ -315,32 +212,22 @@ const TestsPage = (): JSX.Element => {
         item={editingItem}
         key={editingItem?.id ?? 'new'}
         onClose={handleCloseDialog}
-        onDelete={(itemId) => {
-          void (async () => {
-            try {
-              await handleDeleteItem(itemId);
-            } catch (deleteError: unknown) {
-              const errorMessage =
-                deleteError instanceof Error
-                  ? deleteError.message
-                  : 'Failed to delete item';
-              setErrorMessage(errorMessage);
-            }
-          })();
+        onDelete={handleDeleteItem}
+        onSave={handleSaveItem}
+      />
+      <TestFiltersDialog
+        allTags={allTags}
+        isGrouped={isGrouped}
+        isOpen={isSettingsOpen}
+        onClose={() => {
+          setIsSettingsOpen(false);
         }}
-        onSave={(item, groupId) => {
-          void (async () => {
-            try {
-              await handleSaveItem(item, groupId);
-            } catch (saveError: unknown) {
-              const errorMessage =
-                saveError instanceof Error
-                  ? saveError.message
-                  : 'Failed to save item';
-              setErrorMessage(errorMessage);
-            }
-          })();
-        }}
+        sectionFilter={sectionFilter}
+        sectionNames={sectionNames}
+        setIsGrouped={setIsGrouped}
+        setSectionFilter={setSectionFilter}
+        setTagFilter={setTagFilter}
+        tagFilter={tagFilter}
       />
     </>
   );

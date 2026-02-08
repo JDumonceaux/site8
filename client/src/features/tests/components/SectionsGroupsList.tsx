@@ -120,7 +120,7 @@ const Title = styled.h3`
   margin: 0 0 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--color-text-primary, #333);
+  color: var(--text-primary-color);
 `;
 
 const List = styled.ul`
@@ -140,7 +140,7 @@ const SectionItem = styled.li`
 const SectionName = styled.div`
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-text-primary, #333);
+  color: var(--text-primary-color);
   margin-bottom: 0.25rem;
 `;
 
@@ -157,7 +157,7 @@ const GroupItem = styled.li<{ $isDropTarget?: boolean }>`
   padding: 0.625rem 0.875rem;
   margin: 0.0625rem 0;
   font-size: 0.75rem;
-  color: var(--color-text-secondary, #666);
+  color: var(--text-secondary-color);
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -171,7 +171,7 @@ const GroupItem = styled.li<{ $isDropTarget?: boolean }>`
       : ''}
 
   &:hover {
-    background-color: var(--color-background-hover, #e8e8e8);
+    background-color: var(--surface-hover-color);
   }
 `;
 
@@ -181,12 +181,12 @@ const GroupName = styled.span`
 
 const ItemCount = styled.span`
   font-size: 0.6875rem;
-  color: var(--color-text-tertiary, #999);
+  color: var(--text-tertiary-color);
 `;
 
 const EmptyMessage = styled.div`
   padding-left: 0.75rem;
   font-size: 0.75rem;
-  color: var(--color-text-tertiary, #999);
+  color: var(--text-tertiary-color);
   font-style: italic;
 `;

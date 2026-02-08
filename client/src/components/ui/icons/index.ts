@@ -2,6 +2,7 @@ export * from './AmazonIcon';
 export * from './CloseIcon';
 export * from './CopyIcon';
 export * from './FacebookIcon';
+export * from './FilterIcon';
 export * from './GoogleIcon';
 export * from './HelpIcon';
 export * from './IconVisibility';

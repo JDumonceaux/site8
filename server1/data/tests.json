@@ -1,8 +1,8 @@
-﻿{
+{
   "metadata": {
     "title": "Tests",
     "version": "1.0.0",
-    "lastUpdated": "2026-02-07",
+    "lastUpdated": "2026-02-08",
     "totalItems": 403
   },
   "groups": [
@@ -14,14 +14,18 @@
     {
       "id": 2,
       "name": "AI -  Client",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "AI prompts to improve code quality and development efficiency.",
       "sectionId": 8
     },
     {
       "id": 3,
       "name": "AI - Server",
-      "tags": ["server"],
+      "tags": [
+        "server"
+      ],
       "comments": "AI prompts to improve code quality and development efficiency.",
       "sectionId": 8
     },
@@ -47,20 +51,24 @@
     },
     {
       "id": 8,
-      "name": "Code Cleanup",
+      "name": "Client",
       "sectionId": 7
     },
     {
       "id": 9,
       "name": "CodeMods",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path).",
       "sectionId": 9
     },
     {
       "id": 10,
       "name": "CodeMods",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path).",
       "sectionId": 9
     },
@@ -92,35 +100,45 @@
     {
       "id": 16,
       "name": "ES2023 - client",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "",
       "sectionId": 19
     },
     {
       "id": 17,
       "name": "ES2024 - client",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "",
       "sectionId": 19
     },
     {
       "id": 18,
       "name": "ES2025 - client",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "",
       "sectionId": 19
     },
     {
       "id": 19,
       "name": "ESLint - Client",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "Setup ESLint for client-side code to enforce coding standards and catch errors.",
       "sectionId": 11
     },
     {
       "id": 20,
       "name": "ESLint - Server",
-      "tags": ["server"],
+      "tags": [
+        "server"
+      ],
       "comments": "Setup ESLint for server-side code to enforce coding standards and catch errors.",
       "sectionId": 11
     },
@@ -132,7 +150,9 @@
     {
       "id": 22,
       "name": "HTML",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "sectionId": 6
     },
     {
@@ -144,7 +164,9 @@
     {
       "id": 24,
       "name": "Input",
-      "tags": ["client"],
+      "tags": [
+        "client"
+      ],
       "comments": "Manual validation of HTML input elements.",
       "sectionId": 17
     },
@@ -161,7 +183,10 @@
     {
       "id": 27,
       "name": "Monthly Maintenance",
-      "tags": ["client", "server"],
+      "tags": [
+        "client",
+        "server"
+      ],
       "comments": "Maintenance steps to be performed on a monthly basis to ensure codebase health.",
       "sectionId": 13
     },
@@ -177,7 +202,7 @@
     },
     {
       "id": 30,
-      "name": "React Router 6 Upgrade",
+      "name": "React Router 7 Upgrade",
       "sectionId": 24
     },
     {
@@ -228,6 +253,11 @@
       "id": 39,
       "name": "React 19 Upgrade - Manual",
       "sectionId": 23
+    },
+    {
+      "id": 40,
+      "name": "Server",
+      "sectionId": 7
     }
   ],
   "sections": [
@@ -269,15 +299,9 @@
     },
     {
       "id": 7,
-      "name": "Code Cleanup",
-      "comments": "",
-      "seq": 7
-    },
-    {
-      "id": 8,
-      "name": "Code Quality",
+      "name": "Code Cleanup & Quality",
       "comments": "Code quality checks including deprecated functions, anti-patterns, and type safety",
-      "seq": 8
+      "seq": 7
     },
     {
       "id": 9,
@@ -371,7 +395,7 @@
     },
     {
       "id": 24,
-      "name": "React Router 6 Upgrade",
+      "name": "React Router Upgrade",
       "comments": "Steps to upgrade the codebase to React Router 6.",
       "seq": 24
     },
@@ -419,15 +443,10 @@
   ],
   "items": [
     {
-      "id": 1,
-      "tags": ["web", "react"],
-      "comments": "Quality check for  implementation",
-      "groupId": 11,
-      "seq": 1
-    },
-    {
       "id": 2,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": ".eslintrc.json or eslintrc.cjs file",
       "comments": [
         "Review linting rules for comprehensive code quality enforcement",
@@ -438,7 +457,9 @@
     },
     {
       "id": 3,
-      "tags": ["nodejs"],
+      "tags": [
+        "nodejs"
+      ],
       "name": ".eslintrc.json or eslintrc.cjs file",
       "comments": [
         "Review linting rules for comprehensive code quality enforcement",
@@ -449,7 +470,9 @@
     },
     {
       "id": 4,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -465,7 +488,9 @@
     },
     {
       "id": 5,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -481,7 +506,9 @@
     },
     {
       "id": 6,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -498,7 +525,10 @@
     {
       "id": 7,
       "goal": "Validates correctly",
-      "tags": ["web", "react"],
+      "tags": [
+        "web",
+        "react"
+      ],
       "name": "1. Enter value 2. Save 3. Delete value 4. Save",
       "comments": "Quality check for 1. Enter value 2. Save 3. Delete value 4. Save implementation",
       "groupId": 11,
@@ -506,7 +536,10 @@
     },
     {
       "id": 8,
-      "tags": ["react", "accessibility"],
+      "tags": [
+        "react",
+        "accessibility"
+      ],
       "code": [
         {
           "id": 1,
@@ -525,7 +558,9 @@
     },
     {
       "id": 9,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -541,7 +576,9 @@
     },
     {
       "id": 10,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -557,7 +594,9 @@
     },
     {
       "id": 11,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -574,14 +613,18 @@
     {
       "id": 12,
       "name": "Accessibility",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Accessibility implementation",
       "groupId": 11,
       "seq": 12
     },
     {
       "id": 13,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Accessibility - Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support",
       "comments": "Quality check for Accessibility - Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support implementation",
       "groupId": 11,
@@ -599,8 +642,8 @@
       ],
       "name": "Add display names to components",
       "comments": "Improve debugging and DevTools experience with component display names",
-      "groupId": 9,
-      "seq": 14
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 15,
@@ -614,8 +657,8 @@
       ],
       "name": "Add display names to components",
       "comments": "Improve debugging and DevTools experience with component display names",
-      "groupId": 9,
-      "seq": 15
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 16,
@@ -694,7 +737,9 @@
     },
     {
       "id": 21,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -705,12 +750,14 @@
       ],
       "name": "Anti-Patterns",
       "comments": "Refactor problematic code patterns for better maintainability",
-      "groupId": 11,
-      "seq": 21
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 22,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "API Caching - Analyze API response caching strategies and suggest improvements",
       "comments": "Quality check for API Caching - Analyze API response caching strategies and suggest improvements implementation",
       "groupId": 3,
@@ -718,7 +765,9 @@
     },
     {
       "id": 23,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -737,7 +786,9 @@
     },
     {
       "id": 24,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -753,7 +804,9 @@
     },
     {
       "id": 25,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -769,7 +822,9 @@
     },
     {
       "id": 26,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 5,
@@ -800,7 +855,9 @@
     },
     {
       "id": 28,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -816,7 +873,9 @@
     },
     {
       "id": 29,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -832,7 +891,9 @@
     },
     {
       "id": 30,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -848,7 +909,9 @@
     },
     {
       "id": 31,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -864,7 +927,9 @@
     },
     {
       "id": 32,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -880,7 +945,9 @@
     },
     {
       "id": 33,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -896,7 +963,9 @@
     },
     {
       "id": 34,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -912,7 +981,9 @@
     },
     {
       "id": 35,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -928,7 +999,9 @@
     },
     {
       "id": 36,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -944,7 +1017,9 @@
     },
     {
       "id": 37,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -960,7 +1035,9 @@
     },
     {
       "id": 38,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -976,7 +1053,9 @@
     },
     {
       "id": 39,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -992,7 +1071,9 @@
     },
     {
       "id": 40,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "API Security - Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure",
       "comments": "Quality check for API Security - Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure implementation",
       "groupId": 24,
@@ -1000,7 +1081,9 @@
     },
     {
       "id": 41,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1046,7 +1129,9 @@
     },
     {
       "id": 44,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1063,14 +1148,18 @@
     {
       "id": 45,
       "name": "Author",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Author implementation",
       "groupId": 23,
       "seq": 45
     },
     {
       "id": 46,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1088,21 +1177,27 @@
       "id": 47,
       "name": "Back to Top Button",
       "comments": "https://www.youtube.com/watch?v=HXIHpDnsizk",
-      "tags": ["future"],
+      "tags": [
+        "future"
+      ],
       "groupId": 22,
       "seq": 47
     },
     {
       "id": 48,
       "name": "Base Element",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Base Element implementation",
       "groupId": 11,
       "seq": 48
     },
     {
       "id": 49,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1118,7 +1213,9 @@
     },
     {
       "id": 50,
-      "tags": ["future"],
+      "tags": [
+        "future"
+      ],
       "code": [
         {
           "id": 1,
@@ -1134,7 +1231,9 @@
     },
     {
       "id": 51,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Build - execute npm run build and fix all errors",
       "comments": "Quality check for Build - execute npm run build and fix all errors implementation",
       "groupId": 11,
@@ -1142,7 +1241,9 @@
     },
     {
       "id": 52,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -1161,7 +1262,9 @@
     },
     {
       "id": 53,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Bundle Size - Analyze bundle size and suggest code splitting opportunities beyond lazy loading",
       "comments": "Analyze and optimize bundle size to improve initial load time",
       "groupId": 23,
@@ -1170,14 +1273,18 @@
     {
       "id": 54,
       "name": "Canonical URL",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Canonical URL implementation",
       "groupId": 23,
       "seq": 54
     },
     {
       "id": 55,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1233,8 +1340,11 @@
       ],
       "name": "Check for deprecated functions",
       "comments": "Remove outdated APIs and patterns to maintain code health",
-      "groupId": 11,
-      "seq": 58
+      "groupId": 8,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 59,
@@ -1248,8 +1358,11 @@
       ],
       "name": "Check for deprecated functions",
       "comments": "Remove outdated APIs and patterns to maintain code health",
-      "groupId": 11,
-      "seq": 59
+      "groupId": 40,
+      "seq": 1,
+      "tags": [
+        "a"
+      ]
     },
     {
       "id": 60,
@@ -1262,8 +1375,11 @@
       "id": 61,
       "name": "Check for Pure Functions",
       "comments": "Quality check for Check for Pure Functions implementation",
-      "groupId": 11,
-      "seq": 61
+      "groupId": 8,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 62,
@@ -1284,8 +1400,11 @@
       ],
       "name": "Check for unused src/ files",
       "comments": "Quality check for Check for unused src/ files implementation",
-      "groupId": 11,
-      "seq": 63
+      "groupId": 8,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 64,
@@ -1299,8 +1418,11 @@
       ],
       "name": "Check missing return types",
       "comments": "Add explicit return type annotations for better type inference and documentation",
-      "groupId": 11,
-      "seq": 64
+      "groupId": 8,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 65,
@@ -1334,7 +1456,9 @@
     },
     {
       "id": 67,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Chrome DevTools:  Run tests.",
       "comments": "Quality check for Chrome DevTools:  Run tests. implementation",
       "groupId": 11,
@@ -1342,7 +1466,9 @@
     },
     {
       "id": 68,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Chrome DevTools: Check for errors",
       "comments": "Quality check for Chrome DevTools: Check for errors implementation",
       "groupId": 11,
@@ -1350,7 +1476,9 @@
     },
     {
       "id": 69,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Chrome DevTools: Check network tab for missing files (images), connection issues, etc.",
       "comments": "Quality check for Chrome DevTools: Check network tab for missing files (images), connection issues, etc. implementation",
       "groupId": 11,
@@ -1358,7 +1486,9 @@
     },
     {
       "id": 70,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Chrome DevTools: Validate state - Check for unused state",
       "comments": "Quality check for Chrome DevTools: Validate state - Check for unused state implementation",
       "groupId": 11,
@@ -1366,7 +1496,9 @@
     },
     {
       "id": 71,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Class Components - Convert any class components to functional components and hooks.",
       "comments": "Quality check for Class Components - Convert any class components to functional components and hooks. implementation",
       "groupId": 11,
@@ -1375,7 +1507,9 @@
     {
       "id": 72,
       "notes": "01/02/2026: Score 88/100 - Very Good. 8 redundant boolean attributes (={false}) to remove. Zero unused variables. Fragment patterns with Meta are correct React 18+ practice. Key usage excellent (95%+).",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1386,20 +1520,14 @@
       ],
       "name": "Clean JSX",
       "comments": "Quality check for Clean JSX implementation",
-      "groupId": 11,
-      "seq": 72
-    },
-    {
-      "id": 73,
-      "name": "Code",
-      "tags": ["react"],
-      "comments": "Quality check for Code implementation",
-      "groupId": 11,
-      "seq": 73
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 74,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1410,12 +1538,14 @@
       ],
       "name": "Code Cleanup - API",
       "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 9,
-      "seq": 74
+      "groupId": 40,
+      "seq": 1
     },
     {
       "id": 75,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1426,12 +1556,14 @@
       ],
       "name": "Code Cleanup - API",
       "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 11,
-      "seq": 75
+      "groupId": 40,
+      "seq": 1
     },
     {
       "id": 76,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1440,14 +1572,16 @@
           "content": "Review all the types. Identify opportunities remove unused types."
         }
       ],
-      "name": "Code Cleanup - API",
+      "name": "Code Cleanup - Types",
       "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 11,
-      "seq": 76
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 77,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "type": "prompt",
@@ -1456,40 +1590,14 @@
       ],
       "name": "Code Cleanup - CSS",
       "comments": "Quality check for Code Cleanup - CSS implementation",
-      "groupId": 11,
-      "seq": 77
-    },
-    {
-      "id": 78,
-      "tags": ["ai"],
-      "code": [
-        {
-          "type": "prompt",
-          "content": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code]."
-        }
-      ],
-      "name": "Code Cleanup - CSS",
-      "comments": "Quality check for Code Cleanup - CSS implementation",
-      "groupId": 11,
-      "seq": 78
-    },
-    {
-      "id": 79,
-      "tags": ["ai"],
-      "code": [
-        {
-          "type": "prompt",
-          "content": "Val"
-        }
-      ],
-      "name": "Code Cleanup - CSS",
-      "comments": "Quality check for Code Cleanup - CSS implementation",
-      "groupId": 11,
-      "seq": 79
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 80,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "type": "prompt",
@@ -1498,12 +1606,14 @@
       ],
       "name": "Code Cleanup - Types",
       "comments": "Quality check for Code Cleanup - Types implementation",
-      "groupId": 11,
-      "seq": 80
+      "groupId": 40,
+      "seq": 1
     },
     {
       "id": 81,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "type": "prompt",
@@ -1512,12 +1622,14 @@
       ],
       "name": "Code Cleanup - Types",
       "comments": "Quality check for Code Cleanup - Types implementation",
-      "groupId": 11,
-      "seq": 81
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 82,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1533,7 +1645,9 @@
     },
     {
       "id": 83,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1566,14 +1680,19 @@
       "id": 85,
       "name": "Code Smells",
       "goal": "0",
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "comments": "Quality check for Code Smells implementation",
       "groupId": 11,
       "seq": 85
     },
     {
       "id": 86,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1590,7 +1709,9 @@
     {
       "id": 87,
       "notes": "01/02/2026: Server: 98/100  Client: 88/100",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1605,24 +1726,10 @@
       "seq": 87
     },
     {
-      "id": 88,
-      "tags": ["ai"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Add a display name to every component if missing.  Add the name before the component export."
-        }
-      ],
-      "name": "Component Display Name",
-      "comments": "Improve debugging and DevTools experience with component display names",
-      "groupId": 9,
-      "seq": 88
-    },
-    {
       "id": 89,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1743,7 +1850,9 @@
     },
     {
       "id": 97,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1759,7 +1868,9 @@
     },
     {
       "id": 98,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "CSS - Are there improvements to CSS that can be made?",
       "comments": "Quality check for CSS - Are there improvements to CSS that can be made? implementation",
       "groupId": 11,
@@ -1767,7 +1878,10 @@
     },
     {
       "id": 99,
-      "tags": ["css", "ai"],
+      "tags": [
+        "css",
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1783,7 +1897,10 @@
     },
     {
       "id": 100,
-      "tags": ["css", "ai"],
+      "tags": [
+        "css",
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1800,7 +1917,9 @@
     {
       "id": 101,
       "goal": "0.1 or lower",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -1816,7 +1935,9 @@
     },
     {
       "id": 102,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Custom Hooks - Identify opportunities to create custom hooks to reduce duplication and improve code reusability",
       "comments": "Quality check for Custom Hooks - Identify opportunities to create custom hooks to reduce duplication and improve code reusability implementation",
       "groupId": 11,
@@ -1826,7 +1947,10 @@
       "id": 103,
       "name": "Cyclomatic Complexity",
       "goal": "1-4",
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "comments": "Quality check for Cyclomatic Complexity implementation",
       "groupId": 11,
       "seq": 103
@@ -1834,7 +1958,9 @@
     {
       "id": 104,
       "notes": "12/27/2025: Total Files 471, Average Complexity: 4.53.  Results: Excellent.",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1850,7 +1976,9 @@
     },
     {
       "id": 105,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1867,14 +1995,18 @@
     {
       "id": 106,
       "name": "Description",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Description implementation",
       "groupId": 11,
       "seq": 106
     },
     {
       "id": 107,
-      "tags": ["maintenance"],
+      "tags": [
+        "maintenance"
+      ],
       "name": "Dist Folder Cleanup",
       "comments": "Quality check for Dist Folder Cleanup implementation",
       "groupId": 11,
@@ -1883,7 +2015,9 @@
     {
       "id": 108,
       "name": "Doc Type",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Doc Type implementation",
       "groupId": 23,
       "seq": 108
@@ -1891,14 +2025,18 @@
     {
       "id": 109,
       "name": "Encoding",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Encoding implementation",
       "groupId": 11,
       "seq": 109
     },
     {
       "id": 110,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -1912,21 +2050,25 @@
       "status": "Passed - Error boundaries at app and layout levels with fallbacks",
       "score": "100/100",
       "comments": "Quality check for Error Boundary Coverage implementation",
-      "groupId": 9,
-      "seq": 110
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 111,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Error Handling - Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery",
       "comments": "Leverage React 19's improved error handling capabilities",
-      "groupId": 9,
-      "seq": 111
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 112,
       "notes": "01/02/2026: Updated - Removed deprecated onKeyPress from jsx-a11y rules",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1942,7 +2084,9 @@
     },
     {
       "id": 113,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1958,7 +2102,9 @@
     },
     {
       "id": 114,
-      "tags": ["maintenance"],
+      "tags": [
+        "maintenance"
+      ],
       "name": "ESLint Health Check",
       "comments": "Review linting rules for comprehensive code quality enforcement",
       "groupId": 19,
@@ -1966,7 +2112,9 @@
     },
     {
       "id": 115,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -1982,7 +2130,9 @@
     },
     {
       "id": 116,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -1998,7 +2148,9 @@
     },
     {
       "id": 117,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2014,7 +2166,9 @@
     },
     {
       "id": 118,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2030,7 +2184,9 @@
     },
     {
       "id": 119,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2046,7 +2202,9 @@
     },
     {
       "id": 120,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2062,7 +2220,9 @@
     },
     {
       "id": 121,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2078,7 +2238,9 @@
     },
     {
       "id": 122,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2094,7 +2256,9 @@
     },
     {
       "id": 123,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2111,14 +2275,18 @@
     {
       "id": 124,
       "name": "Favicon",
-      "tags": ["web"],
+      "tags": [
+        "web"
+      ],
       "comments": "Check for Favicon implementation",
       "groupId": 21,
       "seq": 124
     },
     {
       "id": 125,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Form Validation - Review form validation patterns and suggest consistency improvements using Zod or similar",
       "comments": "Quality check for Form Validation - Review form validation patterns and suggest consistency improvements using Zod or similar implementation",
       "groupId": 11,
@@ -2126,7 +2294,9 @@
     },
     {
       "id": 126,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2142,7 +2312,9 @@
     },
     {
       "id": 127,
-      "tags": ["typescript"],
+      "tags": [
+        "typescript"
+      ],
       "code": [
         {
           "id": 1,
@@ -2161,7 +2333,9 @@
     },
     {
       "id": 128,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -2177,7 +2351,9 @@
     },
     {
       "id": 129,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2193,7 +2369,9 @@
     },
     {
       "id": 130,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2219,13 +2397,17 @@
       ],
       "name": "Geolocation Tag",
       "comments": "Chrome 144 (Jan 2026) introduces the <geolocation> HTML tag for requesting user location with enhanced privacy controls.",
-      "tags": ["future"],
+      "tags": [
+        "future"
+      ],
       "groupId": 22,
       "seq": 131
     },
     {
       "id": 132,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2244,7 +2426,9 @@
     },
     {
       "id": 133,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "HTML5 - Is the latest and appropriate HTML5 elements used?",
       "comments": "Quality check for HTML5 - Is the latest and appropriate HTML5 elements used? implementation",
       "groupId": 11,
@@ -2252,7 +2436,11 @@
     },
     {
       "id": 134,
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "name": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist",
       "comments": "Quality check for https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist implementation",
       "groupId": 11,
@@ -2260,7 +2448,9 @@
     },
     {
       "id": 135,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Image Optimization - Review and optimize image loading strategies (lazy loading, responsive images, WebP)",
       "comments": "Identify and implement performance improvements across the application",
       "groupId": 23,
@@ -2268,7 +2458,9 @@
     },
     {
       "id": 136,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Immutable - Look for opportunities to improve Immutability in codebase.",
       "comments": "Quality check for Immutable - Look for opportunities to improve Immutability in codebase. implementation",
       "groupId": 11,
@@ -2286,7 +2478,10 @@
       ],
       "name": "Implement TC39 Stage 2+ features",
       "comments": "Adopt modern JavaScript features for improved developer experience and performance",
-      "tags": ["client", "server"],
+      "tags": [
+        "client",
+        "server"
+      ],
       "groupId": 19,
       "seq": 137
     },
@@ -2307,7 +2502,9 @@
     },
     {
       "id": 139,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2323,7 +2520,9 @@
     },
     {
       "id": 140,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2341,7 +2540,11 @@
       "id": 141,
       "name": "Input - Click on Label",
       "goal": "Clicking the label sets focus to or activates the form control",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Click on Label implementation",
       "groupId": 24,
       "seq": 141
@@ -2349,7 +2552,11 @@
     {
       "id": 142,
       "name": "Input - Error",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Error implementation",
       "groupId": 24,
       "seq": 142
@@ -2357,7 +2564,11 @@
     {
       "id": 143,
       "name": "Input - Focus",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Focus implementation",
       "groupId": 24,
       "seq": 143
@@ -2365,7 +2576,11 @@
     {
       "id": 144,
       "name": "Input - Grammar",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Grammar implementation",
       "groupId": 24,
       "seq": 144
@@ -2373,7 +2588,11 @@
     {
       "id": 145,
       "name": "Input - Hover",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Hover implementation",
       "groupId": 24,
       "seq": 145
@@ -2381,7 +2600,11 @@
     {
       "id": 146,
       "name": "Input - Placeholder",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Placeholder implementation",
       "groupId": 24,
       "seq": 146
@@ -2389,7 +2612,11 @@
     {
       "id": 147,
       "name": "Input - Selection",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Selection implementation",
       "groupId": 24,
       "seq": 147
@@ -2397,14 +2624,20 @@
     {
       "id": 148,
       "name": "Input - Spelling-error",
-      "tags": ["web", "react", "acccessibiilty"],
+      "tags": [
+        "web",
+        "react",
+        "acccessibiilty"
+      ],
       "comments": "Quality check for Input - Spelling-error implementation",
       "groupId": 24,
       "seq": 148
     },
     {
       "id": 149,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Inspect style: Click through elements to check for unused or invalid styles.",
       "comments": "Quality check for Inspect style: Click through elements to check for unused or invalid styles. implementation",
       "groupId": 11,
@@ -2413,7 +2646,9 @@
     {
       "id": 150,
       "goal": "200ms or less",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -2429,7 +2664,9 @@
     },
     {
       "id": 151,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript ES2023 Array Method Improvements - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
       "comments": "Quality check for Javascript ES2023 Array Method Improvements - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable. implementation",
       "groupId": 11,
@@ -2437,7 +2674,9 @@
     },
     {
       "id": 152,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Improvements - Using javascript ES2025, are there any improvements that can be be implemented?",
       "comments": "Quality check for Javascript Improvements - Using javascript ES2025, are there any improvements that can be be implemented? implementation",
       "groupId": 11,
@@ -2445,7 +2684,9 @@
     },
     {
       "id": 153,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Improvements2 - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
       "comments": "Quality check for Javascript Improvements2 - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable. implementation",
       "groupId": 11,
@@ -2453,7 +2694,9 @@
     },
     {
       "id": 154,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Iterable Type Updates - Update to use Iterable where applicable.",
       "comments": "Quality check for Javascript Iterable Type Updates - Update to use Iterable where applicable. implementation",
       "groupId": 11,
@@ -2461,7 +2704,9 @@
     },
     {
       "id": 155,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Iterable Type Updates - Update to use RegExp.escape where applicable.",
       "comments": "Quality check for Javascript Iterable Type Updates - Update to use RegExp.escape where applicable. implementation",
       "groupId": 11,
@@ -2470,7 +2715,9 @@
     {
       "id": 156,
       "notes": "12/25/2025 - Limited browser support.  Check compatibility before implementing (caniuse.com)",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript Iteratable - Implement Temporal API.",
       "comments": "Quality check for Javascript Iteratable - Implement Temporal API. implementation",
       "groupId": 11,
@@ -2479,7 +2726,9 @@
     {
       "id": 157,
       "notes": "Caused errors - RegExp.escape()  ECMAScript 2025",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript RegExp.escape Implementation - Update to use Promise.try where applicable.",
       "comments": "Quality check for Javascript RegExp.escape Implementation - Update to use Promise.try where applicable. implementation",
       "groupId": 11,
@@ -2487,7 +2736,9 @@
     },
     {
       "id": 158,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Javascript RegExp.escape Implementation - Update to use RegExp.escape where applicable.",
       "comments": "Quality check for Javascript RegExp.escape Implementation - Update to use RegExp.escape where applicable. implementation",
       "groupId": 11,
@@ -2496,7 +2747,9 @@
     {
       "id": 159,
       "notes": "12/1/2025 - 'es2025' is not supported by Vite.  Use 'esnext' instead. This is need for features like Promise.try",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2513,14 +2766,18 @@
     {
       "id": 160,
       "name": "Keywords",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Keywords implementation",
-      "groupId": 11,
-      "seq": 160
+      "groupId": 21,
+      "seq": 1
     },
     {
       "id": 161,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2537,15 +2794,19 @@
     {
       "id": 162,
       "name": "Language",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Language implementation",
-      "groupId": 11,
-      "seq": 162
+      "groupId": 21,
+      "seq": 1
     },
     {
       "id": 163,
       "name": "Language - change language",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Language - change language implementation",
       "groupId": 11,
       "seq": 163
@@ -2553,7 +2814,9 @@
     {
       "id": 164,
       "goal": "2.5 seconds or less",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -2569,7 +2832,9 @@
     },
     {
       "id": 165,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Lazy Loading - Implement lazy loading components.",
       "comments": "Quality check for Lazy Loading - Implement lazy loading components. implementation",
       "groupId": 23,
@@ -2577,7 +2842,9 @@
     },
     {
       "id": 166,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2593,7 +2860,9 @@
     },
     {
       "id": 167,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2609,7 +2878,9 @@
     },
     {
       "id": 168,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2655,7 +2926,9 @@
     },
     {
       "id": 171,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "type": "prompt",
@@ -2714,7 +2987,9 @@
     },
     {
       "id": 175,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Memory Leaks - Check for memory leaks - useEffect cleanup, event listeners, subscriptions",
       "comments": "Quality check for Memory Leaks - Check for memory leaks - useEffect cleanup, event listeners, subscriptions implementation",
       "groupId": 11,
@@ -2723,7 +2998,9 @@
     {
       "id": 176,
       "name": "Meta Tags",
-      "tags": ["web"],
+      "tags": [
+        "web"
+      ],
       "comments": "Check for Meta Tags implementation",
       "groupId": 21,
       "seq": 176
@@ -2731,14 +3008,18 @@
     {
       "id": 177,
       "name": "Mobile Friendly",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Mobile Friendly implementation",
       "groupId": 11,
       "seq": 177
     },
     {
       "id": 178,
-      "tags": ["maintenance"],
+      "tags": [
+        "maintenance"
+      ],
       "name": "Node Modules Cleanup",
       "comments": "Quality check for Node Modules Cleanup implementation",
       "groupId": 11,
@@ -2746,7 +3027,9 @@
     },
     {
       "id": 179,
-      "tags": ["nodejs"],
+      "tags": [
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -2765,7 +3048,9 @@
     },
     {
       "id": 180,
-      "tags": ["maintenance"],
+      "tags": [
+        "maintenance"
+      ],
       "code": [
         {
           "id": 1,
@@ -2782,14 +3067,20 @@
     {
       "id": 181,
       "name": "npm audit",
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "comments": "Quality check for npm audit implementation",
       "groupId": 11,
       "seq": 181
     },
     {
       "id": 182,
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -2805,7 +3096,10 @@
     },
     {
       "id": 183,
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -2821,7 +3115,10 @@
     },
     {
       "id": 184,
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -2838,14 +3135,20 @@
     {
       "id": 185,
       "name": "npm outdated",
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "comments": "Quality check for npm outdated implementation",
       "groupId": 11,
       "seq": 185
     },
     {
       "id": 186,
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -2861,7 +3164,10 @@
     },
     {
       "id": 187,
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "code": [
         {
           "id": 1,
@@ -2877,7 +3183,9 @@
     },
     {
       "id": 188,
-      "tags": ["chat"],
+      "tags": [
+        "chat"
+      ],
       "code": [
         {
           "id": 1,
@@ -2893,7 +3201,9 @@
     },
     {
       "id": 189,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2909,7 +3219,10 @@
     },
     {
       "id": 190,
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "name": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
       "comments": "Quality check for Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a> implementation",
       "groupId": 11,
@@ -2918,7 +3231,9 @@
     {
       "id": 191,
       "name": "Open Graph Coding",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Open Graph Coding implementation",
       "groupId": 11,
       "seq": 191
@@ -2926,7 +3241,9 @@
     {
       "id": 192,
       "name": "Optimized Page Speed",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Optimized Page Speed implementation",
       "groupId": 11,
       "seq": 192
@@ -2964,7 +3281,9 @@
     {
       "id": 195,
       "notes": "01/01/2026: Score: 94/100 - Excellent consistency across coding styles, naming conventions, and file structures. Coding Style Consistency - Naming conventions, code formatting, patterns; File Structure Consistency - Directory organization, file naming; API Pattern Consistency - Handler patterns, error responses, validation; TypeScript Usage - Type annotations, generic usage; Import Patterns - Import organization, factory usage; Error Handling Consistency - ResponseHelper usage, error formats; Documentation Consistency - JSDoc comments, inline comments; Testing Patterns - Test structure (if tests exist)",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2980,7 +3299,9 @@
     },
     {
       "id": 196,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -2996,7 +3317,9 @@
     },
     {
       "id": 197,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3013,7 +3336,9 @@
     {
       "id": 198,
       "notes": "01/02/2026: Score 98/100 - Excellent. Zero functional duplicates. TypeScript version aligned (5.9.3). Consider workspace for husky/prettier/eslint deduplication (optional).",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3032,7 +3357,9 @@
     },
     {
       "id": 199,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3051,7 +3378,9 @@
     },
     {
       "id": 200,
-      "tags": ["code"],
+      "tags": [
+        "code"
+      ],
       "code": [
         {
           "id": 1,
@@ -3071,7 +3400,9 @@
     },
     {
       "id": 201,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3118,7 +3449,9 @@
     {
       "id": 204,
       "notes": "01/02/2026: Validated - 95/100 score, excellent architecture with custom hooks pattern",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3134,7 +3467,9 @@
     },
     {
       "id": 205,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Prop Drilling - Identify prop drilling issues and suggest Context API or state management improvements",
       "comments": "Reduce component coupling by eliminating excessive prop passing",
       "groupId": 11,
@@ -3143,7 +3478,9 @@
     {
       "id": 206,
       "name": "Publish Date",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Publish Date implementation",
       "groupId": 11,
       "seq": 206
@@ -3151,54 +3488,28 @@
     {
       "id": 207,
       "name": "Quality Content",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Quality Content implementation",
       "groupId": 11,
       "seq": 207
     },
     {
       "id": 208,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Re-renders - Look for any unnecessary re-renders.",
       "comments": "Quality check for Re-renders - Look for any unnecessary re-renders. implementation",
       "groupId": 11,
       "seq": 208
     },
     {
-      "id": 209,
-      "tags": ["codemods"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "code",
-          "content": "npx codemod@latest class-to-function-component"
-        }
-      ],
-      "name": "React - CodeMods - class-to-function-component",
-      "comments": "Quality check for React - CodeMods - class-to-function-component implementation",
-      "groupId": 11,
-      "seq": 209
-    },
-    {
-      "id": 210,
-      "tags": ["codemods"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "code",
-          "content": "npx codemod@latest class-to-function-component <path>"
-        }
-      ],
-      "name": "React - CodeMods - class-to-function-component",
-      "comments": "Quality check for React - CodeMods - class-to-function-component implementation",
-      "groupId": 11,
-      "seq": 210
-    },
-    {
       "id": 211,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3214,7 +3525,9 @@
     },
     {
       "id": 212,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3230,7 +3543,9 @@
     },
     {
       "id": 213,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3245,25 +3560,11 @@
       "seq": 213
     },
     {
-      "id": 214,
-      "tags": ["codemods"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "code",
-          "content": "npx codemod@latest react/update-react-imports <path>"
-        }
-      ],
-      "name": "React - CodeMods - update-react-imports",
-      "comments": "Quality check for React - CodeMods - update-react-imports implementation",
-      "groupId": 11,
-      "seq": 214
-    },
-    {
       "id": 215,
       "notes": "01/02/2026: Validated - Zero deprecated event handlers found, all using modern onKeyDown. Modern React 19 patterns confirmed.",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3274,12 +3575,14 @@
       ],
       "name": "React - Deprecated APIs and Event Handlers",
       "comments": "Remove outdated APIs and patterns to maintain code health",
-      "groupId": 9,
-      "seq": 215
+      "groupId": 8,
+      "seq": 1
     },
     {
       "id": 216,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3295,7 +3598,9 @@
     },
     {
       "id": 217,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3311,7 +3616,9 @@
     },
     {
       "id": 218,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3327,7 +3634,9 @@
     },
     {
       "id": 219,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3343,7 +3652,9 @@
     },
     {
       "id": 220,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3359,7 +3670,9 @@
     },
     {
       "id": 221,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3375,7 +3688,9 @@
     },
     {
       "id": 222,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3391,7 +3706,9 @@
     },
     {
       "id": 223,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3407,7 +3724,9 @@
     },
     {
       "id": 224,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3423,7 +3742,9 @@
     },
     {
       "id": 226,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3439,7 +3760,9 @@
     },
     {
       "id": 227,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3455,7 +3778,9 @@
     },
     {
       "id": 228,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 2,
@@ -3471,7 +3796,9 @@
     },
     {
       "id": 230,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3487,7 +3814,9 @@
     },
     {
       "id": 231,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -3503,7 +3832,9 @@
     },
     {
       "id": 232,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3519,7 +3850,9 @@
     },
     {
       "id": 233,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3535,7 +3868,9 @@
     },
     {
       "id": 234,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3551,7 +3886,9 @@
     },
     {
       "id": 235,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3567,7 +3904,9 @@
     },
     {
       "id": 236,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3583,7 +3922,9 @@
     },
     {
       "id": 237,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3599,7 +3940,9 @@
     },
     {
       "id": 238,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3615,7 +3958,9 @@
     },
     {
       "id": 239,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3632,7 +3977,9 @@
     {
       "id": 240,
       "notes": "Removed in 19.2.3",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3648,7 +3995,9 @@
     },
     {
       "id": 241,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3664,7 +4013,9 @@
     },
     {
       "id": 242,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -3690,23 +4041,11 @@
       ],
       "name": "React 19 Context update",
       "comments": "Quality check for React 19 Context update implementation",
-      "groupId": 9,
-      "seq": 243
-    },
-    {
-      "id": 244,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to update Context.Provider to Context introduced in React 19."
-        }
-      ],
-      "name": "React 19 Context update",
-      "comments": "Quality check for React 19 Context update implementation",
-      "groupId": 9,
-      "seq": 244
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 245,
@@ -3720,23 +4059,11 @@
       ],
       "name": "React 19 error handling",
       "comments": "Leverage React 19's improved error handling capabilities",
-      "groupId": 9,
-      "seq": 245
-    },
-    {
-      "id": 246,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the error handling changes introduced in React 19."
-        }
-      ],
-      "name": "React 19 error handling",
-      "comments": "Leverage React 19's improved error handling capabilities",
-      "groupId": 9,
-      "seq": 246
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 247,
@@ -3750,23 +4077,11 @@
       ],
       "name": "React 19 JSX transform",
       "comments": "Ensure React 19's automatic JSX runtime is configured correctly",
-      "groupId": 9,
-      "seq": 247
-    },
-    {
-      "id": 248,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly."
-        }
-      ],
-      "name": "React 19 JSX transform",
-      "comments": "Ensure React 19's automatic JSX runtime is configured correctly",
-      "groupId": 9,
-      "seq": 248
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 249,
@@ -3780,23 +4095,11 @@
       ],
       "name": "React 19 ref cleanup",
       "comments": "Implement React 19's ref cleanup functions for proper resource disposal",
-      "groupId": 9,
-      "seq": 249
-    },
-    {
-      "id": 250,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to update cleanup functions for ref introduced in React 19."
-        }
-      ],
-      "name": "React 19 ref cleanup",
-      "comments": "Implement React 19's ref cleanup functions for proper resource disposal",
-      "groupId": 9,
-      "seq": 250
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 251,
@@ -3810,23 +4113,11 @@
       ],
       "name": "React 19 resource preloading",
       "comments": "Utilize React 19's built-in resource preloading features",
-      "groupId": 9,
-      "seq": 251
-    },
-    {
-      "id": 252,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19."
-        }
-      ],
-      "name": "React 19 resource preloading",
-      "comments": "Utilize React 19's built-in resource preloading features",
-      "groupId": 9,
-      "seq": 252
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 253,
@@ -3840,23 +4131,11 @@
       ],
       "name": "React 19 stylesheet precedence",
       "comments": "Implement React 19's stylesheet precedence for optimal CSS loading",
-      "groupId": 9,
-      "seq": 253
-    },
-    {
-      "id": 254,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19."
-        }
-      ],
-      "name": "React 19 stylesheet precedence",
-      "comments": "Implement React 19's stylesheet precedence for optimal CSS loading",
-      "groupId": 9,
-      "seq": 254
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 255,
@@ -3870,23 +4149,11 @@
       ],
       "name": "React 19 use hook",
       "comments": "Adopt React 19's new 'use' hook for reading resources and promises",
-      "groupId": 9,
-      "seq": 255
-    },
-    {
-      "id": 256,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the new use hook introduced in React 19."
-        }
-      ],
-      "name": "React 19 use hook",
-      "comments": "Adopt React 19's new 'use' hook for reading resources and promises",
-      "groupId": 9,
-      "seq": 256
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 257,
@@ -3900,23 +4167,11 @@
       ],
       "name": "React 19 useActionState",
       "comments": "Leverage React 19's useActionState for server actions and form state management",
-      "groupId": 9,
-      "seq": 257
-    },
-    {
-      "id": 258,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19."
-        }
-      ],
-      "name": "React 19 useActionState",
-      "comments": "Leverage React 19's useActionState for server actions and form state management",
-      "groupId": 9,
-      "seq": 258
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 259,
@@ -3930,23 +4185,11 @@
       ],
       "name": "React 19 useDeferredValue",
       "comments": "Apply React 19's useDeferredValue for improved performance on heavy computations",
-      "groupId": 9,
-      "seq": 259
-    },
-    {
-      "id": 260,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19."
-        }
-      ],
-      "name": "React 19 useDeferredValue",
-      "comments": "Apply React 19's useDeferredValue for improved performance on heavy computations",
-      "groupId": 9,
-      "seq": 260
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 261,
@@ -3960,23 +4203,11 @@
       ],
       "name": "React 19 useOptimistic",
       "comments": "Implement optimistic UI updates using React 19's useOptimistic hook",
-      "groupId": 9,
-      "seq": 261
-    },
-    {
-      "id": 262,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19."
-        }
-      ],
-      "name": "React 19 useOptimistic",
-      "comments": "Implement optimistic UI updates using React 19's useOptimistic hook",
-      "groupId": 9,
-      "seq": 262
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 263,
@@ -3990,35 +4221,27 @@
       ],
       "name": "React 19 useTransition",
       "comments": "Use React 19's enhanced useTransition for better concurrent rendering",
-      "groupId": 9,
-      "seq": 263
-    },
-    {
-      "id": 264,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19."
-        }
-      ],
-      "name": "React 19 useTransition",
-      "comments": "Use React 19's enhanced useTransition for better concurrent rendering",
-      "groupId": 9,
-      "seq": 264
+      "groupId": 29,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 265,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "React Improvements - Are there react 19.2.3 enhancements that can be made?",
       "comments": "Quality check for React Improvements - Are there react 19.2.3 enhancements that can be made? implementation",
-      "groupId": 9,
-      "seq": 265
+      "groupId": 2,
+      "seq": 1
     },
     {
       "id": 266,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "React Query Optimization - Review and optimize React Query usage - check staleTime, cacheTime, retry logic, and identify opportunities for prefetching",
       "comments": "Identify and implement performance improvements across the application",
       "groupId": 23,
@@ -4026,7 +4249,9 @@
     },
     {
       "id": 267,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4042,7 +4267,9 @@
     },
     {
       "id": 268,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4058,7 +4285,9 @@
     },
     {
       "id": 269,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4069,12 +4298,14 @@
       ],
       "name": "React Router - CodeMods - remove-redirect-inside-switch",
       "comments": "Quality check for React Router - CodeMods - remove-redirect-inside-switch implementation",
-      "groupId": 11,
-      "seq": 269
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 270,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4085,12 +4316,14 @@
       ],
       "name": "React Router 7 - CodeMods - add_v7_fetcherPersist_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_fetcherPersist_Flag implementation",
-      "groupId": 11,
-      "seq": 270
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 271,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4101,12 +4334,14 @@
       ],
       "name": "React Router 7 - CodeMods - add_v7_normalizeFormMethod",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_normalizeFormMethod implementation",
-      "groupId": 11,
-      "seq": 271
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 272,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4117,12 +4352,14 @@
       ],
       "name": "React Router 7 - CodeMods - add_v7_partialHydration_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_partialHydration_Flag implementation",
-      "groupId": 11,
-      "seq": 272
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 273,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4133,12 +4370,14 @@
       ],
       "name": "React Router 7 - CodeMods - add_v7_relativeSplatPath_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_relativeSplatPath_Flag implementation",
-      "groupId": 11,
-      "seq": 273
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 274,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4149,12 +4388,14 @@
       ],
       "name": "React Router 7 - CodeMods - add_v7_skipActionStatusRevalidation_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_skipActionStatusRevalidation_Flag implementation",
-      "groupId": 11,
-      "seq": 274
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 275,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4165,12 +4406,14 @@
       ],
       "name": "React Router 7 - CodeMods - add_v7_startTransition_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_startTransition_Flag implementation",
-      "groupId": 11,
-      "seq": 275
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 276,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4181,12 +4424,14 @@
       ],
       "name": "React Router 7 - CodeMods - errorfirst-mutation-reorder",
       "comments": "Quality check for React Router 7 - CodeMods - errorfirst-mutation-reorder implementation",
-      "groupId": 11,
-      "seq": 276
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 277,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4197,12 +4442,14 @@
       ],
       "name": "React Router 7 - CodeMods - form-methods-post-get-to-uppercase",
       "comments": "Quality check for React Router 7 - CodeMods - form-methods-post-get-to-uppercase implementation",
-      "groupId": 11,
-      "seq": 277
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 278,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4213,12 +4460,14 @@
       ],
       "name": "React Router 7 - CodeMods - migration-recipe",
       "comments": "Quality check for React Router 7 - CodeMods - migration-recipe implementation",
-      "groupId": 11,
-      "seq": 278
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 279,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4229,12 +4478,14 @@
       ],
       "name": "React Router 7 - CodeMods - relative-links",
       "comments": "Quality check for React Router 7 - CodeMods - relative-links implementation",
-      "groupId": 11,
-      "seq": 279
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 280,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4245,12 +4496,14 @@
       ],
       "name": "React Router 7 - CodeMods - route-wildcard-to-nested",
       "comments": "Quality check for React Router 7 - CodeMods - route-wildcard-to-nested implementation",
-      "groupId": 11,
-      "seq": 280
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 281,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -4261,12 +4514,14 @@
       ],
       "name": "React Router 7 - CodeMods - update-imports",
       "comments": "Quality check for React Router 7 - CodeMods - update-imports implementation",
-      "groupId": 11,
-      "seq": 281
+      "groupId": 30,
+      "seq": 1
     },
     {
       "id": 282,
-      "tags": ["maintenance"],
+      "tags": [
+        "maintenance"
+      ],
       "code": [
         {
           "id": 1,
@@ -4282,7 +4537,9 @@
     },
     {
       "id": 283,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -4298,7 +4555,9 @@
     },
     {
       "id": 284,
-      "tags": ["code"],
+      "tags": [
+        "code"
+      ],
       "code": [
         {
           "id": 1,
@@ -4508,21 +4767,6 @@
       "seq": 297
     },
     {
-      "id": 298,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review this file for null/undefined checks"
-        }
-      ],
-      "name": "Review null/undefined checks",
-      "comments": "Improve null safety with proper checks and optional chaining",
-      "groupId": 11,
-      "seq": 298
-    },
-    {
       "id": 299,
       "code": [
         {
@@ -4676,21 +4920,6 @@
       "seq": 307
     },
     {
-      "id": 308,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed. Use modern structures, coding, and best practices."
-        }
-      ],
-      "name": "Review typescript-react.instructions",
-      "comments": "Quality check for Review typescript-react.instructions implementation",
-      "groupId": 11,
-      "seq": 308
-    },
-    {
       "id": 309,
       "code": [
         {
@@ -4753,7 +4982,9 @@
     {
       "id": 313,
       "name": "Robot.txt",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Robot.txt implementation",
       "groupId": 11,
       "seq": 313
@@ -4862,7 +5093,11 @@
     {
       "id": 321,
       "notes": "Production build with optimization",
-      "tags": ["scripts", "react", "nodejs"],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Build - npm run build",
       "comments": "Quality check for Scripts: Build - npm run build implementation",
       "groupId": 11,
@@ -4871,7 +5106,10 @@
     {
       "id": 322,
       "notes": "Remove dist and coverage folders",
-      "tags": ["scripts", "react"],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Clean - npm run clean",
       "comments": "Quality check for Scripts: Clean - npm run clean implementation",
       "groupId": 11,
@@ -4879,7 +5117,10 @@
     },
     {
       "id": 323,
-      "tags": ["scripts", "react"],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Format - npm run format",
       "comments": "Quality check for Scripts: Format - npm run format implementation",
       "groupId": 11,
@@ -4888,7 +5129,11 @@
     {
       "id": 324,
       "notes": "Find unused files, dependencies, and exports",
-      "tags": ["scripts", "react", "nodejs"],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Knip - npm run knip",
       "comments": "Quality check for Scripts: Knip - npm run knip implementation",
       "groupId": 11,
@@ -4896,7 +5141,11 @@
     },
     {
       "id": 325,
-      "tags": ["scripts", "react", "nodejs"],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Lint - npm run lint",
       "comments": "Quality check for Scripts: Lint - npm run lint implementation",
       "groupId": 11,
@@ -4904,7 +5153,11 @@
     },
     {
       "id": 326,
-      "tags": ["scripts", "react", "nodejs"],
+      "tags": [
+        "scripts",
+        "react",
+        "nodejs"
+      ],
       "name": "Scripts: Lint Fix - npm run lint:fix",
       "comments": "Quality check for Scripts: Lint Fix - npm run lint:fix implementation",
       "groupId": 11,
@@ -4913,7 +5166,10 @@
     {
       "id": 327,
       "notes": "Preview production build locally",
-      "tags": ["scripts", "react"],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Preview - npm run preview",
       "comments": "Quality check for Scripts: Preview - npm run preview implementation",
       "groupId": 11,
@@ -4921,34 +5177,20 @@
     },
     {
       "id": 328,
-      "tags": ["scripts", "react"],
+      "tags": [
+        "scripts",
+        "react"
+      ],
       "name": "Scripts: Type Check - npm run type-check",
       "comments": "Quality check for Scripts: Type Check - npm run type-check implementation",
       "groupId": 11,
       "seq": 328
     },
     {
-      "id": 329,
-      "tags": ["ai", "security"],
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "prompt",
-          "content": "Scan for hardcoded secrets (API keys, passwords, tokens) in codebase and environment files. Verify .gitignore excludes sensitive files."
-        }
-      ],
-      "name": "Secrets Detection",
-      "testDate": "2026-01-03",
-      "status": "Passed",
-      "score": "100/100",
-      "comments": "Prevent security vulnerabilities by detecting exposed credentials",
-      "groupId": 11,
-      "seq": 329
-    },
-    {
       "id": 330,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -4964,7 +5206,9 @@
     },
     {
       "id": 331,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -4981,7 +5225,9 @@
     {
       "id": 332,
       "name": "Semantic HTML",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Semantic HTML implementation",
       "groupId": 11,
       "seq": 332
@@ -4989,14 +5235,18 @@
     {
       "id": 333,
       "name": "SEO",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for SEO implementation",
       "groupId": 11,
       "seq": 333
     },
     {
       "id": 334,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5012,7 +5262,9 @@
     },
     {
       "id": 335,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
       "comments": "Quality check for Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner. implementation",
       "groupId": 11,
@@ -5021,14 +5273,18 @@
     {
       "id": 336,
       "name": "Sitemap.xml",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Sitemap.xml implementation",
       "groupId": 11,
       "seq": 336
     },
     {
       "id": 337,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5044,7 +5300,9 @@
     },
     {
       "id": 338,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "SOLID - Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase.",
       "comments": "Quality check for SOLID - Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase. implementation",
       "groupId": 11,
@@ -5054,14 +5312,19 @@
       "id": 339,
       "name": "SRP - Single Responsibility Principle",
       "goal": "1 per function",
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "comments": "Quality check for SRP - Single Responsibility Principle implementation",
       "groupId": 11,
       "seq": 339
     },
     {
       "id": 340,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "SSR/SSG - Identify opportunities for Server-Side Rendering or Static Site Generation",
       "comments": "Quality check for SSR/SSG - Identify opportunities for Server-Side Rendering or Static Site Generation implementation",
       "groupId": 11,
@@ -5069,7 +5332,9 @@
     },
     {
       "id": 341,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5115,7 +5380,9 @@
     },
     {
       "id": 344,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Styled Components Performance - Review styled-components usage and identify performance issues or patterns to improve",
       "comments": "Quality check for Styled Components Performance - Review styled-components usage and identify performance issues or patterns to improve implementation",
       "groupId": 11,
@@ -5123,7 +5390,9 @@
     },
     {
       "id": 345,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Styles - Are there any styles defined in components that should be moved to main.css?",
       "comments": "Quality check for Styles - Are there any styles defined in components that should be moved to main.css? implementation",
       "groupId": 11,
@@ -5131,7 +5400,9 @@
     },
     {
       "id": 346,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Stylesheets - Remove Type",
       "comments": "Quality check for Stylesheets - Remove Type implementation",
       "groupId": 11,
@@ -5140,14 +5411,20 @@
     {
       "id": 347,
       "name": "Synk",
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "comments": "Quality check for Synk implementation",
       "groupId": 11,
       "seq": 347
     },
     {
       "id": 348,
-      "tags": ["react", "testing"],
+      "tags": [
+        "react",
+        "testing"
+      ],
       "code": [
         {
           "id": 1,
@@ -5176,31 +5453,18 @@
       ],
       "name": "Test dark color scheme",
       "comments": "Quality check for Test dark color scheme implementation",
-      "groupId": 11,
-      "seq": 349
-    },
-    {
-      "id": 350,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Test dark color scheme has sufficient contrast ratios, no pure blacks/whites causing eye strain, and respects user preference."
-        }
-      ],
-      "name": "Test dark color scheme",
-      "comments": "Quality check for Test dark color scheme implementation",
-      "groupId": 11,
-      "seq": 350
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 351,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "name": "Test for color blindness.",
       "comments": "Quality check for Test for color blindness. implementation",
-      "groupId": 11,
-      "seq": 351
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 352,
@@ -5214,23 +5478,8 @@
       ],
       "name": "Test landscape orientation",
       "comments": "Quality check for Test landscape orientation implementation",
-      "groupId": 11,
-      "seq": 352
-    },
-    {
-      "id": 353,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Test layout utilizes landscape orientation effectively (wide screens). Verify readable line lengths."
-        }
-      ],
-      "name": "Test landscape orientation",
-      "comments": "Quality check for Test landscape orientation implementation",
-      "groupId": 11,
-      "seq": 353
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 354,
@@ -5244,8 +5493,8 @@
       ],
       "name": "Test light color scheme",
       "comments": "Quality check for Test light color scheme implementation",
-      "groupId": 11,
-      "seq": 354
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 355,
@@ -5259,8 +5508,8 @@
       ],
       "name": "Test light color scheme",
       "comments": "Quality check for Test light color scheme implementation",
-      "groupId": 11,
-      "seq": 355
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 356,
@@ -5274,23 +5523,8 @@
       ],
       "name": "Test portrait orientation",
       "comments": "Quality check for Test portrait orientation implementation",
-      "groupId": 11,
-      "seq": 356
-    },
-    {
-      "id": 357,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Test layout adapts correctly for portrait orientation (mobile/tablet). Verify no horizontal overflow."
-        }
-      ],
-      "name": "Test portrait orientation",
-      "comments": "Quality check for Test portrait orientation implementation",
-      "groupId": 11,
-      "seq": 357
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 358,
@@ -5304,23 +5538,8 @@
       ],
       "name": "Test print styles",
       "comments": "Quality check for Test print styles implementation",
-      "groupId": 11,
-      "seq": 358
-    },
-    {
-      "id": 359,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Test print styles render correctly - verify page breaks, margins, and print-specific CSS."
-        }
-      ],
-      "name": "Test print styles",
-      "comments": "Quality check for Test print styles implementation",
-      "groupId": 11,
-      "seq": 359
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 360,
@@ -5334,27 +5553,14 @@
       ],
       "name": "Test responsive design",
       "comments": "Quality check for Test responsive design implementation",
-      "groupId": 11,
-      "seq": 360
-    },
-    {
-      "id": 361,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Test responsive design works correctly for all media types (screen, print, speech)."
-        }
-      ],
-      "name": "Test responsive design",
-      "comments": "Quality check for Test responsive design implementation",
-      "groupId": 11,
-      "seq": 361
+      "groupId": 22,
+      "seq": 1
     },
     {
       "id": 362,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Testing - Suggest implementing React Testing Library tests for critical user flows",
       "comments": "Quality check for Testing - Suggest implementing React Testing Library tests for critical user flows implementation",
       "groupId": 11,
@@ -5363,14 +5569,18 @@
     {
       "id": 363,
       "name": "Title",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Title implementation",
-      "groupId": 11,
-      "seq": 363
+      "groupId": 21,
+      "seq": 1
     },
     {
       "id": 364,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5389,7 +5599,10 @@
     },
     {
       "id": 365,
-      "tags": ["react", "nodejs"],
+      "tags": [
+        "react",
+        "nodejs"
+      ],
       "name": "TSConfig.json - Check for new and deprecated options <a href=\"https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html\">Typescript</a>",
       "comments": [
         "Remove outdated APIs and patterns to maintain code health",
@@ -5401,7 +5614,9 @@
     },
     {
       "id": 366,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5420,7 +5635,9 @@
     },
     {
       "id": 367,
-      "tags": ["codemods"],
+      "tags": [
+        "codemods"
+      ],
       "code": [
         {
           "id": 1,
@@ -5436,7 +5653,9 @@
     },
     {
       "id": 368,
-      "tags": ["typescript"],
+      "tags": [
+        "typescript"
+      ],
       "code": [
         {
           "id": 1,
@@ -5455,7 +5674,9 @@
     },
     {
       "id": 369,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5471,7 +5692,9 @@
     },
     {
       "id": 370,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "Typescript Improvements - Using typescript [latest version], are there any improvements that can be implemented?",
       "comments": "Quality check for Typescript Improvements - Using typescript [latest version], are there any improvements that can be implemented? implementation",
       "groupId": 11,
@@ -5480,7 +5703,9 @@
     {
       "id": 371,
       "notes": "Some of these feel too strict: e.g., noImplicitAny, strictNullChecks, strictFunctionTypes",
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "name": "TypeScript Strict Mode - Review TypeScript strict mode usage and suggest enabling stricter compiler options",
       "comments": "Quality check for TypeScript Strict Mode - Review TypeScript strict mode usage and suggest enabling stricter compiler options implementation",
       "groupId": 11,
@@ -5488,7 +5713,9 @@
     },
     {
       "id": 372,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5504,7 +5731,9 @@
     },
     {
       "id": 373,
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -5523,7 +5752,10 @@
     },
     {
       "id": 374,
-      "tags": ["nodejs", "react"],
+      "tags": [
+        "nodejs",
+        "react"
+      ],
       "code": [
         {
           "id": 1,
@@ -5542,7 +5774,9 @@
     },
     {
       "id": 375,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5559,14 +5793,18 @@
     {
       "id": 376,
       "name": "Unused Style Files",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Unused Style Files implementation",
       "groupId": 11,
       "seq": 376
     },
     {
       "id": 377,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5582,7 +5820,9 @@
     },
     {
       "id": 378,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5598,7 +5838,9 @@
     },
     {
       "id": 379,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5613,21 +5855,6 @@
       "seq": 379
     },
     {
-      "id": 380,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Validate json files contain valid json."
-        }
-      ],
-      "name": "Validate JSON files",
-      "comments": "Ensure data integrity with valid JSON syntax",
-      "groupId": 11,
-      "seq": 380
-    },
-    {
       "id": 381,
       "code": [
         {
@@ -5639,8 +5866,8 @@
       ],
       "name": "Validate JSON files",
       "comments": "Ensure data integrity with valid JSON syntax",
-      "groupId": 11,
-      "seq": 381
+      "groupId": 40,
+      "seq": 1
     },
     {
       "id": 382,
@@ -5654,23 +5881,11 @@
       ],
       "name": "Validate mutation operations",
       "comments": "Follow REST principles for data modification endpoints",
-      "groupId": 11,
-      "seq": 382
-    },
-    {
-      "id": 383,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Validate all mutation operations use request body for data."
-        }
-      ],
-      "name": "Validate mutation operations",
-      "comments": "Follow REST principles for data modification endpoints",
-      "groupId": 11,
-      "seq": 383
+      "groupId": 8,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 384,
@@ -5687,26 +5902,8 @@
         "Remove outdated APIs and patterns to maintain code health",
         "Modernize event handling to React 19+ standards"
       ],
-      "groupId": 9,
-      "seq": 384
-    },
-    {
-      "id": 385,
-      "code": [
-        {
-          "id": 1,
-          "seq": 1,
-          "type": "description",
-          "content": "Validate there are no deprecated event handlers (onKeyPress, componentWillMount, componentWillReceiveProps, etc.) in the codebase. Confirm modern React 19+ patterns and hooks are used throughout."
-        }
-      ],
-      "name": "Validate no deprecated handlers",
-      "comments": [
-        "Remove outdated APIs and patterns to maintain code health",
-        "Modernize event handling to React 19+ standards"
-      ],
-      "groupId": 9,
-      "seq": 385
+      "groupId": 2,
+      "seq": 1
     },
     {
       "id": 386,
@@ -5720,8 +5917,11 @@
       ],
       "name": "Validate no prop drilling",
       "comments": "Reduce component coupling by eliminating excessive prop passing",
-      "groupId": 11,
-      "seq": 386
+      "groupId": 8,
+      "seq": 1,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 387,
@@ -5764,14 +5964,18 @@
     {
       "id": 389,
       "name": "Viewport",
-      "tags": ["react"],
+      "tags": [
+        "react"
+      ],
       "comments": "Quality check for Viewport implementation",
-      "groupId": 11,
-      "seq": 389
+      "groupId": 21,
+      "seq": 1
     },
     {
       "id": 390,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5787,7 +5991,9 @@
     },
     {
       "id": 391,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5803,7 +6009,9 @@
     },
     {
       "id": 392,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5819,7 +6027,9 @@
     },
     {
       "id": 393,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,
@@ -5835,7 +6045,9 @@
     },
     {
       "id": 394,
-      "tags": ["ai"],
+      "tags": [
+        "ai"
+      ],
       "code": [
         {
           "id": 1,

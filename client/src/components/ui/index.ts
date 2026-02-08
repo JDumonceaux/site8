@@ -46,5 +46,8 @@ export { default as StyledPlainButton } from './link/styled-plain-button/StyledP
 // Loading Components
 export { default as LoadingWrapper } from './loading/LoadingWrapper';
 
+// Slideout Dialog
+export { default as SlideoutDialog } from './slideout-dialog/SlideoutDialog';
+
 // Switch
 export { default as Switch } from './switch/Switch';
