@@ -24,14 +24,12 @@ export const useCodeItemsManager = (
   const handleAddCode = useCallback(() => {
     setCodeItems((current) => {
       const maxId = current.reduce((max, code) => Math.max(max, code.id), 0);
-      const maxSeq = current.reduce((max, code) => Math.max(max, code.seq), 0);
 
       return [
         ...current,
         {
           content: '',
           id: maxId + 1,
-          seq: maxSeq + 1,
           type: FORM_CONSTANTS.DEFAULT_CODE_TYPE,
         },
       ];

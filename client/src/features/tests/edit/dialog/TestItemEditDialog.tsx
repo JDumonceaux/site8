@@ -61,15 +61,9 @@ const TestItemEditDialog = ({
   const handleSave = useCallback(() => {
     if (!item) return;
 
-    // Update seq values based on current order
-    const updatedCodeItems = codeItems.map((code, index) => ({
-      ...code,
-      seq: index + 1,
-    }));
-
     const updatedItem: Test = {
       ...item,
-      code: updatedCodeItems.length > 0 ? updatedCodeItems : undefined,
+      code: codeItems.length > 0 ? codeItems : undefined,
       comments: comments.trim() || undefined,
       name,
       tags: parseTags(tags),
@@ -96,6 +90,18 @@ const TestItemEditDialog = ({
     }
   }, [item, onDelete, onClose]);
 
+  const handleCopy = (): void => {
+    if (!item) return;
+
+    const copiedItem: Test = {
+      ...item,
+      id: 0, // New item will get a new id from the server
+    };
+
+    onSave(copiedItem, selectedGroupId);
+    // Don't call onClose() - keep dialog open
+  };
+
   return (
     <Dialog
       footer={
@@ -109,6 +115,12 @@ const TestItemEditDialog = ({
                 Delete
               </Button>
             ) : null}
+            <Button
+              onClick={handleCopy}
+              variant="secondary"
+            >
+              Copy
+            </Button>
           </LeftButtons>
           <RightButtons>
             <Button

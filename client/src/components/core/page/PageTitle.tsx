@@ -43,6 +43,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledTitle = styled.h1`
+  flex: 1;
   margin: 0;
   font-size: 2.25rem;
   color: var(--palette-page-title);

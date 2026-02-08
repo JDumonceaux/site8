@@ -170,40 +170,42 @@ const TestsPage = (): JSX.Element => {
           ) : null}
         </Layout.Menu>
         <Layout.Content>
-          <LoadingWrapper
-            error={activeError}
-            fallback={<TestsSkeleton />}
-            isError={activeIsError}
-            isLoading={activeIsLoading}
-            loadingText="Loading tests..."
-          >
-            <Layout.Article>
-              <PageTitle title={pageTitle}>
-                <IconButton
-                  aria-label="Open filters"
-                  onClick={() => {
-                    setIsSettingsOpen(true);
-                  }}
-                >
-                  <FilterIcon />
-                </IconButton>
-              </PageTitle>
+          <Layout.Article>
+            <PageTitle title={pageTitle}>
+              <IconButton
+                aria-label="Open filters"
+                onClick={() => {
+                  setIsSettingsOpen(true);
+                }}
+              >
+                <FilterIcon />
+              </IconButton>
+            </PageTitle>
+            <LoadingWrapper
+              error={activeError}
+              fallback={<TestsSkeleton />}
+              isError={activeIsError}
+              isLoading={activeIsLoading}
+              loadingText="Loading tests..."
+            >
               <Layout.Section>
                 {isGrouped ? (
                   <TestsSectionsList
+                    error={activeError}
                     onEditItem={handleEditItem}
                     sections={filteredSections}
                   />
                 ) : (
                   <TestsList
+                    error={activeError}
                     itemGroupIdMap={itemGroupIdMap}
                     items={listItems}
                     onEditItem={handleEditItem}
                   />
                 )}
               </Layout.Section>
-            </Layout.Article>
-          </LoadingWrapper>
+            </LoadingWrapper>
+          </Layout.Article>
         </Layout.Content>
       </Layout.TwoColumn>
       <TestItemEditDialog

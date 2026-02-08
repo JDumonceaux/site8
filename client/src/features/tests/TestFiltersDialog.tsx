@@ -9,6 +9,7 @@ import {
   ToggleRow,
   ToggleText,
 } from './TestsPage.styles';
+import styled from 'styled-components';
 
 export type TestFiltersDialogProps = {
   /** All available tags for filtering */
@@ -49,6 +50,11 @@ const TestFiltersDialog = ({
   setTagFilter,
   tagFilter,
 }: TestFiltersDialogProps): JSX.Element => {
+  const handleClearAll = (): void => {
+    setSectionFilter('all');
+    setTagFilter('all');
+  };
+
   return (
     <SlideoutDialog
       isOpen={isOpen}
@@ -56,6 +62,7 @@ const TestFiltersDialog = ({
       onClose={onClose}
       title="Filters"
     >
+      <ClearAllLink onClick={handleClearAll}>Clear All</ClearAllLink>
       <ToggleRow>
         <ToggleInput
           checked={isGrouped}
@@ -113,3 +120,21 @@ const TestFiltersDialog = ({
 };
 
 export default TestFiltersDialog;
+
+const ClearAllLink = styled.button`
+  background: none;
+  border: none;
+  color: var(--status-info);
+  cursor: pointer;
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  padding: 0;
+  text-align: right;
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--status-info-dark, #1976d2);
+  }
+`;

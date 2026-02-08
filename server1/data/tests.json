@@ -264,181 +264,151 @@
     {
       "id": 1,
       "name": "Accessibility (WCAG)",
-      "comments": "ARIA labels, keyboard navigation, focus management, screen reader compatibility, color contrast, semantic HTML",
-      "seq": 1
+      "comments": "ARIA labels, keyboard navigation, focus management, screen reader compatibility, color contrast, semantic HTML"
     },
     {
       "id": 2,
       "name": "API Integration & Data Fetching",
-      "comments": "React Query/SWR patterns, error handling, caching strategies, request deduplication, optimistic updates, polling/refetching",
-      "seq": 2
+      "comments": "React Query/SWR patterns, error handling, caching strategies, request deduplication, optimistic updates, polling/refetching"
     },
     {
       "id": 3,
       "name": "Authentication & Authorization",
-      "comments": "Auth patterns, token management, protected routes, role-based access, session handling, OAuth flows",
-      "seq": 3
+      "comments": "Auth patterns, token management, protected routes, role-based access, session handling, OAuth flows"
     },
     {
       "id": 4,
       "name": "Browser Compatibility",
-      "comments": "Cross-browser testing, polyfills, feature detection, graceful degradation, vendor prefixes",
-      "seq": 4
+      "comments": "Cross-browser testing, polyfills, feature detection, graceful degradation, vendor prefixes"
     },
     {
       "id": 5,
       "name": "Build & Deployment",
-      "comments": "Build optimization, CI/CD pipelines, environment management, deployment strategies, rollback procedures",
-      "seq": 5
+      "comments": "Build optimization, CI/CD pipelines, environment management, deployment strategies, rollback procedures"
     },
     {
       "id": 6,
       "name": "Checklist",
-      "comments": "Detailed items to review for web applications.",
-      "seq": 6
+      "comments": "Detailed items to review for web applications."
     },
     {
       "id": 7,
       "name": "Code Cleanup & Quality",
-      "comments": "Code quality checks including deprecated functions, anti-patterns, and type safety",
-      "seq": 7
+      "comments": "Code quality checks including deprecated functions, anti-patterns, and type safety"
     },
     {
       "id": 9,
       "name": "Component Best Practices",
-      "comments": "React component best practices including display names and React 19 features",
-      "seq": 9
+      "comments": "React component best practices including display names and React 19 features"
     },
     {
       "id": 10,
       "name": "Comprehensive Code Review",
-      "comments": "General code review tasks to ensure code quality and adherence to best practices.",
-      "seq": 10
+      "comments": "General code review tasks to ensure code quality and adherence to best practices."
     },
     {
       "id": 11,
       "name": "Configuration Reviews",
-      "comments": "Review configuration files including .gitignore, ESLint, tsconfig, etc.",
-      "seq": 11
+      "comments": "Review configuration files including .gitignore, ESLint, tsconfig, etc."
     },
     {
       "id": 12,
       "name": "CSS/Styling Architecture",
-      "comments": "CSS modules, styled-components, Tailwind patterns, theme management, responsive design, CSS-in-JS performance",
-      "seq": 12
+      "comments": "CSS modules, styled-components, Tailwind patterns, theme management, responsive design, CSS-in-JS performance"
     },
     {
       "id": 13,
       "name": "Dependency Management",
-      "comments": "Vulnerability scanning, update strategies, breaking change reviews, license compliance, dependency size impact",
-      "seq": 13
+      "comments": "Vulnerability scanning, update strategies, breaking change reviews, license compliance, dependency size impact"
     },
     {
       "id": 14,
       "name": "Developer Experience",
-      "comments": "Hot module replacement, dev tools, debugging setup, code generation, local development environment",
-      "seq": 14
+      "comments": "Hot module replacement, dev tools, debugging setup, code generation, local development environment"
     },
     {
       "id": 15,
       "name": "Documentation and Consistency",
-      "comments": "Documentation reviews and consistency checks across the codebase",
-      "seq": 15
+      "comments": "Documentation reviews and consistency checks across the codebase"
     },
     {
       "id": 16,
       "name": "Error Handling & Logging",
-      "comments": "Error boundaries, error tracking (Sentry, LogRocket), user-friendly error messages, fallback UI, logging strategy",
-      "seq": 16
+      "comments": "Error boundaries, error tracking (Sentry, LogRocket), user-friendly error messages, fallback UI, logging strategy"
     },
     {
       "id": 17,
       "name": "Forms & Validation",
-      "comments": "Form libraries (React Hook Form, Formik), validation patterns, error messaging, accessibility in forms, controlled vs uncontrolled inputs",
-      "seq": 17
+      "comments": "Form libraries (React Hook Form, Formik), validation patterns, error messaging, accessibility in forms, controlled vs uncontrolled inputs"
     },
     {
       "id": 18,
       "name": "Internationalization (i18n)",
-      "comments": "Translation management, locale handling, RTL support, date/number formatting, pluralization",
-      "seq": 18
+      "comments": "Translation management, locale handling, RTL support, date/number formatting, pluralization"
     },
     {
       "id": 19,
       "name": "Javascript Upgrade",
-      "comments": "",
-      "seq": 19
+      "comments": ""
     },
     {
       "id": 20,
       "name": "Monitoring & Analytics",
-      "comments": "Performance monitoring, user analytics, error tracking, A/B testing, feature flags",
-      "seq": 20
+      "comments": "Performance monitoring, user analytics, error tracking, A/B testing, feature flags"
     },
     {
       "id": 21,
       "name": "Performance Measurements",
-      "comments": "Measurements.",
-      "seq": 21
+      "comments": "Measurements."
     },
     {
       "id": 22,
       "name": "Performance Optimization",
-      "comments": "Performance optimization including bundle size, rendering, and CLS measurements",
-      "seq": 22
+      "comments": "Performance optimization including bundle size, rendering, and CLS measurements"
     },
     {
       "id": 23,
       "name": "React 19 Upgrade",
-      "comments": "Steps to upgrade the codebase to React 19. (Note: Upgrade to 19.2 is another set.)",
-      "seq": 23
+      "comments": "Steps to upgrade the codebase to React 19. (Note: Upgrade to 19.2 is another set.)"
     },
     {
       "id": 24,
       "name": "React Router Upgrade",
-      "comments": "Steps to upgrade the codebase to React Router 6.",
-      "seq": 24
+      "comments": "Steps to upgrade the codebase to React Router 6."
     },
     {
       "id": 25,
       "name": "Security",
-      "comments": "Security audits including hardcoded secrets and WAF configuration",
-      "seq": 25
+      "comments": "Security audits including hardcoded secrets and WAF configuration"
     },
     {
       "id": 26,
       "name": "SEO & Meta Tags",
-      "comments": "OpenGraph tags, structured data, meta descriptions, canonical URLs, sitemap, robots.txt",
-      "seq": 26
+      "comments": "OpenGraph tags, structured data, meta descriptions, canonical URLs, sitemap, robots.txt"
     },
     {
       "id": 27,
       "name": "State Management",
-      "comments": "Redux/Zustand/Context patterns, state normalization, selector optimization, state persistence, avoiding unnecessary re-renders",
-      "seq": 27
+      "comments": "Redux/Zustand/Context patterns, state normalization, selector optimization, state persistence, avoiding unnecessary re-renders"
     },
     {
       "id": 28,
-      "name": "Stay Current",
-      "seq": 28
+      "name": "Stay Current"
     },
     {
       "id": 29,
       "name": "Testing",
-      "comments": "Testing for responsive design, accessibility, and color schemes",
-      "seq": 29
+      "comments": "Testing for responsive design, accessibility, and color schemes"
     },
     {
       "id": 30,
       "name": "Testing Strategy",
-      "comments": "Unit tests (Vitest), integration tests, E2E tests (Playwright/Cypress), test coverage targets, mocking strategies",
-      "seq": 30
+      "comments": "Unit tests (Vitest), integration tests, E2E tests (Playwright/Cypress), test coverage targets, mocking strategies"
     },
     {
       "id": 31,
       "name": "Work",
-      "comments": "",
-      "seq": 1
+      "comments": ""
     }
   ],
   "items": [
@@ -452,8 +422,7 @@
         "Review linting rules for comprehensive code quality enforcement",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 2
+      "groupId": 19
     },
     {
       "id": 3,
@@ -465,8 +434,7 @@
         "Review linting rules for comprehensive code quality enforcement",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 3
+      "groupId": 19
     },
     {
       "id": 4,
@@ -476,15 +444,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the .gitignore file and suggest improvements."
         }
       ],
       "name": ".gitignore",
       "comments": "Optimize version control ignore patterns for better repository hygiene",
-      "groupId": 19,
-      "seq": 4
+      "groupId": 19
     },
     {
       "id": 5,
@@ -494,15 +460,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the .prettierignore file and suggest improvements."
         }
       ],
       "name": ".prettierignore",
       "comments": "Configure code formatting exclusions appropriately",
-      "groupId": 19,
-      "seq": 5
+      "groupId": 19
     },
     {
       "id": 6,
@@ -512,15 +476,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the .prettierrc.mjs file and suggest improvements."
         }
       ],
       "name": ".prettierrc.mjs",
       "comments": "Review and update code formatting standards",
-      "groupId": 19,
-      "seq": 6
+      "groupId": 19
     },
     {
       "id": 7,
@@ -531,8 +493,7 @@
       ],
       "name": "1. Enter value 2. Save 3. Delete value 4. Save",
       "comments": "Quality check for 1. Enter value 2. Save 3. Delete value 4. Save implementation",
-      "groupId": 11,
-      "seq": 7
+      "groupId": 11
     },
     {
       "id": 8,
@@ -543,7 +504,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Run accessibility audit: Check for missing alt text, ARIA labels, keyboard navigation support, color contrast ratios (WCAG AA), and semantic HTML usage."
         }
@@ -553,8 +513,7 @@
       "status": "Good - 10 images need alt text review",
       "score": "80/100",
       "comments": "Quality check for A11y Comprehensive Audit implementation",
-      "groupId": 11,
-      "seq": 8
+      "groupId": 11
     },
     {
       "id": 9,
@@ -564,15 +523,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Empty alt"
         }
       ],
       "name": "Accessibility",
       "comments": "Quality check for Accessibility implementation",
-      "groupId": 11,
-      "seq": 9
+      "groupId": 11
     },
     {
       "id": 10,
@@ -582,15 +539,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Valid alt"
         }
       ],
       "name": "Accessibility",
       "comments": "Quality check for Accessibility implementation",
-      "groupId": 11,
-      "seq": 10
+      "groupId": 11
     },
     {
       "id": 11,
@@ -600,15 +555,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Valid title"
         }
       ],
       "name": "Accessibility",
       "comments": "Quality check for Accessibility implementation",
-      "groupId": 11,
-      "seq": 11
+      "groupId": 11
     },
     {
       "id": 12,
@@ -617,8 +570,7 @@
         "react"
       ],
       "comments": "Quality check for Accessibility implementation",
-      "groupId": 11,
-      "seq": 12
+      "groupId": 11
     },
     {
       "id": 13,
@@ -627,113 +579,98 @@
       ],
       "name": "Accessibility - Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support",
       "comments": "Quality check for Accessibility - Analyze accessibility (a11y) issues - check for proper ARIA labels, keyboard navigation, focus management, and screen reader support implementation",
-      "groupId": 11,
-      "seq": 13
+      "groupId": 11
     },
     {
       "id": 14,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Add a display name to every component if missing. Add the name before the component export."
         }
       ],
       "name": "Add display names to components",
       "comments": "Improve debugging and DevTools experience with component display names",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 15,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Add a display name to every component if missing. Add the name before the component export."
         }
       ],
       "name": "Add display names to components",
       "comments": "Improve debugging and DevTools experience with component display names",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 16,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Add light-dark() function to main.css for consistent theming."
         }
       ],
       "name": "Add light-dark() function",
       "comments": "Implement CSS function for simplified theme management",
-      "groupId": 11,
-      "seq": 16
+      "groupId": 11
     },
     {
       "id": 17,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Analyze bundle size using webpack-bundle-analyzer or vite-bundle-visualizer. Identify largest dependencies and suggest lazy loading or lighter alternatives."
         }
       ],
       "name": "Analyze bundle size",
       "comments": "Analyze and optimize bundle size to improve initial load time",
-      "groupId": 23,
-      "seq": 17
+      "groupId": 23
     },
     {
       "id": 18,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Analyze bundle size using webpack-bundle-analyzer or vite-bundle-visualizer. Identify largest dependencies and suggest lazy loading or lighter alternatives."
         }
       ],
       "name": "Analyze bundle size",
       "comments": "Analyze and optimize bundle size to improve initial load time",
-      "groupId": 23,
-      "seq": 18
+      "groupId": 23
     },
     {
       "id": 19,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Analyze codebase for optimization opportunities: rendering performance (memoization, virtualization), bundle size (code splitting, lazy loading), API efficiency (caching, batching), memory usage (cleanup, leaks). For each suggestion, explain expected improvement and trade-offs."
         }
       ],
       "name": "Analyze optimization opportunities",
       "comments": "Identify and implement performance improvements across the application",
-      "groupId": 23,
-      "seq": 19
+      "groupId": 23
     },
     {
       "id": 20,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Analyze codebase for optimization opportunities: rendering performance (memoization, virtualization), bundle size (code splitting, lazy loading), API efficiency (caching, batching), memory usage (cleanup, leaks). For each suggestion, explain expected improvement and trade-offs."
         }
       ],
       "name": "Analyze optimization opportunities",
       "comments": "Identify and implement performance improvements across the application",
-      "groupId": 23,
-      "seq": 20
+      "groupId": 23
     },
     {
       "id": 21,
@@ -743,15 +680,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
         }
       ],
       "name": "Anti-Patterns",
       "comments": "Refactor problematic code patterns for better maintainability",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 22,
@@ -760,8 +695,7 @@
       ],
       "name": "API Caching - Analyze API response caching strategies and suggest improvements",
       "comments": "Quality check for API Caching - Analyze API response caching strategies and suggest improvements implementation",
-      "groupId": 3,
-      "seq": 1
+      "groupId": 3
     },
     {
       "id": 23,
@@ -771,7 +705,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Audit API endpoints documentation. Verify each endpoint has request/response examples, error codes, and authentication requirements documented."
         }
@@ -781,8 +714,7 @@
       "status": "Needs Work - No Swagger/OpenAPI specification found",
       "score": "30/100",
       "comments": "Maintain up-to-date and comprehensive project documentation",
-      "groupId": 11,
-      "seq": 23
+      "groupId": 11
     },
     {
       "id": 24,
@@ -792,15 +724,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling."
         }
       ],
       "name": "API End points",
       "comments": "Quality check for API End points implementation",
-      "groupId": 3,
-      "seq": 1
+      "groupId": 3
     },
     {
       "id": 25,
@@ -810,15 +740,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the Server API end points to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body.  Fix any related routers and services."
         }
       ],
       "name": "API End points - Parameters",
       "comments": "Quality check for API End points - Parameters implementation",
-      "groupId": 11,
-      "seq": 25
+      "groupId": 11
     },
     {
       "id": 26,
@@ -828,30 +756,26 @@
       "code": [
         {
           "id": 5,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the Client API requests to validate that PUT, POST, PATCH, and DELETE requests do not have parameters: all data should be in the request body."
         }
       ],
       "name": "API End points - Parameters Client",
       "comments": "Quality check for API End points - Parameters Client implementation",
-      "groupId": 11,
-      "seq": 26
+      "groupId": 11
     },
     {
       "id": 27,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the Server API end points for consistency in naming conventions, request/response formats, and error handling."
         }
       ],
       "name": "API endpoint consistency",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 27
+      "groupId": 11
     },
     {
       "id": 28,
@@ -861,15 +785,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Update Legacy manual handlers and Generic handler factories to simple router factory where appropriate."
         }
       ],
       "name": "API Router Consistency ",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 28
+      "groupId": 11
     },
     {
       "id": 29,
@@ -879,15 +801,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Error Logging to use `ResponseHelper.internalError()`"
         }
       ],
       "name": "API Router Consistency - Error Logging",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 29
+      "groupId": 11
     },
     {
       "id": 30,
@@ -897,15 +817,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Error Response Formats: Standardize on `{ error: 'message' }` format"
         }
       ],
       "name": "API Router Consistency - Error Response Formats",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 30
+      "groupId": 11
     },
     {
       "id": 31,
@@ -915,15 +833,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Standardize on **kebab-case** for all multi-word URL paths."
         }
       ],
       "name": "API Router Consistency - Kebab-case",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 31
+      "groupId": 11
     },
     {
       "id": 32,
@@ -933,15 +849,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Update to Modern Error Responses: `res.status(400).json({ error: 'message' })`"
         }
       ],
       "name": "API Router Consistency - Modern Error Responses",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 32
+      "groupId": 11
     },
     {
       "id": 33,
@@ -951,15 +865,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Pattern Summary: Update all legacy patterns to modern generic handlers"
         }
       ],
       "name": "API Router Consistency - Pattern Summary",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 33
+      "groupId": 11
     },
     {
       "id": 34,
@@ -969,15 +881,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Validate all mutation operations use request body for data."
         }
       ],
       "name": "API Router Consistency - Request Body",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 34
+      "groupId": 11
     },
     {
       "id": 35,
@@ -987,15 +897,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Update Pattern 1: Legacy Manual Validation and Pattern 2: Zod Schema Validation (Items) to Pattern 3: Generic Handlers (Modern)"
         }
       ],
       "name": "API Router Consistency - Request Body Structure",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 35
+      "groupId": 11
     },
     {
       "id": 36,
@@ -1005,15 +913,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Update Pattern 1: Collection Responses and Pattern 2: Single Item Responses to Recommended: `res.json(data)` for success with data, `res.sendStatus(204)` for success without data, `{ error: \"message\" }` for errors"
         }
       ],
       "name": "API Router Consistency - Response Structure Analysis",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 36
+      "groupId": 11
     },
     {
       "id": 37,
@@ -1023,15 +929,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Status Codes Analysis: Update to modern handlers"
         }
       ],
       "name": "API Router Consistency - Status Codes Analysis",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 37
+      "groupId": 11
     },
     {
       "id": 38,
@@ -1041,15 +945,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Update all Try-Catch Patterns to Pattern 4: Generic Handler (Modern)"
         }
       ],
       "name": "API Router Consistency - Try-Catch Patterns",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 38
+      "groupId": 11
     },
     {
       "id": 39,
@@ -1059,15 +961,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Run API Router Consistency Analysis Report for the codebase."
         }
       ],
       "name": "API Router Consistency Analysis Report",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11,
-      "seq": 39
+      "groupId": 11
     },
     {
       "id": 40,
@@ -1076,8 +976,7 @@
       ],
       "name": "API Security - Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure",
       "comments": "Quality check for API Security - Review API security - validate input sanitization, rate limiting effectiveness, and error information exposure implementation",
-      "groupId": 24,
-      "seq": 40
+      "groupId": 24
     },
     {
       "id": 41,
@@ -1087,45 +986,39 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Search for React components using array index as key prop (e.g., key={index}). Report occurrences and suggest using stable unique identifiers instead to prevent rendering bugs."
         }
       ],
       "name": "Array Index as Key",
       "comments": "Quality check for Array Index as Key implementation",
-      "groupId": 11,
-      "seq": 41
+      "groupId": 11
     },
     {
       "id": 42,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Audit for 'any' types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
         }
       ],
       "name": "Audit 'any' types",
       "comments": "Strengthen type safety by replacing 'any' with proper TypeScript types",
-      "groupId": 11,
-      "seq": 42
+      "groupId": 11
     },
     {
       "id": 43,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Audit API endpoints documentation. Verify each endpoint has request/response examples, error codes, and authentication requirements documented."
         }
       ],
       "name": "Audit API documentation",
       "comments": "Maintain up-to-date and comprehensive project documentation",
-      "groupId": 11,
-      "seq": 43
+      "groupId": 11
     },
     {
       "id": 44,
@@ -1135,15 +1028,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Implement authentication and authorization middleware (JWT, sessions, or OAuth) - future implementation"
         }
       ],
       "name": "Authentication Middleware",
       "comments": "Quality check for Authentication Middleware implementation",
-      "groupId": 11,
-      "seq": 44
+      "groupId": 11
     },
     {
       "id": 45,
@@ -1152,8 +1043,7 @@
         "react"
       ],
       "comments": "Quality check for Author implementation",
-      "groupId": 23,
-      "seq": 45
+      "groupId": 23
     },
     {
       "id": 46,
@@ -1163,15 +1053,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Check if babel.cjs is needed (Vitest uses Vite, not Babel). Delete if unused."
         }
       ],
       "name": "babel.cjs",
       "comments": "Quality check for babel.cjs implementation",
-      "groupId": 11,
-      "seq": 46
+      "groupId": 11
     },
     {
       "id": 47,
@@ -1180,8 +1068,7 @@
       "tags": [
         "future"
       ],
-      "groupId": 22,
-      "seq": 47
+      "groupId": 22
     },
     {
       "id": 48,
@@ -1190,8 +1077,7 @@
         "react"
       ],
       "comments": "Quality check for Base Element implementation",
-      "groupId": 11,
-      "seq": 48
+      "groupId": 11
     },
     {
       "id": 49,
@@ -1201,15 +1087,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Allow and implement any TC39 Stage 2+ features in the codebase, ensuring compatibility with current build tools and environments. Such as Promise.try, Array.fromAsync, Iterator helpers, Set methods, Decimal,Temporal,Array grouping, Import attributes, Decorator metadata,RegExp.escape,and Symbol predicates. Update ESlint rules to allow these features."
         }
       ],
       "name": "Baseline 2025",
       "comments": "Quality check for Baseline 2025 implementation",
-      "groupId": 19,
-      "seq": 49
+      "groupId": 19
     },
     {
       "id": 50,
@@ -1219,15 +1103,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Replace ESLint and Prettier with Biome"
         }
       ],
       "name": "Biome",
       "comments": "Quality check for Biome implementation",
-      "groupId": 19,
-      "seq": 50
+      "groupId": 19
     },
     {
       "id": 51,
@@ -1236,8 +1118,7 @@
       ],
       "name": "Build - execute npm run build and fix all errors",
       "comments": "Quality check for Build - execute npm run build and fix all errors implementation",
-      "groupId": 11,
-      "seq": 51
+      "groupId": 11
     },
     {
       "id": 52,
@@ -1247,7 +1128,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Analyze bundle size using webpack-bundle-analyzer or vite-bundle-visualizer. Identify largest dependencies and suggest lazy loading or lighter alternatives."
         }
@@ -1257,8 +1137,7 @@
       "status": "Info - Largest deps: aws-amplify, 16 @radix-ui packages",
       "score": "N/A",
       "comments": "Quality check for Bundle Analysis implementation",
-      "groupId": 23,
-      "seq": 52
+      "groupId": 23
     },
     {
       "id": 53,
@@ -1267,8 +1146,7 @@
       ],
       "name": "Bundle Size - Analyze bundle size and suggest code splitting opportunities beyond lazy loading",
       "comments": "Analyze and optimize bundle size to improve initial load time",
-      "groupId": 23,
-      "seq": 53
+      "groupId": 23
     },
     {
       "id": 54,
@@ -1277,8 +1155,7 @@
         "react"
       ],
       "comments": "Quality check for Canonical URL implementation",
-      "groupId": 23,
-      "seq": 54
+      "groupId": 23
     },
     {
       "id": 55,
@@ -1288,52 +1165,45 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Replace all named colors in components with CSS variables defined in main.css for easier theming and maintenance."
         }
       ],
       "name": "Central Color Variables",
       "comments": "Quality check for Central Color Variables implementation",
-      "groupId": 11,
-      "seq": 55
+      "groupId": 11
     },
     {
       "id": 56,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Check if eslint_rules/ directory is used. Delete if migrated to flat config."
         }
       ],
       "name": "Check eslint_rules/ directory",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 56
+      "groupId": 19
     },
     {
       "id": 57,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Check if eslint_rules/ directory is used. Delete if migrated to flat config."
         }
       ],
       "name": "Check eslint_rules/ directory",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 57
+      "groupId": 19
     },
     {
       "id": 58,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Are there any deprecated Typescript or Javascript functions being used?"
         }
@@ -1341,7 +1211,6 @@
       "name": "Check for deprecated functions",
       "comments": "Remove outdated APIs and patterns to maintain code health",
       "groupId": 8,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -1351,7 +1220,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Are there any deprecated Typescript or Javascript functions being used?"
         }
@@ -1359,7 +1227,6 @@
       "name": "Check for deprecated functions",
       "comments": "Remove outdated APIs and patterns to maintain code health",
       "groupId": 40,
-      "seq": 1,
       "tags": [
         "a"
       ]
@@ -1368,15 +1235,13 @@
       "id": 60,
       "name": "Check for invalid styles (browser inspect)",
       "comments": "Quality check for Check for invalid styles (browser inspect) implementation",
-      "groupId": 11,
-      "seq": 60
+      "groupId": 11
     },
     {
       "id": 61,
       "name": "Check for Pure Functions",
       "comments": "Quality check for Check for Pure Functions implementation",
       "groupId": 8,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -1385,15 +1250,13 @@
       "id": 62,
       "name": "Check for styles that are overwritten (browser inspect)",
       "comments": "Quality check for Check for styles that are overwritten (browser inspect) implementation",
-      "groupId": 11,
-      "seq": 62
+      "groupId": 11
     },
     {
       "id": 63,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Are there any files at the src/ level not being used?"
         }
@@ -1401,7 +1264,6 @@
       "name": "Check for unused src/ files",
       "comments": "Quality check for Check for unused src/ files implementation",
       "groupId": 8,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -1411,7 +1273,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Check for missing return types on functions. Add explicit return type annotations for better type safety and documentation."
         }
@@ -1419,7 +1280,6 @@
       "name": "Check missing return types",
       "comments": "Add explicit return type annotations for better type inference and documentation",
       "groupId": 8,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -1429,30 +1289,26 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Check for unused dependencies in package.json using depcheck. Remove or document why each flagged dependency is needed. Frequency: Monthly."
         }
       ],
       "name": "Check unused dependencies",
       "comments": "Maintain healthy dependency tree and minimize vulnerabilities",
-      "groupId": 27,
-      "seq": 65
+      "groupId": 27
     },
     {
       "id": 66,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Check for unused dependencies in package.json using depcheck. Remove or document why each flagged dependency is needed. Frequency: Monthly."
         }
       ],
       "name": "Check unused dependencies",
       "comments": "Maintain healthy dependency tree and minimize vulnerabilities",
-      "groupId": 27,
-      "seq": 66
+      "groupId": 27
     },
     {
       "id": 67,
@@ -1461,8 +1317,7 @@
       ],
       "name": "Chrome DevTools:  Run tests.",
       "comments": "Quality check for Chrome DevTools:  Run tests. implementation",
-      "groupId": 11,
-      "seq": 67
+      "groupId": 11
     },
     {
       "id": 68,
@@ -1471,8 +1326,7 @@
       ],
       "name": "Chrome DevTools: Check for errors",
       "comments": "Quality check for Chrome DevTools: Check for errors implementation",
-      "groupId": 11,
-      "seq": 68
+      "groupId": 11
     },
     {
       "id": 69,
@@ -1481,8 +1335,7 @@
       ],
       "name": "Chrome DevTools: Check network tab for missing files (images), connection issues, etc.",
       "comments": "Quality check for Chrome DevTools: Check network tab for missing files (images), connection issues, etc. implementation",
-      "groupId": 11,
-      "seq": 69
+      "groupId": 11
     },
     {
       "id": 70,
@@ -1491,8 +1344,7 @@
       ],
       "name": "Chrome DevTools: Validate state - Check for unused state",
       "comments": "Quality check for Chrome DevTools: Validate state - Check for unused state implementation",
-      "groupId": 11,
-      "seq": 70
+      "groupId": 11
     },
     {
       "id": 71,
@@ -1501,8 +1353,7 @@
       ],
       "name": "Class Components - Convert any class components to functional components and hooks.",
       "comments": "Quality check for Class Components - Convert any class components to functional components and hooks. implementation",
-      "groupId": 11,
-      "seq": 71
+      "groupId": 11
     },
     {
       "id": 72,
@@ -1513,15 +1364,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review codebase to ensure clean JSX - suggest improvements to remove unnecessary fragments, redundant attributes, and unused variables."
         }
       ],
       "name": "Clean JSX",
       "comments": "Quality check for Clean JSX implementation",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 74,
@@ -1531,15 +1380,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the error handling changes introduced in React 19."
         }
       ],
       "name": "Code Cleanup - API",
       "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 40,
-      "seq": 1
+      "groupId": 40
     },
     {
       "id": 75,
@@ -1549,15 +1396,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the Servier API endpoints to identify services not used by the client and suggest removing them."
         }
       ],
       "name": "Code Cleanup - API",
       "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 40,
-      "seq": 1
+      "groupId": 40
     },
     {
       "id": 76,
@@ -1567,15 +1412,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the types. Identify opportunities remove unused types."
         }
       ],
       "name": "Code Cleanup - Types",
       "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 77,
@@ -1590,8 +1433,7 @@
       ],
       "name": "Code Cleanup - CSS",
       "comments": "Quality check for Code Cleanup - CSS implementation",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 80,
@@ -1606,8 +1448,7 @@
       ],
       "name": "Code Cleanup - Types",
       "comments": "Quality check for Code Cleanup - Types implementation",
-      "groupId": 40,
-      "seq": 1
+      "groupId": 40
     },
     {
       "id": 81,
@@ -1622,8 +1463,7 @@
       ],
       "name": "Code Cleanup - Types",
       "comments": "Quality check for Code Cleanup - Types implementation",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 82,
@@ -1633,15 +1473,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Look for code duplication in client and server codebases and recommend refactoring."
         }
       ],
       "name": "Code Duplication",
       "comments": "Quality check for Code Duplication implementation",
-      "groupId": 11,
-      "seq": 82
+      "groupId": 11
     },
     {
       "id": 83,
@@ -1651,30 +1489,26 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code]."
         }
       ],
       "name": "Code Review",
       "comments": "Template for systematic component quality assessment",
-      "groupId": 11,
-      "seq": 83
+      "groupId": 11
     },
     {
       "id": 84,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Act as a meticulous code reviewer. Analyze the following React component for potential performance bottlenecks, lack of accessibility (ARIA) compliance, and any deviation from standard React best practices. Suggest specific, actionable improvements for each identified issue, explaining the rationale behind each recommendation. Here is the component code: [paste code]."
         }
       ],
       "name": "Code review template",
       "comments": "Template for systematic component quality assessment",
-      "groupId": 11,
-      "seq": 84
+      "groupId": 11
     },
     {
       "id": 85,
@@ -1685,8 +1519,7 @@
         "nodejs"
       ],
       "comments": "Quality check for Code Smells implementation",
-      "groupId": 11,
-      "seq": 85
+      "groupId": 11
     },
     {
       "id": 86,
@@ -1696,15 +1529,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Look for code smells in client and server codebases."
         }
       ],
       "name": "Code Smells",
       "comments": "Quality check for Code Smells implementation",
-      "groupId": 11,
-      "seq": 86
+      "groupId": 11
     },
     {
       "id": 87,
@@ -1715,15 +1546,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Run Code Smells Report for the codebase."
         }
       ],
       "name": "Code Smells Report",
       "comments": "Quality check for Code Smells Report implementation",
-      "groupId": 11,
-      "seq": 87
+      "groupId": 11
     },
     {
       "id": 89,
@@ -1733,120 +1562,104 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them."
         }
       ],
       "name": "Component Instability",
       "comments": "Reduce unnecessary re-renders to improve component performance",
-      "groupId": 23,
-      "seq": 89
+      "groupId": 23
     },
     {
       "id": 90,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them."
         }
       ],
       "name": "Component instability issues",
       "comments": "Reduce unnecessary re-renders to improve component performance",
-      "groupId": 23,
-      "seq": 90
+      "groupId": 23
     },
     {
       "id": 91,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Look for component instability issues - identify components that frequently re-render unnecessarily and suggest optimizations to stabilize them."
         }
       ],
       "name": "Component instability issues",
       "comments": "Reduce unnecessary re-renders to improve component performance",
-      "groupId": 23,
-      "seq": 91
+      "groupId": 23
     },
     {
       "id": 92,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Comprehensive ESLint review: 1) Suggest additional linters/plugins, 2) Check for deprecated or missing rules, 3) Identify conflicting or duplicate rules across config files, 4) Validate rule severity levels are appropriate."
         }
       ],
       "name": "Comprehensive ESLint review",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 92
+      "groupId": 19
     },
     {
       "id": 93,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Comprehensive ESLint review: 1) Suggest additional linters/plugins, 2) Check for deprecated or missing rules, 3) Identify conflicting or duplicate rules across config files, 4) Validate rule severity levels are appropriate."
         }
       ],
       "name": "Comprehensive ESLint review",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 93
+      "groupId": 19
     },
     {
       "id": 94,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Configure Web Application Firewall rules for production deployment - future implementation"
         }
       ],
       "name": "Configure WAF rules",
       "comments": "Configure security layer for production environment protection",
-      "groupId": 11,
-      "seq": 94
+      "groupId": 11
     },
     {
       "id": 95,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Create Skeleton components for loading states to improve user experience during data fetching."
         }
       ],
       "name": "Create Skeleton components",
       "comments": "Enhance perceived performance with loading state indicators",
-      "groupId": 11,
-      "seq": 95
+      "groupId": 11
     },
     {
       "id": 96,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Create Skeleton components for loading states to improve user experience during data fetching."
         }
       ],
       "name": "Create Skeleton components",
       "comments": "Enhance perceived performance with loading state indicators",
-      "groupId": 11,
-      "seq": 96
+      "groupId": 11
     },
     {
       "id": 97,
@@ -1856,15 +1669,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Implement CSRF token generation and validation for mutation endpoints - future implementation"
         }
       ],
       "name": "CSRF Protection",
       "comments": "Quality check for CSRF Protection implementation",
-      "groupId": 11,
-      "seq": 97
+      "groupId": 11
     },
     {
       "id": 98,
@@ -1873,8 +1684,7 @@
       ],
       "name": "CSS - Are there improvements to CSS that can be made?",
       "comments": "Quality check for CSS - Are there improvements to CSS that can be made? implementation",
-      "groupId": 11,
-      "seq": 98
+      "groupId": 11
     },
     {
       "id": 99,
@@ -1885,15 +1695,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Validate that css uses dvh and dvw vs. vh and vw."
         }
       ],
       "name": "CSS - DVH and DVW Usage",
       "comments": "Quality check for CSS - DVH and DVW Usage implementation",
-      "groupId": 11,
-      "seq": 99
+      "groupId": 11
     },
     {
       "id": 100,
@@ -1904,15 +1712,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Consider whether lvh, lvw, svh, svw, dvh, and dvw units can be used instead of vh and vw in this CSS code."
         }
       ],
       "name": "CSS - LVH, LVW, SVH, SVW Usage",
       "comments": "Quality check for CSS - LVH, LVW, SVH, SVW Usage implementation",
-      "groupId": 11,
-      "seq": 100
+      "groupId": 11
     },
     {
       "id": 101,
@@ -1923,15 +1729,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Measure Cumulative Layout Shift using Chrome DevTools or PageSpeed Insights. Target: 0.1 or lower."
         }
       ],
       "name": "Cumulative Layout Shift (CLS) - visual stability of a page as it loads",
       "comments": "Measure and minimize layout shifts for better user experience (Core Web Vital)",
-      "groupId": 23,
-      "seq": 101
+      "groupId": 23
     },
     {
       "id": 102,
@@ -1940,8 +1744,7 @@
       ],
       "name": "Custom Hooks - Identify opportunities to create custom hooks to reduce duplication and improve code reusability",
       "comments": "Quality check for Custom Hooks - Identify opportunities to create custom hooks to reduce duplication and improve code reusability implementation",
-      "groupId": 11,
-      "seq": 102
+      "groupId": 11
     },
     {
       "id": 103,
@@ -1952,8 +1755,7 @@
         "nodejs"
       ],
       "comments": "Quality check for Cyclomatic Complexity implementation",
-      "groupId": 11,
-      "seq": 103
+      "groupId": 11
     },
     {
       "id": 104,
@@ -1964,15 +1766,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Calculate the cyclomatic complexity of the codebase."
         }
       ],
       "name": "Cylclomatic Complexity",
       "comments": "Quality check for Cylclomatic Complexity implementation",
-      "groupId": 11,
-      "seq": 104
+      "groupId": 11
     },
     {
       "id": 105,
@@ -1982,15 +1782,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Are there any deprecated Typescript or Javascript functions being used?"
         }
       ],
       "name": "Deprecate",
       "comments": "Quality check for Deprecate implementation",
-      "groupId": 11,
-      "seq": 105
+      "groupId": 11
     },
     {
       "id": 106,
@@ -1999,8 +1797,7 @@
         "react"
       ],
       "comments": "Quality check for Description implementation",
-      "groupId": 11,
-      "seq": 106
+      "groupId": 11
     },
     {
       "id": 107,
@@ -2009,8 +1806,7 @@
       ],
       "name": "Dist Folder Cleanup",
       "comments": "Quality check for Dist Folder Cleanup implementation",
-      "groupId": 11,
-      "seq": 107
+      "groupId": 11
     },
     {
       "id": 108,
@@ -2019,8 +1815,7 @@
         "react"
       ],
       "comments": "Quality check for Doc Type implementation",
-      "groupId": 23,
-      "seq": 108
+      "groupId": 23
     },
     {
       "id": 109,
@@ -2029,8 +1824,7 @@
         "react"
       ],
       "comments": "Quality check for Encoding implementation",
-      "groupId": 11,
-      "seq": 109
+      "groupId": 11
     },
     {
       "id": 110,
@@ -2040,7 +1834,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Verify React Error Boundaries are implemented for main app sections. Ensure graceful error handling with user-friendly messages."
         }
@@ -2050,8 +1843,7 @@
       "status": "Passed - Error boundaries at app and layout levels with fallbacks",
       "score": "100/100",
       "comments": "Quality check for Error Boundary Coverage implementation",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 111,
@@ -2060,8 +1852,7 @@
       ],
       "name": "Error Handling - Review error handling patterns across the codebase and suggest improvements for user-facing error messages and error recovery",
       "comments": "Leverage React 19's improved error handling capabilities",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 112,
@@ -2072,15 +1863,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Update ESLint configuration and rules for modern event handlers."
         }
       ],
       "name": "ESLint",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 112
+      "groupId": 19
     },
     {
       "id": 113,
@@ -2090,15 +1879,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Comprehensive ESLint review: 1) Suggest additional linters/plugins, 2) Check for deprecated or missing rules, 3) Identify conflicting or duplicate rules across config files, 4) Validate rule severity levels are appropriate."
         }
       ],
       "name": "ESLint Comprehensive Review",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 113
+      "groupId": 19
     },
     {
       "id": 114,
@@ -2107,8 +1894,7 @@
       ],
       "name": "ESLint Health Check",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 114
+      "groupId": 19
     },
     {
       "id": 115,
@@ -2118,15 +1904,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/back-redirect-deprecated"
         }
       ],
       "name": "Express.js - CodeMods - back-redirect-deprecated",
       "comments": "Remove outdated APIs and patterns to maintain code health",
-      "groupId": 11,
-      "seq": 115
+      "groupId": 11
     },
     {
       "id": 116,
@@ -2136,15 +1920,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/back-redirect-deprecated"
         }
       ],
       "name": "Express.js - CodeMods - back-redirect-deprecated",
       "comments": "Remove outdated APIs and patterns to maintain code health",
-      "groupId": 11,
-      "seq": 116
+      "groupId": 11
     },
     {
       "id": 117,
@@ -2154,15 +1936,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/camelcase-sendfile"
         }
       ],
       "name": "Express.js - CodeMods - camelcase-sendfile",
       "comments": "Quality check for Express.js - CodeMods - camelcase-sendfile implementation",
-      "groupId": 11,
-      "seq": 117
+      "groupId": 11
     },
     {
       "id": 118,
@@ -2172,15 +1952,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/explicit-request-params"
         }
       ],
       "name": "Express.js - CodeMods - explicit-request-params",
       "comments": "Quality check for Express.js - CodeMods - explicit-request-params implementation",
-      "groupId": 11,
-      "seq": 118
+      "groupId": 11
     },
     {
       "id": 119,
@@ -2190,15 +1968,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/pluralize-method-names"
         }
       ],
       "name": "Express.js - CodeMods - pluralize-method-names",
       "comments": "Quality check for Express.js - CodeMods - pluralize-method-names implementation",
-      "groupId": 11,
-      "seq": 119
+      "groupId": 11
     },
     {
       "id": 120,
@@ -2208,15 +1984,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/redirect-arg-order"
         }
       ],
       "name": "Express.js - CodeMods - redirect-arg-order",
       "comments": "Quality check for Express.js - CodeMods - redirect-arg-order implementation",
-      "groupId": 11,
-      "seq": 120
+      "groupId": 11
     },
     {
       "id": 121,
@@ -2226,15 +2000,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/route-del-to-delete"
         }
       ],
       "name": "Express.js - CodeMods - route-del-to-delete",
       "comments": "Quality check for Express.js - CodeMods - route-del-to-delete implementation",
-      "groupId": 11,
-      "seq": 121
+      "groupId": 11
     },
     {
       "id": 122,
@@ -2244,15 +2016,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/status-send-order"
         }
       ],
       "name": "Express.js - CodeMods - status-send-order",
       "comments": "Quality check for Express.js - CodeMods - status-send-order implementation",
-      "groupId": 11,
-      "seq": 122
+      "groupId": 11
     },
     {
       "id": 123,
@@ -2262,15 +2032,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest @expressjs/v5-migration-recipe"
         }
       ],
       "name": "Express.js - CodeMods - v5-migration-recipe",
       "comments": "Quality check for Express.js - CodeMods - v5-migration-recipe implementation",
-      "groupId": 11,
-      "seq": 123
+      "groupId": 11
     },
     {
       "id": 124,
@@ -2279,8 +2047,7 @@
         "web"
       ],
       "comments": "Check for Favicon implementation",
-      "groupId": 21,
-      "seq": 124
+      "groupId": 21
     },
     {
       "id": 125,
@@ -2289,8 +2056,7 @@
       ],
       "name": "Form Validation - Review form validation patterns and suggest consistency improvements using Zod or similar",
       "comments": "Quality check for Form Validation - Review form validation patterns and suggest consistency improvements using Zod or similar implementation",
-      "groupId": 11,
-      "seq": 125
+      "groupId": 11
     },
     {
       "id": 126,
@@ -2300,15 +2066,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review React components returning fragments containing only <Meta> or <Helmet> tags. Verify this pattern is intentional for SEO/metadata injection and not an oversight."
         }
       ],
       "name": "Fragment Pattern with Meta",
       "comments": "Quality check for Fragment Pattern with Meta implementation",
-      "groupId": 11,
-      "seq": 126
+      "groupId": 11
     },
     {
       "id": 127,
@@ -2318,7 +2082,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Check for missing return types on functions. Add explicit return type annotations for better type safety and documentation."
         }
@@ -2328,8 +2091,7 @@
       "status": "Passed - All functions have return type annotations",
       "score": "100/100",
       "comments": "Add explicit return type annotations for better type inference and documentation",
-      "groupId": 11,
-      "seq": 127
+      "groupId": 11
     },
     {
       "id": 128,
@@ -2339,15 +2101,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest gatsby/v5/removal-useNavigate-hook"
         }
       ],
       "name": "Gatsby 5 - CodeMods - removal-useNavigate-hook",
       "comments": "Quality check for Gatsby 5 - CodeMods - removal-useNavigate-hook implementation",
-      "groupId": 11,
-      "seq": 128
+      "groupId": 11
     },
     {
       "id": 129,
@@ -2357,15 +2117,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review general-coding.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices."
         }
       ],
       "name": "General-coding.instructions.md Review",
       "comments": "Keep coding standards and guidelines current and clear",
-      "groupId": 11,
-      "seq": 129
+      "groupId": 11
     },
     {
       "id": 130,
@@ -2375,22 +2133,19 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Generate unit tests for the following function:\n[paste function]\n\nInclude tests for:\n1. Normal expected inputs\n2. Edge cases\n3. Invalid inputs\n\nUse [preferred testing framework] syntax."
         }
       ],
       "name": "Generate Unit Tests",
       "comments": "Quality check for Generate Unit Tests implementation",
-      "groupId": 24,
-      "seq": 130
+      "groupId": 24
     },
     {
       "id": 131,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "<geolocation onlocation=\"handleLocation(event)\" accuracymode=\"precise\">\n  <!-- Fallback content for browsers that do not support the element -->\n  <button onclick=\"navigator.geolocation.getCurrentPosition(handleLocation)\">\n    Use my location\n  </button>\n</geolocation>"
         }
@@ -2400,8 +2155,7 @@
       "tags": [
         "future"
       ],
-      "groupId": 22,
-      "seq": 131
+      "groupId": 22
     },
     {
       "id": 132,
@@ -2411,7 +2165,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review .gitignore completeness. Ensure all build artifacts, environment files, OS files, IDE configs, and dependency directories are excluded."
         }
@@ -2421,8 +2174,7 @@
       "status": "Passed - Comprehensive .gitignore with proper organization",
       "score": "100/100",
       "comments": "Quality check for Gitignore Audit implementation",
-      "groupId": 19,
-      "seq": 132
+      "groupId": 19
     },
     {
       "id": 133,
@@ -2431,8 +2183,7 @@
       ],
       "name": "HTML5 - Is the latest and appropriate HTML5 elements used?",
       "comments": "Quality check for HTML5 - Is the latest and appropriate HTML5 elements used? implementation",
-      "groupId": 11,
-      "seq": 133
+      "groupId": 11
     },
     {
       "id": 134,
@@ -2443,8 +2194,7 @@
       ],
       "name": "https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist",
       "comments": "Quality check for https://www.levelaccess.com/resources/must-have-wcag-2-1-checklist implementation",
-      "groupId": 11,
-      "seq": 134
+      "groupId": 11
     },
     {
       "id": 135,
@@ -2453,8 +2203,7 @@
       ],
       "name": "Image Optimization - Review and optimize image loading strategies (lazy loading, responsive images, WebP)",
       "comments": "Identify and implement performance improvements across the application",
-      "groupId": 23,
-      "seq": 135
+      "groupId": 23
     },
     {
       "id": 136,
@@ -2463,15 +2212,13 @@
       ],
       "name": "Immutable - Look for opportunities to improve Immutability in codebase.",
       "comments": "Quality check for Immutable - Look for opportunities to improve Immutability in codebase. implementation",
-      "groupId": 11,
-      "seq": 136
+      "groupId": 11
     },
     {
       "id": 137,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Allow and implement any TC39 Stage 2+ features in the codebase, ensuring compatibility with current build tools and environments. Such as Promise.try, Array.fromAsync, Iterator helpers, Set methods, Decimal,Temporal,Array grouping, Import attributes, Decorator metadata,RegExp.escape,and Symbol predicates. Update ESlint rules to allow these features."
         }
@@ -2482,23 +2229,20 @@
         "client",
         "server"
       ],
-      "groupId": 19,
-      "seq": 137
+      "groupId": 19
     },
     {
       "id": 138,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Allow and implement any TC39 Stage 2+ features in the codebase, ensuring compatibility with current build tools and environments. Such as Promise.try, Array.fromAsync, Iterator helpers, Set methods, Decimal,Temporal,Array grouping, Import attributes, Decorator metadata,RegExp.escape,and Symbol predicates. Update ESlint rules to allow these features."
         }
       ],
       "name": "Implement TC39 Stage 2+ features",
       "comments": "Adopt modern JavaScript features for improved developer experience and performance",
-      "groupId": 19,
-      "seq": 138
+      "groupId": 19
     },
     {
       "id": 139,
@@ -2508,15 +2252,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Analyze codebase for optimization opportunities: rendering performance (memoization, virtualization), bundle size (code splitting, lazy loading), API efficiency (caching, batching), memory usage (cleanup, leaks). For each suggestion, explain expected improvement and trade-offs."
         }
       ],
       "name": "Improvements",
       "comments": "Quality check for Improvements implementation",
-      "groupId": 23,
-      "seq": 139
+      "groupId": 23
     },
     {
       "id": 140,
@@ -2526,15 +2268,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the index.html file and suggest improvements."
         }
       ],
       "name": "index.html",
       "comments": "Review HTML entry point for proper meta tags and resource hints",
-      "groupId": 19,
-      "seq": 140
+      "groupId": 19
     },
     {
       "id": 141,
@@ -2546,8 +2286,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Click on Label implementation",
-      "groupId": 24,
-      "seq": 141
+      "groupId": 24
     },
     {
       "id": 142,
@@ -2558,8 +2297,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Error implementation",
-      "groupId": 24,
-      "seq": 142
+      "groupId": 24
     },
     {
       "id": 143,
@@ -2570,8 +2308,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Focus implementation",
-      "groupId": 24,
-      "seq": 143
+      "groupId": 24
     },
     {
       "id": 144,
@@ -2582,8 +2319,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Grammar implementation",
-      "groupId": 24,
-      "seq": 144
+      "groupId": 24
     },
     {
       "id": 145,
@@ -2594,8 +2330,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Hover implementation",
-      "groupId": 24,
-      "seq": 145
+      "groupId": 24
     },
     {
       "id": 146,
@@ -2606,8 +2341,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Placeholder implementation",
-      "groupId": 24,
-      "seq": 146
+      "groupId": 24
     },
     {
       "id": 147,
@@ -2618,8 +2352,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Selection implementation",
-      "groupId": 24,
-      "seq": 147
+      "groupId": 24
     },
     {
       "id": 148,
@@ -2630,8 +2363,7 @@
         "acccessibiilty"
       ],
       "comments": "Quality check for Input - Spelling-error implementation",
-      "groupId": 24,
-      "seq": 148
+      "groupId": 24
     },
     {
       "id": 149,
@@ -2640,8 +2372,7 @@
       ],
       "name": "Inspect style: Click through elements to check for unused or invalid styles.",
       "comments": "Quality check for Inspect style: Click through elements to check for unused or invalid styles. implementation",
-      "groupId": 11,
-      "seq": 149
+      "groupId": 11
     },
     {
       "id": 150,
@@ -2652,15 +2383,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Measure Interaction to Next Paint using Chrome DevTools. Target: 200ms or less. Replace FID measurements."
         }
       ],
       "name": "Interaction to Next Paint (INP) - measures user interface responsiveness.  replaces First Input Delay (FID)",
       "comments": "Quality check for Interaction to Next Paint (INP) - measures user interface responsiveness.  replaces First Input Delay (FID) implementation",
-      "groupId": 24,
-      "seq": 150
+      "groupId": 24
     },
     {
       "id": 151,
@@ -2669,8 +2398,7 @@
       ],
       "name": "Javascript ES2023 Array Method Improvements - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
       "comments": "Quality check for Javascript ES2023 Array Method Improvements - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable. implementation",
-      "groupId": 11,
-      "seq": 151
+      "groupId": 11
     },
     {
       "id": 152,
@@ -2679,8 +2407,7 @@
       ],
       "name": "Javascript Improvements - Using javascript ES2025, are there any improvements that can be be implemented?",
       "comments": "Quality check for Javascript Improvements - Using javascript ES2025, are there any improvements that can be be implemented? implementation",
-      "groupId": 11,
-      "seq": 152
+      "groupId": 11
     },
     {
       "id": 153,
@@ -2689,8 +2416,7 @@
       ],
       "name": "Javascript Improvements2 - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable.",
       "comments": "Quality check for Javascript Improvements2 - Update to use findLast(), findLastIndex(), toSorted(), and toReversed() where applicable. implementation",
-      "groupId": 11,
-      "seq": 153
+      "groupId": 11
     },
     {
       "id": 154,
@@ -2699,8 +2425,7 @@
       ],
       "name": "Javascript Iterable Type Updates - Update to use Iterable where applicable.",
       "comments": "Quality check for Javascript Iterable Type Updates - Update to use Iterable where applicable. implementation",
-      "groupId": 11,
-      "seq": 154
+      "groupId": 11
     },
     {
       "id": 155,
@@ -2709,8 +2434,7 @@
       ],
       "name": "Javascript Iterable Type Updates - Update to use RegExp.escape where applicable.",
       "comments": "Quality check for Javascript Iterable Type Updates - Update to use RegExp.escape where applicable. implementation",
-      "groupId": 11,
-      "seq": 155
+      "groupId": 11
     },
     {
       "id": 156,
@@ -2720,8 +2444,7 @@
       ],
       "name": "Javascript Iteratable - Implement Temporal API.",
       "comments": "Quality check for Javascript Iteratable - Implement Temporal API. implementation",
-      "groupId": 11,
-      "seq": 156
+      "groupId": 11
     },
     {
       "id": 157,
@@ -2731,8 +2454,7 @@
       ],
       "name": "Javascript RegExp.escape Implementation - Update to use Promise.try where applicable.",
       "comments": "Quality check for Javascript RegExp.escape Implementation - Update to use Promise.try where applicable. implementation",
-      "groupId": 11,
-      "seq": 157
+      "groupId": 11
     },
     {
       "id": 158,
@@ -2741,8 +2463,7 @@
       ],
       "name": "Javascript RegExp.escape Implementation - Update to use RegExp.escape where applicable.",
       "comments": "Quality check for Javascript RegExp.escape Implementation - Update to use RegExp.escape where applicable. implementation",
-      "groupId": 11,
-      "seq": 158
+      "groupId": 11
     },
     {
       "id": 159,
@@ -2753,15 +2474,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "check tsconfig.json and update target and lib to 'esnext' (lower case)"
         }
       ],
       "name": "Javascript Version - esnext",
       "comments": "Quality check for Javascript Version - esnext implementation",
-      "groupId": 19,
-      "seq": 159
+      "groupId": 19
     },
     {
       "id": 160,
@@ -2770,8 +2489,7 @@
         "react"
       ],
       "comments": "Quality check for Keywords implementation",
-      "groupId": 21,
-      "seq": 1
+      "groupId": 21
     },
     {
       "id": 161,
@@ -2781,15 +2499,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the knip.json file and suggest improvements."
         }
       ],
       "name": "knip.json",
       "comments": "Ensure data integrity with valid JSON syntax",
-      "groupId": 11,
-      "seq": 161
+      "groupId": 11
     },
     {
       "id": 162,
@@ -2798,8 +2514,7 @@
         "react"
       ],
       "comments": "Quality check for Language implementation",
-      "groupId": 21,
-      "seq": 1
+      "groupId": 21
     },
     {
       "id": 163,
@@ -2808,8 +2523,7 @@
         "react"
       ],
       "comments": "Quality check for Language - change language implementation",
-      "groupId": 11,
-      "seq": 163
+      "groupId": 11
     },
     {
       "id": 164,
@@ -2820,15 +2534,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Measure Largest Contentful Paint using Chrome DevTools or Lighthouse. Target: 2.5 seconds or less."
         }
       ],
       "name": "Largest Contentful Paint (LCP) - time between the browser starting to load a page and the largest content element appearing",
       "comments": "Quality check for Largest Contentful Paint (LCP) - time between the browser starting to load a page and the largest content element appearing implementation",
-      "groupId": 11,
-      "seq": 164
+      "groupId": 11
     },
     {
       "id": 165,
@@ -2837,8 +2549,7 @@
       ],
       "name": "Lazy Loading - Implement lazy loading components.",
       "comments": "Quality check for Lazy Loading - Implement lazy loading components. implementation",
-      "groupId": 23,
-      "seq": 165
+      "groupId": 23
     },
     {
       "id": 166,
@@ -2848,15 +2559,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Check if eslint_rules/ directory is used. Delete if migrated to flat config."
         }
       ],
       "name": "Legacy ESLint Rules",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 166
+      "groupId": 19
     },
     {
       "id": 167,
@@ -2866,15 +2575,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Add light-dark() function to main.css for consistent theming."
         }
       ],
       "name": "Light-Dark Mode Consistency",
       "comments": "Quality check for Light-Dark Mode Consistency implementation",
-      "groupId": 11,
-      "seq": 167
+      "groupId": 11
     },
     {
       "id": 168,
@@ -2884,45 +2591,39 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Calculate the maintainability index of the codebase and suggest improvements if below 85."
         }
       ],
       "name": "Maintainability Index",
       "comments": "Quality check for Maintainability Index implementation",
-      "groupId": 11,
-      "seq": 168
+      "groupId": 28
     },
     {
       "id": 169,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Measure Cumulative Layout Shift using Chrome DevTools or PageSpeed Insights. Target: 0.1 or lower."
         }
       ],
       "name": "Measure Cumulative Layout Shift",
       "comments": "Measure and minimize layout shifts for better user experience (Core Web Vital)",
-      "groupId": 23,
-      "seq": 169
+      "groupId": 23
     },
     {
       "id": 170,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Measure Cumulative Layout Shift using Chrome DevTools or PageSpeed Insights. Target: 0.1 or lower."
         }
       ],
       "name": "Measure Cumulative Layout Shift",
       "comments": "Measure and minimize layout shifts for better user experience (Core Web Vital)",
-      "groupId": 23,
-      "seq": 170
+      "groupId": 23
     },
     {
       "id": 171,
@@ -2937,53 +2638,46 @@
       ],
       "name": "Measure Interaction to Next Paint",
       "comments": "Measure Interaction to Next Paint",
-      "groupId": 28,
-      "seq": 171
+      "groupId": 28
     },
     {
       "id": 172,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test responsive design works correctly for all media types (screen, print, speech)."
         }
       ],
       "name": "Media Type",
       "comments": "Ensures cross-media compatibility and proper rendering",
-      "groupId": 11,
-      "seq": 172
+      "groupId": 22
     },
     {
       "id": 173,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test print styles render correctly - verify page breaks, margins, and print-specific CSS."
         }
       ],
       "name": "Media Type",
       "comments": "Ensures cross-media compatibility and proper rendering",
-      "groupId": 11,
-      "seq": 173
+      "groupId": 22
     },
     {
       "id": 174,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test screen display renders correctly across desktop, tablet, and mobile viewports."
         }
       ],
       "name": "Media Type",
       "comments": "Ensures cross-media compatibility and proper rendering",
-      "groupId": 11,
-      "seq": 174
+      "groupId": 22
     },
     {
       "id": 175,
@@ -2992,8 +2686,7 @@
       ],
       "name": "Memory Leaks - Check for memory leaks - useEffect cleanup, event listeners, subscriptions",
       "comments": "Quality check for Memory Leaks - Check for memory leaks - useEffect cleanup, event listeners, subscriptions implementation",
-      "groupId": 11,
-      "seq": 175
+      "groupId": 11
     },
     {
       "id": 176,
@@ -3002,8 +2695,7 @@
         "web"
       ],
       "comments": "Check for Meta Tags implementation",
-      "groupId": 21,
-      "seq": 176
+      "groupId": 21
     },
     {
       "id": 177,
@@ -3012,8 +2704,7 @@
         "react"
       ],
       "comments": "Quality check for Mobile Friendly implementation",
-      "groupId": 11,
-      "seq": 177
+      "groupId": 11
     },
     {
       "id": 178,
@@ -3022,8 +2713,7 @@
       ],
       "name": "Node Modules Cleanup",
       "comments": "Quality check for Node Modules Cleanup implementation",
-      "groupId": 11,
-      "seq": 178
+      "groupId": 11
     },
     {
       "id": 179,
@@ -3033,7 +2723,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Verify package.json engines field specifies minimum Node.js and npm versions. Document in README."
         }
@@ -3043,8 +2732,7 @@
       "status": "Passed - Engines field present: node >=20.0.0, npm >=10",
       "score": "100/100",
       "comments": "Quality check for Node Version Requirements implementation",
-      "groupId": 19,
-      "seq": 179
+      "groupId": 19
     },
     {
       "id": 180,
@@ -3054,15 +2742,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "node -v   nvm install  nvm use 24.12.0  https://nodejs.org/en/download"
         }
       ],
       "name": "Node.js - Update",
       "comments": "Quality check for Node.js - Update implementation",
-      "groupId": 11,
-      "seq": 180
+      "groupId": 11
     },
     {
       "id": 181,
@@ -3072,8 +2758,7 @@
         "nodejs"
       ],
       "comments": "Quality check for npm audit implementation",
-      "groupId": 11,
-      "seq": 181
+      "groupId": 11
     },
     {
       "id": 182,
@@ -3084,15 +2769,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "terminal",
           "content": "npm audit"
         }
       ],
       "name": "npm audit - Check for package vulnerabilities",
       "comments": "Quality check for npm audit - Check for package vulnerabilities implementation",
-      "groupId": 11,
-      "seq": 182
+      "groupId": 11
     },
     {
       "id": 183,
@@ -3103,15 +2786,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "terminal",
           "content": "npm dedupe"
         }
       ],
       "name": "npm dedupe - Consolidate package tree",
       "comments": "Quality check for npm dedupe - Consolidate package tree implementation",
-      "groupId": 11,
-      "seq": 183
+      "groupId": 11
     },
     {
       "id": 184,
@@ -3122,15 +2803,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "terminal",
           "content": "npm doctor"
         }
       ],
       "name": "npm doctor - Validate npm environment",
       "comments": "Quality check for npm doctor - Validate npm environment implementation",
-      "groupId": 11,
-      "seq": 184
+      "groupId": 11
     },
     {
       "id": 185,
@@ -3140,8 +2819,7 @@
         "nodejs"
       ],
       "comments": "Quality check for npm outdated implementation",
-      "groupId": 11,
-      "seq": 185
+      "groupId": 11
     },
     {
       "id": 186,
@@ -3152,15 +2830,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "terminal",
           "content": "npm outdated"
         }
       ],
       "name": "npm outdated - Check for package updates",
       "comments": "Quality check for npm outdated - Check for package updates implementation",
-      "groupId": 11,
-      "seq": 186
+      "groupId": 11
     },
     {
       "id": 187,
@@ -3171,15 +2847,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "terminal",
           "content": "npm prune"
         }
       ],
       "name": "npm prune - Remove unused packages",
       "comments": "Quality check for npm prune - Remove unused packages implementation",
-      "groupId": 11,
-      "seq": 187
+      "groupId": 11
     },
     {
       "id": 188,
@@ -3189,15 +2863,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "npm install -g npm@11.7.0."
         }
       ],
       "name": "npm update",
       "comments": "Quality check for npm update implementation",
-      "groupId": 11,
-      "seq": 188
+      "groupId": 11
     },
     {
       "id": 189,
@@ -3207,15 +2879,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review this file for null/undefined checks"
         }
       ],
       "name": "Null/undefined Checks",
       "comments": "Improve null safety with proper checks and optional chaining",
-      "groupId": 11,
-      "seq": 189
+      "groupId": 11
     },
     {
       "id": 190,
@@ -3225,8 +2895,7 @@
       ],
       "name": "Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a>",
       "comments": "Quality check for Online Test - <a href=\"https://securityheaders.com/\">Security Headers</a> implementation",
-      "groupId": 11,
-      "seq": 190
+      "groupId": 11
     },
     {
       "id": 191,
@@ -3235,8 +2904,7 @@
         "react"
       ],
       "comments": "Quality check for Open Graph Coding implementation",
-      "groupId": 11,
-      "seq": 191
+      "groupId": 11
     },
     {
       "id": 192,
@@ -3245,38 +2913,33 @@
         "react"
       ],
       "comments": "Quality check for Optimized Page Speed implementation",
-      "groupId": 11,
-      "seq": 192
+      "groupId": 11
     },
     {
       "id": 193,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test layout adapts correctly for portrait orientation (mobile/tablet). Verify no horizontal overflow."
         }
       ],
       "name": "Orientation",
       "comments": "Validates layout adaptation for different device orientations",
-      "groupId": 11,
-      "seq": 193
+      "groupId": 11
     },
     {
       "id": 194,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test layout utilizes landscape orientation effectively (wide screens). Verify readable line lengths."
         }
       ],
       "name": "Orientation",
       "comments": "Validates layout adaptation for different device orientations",
-      "groupId": 11,
-      "seq": 194
+      "groupId": 11
     },
     {
       "id": 195,
@@ -3287,15 +2950,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Calculate the Overall Consistency Score for the codebase."
         }
       ],
       "name": "Overall Consistency Score",
       "comments": "Quality check for Overall Consistency Score implementation",
-      "groupId": 11,
-      "seq": 195
+      "groupId": 11
     },
     {
       "id": 196,
@@ -3305,15 +2966,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review for opportunities to break apart this component into smaller components"
         }
       ],
       "name": "Overly complex components",
       "comments": "Quality check for Overly complex components implementation",
-      "groupId": 11,
-      "seq": 196
+      "groupId": 11
     },
     {
       "id": 197,
@@ -3323,15 +2982,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size."
         }
       ],
       "name": "Package Imports",
       "comments": "Quality check for Package Imports implementation",
-      "groupId": 23,
-      "seq": 197
+      "groupId": 23
     },
     {
       "id": 198,
@@ -3342,7 +2999,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review the package.json files for duplicate libraries - libraries that perform the same function(s) but are different packages. Suggest consolidating to a single library where possible."
         }
@@ -3352,8 +3008,7 @@
         "Audit dependencies and scripts for security and maintainability",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 11,
-      "seq": 198
+      "groupId": 11
     },
     {
       "id": 199,
@@ -3363,7 +3018,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?"
         }
@@ -3373,8 +3027,7 @@
         "Audit dependencies and scripts for security and maintainability",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 11,
-      "seq": 199
+      "groupId": 11
     },
     {
       "id": 200,
@@ -3384,7 +3037,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "AI",
           "content": "Validate overrides are necessary in package.json files. Suggest removing unnecessary overrides to simplify dependency management."
         }
@@ -3395,8 +3047,7 @@
         "Validate necessity of dependency overrides to minimize maintenance burden",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 200
+      "groupId": 19
     },
     {
       "id": 201,
@@ -3406,45 +3057,39 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Here's a piece of performance-critical React code: [paste code]. Suggest optimizations to improve rendering efficiency and explain the expected improvement for each suggestion."
         }
       ],
       "name": "Performance",
       "comments": "Quality check for Performance implementation",
-      "groupId": 23,
-      "seq": 201
+      "groupId": 23
     },
     {
       "id": 202,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test light color scheme has sufficient contrast ratios (WCAG AA) and no visual artifacts."
         }
       ],
       "name": "Prefers Color Scheme",
       "comments": "Verifies theme and contrast compliance for user color preferences",
-      "groupId": 11,
-      "seq": 202
+      "groupId": 11
     },
     {
       "id": 203,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test dark color scheme has sufficient contrast ratios, no pure blacks/whites causing eye strain, and respects user preference."
         }
       ],
       "name": "Prefers Color Scheme",
       "comments": "Verifies theme and contrast compliance for user color preferences",
-      "groupId": 11,
-      "seq": 203
+      "groupId": 11
     },
     {
       "id": 204,
@@ -3455,15 +3100,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Validate there is no excessive prop drilling in the codebase."
         }
       ],
       "name": "Prop Drilling",
       "comments": "Reduce component coupling by eliminating excessive prop passing",
-      "groupId": 11,
-      "seq": 204
+      "groupId": 11
     },
     {
       "id": 205,
@@ -3472,8 +3115,7 @@
       ],
       "name": "Prop Drilling - Identify prop drilling issues and suggest Context API or state management improvements",
       "comments": "Reduce component coupling by eliminating excessive prop passing",
-      "groupId": 11,
-      "seq": 205
+      "groupId": 11
     },
     {
       "id": 206,
@@ -3482,8 +3124,7 @@
         "react"
       ],
       "comments": "Quality check for Publish Date implementation",
-      "groupId": 11,
-      "seq": 206
+      "groupId": 11
     },
     {
       "id": 207,
@@ -3492,8 +3133,7 @@
         "react"
       ],
       "comments": "Quality check for Quality Content implementation",
-      "groupId": 11,
-      "seq": 207
+      "groupId": 11
     },
     {
       "id": 208,
@@ -3502,8 +3142,7 @@
       ],
       "name": "Re-renders - Look for any unnecessary re-renders.",
       "comments": "Quality check for Re-renders - Look for any unnecessary re-renders. implementation",
-      "groupId": 11,
-      "seq": 208
+      "groupId": 11
     },
     {
       "id": 211,
@@ -3513,15 +3152,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Using react 17, transform this class component to a function component using hooks.  Use arrow functions.  Do not add jdoc. Maintain any business logic.  Add comments where helpful."
         }
       ],
       "name": "React - CodeMods - class-to-function-component",
       "comments": "Quality check for React - CodeMods - class-to-function-component implementation",
-      "groupId": 11,
-      "seq": 211
+      "groupId": 11
     },
     {
       "id": 212,
@@ -3531,15 +3168,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/create-element-to-jsx"
         }
       ],
       "name": "React - CodeMods - create-element-to-jsx",
       "comments": "Quality check for React - CodeMods - create-element-to-jsx implementation",
-      "groupId": 11,
-      "seq": 212
+      "groupId": 11
     },
     {
       "id": 213,
@@ -3549,15 +3184,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/update-react-imports"
         }
       ],
       "name": "React - CodeMods - update-react-imports",
       "comments": "Quality check for React - CodeMods - update-react-imports implementation",
-      "groupId": 11,
-      "seq": 213
+      "groupId": 11
     },
     {
       "id": 215,
@@ -3568,15 +3201,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Validate there are no deprecated event handlers (onKeyPress, componentWillMount, componentWillReceiveProps, etc.) in the codebase. Confirm modern React 19+ patterns and hooks are used throughout."
         }
       ],
       "name": "React - Deprecated APIs and Event Handlers",
       "comments": "Remove outdated APIs and patterns to maintain code health",
-      "groupId": 8,
-      "seq": 1
+      "groupId": 8
     },
     {
       "id": 216,
@@ -3586,15 +3217,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to update cleanup functions for ref introduced in React 19."
         }
       ],
       "name": "React 19 - Cleanup functions for ref",
       "comments": "Quality check for React 19 - Cleanup functions for ref implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 217,
@@ -3604,15 +3233,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/migration-recipe"
         }
       ],
       "name": "React 19 - CodeMods - migration-recipe",
       "comments": "Quality check for React 19 - CodeMods - migration-recipe implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 218,
@@ -3622,15 +3249,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/prop-types-typescript"
         }
       ],
       "name": "React 19 - CodeMods - prop-types-typescript",
       "comments": "Quality check for React 19 - CodeMods - prop-types-typescript implementation",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 219,
@@ -3640,15 +3265,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/remove-forward-ref"
         }
       ],
       "name": "React 19 - CodeMods - remove-forward-ref",
       "comments": "Quality check for React 19 - CodeMods - remove-forward-ref implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 220,
@@ -3658,15 +3281,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/remove-legacy-context"
         }
       ],
       "name": "React 19 - CodeMods - remove-legacy-context",
       "comments": "Quality check for React 19 - CodeMods - remove-legacy-context implementation",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 221,
@@ -3676,15 +3297,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/remove-memoization"
         }
       ],
       "name": "React 19 - CodeMods - remove-memoization",
       "comments": "Quality check for React 19 - CodeMods - remove-memoization implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 222,
@@ -3694,15 +3313,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/replace-act-import"
         }
       ],
       "name": "React 19 - CodeMods - replace-act-import",
       "comments": "Quality check for React 19 - CodeMods - replace-act-import implementation",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 223,
@@ -3712,15 +3329,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/replace-create-factory"
         }
       ],
       "name": "React 19 - CodeMods - replace-create-factory",
       "comments": "Quality check for React 19 - CodeMods - replace-create-factory implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 224,
@@ -3730,15 +3345,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/replace-react-test-renderer-import"
         }
       ],
       "name": "React 19 - CodeMods - replace-react-test-renderer-import",
       "comments": "Quality check for React 19 - CodeMods - replace-react-test-renderer-import implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 226,
@@ -3748,15 +3361,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/replace-reactdom-render"
         }
       ],
       "name": "React 19 - CodeMods - replace-reactdom-render",
       "comments": "Quality check for React 19 - CodeMods - replace-reactdom-render implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 227,
@@ -3766,15 +3377,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/replace-string-ref"
         }
       ],
       "name": "React 19 - CodeMods - replace-string-ref",
       "comments": "Quality check for React 19 - CodeMods - replace-string-ref implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 228,
@@ -3784,15 +3393,13 @@
       "code": [
         {
           "id": 2,
-          "seq": 10,
           "type": "code",
           "content": "npx codemod@latest react/19/replace-use-form-state"
         }
       ],
       "name": "React 19 - CodeMods - replace-use-form-state",
       "comments": "Quality check for React 19 - CodeMods - replace-use-form-state implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 230,
@@ -3802,15 +3409,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "run types-react-codemod"
         }
       ],
       "name": "React 19 - CodeMods - types-react-codemod",
       "comments": "Quality check for React 19 - CodeMods - types-react-codemod implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 231,
@@ -3820,15 +3425,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react/19/use-context-hook"
         }
       ],
       "name": "React 19 - CodeMods - use-context-hook",
       "comments": "Quality check for React 19 - CodeMods - use-context-hook implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 232,
@@ -3838,15 +3441,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to update Context.Provider to Context introduced in React 19."
         }
       ],
       "name": "React 19 - Context.Provider",
       "comments": "Update Context.Provider syntax to simplified Context in React 19",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 233,
@@ -3856,15 +3457,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the error handling changes introduced in React 19."
         }
       ],
       "name": "React 19 - Errors onCaughtError, onUncaughtError, onRecoverableError",
       "comments": "Quality check for React 19 - Errors onCaughtError, onUncaughtError, onRecoverableError implementation",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 234,
@@ -3874,15 +3473,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly."
         }
       ],
       "name": "React 19 - New JSX Transform",
       "comments": "Ensure React 19's automatic JSX runtime is configured correctly",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 235,
@@ -3892,15 +3489,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19."
         }
       ],
       "name": "React 19 - Resource Preloading",
       "comments": "Utilize React 19's built-in resource preloading features",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 236,
@@ -3910,15 +3505,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19."
         }
       ],
       "name": "React 19 - Stylesheet Precedence",
       "comments": "Implement React 19's stylesheet precedence for optimal CSS loading",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 237,
@@ -3928,15 +3521,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new use hook introduced in React 19."
         }
       ],
       "name": "React 19 - use",
       "comments": "Quality check for React 19 - use implementation",
-      "groupId": 38,
-      "seq": 1
+      "groupId": 38
     },
     {
       "id": 238,
@@ -3946,15 +3537,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19."
         }
       ],
       "name": "React 19 - useActionState",
       "comments": "Leverage React 19's useActionState for server actions and form state management",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 239,
@@ -3964,15 +3553,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19."
         }
       ],
       "name": "React 19 - useDeferredValue",
       "comments": "Apply React 19's useDeferredValue for improved performance on heavy computations",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 240,
@@ -3983,15 +3570,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Remove useFormState"
         }
       ],
       "name": "React 19 - useFormState",
       "comments": "Quality check for React 19 - useFormState implementation",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 241,
@@ -4001,15 +3586,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19."
         }
       ],
       "name": "React 19 - useOptimisitic",
       "comments": "Quality check for React 19 - useOptimisitic implementation",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 242,
@@ -4019,22 +3602,19 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19."
         }
       ],
       "name": "React 19 - useTransition",
       "comments": "Use React 19's enhanced useTransition for better concurrent rendering",
-      "groupId": 29,
-      "seq": 1
+      "groupId": 29
     },
     {
       "id": 243,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to update Context.Provider to Context introduced in React 19."
         }
@@ -4042,7 +3622,6 @@
       "name": "React 19 Context update",
       "comments": "Quality check for React 19 Context update implementation",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4052,7 +3631,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the error handling changes introduced in React 19."
         }
@@ -4060,7 +3638,6 @@
       "name": "React 19 error handling",
       "comments": "Leverage React 19's improved error handling capabilities",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4070,7 +3647,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to validate that the new JSX transform introduced in React 19 is being used correctly."
         }
@@ -4078,7 +3654,6 @@
       "name": "React 19 JSX transform",
       "comments": "Ensure React 19's automatic JSX runtime is configured correctly",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4088,7 +3663,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to update cleanup functions for ref introduced in React 19."
         }
@@ -4096,7 +3670,6 @@
       "name": "React 19 ref cleanup",
       "comments": "Implement React 19's ref cleanup functions for proper resource disposal",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4106,7 +3679,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the resource preloading changes introduced in React 19."
         }
@@ -4114,7 +3686,6 @@
       "name": "React 19 resource preloading",
       "comments": "Utilize React 19's built-in resource preloading features",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4124,7 +3695,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the stylesheet precedence changes introduced in React 19."
         }
@@ -4132,7 +3702,6 @@
       "name": "React 19 stylesheet precedence",
       "comments": "Implement React 19's stylesheet precedence for optimal CSS loading",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4142,7 +3711,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the new use hook introduced in React 19."
         }
@@ -4150,7 +3718,6 @@
       "name": "React 19 use hook",
       "comments": "Adopt React 19's new 'use' hook for reading resources and promises",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4160,7 +3727,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the new useActionState hook introduced in React 19."
         }
@@ -4168,7 +3734,6 @@
       "name": "React 19 useActionState",
       "comments": "Leverage React 19's useActionState for server actions and form state management",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4178,7 +3743,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the new useDeferredValue hook introduced in React 19."
         }
@@ -4186,7 +3750,6 @@
       "name": "React 19 useDeferredValue",
       "comments": "Apply React 19's useDeferredValue for improved performance on heavy computations",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4196,7 +3759,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the new useOptimistic hook introduced in React 19."
         }
@@ -4204,7 +3766,6 @@
       "name": "React 19 useOptimistic",
       "comments": "Implement optimistic UI updates using React 19's useOptimistic hook",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4214,7 +3775,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review all the code to identify opportunities to use the new useTransition hook introduced in React 19."
         }
@@ -4222,7 +3782,6 @@
       "name": "React 19 useTransition",
       "comments": "Use React 19's enhanced useTransition for better concurrent rendering",
       "groupId": 29,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -4234,8 +3793,7 @@
       ],
       "name": "React Improvements - Are there react 19.2.3 enhancements that can be made?",
       "comments": "Quality check for React Improvements - Are there react 19.2.3 enhancements that can be made? implementation",
-      "groupId": 2,
-      "seq": 1
+      "groupId": 2
     },
     {
       "id": 266,
@@ -4244,8 +3802,7 @@
       ],
       "name": "React Query Optimization - Review and optimize React Query usage - check staleTime, cacheTime, retry logic, and identify opportunities for prefetching",
       "comments": "Identify and implement performance improvements across the application",
-      "groupId": 23,
-      "seq": 266
+      "groupId": 23
     },
     {
       "id": 267,
@@ -4255,15 +3812,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-redux/0/add-state-type"
         }
       ],
       "name": "React Redux - CodeMods - add-state-type",
       "comments": "Quality check for React Redux - CodeMods - add-state-type implementation",
-      "groupId": 11,
-      "seq": 267
+      "groupId": 11
     },
     {
       "id": 268,
@@ -4273,15 +3828,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/4/move-hoc-to-global-scope"
         }
       ],
       "name": "React Router - CodeMods - move-hoc-to-global-scope",
       "comments": "Quality check for React Router - CodeMods - move-hoc-to-global-scope implementation",
-      "groupId": 11,
-      "seq": 268
+      "groupId": 11
     },
     {
       "id": 269,
@@ -4291,15 +3844,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/6/remove-redirect-inside-switch"
         }
       ],
       "name": "React Router - CodeMods - remove-redirect-inside-switch",
       "comments": "Quality check for React Router - CodeMods - remove-redirect-inside-switch implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 270,
@@ -4309,15 +3860,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_fetcherPersist_Flag"
         }
       ],
       "name": "React Router 7 - CodeMods - add_v7_fetcherPersist_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_fetcherPersist_Flag implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 271,
@@ -4327,15 +3876,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_normalizeFormMethod"
         }
       ],
       "name": "React Router 7 - CodeMods - add_v7_normalizeFormMethod",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_normalizeFormMethod implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 272,
@@ -4345,15 +3892,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_partialHydration_Flag"
         }
       ],
       "name": "React Router 7 - CodeMods - add_v7_partialHydration_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_partialHydration_Flag implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 273,
@@ -4363,15 +3908,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_relativeSplatPath_Flag"
         }
       ],
       "name": "React Router 7 - CodeMods - add_v7_relativeSplatPath_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_relativeSplatPath_Flag implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 274,
@@ -4381,15 +3924,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_skipActionStatusRevalidation_Flag"
         }
       ],
       "name": "React Router 7 - CodeMods - add_v7_skipActionStatusRevalidation_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_skipActionStatusRevalidation_Flag implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 275,
@@ -4399,15 +3940,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/add_v7_startTransition_Flag"
         }
       ],
       "name": "React Router 7 - CodeMods - add_v7_startTransition_Flag",
       "comments": "Quality check for React Router 7 - CodeMods - add_v7_startTransition_Flag implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 276,
@@ -4417,15 +3956,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/errorfirst-mutation-reorder"
         }
       ],
       "name": "React Router 7 - CodeMods - errorfirst-mutation-reorder",
       "comments": "Quality check for React Router 7 - CodeMods - errorfirst-mutation-reorder implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 277,
@@ -4435,15 +3972,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/form-methods-post-get-to-uppercase"
         }
       ],
       "name": "React Router 7 - CodeMods - form-methods-post-get-to-uppercase",
       "comments": "Quality check for React Router 7 - CodeMods - form-methods-post-get-to-uppercase implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 278,
@@ -4453,15 +3988,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/migration-recipe"
         }
       ],
       "name": "React Router 7 - CodeMods - migration-recipe",
       "comments": "Quality check for React Router 7 - CodeMods - migration-recipe implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 279,
@@ -4471,15 +4004,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/relative-links"
         }
       ],
       "name": "React Router 7 - CodeMods - relative-links",
       "comments": "Quality check for React Router 7 - CodeMods - relative-links implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 280,
@@ -4489,15 +4020,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/route-wildcard-to-nested"
         }
       ],
       "name": "React Router 7 - CodeMods - route-wildcard-to-nested",
       "comments": "Quality check for React Router 7 - CodeMods - route-wildcard-to-nested implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 281,
@@ -4507,15 +4036,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest react-router/7/update-imports"
         }
       ],
       "name": "React Router 7 - CodeMods - update-imports",
       "comments": "Quality check for React Router 7 - CodeMods - update-imports implementation",
-      "groupId": 30,
-      "seq": 1
+      "groupId": 30
     },
     {
       "id": 282,
@@ -4525,15 +4052,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Rebuild the project from GitHub (or whatever source repo you are using). 1. Make a backup copy. 2. Delete the current project. 3. Restore and validate."
         }
       ],
       "name": "Rebuild Project From Scratch",
       "comments": "Quality check for Rebuild Project From Scratch implementation",
-      "groupId": 11,
-      "seq": 282
+      "groupId": 11
     },
     {
       "id": 283,
@@ -4543,15 +4068,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Find and remove redundant boolean JSX attributes (e.g., disabled={true} should be disabled, hidden={false} should be omitted). Report count and suggest automatic fixes."
         }
       ],
       "name": "Redundant Boolean Attributes",
       "comments": "Quality check for Redundant Boolean Attributes implementation",
-      "groupId": 11,
-      "seq": 283
+      "groupId": 11
     },
     {
       "id": 284,
@@ -4561,217 +4084,188 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "terminal",
           "content": "npm uninstall eslint-plugin-react-compiler"
         }
       ],
       "name": "Remove eslint-plugin-react-compiler",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 284
+      "groupId": 19
     },
     {
       "id": 285,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the .gitignore file and suggest improvements."
         }
       ],
       "name": "Review .gitignore",
       "comments": "Optimize version control ignore patterns for better repository hygiene",
-      "groupId": 19,
-      "seq": 285
+      "groupId": 19
     },
     {
       "id": 286,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the .gitignore file and suggest improvements."
         }
       ],
       "name": "Review .gitignore",
       "comments": "Optimize version control ignore patterns for better repository hygiene",
-      "groupId": 19,
-      "seq": 286
+      "groupId": 19
     },
     {
       "id": 287,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the .prettierignore file and suggest improvements."
         }
       ],
       "name": "Review .prettierignore",
       "comments": "Configure code formatting exclusions appropriately",
-      "groupId": 19,
-      "seq": 287
+      "groupId": 19
     },
     {
       "id": 288,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the .prettierignore file and suggest improvements."
         }
       ],
       "name": "Review .prettierignore",
       "comments": "Configure code formatting exclusions appropriately",
-      "groupId": 19,
-      "seq": 288
+      "groupId": 19
     },
     {
       "id": 289,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the .prettierrc.mjs file and suggest improvements."
         }
       ],
       "name": "Review .prettierrc.mjs",
       "comments": "Review and update code formatting standards",
-      "groupId": 19,
-      "seq": 289
+      "groupId": 19
     },
     {
       "id": 290,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the .prettierrc.mjs file and suggest improvements."
         }
       ],
       "name": "Review .prettierrc.mjs",
       "comments": "Review and update code formatting standards",
-      "groupId": 19,
-      "seq": 290
+      "groupId": 19
     },
     {
       "id": 291,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
         }
       ],
       "name": "Review for anti-patterns",
       "comments": "Refactor problematic code patterns for better maintainability",
-      "groupId": 11,
-      "seq": 291
+      "groupId": 11
     },
     {
       "id": 292,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review the code for anti-patterns (God objects, tight coupling, callback hell, excessive prop drilling, magic numbers, hard-coded values, nested ternaries, massive functions >50 lines) and suggest specific refactoring improvements."
         }
       ],
       "name": "Review for anti-patterns",
       "comments": "Refactor problematic code patterns for better maintainability",
-      "groupId": 11,
-      "seq": 292
+      "groupId": 11
     },
     {
       "id": 293,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review general-coding.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed. Use modern structures, coding, and best practices."
         }
       ],
       "name": "Review general-coding.instructions",
       "comments": "Quality check for Review general-coding.instructions implementation",
-      "groupId": 11,
-      "seq": 293
+      "groupId": 11
     },
     {
       "id": 294,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review general-coding.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed. Use modern structures, coding, and best practices."
         }
       ],
       "name": "Review general-coding.instructions",
       "comments": "Quality check for Review general-coding.instructions implementation",
-      "groupId": 11,
-      "seq": 294
+      "groupId": 11
     },
     {
       "id": 295,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the index.html file and suggest improvements."
         }
       ],
       "name": "Review index.html",
       "comments": "Review HTML entry point for proper meta tags and resource hints",
-      "groupId": 19,
-      "seq": 295
+      "groupId": 19
     },
     {
       "id": 296,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the index.html file and suggest improvements."
         }
       ],
       "name": "Review index.html",
       "comments": "Review HTML entry point for proper meta tags and resource hints",
-      "groupId": 19,
-      "seq": 296
+      "groupId": 19
     },
     {
       "id": 297,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review this file for null/undefined checks"
         }
       ],
       "name": "Review null/undefined checks",
       "comments": "Improve null safety with proper checks and optional chaining",
-      "groupId": 11,
-      "seq": 297
+      "groupId": 11
     },
     {
       "id": 299,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?"
         }
@@ -4781,15 +4275,13 @@
         "Audit dependencies and scripts for security and maintainability",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 11,
-      "seq": 299
+      "groupId": 11
     },
     {
       "id": 300,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the package.json files and review the libraries used. Are there suggested replacements for any libraries?"
         }
@@ -4799,45 +4291,39 @@
         "Audit dependencies and scripts for security and maintainability",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 11,
-      "seq": 300
+      "groupId": 11
     },
     {
       "id": 301,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size."
         }
       ],
       "name": "Review tree shaking imports",
       "comments": "Ensure proper import patterns for effective dead code elimination",
-      "groupId": 23,
-      "seq": 301
+      "groupId": 23
     },
     {
       "id": 302,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review for non-optimized imports that may break tree shaking - suggest improvements to ensure optimal bundle size."
         }
       ],
       "name": "Review tree shaking imports",
       "comments": "Ensure proper import patterns for effective dead code elimination",
-      "groupId": 23,
-      "seq": 302
+      "groupId": 23
     },
     {
       "id": 303,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the tsconfig.json file and suggest improvements."
         }
@@ -4847,15 +4333,13 @@
         "Validate TypeScript compiler options for optimal strictness and compatibility",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 303
+      "groupId": 19
     },
     {
       "id": 304,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the tsconfig.json file and suggest improvements."
         }
@@ -4865,15 +4349,13 @@
         "Validate TypeScript compiler options for optimal strictness and compatibility",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 304
+      "groupId": 19
     },
     {
       "id": 305,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the tsconfig.node.json file and suggest improvements."
         }
@@ -4883,15 +4365,13 @@
         "Validate TypeScript compiler options for optimal strictness and compatibility",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 305
+      "groupId": 19
     },
     {
       "id": 306,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the tsconfig.node.json file and suggest improvements."
         }
@@ -4901,83 +4381,72 @@
         "Validate TypeScript compiler options for optimal strictness and compatibility",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 306
+      "groupId": 19
     },
     {
       "id": 307,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed. Use modern structures, coding, and best practices."
         }
       ],
       "name": "Review typescript-react.instructions",
       "comments": "Quality check for Review typescript-react.instructions implementation",
-      "groupId": 11,
-      "seq": 307
+      "groupId": 11
     },
     {
       "id": 309,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the vite.config.mts file and suggest improvements."
         }
       ],
       "name": "Review vite.config.mts",
       "comments": "Review build tool configuration for optimal development and production builds",
-      "groupId": 19,
-      "seq": 309
+      "groupId": 19
     },
     {
       "id": 310,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the vite.config.mts file and suggest improvements."
         }
       ],
       "name": "Review vite.config.mts",
       "comments": "Review build tool configuration for optimal development and production builds",
-      "groupId": 19,
-      "seq": 310
+      "groupId": 19
     },
     {
       "id": 311,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the vitest.config.ts file and suggest improvements."
         }
       ],
       "name": "Review vitest.config.ts",
       "comments": "Ensure test runner configuration supports project testing needs",
-      "groupId": 19,
-      "seq": 311
+      "groupId": 19
     },
     {
       "id": 312,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Read the vitest.config.ts file and suggest improvements."
         }
       ],
       "name": "Review vitest.config.ts",
       "comments": "Ensure test runner configuration supports project testing needs",
-      "groupId": 19,
-      "seq": 312
+      "groupId": 19
     },
     {
       "id": 313,
@@ -4986,109 +4455,94 @@
         "react"
       ],
       "comments": "Quality check for Robot.txt implementation",
-      "groupId": 11,
-      "seq": 313
+      "groupId": 11
     },
     {
       "id": 314,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "npm",
           "content": "npm run build"
         }
       ],
       "name": "Run build script",
       "comments": "Validate that the project builds successfully without errors.",
-      "groupId": 35,
-      "seq": 314
+      "groupId": 35
     },
     {
       "id": 315,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "npm",
           "content": "npm run lint"
         }
       ],
       "name": "Run ESLint on all files",
-      "groupId": 35,
-      "seq": 315
+      "groupId": 35
     },
     {
       "id": 316,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "npm",
           "content": "npm run lint:fix"
         }
       ],
       "name": "Run ESLint on all files and fix",
-      "groupId": 35,
-      "seq": 316
+      "groupId": 35
     },
     {
       "id": 317,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "npm",
           "content": "npm run lint:root"
         }
       ],
       "name": "Run ESLint on root files",
-      "groupId": 35,
-      "seq": 317
+      "groupId": 35
     },
     {
       "id": 318,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "npx",
           "content": "npx prettier --write \"**/*.tsx\""
         }
       ],
       "name": "Run Prettier on TSX files",
-      "groupId": 35,
-      "seq": 318
+      "groupId": 35
     },
     {
       "id": 319,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Scan for hardcoded secrets (API keys, passwords, tokens) in codebase and environment files. Verify .gitignore excludes sensitive files."
         }
       ],
       "name": "Scan for hardcoded secrets",
       "comments": "Prevent security vulnerabilities by detecting exposed credentials",
-      "groupId": 11,
-      "seq": 319
+      "groupId": 11
     },
     {
       "id": 320,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Scan for hardcoded secrets (API keys, passwords, tokens) in codebase and environment files. Verify .gitignore excludes sensitive files."
         }
       ],
       "name": "Scan for hardcoded secrets",
       "comments": "Prevent security vulnerabilities by detecting exposed credentials",
-      "groupId": 11,
-      "seq": 320
+      "groupId": 11
     },
     {
       "id": 321,
@@ -5100,8 +4554,7 @@
       ],
       "name": "Scripts: Build - npm run build",
       "comments": "Quality check for Scripts: Build - npm run build implementation",
-      "groupId": 11,
-      "seq": 321
+      "groupId": 11
     },
     {
       "id": 322,
@@ -5112,8 +4565,7 @@
       ],
       "name": "Scripts: Clean - npm run clean",
       "comments": "Quality check for Scripts: Clean - npm run clean implementation",
-      "groupId": 11,
-      "seq": 322
+      "groupId": 11
     },
     {
       "id": 323,
@@ -5123,8 +4575,7 @@
       ],
       "name": "Scripts: Format - npm run format",
       "comments": "Quality check for Scripts: Format - npm run format implementation",
-      "groupId": 11,
-      "seq": 323
+      "groupId": 11
     },
     {
       "id": 324,
@@ -5136,8 +4587,7 @@
       ],
       "name": "Scripts: Knip - npm run knip",
       "comments": "Quality check for Scripts: Knip - npm run knip implementation",
-      "groupId": 11,
-      "seq": 324
+      "groupId": 11
     },
     {
       "id": 325,
@@ -5148,8 +4598,7 @@
       ],
       "name": "Scripts: Lint - npm run lint",
       "comments": "Quality check for Scripts: Lint - npm run lint implementation",
-      "groupId": 11,
-      "seq": 325
+      "groupId": 11
     },
     {
       "id": 326,
@@ -5160,8 +4609,7 @@
       ],
       "name": "Scripts: Lint Fix - npm run lint:fix",
       "comments": "Quality check for Scripts: Lint Fix - npm run lint:fix implementation",
-      "groupId": 11,
-      "seq": 326
+      "groupId": 11
     },
     {
       "id": 327,
@@ -5172,8 +4620,7 @@
       ],
       "name": "Scripts: Preview - npm run preview",
       "comments": "Quality check for Scripts: Preview - npm run preview implementation",
-      "groupId": 11,
-      "seq": 327
+      "groupId": 11
     },
     {
       "id": 328,
@@ -5183,8 +4630,7 @@
       ],
       "name": "Scripts: Type Check - npm run type-check",
       "comments": "Quality check for Scripts: Type Check - npm run type-check implementation",
-      "groupId": 11,
-      "seq": 328
+      "groupId": 11
     },
     {
       "id": 330,
@@ -5194,15 +4640,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Look for security vulnerabilities in client and server codebases and recommend improvements."
         }
       ],
       "name": "Security",
       "comments": "Quality check for Security implementation",
-      "groupId": 11,
-      "seq": 330
+      "groupId": 11
     },
     {
       "id": 331,
@@ -5212,15 +4656,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Verify sanitizeFilePath is applied to all file upload/manipulation endpoints"
         }
       ],
       "name": "Security Audit",
       "comments": "Quality check for Security Audit implementation",
-      "groupId": 11,
-      "seq": 331
+      "groupId": 11
     },
     {
       "id": 332,
@@ -5229,8 +4671,7 @@
         "react"
       ],
       "comments": "Quality check for Semantic HTML implementation",
-      "groupId": 11,
-      "seq": 332
+      "groupId": 11
     },
     {
       "id": 333,
@@ -5239,8 +4680,7 @@
         "react"
       ],
       "comments": "Quality check for SEO implementation",
-      "groupId": 11,
-      "seq": 333
+      "groupId": 11
     },
     {
       "id": 334,
@@ -5250,15 +4690,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Ensure that all ids in the data are sequential and unique to maintain data integrity."
         }
       ],
       "name": "Sequential ids",
       "comments": "Quality check for Sequential ids implementation",
-      "groupId": 11,
-      "seq": 334
+      "groupId": 11
     },
     {
       "id": 335,
@@ -5267,8 +4705,7 @@
       ],
       "name": "Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner.",
       "comments": "Quality check for Set 'object-shorthand' to 'always' or 'warn' in 'rules' section. Property shorthand allows you to omit the property name when it matches the variable name, making the code cleaner. implementation",
-      "groupId": 11,
-      "seq": 335
+      "groupId": 11
     },
     {
       "id": 336,
@@ -5277,8 +4714,7 @@
         "react"
       ],
       "comments": "Quality check for Sitemap.xml implementation",
-      "groupId": 11,
-      "seq": 336
+      "groupId": 11
     },
     {
       "id": 337,
@@ -5288,15 +4724,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Create Skeleton components for loading states to improve user experience during data fetching."
         }
       ],
       "name": "Skeleton",
       "comments": "Quality check for Skeleton implementation",
-      "groupId": 11,
-      "seq": 337
+      "groupId": 11
     },
     {
       "id": 338,
@@ -5305,8 +4739,7 @@
       ],
       "name": "SOLID - Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase.",
       "comments": "Quality check for SOLID - Validate use of SOLID [ Single Responsibility Principle (SRP),  Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), Dependency Inversion Principle (DIP) ] principles in codebase. implementation",
-      "groupId": 11,
-      "seq": 338
+      "groupId": 11
     },
     {
       "id": 339,
@@ -5317,8 +4750,7 @@
         "nodejs"
       ],
       "comments": "Quality check for SRP - Single Responsibility Principle implementation",
-      "groupId": 11,
-      "seq": 339
+      "groupId": 11
     },
     {
       "id": 340,
@@ -5327,8 +4759,7 @@
       ],
       "name": "SSR/SSG - Identify opportunities for Server-Side Rendering or Static Site Generation",
       "comments": "Quality check for SSR/SSG - Identify opportunities for Server-Side Rendering or Static Site Generation implementation",
-      "groupId": 11,
-      "seq": 340
+      "groupId": 11
     },
     {
       "id": 341,
@@ -5338,45 +4769,39 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Look for structural issues in client and server codebases and recommend improvements."
         }
       ],
       "name": "Structural",
       "comments": "Quality check for Structural implementation",
-      "groupId": 11,
-      "seq": 341
+      "groupId": 11
     },
     {
       "id": 342,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Look for structural issues in client and server codebases and recommend improvements."
         }
       ],
       "name": "Structural issues review",
       "comments": "Identify and resolve architectural concerns in the codebase",
-      "groupId": 11,
-      "seq": 342
+      "groupId": 11
     },
     {
       "id": 343,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Look for structural issues in client and server codebases and recommend improvements."
         }
       ],
       "name": "Structural issues review",
       "comments": "Identify and resolve architectural concerns in the codebase",
-      "groupId": 11,
-      "seq": 343
+      "groupId": 11
     },
     {
       "id": 344,
@@ -5385,8 +4810,7 @@
       ],
       "name": "Styled Components Performance - Review styled-components usage and identify performance issues or patterns to improve",
       "comments": "Quality check for Styled Components Performance - Review styled-components usage and identify performance issues or patterns to improve implementation",
-      "groupId": 11,
-      "seq": 344
+      "groupId": 11
     },
     {
       "id": 345,
@@ -5395,8 +4819,7 @@
       ],
       "name": "Styles - Are there any styles defined in components that should be moved to main.css?",
       "comments": "Quality check for Styles - Are there any styles defined in components that should be moved to main.css? implementation",
-      "groupId": 11,
-      "seq": 345
+      "groupId": 11
     },
     {
       "id": 346,
@@ -5405,8 +4828,7 @@
       ],
       "name": "Stylesheets - Remove Type",
       "comments": "Quality check for Stylesheets - Remove Type implementation",
-      "groupId": 11,
-      "seq": 346
+      "groupId": 11
     },
     {
       "id": 347,
@@ -5416,8 +4838,7 @@
         "nodejs"
       ],
       "comments": "Quality check for Synk implementation",
-      "groupId": 11,
-      "seq": 347
+      "groupId": 11
     },
     {
       "id": 348,
@@ -5428,7 +4849,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Calculate test coverage percentage for components, hooks, and utilities. Target: 80%+ coverage. Identify critical paths lacking tests."
         }
@@ -5438,23 +4858,20 @@
       "status": "Needs Work - Only 9 test files found, ~<20% coverage",
       "score": "20/100",
       "comments": "Quality check for Test Coverage Analysis implementation",
-      "groupId": 28,
-      "seq": 348
+      "groupId": 28
     },
     {
       "id": 349,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test dark color scheme has sufficient contrast ratios, no pure blacks/whites causing eye strain, and respects user preference."
         }
       ],
       "name": "Test dark color scheme",
       "comments": "Quality check for Test dark color scheme implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 351,
@@ -5463,98 +4880,85 @@
       ],
       "name": "Test for color blindness.",
       "comments": "Quality check for Test for color blindness. implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 352,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test layout utilizes landscape orientation effectively (wide screens). Verify readable line lengths."
         }
       ],
       "name": "Test landscape orientation",
       "comments": "Quality check for Test landscape orientation implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 354,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test light color scheme has sufficient contrast ratios (WCAG AA) and no visual artifacts."
         }
       ],
       "name": "Test light color scheme",
       "comments": "Quality check for Test light color scheme implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 355,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test light color scheme has sufficient contrast ratios (WCAG AA) and no visual artifacts."
         }
       ],
       "name": "Test light color scheme",
       "comments": "Quality check for Test light color scheme implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 356,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test layout adapts correctly for portrait orientation (mobile/tablet). Verify no horizontal overflow."
         }
       ],
       "name": "Test portrait orientation",
       "comments": "Quality check for Test portrait orientation implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 358,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test print styles render correctly - verify page breaks, margins, and print-specific CSS."
         }
       ],
       "name": "Test print styles",
       "comments": "Quality check for Test print styles implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 360,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Test responsive design works correctly for all media types (screen, print, speech)."
         }
       ],
       "name": "Test responsive design",
       "comments": "Quality check for Test responsive design implementation",
-      "groupId": 22,
-      "seq": 1
+      "groupId": 22
     },
     {
       "id": 362,
@@ -5563,8 +4967,7 @@
       ],
       "name": "Testing - Suggest implementing React Testing Library tests for critical user flows",
       "comments": "Quality check for Testing - Suggest implementing React Testing Library tests for critical user flows implementation",
-      "groupId": 11,
-      "seq": 362
+      "groupId": 11
     },
     {
       "id": 363,
@@ -5573,8 +4976,7 @@
         "react"
       ],
       "comments": "Quality check for Title implementation",
-      "groupId": 21,
-      "seq": 1
+      "groupId": 21
     },
     {
       "id": 364,
@@ -5584,7 +4986,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the tsconfig.json file and suggest improvements."
         }
@@ -5594,8 +4995,7 @@
         "Validate TypeScript compiler options for optimal strictness and compatibility",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 364
+      "groupId": 19
     },
     {
       "id": 365,
@@ -5609,8 +5009,7 @@
         "Validate TypeScript compiler options for optimal strictness and compatibility",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 11,
-      "seq": 365
+      "groupId": 11
     },
     {
       "id": 366,
@@ -5620,7 +5019,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the tsconfig.node.json file and suggest improvements."
         }
@@ -5630,8 +5028,7 @@
         "Validate TypeScript compiler options for optimal strictness and compatibility",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 366
+      "groupId": 19
     },
     {
       "id": 367,
@@ -5641,15 +5038,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "code",
           "content": "npx codemod@latest typescript/remove-console"
         }
       ],
       "name": "TypeScript - CodeMods - remove-console",
       "comments": "Quality check for TypeScript - CodeMods - remove-console implementation",
-      "groupId": 11,
-      "seq": 367
+      "groupId": 11
     },
     {
       "id": 368,
@@ -5659,7 +5054,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Audit for 'any' types throughout codebase. Suggest specific type definitions or generic constraints to eliminate them."
         }
@@ -5669,8 +5063,7 @@
       "status": "Passed - Zero 'any' types found",
       "score": "100/100",
       "comments": "Strengthen type safety by replacing 'any' with proper TypeScript types",
-      "groupId": 11,
-      "seq": 368
+      "groupId": 11
     },
     {
       "id": 369,
@@ -5680,15 +5073,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Add 3 strict flags to client tsconfig: noUncheckedIndexedAccess, noImplicitReturns, exactOptionalPropertyTypes"
         }
       ],
       "name": "TypeScript Enhancement",
       "comments": "Quality check for TypeScript Enhancement implementation",
-      "groupId": 19,
-      "seq": 369
+      "groupId": 19
     },
     {
       "id": 370,
@@ -5697,8 +5088,7 @@
       ],
       "name": "Typescript Improvements - Using typescript [latest version], are there any improvements that can be implemented?",
       "comments": "Quality check for Typescript Improvements - Using typescript [latest version], are there any improvements that can be implemented? implementation",
-      "groupId": 11,
-      "seq": 370
+      "groupId": 11
     },
     {
       "id": 371,
@@ -5708,8 +5098,7 @@
       ],
       "name": "TypeScript Strict Mode - Review TypeScript strict mode usage and suggest enabling stricter compiler options",
       "comments": "Quality check for TypeScript Strict Mode - Review TypeScript strict mode usage and suggest enabling stricter compiler options implementation",
-      "groupId": 11,
-      "seq": 371
+      "groupId": 11
     },
     {
       "id": 372,
@@ -5719,15 +5108,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review typescript-react.instructions.md for completeness and accuracy. Ensure all coding standards and guidelines are up to date and clearly documented. Update as needed.  Use modern structures, coding, and best practices."
         }
       ],
       "name": "Typescript-react.instructions.md Review",
       "comments": "Keep coding standards and guidelines current and clear",
-      "groupId": 11,
-      "seq": 372
+      "groupId": 11
     },
     {
       "id": 373,
@@ -5737,7 +5124,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Identify unused CSS using PurgeCSS or similar. Report percentage of unused styles and suggest removal strategy."
         }
@@ -5747,8 +5133,7 @@
       "status": "Passed - Low risk (styled-components eliminates unused CSS)",
       "score": "100/100",
       "comments": "Quality check for Unused CSS Detection implementation",
-      "groupId": 11,
-      "seq": 373
+      "groupId": 11
     },
     {
       "id": 374,
@@ -5759,7 +5144,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "Instructions",
           "content": "Check for unused dependencies in package.json using depcheck. Remove or document why each flagged dependency is needed. Frequency: Monthly."
         }
@@ -5769,8 +5153,7 @@
       "status": "Passed - Manual review shows all dependencies in use",
       "score": "90/100",
       "comments": "Maintain healthy dependency tree and minimize vulnerabilities",
-      "groupId": 27,
-      "seq": 374
+      "groupId": 27
     },
     {
       "id": 375,
@@ -5780,15 +5163,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Are there any files at the src/ level not being used?"
         }
       ],
       "name": "Unused Files",
       "comments": "Quality check for Unused Files implementation",
-      "groupId": 11,
-      "seq": 375
+      "groupId": 11
     },
     {
       "id": 376,
@@ -5797,8 +5178,7 @@
         "react"
       ],
       "comments": "Quality check for Unused Style Files implementation",
-      "groupId": 11,
-      "seq": 376
+      "groupId": 11
     },
     {
       "id": 377,
@@ -5808,15 +5188,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Review eslint.config files.  Are there any conflicting or duplicate rules?"
         }
       ],
       "name": "Update eslint configs",
       "comments": "Review linting rules for comprehensive code quality enforcement",
-      "groupId": 19,
-      "seq": 377
+      "groupId": 19
     },
     {
       "id": 378,
@@ -5826,15 +5204,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "useEffectEvent is stable.  Look for opportunities in the code to use this function."
         }
       ],
       "name": "useEffectEvent",
       "comments": "Quality check for useEffectEvent implementation",
-      "groupId": 11,
-      "seq": 378
+      "groupId": 11
     },
     {
       "id": 379,
@@ -5844,37 +5220,32 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Remove unused or redundant CSS rules from the codebase to improve maintainability and performance."
         }
       ],
       "name": "Useless CSS Removal",
       "comments": "Quality check for Useless CSS Removal implementation",
-      "groupId": 11,
-      "seq": 379
+      "groupId": 11
     },
     {
       "id": 381,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Validate json files contain valid json."
         }
       ],
       "name": "Validate JSON files",
       "comments": "Ensure data integrity with valid JSON syntax",
-      "groupId": 40,
-      "seq": 1
+      "groupId": 40
     },
     {
       "id": 382,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Validate all mutation operations use request body for data."
         }
@@ -5882,7 +5253,6 @@
       "name": "Validate mutation operations",
       "comments": "Follow REST principles for data modification endpoints",
       "groupId": 8,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -5892,7 +5262,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Validate there are no deprecated event handlers (onKeyPress, componentWillMount, componentWillReceiveProps, etc.) in the codebase. Confirm modern React 19+ patterns and hooks are used throughout."
         }
@@ -5902,15 +5271,13 @@
         "Remove outdated APIs and patterns to maintain code health",
         "Modernize event handling to React 19+ standards"
       ],
-      "groupId": 2,
-      "seq": 1
+      "groupId": 2
     },
     {
       "id": 386,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Validate there is no excessive prop drilling in the codebase."
         }
@@ -5918,7 +5285,6 @@
       "name": "Validate no prop drilling",
       "comments": "Reduce component coupling by eliminating excessive prop passing",
       "groupId": 8,
-      "seq": 1,
       "tags": [
         "ai"
       ]
@@ -5928,7 +5294,6 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Validate overrides are necessary in package.json files. Suggest removing unnecessary overrides to simplify dependency management."
         }
@@ -5939,15 +5304,13 @@
         "Validate necessity of dependency overrides to minimize maintenance burden",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 387
+      "groupId": 19
     },
     {
       "id": 388,
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "description",
           "content": "Validate overrides are necessary in package.json files. Suggest removing unnecessary overrides to simplify dependency management."
         }
@@ -5958,8 +5321,7 @@
         "Validate necessity of dependency overrides to minimize maintenance burden",
         "Ensure data integrity with valid JSON syntax"
       ],
-      "groupId": 19,
-      "seq": 388
+      "groupId": 19
     },
     {
       "id": 389,
@@ -5968,8 +5330,7 @@
         "react"
       ],
       "comments": "Quality check for Viewport implementation",
-      "groupId": 21,
-      "seq": 1
+      "groupId": 21
     },
     {
       "id": 390,
@@ -5979,15 +5340,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the vite.config.mts file and suggest improvements."
         }
       ],
       "name": "vite.config.mts",
       "comments": "Review build tool configuration for optimal development and production builds",
-      "groupId": 19,
-      "seq": 390
+      "groupId": 19
     },
     {
       "id": 391,
@@ -5997,15 +5356,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Read the vitest.config.ts file and suggest improvements."
         }
       ],
       "name": "vitetest.config.ts",
       "comments": "Quality check for vitetest.config.ts implementation",
-      "groupId": 19,
-      "seq": 391
+      "groupId": 19
     },
     {
       "id": 392,
@@ -6015,15 +5372,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Configure Web Application Firewall rules for production deployment - future implementation"
         }
       ],
       "name": "WAF Rules",
       "comments": "Configure security layer for production environment protection",
-      "groupId": 11,
-      "seq": 392
+      "groupId": 11
     },
     {
       "id": 393,
@@ -6033,15 +5388,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "Update all Zod deprecated methods and syntax to the latest version."
         }
       ],
       "name": "Zod",
       "comments": "Quality check for Zod implementation",
-      "groupId": 11,
-      "seq": 393
+      "groupId": 11
     },
     {
       "id": 394,
@@ -6051,15 +5404,13 @@
       "code": [
         {
           "id": 1,
-          "seq": 1,
           "type": "prompt",
           "content": "ZodeIssue is deprecated.  Update to use z.core.$ZodIssue"
         }
       ],
       "name": "ZodIssue",
       "comments": "Quality check for ZodIssue implementation",
-      "groupId": 11,
-      "seq": 394
+      "groupId": 11
     }
   ]
 }

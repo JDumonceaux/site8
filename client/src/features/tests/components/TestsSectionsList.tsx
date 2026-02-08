@@ -15,11 +15,13 @@ import {
 import TestItem from './TestItem';
 
 type TestsSectionsListProps = {
+  readonly error?: Error | null;
   readonly onEditItem: (item: Test, groupId: number) => void;
   readonly sections: readonly TestSection[];
 };
 
 const TestsSectionsList = ({
+  error,
   onEditItem,
   sections,
 }: TestsSectionsListProps): JSX.Element => {
@@ -28,7 +30,11 @@ const TestsSectionsList = ({
   );
 
   if (visibleSections.length === 0) {
-    return <TestsContainer>No tests match the current filters.</TestsContainer>;
+    return (
+      <TestsContainer>
+        {error ? 'Failed to fetch' : 'No tests match the current filters.'}
+      </TestsContainer>
+    );
   }
 
   return (

@@ -98,6 +98,7 @@ export const TestsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
 `;
 
 export const SectionTitle = styled.h2`

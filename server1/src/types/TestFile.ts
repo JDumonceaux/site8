@@ -26,14 +26,12 @@ export type Test = {
   readonly groupId: number;
   readonly id: number;
   readonly name: string;
-  readonly seq: number;
   readonly tags?: readonly string[];
 };
 
 export type TestCode = {
   readonly content: string;
   readonly id: number;
-  readonly seq: number;
   readonly type: string;
 };
 

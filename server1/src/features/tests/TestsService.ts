@@ -38,7 +38,6 @@ export class TestsService extends BaseDataService<TestFile> {
           comments: item.comments,
           id: item.id,
           name: item.name,
-          seq: item.seq,
           tags: item.tags ? [...item.tags] : undefined,
         }))
         .sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
@@ -125,7 +124,6 @@ export class TestsService extends BaseDataService<TestFile> {
           comments: item.comments,
           id: item.id,
           name: item.name,
-          seq: item.seq,
           tags: item.tags ? [...item.tags] : undefined,
         }),
       );
@@ -168,10 +166,7 @@ export class TestsService extends BaseDataService<TestFile> {
           // Check if this item is in our items and belongs to this group
           const groupItem = itemsMap.get(fileItem.id);
           if (groupItem && itemGroupIds.get(fileItem.id) === group.id) {
-            groupItems.push({
-              ...groupItem,
-              seq: fileItem.seq,
-            });
+            groupItems.push(groupItem);
           }
         }
 
@@ -179,9 +174,6 @@ export class TestsService extends BaseDataService<TestFile> {
         if (groupItems.length === 0) {
           continue;
         }
-
-        // Sort items by seq
-        groupItems.sort((a, b) => (a.seq ?? 0) - (b.seq ?? 0));
 
         populatedGroups.push({
           comments: group.comments,
@@ -239,14 +231,12 @@ export class TestsService extends BaseDataService<TestFile> {
             return (a.name ?? '').localeCompare(b.name ?? '');
           });
 
-          // Sort items within each group by seq, then name
+          // Sort items within each group by name
           for (const group of section.groups) {
             if (group.items) {
-              group.items.sort((a, b) => {
-                const seqDiff = (a.seq ?? 0) - (b.seq ?? 0);
-                if (seqDiff !== 0) return seqDiff;
-                return (a.name ?? '').localeCompare(b.name ?? '');
-              });
+              group.items.sort((a, b) =>
+                (a.name ?? '').localeCompare(b.name ?? ''),
+              );
             }
           }
         }

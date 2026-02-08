@@ -73,14 +73,12 @@ const TestItem = ({ groupId, item, onEdit }: TestItemProps): JSX.Element => {
         <>
           {item.code != null && item.code.length > 0 ? (
             <>
-              {item.code
-                .toSorted((a, b) => a.seq - b.seq)
-                .map((codeBlock) => (
-                  <CodeBlock
-                    code={codeBlock.content}
-                    key={codeBlock.id}
-                  />
-                ))}
+              {item.code.map((codeBlock) => (
+                <CodeBlock
+                  code={codeBlock.content}
+                  key={codeBlock.id}
+                />
+              ))}
             </>
           ) : null}
           {item.comments ? <TestComments>{item.comments}</TestComments> : null}

@@ -12,7 +12,6 @@ export type TestSection = {
   readonly id: number;
   readonly name: string;
   readonly description?: string;
-  readonly seq?: number;
   readonly groups?: TestGroup[];
 };
 
@@ -22,7 +21,6 @@ export type TestGroup = {
   readonly items?: Test[];
   readonly comments?: string;
   readonly tags?: string[];
-  readonly seq?: number;
   readonly sectionId?: number;
   readonly sectionName?: string;
 };
@@ -31,7 +29,6 @@ export type Test = {
   readonly id: number;
   readonly name: string;
   readonly code?: TestCode[];
-  readonly seq?: number;
   readonly tags?: string[];
   readonly comments?: string;
 };
@@ -39,7 +36,6 @@ export type Test = {
 export type TestCode = {
   readonly content: string;
   readonly id: number;
-  readonly seq: number;
   readonly type: string;
 };
 

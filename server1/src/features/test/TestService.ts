@@ -61,7 +61,6 @@ export class TestService extends BaseDataService<TestFile> {
         ...itemData,
         groupId: groupId,
         id: newId,
-        seq: itemData.seq ?? 1,
       };
 
       // Create updated test file
@@ -264,7 +263,6 @@ export class TestService extends BaseDataService<TestFile> {
       if (!hasGroupMembership) {
         // Update group membership
         updatedItem.groupId = newGroupId;
-        updatedItem.seq = 1;
 
         Logger.info(
           `TestService: updateItem: Moved item ${itemId} to group ${newGroupId}`,
@@ -272,7 +270,6 @@ export class TestService extends BaseDataService<TestFile> {
       } else {
         // Keep existing group membership
         updatedItem.groupId = currentGroupId;
-        updatedItem.seq = existingItem.seq;
       }
 
       // Create mutable copy of items array with the updated item
