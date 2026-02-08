@@ -56,20 +56,20 @@
     },
     {
       "id": 9,
-      "name": "CodeMods",
+      "name": "Client",
       "tags": [
         "client"
       ],
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path).",
+      "comments": "",
       "sectionId": 9
     },
     {
       "id": 10,
-      "name": "CodeMods",
+      "name": "Server",
       "tags": [
-        "client"
+        "server"
       ],
-      "comments": "These are automated code modifications to update codebase to new standards or libraries.  More are available at <a href=\"app.codemods.dev\" target=\"_blank\">app.codemods.dev</a>.  These can be run as npx codemod react/19/replace-string-ref or npx codemod react/19/replace-string-ref --target <path> (to target a specific file/path).",
+      "comments": "",
       "sectionId": 9
     },
     {
@@ -258,6 +258,16 @@
       "id": 40,
       "name": "Server",
       "sectionId": 7
+    },
+    {
+      "id": 41,
+      "name": "Server - API",
+      "sectionId": 7
+    },
+    {
+      "id": 42,
+      "name": "Client - Best Practices",
+      "sectionId": 7
     }
   ],
   "sections": [
@@ -298,8 +308,8 @@
     },
     {
       "id": 9,
-      "name": "Component Best Practices",
-      "comments": "React component best practices including display names and React 19 features"
+      "name": "Code Maintentance",
+      "comments": "General code review tasks to ensure code quality and adherence to best practices."
     },
     {
       "id": 10,
@@ -592,20 +602,10 @@
       ],
       "name": "Add display names to components",
       "comments": "Improve debugging and DevTools experience with component display names",
-      "groupId": 8
-    },
-    {
-      "id": 15,
-      "code": [
-        {
-          "id": 1,
-          "type": "description",
-          "content": "Add a display name to every component if missing. Add the name before the component export."
-        }
-      ],
-      "name": "Add display names to components",
-      "comments": "Improve debugging and DevTools experience with component display names",
-      "groupId": 8
+      "groupId": 8,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 16,
@@ -714,7 +714,7 @@
       "status": "Needs Work - No Swagger/OpenAPI specification found",
       "score": "30/100",
       "comments": "Maintain up-to-date and comprehensive project documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 24,
@@ -746,7 +746,7 @@
       ],
       "name": "API End points - Parameters",
       "comments": "Quality check for API End points - Parameters implementation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 26,
@@ -762,7 +762,7 @@
       ],
       "name": "API End points - Parameters Client",
       "comments": "Quality check for API End points - Parameters Client implementation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 27,
@@ -775,7 +775,7 @@
       ],
       "name": "API endpoint consistency",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 28,
@@ -791,7 +791,7 @@
       ],
       "name": "API Router Consistency ",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 29,
@@ -807,7 +807,7 @@
       ],
       "name": "API Router Consistency - Error Logging",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 30,
@@ -823,7 +823,7 @@
       ],
       "name": "API Router Consistency - Error Response Formats",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 31,
@@ -839,7 +839,7 @@
       ],
       "name": "API Router Consistency - Kebab-case",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 32,
@@ -855,7 +855,7 @@
       ],
       "name": "API Router Consistency - Modern Error Responses",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 33,
@@ -871,7 +871,7 @@
       ],
       "name": "API Router Consistency - Pattern Summary",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 34,
@@ -887,7 +887,7 @@
       ],
       "name": "API Router Consistency - Request Body",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 35,
@@ -903,7 +903,7 @@
       ],
       "name": "API Router Consistency - Request Body Structure",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 36,
@@ -919,7 +919,7 @@
       ],
       "name": "API Router Consistency - Response Structure Analysis",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 37,
@@ -935,7 +935,7 @@
       ],
       "name": "API Router Consistency - Status Codes Analysis",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 38,
@@ -951,7 +951,7 @@
       ],
       "name": "API Router Consistency - Try-Catch Patterns",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 39,
@@ -967,7 +967,7 @@
       ],
       "name": "API Router Consistency Analysis Report",
       "comments": "Ensure consistent API design and proper documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 40,
@@ -992,7 +992,7 @@
       ],
       "name": "Array Index as Key",
       "comments": "Quality check for Array Index as Key implementation",
-      "groupId": 11
+      "groupId": 42
     },
     {
       "id": 42,
@@ -1018,7 +1018,7 @@
       ],
       "name": "Audit API documentation",
       "comments": "Maintain up-to-date and comprehensive project documentation",
-      "groupId": 11
+      "groupId": 41
     },
     {
       "id": 44,
@@ -1373,22 +1373,6 @@
       "groupId": 8
     },
     {
-      "id": 74,
-      "tags": [
-        "ai"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "type": "prompt",
-          "content": "Review all the code to identify opportunities to use the error handling changes introduced in React 19."
-        }
-      ],
-      "name": "Code Cleanup - API",
-      "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 40
-    },
-    {
       "id": 75,
       "tags": [
         "ai"
@@ -1400,9 +1384,9 @@
           "content": "Review all the Servier API endpoints to identify services not used by the client and suggest removing them."
         }
       ],
-      "name": "Code Cleanup - API",
+      "name": "Code Cleanup - Unused API Code",
       "comments": "Quality check for Code Cleanup - API implementation",
-      "groupId": 40
+      "groupId": 41
     },
     {
       "id": 76,
@@ -1479,7 +1463,7 @@
       ],
       "name": "Code Duplication",
       "comments": "Quality check for Code Duplication implementation",
-      "groupId": 11
+      "groupId": 42
     },
     {
       "id": 83,
@@ -1495,7 +1479,7 @@
       ],
       "name": "Code Review",
       "comments": "Template for systematic component quality assessment",
-      "groupId": 11
+      "groupId": 42
     },
     {
       "id": 84,
@@ -1747,17 +1731,6 @@
       "groupId": 11
     },
     {
-      "id": 103,
-      "name": "Cyclomatic Complexity",
-      "goal": "1-4",
-      "tags": [
-        "react",
-        "nodejs"
-      ],
-      "comments": "Quality check for Cyclomatic Complexity implementation",
-      "groupId": 11
-    },
-    {
       "id": 104,
       "notes": "12/27/2025: Total Files 471, Average Complexity: 4.53.  Results: Excellent.",
       "tags": [
@@ -1772,7 +1745,7 @@
       ],
       "name": "Cylclomatic Complexity",
       "comments": "Quality check for Cylclomatic Complexity implementation",
-      "groupId": 11
+      "groupId": 28
     },
     {
       "id": 105,
@@ -2486,7 +2459,7 @@
       "id": 160,
       "name": "Keywords",
       "tags": [
-        "react"
+        "web"
       ],
       "comments": "Quality check for Keywords implementation",
       "groupId": 21
@@ -2511,7 +2484,7 @@
       "id": 162,
       "name": "Language",
       "tags": [
-        "react"
+        "web"
       ],
       "comments": "Quality check for Language implementation",
       "groupId": 21
@@ -4973,7 +4946,7 @@
       "id": 363,
       "name": "Title",
       "tags": [
-        "react"
+        "web"
       ],
       "comments": "Quality check for Title implementation",
       "groupId": 21
@@ -5327,7 +5300,7 @@
       "id": 389,
       "name": "Viewport",
       "tags": [
-        "react"
+        "web"
       ],
       "comments": "Quality check for Viewport implementation",
       "groupId": 21

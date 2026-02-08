@@ -1,8 +1,9 @@
 import type { JSX } from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useEffectEvent, useState } from 'react';
 
 import Dialog from '@components/core/dialog/Dialog';
 import Button from '@components/ui/button/Button';
+import Input from '@components/ui/input/Input';
 import type { Test } from '@site8/shared';
 import useTestGroups from '../../useTestGroups';
 import CodeItemEditor from './components/CodeItemEditor';
@@ -12,14 +13,11 @@ import {
   FooterButtons,
   Form,
   FormField,
-  Input,
   Label,
   LabelRow,
   LeftButtons,
   RightButtons,
   ScrollableContent,
-  Select,
-  TextArea,
 } from './TestItemEditDialog.styles';
 import { formatTags, parseTags } from './utils';
 
@@ -41,8 +39,8 @@ const TestItemEditDialog = ({
   onSave,
 }: TestItemEditDialogProps): JSX.Element => {
   const { groups: availableGroups } = useTestGroups();
-  const [name, setName] = useState(item?.name ?? '');
   const defaultGroupId = availableGroups[0]?.id ?? 1;
+  const [name, setName] = useState(item?.name ?? '');
   const [selectedGroupId, setSelectedGroupId] = useState<number>(
     groupId ?? defaultGroupId,
   );
@@ -58,13 +56,21 @@ const TestItemEditDialog = ({
     handleUpdateCode,
   } = useCodeItemsManager(item?.code);
 
-  // Sync state with props when dialog opens with new data
-  useEffect(() => {
+  // Effect event for syncing form state with props
+  const onSyncFormState = useEffectEvent(() => {
     setName(item?.name ?? '');
     setComments(item?.comments ?? '');
     setTags(formatTags(item?.tags));
     setSelectedGroupId(groupId ?? defaultGroupId);
-  }, [item, groupId, defaultGroupId]);
+  });
+
+  // Sync state when dialog opens with new data
+  useEffect(() => {
+    if (isOpen) {
+      // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-data-to-parent, react-you-might-not-need-an-effect/no-derived-state
+      onSyncFormState();
+    }
+  }, [isOpen, item?.id]);
 
   const handleSave = useCallback(() => {
     const itemToSave: Test = item
@@ -161,60 +167,46 @@ const TestItemEditDialog = ({
     >
       <ScrollableContent>
         <Form>
-          <FormField>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              type="text"
-              value={name}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="group">Group</Label>
-            <Select
-              id="group"
-              onChange={(e) => {
-                setSelectedGroupId(Number(e.target.value));
-              }}
-              value={selectedGroupId}
-            >
-              {availableGroups.map((group) => (
-                <option
-                  key={group.id}
-                  value={group.id}
-                >
-                  {group.sectionName ?? 'Unknown Section'}- {group.name}-{' '}
-                  {group.id}
-                </option>
-              ))}
-            </Select>
-          </FormField>
-          <FormField>
-            <Label htmlFor="tags">Tags (comma-separated)</Label>
-            <Input
-              id="tags"
-              onChange={(e) => {
-                setTags(e.target.value);
-              }}
-              placeholder="e.g. ai, react, nodejs"
-              type="text"
-              value={tags}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="comments">Comments</Label>
-            <TextArea
-              id="comments"
-              onChange={(e) => {
-                setComments(e.target.value);
-              }}
-              rows={4}
-              value={comments}
-            />
-          </FormField>
+          <Input.Text
+            id="name"
+            label="Name"
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            required
+            value={name}
+          />
+          <Input.Select
+            dataList={availableGroups.map((group) => ({
+              display: `${group.sectionName ?? 'Unknown Section'}- ${group.name}- ${group.id}`,
+              key: String(group.id),
+              value: String(group.id),
+            }))}
+            id="group"
+            label="Group"
+            onChange={(e) => {
+              setSelectedGroupId(Number(e.target.value));
+            }}
+            value={String(selectedGroupId)}
+          />
+          <Input.Text
+            id="tags"
+            label="Tags (comma-separated)"
+            onChange={(e) => {
+              setTags(e.target.value);
+            }}
+            placeholder="e.g. ai, react, nodejs"
+            value={tags}
+          />
+          <Input.TextArea
+            id="comments"
+            label="Comments"
+            onChange={(e) => {
+              setComments(e.target.value);
+            }}
+            rows={4}
+            value={comments}
+          />
           <FormField>
             <LabelRow>
               <Label>Code Items</Label>
