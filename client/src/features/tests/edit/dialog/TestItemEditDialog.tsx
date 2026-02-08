@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Dialog from '@components/core/dialog/Dialog';
 import Button from '@components/ui/button/Button';
@@ -58,18 +58,32 @@ const TestItemEditDialog = ({
     handleUpdateCode,
   } = useCodeItemsManager(item?.code);
 
+  // Sync state with props when dialog opens with new data
+  useEffect(() => {
+    setName(item?.name ?? '');
+    setComments(item?.comments ?? '');
+    setTags(formatTags(item?.tags));
+    setSelectedGroupId(groupId ?? defaultGroupId);
+  }, [item, groupId, defaultGroupId]);
+
   const handleSave = useCallback(() => {
-    if (!item) return;
+    const itemToSave: Test = item
+      ? {
+          ...item,
+          code: codeItems.length > 0 ? codeItems : undefined,
+          comments: comments.trim() || undefined,
+          name,
+          tags: parseTags(tags),
+        }
+      : {
+          code: codeItems.length > 0 ? codeItems : undefined,
+          comments: comments.trim() || undefined,
+          id: 0,
+          name,
+          tags: parseTags(tags),
+        };
 
-    const updatedItem: Test = {
-      ...item,
-      code: codeItems.length > 0 ? codeItems : undefined,
-      comments: comments.trim() || undefined,
-      name,
-      tags: parseTags(tags),
-    };
-
-    onSave(updatedItem, selectedGroupId);
+    onSave(itemToSave, selectedGroupId);
     onClose();
   }, [item, name, comments, tags, codeItems, selectedGroupId, onSave, onClose]);
 
@@ -107,7 +121,7 @@ const TestItemEditDialog = ({
       footer={
         <FooterButtons>
           <LeftButtons>
-            {onDelete ? (
+            {item && onDelete ? (
               <Button
                 onClick={handleDelete}
                 variant="secondary"
@@ -115,12 +129,14 @@ const TestItemEditDialog = ({
                 Delete
               </Button>
             ) : null}
-            <Button
-              onClick={handleCopy}
-              variant="secondary"
-            >
-              Copy
-            </Button>
+            {item ? (
+              <Button
+                onClick={handleCopy}
+                variant="secondary"
+              >
+                Copy
+              </Button>
+            ) : null}
           </LeftButtons>
           <RightButtons>
             <Button
@@ -139,7 +155,7 @@ const TestItemEditDialog = ({
         </FooterButtons>
       }
       isOpen={isOpen}
-      label="Edit Test Item"
+      label={item ? 'Edit Test Item' : 'Add Test Item'}
       onOpenChange={onClose}
       size="lg"
     >

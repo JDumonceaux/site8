@@ -192,6 +192,11 @@ const TestsPage = (): JSX.Element => {
                 {isGrouped ? (
                   <TestsSectionsList
                     error={activeError}
+                    onAddItem={(groupId) => {
+                      setEditingItem(null);
+                      setEditingGroupId(groupId);
+                      setIsDialogOpen(true);
+                    }}
                     onEditItem={handleEditItem}
                     sections={filteredSections}
                   />

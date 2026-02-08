@@ -1,5 +1,7 @@
 import type { JSX } from 'react';
 
+import IconButton from '@components/ui/button/icon-button/IconButton';
+import { AddIcon } from '@components/ui/icons';
 import type { Test, TestSection } from '@site8/shared';
 import {
   GroupComments,
@@ -13,15 +15,18 @@ import {
   TestsContainer,
 } from '../TestsPage.styles';
 import TestItem from './TestItem';
+import styled from 'styled-components';
 
 type TestsSectionsListProps = {
   readonly error?: Error | null;
+  readonly onAddItem: (groupId: number) => void;
   readonly onEditItem: (item: Test, groupId: number) => void;
   readonly sections: readonly TestSection[];
 };
 
 const TestsSectionsList = ({
   error,
+  onAddItem,
   onEditItem,
   sections,
 }: TestsSectionsListProps): JSX.Element => {
@@ -49,7 +54,17 @@ const TestsSectionsList = ({
             ?.filter((group) => group.items && group.items.length > 0)
             .map((group) => (
               <GroupSection key={group.id}>
-                <GroupTitle>{group.name}</GroupTitle>
+                <GroupTitleRow>
+                  <GroupTitle>{group.name}</GroupTitle>
+                  <IconButton
+                    aria-label="Add test to group"
+                    onClick={() => {
+                      onAddItem(group.id);
+                    }}
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </GroupTitleRow>
                 {group.tags && group.tags.length > 0 ? (
                   <TagsContainer>
                     {group.tags.map((tag: string) => (
@@ -79,3 +94,10 @@ const TestsSectionsList = ({
 };
 
 export default TestsSectionsList;
+
+const GroupTitleRow = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+`;

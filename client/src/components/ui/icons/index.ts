@@ -1,3 +1,4 @@
+export * from './AddIcon';
 export * from './AmazonIcon';
 export * from './CloseIcon';
 export * from './CopyIcon';
