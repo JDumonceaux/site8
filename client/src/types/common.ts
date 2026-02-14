@@ -15,7 +15,10 @@ export type EntityPair<TKey extends number | string = number> = {
  * Generic type for indexed key-value pairs
  * Useful for array indices mapped to values
  */
-export type IndexedPair<TValue = string> = {
-  readonly key: number;
+export type IndexedPair<
+  TValue = string,
+  TKey extends number | string = number,
+> = {
+  readonly key: TKey;
   readonly value: TValue;
 };

@@ -1,11 +1,5 @@
 import type { JSX } from 'react';
-import {
-  useCallback,
-  useEffect,
-  useEffectEvent,
-  useMemo,
-  useState,
-} from 'react';
+import { useCallback } from 'react';
 
 import Dialog from '@components/core/dialog/Dialog';
 import { Button } from '@components/ui';
@@ -19,6 +13,7 @@ import {
 import type { Place } from '@site8/shared';
 import type { FieldError } from '@types';
 import * as v from 'valibot';
+import { useTravelItemFormState } from './hooks/useTravelItemFormState';
 import {
   FooterButtons,
   Form,
@@ -27,6 +22,7 @@ import {
   ScrollableContent,
 } from './TravelItemEditDialog.styles';
 import styled from 'styled-components';
+import { toPlaceFormData, toPlaceToSave } from './utils/placeFormMapper';
 
 // ============================================================================
 // Validation Schema
@@ -64,26 +60,6 @@ const toFieldErrors = (error: string | undefined): FieldError[] | undefined => {
   return [{ message: error }];
 };
 
-/**
- * Format tags array to comma-separated string
- */
-const formatTags = (tags: string[] | undefined): string => {
-  if (!tags || tags.length === 0) return '';
-  return tags.join(', ');
-};
-
-/**
- * Parse comma-separated tags string to array
- */
-const parseTags = (tagsString: string): string[] | undefined => {
-  const trimmed = tagsString.trim();
-  if (!trimmed) return undefined;
-  return trimmed
-    .split(',')
-    .map((tag) => tag.trim())
-    .filter((tag) => tag.length > 0);
-};
-
 // ============================================================================
 // Component Props
 // ============================================================================
@@ -103,53 +79,40 @@ const TravelItemEditDialog = ({
   onDelete,
   onSave,
 }: TravelItemEditDialogProps): JSX.Element => {
-  const [name, setName] = useState(item?.name ?? '');
-  const [city, setCity] = useState(item?.city ?? '');
-  const [country, setCountry] = useState(item?.country ?? '');
-  const [state, setState] = useState(item?.state ?? '');
-  const [region, setRegion] = useState(item?.region ?? '');
-  const [address, setAddress] = useState(item?.address ?? '');
-  const [description, setDescription] = useState(item?.description ?? '');
-  const [type, setType] = useState(item?.type ?? '');
-  const [lat, setLat] = useState(item?.lat?.toString() ?? '');
-  const [lon, setLon] = useState(item?.lon?.toString() ?? '');
-  const [tags, setTags] = useState(formatTags(item?.tags));
-  const [visited, setVisited] = useState(item?.visited ?? false);
-
   // Validation
   const { clearErrors, errors, hasErrors, validate, validateField } =
     useValibotValidation(placeItemSchema);
 
-  // Check if required fields are filled
-  const isFormValid = useMemo(
-    () => name.trim().length > 0 && !hasErrors,
-    [name, hasErrors],
+  const { formValues, isFormValid, setTextField, setVisited } =
+    useTravelItemFormState({
+      clearErrors,
+      hasErrors,
+      isOpen,
+      item,
+    });
+
+  const {
+    address,
+    city,
+    country,
+    description,
+    lat,
+    lon,
+    name,
+    region,
+    state,
+    tags,
+    type,
+    visited,
+  } = formValues;
+
+  const handleFieldChange = useCallback(
+    (field: Exclude<keyof typeof formValues, 'visited'>) =>
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setTextField(field, e.target.value);
+      },
+    [setTextField],
   );
-
-  // Effect event for syncing form state with props
-  const onSyncFormState = useEffectEvent(() => {
-    setName(item?.name ?? '');
-    setCity(item?.city ?? '');
-    setCountry(item?.country ?? '');
-    setState(item?.state ?? '');
-    setRegion(item?.region ?? '');
-    setAddress(item?.address ?? '');
-    setDescription(item?.description ?? '');
-    setType(item?.type ?? '');
-    setLat(item?.lat?.toString() ?? '');
-    setLon(item?.lon?.toString() ?? '');
-    setTags(formatTags(item?.tags));
-    setVisited(item?.visited ?? false);
-    clearErrors();
-  });
-
-  // Sync state when dialog opens with new data
-  useEffect(() => {
-    if (isOpen) {
-      // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-data-to-parent, react-you-might-not-need-an-effect/no-derived-state
-      onSyncFormState();
-    }
-  }, [isOpen, item?.id]);
 
   // ============================================================================
   // Validation Handlers
@@ -170,79 +133,18 @@ const TravelItemEditDialog = ({
    * Handle form submission with validation
    */
   const handleSave = useCallback(() => {
-    const formData: PlaceItemFormData = {
-      address: address.trim() || undefined,
-      city: city.trim() || undefined,
-      country: country.trim() || undefined,
-      description: description.trim() || undefined,
-      lat: lat.trim() ? Number(lat) : undefined,
-      lon: lon.trim() ? Number(lon) : undefined,
-      name,
-      region: region.trim() || undefined,
-      state: state.trim() || undefined,
-      tags: tags.trim(),
-      type: type.trim() || undefined,
-      visited,
-    };
+    const formData: PlaceItemFormData = toPlaceFormData(formValues);
 
     // Validate entire form
     if (!validate(formData)) {
       return; // Stop if validation fails
     }
 
-    // Convert to Place object
-    const itemToSave: Place = item
-      ? {
-          ...item,
-          address: address.trim() || undefined,
-          city: city.trim() || undefined,
-          country: country.trim() || undefined,
-          description: description.trim() || undefined,
-          lat: lat.trim() ? Number(lat) : undefined,
-          lon: lon.trim() ? Number(lon) : undefined,
-          name,
-          region: region.trim() || undefined,
-          state: state.trim() || undefined,
-          tags: parseTags(tags),
-          type: type.trim() || undefined,
-          visited,
-        }
-      : {
-          address: address.trim() || undefined,
-          city: city.trim() || undefined,
-          country: country.trim() || undefined,
-          description: description.trim() || undefined,
-          id: 0,
-          lat: lat.trim() ? Number(lat) : undefined,
-          lon: lon.trim() ? Number(lon) : undefined,
-          name,
-          region: region.trim() || undefined,
-          state: state.trim() || undefined,
-          tags: parseTags(tags),
-          type: type.trim() || undefined,
-          visited,
-        };
+    const itemToSave: Place = toPlaceToSave(item, formValues);
 
     onSave(itemToSave);
     onClose();
-  }, [
-    address,
-    city,
-    country,
-    description,
-    item,
-    lat,
-    lon,
-    name,
-    onClose,
-    onSave,
-    region,
-    state,
-    tags,
-    type,
-    validate,
-    visited,
-  ]);
+  }, [formValues, item, onClose, onSave, validate]);
 
   const handleCancel = useCallback(() => {
     clearErrors();
@@ -326,63 +228,49 @@ const TravelItemEditDialog = ({
             isRequired
             label="Name"
             onBlur={handleNameBlur}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
+            onChange={handleFieldChange('name')}
             value={name}
           />
           <Input.Text
             errors={toFieldErrors(errors.city)}
             id="city"
             label="City"
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
+            onChange={handleFieldChange('city')}
             value={city}
           />
           <Input.Text
             errors={toFieldErrors(errors.country)}
             id="country"
             label="Country"
-            onChange={(e) => {
-              setCountry(e.target.value);
-            }}
+            onChange={handleFieldChange('country')}
             value={country}
           />
           <Input.Text
             errors={toFieldErrors(errors.state)}
             id="state"
             label="State"
-            onChange={(e) => {
-              setState(e.target.value);
-            }}
+            onChange={handleFieldChange('state')}
             value={state}
           />
           <Input.Text
             errors={toFieldErrors(errors.region)}
             id="region"
             label="Region"
-            onChange={(e) => {
-              setRegion(e.target.value);
-            }}
+            onChange={handleFieldChange('region')}
             value={region}
           />
           <Input.Text
             errors={toFieldErrors(errors.address)}
             id="address"
             label="Address"
-            onChange={(e) => {
-              setAddress(e.target.value);
-            }}
+            onChange={handleFieldChange('address')}
             value={address}
           />
           <Input.TextArea
             errors={toFieldErrors(errors.description)}
             id="description"
             label="Description"
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
+            onChange={handleFieldChange('description')}
             rows={4}
             value={description}
           />
@@ -390,18 +278,14 @@ const TravelItemEditDialog = ({
             errors={toFieldErrors(errors.type)}
             id="type"
             label="Type"
-            onChange={(e) => {
-              setType(e.target.value);
-            }}
+            onChange={handleFieldChange('type')}
             value={type}
           />
           <Input.Text
             errors={toFieldErrors(errors.lat)}
             id="lat"
             label="Latitude"
-            onChange={(e) => {
-              setLat(e.target.value);
-            }}
+            onChange={handleFieldChange('lat')}
             placeholder="e.g. 40.7128"
             value={lat}
           />
@@ -409,9 +293,7 @@ const TravelItemEditDialog = ({
             errors={toFieldErrors(errors.lon)}
             id="lon"
             label="Longitude"
-            onChange={(e) => {
-              setLon(e.target.value);
-            }}
+            onChange={handleFieldChange('lon')}
             placeholder="e.g. -74.0060"
             value={lon}
           />
@@ -419,9 +301,7 @@ const TravelItemEditDialog = ({
             errors={toFieldErrors(errors.tags)}
             id="tags"
             label="Tags (comma-separated)"
-            onChange={(e) => {
-              setTags(e.target.value);
-            }}
+            onChange={handleFieldChange('tags')}
             placeholder="e.g. beach, historic, museum"
             value={tags}
           />

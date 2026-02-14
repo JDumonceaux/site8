@@ -5,7 +5,7 @@ import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/schemaHelper';
 import type { MenuAdd } from '@types';
 import * as v from 'valibot';
-import { useAxios } from './axios/useAxios';
+import { useApiRequest } from './api/useApiRequest';
 import useForm from './useForm';
 
 // Validation schema
@@ -37,7 +37,7 @@ const initialFormValues: FormType = {
 };
 
 const useMenuEdit = () => {
-  const { error, isLoading, putData } = useAxios<MenuAdd>();
+  const { error, isLoading, putData } = useApiRequest<MenuAdd>();
 
   const {
     formValues,

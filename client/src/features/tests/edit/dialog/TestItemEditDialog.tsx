@@ -1,8 +1,16 @@
 import type { JSX } from 'react';
-import { useCallback, useEffect, useEffectEvent, useMemo, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useState,
+} from 'react';
 
 import Dialog from '@components/core/dialog/Dialog';
 import { Button } from '@components/ui';
+import IconButton from '@components/ui/button/icon-button/IconButton';
+import { AddIcon } from '@components/ui/icons';
 import Input from '@components/ui/input/Input';
 import useValibotValidation from '@hooks/useValibotValidation';
 import {
@@ -15,6 +23,7 @@ import type { FieldError } from '@types';
 import * as v from 'valibot';
 import useTestGroups from '../../useTestGroups';
 import CodeItemEditor from './components/CodeItemEditor';
+import { CODE_TYPE_SUGGESTIONS } from './code-type-suggestions';
 import { useCodeItemsManager } from './hooks/useCodeItemsManager';
 import {
   EmptyMessage,
@@ -57,6 +66,14 @@ const toFieldErrors = (error: string | undefined): FieldError[] | undefined => {
   return [{ message: error }];
 };
 
+const normalizeCodeType = (codeType: string): string => {
+  const matchedSuggestion = CODE_TYPE_SUGGESTIONS.find(
+    (suggestion) => suggestion.value.toLowerCase() === codeType.toLowerCase(),
+  );
+
+  return matchedSuggestion?.value ?? codeType;
+};
+
 // ============================================================================
 // Component Props
 // ============================================================================
@@ -94,6 +111,7 @@ const TestItemEditDialog = ({
     handleMoveCodeDown,
     handleMoveCodeUp,
     handleUpdateCode,
+    resetCodeItems,
   } = useCodeItemsManager(item?.code);
 
   // Validation
@@ -112,6 +130,7 @@ const TestItemEditDialog = ({
     setComments(item?.comments ?? '');
     setTags(formatTags(item?.tags));
     setSelectedGroupId(groupId ?? defaultGroupId);
+    resetCodeItems(item?.code ?? []);
     clearErrors();
   });
 
@@ -137,15 +156,12 @@ const TestItemEditDialog = ({
   /**
    * Handle group selection change
    */
-  const handleGroupChange = useCallback(
-    (value: string) => {
-      const numberValue = Number(value);
-      setSelectedGroupId(numberValue);
-      // Note: No field-level validation needed for select with predefined options
-      // Form-level validation on submit will ensure groupId is valid
-    },
-    [],
-  );
+  const handleGroupChange = useCallback((value: string) => {
+    const numberValue = Number(value);
+    setSelectedGroupId(numberValue);
+    // Note: No field-level validation needed for select with predefined options
+    // Form-level validation on submit will ensure groupId is valid
+  }, []);
 
   // ============================================================================
   // Form Submission
@@ -167,17 +183,24 @@ const TestItemEditDialog = ({
       return; // Stop if validation fails
     }
 
+    const normalizedCodeItems = codeItems.map((codeItem) => ({
+      ...codeItem,
+      type: normalizeCodeType(codeItem.type),
+    }));
+
     // Convert to Test object
     const itemToSave: Test = item
       ? {
           ...item,
-          code: codeItems.length > 0 ? codeItems : undefined,
+          code:
+            normalizedCodeItems.length > 0 ? normalizedCodeItems : undefined,
           comments: comments.trim() || undefined,
           name,
           tags: parseTags(tags),
         }
       : {
-          code: codeItems.length > 0 ? codeItems : undefined,
+          code:
+            normalizedCodeItems.length > 0 ? normalizedCodeItems : undefined,
           comments: comments.trim() || undefined,
           id: 0,
           name,
@@ -310,30 +333,19 @@ const TestItemEditDialog = ({
             placeholder="e.g. ai, react, nodejs"
             value={tags}
           />
-          <Input.TextArea
-            errors={toFieldErrors(errors.comments)}
-            id="comments"
-            label="Comments"
-            onChange={(e) => {
-              setComments(e.target.value);
-            }}
-            rows={4}
-            value={comments}
-          />
           <FormField>
             <LabelRow>
               <Label>Code Items</Label>
-              <Button
+              <IconButton
+                aria-label="Add code item"
                 onClick={handleAddCode}
-                size="sm"
-                variant="primary"
               >
-                Add Code
-              </Button>
+                <AddIcon />
+              </IconButton>
             </LabelRow>
             {codeItems.length === 0 ? (
               <EmptyMessage>
-                No code items. Click &apos;Add Code&apos; to create one.
+                No code items. Click the plus icon to create one.
               </EmptyMessage>
             ) : (
               codeItems.map((code, index) => (
@@ -351,6 +363,16 @@ const TestItemEditDialog = ({
               ))
             )}
           </FormField>
+          <Input.TextArea
+            errors={toFieldErrors(errors.comments)}
+            id="comments"
+            label="Comments"
+            onChange={(e) => {
+              setComments(e.target.value);
+            }}
+            rows={4}
+            value={comments}
+          />
         </Form>
       </ScrollableContent>
     </Dialog>

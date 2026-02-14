@@ -45,8 +45,24 @@ const TestsSectionsList = ({
   return (
     <TestsContainer>
       {visibleSections.map((section) => (
-        <div key={section.id}>
-          {section.name ? <SectionTitle>{section.name}</SectionTitle> : null}
+        <SectionContainer
+          id={`tests-section-${section.id}`}
+          key={section.id}
+        >
+          <SectionHeaderRow>
+            {section.name ? <SectionTitle>{section.name}</SectionTitle> : null}
+            <IconButton
+              aria-label={`Add test to ${section.name ?? 'section'}`}
+              onClick={() => {
+                const defaultGroupId = section.groups?.[0]?.id;
+                if (defaultGroupId) {
+                  onAddItem(defaultGroupId);
+                }
+              }}
+            >
+              <AddIcon />
+            </IconButton>
+          </SectionHeaderRow>
           {section.description ? (
             <SectionDescription>{section.description}</SectionDescription>
           ) : null}
@@ -87,7 +103,7 @@ const TestsSectionsList = ({
                 </TestList>
               </GroupSection>
             ))}
-        </div>
+        </SectionContainer>
       ))}
     </TestsContainer>
   );
@@ -95,9 +111,20 @@ const TestsSectionsList = ({
 
 export default TestsSectionsList;
 
+const SectionHeaderRow = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+`;
+
 const GroupTitleRow = styled.div`
   align-items: center;
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
+`;
+
+const SectionContainer = styled.div`
+  scroll-margin-top: 5rem;
 `;

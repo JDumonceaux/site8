@@ -1,9 +1,10 @@
 import type { JSX } from 'react';
 
+import Input from '@components/ui/input/Input';
 import { FORM_CONSTANTS } from '@lib/utils/constants';
 import type { TestCode } from '@site8/shared';
-import { Input } from '../TestItemEditDialog.styles';
 import styled from 'styled-components';
+import { CODE_TYPE_SUGGESTIONS } from '../code-type-suggestions';
 
 type CodeItemEditorProps = {
   readonly code: TestCode;
@@ -63,21 +64,24 @@ const CodeItemEditor = ({
     </CodeHeader>
     <CodeFields>
       <SmallFormField>
-        <SmallLabel htmlFor={`type-${code.id}`}>Type</SmallLabel>
-        <Input
+        <Input.Text
+          dataList={{
+            data: CODE_TYPE_SUGGESTIONS,
+            id: `type-suggestions-${code.id}`,
+          }}
           id={`type-${code.id}`}
+          label="Type"
           onChange={(e) => {
             onUpdate(code.id, 'type', e.target.value);
           }}
           placeholder="e.g. javascript, typescript"
-          type="text"
           value={code.type}
         />
       </SmallFormField>
       <SmallFormField>
-        <SmallLabel htmlFor={`content-${code.id}`}>Content</SmallLabel>
-        <CodeTextArea
+        <Input.TextArea
           id={`content-${code.id}`}
+          label="Content"
           onChange={(e) => {
             onUpdate(code.id, 'content', e.target.value);
           }}
@@ -149,26 +153,4 @@ const SmallFormField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-`;
-
-const SmallLabel = styled.label`
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--text-secondary-color);
-`;
-
-const CodeTextArea = styled.textarea`
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-sm);
-  font-size: 0.875rem;
-  color: var(--text-primary-color);
-  background: var(--background-color);
-  font-family: 'Courier New', monospace;
-  resize: vertical;
-
-  &:focus {
-    outline: 2px solid var(--status-info);
-    outline-offset: 2px;
-  }
 `;

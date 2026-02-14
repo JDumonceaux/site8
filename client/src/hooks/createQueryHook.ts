@@ -1,3 +1,4 @@
+import { apiClient } from '@lib/api';
 import { USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import {
   useQuery,
@@ -20,9 +21,7 @@ export type QueryHookConfig<TData> = {
   /**
    * Optional additional query options to override defaults
    */
-  queryOptions?: Partial<
-    Omit<UseQueryOptions<TData>, 'queryFn' | 'queryKey'>
-  >;
+  queryOptions?: Partial<Omit<UseQueryOptions<TData>, 'queryFn' | 'queryKey'>>;
 };
 
 /**
@@ -44,11 +43,7 @@ export const createQueryHook = <TData>({
 }: QueryHookConfig<TData>) => {
   return (signal?: AbortSignal): UseQueryResult<TData> => {
     const fetchData = async (): Promise<TData> => {
-      const res = await fetch(endpoint, { signal });
-      if (!res.ok) {
-        throw new Error(`Failed to fetch data: ${res.statusText}`);
-      }
-      return res.json() as Promise<TData>;
+      return apiClient.get<TData>(endpoint, { signal });
     };
 
     return useQuery<TData>({
@@ -77,10 +72,7 @@ export const createQueryHook = <TData>({
 export const createParameterizedQueryHook = <TData, TParams = undefined>(
   configFactory: (params: TParams) => QueryHookConfig<TData>,
 ) => {
-  return (
-    params: TParams,
-    signal?: AbortSignal,
-  ): UseQueryResult<TData> => {
+  return (params: TParams, signal?: AbortSignal): UseQueryResult<TData> => {
     const config = configFactory(params);
     const hook = createQueryHook<TData>(config);
     return hook(signal);

@@ -1,3 +1,4 @@
+import { apiClient } from '@lib/api';
 import useSnackbar from '@features/app/snackbar/useSnackbar';
 import { ServiceUrl } from '@lib/utils/constants';
 import { safeParse } from '@lib/utils/schemaHelper';
@@ -13,15 +14,10 @@ const usePagePatch = () => {
   const mutation = useMutation({
     mutationFn: async (data: PageEdit) => {
       const method = data.id && data.id > 0 ? 'PATCH' : 'POST';
-      const response = await fetch(ServiceUrl.ENDPOINT_PAGE, {
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
+      return apiClient.request<PageEdit>(ServiceUrl.ENDPOINT_PAGE, {
+        body: data,
         method,
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json() as Promise<PageEdit>;
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {

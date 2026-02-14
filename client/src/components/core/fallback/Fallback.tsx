@@ -27,7 +27,7 @@ const Fallback = ({
     raw < UI_DEFAULTS.FALLBACK_MIN_LINES ||
     raw > UI_DEFAULTS.FALLBACK_MAX_LINES
   ) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (import.meta.env.DEV) {
       console.warn(
         `Fallback: 'numberOfLines' must be an integer between ${UI_DEFAULTS.FALLBACK_MIN_LINES} and ${UI_DEFAULTS.FALLBACK_MAX_LINES}, ` +
           `but got ${numberOfLines}. Clamping to range.`,

@@ -103,7 +103,16 @@ const TestsPage = (): JSX.Element => {
     setEditingGroupId(null);
   }, []);
 
-  const { deleteTest, moveTest, updateTest } = useTestMutations({
+  const { createTest, deleteTest, moveTest, updateTest } = useTestMutations({
+    onCreateError: (error: Error) => {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      setMessage(`Failed to add item: ${errorMessage}`);
+    },
+    onCreateSuccess: () => {
+      setMessage('Item added successfully');
+      handleCloseDialog();
+    },
     onDeleteError: (error: Error) => {
       const errorMessage =
         error instanceof Error ? error.message : 'Unknown error';
@@ -134,9 +143,14 @@ const TestsPage = (): JSX.Element => {
 
   const handleSaveItem = useCallback(
     (updatedItem: Test, groupId: number) => {
+      if (updatedItem.id === 0) {
+        createTest({ groupId, item: updatedItem });
+        return;
+      }
+
       updateTest({ groupId, item: updatedItem });
     },
-    [updateTest],
+    [createTest, updateTest],
   );
 
   const handleDeleteItem = useCallback(

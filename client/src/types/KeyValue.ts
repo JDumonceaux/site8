@@ -1,7 +1,7 @@
 import type { IndexedPair } from './common';
 
 /**
- * Key-value pair with numeric key (typically array index)
- * This is an alias of IndexedPair<string> for semantic clarity
+ * Key-value pair with numeric or string key
+ * This is an alias of IndexedPair<string, number | string> for semantic clarity
  */
-export type KeyValue = IndexedPair;
+export type KeyValue = IndexedPair<string, number | string>;

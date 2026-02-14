@@ -9,6 +9,7 @@ type UseCodeItemsManagerResult = {
   readonly handleDeleteCode: (id: number) => void;
   readonly handleMoveCodeDown: (index: number) => void;
   readonly handleMoveCodeUp: (index: number) => void;
+  readonly resetCodeItems: (nextCodeItems?: readonly TestCode[]) => void;
   readonly handleUpdateCode: (
     id: number,
     field: keyof TestCode,
@@ -75,12 +76,20 @@ export const useCodeItemsManager = (
     [],
   );
 
+  const resetCodeItems = useCallback(
+    (nextCodeItems: readonly TestCode[] = []) => {
+      setCodeItems([...nextCodeItems]);
+    },
+    [],
+  );
+
   return {
     codeItems,
     handleAddCode,
     handleDeleteCode,
     handleMoveCodeDown,
     handleMoveCodeUp,
+    resetCodeItems,
     handleUpdateCode,
   };
 };

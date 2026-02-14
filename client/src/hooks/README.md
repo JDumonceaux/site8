@@ -7,8 +7,8 @@ This directory contains custom React hooks organized by functionality.
 ```
 hooks/
 ├── index.ts                    # Central exports for all hooks
-├── axios/                      # HTTP request hooks
-│   └── useAxios.ts            # Axios-based HTTP operations
+├── api/                        # API request hooks
+│   └── useApiRequest.ts       # Fetch-based API operations
 ├── examples/                   # Example/reference hooks
 │   ├── usePageVisibility.ts   # Document visibility detection
 │   ├── useScroll.ts           # Scroll position management
@@ -35,7 +35,7 @@ Manages single-object form state with validation and error handling.
 **Features:**
 
 - Type-safe field access
-- Zod schema validation
+- Schema-based validation (Valibot)
 - Error state management
 - Dirty/saved tracking
 - Helper methods for common operations
@@ -100,7 +100,7 @@ await execute(
 );
 ```
 
-#### `useAxios<T>`
+#### `useApiRequest<T>`
 
 HTTP request hook built on `useAsyncOperation`.
 
@@ -116,7 +116,7 @@ HTTP request hook built on `useAsyncOperation`.
 **Example:**
 
 ```typescript
-const { patchData, isLoading, error } = useAxios<User>();
+const { patchData, isLoading, error } = useApiRequest<User>();
 const result = await patchData('/api/users/1', updatedUser);
 ```
 
@@ -165,7 +165,7 @@ These are kept separate as learning examples and may not be actively used.
 1. **Single form?** → Use `useForm`
 2. **List of items?** → Use `useFormArray`
 3. **Async operation?** → Use `useAsyncOperation`
-4. **HTTP request?** → Use `useAxios`
+4. **HTTP request?** → Use `useApiRequest`
 5. **Need stable ID?** → Use `useGetId`
 
 ### Composition

@@ -5,10 +5,27 @@
  */
 // eslint-disable-next-line unicorn/prevent-abbreviations
 const getEnvVar = (key: string): string | undefined => {
-  const val = process.env[key as keyof typeof process.env];
-  if (val == null || val === '')
-    console.warn(`Environment: missing variable ${key}`);
-  return val;
+  const env = import.meta.env as Record<string, unknown>;
+  const candidateKeys = new Set<string>([key]);
+
+  if (key.startsWith('REACT_APP_')) {
+    candidateKeys.add(key.replace('REACT_APP_', 'VITE_'));
+  }
+
+  if (key === 'PUBLIC_URL') {
+    candidateKeys.add('BASE_URL');
+  }
+
+  const value = [...candidateKeys]
+    .map((candidateKey) => env[candidateKey])
+    .find(
+      (candidateValue): candidateValue is string =>
+        typeof candidateValue === 'string' && candidateValue.length > 0,
+    );
+
+  if (value == null) console.warn(`Environment: missing variable ${key}`);
+
+  return value;
 };
 
 /**
@@ -35,7 +52,7 @@ export const Environment = {
     getEnvVar('REACT_APP_GTM_ID'),
 
   /** Node.js environment (development|production|test) */
-  getNodeEnvironment: (): string | undefined => getEnvVar('NODE_ENV'),
+  getNodeEnvironment: (): string | undefined => import.meta.env.MODE,
 
   /** Public URL root for this app */
   getPublicUrl: (): string | undefined => getEnvVar('PUBLIC_URL'),

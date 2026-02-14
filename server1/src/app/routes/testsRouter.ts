@@ -12,10 +12,10 @@ import { asyncHandler } from '../../utils/routerUtils.js';
 
 const testsRouter = Router();
 
-testsRouter.get('/', getTests);
-testsRouter.get('/sorted', getTestsSorted);
-testsRouter.get('/sections', getSections);
-testsRouter.get('/groups', getGroups);
+testsRouter.get('/', asyncHandler(getTests));
+testsRouter.get('/sorted', asyncHandler(getTestsSorted));
+testsRouter.get('/sections', asyncHandler(getSections));
+testsRouter.get('/groups', asyncHandler(getGroups));
 testsRouter.post('/', asyncHandler(addItem));
 testsRouter.get<{ id: string }>('/:id', asyncHandler(getItem));
 testsRouter.put<{ id: string }>('/:id', asyncHandler(updateItem));

@@ -114,7 +114,7 @@ export const AUTH_ERROR_MESSAGES = {
 export const FORM_CONSTANTS = {
   CODE_CONTENT_ROWS: 6,
   COMMENTS_ROWS: 4,
-  DEFAULT_CODE_TYPE: 'javascript',
+  DEFAULT_CODE_TYPE: 'Prompt',
 } as const;
 
 /* -------------------------------------------------------------------------- */

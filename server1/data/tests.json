@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Tests",
     "version": "1.0.0",
-    "lastUpdated": "2026-02-08",
+    "lastUpdated": "2026-02-14",
     "totalItems": 403
   },
   "groups": [
@@ -267,6 +267,16 @@
     {
       "id": 42,
       "name": "Client - Best Practices",
+      "sectionId": 7
+    },
+    {
+      "id": 43,
+      "name": "Environment",
+      "sectionId": 6
+    },
+    {
+      "id": 44,
+      "name": "Chat",
       "sectionId": 7
     }
   ],
@@ -3118,22 +3128,6 @@
       "groupId": 11
     },
     {
-      "id": 211,
-      "tags": [
-        "ai"
-      ],
-      "code": [
-        {
-          "id": 1,
-          "type": "prompt",
-          "content": "Using react 17, transform this class component to a function component using hooks.  Use arrow functions.  Do not add jdoc. Maintain any business logic.  Add comments where helpful."
-        }
-      ],
-      "name": "React - CodeMods - class-to-function-component",
-      "comments": "Quality check for React - CodeMods - class-to-function-component implementation",
-      "groupId": 11
-    },
-    {
       "id": 212,
       "tags": [
         "codemods"
@@ -4154,7 +4148,10 @@
       ],
       "name": "Review for anti-patterns",
       "comments": "Refactor problematic code patterns for better maintainability",
-      "groupId": 11
+      "groupId": 8,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 292,
@@ -4167,7 +4164,10 @@
       ],
       "name": "Review for anti-patterns",
       "comments": "Refactor problematic code patterns for better maintainability",
-      "groupId": 11
+      "groupId": 40,
+      "tags": [
+        "ai"
+      ]
     },
     {
       "id": 293,
@@ -5384,6 +5384,185 @@
       "name": "ZodIssue",
       "comments": "Quality check for ZodIssue implementation",
       "groupId": 11
+    },
+    {
+      "code": [
+        {
+          "content": "Validate environment files are using Vite constants:  VITE_API_URL, VITE_BASE_URL, VITE_USE_AUTH, VITE_ENVIRONMENT, VITE_VERSION\n",
+          "id": 1,
+          "type": "prompt"
+        }
+      ],
+      "comments": "If using Vite, the environment configuration files can use Vite constants:\n\n\n# API Configuration\n# URL for the backend API server\nVITE_API_URL=http://localhost:3005/api\nVITE_BASE_URL=http://localhost:3005\nVITE_USE_AUTH=false\n\n# App Environment\nVITE_ENVIRONMENT=local\nVITE_VERSION=0.0.0",
+      "name": "Environment Files",
+      "tags": [
+        "ai"
+      ],
+      "groupId": 43,
+      "id": 395
+    },
+    {
+      "code": [
+        {
+          "content": "run API Router Consistency Analysis Report",
+          "id": 1,
+          "type": "prompt"
+        }
+      ],
+      "name": "API Router Consistency Analysis",
+      "tags": [
+        "ai",
+        "server"
+      ],
+      "groupId": 28,
+      "id": 396
+    },
+    {
+      "code": [
+        {
+          "content": "**Implementation Steps:**\n\n1. Create router auto-discovery utility\n2. Scan `server1/src/routes/` directory\n3. Automatically register all \\*Router.ts files\n4. Add route metadata/configuration support\n5. Update server.ts to use auto-discovery\n6. Add logging for registered routes\n7. Test all routes still work",
+          "id": 1,
+          "type": "Prompt"
+        }
+      ],
+      "comments": "Replace manual router registration in server with auto-discovery pattern. Scan routes directory and register automatically.",
+      "name": "Automate Router Registration",
+      "tags": [
+        "ai",
+        "server"
+      ],
+      "groupId": 10,
+      "id": 397
+    },
+    {
+      "code": [
+        {
+          "content": "Add Chat instruction files.  These may be copilot-instructions.md, general-coding.instructions.md, and typescript-react.instructions.md. \n\n",
+          "id": 1,
+          "type": "Instructions"
+        },
+        {
+          "content": "---\napplyTo: \"**/*.ts,**/*.tsx\"\n---\n\n# Project coding standards for TypeScript and React\n\nApply the [general coding guidelines](./general-coding.instructions.md) to all code.\n\n## Library Guardrails\n\n- Do **not** suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless explicitly requested by the user.\n- Use existing project validation patterns, the fetch-based API client, and existing icon components.\n\n## TypeScript Guidelines\n\n- Use TypeScript for all new code\n- Follow functional programming principles where possible\n- Use types for data structures and type definitions\n- Prefer immutable data (const, readonly)\n- Use optional chaining (?.) and nullish coalescing (??) operators\n\n## React Guidelines\n\n- Target **React 19.24** as the default version for implementation guidance\n- Use functional components with hooks\n- Follow the React hooks rules (no conditional hooks)\n- Use React.FC type for components with children\n- Keep components small and focused\n- Prefer modern React patterns: feature-level `Suspense`, composable custom hooks, and explicit state ownership\n- Prefer React 19 APIs when beneficial: `useActionState`, `useOptimistic`, `startTransition`/`useTransition`, `useDeferredValue`\n- Experimental features (including `use()`) are ",
+          "id": 2,
+          "type": "Markdown"
+        }
+      ],
+      "name": "Chat Instructions",
+      "tags": [
+        "ai"
+      ],
+      "groupId": 44,
+      "id": 398
+    },
+    {
+      "code": [
+        {
+          "content": "RunAPI Router Consistency Analysis Report\n\n",
+          "id": 1,
+          "type": "Prompt"
+        },
+        {
+          "content": "---\napplyTo: \"**/*.ts,**/*.tsx\"\n---\n\n# Project coding standards for TypeScript and React\n\nApply the [general coding guidelines](./general-coding.instructions.md) to all code.\n\n## Library Guardrails\n\n- Do **not** suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless explicitly requested by the user.\n- Use existing project validation patterns, the fetch-based API client, and existing icon components.\n\n## TypeScript Guidelines\n\n- Use TypeScript for all new code\n- Follow functional programming principles where possible\n- Use types for data structures and type definitions\n- Prefer immutable data (const, readonly)\n- Use optional chaining (?.) and nullish coalescing (??) operators\n\n## React Guidelines\n\n- Target **React 19.24** as the default version for implementation guidance\n- Use functional components with hooks\n- Follow the React hooks rules (no conditional hooks)\n- Use React.FC type for components with children\n- Keep components small and focused\n- Prefer modern React patterns: feature-level `Suspense`, composable custom hooks, and explicit state ownership\n- Prefer React 19 APIs when beneficial: `useActionState`, `useOptimistic`, `startTransition`/`useTransition`, `useDeferredValue`\n- Experimental features (including `use()`) are ",
+          "id": 2,
+          "type": "Markdown"
+        }
+      ],
+      "name": "API Router Consistency Analysis Report",
+      "tags": [
+        "ai"
+      ],
+      "groupId": 9,
+      "id": 399
+    },
+    {
+      "code": [
+        {
+          "content": "RunAPI Code Smells Report\n\n",
+          "id": 1,
+          "type": "Prompt"
+        },
+        {
+          "content": "---\napplyTo: \"**/*.ts,**/*.tsx\"\n---\n\n# Project coding standards for TypeScript and React\n\nApply the [general coding guidelines](./general-coding.instructions.md) to all code.\n\n## Library Guardrails\n\n- Do **not** suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless explicitly requested by the user.\n- Use existing project validation patterns, the fetch-based API client, and existing icon components.\n\n## TypeScript Guidelines\n\n- Use TypeScript for all new code\n- Follow functional programming principles where possible\n- Use types for data structures and type definitions\n- Prefer immutable data (const, readonly)\n- Use optional chaining (?.) and nullish coalescing (??) operators\n\n## React Guidelines\n\n- Target **React 19.24** as the default version for implementation guidance\n- Use functional components with hooks\n- Follow the React hooks rules (no conditional hooks)\n- Use React.FC type for components with children\n- Keep components small and focused\n- Prefer modern React patterns: feature-level `Suspense`, composable custom hooks, and explicit state ownership\n- Prefer React 19 APIs when beneficial: `useActionState`, `useOptimistic`, `startTransition`/`useTransition`, `useDeferredValue`\n- Experimental features (including `use()`) are ",
+          "id": 2,
+          "type": "Markdown"
+        },
+        {
+          "content": "",
+          "id": 3,
+          "type": "javascript"
+        }
+      ],
+      "name": "Code Smells Report",
+      "tags": [
+        "ai"
+      ],
+      "groupId": 9,
+      "id": 400
+    },
+    {
+      "code": [
+        {
+          "content": "RunAPI Implementation TODO Report\n\n",
+          "id": 1,
+          "type": "Prompt"
+        },
+        {
+          "content": "---\napplyTo: \"**/*.ts,**/*.tsx\"\n---\n\n# Project coding standards for TypeScript and React\n\nApply the [general coding guidelines](./general-coding.instructions.md) to all code.\n\n## Library Guardrails\n\n- Do **not** suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless explicitly requested by the user.\n- Use existing project validation patterns, the fetch-based API client, and existing icon components.\n\n## TypeScript Guidelines\n\n- Use TypeScript for all new code\n- Follow functional programming principles where possible\n- Use types for data structures and type definitions\n- Prefer immutable data (const, readonly)\n- Use optional chaining (?.) and nullish coalescing (??) operators\n\n## React Guidelines\n\n- Target **React 19.24** as the default version for implementation guidance\n- Use functional components with hooks\n- Follow the React hooks rules (no conditional hooks)\n- Use React.FC type for components with children\n- Keep components small and focused\n- Prefer modern React patterns: feature-level `Suspense`, composable custom hooks, and explicit state ownership\n- Prefer React 19 APIs when beneficial: `useActionState`, `useOptimistic`, `startTransition`/`useTransition`, `useDeferredValue`\n- Experimental features (including `use()`) are ",
+          "id": 2,
+          "type": "Markdown"
+        },
+        {
+          "content": "",
+          "id": 3,
+          "type": "javascript"
+        }
+      ],
+      "name": "To Do Items",
+      "tags": [
+        "ai"
+      ],
+      "groupId": 9,
+      "id": 401
+    },
+    {
+      "code": [
+        {
+          "content": "Run Quality Improvements Report\n\n",
+          "id": 1,
+          "type": "Prompt"
+        },
+        {
+          "content": "---\napplyTo: \"**/*.ts,**/*.tsx\"\n---\n\n# Project coding standards for TypeScript and React\n\nApply the [general coding guidelines](./general-coding.instructions.md) to all code.\n\n## Library Guardrails\n\n- Do **not** suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless explicitly requested by the user.\n- Use existing project validation patterns, the fetch-based API client, and existing icon components.\n\n## TypeScript Guidelines\n\n- Use TypeScript for all new code\n- Follow functional programming principles where possible\n- Use types for data structures and type definitions\n- Prefer immutable data (const, readonly)\n- Use optional chaining (?.) and nullish coalescing (??) operators\n\n## React Guidelines\n\n- Target **React 19.24** as the default version for implementation guidance\n- Use functional components with hooks\n- Follow the React hooks rules (no conditional hooks)\n- Use React.FC type for components with children\n- Keep components small and focused\n- Prefer modern React patterns: feature-level `Suspense`, composable custom hooks, and explicit state ownership\n- Prefer React 19 APIs when beneficial: `useActionState`, `useOptimistic`, `startTransition`/`useTransition`, `useDeferredValue`\n- Experimental features (including `use()`) are ",
+          "id": 2,
+          "type": "Markdown"
+        },
+        {
+          "content": "",
+          "id": 3,
+          "type": "javascript"
+        }
+      ],
+      "name": "Quality Improvements Report",
+      "tags": [
+        "ai"
+      ],
+      "groupId": 9,
+      "id": 402
+    },
+    {
+      "code": [
+        {
+          "content": "run maintainability analysis report",
+          "id": 1,
+          "type": "Prompt"
+        }
+      ],
+      "name": "Maintainablity Analysis Report",
+      "tags": [
+        "ai"
+      ],
+      "groupId": 9,
+      "id": 403
     }
   ]
 }

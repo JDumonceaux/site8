@@ -1,5 +1,5 @@
+import { apiClient } from '@lib/api';
 import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
-import { handleQueryError } from '@lib/utils/errorHandler';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import type { Page } from '@types';
 
@@ -12,13 +12,7 @@ const fetchGenericPage = async (
 ): Promise<Page> => {
   // sanitize ID to prevent accidental URL injection
   const url = `${ServiceUrl.ENDPOINT_GENERIC}/${encodeURIComponent(id)}`;
-  const res = await fetch(url, { signal });
-  if (!res.ok) {
-    // centralized error handling/logging
-    handleQueryError(res);
-    throw new Error(`Failed to fetch page ${id}: ${res.statusText}`);
-  }
-  return res.json() as Promise<Page>;
+  return apiClient.get<Page>(url, { signal });
 };
 
 /**

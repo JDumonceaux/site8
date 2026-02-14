@@ -77,6 +77,7 @@ const TestItem = ({ groupId, item, onEdit }: TestItemProps): JSX.Element => {
                 <CodeBlock
                   code={codeBlock.content}
                   key={codeBlock.id}
+                  type={codeBlock.type}
                 />
               ))}
             </>

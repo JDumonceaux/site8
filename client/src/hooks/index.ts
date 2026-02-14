@@ -3,7 +3,7 @@
  * Provides all custom hooks with consistent exports
  */
 
-export { useAxios } from './axios/useAxios';
+export { useApiRequest } from './api/useApiRequest';
 // Example Hooks (for reference/learning)
 export { default as usePageVisibility } from './examples/usePageVisibility';
 

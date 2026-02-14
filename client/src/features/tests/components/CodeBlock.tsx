@@ -13,9 +13,10 @@ import {
 
 type CodeBlockProps = {
   readonly code: string;
+  readonly type?: string;
 };
 
-const CodeBlock = ({ code }: CodeBlockProps): JSX.Element => {
+const CodeBlock = ({ code, type }: CodeBlockProps): JSX.Element => {
   const codeRef = useRef<HTMLElement>(null);
   const { setErrorMessage, setMessage } = useSnackbar();
 
@@ -48,7 +49,7 @@ const CodeBlock = ({ code }: CodeBlockProps): JSX.Element => {
   return (
     <CodeBlockContainer>
       <CodeHeader>
-        <CodeLabel>Code</CodeLabel>
+        <CodeLabel>{type?.trim() || 'Code'}</CodeLabel>
         <IconButton
           aria-label="Copy code to clipboard"
           onClick={handleCopy}

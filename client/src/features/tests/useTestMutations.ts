@@ -1,11 +1,15 @@
+import { apiClient } from '@lib/api';
 import {
   ENDPOINT_TEST_DELETE,
   ENDPOINT_TEST_UPDATE,
+  ServiceUrl,
 } from '@lib/utils/constants';
 import type { Test } from '@site8/shared';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type UseTestMutationsOptions = {
+  onCreateError?: (error: Error) => void;
+  onCreateSuccess?: () => void;
   onDeleteError?: (error: Error) => void;
   onDeleteSuccess?: () => void;
   onMoveError?: (error: Error) => void;
@@ -15,6 +19,7 @@ type UseTestMutationsOptions = {
 };
 
 type UseTestMutationsReturn = {
+  createTest: (params: { groupId: number; item: Test }) => void;
   deleteTest: (itemId: number) => void;
   moveTest: (params: {
     currentGroupId: number;
@@ -29,6 +34,8 @@ type UseTestMutationsReturn = {
  * Provides mutation functions with automatic cache invalidation.
  */
 const useTestMutations = ({
+  onCreateError,
+  onCreateSuccess,
   onDeleteError,
   onDeleteSuccess,
   onMoveError,
@@ -38,28 +45,41 @@ const useTestMutations = ({
 }: UseTestMutationsOptions = {}): UseTestMutationsReturn => {
   const queryClient = useQueryClient();
 
+  const { mutate: createTest } = useMutation({
+    mutationFn: async ({ groupId, item }: { groupId: number; item: Test }) => {
+      return apiClient.post<unknown>(ServiceUrl.ENDPOINT_TESTS, {
+        groupId,
+        item: {
+          code: item.code,
+          comments: item.comments,
+          name: item.name,
+          tags: item.tags,
+        },
+      });
+    },
+    onError: (error: Error) => {
+      if (onCreateError) {
+        onCreateError(error);
+      }
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['tests'] });
+      if (onCreateSuccess) {
+        onCreateSuccess();
+      }
+    },
+  });
+
   const { mutate: updateTest } = useMutation({
     mutationFn: async ({ groupId, item }: { groupId: number; item: Test }) => {
-      const response = await fetch(ENDPOINT_TEST_UPDATE(item.id), {
-        body: JSON.stringify({
-          groupId,
-          item: {
-            comments: item.comments,
-            name: item.name,
-            tags: item.tags,
-          },
-        }),
-        headers: {
-          'Content-Type': 'application/json',
+      return apiClient.put<unknown>(ENDPOINT_TEST_UPDATE(item.id), {
+        groupId,
+        item: {
+          comments: item.comments,
+          name: item.name,
+          tags: item.tags,
         },
-        method: 'PUT',
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to update item');
-      }
-
-      return response.json() as Promise<unknown>;
     },
     onError: (error: Error) => {
       if (onUpdateError) {
@@ -76,15 +96,7 @@ const useTestMutations = ({
 
   const { mutate: deleteTest } = useMutation({
     mutationFn: async (itemId: number) => {
-      const response = await fetch(ENDPOINT_TEST_DELETE(itemId), {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to delete item');
-      }
-
-      return response.json() as Promise<unknown>;
+      return apiClient.delete<unknown>(ENDPOINT_TEST_DELETE(itemId));
     },
     onError: (error: Error) => {
       if (onDeleteError) {
@@ -109,22 +121,10 @@ const useTestMutations = ({
         return null;
       }
 
-      const response = await fetch(ENDPOINT_TEST_UPDATE(params.itemId), {
-        body: JSON.stringify({
-          groupId: params.newGroupId,
-          item: {},
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'PUT',
+      return apiClient.put<unknown>(ENDPOINT_TEST_UPDATE(params.itemId), {
+        groupId: params.newGroupId,
+        item: {},
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to move item');
-      }
-
-      return response.json() as Promise<unknown>;
     },
     onError: (error: Error) => {
       if (onMoveError) {
@@ -142,6 +142,7 @@ const useTestMutations = ({
   });
 
   return {
+    createTest,
     deleteTest,
     moveTest,
     updateTest,

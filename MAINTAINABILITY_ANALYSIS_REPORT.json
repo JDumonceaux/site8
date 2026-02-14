@@ -1,29 +1,26 @@
 {
   "reportMetadata": {
-    "generatedDate": "2025-12-27",
+    "generatedDate": "2026-02-14",
     "scope": "client/src and server1/src directories",
-    "totalFilesAnalyzed": 455,
-    "totalLinesOfCode": 25397,
-    "analysisVersion": "1.0"
+    "totalFilesAnalyzed": 370,
+    "totalLinesOfCode": 23271,
+    "analysisVersion": "2.0"
   },
   "executiveSummary": {
-    "overallHealthScore": "B+ (Good)",
-    "criticalIssues": 4,
-    "highPriorityIssues": 8,
-    "mediumPriorityIssues": 12,
-    "lowPriorityIssues": 15,
+    "overallHealthScore": "C (Needs Improvement)",
+    "criticalIssues": 195,
+    "highPriorityIssues": 299,
+    "mediumPriorityIssues": 349,
+    "lowPriorityIssues": 18,
     "strengths": [
-      "Excellent use of TypeScript across the codebase",
-      "Consistent component structure with displayName",
-      "Good error handling patterns in most async functions",
-      "Strong use of Zod for runtime validation",
-      "Proper separation of concerns (features, components, services)"
+      "Strict TypeScript usage across client and server",
+      "Feature-based project organization",
+      "Centralized API client and shared package usage"
     ],
     "weaknesses": [
-      "Some files exceed recommended size limits",
-      "Comment density below optimal range (5.11% vs 10-30% recommended)",
-      "Code duplication in form handling patterns",
-      "Limited TODO/FIXME tracking"
+      "Some oversized files increase maintenance cost",
+      "Comment/JSDoc density is below ideal in key areas",
+      "High complexity hotspots remain in select files"
     ]
   },
   "fileAnalysis": {
@@ -35,666 +32,177 @@
       },
       "findings": [
         {
-          "file": "client/src/features/auth/useAuth.ts",
-          "lines": 588,
-          "severity": "Critical",
-          "issues": [
-            "Exceeds 500 line threshold significantly",
-            "Single hook managing 20+ auth functions",
-            "Multiple concerns mixed (sign-in, sign-up, password reset, session management)",
-            "20+ exported functions from a single hook"
-          ],
-          "recommendation": "Split into multiple smaller hooks: useSignIn, useSignUp, usePasswordManagement, useSession",
-          "estimatedRefactorEffort": "High (8-16 hours)"
-        },
-        {
-          "file": "server1/src/services/BaseDataService.ts",
-          "lines": 478,
-          "severity": "Critical",
-          "issues": [
-            "Base class doing too much",
-            "Cache management, CRUD, validation, and file operations in one class",
-            "Could violate Single Responsibility Principle"
-          ],
-          "recommendation": "Extract cache management to CacheService, validation to ValidationService",
-          "estimatedRefactorEffort": "Medium (4-8 hours)"
-        },
-        {
           "file": "server1/src/lib/http/genericHandlers.ts",
-          "lines": 449,
+          "lines": 514,
           "severity": "Critical",
-          "issues": [
-            "Multiple complex handler factory functions",
-            "High cyclomatic complexity in createPatchHandler",
-            "Deeply nested conditional logic"
-          ],
-          "recommendation": "Split into separate files per handler type (GET, PATCH, POST, DELETE)",
-          "estimatedRefactorEffort": "Medium (4-6 hours)"
+          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
         },
         {
-          "file": "client/src/providers/RouterProvider.tsx",
-          "lines": 434,
+          "file": "client/src/features/travel/edit/dialog/TravelItemEditDialog.tsx",
+          "lines": 469,
           "severity": "High",
-          "issues": [
-            "Large route configuration file",
-            "All lazy-loaded imports in one file",
-            "Multiple route definitions could be modularized"
-          ],
-          "recommendation": "Extract route configurations by feature area",
-          "estimatedRefactorEffort": "Low (2-4 hours)"
+          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
         },
         {
-          "file": "client/src/features/design/InputPage.tsx",
-          "lines": 402,
-          "severity": "High",
-          "issues": [
-            "Repetitive form field definitions",
-            "Testing/demo component that's larger than production components",
-            "Significant code duplication in Input.* usage"
-          ],
-          "recommendation": "This appears to be a design system demo - could extract repeated patterns into a config-driven approach",
-          "estimatedRefactorEffort": "Low (1-2 hours)"
+          "file": "client/src/features/tests/edit/dialog/TestItemEditDialog.tsx",
+          "lines": 382,
+          "severity": "Medium",
+          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
         },
         {
           "file": "client/src/components/core/meta/Meta.tsx",
-          "lines": 374,
+          "lines": 344,
           "severity": "Medium",
-          "issues": [
-            "Many small builder functions",
-            "Could be more concise with a mapping approach",
-            "Repetitive tag building patterns"
-          ],
-          "recommendation": "Refactor to use a tag configuration map and reduce duplication",
-          "estimatedRefactorEffort": "Low (2-3 hours)"
+          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
+        },
+        {
+          "file": "server1/src/services/BaseDataService.ts",
+          "lines": 330,
+          "severity": "Medium",
+          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
+        },
+        {
+          "file": "client/src/features/tests/TestsPage.styles.ts",
+          "lines": 311,
+          "severity": "Medium",
+          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
+        },
+        {
+          "file": "server1/src/features/test/TestService.ts",
+          "lines": 308,
+          "severity": "Medium",
+          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
         }
       ],
       "statistics": {
         "filesOver500Lines": 1,
-        "filesOver400Lines": 4,
-        "filesOver300Lines": 6,
-        "averageFileSize": 55.8
+        "filesOver400Lines": 2,
+        "filesOver300Lines": 7,
+        "averageFileSize": 72.3
       }
-    }
-  },
-  "functionComplexity": {
-    "severity": "Medium",
-    "findings": [
-      {
-        "file": "client/src/features/auth/useAuth.ts",
-        "functions": [
-          {
-            "name": "handleSignInStep",
-            "lines": "~60 lines",
-            "complexity": "High",
-            "nestingDepth": 3,
-            "issue": "Large switch statement with multiple nested cases",
-            "recommendation": "Extract each case into separate handler functions"
-          },
-          {
-            "name": "handleSignUpStep",
-            "lines": "~40 lines",
-            "complexity": "Medium",
-            "nestingDepth": 2,
-            "issue": "Similar pattern to handleSignInStep",
-            "recommendation": "Use strategy pattern or lookup table"
-          }
-        ]
-      },
-      {
-        "file": "server1/src/lib/http/genericHandlers.ts",
-        "functions": [
-          {
-            "name": "createPatchHandler",
-            "lines": "~120 lines",
-            "complexity": "Very High",
-            "nestingDepth": 4,
-            "issue": "Complex validation, transformation, and error handling logic",
-            "recommendation": "Extract validation, transformation, and response handling into separate functions"
-          }
-        ]
-      },
-      {
-        "file": "server1/src/services/BaseDataService.ts",
-        "functions": [
-          {
-            "name": "updateItem (abstract pattern)",
-            "lines": "~80 lines",
-            "complexity": "High",
-            "nestingDepth": 3,
-            "issue": "Complex item update logic with validation and file writing",
-            "recommendation": "Break into smaller methods: validateItem, findItem, writeItem"
-          }
-        ]
-      }
-    ],
-    "longFunctions": {
-      "over100Lines": 2,
-      "over50Lines": 8,
-      "recommendation": "Target is <50 lines per function; extract sub-functions for complex logic"
-    }
-  },
-  "codeDuplication": {
-    "severity": "Medium",
-    "patterns": [
-      {
-        "pattern": "Form Field Input Handlers",
-        "locations": [
-          "client/src/features/design/InputPage.tsx (lines 30-250)",
-          "client/src/features/auth/* (multiple files)"
-        ],
-        "description": "Repetitive onChange handlers with setFieldValue pattern",
-        "occurrences": "50+",
-        "recommendation": "Create reusable form field component or hook that encapsulates onChange logic",
-        "example": "onChange={(e) => { setFieldValue('field1', e.target.value); }}"
-      },
-      {
-        "pattern": "Try-Catch-Finally with Loading State",
-        "locations": [
-          "client/src/features/auth/useAuth.ts (20+ instances)",
-          "server1/src/services/*.ts (30+ instances)"
-        ],
-        "description": "Repeated pattern: setError(null), setIsLoading(true), try/catch, finally setIsLoading(false)",
-        "occurrences": "50+",
-        "recommendation": "Create withAsyncHandler HOF or useAsyncOperation hook",
-        "example": "const result = await withAsyncHandler(async () => { /* operation */ });"
-      },
-      {
-        "pattern": "Service Factory Pattern",
-        "locations": [
-          "server1/src/features/*/handlers.ts",
-          "server1/src/lib/http/genericHandlers.ts"
-        ],
-        "description": "Repeated service instantiation pattern: const service = getXService()",
-        "occurrences": "30+",
-        "recommendation": "Implement dependency injection or service container pattern"
-      },
-      {
-        "pattern": "Meta Tag Builder Functions",
-        "locations": [
-          "client/src/components/core/meta/Meta.tsx (lines 60-270)"
-        ],
-        "description": "15+ nearly identical tag builder functions",
-        "occurrences": "15",
-        "recommendation": "Create generic tag builder with configuration object"
-      },
-      {
-        "pattern": "Input Component Props",
-        "locations": ["client/src/features/design/InputPage.tsx"],
-        "description": "Repetitive Input component usage with similar props",
-        "occurrences": "40+",
-        "recommendation": "Use form configuration object and map over fields"
-      }
-    ],
-    "estimatedDuplicationPercentage": "8-12%",
-    "potentialLinesReduced": "800-1200 lines"
-  },
-  "componentAnalysis": {
-    "reactComponents": {
-      "totalComponents": 180,
+    },
+    "complexityHotspots": {
+      "severity": "Medium",
       "findings": [
         {
-          "category": "Component Size",
-          "severity": "Low",
-          "details": {
-            "over250Lines": 0,
-            "over200Lines": 3,
-            "averageComponentSize": 87,
-            "status": "Good - Most components are appropriately sized"
-          }
+          "file": "client/src/features/travel/edit/dialog/TravelItemEditDialog.tsx",
+          "complexity": 123,
+          "maintainabilityIndex": 0
         },
         {
-          "category": "Display Names",
-          "severity": "Low",
-          "details": {
-            "withDisplayName": "~150+",
-            "missingDisplayName": "<30",
-            "status": "Excellent - Most components have displayName set",
-            "examples": [
-              "Meta.displayName = 'Meta'",
-              "InputCounter.displayName = 'InputCounter'",
-              "ProtectedRoute.displayName = 'ProtectedRoute'"
-            ]
-          }
+          "file": "server1/src/lib/http/genericHandlers.ts",
+          "complexity": 94,
+          "maintainabilityIndex": 1.29
         },
         {
-          "category": "Props Drilling",
-          "severity": "Medium",
-          "details": {
-            "issuesFound": 2,
-            "locations": [
-              {
-                "file": "client/src/features/auth/useAuth.ts",
-                "issue": "Returns 30+ properties that could be grouped",
-                "recommendation": "Group related auth functions into objects (e.g., { session: {...}, signIn: {...}, signUp: {...} })"
-              },
-              {
-                "file": "client/src/components/input/Input.tsx",
-                "issue": "InputBase receives many props that are passed through",
-                "status": "Acceptable - This is a base component pattern",
-                "severity": "Low"
-              }
-            ]
-          }
+          "file": "server1/src/features/tests/TestsService.ts",
+          "complexity": 68,
+          "maintainabilityIndex": 13.85
         },
         {
-          "category": "Component Patterns",
-          "severity": "Low",
-          "details": {
-            "consistentPatterns": [
-              "Functional components with TypeScript",
-              "Props types defined as separate type/interface",
-              "Styled components at bottom of file",
-              "JSX.Element return type specified",
-              "DisplayName consistently set"
-            ],
-            "status": "Excellent - Very consistent patterns across codebase"
-          }
+          "file": "client/src/features/tests/edit/dialog/TestItemEditDialog.tsx",
+          "complexity": 59,
+          "maintainabilityIndex": 9.89
         },
         {
-          "category": "Compound Components",
-          "severity": "Low",
-          "details": {
-            "examples": [
-              "Input.Text, Input.Email, Input.Select, etc.",
-              "Layout.Main, Layout.Section"
-            ],
-            "status": "Good use of compound component pattern"
-          }
+          "file": "server1/src/features/menu/MenuService.ts",
+          "complexity": 58,
+          "maintainabilityIndex": 19.13
+        },
+        {
+          "file": "client/src/features/travel/useTravelFiltering.ts",
+          "complexity": 50,
+          "maintainabilityIndex": 25.37
+        },
+        {
+          "file": "client/src/lib/api/client.ts",
+          "complexity": 50,
+          "maintainabilityIndex": 16.9
+        },
+        {
+          "file": "client/src/lib/utils/helpers.ts",
+          "complexity": 49,
+          "maintainabilityIndex": 26.03
+        },
+        {
+          "file": "server1/src/services/BaseDataService.ts",
+          "complexity": 43,
+          "maintainabilityIndex": 13.49
         }
       ]
     }
   },
-  "typeSafety": {
-    "severity": "Low",
-    "findings": [
-      {
-        "category": "Use of 'any' Type",
-        "severity": "Low",
-        "occurrences": 15,
-        "details": [
-          {
-            "file": "client/src/lib/utils/objectUtil.ts",
-            "line": 6,
-            "context": "Record<string, any>",
-            "justification": "Generic utility function - acceptable use",
-            "severity": "Low"
-          },
-          {
-            "file": "client/src/hooks/useDependencyDebugger.ts",
-            "line": 3,
-            "context": "Record<string, any>",
-            "justification": "Debug hook - acceptable use",
-            "severity": "Low"
-          },
-          {
-            "file": "server1/src/lib/http/genericHandlers.ts",
-            "line": 50,
-            "context": "z.ZodType<any>",
-            "justification": "Generic handler - could be improved with generic type",
-            "severity": "Medium",
-            "recommendation": "Use z.ZodType<T> with generic parameter"
-          }
-        ],
-        "status": "Excellent - Very limited use of 'any', mostly in utility/generic contexts"
-      },
-      {
-        "category": "Type Assertions (as, !)",
-        "severity": "Low",
-        "occurrences": 50,
-        "details": [
-          {
-            "pattern": "as const satisfies",
-            "count": 15,
-            "file": "client/src/lib/utils/constants.ts",
-            "status": "Good - Proper use of const assertions with satisfies",
-            "severity": "Low"
-          },
-          {
-            "pattern": "as Draft<T>",
-            "count": 3,
-            "file": "client/src/store/sliceFactory.ts",
-            "status": "Required by Redux Toolkit Immer",
-            "severity": "Low"
-          },
-          {
-            "pattern": "as unknown as",
-            "count": 2,
-            "file": "client/src/lib/utils/zodHelper.ts",
-            "status": "Acceptable for Zod formatted errors",
-            "severity": "Low"
-          },
-          {
-            "pattern": "as CanvasRenderingContext2D",
-            "count": 1,
-            "file": "client/src/unused/features/animations/Canvas2.tsx",
-            "status": "In unused code - not a concern",
-            "severity": "Low"
-          }
-        ],
-        "nonNullAssertions": {
-          "count": 0,
-          "status": "Excellent - No ! (non-null assertions) found"
-        },
-        "status": "Good - Most assertions are justified and type-safe"
-      },
-      {
-        "category": "Optional Chaining",
-        "severity": "Low",
-        "details": {
-          "multipleChains": 0,
-          "status": "Good - No excessive optional chaining found (??.??)",
-          "recommendation": "Continue current pattern of proper null checking"
-        }
+  "metrics": {
+    "maintainabilityIndex": {
+      "score": 43.9,
+      "scale": "0-100",
+      "interpretation": "Needs Improvement",
+      "factors": {
+        "codeOrganization": 87.4,
+        "typeScriptUsage": 95,
+        "documentation": 36.9,
+        "duplicatedCode": 75,
+        "complexity": 91.9
       }
-    ],
-    "overallStatus": "Excellent - Strong type safety throughout codebase"
-  },
-  "importOrganization": {
-    "severity": "Low",
-    "findings": [
-      {
-        "category": "Import Structure",
-        "status": "Good",
-        "details": {
-          "pathAliases": ["@components/*", "@features/*", "@hooks/*", "@lib/*"],
-          "organization": "Imports are well-organized with clear aliases",
-          "consistency": "Good use of path aliases throughout"
-        }
-      },
-      {
-        "category": "Circular Dependencies",
-        "status": "Not Detected",
-        "details": {
-          "checked": [
-            "Feature modules",
-            "Service layer",
-            "Component structure"
-          ],
-          "findings": "No obvious circular dependencies detected",
-          "recommendation": "Run madge or similar tool for comprehensive analysis"
-        }
-      },
-      {
-        "category": "Lazy Loading",
-        "status": "Excellent",
-        "details": {
-          "lazyComponents": 30,
-          "file": "client/src/providers/RouterProvider.tsx",
-          "pattern": "const Component = lazy(async () => import('...'))",
-          "status": "All routes properly lazy-loaded for code splitting"
-        }
-      }
-    ],
-    "recommendations": [
-      "Consider using import cost extension to monitor bundle sizes",
-      "Verify no circular dependencies with automated tooling"
-    ]
-  },
-  "errorHandling": {
-    "severity": "Low",
-    "findings": [
-      {
-        "category": "Async Function Coverage",
-        "status": "Excellent",
-        "details": {
-          "totalAsyncFunctions": "~90",
-          "withTryCatch": "~88",
-          "coverage": "~98%",
-          "clientMatches": 41,
-          "serverMatches": 50
-        }
-      },
-      {
-        "category": "Error Handling Patterns",
-        "status": "Good",
-        "patterns": [
-          {
-            "pattern": "Try-Catch-Finally with Loading State",
-            "location": "client/src/features/auth/useAuth.ts",
-            "count": 20,
-            "status": "Consistent pattern throughout"
-          },
-          {
-            "pattern": "Error Logging with Logger Service",
-            "location": "server1/src/**/*.ts",
-            "count": 50,
-            "status": "Proper server-side error logging"
-          },
-          {
-            "pattern": "Typed Error Handling",
-            "location": "client/src/features/auth/useAuth.ts",
-            "example": "if (errorValue instanceof AuthError)",
-            "status": "Good type-safe error handling"
-          }
-        ]
-      },
-      {
-        "category": "Missing Error Handling",
-        "severity": "Medium",
-        "issues": [
-          {
-            "file": "client/src/features/auth/useAuth.ts",
-            "line": 219,
-            "issue": "Catch block references 'error' variable that's not in scope",
-            "code": "} catch { handleError(error); }",
-            "recommendation": "Should be: } catch (error) { handleError(error); }",
-            "severity": "High",
-            "occurrences": "Multiple instances in useAuth.ts"
-          }
-        ]
-      },
-      {
-        "category": "Error Boundaries",
-        "status": "Present",
-        "details": {
-          "locations": [
-            "client/src/providers/AppProvider.tsx",
-            "client/src/features/layouts/common/LayoutFallbacks.tsx"
-          ],
-          "status": "React error boundaries properly implemented"
-        }
-      },
-      {
-        "category": "Console Usage",
-        "severity": "Low",
-        "details": {
-          "consoleErrors": 1,
-          "location": "server1/src/features/images/ImagesFileService.ts:147",
-          "recommendation": "Replace console.error with Logger.error",
-          "status": "Minimal console usage - good use of Logger service"
-        }
-      }
-    ],
-    "overallStatus": "Good - Comprehensive error handling with one critical pattern issue to fix"
-  },
-  "codeComments": {
-    "severity": "Medium",
-    "findings": {
-      "totalLines": 25397,
-      "totalComments": 1298,
-      "commentRatio": 5.11,
-      "target": "10-30%",
-      "status": "Below Optimal Range",
-      "details": {
-        "strengths": [
-          "Good JSDoc comments on complex functions",
-          "Type definitions have helpful descriptions",
-          "Example code in documentation comments"
-        ],
-        "weaknesses": [
-          "Many functions lack explanatory comments",
-          "Complex logic sections need more inline comments",
-          "Some algorithmic sections are under-documented"
-        ],
-        "recommendations": [
-          "Add JSDoc comments to all public functions and methods",
-          "Document complex business logic and non-obvious code",
-          "Add WHY comments for important architectural decisions",
-          "Document edge cases and gotchas",
-          "Target 15-20% comment ratio as ideal for this codebase"
-        ]
-      },
-      "todoTracking": {
-        "client": 5,
-        "server": 2,
-        "total": 7,
-        "status": "Good - Limited technical debt markers",
-        "items": [
-          "client/src/providers/ProtectedRoute.tsx:8 - Replace with real auth logic",
-          "client/src/lib/utils/errorLogger.ts:40 - Send to external error tracking",
-          "client/src/features/images-edit/* - Implement refresh and scan logic",
-          "server1/src/routes/artistRouter.ts:5 - Implement getArtist handler",
-          "server1/src/features/page/putItem.ts:7 - Implement update logic"
-        ]
+    },
+    "technicalDebt": {
+      "estimatedHours": "698-1396 hours",
+      "severity": "Medium",
+      "trendDirection": "Stable",
+      "primarySources": [
+        "Large files above 300 lines",
+        "Complex conditional logic hotspots",
+        "Low maintainability index in targeted modules"
+      ]
+    },
+    "codeQualityScore": {
+      "overall": "C",
+      "breakdown": {
+        "architecture": "B",
+        "typeSafety": "A",
+        "errorHandling": "B+",
+        "documentation": "B",
+        "modularity": "B+",
+        "consistency": "A-"
       }
     }
   },
   "recommendations": {
     "immediate": [
       {
-        "priority": "Critical",
-        "item": "Fix catch block error handling in useAuth.ts",
-        "file": "client/src/features/auth/useAuth.ts",
-        "effort": "Low (30 minutes)",
-        "impact": "High - Prevents proper error handling",
-        "action": "Add error parameter to all catch blocks: catch (error) instead of catch"
+        "priority": "High",
+        "item": "Refactor highest complexity files",
+        "impact": "High",
+        "action": "Split large functions and reduce branch nesting in top complexity hotspots."
       },
       {
         "priority": "High",
-        "item": "Refactor useAuth.ts into smaller hooks",
-        "file": "client/src/features/auth/useAuth.ts",
-        "effort": "High (8-16 hours)",
-        "impact": "High - Improves maintainability significantly",
-        "action": "Split into useSignIn, useSignUp, usePasswordReset, useSession hooks"
-      },
-      {
-        "priority": "High",
-        "item": "Extract async handler utility",
-        "effort": "Medium (2-4 hours)",
-        "impact": "High - Reduces 800+ lines of duplicated code",
-        "action": "Create useAsyncOperation hook or withAsyncHandler HOF"
+        "item": "Reduce largest files",
+        "impact": "High",
+        "action": "Modularize files above 500 lines by feature responsibility."
       }
     ],
     "shortTerm": [
       {
         "priority": "Medium",
-        "item": "Improve comment density",
-        "effort": "Ongoing",
-        "impact": "Medium - Improves code understanding",
-        "action": "Add JSDoc comments to all public APIs, target 15-20% comment ratio"
+        "item": "Improve JSDoc/comment density",
+        "impact": "Medium",
+        "action": "Document public APIs and complex utilities."
       },
       {
         "priority": "Medium",
-        "item": "Refactor BaseDataService.ts",
-        "file": "server1/src/services/BaseDataService.ts",
-        "effort": "Medium (4-8 hours)",
-        "impact": "Medium - Improves service layer architecture",
-        "action": "Extract cache and validation to separate services"
-      },
-      {
-        "priority": "Medium",
-        "item": "Consolidate form field handlers",
-        "effort": "Medium (3-6 hours)",
-        "impact": "Medium - Reduces duplication",
-        "action": "Create reusable form field component or useFormField hook"
+        "item": "Add maintainability gate to CI",
+        "impact": "Medium",
+        "action": "Fail CI when average MI drops below agreed threshold."
       }
     ],
     "longTerm": [
       {
         "priority": "Low",
-        "item": "Refactor Meta.tsx tag builders",
-        "file": "client/src/components/core/meta/Meta.tsx",
-        "effort": "Low (2-3 hours)",
-        "impact": "Low - Code simplification",
-        "action": "Use configuration-driven approach instead of individual builder functions"
-      },
-      {
-        "priority": "Low",
-        "item": "Implement dependency injection",
-        "effort": "High (16+ hours)",
-        "impact": "Medium - Better testability and decoupling",
-        "action": "Replace service factory pattern with proper DI container"
-      },
-      {
-        "priority": "Low",
-        "item": "Add circular dependency checking",
-        "effort": "Low (1 hour)",
-        "impact": "Low - Prevention",
-        "action": "Add madge or similar to CI/CD pipeline"
+        "item": "Track trend over time",
+        "impact": "Medium",
+        "action": "Generate this report weekly and compare MI/complexity movement."
       }
-    ]
-  },
-  "metrics": {
-    "maintainabilityIndex": {
-      "score": 78,
-      "scale": "0-100",
-      "interpretation": "Good - Maintainability is above average",
-      "factors": {
-        "codeOrganization": 85,
-        "typeScriptUsage": 95,
-        "testCoverage": "Not analyzed",
-        "documentation": 60,
-        "duplicatedCode": 75,
-        "complexity": 70
-      }
-    },
-    "technicalDebt": {
-      "estimatedHours": "40-60 hours",
-      "severity": "Low-Medium",
-      "trendDirection": "Stable",
-      "primarySources": [
-        "Large monolithic hooks (useAuth)",
-        "Code duplication in async patterns",
-        "Below-optimal comment density",
-        "Some oversized service classes"
-      ]
-    },
-    "codeQualityScore": {
-      "overall": "B+",
-      "breakdown": {
-        "architecture": "A-",
-        "typeSafety": "A",
-        "errorHandling": "B+",
-        "documentation": "C+",
-        "modularity": "B",
-        "consistency": "A-"
-      }
-    }
-  },
-  "positivePatterns": {
-    "excellentPractices": [
-      "Consistent use of TypeScript with strict typing",
-      "Proper React patterns (functional components, hooks)",
-      "Good separation of concerns (features, components, services)",
-      "Excellent use of path aliases for clean imports",
-      "Comprehensive error handling in async operations",
-      "Consistent component naming and structure",
-      "Good use of displayName for debugging",
-      "Proper lazy loading for route-based code splitting",
-      "Strong validation with Zod schemas",
-      "Clean styled-components usage",
-      "No use of dangerous non-null assertions (!)",
-      "Minimal use of 'any' type",
-      "Good ESLint configuration with many quality rules"
-    ]
-  },
-  "nextSteps": {
-    "week1": [
-      "Fix catch block error handling in useAuth.ts",
-      "Replace console.error with Logger in ImagesFileService.ts",
-      "Document public APIs in top 5 largest files"
-    ],
-    "month1": [
-      "Create useAsyncOperation utility hook",
-      "Refactor useAuth into smaller hooks",
-      "Improve comment density to 15%",
-      "Extract common form patterns"
-    ],
-    "quarter1": [
-      "Refactor BaseDataService and genericHandlers",
-      "Implement service layer improvements",
-      "Add comprehensive JSDoc documentation",
-      "Consider dependency injection refactor"
     ]
   }
 }

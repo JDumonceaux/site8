@@ -3,6 +3,7 @@ import { type ChangeEvent, type JSX, useCallback, useState } from 'react';
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
+import { apiClient } from '@lib/api';
 
 type UploadStatus = 'error' | 'idle' | 'success' | 'uploading';
 
@@ -28,14 +29,7 @@ const FileUploadPage = (): JSX.Element => {
     formData.append('file', file);
 
     try {
-      const response = await fetch('https://httpbin.org/post', {
-        body: formData,
-        method: 'POST',
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      await apiClient.post('https://httpbin.org/post', formData);
 
       setStatus('success');
       setUploadProgress(100);

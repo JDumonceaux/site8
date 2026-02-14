@@ -11,11 +11,28 @@ Guiding principles
 - Prioritize minimal, focused edits that preserve existing patterns and build/test scripts.
 - Follow repository conventions: TypeScript strict mode, local `@site8/shared` package, and existing ESLint/Prettier/Husky hooks.
 
+Tech stack guardrails
+
+- Do not suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless the user explicitly requests them.
+- Prefer existing project patterns for these concerns:
+  - Validation: use current project validation approach already present in the codebase.
+  - HTTP client: use the centralized `client/src/lib/api/` fetch-based client and React Query integration.
+  - Icons: use existing icon components under `client/src/components/`.
+- If a solution could use disallowed libraries, provide the equivalent implementation with existing repo utilities.
+
 Quick architecture summary
 
 - Frontend: `client/` — Vite + React (React 19), sources in `client/src`, dev: `npm run dev`, build: `npm run build`, tests: `npm run test`.
 - Server: `server1/` — Express + TypeScript, entry `server1/src/server.ts`, build via `npm run build` then `npm start` (starts `dist/server.js`).
 - Shared: `shared/` — shared types/utilities compiled with `tsc` and referenced as `@site8/shared` in `client` and `server1`.
+
+React 19.24 guidance
+
+- Treat React **19.24** as the default target for frontend suggestions and implementations.
+- Prefer modern React structures: functional components, composable custom hooks, route/feature-level `Suspense`, and clear state boundaries.
+- Prefer React 19 patterns where applicable: `useActionState`, `useOptimistic`, transitions (`startTransition`, `useTransition`), and deferred rendering (`useDeferredValue`).
+- Use `use()` and other experimental/canary React capabilities only when supported by project tooling and when they improve clarity or UX.
+- Keep compatibility with existing app architecture (Vite client, React Query, current providers) and avoid introducing patterns that require framework migration.
 
 Developer workflows (explicit commands)
 

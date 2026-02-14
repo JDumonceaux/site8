@@ -4,6 +4,19 @@ applyTo: "**"
 
 # Project General Coding Standards
 
+## Project Stack Guardrails
+
+- Do **not** suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless explicitly requested by the user.
+- Prefer existing repository patterns and dependencies for validation, HTTP requests, and icons.
+- If examples are needed, demonstrate solutions using current in-repo utilities/components instead of new libraries.
+
+## React 19.24 Standards
+
+- Target **React 19.24** capabilities for client-side patterns and recommendations.
+- Prefer modern React architecture: functional components, hook composition, and focused feature boundaries.
+- Use React 19 APIs where they improve UX/clarity (`useActionState`, `useOptimistic`, `startTransition`/`useTransition`, `useDeferredValue`).
+- Experimental React features are allowed when supported by current tooling and when they provide clear value.
+
 ## Naming Conventions
 
 - Use **PascalCase** for component names, classes, interfaces, type aliases, and enums

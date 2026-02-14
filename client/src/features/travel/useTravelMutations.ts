@@ -1,3 +1,4 @@
+import { apiClient } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
 import type { Place } from '@site8/shared';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -34,32 +35,20 @@ const useTravelMutations = ({
 
   const { mutate: updatePlace } = useMutation({
     mutationFn: async (item: Place) => {
-      const response = await fetch(ENDPOINT_TRAVEL_UPDATE(item.id), {
-        body: JSON.stringify({
-          address: item.address,
-          city: item.city,
-          country: item.country,
-          description: item.description,
-          lat: item.lat,
-          lon: item.lon,
-          name: item.name,
-          region: item.region,
-          state: item.state,
-          tags: item.tags,
-          type: item.type,
-          visited: item.visited,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'PUT',
+      return apiClient.put<unknown>(ENDPOINT_TRAVEL_UPDATE(item.id), {
+        address: item.address,
+        city: item.city,
+        country: item.country,
+        description: item.description,
+        lat: item.lat,
+        lon: item.lon,
+        name: item.name,
+        region: item.region,
+        state: item.state,
+        tags: item.tags,
+        type: item.type,
+        visited: item.visited,
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to update place');
-      }
-
-      return response.json() as Promise<unknown>;
     },
     onError: (error: Error) => {
       if (onUpdateError) {
@@ -77,15 +66,7 @@ const useTravelMutations = ({
 
   const { mutate: deletePlace } = useMutation({
     mutationFn: async (itemId: number) => {
-      const response = await fetch(ENDPOINT_TRAVEL_DELETE(itemId), {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to delete place');
-      }
-
-      return response.json() as Promise<unknown>;
+      return apiClient.delete<unknown>(ENDPOINT_TRAVEL_DELETE(itemId));
     },
     onError: (error: Error) => {
       if (onDeleteError) {

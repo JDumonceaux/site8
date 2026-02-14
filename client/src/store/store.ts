@@ -15,7 +15,7 @@ import snackbarReducer from './snackbarSlice';
  * - (Optional) preloadedState, enhancers, or listener middleware
  */
 export const store = configureStore({
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: !import.meta.env.PROD,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       immutableCheck: true,

@@ -1,7 +1,7 @@
 # Structural Improvements Implementation Plan
 
-**Last Updated:** December 27, 2025  
-**Progress:** 9 of 21 items completed (43%)
+**Last Updated:** February 14, 2026  
+**Progress:** 10 of 21 items completed (48%)
 
 ## Legend
 
@@ -15,7 +15,30 @@
 
 ---
 
-## Priority 1 - Critical (1 of 3 completed)
+## Recent Updates (February 14, 2026)
+
+- ✅ New test item save flow fixed: create now uses `POST /api/tests` when `id === 0`.
+- ✅ Client env migration completed for Vite: runtime usage moved to `import.meta.env` and `.env*` files aligned to `VITE_*` keys.
+- ✅ Tests UX improvements delivered:
+  - Section-level and group-level add buttons in tests sections view.
+  - Left menu group click now scrolls to corresponding section.
+  - Left menu title styling updated (spacing, underline, right-corner radius).
+- ✅ Code block/type improvements delivered:
+  - Code label now reflects `code.type` instead of hard-coded "Code".
+  - `Type` and `Content` editors use shared `Input.Text` / `Input.TextArea`.
+  - Save-time `code.type` normalization added using case-insensitive match against suggestions.
+- ✅ API router consistency pass completed:
+  - Remaining unwrapped handlers in `testsRouter` and `pageRouter` were wrapped with `asyncHandler`.
+  - Analysis report refreshed in `API_ROUTER_CONSISTENCY_ANALYSIS_2026.md`.
+- ✅ Centralized API client completed (Item 3):
+  - Added `client/src/lib/api/` with typed fetch client, interceptors, timeout, and retry support.
+  - Migrated feature/hook network calls from scattered `fetch()` usage to `apiClient`.
+
+> Note: Plan progress now includes Item 3 and stands at 10/21 complete.
+
+---
+
+## Priority 1 - Critical (2 of 3 completed)
 
 ### ✅ 1. Refactor ServiceFactory Anti-pattern
 
@@ -46,27 +69,19 @@
 
 ---
 
-### ⏳ 3. Build Centralized API Client
+### ✅ 3. Build Centralized API Client
 
-**Status:** Not Started  
+**Status:** Completed  
 **Priority:** P1  
-**Description:** Create axios-based API client in client/src/lib/api/ with interceptors, error handling, and type-safe endpoints. Replace scattered fetch calls.
+**Description:** Create centralized API client in `client/src/lib/api/` with interceptors, error handling, and type-safe endpoints. Replace scattered fetch calls.
 
-**Implementation Steps:**
+**Completed Actions:**
 
-1. Create `client/src/lib/api/` directory structure
-2. Implement base API client with axios
-3. Add request/response interceptors
-4. Configure error handling
-5. Add TypeScript types for all endpoints
-6. Replace scattered fetch calls throughout features
-7. Add retry logic and timeout configuration
-8. Test all API endpoints
-
-**Files to Modify:**
-
-- All feature files using fetch()
-- Create new API client utilities
+- Created `client/src/lib/api/client.ts`, `types.ts`, and `index.ts`
+- Implemented request/response/error interceptor hooks
+- Added timeout and retry configuration
+- Migrated feature/hook-level `fetch()` calls to centralized `apiClient`
+- Preserved React Query integration and existing mutation/query behavior
 
 ---
 
@@ -100,7 +115,7 @@
 
 **Status:** Completed  
 **Priority:** P2  
-**Description:** Replace native alert() calls with react-toastify across client codebase. Implement consistent notification system.
+**Description:** Replace native alert() calls with the existing Snackbar/notification system across client codebase. Implement consistent notification behavior.
 
 **Completed Actions:**
 
@@ -152,7 +167,7 @@
 
 1. Audit existing TODO endpoints
 2. Implement missing CRUD operations
-3. Add Zod validation schemas
+3. Add request validation using existing server validation patterns
 4. Add proper error handling
 5. Write integration tests
 6. Update API documentation
@@ -330,11 +345,11 @@
 
 **Status:** Not Started  
 **Priority:** P4  
-**Description:** Add Zod schemas for request validation on all server endpoints. Replace manual validation logic.
+**Description:** Add consistent request validation on all server endpoints using existing project validation patterns. Replace manual validation logic.
 
 **Implementation Steps:**
 
-1. Create Zod schemas for all request bodies
+1. Create validation schemas/utilities for all request bodies using current in-repo approach
 2. Create validation middleware
 3. Apply to all POST/PUT/PATCH endpoints
 4. Add validation error responses
@@ -446,7 +461,7 @@
 
 ## Summary
 
-### Completed (9 items)
+### Completed (10 items)
 
 1. ✅ ServiceFactory refactoring
 2. ✅ Type duplication elimination
@@ -457,12 +472,12 @@
 7. ✅ Client components organization
 8. ✅ Custom hooks consolidation
 9. ✅ Unused directory cleanup
+10. ✅ Centralized API client implementation
 
-### Remaining (12 items)
+### Remaining (11 items)
 
 **High Priority:**
 
-- Build centralized API client (P1)
 - Refactor ProtectedRoute authentication (P2)
 - Complete TODO endpoints (P2)
 - Automate router registration (P3)
@@ -480,7 +495,7 @@
 
 ### Recommended Next Steps
 
-1. **Build centralized API client** - High impact on code quality and maintainability
-2. **Refactor ProtectedRoute authentication** - Improves security architecture
+1. **Refactor ProtectedRoute authentication** - Improves security architecture
+2. **Complete TODO endpoints** - Closes backend functional gaps
 3. **Add unit tests for services** - Increases code reliability
 4. **Implement error boundaries** - Improves user experience and error handling

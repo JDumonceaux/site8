@@ -19,6 +19,19 @@ const SectionsGroupsList = ({
 }: SectionsGroupsListProps): JSX.Element => {
   const [dragOverGroupId, setDragOverGroupId] = useState<null | number>(null);
 
+  const scrollToSection = useCallback((sectionId: number): void => {
+    const sectionElement = document.getElementById(
+      `tests-section-${sectionId}`,
+    );
+
+    if (sectionElement) {
+      sectionElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, []);
+
   const handleDragOver = useCallback(
     (event: React.DragEvent<HTMLLIElement>): void => {
       event.preventDefault();
@@ -32,76 +45,85 @@ const SectionsGroupsList = ({
   }, []);
 
   if (sections.length === 0) {
-    return <Container>No sections available.</Container>;
+    return <OuterContainer>No sections available.</OuterContainer>;
   }
 
   return (
-    <Container>
+    <OuterContainer>
       <Title>Sections & Groups</Title>
-      <List>
-        {sections.map((section) => (
-          <SectionItem key={section.id}>
-            <SectionName>{section.name}</SectionName>
-            {section.groups.length > 0 ? (
-              <GroupList>
-                {section.groups.map((group: TestsSectionGroup) => {
-                  const handleDragEnter = (
-                    event: React.DragEvent<HTMLLIElement>,
-                  ): void => {
-                    event.preventDefault();
-                    setDragOverGroupId(group.id);
-                  };
+      <ScrollArea>
+        <List>
+          {sections.map((section) => (
+            <SectionItem key={section.id}>
+              <SectionName>{section.name}</SectionName>
+              {section.groups.length > 0 ? (
+                <GroupList>
+                  {section.groups.map((group: TestsSectionGroup) => {
+                    const handleDragEnter = (
+                      event: React.DragEvent<HTMLLIElement>,
+                    ): void => {
+                      event.preventDefault();
+                      setDragOverGroupId(group.id);
+                    };
 
-                  const handleDrop = (
-                    event: React.DragEvent<HTMLLIElement>,
-                  ): void => {
-                    event.preventDefault();
-                    setDragOverGroupId(null);
+                    const handleDrop = (
+                      event: React.DragEvent<HTMLLIElement>,
+                    ): void => {
+                      event.preventDefault();
+                      setDragOverGroupId(null);
 
-                    try {
-                      const data = JSON.parse(
-                        event.dataTransfer.getData('application/json'),
-                      ) as { currentGroupId: number; itemId: number };
-                      if (
-                        data.itemId &&
-                        data.currentGroupId !== group.id &&
-                        onMoveItem
-                      ) {
-                        onMoveItem(data.itemId, group.id, data.currentGroupId);
+                      try {
+                        const data = JSON.parse(
+                          event.dataTransfer.getData('application/json'),
+                        ) as { currentGroupId: number; itemId: number };
+                        if (
+                          data.itemId &&
+                          data.currentGroupId !== group.id &&
+                          onMoveItem
+                        ) {
+                          onMoveItem(
+                            data.itemId,
+                            group.id,
+                            data.currentGroupId,
+                          );
+                        }
+                      } catch {
+                        // Invalid drag data
                       }
-                    } catch {
-                      // Invalid drag data
-                    }
-                  };
+                    };
 
-                  return (
-                    <GroupItem
-                      $isDropTarget={dragOverGroupId === group.id}
-                      key={group.id}
-                      onDragEnter={handleDragEnter}
-                      onDragLeave={handleDragLeave}
-                      onDragOver={handleDragOver}
-                      onDrop={handleDrop}
-                    >
-                      <GroupName>{group.name}</GroupName>
-                      <ItemCount>({group.itemCount})</ItemCount>
-                    </GroupItem>
-                  );
-                })}
-              </GroupList>
-            ) : (
-              <EmptyMessage>No groups</EmptyMessage>
-            )}
-          </SectionItem>
-        ))}
-      </List>
-    </Container>
+                    return (
+                      <GroupItem
+                        $isDropTarget={dragOverGroupId === group.id}
+                        key={group.id}
+                        onClick={() => {
+                          scrollToSection(section.id);
+                        }}
+                        onDragEnter={handleDragEnter}
+                        onDragLeave={handleDragLeave}
+                        onDragOver={handleDragOver}
+                        onDrop={handleDrop}
+                      >
+                        <GroupName>{group.name}</GroupName>
+                        <ItemCount>({group.itemCount})</ItemCount>
+                      </GroupItem>
+                    );
+                  })}
+                </GroupList>
+              ) : (
+                <EmptyMessage>No groups</EmptyMessage>
+              )}
+            </SectionItem>
+          ))}
+        </List>
+      </ScrollArea>
+    </OuterContainer>
   );
 };
 
 export default SectionsGroupsList;
 
-const Container = styled.div`
+const OuterContainer = styled.div`
   position: sticky;
   top: 60px;
   z-index: 10;
@@ -111,13 +133,20 @@ const Container = styled.div`
   background-color: var(--surface-background-color, #fff);
   border: 1px solid var(--border-light);
   border-radius: 0.5rem;
-  max-height: calc(100vh - 5rem);
-  overflow-y: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
+const ScrollArea = styled.div`
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+`;
+
 const Title = styled.h3`
-  margin: 0 0 0.5rem;
+  margin: 16px 0 6px;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-light);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-primary-color);
