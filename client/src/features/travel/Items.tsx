@@ -1,15 +1,18 @@
 import { type JSX, memo } from 'react';
 
-import type { Places } from '@site8/shared';
+import IconButton from '@components/ui/button/icon-button/IconButton';
+import { EditIcon } from '@components/ui/icons';
+import type { Place, Places } from '@site8/shared';
 import styled from 'styled-components';
 
 type ItemsProps = {
   readonly data?: null | Places;
   readonly id?: number;
+  readonly onEdit?: (item: Place) => void;
 };
 
 // Items component displays a list of travel destinations
-const Items = memo(({ data, id }: ItemsProps): JSX.Element | null => {
+const Items = memo(({ data, id, onEdit }: ItemsProps): JSX.Element | null => {
   if (!data) {
     return null;
   }
@@ -19,9 +22,19 @@ const Items = memo(({ data, id }: ItemsProps): JSX.Element | null => {
       {id ? <div>{id}</div> : null}
       {data.items?.map((item) => (
         <StyledCard key={item.id}>
+          <StyledCardHeader>
+            <StyledHeading>{item.name}</StyledHeading>
+            {onEdit ? (
+              <IconButton
+                aria-label={`Edit ${item.name}`}
+                onClick={() => onEdit(item)}
+              >
+                <EditIcon />
+              </IconButton>
+            ) : null}
+          </StyledCardHeader>
           <StyledCardContent>
             <StyledTextContent>
-              <StyledHeading>{item.name}</StyledHeading>
               {item.city || item.country ? (
                 <StyledLocation>
                   {item.city}
@@ -95,6 +108,14 @@ const StyledCard = styled.div`
   }
 `;
 
+const StyledCardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+`;
+
 const StyledCardContent = styled.div`
   display: flex;
   gap: 1rem;
@@ -123,9 +144,10 @@ const StyledImage = styled.img`
 
 const StyledHeading = styled.h3`
   font-size: 1.25rem;
-  margin: 0 0 0.5em 0;
+  margin: 0;
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary-color);
+  flex: 1;
 `;
 
 const StyledLocation = styled.div`

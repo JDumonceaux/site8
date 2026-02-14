@@ -43,6 +43,7 @@ const TooltipBase = ({
       >
         <StyledTrigger
           {...(triggerColor !== undefined && { $color: triggerColor })}
+          tabIndex={-1}
           {...triggerProps}
         >
           {trigger}

@@ -1,16 +1,23 @@
 import type { JSX } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Meta from '@components/core/meta/Meta';
 import PageTitle from '@components/core/page/PageTitle';
+import IconButton from '@components/ui/button/icon-button/IconButton';
+import { AddIcon } from '@components/ui/icons';
+import useSnackbar from '@features/app/snackbar/useSnackbar';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
+import type { Place } from '@site8/shared';
+import styled from 'styled-components';
+import TravelItemEditDialog from './edit/dialog/TravelItemEditDialog';
 import Items from './Items';
 import Skeleton from './Skeleton';
 import TravelMenu from './TravelMenu';
 import useTravel from './useTravel';
 import { useTravelFiltering } from './useTravelFiltering';
-import styled from 'styled-components';
+import useTravelMutations from './useTravelMutations';
 
 const TravelPage = (): JSX.Element => {
   const { city, country, item } = useParams<{
@@ -20,6 +27,9 @@ const TravelPage = (): JSX.Element => {
   }>();
 
   const { data, error, isError, isLoading } = useTravel();
+  const { setErrorMessage, setMessage } = useSnackbar();
+  const [editingItem, setEditingItem] = useState<null | Place>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const { filteredData, pageTitle, sortedCountryGroups } = useTravelFiltering({
     city,
@@ -27,6 +37,56 @@ const TravelPage = (): JSX.Element => {
     data,
     item,
   });
+
+  const handleCloseDialog = useCallback(() => {
+    setIsDialogOpen(false);
+    setEditingItem(null);
+  }, []);
+
+  const { deletePlace, updatePlace } = useTravelMutations({
+    onDeleteError: (error: Error) => {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      setErrorMessage(`Failed to delete place: ${errorMessage}`);
+    },
+    onDeleteSuccess: () => {
+      setMessage('Place deleted successfully');
+      handleCloseDialog();
+    },
+    onUpdateError: (error: Error) => {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      setErrorMessage(`Failed to update place: ${errorMessage}`);
+    },
+    onUpdateSuccess: () => {
+      setMessage('Place updated successfully');
+      handleCloseDialog();
+    },
+  });
+
+  const handleSaveItem = useCallback(
+    (updatedItem: Place) => {
+      updatePlace(updatedItem);
+    },
+    [updatePlace],
+  );
+
+  const handleDeleteItem = useCallback(
+    (itemId: number) => {
+      deletePlace(itemId);
+    },
+    [deletePlace],
+  );
+
+  const handleAddNew = useCallback(() => {
+    setEditingItem(null);
+    setIsDialogOpen(true);
+  }, []);
+
+  const handleEditItem = useCallback((item: Place) => {
+    setEditingItem(item);
+    setIsDialogOpen(true);
+  }, []);
 
   if (isError && error != null) {
     logError(error, {
@@ -47,21 +107,34 @@ const TravelPage = (): JSX.Element => {
         </Layout.Menu>
         <Layout.Content>
           <Layout.Article>
-            <PageTitle title={pageTitle} />
+            <PageTitle title={pageTitle}>
+              <IconButton
+                aria-label="Add new place"
+                onClick={handleAddNew}
+              >
+                <AddIcon />
+              </IconButton>
+            </PageTitle>
             <Layout.Section>
               {isLoading ? (
                 <Skeleton />
               ) : isError && error != null ? (
                 <div>Error loading travel destinations</div>
               ) : sortedCountryGroups == null ? (
-                <Items data={filteredData} />
+                <Items
+                  data={filteredData}
+                  onEdit={handleEditItem}
+                />
               ) : (
                 <>
                   {sortedCountryGroups.map(
                     ({ countryName, data: groupData }) => (
                       <CountryGroup key={countryName}>
                         <CountryHeading>{countryName}</CountryHeading>
-                        <Items data={groupData} />
+                        <Items
+                          data={groupData}
+                          onEdit={handleEditItem}
+                        />
                       </CountryGroup>
                     ),
                   )}
@@ -71,6 +144,14 @@ const TravelPage = (): JSX.Element => {
           </Layout.Article>
         </Layout.Content>
       </Layout.TwoColumn>
+      <TravelItemEditDialog
+        isOpen={isDialogOpen}
+        item={editingItem}
+        key={editingItem?.id ?? 'new'}
+        onClose={handleCloseDialog}
+        onDelete={handleDeleteItem}
+        onSave={handleSaveItem}
+      />
     </>
   );
 };

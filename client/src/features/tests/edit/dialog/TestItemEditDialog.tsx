@@ -1,10 +1,18 @@
 import type { JSX } from 'react';
-import { useCallback, useEffect, useEffectEvent, useState } from 'react';
+import { useCallback, useEffect, useEffectEvent, useMemo, useState } from 'react';
 
 import Dialog from '@components/core/dialog/Dialog';
-import Button from '@components/ui/button/Button';
+import { Button } from '@components/ui';
 import Input from '@components/ui/input/Input';
+import useValibotValidation from '@hooks/useValibotValidation';
+import {
+  optionalString,
+  requiredNumber,
+  requiredString,
+} from '@lib/validation/schemas';
 import type { Test } from '@site8/shared';
+import type { FieldError } from '@types';
+import * as v from 'valibot';
 import useTestGroups from '../../useTestGroups';
 import CodeItemEditor from './components/CodeItemEditor';
 import { useCodeItemsManager } from './hooks/useCodeItemsManager';
@@ -20,6 +28,38 @@ import {
   ScrollableContent,
 } from './TestItemEditDialog.styles';
 import { formatTags, parseTags } from './utils';
+
+// ============================================================================
+// Validation Schema
+// ============================================================================
+
+/**
+ * Valibot schema for Test item form
+ */
+const testItemSchema = v.object({
+  comments: optionalString,
+  groupId: requiredNumber('Please select a group'),
+  name: requiredString('Name is required'),
+  tags: optionalString,
+});
+
+type TestItemFormData = v.InferOutput<typeof testItemSchema>;
+
+// ============================================================================
+// Helpers
+// ============================================================================
+
+/**
+ * Convert string error messages to FieldError array format
+ */
+const toFieldErrors = (error: string | undefined): FieldError[] | undefined => {
+  if (!error) return undefined;
+  return [{ message: error }];
+};
+
+// ============================================================================
+// Component Props
+// ============================================================================
 
 type TestItemEditDialogProps = {
   readonly groupId: null | number;
@@ -56,12 +96,23 @@ const TestItemEditDialog = ({
     handleUpdateCode,
   } = useCodeItemsManager(item?.code);
 
+  // Validation
+  const { clearErrors, errors, hasErrors, validate, validateField } =
+    useValibotValidation(testItemSchema);
+
+  // Check if required fields are filled
+  const isFormValid = useMemo(
+    () => name.trim().length > 0 && selectedGroupId > 0 && !hasErrors,
+    [name, selectedGroupId, hasErrors],
+  );
+
   // Effect event for syncing form state with props
   const onSyncFormState = useEffectEvent(() => {
     setName(item?.name ?? '');
     setComments(item?.comments ?? '');
     setTags(formatTags(item?.tags));
     setSelectedGroupId(groupId ?? defaultGroupId);
+    clearErrors();
   });
 
   // Sync state when dialog opens with new data
@@ -72,7 +123,51 @@ const TestItemEditDialog = ({
     }
   }, [isOpen, item?.id]);
 
+  // ============================================================================
+  // Validation Handlers
+  // ============================================================================
+
+  /**
+   * Validate name field on blur
+   */
+  const handleNameBlur = useCallback(() => {
+    validateField('name', name, requiredString('Name is required'));
+  }, [name, validateField]);
+
+  /**
+   * Handle group selection change
+   */
+  const handleGroupChange = useCallback(
+    (value: string) => {
+      const numberValue = Number(value);
+      setSelectedGroupId(numberValue);
+      // Note: No field-level validation needed for select with predefined options
+      // Form-level validation on submit will ensure groupId is valid
+    },
+    [],
+  );
+
+  // ============================================================================
+  // Form Submission
+  // ============================================================================
+
+  /**
+   * Handle form submission with validation
+   */
   const handleSave = useCallback(() => {
+    const formData: TestItemFormData = {
+      comments: comments.trim() || undefined,
+      groupId: selectedGroupId,
+      name,
+      tags: tags.trim(),
+    };
+
+    // Validate entire form
+    if (!validate(formData)) {
+      return; // Stop if validation fails
+    }
+
+    // Convert to Test object
     const itemToSave: Test = item
       ? {
           ...item,
@@ -91,11 +186,22 @@ const TestItemEditDialog = ({
 
     onSave(itemToSave, selectedGroupId);
     onClose();
-  }, [item, name, comments, tags, codeItems, selectedGroupId, onSave, onClose]);
+  }, [
+    comments,
+    item,
+    name,
+    onClose,
+    onSave,
+    selectedGroupId,
+    tags,
+    codeItems,
+    validate,
+  ]);
 
   const handleCancel = useCallback(() => {
+    clearErrors();
     onClose();
-  }, [onClose]);
+  }, [clearErrors, onClose]);
 
   const handleDelete = useCallback(() => {
     if (!item || !onDelete) return;
@@ -152,6 +258,7 @@ const TestItemEditDialog = ({
               Cancel
             </Button>
             <Button
+              disabled={!isFormValid}
               onClick={handleSave}
               variant="primary"
             >
@@ -168,12 +275,14 @@ const TestItemEditDialog = ({
       <ScrollableContent>
         <Form>
           <Input.Text
+            errors={toFieldErrors(errors.name)}
             id="name"
+            isRequired
             label="Name"
+            onBlur={handleNameBlur}
             onChange={(e) => {
               setName(e.target.value);
             }}
-            required
             value={name}
           />
           <Input.Select
@@ -182,14 +291,17 @@ const TestItemEditDialog = ({
               key: String(group.id),
               value: String(group.id),
             }))}
+            errors={toFieldErrors(errors.groupId)}
             id="group"
+            isRequired
             label="Group"
             onChange={(e) => {
-              setSelectedGroupId(Number(e.target.value));
+              handleGroupChange(e.target.value);
             }}
             value={String(selectedGroupId)}
           />
           <Input.Text
+            errors={toFieldErrors(errors.tags)}
             id="tags"
             label="Tags (comma-separated)"
             onChange={(e) => {
@@ -199,6 +311,7 @@ const TestItemEditDialog = ({
             value={tags}
           />
           <Input.TextArea
+            errors={toFieldErrors(errors.comments)}
             id="comments"
             label="Comments"
             onChange={(e) => {

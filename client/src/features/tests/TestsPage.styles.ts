@@ -147,24 +147,22 @@ export const TestList = styled.ul`
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 export const TestItem = styled.li`
   background: var(--hover-background);
   border: 1px solid var(--border-light);
   border-radius: var(--border-radius-md);
-  padding: 1rem;
+  padding: 0.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   transition: box-shadow 0.2s ease;
   cursor: grab;
-
   &:hover {
     box-shadow: var(--shadow-sm);
   }
-
   &:active {
     cursor: grabbing;
   }
@@ -193,7 +191,7 @@ export const ToggleButton = styled.button`
 export const TestItemHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.25rem;
 `;
 
 export const EditIconButton = styled(IconButton)`
