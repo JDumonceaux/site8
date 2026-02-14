@@ -1,16 +1,19 @@
 import type { TestFile } from '../../types/TestFile.js';
-import type {
-  Collection,
-  Test,
-  TestGroup,
-  Tests,
-  TestSection,
-} from '@site8/shared';
+import type { Collection, Test, Tests } from '@site8/shared';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
+
+import {
+  buildPopulatedGroups,
+  buildSections,
+  ensureUnknownGroupAndSection,
+  mapItemGroupIds,
+  mapTests,
+  sortSectionsAndGroups,
+} from './testsSortBuilders.js';
 
 const FILTER_TAG = 'code';
 
@@ -86,58 +89,15 @@ export class TestsService extends BaseDataService<TestFile> {
         };
       }
 
-      const sectionsWithUnknown = [...testFile.sections];
-      const groupsWithUnknown = [...testFile.groups];
-      const unknownSection = sectionsWithUnknown.find(
-        (section) => (section.name ?? '').toLowerCase() === 'unknown',
+      const { groupsWithUnknown, unknownGroupId, sectionsWithUnknown } =
+        ensureUnknownGroupAndSection(testFile);
+
+      const items = mapTests(testFile.items);
+      const itemGroupIds = mapItemGroupIds(
+        testFile.items,
+        groupsWithUnknown,
+        unknownGroupId,
       );
-      const unknownSectionId = unknownSection
-        ? unknownSection.id
-        : Math.max(0, ...sectionsWithUnknown.map((section) => section.id)) + 1;
-
-      if (!unknownSection) {
-        sectionsWithUnknown.push({
-          id: unknownSectionId,
-          name: 'Unknown',
-        });
-      }
-
-      const unknownGroup = groupsWithUnknown.find(
-        (group) => (group.name ?? '').toLowerCase() === 'unknown',
-      );
-      const unknownGroupId = unknownGroup
-        ? unknownGroup.id
-        : Math.max(0, ...groupsWithUnknown.map((group) => group.id)) + 1;
-
-      if (!unknownGroup) {
-        groupsWithUnknown.push({
-          id: unknownGroupId,
-          name: 'Unknown',
-          sectionId: unknownSectionId,
-        });
-      }
-
-      // Map all items to Test type
-      const items: Test[] = testFile.items.map(
-        (item: (typeof testFile.items)[number]) => ({
-          code: item.code,
-          comments: item.comments,
-          id: item.id,
-          name: item.name,
-          tags: item.tags ? [...item.tags] : undefined,
-        }),
-      );
-
-      const groupIds = new Set<number>(
-        groupsWithUnknown.map((group) => group.id),
-      );
-      const itemGroupIds = new Map<number, number>();
-      for (const fileItem of testFile.items) {
-        const groupId = groupIds.has(fileItem.groupId)
-          ? fileItem.groupId
-          : unknownGroupId;
-        itemGroupIds.set(fileItem.id, groupId);
-      }
 
       if (items.length === 0) {
         return {
@@ -149,98 +109,20 @@ export class TestsService extends BaseDataService<TestFile> {
         };
       }
 
-      // Create a map of item id to Test for quick lookup
-      const itemsMap = new Map<number, Test>();
-      for (const item of items) {
-        itemsMap.set(item.id, item);
-      }
+      const populatedGroups = buildPopulatedGroups(
+        testFile.items,
+        groupsWithUnknown,
+        items,
+        itemGroupIds,
+      );
 
-      // Build groups with items from the flat structure
-      const populatedGroups: TestGroup[] = [];
+      const sections = buildSections(
+        sectionsWithUnknown,
+        groupsWithUnknown,
+        populatedGroups,
+      );
 
-      for (const group of groupsWithUnknown) {
-        // Find all items that belong to this group
-        const groupItems: Test[] = [];
-
-        for (const fileItem of testFile.items) {
-          // Check if this item is in our items and belongs to this group
-          const groupItem = itemsMap.get(fileItem.id);
-          if (groupItem && itemGroupIds.get(fileItem.id) === group.id) {
-            groupItems.push(groupItem);
-          }
-        }
-
-        // Only include groups that have items
-        if (groupItems.length === 0) {
-          continue;
-        }
-
-        populatedGroups.push({
-          comments: group.comments,
-          id: group.id,
-          items: groupItems,
-          name: group.name,
-          tags: group.tags ? [...group.tags] : undefined,
-        });
-      }
-
-      // Build sections with groups
-      const sections: TestSection[] = [];
-
-      for (const section of sectionsWithUnknown) {
-        const groupsForSection: TestGroup[] = [];
-
-        // Find groups that reference this section
-        for (const group of populatedGroups) {
-          const fileGroup = groupsWithUnknown.find(
-            (g: (typeof groupsWithUnknown)[number]) => g.id === group.id,
-          );
-          if (!fileGroup) continue;
-
-          if (fileGroup.sectionId === section.id) {
-            groupsForSection.push({
-              ...group,
-            });
-          }
-        }
-
-        if (groupsForSection.length === 0) {
-          continue;
-        }
-
-        // Sort groups by name
-        groupsForSection.sort((a, b) =>
-          (a.name ?? '').localeCompare(b.name ?? ''),
-        );
-
-        sections.push({
-          description: section.description,
-          groups: groupsForSection,
-          id: section.id,
-          name: section.name,
-        });
-      }
-
-      // Sort sections by name
-      sections.sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
-
-      // Sort groups within each section by name
-      for (const section of sections) {
-        if (section.groups) {
-          section.groups.sort((a, b) => {
-            return (a.name ?? '').localeCompare(b.name ?? '');
-          });
-
-          // Sort items within each group by name
-          for (const group of section.groups) {
-            if (group.items) {
-              group.items.sort((a, b) =>
-                (a.name ?? '').localeCompare(b.name ?? ''),
-              );
-            }
-          }
-        }
-      }
+      sortSectionsAndGroups(sections);
 
       return {
         metadata: {

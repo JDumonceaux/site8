@@ -1,9 +1,9 @@
 import type { IDataService } from '../../services/IDataService.js';
-import type { MenuItem , Menus , PageMenu , Pages , Parent } from '@site8/shared';
+import type { Menus, Pages } from '@site8/shared';
 
 import { Logger } from '../../utils/logger.js';
 
-import { mapPageMenuToMenuItem } from './mapPageMenuToMenuItem.js';
+import { buildRecursiveMenuTree } from './menuTreeBuilder.js';
 
 export class MenuService {
   private readonly pagesService: IDataService<Pages>;
@@ -20,12 +20,11 @@ export class MenuService {
   public async getMenu(): Promise<Menus | undefined> {
     Logger.info(`MenuService: getMenu -> `);
     try {
-      // 1. Get all the data from pages.json
       const data: Pages | undefined = await this.getItems();
       if (!data?.items) {
         return undefined;
       }
-      const menuTree = this.buildRecursiveMenu(data.items);
+      const menuTree = buildRecursiveMenuTree(data.items);
       return {
         items: menuTree ?? [],
         metadata: data.metadata,
@@ -36,145 +35,6 @@ export class MenuService {
     }
   }
 
-  // 2. Build children recursively for a given parent
-  private buildChildren(
-    parentId: number,
-    menus: readonly PageMenu[],
-    pages: readonly PageMenu[],
-    allItems: readonly PageMenu[],
-  ): MenuItem[] | undefined {
-    try {
-      // Find the parent item
-      const parentItem = allItems.find((x) => x.id === parentId);
-
-      // Find direct children (both menus and pages)
-      // Find child menus
-      const childMenus: MenuItem[] = menus.flatMap(
-        (menu) =>
-          menu.parentItems
-            ?.filter((parent) => parent.id === parentId)
-            .map((parent) => {
-              const url = this.constructUrl(menu, parentItem);
-              const menuItem = mapPageMenuToMenuItem(menu, parent, url);
-              // Recursively build this menu's children
-              const children = this.buildChildren(
-                menu.id,
-                menus,
-                pages,
-                allItems,
-              );
-              return children ? { ...menuItem, items: children } : menuItem;
-            }) ?? [],
-      );
-
-      // Find child pages
-      const childPages: MenuItem[] = pages.flatMap(
-        (page) =>
-          page.parentItems
-            ?.filter((parent) => parent.id === parentId)
-            .map((parent) => {
-              const url = this.constructUrl(page, parentItem);
-              return mapPageMenuToMenuItem(page, parent, url);
-            }) ?? [],
-      );
-
-      // Combine and sort children
-      const allChildren = [...childMenus, ...childPages];
-
-      if (allChildren.length === 0) {
-        return undefined;
-      }
-
-      // Sort by parent sortBy preference
-      const parent = allItems.find((x) => x.id === parentId);
-      const sortBy = parent?.parentItems?.[0]?.sortBy ?? 'name';
-
-      const sorted =
-        sortBy === 'seq'
-          ? allChildren.toSorted(
-              (a, b) => (a.parentItem?.seq ?? 0) - (b.parentItem?.seq ?? 0),
-            )
-          : allChildren.toSorted((a, b) =>
-              (a.title ?? '').localeCompare(b.title ?? ''),
-            );
-
-      return sorted;
-    } catch (error) {
-      Logger.error(`MenuService: buildChildren -> ${String(error)}`);
-      return undefined;
-    }
-  }
-
-  // 1. Build recursive menu structure
-  private buildRecursiveMenu(
-    items?: readonly PageMenu[],
-  ): MenuItem[] | undefined {
-    try {
-      if (!items) {
-        return undefined;
-      }
-
-      const defaultParent = {
-        id: 0,
-        seq: 0,
-        sortBy: 'name',
-      } as Parent;
-
-      // Segment the data using Object.groupBy (ES2024/2025)
-      const grouped = Object.groupBy(items, (item) => item.type);
-      const rootMenus = grouped.root ?? [];
-      const menus = grouped.menu ?? [];
-      const pages = grouped.page ?? [];
-
-      // Build root menu items
-      const rootMenuItems = rootMenus
-        .map((item) => {
-          const url = this.constructUrl(item);
-          return mapPageMenuToMenuItem(
-            item,
-            item.parentItems?.[0] ?? defaultParent,
-            url,
-          );
-        })
-        .toSorted((a, b) => (a.title ?? '').localeCompare(b.title ?? ''));
-
-      // Recursively build children for each root menu
-      const menuTree: MenuItem[] = rootMenuItems.map((rootItem) => {
-        const children = this.buildChildren(rootItem.id, menus, pages, items);
-        return children ? { ...rootItem, items: children } : rootItem;
-      });
-
-      // Add orphans (items without parents)
-      const menuOrphans = menus
-        .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => mapPageMenuToMenuItem(x, defaultParent, undefined));
-
-      const pageOrphans = pages
-        .filter((x) => !x.parentItems || x.parentItems.length === 0)
-        .map((x) => mapPageMenuToMenuItem(x, defaultParent, undefined));
-
-      const result = [...menuTree, ...menuOrphans, ...pageOrphans];
-      return result.length > 0 ? result : undefined;
-    } catch (error) {
-      Logger.error(`MenuService: buildRecursiveMenu -> ${String(error)}`);
-      return undefined;
-    }
-  }
-
-  // Helper method to construct URL
-  private constructUrl(
-    item: PageMenu,
-    parentItem?: PageMenu,
-  ): string | undefined {
-    if (item.type === 'root') {
-      return `/${item.title.toLowerCase().replace(/\s+/g, '-')}`;
-    } else if (item.type === 'page' && parentItem) {
-      return `/${parentItem.title.toLowerCase().replace(/\s+/g, '-')}/${item.title.toLowerCase().replace(/\s+/g, '-')}`;
-    }
-    return item.url;
-  }
-
-  // 0. Get all data
   private async getItems(): Promise<Pages | undefined> {
     return this.pagesService.getItems();
   }

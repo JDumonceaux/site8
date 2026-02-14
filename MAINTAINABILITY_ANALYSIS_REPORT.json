@@ -2,16 +2,16 @@
   "reportMetadata": {
     "generatedDate": "2026-02-14",
     "scope": "client/src and server1/src directories",
-    "totalFilesAnalyzed": 370,
-    "totalLinesOfCode": 23271,
+    "totalFilesAnalyzed": 411,
+    "totalLinesOfCode": 23689,
     "analysisVersion": "2.0"
   },
   "executiveSummary": {
     "overallHealthScore": "C (Needs Improvement)",
-    "criticalIssues": 195,
-    "highPriorityIssues": 299,
-    "mediumPriorityIssues": 349,
-    "lowPriorityIssues": 18,
+    "criticalIssues": 216,
+    "highPriorityIssues": 328,
+    "mediumPriorityIssues": 383,
+    "lowPriorityIssues": 20,
     "strengths": [
       "Strict TypeScript usage across client and server",
       "Feature-based project organization",
@@ -25,128 +25,45 @@
   },
   "fileAnalysis": {
     "largeFiles": {
-      "severity": "High",
+      "severity": "Low",
       "threshold": {
         "concerning": ">300 lines",
         "problematic": ">500 lines"
       },
-      "findings": [
-        {
-          "file": "server1/src/lib/http/genericHandlers.ts",
-          "lines": 514,
-          "severity": "Critical",
-          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
-        },
-        {
-          "file": "client/src/features/travel/edit/dialog/TravelItemEditDialog.tsx",
-          "lines": 469,
-          "severity": "High",
-          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
-        },
-        {
-          "file": "client/src/features/tests/edit/dialog/TestItemEditDialog.tsx",
-          "lines": 382,
-          "severity": "Medium",
-          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
-        },
-        {
-          "file": "client/src/components/core/meta/Meta.tsx",
-          "lines": 344,
-          "severity": "Medium",
-          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
-        },
-        {
-          "file": "server1/src/services/BaseDataService.ts",
-          "lines": 330,
-          "severity": "Medium",
-          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
-        },
-        {
-          "file": "client/src/features/tests/TestsPage.styles.ts",
-          "lines": 311,
-          "severity": "Medium",
-          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
-        },
-        {
-          "file": "server1/src/features/test/TestService.ts",
-          "lines": 308,
-          "severity": "Medium",
-          "recommendation": "Split by feature responsibility and extract helper modules/hooks/services."
-        }
-      ],
+      "findings": [],
       "statistics": {
-        "filesOver500Lines": 1,
-        "filesOver400Lines": 2,
-        "filesOver300Lines": 7,
-        "averageFileSize": 72.3
+        "filesOver500Lines": 0,
+        "filesOver400Lines": 0,
+        "filesOver300Lines": 0,
+        "averageFileSize": 66.4
       }
     },
     "complexityHotspots": {
       "severity": "Medium",
       "findings": [
         {
-          "file": "client/src/features/travel/edit/dialog/TravelItemEditDialog.tsx",
-          "complexity": 123,
-          "maintainabilityIndex": 0
-        },
-        {
-          "file": "server1/src/lib/http/genericHandlers.ts",
-          "complexity": 94,
-          "maintainabilityIndex": 1.29
-        },
-        {
-          "file": "server1/src/features/tests/TestsService.ts",
-          "complexity": 68,
-          "maintainabilityIndex": 13.85
-        },
-        {
-          "file": "client/src/features/tests/edit/dialog/TestItemEditDialog.tsx",
-          "complexity": 59,
-          "maintainabilityIndex": 9.89
-        },
-        {
-          "file": "server1/src/features/menu/MenuService.ts",
-          "complexity": 58,
-          "maintainabilityIndex": 19.13
-        },
-        {
-          "file": "client/src/features/travel/useTravelFiltering.ts",
-          "complexity": 50,
-          "maintainabilityIndex": 25.37
-        },
-        {
-          "file": "client/src/lib/api/client.ts",
-          "complexity": 50,
-          "maintainabilityIndex": 16.9
-        },
-        {
-          "file": "client/src/lib/utils/helpers.ts",
-          "complexity": 49,
-          "maintainabilityIndex": 26.03
-        },
-        {
-          "file": "server1/src/services/BaseDataService.ts",
-          "complexity": 43,
-          "maintainabilityIndex": 13.49
+          "file": "client/src/features/travel/edit/dialog/utils/placeFormTransforms.ts",
+          "complexity": 42,
+          "maintainabilityIndex": 32.33
         }
       ]
     }
   },
   "metrics": {
     "maintainabilityIndex": {
-      "score": 43.9,
+      "score": 44.7,
       "scale": "0-100",
       "interpretation": "Needs Improvement",
       "factors": {
-        "codeOrganization": 87.4,
+        "codeOrganization": 100,
         "typeScriptUsage": 95,
-        "documentation": 36.9,
+        "documentation": 32.4,
         "duplicatedCode": 75,
-        "complexity": 91.9
+        "complexity": 92.8
       }
     },
     "technicalDebt": {
-      "estimatedHours": "698-1396 hours",
+      "estimatedHours": "766-1532 hours",
       "severity": "Medium",
       "trendDirection": "Stable",
       "primarySources": [

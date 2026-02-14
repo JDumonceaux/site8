@@ -3,6 +3,17 @@ import type { BaseIssue, BaseSchema } from 'valibot';
 
 import { getFileService } from '../utils/ServiceFactory.js';
 
+import {
+  findDuplicateIds,
+  getItemsArray,
+  getNextIdFromItems,
+} from './BaseDataService.items.js';
+import { deriveServiceName } from './BaseDataService.naming.js';
+import {
+  readValidatedDataFile,
+  writeValidatedDataFile,
+} from './BaseDataService.fileOperations.js';
+
 import { CacheManager } from './CacheManager.js';
 import { DataValidator, ValidationError } from './DataValidator.js';
 import { ErrorHandler } from './ErrorHandler.js';
@@ -33,25 +44,6 @@ export type BaseDataServiceConfig<T> = {
  * Provides common CRUD operations, error handling, and logging.
  *
  * @template T - The data type this service manages
- *
- * @example
- * ```typescript
- * class MyService extends BaseDataService<MyDataType> {
- *   constructor() {
- *     super({
- *       filePath: FilePath.getDataDir('mydata.json'),
- *       enableCache: true,
- *       validationSchema: MyDataSchema
- *     });
- *   }
- *
- *   // Add domain-specific methods
- *   async getItemById(id: number) {
- *     const data = await this.readFile();
- *     return data.items.find(item => item.id === id);
- *   }
- * }
- * ```
  */
 export abstract class BaseDataService<T> implements IDataService<T> {
   private readonly cacheManager: CacheManager<T>;
@@ -64,16 +56,11 @@ export abstract class BaseDataService<T> implements IDataService<T> {
     this.filePath = config.filePath;
     this.fileService = getFileService();
 
-    // Auto-derive serviceName from class name (this.constructor.name) if not provided
-    // Falls back to filename if class name is just 'Object' or unavailable
-    const className = this.constructor.name;
-    const pathParts = config.filePath.split(/[\\/]/);
-    const fileName = pathParts[pathParts.length - 1] ?? 'DataService';
-    const fileBasedName = fileName.replace(/\.json$/, '');
-
-    const serviceName =
-      config.serviceName ??
-      (className && className !== 'Object' ? className : fileBasedName);
+    const serviceName = deriveServiceName(
+      config.filePath,
+      this.constructor.name,
+      config.serviceName,
+    );
 
     // Initialize utility classes
     this.cacheManager = new CacheManager<T>({
@@ -162,14 +149,8 @@ export abstract class BaseDataService<T> implements IDataService<T> {
 
     try {
       const data = await this.getItems();
-      const { items } = data as { items?: { id: number }[] };
-
-      if (items == null || items.length === 0) {
-        return 1;
-      }
-
-      const maxId = Math.max(...items.map((item) => item.id));
-      const nextId = maxId + 1;
+      const items = getItemsArray<{ id: number }>(data);
+      const nextId = getNextIdFromItems(items);
 
       this.errorHandler.info(`Next ID is ${nextId}`);
       return nextId;
@@ -219,18 +200,12 @@ export abstract class BaseDataService<T> implements IDataService<T> {
 
     try {
       const data = await this.getItems();
-      const { items } = data as { items?: { id: number }[] };
-
-      if (items == null) {
+      const items = getItemsArray<{ id: number }>(data);
+      if (items.length === 0) {
         return { items: [] };
       }
 
-      const allIds = items.map((x) => x.id.toString());
-      const duplicates = allIds.filter((x, i, arr) => arr.indexOf(x) !== i);
-      const filtered = new Set(duplicates)
-        .difference(new Set(['', null, undefined]))
-        .values()
-        .toArray();
+      const filtered = findDuplicateIds(items);
 
       this.errorHandler.info(`Found ${filtered.length} duplicates`);
       return { items: filtered };
@@ -275,35 +250,13 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * @throws Error if read or validation fails
    */
   protected async readFile(): Promise<T> {
-    try {
-      // Check cache first if enabled
-      const cachedData = this.cacheManager.get();
-      if (cachedData) {
-        return cachedData;
-      }
-
-      this.errorHandler.info(`Reading file from ${this.filePath}`);
-      const rawData = await this.fileService.readFile<unknown>(this.filePath);
-
-      if (!rawData) {
-        throw new Error('File data is undefined or null');
-      }
-
-      // Validate data
-      const data = this.validator.validate(rawData);
-
-      // Update cache if enabled
-      this.cacheManager.set(data);
-
-      this.errorHandler.info('Successfully loaded data');
-      return data;
-    } catch (error) {
-      // errorHandler.handle() throws - this line satisfies linter but is unreachable
-      return this.errorHandler.handle(
-        error,
-        `reading file at ${this.filePath}`,
-      );
-    }
+    return readValidatedDataFile({
+      cacheManager: this.cacheManager,
+      errorHandler: this.errorHandler,
+      filePath: this.filePath,
+      fileService: this.fileService,
+      validator: this.validator,
+    });
   }
 
   /**
@@ -312,18 +265,15 @@ export abstract class BaseDataService<T> implements IDataService<T> {
    * @throws Error if validation or write fails
    */
   protected async writeFile(data: T): Promise<void> {
-    try {
-      // Validate data
-      this.validator.validate(data);
-
-      await this.fileService.writeFile(data, this.filePath);
-
-      // Invalidate cache after successful write
-      this.cacheManager.invalidate();
-
-      this.errorHandler.info(`Successfully wrote data to ${this.filePath}`);
-    } catch (error) {
-      this.errorHandler.handle(error, `writing file at ${this.filePath}`);
-    }
+    await writeValidatedDataFile(
+      {
+        cacheManager: this.cacheManager,
+        errorHandler: this.errorHandler,
+        filePath: this.filePath,
+        fileService: this.fileService,
+        validator: this.validator,
+      },
+      data,
+    );
   }
 }

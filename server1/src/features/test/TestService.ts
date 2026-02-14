@@ -5,14 +5,38 @@ import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
 
+import {
+  addItemToFile,
+  buildUpdatedItem,
+  findItemIndex,
+  groupExists,
+  hasGroupsAndItems,
+  hasItems,
+  removeItemFromFile,
+  updateItemInFile,
+} from './testServiceHelpers.js';
+
 /**
  * Service for managing individual test items
  */
 export class TestService extends BaseDataService<TestFile> {
+  private static readonly TESTS_FILE_PATH = FilePath.getDataDir('tests.json');
+
   public constructor() {
     super({
-      filePath: FilePath.getDataDir('tests.json'),
+      filePath: TestService.TESTS_FILE_PATH,
     });
+  }
+
+  private async loadTestFile(): Promise<TestFile> {
+    const fileService = getFileService();
+    return fileService.readFile<TestFile>(TestService.TESTS_FILE_PATH);
+  }
+
+  private async saveTestFile(testFile: TestFile): Promise<void> {
+    const fileService = getFileService();
+    await fileService.writeFile(testFile, TestService.TESTS_FILE_PATH);
+    this.invalidateCache();
   }
 
   /**
@@ -29,58 +53,20 @@ export class TestService extends BaseDataService<TestFile> {
     try {
       Logger.info(`TestService: addItem: Adding new item to group ${groupId}`);
 
-      const fileService = getFileService();
-      const testFile: TestFile = await fileService.readFile<TestFile>(
-        FilePath.getDataDir('tests.json'),
-      );
+      const testFile = await this.loadTestFile();
 
-      if (!testFile.items || !testFile.groups) {
+      if (!hasGroupsAndItems(testFile)) {
         Logger.error('TestService: addItem: Invalid file structure');
         return null;
       }
 
-      // Verify the target group exists
-      const targetGroup = testFile.groups.find((group) => group.id === groupId);
-
-      if (!targetGroup) {
+      if (!groupExists(testFile, groupId)) {
         Logger.error(`TestService: addItem: Target group ${groupId} not found`);
         return null;
       }
 
-      // Find the highest item ID
-      let maxId = 0;
-      for (const item of testFile.items) {
-        if (item.id > maxId) {
-          maxId = item.id;
-        }
-      }
-      const newId = maxId + 1;
-
-      // Create new item
-      const newItem: Test = {
-        ...itemData,
-        groupId: groupId,
-        id: newId,
-      };
-
-      // Create updated test file
-      const updatedTestFile: TestFile = {
-        ...testFile,
-        items: [...testFile.items, newItem],
-        metadata: {
-          ...testFile.metadata,
-          lastUpdated: new Date().toISOString().split('T')[0],
-        },
-      };
-
-      // Write the updated file back
-      await fileService.writeFile(
-        updatedTestFile,
-        FilePath.getDataDir('tests.json'),
-      );
-
-      // Invalidate cache
-      this.invalidateCache();
+      const { file, newId } = addItemToFile(testFile, itemData, groupId);
+      await this.saveTestFile(file);
 
       Logger.info(`TestService: addItem: Successfully added item ${newId}`);
       return newId;
@@ -100,49 +86,22 @@ export class TestService extends BaseDataService<TestFile> {
     try {
       Logger.info(`TestService: deleteItem: Deleting item ${itemId}`);
 
-      const fileService = getFileService();
-      const testFile: TestFile = await fileService.readFile<TestFile>(
-        FilePath.getDataDir('tests.json'),
-      );
+      const testFile = await this.loadTestFile();
 
-      if (!testFile.items) {
+      if (!hasItems(testFile)) {
         Logger.error('TestService: deleteItem: Invalid file structure');
         return false;
       }
 
-      // Find the item to delete
-      const itemIndex = testFile.items.findIndex((item) => item.id === itemId);
-
-      if (itemIndex === -1) {
+      const updatedTestFile = removeItemFromFile(testFile, itemId);
+      if (!updatedTestFile) {
         Logger.error(
           `TestService: deleteItem: Item ${itemId} not found in file`,
         );
         return false;
       }
 
-      // Create updated test file with item removed
-      const updatedItems = [
-        ...testFile.items.slice(0, itemIndex),
-        ...testFile.items.slice(itemIndex + 1),
-      ];
-
-      const updatedTestFile: TestFile = {
-        ...testFile,
-        items: updatedItems,
-        metadata: {
-          ...testFile.metadata,
-          lastUpdated: new Date().toISOString().split('T')[0],
-        },
-      };
-
-      // Write the updated file back
-      await fileService.writeFile(
-        updatedTestFile,
-        FilePath.getDataDir('tests.json'),
-      );
-
-      // Invalidate cache
-      this.invalidateCache();
+      await this.saveTestFile(updatedTestFile);
 
       Logger.info(
         `TestService: deleteItem: Successfully deleted item ${itemId}`,
@@ -164,12 +123,9 @@ export class TestService extends BaseDataService<TestFile> {
     try {
       Logger.info(`TestService: getItem: Retrieving item ${itemId}`);
 
-      const fileService = getFileService();
-      const testFile: TestFile = await fileService.readFile<TestFile>(
-        FilePath.getDataDir('tests.json'),
-      );
+      const testFile = await this.loadTestFile();
 
-      if (!testFile.items) {
+      if (!hasItems(testFile)) {
         Logger.error('TestService: getItem: Invalid file structure');
         return null;
       }
@@ -208,18 +164,14 @@ export class TestService extends BaseDataService<TestFile> {
     try {
       Logger.info(`TestService: updateItem: Updating item ${itemId}`);
 
-      const fileService = getFileService();
-      const testFile: TestFile = await fileService.readFile<TestFile>(
-        FilePath.getDataDir('tests.json'),
-      );
+      const testFile = await this.loadTestFile();
 
-      if (!testFile.items || !testFile.groups) {
+      if (!hasGroupsAndItems(testFile)) {
         Logger.error('TestService: updateItem: Invalid file structure');
         return false;
       }
 
-      // Find the item to update
-      const itemIndex = testFile.items.findIndex((item) => item.id === itemId);
+      const itemIndex = findItemIndex(testFile, itemId);
 
       if (itemIndex === -1) {
         Logger.error(
@@ -228,12 +180,7 @@ export class TestService extends BaseDataService<TestFile> {
         return false;
       }
 
-      // Verify the target group exists
-      const targetGroup = testFile.groups.find(
-        (group) => group.id === newGroupId,
-      );
-
-      if (!targetGroup) {
+      if (!groupExists(testFile, newGroupId)) {
         Logger.error(
           `TestService: updateItem: Target group ${newGroupId} not found`,
         );
@@ -248,52 +195,25 @@ export class TestService extends BaseDataService<TestFile> {
         return false;
       }
 
-      // Create updated item
-      const updatedItem = {
-        ...existingItem,
-        comments: updatedData.comments ?? existingItem.comments,
-        name: updatedData.name ?? existingItem.name,
-        tags: updatedData.tags ?? existingItem.tags,
-      };
-
-      // Handle group membership changes
-      const currentGroupId = existingItem.groupId;
-      const hasGroupMembership = currentGroupId === newGroupId;
+      const hasGroupMembership = existingItem.groupId === newGroupId;
+      const updatedItem = buildUpdatedItem(
+        existingItem,
+        updatedData,
+        newGroupId,
+      );
 
       if (!hasGroupMembership) {
-        // Update group membership
-        updatedItem.groupId = newGroupId;
-
         Logger.info(
           `TestService: updateItem: Moved item ${itemId} to group ${newGroupId}`,
         );
-      } else {
-        // Keep existing group membership
-        updatedItem.groupId = currentGroupId;
       }
 
-      // Create mutable copy of items array with the updated item
-      const updatedItems = [...testFile.items];
-      updatedItems[itemIndex] = updatedItem;
-
-      // Create updated test file
-      const updatedTestFile: TestFile = {
-        ...testFile,
-        items: updatedItems,
-        metadata: {
-          ...testFile.metadata,
-          lastUpdated: new Date().toISOString().split('T')[0],
-        },
-      };
-
-      // Write the updated file back
-      await fileService.writeFile(
-        updatedTestFile,
-        FilePath.getDataDir('tests.json'),
+      const updatedTestFile = updateItemInFile(
+        testFile,
+        itemIndex,
+        updatedItem,
       );
-
-      // Invalidate cache
-      this.invalidateCache();
+      await this.saveTestFile(updatedTestFile);
 
       Logger.info(
         `TestService: updateItem: Successfully updated item ${itemId}`,

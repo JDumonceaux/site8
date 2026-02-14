@@ -3,99 +3,18 @@ import { logError } from '@lib/utils/errorHandler';
 import {
   type ApiClientConfig,
   type ApiErrorInterceptor,
-  ApiError,
-  type ApiMethod,
   type ApiRequestContext,
   type ApiRequestInterceptor,
   type ApiRequestOptions,
   type ApiResponseInterceptor,
 } from './types';
+import { buildBody, mergeHeaders } from './request-builder';
+import { parseResponseBody, toApiError } from './response-parser';
+import { delay, shouldRetry } from './retry-policy';
 
 const DEFAULT_RETRY_DELAY_MS = 300;
 const DEFAULT_RETRY_RETRIES = 1;
 const DEFAULT_TIMEOUT_MS = 10_000;
-const RETRYABLE_STATUS_CODES = new Set([408, 429, 500, 502, 503, 504]);
-
-type JsonRecord = Record<string, unknown>;
-
-const isJsonRecord = (value: unknown): value is JsonRecord => {
-  return value !== null && typeof value === 'object' && !Array.isArray(value);
-};
-
-const isBodyInitLike = (value: unknown): value is BodyInit => {
-  return (
-    typeof value === 'string' ||
-    value instanceof Blob ||
-    value instanceof FormData ||
-    value instanceof URLSearchParams ||
-    value instanceof ReadableStream ||
-    value instanceof ArrayBuffer
-  );
-};
-
-const delay = async (ms: number): Promise<void> => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-};
-
-const shouldRetry = (error: unknown): boolean => {
-  if (error instanceof ApiError) {
-    return RETRYABLE_STATUS_CODES.has(error.status);
-  }
-
-  return error instanceof TypeError;
-};
-
-const parseResponseBody = async (response: Response): Promise<unknown> => {
-  const contentType = response.headers.get('content-type')?.toLowerCase() ?? '';
-  if (contentType.includes('application/json')) {
-    return response.json() as Promise<unknown>;
-  }
-
-  const text = await response.text();
-  return text.length > 0 ? text : null;
-};
-
-const buildBody = (
-  body: ApiRequestOptions['body'],
-  headers: Headers,
-): BodyInit | null | undefined => {
-  if (body === undefined || body === null) {
-    return body;
-  }
-
-  if (isBodyInitLike(body)) {
-    return body;
-  }
-
-  if (isJsonRecord(body)) {
-    if (!headers.has('Content-Type')) {
-      headers.set('Content-Type', 'application/json');
-    }
-
-    return JSON.stringify(body);
-  }
-
-  return body as BodyInit;
-};
-
-const toApiError = async (
-  response: Response,
-  method: ApiMethod,
-  url: string,
-): Promise<ApiError> => {
-  const body = await parseResponseBody(response);
-
-  return new ApiError({
-    body,
-    message: `Request failed: ${method} ${url} (${response.status} ${response.statusText})`,
-    method,
-    status: response.status,
-    statusText: response.statusText,
-    url,
-  });
-};
 
 class ApiClient {
   private readonly _config: Required<ApiClientConfig>;
@@ -189,11 +108,10 @@ class ApiClient {
         );
       }
 
-      const headers = new Headers(this._config.defaultHeaders);
-      const optionHeaders = new Headers(options.headers);
-      optionHeaders.forEach((value, key) => {
-        headers.set(key, value);
-      });
+      const headers = mergeHeaders(
+        this._config.defaultHeaders,
+        options.headers,
+      );
 
       const init: RequestInit = {
         ...options,
