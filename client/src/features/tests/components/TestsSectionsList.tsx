@@ -13,7 +13,7 @@ import {
   TagsContainer,
   TestList,
   TestsContainer,
-} from '../TestsPage.styles';
+} from '@features/tests/TestsPage.styles';
 import TestItem from './TestItem';
 import styled from 'styled-components';
 

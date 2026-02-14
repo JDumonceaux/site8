@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import { TestsContainer } from '../TestsPage.styles';
+import { TestsContainer } from '@features/tests/TestsPage.styles';
 import styled, { keyframes } from 'styled-components';
 
 const TestsSkeleton = (): JSX.Element => {

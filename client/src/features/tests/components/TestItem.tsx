@@ -14,7 +14,7 @@ import {
   TestItemName,
   TestMeta,
   ToggleButton,
-} from '../TestsPage.styles';
+} from '@features/tests/TestsPage.styles';
 import CodeBlock from './CodeBlock';
 
 type TestItemProps = {

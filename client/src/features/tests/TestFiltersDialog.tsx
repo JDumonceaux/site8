@@ -8,7 +8,7 @@ import {
   ToggleInput,
   ToggleRow,
   ToggleText,
-} from './TestsPage.styles';
+} from '@features/tests/TestsPage.styles';
 import styled from 'styled-components';
 
 export type TestFiltersDialogProps = {

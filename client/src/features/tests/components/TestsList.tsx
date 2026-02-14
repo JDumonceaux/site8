@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import type { Test } from '@site8/shared';
 
-import { TestList, TestsContainer } from '../TestsPage.styles';
+import { TestList, TestsContainer } from '@features/tests/TestsPage.styles';
 import TestItem from './TestItem';
 
 type TestsListProps = {

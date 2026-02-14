@@ -51,10 +51,10 @@ Project-specific patterns & conventions
 
 Files to inspect before changing code
 
-- Server entry: [server1/src/server.ts](server1/src/server.ts)
-- Frontend entry: [client/src/main.tsx](client/src/main.tsx)
-- Shared package: [shared/package.json](shared/package.json) and `shared/src` (types/utilities)
-- Client tsconfig: [client/tsconfig.json](client/tsconfig.json) and server tsconfig: [server1/tsconfig.json](server1/tsconfig.json)
+- Server entry: [server1/src/server.ts](../server1/src/server.ts)
+- Frontend entry: [client/src/main.tsx](../client/src/main.tsx)
+- Shared package: [shared/package.json](../shared/package.json) and `shared/src` (types/utilities)
+- Client tsconfig: [client/tsconfig.json](../client/tsconfig.json) and server tsconfig: [server1/tsconfig.json](../server1/tsconfig.json)
 
 Testing & CI notes
 
@@ -106,10 +106,10 @@ Project-specific patterns & conventions
 - Security & ops: server uses `helmet`, `compression`, and rate limiting; respect these configs when adding endpoints.
 
 Files to inspect before changing code
-- Server entry: [server1/src/server.ts](server1/src/server.ts)
-- Frontend entry: [client/src/main.tsx](client/src/main.tsx)
-- Shared package: [shared/package.json](shared/package.json) and `shared/src` (types/utilities)
-- Client tsconfig: [client/tsconfig.json](client/tsconfig.json) and server tsconfig: [server1/tsconfig.json](server1/tsconfig.json)
+- Server entry: [server1/src/server.ts](../server1/src/server.ts)
+- Frontend entry: [client/src/main.tsx](../client/src/main.tsx)
+- Shared package: [shared/package.json](../shared/package.json) and `shared/src` (types/utilities)
+- Client tsconfig: [client/tsconfig.json](../client/tsconfig.json) and server tsconfig: [server1/tsconfig.json](../server1/tsconfig.json)
 
 Testing & CI notes
 - Frontend tests use `vitest` (`client/package.json` scripts). Storybook is present for UI components.

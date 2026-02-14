@@ -14,7 +14,7 @@ import SectionsGroupsSkeleton from './components/SectionsGroupsSkeleton';
 import TestsList from './components/TestsList';
 import TestsSectionsList from './components/TestsSectionsList';
 import TestsSkeleton from './components/TestsSkeleton';
-import TestItemEditDialog from './edit/dialog/TestItemEditDialog';
+import TestItemEditDialog from '@features/tests/edit/dialog/TestItemEditDialog';
 import { useTestFilters } from './hooks/useTestFilters';
 import TestFiltersDialog from './TestFiltersDialog';
 import useTestMutations from './useTestMutations';

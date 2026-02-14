@@ -9,7 +9,7 @@ import {
   CodeContent,
   CodeHeader,
   CodeLabel,
-} from '../TestsPage.styles';
+} from '@features/tests/TestsPage.styles';
 
 type CodeBlockProps = {
   readonly code: string;
