@@ -14,6 +14,7 @@ const UnifiedLayout = lazy(
 // Content Pages
 // ---------------------
 const TravelPage = lazy(async () => import('../../features/travel/TravelPage'));
+const ImagesPage = lazy(async () => import('../../features/images/ImagesPage'));
 const GenericPage = lazy(
   async () => import('../../features/generic/GenericPage'),
 );
@@ -98,6 +99,12 @@ export const protectedContentRoutes = (
           path={path}
         />
       ))}
+    </Route>
+    <Route element={protectedLayoutElement}>
+      <Route
+        element={<ImagesPage />}
+        path="images"
+      />
     </Route>
     {/* Testing */}
     <Route element={protectedLayoutElement}>

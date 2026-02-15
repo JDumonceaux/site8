@@ -8,6 +8,7 @@ import express, {
 import RateLimit from 'express-rate-limit';
 
 import { genericRouter } from './app/routes/genericRouter.js';
+import { imagesRouter } from './app/routes/imagesRouter.js';
 import { menuRouter } from './app/routes/menuRouter.js';
 import { testsRouter } from './app/routes/testsRouter.js';
 import { travelRouter } from './app/routes/travelRouter.js';
@@ -104,6 +105,7 @@ app.use((_req, res, next) => {
 // Read-heavy routes with general rate limiting
 app.use('/api/travel', travelRouter);
 app.use('/api/generic', genericRouter);
+app.use('/api/images', imagesRouter);
 
 // Write-heavy routes with stricter mutation rate limiting
 app.use('/api/tests', testsRouter, mutationLimiter);

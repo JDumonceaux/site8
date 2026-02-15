@@ -29,6 +29,7 @@ const HomeMenu = (): JSX.Element => {
       </StyledPageDiv>
       <StyledPageDiv to="/management">Management</StyledPageDiv>
       <StyledRootDiv>Content & Media</StyledRootDiv>
+      <StyledPageDiv to="/images">Images</StyledPageDiv>
       <StyledPageDiv to="/travel">Travel</StyledPageDiv>
       <StyledPageDiv to="/yachts">Yachts</StyledPageDiv>
       <StyledRootDiv>Testing</StyledRootDiv>

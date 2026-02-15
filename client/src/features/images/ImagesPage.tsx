@@ -1,0 +1,293 @@
+import type { JSX } from 'react';
+import { type DragEvent, useMemo, useState } from 'react';
+
+import useSnackbar from '@app/snackbar/useSnackbar';
+import Meta from '@components/meta/Meta';
+import PageTitle from '@components/page/PageTitle';
+import Switch from '@components/switch/Switch';
+import LoadingWrapper from '@components/loading/LoadingWrapper';
+import Layout from '@features/layouts/layout/Layout';
+import { logError } from '@lib/utils/errorHandler';
+import type { Image } from '@site8/shared';
+import styled from 'styled-components';
+
+import ImageEditDialog from './edit/dialog/ImageEditDialog';
+import Items from './Items';
+import useDeleteImage from './useDeleteImage';
+import useImageFolders from './useImageFolders';
+import useImages from './useImages';
+import useMoveImages from './useMoveImages';
+import useRenameImage from './useRenameImage';
+
+const ImagesPage = (): JSX.Element => {
+  const [unmatchedOnly, setUnmatchedOnly] = useState(false);
+  const [editingImage, setEditingImage] = useState<Image | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
+    new Set(),
+  );
+  const [dragOverFolder, setDragOverFolder] = useState<string | null>(null);
+  const { setErrorMessage, setMessage } = useSnackbar();
+  const { data, error, isError, isLoading } = useImages({ unmatchedOnly });
+  const {
+    data: foldersData,
+    error: foldersError,
+    isError: isFoldersError,
+    isLoading: isFoldersLoading,
+  } = useImageFolders();
+
+  const { isPending: isMovePending, moveImages } = useMoveImages(
+    (movedCount) => {
+      setMessage(`Moved ${movedCount} image${movedCount === 1 ? '' : 's'}`);
+      setSelectedImageIds(new Set());
+    },
+    (moveError) => {
+      setErrorMessage(moveError.message);
+    },
+  );
+  const { deleteImage, isPending: isDeletePending } = useDeleteImage(
+    (response) => {
+      setMessage(
+        response.deletedFile
+          ? 'Image deleted'
+          : 'Image entry removed from images index',
+      );
+      setSelectedImageIds(new Set());
+    },
+    (deleteError) => {
+      setErrorMessage(deleteError.message);
+    },
+  );
+  const { isPending: isRenamePending, renameImage } = useRenameImage(
+    () => {
+      setMessage('Image updated');
+      setSelectedImageIds(new Set());
+    },
+    (renameError) => {
+      setErrorMessage(renameError.message);
+    },
+  );
+
+  if (isError && error != null) {
+    logError(error, {
+      action: 'loadImages',
+      componentName: 'ImagesPage',
+    });
+  }
+
+  const title = unmatchedOnly ? 'Unmatched Images' : 'Images';
+  const count = data?.items?.length ?? 0;
+  const selectedCount = selectedImageIds.size;
+
+  const selectedImageSrcs = useMemo(() => {
+    if (!data?.items?.length) {
+      return [];
+    }
+
+    return data.items
+      .filter((item) => selectedImageIds.has(item.id))
+      .map((item) => item.src);
+  }, [data?.items, selectedImageIds]);
+
+  const handleCardSelect = (imageId: number): void => {
+    setSelectedImageIds((current) => {
+      const next = new Set(current);
+
+      if (next.has(imageId)) {
+        next.delete(imageId);
+      } else {
+        next.add(imageId);
+      }
+
+      return next;
+    });
+  };
+
+  const handleCardDragStart = (imageId: number): void => {
+    setSelectedImageIds((current) => {
+      if (current.has(imageId)) {
+        return current;
+      }
+
+      return new Set([imageId]);
+    });
+  };
+
+  const handleFolderDragOver = (
+    event: DragEvent<HTMLLIElement>,
+    folder: string,
+  ): void => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+    setDragOverFolder(folder);
+  };
+
+  const handleFolderDrop = (
+    event: DragEvent<HTMLLIElement>,
+    folder: string,
+  ): void => {
+    event.preventDefault();
+    setDragOverFolder(null);
+
+    if (selectedImageSrcs.length === 0 || isMovePending) {
+      return;
+    }
+
+    moveImages({
+      imageSrcs: selectedImageSrcs,
+      targetFolder: folder,
+    });
+  };
+
+  const handleOpenEdit = (image: Image): void => {
+    setEditingImage(image);
+    setIsDialogOpen(true);
+  };
+
+  const handleCloseDialog = (): void => {
+    setIsDialogOpen(false);
+    setEditingImage(null);
+  };
+
+  const handleSaveImage = (
+    image: Image,
+    targetFolder: string,
+    targetFileName: string,
+  ): void => {
+    renameImage({
+      src: image.src,
+      targetFileName,
+      targetFolder,
+    });
+    handleCloseDialog();
+  };
+
+  const handleDeleteImage = (image: Image): void => {
+    deleteImage({ src: image.src });
+    handleCloseDialog();
+  };
+
+  return (
+    <>
+      <Meta
+        description="Browse image files and unmatched image entries."
+        title={title}
+      />
+      <Layout.TwoColumn>
+        <Layout.Menu>
+          <MenuPanel>
+            <Switch
+              checked={unmatchedOnly}
+              id="unmatchedOnly"
+              label="Show unmatched only"
+              onCheckedChange={setUnmatchedOnly}
+            />
+            <Count>{count} items</Count>
+            <Count>{selectedCount} selected</Count>
+            <FolderSection>
+              <FolderTitle>Folders (2025)</FolderTitle>
+              <LoadingWrapper
+                error={foldersError}
+                isError={isFoldersError}
+                isLoading={isFoldersLoading}
+              >
+                <FolderList>
+                  {(foldersData?.items ?? []).map((folder) => (
+                    <FolderItem
+                      $isDropTarget={dragOverFolder === folder}
+                      key={folder}
+                      onDragLeave={() => {
+                        setDragOverFolder(null);
+                      }}
+                      onDragOver={(event) => {
+                        handleFolderDragOver(event, folder);
+                      }}
+                      onDrop={(event) => {
+                        handleFolderDrop(event, folder);
+                      }}
+                    >
+                      {folder}
+                    </FolderItem>
+                  ))}
+                </FolderList>
+              </LoadingWrapper>
+            </FolderSection>
+          </MenuPanel>
+        </Layout.Menu>
+        <Layout.Content>
+          <Layout.Article>
+            <PageTitle title={title} />
+            <Layout.Section>
+              <LoadingWrapper
+                error={error}
+                isError={isError}
+                isLoading={
+                  isLoading ||
+                  isMovePending ||
+                  isDeletePending ||
+                  isRenamePending
+                }
+              >
+                <Items
+                  items={data?.items}
+                  onCardDragStart={handleCardDragStart}
+                  onCardEdit={handleOpenEdit}
+                  onCardSelect={handleCardSelect}
+                  selectedImageIds={selectedImageIds}
+                />
+              </LoadingWrapper>
+            </Layout.Section>
+          </Layout.Article>
+        </Layout.Content>
+      </Layout.TwoColumn>
+      <ImageEditDialog
+        availableFolders={foldersData?.items ?? []}
+        image={editingImage}
+        isDeleting={isDeletePending}
+        isOpen={isDialogOpen}
+        isSaving={isRenamePending}
+        onClose={handleCloseDialog}
+        onDelete={handleDeleteImage}
+        onSave={handleSaveImage}
+      />
+    </>
+  );
+};
+
+export default ImagesPage;
+
+const MenuPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;
+
+const Count = styled.div`
+  color: var(--text-secondary-color);
+  font-size: var(--font-size-sm);
+`;
+
+const FolderSection = styled.div`
+  margin-top: 1rem;
+`;
+
+const FolderTitle = styled.h3`
+  color: var(--text-primary-color);
+  font-size: var(--font-size-base);
+  margin: 0 0 0.5rem;
+`;
+
+const FolderList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const FolderItem = styled.li<{ $isDropTarget: boolean }>`
+  color: var(--text-secondary-color);
+  font-size: var(--font-size-sm);
+  padding: 0.25rem 0;
+  border-radius: var(--border-radius-sm);
+  background-color: ${({ $isDropTarget }) =>
+    $isDropTarget ? 'var(--hover-background)' : 'transparent'};
+`;

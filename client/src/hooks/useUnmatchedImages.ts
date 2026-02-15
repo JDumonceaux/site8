@@ -1,7 +1,8 @@
 import { apiClient } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
 import { useQuery } from '@tanstack/react-query';
-import type { Images } from '@types';
+import type { Collection } from '@site8/shared';
+import type { Image, Images } from '@types';
 
 type UseUnmatchedImagesReturn = {
   readonly data: Images | undefined;
@@ -17,11 +18,15 @@ const useUnmatchedImages = (enabled = true): UseUnmatchedImagesReturn => {
   const { data, isError, isPending } = useQuery<Images>({
     enabled,
     queryFn: async ({ signal }): Promise<Images> => {
-      return apiClient.get<Images>(ServiceUrl.ENDPOINT_IMAGES_SCAN, {
-        signal,
-      });
+      const response = await apiClient.get<Collection<Image>>(
+        ServiceUrl.ENDPOINT_IMAGES_UNMATCHED,
+        {
+          signal,
+        },
+      );
+      return response.items ?? [];
     },
-    queryKey: ['unmatched-images'],
+    queryKey: ['images'],
     retry: 1,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });

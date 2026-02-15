@@ -13,6 +13,7 @@
 // NOTE: This is the correct format.  GPT 5.0 fixes are incorrect.
 import { ImagesFileService } from '../features/images/ImagesFileService.js';
 import { ImagesService } from '../features/images/ImagesService.js';
+import { ClientImagesService } from '../features/images/ClientImagesService.js';
 import { MenuService } from '../features/menu/MenuService.js';
 import { PageFileService } from '../features/page/PageFileService.js';
 import { PagesService } from '../features/pages/PagesService.js';
@@ -42,6 +43,13 @@ class ServiceContainer {
 
   public getImagesFileService(): ImagesFileService {
     return this.getOrCreate('ImagesFileService', () => new ImagesFileService());
+  }
+
+  public getClientImagesService(): ClientImagesService {
+    return this.getOrCreate(
+      'ClientImagesService',
+      () => new ClientImagesService(),
+    );
   }
 
   public getImagesService(): ImagesService {
@@ -127,6 +135,8 @@ export const getGenericService = (): GenericService =>
   container.getGenericService();
 export const getImagesFileService = (): ImagesFileService =>
   container.getImagesFileService();
+export const getClientImagesService = (): ClientImagesService =>
+  container.getClientImagesService();
 export const getImagesService = (): ImagesService =>
   container.getImagesService();
 export const getMenuService = (): MenuService => container.getMenuService();
