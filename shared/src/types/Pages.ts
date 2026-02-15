@@ -48,16 +48,6 @@ export const PageSchema = v.object({
 export type Page = v.InferOutput<typeof PageSchema>;
 
 /**
- * Page Edit type - extends Page with text field emphasized
- */
-export const PageEditSchema = v.object({
-  ...PageSchema.entries,
-  text: v.optional(v.string()),
-});
-
-export type PageEdit = v.InferOutput<typeof PageEditSchema>;
-
-/**
  * Pages collection type
  */
 export type Pages = Collection<PageMenu>;

@@ -2,7 +2,7 @@ import type { JSX, Ref } from 'react';
 import { useEffect, useState, useTransition } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
+import LoadingWrapper from '@components/loading/LoadingWrapper';
 import useMenu from '@features/menu/useMenu';
 import { getURLPath } from '@lib/utils/helpers';
 import type { MenuItem } from '@site8/shared';

@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import SlideoutDialog from '@components/ui/slideout-dialog/SlideoutDialog';
+import SlideoutDialog from '@components/slideout-dialog/SlideoutDialog';
 import {
   FilterGroup,
   FilterLabel,

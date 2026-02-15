@@ -8,9 +8,9 @@ import {
   useState,
 } from 'react';
 
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
-import Switch from '@components/ui/switch/Switch';
-import useAppSettings from '@features/app/useAppSettings';
+import LoadingWrapper from '@components/loading/LoadingWrapper';
+import Switch from '@components/switch/Switch';
+import useAppSettings from '@app/useAppSettings';
 import useUnmatchedImages from '@hooks/useUnmatchedImages';
 import type { Image } from '@types';
 import styled from 'styled-components';

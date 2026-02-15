@@ -1,9 +1,9 @@
 import type { JSX } from 'react';
 import { useActionState, useCallback } from 'react';
 
-import Meta from '@components/core/meta/Meta';
-import Button from '@components/ui/button/Button';
-import Input from '@components/ui/input/Input';
+import Meta from '@components/meta/Meta';
+import Button from '@components/button/Button';
+import Input from '@components/input/Input';
 import useAuth from '@features/auth/useAuth';
 import useForm from '@hooks/useForm';
 import { logError } from '@lib/utils/errorHandler';

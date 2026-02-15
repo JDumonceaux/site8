@@ -9,7 +9,6 @@ import RateLimit from 'express-rate-limit';
 
 import { genericRouter } from './app/routes/genericRouter.js';
 import { menuRouter } from './app/routes/menuRouter.js';
-import { pageRouter } from './app/routes/pageRouter.js';
 import { testsRouter } from './app/routes/testsRouter.js';
 import { travelRouter } from './app/routes/travelRouter.js';
 import { SERVER_CONFIG } from './utils/constants.js';
@@ -109,7 +108,6 @@ app.use('/api/generic', genericRouter);
 // Write-heavy routes with stricter mutation rate limiting
 app.use('/api/tests', testsRouter, mutationLimiter);
 app.use('/api/menus', menuRouter, mutationLimiter);
-app.use('/api/page', pageRouter, mutationLimiter);
 
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Unhandled error', { error: err.message, stack: err.stack });

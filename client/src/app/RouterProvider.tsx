@@ -6,8 +6,6 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import { QueryClient } from '@tanstack/react-query';
-import { adminRoutes } from './routes/adminRoutes';
 import { authRoutes } from './routes/authRoutes';
 import { protectedContentRoutes } from './routes/protectedContentRoutes';
 import { publicRoutes } from './routes/publicRoutes';
@@ -21,7 +19,7 @@ const ErrorPage = lazy(async () => import('../features/site/ErrorPage'));
 /**
  * Creates router configuration with proper route protection and organization
  */
-const createAppRouter = (queryClient: QueryClient) => {
+const createAppRouter = () => {
   return createBrowserRouter(
     createRoutesFromElements(
       <Route
@@ -34,8 +32,6 @@ const createAppRouter = (queryClient: QueryClient) => {
         {authRoutes}
         {/* ===== PROTECTED ROUTES (Authentication Required) ===== */}
         {protectedContentRoutes}
-        {/* ===== ADMIN ROUTES (Admin Role Required) ===== */}
-        {adminRoutes(queryClient)}
         {/* ===== FALLBACK ROUTES ===== */}
         <Route
           element={<NotFound />}
@@ -60,22 +56,7 @@ const createAppRouter = (queryClient: QueryClient) => {
  * App Router component with proper QueryClient management
  */
 const AppRouter = () => {
-  // Create QueryClient once and memoize it
-  const queryClient = useMemo(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            gcTime: 10 * 60 * 1000, // 10 minutes
-            staleTime: 5 * 60 * 1000, // 5 minutes
-          },
-        },
-      }),
-    [],
-  );
-
-  // Create router with the stable QueryClient
-  const router = useMemo(() => createAppRouter(queryClient), [queryClient]);
+  const router = useMemo(() => createAppRouter(), []);
 
   return <RouterProvider router={router} />;
 };

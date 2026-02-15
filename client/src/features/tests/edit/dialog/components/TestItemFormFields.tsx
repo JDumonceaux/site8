@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 
-import IconButton from '@components/ui/button/icon-button/IconButton';
-import { AddIcon } from '@components/ui/icons';
-import Input from '@components/ui/input/Input';
+import IconButton from '@components/button/icon-button/IconButton';
+import { AddIcon } from '@components/icons';
+import Input from '@components/input/Input';
 import type { TestCode, TestGroup } from '@site8/shared';
 import CodeItemEditor from './CodeItemEditor';
 import {

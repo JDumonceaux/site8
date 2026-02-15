@@ -1,7 +1,7 @@
 import { type JSX, memo } from 'react';
 
-import IconButton from '@components/ui/button/icon-button/IconButton';
-import { EditIcon } from '@components/ui/icons';
+import IconButton from '@components/button/icon-button/IconButton';
+import { EditIcon } from '@components/icons';
 import type { Place, Places } from '@site8/shared';
 import styled from 'styled-components';
 

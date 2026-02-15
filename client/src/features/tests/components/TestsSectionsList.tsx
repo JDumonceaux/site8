@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import IconButton from '@components/ui/button/icon-button/IconButton';
-import { AddIcon } from '@components/ui/icons';
+import IconButton from '@components/button/icon-button/IconButton';
+import { AddIcon } from '@components/icons';
 import type { Test, TestSection } from '@site8/shared';
 import {
   GroupComments,

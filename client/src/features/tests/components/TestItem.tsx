@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useState } from 'react';
 
-import { EditIcon } from '@components/ui/icons/EditIcon';
+import { EditIcon } from '@components/icons/EditIcon';
 import type { Test } from '@site8/shared';
 import {
   EditIconButton,

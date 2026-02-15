@@ -14,7 +14,6 @@ export type * from './ListItem';
 export type * from './Menu';
 export type * from './MenuAdd';
 export type * from './MenuEdit';
-export * from './PageEditSchema';
 export type * from './PageSchema';
 export type * from './PageSummary';
 export type * from './ParentSortby';

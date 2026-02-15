@@ -1,8 +1,8 @@
 import type { JSX } from 'react';
 import { useCallback } from 'react';
 
-import Dialog from '@components/core/dialog/Dialog';
-import { Button } from '@components/ui';
+import Button from '@components/button/Button';
+import Dialog from '@components/dialog/Dialog';
 import useValibotValidation from '@hooks/useValibotValidation';
 import {
   optionalString,

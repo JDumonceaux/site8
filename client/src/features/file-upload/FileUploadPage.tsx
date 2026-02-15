@@ -1,7 +1,7 @@
 import { type ChangeEvent, type JSX, useCallback, useState } from 'react';
 
-import Meta from '@components/core/meta/Meta';
-import PageTitle from '@components/core/page/PageTitle';
+import Meta from '@components/meta/Meta';
+import PageTitle from '@components/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
 import { apiClient } from '@lib/api';
 

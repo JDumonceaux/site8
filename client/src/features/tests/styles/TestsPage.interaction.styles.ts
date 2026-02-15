@@ -1,4 +1,4 @@
-import IconButton from '@components/ui/button/icon-button/IconButton';
+import IconButton from '@components/button/icon-button/IconButton';
 import styled from 'styled-components';
 
 export const ToggleButton = styled.button`

@@ -2,11 +2,11 @@ import type { JSX } from 'react';
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Meta from '@components/core/meta/Meta';
-import PageTitle from '@components/core/page/PageTitle';
-import IconButton from '@components/ui/button/icon-button/IconButton';
-import { AddIcon } from '@components/ui/icons';
-import useSnackbar from '@features/app/snackbar/useSnackbar';
+import Meta from '@components/meta/Meta';
+import PageTitle from '@components/page/PageTitle';
+import IconButton from '@components/button/icon-button/IconButton';
+import { AddIcon } from '@components/icons';
+import useSnackbar from '@app/snackbar/useSnackbar';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import type { Place } from '@site8/shared';

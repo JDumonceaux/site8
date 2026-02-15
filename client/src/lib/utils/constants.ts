@@ -58,7 +58,6 @@ export const ServiceUrl = {
   ENDPOINT_IMAGES_SCAN: `${API_ROOT}/images/scan`,
   ENDPOINT_MENUS: `${API_ROOT}/menus`,
   ENDPOINT_MENUS_EDIT: `${API_ROOT}/menus/edit`,
-  ENDPOINT_PAGE: `${API_ROOT}/page`,
   ENDPOINT_TESTS: `${API_ROOT}/tests`,
   ENDPOINT_TESTS_SORTED: `${API_ROOT}/tests/sorted`,
   ENDPOINT_TESTS_SECTIONS: `${API_ROOT}/tests/sections`,

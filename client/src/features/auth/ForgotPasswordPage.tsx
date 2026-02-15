@@ -1,9 +1,9 @@
 import { type JSX, useActionState } from 'react';
 
-import Meta from '@components/core/meta/Meta';
-import SubmitButton from '@components/ui/button/SubmitButton';
-import Input from '@components/ui/input/Input';
-import StyledLink from '@components/ui/link/styled-link/StyledLink';
+import Meta from '@components/meta/Meta';
+import SubmitButton from '@components/button/SubmitButton';
+import Input from '@components/input/Input';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import { emailAddress } from '@types';
 import * as v from 'valibot';

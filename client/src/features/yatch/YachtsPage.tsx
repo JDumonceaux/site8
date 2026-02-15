@@ -1,7 +1,7 @@
 import { type JSX, Suspense } from 'react';
 
-import Meta from '@components/core/meta/Meta';
-import PageTitle from '@components/core/page/PageTitle';
+import Meta from '@components/meta/Meta';
+import PageTitle from '@components/page/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
 import type { Image, Video } from '@types';

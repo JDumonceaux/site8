@@ -15,7 +15,6 @@ import { ImagesFileService } from '../features/images/ImagesFileService.js';
 import { ImagesService } from '../features/images/ImagesService.js';
 import { MenuService } from '../features/menu/MenuService.js';
 import { PageFileService } from '../features/page/PageFileService.js';
-import { PageService } from '../features/page/PageService.js';
 import { PagesService } from '../features/pages/PagesService.js';
 import { TestService } from '../features/test/TestService.js';
 import { TestsGroupsService } from '../features/tests/TestsGroupsService.js';
@@ -58,10 +57,6 @@ class ServiceContainer {
 
   public getPageFileService(): PageFileService {
     return this.getOrCreate('PageFileService', () => new PageFileService());
-  }
-
-  public getPageService(): PageService {
-    return this.getOrCreate('PageService', () => new PageService());
   }
 
   public getPagesService(): PagesService {
@@ -135,7 +130,6 @@ export const getImagesFileService = (): ImagesFileService =>
 export const getImagesService = (): ImagesService =>
   container.getImagesService();
 export const getMenuService = (): MenuService => container.getMenuService();
-export const getPageService = (): PageService => container.getPageService();
 export const getPageFileService = (): PageFileService =>
   container.getPageFileService();
 export const getPagesService = (): PagesService => container.getPagesService();

@@ -1,9 +1,9 @@
 import { type JSX, useDeferredValue } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 
-import Meta from '@components/core/meta/Meta';
-import PageTitle from '@components/core/page/PageTitle';
-import LoadingWrapper from '@components/ui/loading/LoadingWrapper';
+import Meta from '@components/meta/Meta';
+import PageTitle from '@components/page/PageTitle';
+import LoadingWrapper from '@components/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import useMenu from '@features/menu/useMenu';
 import type { MenuItem, Page } from '@site8/shared';

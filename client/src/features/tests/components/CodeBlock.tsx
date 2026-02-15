@@ -1,9 +1,9 @@
 import type { JSX } from 'react';
 import { useRef } from 'react';
 
-import IconButton from '@components/ui/button/icon-button/IconButton';
-import { CopyIcon } from '@components/ui/icons/CopyIcon';
-import useSnackbar from '@features/app/snackbar/useSnackbar';
+import IconButton from '@components/button/icon-button/IconButton';
+import { CopyIcon } from '@components/icons/CopyIcon';
+import useSnackbar from '@app/snackbar/useSnackbar';
 import {
   CodeBlockContainer,
   CodeContent,

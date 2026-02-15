@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import Input from '@components/ui/input/Input';
+import Input from '@components/input/Input';
 import type { PlaceFormValues } from '../utils/placeFormMapper';
 import styled from 'styled-components';
 

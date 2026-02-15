@@ -20,6 +20,40 @@ const GenericPage = lazy(
 const YachtsPage = lazy(async () => import('../../features/yatch/YachtsPage'));
 const TestsPage = lazy(async () => import('../../features/tests/TestsPage'));
 
+const GENERIC_CONTENT_PATHS = [
+  'accessibility',
+  'aws',
+  'code-snippets',
+  'design',
+  'html',
+  'interview-questions',
+  'javascript',
+  'management',
+  'nextjs',
+  'nodejs',
+  'programming',
+  ':lang?/programming',
+  'python',
+  'react',
+  'react-a-z',
+  'typescript',
+  'web',
+] as const;
+
+const TRAVEL_PATHS = [
+  ':country',
+  ':country/:city',
+  ':country/:city/:item',
+] as const;
+
+const protectedLayoutElement = (
+  <UnifiedLayout
+    hasAvatar
+    hasHeader
+    hasInitializer
+  />
+);
+
 /**
  * Protected content routes that require authentication
  * Includes generic pages, fun section, design tools, travel, and testing
@@ -27,117 +61,18 @@ const TestsPage = lazy(async () => import('../../features/tests/TestsPage'));
 export const protectedContentRoutes = (
   <Route element={<ProtectedRoute />}>
     {/* Content Routes */}
-    <Route
-      element={
-        <UnifiedLayout
-          hasAvatar
-          hasHeader
-          hasInitializer
-        />
-      }
-    >
-      <Route path="accessibility">
+    <Route element={protectedLayoutElement}>
+      {GENERIC_CONTENT_PATHS.map((path) => (
         <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="aws">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="code-snippets">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="design">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="html">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="interview-questions">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="javascript">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="management">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="nextjs">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="nodejs">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="programming">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path=":lang?/programming">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="python">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="react">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="react-a-z">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="typescript">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
-      <Route path="web">
-        <Route
-          element={<GenericPage />}
-          path="*"
-        />
-      </Route>
+          key={path}
+          path={path}
+        >
+          <Route
+            element={<GenericPage />}
+            path="*"
+          />
+        </Route>
+      ))}
       <Route
         element={<YachtsPage />}
         path="yachts"
@@ -149,42 +84,23 @@ export const protectedContentRoutes = (
     </Route>
     {/* Travel */}
     <Route
-      element={
-        <UnifiedLayout
-          hasAvatar
-          hasHeader
-          hasInitializer
-        />
-      }
+      element={protectedLayoutElement}
       path="travel"
     >
       <Route
         element={<TravelPage />}
         index
       />
-      <Route
-        element={<TravelPage />}
-        path=":country"
-      />
-      <Route
-        element={<TravelPage />}
-        path=":country/:city"
-      />
-      <Route
-        element={<TravelPage />}
-        path=":country/:city/:item"
-      />
+      {TRAVEL_PATHS.map((path) => (
+        <Route
+          element={<TravelPage />}
+          key={path}
+          path={path}
+        />
+      ))}
     </Route>
     {/* Testing */}
-    <Route
-      element={
-        <UnifiedLayout
-          hasAvatar
-          hasHeader
-          hasInitializer
-        />
-      }
-    >
+    <Route element={protectedLayoutElement}>
       <Route
         element={<TestsPage />}
         path="tests"

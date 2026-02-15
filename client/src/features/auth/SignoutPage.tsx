@@ -1,8 +1,8 @@
 import { type FormEvent, type JSX, useEffect, useEffectEvent } from 'react';
 
-import Meta from '@components/core/meta/Meta';
-import Button from '@components/ui/button/Button';
-import StyledLink from '@components/ui/link/styled-link/StyledLink';
+import Meta from '@components/meta/Meta';
+import Button from '@components/button/Button';
+import StyledLink from '@components/link/styled-link/StyledLink';
 import useAuth from '@features/auth/useAuth';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';
