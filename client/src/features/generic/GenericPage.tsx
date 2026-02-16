@@ -2,6 +2,7 @@ import { type JSX, useDeferredValue } from 'react';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 
 import Meta from '@components/meta/Meta';
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import PageTitle from '@components/page/PageTitle';
 import LoadingWrapper from '@components/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
@@ -73,7 +74,9 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
       <Meta title={pageTitle} />
       <Layout.TwoColumn>
         <Layout.Menu>
-          <SubjectMenu />
+          <StickyMenuWrapper variant="plain">
+            <SubjectMenu />
+          </StickyMenuWrapper>
         </Layout.Menu>
         <Layout.Content>
           <LoadingWrapper

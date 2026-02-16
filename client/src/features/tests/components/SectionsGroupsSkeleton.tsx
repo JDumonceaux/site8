@@ -1,5 +1,6 @@
 import type { JSX } from 'react';
 
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import styled, { keyframes } from 'styled-components';
 
 const SectionsGroupsSkeleton = (): JSX.Element => {
@@ -50,19 +51,9 @@ const SkeletonBase = styled.div`
   border-radius: 0.25rem;
 `;
 
-const Container = styled.div`
-  position: sticky;
-  top: 60px;
-  z-index: 10;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: var(--surface-background-color, #fff);
-  border: 1px solid var(--border-light);
-  border-radius: 0.5rem;
+const Container = styled(StickyMenuWrapper)`
   max-height: calc(100vh - 5rem);
   overflow-y: auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const SkeletonTitle = styled(SkeletonBase)`

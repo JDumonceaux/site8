@@ -149,7 +149,9 @@ const Card = styled.article<{ $selected: boolean }>`
       $selected ? 'var(--focus-ring-color)' : 'var(--border-light)'};
   border-radius: var(--border-radius-lg);
   cursor: grab;
+  opacity: ${({ $selected }) => ($selected ? 0.65 : 1)};
   overflow: hidden;
+  transition: opacity 0.2s ease;
 
   &:active {
     cursor: grabbing;

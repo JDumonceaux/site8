@@ -91,6 +91,10 @@
   --navbar-hover: light-dark(#f5f5f5, #2a3542);
   --navbar-active: light-dark(#e8e8e8, #364555);
 
+  /* Layout Offsets */
+  --layout-header-height: 3.5rem;
+  --layout-sticky-top: calc(var(--layout-header-height) + 0.25rem);
+
   /* Tooltip Styles */
   --tooltip-label-color: light-dark(#0f456e, #64b5f6);
   --tooltip-background-color: light-dark(#e5e5e5, #2a2a2a);

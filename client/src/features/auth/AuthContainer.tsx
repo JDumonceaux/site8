@@ -63,7 +63,7 @@ const Grid = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   max-width: 940px;
-  margin: 60px auto 0;
+  margin: var(--layout-sticky-top, 3.75rem) auto 0;
   container: parent;
   container-type: inline-size;
 `;

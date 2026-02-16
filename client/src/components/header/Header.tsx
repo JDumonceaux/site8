@@ -60,7 +60,7 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: 3.5rem;
+  height: var(--layout-header-height, 3.5rem);
   background: var(--palette-main-color, #000);
   box-shadow: 0 5px 20px -10px #000;
   display: flex;

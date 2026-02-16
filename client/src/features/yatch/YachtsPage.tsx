@@ -1,6 +1,7 @@
 import { type JSX, Suspense } from 'react';
 
 import Meta from '@components/meta/Meta';
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import PageTitle from '@components/page/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
@@ -85,7 +86,9 @@ export const YachtsPage = (): JSX.Element => (
     <Meta title={PAGE_TITLE} />
     <Layout.Main>
       <Layout.Menu>
-        <SubjectMenu />
+        <StickyMenuWrapper variant="plain">
+          <SubjectMenu />
+        </StickyMenuWrapper>
       </Layout.Menu>
       <Layout.Article>
         <PageTitle title={PAGE_TITLE} />

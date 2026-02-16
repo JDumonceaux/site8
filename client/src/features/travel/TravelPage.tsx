@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Meta from '@components/meta/Meta';
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import PageTitle from '@components/page/PageTitle';
 import IconButton from '@components/button/icon-button/IconButton';
 import { AddIcon } from '@components/icons';
@@ -103,7 +104,9 @@ const TravelPage = (): JSX.Element => {
       />
       <Layout.TwoColumn>
         <Layout.Menu>
-          <TravelMenu />
+          <StickyMenuWrapper variant="plain">
+            <TravelMenu />
+          </StickyMenuWrapper>
         </Layout.Menu>
         <Layout.Content>
           <Layout.Article>

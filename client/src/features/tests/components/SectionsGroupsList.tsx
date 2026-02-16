@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { useCallback, useState } from 'react';
 
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import type { TestsSection, TestsSectionGroup } from '@site8/shared';
 import styled from 'styled-components';
 
@@ -123,18 +124,7 @@ const SectionsGroupsList = ({
 
 export default SectionsGroupsList;
 
-const OuterContainer = styled.div`
-  position: sticky;
-  top: 60px;
-  z-index: 10;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: var(--surface-background-color, #fff);
-  border: 1px solid var(--border-light);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
+const OuterContainer = styled(StickyMenuWrapper)``;
 
 const ScrollArea = styled.div`
   max-height: calc(100vh - 8rem);

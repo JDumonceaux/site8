@@ -1,6 +1,7 @@
 import { type JSX, Suspense, useDeferredValue } from 'react';
 
 import Meta from '@components/meta/Meta';
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import PageTitle from '@components/page/PageTitle';
 import LoadingWrapper from '@components/loading/LoadingWrapper';
 import SubjectMenu from '@features/generic/SubjectMenu';
@@ -23,7 +24,9 @@ const GenericImagePage = (): JSX.Element => {
       <Meta title={pageTitle} />
       <Layout.Main>
         <Layout.Menu>
-          <SubjectMenu />
+          <StickyMenuWrapper variant="plain">
+            <SubjectMenu />
+          </StickyMenuWrapper>
         </Layout.Menu>
         <Layout.Article>
           <LoadingWrapper

@@ -21,7 +21,7 @@ export default TitleFixed;
 // Styled heading that sticks 50px from the top, with a background to prevent overlap
 const StickyHeading = styled.h1`
   position: sticky;
-  top: 50px;
+  top: var(--layout-sticky-top, 3.75rem);
   margin: 0;
   padding: 0.5rem 1rem;
   background: var(--palette-background, #fff);

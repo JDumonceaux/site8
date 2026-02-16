@@ -2,6 +2,7 @@ import type { JSX } from 'react';
 import { type DragEvent, useMemo, useState } from 'react';
 
 import useSnackbar from '@app/snackbar/useSnackbar';
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import Meta from '@components/meta/Meta';
 import PageTitle from '@components/page/PageTitle';
 import Switch from '@components/switch/Switch';
@@ -175,44 +176,46 @@ const ImagesPage = (): JSX.Element => {
       />
       <Layout.TwoColumn>
         <Layout.Menu>
-          <MenuPanel>
-            <Switch
-              checked={unmatchedOnly}
-              id="unmatchedOnly"
-              label="Show unmatched only"
-              onCheckedChange={setUnmatchedOnly}
-            />
-            <Count>{count} items</Count>
-            <Count>{selectedCount} selected</Count>
-            <FolderSection>
-              <FolderTitle>Folders (2025)</FolderTitle>
-              <LoadingWrapper
-                error={foldersError}
-                isError={isFoldersError}
-                isLoading={isFoldersLoading}
-              >
-                <FolderList>
-                  {(foldersData?.items ?? []).map((folder) => (
-                    <FolderItem
-                      $isDropTarget={dragOverFolder === folder}
-                      key={folder}
-                      onDragLeave={() => {
-                        setDragOverFolder(null);
-                      }}
-                      onDragOver={(event) => {
-                        handleFolderDragOver(event, folder);
-                      }}
-                      onDrop={(event) => {
-                        handleFolderDrop(event, folder);
-                      }}
-                    >
-                      {folder}
-                    </FolderItem>
-                  ))}
-                </FolderList>
-              </LoadingWrapper>
-            </FolderSection>
-          </MenuPanel>
+          <StickyMenuWrapper>
+            <MenuPanel>
+              <Switch
+                checked={unmatchedOnly}
+                id="unmatchedOnly"
+                label="Show unmatched only"
+                onCheckedChange={setUnmatchedOnly}
+              />
+              <Count>{count} items</Count>
+              <Count>{selectedCount} selected</Count>
+              <FolderSection>
+                <FolderTitle>Folders (2025)</FolderTitle>
+                <LoadingWrapper
+                  error={foldersError}
+                  isError={isFoldersError}
+                  isLoading={isFoldersLoading}
+                >
+                  <FolderList>
+                    {(foldersData?.items ?? []).map((folder) => (
+                      <FolderItem
+                        $isDropTarget={dragOverFolder === folder}
+                        key={folder}
+                        onDragLeave={() => {
+                          setDragOverFolder(null);
+                        }}
+                        onDragOver={(event) => {
+                          handleFolderDragOver(event, folder);
+                        }}
+                        onDrop={(event) => {
+                          handleFolderDrop(event, folder);
+                        }}
+                      >
+                        {folder}
+                      </FolderItem>
+                    ))}
+                  </FolderList>
+                </LoadingWrapper>
+              </FolderSection>
+            </MenuPanel>
+          </StickyMenuWrapper>
         </Layout.Menu>
         <Layout.Content>
           <Layout.Article>
@@ -284,10 +287,27 @@ const FolderList = styled.ul`
 `;
 
 const FolderItem = styled.li<{ $isDropTarget: boolean }>`
-  color: var(--text-secondary-color);
+  color: ${({ $isDropTarget }) =>
+    $isDropTarget
+      ? 'var(--text-primary-color)'
+      : 'var(--text-secondary-color)'};
   font-size: var(--font-size-sm);
-  padding: 0.25rem 0;
+  padding: 0.375rem 0.5rem;
   border-radius: var(--border-radius-sm);
+  border: 1px solid
+    ${({ $isDropTarget }) =>
+      $isDropTarget ? 'var(--status-info)' : 'transparent'};
   background-color: ${({ $isDropTarget }) =>
-    $isDropTarget ? 'var(--hover-background)' : 'transparent'};
+    $isDropTarget ? 'var(--status-info-light)' : 'transparent'};
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    color: var(--text-primary-color);
+    background-color: var(--surface-elevated-color);
+    border-color: var(--border-light);
+  }
 `;

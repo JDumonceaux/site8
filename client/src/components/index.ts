@@ -43,6 +43,9 @@ export { default as StyledLink } from './link/styled-link/StyledLink';
 export { default as StyledNavLink } from './link/styled-nav-link/StyledNavLink';
 export { default as StyledPlainButton } from './link/styled-plain-button/StyledPlainButton';
 
+// Layout Components
+export { default as StickyMenuWrapper } from './layout/StickyMenuWrapper';
+
 // Loading Components
 export { default as LoadingWrapper } from './loading/LoadingWrapper';
 
