@@ -36,8 +36,8 @@ const useMoveImages = (
       );
     },
     onError: (error) => {
-      const err = error instanceof Error ? error : new Error(String(error));
-      onError?.(err);
+      const error_ = error instanceof Error ? error : new Error(String(error));
+      onError?.(error_);
     },
     onSuccess: (response) => {
       void queryClient.invalidateQueries({ queryKey: ['images'] });

@@ -1,5 +1,4 @@
 import type { Places } from '@site8/shared';
-
 import { byCity, byCountry, byItem, hasValue } from './travel-filter-core';
 
 const DEFAULT_TITLE = 'Travel Destinations';

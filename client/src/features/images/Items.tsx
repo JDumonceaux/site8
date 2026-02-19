@@ -25,16 +25,16 @@ const formatFolderLabel = (folderPath: string): string => {
   return folderPath
     .split('/')
     .filter(Boolean)
-    .map((part) => capitalizePart(part.replace(/[-_]+/g, ' ')))
+    .map((part) => capitalizePart(part.replaceAll(/[-_]+/g, ' ')))
     .join(' / ');
 };
 
-const getFolderFromImageSrc = (src: string): string => {
-  if (!src.startsWith('/images/')) {
+const getFolderFromImageSource = (source: string): string => {
+  if (!source.startsWith('/images/')) {
     return 'Other';
   }
 
-  const relativePath = src.slice('/images/'.length);
+  const relativePath = source.slice('/images/'.length);
   const segments = relativePath.split('/').filter(Boolean);
   if (segments.length <= 1) {
     return 'Root';
@@ -56,7 +56,7 @@ const Items = memo(
     }
 
     const groupedItems = items.reduce((groups, item) => {
-      const folder = getFolderFromImageSrc(item.src);
+      const folder = getFolderFromImageSource(item.src);
       const current = groups.get(folder) ?? [];
       current.push(item);
       groups.set(folder, current);

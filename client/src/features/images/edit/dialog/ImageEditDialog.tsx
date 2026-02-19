@@ -6,7 +6,6 @@ import Dialog from '@components/dialog/Dialog';
 import ClearAdornment from '@components/input/base/adornments/ClearAdornment';
 import Input from '@components/input/Input';
 import type { Image } from '@site8/shared';
-
 import {
   CheckboxLabel,
   CheckboxRow,
@@ -38,13 +37,13 @@ type ImageEditDialogProps = {
   ) => void;
 };
 
-const getFileNameFromSrc = (src: string): string => {
-  const segments = src.split('/').filter(Boolean);
+const getFileNameFromSource = (source: string): string => {
+  const segments = source.split('/').filter(Boolean);
   return segments.at(-1) ?? '';
 };
 
 const getFileExtension = (fileName: string): string => {
-  const match = fileName.match(/(\.[^./\\]+)$/);
+  const match = /(\.[^./\\]+)$/.exec(fileName);
   return match?.[1] ?? '';
 };
 
@@ -62,17 +61,17 @@ const toSuggestedFileName = (
   title: string,
   currentFileName: string,
 ): string => {
-  const baseName = title.trim().toLowerCase().replace(/\s+/g, '_');
+  const baseName = title.trim().toLowerCase().replaceAll(/\s+/g, '_');
   const extension = getFileExtension(currentFileName);
   return `${baseName}${extension}`;
 };
 
-const getFolderLabelFromSrc = (src: string): string => {
-  if (!src.startsWith('/images/')) {
+const getFolderLabelFromSource = (source: string): string => {
+  if (!source.startsWith('/images/')) {
     return 'Root';
   }
 
-  const relativePath = src.replace(/^\/images\//, '');
+  const relativePath = source.replace(/^\/images\//, '');
   const segments = relativePath.split('/').filter(Boolean);
   if (segments.length <= 2) {
     return 'Root';
@@ -82,7 +81,7 @@ const getFolderLabelFromSrc = (src: string): string => {
   return folderParts
     .map((part) =>
       part
-        .split(/[-_]/g)
+        .split(/[_-]/)
         .filter(Boolean)
         .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
         .join(' '),
@@ -101,7 +100,7 @@ const ImageEditDialog = ({
   onSave,
 }: ImageEditDialogProps): JSX.Element => {
   const currentFolder = useMemo(
-    () => (image ? getFolderLabelFromSrc(image.src) : 'Root'),
+    () => (image ? getFolderLabelFromSource(image.src) : 'Root'),
     [image],
   );
 
@@ -119,7 +118,7 @@ const ImageEditDialog = ({
     setIsDeleteConfirmed(false);
     setDeleteWarning('');
     setTitleValue(image?.title ?? '');
-    setTargetFileName(image ? getFileNameFromSrc(image.src) : '');
+    setTargetFileName(image ? getFileNameFromSource(image.src) : '');
 
     if (availableFolders.includes(currentFolder)) {
       setTargetFolder(currentFolder);
@@ -131,7 +130,7 @@ const ImageEditDialog = ({
 
   const isWorking = isSaving || isDeleting;
   const canDelete = Boolean(image) && !isWorking;
-  const originalFileName = image ? getFileNameFromSrc(image.src) : '';
+  const originalFileName = image ? getFileNameFromSource(image.src) : '';
   const extensionChanged = hasExtensionChanged(
     originalFileName,
     targetFileName,
@@ -271,7 +270,7 @@ const ImageEditDialog = ({
               <Button
                 onClick={() => {
                   const currentFileName = image
-                    ? getFileNameFromSrc(image.src)
+                    ? getFileNameFromSource(image.src)
                     : targetFileName;
                   setTargetFileName(
                     toSuggestedFileName(titleValue, currentFileName),

@@ -1,7 +1,7 @@
 import { type JSX, Suspense } from 'react';
 
-import Meta from '@components/meta/Meta';
 import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
+import Meta from '@components/meta/Meta';
 import PageTitle from '@components/page/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';

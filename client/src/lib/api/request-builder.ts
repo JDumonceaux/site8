@@ -46,8 +46,8 @@ export const mergeHeaders = (
 ): Headers => {
   const headers = new Headers(defaultHeaders);
   const optionHeaders = new Headers(requestHeaders);
-  optionHeaders.forEach((value, key) => {
+  for (const [key, value] of optionHeaders.entries()) {
     headers.set(key, value);
-  });
+  }
   return headers;
 };

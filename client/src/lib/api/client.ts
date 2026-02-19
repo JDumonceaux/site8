@@ -1,16 +1,15 @@
 import { logError } from '@lib/utils/errorHandler';
-
-import {
-  type ApiClientConfig,
-  type ApiErrorInterceptor,
-  type ApiRequestContext,
-  type ApiRequestInterceptor,
-  type ApiRequestOptions,
-  type ApiResponseInterceptor,
-} from './types';
 import { buildBody, mergeHeaders } from './request-builder';
 import { parseResponseBody, toApiError } from './response-parser';
 import { delay, shouldRetry } from './retry-policy';
+import type {
+  ApiClientConfig,
+  ApiErrorInterceptor,
+  ApiRequestContext,
+  ApiRequestInterceptor,
+  ApiRequestOptions,
+  ApiResponseInterceptor,
+} from './types';
 
 const DEFAULT_RETRY_DELAY_MS = 300;
 const DEFAULT_RETRY_RETRIES = 1;
@@ -29,18 +28,6 @@ class ApiClient {
       retryRetries: config.retryRetries ?? DEFAULT_RETRY_RETRIES,
       timeoutMs: config.timeoutMs ?? DEFAULT_TIMEOUT_MS,
     };
-  }
-
-  public useErrorInterceptor(interceptor: ApiErrorInterceptor): void {
-    this._errorInterceptors.push(interceptor);
-  }
-
-  public useRequestInterceptor(interceptor: ApiRequestInterceptor): void {
-    this._requestInterceptors.push(interceptor);
-  }
-
-  public useResponseInterceptor(interceptor: ApiResponseInterceptor): void {
-    this._responseInterceptors.push(interceptor);
   }
 
   public async delete<TResponse = unknown>(
@@ -169,6 +156,18 @@ class ApiClient {
     }
 
     throw new Error(`Unexpected API client state for ${method} ${url}`);
+  }
+
+  public useErrorInterceptor(interceptor: ApiErrorInterceptor): void {
+    this._errorInterceptors.push(interceptor);
+  }
+
+  public useRequestInterceptor(interceptor: ApiRequestInterceptor): void {
+    this._requestInterceptors.push(interceptor);
+  }
+
+  public useResponseInterceptor(interceptor: ApiResponseInterceptor): void {
+    this._responseInterceptors.push(interceptor);
   }
 }
 

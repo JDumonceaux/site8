@@ -2,7 +2,6 @@ import type { JSX } from 'react';
 
 import IconButton from '@components/button/icon-button/IconButton';
 import { AddIcon } from '@components/icons';
-import type { Test, TestSection } from '@site8/shared';
 import {
   GroupComments,
   GroupSection,
@@ -14,6 +13,7 @@ import {
   TestList,
   TestsContainer,
 } from '@features/tests/TestsPage.styles';
+import type { Test, TestSection } from '@site8/shared';
 import TestItem from './TestItem';
 import styled from 'styled-components';
 

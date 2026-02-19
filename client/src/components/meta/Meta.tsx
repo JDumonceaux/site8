@@ -1,6 +1,6 @@
 // This rule doesn't apply here, but ESLint is not able to detect that.
-/* eslint-disable react-redux/no-unused-prop-types */
-/* eslint-disable react/no-unused-prop-types */
+ 
+ 
 import type { JSX } from 'react';
 
 import { buildMetaTags, type MetaProps } from './meta-tags';

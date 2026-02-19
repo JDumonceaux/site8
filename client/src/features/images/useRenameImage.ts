@@ -1,4 +1,4 @@
-import { ApiError, apiClient } from '@lib/api';
+import { apiClient, ApiError } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -20,7 +20,7 @@ export type UseRenameImageResult = {
 
 const getErrorMessage = (error: unknown): string => {
   if (error instanceof ApiError) {
-    const body = error.body;
+    const {body} = error;
     if (
       typeof body === 'object' &&
       body !== null &&

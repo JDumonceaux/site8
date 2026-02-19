@@ -2,33 +2,30 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import useSnackbar from '@app/snackbar/useSnackbar';
 import type { Test, TestSection, TestsSection } from '@site8/shared';
-import { useTestFilters } from './useTestFilters';
 import useTestMutations from '../useTestMutations';
 import useTests from '../useTests';
 import useTestsList from '../useTestsList';
 import useTestsSections from '../useTestsSections';
+import { useTestFilters } from './useTestFilters';
 
 type UseTestsPageControllerResult = {
-  readonly allSections: readonly TestsSection[];
-  readonly allTags: readonly string[];
-  readonly itemGroupIdMap: ReadonlyMap<number, number>;
-  readonly listItems: readonly Test[];
   readonly activeError: Error | null;
   readonly activeIsError: boolean;
   readonly activeIsLoading: boolean;
-  readonly editingItem: null | Test;
+  readonly allSections: readonly TestsSection[];
+  readonly allTags: readonly string[];
+  readonly closeDialog: () => void;
+  readonly deleteItem: (itemId: number) => void;
   readonly editingGroupId: null | number;
+  readonly editingItem: null | Test;
+  readonly editItem: (item: Test, groupId: number) => void;
   readonly filteredSections: readonly TestSection[];
   readonly isDialogOpen: boolean;
   readonly isGrouped: boolean;
   readonly isSectionsLoading: boolean;
   readonly isSettingsOpen: boolean;
-  readonly sectionFilter: string;
-  readonly sectionNames: readonly string[];
-  readonly tagFilter: string;
-  readonly closeDialog: () => void;
-  readonly deleteItem: (itemId: number) => void;
-  readonly editItem: (item: Test, groupId: number) => void;
+  readonly itemGroupIdMap: ReadonlyMap<number, number>;
+  readonly listItems: readonly Test[];
   readonly moveItem: (
     itemId: number,
     newGroupId: number,
@@ -36,10 +33,13 @@ type UseTestsPageControllerResult = {
   ) => void;
   readonly openCreateDialog: (groupId: number) => void;
   readonly saveItem: (updatedItem: Test, groupId: number) => void;
+  readonly sectionFilter: string;
+  readonly sectionNames: readonly string[];
   readonly setIsGrouped: (value: boolean) => void;
   readonly setIsSettingsOpen: (value: boolean) => void;
   readonly setSectionFilter: (value: string) => void;
   readonly setTagFilter: (value: string) => void;
+  readonly tagFilter: string;
 };
 
 const normalizeError = (error: unknown): Error | null => {
@@ -204,33 +204,33 @@ const useTestsPageController = (): UseTestsPageControllerResult => {
   );
 
   return {
-    allSections,
-    allTags,
-    itemGroupIdMap,
-    listItems,
     activeError,
     activeIsError,
     activeIsLoading,
-    editingItem,
+    allSections,
+    allTags,
+    closeDialog,
+    deleteItem,
     editingGroupId,
+    editingItem,
+    editItem,
     filteredSections,
     isDialogOpen,
     isGrouped,
     isSectionsLoading,
     isSettingsOpen,
-    sectionFilter,
-    sectionNames,
-    tagFilter,
-    closeDialog,
-    deleteItem,
-    editItem,
+    itemGroupIdMap,
+    listItems,
     moveItem,
     openCreateDialog,
     saveItem,
+    sectionFilter,
+    sectionNames,
     setIsGrouped,
     setIsSettingsOpen,
     setSectionFilter,
     setTagFilter,
+    tagFilter,
   };
 };
 

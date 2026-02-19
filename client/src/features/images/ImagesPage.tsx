@@ -1,17 +1,14 @@
-import type { JSX } from 'react';
-import { type DragEvent, useMemo, useState } from 'react';
+import type { type DragEvent , JSX, useMemo, useState } from 'react';
 
 import useSnackbar from '@app/snackbar/useSnackbar';
 import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
+import LoadingWrapper from '@components/loading/LoadingWrapper';
 import Meta from '@components/meta/Meta';
 import PageTitle from '@components/page/PageTitle';
 import Switch from '@components/switch/Switch';
-import LoadingWrapper from '@components/loading/LoadingWrapper';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import type { Image } from '@site8/shared';
-import styled from 'styled-components';
-
 import ImageEditDialog from './edit/dialog/ImageEditDialog';
 import Items from './Items';
 import useDeleteImage from './useDeleteImage';
@@ -19,6 +16,7 @@ import useImageFolders from './useImageFolders';
 import useImages from './useImages';
 import useMoveImages from './useMoveImages';
 import useRenameImage from './useRenameImage';
+import styled from 'styled-components';
 
 const ImagesPage = (): JSX.Element => {
   const [unmatchedOnly, setUnmatchedOnly] = useState(false);
@@ -27,7 +25,7 @@ const ImagesPage = (): JSX.Element => {
   const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
     new Set(),
   );
-  const [dragOverFolder, setDragOverFolder] = useState<string | null>(null);
+  const [dragOverFolder, setDragOverFolder] = useState<null | string>(null);
   const { setErrorMessage, setMessage } = useSnackbar();
   const { data, error, isError, isLoading } = useImages({ unmatchedOnly });
   const {

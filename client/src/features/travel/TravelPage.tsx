@@ -2,16 +2,15 @@ import type { JSX } from 'react';
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Meta from '@components/meta/Meta';
-import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
-import PageTitle from '@components/page/PageTitle';
+import useSnackbar from '@app/snackbar/useSnackbar';
 import IconButton from '@components/button/icon-button/IconButton';
 import { AddIcon } from '@components/icons';
-import useSnackbar from '@app/snackbar/useSnackbar';
+import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
+import Meta from '@components/meta/Meta';
+import PageTitle from '@components/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import type { Place } from '@site8/shared';
-import styled from 'styled-components';
 import TravelItemEditDialog from './edit/dialog/TravelItemEditDialog';
 import Items from './Items';
 import Skeleton from './Skeleton';
@@ -19,6 +18,7 @@ import TravelMenu from './TravelMenu';
 import useTravel from './useTravel';
 import { useTravelFiltering } from './useTravelFiltering';
 import useTravelMutations from './useTravelMutations';
+import styled from 'styled-components';
 
 const TravelPage = (): JSX.Element => {
   const { city, country, item } = useParams<{

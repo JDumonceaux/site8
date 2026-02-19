@@ -1,11 +1,20 @@
 {
   "editor.codeActionsOnSave": {
-
     "source.organizeImports": "never",
     "source.fixAll": "never",
     "source.fixAll.eslint": "explicit",
     "source.addMissingImports": "never"
   },
   "eslint.useFlatConfig": true,
+  "eslint.workingDirectories": [
+    {
+      "directory": "client",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "server1",
+      "changeProcessCWD": true
+    }
+  ],
   "workbench.settings.openDefaultSettings": true
 }

@@ -27,14 +27,14 @@ const useDeleteImage = (
     mutationFn: async (
       params: DeleteImageParams,
     ): Promise<DeleteImageResponse> => {
-      const srcQuery = encodeURIComponent(params.src);
+      const sourceQuery = encodeURIComponent(params.src);
       return apiClient.delete<DeleteImageResponse>(
-        `${ServiceUrl.ENDPOINT_IMAGES_ITEM}?src=${srcQuery}`,
+        `${ServiceUrl.ENDPOINT_IMAGES_ITEM}?src=${sourceQuery}`,
       );
     },
     onError: (error) => {
-      const err = error instanceof Error ? error : new Error(String(error));
-      onError?.(err);
+      const error_ = error instanceof Error ? error : new Error(String(error));
+      onError?.(error_);
     },
     onSuccess: (response) => {
       void queryClient.invalidateQueries({ queryKey: ['images'] });

@@ -7,6 +7,7 @@ import performanceConfig from './eslint.config.performance.mjs';
 import preferArrowConfig from './eslint.config.prefer-arrow-functions.mjs';
 import promiseConfig from './eslint.config.promise.mjs';
 import reactEffectConfig from './eslint.config.react-effect.mjs';
+import reactRefreshConfig from './eslint.config.react-refresh.mjs';
 import reactQueryConfig from './eslint.config.react-query.mjs';
 import reactConfig from './eslint.config.react.mjs';
 import regexpConfig from './eslint.config.regexp.mjs';
@@ -30,18 +31,27 @@ const config = [
     perfectionistConfig,
     promiseConfig,
     reactConfig,
+    reactRefreshConfig,
     reactEffectConfig,
     performanceConfig,
     tsConfig,
     unicornConfig,
     // Relax rules for test files
     {
-        files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
+        files: [
+            '**/*.test.ts',
+            '**/*.test.tsx',
+            '**/*.spec.ts',
+            '**/*.spec.tsx',
+            '**/*.stories.ts',
+            '**/*.stories.tsx',
+        ],
         rules: {
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-unsafe-assignment': 'off',
             '@typescript-eslint/no-unsafe-call': 'off',
             '@typescript-eslint/no-unsafe-member-access': 'off',
+            'react-refresh/only-export-components': 'off',
         },
     },];
 

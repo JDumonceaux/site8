@@ -4,13 +4,13 @@ import IconButton from '@components/button/icon-button/IconButton';
 import { AddIcon } from '@components/icons';
 import Input from '@components/input/Input';
 import type { TestCode, TestGroup } from '@site8/shared';
-import CodeItemEditor from './CodeItemEditor';
 import {
   EmptyMessage,
   FormField,
   Label,
   LabelRow,
 } from '../TestItemEditDialog.styles';
+import CodeItemEditor from './CodeItemEditor';
 
 type FieldError = {
   message: string;

@@ -1,49 +1,49 @@
 import type { JSX } from 'react';
 
-import Meta from '@components/meta/Meta';
-import PageTitle from '@components/page/PageTitle';
 import IconButton from '@components/button/icon-button/IconButton';
 import { FilterIcon } from '@components/icons';
 import LoadingWrapper from '@components/loading/LoadingWrapper';
+import Meta from '@components/meta/Meta';
+import PageTitle from '@components/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
+import TestItemEditDialog from '@features/tests/edit/dialog/TestItemEditDialog';
 import SectionsGroupsList from './components/SectionsGroupsList';
 import SectionsGroupsSkeleton from './components/SectionsGroupsSkeleton';
 import TestsList from './components/TestsList';
 import TestsSectionsList from './components/TestsSectionsList';
 import TestsSkeleton from './components/TestsSkeleton';
-import TestItemEditDialog from '@features/tests/edit/dialog/TestItemEditDialog';
 import useTestsPageController from './hooks/useTestsPageController';
 import TestFiltersDialog from './TestFiltersDialog';
 
 const TestsPage = (): JSX.Element => {
   const {
-    allSections,
-    allTags,
-    itemGroupIdMap,
-    listItems,
     activeError,
     activeIsError,
     activeIsLoading,
-    editingItem,
+    allSections,
+    allTags,
+    closeDialog,
+    deleteItem,
     editingGroupId,
+    editingItem,
+    editItem,
     filteredSections,
     isDialogOpen,
     isGrouped,
     isSectionsLoading,
     isSettingsOpen,
-    sectionFilter,
-    sectionNames,
-    tagFilter,
-    closeDialog,
-    deleteItem,
-    editItem,
+    itemGroupIdMap,
+    listItems,
     moveItem,
     openCreateDialog,
     saveItem,
+    sectionFilter,
+    sectionNames,
     setIsGrouped,
     setIsSettingsOpen,
     setSectionFilter,
     setTagFilter,
+    tagFilter,
   } = useTestsPageController();
 
   const pageTitle = 'Quality Code';

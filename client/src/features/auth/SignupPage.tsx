@@ -1,10 +1,10 @@
 import { type JSX, useActionState, useCallback } from 'react';
 
-import Meta from '@components/meta/Meta';
 import Button from '@components/button/Button';
 import SubmitButton from '@components/button/SubmitButton';
 import Input from '@components/input/Input';
 import StyledLink from '@components/link/styled-link/StyledLink';
+import Meta from '@components/meta/Meta';
 import { type SocialProvider, SocialProviders } from '@features/auth/types';
 import useAuth from '@features/auth/useAuth';
 import { logError } from '@lib/utils/errorHandler';

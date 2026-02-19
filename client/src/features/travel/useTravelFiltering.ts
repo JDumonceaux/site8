@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import type { Places } from '@site8/shared';
-
 import {
   filterPlaces,
   getTravelPageTitle,

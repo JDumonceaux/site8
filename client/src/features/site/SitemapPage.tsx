@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
-import Meta from '@components/meta/Meta';
 import StyledNavLink from '@components/link/styled-nav-link/StyledNavLink';
+import Meta from '@components/meta/Meta';
 
 const SitemapPage = (): JSX.Element | null => (
   <>

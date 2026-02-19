@@ -1,8 +1,8 @@
 import { type JSX, memo, useMemo } from 'react';
 
+import AppInitializer from '@app/app-initializer/AppInitializer';
 import Avatar from '@components/avatar/Avatar';
 import Header from '@components/header/Header';
-import AppInitializer from '@app/app-initializer/AppInitializer';
 import BaseLayout from '@features/layouts/base-layout/BaseLayout';
 
 type UnifiedLayoutProps = {

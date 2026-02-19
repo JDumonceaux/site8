@@ -1,21 +1,20 @@
 import type { JSX } from 'react';
 
-import type { Test } from '@site8/shared';
-
 import { TestList, TestsContainer } from '@features/tests/TestsPage.styles';
+import type { Test } from '@site8/shared';
 import TestItem from './TestItem';
 
 type TestsListProps = {
   readonly error?: Error | null;
-  readonly items: readonly Test[];
   readonly itemGroupIdMap: ReadonlyMap<number, number>;
+  readonly items: readonly Test[];
   readonly onEditItem: (item: Test, groupId: number) => void;
 };
 
 const TestsList = ({
   error,
-  items,
   itemGroupIdMap,
+  items,
   onEditItem,
 }: TestsListProps): JSX.Element => {
   if (items.length === 0) {

@@ -2,7 +2,6 @@ import type { JSX } from 'react';
 import { useState } from 'react';
 
 import { EditIcon } from '@components/icons/EditIcon';
-import type { Test } from '@site8/shared';
 import {
   EditIconButton,
   MetaItem,
@@ -15,6 +14,7 @@ import {
   TestMeta,
   ToggleButton,
 } from '@features/tests/TestsPage.styles';
+import type { Test } from '@site8/shared';
 import CodeBlock from './CodeBlock';
 
 type TestItemProps = {
@@ -37,7 +37,7 @@ const TestItem = ({ groupId, item, onEdit }: TestItemProps): JSX.Element => {
   const handleDragStart = (event: React.DragEvent<HTMLLIElement>): void => {
     event.dataTransfer.setData(
       'application/json',
-      JSON.stringify({ itemId: item.id, currentGroupId: groupId }),
+      JSON.stringify({ currentGroupId: groupId, itemId: item.id }),
     );
     event.dataTransfer.effectAllowed = 'move';
   };

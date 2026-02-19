@@ -3,8 +3,8 @@ import type { JSX } from 'react';
 import Input from '@components/input/Input';
 import { FORM_CONSTANTS } from '@lib/utils/constants';
 import type { TestCode } from '@site8/shared';
-import styled from 'styled-components';
 import { CODE_TYPE_SUGGESTIONS } from '../code-type-suggestions';
+import styled from 'styled-components';
 
 type CodeItemEditorProps = {
   readonly code: TestCode;

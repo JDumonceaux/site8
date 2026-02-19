@@ -35,7 +35,7 @@ const useTravelMutations = ({
 
   const { mutate: updatePlace } = useMutation({
     mutationFn: async (item: Place) => {
-      return apiClient.put<unknown>(ENDPOINT_TRAVEL_UPDATE(item.id), {
+      return apiClient.put(ENDPOINT_TRAVEL_UPDATE(item.id), {
         address: item.address,
         city: item.city,
         country: item.country,
@@ -66,7 +66,7 @@ const useTravelMutations = ({
 
   const { mutate: deletePlace } = useMutation({
     mutationFn: async (itemId: number) => {
-      return apiClient.delete<unknown>(ENDPOINT_TRAVEL_DELETE(itemId));
+      return apiClient.delete(ENDPOINT_TRAVEL_DELETE(itemId));
     },
     onError: (error: Error) => {
       if (onDeleteError) {

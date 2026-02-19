@@ -1,9 +1,9 @@
+import type { Snackbar } from '@app/snackbar/useSnackbar';
 import {
   createSelector,
   createSlice,
   type PayloadAction,
 } from '@reduxjs/toolkit';
-import type { Snackbar } from '@app/snackbar/useSnackbar';
 import type { RootState } from './store';
 
 /** Shape of the `snackbar` slice state. */

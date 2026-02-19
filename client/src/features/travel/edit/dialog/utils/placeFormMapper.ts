@@ -1,6 +1,6 @@
 export {
   createPlaceFormValues,
-  toPlaceFormData,
   type PlaceFormValues,
+  toPlaceFormData,
 } from './placeFormTransforms';
 export { toPlaceToSave } from './placeSaveMapper';

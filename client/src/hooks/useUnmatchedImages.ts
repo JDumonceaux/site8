@@ -1,7 +1,7 @@
 import { apiClient } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
-import { useQuery } from '@tanstack/react-query';
 import type { Collection } from '@site8/shared';
+import { useQuery } from '@tanstack/react-query';
 import type { Image, Images } from '@types';
 
 type UseUnmatchedImagesReturn = {

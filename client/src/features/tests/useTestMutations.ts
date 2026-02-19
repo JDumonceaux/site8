@@ -47,7 +47,7 @@ const useTestMutations = ({
 
   const { mutate: createTest } = useMutation({
     mutationFn: async ({ groupId, item }: { groupId: number; item: Test }) => {
-      return apiClient.post<unknown>(ServiceUrl.ENDPOINT_TESTS, {
+      return apiClient.post(ServiceUrl.ENDPOINT_TESTS, {
         groupId,
         item: {
           code: item.code,
@@ -72,7 +72,7 @@ const useTestMutations = ({
 
   const { mutate: updateTest } = useMutation({
     mutationFn: async ({ groupId, item }: { groupId: number; item: Test }) => {
-      return apiClient.put<unknown>(ENDPOINT_TEST_UPDATE(item.id), {
+      return apiClient.put(ENDPOINT_TEST_UPDATE(item.id), {
         groupId,
         item: {
           comments: item.comments,
@@ -96,7 +96,7 @@ const useTestMutations = ({
 
   const { mutate: deleteTest } = useMutation({
     mutationFn: async (itemId: number) => {
-      return apiClient.delete<unknown>(ENDPOINT_TEST_DELETE(itemId));
+      return apiClient.delete(ENDPOINT_TEST_DELETE(itemId));
     },
     onError: (error: Error) => {
       if (onDeleteError) {
@@ -121,7 +121,7 @@ const useTestMutations = ({
         return null;
       }
 
-      return apiClient.put<unknown>(ENDPOINT_TEST_UPDATE(params.itemId), {
+      return apiClient.put(ENDPOINT_TEST_UPDATE(params.itemId), {
         groupId: params.newGroupId,
         item: {},
       });

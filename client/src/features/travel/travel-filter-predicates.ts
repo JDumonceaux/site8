@@ -1,4 +1,8 @@
 export {
+  groupPlacesByCountry,
+  toSortedCountryGroups,
+} from './travel-country-groups';
+export {
   byCity,
   byCountry,
   byItem,
@@ -6,7 +10,3 @@ export {
   slugify,
 } from './travel-filter-core';
 export { filterPlaces, getTravelPageTitle } from './travel-filter-operations';
-export {
-  groupPlacesByCountry,
-  toSortedCountryGroups,
-} from './travel-country-groups';

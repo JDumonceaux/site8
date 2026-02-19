@@ -1,11 +1,10 @@
 import type { Place, Places } from '@site8/shared';
-
 import { hasValue } from './travel-filter-core';
 
 export const groupPlacesByCountry = (
   filteredData: Places | undefined,
   country?: string,
-): Record<string, Place[]> | null => {
+): null | Record<string, Place[]> => {
   if (hasValue(country) || filteredData?.items == null) {
     return null;
   }
@@ -22,14 +21,14 @@ export const groupPlacesByCountry = (
 };
 
 export const toSortedCountryGroups = (
-  groupedByCountry: Record<string, Place[]> | null,
+  groupedByCountry: null | Record<string, Place[]>,
   metadata: Places['metadata'] | undefined,
 ):
+  | null
   | {
       countryName: string;
       data: Places;
-    }[]
-  | null => {
+    }[] => {
   if (groupedByCountry == null) {
     return null;
   }

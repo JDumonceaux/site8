@@ -38,13 +38,13 @@ export { default as InputToggle } from './input/input-toggle/InputToggle';
 export { default as InputUrl } from './input/input-url/InputUrl';
 export { default as TextArea } from './input/text-area/TextArea';
 
+// Layout Components
+export { default as StickyMenuWrapper } from './layout/StickyMenuWrapper';
 // Link Components
 export { default as StyledLink } from './link/styled-link/StyledLink';
 export { default as StyledNavLink } from './link/styled-nav-link/StyledNavLink';
-export { default as StyledPlainButton } from './link/styled-plain-button/StyledPlainButton';
 
-// Layout Components
-export { default as StickyMenuWrapper } from './layout/StickyMenuWrapper';
+export { default as StyledPlainButton } from './link/styled-plain-button/StyledPlainButton';
 
 // Loading Components
 export { default as LoadingWrapper } from './loading/LoadingWrapper';

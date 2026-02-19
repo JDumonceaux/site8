@@ -1,5 +1,4 @@
 import type { Place } from '@site8/shared';
-
 import type { PlaceFormValues } from './placeFormTransforms';
 import { normalizeValues } from './placeFormTransforms';
 

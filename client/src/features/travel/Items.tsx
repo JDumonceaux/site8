@@ -27,7 +27,7 @@ const Items = memo(({ data, id, onEdit }: ItemsProps): JSX.Element | null => {
             {onEdit ? (
               <IconButton
                 aria-label={`Edit ${item.name}`}
-                onClick={() => onEdit(item)}
+                onClick={() => { onEdit(item); }}
               >
                 <EditIcon />
               </IconButton>
