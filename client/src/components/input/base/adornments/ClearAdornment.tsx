@@ -61,24 +61,31 @@ const TriggerButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0 8px;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   padding: 0;
   border: none;
   background: transparent;
-  color: var(--palette-text-muted);
+  border-radius: var(--border-radius-circle);
+  color: var(--input-icon-color);
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 
   &:hover,
   &:focus-visible {
-    background-color: var(--palette-hover-bg);
-    border-radius: 50%;
+    background-color: var(--hover-background);
+    color: var(--text-primary-color);
     outline: none;
   }
 
+  &:focus-visible {
+    box-shadow: inset 0 0 0 1px var(--status-info);
+  }
+
   svg {
-    width: 100%;
-    height: 100%;
+    width: 14px;
+    height: 14px;
   }
 `;

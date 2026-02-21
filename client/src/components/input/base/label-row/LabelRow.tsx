@@ -77,7 +77,7 @@ const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 0;
+  padding: 0 0 0.375rem;
   > *:first-child {
     flex: 1;
   }

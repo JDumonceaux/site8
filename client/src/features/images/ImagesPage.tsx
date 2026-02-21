@@ -1,4 +1,5 @@
-import type { type DragEvent , JSX, useMemo, useState } from 'react';
+import type { DragEvent, JSX } from 'react';
+import { useState } from 'react';
 
 import useSnackbar from '@app/snackbar/useSnackbar';
 import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
@@ -17,6 +18,8 @@ import useImages from './useImages';
 import useMoveImages from './useMoveImages';
 import useRenameImage from './useRenameImage';
 import styled from 'styled-components';
+
+const EMPTY_FOLDERS: readonly string[] = [];
 
 const ImagesPage = (): JSX.Element => {
   const [unmatchedOnly, setUnmatchedOnly] = useState(false);
@@ -77,16 +80,11 @@ const ImagesPage = (): JSX.Element => {
   const title = unmatchedOnly ? 'Unmatched Images' : 'Images';
   const count = data?.items?.length ?? 0;
   const selectedCount = selectedImageIds.size;
+  const availableFolders = foldersData?.items ?? EMPTY_FOLDERS;
 
-  const selectedImageSrcs = useMemo(() => {
-    if (!data?.items?.length) {
-      return [];
-    }
-
-    return data.items
-      .filter((item) => selectedImageIds.has(item.id))
-      .map((item) => item.src);
-  }, [data?.items, selectedImageIds]);
+  const selectedImageSrcs = (data?.items ?? [])
+    .filter((item) => selectedImageIds.has(item.id))
+    .map((item) => item.src);
 
   const handleCardSelect = (imageId: number): void => {
     setSelectedImageIds((current) => {
@@ -152,8 +150,10 @@ const ImagesPage = (): JSX.Element => {
     image: Image,
     targetFolder: string,
     targetFileName: string,
+    description: string,
   ): void => {
     renameImage({
+      description,
       src: image.src,
       targetFileName,
       targetFolder,
@@ -192,7 +192,7 @@ const ImagesPage = (): JSX.Element => {
                   isLoading={isFoldersLoading}
                 >
                   <FolderList>
-                    {(foldersData?.items ?? []).map((folder) => (
+                    {availableFolders.map((folder) => (
                       <FolderItem
                         $isDropTarget={dragOverFolder === folder}
                         key={folder}
@@ -242,7 +242,7 @@ const ImagesPage = (): JSX.Element => {
         </Layout.Content>
       </Layout.TwoColumn>
       <ImageEditDialog
-        availableFolders={foldersData?.items ?? []}
+        availableFolders={availableFolders}
         image={editingImage}
         isDeleting={isDeletePending}
         isOpen={isDialogOpen}

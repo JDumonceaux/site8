@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, JSX } from 'react';
 
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 // Allowed visual variants
 export const VARIANTS = ['discreet', 'ghost', 'secondary', 'primary'] as const;
@@ -33,20 +33,31 @@ type StyledButtonProps = {
 
 const variantStyles: Record<Variant, ReturnType<typeof css>> = {
   discreet: css`
-    background: var(--bg-discreet);
-    color: var(--text-primary);
+    background: transparent;
+    color: var(--text-primary-color);
   `,
   ghost: css`
     background: transparent;
-    color: var(--text-primary);
+    color: var(--text-secondary-color);
+    border: 1px solid var(--border-light);
+
+    &:hover:not(:disabled) {
+      background: transparent;
+      border-color: var(--border-light);
+      color: var(--text-primary-color);
+    }
+
+    &:active:not(:disabled) {
+      background: transparent;
+    }
   `,
   primary: css`
-    background: var(--bg-primary);
-    color: var(--text-on-primary);
+    background: var(--palette-grey-20);
+    color: var(--color-black);
   `,
   secondary: css`
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
+    background: var(--surface-elevated-color);
+    color: var(--text-primary-color);
   `,
 };
 
@@ -78,6 +89,26 @@ const sizeStyles: Record<Size, ReturnType<typeof css>> = {
 
 const getSizeStyles = (size: Size): ReturnType<typeof css> => sizeStyles[size];
 
+const getHoverBrightness = (variant: Variant): string =>
+  variant === 'primary' ? 'brightness(1.01)' : 'brightness(1.02)';
+
+const getActiveBrightness = (variant: Variant): string =>
+  variant === 'primary' ? 'brightness(0.99)' : 'brightness(0.98)';
+
+const pressAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.985);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
+
 /**
  * Core styled `<button>` using only transient props
  */
@@ -85,6 +116,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 6.5rem;
   border: none;
   border-radius: var(--border-radius-md);
   font-family: inherit;
@@ -103,12 +135,12 @@ const StyledButton = styled.button<StyledButtonProps>`
     `}
 
   &:hover:not(:disabled) {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
+    transform: translateY(0);
+    filter: ${({ $variant }) => getHoverBrightness($variant)};
   }
   &:active:not(:disabled) {
-    transform: translateY(0);
-    filter: brightness(0.95);
+    animation: ${pressAnimation} 140ms ease-out;
+    filter: ${({ $variant }) => getActiveBrightness($variant)};
   }
   &:focus-visible {
     outline: 2px solid var(--focus-ring, #2684ff);

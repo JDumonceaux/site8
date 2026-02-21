@@ -41,23 +41,28 @@ const InputSelect = ({
 
   return (
     <FieldWrapper {...commonProps}>
-      <StyledSelect
-        {...commonProps}
-        ref={selectRef}
-      >
-        {isShowBlankOption ? <option value="">Select an option</option> : null}
-        {placeholder ? (
-          <option value="placeholder">{placeholder}</option>
-        ) : null}
-        {dataList?.map((item) => (
-          <option
-            key={item.key}
-            value={item.value}
-          >
-            {item.display ?? item.value}
-          </option>
-        ))}
-      </StyledSelect>
+      <SelectContainer>
+        <StyledSelect
+          {...commonProps}
+          ref={selectRef}
+        >
+          {isShowBlankOption ? (
+            <option value="">Select an option</option>
+          ) : null}
+          {placeholder ? (
+            <option value="placeholder">{placeholder}</option>
+          ) : null}
+          {dataList?.map((item) => (
+            <option
+              key={item.key}
+              value={item.value}
+            >
+              {item.display ?? item.value}
+            </option>
+          ))}
+        </StyledSelect>
+        <SelectArrow aria-hidden>▾</SelectArrow>
+      </SelectContainer>
     </FieldWrapper>
   );
 };
@@ -65,18 +70,41 @@ const InputSelect = ({
 InputSelect.displayName = 'InputSelect';
 export default InputSelect;
 
+const SelectContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const SelectArrow = styled.span`
+  position: absolute;
+  right: 0.625rem;
+  top: 50%;
+  transform: translateY(calc(-50% + 1px));
+  color: var(--text-secondary-color);
+  font-size: 1.25rem;
+  line-height: 1;
+  pointer-events: none;
+`;
+
 const StyledSelect = styled.select`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  color: inherit;
-  background-color: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--input-color);
+  background-color: transparent;
   display: inline-flex;
   align-items: center;
-  padding: 0 8px;
+  padding: 0 1.75rem 0 0.625rem;
   border: none;
-  height: 32px;
+  min-height: 2.25rem;
   width: 100%;
-  &:focus {
+  appearance: none;
+
+  &:focus,
+  &:focus-visible {
     outline: none;
+  }
+
+  &:disabled {
+    color: var(--disabled-text);
+    cursor: not-allowed;
   }
 `;

@@ -69,6 +69,7 @@ const imageKeyFromSrc = (src: string): string | undefined => {
 };
 
 type ImagesIndexItem = {
+  readonly description?: string;
   readonly id?: number;
   readonly fileName?: string;
   readonly folder?: string;
@@ -137,7 +138,8 @@ export class ClientImagesService {
 
   public async getItems(): Promise<Collection<Image>> {
     const files = this.getDirectoryImages();
-    const items = this.mapFilesToImages(files);
+    const imageIndexMap = await this.getIndexedImageMap();
+    const items = this.mapFilesToImages(files, imageIndexMap);
 
     return {
       items,
@@ -150,13 +152,14 @@ export class ClientImagesService {
 
   public async getUnmatchedItems(): Promise<Collection<Image>> {
     const files = this.getDirectoryImages();
-    const indexedKeys = await this.getIndexedImageKeys();
+    const imageIndexMap = await this.getIndexedImageMap();
+    const indexedKeys = new Set(imageIndexMap.keys());
 
     const unmatchedFiles = files.filter(
       (file) => !indexedKeys.has(buildImageKey(file.folder, file.fileName)),
     );
 
-    const items = this.mapFilesToImages(unmatchedFiles);
+    const items = this.mapFilesToImages(unmatchedFiles, imageIndexMap);
 
     return {
       items,
@@ -393,6 +396,7 @@ export class ClientImagesService {
   }
 
   public async renameImageBySrc(params: {
+    readonly description?: string;
     readonly src: string;
     readonly targetFileName: string;
     readonly targetFolderLabel: string;
@@ -470,6 +474,8 @@ export class ClientImagesService {
     const sourceSrcLower = params.src.toLowerCase();
     const targetFolderLower = targetFolder.toLowerCase();
     const targetFileNameLower = targetFileName.toLowerCase();
+    const hasDescriptionUpdate = params.description !== undefined;
+    const trimmedDescription = params.description?.trim();
 
     const imagesIndex = await this.readImagesIndexFile();
     const items = imagesIndex.items ?? [];
@@ -515,12 +521,27 @@ export class ClientImagesService {
         return item;
       }
 
-      return {
+      const updatedItem: ImagesIndexItem = {
         ...item,
         fileName: targetFileName,
         folder: targetFolder,
         src: updatedSrc,
       };
+
+      if (!hasDescriptionUpdate) {
+        return updatedItem;
+      }
+
+      if (trimmedDescription) {
+        return {
+          ...updatedItem,
+          description: trimmedDescription,
+        };
+      }
+
+      const itemWithoutDescription = { ...updatedItem };
+      delete itemWithoutDescription.description;
+      return itemWithoutDescription;
     });
 
     await this.fileService.writeFile(
@@ -542,36 +563,53 @@ export class ClientImagesService {
       );
   }
 
-  private async getIndexedImageKeys(): Promise<Set<string>> {
+  private async getIndexedImageMap(): Promise<Map<string, ImagesIndexItem>> {
     const imageIndex = await this.fileService.readFile<ImagesIndexFile>(
       FilePath.getDataDir('images.json'),
     );
 
-    const keys = (imageIndex.items ?? []).flatMap((item) => {
+    const entries = (imageIndex.items ?? []).flatMap((item) => {
       if (item.fileName) {
-        return [buildImageKey(item.folder ?? '', item.fileName)];
+        return [
+          [buildImageKey(item.folder ?? '', item.fileName), item] as const,
+        ];
       }
 
       if (item.src) {
         const keyFromSrc = imageKeyFromSrc(item.src);
-        return keyFromSrc ? [keyFromSrc] : [];
+        return keyFromSrc ? [[keyFromSrc, item] as const] : [];
       }
 
       return [];
     });
 
-    return new Set(keys);
+    return new Map(entries);
   }
 
-  private mapFilesToImages(files: readonly ImageFile[]): Image[] {
+  private mapFilesToImages(
+    files: readonly ImageFile[],
+    imageIndexMap: ReadonlyMap<string, ImagesIndexItem>,
+  ): Image[] {
     return files.map((file, index) => {
       const folder = normalizeFolder(file.folder);
       const src = toImageSrc(folder, file.fileName);
       const title = toTitle(file.fileName);
+      const imageIndexItem = imageIndexMap.get(
+        buildImageKey(folder, file.fileName),
+      );
+      const description =
+        typeof imageIndexItem?.description === 'string'
+          ? imageIndexItem.description
+          : undefined;
+      const id =
+        typeof imageIndexItem?.id === 'number' && imageIndexItem.id > 0
+          ? imageIndexItem.id
+          : index + 1;
 
       return {
         alt: title,
-        id: index + 1,
+        ...(description ? { description } : {}),
+        id,
         src,
         title,
       };

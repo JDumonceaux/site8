@@ -64,15 +64,32 @@ InputCheckbox.displayName = 'InputCheckbox';
 export default InputCheckbox;
 
 const Wrapper = styled.div`
-  margin-bottom: 16px;
+  width: 100%;
 
   label {
     display: inline-flex;
     align-items: center;
+    width: 100%;
+    min-height: 2.25rem;
+    padding: 0;
+    color: var(--input-color);
+    font-size: var(--font-size-sm);
     cursor: pointer;
   }
 
   input[type='checkbox'] {
-    margin-inline-end: 6px;
+    width: 1rem;
+    height: 1rem;
+    margin-inline-end: 0.625rem;
+    accent-color: var(--status-info);
+  }
+
+  input[type='checkbox']:disabled {
+    cursor: not-allowed;
+  }
+
+  label:has(input[type='checkbox']:disabled) {
+    color: var(--disabled-text);
+    cursor: not-allowed;
   }
 `;

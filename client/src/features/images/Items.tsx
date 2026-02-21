@@ -25,7 +25,9 @@ const formatFolderLabel = (folderPath: string): string => {
   return folderPath
     .split('/')
     .filter(Boolean)
-    .map((part) => capitalizePart(part.replaceAll(/[-_]+/g, ' ')))
+    .map((part) =>
+      capitalizePart(part.replaceAll('_', ' ').replaceAll('-', ' ')),
+    )
     .join(' / ');
 };
 

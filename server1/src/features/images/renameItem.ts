@@ -4,6 +4,7 @@ import { badRequest, conflict, ok } from '../../lib/http/ResponseHelper.js';
 import { getClientImagesService } from '../../utils/ServiceFactory.js';
 
 type RenameItemRequestBody = {
+  readonly description?: string;
   readonly src?: string;
   readonly targetFileName?: string;
   readonly targetFolder?: string;
@@ -19,9 +20,15 @@ export const renameItem = async (
   res: Response<RenameItemResponse | { error: string }>,
 ): Promise<void> => {
   const body = req.body as RenameItemRequestBody;
+  const description = body.description;
   const src = body.src?.trim();
   const targetFileName = body.targetFileName?.trim();
   const targetFolder = body.targetFolder?.trim();
+
+  if (description !== undefined && typeof description !== 'string') {
+    badRequest(res, 'description must be a string');
+    return;
+  }
 
   if (!src) {
     badRequest(res, 'src is required');
@@ -42,6 +49,7 @@ export const renameItem = async (
 
   try {
     const result = await service.renameImageBySrc({
+      description,
       src,
       targetFileName,
       targetFolderLabel: targetFolder,

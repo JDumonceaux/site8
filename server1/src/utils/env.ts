@@ -2,6 +2,8 @@ import * as v from 'valibot';
 
 const envSchema = v.object({
   BASE_URL: v.optional(v.pipe(v.string(), v.url()), 'http://localhost:3005'),
+  GEMINI_API_KEY: v.optional(v.string(), ''),
+  GEMINI_MODEL: v.optional(v.string(), 'gemini-2.0-flash'),
   NODE_ENV: v.optional(
     v.picklist(['development', 'production', 'test']),
     'development',
@@ -27,6 +29,8 @@ export type Env = v.InferOutput<typeof envSchema>;
 const parseEnv = (): Env => {
   return v.parse(envSchema, {
     BASE_URL: process.env.BASE_URL,
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+    GEMINI_MODEL: process.env.GEMINI_MODEL,
     NODE_ENV: process.env.NODE_ENV,
     PORT: process.env.PORT,
     USE_AUTH: process.env.USE_AUTH,

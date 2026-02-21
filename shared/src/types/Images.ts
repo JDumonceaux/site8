@@ -3,6 +3,7 @@
  */
 export type Image = {
   readonly alt: string;
+  readonly description?: string;
   readonly id: number;
   readonly src: string;
   readonly title: string;

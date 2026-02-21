@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   color: var(--input-adornment);
-  margin: 0 8px;
+  margin: 0 0.625rem;
 `;
 
 const Separator = styled.div`

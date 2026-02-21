@@ -9,7 +9,7 @@ export const ScrollableContent = styled.div`
 export const Form = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.25rem;
   padding: 1rem 0;
 `;
 
@@ -20,6 +20,7 @@ export const FormField = styled.div`
 `;
 
 export const ImagePreviewContainer = styled.div`
+  margin-bottom: 1.25rem;
   width: 100%;
 `;
 
@@ -59,6 +60,41 @@ export const FooterButtons = styled.div`
   width: 100%;
 `;
 
+export const FooterSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+`;
+
+export const FooterMessageArea = styled.div`
+  color: var(--input-error-color, #b91c1c);
+  font-size: 0.75rem;
+  min-height: 1.25rem;
+  padding: 0.375rem 0 0;
+`;
+
+export const IdentifyStatusSection = styled.div<{
+  readonly $tone: 'error' | 'info' | 'success';
+}>`
+  color: ${({ $tone }) => {
+    switch ($tone) {
+      case 'error': {
+        return 'var(--input-error-color, #b91c1c)';
+      }
+      case 'success': {
+        return 'var(--status-success, #15803d)';
+      }
+      default: {
+        return 'var(--text-secondary-color)';
+      }
+    }
+  }};
+  font-size: 0.75rem;
+  min-height: 1rem;
+  white-space: pre-wrap;
+`;
+
 export const DeleteButtonGroup = styled.div`
   margin-right: auto;
 `;
@@ -86,8 +122,33 @@ export const WarningText = styled.div`
   font-size: var(--font-size-sm);
 `;
 
-export const SuggestButtonRow = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  justify-content: flex-end;
+export const SuggestAdornmentButton = styled.button`
+  background: transparent;
+  border: none;
+  color: var(--text-secondary-color);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  padding: 0;
+
+  &:hover {
+    color: var(--text-primary-color);
+    text-decoration: underline;
+    text-underline-position: under;
+  }
+
+  &:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--text-tertiary-color);
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--text-tertiary-color) 65%,
+      transparent
+    );
+    text-underline-position: under;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;

@@ -8,8 +8,8 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "start": "npm run build && node dist/server.js",
-    "debug": "npm run build && node --inspect dist/server.js",
+    "start": "npm run build && node --env-file=.env.dev dist/server.js",
+    "debug": "npm run build && node --env-file=.env.dev --inspect dist/server.js",
     "build": "tsc",
     "build:clean": "rm -rf dist && tsc",
     "precommit": "pretty-quick --staged",
@@ -19,18 +19,19 @@
     "lint:format": "pretty-quick --staged",
     "prepare": "husky",
     "prepare-commit-msg": "node tools/git-commit-message.js .git/COMMIT_EDITMSG",
-    "start:prod": "NODE_ENV=production node dist/server.js"
+    "start:prod": "node --env-file=.env.production dist/server.js"
   },
   "dependencies": {
+    "@google/genai": "^1.42.0",
     "@site8/shared": "file:../shared",
     "compression": "^1.8.1",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
+    "valibot": "^1.2.0",
     "validator": "^13.15.26",
-    "winston": "^3.19.0",
-    "valibot": "^1.2.0"
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

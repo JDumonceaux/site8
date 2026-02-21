@@ -27,7 +27,7 @@ const useImages = ({ unmatchedOnly }: UseImagesParams): UseImagesResult => {
     queryFn: async ({ signal }): Promise<Collection<Image>> => {
       return apiClient.get<Collection<Image>>(endpoint, { signal });
     },
-    queryKey: ['images', unmatchedOnly ? 'unmatched' : 'all'],
+    queryKey: ['images', unmatchedOnly ? 'unmatched' : 'all', endpoint],
   });
 
   return {

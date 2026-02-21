@@ -25,6 +25,7 @@ type InputAddProps = {
   readonly dataList?: { readonly data?: KeyValue[]; readonly id: string };
   readonly defaultValue?: number | string;
   readonly inputRef?: Ref<HTMLInputElement>;
+  readonly isPathStyle?: boolean;
   readonly onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   readonly type: JSX.IntrinsicElements['input']['type'];
   readonly value?: number | string;
@@ -39,6 +40,7 @@ const InputBase = ({
   errors,
   id,
   inputRef,
+  isPathStyle = false,
   isRequired,
   labelProps,
   onChange,
@@ -88,6 +90,7 @@ const InputBase = ({
       {...(isRequired !== undefined && { isRequired })}
     >
       <StyledInput
+        $isPathStyle={isPathStyle}
         autoComplete="off"
         {...(value === undefined ? { defaultValue } : { value })}
         {...(dataList ? { list: dataList.id } : {})}
@@ -115,20 +118,31 @@ const InputBase = ({
 InputBase.displayName = 'InputBase';
 export default InputBase;
 
-const StyledInput = styled.input`
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  color: inherit;
-  background: inherit;
+const StyledInput = styled.input<{ $isPathStyle: boolean }>`
+  font-size: var(--font-size-sm);
+  color: var(--input-color);
+  background: transparent;
   display: inline-flex;
   align-items: center;
-  padding: 0 8px;
+  padding: 0 0.625rem;
   border: none;
-  height: 32px;
+  min-height: 2.25rem;
   width: 100%;
+  letter-spacing: ${({ $isPathStyle }) => ($isPathStyle ? '0.01em' : 'normal')};
+  font-variant-numeric: ${({ $isPathStyle }) =>
+    $isPathStyle ? 'tabular-nums' : 'normal'};
 
   &:focus,
   &:focus-visible {
     outline: none;
+  }
+
+  &:read-only:not(:disabled) {
+    color: var(--text-primary-color);
+  }
+
+  &:disabled {
+    color: var(--disabled-text);
+    cursor: not-allowed;
   }
 `;

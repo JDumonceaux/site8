@@ -3,6 +3,7 @@ import { ServiceUrl } from '@lib/utils/constants';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type RenameImageParams = {
+  readonly description?: string;
   readonly src: string;
   readonly targetFileName: string;
   readonly targetFolder: string;
@@ -20,7 +21,7 @@ export type UseRenameImageResult = {
 
 const getErrorMessage = (error: unknown): string => {
   if (error instanceof ApiError) {
-    const {body} = error;
+    const { body } = error;
     if (
       typeof body === 'object' &&
       body !== null &&
@@ -51,6 +52,7 @@ const useRenameImage = (
       return apiClient.post<RenameImageResponse>(
         ServiceUrl.ENDPOINT_IMAGES_RENAME,
         {
+          description: params.description,
           src: params.src,
           targetFileName: params.targetFileName,
           targetFolder: params.targetFolder,

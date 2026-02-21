@@ -33,8 +33,9 @@ const useDeleteImage = (
       );
     },
     onError: (error) => {
-      const error_ = error instanceof Error ? error : new Error(String(error));
-      onError?.(error_);
+      const resolvedError =
+        error instanceof Error ? error : new Error(String(error));
+      onError?.(resolvedError);
     },
     onSuccess: (response) => {
       void queryClient.invalidateQueries({ queryKey: ['images'] });
