@@ -13,6 +13,7 @@ import {
   parseImageSrc,
   resolveSafeImagePath,
 } from '../../utils/imageUtils.js';
+import { isResponseClosed } from '../../utils/httpUtils.js';
 import { Logger } from '../../utils/logger.js';
 
 const TEST_IMAGE_SRC = '/images/2024/baroque_palace_gallery.jpg';
@@ -27,10 +28,15 @@ type GeminiImageTestResponse = {
   readonly title: string;
 };
 
+const GEMINI_IMAGE_TIMEOUT_MS = 60_000;
+
 export const runGeminiImageTest = async (
-  _req: Request,
+  req: Request,
   res: Response<GeminiImageTestResponse | GeminiImageTestErrorResponse>,
 ): Promise<void> => {
+  req.setTimeout(GEMINI_IMAGE_TIMEOUT_MS);
+  res.setTimeout(GEMINI_IMAGE_TIMEOUT_MS);
+
   const src = TEST_IMAGE_SRC;
 
   if (!env.GEMINI_API_KEY) {
@@ -71,6 +77,8 @@ export const runGeminiImageTest = async (
     const mimeType = getImageMimeType(fullImagePath);
     const result = await testGeminiImage(imageBase64, mimeType);
 
+    if (isResponseClosed(req, res)) return;
+
     ok(
       res,
       {
@@ -81,6 +89,8 @@ export const runGeminiImageTest = async (
       'Gemini:runGeminiImageTest',
     );
   } catch (error) {
+    if (isResponseClosed(req, res)) return;
+
     if (isGeminiPermissionError(error)) {
       Logger.warn(
         'Gemini:runGeminiImageTest: Permission denied from Gemini API',

@@ -10,6 +10,7 @@ import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
 } from '../../utils/geminiErrors.js';
+import { isResponseClosed } from '../../utils/httpUtils.js';
 import { getImageMimeType, parseImageSrc } from '../../utils/imageUtils.js';
 import { Logger } from '../../utils/logger.js';
 import { testGemini } from '../../services/geminiTestService.js';
@@ -55,16 +56,6 @@ type IdentifyItemResponse = {
 //   const parsedValue = normalizedLine.slice(prefix.length).trim();
 //   return parsedValue || undefined;
 // };
-
-const isResponseClosed = (req: Request, res: Response): boolean => {
-  return (
-    req.aborted ||
-    req.destroyed ||
-    res.headersSent ||
-    res.writableEnded ||
-    res.destroyed
-  );
-};
 
 export const identifyItem = async (
   req: Request,
