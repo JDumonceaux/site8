@@ -1,0 +1,12 @@
+{
+  "name": "site8-workspace",
+  "private": true,
+  "scripts": {
+    "start:server": "npm --prefix server1 run build && node --env-file=server1/.env.dev server1/dist/server.js",
+    "debug:server": "npm --prefix server1 run debug",
+    "build:server": "npm --prefix server1 run build",
+    "start:client": "npm --prefix client run dev -- --mode development",
+    "build:client": "npm --prefix client run build",
+    "build:shared": "npm --prefix shared run build"
+  }
+}

@@ -1,4 +1,3 @@
-import path from 'path';
 import type { Request, Response } from 'express';
 
 // import FilePath from '../../lib/filesystem/FilePath.js';
@@ -7,6 +6,11 @@ import {
   internalError,
   ok,
 } from '../../lib/http/ResponseHelper.js';
+import {
+  GEMINI_PERMISSION_ERROR_MESSAGE,
+  isGeminiPermissionError,
+} from '../../utils/geminiErrors.js';
+import { getImageMimeType, parseImageSrc } from '../../utils/imageUtils.js';
 import { Logger } from '../../utils/logger.js';
 import { testGemini } from '../../services/geminiTestService.js';
 import { env } from '../../utils/env.js';
@@ -36,52 +40,6 @@ type IdentifyItemResponse = {
 // type GeminiGenerateResponse = {
 //   readonly candidates?: readonly GeminiCandidate[];
 // };
-
-const parseImageSrc = (
-  src: string,
-): {
-  readonly fileName: string;
-  readonly folder: string;
-} | null => {
-  if (!src.startsWith('/images/')) {
-    return null;
-  }
-
-  const relativePath = src.replace(/^\/images\//, '');
-  const segments = relativePath.split('/').filter(Boolean);
-  const fileName = segments.at(-1);
-
-  if (!fileName) {
-    return null;
-  }
-
-  return {
-    fileName,
-    folder: segments.slice(0, -1).join('/'),
-  };
-};
-
-const getMimeType = (fileName: string): string => {
-  const extension = path.extname(fileName).toLowerCase();
-
-  switch (extension) {
-    case '.avif':
-      return 'image/avif';
-    case '.gif':
-      return 'image/gif';
-    case '.jpeg':
-    case '.jpg':
-      return 'image/jpeg';
-    case '.png':
-      return 'image/png';
-    case '.svg':
-      return 'image/svg+xml';
-    case '.webp':
-      return 'image/webp';
-    default:
-      return 'application/octet-stream';
-  }
-};
 
 // const parseInlineField = (
 //   lineValue: string,
@@ -162,7 +120,7 @@ export const identifyItem = async (
   };
 
   // Declare mimeType before usage
-  const mimeType = getMimeType(parsed.fileName);
+  const mimeType = getImageMimeType(parsed.fileName);
 
   req.once('aborted', cancelGeminiRequest);
   req.once('close', cancelGeminiRequest);
@@ -200,6 +158,15 @@ export const identifyItem = async (
     if (isResponseClosed(req, res)) {
       return;
     }
+
+    if (isGeminiPermissionError(error)) {
+      Logger.warn('Images:identifyItem: Permission denied from Gemini API');
+      res.status(403).json({
+        error: GEMINI_PERMISSION_ERROR_MESSAGE,
+      });
+      return;
+    }
+
     internalError(res, 'Images:identifyItem', error, {
       error: 'Failed to identify image',
     });

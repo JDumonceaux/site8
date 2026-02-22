@@ -7,6 +7,7 @@ import express, {
 } from 'express';
 import RateLimit from 'express-rate-limit';
 
+import { geminiRouter } from './app/routes/geminiRouter.js';
 import { genericRouter } from './app/routes/genericRouter.js';
 import { imagesRouter } from './app/routes/imagesRouter.js';
 import { menuRouter } from './app/routes/menuRouter.js';
@@ -15,6 +16,23 @@ import { travelRouter } from './app/routes/travelRouter.js';
 import { SERVER_CONFIG } from './utils/constants.js';
 import { env } from './utils/env.js';
 import { Logger } from './utils/logger.js';
+
+const isLikelyGeminiApiKey = (apiKey: string): boolean =>
+  /^AIza[\w-]{20,}$/.test(apiKey);
+
+const geminiApiKey = env.GEMINI_API_KEY.trim();
+
+if (!geminiApiKey) {
+  throw new Error(
+    'Startup failed: GEMINI_API_KEY is required. Set it in server1/.env.dev.',
+  );
+}
+
+if (!isLikelyGeminiApiKey(geminiApiKey)) {
+  throw new Error(
+    'Startup failed: GEMINI_API_KEY appears malformed. Check server1/.env.dev.',
+  );
+}
 
 const app = express();
 
@@ -106,6 +124,7 @@ app.use((_req, res, next) => {
 app.use('/api/travel', travelRouter);
 app.use('/api/generic', genericRouter);
 app.use('/api/images', imagesRouter);
+app.use('/api/gemini', geminiRouter);
 
 // Write-heavy routes with stricter mutation rate limiting
 app.use('/api/tests', testsRouter, mutationLimiter);
