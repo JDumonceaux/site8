@@ -46,9 +46,7 @@ const InputSelect = ({
           {...commonProps}
           ref={selectRef}
         >
-          {isShowBlankOption ? (
-            <option value="">Select an option</option>
-          ) : null}
+          {isShowBlankOption ? <option value="">Current folder</option> : null}
           {placeholder ? (
             <option value="placeholder">{placeholder}</option>
           ) : null}

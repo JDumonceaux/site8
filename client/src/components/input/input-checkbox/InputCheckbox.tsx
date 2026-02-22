@@ -64,12 +64,12 @@ InputCheckbox.displayName = 'InputCheckbox';
 export default InputCheckbox;
 
 const Wrapper = styled.div`
-  width: 100%;
+  display: inline-flex;
 
   label {
     display: inline-flex;
     align-items: center;
-    width: 100%;
+    width: auto;
     min-height: 2.25rem;
     padding: 0;
     color: var(--input-color);

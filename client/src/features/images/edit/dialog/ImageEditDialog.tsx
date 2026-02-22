@@ -10,7 +10,6 @@ import useIdentifyImage from '../../useIdentifyImage';
 import {
   getFileNameFromSource,
   getFolderLabelFromSource,
-  parseImagePaste,
   toSuggestedFileName,
   validateEditForm,
 } from './image-edit-dialog.utils';
@@ -77,7 +76,7 @@ const ImageEditDialog = ({
   const [targetFolderInput, setTargetFolderInput] = useState<null | string>(
     null,
   );
-  const [pasteInput, setPasteInput] = useState('');
+
   const [titleValueInput, setTitleValueInput] = useState<null | string>(null);
   const [descriptionInput, setDescriptionInput] = useState<null | string>(null);
   const [targetFileNameInput, setTargetFileNameInput] = useState<null | string>(
@@ -97,8 +96,7 @@ const ImageEditDialog = ({
     key: folder,
     value: folder,
   }));
-  const defaultTargetFolder = currentFolder;
-  const targetFolder = targetFolderInput ?? defaultTargetFolder;
+  const targetFolder = targetFolderInput ?? '';
   const titleValue = titleValueInput ?? image?.title ?? '';
   const imageDescription = getImageDescription(image);
   const descriptionValue = descriptionInput ?? imageDescription;
@@ -107,7 +105,6 @@ const ImageEditDialog = ({
 
   const resetLocalState = (): void => {
     setTargetFolderInput(null);
-    setPasteInput('');
     setTitleValueInput(null);
     setDescriptionInput(null);
     setTargetFileNameInput(null);
@@ -124,7 +121,7 @@ const ImageEditDialog = ({
     isWorking,
     originalFileName,
     targetFileName,
-    targetFolder,
+    title: titleValue,
   });
   const canSave = validation.isValid;
   const identifyStatusTone =
@@ -199,22 +196,26 @@ const ImageEditDialog = ({
                 void (async (): Promise<void> => {
                   try {
                     const result = await identifyImage({ src: image.src });
-                    const parsed = parseImagePaste(result.result);
 
-                    const identifiedTitle = result.title ?? parsed.title;
-                    const identifiedDescription =
-                      result.description ?? parsed.description;
-
-                    if (identifiedTitle) {
-                      setTitleValueInput(identifiedTitle);
+                    if (result.title) {
+                      setTitleValueInput(result.title);
                     }
 
-                    if (identifiedDescription) {
-                      setDescriptionInput(identifiedDescription);
+                    if (result.description) {
+                      setDescriptionInput(result.description);
                     }
 
                     setIdentifyStatus('returned');
-                    setIdentifyStatusMessage(result.result);
+                    const titleLine = result.title
+                      ? `Title: ${result.title}`
+                      : '';
+                    const descriptionLine = result.description
+                      ? `Description: ${result.description}`
+                      : '';
+                    setIdentifyStatusMessage(
+                      [titleLine, descriptionLine].filter(Boolean).join('\n') ||
+                        'Identified.',
+                    );
                   } catch (error) {
                     const errorMessage =
                       error instanceof Error ? error.message : String(error);
@@ -254,7 +255,6 @@ const ImageEditDialog = ({
                 if (image) {
                   const saveFileName =
                     targetFileName.trim() || originalFileName;
-                  resetLocalState();
                   onSave(image, targetFolder, saveFileName, descriptionValue);
                 }
               }}
@@ -286,28 +286,6 @@ const ImageEditDialog = ({
               />
             ) : null}
           </ImagePreviewContainer>
-
-          <FormField>
-            <Input.TextArea
-              id="image-edit-paste"
-              label="Paste"
-              onChange={(event) => {
-                const nextPasteInput = event.target.value;
-                setPasteInput(nextPasteInput);
-
-                const parsed = parseImagePaste(nextPasteInput);
-                if (parsed.title) {
-                  setTitleValueInput(parsed.title);
-                }
-
-                if (parsed.description) {
-                  setDescriptionInput(parsed.description);
-                }
-              }}
-              rows={5}
-              value={pasteInput}
-            />
-          </FormField>
 
           <FormField>
             <Input.Text
@@ -406,6 +384,7 @@ const ImageEditDialog = ({
             <Input.Select
               dataList={targetFolderOptions}
               id="image-edit-target-folder"
+              isShowBlankOption
               label="Target Folder"
               onChange={(event) => {
                 setTargetFolderInput(event.target.value);

@@ -126,6 +126,7 @@ export default Dialog;
 const Overlay = styled(RadixDialog.Overlay)`
   position: fixed;
   inset: 0;
+  z-index: 1100;
   background-color: var(--backdrop, rgba(0, 0, 0, 0.5));
 `;
 
@@ -134,13 +135,15 @@ const Content = styled(RadixDialog.Content)<{
   'data-variant': Variant;
 }>`
   position: fixed;
-  top: 10%;
+  top: calc(10% - 20px);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1101;
   background: var(--surface-background-color);
   border-radius: 8px;
   border-top: 6px solid ${({ 'data-variant': v }) => getBorderColor(v)};
   max-width: ${({ 'data-size': s }) => getMaxWidth(s)};
+  max-height: 90dvh;
   width: calc(100% - 2rem);
   box-shadow: var(--shadow-elevated);
   outline: none;
@@ -168,7 +171,7 @@ const Body = styled.div`
 `;
 
 const Footer = styled.footer`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: flex-end;
 `;

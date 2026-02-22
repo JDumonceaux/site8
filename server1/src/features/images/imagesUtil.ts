@@ -1,4 +1,4 @@
-import type { ImageFile } from './types.js';
+import type { ImageFile } from './Image.js';
 import type { Image } from '@site8/shared';
 
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';

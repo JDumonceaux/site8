@@ -1,4 +1,4 @@
-import type { ImageFile, ImageFileEdit } from './types.js';
+import type { ImageFile, ImageFileEdit } from './Image.js';
 
 import { existsSync, mkdirSync, readdirSync, renameSync, statSync } from 'fs';
 import path from 'path';

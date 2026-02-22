@@ -42,7 +42,7 @@ const getErrorMessage = (error: unknown): string => {
 };
 
 const useIdentifyImage = (): UseIdentifyImageResult => {
-  const identifyEndpoint = `${ServiceUrl.ENDPOINT_IMAGES}/identify`;
+  const identifyEndpoint = ServiceUrl.ENDPOINT_IMAGE_IDENTIFY;
 
   const { isPending, mutateAsync } = useMutation({
     mutationFn: async (

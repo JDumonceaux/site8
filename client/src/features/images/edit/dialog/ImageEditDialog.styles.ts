@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
 export const ScrollableContent = styled.div`
-  max-height: calc(100dvh - 220px);
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-right: 0.375rem;
 `;
 
 export const Form = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  padding: 1rem 0;
+  padding: 1rem 0.125rem 0.5rem 0;
 `;
 
 export const FormField = styled.div`
@@ -55,7 +57,7 @@ export const Select = styled.select`
 
 export const FooterButtons = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: flex-end;
   width: 100%;
 `;
@@ -64,6 +66,7 @@ export const FooterSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding: 0 0.375rem;
   width: 100%;
 `;
 

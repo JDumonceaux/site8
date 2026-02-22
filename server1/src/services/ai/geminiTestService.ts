@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
-import { env } from '../utils/env.js';
+import { env } from '../../utils/env.js';
 
 const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
 
@@ -9,8 +9,13 @@ type GeminiImageResult = {
   readonly title: string;
 };
 
+const stripMarkdownCodeFences = (text: string): string => {
+  const match = text.match(/^```(?:json)?\s*\n([\s\S]*?)\n```\s*$/);
+  return match?.[1]?.trim() ?? text;
+};
+
 const parseGeminiImageResult = (responseText: string): GeminiImageResult => {
-  const normalizedText = responseText.trim();
+  const normalizedText = stripMarkdownCodeFences(responseText.trim());
 
   try {
     const parsed = JSON.parse(normalizedText) as {
@@ -44,7 +49,7 @@ const parseGeminiImageResult = (responseText: string): GeminiImageResult => {
 
 export async function testGemini(): Promise<string> {
   const response = await ai.models.generateContent({
-    model: 'gemini-3-flash-preview',
+    model: env.GEMINI_MODEL,
     contents: 'Explain how AI works in a few words',
   });
   // response.text may not exist; check response structure
@@ -85,3 +90,5 @@ export async function testGeminiImage(
 
   return parseGeminiImageResult(response.text);
 }
+// moved from ../geminiTestService.ts
+// ...existing code...

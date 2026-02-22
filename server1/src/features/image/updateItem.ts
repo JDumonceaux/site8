@@ -1,25 +1,25 @@
 import type { Request, Response } from 'express';
 
 import { badRequest, conflict, ok } from '../../lib/http/ResponseHelper.js';
-import { getClientImagesService } from '../../utils/ServiceFactory.js';
+import { ImageService } from './ImageService.js';
 
-type RenameItemRequestBody = {
+type UpdateItemRequestBody = {
   readonly description?: string;
   readonly src?: string;
   readonly targetFileName?: string;
   readonly targetFolder?: string;
 };
 
-type RenameItemResponse = {
+type UpdateItemResponse = {
   readonly ok: boolean;
   readonly src: string;
 };
 
-export const renameItem = async (
+export const updateItem = async (
   req: Request,
-  res: Response<RenameItemResponse | { error: string }>,
+  res: Response<UpdateItemResponse | { error: string }>,
 ): Promise<void> => {
-  const body = req.body as RenameItemRequestBody;
+  const body = req.body as UpdateItemRequestBody;
   const description = body.description;
   const src = body.src?.trim();
   const targetFileName = body.targetFileName?.trim();
@@ -40,15 +40,10 @@ export const renameItem = async (
     return;
   }
 
-  if (!targetFolder) {
-    badRequest(res, 'targetFolder is required');
-    return;
-  }
-
-  const service = getClientImagesService();
+  const service = new ImageService();
 
   try {
-    const result = await service.renameImageBySrc({
+    const result = await service.updateImage({
       description,
       src,
       targetFileName,
@@ -61,7 +56,7 @@ export const renameItem = async (
         ok: true,
         src: result.src,
       },
-      'Images:renameItem',
+      'Images:updateItem',
     );
   } catch (error) {
     if (

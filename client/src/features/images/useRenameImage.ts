@@ -6,7 +6,7 @@ type RenameImageParams = {
   readonly description?: string;
   readonly src: string;
   readonly targetFileName: string;
-  readonly targetFolder: string;
+  readonly targetFolder?: string;
 };
 
 type RenameImageResponse = {
@@ -49,13 +49,13 @@ const useRenameImage = (
     mutationFn: async (
       params: RenameImageParams,
     ): Promise<RenameImageResponse> => {
-      return apiClient.post<RenameImageResponse>(
-        ServiceUrl.ENDPOINT_IMAGES_RENAME,
+      return apiClient.put<RenameImageResponse>(
+        ServiceUrl.ENDPOINT_IMAGE_UPDATE,
         {
           description: params.description,
           src: params.src,
           targetFileName: params.targetFileName,
-          targetFolder: params.targetFolder,
+          ...(params.targetFolder ? { targetFolder: params.targetFolder } : {}),
         },
       );
     },

@@ -1,20 +1,20 @@
 import type { Request, Response } from 'express';
 import { readFile } from 'fs/promises';
 
-import { internalError, ok } from '../../lib/http/ResponseHelper.js';
-import { testGeminiImage } from '../../services/geminiTestService.js';
-import { env } from '../../utils/env.js';
+import { internalError, ok } from '../../../lib/http/ResponseHelper.js';
+import { testGeminiImage } from '../../../services/ai/geminiTestService.js';
+import { env } from '../../../utils/env.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
-} from '../../utils/geminiErrors.js';
+} from '../../../utils/geminiErrors.js';
 import {
   getImageMimeType,
   parseImageSrc,
   resolveSafeImagePath,
-} from '../../utils/imageUtils.js';
-import { isResponseClosed } from '../../utils/httpUtils.js';
-import { Logger } from '../../utils/logger.js';
+} from '../../../utils/imageUtils.js';
+import { isResponseClosed } from '../../../utils/httpUtils.js';
+import { Logger } from '../../../utils/logger.js';
 
 const TEST_IMAGE_SRC = '/images/2024/baroque_palace_gallery.jpg';
 

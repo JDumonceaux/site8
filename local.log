@@ -1,0 +1,8 @@
+[2026/02/22 11:26:26] error: uncaughtException: Invalid type: Expected ("development" | "production" | "test") but received "local"
+ValiError: Invalid type: Expected ("development" | "production" | "test") but received "local"
+    at Module.parse (file:///C:/Users/John-S/Documents/2023Dell/site8/server1/node_modules/valibot/dist/index.mjs:6748:28)
+    at parseEnv (file:///C:/Users/John-S/Documents/2023Dell/site8/server1/dist/utils/env.js:11:14)
+    at file:///C:/Users/John-S/Documents/2023Dell/site8/server1/dist/utils/env.js:20:20
+    at ModuleJob.run (node:internal/modules/esm/module_job:377:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:689:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)

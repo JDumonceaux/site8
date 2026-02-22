@@ -1,20 +1,20 @@
 import type { Request, Response } from 'express';
 
 import { badRequest, ok } from '../../lib/http/ResponseHelper.js';
-import { getClientImagesService } from '../../utils/ServiceFactory.js';
+import { ImageService } from './ImageService.js';
 
-type AddEntryRequestBody = {
+type AddItemRequestBody = {
   readonly entry?: {
     readonly fileName?: string;
     readonly folder?: string;
   } & Record<string, unknown>;
 };
 
-export const addEntry = async (
+export const addItem = async (
   req: Request,
   res: Response<{ id: number } | { error: string }>,
 ): Promise<void> => {
-  const { entry } = req.body as AddEntryRequestBody;
+  const { entry } = req.body as AddItemRequestBody;
 
   if (!entry || typeof entry !== 'object') {
     badRequest(res, 'entry is required');
@@ -31,12 +31,12 @@ export const addEntry = async (
     return;
   }
 
-  const service = getClientImagesService();
-  const added = await service.addImageEntry({
+  const service = new ImageService();
+  const added = await service.addItem({
     ...entry,
     fileName: entry.fileName,
     folder: entry.folder,
   });
 
-  ok(res, { id: added.id }, 'Images:addEntry');
+  ok(res, { id: added.id }, 'Images:addItem');
 };

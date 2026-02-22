@@ -6,26 +6,6 @@ export type FormValidationResult = {
   readonly isValid: boolean;
 };
 
-export type ParsedImagePaste = {
-  readonly description?: string;
-  readonly title?: string;
-};
-
-const parseInlineField = (
-  lineValue: string,
-  fieldName: 'description' | 'title',
-): string | undefined => {
-  const normalizedLine = lineValue.trim();
-  const prefix = `${fieldName}:`;
-
-  if (!normalizedLine.toLowerCase().startsWith(prefix)) {
-    return undefined;
-  }
-
-  const parsedValue = normalizedLine.slice(prefix.length).trim();
-  return parsedValue || undefined;
-};
-
 const EXTENSION_WARNING_MESSAGES = {
   warning: 'File extension cannot be changed',
 } as const;
@@ -78,14 +58,15 @@ export const validateEditForm = ({
   isWorking,
   originalFileName,
   targetFileName,
-  targetFolder,
+  title,
 }: {
   readonly hasImage: boolean;
   readonly isWorking: boolean;
   readonly originalFileName: string;
   readonly targetFileName: string;
-  readonly targetFolder: string;
+  readonly title: string;
 }): FormValidationResult => {
+  const hasTitle = Boolean(title.trim());
   const hasTargetFileName = Boolean(targetFileName.trim());
   const extensionChanged =
     hasTargetFileName && hasExtensionChanged(originalFileName, targetFileName);
@@ -93,68 +74,12 @@ export const validateEditForm = ({
     ? EXTENSION_WARNING_MESSAGES
     : undefined;
 
-  const isValid =
-    hasImage && Boolean(targetFolder) && !extensionChanged && !isWorking;
-  const hasValidationErrors =
-    !hasImage || !Boolean(targetFolder) || extensionChanged;
+  const isValid = hasImage && hasTitle && !extensionChanged && !isWorking;
+  const hasValidationErrors = !hasImage || !hasTitle || extensionChanged;
 
   return {
     ...(fileNameMessages ? { fileNameMessages } : {}),
     hasValidationErrors,
     isValid,
-  };
-};
-
-export const parseImagePaste = (value: string): ParsedImagePaste => {
-  const lines = value.replaceAll('\r\n', '\n').split('\n');
-  const titleLines: string[] = [];
-  const descriptionLines: string[] = [];
-  let section: 'description' | 'title' | null = null;
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-
-    const inlineTitle = parseInlineField(trimmed, 'title');
-    if (inlineTitle) {
-      titleLines.push(inlineTitle);
-      section = null;
-      continue;
-    }
-
-    const inlineDescription = parseInlineField(trimmed, 'description');
-    if (inlineDescription) {
-      descriptionLines.push(inlineDescription);
-      section = null;
-      continue;
-    }
-
-    if (/^title\s*:?$/i.test(trimmed)) {
-      section = 'title';
-      continue;
-    }
-
-    if (/^description\s*:?$/i.test(trimmed)) {
-      section = 'description';
-      continue;
-    }
-
-    if (section === 'title') {
-      if (trimmed) {
-        titleLines.push(trimmed);
-      }
-      continue;
-    }
-
-    if (section === 'description') {
-      descriptionLines.push(line.trimEnd());
-    }
-  }
-
-  const title = titleLines.join(' ').trim();
-  const description = descriptionLines.join('\n').trim();
-
-  return {
-    ...(description ? { description } : {}),
-    ...(title ? { title } : {}),
   };
 };

@@ -64,6 +64,7 @@ const ImagesPage = (): JSX.Element => {
     () => {
       setMessage('Image updated');
       setSelectedImageIds(new Set());
+      handleCloseDialog();
     },
     (renameError) => {
       setErrorMessage(renameError.message);
@@ -158,7 +159,6 @@ const ImagesPage = (): JSX.Element => {
       targetFileName,
       targetFolder,
     });
-    handleCloseDialog();
   };
 
   const handleDeleteImage = (image: Image): void => {
@@ -242,6 +242,7 @@ const ImagesPage = (): JSX.Element => {
         </Layout.Content>
       </Layout.TwoColumn>
       <ImageEditDialog
+        key={editingImage?.src ?? ''}
         availableFolders={availableFolders}
         image={editingImage}
         isDeleting={isDeletePending}

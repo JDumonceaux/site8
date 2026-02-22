@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
 import { badRequest, ok } from '../../lib/http/ResponseHelper.js';
-import { getClientImagesService } from '../../utils/ServiceFactory.js';
+import { ImageService } from './ImageService.js';
 
 type DeleteItemResponse = {
   readonly deletedFile: boolean;
@@ -21,8 +21,8 @@ export const deleteItem = async (
     return;
   }
 
-  const service = getClientImagesService();
-  const result = await service.deleteImageBySrc(src);
+  const service = new ImageService();
+  const result = await service.deleteItem(src);
 
   ok(
     res,
