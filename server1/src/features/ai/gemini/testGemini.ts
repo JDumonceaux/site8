@@ -1,12 +1,12 @@
 import type { Request, Response } from 'express';
 
 import { internalError, ok } from '../../../lib/http/ResponseHelper.js';
+import { testGemini } from '../../../services/ai/geminiTestService.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
 } from '../../../utils/geminiErrors.js';
 import { Logger } from '../../../utils/logger.js';
-import { testGemini } from '../../../services/ai/geminiTestService.js';
 
 type GeminiTestResponse = {
   readonly ok: true;

@@ -9,6 +9,7 @@ export type * from './Folder';
 export type * from './FormErrors';
 export type * from './FormState';
 export type * from './IdValue';
+export type * from './ImageItem';
 export type * from './KeyValue';
 export type * from './ListItem';
 export type * from './Menu';

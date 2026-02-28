@@ -1,16 +1,11 @@
+// Route configuration files export JSX elements, not components — fast-refresh warning suppressed intentionally.
+/* eslint-disable react-refresh/only-export-components */
 import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 
-// ---------------------
-// Layouts
-// ---------------------
 const UnifiedLayout = lazy(
   async () => import('../../features/layouts/unified-layout/UnifiedLayout'),
 );
-
-// ---------------------
-// Pages
-// ---------------------
 const Home = lazy(async () => import('../../features/home/HomePage'));
 const Sitemap = lazy(async () => import('../../features/site/SitemapPage'));
 const TermsOfUsePage = lazy(

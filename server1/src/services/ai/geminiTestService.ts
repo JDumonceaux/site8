@@ -10,8 +10,10 @@ type GeminiImageResult = {
 };
 
 const stripMarkdownCodeFences = (text: string): string => {
-  const match = text.match(/^```(?:json)?\s*\n([\s\S]*?)\n```\s*$/);
-  return match?.[1]?.trim() ?? text;
+  const match = /^```(?:json)?[ \t]*\n(?<content>[\s\S]*?)\n```[ \t]*$/.exec(
+    text,
+  );
+  return match?.groups?.content?.trim() ?? text;
 };
 
 const parseGeminiImageResult = (responseText: string): GeminiImageResult => {
@@ -38,19 +40,23 @@ const parseGeminiImageResult = (responseText: string): GeminiImageResult => {
     // no-op
   }
 
-  const titleMatch = normalizedText.match(/^title\s*:\s*(.+)$/im);
-  const descriptionMatch = normalizedText.match(/^description\s*:\s*(.+)$/im);
+  const titleMatch = /^title[ \t]*:[ \t]*(?<value>\S.*)$/im.exec(
+    normalizedText,
+  );
+  const descriptionMatch = /^description[ \t]*:[ \t]*(?<value>\S.*)$/im.exec(
+    normalizedText,
+  );
 
   return {
-    description: descriptionMatch?.[1]?.trim() ?? normalizedText,
-    title: titleMatch?.[1]?.trim() ?? 'Untitled',
+    description: descriptionMatch?.groups?.value?.trim() ?? normalizedText,
+    title: titleMatch?.groups?.value?.trim() ?? 'Untitled',
   };
 };
 
-export async function testGemini(): Promise<string> {
+export const testGemini = async (): Promise<string> => {
   const response = await ai.models.generateContent({
-    model: env.GEMINI_MODEL,
     contents: 'Explain how AI works in a few words',
+    model: env.GEMINI_MODEL,
   });
   // response.text may not exist; check response structure
   if (typeof response.text === 'string') {
@@ -58,14 +64,13 @@ export async function testGemini(): Promise<string> {
   }
   // Fallback: stringify response
   return JSON.stringify(response);
-}
+};
 
-export async function testGeminiImage(
+export const testGeminiImage = async (
   imageBase64: string,
   mimeType: string,
-): Promise<GeminiImageResult> {
+): Promise<GeminiImageResult> => {
   const response = await ai.models.generateContent({
-    model: env.GEMINI_MODEL,
     contents: [
       {
         parts: [
@@ -82,6 +87,7 @@ export async function testGeminiImage(
         role: 'user',
       },
     ],
+    model: env.GEMINI_MODEL,
   });
 
   if (typeof response.text !== 'string' || response.text.trim().length === 0) {
@@ -89,6 +95,6 @@ export async function testGeminiImage(
   }
 
   return parseGeminiImageResult(response.text);
-}
+};
 // moved from ../geminiTestService.ts
 // ...existing code...

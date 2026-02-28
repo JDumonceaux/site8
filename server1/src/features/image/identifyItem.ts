@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+
 import { readFile } from 'fs/promises';
 
 import { GoogleGenAI } from '@google/genai';
@@ -8,6 +9,7 @@ import {
   internalError,
   ok,
 } from '../../lib/http/ResponseHelper.js';
+import { env } from '../../utils/env.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
@@ -18,7 +20,6 @@ import {
   resolveSafeImagePath,
 } from '../../utils/imageUtils.js';
 import { Logger } from '../../utils/logger.js';
-import { env } from '../../utils/env.js';
 
 type IdentifyItemRequestBody = {
   readonly src?: string;
@@ -38,8 +39,10 @@ type IdentifyImageResult = {
 };
 
 const stripMarkdownCodeFences = (text: string): string => {
-  const match = text.match(/^```(?:json)?\s*\n([\s\S]*?)\n```\s*$/);
-  return match?.[1]?.trim() ?? text;
+  const match = /^```(?:json)?[ \t]*\n(?<content>[\s\S]*?)\n```[ \t]*$/.exec(
+    text,
+  );
+  return match?.groups?.content?.trim() ?? text;
 };
 
 const parseIdentifyResult = (responseText: string): IdentifyImageResult => {
@@ -66,12 +69,16 @@ const parseIdentifyResult = (responseText: string): IdentifyImageResult => {
     // no-op
   }
 
-  const titleMatch = normalizedText.match(/^title\s*:\s*(.+)$/im);
-  const descriptionMatch = normalizedText.match(/^description\s*:\s*(.+)$/im);
+  const titleMatch = /^title[ \t]*:[ \t]*(?<value>\S.*)$/im.exec(
+    normalizedText,
+  );
+  const descriptionMatch = /^description[ \t]*:[ \t]*(?<value>\S.*)$/im.exec(
+    normalizedText,
+  );
 
   return {
-    description: descriptionMatch?.[1]?.trim() ?? normalizedText,
-    title: titleMatch?.[1]?.trim() ?? 'Untitled',
+    description: descriptionMatch?.groups?.value?.trim() ?? normalizedText,
+    title: titleMatch?.groups?.value?.trim() ?? 'Untitled',
   };
 };
 
@@ -81,10 +88,10 @@ export const identifyItem = async (
 ): Promise<void> => {
   const IDENTIFY_TIMEOUT_MS = 60_000;
   Logger.debug('Identify request start', {
-    src: req.body?.src,
     method: req.method,
-    url: req.url,
+    src: (req.body as IdentifyItemRequestBody | undefined)?.src,
     timeoutMs: IDENTIFY_TIMEOUT_MS,
+    url: req.url,
   });
   req.setTimeout(IDENTIFY_TIMEOUT_MS);
   res.setTimeout(IDENTIFY_TIMEOUT_MS);
@@ -129,8 +136,8 @@ export const identifyItem = async (
       abortController.abort();
     }
     Logger.debug('Identify request aborted or closed', {
-      src,
       method: req.method,
+      src,
       url: req.url,
     });
   };
@@ -140,14 +147,14 @@ export const identifyItem = async (
 
   try {
     Logger.debug('Identify: reading image file', { fullImagePath });
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- path is validated by resolveSafeImagePath against IMAGES_DIR
     const buffer = await readFile(fullImagePath);
     const imageBase64 = buffer.toString('base64');
     const mimeType = getImageMimeType(parsed.fileName);
 
-    Logger.debug('Identify: calling Gemini', { src, mimeType });
+    Logger.debug('Identify: calling Gemini', { mimeType, src });
     const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
     const response = await ai.models.generateContent({
-      model: env.GEMINI_MODEL,
       contents: [
         {
           parts: [
@@ -164,6 +171,7 @@ export const identifyItem = async (
           role: 'user',
         },
       ],
+      model: env.GEMINI_MODEL,
     });
 
     if (
@@ -174,30 +182,30 @@ export const identifyItem = async (
     }
 
     Logger.debug('Identify: Gemini responded', {
-      src,
       responseText: response.text,
+      src,
     });
 
     if (res.headersSent || res.destroyed) {
       return;
     }
 
-    const { title, description } = parseIdentifyResult(response.text);
+    const { description, title } = parseIdentifyResult(response.text);
     res.off('close', cancelGeminiRequest);
     ok(
       res,
       {
-        title,
         description,
         ok: true,
         result: response.text,
         status: 'returned',
+        title,
       },
       'Images:identifyItem',
     );
     Logger.debug('Identify response sent', {
-      src,
       method: req.method,
+      src,
       url: req.url,
     });
   } catch (error) {
@@ -217,10 +225,10 @@ export const identifyItem = async (
       error: 'Failed to identify image',
     });
     Logger.debug('Identify error response sent', {
-      src,
-      method: req.method,
-      url: req.url,
       error: error instanceof Error ? error.message : String(error),
+      method: req.method,
+      src,
+      url: req.url,
     });
   }
 };

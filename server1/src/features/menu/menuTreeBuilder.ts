@@ -9,9 +9,9 @@ import {
   constructUrl,
   getSortBy,
   mapChildrenByParent,
+  type SegmentedItems,
   segmentItemsByType,
   sortChildren,
-  type SegmentedItems,
 } from './menuTreeHelpers.js';
 
 const mapChildMenu = (

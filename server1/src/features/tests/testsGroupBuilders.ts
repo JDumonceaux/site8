@@ -1,6 +1,6 @@
 import type {
-  Test as TestFileItem,
   TestGroup as TestFileGroup,
+  Test as TestFileItem,
   TestSection as TestFileSection,
 } from '../../types/TestFile.js';
 import type { Test, TestGroup, TestSection } from '@site8/shared';

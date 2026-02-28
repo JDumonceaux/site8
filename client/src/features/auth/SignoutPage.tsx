@@ -1,4 +1,9 @@
-import { type FormEvent, type JSX, useEffect, useEffectEvent } from 'react';
+import {
+  type JSX,
+  type SyntheticEvent,
+  useEffect,
+  useEffectEvent,
+} from 'react';
 
 import Button from '@components/button/Button';
 import StyledLink from '@components/link/styled-link/StyledLink';
@@ -20,7 +25,7 @@ const SignOutpPage = (): JSX.Element => {
     fetchAuthSessionEvent();
   }, []);
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
 
     void (async () => {

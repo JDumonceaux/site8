@@ -7,9 +7,11 @@ type RenameImageParams = {
   readonly src: string;
   readonly targetFileName: string;
   readonly targetFolder?: string;
+  readonly title: string;
 };
 
 type RenameImageResponse = {
+  readonly id: number;
   readonly ok: boolean;
   readonly src: string;
 };
@@ -55,6 +57,7 @@ const useRenameImage = (
           description: params.description,
           src: params.src,
           targetFileName: params.targetFileName,
+          title: params.title,
           ...(params.targetFolder ? { targetFolder: params.targetFolder } : {}),
         },
       );

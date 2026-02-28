@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 // Dialog.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import Dialog, { type DialogProps, SIZES, VARIANTS } from './Dialog';
+import Dialog, { type DialogProps } from './Dialog';
+import { SIZES, VARIANTS } from './dialog-variants';
 import styled from 'styled-components';
 
 // A simple trigger button for stories

@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+
 import { readFile } from 'fs/promises';
 
 import { internalError, ok } from '../../../lib/http/ResponseHelper.js';
@@ -8,12 +9,12 @@ import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
 } from '../../../utils/geminiErrors.js';
+import { isResponseClosed } from '../../../utils/httpUtils.js';
 import {
   getImageMimeType,
   parseImageSrc,
   resolveSafeImagePath,
 } from '../../../utils/imageUtils.js';
-import { isResponseClosed } from '../../../utils/httpUtils.js';
 import { Logger } from '../../../utils/logger.js';
 
 const TEST_IMAGE_SRC = '/images/2024/baroque_palace_gallery.jpg';
@@ -72,6 +73,7 @@ export const runGeminiImageTest = async (
   }
 
   try {
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- path is validated against IMAGES_DIR before use
     const buffer = await readFile(fullImagePath);
     const imageBase64 = buffer.toString('base64');
     const mimeType = getImageMimeType(fullImagePath);

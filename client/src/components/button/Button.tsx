@@ -1,14 +1,7 @@
 import type { ButtonHTMLAttributes, JSX } from 'react';
 
+import { type Size, type Variant } from './button-variants';
 import styled, { css, keyframes } from 'styled-components';
-
-// Allowed visual variants
-export const VARIANTS = ['discreet', 'ghost', 'secondary', 'primary'] as const;
-export type Variant = (typeof VARIANTS)[number];
-
-// Allowed size options
-export const SIZES = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
-export type Size = (typeof SIZES)[number];
 
 /** Public props for Button */
 export type ButtonProps = Omit<

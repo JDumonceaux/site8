@@ -1,3 +1,5 @@
+// Route configuration files export JSX elements, not components — fast-refresh warning suppressed intentionally.
+/* eslint-disable react-refresh/only-export-components */
 import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 

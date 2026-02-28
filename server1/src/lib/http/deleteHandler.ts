@@ -1,7 +1,8 @@
+import type { DeleteOptions } from './genericHandlerTypes.js';
 import type { Request, Response } from 'express';
 
 import { Logger } from '../../utils/logger.js';
-import type { DeleteOptions } from './genericHandlerTypes.js';
+
 import {
   badRequest,
   internalError,

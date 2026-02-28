@@ -45,18 +45,18 @@ const TravelPage = (): JSX.Element => {
   }, []);
 
   const { deletePlace, updatePlace } = useTravelMutations({
-    onDeleteError: (error: Error) => {
+    onDeleteError: (deleteError: Error) => {
       const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
+        deleteError instanceof Error ? deleteError.message : 'Unknown error';
       setErrorMessage(`Failed to delete place: ${errorMessage}`);
     },
     onDeleteSuccess: () => {
       setMessage('Place deleted successfully');
       handleCloseDialog();
     },
-    onUpdateError: (error: Error) => {
+    onUpdateError: (updateError: Error) => {
       const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
+        updateError instanceof Error ? updateError.message : 'Unknown error';
       setErrorMessage(`Failed to update place: ${errorMessage}`);
     },
     onUpdateSuccess: () => {
@@ -84,8 +84,8 @@ const TravelPage = (): JSX.Element => {
     setIsDialogOpen(true);
   }, []);
 
-  const handleEditItem = useCallback((item: Place) => {
-    setEditingItem(item);
+  const handleEditItem = useCallback((placeToEdit: Place) => {
+    setEditingItem(placeToEdit);
     setIsDialogOpen(true);
   }, []);
 

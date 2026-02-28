@@ -1,15 +1,14 @@
 import type { JSX } from 'react';
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Button from '@components/button/Button';
 import Dialog from '@components/dialog/Dialog';
 import ClearAdornment from '@components/input/base/adornments/ClearAdornment';
 import Input from '@components/input/Input';
-import type { Image } from '@site8/shared';
+import type { ImageItem } from '@types';
 import useIdentifyImage from '../../useIdentifyImage';
 import {
   getFileNameFromSource,
-  getFolderLabelFromSource,
   toSuggestedFileName,
   validateEditForm,
 } from './image-edit-dialog.utils';
@@ -30,17 +29,18 @@ import {
 
 type ImageEditDialogProps = {
   readonly availableFolders: readonly string[];
-  readonly image: Image | null;
+  readonly image: ImageItem | null;
   readonly isDeleting?: boolean;
   readonly isOpen: boolean;
   readonly isSaving?: boolean;
   readonly onClose: () => void;
-  readonly onDelete: (image: Image) => void;
+  readonly onDelete: (image: ImageItem) => void;
   readonly onSave: (
-    image: Image,
+    image: ImageItem,
     targetFolder: string,
     targetFileName: string,
     description: string,
+    title: string,
   ) => void;
 };
 
@@ -49,7 +49,7 @@ const DELETE_CONFIRM_LINE = 'image-edit';
 
 type IdentifyStatus = 'error' | 'idle' | 'returned' | 'sent';
 
-const getImageDescription = (image: Image | null): string => {
+const getImageDescription = (image: ImageItem | null): string => {
   if (!image) {
     return '';
   }
@@ -68,10 +68,7 @@ const ImageEditDialog = ({
   onDelete,
   onSave,
 }: ImageEditDialogProps): JSX.Element => {
-  const currentFolder = useMemo(
-    () => (image ? getFolderLabelFromSource(image.src) : 'Root'),
-    [image],
-  );
+  const currentFolder = image?.currentFolder ?? 'Root';
 
   const [targetFolderInput, setTargetFolderInput] = useState<null | string>(
     null,
@@ -255,7 +252,13 @@ const ImageEditDialog = ({
                 if (image) {
                   const saveFileName =
                     targetFileName.trim() || originalFileName;
-                  onSave(image, targetFolder, saveFileName, descriptionValue);
+                  onSave(
+                    image,
+                    targetFolder,
+                    saveFileName,
+                    descriptionValue,
+                    titleValue,
+                  );
                 }
               }}
               variant="primary"

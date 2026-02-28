@@ -49,7 +49,7 @@ const CodeBlock = ({ code, type }: CodeBlockProps): JSX.Element => {
   return (
     <CodeBlockContainer>
       <CodeHeader>
-        <CodeLabel>{type?.trim() || 'Code'}</CodeLabel>
+        <CodeLabel>{type?.trim() ?? 'Code'}</CodeLabel>
         <IconButton
           aria-label="Copy code to clipboard"
           onClick={handleCopy}

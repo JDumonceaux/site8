@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
 import { badRequest, ok } from '../../lib/http/ResponseHelper.js';
-import { ImageService } from './ImageService.js';
+import { getImageService } from '../../utils/ServiceFactory.js';
 
 type AddItemRequestBody = {
   readonly entry?: {
@@ -31,7 +31,7 @@ export const addItem = async (
     return;
   }
 
-  const service = new ImageService();
+  const service = getImageService();
   const added = await service.addItem({
     ...entry,
     fileName: entry.fileName,

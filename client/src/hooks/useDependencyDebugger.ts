@@ -46,7 +46,6 @@ export const useDependencyDebugger = (inputs: Record<string, any>): void => {
   });
 
   useEffect(() => {
-    // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-ref-to-parent
     debugInputsEvent();
   }, [inputs]);
 };

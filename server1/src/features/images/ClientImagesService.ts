@@ -1,5 +1,6 @@
-import type { Collection, Image } from '@site8/shared';
+import type { Collection } from '@site8/shared';
 import type { ImageFile } from './Image.js';
+import type { ImageItem } from '../../types/ImageItem.js';
 
 import { readdir } from 'node:fs/promises';
 import path from 'path';
@@ -69,7 +70,7 @@ const imageKeyFromSrc = (src: string): string | undefined => {
 
 type ImagesIndexItem = {
   readonly description?: string;
-  readonly id?: number;
+  readonly seq?: number;
   readonly fileName?: string;
   readonly folder?: string;
   readonly src?: string;
@@ -135,7 +136,7 @@ export class ClientImagesService {
     this.imagesFileService = imagesFileService ?? new ImagesFileService();
   }
 
-  public async getItems(): Promise<Collection<Image>> {
+  public async getItems(): Promise<Collection<ImageItem>> {
     const files = this.getDirectoryImages();
     const imageIndexMap = await this.getIndexedImageMap();
     const items = this.mapFilesToImages(files, imageIndexMap);
@@ -149,7 +150,7 @@ export class ClientImagesService {
     };
   }
 
-  public async getUnmatchedItems(): Promise<Collection<Image>> {
+  public async getUnmatchedItems(): Promise<Collection<ImageItem>> {
     const files = this.getDirectoryImages();
     const imageIndexMap = await this.getIndexedImageMap();
     const indexedKeys = new Set(imageIndexMap.keys());
@@ -244,7 +245,7 @@ export class ClientImagesService {
     const imagesIndex = await this.readImagesIndexFile();
     const items = [...(imagesIndex.items ?? [])];
 
-    const itemIndex = items.findIndex((item) => item.id === id);
+    const itemIndex = items.findIndex((item) => item.seq === id);
     if (itemIndex === -1) {
       return null;
     }
@@ -272,7 +273,7 @@ export class ClientImagesService {
   public async deleteImageEntry(id: number): Promise<boolean> {
     const imagesIndex = await this.readImagesIndexFile();
     const items = [...(imagesIndex.items ?? [])];
-    const filteredItems = items.filter((item) => item.id !== id);
+    const filteredItems = items.filter((item) => item.seq !== id);
 
     if (filteredItems.length === items.length) {
       return false;
@@ -323,7 +324,7 @@ export class ClientImagesService {
   private mapFilesToImages(
     files: readonly ImageFile[],
     imageIndexMap: ReadonlyMap<string, ImagesIndexItem>,
-  ): Image[] {
+  ): ImageItem[] {
     return files.map((file, index) => {
       const folder = normalizeFolder(file.folder);
       const src = toImageSrc(folder, file.fileName);
@@ -335,15 +336,15 @@ export class ClientImagesService {
         typeof imageIndexItem?.description === 'string'
           ? imageIndexItem.description
           : undefined;
-      const id =
-        typeof imageIndexItem?.id === 'number' && imageIndexItem.id > 0
-          ? imageIndexItem.id
+      const seq =
+        typeof imageIndexItem?.seq === 'number' && imageIndexItem.seq > 0
+          ? imageIndexItem.seq
           : index + 1;
 
       return {
-        alt: title,
+        currentFolder: folder,
         ...(description ? { description } : {}),
-        id,
+        seq,
         src,
         title,
       };

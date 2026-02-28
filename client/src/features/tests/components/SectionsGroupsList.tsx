@@ -21,8 +21,8 @@ const SectionsGroupsList = ({
   const [dragOverGroupId, setDragOverGroupId] = useState<null | number>(null);
 
   const scrollToSection = useCallback((sectionId: number): void => {
-    const sectionElement = document.getElementById(
-      `tests-section-${sectionId}`,
+    const sectionElement = document.querySelector<HTMLElement>(
+      `#tests-section-${sectionId}`,
     );
 
     if (sectionElement) {

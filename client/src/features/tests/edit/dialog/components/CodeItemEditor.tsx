@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { type JSX, useMemo } from 'react';
 
 import Input from '@components/input/Input';
 import { FORM_CONSTANTS } from '@lib/utils/constants';
@@ -26,73 +26,77 @@ const CodeItemEditor = ({
   onMoveDown,
   onMoveUp,
   onUpdate,
-}: CodeItemEditorProps): JSX.Element => (
-  <CodeItem>
-    <CodeHeader>
-      <CodeLabel>Code Block {index + 1}</CodeLabel>
-      <CodeActions>
-        <IconButton
-          disabled={isFirst}
-          onClick={() => {
-            onMoveUp(index);
-          }}
-          title="Move up"
-          type="button"
-        >
-          ↑
-        </IconButton>
-        <IconButton
-          disabled={isLast}
-          onClick={() => {
-            onMoveDown(index);
-          }}
-          title="Move down"
-          type="button"
-        >
-          ↓
-        </IconButton>
-        <IconButton
-          onClick={() => {
-            onDelete(code.id);
-          }}
-          title="Delete"
-          type="button"
-        >
-          ✕
-        </IconButton>
-      </CodeActions>
-    </CodeHeader>
-    <CodeFields>
-      <SmallFormField>
-        <Input.Text
-          dataList={{
-            data: CODE_TYPE_SUGGESTIONS,
-            id: `type-suggestions-${code.id}`,
-          }}
-          id={`type-${code.id}`}
-          label="Type"
-          onChange={(e) => {
-            onUpdate(code.id, 'type', e.target.value);
-          }}
-          placeholder="e.g. javascript, typescript"
-          value={code.type}
-        />
-      </SmallFormField>
-      <SmallFormField>
-        <Input.TextArea
-          id={`content-${code.id}`}
-          label="Content"
-          onChange={(e) => {
-            onUpdate(code.id, 'content', e.target.value);
-          }}
-          placeholder="Enter code here..."
-          rows={FORM_CONSTANTS.CODE_CONTENT_ROWS}
-          value={code.content}
-        />
-      </SmallFormField>
-    </CodeFields>
-  </CodeItem>
-);
+}: CodeItemEditorProps): JSX.Element => {
+  const dataList = useMemo(
+    () => ({ data: CODE_TYPE_SUGGESTIONS, id: `type-suggestions-${code.id}` }),
+    [code.id],
+  );
+
+  return (
+    <CodeItem>
+      <CodeHeader>
+        <CodeLabel>Code Block {index + 1}</CodeLabel>
+        <CodeActions>
+          <IconButton
+            disabled={isFirst}
+            onClick={() => {
+              onMoveUp(index);
+            }}
+            title="Move up"
+            type="button"
+          >
+            ↑
+          </IconButton>
+          <IconButton
+            disabled={isLast}
+            onClick={() => {
+              onMoveDown(index);
+            }}
+            title="Move down"
+            type="button"
+          >
+            ↓
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              onDelete(code.id);
+            }}
+            title="Delete"
+            type="button"
+          >
+            ✕
+          </IconButton>
+        </CodeActions>
+      </CodeHeader>
+      <CodeFields>
+        <SmallFormField>
+          <Input.Text
+            dataList={dataList}
+            id={`type-${code.id}`}
+            label="Type"
+            onChange={(e) => {
+              onUpdate(code.id, 'type', e.target.value);
+            }}
+            placeholder="e.g. javascript, typescript"
+            value={code.type}
+          />
+        </SmallFormField>
+        <SmallFormField>
+          <Input.TextArea
+            id={`content-${code.id}`}
+            label="Content"
+            onChange={(e) => {
+              onUpdate(code.id, 'content', e.target.value);
+            }}
+            placeholder="Enter code here..."
+            rows={FORM_CONSTANTS.CODE_CONTENT_ROWS}
+            value={code.content}
+          />
+        </SmallFormField>
+      </CodeFields>
+    </CodeItem>
+  );
+};
 
 export default CodeItemEditor;
 

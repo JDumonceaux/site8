@@ -89,7 +89,7 @@ export class TestsService extends BaseDataService<TestFile> {
         };
       }
 
-      const { groupsWithUnknown, unknownGroupId, sectionsWithUnknown } =
+      const { groupsWithUnknown, sectionsWithUnknown, unknownGroupId } =
         ensureUnknownGroupAndSection(testFile);
 
       const items = mapTests(testFile.items);

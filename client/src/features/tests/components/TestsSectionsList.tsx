@@ -52,7 +52,7 @@ const TestsSectionsList = ({
           <SectionHeaderRow>
             {section.name ? <SectionTitle>{section.name}</SectionTitle> : null}
             <IconButton
-              aria-label={`Add test to ${section.name ?? 'section'}`}
+              aria-label={`Add test to ${section.name}`}
               onClick={() => {
                 const defaultGroupId = section.groups?.[0]?.id;
                 if (defaultGroupId) {

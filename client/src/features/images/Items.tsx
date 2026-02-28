@@ -2,13 +2,13 @@ import { type DragEvent, type JSX, memo } from 'react';
 
 import IconButton from '@components/button/icon-button/IconButton';
 import { EditIcon } from '@components/icons';
-import type { Image } from '@site8/shared';
+import type { ImageItem } from '@types';
 import styled from 'styled-components';
 
 type ItemsProps = {
-  readonly items?: readonly Image[];
+  readonly items?: readonly ImageItem[];
   readonly onCardDragStart: (imageId: number) => void;
-  readonly onCardEdit: (image: Image) => void;
+  readonly onCardEdit: (image: ImageItem) => void;
   readonly onCardSelect: (imageId: number) => void;
   readonly selectedImageIds: ReadonlySet<number>;
 };
@@ -31,20 +31,6 @@ const formatFolderLabel = (folderPath: string): string => {
     .join(' / ');
 };
 
-const getFolderFromImageSource = (source: string): string => {
-  if (!source.startsWith('/images/')) {
-    return 'Other';
-  }
-
-  const relativePath = source.slice('/images/'.length);
-  const segments = relativePath.split('/').filter(Boolean);
-  if (segments.length <= 1) {
-    return 'Root';
-  }
-
-  return formatFolderLabel(segments.slice(0, -1).join('/'));
-};
-
 const Items = memo(
   ({
     items,
@@ -58,12 +44,14 @@ const Items = memo(
     }
 
     const groupedItems = items.reduce((groups, item) => {
-      const folder = getFolderFromImageSource(item.src);
+      const folder = item.currentFolder
+        ? formatFolderLabel(item.currentFolder)
+        : 'Root';
       const current = groups.get(folder) ?? [];
       current.push(item);
       groups.set(folder, current);
       return groups;
-    }, new Map<string, Image[]>());
+    }, new Map<string, ImageItem[]>());
 
     return (
       <Container>
@@ -73,20 +61,20 @@ const Items = memo(
             <Grid>
               {folderItems.map((item) => (
                 <Card
-                  $selected={selectedImageIds.has(item.id)}
+                  $selected={selectedImageIds.has(item.seq)}
                   draggable
-                  key={item.id}
+                  key={item.seq}
                   onClick={() => {
-                    onCardSelect(item.id);
+                    onCardSelect(item.seq);
                   }}
                   onDragStart={(event: DragEvent<HTMLElement>) => {
                     event.dataTransfer.effectAllowed = 'move';
-                    event.dataTransfer.setData('text/plain', String(item.id));
-                    onCardDragStart(item.id);
+                    event.dataTransfer.setData('text/plain', String(item.seq));
+                    onCardDragStart(item.seq);
                   }}
                 >
                   <ImageElement
-                    alt={item.alt}
+                    alt={item.title}
                     loading="lazy"
                     src={item.src}
                   />

@@ -1,6 +1,7 @@
 // Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { type ButtonProps, SIZES, VARIANTS } from './Button';
+import Button, { type ButtonProps } from './Button';
+import { SIZES, VARIANTS } from './button-variants';
 import styled from 'styled-components';
 
 const FlexDiv = styled.div`

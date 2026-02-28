@@ -6,7 +6,7 @@ export const isGeminiPermissionError = (error: unknown): boolean => {
     return false;
   }
 
-  const message = error.message;
+  const {message} = error;
   return (
     message.includes('PERMISSION_DENIED') ||
     message.includes('"code":403') ||

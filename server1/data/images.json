@@ -179,7 +179,7 @@
       "id": 36,
       "fileName": "image7.jpeg",
       "folder": "artdeco",
-      "name": "Zeppelin"
+      "title": "Zeppelin"
     },
     {
       "id": 37,
@@ -235,7 +235,7 @@
       "id": 47,
       "fileName": "image8.jpeg",
       "folder": "artdeco",
-      "name": "Art Deco - Lady on the Stairs"
+      "title": "Art Deco - Lady on the Stairs"
     },
     {
       "id": 48,
@@ -266,14 +266,14 @@
       "description": "This iconic château was built as a hunting lodge for Francis I (1494 - 1547) of France.  Taking 28 years to build (1519 - 1547), Francis I only spent about seven weeks total at the lodge before his death. From what I remember, it is no longer decorated on the inside - the interior \"walls\" have been removed exposing the stone structure.  I believe there are plans to restore the interiors at some point. \n\nThe château is known for the central double-helix staircase: allowing people to ascend and descend the stairs without ever meeting.  It has been suggested that it was designed by Leonardo DaVinci, but no proof has been found.\n\nFrancis' \"everyday\" home was the Royal Château of Blois.   If you take the train, this is just a couple blocks from the Blois train station.  \n\n<h2>Getting to</h2>\nIt is possible to get from Paris to the château via train.  It is a 90 minute train ride from Paris to Blois.  At Blois, you have to catch the infrequent bus or get a taxi for the 25 minute ride through the countryside and all the tiny villages to the château.  It is actually rather scary as the bus slows only slightly as it passes between houses literally built up to the end of the road.  Don't expect to hop off the train and directly onto the bus!!!  First, trains don't run per scheduled and you're likely to arrive later than expected.  Second, it is unlikely there's a bus leaving when you need it - this is a tiny town and you may have to wait 1-2 hours.  I found it \"challenging\" to figure out which bus to take and ended up taking a taxi after wandering around the town of Blois.  \n\nNote: the \"bathroom\" at the Blois train station was the worst I've ever encountered - basically an unlit, concrete room with a thin metal door.  One would have to be absolutely desperate to use it.  \n\nReturning from Chambord, you need to make sure the catch the last bus to Blois - around 4:00 p.m.  If you don't make it, I don't know what you'd do:  I did not see any taxi stands or Ubers waiting around.  There are no motels, restaurants, gas stations, etc. in the area.  Once back in Blois, you need to wait for your train back to Paris.\n\nFor all the reasons above, I highly recommend that you take a private tour or private car to Chambord: you'll spend more time viewing and less time waiting.  Depending upon your mood, you can also arrange to get there early to watch the sunrise or stay later for the sunset.  \n\nYou can also join a tour bus.  I'd recommend one that starts in Paris vs. Blois.  As mentioned, your train may be later and you could miss your connection if you don't make it to Blois in time.  \n\nThere are hotels in Blois.  I would caution that I didn't see any taxis during the 2-3 hours I walked around Blois.",
       "fileName": "img_7012.jpg",
       "folder": "architecture",
-      "name": "Château de Chambord"
+      "title": "Château de Chambord"
     },
     {
       "id": 53,
       "description": "This beautiful hall looks very similar to the front hall of the Palais Garnier (the Paris opera house).",
       "fileName": "img_6971.jpg",
       "folder": "architecture",
-      "name": "Galleria Doria Pamphilj"
+      "title": "Galleria Doria Pamphilj"
     },
     {
       "id": 54,
@@ -294,7 +294,7 @@
       "id": 57,
       "fileName": "img_6098.jpg",
       "folder": "memes\\political",
-      "name": "Katie Porter"
+      "title": "Katie Porter"
     },
     {
       "id": 58,
@@ -400,7 +400,7 @@
       "id": 78,
       "fileName": "img_6436.png",
       "folder": "memes\\trump",
-      "name": "Trump Amber Alert"
+      "title": "Trump Amber Alert"
     },
     {
       "id": 79,
@@ -691,7 +691,7 @@
       "id": 136,
       "fileName": "img_6776.png",
       "folder": "architecture\\castles",
-      "name": "Neuschwanstein Castle"
+      "title": "Neuschwanstein Castle"
     },
     {
       "id": 137,
@@ -717,7 +717,7 @@
       "id": 141,
       "fileName": "img_6814.jpg",
       "folder": "artdeco",
-      "name": "Metropolis - Movie Poster"
+      "title": "Metropolis - Movie Poster"
     },
     {
       "id": 142,
@@ -728,7 +728,7 @@
       "id": 143,
       "fileName": "img_6817.jpg",
       "folder": "artdeco",
-      "name": "Tea Cup"
+      "title": "Tea Cup"
     },
     {
       "id": 144,
@@ -769,19 +769,19 @@
       "id": 151,
       "fileName": "img_6857.jpg",
       "folder": "artdeco",
-      "name": "Zeppelin - Poster"
+      "title": "Zeppelin - Poster"
     },
     {
       "id": 152,
       "fileName": "img_6858.png",
       "folder": "artdeco",
-      "name": "Women and Stairs"
+      "title": "Women and Stairs"
     },
     {
       "id": 153,
       "fileName": "img_6878.jpg",
       "folder": "travel/northern-ireland",
-      "name": "Giant's Causeway"
+      "title": "Giant's Causeway"
     },
     {
       "id": 154,
@@ -907,7 +907,7 @@
       "id": 178,
       "fileName": "img_6970.jpg",
       "folder": "artdeco",
-      "name": "Zeppelin - Poster"
+      "title": "Zeppelin - Poster"
     },
     {
       "id": 179,
@@ -943,7 +943,7 @@
       "id": 185,
       "fileName": "img_6989.jpg",
       "folder": "architecture\\castles",
-      "name": "Fortress Hohensalzburg"
+      "title": "Fortress Hohensalzburg"
     },
     {
       "id": 186,
@@ -959,7 +959,7 @@
       "id": 188,
       "fileName": "img_7019.jpg",
       "folder": "art",
-      "name": "Mother and Child"
+      "title": "Mother and Child"
     },
     {
       "id": 189,
@@ -970,13 +970,13 @@
       "id": 190,
       "fileName": "img_7025.jpg",
       "folder": "people",
-      "name": "Marie Curie"
+      "title": "Marie Curie"
     },
     {
       "id": 191,
       "fileName": "img_7026.jpg",
       "folder": "travel\\france",
-      "name": "Le Train Bleu (the blue train)"
+      "title": "Le Train Bleu (the blue train)"
     },
     {
       "id": 192,
@@ -987,19 +987,19 @@
       "id": 193,
       "fileName": "img_7034.jpg",
       "folder": "architecture",
-      "name": "The Breakers"
+      "title": "The Breakers"
     },
     {
       "id": 194,
       "fileName": "img_7035.jpg",
       "folder": "architecture\\libraries",
-      "name": "Bodleian Library"
+      "title": "Bodleian Library"
     },
     {
       "id": 195,
       "fileName": "img_7036.jpg",
       "folder": "architecture\\castles",
-      "name": "La Venaria Reale"
+      "title": "La Venaria Reale"
     },
     {
       "id": 196,
@@ -1020,7 +1020,7 @@
       "id": 199,
       "fileName": "img_7041.jpg",
       "folder": "architecture\\castles",
-      "name": "Château de Chambord"
+      "title": "Château de Chambord"
     },
     {
       "id": 200,
@@ -1041,7 +1041,7 @@
       "id": 203,
       "fileName": "img_7048.jpg",
       "folder": "architecture",
-      "name": "Boldt Castle & Boldt Yacht House"
+      "title": "Boldt Castle & Boldt Yacht House"
     },
     {
       "id": 204,
@@ -1102,13 +1102,13 @@
       "id": 215,
       "fileName": "img_7069.png",
       "folder": "memes",
-      "name": "Today"
+      "title": "Today"
     },
     {
       "id": 216,
       "fileName": "img_7071.jpg",
       "folder": "architecture\\castles",
-      "name": "Château de Chambord"
+      "title": "Château de Chambord"
     },
     {
       "id": 217,
@@ -1124,13 +1124,13 @@
       "id": 219,
       "fileName": "img_7074.jpg",
       "folder": "architecture\\castles",
-      "name": "Château de Chenonceau"
+      "title": "Château de Chenonceau"
     },
     {
       "id": 220,
       "fileName": "img_7077.jpg",
       "folder": "architecture\\castles",
-      "name": "Château de Maintenon"
+      "title": "Château de Maintenon"
     },
     {
       "id": 221,
@@ -1186,13 +1186,13 @@
       "id": 231,
       "fileName": "img_7092.jpg",
       "folder": "architecture",
-      "name": "National Theatre - Prague Prague"
+      "title": "National Theatre - Prague Prague"
     },
     {
       "id": 232,
       "fileName": "img_7093.jpg",
       "folder": "travel\\france",
-      "name": "Le Train Bleu"
+      "title": "Le Train Bleu"
     },
     {
       "id": 233,
@@ -1228,7 +1228,7 @@
       "id": 239,
       "fileName": "img_7110.jpg",
       "folder": "travel",
-      "name": "New York Café"
+      "title": "New York Café"
     },
     {
       "id": 240,
@@ -1294,25 +1294,25 @@
       "id": 252,
       "fileName": "img_7129.jpg",
       "folder": "architecture",
-      "name": "Waddesdon Manor"
+      "title": "Waddesdon Manor"
     },
     {
       "id": 253,
       "fileName": "img_7130.jpg",
       "folder": "architecture",
-      "name": "Waddesdon Manor"
+      "title": "Waddesdon Manor"
     },
     {
       "id": 254,
       "fileName": "img_7131.jpg",
       "folder": "architecture",
-      "name": "Pont Neuf"
+      "title": "Pont Neuf"
     },
     {
       "id": 255,
       "fileName": "img_7132.jpg",
       "folder": "architecture\\castles",
-      "name": "Royal Palace of Caserta (Reggia DiCaerta)"
+      "title": "Royal Palace of Caserta (Reggia DiCaerta)"
     },
     {
       "id": 256,
@@ -1383,7 +1383,7 @@
       "id": 269,
       "fileName": "img_7176.jpg",
       "folder": "art",
-      "name": "David"
+      "title": "David"
     },
     {
       "id": 270,
@@ -1854,7 +1854,7 @@
       "id": 363,
       "fileName": "IMG_8279.JPG",
       "folder": "art",
-      "name": "The Siesta (in French, La méridienne or La sieste)"
+      "title": "The Siesta (in French, La méridienne or La sieste)"
     },
     {
       "id": 364,
@@ -1891,7 +1891,7 @@
       "description": "https://www.henrimatisse.org/paintings.jsp",
       "fileName": "IMG_8326.JPG",
       "folder": "art",
-      "name": "Nu Bleu II (Blue Nude II)"
+      "title": "Nu Bleu II (Blue Nude II)"
     },
     {
       "id": 371,
@@ -1908,50 +1908,50 @@
       "id": 373,
       "fileName": "IMG_8351.JPG",
       "folder": "art",
-      "name": "A Meadow"
+      "title": "A Meadow"
     },
     {
       "id": 374,
       "fileName": "IMG_8360.JPG",
       "folder": "art",
-      "name": "Tulip Fields near The Hauge"
+      "title": "Tulip Fields near The Hauge"
     },
     {
       "id": 375,
       "description": "In 1890, Vincent reproduced The Good Samaritan by Delacroix.",
       "fileName": "IMG_8363.JPG",
       "folder": "art",
-      "name": "The Good Samaritan (after Delacroix)"
+      "title": "The Good Samaritan (after Delacroix)"
     },
     {
       "id": 376,
       "fileName": "IMG_8364.JPG",
       "folder": "art",
-      "name": "Vase with Red Gladioli"
+      "title": "Vase with Red Gladioli"
     },
     {
       "id": 377,
       "fileName": "IMG_8366.JPG",
       "folder": "art",
-      "name": "Woman in Blue"
+      "title": "Woman in Blue"
     },
     {
       "id": 378,
       "fileName": "IMG_8367.JPG",
       "folder": "art",
-      "name": "La famille Ukrainienne"
+      "title": "La famille Ukrainienne"
     },
     {
       "id": 379,
       "fileName": "IMG_8368.JPG",
       "folder": "art",
-      "name": "La durée poignardée (Time Transfixed)"
+      "title": "La durée poignardée (Time Transfixed)"
     },
     {
       "id": 380,
       "fileName": "IMG_8370.JPG",
       "folder": "art\\claude_monet",
-      "name": "Poppies at Argenteuil"
+      "title": "Poppies at Argenteuil"
     },
     {
       "id": 381,
@@ -1962,282 +1962,290 @@
       "id": 382,
       "fileName": "IMG_8373.JPG",
       "folder": "art",
-      "name": "Les poissons rouges (Interior with a Goldfish Bowl)"
+      "title": "Les poissons rouges (Interior with a Goldfish Bowl)"
     },
     {
       "id": 383,
       "fileName": "jetsons.jpg",
       "folder": "cartoons",
-      "name": "The Jetsons"
+      "title": "The Jetsons"
     },
     {
       "id": 384,
       "fileName": "MashMovie.jpg",
       "folder": "movie-poster",
-      "name": "M.A.S.H."
+      "title": "M.A.S.H."
     },
     {
       "id": 385,
       "fileName": "the_great_gatsby.jpg",
       "folder": "books",
-      "name": "The Great Gatsby"
+      "title": "The Great Gatsby"
     },
     {
       "id": 386,
       "fileName": "tomandjerry.jpg",
       "folder": "cartoons",
-      "name": "Tom and Jerrry"
+      "title": "Tom and Jerrry"
     },
     {
       "id": 387,
       "fileName": "yogibear.jpg",
       "folder": "cartoons",
-      "name": "Yogi Bear"
+      "title": "Yogi Bear"
     },
     {
       "id": 388,
       "fileName": "leprocope_exterior.jpg",
       "folder": "2025\\travel",
-      "name": "Le Procope - Exterior",
+      "title": "Le Procope - Exterior",
       "description": "Historic cobblestone street with traditional Parisian cafes and restaurants"
     },
     {
       "id": 389,
       "fileName": "leprocope_interior.jpg",
       "folder": "2025\\travel",
-      "name": "Le Procope - Interior",
+      "title": "Le Procope - Interior",
       "description": "Elegant historic restaurant interior with ornate decor, chandeliers, and traditional French dining ambiance"
     },
     {
       "id": 390,
       "fileName": "letrainbleu_interior.jpg",
       "folder": "2025\\travel",
-      "name": "Le Train Bleu - Interior",
+      "title": "Le Train Bleu - Interior",
       "description": "Magnificent Belle Époque restaurant interior with gilded decor, ornate chandeliers, frescoes, and elegant dining setup"
     },
     {
       "id": 391,
       "fileName": "letrainbleu_interior2.jpg",
       "folder": "2025\\travel",
-      "name": "Le Train Bleu - Ceiling",
+      "title": "Le Train Bleu - Ceiling",
       "description": "Ornate gilded ceiling with painted frescoes depicting cherubs and celestial scenes in elaborate gold frames"
     },
     {
       "id": 392,
       "fileName": "edinburgh_castle.jpg",
       "folder": "2025\\travel",
-      "name": "Edinburgh Castle",
+      "title": "Edinburgh Castle",
       "description": "Historic Edinburgh Castle perched dramatically on volcanic rock overlooking the city with Ross Fountain in foreground"
     },
     {
       "id": 393,
       "fileName": "edinburgh_tattoo.jpg",
       "folder": "2025\\travel",
-      "name": "Royal Edinburgh Military Tattoo",
+      "title": "Royal Edinburgh Military Tattoo",
       "description": "Spectacular military tattoo performance on Edinburgh Castle esplanade with fireworks, military bands in formation, and large crowd"
     },
     {
       "id": 394,
       "fileName": "royal_mile.jpg",
       "folder": "2025\\travel",
-      "name": "The Royal Mile",
+      "title": "The Royal Mile",
       "description": "Historic Royal Mile street in Edinburgh's Old Town with traditional architecture, shops, and Edinburgh Castle visible in background"
     },
     {
       "id": 395,
       "fileName": "mamma_mia_the_party.jpg",
       "folder": "2025\\travel",
-      "name": "Mamma Mia! The Party",
+      "title": "Mamma Mia! The Party",
       "description": "Vibrant immersive theatre performance with colorful disco lights, performers on raised platforms, and audience dining in Greek taverna setting"
     },
     {
       "id": 396,
       "fileName": "cafe_gerstner.jpg",
       "folder": "2025\\travel",
-      "name": "Café Gerstner",
+      "title": "Café Gerstner",
       "description": "Elegant interior of historic Viennese café Gerstner with ornate ceiling, chandeliers, and burgundy velvet seating"
     },
     {
       "id": 397,
       "fileName": "kunsthistorisches_museum_cafe.jpg",
       "folder": "2025\\travel",
-      "name": "Kunsthistorisches Museum Cafe",
+      "title": "Kunsthistorisches Museum Cafe",
       "description": "Grand cupola hall cafe with circular red seating arrangement, marble columns, and ornate Renaissance-style architecture viewed from above"
     },
     {
       "id": 398,
       "fileName": "cologne_cathedral.jpg",
       "folder": "2025\\travel",
-      "name": "Cologne Cathedral",
+      "title": "Cologne Cathedral",
       "description": "Illuminated Gothic twin spires of Cologne Cathedral at night with dramatic sky"
     },
     {
       "id": 399,
       "fileName": "kolner_dom_christmas_market.jpg",
       "folder": "2025\\travel",
-      "name": "Kölner Dom Christmas Market",
+      "title": "Kölner Dom Christmas Market",
       "description": "Festive Christmas market with red-lit stalls in front of illuminated Cologne Cathedral at night"
     },
     {
       "id": 400,
       "fileName": "loen_skylift_restaurant.jpg",
       "folder": "2025\\travel",
-      "name": "Loen Skylift Restaurant",
+      "title": "Loen Skylift Restaurant",
       "description": "Mountain-top restaurant interior with floor-to-ceiling windows offering panoramic views of snow-capped Norwegian mountains and fjord"
     },
     {
       "id": 401,
       "fileName": "vasa_museum_1.jpg",
       "folder": "2025\\travel",
-      "name": "Vasa Museum",
+      "title": "Vasa Museum",
       "description": "Preserved 17th-century warship Vasa displayed in museum, showing ornately carved stern with golden decorations"
     },
     {
       "id": 402,
       "fileName": "vasa_museum_2.jpg",
       "folder": "2025\\travel",
-      "name": "Vasa Museum",
+      "title": "Vasa Museum",
       "description": "Close-up view of the massive wooden hull of the Vasa warship displayed in the museum"
     },
     {
       "id": 403,
       "fileName": "scotsman_picturehouse.jpg",
       "folder": "2025\\travel",
-      "name": "The Scotsman Picturehouse",
+      "title": "The Scotsman Picturehouse",
       "description": "Luxurious cinema interior with plush red velvet seats, ornate geometric ceiling, and atmospheric lighting"
     },
     {
       "id": 404,
       "fileName": "loen_skylift_restaurant2.jpg",
       "folder": "2025\\travel",
-      "name": "Loen Skylift Restaurant",
+      "title": "Loen Skylift Restaurant",
       "description": "Modern glass restaurant building perched on mountain edge at night, with dramatic views over fjord and valley below"
     },
     {
       "id": 405,
       "fileName": "malt_shovel_edinburgh.jpg",
       "folder": "2025\\travel",
-      "name": "The Malt Shovel",
+      "title": "The Malt Shovel",
       "description": "Traditional Scottish pub in Edinburgh's Old Town"
     },
     {
       "id": 406,
       "fileName": "classical_sculpture_hands.jpg",
       "folder": "art",
-      "name": "Classical Marble Sculpture Detail",
+      "title": "Classical Marble Sculpture Detail",
       "description": "White marble sculpture detail showing anatomically precise hands with dramatic lighting and muscular definition"
     },
     {
       "id": 407,
       "fileName": "stone_cottage_villa.jpg",
       "folder": "architecture",
-      "name": "European Stone Cottage",
+      "title": "European Stone Cottage",
       "description": "Charming two-story stone cottage with arched windows, balcony, and lush garden setting"
     },
     {
       "id": 408,
       "fileName": "gothic_victorian_mansion_cherry_blossoms.jpg",
       "folder": "architecture",
-      "name": "Gothic Victorian Mansion",
+      "title": "Gothic Victorian Mansion",
       "description": "Dark Victorian mansion with turrets and ornate details, surrounded by vibrant pink cherry blossom trees"
     },
     {
       "id": 409,
       "fileName": "art_deco_zeppelin_poster.jpg",
       "folder": "art",
-      "name": "Zeppelin Art Deco Poster",
+      "title": "Zeppelin Art Deco Poster",
       "description": "Art Deco style illustration featuring golden airship over geometric cityscape with dramatic lighting"
     },
     {
       "id": 410,
       "fileName": "art_deco_geometric_stairs.jpg",
       "folder": "art",
-      "name": "Art Deco Architectural Illustration",
+      "title": "Art Deco Architectural Illustration",
       "description": "Minimalist black and white Art Deco design with silhouetted figure on geometric striped staircase"
     },
     {
       "id": 411,
       "fileName": "luxury_interior_reflecting_pool.jpg",
       "folder": "architecture",
-      "name": "Luxury Interior with Reflecting Pool",
+      "title": "Luxury Interior with Reflecting Pool",
       "description": "Grand interior space featuring reflecting pool, arched glass ceiling, classical columns, and symmetrical design"
     },
     {
       "id": 412,
       "fileName": "art_deco_woman_pearls_red.jpg",
       "folder": "art",
-      "name": "Art Deco Woman with Pearls",
+      "title": "Art Deco Woman with Pearls",
       "description": "Stylized Art Deco illustration of elegant woman in black dress reclining against red background, adorned with pearl necklaces"
     },
     {
       "id": 413,
       "fileName": "whimsical_cottage_night.jpg",
       "folder": "architecture",
-      "name": "Whimsical Fairytale Cottage",
+      "title": "Whimsical Fairytale Cottage",
       "description": "Enchanting dark wood cottage with round windows, warm interior lighting, curved architecture, and lush garden surroundings"
     },
     {
       "id": 414,
       "fileName": "greenhouse_kitchen_conservatory.jpg",
       "folder": "architecture",
-      "name": "Greenhouse Kitchen Conservatory",
+      "title": "Greenhouse Kitchen Conservatory",
       "description": "Charming stone conservatory kitchen with glass ceiling, cobblestone floor, rustic wood cabinets, and garden views"
     },
     {
       "id": 415,
       "fileName": "metropolis_poster_1927.jpg",
       "folder": "art",
-      "name": "Metropolis Poster 1927",
+      "title": "Metropolis Poster 1927",
       "description": "Iconic Art Deco poster for Fritz Lang's groundbreaking sci-fi film Metropolis, featuring geometric cityscape and stylized robot face"
     },
     {
       "id": 416,
       "fileName": "art_deco_teacup_geometric.jpg",
       "folder": "art",
-      "name": "Art Deco Teacup",
+      "title": "Art Deco Teacup",
       "description": "Elegant Art Deco teacup and saucer with geometric gold and black design, ornate handle and decorative patterns"
     },
     {
       "id": 417,
       "fileName": "zeppelin_los_angeles_1924_poster.jpg",
       "folder": "art",
-      "name": "Zeppelin Los Angeles 1924 Poster",
+      "title": "Zeppelin Los Angeles 1924 Poster",
       "description": "Vintage poster depicting Zeppelin airship over Los Angeles cityscape with crowd of onlookers below, Art Deco style illustration"
     },
     {
       "id": 418,
       "fileName": "giants_causeway_basalt_columns.jpg",
       "folder": "2024\\travel",
-      "name": "Giant's Causeway",
+      "title": "Giant's Causeway",
       "description": "Famous hexagonal basalt columns at Giant's Causeway in Northern Ireland, natural geological formation with dramatic coastal cliffs"
     },
     {
       "id": 419,
       "fileName": "dark_lakeside_mansion.jpg",
       "folder": "architecture",
-      "name": "Dark Lakeside Mansion",
+      "title": "Dark Lakeside Mansion",
       "description": "Dramatic Gothic revival mansion with stone construction, arched windows, warm interior lighting, and stone steps descending to waterfront"
     },
     {
       "id": 420,
       "fileName": "baroque_palace_gallery.jpg",
       "folder": "architecture",
-      "name": "Baroque Palace Gallery",
+      "title": "Baroque Palace Gallery",
       "description": "Ornate baroque palace gallery with gilded decorations, frescoed vaulted ceiling, classical statues, and grand chandeliers"
     },
     {
       "id": 421,
       "fileName": "chateau_chenonceau_aerial.jpg",
       "folder": "2024\\travel",
-      "name": "Château de Chenonceau",
+      "title": "Château de Chenonceau",
       "description": "Aerial view of the famous French Renaissance château built over the Cher River with distinctive arched bridge gallery"
     },
     {
       "id": 422,
       "fileName": "neuschwanstein_castle_winter.jpg",
       "folder": "2024\\travel",
-      "name": "Neuschwanstein Castle Winter",
+      "title": "Neuschwanstein Castle Winter",
       "description": "Neuschwanstein Castle in Bavaria, Germany covered in snow with dramatic mountain backdrop and winter forest surroundings"
+    },
+    {
+      "fileName": "baroque_palace_gallery.jpg",
+      "folder": "2024",
+      "id": 423,
+      "src": "/images/2024/baroque_palace_gallery.jpg",
+      "description": "This image depicts the opulent Hall of Mirrors (Galleria degli Specchi) within the Doria Pamphilj Gallery in Rome, Italy. The grand Baroque hall features magnificent ceiling frescoes, extensive gold stucco decorations, crystal chandeliers, and a distinguished collection of classical sculptures and busts lining its length. It showcases the lavish artistry and architecture of a historic Roman aristocratic palace.",
+      "title": "Doria Pamphilj Gallery, Hall of Mirrors"
     }
   ],
   "metadata": {

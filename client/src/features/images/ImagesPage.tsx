@@ -9,7 +9,7 @@ import PageTitle from '@components/page/PageTitle';
 import Switch from '@components/switch/Switch';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
-import type { Image } from '@site8/shared';
+import type { ImageItem } from '@types';
 import ImageEditDialog from './edit/dialog/ImageEditDialog';
 import Items from './Items';
 import useDeleteImage from './useDeleteImage';
@@ -23,7 +23,7 @@ const EMPTY_FOLDERS: readonly string[] = [];
 
 const ImagesPage = (): JSX.Element => {
   const [unmatchedOnly, setUnmatchedOnly] = useState(false);
-  const [editingImage, setEditingImage] = useState<Image | null>(null);
+  const [editingImage, setEditingImage] = useState<ImageItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
     new Set(),
@@ -60,6 +60,11 @@ const ImagesPage = (): JSX.Element => {
       setErrorMessage(deleteError.message);
     },
   );
+  const handleCloseDialog = (): void => {
+    setIsDialogOpen(false);
+    setEditingImage(null);
+  };
+
   const { isPending: isRenamePending, renameImage } = useRenameImage(
     () => {
       setMessage('Image updated');
@@ -84,7 +89,7 @@ const ImagesPage = (): JSX.Element => {
   const availableFolders = foldersData?.items ?? EMPTY_FOLDERS;
 
   const selectedImageSrcs = (data?.items ?? [])
-    .filter((item) => selectedImageIds.has(item.id))
+    .filter((item) => selectedImageIds.has(item.seq))
     .map((item) => item.src);
 
   const handleCardSelect = (imageId: number): void => {
@@ -137,31 +142,28 @@ const ImagesPage = (): JSX.Element => {
     });
   };
 
-  const handleOpenEdit = (image: Image): void => {
+  const handleOpenEdit = (image: ImageItem): void => {
     setEditingImage(image);
     setIsDialogOpen(true);
   };
 
-  const handleCloseDialog = (): void => {
-    setIsDialogOpen(false);
-    setEditingImage(null);
-  };
-
   const handleSaveImage = (
-    image: Image,
+    image: ImageItem,
     targetFolder: string,
     targetFileName: string,
     description: string,
+    imageTitle: string,
   ): void => {
     renameImage({
       description,
       src: image.src,
       targetFileName,
       targetFolder,
+      title: imageTitle,
     });
   };
 
-  const handleDeleteImage = (image: Image): void => {
+  const handleDeleteImage = (image: ImageItem): void => {
     deleteImage({ src: image.src });
     handleCloseDialog();
   };
@@ -242,12 +244,12 @@ const ImagesPage = (): JSX.Element => {
         </Layout.Content>
       </Layout.TwoColumn>
       <ImageEditDialog
-        key={editingImage?.src ?? ''}
         availableFolders={availableFolders}
         image={editingImage}
         isDeleting={isDeletePending}
         isOpen={isDialogOpen}
         isSaving={isRenamePending}
+        key={editingImage?.src ?? ''}
         onClose={handleCloseDialog}
         onDelete={handleDeleteImage}
         onSave={handleSaveImage}

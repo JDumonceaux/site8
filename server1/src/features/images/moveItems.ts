@@ -17,7 +17,7 @@ export const moveItems = async (
   res: Response<MoveItemsResponse | { error: string }>,
 ): Promise<void> => {
   const body = req.body as MoveItemsRequestBody;
-  const imageSrcs = body.imageSrcs;
+  const {imageSrcs} = body;
   const targetFolder = body.targetFolder?.trim();
 
   if (!Array.isArray(imageSrcs) || imageSrcs.length === 0) {

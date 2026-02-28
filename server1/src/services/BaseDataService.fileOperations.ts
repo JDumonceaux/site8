@@ -7,8 +7,8 @@ export type BaseDataFileDeps<T> = {
   errorHandler: ErrorHandler;
   filePath: string;
   fileService: {
-    readFile<TData>(filePath: string): Promise<TData>;
-    writeFile<TData>(data: TData, filePath: string): Promise<boolean | void>;
+    readFile: <TData>(filePath: string) => Promise<TData>;
+    writeFile: (data: unknown, filePath: string) => Promise<boolean>;
   };
   validator: DataValidator<T>;
 };

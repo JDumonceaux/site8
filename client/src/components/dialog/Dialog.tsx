@@ -1,23 +1,8 @@
 import { type JSX, useId } from 'react';
 
 import * as RadixDialog from '@radix-ui/react-dialog';
+import { type Size, type Variant } from './dialog-variants';
 import styled from 'styled-components';
-
-export const VARIANTS = {
-  default: 'default',
-  error: 'error',
-  info: 'info',
-  success: 'success',
-  warning: 'warning',
-} as const;
-export type Variant = keyof typeof VARIANTS;
-
-export const SIZES = {
-  lg: 'lg',
-  md: 'md',
-  sm: 'sm',
-} as const;
-export type Size = keyof typeof SIZES;
 
 export type DialogProps = {
   /** Main body content */

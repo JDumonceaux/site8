@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 import { useFormStatus } from 'react-dom';
 
 import Button from './Button';
-import type { Variant } from './Button';
+import type { Variant } from './button-variants';
 
 type SubmitButtonProps = {
   readonly children?: React.ReactNode;

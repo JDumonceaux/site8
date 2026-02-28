@@ -1,10 +1,9 @@
-import { readdir } from 'node:fs/promises';
-import { access, mkdir, rename, unlink } from 'node:fs/promises';
 import { constants as fsConstants } from 'node:fs';
+import { access, mkdir, readdir, rename, unlink } from 'node:fs/promises';
 import path from 'path';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
-import { FileService } from '../../lib/filesystem/FileService.js';
+import { getFileService } from '../../utils/ServiceFactory.js';
 
 // ---------------------------------------------------------------------------
 // Internal types
@@ -12,21 +11,22 @@ import { FileService } from '../../lib/filesystem/FileService.js';
 
 type ImagesIndexItem = {
   readonly description?: string;
-  readonly id?: number;
   readonly fileName?: string;
   readonly folder?: string;
+  readonly id?: number;
   readonly src?: string;
+  readonly title?: string;
 } & Record<string, unknown>;
 
 type ImagesIndexFile = {
-  readonly metadata?: Record<string, unknown>;
   readonly items?: readonly ImagesIndexItem[];
+  readonly metadata?: Record<string, unknown>;
 };
 
 type ImagesJsonEntry = {
-  readonly id: number;
   readonly fileName: string;
   readonly folder: string;
+  readonly id: number;
 } & Record<string, unknown>;
 
 // ---------------------------------------------------------------------------
@@ -50,7 +50,10 @@ const parseImageSrc = (
   if (!src.startsWith('/images/')) {
     return null;
   }
-  const segments = src.replace(/^\/images\//, '').split('/').filter(Boolean);
+  const segments = src
+    .replace(/^\/images\//, '')
+    .split('/')
+    .filter(Boolean);
   const fileName = segments.at(-1);
   if (!fileName) {
     return null;
@@ -75,9 +78,11 @@ export type UpdateImageParams = {
   readonly src: string;
   readonly targetFileName: string;
   readonly targetFolderLabel?: string;
+  readonly title?: string;
 };
 
 export type UpdateImageResult = {
+  readonly id: number;
   readonly src: string;
 };
 
@@ -86,7 +91,7 @@ export type UpdateImageResult = {
 // ---------------------------------------------------------------------------
 
 export class ImageService {
-  private readonly fileService = new FileService();
+  private readonly fileService = getFileService();
 
   // -------------------------------------------------------------------------
   // addItem
@@ -102,11 +107,7 @@ export class ImageService {
     const items = [...(imagesIndex.items ?? [])];
 
     const newId =
-      items.length > 0
-        ? Math.max(
-            ...items.map((item) => (item.id as number | undefined) ?? 0),
-          ) + 1
-        : 1;
+      items.length > 0 ? Math.max(...items.map((item) => item.id ?? 0)) + 1 : 1;
 
     const newEntry: ImagesJsonEntry = { ...entry, id: newId };
 
@@ -136,6 +137,7 @@ export class ImageService {
 
     let deletedFile = false;
     try {
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- path is constructed from validated parsed src
       await unlink(imagePath);
       deletedFile = true;
     } catch (error) {
@@ -180,12 +182,54 @@ export class ImageService {
   // updateImage
   // -------------------------------------------------------------------------
 
-  public async updateImage(params: UpdateImageParams): Promise<UpdateImageResult> {
+  public async updateImage(
+    params: UpdateImageParams,
+  ): Promise<UpdateImageResult> {
+    // 1. Parse src into fileName + folder, match record on these two attributes
+    const imagesIndex = await this.readIndex();
+    const items = imagesIndex.items ?? [];
+
     const parsed = parseImageSrc(params.src);
-    if (!parsed) {
-      throw new Error('Invalid image src');
+    const currentFileName = parsed?.fileName;
+    const currentFolder = parsed ? normalizeFolder(parsed.folder) : '';
+
+    if (!currentFileName) {
+      throw new Error(`Invalid src: ${params.src}`);
     }
 
+    const sourceItem = items.find(
+      (item) =>
+        item.fileName?.toLowerCase() === currentFileName.toLowerCase() &&
+        normalizeFolder(item.folder ?? '').toLowerCase() ===
+          currentFolder.toLowerCase(),
+    );
+
+    // 2. If no match, add a new record (upsert)
+    let recordId: number;
+    if (!sourceItem) {
+      const newId =
+        items.length > 0
+          ? Math.max(...items.map((item) => item.id ?? 0)) + 1
+          : 1;
+      recordId = newId;
+    } else {
+      if (typeof sourceItem.id !== 'number') {
+        throw new Error('Image record is missing an id');
+      }
+      recordId = sourceItem.id;
+    }
+
+    const resolvedCurrentFileName = sourceItem?.fileName ?? currentFileName;
+    const resolvedCurrentFolder = sourceItem?.folder ?? currentFolder;
+
+    if (
+      typeof resolvedCurrentFileName !== 'string' ||
+      !resolvedCurrentFileName
+    ) {
+      throw new Error('Image record is missing a fileName');
+    }
+
+    // 3. Validate target file name
     const targetFileName = params.targetFileName.trim();
     if (!targetFileName) {
       throw new Error('targetFileName is required');
@@ -196,12 +240,13 @@ export class ImageService {
       throw new Error('File name must be at least 3 characters');
     }
 
-    const sourceExtension = path.extname(parsed.fileName).toLowerCase();
+    const sourceExtension = path.extname(resolvedCurrentFileName).toLowerCase();
     const targetExtension = path.extname(targetFileName).toLowerCase();
     if (sourceExtension !== targetExtension) {
       throw new Error('File extension cannot be changed');
     }
 
+    // 4. Resolve target folder (keep current folder if no new folder label given)
     let targetFolder: string;
     if (params.targetFolderLabel) {
       const targetFolderName = await this.resolve2025FolderName(
@@ -212,12 +257,15 @@ export class ImageService {
       }
       targetFolder = normalizeFolder(path.join('2025', targetFolderName));
     } else {
-      targetFolder = normalizeFolder(parsed.folder);
+      targetFolder = normalizeFolder(resolvedCurrentFolder);
     }
 
+    // 5. Build absolute paths and move/rename the physical file if needed
     const sourceAbsolutePath = path.join(
       FilePath.getImageDirAbsolute(),
-      normalizeFolder(path.join(parsed.folder, parsed.fileName)),
+      normalizeFolder(
+        path.join(resolvedCurrentFolder, resolvedCurrentFileName),
+      ),
     );
     const targetAbsolutePath = path.join(
       FilePath.getImageDirAbsolute(),
@@ -239,36 +287,23 @@ export class ImageService {
           throw error;
         }
       }
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- path is constructed from validated rename params
       await mkdir(path.dirname(targetAbsolutePath), { recursive: true });
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- paths are constructed from validated rename params
       await rename(sourceAbsolutePath, targetAbsolutePath);
     }
 
+    // 6. Guard against a different index entry already occupying the target path
     const updatedSrc = toImageSrc(targetFolder, targetFileName);
-    const sourceFolderLower = normalizeFolder(parsed.folder).toLowerCase();
-    const sourceFileNameLower = parsed.fileName.toLowerCase();
-    const sourceSrcLower = params.src.toLowerCase();
     const targetFolderLower = targetFolder.toLowerCase();
     const targetFileNameLower = targetFileName.toLowerCase();
-    const hasDescriptionUpdate = params.description !== undefined;
-    const trimmedDescription = params.description?.trim();
-
-    const imagesIndex = await this.readIndex();
-    const items = imagesIndex.items ?? [];
 
     const hasExistingTargetEntry = items.some((item) => {
+      if (item.id === recordId) return false;
       if (typeof item.fileName !== 'string') return false;
-      const itemFolderLower = normalizeFolder(item.folder ?? '').toLowerCase();
-      const itemFileNameLower = item.fileName.toLowerCase();
-      const itemSrcLower =
-        typeof item.src === 'string' ? item.src.toLowerCase() : undefined;
-      const isSourceEntry =
-        itemSrcLower === sourceSrcLower ||
-        (itemFileNameLower === sourceFileNameLower &&
-          itemFolderLower === sourceFolderLower);
-      if (isSourceEntry) return false;
       return (
-        itemFileNameLower === targetFileNameLower &&
-        itemFolderLower === targetFolderLower
+        item.fileName.toLowerCase() === targetFileNameLower &&
+        normalizeFolder(item.folder ?? '').toLowerCase() === targetFolderLower
       );
     });
 
@@ -276,48 +311,80 @@ export class ImageService {
       throw new Error('File name already exists');
     }
 
-    const updatedItems = items.map((item) => {
-      const matchesBySrc =
-        typeof item.src === 'string' &&
-        item.src.toLowerCase() === sourceSrcLower;
-      const matchesByFileAndFolder =
-        typeof item.fileName === 'string' &&
-        item.fileName.toLowerCase() === sourceFileNameLower &&
-        normalizeFolder(item.folder ?? '').toLowerCase() === sourceFolderLower;
+    // 7. Persist updated index
+    const hasDescriptionUpdate = params.description !== undefined;
+    const trimmedDescription = params.description?.trim();
+    const hasTitleUpdate = params.title !== undefined;
+    const trimmedTitle = params.title?.trim();
 
-      if (!matchesBySrc && !matchesByFileAndFolder) return item;
+    const isNewRecord = !items.some((item) => item.id === recordId);
 
-      const updatedItem: ImagesIndexItem = {
-        ...item,
+    const buildUpdatedItem = (base: ImagesIndexItem): ImagesIndexItem => {
+      const withoutSrc = { ...base };
+      delete withoutSrc.src;
+
+      let result: ImagesIndexItem = {
+        ...withoutSrc,
         fileName: targetFileName,
         folder: targetFolder,
-        src: updatedSrc,
+        id: recordId,
       };
 
-      if (!hasDescriptionUpdate) return updatedItem;
-
-      if (trimmedDescription) {
-        return { ...updatedItem, description: trimmedDescription };
+      if (hasDescriptionUpdate) {
+        if (trimmedDescription) {
+          result = { ...result, description: trimmedDescription };
+        } else {
+          const withoutDescription = { ...result };
+          delete withoutDescription.description;
+          result = withoutDescription;
+        }
       }
 
-      const itemWithoutDescription = { ...updatedItem };
-      delete itemWithoutDescription.description;
-      return itemWithoutDescription;
-    });
+      if (hasTitleUpdate) {
+        if (trimmedTitle) {
+          result = { ...result, title: trimmedTitle };
+        } else {
+          const withoutTitle = { ...result };
+          delete withoutTitle.title;
+          result = withoutTitle;
+        }
+      }
+
+      return result;
+    };
+
+    const baseForNew: ImagesIndexItem = {
+      fileName: resolvedCurrentFileName,
+      folder: resolvedCurrentFolder,
+      id: recordId,
+    };
+
+    const updatedItems = isNewRecord
+      ? [...items, buildUpdatedItem(sourceItem ?? baseForNew)]
+      : items.map((item) =>
+          item.id === recordId ? buildUpdatedItem(item) : item,
+        );
 
     await this.writeIndex({ ...imagesIndex, items: updatedItems });
 
-    return { src: updatedSrc };
+    return { id: recordId, src: updatedSrc };
   }
 
   // -------------------------------------------------------------------------
   // Private helpers
   // -------------------------------------------------------------------------
 
+  private async readIndex(): Promise<ImagesIndexFile> {
+    return this.fileService.readFile<ImagesIndexFile>(
+      FilePath.getDataDir('images.json'),
+    );
+  }
+
   private async resolve2025FolderName(
     folderLabel: string,
   ): Promise<string | undefined> {
     const year2025Dir = path.join(FilePath.getImageDirAbsolute(), '2025');
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- path is constructed from a known base directory constant
     const dirEntries = await readdir(year2025Dir, { withFileTypes: true });
     return dirEntries
       .filter((entry) => entry.isDirectory())
@@ -327,12 +394,6 @@ export class ImageService {
           toCapitalizedFolderName(folderName).toLowerCase() ===
           folderLabel.toLowerCase(),
       );
-  }
-
-  private async readIndex(): Promise<ImagesIndexFile> {
-    return this.fileService.readFile<ImagesIndexFile>(
-      FilePath.getDataDir('images.json'),
-    );
   }
 
   private async writeIndex(data: ImagesIndexFile): Promise<void> {

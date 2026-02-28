@@ -40,17 +40,17 @@ export const useTestItemFormState = ({
   item,
   resetCodeItems,
 }: UseTestItemFormStateArgs): UseTestItemFormStateResult => {
-  const [name, setNameState] = useState(item?.name ?? '');
+  const [name, setName] = useState(item?.name ?? '');
   const [selectedGroupId, setSelectedGroupId] = useState<number>(
     groupId ?? defaultGroupId,
   );
-  const [comments, setCommentsState] = useState(item?.comments ?? '');
-  const [tags, setTagsState] = useState(formatTags(item?.tags));
+  const [comments, setComments] = useState(item?.comments ?? '');
+  const [tags, setTags] = useState(formatTags(item?.tags));
 
   const onSyncFormState = useEffectEvent(() => {
-    setNameState(item?.name ?? '');
-    setCommentsState(item?.comments ?? '');
-    setTagsState(formatTags(item?.tags));
+    setName(item?.name ?? '');
+    setComments(item?.comments ?? '');
+    setTags(formatTags(item?.tags));
     setSelectedGroupId(groupId ?? defaultGroupId);
     resetCodeItems(item?.code ?? []);
     clearErrors();
@@ -58,6 +58,9 @@ export const useTestItemFormState = ({
 
   useEffect(() => {
     if (isOpen) {
+      // Intentional: syncs form state to the latest item when the dialog opens.
+      // useEffectEvent captures the latest values without adding them to the deps array.
+      // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-data-to-parent, react-you-might-not-need-an-effect/no-derived-state
       onSyncFormState();
     }
   }, [defaultGroupId, groupId, isOpen, item?.id]);
@@ -69,18 +72,6 @@ export const useTestItemFormState = ({
 
   const handleGroupChange = useCallback((value: string) => {
     setSelectedGroupId(Number(value));
-  }, []);
-
-  const setName = useCallback((value: string) => {
-    setNameState(value);
-  }, []);
-
-  const setComments = useCallback((value: string) => {
-    setCommentsState(value);
-  }, []);
-
-  const setTags = useCallback((value: string) => {
-    setTagsState(value);
   }, []);
 
   return {

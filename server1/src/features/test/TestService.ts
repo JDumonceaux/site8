@@ -28,17 +28,6 @@ export class TestService extends BaseDataService<TestFile> {
     });
   }
 
-  private async loadTestFile(): Promise<TestFile> {
-    const fileService = getFileService();
-    return fileService.readFile<TestFile>(TestService.TESTS_FILE_PATH);
-  }
-
-  private async saveTestFile(testFile: TestFile): Promise<void> {
-    const fileService = getFileService();
-    await fileService.writeFile(testFile, TestService.TESTS_FILE_PATH);
-    this.invalidateCache();
-  }
-
   /**
    * Adds a new test item to the tests.json file
    *
@@ -223,5 +212,16 @@ export class TestService extends BaseDataService<TestFile> {
       Logger.error(`TestService: updateItem --> Error: ${String(error)}`);
       return false;
     }
+  }
+
+  private async loadTestFile(): Promise<TestFile> {
+    const fileService = getFileService();
+    return fileService.readFile<TestFile>(TestService.TESTS_FILE_PATH);
+  }
+
+  private async saveTestFile(testFile: TestFile): Promise<void> {
+    const fileService = getFileService();
+    await fileService.writeFile(testFile, TestService.TESTS_FILE_PATH);
+    this.invalidateCache();
   }
 }

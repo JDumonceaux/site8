@@ -1,6 +1,7 @@
 import { apiClient } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Collection, Image } from '@site8/shared';
+import type { ImageItem } from '@types';
+import type { Collection } from '@site8/shared';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 type UseImagesParams = {
@@ -8,7 +9,7 @@ type UseImagesParams = {
 };
 
 export type UseImagesResult = {
-  readonly data: Collection<Image> | undefined;
+  readonly data: Collection<ImageItem> | undefined;
   readonly error: unknown;
   readonly isError: boolean;
   readonly isLoading: boolean;
@@ -23,9 +24,9 @@ const getEndpoint = (unmatchedOnly: boolean): string => {
 const useImages = ({ unmatchedOnly }: UseImagesParams): UseImagesResult => {
   const endpoint = getEndpoint(unmatchedOnly);
 
-  const query: UseQueryResult<Collection<Image>, unknown> = useQuery({
-    queryFn: async ({ signal }): Promise<Collection<Image>> => {
-      return apiClient.get<Collection<Image>>(endpoint, { signal });
+  const query: UseQueryResult<Collection<ImageItem>, unknown> = useQuery({
+    queryFn: async ({ signal }): Promise<Collection<ImageItem>> => {
+      return apiClient.get<Collection<ImageItem>>(endpoint, { signal });
     },
     queryKey: ['images', unmatchedOnly ? 'unmatched' : 'all', endpoint],
   });

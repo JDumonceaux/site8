@@ -10,10 +10,11 @@
 /* eslint-disable import/no-restricted-paths */
 /* eslint-disable no-restricted-syntax */
 
+import { ImageService } from '../features/image/ImageService.js';
+import { ClientImagesService } from '../features/images/ClientImagesService.js';
 // NOTE: This is the correct format.  GPT 5.0 fixes are incorrect.
 import { ImagesFileService } from '../features/images/ImagesFileService.js';
 import { ImagesService } from '../features/images/ImagesService.js';
-import { ClientImagesService } from '../features/images/ClientImagesService.js';
 import { MenuService } from '../features/menu/MenuService.js';
 import { PageFileService } from '../features/page/PageFileService.js';
 import { PagesService } from '../features/pages/PagesService.js';
@@ -33,6 +34,13 @@ import { PrettierService } from '../services/code-quality/PrettierService.js';
 class ServiceContainer {
   private readonly services = new Map<string, unknown>();
 
+  public getClientImagesService(): ClientImagesService {
+    return this.getOrCreate(
+      'ClientImagesService',
+      () => new ClientImagesService(),
+    );
+  }
+
   public getFileService(): FileService {
     return this.getOrCreate('FileService', () => new FileService());
   }
@@ -41,15 +49,12 @@ class ServiceContainer {
     return this.getOrCreate('GenericService', () => new GenericService());
   }
 
-  public getImagesFileService(): ImagesFileService {
-    return this.getOrCreate('ImagesFileService', () => new ImagesFileService());
+  public getImageService(): ImageService {
+    return this.getOrCreate('ImageService', () => new ImageService());
   }
 
-  public getClientImagesService(): ClientImagesService {
-    return this.getOrCreate(
-      'ClientImagesService',
-      () => new ClientImagesService(),
-    );
+  public getImagesFileService(): ImagesFileService {
+    return this.getOrCreate('ImagesFileService', () => new ImagesFileService());
   }
 
   public getImagesService(): ImagesService {
@@ -133,6 +138,7 @@ const container = new ServiceContainer();
 export const getFileService = (): FileService => container.getFileService();
 export const getGenericService = (): GenericService =>
   container.getGenericService();
+export const getImageService = (): ImageService => container.getImageService();
 export const getImagesFileService = (): ImagesFileService =>
   container.getImagesFileService();
 export const getClientImagesService = (): ClientImagesService =>
