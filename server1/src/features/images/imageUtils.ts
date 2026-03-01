@@ -1,6 +1,19 @@
 import path from 'path';
 
-import FilePath from '../lib/filesystem/FilePath.js';
+import FilePath from '../../lib/filesystem/FilePath.js';
+
+export const IMAGE_SRC_ROOT = '/public/images';
+
+export const normalizeFolder = (folder: string): string =>
+  folder.replace(/\\/g, '/').replace(/^\.?\//, '');
+
+export const toImageSrc = (folder: string, fileName: string): string => {
+  const normalizedFolder = normalizeFolder(folder);
+  if (!normalizedFolder || normalizedFolder === '.') {
+    return `${IMAGE_SRC_ROOT}/${fileName}`;
+  }
+  return `${IMAGE_SRC_ROOT}/${normalizedFolder}/${fileName}`;
+};
 
 export type ParsedImageSrc = {
   readonly fileName: string;
@@ -9,11 +22,11 @@ export type ParsedImageSrc = {
 };
 
 export const parseImageSrc = (src: string): ParsedImageSrc | null => {
-  if (!src.startsWith('/images/')) {
+  if (!src.startsWith(IMAGE_SRC_ROOT)) {
     return null;
   }
 
-  const relativePath = src.replace(/^\/images\//, '');
+  const relativePath = src.slice(IMAGE_SRC_ROOT.length + 1);
   const segments = relativePath.split('/').filter(Boolean);
   const fileName = segments.at(-1);
 
@@ -49,6 +62,24 @@ export const getImageMimeType = (inputPath: string): string => {
       return 'application/octet-stream';
   }
 };
+
+export const isSiteFolder = (folder: string): boolean => {
+  const normalized = normalizeFolder(folder);
+  return normalized === 'site' || normalized.startsWith('site/');
+};
+
+export const toTitle = (fileName: string): string => {
+  const baseName = path.parse(fileName).name;
+  return baseName.replace(/[-_]+/g, ' ').trim();
+};
+
+export const toCapitalizedFolderName = (folderName: string): string =>
+  folderName
+    .replace(/[-_]+/g, ' ')
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
+    .join(' ');
 
 export const resolveSafeImagePath = (relativePath: string): string | null => {
   const imagesRoot = path.resolve(FilePath.getImageDirAbsolute());

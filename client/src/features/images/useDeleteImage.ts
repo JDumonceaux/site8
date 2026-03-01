@@ -40,7 +40,7 @@ const useDeleteImage = (
     onSuccess: (response) => {
       void queryClient.invalidateQueries({ queryKey: ['images'] });
       void queryClient.invalidateQueries({ queryKey: ['images', 'all'] });
-      void queryClient.invalidateQueries({ queryKey: ['images', 'unmatched'] });
+      void queryClient.invalidateQueries({ queryKey: ['images', 'matched'] });
       onSuccess?.(response);
     },
   });

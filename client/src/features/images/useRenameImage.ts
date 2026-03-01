@@ -68,7 +68,7 @@ const useRenameImage = (
     onSuccess: (response) => {
       void queryClient.invalidateQueries({ queryKey: ['images'] });
       void queryClient.invalidateQueries({ queryKey: ['images', 'all'] });
-      void queryClient.invalidateQueries({ queryKey: ['images', 'unmatched'] });
+      void queryClient.invalidateQueries({ queryKey: ['images', 'matched'] });
       void queryClient.invalidateQueries({
         queryKey: ['images', 'folders-2025'],
       });

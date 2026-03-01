@@ -1,16 +1,16 @@
 import type { Collection } from "./Collection.js";
 
-export type Image = {
-  readonly alt?: string;
+export type ImageFile = {
   readonly description?: string;
   readonly fileName: string;
   readonly folder: string;
-  readonly id: number;
+  readonly seq?: number;
   readonly src?: string;
   readonly title?: string;
+  readonly id?: number;
 };
 
 /**
- * Images type - array of Image objects
+ * ImageFiles collection type
  */
-export type Images = Collection<Image>;
+export type ImageFiles = Collection<ImageFile>;

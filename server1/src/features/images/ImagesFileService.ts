@@ -6,6 +6,8 @@ import path from 'path';
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { Logger } from '../../utils/logger.js';
 
+import { normalizeFolder } from './imageUtils.js';
+
 export class ImagesFileService {
   private readonly imageDir: string = '';
 
@@ -138,7 +140,7 @@ export class ImagesFileService {
       const ret: ImageFile[] = items.map((x) => {
         return {
           fileName: path.basename(x),
-          folder: path.dirname(x),
+          folder: normalizeFolder(path.dirname(x)),
         };
       });
 

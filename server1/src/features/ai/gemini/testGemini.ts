@@ -5,7 +5,7 @@ import { testGemini } from '../../../services/ai/geminiTestService.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
-} from '../../../utils/geminiErrors.js';
+} from './utils/geminiErrors.js';
 import { Logger } from '../../../utils/logger.js';
 
 type GeminiTestResponse = {

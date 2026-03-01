@@ -13,12 +13,12 @@ import { env } from '../../utils/env.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
-} from '../../utils/geminiErrors.js';
+} from '../ai/gemini/utils/geminiErrors.js';
 import {
   getImageMimeType,
   parseImageSrc,
   resolveSafeImagePath,
-} from '../../utils/imageUtils.js';
+} from '../images/imageUtils.js';
 import { Logger } from '../../utils/logger.js';
 
 type IdentifyItemRequestBody = {

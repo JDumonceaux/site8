@@ -1,32 +1,31 @@
 import { apiClient } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Collection } from '@site8/shared';
+import type { Collection, ImageFile } from '@site8/shared';
 import { useQuery } from '@tanstack/react-query';
-import type { Image, Images } from '@types';
 
-type UseUnmatchedImagesReturn = {
-  readonly data: Images | undefined;
+type UseMatchedImagesReturn = {
+  readonly data: ImageFile[] | undefined;
   readonly isError: boolean;
   readonly isPending: boolean;
 };
 
 /**
- * Custom hook to fetch unmatched images from the server
- * @returns Query state with unmatched images data
+ * Custom hook to fetch matched images from the server
+ * @returns Query state with matched images data
  */
-const useUnmatchedImages = (enabled = true): UseUnmatchedImagesReturn => {
-  const { data, isError, isPending } = useQuery<Images>({
+const useUnmatchedImages = (enabled = true): UseMatchedImagesReturn => {
+  const { data, isError, isPending } = useQuery<ImageFile[]>({
     enabled,
-    queryFn: async ({ signal }): Promise<Images> => {
-      const response = await apiClient.get<Collection<Image>>(
-        ServiceUrl.ENDPOINT_IMAGES_UNMATCHED,
+    queryFn: async ({ signal }): Promise<ImageFile[]> => {
+      const response = await apiClient.get<Collection<ImageFile>>(
+        ServiceUrl.ENDPOINT_IMAGES_MATCHED,
         {
           signal,
         },
       );
       return response.items ?? [];
     },
-    queryKey: ['images'],
+    queryKey: ['images', 'matched'],
     retry: 1,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });

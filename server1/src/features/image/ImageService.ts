@@ -4,6 +4,7 @@ import path from 'path';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
+import { normalizeFolder, toImageSrc } from '../images/imageUtils.js';
 
 // ---------------------------------------------------------------------------
 // Internal types
@@ -33,25 +34,14 @@ type ImagesJsonEntry = {
 // Helpers
 // ---------------------------------------------------------------------------
 
-const normalizeFolder = (folder: string): string =>
-  folder.replace(/\\/g, '/').replace(/^\.?\//, '');
-
-const toImageSrc = (folder: string, fileName: string): string => {
-  const normalizedFolder = normalizeFolder(folder);
-  if (!normalizedFolder || normalizedFolder === '.') {
-    return `/images/${fileName}`;
-  }
-  return `/images/${normalizedFolder}/${fileName}`;
-};
-
 const parseImageSrc = (
   src: string,
 ): { readonly fileName: string; readonly folder: string } | null => {
-  if (!src.startsWith('/images/')) {
+  if (!src.startsWith('/public/images/')) {
     return null;
   }
   const segments = src
-    .replace(/^\/images\//, '')
+    .replace(/^\/public\/images\//, '')
     .split('/')
     .filter(Boolean);
   const fileName = segments.at(-1);

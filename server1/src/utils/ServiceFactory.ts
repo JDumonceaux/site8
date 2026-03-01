@@ -37,7 +37,12 @@ class ServiceContainer {
   public getClientImagesService(): ClientImagesService {
     return this.getOrCreate(
       'ClientImagesService',
-      () => new ClientImagesService(),
+      () =>
+        new ClientImagesService(
+          this.getFileService(),
+          this.getImagesFileService(),
+          this.getImagesService(),
+        ),
     );
   }
 

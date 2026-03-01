@@ -41,10 +41,11 @@ export class TravelService extends BaseDataService<Places> {
       );
 
       const imagesService = getImagesService();
-      const imagesData = await imagesService.getItems();
-      Logger.info(`TravelService: Loaded ${imagesData?.length ?? 0} images`);
+      const imagesResult = await imagesService.getItems();
+      const imagesData = imagesResult.items ?? [];
+      Logger.info(`TravelService: Loaded ${imagesData.length} images`);
 
-      if (!imagesData || imagesData.length === 0) {
+      if (imagesData.length === 0) {
         Logger.warn(
           'TravelService: getPlacesWithImages -> No images data available',
         );

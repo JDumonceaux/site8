@@ -8,16 +8,16 @@ import { env } from '../../../utils/env.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
-} from '../../../utils/geminiErrors.js';
+} from './utils/geminiErrors.js';
 import { isResponseClosed } from '../../../utils/httpUtils.js';
 import {
   getImageMimeType,
   parseImageSrc,
   resolveSafeImagePath,
-} from '../../../utils/imageUtils.js';
+} from '../../images/imageUtils.js';
 import { Logger } from '../../../utils/logger.js';
 
-const TEST_IMAGE_SRC = '/images/2024/baroque_palace_gallery.jpg';
+const TEST_IMAGE_SRC = '/public/images/2024/baroque_palace_gallery.jpg';
 
 type GeminiImageTestErrorResponse = {
   readonly error: string;

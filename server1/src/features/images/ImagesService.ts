@@ -20,14 +20,14 @@ export class ImagesService extends BaseDataService<Images> {
 
   public async fixIndex(): Promise<boolean> {
     try {
-      const items = await this.readFile();
+      const data = await this.readFile();
 
-      const fixedItems: Images = (items ?? []).map((x, index) => ({
+      const fixedItems: Image[] = (data.items ?? []).map((x, index) => ({
         ...x,
         id: index + 1,
       }));
 
-      await this.writeData(fixedItems);
+      await this.writeData({ ...data, items: fixedItems });
       return true;
     } catch (error) {
       const errorMessage =
@@ -39,14 +39,14 @@ export class ImagesService extends BaseDataService<Images> {
 
   public async fixNames(): Promise<boolean> {
     try {
-      const items = await this.readFile();
+      const data = await this.readFile();
 
-      const fixedItems: Images = (items ?? []).map((x) => {
+      const fixedItems: Image[] = (data.items ?? []).map((x) => {
         const fixed = { ...x };
         return fixed;
       });
 
-      await this.writeData(fixedItems);
+      await this.writeData({ ...data, items: fixedItems });
       return true;
     } catch (error) {
       const errorMessage =
@@ -56,31 +56,21 @@ export class ImagesService extends BaseDataService<Images> {
     }
   }
 
-  // Get all data - uses BaseDataService implementation
-  // Override not needed as base class provides this functionality
-
-  /**
-   * Override getItems to extract items array from Collection structure
-   */
   public override async getItems(): Promise<Images> {
     const data = await this.readFile();
-    // The file has {items: Image[], metadata: {}} structure
-    // but Images type is Image[], so we need to extract items
-    return (data as unknown as { items: Images }).items ?? [];
-  }
-
-  // Yes, this is a duplicate of getItems.  It's here for clarity and in case
-  // we need to add additional logic to getItems in the future.
-  public async getItemsEdit(): Promise<Images | undefined> {
-    // Get current items
-    const items = await this.getItems();
-    return items;
+    return {
+      ...data,
+      items: (data.items ?? []).map((item) => ({
+        ...item,
+        src: this.toSrc(item.folder, item.fileName),
+      })),
+    };
   }
 
   public override async getNextId(): Promise<number> {
     try {
       const data = await this.readFile();
-      const nextId = getNextIdUtil(data);
+      const nextId = getNextIdUtil(data.items);
       return nextId ?? 1;
     } catch (error) {
       Logger.error(`ImagesService: getNextId -> ${String(error)}`);
@@ -92,15 +82,15 @@ export class ImagesService extends BaseDataService<Images> {
     readonly items: string[];
   }> {
     try {
-      const items = await this.readFile();
-
-      const duplicates = (items ?? [])
-        .map((x: Image) => x.src)
-        .filter((x: string, i: number, a: string[]) => a.indexOf(x) !== i);
-
-      // Filter out null and undefined
-      const filtered = duplicates.filter((x): x is string => x !== undefined);
-      return { items: filtered };
+      const { items = [] } = await this.getItems();
+      const srcs = items.map((x) => x.src).filter((s): s is string => !!s);
+      const seen = new Set<string>();
+      const duplicates = srcs.filter((src) => {
+        if (seen.has(src)) return true;
+        seen.add(src);
+        return false;
+      });
+      return { items: duplicates };
     } catch (error) {
       Logger.error(`ImagesService: listDuplicates -> ${String(error)}`);
       return { items: [] };
@@ -112,10 +102,9 @@ export class ImagesService extends BaseDataService<Images> {
    * @returns A Promise that resolves to the updated Images object, or undefined if an error occurs.
    */
   public async scanForNewItems(): Promise<Images | undefined> {
-    // Update the index file with new items
     await this.updateIndexWithNewItems();
-
-    return this.getNewItems();
+    const data = await this.readFile();
+    return data;
   }
 
   public async updateItems(
@@ -126,24 +115,20 @@ export class ImagesService extends BaseDataService<Images> {
       return true;
     }
 
-    const images = await this.readFile();
-    if (images == null) {
+    const data = await this.readFile();
+    if (data == null) {
       throw new Error('ImagesService: updateItems -> Unable to load index');
     }
 
-    const updatedItems = this.prepareUpdatedItems(items, images);
+    const updatedItems = this.prepareUpdatedItems(items, data.items ?? []);
     // Note: File operations removed - Image type doesn't have fileName/folder
-    const updatedData = this.replaceUpdatedItems(images, updatedItems);
+    const updatedData = this.replaceUpdatedItems(
+      data.items ?? [],
+      updatedItems,
+    );
 
-    await this.writeData(updatedData);
+    await this.writeData({ ...data, items: updatedData });
     return true;
-  }
-
-  // Get Items to sort into folders
-  private async getNewItems(): Promise<Images | undefined> {
-    // Get current items
-    const imageData = await this.readFile();
-    return { ...imageData };
   }
 
   /**
@@ -185,8 +170,8 @@ export class ImagesService extends BaseDataService<Images> {
   /**
    * Replace updated items in the collection
    */
-  private replaceUpdatedItems(images: Images, updatedItems: Image[]): Images {
-    const data: Images = (images ?? [])
+  private replaceUpdatedItems(images: Image[], updatedItems: Image[]): Image[] {
+    return (images ?? [])
       .map((x: Image) => {
         const foundItem = updatedItems.find((y) => y.id === x.id);
         if (foundItem) {
@@ -195,9 +180,13 @@ export class ImagesService extends BaseDataService<Images> {
         }
         return x;
       })
-      .filter(Boolean) as Images;
+      .filter(Boolean);
+  }
 
-    return data;
+  private toSrc(folder: string, fileName: string): string {
+    return folder
+      ? `/public/images/${folder}/${fileName}`
+      : `/public/images/${fileName}`;
   }
 
   /**
@@ -212,12 +201,13 @@ export class ImagesService extends BaseDataService<Images> {
         return false;
       }
       // Get current items (Image[])
-      const currItems: Images = await this.readFile();
+      const data = await this.readFile();
+      const currItems: Image[] = data.items ?? [];
       // Note: Scanning for new files requires mapping ImageFile to Image
       // For now, just reassign IDs to existing items
       const modifiedItems = getNewIds(currItems);
       // Write back file
-      await this.writeData(modifiedItems ?? []);
+      await this.writeData({ ...data, items: modifiedItems ?? [] });
       return true;
     } catch (error) {
       Logger.error(

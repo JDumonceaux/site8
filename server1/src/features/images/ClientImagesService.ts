@@ -1,80 +1,21 @@
-import type { Collection } from '@site8/shared';
-import type { ImageFile } from './Image.js';
-import type { ImageItem } from '../../types/ImageItem.js';
+import type { FileService } from '../../lib/filesystem/FileService.js';
+import type { ImageFile as ImageFileEntry } from './Image.js';
+import type { ImagesFileService } from './ImagesFileService.js';
+import type { ImagesService } from './ImagesService.js';
+import type { Collection, Image, ImageFile, ImageFiles } from '@site8/shared';
 
-import { readdir } from 'node:fs/promises';
+import { mkdir, readdir, rename } from 'node:fs/promises';
 import path from 'path';
-import { mkdir, rename } from 'node:fs/promises';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
-import { FileService } from '../../lib/filesystem/FileService.js';
-import { ImagesFileService } from './ImagesFileService.js';
 
-const IMAGE_EXTENSIONS = new Set([
-  '.avif',
-  '.gif',
-  '.jpeg',
-  '.jpg',
-  '.png',
-  '.svg',
-  '.webp',
-]);
-
-const normalizeFolder = (folder: string): string => {
-  return folder.replace(/\\/g, '/').replace(/^\.?\//, '');
-};
-
-const isSiteFolder = (folder: string): boolean => {
-  const normalized = normalizeFolder(folder);
-  return normalized === 'site' || normalized.startsWith('site/');
-};
-
-const toTitle = (fileName: string): string => {
-  const baseName = path.parse(fileName).name;
-  return baseName.replace(/[-_]+/g, ' ').trim();
-};
-
-const toCapitalizedFolderName = (folderName: string): string => {
-  return folderName
-    .replace(/[-_]+/g, ' ')
-    .split(' ')
-    .filter(Boolean)
-    .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
-    .join(' ');
-};
-
-const buildImageKey = (folder: string, fileName: string): string => {
-  return `${normalizeFolder(folder).toLowerCase()}|${fileName.toLowerCase()}`;
-};
-
-const imageKeyFromSrc = (src: string): string | undefined => {
-  if (!src.startsWith('/images/')) {
-    return undefined;
-  }
-
-  const relativePath = src.replace(/^\/images\//, '');
-  const segments = relativePath.split('/').filter(Boolean);
-
-  if (segments.length === 0) {
-    return undefined;
-  }
-
-  const fileName = segments.at(-1);
-  if (!fileName) {
-    return undefined;
-  }
-
-  const folder = segments.slice(0, -1).join('/');
-  return buildImageKey(folder, fileName);
-};
-
-type ImagesIndexItem = {
-  readonly description?: string;
-  readonly seq?: number;
-  readonly fileName?: string;
-  readonly folder?: string;
-  readonly src?: string;
-} & Record<string, unknown>;
+import {
+  isSiteFolder,
+  parseImageSrc,
+  toCapitalizedFolderName,
+  toImageSrc,
+  toTitle,
+} from './imageUtils.js';
 
 type NewImageJsonEntry = {
   readonly fileName: string;
@@ -82,89 +23,96 @@ type NewImageJsonEntry = {
 };
 
 type ImagesIndexFile = {
+  readonly items?: readonly Partial<Image>[];
   readonly metadata?: Record<string, unknown>;
-  readonly items?: readonly ImagesIndexItem[];
 };
 
 type ImagesJsonEntry = {
+  readonly fileName: string;
+  readonly folder: string;
   readonly id: number;
-  readonly fileName: string;
-  readonly folder: string;
 } & Record<string, unknown>;
-
-const parseImageSrc = (
-  src: string,
-): {
-  readonly fileName: string;
-  readonly folder: string;
-} | null => {
-  if (!src.startsWith('/images/')) {
-    return null;
-  }
-
-  const relativePath = src.replace(/^\/images\//, '');
-  const segments = relativePath.split('/').filter(Boolean);
-  const fileName = segments.at(-1);
-
-  if (!fileName) {
-    return null;
-  }
-
-  const folder = segments.slice(0, -1).join('/');
-
-  return {
-    fileName,
-    folder,
-  };
-};
-
-const toImageSrc = (folder: string, fileName: string): string => {
-  const normalizedFolder = normalizeFolder(folder);
-  if (!normalizedFolder || normalizedFolder === '.') {
-    return `/images/${fileName}`;
-  }
-
-  return `/images/${normalizedFolder}/${fileName}`;
-};
 
 export class ClientImagesService {
   private readonly fileService: FileService;
   private readonly imagesFileService: ImagesFileService;
+  private readonly imagesService: ImagesService;
 
-  public constructor(imagesFileService?: ImagesFileService) {
-    this.fileService = new FileService();
-    this.imagesFileService = imagesFileService ?? new ImagesFileService();
+  public constructor(
+    fileService: FileService,
+    imagesFileService: ImagesFileService,
+    imagesService: ImagesService,
+  ) {
+    this.fileService = fileService;
+    this.imagesFileService = imagesFileService;
+    this.imagesService = imagesService;
   }
 
-  public async getItems(): Promise<Collection<ImageItem>> {
-    const files = this.getDirectoryImages();
-    const imageIndexMap = await this.getIndexedImageMap();
-    const items = this.mapFilesToImages(files, imageIndexMap);
+  public async deleteImageEntry(id: number): Promise<boolean> {
+    const imagesIndex = await this.readImagesIndexFile();
+    const items = [...(imagesIndex.items ?? [])];
+    const filteredItems = items.filter((item) => item.id !== id);
 
+    if (filteredItems.length === items.length) {
+      return false;
+    }
+
+    await this.fileService.writeFile(
+      {
+        ...imagesIndex,
+        items: filteredItems,
+      },
+      FilePath.getDataDir('images.json'),
+    );
+
+    return true;
+  }
+
+  public getItems(): ImageFiles {
+    const items = this.expandImageFile(this.getDirectoryImages());
     return {
       items,
       metadata: {
-        title: 'Images',
+        title: 'Image Files',
         totalItems: items.length,
       },
     };
   }
 
-  public async getUnmatchedItems(): Promise<Collection<ImageItem>> {
-    const files = this.getDirectoryImages();
-    const imageIndexMap = await this.getIndexedImageMap();
-    const indexedKeys = new Set(imageIndexMap.keys());
+  public async getMatchedItems(): Promise<ImageFiles> {
+    const files = this.expandImageFile(this.getDirectoryImages());
+    const imageRecords = await this.readImageItems();
 
-    const unmatchedFiles = files.filter(
-      (file) => !indexedKeys.has(buildImageKey(file.folder, file.fileName)),
-    );
+    const items = files.map((file) => {
+      const matches = imageRecords.filter(
+        (img) =>
+          img.fileName.toLowerCase() === file.fileName.toLowerCase() &&
+          img.folder.toLowerCase() === file.folder.toLowerCase(),
+      );
 
-    const items = this.mapFilesToImages(unmatchedFiles, imageIndexMap);
+      if (matches.length > 1) {
+        return { ...file, id: -1 };
+      }
+
+      if (matches.length === 0) {
+        return { ...file, id: 0 };
+      }
+
+      const [match] = matches;
+      if (!match) return { ...file, id: 0 };
+
+      return {
+        ...file,
+        ...(match.description ? { description: match.description } : {}),
+        id: match.id,
+        title: match.title ?? file.title,
+      };
+    });
 
     return {
       items,
       metadata: {
-        title: 'Unmatched Images',
+        title: 'Matched Images',
         totalItems: items.length,
       },
     };
@@ -173,6 +121,7 @@ export class ClientImagesService {
   public async getYear2025FolderNames(): Promise<Collection<string>> {
     const year2025Dir = path.join(FilePath.getImageDirAbsolute(), '2025');
 
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path built from validated constant
     const dirEntries = await readdir(year2025Dir, { withFileTypes: true });
     const folderNames = dirEntries
       .filter((entry) => entry.isDirectory())
@@ -205,6 +154,7 @@ export class ClientImagesService {
     }
 
     const destinationFolderAbsolute = path.join(year2025Dir, targetFolderName);
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path built from validated constant
     await mkdir(destinationFolderAbsolute, { recursive: true });
 
     let movedCount = 0;
@@ -231,6 +181,7 @@ export class ClientImagesService {
         continue;
       }
 
+      // eslint-disable-next-line security/detect-non-literal-fs-filename -- Paths validated via parseImageSrc
       await rename(sourceAbsolutePath, targetAbsolutePath);
       movedCount += 1;
     }
@@ -245,7 +196,7 @@ export class ClientImagesService {
     const imagesIndex = await this.readImagesIndexFile();
     const items = [...(imagesIndex.items ?? [])];
 
-    const itemIndex = items.findIndex((item) => item.seq === id);
+    const itemIndex = items.findIndex((item) => item.id === id);
     if (itemIndex === -1) {
       return null;
     }
@@ -270,91 +221,37 @@ export class ClientImagesService {
     return updatedItem;
   }
 
-  public async deleteImageEntry(id: number): Promise<boolean> {
-    const imagesIndex = await this.readImagesIndexFile();
-    const items = [...(imagesIndex.items ?? [])];
-    const filteredItems = items.filter((item) => item.seq !== id);
-
-    if (filteredItems.length === items.length) {
-      return false;
-    }
-
-    await this.fileService.writeFile(
-      {
-        ...imagesIndex,
-        items: filteredItems,
-      },
-      FilePath.getDataDir('images.json'),
-    );
-
-    return true;
+  private expandImageFile(items: ImageFile[]): ImageFile[] {
+    return items.map((item, index) => ({
+      ...item,
+      seq: index,
+      src: toImageSrc(item.folder, item.fileName),
+      title: toTitle(item.fileName),
+    }));
   }
 
-  private getDirectoryImages(): ImageFile[] {
+  private getDirectoryImages(): ImageFileEntry[] {
     return (this.imagesFileService.getItemsFromBaseDirectory() ?? [])
       .filter((file) => !isSiteFolder(file.folder))
-      .filter((file) =>
-        IMAGE_EXTENSIONS.has(path.extname(file.fileName).toLowerCase()),
-      );
+      .filter((file) => path.extname(file.fileName).toLowerCase() !== '.heic');
   }
 
-  private async getIndexedImageMap(): Promise<Map<string, ImagesIndexItem>> {
-    const imageIndex = await this.fileService.readFile<ImagesIndexFile>(
+  private async readImageItems(): Promise<Image[]> {
+    const data = await this.imagesService.getItems();
+    return data.items ?? [];
+  }
+
+  private async readImagesIndexFile(): Promise<ImagesIndexFile> {
+    return this.fileService.readFile<ImagesIndexFile>(
       FilePath.getDataDir('images.json'),
     );
-
-    const entries = (imageIndex.items ?? []).flatMap((item) => {
-      if (item.fileName) {
-        return [
-          [buildImageKey(item.folder ?? '', item.fileName), item] as const,
-        ];
-      }
-
-      if (item.src) {
-        const keyFromSrc = imageKeyFromSrc(item.src);
-        return keyFromSrc ? [[keyFromSrc, item] as const] : [];
-      }
-
-      return [];
-    });
-
-    return new Map(entries);
-  }
-
-  private mapFilesToImages(
-    files: readonly ImageFile[],
-    imageIndexMap: ReadonlyMap<string, ImagesIndexItem>,
-  ): ImageItem[] {
-    return files.map((file, index) => {
-      const folder = normalizeFolder(file.folder);
-      const src = toImageSrc(folder, file.fileName);
-      const title = toTitle(file.fileName);
-      const imageIndexItem = imageIndexMap.get(
-        buildImageKey(folder, file.fileName),
-      );
-      const description =
-        typeof imageIndexItem?.description === 'string'
-          ? imageIndexItem.description
-          : undefined;
-      const seq =
-        typeof imageIndexItem?.seq === 'number' && imageIndexItem.seq > 0
-          ? imageIndexItem.seq
-          : index + 1;
-
-      return {
-        currentFolder: folder,
-        ...(description ? { description } : {}),
-        seq,
-        src,
-        title,
-      };
-    });
   }
 
   private async resolve2025FolderNameByLabel(
     folderLabel: string,
   ): Promise<string | undefined> {
     const year2025Dir = path.join(FilePath.getImageDirAbsolute(), '2025');
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path built from validated constant
     const dirEntries = await readdir(year2025Dir, { withFileTypes: true });
 
     return dirEntries
@@ -365,11 +262,5 @@ export class ClientImagesService {
           toCapitalizedFolderName(folderName).toLowerCase() ===
           folderLabel.toLowerCase(),
       );
-  }
-
-  private async readImagesIndexFile(): Promise<ImagesIndexFile> {
-    return this.fileService.readFile<ImagesIndexFile>(
-      FilePath.getDataDir('images.json'),
-    );
   }
 }
