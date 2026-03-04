@@ -51,16 +51,13 @@ const useRenameImage = (
     mutationFn: async (
       params: RenameImageParams,
     ): Promise<RenameImageResponse> => {
-      return apiClient.put<RenameImageResponse>(
-        ServiceUrl.ENDPOINT_IMAGE_UPDATE,
-        {
-          description: params.description,
-          src: params.src,
-          targetFileName: params.targetFileName,
-          title: params.title,
-          ...(params.targetFolder ? { targetFolder: params.targetFolder } : {}),
-        },
-      );
+      return apiClient.put<RenameImageResponse>(ServiceUrl.ENDPOINT_IMAGES, {
+        description: params.description,
+        src: params.src,
+        targetFileName: params.targetFileName,
+        title: params.title,
+        ...(params.targetFolder ? { targetFolder: params.targetFolder } : {}),
+      });
     },
     onError: (error) => {
       onError?.(new Error(getErrorMessage(error)));

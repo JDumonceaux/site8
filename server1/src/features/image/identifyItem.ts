@@ -10,6 +10,7 @@ import {
   ok,
 } from '../../lib/http/ResponseHelper.js';
 import { env } from '../../utils/env.js';
+import { Logger } from '../../utils/logger.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
   isGeminiPermissionError,
@@ -19,7 +20,6 @@ import {
   parseImageSrc,
   resolveSafeImagePath,
 } from '../images/imageUtils.js';
-import { Logger } from '../../utils/logger.js';
 
 type IdentifyItemRequestBody = {
   readonly src?: string;

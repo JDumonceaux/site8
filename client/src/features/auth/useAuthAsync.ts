@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 
-import { useAsyncOperation } from '../../hooks/useAsyncOperation';
 import type { AuthState } from './useAuthState';
 
 type UseAuthAsyncReturn = {
@@ -14,28 +13,26 @@ type UseAuthAsyncReturn = {
 
 /**
  * Specialized async operation hook for authentication flows
- * Handles loading state, error management, and error clearing
+ * Manages loading state and error handling via authState.
  */
 export const useAuthAsync = (authState: AuthState): UseAuthAsyncReturn => {
   const { clearError, handleError, setIsLoading } = authState;
-  const { execute } = useAsyncOperation();
 
   const executeAuthOperation = useCallback(
     async <T>(operation: () => Promise<T>): Promise<T | undefined> => {
       clearError();
       setIsLoading(true);
-
-      const result = await execute(operation, {
-        onError: (error) => {
-          handleError(error);
-          setIsLoading(false);
-        },
-      });
-
-      setIsLoading(false);
-      return result;
+      try {
+        const result = await operation();
+        return result;
+      } catch (error) {
+        handleError(error);
+        return undefined;
+      } finally {
+        setIsLoading(false);
+      }
     },
-    [clearError, execute, handleError, setIsLoading],
+    [clearError, handleError, setIsLoading],
   );
 
   return {

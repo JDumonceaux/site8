@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import { getClientImagesService } from '../../utils/ServiceFactory.js';
+import { getImagesApiService } from '../../utils/ServiceFactory.js';
 
 type MoveItemsRequestBody = {
   readonly imageSrcs?: readonly string[];
@@ -17,7 +17,7 @@ export const moveItems = async (
   res: Response<MoveItemsResponse | { error: string }>,
 ): Promise<void> => {
   const body = req.body as MoveItemsRequestBody;
-  const {imageSrcs} = body;
+  const { imageSrcs } = body;
   const targetFolder = body.targetFolder?.trim();
 
   if (!Array.isArray(imageSrcs) || imageSrcs.length === 0) {
@@ -30,11 +30,8 @@ export const moveItems = async (
     return;
   }
 
-  const service = getClientImagesService();
-  const movedCount = await service.moveImagesTo2025Folder(
-    imageSrcs,
-    targetFolder,
-  );
+  const service = getImagesApiService();
+  const movedCount = await service.moveImagesToFolder(imageSrcs, targetFolder);
 
   res.status(200).json({ movedCount, ok: true });
 };

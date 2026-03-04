@@ -29,7 +29,7 @@ const useDeleteImage = (
     ): Promise<DeleteImageResponse> => {
       const sourceQuery = encodeURIComponent(params.src);
       return apiClient.delete<DeleteImageResponse>(
-        `${ServiceUrl.ENDPOINT_IMAGE_ITEM}?src=${sourceQuery}`,
+        `${ServiceUrl.ENDPOINT_IMAGES}?src=${sourceQuery}`,
       );
     },
     onError: (error) => {

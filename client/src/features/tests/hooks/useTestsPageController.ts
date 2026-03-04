@@ -129,35 +129,27 @@ const useTestsPageController = (): UseTestsPageControllerResult => {
 
   const { createTest, deleteTest, moveTest, updateTest } = useTestMutations({
     onCreateError: (error: Error) => {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
-      setMessage(`Failed to add item: ${errorMessage}`);
+      setMessage(`Failed to add item: ${error.message}`);
     },
     onCreateSuccess: () => {
       setMessage('Item added successfully');
       closeDialog();
     },
     onDeleteError: (error: Error) => {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
-      setMessage(`Failed to delete item: ${errorMessage}`);
+      setMessage(`Failed to delete item: ${error.message}`);
     },
     onDeleteSuccess: () => {
       setMessage('Item deleted successfully');
       closeDialog();
     },
     onMoveError: (error: Error) => {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
-      setErrorMessage(`Failed to move item: ${errorMessage}`);
+      setErrorMessage(`Failed to move item: ${error.message}`);
     },
     onMoveSuccess: () => {
       setMessage('Item moved successfully');
     },
     onUpdateError: (error: Error) => {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
-      setMessage(`Failed to update item: ${errorMessage}`);
+      setMessage(`Failed to update item: ${error.message}`);
     },
     onUpdateSuccess: () => {
       setMessage('Item updated successfully');

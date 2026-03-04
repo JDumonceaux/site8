@@ -6,7 +6,7 @@ import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
 
-type TestGroupsResponse = {
+export type TestGroupsResponse = {
   readonly groups: TestGroup[];
 };
 

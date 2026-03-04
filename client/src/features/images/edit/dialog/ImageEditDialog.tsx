@@ -283,7 +283,7 @@ const ImageEditDialog = ({
           <ImagePreviewContainer>
             {image ? (
               <ImagePreview
-                alt={image.alt}
+                alt={image.title}
                 loading="lazy"
                 src={image.src}
               />

@@ -1,6 +1,2 @@
-import type { MenuItem, Metadata } from '@site8/shared';
-
-export type Menu = {
-  readonly items?: MenuItem[];
-  readonly metadata: Metadata;
-};
+/** Menu response shape — alias of the shared Menus (Collection<MenuItem>) type. */
+export type { Menus as Menu } from '@site8/shared';

@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, JSX } from 'react';
 
-import { type Size, type Variant } from './button-variants';
+import type { Size, Variant } from './button-variants';
 import styled, { css, keyframes } from 'styled-components';
 
 /** Public props for Button */

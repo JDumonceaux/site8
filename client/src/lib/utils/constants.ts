@@ -55,13 +55,11 @@ export const IMAGE_BASE = '/images';
 /* -------------------------------------------------------------------------- */
 export const ServiceUrl = {
   ENDPOINT_GENERIC: `${API_ROOT}/generic`,
-  ENDPOINT_IMAGE_IDENTIFY: `${API_ROOT}/image/identify`,
-  ENDPOINT_IMAGE_ITEM: `${API_ROOT}/image/item`,
-  ENDPOINT_IMAGE_UPDATE: `${API_ROOT}/image/update`,
+  ENDPOINT_IMAGE_IDENTIFY: `${API_ROOT}/images/identify`,
   ENDPOINT_IMAGES: `${API_ROOT}/images`,
   ENDPOINT_IMAGES_2025_FOLDERS: `${API_ROOT}/images/2025/folders`,
-  ENDPOINT_IMAGES_MOVE: `${API_ROOT}/images/move`,
   ENDPOINT_IMAGES_MATCHED: `${API_ROOT}/images/matched`,
+  ENDPOINT_IMAGES_MOVE: `${API_ROOT}/images/move`,
   ENDPOINT_MENUS: `${API_ROOT}/menus`,
   ENDPOINT_MENUS_EDIT: `${API_ROOT}/menus/edit`,
   ENDPOINT_TESTS: `${API_ROOT}/tests`,
@@ -74,10 +72,7 @@ export const ServiceUrl = {
 export type ServiceUrlValue = (typeof ServiceUrl)[keyof typeof ServiceUrl];
 
 // Dynamic endpoint helpers
-export const ENDPOINT_TEST_UPDATE = (id: number): string =>
-  `${API_ROOT}/tests/${id}`;
-export const ENDPOINT_TEST_DELETE = (id: number): string =>
-  `${API_ROOT}/tests/${id}`;
+export const ENDPOINT_TEST = (id: number): string => `${API_ROOT}/tests/${id}`;
 
 /* -------------------------------------------------------------------------- */
 /*                              Field Constants                               */

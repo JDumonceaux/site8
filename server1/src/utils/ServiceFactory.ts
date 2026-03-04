@@ -11,7 +11,7 @@
 /* eslint-disable no-restricted-syntax */
 
 import { ImageService } from '../features/image/ImageService.js';
-import { ClientImagesService } from '../features/images/ClientImagesService.js';
+import { ImagesApiService } from '../features/images/ImagesApiService.js';
 // NOTE: This is the correct format.  GPT 5.0 fixes are incorrect.
 import { ImagesFileService } from '../features/images/ImagesFileService.js';
 import { ImagesService } from '../features/images/ImagesService.js';
@@ -34,24 +34,24 @@ import { PrettierService } from '../services/code-quality/PrettierService.js';
 class ServiceContainer {
   private readonly services = new Map<string, unknown>();
 
-  public getClientImagesService(): ClientImagesService {
-    return this.getOrCreate(
-      'ClientImagesService',
-      () =>
-        new ClientImagesService(
-          this.getFileService(),
-          this.getImagesFileService(),
-          this.getImagesService(),
-        ),
-    );
-  }
-
   public getFileService(): FileService {
     return this.getOrCreate('FileService', () => new FileService());
   }
 
   public getGenericService(): GenericService {
     return this.getOrCreate('GenericService', () => new GenericService());
+  }
+
+  public getImagesApiService(): ImagesApiService {
+    return this.getOrCreate(
+      'ImagesApiService',
+      () =>
+        new ImagesApiService(
+          this.getFileService(),
+          this.getImagesFileService(),
+          this.getImagesService(),
+        ),
+    );
   }
 
   public getImageService(): ImageService {
@@ -146,8 +146,8 @@ export const getGenericService = (): GenericService =>
 export const getImageService = (): ImageService => container.getImageService();
 export const getImagesFileService = (): ImagesFileService =>
   container.getImagesFileService();
-export const getClientImagesService = (): ClientImagesService =>
-  container.getClientImagesService();
+export const getImagesApiService = (): ImagesApiService =>
+  container.getImagesApiService();
 export const getImagesService = (): ImagesService =>
   container.getImagesService();
 export const getMenuService = (): MenuService => container.getMenuService();

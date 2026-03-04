@@ -1,7 +1,6 @@
 import { apiClient } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
-import type { ImageFile } from '@site8/shared';
-import type { Collection } from '@site8/shared';
+import type { Collection , ImageFile } from '@site8/shared';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 type UseImagesParams = {

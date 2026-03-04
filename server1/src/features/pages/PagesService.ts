@@ -1,8 +1,9 @@
 import type { PageMenu, Pages } from '@site8/shared';
 
+import { cleanUpData } from '@site8/shared';
+
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
-import { cleanUpData } from '../../utils/objectUtil.js';
 
 export class PagesService extends BaseDataService<Pages> {
   public constructor() {

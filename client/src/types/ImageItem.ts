@@ -1,7 +1,1 @@
-export type ImageItem = {
-  readonly currentFolder: string;
-  readonly description?: string;
-  readonly seq: number;
-  readonly src: string;
-  readonly title: string;
-};
+export type { ImageItem } from '@site8/shared';

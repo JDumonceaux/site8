@@ -31,7 +31,6 @@ export const logError = (
 
   // Log to console
   if (severity === 'error') {
-     
     console.error('[Error Logger]', errorInfo);
   } else if (severity === 'warning') {
     console.warn('[Error Logger]', errorInfo);
@@ -122,7 +121,8 @@ export const httpErrorHandler = (error: unknown): null | string => {
 };
 
 /**
- * Handle query errors from Response objects
+ * Handle query errors from Response objects.
+ * Returns null if the response is ok, or an error message string otherwise.
  */
 export const handleQueryError = (res: Response): null | string => {
   if (res.ok) {
@@ -134,13 +134,13 @@ export const handleQueryError = (res: Response): null | string => {
       return 'Please login.';
     }
     case 404: {
-      throw new Error(`Error: Resource not found (404)`);
+      return 'Error: Resource not found (404)';
     }
     case 408: {
-      throw new Error(`Error: Request timeout`);
+      return 'Error: Request timeout';
     }
     case 500: {
-      throw new Error(`Error: ${res.statusText}`);
+      return `Error: ${res.statusText}`;
     }
     default: {
       return `Unknown error ${res.status}`;

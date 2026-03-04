@@ -9,7 +9,6 @@ import RateLimit from 'express-rate-limit';
 
 import { geminiRouter } from './app/routes/geminiRouter.js';
 import { genericRouter } from './app/routes/genericRouter.js';
-import { imageRouter } from './app/routes/imageRouter.js';
 import { imagesRouter } from './app/routes/imagesRouter.js';
 import { menuRouter } from './app/routes/menuRouter.js';
 import { testsRouter } from './app/routes/testsRouter.js';
@@ -83,9 +82,12 @@ app.use(compression());
 
 // Additional security headers
 app.use((_req, res, next) => {
+  res.setHeader(
+    'Strict-Transport-Security',
+    `max-age=${SERVER_CONFIG.HSTS_MAX_AGE}; includeSubDomains`,
+  );
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader(
     'Permissions-Policy',
@@ -95,6 +97,11 @@ app.use((_req, res, next) => {
 });
 
 app.use((req, res, next) => {
+  // AI routes can take 30+ seconds — skip the short request timeout
+  if (req.path.startsWith('/api/gemini')) {
+    next();
+    return;
+  }
   res.setTimeout(SERVER_CONFIG.REQUEST_TIMEOUT_MS, () => {
     Logger.warn('Request timeout', { method: req.method, url: req.url });
     res.status(408).send('Request Timeout');
@@ -113,24 +120,15 @@ const mutationLimiter = RateLimit({
   windowMs: SERVER_CONFIG.RATE_LIMIT_WINDOW_MS,
 });
 
-app.use((_req, res, next) => {
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type',
-  );
-  next();
-});
 // Read-heavy routes with general rate limiting
 app.use('/api/travel', travelRouter);
 app.use('/api/generic', genericRouter);
-app.use('/api/image', imageRouter);
 app.use('/api/images', imagesRouter);
 app.use('/api/gemini', geminiRouter);
 
 // Write-heavy routes with stricter mutation rate limiting
-app.use('/api/tests', testsRouter, mutationLimiter);
-app.use('/api/menus', menuRouter, mutationLimiter);
+app.use('/api/tests', mutationLimiter, testsRouter);
+app.use('/api/menus', mutationLimiter, menuRouter);
 
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Unhandled error', { error: err.message, stack: err.stack });
@@ -150,7 +148,7 @@ app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use((_req: Request, res: Response) => {
-  res.status(404).send('API Not Found');
+  res.status(404).json({ error: 'API Not Found' });
 });
 
 const server = app.listen(env.PORT, () => {

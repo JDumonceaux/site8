@@ -100,7 +100,7 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
               type="button"
             >
               <img
-                alt={item.alt}
+                alt={item.title ?? item.fileName}
                 src={item.src}
               />
             </ImageButton>

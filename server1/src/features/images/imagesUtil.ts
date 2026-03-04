@@ -1,8 +1,9 @@
 import type { ImageFile } from './Image.js';
 import type { Image } from '@site8/shared';
 
+import { cleanUpData, getNextIdFromPos } from '@site8/shared';
+
 import { FOLDERS_TO_IGNORE } from '../../utils/constants.js';
-import { cleanUpData, getNextIdFromPos } from '../../utils/objectUtil.js';
 
 /**
  * Filters and processes new image items by removing duplicates and ignored folders

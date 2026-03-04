@@ -22,12 +22,7 @@ export const usePreloadResources = () => {
       preconnect(apiUrl);
     }
 
-    // 3. Preinit critical stylesheets (blocking, high priority)
-    // These are loaded AND executed immediately
-    preinit('/src/styles/reset.css', { as: 'style', precedence: 'reset' });
-    preinit('/src/styles/main.css', { as: 'style', precedence: 'default' });
-
-    // 4. Preinit Google Fonts (external stylesheet)
+    // 3. Preinit Google Fonts (external stylesheet)
     preinit(
       'https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&family=Roboto+Slab&family=Shadows+Into+Light&display=swap',
       {
@@ -53,12 +48,7 @@ export const usePreloadResources = () => {
       crossOrigin: 'anonymous',
     });
 
-    // 7. Preload lazy-loaded route components
-    // These are the most commonly accessed routes
-    preload('/src/features/home/HomePage.tsx', { as: 'script' });
-    preload('/src/features/generic/GenericPage.tsx', { as: 'script' });
-
-    // 8. Preload critical images (if any hero images exist)
+    // 7. Preload critical images (if any hero images exist)
     // Example:
     // preload('/images/hero.webp', {
     //   as: 'image',

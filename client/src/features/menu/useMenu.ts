@@ -12,7 +12,8 @@ const useMenuQuery = createQueryHook<Menu>({
 export type UseMenuReturn = {
   data?: Menu;
   error: unknown;
-  findMenuItem: (to: string) => MenuItem | undefined;
+  /** Search for a menu item by title (case-insensitive) */
+  findMenuItem: (title: string) => MenuItem | undefined;
   getRootMenuItems: () => MenuItem[];
   isError: boolean;
   isLoading: boolean;
@@ -21,11 +22,10 @@ export type UseMenuReturn = {
 const useMenu = (): UseMenuReturn => {
   const { data, error, isError, isLoading } = useMenuQuery();
 
-  // Recursively search for a menu item by 'url' property
-  const findMenuItem = (url: string): MenuItem | undefined => {
+  const findMenuItem = (title: string): MenuItem | undefined => {
     if (!data?.items) return undefined;
-    return Array.from(data.items).find(
-      (item) => item.title?.toLowerCase() === url.toLowerCase(),
+    return data.items.find(
+      (item) => item.title?.toLowerCase() === title.toLowerCase(),
     );
   };
 

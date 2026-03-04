@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { useAuthState } from './useAuthState';
 import { usePasswordManagement } from './usePasswordManagement';
 import { useSession } from './useSession';
@@ -32,11 +34,23 @@ const useAuth = () => {
   // Sign-up operations (needs authAutoSignIn from signInOps)
   const signUpOps = useSignUp(authState);
 
+  const authConfirmSignUp = useCallback(
+    async (eMailAddress: string, code: string) =>
+      signUpOps.authConfirmSignUp(eMailAddress, code, signInOps.authAutoSignIn),
+    [signUpOps, signInOps],
+  );
+
+  const authSignUp = useCallback(
+    async (eMailAddress: string, password: string) =>
+      signUpOps.authSignUp(eMailAddress, password, signInOps.authAutoSignIn),
+    [signUpOps, signInOps],
+  );
+
   // Derived values
   const initial = authState.email
-    ? authState.email.slice(0, 1).toUpperCase()
+    ? authState.email.at(0)?.toUpperCase()
     : undefined;
-  const authorized = authState.accessToken;
+  const authorized = authState.accessToken != null;
 
   return {
     // State
@@ -46,8 +60,7 @@ const useAuth = () => {
     // Password management
     authConfirmResetPassword: passwordOps.authConfirmResetPassword,
     // Sign-up operations
-    authConfirmSignUp: async (eMailAddress: string, code: string) =>
-      signUpOps.authConfirmSignUp(eMailAddress, code, signInOps.authAutoSignIn),
+    authConfirmSignUp,
     // Session and user management
     authDeleteUser: sessionOps.authDeleteUser,
     authFetchAuthSession: sessionOps.authFetchAuthSession,
@@ -66,8 +79,7 @@ const useAuth = () => {
     authSignInWithRedirect: signInOps.authSignInWithRedirect,
 
     authSignOut: signInOps.authSignOut,
-    authSignUp: async (eMailAddress: string, password: string) =>
-      signUpOps.authSignUp(eMailAddress, password, signInOps.authAutoSignIn),
+    authSignUp,
     authUpdatePassword: passwordOps.authUpdatePassword,
 
     email: authState.email,

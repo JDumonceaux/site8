@@ -1,7 +1,7 @@
 import { type JSX, useId } from 'react';
 
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { type Size, type Variant } from './dialog-variants';
+import type { Size, Variant } from './dialog-variants';
 import styled from 'styled-components';
 
 export type DialogProps = {

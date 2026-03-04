@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
+import type { FieldValue } from './useForm';
+
 type IdType = {
   readonly lineId: number;
 };
-
-type FieldValue = boolean | null | number | string;
 
 /**
  * Return type for useFormArray hook

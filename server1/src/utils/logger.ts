@@ -77,5 +77,5 @@ export const Logger = winston.createLogger({
 });
 
 Logger.on('error', (error: Error) => {
-  Logger.info('Logger caught an unhandled error', { error: error.message });
+  console.error('[Logger] Unhandled logger error:', error.message);
 });

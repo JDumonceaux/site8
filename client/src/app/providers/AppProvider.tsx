@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -21,55 +21,53 @@ const isClientError = (
 };
 
 /**
+ * Singleton QueryClient — created outside the component to guarantee a stable
+ * reference across re-renders and React StrictMode double-invocations.
+ */
+const queryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      // Optimistic updates network mode
+      networkMode: 'online',
+      onError: (error) => {
+        logError(error, { context: 'mutation' });
+      },
+      // Retry mutations once on network errors
+      retry: 1,
+    },
+    queries: {
+      // Cache time: how long inactive data stays in cache (10 minutes)
+      gcTime: 10 * 60 * 1000,
+      // Network mode: fail fast on network errors
+      networkMode: 'online',
+      // Don't refetch on reconnect by default
+      refetchOnReconnect: false,
+      // Refetch on window focus for better UX
+      refetchOnWindowFocus: true,
+      // Retry failed requests 3 times with exponential backoff
+      retry: (failureCount, error: unknown) => {
+        // Don't retry on 4xx errors (client errors)
+        if (isClientError(error)) {
+          const { status } = error;
+          if (status >= 400 && status < 500) {
+            return false;
+          }
+        }
+        return failureCount < 3;
+      },
+      // Longer retry delay for better UX
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30_000),
+      // Stale time: how long data stays fresh (5 minutes)
+      staleTime: 5 * 60 * 1000,
+    },
+  },
+});
+
+/**
  * Main application provider that wraps the app with all necessary context providers.
  * Includes error boundaries, loading states, React Query, and Redux setup.
  */
 const AppProvider = ({ children }: AppProviderProps) => {
-  // Create QueryClient with optimized configuration
-  const queryClient = useMemo(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          mutations: {
-            // Optimistic updates network mode
-            networkMode: 'online',
-            onError: (error) => {
-              logError(error, { context: 'mutation' });
-            },
-            // Retry mutations once on network errors
-            retry: 1,
-          },
-          queries: {
-            // Cache time: how long inactive data stays in cache (10 minutes)
-            gcTime: 10 * 60 * 1000,
-            // Network mode: fail fast on network errors
-            networkMode: 'online',
-            // Don't refetch on reconnect by default
-            refetchOnReconnect: false,
-            // Refetch on window focus for better UX
-            refetchOnWindowFocus: true,
-            // Retry failed requests 3 times with exponential backoff
-            retry: (failureCount, error: unknown) => {
-              // Don't retry on 4xx errors (client errors)
-              if (isClientError(error)) {
-                const { status } = error;
-                if (status >= 400 && status < 500) {
-                  return false;
-                }
-              }
-              return failureCount < 3;
-            },
-            // Longer retry delay for better UX
-            retryDelay: (attemptIndex) =>
-              Math.min(1000 * 2 ** attemptIndex, 30_000),
-            // Stale time: how long data stays fresh (5 minutes)
-            staleTime: 5 * 60 * 1000,
-          },
-        },
-      }),
-    [],
-  );
-
   const handleError = useCallback(
     (
       error: unknown,

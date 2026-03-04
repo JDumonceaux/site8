@@ -80,7 +80,7 @@ export const useAsyncOperation = <
         return result;
       } catch (error) {
         const typedError = error as TError;
-        setState({ error: typedError, isLoading: false });
+        setState((prev) => ({ ...prev, error: typedError }));
         options?.onError?.(typedError);
         return undefined;
       } finally {

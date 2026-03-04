@@ -5,17 +5,18 @@ import { readFile } from 'fs/promises';
 import { internalError, ok } from '../../../lib/http/ResponseHelper.js';
 import { testGeminiImage } from '../../../services/ai/geminiTestService.js';
 import { env } from '../../../utils/env.js';
-import {
-  GEMINI_PERMISSION_ERROR_MESSAGE,
-  isGeminiPermissionError,
-} from './utils/geminiErrors.js';
 import { isResponseClosed } from '../../../utils/httpUtils.js';
+import { Logger } from '../../../utils/logger.js';
 import {
   getImageMimeType,
   parseImageSrc,
   resolveSafeImagePath,
 } from '../../images/imageUtils.js';
-import { Logger } from '../../../utils/logger.js';
+
+import {
+  GEMINI_PERMISSION_ERROR_MESSAGE,
+  isGeminiPermissionError,
+} from './utils/geminiErrors.js';
 
 const TEST_IMAGE_SRC = '/public/images/2024/baroque_palace_gallery.jpg';
 

@@ -28,7 +28,7 @@ export const updateItem = async (
   const targetFolder = body.targetFolder?.trim();
   const title = body.title?.trim();
 
-  if (!src || !src.startsWith('/public/images/')) {
+  if (!src?.startsWith('/public/images/')) {
     badRequest(res, 'src is required and must start with /public/images/');
     return;
   }

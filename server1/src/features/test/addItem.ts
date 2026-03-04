@@ -1,7 +1,11 @@
 import type { Test } from '../../types/TestFile.js';
 import type { Request, Response } from 'express';
 
-import { badRequest, ok } from '../../lib/http/ResponseHelper.js';
+import {
+  badRequest,
+  internalError,
+  ok,
+} from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import { getTestService } from '../../utils/ServiceFactory.js';
 
@@ -51,10 +55,6 @@ export const addItem = async (
     Logger.info(`Test:addItem: Successfully added item ${newId}`);
     ok(res, { id: newId }, 'Test: Add Item');
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    Logger.error(`Test:addItem: Failed to process request`, {
-      error: errorMessage,
-    });
-    res.status(500).json({ error: errorMessage });
+    internalError(res, 'Test:addItem', error);
   }
 };

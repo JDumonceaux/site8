@@ -1,6 +1,11 @@
 import type { Request, Response } from 'express';
 
-import { badRequest, notFound, ok } from '../../lib/http/ResponseHelper.js';
+import {
+  badRequest,
+  internalError,
+  notFound,
+  ok,
+} from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import { getTestService } from '../../utils/ServiceFactory.js';
 
@@ -35,10 +40,6 @@ export const getItem = async (req: Request, res: Response): Promise<void> => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     ok(res, item, 'Test: Get Item');
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    Logger.error(`Test:getItem: Failed to process request`, {
-      error: errorMessage,
-    });
-    res.status(500).json({ error: errorMessage });
+    internalError(res, 'Test:getItem', error);
   }
 };

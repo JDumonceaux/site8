@@ -3,6 +3,18 @@ import type { BaseIssue, BaseSchema } from 'valibot';
 
 import { safeParse } from 'valibot';
 
+/** Formats valibot issues into a comma-separated human-readable string. */
+const formatIssues = (issues: BaseIssue<unknown>[]): string =>
+  issues
+    .map((err) => {
+      const path =
+        'path' in err && Array.isArray(err.path)
+          ? err.path.map((p) => p.key).join('.')
+          : '';
+      return `${path}: ${err.message}`;
+    })
+    .join(', ');
+
 /**
  * Result of request validation
  */
@@ -59,18 +71,8 @@ export const validateBody = <T>(
   const validationResult = safeParse(schema, req.body);
 
   if (!validationResult.success) {
-    const errorMessage = validationResult.issues
-      .map((err) => {
-        const path =
-          'path' in err && Array.isArray(err.path)
-            ? err.path.map((p) => p.key).join('.')
-            : '';
-        return `${path}: ${err.message}`;
-      })
-      .join(', ');
-
     return {
-      errorMessage: `Validation error: ${errorMessage}`,
+      errorMessage: `Validation error: ${formatIssues(validationResult.issues)}`,
       isValid: false,
     };
   }
@@ -100,18 +102,8 @@ export const validateBodyWithData = <T>(
   const validationResult = safeParse(schema, requestData);
 
   if (!validationResult.success) {
-    const errorMessage = validationResult.issues
-      .map((err) => {
-        const path =
-          'path' in err && Array.isArray(err.path)
-            ? err.path.map((p) => p.key).join('.')
-            : '';
-        return `${path}: ${err.message}`;
-      })
-      .join(', ');
-
     return {
-      errorMessage: `Validation error: ${errorMessage}`,
+      errorMessage: `Validation error: ${formatIssues(validationResult.issues)}`,
       isValid: false,
     };
   }
@@ -175,7 +167,7 @@ export const validateIdConsistency = (
   }
 
   const numUrl = Number(urlId);
-  const numBody = Number(bodyId as any);
+  const numBody = Number(bodyId);
   if (
     Number.isFinite(numUrl) &&
     Number.isFinite(numBody) &&

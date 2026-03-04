@@ -1,9 +1,5 @@
 import { apiClient } from '@lib/api';
-import {
-  ENDPOINT_TEST_DELETE,
-  ENDPOINT_TEST_UPDATE,
-  ServiceUrl,
-} from '@lib/utils/constants';
+import { ENDPOINT_TEST, ServiceUrl } from '@lib/utils/constants';
 import type { Test } from '@site8/shared';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -72,7 +68,7 @@ const useTestMutations = ({
 
   const { mutate: updateTest } = useMutation({
     mutationFn: async ({ groupId, item }: { groupId: number; item: Test }) => {
-      return apiClient.put(ENDPOINT_TEST_UPDATE(item.id), {
+      return apiClient.put(ENDPOINT_TEST(item.id), {
         groupId,
         item: {
           comments: item.comments,
@@ -96,7 +92,7 @@ const useTestMutations = ({
 
   const { mutate: deleteTest } = useMutation({
     mutationFn: async (itemId: number) => {
-      return apiClient.delete(ENDPOINT_TEST_DELETE(itemId));
+      return apiClient.delete(ENDPOINT_TEST(itemId));
     },
     onError: (error: Error) => {
       if (onDeleteError) {
@@ -121,7 +117,7 @@ const useTestMutations = ({
         return null;
       }
 
-      return apiClient.put(ENDPOINT_TEST_UPDATE(params.itemId), {
+      return apiClient.put(ENDPOINT_TEST(params.itemId), {
         groupId: params.newGroupId,
         item: {},
       });

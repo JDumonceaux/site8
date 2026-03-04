@@ -4,6 +4,18 @@ import { safeParse } from 'valibot';
 
 import { Logger } from '../utils/logger.js';
 
+/** Formats valibot issues into a semicolon-separated string for error messages. */
+const formatIssues = (issues: BaseIssue<unknown>[]): string =>
+  issues
+    .map((err) => {
+      const path =
+        'path' in err && Array.isArray(err.path)
+          ? err.path.map((p) => p.key).join('.')
+          : '';
+      return `${path}: ${err.message}`;
+    })
+    .join('; ');
+
 /**
  * Custom validation error with detailed validation messages
  */
@@ -62,15 +74,7 @@ export class DataValidator<T> {
     const validationResult = safeParse(this.validationSchema, data);
 
     if (!validationResult.success) {
-      const errors = validationResult.issues
-        .map((err) => {
-          const path =
-            'path' in err && Array.isArray(err.path)
-              ? err.path.map((p) => p.key).join('.')
-              : '';
-          return `${path}: ${err.message}`;
-        })
-        .join('; ');
+      const errors = formatIssues(validationResult.issues);
 
       Logger.error(`${this.serviceName}: Data validation failed - ${errors}`);
 

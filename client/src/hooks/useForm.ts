@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type { BaseIssue } from 'valibot';
 
 type FormKeys<T> = keyof T;
-type FieldValue = boolean | null | number | string;
+export type FieldValue = boolean | null | number | string;
 
 /**
  * Return type for useForm hook

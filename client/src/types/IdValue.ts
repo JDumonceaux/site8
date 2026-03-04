@@ -1,8 +1,2 @@
-/**
- * @deprecated Use EntityPair<number> instead
- * Legacy type for backward compatibility
- */
-export type IdValue = {
-  readonly id: number;
-  readonly value: string;
-};
+/** @deprecated Use EntityPair<number> from @site8/shared instead */
+export type { EntityPair as IdValue } from '@site8/shared';

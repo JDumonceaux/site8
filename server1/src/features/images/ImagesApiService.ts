@@ -8,6 +8,7 @@ import { mkdir, readdir, rename } from 'node:fs/promises';
 import path from 'path';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
+import { CURRENT_YEAR } from '../../utils/constants.js';
 
 import {
   isSiteFolder,
@@ -33,7 +34,7 @@ type ImagesJsonEntry = {
   readonly id: number;
 } & Record<string, unknown>;
 
-export class ClientImagesService {
+export class ImagesApiService {
   private readonly fileService: FileService;
   private readonly imagesFileService: ImagesFileService;
   private readonly imagesService: ImagesService;
@@ -66,6 +67,30 @@ export class ClientImagesService {
     );
 
     return true;
+  }
+
+  public async getFolderNames(): Promise<Collection<string>> {
+    const yearDir = path.join(
+      FilePath.getImageDirAbsolute(),
+      String(CURRENT_YEAR),
+    );
+
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path built from validated constant
+    const dirEntries = await readdir(yearDir, { withFileTypes: true });
+    const folderNames = dirEntries
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .toSorted((first, second) => first.localeCompare(second));
+
+    const items = folderNames.map(toCapitalizedFolderName);
+
+    return {
+      items,
+      metadata: {
+        title: `Image Folders ${String(CURRENT_YEAR)}`,
+        totalItems: items.length,
+      },
+    };
   }
 
   public getItems(): ImageFiles {
@@ -118,34 +143,16 @@ export class ClientImagesService {
     };
   }
 
-  public async getYear2025FolderNames(): Promise<Collection<string>> {
-    const year2025Dir = path.join(FilePath.getImageDirAbsolute(), '2025');
-
-    // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path built from validated constant
-    const dirEntries = await readdir(year2025Dir, { withFileTypes: true });
-    const folderNames = dirEntries
-      .filter((entry) => entry.isDirectory())
-      .map((entry) => entry.name)
-      .toSorted((first, second) => first.localeCompare(second));
-
-    const items = folderNames.map(toCapitalizedFolderName);
-
-    return {
-      items,
-      metadata: {
-        title: 'Image Folders 2025',
-        totalItems: items.length,
-      },
-    };
-  }
-
-  public async moveImagesTo2025Folder(
+  public async moveImagesToFolder(
     imageSrcs: readonly string[],
     targetFolderLabel: string,
   ): Promise<number> {
-    const year2025Dir = path.join(FilePath.getImageDirAbsolute(), '2025');
+    const yearDir = path.join(
+      FilePath.getImageDirAbsolute(),
+      String(CURRENT_YEAR),
+    );
     const targetFolderName =
-      await this.resolve2025FolderNameByLabel(targetFolderLabel);
+      await this.resolveFolderNameByLabel(targetFolderLabel);
 
     if (!targetFolderName) {
       throw new Error(
@@ -153,7 +160,7 @@ export class ClientImagesService {
       );
     }
 
-    const destinationFolderAbsolute = path.join(year2025Dir, targetFolderName);
+    const destinationFolderAbsolute = path.join(yearDir, targetFolderName);
     // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path built from validated constant
     await mkdir(destinationFolderAbsolute, { recursive: true });
 
@@ -247,12 +254,15 @@ export class ClientImagesService {
     );
   }
 
-  private async resolve2025FolderNameByLabel(
+  private async resolveFolderNameByLabel(
     folderLabel: string,
   ): Promise<string | undefined> {
-    const year2025Dir = path.join(FilePath.getImageDirAbsolute(), '2025');
+    const yearDir = path.join(
+      FilePath.getImageDirAbsolute(),
+      String(CURRENT_YEAR),
+    );
     // eslint-disable-next-line security/detect-non-literal-fs-filename -- Path built from validated constant
-    const dirEntries = await readdir(year2025Dir, { withFileTypes: true });
+    const dirEntries = await readdir(yearDir, { withFileTypes: true });
 
     return dirEntries
       .filter((entry) => entry.isDirectory())

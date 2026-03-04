@@ -4,8 +4,10 @@
  */
 
 export type { Collection } from "./Collection.js";
+export type { EntityPair, IndexedPair } from "./Common.js";
 export type { ImageFile, ImageFiles } from "./ImageFiles.js";
 export type { Image, Images } from "./Images.js";
+export type { ImageItem } from "./ImageItem.js";
 export type { Metadata } from "./Metadata.js";
 export type { MenuItem, Menus } from "./Menus.js";
 export type { Page, Parent } from "./Pages.js";

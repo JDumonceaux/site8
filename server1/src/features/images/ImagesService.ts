@@ -1,12 +1,10 @@
 import type { Image, Images } from '@site8/shared';
 
+import { cleanUpData, getNextId as getNextIdUtil } from '@site8/shared';
+
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
-import {
-  cleanUpData,
-  getNextId as getNextIdUtil,
-} from '../../utils/objectUtil.js';
 import { getImagesFileService } from '../../utils/ServiceFactory.js';
 
 import { getNewIds } from './imagesUtil.js';

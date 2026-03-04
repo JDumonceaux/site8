@@ -1,7 +1,11 @@
 import type { Test } from '@site8/shared';
 import type { Request, Response } from 'express';
 
-import { badRequest, ok } from '../../lib/http/ResponseHelper.js';
+import {
+  badRequest,
+  internalError,
+  ok,
+} from '../../lib/http/ResponseHelper.js';
 import { Logger } from '../../utils/logger.js';
 import { getTestService } from '../../utils/ServiceFactory.js';
 
@@ -55,10 +59,6 @@ export const updateItem = async (
       badRequest(res, 'Failed to update item');
     }
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    Logger.error(`Test:updateItem: Failed to process request`, {
-      error: errorMessage,
-    });
-    res.status(500).json({ error: errorMessage });
+    internalError(res, 'Test:updateItem', error);
   }
 };

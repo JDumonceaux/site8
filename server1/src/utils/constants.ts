@@ -15,6 +15,8 @@ export { PreferHeader as PREFER_HEADER } from '@site8/shared';
 /* -------------------------------------------------------------------------- */
 export const FOLDERS_TO_IGNORE = ['content', 'site'] as const;
 
+export const CURRENT_YEAR = 2025;
+
 /* -------------------------------------------------------------------------- */
 /*                              Server Configuration                          */
 /* -------------------------------------------------------------------------- */
