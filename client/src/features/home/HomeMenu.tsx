@@ -43,7 +43,7 @@ HomeMenu.displayName = 'HomeMenu';
 export default HomeMenu;
 
 const StyledNav = styled.nav`
-  color: var(--palette-text-dark);
+  color: var(--palette-dark-text);
 `;
 const StyledRootDiv = styled.div`
   font-weight: var(--font-weight-bold);

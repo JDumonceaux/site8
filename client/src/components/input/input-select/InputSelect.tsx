@@ -22,28 +22,52 @@ type InputSelectProps = {
 
 const InputSelect = ({
   dataList,
+  endAdornment,
+  endAdornmentProps,
+  errors,
+  footerEndAdornment,
   id,
   isRequired,
   isShowBlankOption = false,
+  isShowCounter,
+  label,
+  labelProps,
+  maxLength,
+  messages,
   placeholder,
   ref,
-  ...rest
+  startAdornment,
+  startAdornmentProps,
+  ...selectProps // only genuine SelectHTMLAttributes remain
 }: InputSelectProps): JSX.Element | null => {
   const currentId = useGetId(id);
   const tempRef = useRef<HTMLSelectElement>(null);
   const selectRef = ref ?? tempRef;
-  // commonProps includes wrapper props (errors, labelProps, etc.) plus select attrs
-  const commonProps = {
-    ...rest,
-    id: currentId,
+
+  const fieldWrapperProps: FieldWrapperProps = {
+    ...(endAdornment !== undefined && { endAdornment }),
+    ...(endAdornmentProps !== undefined && { endAdornmentProps }),
+    ...(errors !== undefined && { errors }),
+    ...(footerEndAdornment !== undefined && { footerEndAdornment }),
+    ...(isShowCounter !== undefined && { isShowCounter }),
+    ...(label !== undefined && { label }),
+    labelProps: {
+      ...labelProps,
+      htmlFor: currentId,
+    },
+    ...(maxLength !== undefined && { maxLength }),
+    ...(messages !== undefined && { messages }),
+    ...(startAdornment !== undefined && { startAdornment }),
+    ...(startAdornmentProps !== undefined && { startAdornmentProps }),
     ...(isRequired !== undefined && { isRequired }),
   };
 
   return (
-    <FieldWrapper {...commonProps}>
+    <FieldWrapper {...fieldWrapperProps}>
       <SelectContainer>
         <StyledSelect
-          {...commonProps}
+          {...selectProps}
+          id={currentId}
           ref={selectRef}
         >
           {isShowBlankOption ? <option value="">Current folder</option> : null}

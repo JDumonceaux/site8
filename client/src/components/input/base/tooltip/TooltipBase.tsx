@@ -42,6 +42,7 @@ const TooltipBase = ({
         delayDuration={delayDuration}
       >
         <StyledTrigger
+          asChild
           {...(triggerColor !== undefined && { $color: triggerColor })}
           tabIndex={-1}
           {...triggerProps}

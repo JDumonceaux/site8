@@ -2018,9 +2018,9 @@
     {
       "id": 391,
       "fileName": "letrainbleu_interior2.jpg",
-      "folder": "2025\\travel",
-      "title": "Le Train Bleu - Ceiling",
-      "description": "Ornate gilded ceiling with painted frescoes depicting cherubs and celestial scenes in elaborate gold frames"
+      "folder": "2025/travel",
+      "title": "The Joys of Life Ceiling Painting, Opéra Garnier",
+      "description": "This image shows 'The Joys of Life' (Le Bonheur de vivre), a vibrant circular ceiling painting by Alfred Stevens located in the Grand Foyer of the Opéra Garnier in Paris. It depicts a festive outdoor scene with elegantly dressed figures, including a woman on a swing, set against a bright blue sky. The artwork is framed by an elaborate gilded stucco design, reflecting the opulent style of the opera house."
     },
     {
       "id": 392,
@@ -2246,6 +2246,83 @@
       "src": "/images/2024/baroque_palace_gallery.jpg",
       "description": "This image depicts the opulent Hall of Mirrors (Galleria degli Specchi) within the Doria Pamphilj Gallery in Rome, Italy. The grand Baroque hall features magnificent ceiling frescoes, extensive gold stucco decorations, crystal chandeliers, and a distinguished collection of classical sculptures and busts lining its length. It showcases the lavish artistry and architecture of a historic Roman aristocratic palace.",
       "title": "Doria Pamphilj Gallery, Hall of Mirrors"
+    },
+    {
+      "fileName": "bluetrain.jpg",
+      "folder": "2024",
+      "id": 424,
+      "description": "This image showcases the opulent Belle Époque interior of Le Train Bleu restaurant, located within the Gare de Lyon in Paris. The grand dining hall features intricately gilded walls, ornate stucco work, and a stunning series of allegorical frescoes adorning its high ceilings. Chandeliers illuminate the elegantly set tables, reflecting the restaurant's historical luxury and timeless appeal.",
+      "title": "Le Train Bleu Restaurant, Paris"
+    },
+    {
+      "fileName": "andrea-graham-443821-breathing-spaces.webp",
+      "folder": "2024",
+      "id": 425,
+      "title": "andrea graham 443821 breathing spaces",
+      "description": "Test"
+    },
+    {
+      "fileName": "IMG_6577.JPG",
+      "folder": "sort",
+      "id": 426,
+      "description": "This iconic image captures the dramatic final scene from the 1991 film \"Thelma & Louise.\" A white 1966 Ford Thunderbird convertible is seen suspended in mid-air as it drives off a cliff into a vast desert canyon. This powerful moment symbolizes the characters' ultimate act of freedom and defiance.",
+      "title": "Thelma & Louise Cliff Jump"
+    },
+    {
+      "fileName": "IMG_6963.JPG",
+      "folder": "sort",
+      "id": 427,
+      "description": "This grand hall is the Royal Library of the Monastery of San Lorenzo de El Escorial in Spain. It features a stunning vaulted ceiling adorned with vibrant frescoes by Pellegrino Tibaldi, depicting the liberal arts and sciences. The library houses an invaluable collection of ancient manuscripts and books within its ornate wooden shelves.",
+      "title": "Royal Library of El Escorial"
+    },
+    {
+      "fileName": "IMG_7011.JPG",
+      "folder": "sort",
+      "id": 428,
+      "description": "This exquisite marble bust, carved by Gian Lorenzo Bernini, depicts Costanza Bonarelli, the wife of one of his assistants and his lover. It is renowned for its remarkable realism and the intricate detail of the lace collar, hair, and clothing, showcasing Bernini's unparalleled mastery of marble. The sculpture captures a moment of emotional intensity and vitality.",
+      "title": "Bust of Costanza Bonarelli"
+    },
+    {
+      "fileName": "IMG_7040.JPG",
+      "folder": "sort",
+      "id": 429,
+      "description": "This image features a solitary black house with a vibrant yellow door and window, situated on a golden grassy field by a serene body of water. The minimalist dwelling stands out against the muted grey sky and distant hills, with dark rocks framing the foreground. The scene evokes a sense of stark beauty and isolation.",
+      "title": "Dramatic Coastal House"
+    },
+    {
+      "fileName": "IMG_7047.JPG",
+      "folder": "sort",
+      "id": 430,
+      "description": "Michelangelo's Pietà is a masterpiece of Renaissance sculpture, depicting the Virgin Mary cradling the dead body of Jesus Christ after his crucifixion. Carved from a single block of Carrara marble, it is renowned for its profound emotional depth and exquisite naturalism. This iconic artwork is located in St. Peter's Basilica, Vatican City.",
+      "title": "Pietà by Michelangelo"
+    },
+    {
+      "fileName": "IMG_7042.JPG",
+      "folder": "sort",
+      "id": 431,
+      "description": "This Neoclassical marble sculpture by Antonio Canova (c. 1798), also known as Pietà Canova, depicts the Lamentation over the Dead Christ. It portrays the Virgin Mary cradling the body of her deceased son, Jesus, with Mary Magdalene mourning over his arm. The Virgin Mary's upward gaze conveys profound spiritual anguish.",
+      "title": "The Deposition (Pietà Canova)"
+    },
+    {
+      "fileName": "IMG_7173.JPG",
+      "folder": "sort",
+      "id": 432,
+      "description": "This image shows the opulent Alexander's Hall (Salone di Alessandro) within the Royal Palace of Caserta in Italy. The grand Baroque interior features richly gilded stucco decorations, large fresco paintings depicting classical scenes, and numerous dazzling crystal chandeliers. Sunlight streams through the tall windows, highlighting the distinctive checkered marble floor.",
+      "title": "Royal Palace of Caserta, Alexander's Hall"
+    },
+    {
+      "fileName": "IMG_7142.JPG",
+      "folder": "sort",
+      "id": 433,
+      "description": "This is the 'Gallos' statue, a bronze sculpture depicting a regal, cloaked figure believed to be King Arthur. It stands majestically on the cliffs overlooking the sea at Tintagel Castle in Cornwall, UK. The artwork evokes the legend and mystery associated with the historic site.",
+      "title": "Gallos Statue at Tintagel Castle"
+    },
+    {
+      "fileName": "IMG_7234.JPG",
+      "folder": "sort",
+      "id": 434,
+      "description": "This is Vincent van Gogh's iconic oil painting, 'Bedroom in Arles,' depicting his sleeping quarters in the Yellow House in Arles, France. The piece is notable for its vibrant, contrasting colors, thick brushstrokes, and distorted perspective, creating a sense of tranquility and simplicity.",
+      "title": "Bedroom in Arles"
     }
   ],
   "metadata": {

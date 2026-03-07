@@ -56,12 +56,24 @@ export class ImagesService extends BaseDataService<Images> {
 
   public override async getItems(): Promise<Images> {
     const data = await this.readFile();
+
+    // Build a fileName → folder map from the actual filesystem so that
+    // folder and src always reflect disk reality, not stale images.json values.
+    const fsItems = getImagesFileService().getItemsFromBaseDirectory() ?? [];
+    const folderByFileName = new Map(
+      fsItems.map((f) => [f.fileName, f.folder]),
+    );
+
     return {
       ...data,
-      items: (data.items ?? []).map((item) => ({
-        ...item,
-        src: this.toSrc(item.folder, item.fileName),
-      })),
+      items: (data.items ?? []).map((item) => {
+        const resolvedFolder = folderByFileName.get(item.fileName) ?? '';
+        return {
+          ...item,
+          folder: resolvedFolder,
+          src: this.toSrc(resolvedFolder, item.fileName),
+        };
+      }),
     };
   }
 
@@ -182,9 +194,7 @@ export class ImagesService extends BaseDataService<Images> {
   }
 
   private toSrc(folder: string, fileName: string): string {
-    return folder
-      ? `/public/images/${folder}/${fileName}`
-      : `/public/images/${fileName}`;
+    return folder ? `/images/${folder}/${fileName}` : `/images/${fileName}`;
   }
 
   /**

@@ -1,3 +1,5 @@
+import { IMAGE_BASE } from '@lib/utils/constants';
+
 export type FormValidationResult = {
   readonly fileNameMessages?: {
     readonly warning?: string;
@@ -40,11 +42,11 @@ export const toSuggestedFileName = (
 };
 
 export const getFolderLabelFromSource = (source: string): string => {
-  if (!source.startsWith('/images/')) {
+  if (!source.startsWith(IMAGE_BASE)) {
     return 'Root';
   }
 
-  const relativePath = source.replace(/^\/images\//, '');
+  const relativePath = source.slice(IMAGE_BASE.length + 1);
   const segments = relativePath.split('/').filter(Boolean);
   if (segments.length <= 1) {
     return 'Root';

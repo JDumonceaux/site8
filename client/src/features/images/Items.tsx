@@ -119,7 +119,7 @@ const FolderSection = styled.section`
   gap: 0.75rem;
 `;
 
-const FolderHeading = styled.h2`
+const FolderHeading = styled.div`
   color: var(--text-primary-color);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
@@ -168,7 +168,7 @@ const ImageElement = styled.img`
   width: 100%;
 `;
 
-const CardTitle = styled.h3`
+const CardTitle = styled.div`
   color: var(--text-primary-color);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);

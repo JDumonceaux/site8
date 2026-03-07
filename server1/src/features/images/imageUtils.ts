@@ -2,7 +2,7 @@ import path from 'path';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 
-export const IMAGE_SRC_ROOT = '/public/images';
+export const IMAGE_SRC_ROOT = '/images';
 
 export const normalizeFolder = (folder: string): string =>
   folder.replace(/\\/g, '/').replace(/^\.?\//, '');

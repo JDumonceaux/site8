@@ -37,16 +37,26 @@ const InputBase = ({
   allowedCharacters,
   dataList,
   defaultValue = '',
+  // FieldWrapperProps — consumed by FieldWrapper, must NOT be spread onto <input>
+  endAdornment,
+  endAdornmentProps,
   errors,
+  footerEndAdornment,
   id,
   inputRef,
   isPathStyle = false,
   isRequired,
+  isShowCounter,
+  label,
   labelProps,
+  maxLength,
+  messages,
   onChange,
+  startAdornment,
+  startAdornmentProps,
   type,
   value,
-  ...footerProps
+  ...inputProps // only genuine HTML input attributes remain
 }: InputBaseProps): JSX.Element => {
   const generatedId = useGetId(id);
   const [fieldLength, setFieldLength] = useState<number>(
@@ -72,15 +82,36 @@ const InputBase = ({
 
   const fieldWrapperProps: FieldWrapperProps = useMemo(
     () => ({
-      ...footerProps,
+      ...(endAdornment !== undefined && { endAdornment }),
+      ...(endAdornmentProps !== undefined && { endAdornmentProps }),
       ...(errors !== undefined && { errors }),
+      ...(footerEndAdornment !== undefined && { footerEndAdornment }),
+      ...(isShowCounter !== undefined && { isShowCounter }),
+      ...(label !== undefined && { label }),
+      ...(maxLength !== undefined && { maxLength }),
+      ...(messages !== undefined && { messages }),
+      ...(startAdornment !== undefined && { startAdornment }),
+      ...(startAdornmentProps !== undefined && { startAdornmentProps }),
       labelProps: {
         ...labelProps,
         htmlFor: generatedId,
         id: `${generatedId}-label`,
       },
     }),
-    [errors, footerProps, generatedId, labelProps],
+    [
+      endAdornment,
+      endAdornmentProps,
+      errors,
+      footerEndAdornment,
+      generatedId,
+      isShowCounter,
+      label,
+      labelProps,
+      maxLength,
+      messages,
+      startAdornment,
+      startAdornmentProps,
+    ],
   );
 
   return (
@@ -94,7 +125,7 @@ const InputBase = ({
         autoComplete="off"
         {...(value === undefined ? { defaultValue } : { value })}
         {...(dataList ? { list: dataList.id } : {})}
-        {...footerProps}
+        {...inputProps}
         id={generatedId}
         onChange={handleChange}
         ref={refToUse}

@@ -1,4 +1,4 @@
-import { type JSX, useId } from 'react';
+import { type JSX } from 'react';
 
 import * as RadixDialog from '@radix-ui/react-dialog';
 import type { Size, Variant } from './dialog-variants';
@@ -11,6 +11,8 @@ export type DialogProps = {
   closeButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /** Props forwarded to the dialog container */
   contentProps?: React.HTMLAttributes<HTMLDivElement>;
+  /** Accessible description (visually hidden if omitted) */
+  description?: string;
   /** Optional footer area */
   footer?: React.ReactNode;
   /** Controls whether the dialog is open */
@@ -60,6 +62,7 @@ const Dialog = ({
   children,
   closeButtonProps,
   contentProps,
+  description,
   footer,
   isOpen,
   label,
@@ -67,8 +70,6 @@ const Dialog = ({
   size = 'md',
   variant = 'default',
 }: DialogProps): JSX.Element => {
-  const titleId = useId();
-
   return (
     <RadixDialog.Root
       onOpenChange={onOpenChange}
@@ -77,7 +78,6 @@ const Dialog = ({
       <RadixDialog.Portal>
         <Overlay />
         <Content
-          aria-labelledby={titleId}
           aria-modal="true"
           data-size={size}
           data-variant={variant}
@@ -85,8 +85,9 @@ const Dialog = ({
         >
           <Header>
             {getIcon(variant)}
-            <Title id={titleId}>{label}</Title>
+            <Title>{label}</Title>
           </Header>
+          <Description>{description ?? ''}</Description>
           <Body>{children}</Body>
           {footer ? <Footer>{footer}</Footer> : null}
           <RadixDialog.Close asChild>
@@ -143,10 +144,23 @@ const Header = styled.div`
   gap: 0.5rem;
 `;
 
-const Title = styled.h2`
+const Title = styled(RadixDialog.Title)`
   margin: 0;
   font-size: 1.25rem;
   font-weight: bold;
+`;
+
+const Description = styled(RadixDialog.Description)`
+  position: absolute;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  overflow-wrap: normal;
 `;
 
 const Body = styled.div`

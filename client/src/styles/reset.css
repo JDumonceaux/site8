@@ -23,8 +23,8 @@ html {
 
 /* Base body styles */
 body {
-  line-height: 1;
-  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
 }
 
 /* Make media elements block-level and responsive */
@@ -46,7 +46,6 @@ table {
   border-spacing: 0;
 }
 
-
 /* Reset heading styles to inherit typography */
 h1,
 h2,
@@ -66,8 +65,8 @@ h6 {
 
 /* Reset textarea default styling */
 textarea {
-  vertical-align: top; /* Ensures labels align correctly */
-  overflow: auto;      /* Turns off scroll bars in IE unless needed */
+  vertical-align: top;
+  overflow: auto;
 }
 
 /* ----------------------------------------------------------------------------

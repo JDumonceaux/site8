@@ -11,10 +11,8 @@
   color-scheme: light dark;
 
   /* Rendering and Font Smoothing */
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 
   /* Core Colors */
   --color-error: #ff0000;
@@ -155,6 +153,14 @@
   --focus-outline-color: light-dark(var(--palette-black), var(--palette-white));
   --focus-outline-width: 2px;
   --focus-outline-offset: 2px;
+
+  /* Aliases — bridge names used in components to canonical tokens */
+  --focus-ring-color: var(--focus-outline-color);
+  --background-color: var(--page-background-color);
+  --background-secondary: var(--surface-background-color);
+  --surface-hover-color: var(--hover-background);
+  --primary-color: var(--palette-main-color);
+  --status-info-light: color-mix(in srgb, var(--status-info) 15%, transparent);
 }
 
 /* ----------------------------------------------------------------------------

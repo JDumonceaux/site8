@@ -2,7 +2,7 @@ import { apiClient, ApiError } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-type RenameImageParams = {
+type UpdateImageParams = {
   readonly description?: string;
   readonly src: string;
   readonly targetFileName: string;
@@ -10,15 +10,15 @@ type RenameImageParams = {
   readonly title: string;
 };
 
-type RenameImageResponse = {
+type UpdateImageResponse = {
   readonly id: number;
   readonly ok: boolean;
   readonly src: string;
 };
 
-export type UseRenameImageResult = {
+export type UseUpdateImageResult = {
   readonly isPending: boolean;
-  readonly renameImage: (params: RenameImageParams) => void;
+  readonly updateImage: (params: UpdateImageParams) => void;
 };
 
 const getErrorMessage = (error: unknown): string => {
@@ -41,23 +41,26 @@ const getErrorMessage = (error: unknown): string => {
   return String(error);
 };
 
-const useRenameImage = (
-  onSuccess?: (response: RenameImageResponse) => void,
+const useUpdateImage = (
+  onSuccess?: (response: UpdateImageResponse) => void,
   onError?: (error: Error) => void,
-): UseRenameImageResult => {
+): UseUpdateImageResult => {
   const queryClient = useQueryClient();
 
-  const { isPending, mutate: renameImage } = useMutation({
+  const { isPending, mutate: updateImage } = useMutation({
     mutationFn: async (
-      params: RenameImageParams,
-    ): Promise<RenameImageResponse> => {
-      return apiClient.put<RenameImageResponse>(ServiceUrl.ENDPOINT_IMAGES, {
-        description: params.description,
-        src: params.src,
-        targetFileName: params.targetFileName,
-        title: params.title,
-        ...(params.targetFolder ? { targetFolder: params.targetFolder } : {}),
-      });
+      params: UpdateImageParams,
+    ): Promise<UpdateImageResponse> => {
+      return apiClient.put<UpdateImageResponse>(
+        ServiceUrl.ENDPOINT_IMAGE_UPDATE,
+        {
+          description: params.description,
+          src: params.src,
+          targetFileName: params.targetFileName,
+          title: params.title,
+          ...(params.targetFolder ? { targetFolder: params.targetFolder } : {}),
+        },
+      );
     },
     onError: (error) => {
       onError?.(new Error(getErrorMessage(error)));
@@ -75,8 +78,8 @@ const useRenameImage = (
 
   return {
     isPending,
-    renameImage,
+    updateImage,
   };
 };
 
-export default useRenameImage;
+export default useUpdateImage;

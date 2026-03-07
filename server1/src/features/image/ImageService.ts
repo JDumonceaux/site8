@@ -37,13 +37,10 @@ type ImagesJsonEntry = {
 const parseImageSrc = (
   src: string,
 ): { readonly fileName: string; readonly folder: string } | null => {
-  if (!src.startsWith('/public/images/')) {
+  if (!src.startsWith('/images/')) {
     return null;
   }
-  const segments = src
-    .replace(/^\/public\/images\//, '')
-    .split('/')
-    .filter(Boolean);
+  const segments = src.slice('/images/'.length).split('/').filter(Boolean);
   const fileName = segments.at(-1);
   if (!fileName) {
     return null;

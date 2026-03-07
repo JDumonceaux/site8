@@ -144,8 +144,10 @@ export class ImagesFileService {
         };
       });
 
-      // Filter out 'site' folder
-      const filteredImages = ret.filter((x) => x.folder !== 'site');
+      // Filter out 'site' folder and placeholder files
+      const filteredImages = ret.filter(
+        (x) => x.folder !== 'site' && x.fileName !== '.gitkeep',
+      );
 
       return filteredImages;
     } catch (error) {

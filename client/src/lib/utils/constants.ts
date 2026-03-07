@@ -55,7 +55,9 @@ export const IMAGE_BASE = '/images';
 /* -------------------------------------------------------------------------- */
 export const ServiceUrl = {
   ENDPOINT_GENERIC: `${API_ROOT}/generic`,
-  ENDPOINT_IMAGE_IDENTIFY: `${API_ROOT}/images/identify`,
+  ENDPOINT_IMAGE_DELETE: `${API_ROOT}/image/item`,
+  ENDPOINT_IMAGE_IDENTIFY: `${API_ROOT}/image/identify`,
+  ENDPOINT_IMAGE_UPDATE: `${API_ROOT}/image/update`,
   ENDPOINT_IMAGES: `${API_ROOT}/images`,
   ENDPOINT_IMAGES_2025_FOLDERS: `${API_ROOT}/images/2025/folders`,
   ENDPOINT_IMAGES_MATCHED: `${API_ROOT}/images/matched`,

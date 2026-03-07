@@ -42,6 +42,7 @@ type ImageEditDialogProps = {
     description: string,
     title: string,
   ) => void;
+  readonly saveError?: string;
 };
 
 const DELETE_CONFIRM_FIELD = 'confirmDelete';
@@ -67,6 +68,7 @@ const ImageEditDialog = ({
   onClose,
   onDelete,
   onSave,
+  saveError,
 }: ImageEditDialogProps): JSX.Element => {
   const currentFolder = image?.currentFolder ?? 'Root';
 
@@ -135,6 +137,7 @@ const ImageEditDialog = ({
         <FooterSection>
           <FooterMessageArea aria-live="polite">
             {validation.hasValidationErrors ? 'Please correct errors' : null}
+            {!validation.hasValidationErrors && saveError ? saveError : null}
           </FooterMessageArea>
           {showIdentifyStatus ? (
             <IdentifyStatusSection

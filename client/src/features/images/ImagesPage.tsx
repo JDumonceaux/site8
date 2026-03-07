@@ -9,6 +9,7 @@ import PageTitle from '@components/page/PageTitle';
 import Switch from '@components/switch/Switch';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
+import type { ImageFile } from '@site8/shared';
 import type { ImageItem } from '@types';
 import ImageEditDialog from './edit/dialog/ImageEditDialog';
 import Items from './Items';
@@ -16,15 +17,24 @@ import useDeleteImage from './useDeleteImage';
 import useImageFolders from './useImageFolders';
 import useImages from './useImages';
 import useMoveImages from './useMoveImages';
-import useRenameImage from './useRenameImage';
+import useUpdateImage from './useUpdateImage';
 import styled from 'styled-components';
+
+const toImageItem = (item: ImageFile, index: number): ImageItem => ({
+  currentFolder: item.folder,
+  ...(item.description ? { description: item.description } : {}),
+  seq: item.seq ?? index,
+  src: item.src ?? '',
+  title: item.title ?? item.fileName,
+});
 
 const EMPTY_FOLDERS: readonly string[] = [];
 
 const ImagesPage = (): JSX.Element => {
-  const [unmatchedOnly, setUnmatchedOnly] = useState(false);
+  const [unmatchedOnly, setUnmatchedOnly] = useState(true);
   const [editingImage, setEditingImage] = useState<ImageItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [saveError, setSaveError] = useState<string>('');
   const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
     new Set(),
   );
@@ -63,16 +73,18 @@ const ImagesPage = (): JSX.Element => {
   const handleCloseDialog = (): void => {
     setIsDialogOpen(false);
     setEditingImage(null);
+    setSaveError('');
   };
 
-  const { isPending: isRenamePending, renameImage } = useRenameImage(
+  const { isPending: isUpdatePending, updateImage } = useUpdateImage(
     () => {
       setMessage('Image updated');
+      setSaveError('');
       setSelectedImageIds(new Set());
       handleCloseDialog();
     },
     (renameError) => {
-      setErrorMessage(renameError.message);
+      setSaveError(renameError.message);
     },
   );
 
@@ -84,11 +96,12 @@ const ImagesPage = (): JSX.Element => {
   }
 
   const title = unmatchedOnly ? 'Unmatched Images' : 'Images';
-  const count = data?.items?.length ?? 0;
+  const imageItems: readonly ImageItem[] = (data?.items ?? []).map(toImageItem);
+  const count = imageItems.length;
   const selectedCount = selectedImageIds.size;
   const availableFolders = foldersData?.items ?? EMPTY_FOLDERS;
 
-  const selectedImageSrcs = (data?.items ?? [])
+  const selectedImageSrcs = imageItems
     .filter((item) => selectedImageIds.has(item.seq))
     .map((item) => item.src);
 
@@ -154,7 +167,7 @@ const ImagesPage = (): JSX.Element => {
     description: string,
     imageTitle: string,
   ): void => {
-    renameImage({
+    updateImage({
       description,
       src: image.src,
       targetFileName,
@@ -177,12 +190,14 @@ const ImagesPage = (): JSX.Element => {
       <Layout.TwoColumn>
         <Layout.Menu>
           <StickyMenuWrapper>
-            <MenuPanel>
+            <MenuPanel aria-label="Image folders">
               <Switch
-                checked={unmatchedOnly}
+                checked={!unmatchedOnly}
                 id="unmatchedOnly"
-                label="Show unmatched only"
-                onCheckedChange={setUnmatchedOnly}
+                label="Show matched"
+                onCheckedChange={(v) => {
+                  setUnmatchedOnly(!v);
+                }}
               />
               <Count>{count} items</Count>
               <Count>{selectedCount} selected</Count>
@@ -228,11 +243,11 @@ const ImagesPage = (): JSX.Element => {
                   isLoading ||
                   isMovePending ||
                   isDeletePending ||
-                  isRenamePending
+                  isUpdatePending
                 }
               >
                 <Items
-                  items={data?.items}
+                  items={imageItems}
                   onCardDragStart={handleCardDragStart}
                   onCardEdit={handleOpenEdit}
                   onCardSelect={handleCardSelect}
@@ -248,11 +263,12 @@ const ImagesPage = (): JSX.Element => {
         image={editingImage}
         isDeleting={isDeletePending}
         isOpen={isDialogOpen}
-        isSaving={isRenamePending}
+        isSaving={isUpdatePending}
         key={editingImage?.src ?? ''}
         onClose={handleCloseDialog}
         onDelete={handleDeleteImage}
         onSave={handleSaveImage}
+        saveError={saveError}
       />
     </>
   );
@@ -260,7 +276,7 @@ const ImagesPage = (): JSX.Element => {
 
 export default ImagesPage;
 
-const MenuPanel = styled.div`
+const MenuPanel = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -275,7 +291,7 @@ const FolderSection = styled.div`
   margin-top: 1rem;
 `;
 
-const FolderTitle = styled.h3`
+const FolderTitle = styled.div`
   color: var(--text-primary-color);
   font-size: var(--font-size-base);
   margin: 0 0 0.5rem;

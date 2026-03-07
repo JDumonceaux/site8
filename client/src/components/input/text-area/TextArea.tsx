@@ -36,33 +36,58 @@ type TextAreaProps = TextAreaRootProps & TextAreaAddProps & FieldWrapperProps;
  * A textarea with integrated label, error display, and adornments.
  */
 export const TextArea = ({
+  endAdornment,
+  endAdornmentProps,
+  errors,
+  footerEndAdornment,
   id,
+  isRequired,
+  isShowCounter,
+  label,
+  labelProps,
+  maxLength,
+  messages,
   onChange,
   ref,
   required,
   rows,
-  ...rest
+  startAdornment,
+  startAdornmentProps,
+  ...textareaProps // only genuine TextareaHTMLAttributes remain
 }: TextAreaProps): JSX.Element | null => {
   const currentId = useGetId(id);
   const tempRef = useRef<HTMLTextAreaElement>(null);
   const localRef = ref ?? tempRef;
 
-  // Separate out wrapper vs. textarea props
-  const textAreaProps = { ...rest };
-  delete textAreaProps.labelProps;
+  const fieldWrapperProps: FieldWrapperProps = {
+    ...(endAdornment !== undefined && { endAdornment }),
+    ...(endAdornmentProps !== undefined && { endAdornmentProps }),
+    ...(errors !== undefined && { errors }),
+    ...(footerEndAdornment !== undefined && { footerEndAdornment }),
+    ...(isShowCounter !== undefined && { isShowCounter }),
+    ...(label !== undefined && { label }),
+    ...(labelProps !== undefined && {
+      labelProps: { ...labelProps, htmlFor: currentId },
+    }),
+    ...(!labelProps && { labelProps: { htmlFor: currentId } }),
+    ...(maxLength !== undefined && { maxLength }),
+    ...(messages !== undefined && { messages }),
+    ...(startAdornment !== undefined && { startAdornment }),
+    ...(startAdornmentProps !== undefined && { startAdornmentProps }),
+    ...(isRequired !== undefined
+      ? { isRequired }
+      : required !== undefined && { isRequired: required }),
+  };
 
   return (
-    <FieldWrapper
-      {...(required !== undefined && { isRequired: required })}
-      {...(rest as FieldWrapperProps)}
-    >
+    <FieldWrapper {...fieldWrapperProps}>
       <StyledTextArea
         id={currentId}
         name={currentId}
         onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
         ref={localRef}
         rows={rows}
-        {...(textAreaProps as TextAreaRootProps)}
+        {...textareaProps}
       />
     </FieldWrapper>
   );

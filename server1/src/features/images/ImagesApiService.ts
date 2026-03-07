@@ -134,11 +134,13 @@ export class ImagesApiService {
       };
     });
 
+    const unmatchedItems = items.filter((item) => item.id === 0);
+
     return {
-      items,
+      items: unmatchedItems,
       metadata: {
-        title: 'Matched Images',
-        totalItems: items.length,
+        title: 'Unmatched Images',
+        totalItems: unmatchedItems.length,
       },
     };
   }
