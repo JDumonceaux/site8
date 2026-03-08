@@ -14,11 +14,11 @@ const useImageFolders = (): UseImageFoldersResult => {
   const query: UseQueryResult<Collection<string>, unknown> = useQuery({
     queryFn: async ({ signal }): Promise<Collection<string>> => {
       return apiClient.get<Collection<string>>(
-        ServiceUrl.ENDPOINT_IMAGES_2025_FOLDERS,
+        ServiceUrl.ENDPOINT_IMAGES_FOLDERS,
         { signal },
       );
     },
-    queryKey: ['images', 'folders-2025'],
+    queryKey: ['images', 'folders'],
   });
 
   return {

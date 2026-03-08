@@ -78,6 +78,7 @@ const Items = memo(
                     loading="lazy"
                     src={item.src}
                   />
+                  {item.isMatched && <MatchIndicator />}
                   <CardFooter>
                     <CardTitle>{item.title}</CardTitle>
                     <CardActions>
@@ -174,4 +175,12 @@ const CardTitle = styled.div`
   font-weight: var(--font-weight-semibold);
   margin: 0;
   min-width: 0;
+`;
+
+const MatchIndicator = styled.div`
+  background-color: var(--status-success);
+  border-radius: 2px;
+  height: 3px;
+  margin: 0 0.75rem;
+  width: 30px;
 `;

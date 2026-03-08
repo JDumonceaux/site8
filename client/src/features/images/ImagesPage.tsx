@@ -2,20 +2,22 @@ import type { DragEvent, JSX } from 'react';
 import { useState } from 'react';
 
 import useSnackbar from '@app/snackbar/useSnackbar';
+import IconButton from '@components/button/icon-button/IconButton';
+import { FilterIcon } from '@components/icons';
 import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
 import LoadingWrapper from '@components/loading/LoadingWrapper';
 import Meta from '@components/meta/Meta';
 import PageTitle from '@components/page/PageTitle';
-import Switch from '@components/switch/Switch';
 import Layout from '@features/layouts/layout/Layout';
 import { logError } from '@lib/utils/errorHandler';
 import type { ImageFile } from '@site8/shared';
 import type { ImageItem } from '@types';
 import ImageEditDialog from './edit/dialog/ImageEditDialog';
+import ImageFiltersDialog from './ImageFiltersDialog';
 import Items from './Items';
 import useDeleteImage from './useDeleteImage';
 import useImageFolders from './useImageFolders';
-import useImages from './useImages';
+import useImages, { type MatchedFilter } from './useImages';
 import useMoveImages from './useMoveImages';
 import useUpdateImage from './useUpdateImage';
 import styled from 'styled-components';
@@ -23,6 +25,7 @@ import styled from 'styled-components';
 const toImageItem = (item: ImageFile, index: number): ImageItem => ({
   currentFolder: item.folder,
   ...(item.description ? { description: item.description } : {}),
+  isMatched: (item.id ?? 0) > 0,
   seq: item.seq ?? index,
   src: item.src ?? '',
   title: item.title ?? item.fileName,
@@ -31,7 +34,9 @@ const toImageItem = (item: ImageFile, index: number): ImageItem => ({
 const EMPTY_FOLDERS: readonly string[] = [];
 
 const ImagesPage = (): JSX.Element => {
-  const [unmatchedOnly, setUnmatchedOnly] = useState(true);
+  const [matchedFilter, setMatchedFilter] = useState<MatchedFilter>('all');
+  const [folderFilter, setFolderFilter] = useState<string>('');
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [editingImage, setEditingImage] = useState<ImageItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [saveError, setSaveError] = useState<string>('');
@@ -40,7 +45,10 @@ const ImagesPage = (): JSX.Element => {
   );
   const [dragOverFolder, setDragOverFolder] = useState<null | string>(null);
   const { setErrorMessage, setMessage } = useSnackbar();
-  const { data, error, isError, isLoading } = useImages({ unmatchedOnly });
+  const { data, error, isError, isLoading } = useImages({
+    folder: folderFilter,
+    matchedFilter,
+  });
   const {
     data: foldersData,
     error: foldersError,
@@ -95,7 +103,7 @@ const ImagesPage = (): JSX.Element => {
     });
   }
 
-  const title = unmatchedOnly ? 'Unmatched Images' : 'Images';
+  const title = 'Images';
   const imageItems: readonly ImageItem[] = (data?.items ?? []).map(toImageItem);
   const count = imageItems.length;
   const selectedCount = selectedImageIds.size;
@@ -191,14 +199,14 @@ const ImagesPage = (): JSX.Element => {
         <Layout.Menu>
           <StickyMenuWrapper>
             <MenuPanel aria-label="Image folders">
-              <Switch
-                checked={!unmatchedOnly}
-                id="unmatchedOnly"
-                label="Show matched"
-                onCheckedChange={(v) => {
-                  setUnmatchedOnly(!v);
+              <IconButton
+                aria-label="Open filters"
+                onClick={() => {
+                  setIsFiltersOpen(true);
                 }}
-              />
+              >
+                <FilterIcon />
+              </IconButton>
               <Count>{count} items</Count>
               <Count>{selectedCount} selected</Count>
               <FolderSection>
@@ -269,6 +277,17 @@ const ImagesPage = (): JSX.Element => {
         onDelete={handleDeleteImage}
         onSave={handleSaveImage}
         saveError={saveError}
+      />
+      <ImageFiltersDialog
+        availableFolders={availableFolders}
+        folderFilter={folderFilter}
+        isOpen={isFiltersOpen}
+        matchedFilter={matchedFilter}
+        onClose={() => {
+          setIsFiltersOpen(false);
+        }}
+        setFolderFilter={setFolderFilter}
+        setMatchedFilter={setMatchedFilter}
       />
     </>
   );

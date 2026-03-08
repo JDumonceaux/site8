@@ -60,6 +60,7 @@ export const ServiceUrl = {
   ENDPOINT_IMAGE_UPDATE: `${API_ROOT}/image/update`,
   ENDPOINT_IMAGES: `${API_ROOT}/images`,
   ENDPOINT_IMAGES_2025_FOLDERS: `${API_ROOT}/images/2025/folders`,
+  ENDPOINT_IMAGES_FOLDERS: `${API_ROOT}/images/folders`,
   ENDPOINT_IMAGES_MATCHED: `${API_ROOT}/images/matched`,
   ENDPOINT_IMAGES_MOVE: `${API_ROOT}/images/move`,
   ENDPOINT_MENUS: `${API_ROOT}/menus`,

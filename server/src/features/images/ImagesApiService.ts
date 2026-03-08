@@ -69,6 +69,64 @@ export class ImagesApiService {
     return true;
   }
 
+  public async getAllItems(
+    folder?: string,
+    matchedFilter: 'all' | 'matchedOnly' | 'unmatchedOnly' = 'all',
+  ): Promise<ImageFiles> {
+    const files = this.expandImageFile(this.getDirectoryImages());
+    const imageRecords = await this.readImageItems();
+
+    const merged = files.map((file) => {
+      const matches = imageRecords.filter(
+        (img) =>
+          img.fileName.toLowerCase() === file.fileName.toLowerCase() &&
+          img.folder.toLowerCase() === file.folder.toLowerCase(),
+      );
+
+      if (matches.length > 1) {
+        return { ...file, id: -1 };
+      }
+
+      if (matches.length === 0) {
+        return { ...file, id: 0 };
+      }
+
+      const [match] = matches;
+      if (!match) return { ...file, id: 0 };
+
+      return {
+        ...file,
+        ...(match.description ? { description: match.description } : {}),
+        id: match.id,
+        title: match.title ?? file.title,
+      };
+    });
+
+    const folderFiltered = folder
+      ? merged.filter(
+          (item) =>
+            toCapitalizedFolderName(
+              item.folder.split('/').at(-1) ?? '',
+            ).toLowerCase() === folder.toLowerCase(),
+        )
+      : merged;
+
+    const matchedFiltered =
+      matchedFilter === 'matchedOnly'
+        ? folderFiltered.filter((item) => (item.id ?? 0) > 0)
+        : matchedFilter === 'unmatchedOnly'
+          ? folderFiltered.filter((item) => (item.id ?? 0) <= 0)
+          : folderFiltered;
+
+    return {
+      items: matchedFiltered,
+      metadata: {
+        title: 'Images',
+        totalItems: matchedFiltered.length,
+      },
+    };
+  }
+
   public async getFolderNames(): Promise<Collection<string>> {
     const yearDir = path.join(
       FilePath.getImageDirAbsolute(),

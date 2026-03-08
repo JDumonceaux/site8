@@ -1,10 +1,13 @@
 import { apiClient } from '@lib/api';
 import { ServiceUrl } from '@lib/utils/constants';
-import type { Collection , ImageFile } from '@site8/shared';
+import type { Collection, ImageFile } from '@site8/shared';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
+export type MatchedFilter = 'all' | 'matchedOnly' | 'unmatchedOnly';
+
 type UseImagesParams = {
-  readonly unmatchedOnly: boolean;
+  readonly folder: string;
+  readonly matchedFilter: MatchedFilter;
 };
 
 export type UseImagesResult = {
@@ -14,20 +17,20 @@ export type UseImagesResult = {
   readonly isLoading: boolean;
 };
 
-const getEndpoint = (unmatchedOnly: boolean): string => {
-  return unmatchedOnly
-    ? ServiceUrl.ENDPOINT_IMAGES_MATCHED
-    : ServiceUrl.ENDPOINT_IMAGES;
-};
-
-const useImages = ({ unmatchedOnly }: UseImagesParams): UseImagesResult => {
-  const endpoint = getEndpoint(unmatchedOnly);
+const useImages = ({
+  folder,
+  matchedFilter,
+}: UseImagesParams): UseImagesResult => {
+  const params = new URLSearchParams();
+  params.set('matched', matchedFilter);
+  if (folder) params.set('folder', folder);
+  const endpoint = `${ServiceUrl.ENDPOINT_IMAGES}?${params.toString()}`;
 
   const query: UseQueryResult<Collection<ImageFile>, unknown> = useQuery({
     queryFn: async ({ signal }): Promise<Collection<ImageFile>> => {
       return apiClient.get<Collection<ImageFile>>(endpoint, { signal });
     },
-    queryKey: ['images', unmatchedOnly ? 'matched' : 'all', endpoint],
+    queryKey: ['images', 'all', matchedFilter, folder],
   });
 
   return {
