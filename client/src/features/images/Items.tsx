@@ -78,7 +78,7 @@ const Items = memo(
                     loading="lazy"
                     src={item.src}
                   />
-                  {item.isMatched && <MatchIndicator />}
+                  {item.isMatched ? <MatchIndicator /> : null}
                   <CardFooter>
                     <CardTitle>{item.title}</CardTitle>
                     <CardActions>

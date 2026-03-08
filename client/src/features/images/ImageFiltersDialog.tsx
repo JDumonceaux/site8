@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { type JSX, useMemo } from 'react';
 
 import InputSelect from '@components/input/input-select/InputSelect';
 import SlideoutDialog from '@components/slideout-dialog/SlideoutDialog';
@@ -31,14 +31,17 @@ const ImageFiltersDialog = ({
   setFolderFilter,
   setMatchedFilter,
 }: ImageFiltersDialogProps): JSX.Element => {
-  const folderOptions: ListItem[] = [
-    { display: 'All Folders', key: '', value: '' },
-    ...availableFolders.map((folder) => ({
-      display: folder,
-      key: folder,
-      value: folder,
-    })),
-  ];
+  const folderOptions = useMemo<ListItem[]>(
+    () => [
+      { display: 'All Folders', key: '', value: '' },
+      ...availableFolders.map((folder) => ({
+        display: folder,
+        key: folder,
+        value: folder,
+      })),
+    ],
+    [availableFolders],
+  );
 
   const handleClearAll = (): void => {
     setMatchedFilter('all');

@@ -30,7 +30,7 @@ const useImages = ({
     queryFn: async ({ signal }): Promise<Collection<ImageFile>> => {
       return apiClient.get<Collection<ImageFile>>(endpoint, { signal });
     },
-    queryKey: ['images', 'all', matchedFilter, folder],
+    queryKey: ['images', endpoint],
   });
 
   return {
