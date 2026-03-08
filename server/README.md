@@ -1,4 +1,4 @@
-# server1 API
+# server API
 
 ## Setup
 

@@ -25,13 +25,13 @@ const geminiApiKey = env.GEMINI_API_KEY.trim();
 
 if (!geminiApiKey) {
   throw new Error(
-    'Startup failed: GEMINI_API_KEY is required. Set it in server1/.env.dev.',
+    'Startup failed: GEMINI_API_KEY is required. Set it in server/.env.dev.',
   );
 }
 
 if (!isLikelyGeminiApiKey(geminiApiKey)) {
   throw new Error(
-    'Startup failed: GEMINI_API_KEY appears malformed. Check server1/.env.dev.',
+    'Startup failed: GEMINI_API_KEY appears malformed. Check server/.env.dev.',
   );
 }
 

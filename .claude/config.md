@@ -19,7 +19,7 @@ site8/
 │   │   ├── styles/        # Global styles
 │   │   └── types/         # TypeScript type definitions
 │   └── public/      # Static assets
-├── server1/         # Node.js Express backend
+├── server/         # Node.js Express backend
 │   ├── src/
 │   │   ├── features/      # Feature modules
 │   │   ├── lib/           # Utilities and helpers
@@ -197,7 +197,7 @@ const Wrapper = styled.div`
 2. Create page component (e.g., `FeaturePage.tsx`)
 3. Add route in `providers/RouterProvider.tsx`
 4. Add types in `types/FeatureType.ts` and export in `types/index.ts`
-5. Create API endpoints in `server1/src/features/feature-name/`
+5. Create API endpoints in `server/src/features/feature-name/`
 
 ### Adding a New Component
 
@@ -250,7 +250,7 @@ npm run knip        # Find unused exports
 
 - `client/src/main.tsx` - React app entry
 - `client/src/app/App.tsx` - Root component
-- `server1/src/server.ts` - Express server entry
+- `server/src/server.ts` - Express server entry
 
 ### Core Providers
 

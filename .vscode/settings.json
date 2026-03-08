@@ -12,7 +12,7 @@
       "changeProcessCWD": true
     },
     {
-      "directory": "server1",
+      "directory": "server",
       "changeProcessCWD": true
     }
   ],

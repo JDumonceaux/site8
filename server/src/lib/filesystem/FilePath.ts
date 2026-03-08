@@ -14,7 +14,7 @@ const joinPath = (...parts: string[]): string =>
 
 const computeAppRootAbsolute = (): string => {
   const currPath = decodeFileUrl(import.meta.url);
-  const serverDirName = 'server1';
+  const serverDirName = 'server';
   const index = currPath.indexOf(serverDirName);
   if (index === -1) {
     throw new Error(
@@ -45,7 +45,7 @@ const FilePath = {
     joinPath(FilePath.getDataDirAbsolute(), fileName),
 
   getDataDirAbsolute: (): string =>
-    joinPath(appRootAbsolute, 'server1', 'data'),
+    joinPath(appRootAbsolute, 'server', 'data'),
 
   getImageDirAbsolute: (): string =>
     joinPath(appRootAbsolute, 'client', 'public', 'images'),
@@ -54,14 +54,14 @@ const FilePath = {
     joinPath(FilePath.getDataDirAbsolute(), 'pages', fileName),
 
   getServerFeatures: (): string =>
-    joinPath(appRootAbsolute, 'server1', 'src', '@features'),
+    joinPath(appRootAbsolute, 'server', 'src', '@features'),
 
-  getServerRoot: (): string => joinPath(appRootAbsolute, 'server1'),
+  getServerRoot: (): string => joinPath(appRootAbsolute, 'server'),
 
-  getServerSrc: (): string => joinPath(appRootAbsolute, 'server1', 'src'),
+  getServerSrc: (): string => joinPath(appRootAbsolute, 'server', 'src'),
 
   getServerTypes: (): string =>
-    joinPath(appRootAbsolute, 'server1', 'src', 'types'),
+    joinPath(appRootAbsolute, 'server', 'src', 'types'),
 };
 
 export default FilePath;

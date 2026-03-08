@@ -1,5 +1,5 @@
 {
-  "name": "server1",
+  "name": "server",
   "version": "0.1.0",
   "description": "API service for the application",
   "type": "module",
