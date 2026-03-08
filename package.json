@@ -7,6 +7,8 @@
     "build:server": "npm --prefix server run build",
     "start:client": "npm --prefix client run dev -- --mode development",
     "build:client": "npm --prefix client run build",
-    "build:shared": "npm --prefix shared run build"
+    "build:shared": "npm --prefix shared run build",
+    "lint": "npm --prefix client run lint && npm --prefix server run lint",
+    "lint:fix": "npm --prefix client run lint:fix && npm --prefix server run lint:fix"
   }
 }

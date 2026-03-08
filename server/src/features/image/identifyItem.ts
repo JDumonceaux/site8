@@ -82,6 +82,8 @@ const parseIdentifyResult = (responseText: string): IdentifyImageResult => {
   };
 };
 
+const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
+
 export const identifyItem = async (
   req: Request,
   res: Response<IdentifyItemResponse | { error: string }>,
@@ -153,7 +155,6 @@ export const identifyItem = async (
     const mimeType = getImageMimeType(parsed.fileName);
 
     Logger.debug('Identify: calling Gemini', { mimeType, src });
-    const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
     const response = await ai.models.generateContent({
       contents: [
         {

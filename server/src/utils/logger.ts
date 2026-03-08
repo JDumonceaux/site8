@@ -5,7 +5,7 @@
 import winston from 'winston';
 
 import { LOG_CONFIG } from './constants.js';
-import { Environment } from './Environment.js';
+import { env } from './env.js';
 
 type FileTransportOptions = {
   readonly colorize: boolean;
@@ -51,11 +51,13 @@ const OPTIONS: LoggerOptions = {
   },
 };
 
+const isDevelopment = env.NODE_ENV === 'development';
+
 const transports: winston.transport[] = [
   new winston.transports.Console(OPTIONS.console),
 ];
 
-const format = Environment.isLocal()
+const format = isDevelopment
   ? winston.format.combine(
       winston.format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
       winston.format.printf(
@@ -65,14 +67,14 @@ const format = Environment.isLocal()
     )
   : winston.format.json();
 
-if (Environment.isLocal()) {
+if (isDevelopment) {
   transports.push(new winston.transports.File(OPTIONS.file));
 }
 
 export const Logger = winston.createLogger({
   exitOnError: false,
   format,
-  level: Environment.isProduction() ? 'info' : 'debug',
+  level: env.NODE_ENV === 'production' ? 'info' : 'debug',
   transports,
 });
 

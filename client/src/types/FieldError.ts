@@ -1,6 +1,6 @@
 /**
  * Represents a validation error for a form field.
- * Used with Zod validation to provide detailed error information.
+ * Provides detailed error information for form validation.
  */
 export type FieldError = {
   /** Error code identifying the type of validation error */

@@ -18,7 +18,7 @@ import {
   isGeminiPermissionError,
 } from './utils/geminiErrors.js';
 
-const TEST_IMAGE_SRC = '/public/images/2024/baroque_palace_gallery.jpg';
+const TEST_IMAGE_SRC = '/images/2024/baroque_palace_gallery.jpg';
 
 type GeminiImageTestErrorResponse = {
   readonly error: string;

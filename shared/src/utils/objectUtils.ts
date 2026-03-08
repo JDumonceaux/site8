@@ -116,7 +116,9 @@ export const getNextIdFromPos = (
   }
 
   const sorted = items.toSorted((first, second) => first.id - second.id);
-  const startId = (sorted.length > start ? sorted[start]?.id : 1) ?? 1;
+  const maxId = sorted[sorted.length - 1]?.id ?? 0;
+  const startId =
+    (sorted.length > start ? sorted[start]?.id : maxId + 1) ?? maxId + 1;
 
   for (let index = start; index < sorted.length; index += 1) {
     const nextId = startId + (index - start);
@@ -125,5 +127,5 @@ export const getNextIdFromPos = (
     }
   }
 
-  return { index: 0, value: startId + (sorted.length - start) };
+  return { index: sorted.length, value: startId + (sorted.length - start) };
 };

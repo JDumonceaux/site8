@@ -31,21 +31,10 @@ const FilePath = {
 
   getAppRootAbsolute: (): string => appRootAbsolute,
 
-  getClientFeatures: (): string =>
-    joinPath(appRootAbsolute, 'client', 'src', '@features'),
-
-  getClientRoot: (): string => joinPath(appRootAbsolute, 'client'),
-
-  getClientSrc: (): string => joinPath(appRootAbsolute, 'client', 'src'),
-
-  getClientTypes: (): string =>
-    joinPath(appRootAbsolute, 'client', 'src', 'types'),
-
   getDataDir: (fileName: string): string =>
     joinPath(FilePath.getDataDirAbsolute(), fileName),
 
-  getDataDirAbsolute: (): string =>
-    joinPath(appRootAbsolute, 'server', 'data'),
+  getDataDirAbsolute: (): string => joinPath(appRootAbsolute, 'server', 'data'),
 
   getImageDirAbsolute: (): string =>
     joinPath(appRootAbsolute, 'client', 'public', 'images'),
@@ -53,15 +42,7 @@ const FilePath = {
   getPagesDir: (fileName: string): string =>
     joinPath(FilePath.getDataDirAbsolute(), 'pages', fileName),
 
-  getServerFeatures: (): string =>
-    joinPath(appRootAbsolute, 'server', 'src', '@features'),
-
   getServerRoot: (): string => joinPath(appRootAbsolute, 'server'),
-
-  getServerSrc: (): string => joinPath(appRootAbsolute, 'server', 'src'),
-
-  getServerTypes: (): string =>
-    joinPath(appRootAbsolute, 'server', 'src', 'types'),
 };
 
 export default FilePath;

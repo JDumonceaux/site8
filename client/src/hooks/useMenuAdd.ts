@@ -36,7 +36,7 @@ const initialFormValues: FormType = {
   type: 'menu',
 };
 
-const useMenuEdit = () => {
+const useMenuAdd = () => {
   const { error, isLoading, putData } = useApiRequest<MenuAdd>();
 
   const {
@@ -164,4 +164,4 @@ const useMenuEdit = () => {
   };
 };
 
-export default useMenuEdit;
+export default useMenuAdd;

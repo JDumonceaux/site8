@@ -3,8 +3,14 @@ import { access, mkdir, readdir, rename, unlink } from 'node:fs/promises';
 import path from 'path';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
+import { CURRENT_YEAR } from '../../utils/constants.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
-import { normalizeFolder, toImageSrc } from '../images/imageUtils.js';
+import {
+  normalizeFolder,
+  parseImageSrc,
+  toCapitalizedFolderName,
+  toImageSrc,
+} from '../images/imageUtils.js';
 
 // ---------------------------------------------------------------------------
 // Internal types
@@ -29,32 +35,6 @@ type ImagesJsonEntry = {
   readonly folder: string;
   readonly id: number;
 } & Record<string, unknown>;
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-const parseImageSrc = (
-  src: string,
-): { readonly fileName: string; readonly folder: string } | null => {
-  if (!src.startsWith('/images/')) {
-    return null;
-  }
-  const segments = src.slice('/images/'.length).split('/').filter(Boolean);
-  const fileName = segments.at(-1);
-  if (!fileName) {
-    return null;
-  }
-  return { fileName, folder: segments.slice(0, -1).join('/') };
-};
-
-const toCapitalizedFolderName = (folderName: string): string =>
-  folderName
-    .replace(/[-_]+/g, ' ')
-    .split(' ')
-    .filter(Boolean)
-    .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
-    .join(' ');
 
 // ---------------------------------------------------------------------------
 // Public parameter / result types
@@ -236,13 +216,15 @@ export class ImageService {
     // 4. Resolve target folder (keep current folder if no new folder label given)
     let targetFolder: string;
     if (params.targetFolderLabel) {
-      const targetFolderName = await this.resolve2025FolderName(
+      const targetFolderName = await this.resolveCurrentYearFolderName(
         params.targetFolderLabel,
       );
       if (!targetFolderName) {
         throw new Error('Target folder not found');
       }
-      targetFolder = normalizeFolder(path.join('2025', targetFolderName));
+      targetFolder = normalizeFolder(
+        path.join(String(CURRENT_YEAR), targetFolderName),
+      );
     } else {
       targetFolder = normalizeFolder(resolvedCurrentFolder);
     }
@@ -367,12 +349,15 @@ export class ImageService {
     );
   }
 
-  private async resolve2025FolderName(
+  private async resolveCurrentYearFolderName(
     folderLabel: string,
   ): Promise<string | undefined> {
-    const year2025Dir = path.join(FilePath.getImageDirAbsolute(), '2025');
+    const yearDir = path.join(
+      FilePath.getImageDirAbsolute(),
+      String(CURRENT_YEAR),
+    );
     // eslint-disable-next-line security/detect-non-literal-fs-filename -- path is constructed from a known base directory constant
-    const dirEntries = await readdir(year2025Dir, { withFileTypes: true });
+    const dirEntries = await readdir(yearDir, { withFileTypes: true });
     return dirEntries
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)

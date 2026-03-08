@@ -1,4 +1,4 @@
-import { Metadata } from "./Metadata.js";
+import type { Metadata } from "./Metadata.js";
 
 /**
  * Tests collection type with groups and sections
