@@ -22,7 +22,7 @@
     "start:prod": "node --env-file=.env.production dist/server.js"
   },
   "dependencies": {
-    "@google/genai": "^1.42.0",
+    "@google/genai": "^1.44.0",
     "@site8/shared": "file:../shared",
     "compression": "^1.8.1",
     "cors": "^2.8.6",
