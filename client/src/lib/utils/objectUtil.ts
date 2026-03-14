@@ -56,6 +56,8 @@ export const removeEmptyAttributesArray = <T extends Record<string, unknown>>(
   if (!Array.isArray(array) || array.length === 0) {
     return null;
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  return array.map((item) => removeEmptyAttributes(item));
+
+  return array.map((item) =>
+    (removeEmptyAttributes as (obj: T) => Partial<T>)(item),
+  );
 };

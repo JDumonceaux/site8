@@ -74,9 +74,9 @@ export const TextArea = ({
     ...(messages !== undefined && { messages }),
     ...(startAdornment !== undefined && { startAdornment }),
     ...(startAdornmentProps !== undefined && { startAdornmentProps }),
-    ...(isRequired !== undefined
-      ? { isRequired }
-      : required !== undefined && { isRequired: required }),
+    ...(isRequired === undefined
+      ? required !== undefined && { isRequired: required }
+      : { isRequired }),
   };
 
   return (

@@ -1,4 +1,4 @@
-import { type JSX } from 'react';
+import type { JSX } from 'react';
 
 import * as RadixDialog from '@radix-ui/react-dialog';
 import type { Size, Variant } from './dialog-variants';
