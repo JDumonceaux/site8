@@ -4,133 +4,101 @@ applyTo: "**"
 
 # Instructions for Copilot
 
-This repository contains a monorepo-style web application with three main parts: the frontend (`client/`), the API service (`server/`), and shared types/utilities (`shared/`). The goal of these instructions is to help AI coding agents make productive, small, high-confidence changes.
+This monorepo contains three packages: `client/` (Vite + React 19), `server/` (Express + TypeScript), and `shared/` (types/utilities consumed by both). Make minimal, focused edits that preserve existing patterns.
 
-Guiding principles
+## Protected Files
 
-- Prioritize minimal, focused edits that preserve existing patterns and build/test scripts.
-- Follow repository conventions: TypeScript strict mode, local `@site8/shared` package, and existing ESLint/Prettier/Husky hooks.
+**Never modify, overwrite, or delete any `.env*` files** (e.g. `server/.env.dev`, `server/.env.production`, `client/.env*`). These files contain secrets and environment-specific configuration. If env changes are needed, describe what to add and let the user edit them manually.
 
-Tech stack guardrails
+## Tech Stack Guardrails
 
-- Do not suggest or introduce **Zod**, **Axios**, or **Font Awesome** unless the user explicitly requests them.
-- Prefer existing project patterns for these concerns:
-  - Validation: use current project validation approach already present in the codebase.
-  - HTTP client: use the centralized `client/src/lib/api/` fetch-based client and React Query integration.
-  - Icons: use existing icon components under `client/src/components/`.
-- If a solution could use disallowed libraries, provide the equivalent implementation with existing repo utilities.
+- **Do NOT introduce Zod, Axios, or Font Awesome** — they are banned unless user explicitly requests them.
+- Validation: use **Valibot** (already present in both client and server).
+- HTTP client: use `client/src/lib/api/` (fetch-based `apiClient` with `.get()/.post()/.patch()` etc.) + React Query.
+- Icons: use existing components under `client/src/components/icons/`.
 
-Quick architecture summary
+## Developer Commands
 
-- Frontend: `client/` — Vite + React (React 19), sources in `client/src`, dev: `npm run dev`, build: `npm run build`, tests: `npm run test`.
-- Server: `server/` — Express + TypeScript, entry `server/src/server.ts`, build via `npm run build` then `npm start` (starts `dist/server.js`).
-- Shared: `shared/` — shared types/utilities compiled with `tsc` and referenced as `@site8/shared` in `client` and `server`.
+| Task                     | Command                                                               |
+| ------------------------ | --------------------------------------------------------------------- |
+| Frontend dev             | `cd client && npm run dev`                                            |
+| Frontend build           | `cd client && npm run build` (runs `tsc` then `vite build`)           |
+| Frontend type-check only | `cd client && npm run type-check`                                     |
+| Frontend tests           | `cd client && npm run test`                                           |
+| Frontend Storybook       | `cd client && npm run storybook`                                      |
+| Server build + start     | `cd server && npm run build && npm start` (loads `.env.dev`)          |
+| Server debug             | `cd server && npm run debug`                                          |
+| Lint / format            | `npm run lint` / `npm run format` (run from the package you modified) |
+| Rebuild shared           | `cd shared && npm run build`                                          |
 
-React 19.24 guidance
+## Architecture
 
-- Treat React **19.24** as the default target for frontend suggestions and implementations.
-- Prefer modern React structures: functional components, composable custom hooks, route/feature-level `Suspense`, and clear state boundaries.
-- Prefer React 19 patterns where applicable: `useActionState`, `useOptimistic`, transitions (`startTransition`, `useTransition`), and deferred rendering (`useDeferredValue`).
-- Use `use()` and other experimental/canary React capabilities only when supported by project tooling and when they improve clarity or UX.
-- Keep compatibility with existing app architecture (Vite client, React Query, current providers) and avoid introducing patterns that require framework migration.
+**Client** (`client/src/`):
 
-Developer workflows (explicit commands)
+- `app/` — routing (public, auth, protected content routes), providers, `App.tsx`
+- `features/` — self-contained feature folders (auth, home, images, menu, site, tests, travel, yatch, generic, layouts, file-upload)
+- `components/` — reusable UI components and icons
+- `hooks/` — shared custom hooks
+- `lib/api/` — centralized fetch client (`client.ts`, `request-builder.ts`, `response-parser.ts`, `retry-policy.ts`)
+- `store/` — Redux Toolkit store; two slices: `appSettings` and `snackbar`. **React Query handles server state; Redux only for UI state.**
+- `types/` — client-side types (Auth, AppSettings, FormState, etc.)
 
-- Run frontend dev: `cd client && npm install && npm run dev`.
-- Build frontend: `cd client && npm run build` (runs `tsc` type-check then `vite build`).
-- Run server (production build): `cd server && npm install && npm run build && npm start`.
-- Lint & format: `npm run lint` and `npm run format` (run from the package workspace you modify: `client/` or `server/`).
+**Server** (`server/src/`):
 
-Project-specific patterns & conventions
+- `server.ts` — Express entry; mounts all routers; configures helmet, compression, CORS, rate limiting
+- `app/routes/` — small focused routers registered under `/api/*`
+- `features/`, `services/`, `middleware/`, `utils/`
 
-- Strict TypeScript: both `client/tsconfig.json` and `server/tsconfig.json` enable `strict` and many strict flags — prefer explicit types and avoid `any`.
-- Local shared package: `@site8/shared` is a file:../shared dependency; modify shared types carefully and rebuild consumers.
-- Error handling: frontend initializes `createRoot` with custom error hooks (`client/src/main.tsx`) — preserve `logError` usage.
-- Server routing: `server/src/server.ts` wires many small routers under `/api/*` — add routes under `app/routes/*` and register them in `server.ts`.
-- Security & ops: server uses `helmet`, `compression`, and rate limiting; respect these configs when adding endpoints.
+**Shared** (`shared/src/`):
 
-Files to inspect before changing code
+- Exported as `@site8/shared` (file:../shared dep). Contains entity types (`Page`, `MenuItem`, `Image`, `Place`, `Test`, etc.), validation schemas, and utility functions.
+- **Always rebuild** after changes: `cd shared && npm run build`, then rebuild consumer packages.
 
-- Server entry: [server/src/server.ts](../server/src/server.ts)
-- Frontend entry: [client/src/main.tsx](../client/src/main.tsx)
-- Shared package: [shared/package.json](../shared/package.json) and `shared/src` (types/utilities)
-- Client tsconfig: [client/tsconfig.json](../client/tsconfig.json) and server tsconfig: [server/tsconfig.json](../server/tsconfig.json)
+## Key Conventions
 
-Testing & CI notes
+**Path aliases (client only — server has none):**
 
-- Frontend tests use `vitest` (`client/package.json` scripts). Storybook is present for UI components.
-- Server has a build step that outputs `dist/`; tests are not centralized — search for `*.test.ts` for unit tests.
+- `@app/*`, `@components/*`, `@features/*`, `@hooks/*`, `@lib/*`, `@providers/*`, `@store/*`, `@types`
 
-When making changes, prefer the smallest reproducible edit. If adding a public API change that affects both `client` and `server`, include updated `shared/` type(s) and a brief note in the PR describing required rebuild steps for consumers.
+**TypeScript:** Both packages use `strict: true`. Client targets ES2024, server targets ESNext/NodeNext with `verbatimModuleSyntax: true`.
 
-Examples
+**Authentication:** AWS Amplify (`@aws-amplify/ui-react`). Toggled by `VITE_USE_AUTH` / `USE_AUTH` env var validated via Valibot. Auth is client-side only (route guards via `ProtectedRoute`); server routes have no centralized auth middleware currently.
 
-- Add a new read route: create `server/src/app/routes/newRoute.ts`, export router, then register in `server/src/server.ts` under `/api/new`.
-- Add a shared type: add to `shared/src/index.ts`, run `cd shared && npm run build`, then update imports in `client`/`server` and run their builds.
+**Server rate limiting:** Read routes use standard limiter; mutation routes (POST/PUT/PATCH/DELETE) use stricter `mutationLimiter`. The Gemini route (`/api/gemini`) has a 30+ second timeout override. Respect these when adding endpoints.
 
-Ask the user when in doubt about breaking cross-package types or changing API route behavior.
+**Error handling:** `client/src/main.tsx` wraps `createRoot` with `logError` callbacks — preserve this pattern.
 
-If you update these instructions, keep them short and focused — they are intended for AI agents making safe edits.
+**Feature structure:** Each feature is self-contained: `FeaturePage.tsx`, custom hooks, `types.ts`. Follow this pattern when adding features.
 
-Please review — tell me which areas need more detail or examples.
+**ESLint:** Client uses 14+ ESLint plugins in separate config files (`eslint.config.*.mjs`). Run `npm run lint:fix` to auto-fix where possible.
 
-```instructions
----
-applyTo: "**"
----
+## Files to Read Before Changing Code
 
-# Instructions for Copilot
+- Server entry: `server/src/server.ts`
+- Frontend entry: `client/src/main.tsx`
+- Shared exports: `shared/src/index.ts`
+- Client tsconfig (aliases): `client/tsconfig.json`
 
-This repository contains a monorepo-style web application with three main parts: the frontend (`client/`), the API service (`server/`), and shared types/utilities (`shared/`). The goal of these instructions is to help AI coding agents make productive, small, high-confidence changes.
+## Common Tasks
 
-Guiding principles
-- Prioritize minimal, focused edits that preserve existing patterns and build/test scripts.
-- Follow repository conventions: TypeScript strict mode, local `@site8/shared` package, and existing ESLint/Prettier/Husky hooks.
+**Add a server route (read):**
 
-Quick architecture summary
-- Frontend: `client/` — Vite + React (React 19), sources in `client/src`, dev: `npm run dev`, build: `npm run build`, tests: `npm run test`.
-- Server: `server/` — Express + TypeScript, entry `server/src/server.ts`, build via `npm run build` then `npm start` (starts `dist/server.js`).
-- Shared: `shared/` — shared types/utilities compiled with `tsc` and referenced as `@site8/shared` in `client` and `server`.
+1. Create `server/src/app/routes/myRoute.ts`, export `Router`
+2. Register in `server/src/server.ts`: `app.use('/api/my', myRouter)`
 
-Developer workflows (explicit commands)
-- Run frontend dev: `cd client && npm install && npm run dev`.
-- Build frontend: `cd client && npm run build` (runs `tsc` type-check then `vite build`).
-- Run server (production build): `cd server && npm install && npm run build && npm start`.
-- Lint & format: `npm run lint` and `npm run format` (run from the package workspace you modify: `client/` or `server/`).
+**Add a server route (mutation):**
 
-Project-specific patterns & conventions
-- Strict TypeScript: both `client/tsconfig.json` and `server/tsconfig.json` enable `strict` and many strict flags — prefer explicit types and avoid `any`.
-- Local shared package: `@site8/shared` is a file:../shared dependency; modify shared types carefully and rebuild consumers.
-- Error handling: frontend initializes `createRoot` with custom error hooks (`client/src/main.tsx`) — preserve `logError` usage.
-- Server routing: `server/src/server.ts` wires many small routers under `/api/*` — add routes under `app/routes/*` and register them in `server.ts`.
-- Security & ops: server uses `helmet`, `compression`, and rate limiting; respect these configs when adding endpoints.
+- Same as above but: `app.use('/api/my', mutationLimiter, myRouter)`
 
-Files to inspect before changing code
-- Server entry: [server/src/server.ts](../server/src/server.ts)
-- Frontend entry: [client/src/main.tsx](../client/src/main.tsx)
-- Shared package: [shared/package.json](../shared/package.json) and `shared/src` (types/utilities)
-- Client tsconfig: [client/tsconfig.json](../client/tsconfig.json) and server tsconfig: [server/tsconfig.json](../server/tsconfig.json)
+**Add a shared type:**
 
-Testing & CI notes
-- Frontend tests use `vitest` (`client/package.json` scripts). Storybook is present for UI components.
-- Server has a build step that outputs `dist/`; tests are not centralized — search for `*.test.ts` for unit tests.
+1. Add to `shared/src/index.ts`
+2. `cd shared && npm run build`
+3. Update imports in client/server and run their builds
 
-When making changes, prefer the smallest reproducible edit. If adding a public API change that affects both `client` and `server`, include updated `shared/` type(s) and a brief note in the PR describing required rebuild steps for consumers.
+**Add a client feature:**
 
-Examples
-- Add a new read route: create `server/src/app/routes/newRoute.ts`, export router, then register in `server/src/server.ts` under `/api/new`.
-- Add a shared type: add to `shared/src/index.ts`, run `cd shared && npm run build`, then update imports in `client`/`server` and run their builds.
+- Create `client/src/features/my-feature/` with `MyFeaturePage.tsx`, hook(s), and `types.ts`
+- Register route in `client/src/app/routes/`
 
-Ask the user when in doubt about breaking cross-package types or changing API route behavior.
-
-If you update these instructions, keep them short and focused — they are intended for AI agents making safe edits.
-
-Please review — tell me which areas need more detail or examples.
-
-```
-
----
-
-## applyTo: "\*\*"
-
-# Instructions for Copilot
+Ask the user before making breaking changes to cross-package types or altering existing API route behavior.
