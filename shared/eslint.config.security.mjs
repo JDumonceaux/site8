@@ -1,0 +1,31 @@
+import pluginNoSecrets from 'eslint-plugin-no-secrets';
+import pluginSecurity from 'eslint-plugin-security';
+
+const config = {
+    name: 'Site8-security',
+    plugins: {
+        'no-secrets': pluginNoSecrets,
+        security: pluginSecurity,
+    },
+    rules: {
+        ...pluginSecurity.configs.recommended.rules,
+        'no-secrets/no-secrets': [
+            'error',
+            {
+                ignoreContent: [String.raw`^https://fonts\.googleapis\.com/`, String.raw`^https://player\.vimeo\.com/`],
+            },
+        ],
+        'security/detect-buffer-noassert': 'error',
+        'security/detect-child-process': 'error',
+        'security/detect-disable-mustache-escape': 'error',
+        'security/detect-eval-with-expression': 'error',
+        'security/detect-new-buffer': 'error',
+        'security/detect-no-csrf-before-method-override': 'error',
+        'security/detect-non-literal-regexp': 'warn',
+        'security/detect-object-injection': 'off',
+        'security/detect-pseudoRandomBytes': 'error',
+        'security/detect-unsafe-regex': 'error',
+    },
+};
+
+export default config;

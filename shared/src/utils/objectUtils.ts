@@ -87,14 +87,11 @@ export const getNextId = (
   }
 
   const sorted = items.toSorted((first, second) => first.id - second.id);
-  const firstId = sorted[0]?.id;
-  if (firstId === undefined) {
-    return undefined;
-  }
+  const firstId = sorted[0].id;
 
   for (let index = 0; index < sorted.length; index += 1) {
     const nextId = firstId + index;
-    if (!sorted.find((item) => item.id === nextId)) {
+    if (!sorted.some((item) => item.id === nextId)) {
       return nextId;
     }
   }
@@ -106,23 +103,22 @@ export const getNextIdFromPos = (
   items: readonly IdType[] | undefined,
   start: number,
 ):
+  | undefined
   | {
       readonly index: number;
       readonly value: number;
-    }
-  | undefined => {
+    } => {
   if (!items?.length) {
     return undefined;
   }
 
   const sorted = items.toSorted((first, second) => first.id - second.id);
-  const maxId = sorted[sorted.length - 1]?.id ?? 0;
-  const startId =
-    (sorted.length > start ? sorted[start]?.id : maxId + 1) ?? maxId + 1;
+  const maxId = sorted.at(-1)?.id ?? 0;
+  const startId = sorted[start]?.id ?? maxId + 1;
 
   for (let index = start; index < sorted.length; index += 1) {
     const nextId = startId + (index - start);
-    if (!sorted.find((item) => item.id === nextId)) {
+    if (!sorted.some((item) => item.id === nextId)) {
       return { index, value: nextId };
     }
   }

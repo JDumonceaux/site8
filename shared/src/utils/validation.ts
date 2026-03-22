@@ -1,21 +1,21 @@
 export type ParseIdResult = {
-  readonly isValid: boolean;
   readonly id: number | undefined;
+  readonly isValid: boolean;
 };
 
 export const parseId = (value: string | undefined): ParseIdResult => {
   const trimmedValue = value?.trim();
   if (!trimmedValue) {
-    return { isValid: false, id: undefined };
+    return { id: undefined, isValid: false };
   }
 
   const parsedId = Number(trimmedValue);
   const isValid =
     !Number.isNaN(parsedId) && parsedId > 0 && Number.isInteger(parsedId);
 
-  return { isValid, id: isValid ? parsedId : undefined };
+  return { id: isValid ? parsedId : undefined, isValid };
 };
 
-export const isValidArray = (arr: Iterable<unknown> | undefined): boolean => {
-  return Array.isArray(arr) && arr.length > 0;
+export const isValidArray = (array: Iterable<unknown> | undefined): boolean => {
+  return Array.isArray(array) && array.length > 0;
 };

@@ -4,8 +4,8 @@ export const ERRORS = {
   INVALID_PARAM: "Invalid Parameter",
   NAME_REQUIRED: "Name is required",
   NAME_TOO_LONG: "Name must not exceed {0} characters",
-  NOT_FOUND: "Not Found",
   NO_CONTENT: "No content found",
+  NOT_FOUND: "Not Found",
   REQUEST_TIMEOUT: "Request Timeout",
   SUCCESS: "Success",
 } as const;

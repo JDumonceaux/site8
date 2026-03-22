@@ -5,5 +5,5 @@ import type { Page } from "./Pages.js";
  * Page with flexible type field
  */
 export type PageMenu = {
-  readonly type: "page" | "root" | "menu";
+  readonly type: "menu" | "page" | "root";
 } & Omit<Page, "type">;
