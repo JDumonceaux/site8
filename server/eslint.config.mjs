@@ -7,7 +7,9 @@ import preferArrowConfig from './eslint.config.prefer-arrow-functions.mjs';
 import promiseConfig from './eslint.config.promise.mjs';
 import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
+import sonarjsConfig from './eslint.config.sonarjs.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
+import unicornConfig from './eslint.config.unicorn.mjs';
 
 const config = [
   {
@@ -18,11 +20,13 @@ const config = [
   checkFileConfig,
   securityConfig,
   regexpConfig,
+  sonarjsConfig,
   nodeConfig,
   perfectionistConfig,
   ...preferArrowConfig,
   promiseConfig,
   jsConfig,
+  unicornConfig,
   // Enforce preferred service usage and response helpers for server routes
   {
     files: ['src/**/*.ts', 'src/**/*.js', 'src/**/*.tsx'],

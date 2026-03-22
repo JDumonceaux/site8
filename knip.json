@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "ignore": [
+    "archive/**",
+    "node_modules/**",
+    "coverage/**",
+    "dist/**",
+    "**/*.docx",
+    "**/*.md",
+    "**/*.txt",
+    "**/*.json"
+  ],
+  "workspaces": {
+    "client": {
+      "vitest": false,
+      "entry": ["src/main.tsx", "vite.config.mts", "eslint.config*.mjs"],
+      "project": ["src/**/*.{ts,tsx}", "vite.config.mts", "eslint.config*.mjs"],
+      "ignore": [
+        "public/**",
+        "amplify/**",
+        "stats.html",
+        "src/**/*.test.{ts,tsx}",
+        "src/**/*.spec.{ts,tsx}",
+        "vitest.config.ts"
+      ]
+    },
+    "server": {
+      "entry": ["src/server.ts", "eslint.config*.mjs"],
+      "project": [
+        "src/**/*.ts",
+        "eslint.config*.mjs",
+        "eslint.import-rules.mjs"
+      ],
+      "ignore": ["data/**"]
+    },
+    "shared": {
+      "entry": ["src/index.ts", "eslint.config*.mjs"],
+      "project": ["src/**/*.ts", "eslint.config*.mjs"]
+    }
+  }
+}

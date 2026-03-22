@@ -6,6 +6,7 @@ import preferArrowConfig from './eslint.config.prefer-arrow-functions.mjs';
 import promiseConfig from './eslint.config.promise.mjs';
 import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
+import sonarjsConfig from './eslint.config.sonarjs.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
 import unicornConfig from './eslint.config.unicorn.mjs';
 
@@ -19,6 +20,7 @@ const config = [
     preferArrowConfig,
     securityConfig,
     regexpConfig,
+    sonarjsConfig,
     perfectionistConfig,
     promiseConfig,
     tsConfig,
