@@ -1,5 +1,4 @@
 import * as v from "valibot";
-
 import type { Collection } from "./Collection.js";
 import type { PageMenu } from "./PageMenu.js";
 

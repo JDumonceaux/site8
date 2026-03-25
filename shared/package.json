@@ -13,6 +13,8 @@
   },
   "scripts": {
     "build": "tsc",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"src\" --ext .ts,.tsx --fix",
     "watch": "tsc --watch"
   },
   "keywords": [
@@ -22,6 +24,22 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "eslint": "^9.39.4",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-check-file": "^3.3.1",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-no-secrets": "^2.2.3",
+    "eslint-plugin-perfectionist": "^5.7.0",
+    "eslint-plugin-prefer-arrow-functions": "^3.9.1",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-regexp": "^3.1.0",
+    "eslint-plugin-security": "^4.0.0",
+    "eslint-plugin-sonarjs": "^4.0.2",
+    "eslint-plugin-unicorn": "^63.0.0",
+    "globals": "^17.4.0",
     "typescript": "^6.0.2"
   },
   "dependencies": {

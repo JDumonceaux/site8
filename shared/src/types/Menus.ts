@@ -19,7 +19,7 @@ export type MenuItem = {
   readonly title?: string;
   readonly to?: string;
   readonly toComplete?: string;
-  readonly type?: "page" | "root" | "menu";
+  readonly type?: "menu" | "page" | "root";
   readonly url?: string;
 };
 
