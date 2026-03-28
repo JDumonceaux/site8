@@ -49,10 +49,10 @@ const useMenuAdd = () => {
     setFieldValue,
     setFormValues,
     setIsSaved,
-  } = useForm<FormType>(initialFormValues);
+  } = useForm(initialFormValues);
 
   const validateForm = (): boolean => {
-    const result = safeParse<FormType>(pageSchema, formValues);
+    const result = safeParse(pageSchema, formValues);
     setErrors(result.error);
     return result.success;
   };
@@ -85,7 +85,7 @@ const useMenuAdd = () => {
   ): Promise<FormState> => {
     try {
       // Validate form
-      const validationResult = safeParse<FormType>(pageSchema, formValues);
+      const validationResult = safeParse(pageSchema, formValues);
       if (!validationResult.success) {
         setErrors(validationResult.error ?? null);
         return {

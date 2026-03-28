@@ -36,10 +36,10 @@ const ConfirmEmailPage = (): JSX.Element => {
   };
 
   const { formValues, getDefaultProps, getFieldErrors, setErrors } =
-    useForm<FormValues>(initialFormValues);
+    useForm(initialFormValues);
 
   const validateForm = () => {
-    const result = safeParse<FormValues>(schema, formValues);
+    const result = safeParse(schema, formValues);
     setErrors(result.error ?? null);
     return result.success;
   };
@@ -79,10 +79,7 @@ const ConfirmEmailPage = (): JSX.Element => {
     }
   };
 
-  const [actionState, formAction, isPending] = useActionState<
-    FormState,
-    FormData
-  >(submitAction, {});
+  const [actionState, formAction, isPending] = useActionState(submitAction, {});
 
   const handleResend = useCallback(() => {
     void (async () => {

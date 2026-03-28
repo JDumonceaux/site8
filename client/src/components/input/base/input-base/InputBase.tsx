@@ -59,7 +59,7 @@ const InputBase = ({
   ...inputProps // only genuine HTML input attributes remain
 }: InputBaseProps): JSX.Element => {
   const generatedId = useGetId(id);
-  const [fieldLength, setFieldLength] = useState<number>(
+  const [fieldLength, setFieldLength] = useState(
     String(value ?? defaultValue).length,
   );
   const internalRef = useRef<HTMLInputElement>(null);
@@ -69,7 +69,7 @@ const InputBase = ({
     (e: ChangeEvent<HTMLInputElement>) => {
       let newValue = e.target.value;
       if (allowedCharacters) {
-        newValue = Array.from(newValue)
+        newValue = [...newValue]
           .filter((ch) => allowedCharacters.test(ch))
           .join('');
         e.target.value = newValue;

@@ -81,7 +81,7 @@ export class GenericService {
 
     // Check if name is a numeric ID
     const numericId = Number(name);
-    if (!isNaN(numericId) && String(numericId) === name) {
+    if (!Number.isNaN(numericId) && String(numericId) === name) {
       Logger.info(`GenericService: getItem -> Looking up by ID: ${numericId}`);
       const pageById = data.items.find((x) => x.id === numericId);
       if (pageById) {

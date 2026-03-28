@@ -19,7 +19,7 @@ export const getNextIdFromItems = (items: readonly ItemWithId[]): number => {
 export const findDuplicateIds = (items: readonly ItemWithId[]): string[] => {
   const allIds = items.map((item) => item.id.toString());
   const duplicates = allIds.filter(
-    (id, index, arr) => arr.indexOf(id) !== index,
+    (id, index, array) => array.indexOf(id) !== index,
   );
 
   return [...new Set(duplicates)].filter((id) => id !== '');

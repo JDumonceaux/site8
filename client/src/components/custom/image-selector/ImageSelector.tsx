@@ -12,17 +12,17 @@ import useAppSettings from '@app/useAppSettings';
 import LoadingWrapper from '@components/loading/LoadingWrapper';
 import Switch from '@components/switch/Switch';
 import useUnmatchedImages from '@hooks/useUnmatchedImages';
-import type { Image } from '@types';
+import type { ImageFile } from '@site8/shared';
 import styled from 'styled-components';
 
 export type ImageSelectorProps = {
-  onSelectImage: (image: Image | undefined) => void;
+  onSelectImage: (image: ImageFile | undefined) => void;
 };
 
 const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
   const { setShowUnmatched, showUnmatched } = useAppSettings();
   const { data } = useUnmatchedImages();
-  const [selectedItem, setSelectedItem] = useState<Image | undefined>();
+  const [selectedItem, setSelectedItem] = useState<ImageFile | undefined>();
 
   const handleShowAll = useCallback((): void => {
     setSelectedItem(undefined);
@@ -39,7 +39,7 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
     (e: MouseEvent<HTMLButtonElement>): void => {
       e.preventDefault();
       const id = Number(e.currentTarget.id);
-      const item = data?.find((x: Image) => x.id === id);
+      const item = data?.find((x: ImageFile) => x.id === id);
       setSelectedItem(item);
       onSelectImage(item);
     },
@@ -51,7 +51,7 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
       if (e.key === 'Enter') {
         e.preventDefault();
         const id = Number(e.currentTarget.id);
-        const item = data?.find((x: Image) => x.id === id);
+        const item = data?.find((x: ImageFile) => x.id === id);
         setSelectedItem(item);
         onSelectImage(item);
       }
@@ -63,7 +63,7 @@ const ImageSelector = ({ onSelectImage }: ImageSelectorProps): JSX.Element => {
     () =>
       data
         ? selectedItem
-          ? data.filter((x: Image) => x.id === selectedItem.id)
+          ? data.filter((x: ImageFile) => x.id === selectedItem.id)
           : data
         : [],
     [data, selectedItem],

@@ -55,7 +55,7 @@ export class TestsGroupsService extends BaseDataService<TestGroupsResponse> {
             tags: group.tags ? [...group.tags] : undefined,
           };
         })
-        .sort((a, b) => {
+        .toSorted((a, b) => {
           // Sort by section name first (Unknown sections go to the end)
           const sectionA = a.sectionName;
           const sectionB = b.sectionName;

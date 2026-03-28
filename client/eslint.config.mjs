@@ -12,6 +12,7 @@ import reactQueryConfig from './eslint.config.react-query.mjs';
 import reactConfig from './eslint.config.react.mjs';
 import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
+import sonarjsConfig from './eslint.config.sonarjs.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
 import unicornConfig from './eslint.config.unicorn.mjs';
 
@@ -35,6 +36,7 @@ const config = [
     reactEffectConfig,
     performanceConfig,
     tsConfig,
+    sonarjsConfig,
     unicornConfig,
     // Relax rules for test files
     {

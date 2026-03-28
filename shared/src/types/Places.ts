@@ -1,46 +1,43 @@
+import * as v from "valibot";
+
 import type { Collection } from "./Collection.js";
 
-/**
- * URL reference for a place
- */
-export type PlaceUrl = {
-  readonly name?: string;
-  readonly type?: string;
-  readonly url: string;
-};
+export const PlaceUrlSchema = v.object({
+  name: v.optional(v.string()),
+  type: v.optional(v.string()),
+  url: v.string(),
+});
 
-/**
- * PlaceImage type - represents an image reference for a place
- */
-export type PlaceImage = {
-  readonly description?: string;
-  readonly fileName?: string;
-  readonly folder?: string;
-  readonly id: number;
-  readonly name?: string;
-  readonly role?: string;
-};
+export const PlaceImageSchema = v.object({
+  description: v.optional(v.string()),
+  fileName: v.optional(v.string()),
+  folder: v.optional(v.string()),
+  id: v.pipe(v.number(), v.integer(), v.minValue(1)),
+  name: v.optional(v.string()),
+  role: v.optional(v.string()),
+});
 
-/**
- * Place type - represents a geographical location
- */
-export type Place = {
-  readonly address?: string;
-  readonly city?: string;
-  readonly country?: string;
-  readonly description?: string;
-  readonly id: number;
-  readonly images?: PlaceImage[];
-  readonly lat?: number;
-  readonly lon?: number;
-  readonly name: string;
-  readonly region?: string;
-  readonly state?: string;
-  readonly tags?: string[];
-  readonly type?: string;
-  readonly urls?: PlaceUrl[];
-  readonly visited?: boolean;
-};
+export const PlaceSchema = v.object({
+  address: v.optional(v.string()),
+  city: v.optional(v.string()),
+  country: v.optional(v.string()),
+  description: v.optional(v.string()),
+  id: v.pipe(v.number(), v.integer(), v.minValue(1)),
+  images: v.optional(v.array(PlaceImageSchema)),
+  lat: v.optional(v.number()),
+  lon: v.optional(v.number()),
+  name: v.pipe(v.string(), v.minLength(1)),
+  region: v.optional(v.string()),
+  state: v.optional(v.string()),
+  tags: v.optional(v.array(v.string())),
+  type: v.optional(v.string()),
+  urls: v.optional(v.array(PlaceUrlSchema)),
+  visited: v.optional(v.boolean()),
+});
+
+export type PlaceUrl = v.InferOutput<typeof PlaceUrlSchema>;
+export type PlaceImage = v.InferOutput<typeof PlaceImageSchema>;
+export type Place = v.InferOutput<typeof PlaceSchema>;
 
 /**
  * Places collection type

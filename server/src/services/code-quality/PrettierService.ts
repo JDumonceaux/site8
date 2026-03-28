@@ -18,7 +18,7 @@ export class PrettierService {
 
       const options = await prettier.resolveConfig(filePath);
       const formatted = await prettier.format(code, {
-        ...(options ?? {}),
+        ...options,
         filepath: filePath,
       });
 

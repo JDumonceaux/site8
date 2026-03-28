@@ -69,10 +69,7 @@ const queryClient = new QueryClient({
  */
 const AppProvider = ({ children }: AppProviderProps) => {
   const handleError = useCallback(
-    (
-      error: unknown,
-      errorInfo: { componentStack?: null | string | undefined },
-    ) => {
+    (error: unknown, errorInfo: { componentStack?: null | string }) => {
       logError(error, {
         componentName: 'AppProvider',
         componentStack: errorInfo.componentStack,

@@ -20,12 +20,12 @@ const formatIssues = (issues: BaseIssue<unknown>[]): string =>
  * Custom validation error with detailed validation messages
  */
 export class ValidationError extends Error {
-  public constructor(
-    message: string,
-    public validationErrors: string[],
-  ) {
+  public readonly validationErrors: string[];
+
+  public constructor(message: string, validationErrors: string[]) {
     super(message);
     this.name = 'ValidationError';
+    this.validationErrors = validationErrors;
   }
 }
 

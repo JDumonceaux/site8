@@ -17,7 +17,7 @@ const config = {
     'unicorn/no-null': 'off',
     'unicorn/no-useless-undefined': ['error', { checkArguments: false }],
     'unicorn/prefer-node-protocol': 'off',
-    'unicorn/prefer-spread': 'off',
+    'unicorn/prefer-spread': 'error',
     'unicorn/prevent-abbreviations': [
       'error',
       {
@@ -25,6 +25,7 @@ const config = {
           args: false,
           ctx: false,
           db: false,
+          dir: false,
           e: false,
           env: false,
           err: false,
@@ -43,6 +44,7 @@ const config = {
           repo: false,
           req: false,
           res: false,
+          src: false,
           str: false,
           temp: false,
           util: false,

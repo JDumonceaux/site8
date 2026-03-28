@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "composite": true,
+    "rootDir": ".",
     "target": "ES2024",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "lib": ["ES2024"],
     "skipLibCheck": true,
     "strict": true,
-    "allowSyntheticDefaultImports": true
+    "types": ["node"]
   },
   "include": ["vite.config.mts", "vitest.config.ts"]
 }

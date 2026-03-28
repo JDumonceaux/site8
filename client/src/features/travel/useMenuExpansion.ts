@@ -25,14 +25,14 @@ const useMenuExpansion = ({
   item,
   rootItems,
 }: UseMenuExpansionParams): UseMenuExpansionResult => {
-  const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
+  const [expandedItems, setExpandedItems] = useState(new Set());
   const [isExpansionPending, startExpansionTransition] = useTransition();
 
   useEffect(() => {
     if (rootItems == null) return;
 
     const itemsToExpand = new Set<number>();
-    const items = Array.from(rootItems);
+    const items = [...rootItems];
 
     // Search for items matching the current URL parameters
     if (

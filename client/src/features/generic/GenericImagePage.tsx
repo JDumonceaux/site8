@@ -15,7 +15,7 @@ const GenericImagePage = (): JSX.Element => {
   const isError = false;
   const isLoading = false;
 
-  const deferredData = useDeferredValue<Image[]>(data);
+  const deferredData = useDeferredValue(data);
 
   const pageTitle = 'Images';
 

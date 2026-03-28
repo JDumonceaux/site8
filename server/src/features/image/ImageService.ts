@@ -7,9 +7,9 @@ import { CURRENT_YEAR } from '../../utils/constants.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
 import {
   normalizeFolder,
-  parseImageSrc,
+  parseImageSrc as parseImageSource,
   toCapitalizedFolderName,
-  toImageSrc,
+  toImageSrc as toImageSource,
 } from '../images/imageUtils.js';
 
 // ---------------------------------------------------------------------------
@@ -54,6 +54,57 @@ export type UpdateImageResult = {
 };
 
 // ---------------------------------------------------------------------------
+// Private helpers
+// ---------------------------------------------------------------------------
+
+type UpdateImageItemOptions = {
+  readonly hasDescriptionUpdate: boolean;
+  readonly hasTitleUpdate: boolean;
+  readonly recordId: number;
+  readonly targetFileName: string;
+  readonly targetFolder: string;
+  readonly trimmedDescription: string | undefined;
+  readonly trimmedTitle: string | undefined;
+};
+
+const buildUpdatedImageItem = (
+  base: ImagesIndexItem,
+  options: UpdateImageItemOptions,
+): ImagesIndexItem => {
+  const withoutSource = { ...base };
+  delete withoutSource.src;
+
+  let result: ImagesIndexItem = {
+    ...withoutSource,
+    fileName: options.targetFileName,
+    folder: options.targetFolder,
+    id: options.recordId,
+  };
+
+  if (options.hasDescriptionUpdate) {
+    if (options.trimmedDescription) {
+      result = { ...result, description: options.trimmedDescription };
+    } else {
+      const withoutDescription = { ...result };
+      delete withoutDescription.description;
+      result = withoutDescription;
+    }
+  }
+
+  if (options.hasTitleUpdate) {
+    if (options.trimmedTitle) {
+      result = { ...result, title: options.trimmedTitle };
+    } else {
+      const withoutTitle = { ...result };
+      delete withoutTitle.title;
+      result = withoutTitle;
+    }
+  }
+
+  return result;
+};
+
+// ---------------------------------------------------------------------------
 // ImageService
 // ---------------------------------------------------------------------------
 
@@ -87,11 +138,11 @@ export class ImageService {
   // deleteItem
   // -------------------------------------------------------------------------
 
-  public async deleteItem(src: string): Promise<{
+  public async deleteItem(source: string): Promise<{
     readonly deletedFile: boolean;
     readonly removedEntries: number;
   }> {
-    const parsed = parseImageSrc(src);
+    const parsed = parseImageSource(source);
     if (!parsed) {
       throw new Error('Invalid image src');
     }
@@ -119,12 +170,15 @@ export class ImageService {
 
     const imagesIndex = await this.readIndex();
     const items = imagesIndex.items ?? [];
-    const srcLower = src.toLowerCase();
+    const sourceLower = source.toLowerCase();
     const fileNameLower = parsed.fileName.toLowerCase();
     const folderLower = normalizeFolder(parsed.folder).toLowerCase();
 
     const filteredItems = items.filter((item) => {
-      if (typeof item.src === 'string' && item.src.toLowerCase() === srcLower) {
+      if (
+        typeof item.src === 'string' &&
+        item.src.toLowerCase() === sourceLower
+      ) {
         return false;
       }
       if (
@@ -156,7 +210,7 @@ export class ImageService {
     const imagesIndex = await this.readIndex();
     const items = imagesIndex.items ?? [];
 
-    const parsed = parseImageSrc(params.src);
+    const parsed = parseImageSource(params.src);
     const currentFileName = parsed?.fileName;
     const currentFolder = parsed ? normalizeFolder(parsed.folder) : '';
 
@@ -173,17 +227,17 @@ export class ImageService {
 
     // 2. If no match, add a new record (upsert)
     let recordId: number;
-    if (!sourceItem) {
+    if (sourceItem) {
+      if (typeof sourceItem.id !== 'number') {
+        throw new TypeError('Image record is missing an id');
+      }
+      recordId = sourceItem.id;
+    } else {
       const newId =
         items.length > 0
           ? Math.max(...items.map((item) => item.id ?? 0)) + 1
           : 1;
       recordId = newId;
-    } else {
-      if (typeof sourceItem.id !== 'number') {
-        throw new Error('Image record is missing an id');
-      }
-      recordId = sourceItem.id;
     }
 
     const resolvedCurrentFileName = sourceItem?.fileName ?? currentFileName;
@@ -245,25 +299,12 @@ export class ImageService {
       sourceAbsolutePath.toLowerCase() === targetAbsolutePath.toLowerCase();
 
     if (!isSamePath) {
-      try {
-        await access(targetAbsolutePath, fsConstants.F_OK);
-        throw new Error('File name already exists');
-      } catch (error) {
-        if (
-          !(error instanceof Error) ||
-          error.message === 'File name already exists'
-        ) {
-          throw error;
-        }
-      }
-      // eslint-disable-next-line security/detect-non-literal-fs-filename -- path is constructed from validated rename params
-      await mkdir(path.dirname(targetAbsolutePath), { recursive: true });
       // eslint-disable-next-line security/detect-non-literal-fs-filename -- paths are constructed from validated rename params
-      await rename(sourceAbsolutePath, targetAbsolutePath);
+      await this.moveImageFile(sourceAbsolutePath, targetAbsolutePath);
     }
 
     // 6. Guard against a different index entry already occupying the target path
-    const updatedSrc = toImageSrc(targetFolder, targetFileName);
+    const updatedSource = toImageSource(targetFolder, targetFileName);
     const targetFolderLower = targetFolder.toLowerCase();
     const targetFileNameLower = targetFileName.toLowerCase();
 
@@ -288,38 +329,14 @@ export class ImageService {
 
     const isNewRecord = !items.some((item) => item.id === recordId);
 
-    const buildUpdatedItem = (base: ImagesIndexItem): ImagesIndexItem => {
-      const withoutSrc = { ...base };
-      delete withoutSrc.src;
-
-      let result: ImagesIndexItem = {
-        ...withoutSrc,
-        fileName: targetFileName,
-        folder: targetFolder,
-        id: recordId,
-      };
-
-      if (hasDescriptionUpdate) {
-        if (trimmedDescription) {
-          result = { ...result, description: trimmedDescription };
-        } else {
-          const withoutDescription = { ...result };
-          delete withoutDescription.description;
-          result = withoutDescription;
-        }
-      }
-
-      if (hasTitleUpdate) {
-        if (trimmedTitle) {
-          result = { ...result, title: trimmedTitle };
-        } else {
-          const withoutTitle = { ...result };
-          delete withoutTitle.title;
-          result = withoutTitle;
-        }
-      }
-
-      return result;
+    const buildOptions: UpdateImageItemOptions = {
+      hasDescriptionUpdate,
+      hasTitleUpdate,
+      recordId,
+      targetFileName,
+      targetFolder,
+      trimmedDescription,
+      trimmedTitle,
     };
 
     const baseForNew: ImagesIndexItem = {
@@ -329,19 +346,45 @@ export class ImageService {
     };
 
     const updatedItems = isNewRecord
-      ? [...items, buildUpdatedItem(sourceItem ?? baseForNew)]
+      ? [
+          ...items,
+          buildUpdatedImageItem(sourceItem ?? baseForNew, buildOptions),
+        ]
       : items.map((item) =>
-          item.id === recordId ? buildUpdatedItem(item) : item,
+          item.id === recordId
+            ? buildUpdatedImageItem(item, buildOptions)
+            : item,
         );
 
     await this.writeIndex({ ...imagesIndex, items: updatedItems });
 
-    return { id: recordId, src: updatedSrc };
+    return { id: recordId, src: updatedSource };
   }
 
   // -------------------------------------------------------------------------
   // Private helpers
   // -------------------------------------------------------------------------
+
+  private async moveImageFile(
+    sourceAbsolutePath: string,
+    targetAbsolutePath: string,
+  ): Promise<void> {
+    try {
+      await access(targetAbsolutePath, fsConstants.F_OK);
+      throw new Error('File name already exists');
+    } catch (error) {
+      if (
+        !(error instanceof Error) ||
+        error.message === 'File name already exists'
+      ) {
+        throw error;
+      }
+    }
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- paths are constructed from validated rename params
+    await mkdir(path.dirname(targetAbsolutePath), { recursive: true });
+    // eslint-disable-next-line security/detect-non-literal-fs-filename -- paths are constructed from validated rename params
+    await rename(sourceAbsolutePath, targetAbsolutePath);
+  }
 
   private async readIndex(): Promise<ImagesIndexFile> {
     return this.fileService.readFile<ImagesIndexFile>(

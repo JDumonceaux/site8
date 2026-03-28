@@ -95,9 +95,9 @@ export class ImagesService extends BaseDataService<Images> {
       const { items = [] } = await this.getItems();
       const srcs = items.map((x) => x.src).filter((s): s is string => !!s);
       const seen = new Set<string>();
-      const duplicates = srcs.filter((src) => {
-        if (seen.has(src)) return true;
-        seen.add(src);
+      const duplicates = srcs.filter((source) => {
+        if (seen.has(source)) return true;
+        seen.add(source);
         return false;
       });
       return { items: duplicates };
@@ -149,29 +149,29 @@ export class ImagesService extends BaseDataService<Images> {
     currentItems: readonly Image[],
   ): Image[] {
     return items.map((item: Image) => {
-      const currItems = currentItems.filter((x) => x.id === item.id);
+      const currentItems_ = currentItems.filter((x) => x.id === item.id);
 
-      if (currItems.length === 0) {
+      if (currentItems_.length === 0) {
         throw new Error(
           `ImagesService: updateItems -> item not found in index: ${item.id}`,
         );
       }
 
-      if (currItems.length > 1) {
+      if (currentItems_.length > 1) {
         throw new Error(
           `ImagesService: updateItems -> Duplicate items found: ${item.id}.  Please correct index`,
         );
       }
 
-      const [currItem] = currItems;
-      if (!currItem) {
+      const [currentItem] = currentItems_;
+      if (!currentItem) {
         throw new Error(
           `ImagesService: updateItems -> Unexpected undefined item`,
         );
       }
 
       return {
-        ...currItem,
+        ...currentItem,
         ...item,
       } as Image;
     });
@@ -210,10 +210,10 @@ export class ImagesService extends BaseDataService<Images> {
       }
       // Get current items (Image[])
       const data = await this.readFile();
-      const currItems: Image[] = data.items ?? [];
+      const currentItems: Image[] = data.items ?? [];
       // Note: Scanning for new files requires mapping ImageFile to Image
       // For now, just reassign IDs to existing items
-      const modifiedItems = getNewIds(currItems);
+      const modifiedItems = getNewIds(currentItems);
       // Write back file
       await this.writeData({ ...data, items: modifiedItems ?? [] });
       return true;

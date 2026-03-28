@@ -14,7 +14,7 @@ type UseTestsDragAndDropResult = {
  * Handles reordering of items based on drag events.
  */
 const useTestsDragAndDrop = (): UseTestsDragAndDropResult => {
-  const [items, setItems] = useState<number[]>([1, 2, 3]);
+  const [items, setItems] = useState([1, 2, 3]);
 
   const handleDragEnd = (event: DragEndEvent): void => {
     const { active, over } = event;

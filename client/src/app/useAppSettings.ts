@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import { save } from '@store/appSlice';
+import type { AppDispatch, RootState } from '@store/store';
 import type { AppSettings } from '@types';
-import { save } from 'store/appSlice';
-import type { AppDispatch, RootState } from 'store/store';
 
 const initialState: AppSettings = {
   showAll: false,

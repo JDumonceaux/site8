@@ -55,7 +55,7 @@ const Items = memo(
 
     return (
       <Container>
-        {Array.from(groupedItems.entries()).map(([folder, folderItems]) => (
+        {[...groupedItems].map(([folder, folderItems]) => (
           <FolderSection key={folder}>
             <FolderHeading>{folder}</FolderHeading>
             <Grid>

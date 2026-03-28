@@ -53,7 +53,7 @@ export type UseFormArrayReturn<T extends IdType> = {
  */
 const useFormArray = <T extends IdType>(): UseFormArrayReturn<T> => {
   const [formValues, setFormValues] = useState<T[]>([]);
-  const [isSaved, setIsSaved] = useState<boolean>(true);
+  const [isSaved, setIsSaved] = useState(true);
 
   const setFieldValue = (
     lineId: number,

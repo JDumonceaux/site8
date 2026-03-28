@@ -14,8 +14,6 @@ const ChangePasswordPage = (): JSX.Element => {
   const title = 'Change Password';
   const { authUpdatePassword, error } = useAuth();
 
-  //    await authUpdatePassword(formValues.password, formValues.newPassword);
-
   const postItem = async (
     _prevState: unknown,
     formData: FormData,
@@ -36,8 +34,7 @@ const ChangePasswordPage = (): JSX.Element => {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_state, formAction] = useActionState(postItem, {
+  const [, formAction] = useActionState(postItem, {
     fieldData: { confirmPassword: '', newPassword: '', password: '' },
   } as FormState<ChangePassword>);
 

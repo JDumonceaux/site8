@@ -8,20 +8,20 @@ const decodeFileUrl = (url: string): string => {
 
 const joinPath = (...parts: string[]): string =>
   parts
-    .map((p) => p.replace(/\\/g, '/'))
+    .map((p) => p.replaceAll('\\', '/'))
     .join('/')
-    .replace(/\/+/g, '/');
+    .replaceAll(/\/+/g, '/');
 
 const computeAppRootAbsolute = (): string => {
-  const currPath = decodeFileUrl(import.meta.url);
+  const currentPath = decodeFileUrl(import.meta.url);
   const serverDirName = 'server';
-  const index = currPath.indexOf(serverDirName);
+  const index = currentPath.indexOf(serverDirName);
   if (index === -1) {
     throw new Error(
-      `Directory "${serverDirName}" not found in path: ${currPath}`,
+      `Directory "${serverDirName}" not found in path: ${currentPath}`,
     );
   }
-  return currPath.substring(0, index);
+  return currentPath.slice(0, Math.max(0, index));
 };
 
 const appRootAbsolute: string = computeAppRootAbsolute();

@@ -56,11 +56,21 @@ This monorepo contains three packages: `client/` (Vite + React 19), `server/` (E
 
 ## Key Conventions
 
-**Path aliases (client only — server has none):**
+**Path aliases (client only — server uses `@/*` alias and `#`-prefixed subpath imports):**
 
 - `@app/*`, `@components/*`, `@features/*`, `@hooks/*`, `@lib/*`, `@providers/*`, `@store/*`, `@types`
+- Server new code: prefer `#utils/logger.js`, `#features/...`, `#services/...` over `@/utils/...` (subpath imports via `package.json` `imports` field)
 
-**TypeScript:** Both packages use `strict: true`. Client targets ES2024, server targets ESNext/NodeNext with `verbatimModuleSyntax: true`.
+**TypeScript:** All packages use `strict: true` and `erasableSyntaxOnly: true` (zero tolerance for non-erasable syntax — no enums, no namespaces, no parameter properties). Client targets ES2024 lib (`["DOM", "DOM.Iterable", "ES2024"]`), server targets ESNext/NodeNext, shared targets ES2024/NodeNext — all with `verbatimModuleSyntax: true`. Note: TypeScript 6.0.2 ships with ES2024 as the highest available lib; ES2025 lib files do not exist yet.
+
+**Modern idioms (preferred over legacy equivalents):**
+
+- `[...iterator]` over `Array.from(iterator)` — use spread for any iterable
+- `[...arr].toSorted(fn)` over `arr.sort(fn)` — immutable sort (ES2023, available in ES2024 lib)
+- `Map.getOrInsert` / `Map.getOrInsertComputed` — NOT yet available in TypeScript 6.0.2 lib; use `get ?? []; push; set` pattern instead
+- `RegExp.escape(userInput)` — NOT yet available in TypeScript 6.0.2 lib; use `str.replaceAll(/[$()*+.?[\\\]^{|}]/g, String.raw`\$&`)` instead
+
+**Valibot schemas:** Shared types in `shared/src/types/` now co-locate Valibot schemas alongside types. Use `v.safeParse(Schema, JSON.parse(data))` instead of `JSON.parse(data) as Type`. When calling `FileService.readFile`, pass the schema argument for runtime-validated reads.
 
 **Authentication:** AWS Amplify (`@aws-amplify/ui-react`). Toggled by `VITE_USE_AUTH` / `USE_AUTH` env var validated via Valibot. Auth is client-side only (route guards via `ProtectedRoute`); server routes have no centralized auth middleware currently.
 
@@ -92,9 +102,10 @@ This monorepo contains three packages: `client/` (Vite + React 19), `server/` (E
 
 **Add a shared type:**
 
-1. Add to `shared/src/index.ts`
-2. `cd shared && npm run build`
-3. Update imports in client/server and run their builds
+1. Add schema + type to the appropriate file in `shared/src/types/` (use Valibot `v.object()` to define schema, derive type with `v.InferOutput<typeof Schema>`)
+2. Export schema and type from `shared/src/types/index.ts`
+3. `cd shared && npm run build`
+4. Update imports in client/server and run their builds
 
 **Add a client feature:**
 

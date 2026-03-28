@@ -5,14 +5,14 @@ import Meta from '@components/meta/Meta';
 import PageTitle from '@components/page/PageTitle';
 import SubjectMenu from '@features/generic/SubjectMenu';
 import Layout from '@features/layouts/layout/Layout';
-import type { Image, Video } from '@types';
+import type { Video } from '@types';
 import ImageBlock from './ImageBlock';
 import VideoEmbed from './VideoEmbed';
 
 const PAGE_TITLE = 'Yachts';
 
 // Static data moved outside component to avoid re-allocation each render
-const IMAGES: Image[] = [
+const IMAGES = [
   {
     alt: 'Nature Design 1',
     id: 1,

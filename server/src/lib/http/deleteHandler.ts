@@ -31,16 +31,16 @@ export const createDeleteHandler = <T>({
         return;
       }
 
-      const idNum = Number(id);
-      if (Number.isNaN(idNum) || idNum <= 0) {
+      const idNumber = Number(id);
+      if (Number.isNaN(idNumber) || idNumber <= 0) {
         badRequest(res, 'Invalid ID');
         return;
       }
 
-      Logger.info(`${serviceName}: Delete Item called: ${idNum}`);
+      Logger.info(`${serviceName}: Delete Item called: ${idNumber}`);
 
       const service = getService();
-      const deletedItem = await service.deleteItem(idNum);
+      const deletedItem = await service.deleteItem(idNumber);
 
       if (!deletedItem) {
         notFound(res, 'Item not found');

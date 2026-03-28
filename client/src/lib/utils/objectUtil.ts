@@ -1,3 +1,5 @@
+import { removeEmptyAttributes } from '@site8/shared';
+
 // Re-export shared object utilities
 export {
   cleanUpData,

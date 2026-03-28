@@ -11,7 +11,7 @@ export const deriveServiceName = (
     return className;
   }
 
-  const pathParts = filePath.split(/[\\/]/);
-  const fileName = pathParts[pathParts.length - 1] ?? 'DataService';
+  const pathParts = filePath.split(/[/\\]/);
+  const fileName = pathParts.at(-1) ?? 'DataService';
   return fileName.replace(/\.json$/, '');
 };

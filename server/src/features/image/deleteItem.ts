@@ -13,16 +13,16 @@ export const deleteItem = async (
   req: Request,
   res: Response<DeleteItemResponse | { error: string }>,
 ): Promise<void> => {
-  const src =
+  const source =
     typeof req.query.src === 'string' ? req.query.src.trim() : undefined;
 
-  if (!src) {
+  if (!source) {
     badRequest(res, 'src is required');
     return;
   }
 
   const service = getImageService();
-  const result = await service.deleteItem(src);
+  const result = await service.deleteItem(source);
 
   ok(
     res,

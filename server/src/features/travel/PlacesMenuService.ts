@@ -68,8 +68,8 @@ export class PlacesMenuService {
     const cityMenuItems: MenuItem[] = [];
     let cityIdOffset = 1;
 
-    for (const [city, cityPlaces] of Array.from(citiesMap.entries()).sort(
-      ([a], [b]) => a.localeCompare(b),
+    for (const [city, cityPlaces] of [...citiesMap].toSorted(([a], [b]) =>
+      a.localeCompare(b),
     )) {
       const cityId = countryId * ID_MULTIPLIER.COUNTRY_TO_CITY + cityIdOffset;
       const citySlug = this.slugify(city);
@@ -108,7 +108,7 @@ export class PlacesMenuService {
     citySlug: string,
   ): MenuItem[] {
     return places
-      .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+      .toSorted((a, b) => (a.name || '').localeCompare(b.name || ''))
       .map((place, index) => {
         const placeId = cityId * ID_MULTIPLIER.CITY_TO_PLACE + index + 1;
         const placeSlug = this.slugify(place.name);
@@ -147,9 +147,9 @@ export class PlacesMenuService {
     const countryMenuItems: MenuItem[] = [];
     let countryId = 1;
 
-    for (const [country, countryPlaces] of Array.from(
-      countriesMap.entries(),
-    ).sort(([a], [b]) => a.localeCompare(b))) {
+    for (const [country, countryPlaces] of [...countriesMap].toSorted(
+      ([a], [b]) => a.localeCompare(b),
+    )) {
       const countrySlug = this.slugify(country);
       const countryUrl = `/travel/${countrySlug}`;
       const countryItem: MenuItem = {
@@ -176,8 +176,8 @@ export class PlacesMenuService {
     return text
       .toLowerCase()
       .trim()
-      .replace(/[^\w\s-]/g, '') // Remove special characters
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
+      .replaceAll(/[^\s\w-]/g, '') // Remove special characters
+      .replaceAll(/\s+/g, '-') // Replace spaces with hyphens
+      .replaceAll(/-+/g, '-'); // Replace multiple hyphens with single hyphen
   }
 }

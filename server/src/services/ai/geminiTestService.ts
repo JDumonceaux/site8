@@ -1,4 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
+import * as v from 'valibot';
 
 import { env } from '../../utils/env.js';
 
@@ -9,10 +10,13 @@ type GeminiImageResult = {
   readonly title: string;
 };
 
+const GeminiImageResultSchema = v.object({
+  description: v.pipe(v.string(), v.nonEmpty()),
+  title: v.pipe(v.string(), v.nonEmpty()),
+});
+
 const stripMarkdownCodeFences = (text: string): string => {
-  const match = /^```(?:json)?[ \t]*\n(?<content>[\s\S]*?)\n```[ \t]*$/.exec(
-    text,
-  );
+  const match = /^```(?:json)?[\t ]*\n(?<content>.*?)\n```[\t ]*$/s.exec(text);
   return match?.groups?.content?.trim() ?? text;
 };
 
@@ -20,30 +24,24 @@ const parseGeminiImageResult = (responseText: string): GeminiImageResult => {
   const normalizedText = stripMarkdownCodeFences(responseText.trim());
 
   try {
-    const parsed = JSON.parse(normalizedText) as {
-      readonly description?: unknown;
-      readonly title?: unknown;
-    };
-
-    if (
-      typeof parsed.title === 'string' &&
-      parsed.title.trim().length > 0 &&
-      typeof parsed.description === 'string' &&
-      parsed.description.trim().length > 0
-    ) {
+    const result = v.safeParse(
+      GeminiImageResultSchema,
+      JSON.parse(normalizedText) as unknown,
+    );
+    if (result.success) {
       return {
-        description: parsed.description.trim(),
-        title: parsed.title.trim(),
+        description: result.output.description.trim(),
+        title: result.output.title.trim(),
       };
     }
   } catch {
     // no-op
   }
 
-  const titleMatch = /^title[ \t]*:[ \t]*(?<value>\S.*)$/im.exec(
+  const titleMatch = /^title[\t ]*:[\t ]*(?<value>\S.*)$/im.exec(
     normalizedText,
   );
-  const descriptionMatch = /^description[ \t]*:[ \t]*(?<value>\S.*)$/im.exec(
+  const descriptionMatch = /^description[\t ]*:[\t ]*(?<value>\S.*)$/im.exec(
     normalizedText,
   );
 

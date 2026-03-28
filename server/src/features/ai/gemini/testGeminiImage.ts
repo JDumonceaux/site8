@@ -9,7 +9,7 @@ import { isResponseClosed } from '../../../utils/httpUtils.js';
 import { Logger } from '../../../utils/logger.js';
 import {
   getImageMimeType,
-  parseImageSrc,
+  parseImageSrc as parseImageSource,
   resolveSafeImagePath,
 } from '../../images/imageUtils.js';
 
@@ -39,7 +39,7 @@ export const runGeminiImageTest = async (
   req.setTimeout(GEMINI_IMAGE_TIMEOUT_MS);
   res.setTimeout(GEMINI_IMAGE_TIMEOUT_MS);
 
-  const src = TEST_IMAGE_SRC;
+  const source = TEST_IMAGE_SRC;
 
   if (!env.GEMINI_API_KEY) {
     internalError(
@@ -51,8 +51,8 @@ export const runGeminiImageTest = async (
     return;
   }
 
-  const parsedImageSrc = parseImageSrc(src);
-  if (!parsedImageSrc) {
+  const parsedImageSource = parseImageSource(source);
+  if (!parsedImageSource) {
     internalError(
       res,
       'Gemini:runGeminiImageTest',
@@ -62,7 +62,7 @@ export const runGeminiImageTest = async (
     return;
   }
 
-  const fullImagePath = resolveSafeImagePath(parsedImageSrc.relativePath);
+  const fullImagePath = resolveSafeImagePath(parsedImageSource.relativePath);
   if (!fullImagePath) {
     internalError(
       res,

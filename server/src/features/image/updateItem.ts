@@ -22,13 +22,19 @@ export const updateItem = async (
   res: Response<UpdateItemResponse | { error: string }>,
 ): Promise<void> => {
   const body = req.body as UpdateItemRequestBody;
-  const { description } = body;
-  const src = body.src?.trim();
-  const targetFileName = body.targetFileName?.trim();
-  const targetFolder = body.targetFolder?.trim();
-  const title = body.title?.trim();
+  const {
+    description,
+    src,
+    targetFileName: rawTargetFileName,
+    targetFolder: rawTargetFolder,
+    title: rawTitle,
+  } = body;
+  const source = src?.trim();
+  const targetFileName = rawTargetFileName?.trim();
+  const targetFolder = rawTargetFolder?.trim();
+  const title = rawTitle?.trim();
 
-  if (!src?.startsWith('/images/')) {
+  if (!source?.startsWith('/images/')) {
     badRequest(res, 'src is required and must start with /images/');
     return;
   }
@@ -48,7 +54,7 @@ export const updateItem = async (
   try {
     const result = await service.updateImage({
       description,
-      src,
+      src: source,
       targetFileName,
       targetFolderLabel: targetFolder,
       title,

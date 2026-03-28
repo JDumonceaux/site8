@@ -25,7 +25,7 @@ export class ImagesFileService {
         recursive: true,
       });
 
-      items.forEach((item) => {
+      for (const item of items) {
         const itemPath = path.join(this.imageDir, item);
         // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
         const stats = statSync(itemPath);
@@ -33,7 +33,7 @@ export class ImagesFileService {
           // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
           renameSync(itemPath, itemPath.toLowerCase());
         }
-      });
+      }
 
       return true;
     } catch (error) {
@@ -72,14 +72,14 @@ export class ImagesFileService {
           return false;
         }
 
-        const { originalFolder } = item;
-        const currLocation = path.join(
+        const { fileName, folder, originalFolder } = item;
+        const currentLocation = path.join(
           this.imageDir,
           originalFolder ?? '',
-          item.fileName,
+          fileName,
         );
-        const moveTo = path.join(this.imageDir, item.folder, item.fileName);
-        const moveToPath = path.join(this.imageDir, item.folder);
+        const moveTo = path.join(this.imageDir, folder, fileName);
+        const moveToPath = path.join(this.imageDir, folder);
 
         // Create the folder if needed
         try {
@@ -89,9 +89,9 @@ export class ImagesFileService {
             // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
             mkdirSync(moveToPath);
           }
-        } catch (err) {
+        } catch (error) {
           Logger.error(
-            `ImagesFileService: Error creating folder -> ${String(err)}`,
+            `ImagesFileService: Error creating folder -> ${String(error)}`,
           );
         }
 
@@ -103,7 +103,7 @@ export class ImagesFileService {
           return false;
         } else {
           // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync
-          renameSync(currLocation, moveTo);
+          renameSync(currentLocation, moveTo);
         }
       }
       return true;
@@ -137,7 +137,7 @@ export class ImagesFileService {
       });
 
       // Return a list of images
-      const ret: ImageFile[] = items.map((x) => {
+      const returnValue: ImageFile[] = items.map((x) => {
         return {
           fileName: path.basename(x),
           folder: normalizeFolder(path.dirname(x)),
@@ -145,7 +145,7 @@ export class ImagesFileService {
       });
 
       // Filter out 'site' folder and placeholder files
-      const filteredImages = ret.filter(
+      const filteredImages = returnValue.filter(
         (x) => x.folder !== 'site' && x.fileName !== '.gitkeep',
       );
 

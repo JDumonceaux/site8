@@ -2,6 +2,8 @@ import { existsSync, mkdirSync, realpathSync, writeFileSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
+import * as v from 'valibot';
+
 import { Logger } from '../../utils/logger.js';
 
 import FilePath from './FilePath.js';
@@ -106,7 +108,10 @@ export class FileService {
     }
   }
 
-  public async readFile<T>(filePath: string): Promise<T> {
+  public async readFile<T>(
+    filePath: string,
+    schema?: v.BaseSchema<unknown, T, v.BaseIssue<unknown>>,
+  ): Promise<T> {
     try {
       // Validate path is within allowed directory
       // eslint-disable-next-line security/detect-non-literal-fs-filename, n/no-sync -- Need to validate path
@@ -122,11 +127,12 @@ export class FileService {
       let data = await readFile(resolvedPath, { encoding: 'utf8' });
 
       // Remove BOM if present
-      if (data.charCodeAt(0) === 0xfeff) {
+      if (data.codePointAt(0) === 0xFE_FF) {
         data = data.slice(1);
       }
 
-      return JSON.parse(data) as T;
+      const parsed: unknown = JSON.parse(data);
+      return schema == null ? (parsed as T) : v.parse(schema, parsed);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);

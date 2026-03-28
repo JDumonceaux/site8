@@ -12,9 +12,9 @@ import { CURRENT_YEAR } from '../../utils/constants.js';
 
 import {
   isSiteFolder,
-  parseImageSrc,
+  parseImageSrc as parseImageSource,
   toCapitalizedFolderName,
-  toImageSrc,
+  toImageSrc as toImageSource,
   toTitle,
 } from './imageUtils.js';
 
@@ -226,8 +226,8 @@ export class ImagesApiService {
 
     let movedCount = 0;
 
-    for (const src of imageSrcs) {
-      const parsed = parseImageSrc(src);
+    for (const source of imageSrcs) {
+      const parsed = parseImageSource(source);
       if (!parsed) {
         continue;
       }
@@ -292,7 +292,7 @@ export class ImagesApiService {
     return items.map((item, index) => ({
       ...item,
       seq: index,
-      src: toImageSrc(item.folder, item.fileName),
+      src: toImageSource(item.folder, item.fileName),
       title: toTitle(item.fileName),
     }));
   }

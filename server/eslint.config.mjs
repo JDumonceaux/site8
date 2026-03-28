@@ -45,6 +45,10 @@ const config = [
           selector:
             "MemberExpression[object.name='res'][property.name=/^(json|send)$/]",
         },
+        {
+          message: 'Enums are not allowed (erasableSyntaxOnly). Use const objects or union types instead.',
+          selector: 'TSEnumDeclaration',
+        },
       ],
     },
   },

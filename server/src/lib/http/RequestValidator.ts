@@ -41,14 +41,14 @@ export const convertIdsToNumbers = <T extends Record<string, unknown>>(
 
   for (const field of idFields) {
     if (converted[field] && typeof converted[field] === 'string') {
-      const num = Number(converted[field]);
-      if (isNaN(num)) {
+      const number_ = Number(converted[field]);
+      if (Number.isNaN(number_)) {
         return {
           errorMessage: `${field} must be a valid number`,
           isValid: false,
         };
       }
-      converted[field] = num;
+      converted[field] = number_;
     }
   }
 
@@ -138,8 +138,8 @@ export const validateId = (
     };
   }
 
-  const idNum = Number(id);
-  if (Number.isNaN(idNum) || idNum <= 0) {
+  const idNumber = Number(id);
+  if (Number.isNaN(idNumber) || idNumber <= 0) {
     return {
       errorMessage: 'Invalid ID',
       isValid: false,
@@ -147,7 +147,7 @@ export const validateId = (
   }
 
   return {
-    id: idNum,
+    id: idNumber,
     isValid: true,
   };
 };
@@ -166,12 +166,12 @@ export const validateIdConsistency = (
     return { isValid: true };
   }
 
-  const numUrl = Number(urlId);
-  const numBody = Number(bodyId);
+  const numberUrl = Number(urlId);
+  const numberBody = Number(bodyId);
   if (
-    Number.isFinite(numUrl) &&
-    Number.isFinite(numBody) &&
-    numUrl === numBody
+    Number.isFinite(numberUrl) &&
+    Number.isFinite(numberBody) &&
+    numberUrl === numberBody
   ) {
     return { isValid: true };
   }

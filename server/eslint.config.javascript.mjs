@@ -180,6 +180,10 @@ const config = {
                 message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
                 selector: 'WithStatement',
             },
+            {
+                message: 'Enums are not allowed (erasableSyntaxOnly). Use const objects or union types instead.',
+                selector: 'TSEnumDeclaration',
+            },
         ],
         'no-return-assign': ['error', 'always'],
         'no-script-url': 'error',

@@ -20,7 +20,7 @@ type UseCodeItemsManagerResult = {
 export const useCodeItemsManager = (
   initialCode: readonly TestCode[] = [],
 ): UseCodeItemsManagerResult => {
-  const [codeItems, setCodeItems] = useState<TestCode[]>([...initialCode]);
+  const [codeItems, setCodeItems] = useState([...initialCode]);
 
   const handleAddCode = useCallback(() => {
     setCodeItems((current) => {

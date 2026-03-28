@@ -14,11 +14,11 @@ import {
 } from './BaseDataService.items.js';
 import { deriveServiceName } from './BaseDataService.naming.js';
 import { CacheManager } from './CacheManager.js';
-import { DataValidator, ValidationError } from './DataValidator.js';
+import { DataValidator,  } from './DataValidator.js';
 import { ErrorHandler } from './ErrorHandler.js';
 
 // Re-export ValidationError for backward compatibility
-export { ValidationError };
+
 
 /**
  * Configuration options for BaseDataService
@@ -276,3 +276,5 @@ export abstract class BaseDataService<T> implements IDataService<T> {
     );
   }
 }
+
+export {ValidationError} from './DataValidator.js';

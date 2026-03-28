@@ -61,7 +61,7 @@ const allowedOrigins =
 app.use(
   cors({
     credentials: true,
-    maxAge: 86400, // 24 hours
+    maxAge: 86_400, // 24 hours
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     origin: (origin, callback) => {
       // Allow requests with no origin (mobile apps, curl, etc.)

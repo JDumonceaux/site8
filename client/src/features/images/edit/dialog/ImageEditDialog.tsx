@@ -84,7 +84,7 @@ const ImageEditDialog = ({
   const [identifyStatus, setIdentifyStatus] = useState<IdentifyStatus>('idle');
   const [identifyStatusMessage, setIdentifyStatusMessage] = useState('');
   const [isDeleteConfirmed, setIsDeleteConfirmed] = useState(false);
-  const [deleteWarning, setDeleteWarning] = useState<string>('');
+  const [deleteWarning, setDeleteWarning] = useState('');
   const confirmDeleteFieldRef = useRef<HTMLDivElement>(null);
   const { identifyImage, isPending: isIdentifying } = useIdentifyImage();
 

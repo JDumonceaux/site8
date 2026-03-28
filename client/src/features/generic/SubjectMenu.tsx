@@ -16,9 +16,8 @@ type SubjectMenuProps = {
 const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   const { findMenuItem, getRootMenuItems, isError, isLoading } = useMenu();
   const { pathname } = useLocation();
-  const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_isExpansionPending, startExpansionTransition] = useTransition();
+  const [expandedItems, setExpandedItems] = useState(new Set());
+  const [, startExpansionTransition] = useTransition();
 
   const [pn1] = getURLPath(pathname) ?? [];
 
@@ -58,7 +57,7 @@ const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
   ): JSX.Element[] => {
     if (!items) return [];
 
-    return Array.from(items).map((item) => {
+    return [...items].map((item) => {
       const isExpanded = expandedItems.has(item.id);
       const hasChildren = item.items && item.items.length > 0;
 

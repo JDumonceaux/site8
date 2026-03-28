@@ -11,13 +11,13 @@ import type { MenuItem , PageMenu , Parent } from '@site8/shared';
  */
 export const mapPageMenuToMenuItem = (
   item: PageMenu,
-  currParent: Parent,
+  currentParent: Parent,
   url?: string,
 ): MenuItem => {
   return {
     id: item.id,
     label: item.title,
-    parentItem: currParent,
+    parentItem: currentParent,
     title: item.title,
     type: item.type,
     url: url ?? item.url,

@@ -32,7 +32,7 @@ const config = {
         '@typescript-eslint/consistent-indexed-object-style': 'error',
         '@typescript-eslint/consistent-return': 'error',
         '@typescript-eslint/consistent-type-assertions': 'error',
-        '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         '@typescript-eslint/consistent-type-exports': 'error',
         '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports', prefer: 'type-imports' }],
         '@typescript-eslint/default-param-last': 'error',

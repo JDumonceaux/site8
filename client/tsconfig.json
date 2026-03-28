@@ -13,21 +13,20 @@
     "jsx": "react-jsx",
     "types": ["vitest/globals"],
 
-    // Set baseUrl to project root and alias src/
-    "baseUrl": "./src",
+    // Path aliases
     "paths": {
-      //"@/*": ["src/*"],
-      "@app/*": ["app/*"],
-      "@components/*": ["components/*"],
-      "@content/*": ["content/*"],
-      "@features/*": ["features/*"],
-      "@hooks/*": ["hooks/*"],
-      "@lib/*": ["lib/*"],
-      "@providers/*": ["app/providers/*"],
-      "@shared/*": ["shared/*"],
-      "@store/*": ["store/*"],
-      "@styles/*": ["styles/*"],
-      "@types": ["types"]
+      //"@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      "@components/*": ["./src/components/*"],
+      "@content/*": ["./src/content/*"],
+      "@features/*": ["./src/features/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@providers/*": ["./src/app/providers/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@store/*": ["./src/store/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@types": ["./src/types"]
     },
 
     // Allow JSON and TS extensions
@@ -36,8 +35,7 @@
 
     // Interop
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "verbatimModuleSyntax": true, // Added
+    "verbatimModuleSyntax": true,
 
     // Skip type-checking libs for speed
     "skipLibCheck": true,
@@ -48,14 +46,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    // too strict
-    // "exactOptionalPropertyTypes": true,
-    // too strict
-    // "noUncheckedIndexedAccess": true,
-    // too strict
-    // "noImplicitReturns": true,
-    // too strict - requires item.[key] vs. item.key
-    // "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "erasableSyntaxOnly": true,
     "noUncheckedSideEffectImports": true
   },
   "include": ["src"],

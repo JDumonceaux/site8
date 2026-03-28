@@ -59,12 +59,8 @@ export const createPatchHandler = <T>({
       const service = getService();
 
       try {
-        let updatedId: number;
-        if (service.patchItem) {
-          updatedId = await service.patchItem(data as T);
-        } else if (service.updateItem) {
-          updatedId = await service.updateItem(data as T);
-        } else {
+        const updateFn = service.patchItem ?? service.updateItem;
+        if (!updateFn) {
           internalError(
             res,
             serviceName,
@@ -72,6 +68,7 @@ export const createPatchHandler = <T>({
           );
           return;
         }
+        const updatedId = await updateFn(data as T);
 
         if (returnRepresentation) {
           if (!service.getItem) {

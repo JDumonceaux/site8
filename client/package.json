@@ -100,6 +100,7 @@
     "eslint-plugin-react-you-might-not-need-an-effect": "^0.9.2",
     "eslint-plugin-regexp": "^3.1.0",
     "eslint-plugin-security": "^4.0.0",
+    "eslint-plugin-sonarjs": "^4.0.2",
     "eslint-plugin-storybook": "^10.3.3",
     "eslint-plugin-testing-library": "^7.16.2",
     "eslint-plugin-unicorn": "^63.0.0",
@@ -117,17 +118,14 @@
     "vitest": "^4.1.1"
   },
   "overrides": {
+    "@tanstack/eslint-plugin-query": {
+      "typescript": "$typescript"
+    },
     "react-scan": {
       "esbuild": "0.25.1"
     },
     "@xstate/react@3.2.2": {
       "react": "$react"
-    },
-    "@typescript-eslint/typescript-estree@8.19.1": {
-      "typescript": "$typescript"
-    },
-    "@typescript-eslint/utils@8.19.1": {
-      "typescript": "$typescript"
     },
     "esbuild": "0.25.1"
   },

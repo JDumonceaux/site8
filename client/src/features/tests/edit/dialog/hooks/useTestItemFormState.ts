@@ -41,7 +41,7 @@ export const useTestItemFormState = ({
   resetCodeItems,
 }: UseTestItemFormStateArgs): UseTestItemFormStateResult => {
   const [name, setName] = useState(item?.name ?? '');
-  const [selectedGroupId, setSelectedGroupId] = useState<number>(
+  const [selectedGroupId, setSelectedGroupId] = useState(
     groupId ?? defaultGroupId,
   );
   const [comments, setComments] = useState(item?.comments ?? '');

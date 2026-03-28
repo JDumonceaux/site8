@@ -1,23 +1,43 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Shared Library",
   "compilerOptions": {
-    "target": "ES2023",
-    "module": "ES2022",
-    "lib": ["ES2023"],
-    "moduleResolution": "bundler",
+    /* Language and Environment */
+    "target": "ES2024",
+    "lib": ["ES2024"],
+
+    /* Modules */
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+
+    /* Emit */
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
     "strict": true,
+    "erasableSyntaxOnly": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noUncheckedSideEffectImports": true,
+
+    /* Completeness */
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

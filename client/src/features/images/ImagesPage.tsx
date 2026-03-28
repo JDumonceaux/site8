@@ -35,12 +35,12 @@ const EMPTY_FOLDERS: readonly string[] = [];
 
 const ImagesPage = (): JSX.Element => {
   const [matchedFilter, setMatchedFilter] = useState<MatchedFilter>('all');
-  const [folderFilter, setFolderFilter] = useState<string>('');
+  const [folderFilter, setFolderFilter] = useState('');
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [editingImage, setEditingImage] = useState<ImageItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [saveError, setSaveError] = useState<string>('');
-  const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
+  const [saveError, setSaveError] = useState('');
+  const [selectedImageIds, setSelectedImageIds] = useState(
     new Set(),
   );
   const [dragOverFolder, setDragOverFolder] = useState<null | string>(null);

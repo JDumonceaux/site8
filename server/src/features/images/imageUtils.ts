@@ -5,7 +5,7 @@ import FilePath from '../../lib/filesystem/FilePath.js';
 export const IMAGE_SRC_ROOT = '/images';
 
 export const normalizeFolder = (folder: string): string =>
-  folder.replace(/\\/g, '/').replace(/^\.?\//, '');
+  folder.replaceAll('\\', '/').replace(/^\.?\//, '');
 
 export const toImageSrc = (folder: string, fileName: string): string => {
   const normalizedFolder = normalizeFolder(folder);
@@ -21,12 +21,12 @@ export type ParsedImageSrc = {
   readonly relativePath: string;
 };
 
-export const parseImageSrc = (src: string): ParsedImageSrc | null => {
-  if (!src.startsWith(IMAGE_SRC_ROOT)) {
+export const parseImageSrc = (source: string): ParsedImageSrc | null => {
+  if (!source.startsWith(IMAGE_SRC_ROOT)) {
     return null;
   }
 
-  const relativePath = src.slice(IMAGE_SRC_ROOT.length + 1);
+  const relativePath = source.slice(IMAGE_SRC_ROOT.length + 1);
   const segments = relativePath.split('/').filter(Boolean);
   const fileName = segments.at(-1);
 
@@ -45,21 +45,28 @@ export const getImageMimeType = (inputPath: string): string => {
   const extension = path.extname(inputPath).toLowerCase();
 
   switch (extension) {
-    case '.avif':
+    case '.avif': {
       return 'image/avif';
-    case '.gif':
+    }
+    case '.gif': {
       return 'image/gif';
+    }
     case '.jpeg':
-    case '.jpg':
+    case '.jpg': {
       return 'image/jpeg';
-    case '.png':
+    }
+    case '.png': {
       return 'image/png';
-    case '.svg':
+    }
+    case '.svg': {
       return 'image/svg+xml';
-    case '.webp':
+    }
+    case '.webp': {
       return 'image/webp';
-    default:
+    }
+    default: {
       return 'application/octet-stream';
+    }
   }
 };
 
@@ -70,12 +77,12 @@ export const isSiteFolder = (folder: string): boolean => {
 
 export const toTitle = (fileName: string): string => {
   const baseName = path.parse(fileName).name;
-  return baseName.replace(/[-_]+/g, ' ').trim();
+  return baseName.replaceAll(/[_-]+/g, ' ').trim();
 };
 
 export const toCapitalizedFolderName = (folderName: string): string =>
   folderName
-    .replace(/[-_]+/g, ' ')
+    .replaceAll(/[_-]+/g, ' ')
     .split(' ')
     .filter(Boolean)
     .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)

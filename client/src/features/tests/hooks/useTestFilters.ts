@@ -15,27 +15,27 @@ type UseTestFiltersResult = {
 export const useTestFilters = (
   sections: readonly TestSection[],
 ): UseTestFiltersResult => {
-  const [sectionFilter, setSectionFilter] = useState<string>('all');
-  const [tagFilter, setTagFilter] = useState<string>('all');
+  const [sectionFilter, setSectionFilter] = useState('all');
+  const [tagFilter, setTagFilter] = useState('all');
 
   // Get unique section names for filter
   const sectionNames = useMemo(
     () =>
-      Array.from(
-        new Set(
+      [
+        ...new Set(
           sections
             .filter((section) => section.name)
             .map((section) => section.name),
         ),
-      ).toSorted(),
+      ].toSorted((a, b) => a.localeCompare(b)),
     [sections],
   );
 
   // Get unique tags from all items and groups
   const allTags = useMemo(
     () =>
-      Array.from(
-        new Set(
+      [
+        ...new Set(
           sections.flatMap((section) =>
             (section.groups ?? []).flatMap((group) => [
               ...(group.tags ?? []),
@@ -43,9 +43,9 @@ export const useTestFilters = (
             ]),
           ),
         ),
-      )
+      ]
         .filter((tag) => tag.trim() !== '')
-        .toSorted(),
+        .toSorted((a, b) => a.localeCompare(b)),
     [sections],
   );
 

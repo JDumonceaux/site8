@@ -1,5 +1,5 @@
 import type { Parent } from '@site8/shared';
 
 export type ParentSortby = {
-  readonly sortby?: 'name' | 'seq' | undefined;
+  readonly sortby?: 'name' | 'seq';
 } & Parent;

@@ -78,9 +78,9 @@ export type UseFormReturn<T> = {
  * ```
  */
 const useForm = <T>(initialValues: T): UseFormReturn<T> => {
-  const [formValues, setFormValues] = useState<T>(initialValues);
+  const [formValues, setFormValues] = useState(initialValues);
   const [errors, setErrors] = useState<BaseIssue<unknown>[] | null>(null);
-  const [isSaved, setIsSaved] = useState<boolean>(true);
+  const [isSaved, setIsSaved] = useState(true);
 
   const setFieldValue = (fieldName: FormKeys<T>, value: FieldValue) => {
     setFormValues((prev) => ({

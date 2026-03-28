@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 type ImageBlockProps = {
   alt?: string;
-  src?: string | undefined;
+  src?: string;
   title?: string;
 };
 

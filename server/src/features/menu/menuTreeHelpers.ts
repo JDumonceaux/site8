@@ -15,7 +15,7 @@ export const DEFAULT_PARENT: Parent = {
 };
 
 const toSlug = (value: string): string =>
-  value.toLowerCase().replace(/\s+/g, '-');
+  value.toLowerCase().replaceAll(/\s+/g, '-');
 
 export const getSortBy = (
   parentId: number,

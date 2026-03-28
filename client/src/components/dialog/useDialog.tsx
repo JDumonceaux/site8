@@ -17,7 +17,7 @@ export type UseDialogReturn = {
  * @param initialOpen  whether the dialog should start open (default `false`)
  */
 export const useDialog = (initialOpen = false): UseDialogReturn => {
-  const [isOpen, setIsOpen] = useState<boolean>(initialOpen);
+  const [isOpen, setIsOpen] = useState(initialOpen);
 
   const open = () => {
     setIsOpen(true);

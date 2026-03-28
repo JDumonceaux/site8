@@ -42,14 +42,6 @@ const StyledItem = ({
           />
         );
       }
-      case 2: {
-        return (
-          <StyledMenu2
-            to={to}
-            {...props}
-          />
-        );
-      }
       default: {
         return (
           <StyledMenu2
@@ -72,14 +64,6 @@ const StyledItem = ({
     case 1: {
       return (
         <StyledPage1
-          to={to}
-          {...props}
-        />
-      );
-    }
-    case 2: {
-      return (
-        <StyledPage2
           to={to}
           {...props}
         />

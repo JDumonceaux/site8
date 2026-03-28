@@ -3,6 +3,32 @@
   "version": "0.1.0",
   "description": "API service for the application",
   "type": "module",
+  "imports": {
+    "#features/*": {
+      "types": "./src/features/*.ts",
+      "default": "./dist/features/*.js"
+    },
+    "#lib/*": {
+      "types": "./src/lib/*.ts",
+      "default": "./dist/lib/*.js"
+    },
+    "#middleware/*": {
+      "types": "./src/middleware/*.ts",
+      "default": "./dist/middleware/*.js"
+    },
+    "#routes/*": {
+      "types": "./src/app/routes/*.ts",
+      "default": "./dist/app/routes/*.js"
+    },
+    "#services/*": {
+      "types": "./src/services/*.ts",
+      "default": "./dist/services/*.js"
+    },
+    "#utils/*": {
+      "types": "./src/utils/*.ts",
+      "default": "./dist/utils/*.js"
+    }
+  },
   "engines": {
     "node": ">=20.11.0",
     "npm": ">=10.0.0"

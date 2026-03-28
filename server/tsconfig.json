@@ -25,34 +25,36 @@
 
     /* Interop Constraints */
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
 
     /* Type Checking */
     "strict": true,
+    "erasableSyntaxOnly": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitOverride": true,
-    // too strict - requires item.[key] vs. item.key
-    // "noPropertyAccessFromIndexSignature": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
     "noUncheckedSideEffectImports": true,
-    // Too strict for existing codebase
-    // "exactOptionalPropertyTypes": true,
 
     /* Completeness */
     "skipLibCheck": true,
+    "types": ["node"],
 
     /* Path Mapping */
-    "baseUrl": ".",
     "rootDir": "./src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#features/*": ["./src/features/*"],
+      "#lib/*": ["./src/lib/*"],
+      "#middleware/*": ["./src/middleware/*"],
+      "#routes/*": ["./src/app/routes/*"],
+      "#services/*": ["./src/services/*"],
+      "#utils/*": ["./src/utils/*"]
     }
   },
   "include": ["src/**/*"],

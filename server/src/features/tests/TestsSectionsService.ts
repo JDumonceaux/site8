@@ -1,4 +1,4 @@
-import type { TestFile } from '../../types/TestFile.js';
+import type { Test, TestFile, TestGroup } from '../../types/TestFile.js';
 import type {
   Collection,
   TestsSection,
@@ -9,6 +9,13 @@ import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
+
+type SectionEntry = {
+  description?: string;
+  groups: TestsSectionGroup[];
+  id: number;
+  name: string;
+};
 
 /**
  * Service for retrieving all test sections with groups and item counts
@@ -36,27 +43,10 @@ export class TestsSectionsService extends BaseDataService<
         };
       }
 
-      // Create a map of group IDs to item counts
-      const groupItemCounts = new Map<number, number>();
-      if (testFile.items) {
-        for (const item of testFile.items) {
-          if (item.groupId !== undefined) {
-            const currentCount = groupItemCounts.get(item.groupId) ?? 0;
-            groupItemCounts.set(item.groupId, currentCount + 1);
-          }
-        }
-      }
+      const groupItemCounts = this.buildGroupItemCounts(testFile.items);
 
       // Create a map of section IDs to section data
-      const sectionMap = new Map<
-        number,
-        {
-          description?: string;
-          groups: TestsSectionGroup[];
-          id: number;
-          name: string;
-        }
-      >();
+      const sectionMap = new Map<number, SectionEntry>();
       for (const section of testFile.sections) {
         sectionMap.set(section.id, {
           description: section.description,
@@ -66,42 +56,14 @@ export class TestsSectionsService extends BaseDataService<
         });
       }
 
-      // Track orphaned groups (groups without a valid section)
-      const orphanedGroups: TestsSectionGroup[] = [];
-
-      // Map groups to sections with item counts
-      if (testFile.groups) {
-        for (const group of testFile.groups) {
-          const itemCount = groupItemCounts.get(group.id) ?? 0;
-
-          const sectionGroup: TestsSectionGroup = {
-            comments: group.comments,
-            id: group.id,
-            itemCount,
-            name: group.name,
-            sectionId: group.sectionId,
-            sectionName: undefined,
-            tags: group.tags ? [...group.tags] : undefined,
-          };
-
-          // Try to add to existing section
-          if (group.sectionId !== undefined) {
-            const section = sectionMap.get(group.sectionId);
-            if (section !== undefined) {
-              section.groups.push(sectionGroup);
-            } else {
-              // Section ID exists but no matching section found
-              orphanedGroups.push(sectionGroup);
-            }
-          } else {
-            // No section ID defined
-            orphanedGroups.push(sectionGroup);
-          }
-        }
-      }
+      const orphanedGroups = this.mapGroupsToSections(
+        testFile.groups,
+        groupItemCounts,
+        sectionMap,
+      );
 
       // Convert map to array and sort sections by name
-      const sections: TestsSection[] = Array.from(sectionMap.values()).sort(
+      const sections: TestsSection[] = [...sectionMap.values()].toSorted(
         (a, b): number => a.name.localeCompare(b.name),
       );
 
@@ -134,5 +96,43 @@ export class TestsSectionsService extends BaseDataService<
       );
       throw error;
     }
+  }
+
+  private buildGroupItemCounts(items: readonly Test[]): Map<number, number> {
+    const counts = new Map<number, number>();
+    for (const item of items) {
+      if (item.groupId !== undefined) {
+        counts.set(item.groupId, (counts.get(item.groupId) ?? 0) + 1);
+      }
+    }
+    return counts;
+  }
+
+  private mapGroupsToSections(
+    groups: readonly TestGroup[],
+    groupItemCounts: Map<number, number>,
+    sectionMap: Map<number, SectionEntry>,
+  ): TestsSectionGroup[] {
+    const orphanedGroups: TestsSectionGroup[] = [];
+    for (const group of groups) {
+      const itemCount = groupItemCounts.get(group.id) ?? 0;
+      const sectionGroup: TestsSectionGroup = {
+        comments: group.comments,
+        id: group.id,
+        itemCount,
+        name: group.name,
+        sectionId: group.sectionId,
+        sectionName: undefined,
+        tags: group.tags ? [...group.tags] : undefined,
+      };
+
+      const section = sectionMap.get(group.sectionId);
+      if (section === undefined) {
+        orphanedGroups.push(sectionGroup);
+      } else {
+        section.groups.push(sectionGroup);
+      }
+    }
+    return orphanedGroups;
   }
 }

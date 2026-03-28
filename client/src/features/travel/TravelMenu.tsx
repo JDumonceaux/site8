@@ -74,7 +74,7 @@ const TravelMenu = ({ onPlaceSelect, ref }: TravelMenuProps): JSX.Element => {
     const render = (items?: Iterable<MenuItem>, level = 1): JSX.Element[] => {
       if (items == null) return [];
 
-      return Array.from(items).map((menuItem) => {
+      return [...items].map((menuItem) => {
         const isExpanded = expandedItems.has(menuItem.id);
         const hasChildren = menuItem.items != null && menuItem.items.length > 0;
 

@@ -43,7 +43,7 @@ export class TestsService extends BaseDataService<TestFile> {
           name: item.name,
           tags: item.tags ? [...item.tags] : undefined,
         }))
-        .sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
+        .toSorted((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
 
       return {
         items,

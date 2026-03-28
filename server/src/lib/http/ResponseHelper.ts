@@ -161,10 +161,10 @@ export const ok = <T>(
   handlerName: string,
   itemCount?: number,
 ): void => {
-  if (itemCount !== undefined) {
-    Logger.info(`${handlerName}: Successfully retrieved ${itemCount} items`);
-  } else {
+  if (itemCount === undefined) {
     Logger.info(`${handlerName}: Successfully retrieved data`);
+  } else {
+    Logger.info(`${handlerName}: Successfully retrieved ${itemCount} items`);
   }
 
   res.status(200).json(data);
