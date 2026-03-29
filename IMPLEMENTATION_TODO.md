@@ -51,44 +51,44 @@
 - Refactored to ServiceContainer pattern
 - Removed circular dependency issues
 - Eliminated eslint-disable comments
-
+### Completed (15 items)
 ---
 
 ### ✅ 2. Eliminate Type Duplication
+3. ✅ Centralized API client implementation
+4. ✅ ProtectedRoute authentication refactor
+5. ✅ Alert() replacement with Snackbar
+6. ✅ Server features reorganization
+7. ✅ Circular dependencies resolution
+8. ✅ Constants consolidation
+9. ✅ Router auto-discovery (RouterRegistry)
+10. ✅ Client components organization
+11. ✅ Custom hooks consolidation
+12. ✅ Unused directory cleanup
+13. ✅ Error boundaries (ErrorBoundary + FeatureErrorFallback)
+14. ✅ Request validation
+15. ✅ Pre-commit hooks (husky + lint-staged)
 
-**Status:** Completed  
-**Priority:** P1  
-**Description:** Create shared types package for 30+ duplicate types between client and server. Move common types (Pages, Images, Bookmarks, etc.) to shared location. Update imports across both codebases.
-
-**Completed Actions:**
-
-- Created @site8/shared package
-- Moved 9 core types to shared package
-- Updated imports across client and server
-- Verified builds succeed
-
----
+### Remaining (6 items)
 
 ### ✅ 3. Build Centralized API Client
 
-**Status:** Completed  
 **Priority:** P1  
 **Description:** Create centralized API client in `client/src/lib/api/` with interceptors, error handling, and type-safe endpoints. Replace scattered fetch calls.
 
 **Completed Actions:**
 
 - Created `client/src/lib/api/client.ts`, `types.ts`, and `index.ts`
-- Implemented request/response/error interceptor hooks
 - Added timeout and retry configuration
 - Migrated feature/hook-level `fetch()` calls to centralized `apiClient`
 - Preserved React Query integration and existing mutation/query behavior
 
 ---
 
-## Priority 2 - High (3 of 5 completed)
-
-### ⏳ 4. Refactor ProtectedRoute Authentication
-
+1. **Complete TODO endpoints** - Closes the last remaining P2 gap if this work still applies to the current repo
+2. **Add unit tests for services** - Increases reliability around the server-side refactors already completed
+3. **Optimize bundle size** - Most likely to yield measurable user-facing gains among the remaining P4 items
+4. **Implement CI/CD pipeline** - Automates validation for the work already completed
 **Status:** Not Started  
 **Priority:** P2  
 **Description:** Move hardcoded authentication logic from client/src/components/ProtectedRoute.tsx to auth context/hook. Implement proper auth state management.
