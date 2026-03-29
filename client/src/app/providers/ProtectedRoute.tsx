@@ -1,19 +1,20 @@
 import type { JSX } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-/**
- * Protects routes by redirecting unauthenticated users to login.
- */
-const ProtectedRoute = (): JSX.Element | null => {
-  // TODO: Replace this with real authentication logic (e.g., useAuth hook/context).
-  const user: null | number = 1; // Dummy placeholder
+import useAuth from '@features/auth/useAuth';
+import { env } from '@lib/env';
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (user === 0 || user == null) {
+/**
+ * Protects routes by redirecting unauthenticated users to the sign-in page.
+ */
+const ProtectedRoute = (): JSX.Element => {
+  const { authorized } = useAuth();
+
+  if (env.USE_AUTH && !authorized) {
     return (
       <Navigate
         replace
-        to="/login"
+        to="/signin"
       />
     );
   }

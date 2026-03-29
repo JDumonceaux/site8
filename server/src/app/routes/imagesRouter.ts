@@ -7,6 +7,8 @@ import { moveItems } from '../../features/images/moveItems.js';
 import { CURRENT_YEAR } from '../../utils/constants.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
+export const routeConfig = { path: '/api/images' } as const;
+
 export const imagesRouter = express.Router();
 
 imagesRouter.get('/', asyncHandler(getAllItems));

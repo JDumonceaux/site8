@@ -4,6 +4,8 @@ import { getItems } from '../../features/travel/getItems.js';
 import { getMenu } from '../../features/travel/getMenu.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
+export const routeConfig = { path: '/api/travel' } as const;
+
 export const travelRouter = express.Router();
 
 // GET /api/travel - Get all travel places

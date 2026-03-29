@@ -4,6 +4,8 @@ import { runGeminiTest } from '../../features/ai/gemini/testGemini.js';
 import { runGeminiImageTest } from '../../features/ai/gemini/testGeminiImage.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
+export const routeConfig = { path: '/api/gemini' } as const;
+
 const geminiRouter = Router();
 
 geminiRouter.get('/test', asyncHandler(runGeminiTest));

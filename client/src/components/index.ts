@@ -13,6 +13,9 @@ export { default as IconButton } from './button/icon-button/IconButton';
 // Divider
 export { default as Divider } from './divider/Divider';
 
+// Error Boundaries
+export * from './error-boundary';
+
 // Icons
 export * from './icons';
 

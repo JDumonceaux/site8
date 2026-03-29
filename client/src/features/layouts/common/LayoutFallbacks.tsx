@@ -3,6 +3,18 @@ import type { FallbackProps } from 'react-error-boundary';
 
 import styled from 'styled-components';
 
+const getErrorDetail = (error: unknown): string => {
+  if (!import.meta.env.DEV) {
+    return 'Please try again or refresh the page.';
+  }
+
+  if (error && typeof error === 'object' && 'message' in error) {
+    return String((error as { message?: string }).message ?? 'Unknown error');
+  }
+
+  return String(error);
+};
+
 /**
  * Accessible fallback shown while the page is lazy-loading.
  */
@@ -28,11 +40,7 @@ export const ErrorFallback = ({
     role="alert"
   >
     <ErrorTitle>Something went wrong</ErrorTitle>
-    <ErrorMessage>
-      {error && typeof error === 'object' && 'message' in error
-        ? (error as { message?: string }).message
-        : String(error)}
-    </ErrorMessage>
+    <ErrorMessage>{getErrorDetail(error)}</ErrorMessage>
     <RetryButton
       onClick={resetErrorBoundary}
       type="button"

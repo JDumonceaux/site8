@@ -40,8 +40,8 @@ const ImagesPage = (): JSX.Element => {
   const [editingImage, setEditingImage] = useState<ImageItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [saveError, setSaveError] = useState('');
-  const [selectedImageIds, setSelectedImageIds] = useState(
-    new Set(),
+  const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
+    new Set<number>(),
   );
   const [dragOverFolder, setDragOverFolder] = useState<null | string>(null);
   const { setErrorMessage, setMessage } = useSnackbar();
@@ -59,7 +59,7 @@ const ImagesPage = (): JSX.Element => {
   const { isPending: isMovePending, moveImages } = useMoveImages(
     (movedCount) => {
       setMessage(`Moved ${movedCount} image${movedCount === 1 ? '' : 's'}`);
-      setSelectedImageIds(new Set());
+      setSelectedImageIds(new Set<number>());
     },
     (moveError) => {
       setErrorMessage(moveError.message);
@@ -72,7 +72,7 @@ const ImagesPage = (): JSX.Element => {
           ? 'Image deleted'
           : 'Image entry removed from images index',
       );
-      setSelectedImageIds(new Set());
+      setSelectedImageIds(new Set<number>());
     },
     (deleteError) => {
       setErrorMessage(deleteError.message);
@@ -88,7 +88,7 @@ const ImagesPage = (): JSX.Element => {
     () => {
       setMessage('Image updated');
       setSaveError('');
-      setSelectedImageIds(new Set());
+      setSelectedImageIds(new Set<number>());
       handleCloseDialog();
     },
     (renameError) => {

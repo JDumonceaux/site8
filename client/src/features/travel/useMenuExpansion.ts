@@ -25,7 +25,9 @@ const useMenuExpansion = ({
   item,
   rootItems,
 }: UseMenuExpansionParams): UseMenuExpansionResult => {
-  const [expandedItems, setExpandedItems] = useState(new Set());
+  const [expandedItems, setExpandedItems] = useState<Set<number>>(
+    new Set<number>(),
+  );
   const [isExpansionPending, startExpansionTransition] = useTransition();
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const useMenuExpansion = ({
         (city == null || city === '') &&
         (item == null || item === '')
       ) {
-        setExpandedItems(new Set());
+        setExpandedItems(new Set<number>());
       }
     });
   }, [country, city, item, rootItems]);

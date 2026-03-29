@@ -6,6 +6,8 @@ import { asyncHandler } from '../../utils/routerUtils.js';
 
 const VALIDATION_MIDDLEWARE = [requireName];
 
+export const routeConfig = { path: '/api/generic' } as const;
+
 /**
  * Router for generic page retrieval endpoints
  * Handles fetching pages by name with optional parent context

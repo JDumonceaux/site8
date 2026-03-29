@@ -7,13 +7,7 @@ import express, {
 } from 'express';
 import RateLimit from 'express-rate-limit';
 
-import { geminiRouter } from './app/routes/geminiRouter.js';
-import { genericRouter } from './app/routes/genericRouter.js';
-import { imageRouter } from './app/routes/imageRouter.js';
-import { imagesRouter } from './app/routes/imagesRouter.js';
-import { menuRouter } from './app/routes/menuRouter.js';
-import { testsRouter } from './app/routes/testsRouter.js';
-import { travelRouter } from './app/routes/travelRouter.js';
+import { registerRoutes } from './lib/RouterRegistry.js';
 import { SERVER_CONFIG } from './utils/constants.js';
 import { env } from './utils/env.js';
 import { Logger } from './utils/logger.js';
@@ -121,18 +115,8 @@ const mutationLimiter = RateLimit({
   windowMs: SERVER_CONFIG.RATE_LIMIT_WINDOW_MS,
 });
 
-// Read-heavy routes with general rate limiting
-app.use('/api/travel', travelRouter);
-app.use('/api/generic', genericRouter);
-app.use('/api/images', imagesRouter);
-app.use('/api/gemini', geminiRouter);
-
-// Single-image mutation routes
-app.use('/api/image', mutationLimiter, imageRouter);
-
-// Write-heavy routes with stricter mutation rate limiting
-app.use('/api/tests', mutationLimiter, testsRouter);
-app.use('/api/menus', mutationLimiter, menuRouter);
+// Auto-discover and register all routes from app/routes/*Router.js
+await registerRoutes(app, mutationLimiter);
 
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   Logger.error('Unhandled error', { error: err.message, stack: err.stack });

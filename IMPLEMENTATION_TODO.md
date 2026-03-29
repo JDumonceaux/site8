@@ -1,7 +1,7 @@
 # Structural Improvements Implementation Plan
 
-**Last Updated:** February 14, 2026  
-**Progress:** 10 of 21 items completed (48%)
+**Last Updated:** March 29, 2026  
+**Progress:** 11 of 21 items completed (52%)
 
 ## Legend
 
@@ -15,7 +15,11 @@
 
 ---
 
-## Recent Updates (February 14, 2026)
+## Recent Updates (March 29, 2026)
+
+- ✅ Router auto-discovery completed (Item 10): restored `server/src/lib/RouterRegistry.ts`; each router now exports `routeConfig`; `server.ts` now uses a single `await registerRoutes(app, mutationLimiter)` call.
+
+## Previous Updates (February 14, 2026)
 
 - ✅ New test item save flow fixed: create now uses `POST /api/tests` when `id === 0`.
 - ✅ Client env migration completed for Vite: runtime usage moved to `import.meta.env` and `.env*` files aligned to `VITE_*` keys.
@@ -51,10 +55,13 @@
 - Refactored to ServiceContainer pattern
 - Removed circular dependency issues
 - Eliminated eslint-disable comments
+
 ### Completed (15 items)
+
 ---
 
 ### ✅ 2. Eliminate Type Duplication
+
 3. ✅ Centralized API client implementation
 4. ✅ ProtectedRoute authentication refactor
 5. ✅ Alert() replacement with Snackbar
@@ -89,9 +96,9 @@
 2. **Add unit tests for services** - Increases reliability around the server-side refactors already completed
 3. **Optimize bundle size** - Most likely to yield measurable user-facing gains among the remaining P4 items
 4. **Implement CI/CD pipeline** - Automates validation for the work already completed
-**Status:** Not Started  
-**Priority:** P2  
-**Description:** Move hardcoded authentication logic from client/src/components/ProtectedRoute.tsx to auth context/hook. Implement proper auth state management.
+   **Status:** Not Started  
+   **Priority:** P2  
+   **Description:** Move hardcoded authentication logic from client/src/components/ProtectedRoute.tsx to auth context/hook. Implement proper auth state management.
 
 **Implementation Steps:**
 
@@ -198,24 +205,18 @@
 
 ### ⏳ 10. Automate Router Registration
 
-**Status:** Not Started  
+**Status:** Completed  
 **Priority:** P3  
 **Description:** Replace manual router registration in server with auto-discovery pattern. Scan routes directory and register automatically.
 
-**Implementation Steps:**
+**Completed Actions:**
 
-1. Create router auto-discovery utility
-2. Scan `server1/src/routes/` directory
-3. Automatically register all \*Router.ts files
-4. Add route metadata/configuration support
-5. Update server.ts to use auto-discovery
-6. Add logging for registered routes
-7. Test all routes still work
-
-**Files to Modify:**
-
-- `server1/src/server.ts`
-- Create `server1/src/lib/routerRegistry.ts`
+- Created `server/src/lib/RouterRegistry.ts` with `registerRoutes()` that scans `dist/app/routes/` at startup
+- Added `routeConfig` export (`path`, optional `mutations` flag) to all actual router files
+- Files without `routeConfig` (for example `createSimpleRouter.ts`) are skipped automatically
+- Mutation limiter is applied automatically when `routeConfig.mutations` is `true`
+- Each registered route is logged at startup via `Logger.info`
+- Replaced manual route imports + `app.use()` calls in `server.ts` with a single `await registerRoutes(app, mutationLimiter)`
 
 ---
 
@@ -461,7 +462,7 @@
 
 ## Summary
 
-### Completed (10 items)
+### Completed (11 items)
 
 1. ✅ ServiceFactory refactoring
 2. ✅ Type duplication elimination
@@ -473,14 +474,14 @@
 8. ✅ Custom hooks consolidation
 9. ✅ Unused directory cleanup
 10. ✅ Centralized API client implementation
+11. ✅ Router auto-discovery (RouterRegistry)
 
-### Remaining (11 items)
+### Remaining (10 items)
 
 **High Priority:**
 
 - Refactor ProtectedRoute authentication (P2)
 - Complete TODO endpoints (P2)
-- Automate router registration (P3)
 
 **Low Priority:**
 

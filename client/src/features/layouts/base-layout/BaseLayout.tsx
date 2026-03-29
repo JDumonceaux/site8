@@ -1,12 +1,20 @@
-import { type JSX, memo, type ReactNode, Suspense, useMemo } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import {
+  type JSX,
+  memo,
+  type ReactNode,
+  Suspense,
+  useCallback,
+  useMemo,
+} from 'react';
 import { Outlet } from 'react-router-dom';
 
+import ErrorBoundary from '@components/error-boundary/ErrorBoundary';
 import {
   ErrorFallback,
   LoadingFallback,
 } from '@features/layouts/common/LayoutFallbacks';
 import Layout from '@features/layouts/layout/Layout';
+import { logError } from '@lib/utils/errorHandler';
 
 type BaseLayoutProps = {
   /** Optional header component to render above main content */
@@ -32,9 +40,21 @@ type BaseLayoutProps = {
  */
 const BaseLayout = ({ header, initializer }: BaseLayoutProps): JSX.Element => {
   const loadingFallback = useMemo(() => <LoadingFallback />, []);
+  const handleError = useCallback(
+    (error: unknown, info: { componentStack?: null | string }) => {
+      logError(error, {
+        componentName: 'BaseLayout',
+        componentStack: info.componentStack,
+      });
+    },
+    [],
+  );
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onError={handleError}
+    >
       {initializer}
       {header}
       <Layout.Main>
