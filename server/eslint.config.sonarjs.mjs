@@ -8,6 +8,10 @@ const config = {
     },
     rules: {
         ...pluginSonarjs.configs.recommended.rules,
+        'sonarjs/cognitive-complexity': ['error', 20],
+        'sonarjs/no-nested-conditional': 'off',
+        'sonarjs/no-unused-vars': 'off',
+        'sonarjs/todo-tag': 'warn',
     },
 };
 

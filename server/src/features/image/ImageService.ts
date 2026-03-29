@@ -299,7 +299,7 @@ export class ImageService {
       sourceAbsolutePath.toLowerCase() === targetAbsolutePath.toLowerCase();
 
     if (!isSamePath) {
-      // eslint-disable-next-line security/detect-non-literal-fs-filename -- paths are constructed from validated rename params
+       
       await this.moveImageFile(sourceAbsolutePath, targetAbsolutePath);
     }
 

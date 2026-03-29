@@ -93,15 +93,15 @@ export class DataValidator<T> {
    * @returns Data with metadata applied
    */
   private applyDefaultMetadata(data: T): T {
-    if (!this.defaultMetadata || typeof data !== 'object' || data === null) {
+    if (!this.defaultMetadata || data == null || typeof data !== 'object') {
       return data;
     }
 
     const dataObj = data as Record<string, unknown>;
-    if (!dataObj.metadata) {
-      (data as Record<string, unknown>).metadata = this.defaultMetadata;
+    if (dataObj.metadata) {
+      return data;
     }
 
-    return data;
+    return { ...dataObj, metadata: this.defaultMetadata } as T;
   }
 }

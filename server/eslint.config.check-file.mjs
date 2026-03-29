@@ -2,7 +2,7 @@
 import pluginCheckFile from 'eslint-plugin-check-file';
 
 const config = {
-    files: ['**/*.{ts}'],
+    files: ['**/*.{ts,mjs}'],
     name: 'Site8-check-file',
     plugins: {
         'check-file': pluginCheckFile,

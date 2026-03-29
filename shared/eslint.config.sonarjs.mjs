@@ -18,6 +18,8 @@ const config = {
         'sonarjs/no-identical-functions': ['warn', 4],
         'sonarjs/no-nested-switch': 'warn',
         'sonarjs/no-redundant-jump': 'error',
+        'sonarjs/no-unused-vars': 'off',
+        'sonarjs/todo-tag': 'warn',
     },
 };
 

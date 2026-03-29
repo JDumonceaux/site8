@@ -42,6 +42,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint \"src\" --ext .ts,.js --fix",
     "lint:root": "eslint \"*.{ts,mjs,json,mts}\"",
+    "lint:config:fix": "eslint \"*.{ts,mjs,json,mts}\" --fix",
     "lint:format": "pretty-quick --staged",
     "prepare": "husky",
     "prepare-commit-msg": "node tools/git-commit-message.js .git/COMMIT_EDITMSG",

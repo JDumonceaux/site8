@@ -1,5 +1,4 @@
 import * as v from "valibot";
-
 import type { Metadata } from "./Metadata.js";
 
 export const TestCodeSchema = v.object({

@@ -101,9 +101,7 @@ export class TestsSectionsService extends BaseDataService<
   private buildGroupItemCounts(items: readonly Test[]): Map<number, number> {
     const counts = new Map<number, number>();
     for (const item of items) {
-      if (item.groupId !== undefined) {
-        counts.set(item.groupId, (counts.get(item.groupId) ?? 0) + 1);
-      }
+      counts.set(item.groupId, (counts.get(item.groupId) ?? 0) + 1);
     }
     return counts;
   }

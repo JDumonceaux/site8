@@ -15,8 +15,9 @@ const config = {
         'sonarjs/no-nested-conditional': 'off',
         'sonarjs/no-nested-functions': 'off',
         'sonarjs/no-nested-template-literals': 'off',
+        'sonarjs/no-unused-vars': 'off',
         'sonarjs/slow-regex': 'off',
-        'sonarjs/todo-tag': 'off',
+        'sonarjs/todo-tag': 'warn',
     },
 };
 

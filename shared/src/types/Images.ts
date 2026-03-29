@@ -1,5 +1,4 @@
 import * as v from "valibot";
-
 import type { Collection } from "./Collection.js";
 
 export const ImageSchema = v.object({

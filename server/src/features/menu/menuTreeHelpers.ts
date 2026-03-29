@@ -97,5 +97,5 @@ export const buildRootItems = (rootMenus: readonly PageMenu[]): MenuItem[] => {
 export const buildOrphans = (items: readonly PageMenu[]): MenuItem[] => {
   return items
     .filter((item) => !item.parentItems || item.parentItems.length === 0)
-    .map((item) => mapPageMenuToMenuItem(item, DEFAULT_PARENT, undefined));
+    .map((item) => mapPageMenuToMenuItem(item, DEFAULT_PARENT));
 };

@@ -58,7 +58,7 @@ export class ImagesFileService {
         `ImagesFileService: moveItems. -> (${items ? items.length : 0}) to move.`,
       );
 
-      const updates: readonly ImageFileEdit[] = []; //items?.filter((x) => x.originalFolder !== x.folder);
+      const updates: readonly ImageFileEdit[] = [];
       if (!updates || updates.length === 0) {
         Logger.info(`ImagesFileService: moveItems. -> no items to update`);
         return true;

@@ -10,7 +10,8 @@
     "build:shared": "npm --prefix shared run build",
     "knip": "knip",
     "lint": "npm --prefix client run lint && npm --prefix server run lint && npm --prefix shared run lint",
-    "lint:fix": "npm --prefix client run lint:fix && npm --prefix server run lint:fix && npm --prefix shared run lint:fix"
+    "lint:fix": "npm --prefix client run lint:fix && npm --prefix server run lint:fix && npm --prefix shared run lint:fix",
+    "lint:config:fix": "npm --prefix client run lint:config:fix && npm --prefix server run lint:config:fix && npm --prefix shared run lint:config:fix"
   },
   "devDependencies": {
     "knip": "^6.0.1"

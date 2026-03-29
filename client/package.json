@@ -13,6 +13,7 @@
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
     "lint:fix": "eslint \"src\" --ext .ts,.tsx,.js,.jsx --fix",
     "lint:root": "eslint \"*.{ts,tsx,mjs,json,mts}\"",
+    "lint:config:fix": "eslint \"*.{ts,tsx,mjs,json,mts}\" --fix",
     "format": "prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --ignore-path .prettierignore",
     "test": "vitest",
     "test:ui": "vitest --ui",

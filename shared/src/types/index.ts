@@ -17,7 +17,7 @@ export type { Page, Parent } from "./Pages.js";
 export { PageSchema, ParentSchema } from "./Pages.js";
 export type { Pages } from "./Pages.js";
 export { PlaceImageSchema, PlaceSchema, PlaceUrlSchema } from "./Places.js";
-export type { Place, PlaceImage, PlaceUrl, Places } from "./Places.js";
+export type { Place, PlaceImage, Places, PlaceUrl } from "./Places.js";
 export {
   TestCodeSchema,
   TestGroupSchema,

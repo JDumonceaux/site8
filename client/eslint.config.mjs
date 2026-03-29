@@ -7,8 +7,8 @@ import performanceConfig from './eslint.config.performance.mjs';
 import preferArrowConfig from './eslint.config.prefer-arrow-functions.mjs';
 import promiseConfig from './eslint.config.promise.mjs';
 import reactEffectConfig from './eslint.config.react-effect.mjs';
-import reactRefreshConfig from './eslint.config.react-refresh.mjs';
 import reactQueryConfig from './eslint.config.react-query.mjs';
+import reactRefreshConfig from './eslint.config.react-refresh.mjs';
 import reactConfig from './eslint.config.react.mjs';
 import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
@@ -19,7 +19,7 @@ import unicornConfig from './eslint.config.unicorn.mjs';
 const config = [
     // Ignore generated/vendor files
     {
-        ignores: ['stats.html', 'vitest.config.ts', 'dist/**', 'node_modules/**'],
+        ignores: ['stats.html', 'vitest.config.ts', 'vite.config.mts', 'dist/**', 'node_modules/**'],
     },
     javascriptConfig,
     checkFileConfig,
