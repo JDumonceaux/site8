@@ -9,11 +9,15 @@
     "build:client": "npm --prefix client run build",
     "build:shared": "npm --prefix shared run build",
     "knip": "knip",
-    "lint": "npm --prefix client run lint && npm --prefix server run lint && npm --prefix shared run lint",
-    "lint:fix": "npm --prefix client run lint:fix && npm --prefix server run lint:fix && npm --prefix shared run lint:fix",
-    "lint:config:fix": "npm --prefix client run lint:config:fix && npm --prefix server run lint:config:fix && npm --prefix shared run lint:config:fix"
+    "lint": "npm run lint:package-json && npm --prefix client run lint && npm --prefix server run lint && npm --prefix shared run lint",
+    "lint:fix": "npm run lint:package-json:fix && npm --prefix client run lint:fix && npm --prefix server run lint:fix && npm --prefix shared run lint:fix",
+    "lint:config:fix": "npm --prefix client run lint:config:fix && npm --prefix server run lint:config:fix && npm --prefix shared run lint:config:fix",
+    "lint:package-json": "npx npmPkgJsonLint .",
+    "lint:package-json:fix": "npx npmPkgJsonLint --autofix ."
   },
   "devDependencies": {
-    "knip": "^6.0.1"
+    "knip": "^6.0.1",
+    "npm-package-json-lint": "^10.0.0",
+    "npm-package-json-lint-config-default": "^9.0.1"
   }
 }
