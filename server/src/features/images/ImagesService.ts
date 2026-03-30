@@ -186,7 +186,7 @@ export class ImagesService extends BaseDataService<Images> {
         const foundItem = updatedItems.find((y) => y.id === x.id);
         if (foundItem) {
           const { ...rest } = foundItem;
-          return cleanUpData<Image>({ ...rest });
+          return cleanUpData({ ...rest });
         }
         return x;
       })

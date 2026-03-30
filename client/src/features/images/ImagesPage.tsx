@@ -40,7 +40,7 @@ const ImagesPage = (): JSX.Element => {
   const [editingImage, setEditingImage] = useState<ImageItem | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [saveError, setSaveError] = useState('');
-  const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
+  const [selectedImageIds, setSelectedImageIds] = useState(
     new Set<number>(),
   );
   const [dragOverFolder, setDragOverFolder] = useState<null | string>(null);

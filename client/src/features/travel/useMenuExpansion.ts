@@ -25,7 +25,7 @@ const useMenuExpansion = ({
   item,
   rootItems,
 }: UseMenuExpansionParams): UseMenuExpansionResult => {
-  const [expandedItems, setExpandedItems] = useState<Set<number>>(
+  const [expandedItems, setExpandedItems] = useState(
     new Set<number>(),
   );
   const [isExpansionPending, startExpansionTransition] = useTransition();

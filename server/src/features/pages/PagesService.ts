@@ -16,6 +16,6 @@ export class PagesService extends BaseDataService<Pages> {
    * Fixes all entries by cleaning up data
    */
   public override async fixAllEntries(): Promise<void> {
-    await super.fixAllEntries<PageMenu>((item) => cleanUpData<PageMenu>(item));
+    await super.fixAllEntries<PageMenu>((item) => cleanUpData(item));
   }
 }

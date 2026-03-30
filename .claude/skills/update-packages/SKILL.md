@@ -35,7 +35,48 @@ cd client && npm outdated && cd ..
 - **Wanted = current** → already at the range ceiling; only major bump available
 - `npm audit` severities: **critical/high** → act now; **moderate/low** → schedule
 
-Collect the full list before making any decisions. Show the user a summary table if there are more than ~5 packages to update.
+### Visual Analysis & Planning (Step 1.5)
+
+Before categorizing, compile findings into visual summary tables for clarity:
+
+#### Vulnerabilities by Severity
+
+Create a table mapping vulnerabilities across all three packages:
+
+```
+| Package | Severity | Count | Status | Fix Available |
+|---------|----------|-------|--------|---------------|
+| **shared/** | … | … | … | … |
+| **server/** | … | … | … | … |
+| **client/** | … | … | … | … |
+```
+
+Include notes on critical issues (e.g., **critical** vulnerabilities in transitive deps).
+
+#### Packages with Updates Available
+
+Create a table showing all outdated packages, their update type (patch/minor/major), and classification buckets:
+
+```
+| Package | Current | Latest | Type | Bucket | Notes |
+|---------|---------|--------|------|--------|-------|
+| **@foo/bar** | X.Y.Z | X.Y.Z | Patch | Safe | … |
+| **baz** | X.Y.Z | X.Y.Z | Minor | Safe | … |
+| **qux** | X.Y.Z | X.Y.Z | Major | **Watch** | Read changelog |
+```
+
+Include which package(s) each dependency appears in (shared/server/client, or cross-cutting).
+
+#### Recommended Plan
+
+Summarize the strategy in bullet points:
+
+- Which updates are **Safe** and will proceed first
+- Which updates are **Watch** and require changelog review
+- Which updates are **Hold** (if any)
+- Any intentional skips and reasoning
+
+This visual analysis helps both prevent mistakes and gives the user confidence in the update plan before execution begins.
 
 ---
 
