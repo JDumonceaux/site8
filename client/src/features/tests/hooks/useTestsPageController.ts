@@ -70,14 +70,22 @@ const useTestsPageController = (): UseTestsPageControllerResult => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isGrouped, setIsGrouped] = useState(() => {
-    const stored = localStorage.getItem('testsViewGrouped');
-    return stored !== 'false';
+    try {
+      const stored = localStorage.getItem('testsViewGrouped');
+      return stored !== 'false';
+    } catch {
+      return true;
+    }
   });
 
   const { setErrorMessage, setMessage } = useSnackbar();
 
   useEffect(() => {
-    localStorage.setItem('testsViewGrouped', String(isGrouped));
+    try {
+      localStorage.setItem('testsViewGrouped', String(isGrouped));
+    } catch {
+      // localStorage unavailable (e.g. private browsing — degrade gracefully)
+    }
   }, [isGrouped]);
 
   const sections = useMemo(

@@ -52,3 +52,27 @@ export const safeParse = <T>(
     success: false,
   };
 };
+
+/**
+ * Extracts error messages for a specific field from a Valibot issues array.
+ *
+ * @param errors - The array of `BaseIssue` from a failed `safeParse`, or null
+ * @param fieldName - The field key to filter errors for
+ * @returns null if no errors, a single string if one error, or an array of strings
+ */
+export const getFieldErrors = (
+  errors: BaseIssue<unknown>[] | null,
+  fieldName: string,
+): null | string | string[] => {
+  if (errors == null) return null;
+  const messages = errors
+    .filter((issue) => {
+      const first = issue.path?.[0];
+      return (
+        typeof first === 'object' && 'key' in first && first.key === fieldName
+      );
+    })
+    .map((issue) => issue.message);
+  if (messages.length === 0) return null;
+  return messages.length === 1 ? (messages[0] ?? null) : messages;
+};

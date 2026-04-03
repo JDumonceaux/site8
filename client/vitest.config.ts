@@ -18,6 +18,5 @@ export default defineConfig({
     exclude: ['node_modules', 'dist', '.maestro'],
     globals: true,
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
-    setupFiles: [],
   },
 });

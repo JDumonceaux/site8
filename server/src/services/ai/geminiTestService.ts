@@ -94,5 +94,36 @@ export const testGeminiImage = async (
 
   return parseGeminiImageResult(response.text);
 };
-// moved from ../geminiTestService.ts
-// ...existing code...
+
+export const identifyGeminiImage = async (
+  imageBase64: string,
+  mimeType: string,
+): Promise<GeminiImageResult & { rawText: string }> => {
+  const response = await ai.models.generateContent({
+    contents: [
+      {
+        parts: [
+          {
+            text: 'Identify this image and return ONLY valid JSON with exactly two fields: {"title":"...","description":"..."}. Keep title concise and description to 1-3 sentences.',
+          },
+          {
+            inlineData: {
+              data: imageBase64,
+              mimeType,
+            },
+          },
+        ],
+        role: 'user',
+      },
+    ],
+    model: env.GEMINI_MODEL,
+  });
+
+  if (typeof response.text !== 'string' || response.text.trim().length === 0) {
+    throw new Error(
+      'Gemini returned an empty response for image identification',
+    );
+  }
+
+  return { ...parseGeminiImageResult(response.text), rawText: response.text };
+};

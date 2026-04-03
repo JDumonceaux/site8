@@ -14,10 +14,8 @@ const FileUploadPage = (): JSX.Element => {
   const [status, setStatus] = useState<UploadStatus>('idle');
   const [uploadProgress, setUploadProgress] = useState(0);
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
-    }
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setFile(event.target.files?.[0] ?? null);
   };
 
   const handleFileUpload = useCallback(async () => {
@@ -29,7 +27,7 @@ const FileUploadPage = (): JSX.Element => {
     formData.append('file', file);
 
     try {
-      await apiClient.post('https://httpbin.org/post', formData);
+      await apiClient.post('', formData);
 
       setStatus('success');
       setUploadProgress(100);

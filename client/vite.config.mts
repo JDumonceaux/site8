@@ -27,16 +27,6 @@ export default defineConfig(({ mode }) => ({
       '@store': '/src/store',
       '@styles': '/src/styles',
       '@types': '/src/types',
-      components: '/src/components',
-      content: '/src/content',
-      features: '/src/features',
-      hooks: '/src/hooks',
-      lib: '/src/lib',
-      providers: '/src/app/providers',
-      store: '/src/store',
-      styles: '/src/styles',
-      types: '/src/types',
-      src: '/src',
     },
   },
   build: {
@@ -72,9 +62,6 @@ export default defineConfig(({ mode }) => ({
             }
             if (id.includes('styled-components')) {
               return 'vendor-styled';
-            }
-            if (id.includes('zod')) {
-              return 'vendor-zod';
             }
             if (id.includes('date-fns')) {
               return 'vendor-date';

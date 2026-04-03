@@ -1,9 +1,4 @@
-import {
-  createSlice,
-  type Draft,
-  type PayloadAction,
-  type Slice,
-} from '@reduxjs/toolkit';
+import { createSlice, type Draft, type PayloadAction } from '@reduxjs/toolkit';
 
 /**
  * Configuration options for creating a simple data slice
@@ -43,7 +38,7 @@ type SimpleSliceState<T> = {
 export const createSimpleSlice = <T>({
   initialData,
   name,
-}: SimpleSliceConfig<T>): Slice<SimpleSliceState<T>> => {
+}: SimpleSliceConfig<T>) => {
   const initialState: SimpleSliceState<T> = {
     data: initialData,
   };

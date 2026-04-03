@@ -1,6 +1,6 @@
 import { ApiError } from './types';
 
-export const RETRYABLE_STATUS_CODES = new Set([408, 429, 500, 502, 503, 504]);
+export const RETRYABLE_STATUS_CODES = new Set([408, 429, 502, 503, 504]);
 
 export const delay = async (ms: number): Promise<void> => {
   // eslint-disable-next-line promise/avoid-new -- setTimeout requires new Promise; no scheduler API available

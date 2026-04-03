@@ -1,12 +1,15 @@
 import type { ChangeEvent } from 'react';
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 
 import { REQUIRED_FIELD, ServiceUrl } from '@lib/utils/constants';
-import { safeParse } from '@lib/utils/schemaHelper';
+import {
+  getFieldErrors as getErrors,
+  safeParse,
+} from '@lib/utils/schemaHelper';
 import type { MenuAdd } from '@types';
+import type { BaseIssue } from 'valibot';
 import * as v from 'valibot';
 import { useApiRequest } from './api/useApiRequest';
-import useForm from './useForm';
 
 // Validation schema
 const pageSchema = v.object({
@@ -39,21 +42,25 @@ const initialFormValues: FormType = {
 const useMenuAdd = () => {
   const { error, isLoading, putData } = useApiRequest<MenuAdd>();
 
-  const {
-    formValues,
-    getFieldErrors,
-    getFieldValue,
-    hasError,
-    isSaved,
-    setErrors,
-    setFieldValue,
-    setFormValues,
-    setIsSaved,
-  } = useForm(initialFormValues);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [errors, setErrors] = useState<BaseIssue<unknown>[] | null>(null);
+  const [isSaved, setIsSaved] = useState(true);
+
+  const setFieldValue = (fieldName: FormKeys, value: string): void => {
+    setFormValues((prev) => ({ ...prev, [fieldName]: value }));
+  };
+
+  const getFieldValue = (fieldName: FormKeys): string =>
+    String(formValues[fieldName]);
+
+  const getFieldErrors = (fieldName: FormKeys) => getErrors(errors, fieldName);
+
+  const hasError = (fieldName: FormKeys): boolean =>
+    getFieldErrors(fieldName) != null;
 
   const validateForm = (): boolean => {
     const result = safeParse(pageSchema, formValues);
-    setErrors(result.error);
+    setErrors(result.error ?? null);
     return result.success;
   };
 
@@ -128,7 +135,7 @@ const useMenuAdd = () => {
     FormData
   >(submitAction, {});
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setFieldValue(name as FormKeys, value);
   };
@@ -140,7 +147,7 @@ const useMenuAdd = () => {
     value: getFieldValue(fieldName),
   });
 
-  const clearForm = () => {
+  const clearForm = (): void => {
     setFormValues(initialFormValues);
   };
 

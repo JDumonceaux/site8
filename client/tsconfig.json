@@ -48,6 +48,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "erasableSyntaxOnly": true,
+    "noUncheckedIndexedAccess": true,
     "noUncheckedSideEffectImports": true
   },
   "include": ["src"],

@@ -12,18 +12,7 @@ import { SERVER_CONFIG } from './utils/constants.js';
 import { env } from './utils/env.js';
 import { Logger } from './utils/logger.js';
 
-const isLikelyGeminiApiKey = (apiKey: string): boolean =>
-  /^AIza[\w-]{20,}$/.test(apiKey);
-
-const geminiApiKey = env.GEMINI_API_KEY.trim();
-
-if (!geminiApiKey) {
-  throw new Error(
-    'Startup failed: GEMINI_API_KEY is required. Set it in server/.env.dev.',
-  );
-}
-
-if (!isLikelyGeminiApiKey(geminiApiKey)) {
+if (!/^AIza[\w-]{20,}$/.test(env.GEMINI_API_KEY.trim())) {
   throw new Error(
     'Startup failed: GEMINI_API_KEY appears malformed. Check server/.env.dev.',
   );

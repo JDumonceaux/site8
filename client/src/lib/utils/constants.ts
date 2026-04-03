@@ -44,6 +44,10 @@ export type {
 /* -------------------------------------------------------------------------- */
 /*                          API and Route Constants                           */
 /* -------------------------------------------------------------------------- */
+// NOTE: VITE_API_URL is intentionally read with an `as` cast rather than via the
+// Valibot-validated `env` object in lib/env.ts to avoid a circular module
+// dependency (env.ts itself imports from lib/).  Tracked for future consolidation.
+
 const API_ROOT: string =
   (import.meta.env.VITE_API_URL as string | undefined) ??
   'http://localhost:3005/api';
@@ -130,7 +134,6 @@ export const USEQUERY_DEFAULT_OPTIONS = {
   refetchOnMount: false,
   refetchOnReconnect: false,
   refetchOnWindowFocus: false,
-  retry: QueryTime.RETRY,
   retryDelay: QueryTimeComputed.RETRY_DELAY,
   staleTime: QueryTimeComputed.STALE_TIME,
 };

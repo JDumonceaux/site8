@@ -7,19 +7,19 @@
 export type IDataService<T> = {
   /**
    * Gets all items from the data file
-   * @returns The data from the file or undefined on error
+   * @returns The data from the file
    */
-  getItems: () => Promise<T | undefined>;
+  getItems: () => Promise<T>;
 
   /**
    * Gets the next available ID from items array
-   * @returns Next available ID or undefined on error
+   * @returns Next available ID
    */
-  getNextId: () => Promise<number | undefined>;
+  getNextId: () => Promise<number>;
 
   /**
    * Writes data to the file
    * @param data - Data to write
    */
   writeData: (data: T) => Promise<void>;
-}
+};

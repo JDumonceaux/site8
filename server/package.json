@@ -38,6 +38,10 @@
     "debug": "npm run build && node --env-file=.env.dev --inspect dist/server.js",
     "build": "tsc",
     "build:clean": "rm -rf dist && tsc",
+    "dev": "tsx watch src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
     "precommit": "pretty-quick --staged",
     "lint": "eslint .",
     "lint:fix": "eslint \"src\" --ext .ts,.js --fix",
@@ -89,7 +93,8 @@
     "prettier": "^3.8.1",
     "pretty-quick": "^4.2.2",
     "typescript": "^6.0.2",
-    "typescript-eslint": "^8.57.2"
+    "typescript-eslint": "^8.57.2",
+    "tsx": "^4.19.2"
   },
   "keywords": [
     "api",
@@ -107,12 +112,5 @@
   "bugs": {
     "url": "https://github.com/username/repository/issues"
   },
-  "homepage": "https://github.com/username/repository#readme",
-  "dev": "tsx watch src/server.ts",
-  "typecheck": "tsc --noEmit",
-  "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
-  "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
-  "tsx": "^4.19.2",
-  "jest": "^30.0.0",
-  "ts-jest": "^30.0.0"
+  "homepage": "https://github.com/username/repository#readme"
 }

@@ -1,7 +1,5 @@
-import type { DragEvent, JSX } from 'react';
-import { useState } from 'react';
+import type { JSX } from 'react';
 
-import useSnackbar from '@app/snackbar/useSnackbar';
 import IconButton from '@components/button/icon-button/IconButton';
 import { FilterIcon } from '@components/icons';
 import StickyMenuWrapper from '@components/layout/StickyMenuWrapper';
@@ -9,185 +7,50 @@ import LoadingWrapper from '@components/loading/LoadingWrapper';
 import Meta from '@components/meta/Meta';
 import PageTitle from '@components/page/PageTitle';
 import Layout from '@features/layouts/layout/Layout';
-import { logError } from '@lib/utils/errorHandler';
-import type { ImageFile } from '@site8/shared';
-import type { ImageItem } from '@types';
 import ImageEditDialog from './edit/dialog/ImageEditDialog';
 import ImageFiltersDialog from './ImageFiltersDialog';
 import Items from './Items';
-import useDeleteImage from './useDeleteImage';
-import useImageFolders from './useImageFolders';
-import useImages, { type MatchedFilter } from './useImages';
-import useMoveImages from './useMoveImages';
-import useUpdateImage from './useUpdateImage';
+import useImagesPageController from './useImagesPageController';
 import styled from 'styled-components';
 
-const toImageItem = (item: ImageFile, index: number): ImageItem => ({
-  currentFolder: item.folder,
-  ...(item.description ? { description: item.description } : {}),
-  isMatched: (item.id ?? 0) > 0,
-  seq: item.seq ?? index,
-  src: item.src ?? '',
-  title: item.title ?? item.fileName,
-});
-
-const EMPTY_FOLDERS: readonly string[] = [];
-
 const ImagesPage = (): JSX.Element => {
-  const [matchedFilter, setMatchedFilter] = useState<MatchedFilter>('all');
-  const [folderFilter, setFolderFilter] = useState('');
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const [editingImage, setEditingImage] = useState<ImageItem | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [saveError, setSaveError] = useState('');
-  const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
-    new Set<number>(),
-  );
-  const [dragOverFolder, setDragOverFolder] = useState<null | string>(null);
-  const { setErrorMessage, setMessage } = useSnackbar();
-  const { data, error, isError, isLoading } = useImages({
-    folder: folderFilter,
-    matchedFilter,
-  });
   const {
-    data: foldersData,
-    error: foldersError,
-    isError: isFoldersError,
-    isLoading: isFoldersLoading,
-  } = useImageFolders();
-
-  const { isPending: isMovePending, moveImages } = useMoveImages(
-    (movedCount) => {
-      setMessage(`Moved ${movedCount} image${movedCount === 1 ? '' : 's'}`);
-      setSelectedImageIds(new Set<number>());
-    },
-    (moveError) => {
-      setErrorMessage(moveError.message);
-    },
-  );
-  const { deleteImage, isPending: isDeletePending } = useDeleteImage(
-    (response) => {
-      setMessage(
-        response.deletedFile
-          ? 'Image deleted'
-          : 'Image entry removed from images index',
-      );
-      setSelectedImageIds(new Set<number>());
-    },
-    (deleteError) => {
-      setErrorMessage(deleteError.message);
-    },
-  );
-  const handleCloseDialog = (): void => {
-    setIsDialogOpen(false);
-    setEditingImage(null);
-    setSaveError('');
-  };
-
-  const { isPending: isUpdatePending, updateImage } = useUpdateImage(
-    () => {
-      setMessage('Image updated');
-      setSaveError('');
-      setSelectedImageIds(new Set<number>());
-      handleCloseDialog();
-    },
-    (renameError) => {
-      setSaveError(renameError.message);
-    },
-  );
-
-  if (isError && error != null) {
-    logError(error, {
-      action: 'loadImages',
-      componentName: 'ImagesPage',
-    });
-  }
+    availableFolders,
+    count,
+    dragOverFolder,
+    editingImage,
+    error,
+    folderFilter,
+    foldersError,
+    handleCardDragStart,
+    handleCardSelect,
+    handleCloseDialog,
+    handleDeleteImage,
+    handleFolderDragLeave,
+    handleFolderDragOver,
+    handleFolderDrop,
+    handleOpenEdit,
+    handleSaveImage,
+    imageItems,
+    isDeletePending,
+    isDialogOpen,
+    isError,
+    isFiltersOpen,
+    isFoldersError,
+    isFoldersLoading,
+    isLoading,
+    isMovePending,
+    isUpdatePending,
+    matchedFilter,
+    saveError,
+    selectedCount,
+    selectedImageIds,
+    setFolderFilter,
+    setIsFiltersOpen,
+    setMatchedFilter,
+  } = useImagesPageController();
 
   const title = 'Images';
-  const imageItems: readonly ImageItem[] = (data?.items ?? []).map(toImageItem);
-  const count = imageItems.length;
-  const selectedCount = selectedImageIds.size;
-  const availableFolders = foldersData?.items ?? EMPTY_FOLDERS;
-
-  const selectedImageSrcs = imageItems
-    .filter((item) => selectedImageIds.has(item.seq))
-    .map((item) => item.src);
-
-  const handleCardSelect = (imageId: number): void => {
-    setSelectedImageIds((current) => {
-      const next = new Set(current);
-
-      if (next.has(imageId)) {
-        next.delete(imageId);
-      } else {
-        next.add(imageId);
-      }
-
-      return next;
-    });
-  };
-
-  const handleCardDragStart = (imageId: number): void => {
-    setSelectedImageIds((current) => {
-      if (current.has(imageId)) {
-        return current;
-      }
-
-      return new Set([imageId]);
-    });
-  };
-
-  const handleFolderDragOver = (
-    event: DragEvent<HTMLLIElement>,
-    folder: string,
-  ): void => {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
-    setDragOverFolder(folder);
-  };
-
-  const handleFolderDrop = (
-    event: DragEvent<HTMLLIElement>,
-    folder: string,
-  ): void => {
-    event.preventDefault();
-    setDragOverFolder(null);
-
-    if (selectedImageSrcs.length === 0 || isMovePending) {
-      return;
-    }
-
-    moveImages({
-      imageSrcs: selectedImageSrcs,
-      targetFolder: folder,
-    });
-  };
-
-  const handleOpenEdit = (image: ImageItem): void => {
-    setEditingImage(image);
-    setIsDialogOpen(true);
-  };
-
-  const handleSaveImage = (
-    image: ImageItem,
-    targetFolder: string,
-    targetFileName: string,
-    description: string,
-    imageTitle: string,
-  ): void => {
-    updateImage({
-      description,
-      src: image.src,
-      targetFileName,
-      targetFolder,
-      title: imageTitle,
-    });
-  };
-
-  const handleDeleteImage = (image: ImageItem): void => {
-    deleteImage({ src: image.src });
-    handleCloseDialog();
-  };
 
   return (
     <>
@@ -221,9 +84,7 @@ const ImagesPage = (): JSX.Element => {
                       <FolderItem
                         $isDropTarget={dragOverFolder === folder}
                         key={folder}
-                        onDragLeave={() => {
-                          setDragOverFolder(null);
-                        }}
+                        onDragLeave={handleFolderDragLeave}
                         onDragOver={(event) => {
                           handleFolderDragOver(event, folder);
                         }}

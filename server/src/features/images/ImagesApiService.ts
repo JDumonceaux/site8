@@ -75,32 +75,11 @@ export class ImagesApiService {
   ): Promise<ImageFiles> {
     const files = this.expandImageFile(this.getDirectoryImages());
     const imageRecords = await this.readImageItems();
+    const recordMap = this.buildImageRecordMap(imageRecords);
 
-    const merged = files.map((file) => {
-      const matches = imageRecords.filter(
-        (img) =>
-          img.fileName.toLowerCase() === file.fileName.toLowerCase() &&
-          img.folder.toLowerCase() === file.folder.toLowerCase(),
-      );
-
-      if (matches.length > 1) {
-        return { ...file, id: -1 };
-      }
-
-      if (matches.length === 0) {
-        return { ...file, id: 0 };
-      }
-
-      const [match] = matches;
-      if (!match) return { ...file, id: 0 };
-
-      return {
-        ...file,
-        ...(match.description ? { description: match.description } : {}),
-        id: match.id,
-        title: match.title ?? file.title,
-      };
-    });
+    const merged = files.map((file) =>
+      this.mergeFileWithRecord(file, recordMap),
+    );
 
     const folderFiltered = folder
       ? merged.filter(
@@ -165,34 +144,12 @@ export class ImagesApiService {
   public async getMatchedItems(): Promise<ImageFiles> {
     const files = this.expandImageFile(this.getDirectoryImages());
     const imageRecords = await this.readImageItems();
+    const recordMap = this.buildImageRecordMap(imageRecords);
 
-    const items = files.map((file) => {
-      const matches = imageRecords.filter(
-        (img) =>
-          img.fileName.toLowerCase() === file.fileName.toLowerCase() &&
-          img.folder.toLowerCase() === file.folder.toLowerCase(),
-      );
-
-      if (matches.length > 1) {
-        return { ...file, id: -1 };
-      }
-
-      if (matches.length === 0) {
-        return { ...file, id: 0 };
-      }
-
-      const [match] = matches;
-      if (!match) return { ...file, id: 0 };
-
-      return {
-        ...file,
-        ...(match.description ? { description: match.description } : {}),
-        id: match.id,
-        title: match.title ?? file.title,
-      };
-    });
-
-    const unmatchedItems = items.filter((item) => item.id === 0);
+    // Returns unmatched items (id === 0, no corresponding JSON record)
+    const unmatchedItems = files
+      .map((file) => this.mergeFileWithRecord(file, recordMap))
+      .filter((item) => item.id === 0);
 
     return {
       items: unmatchedItems,
@@ -332,5 +289,40 @@ export class ImagesApiService {
           toCapitalizedFolderName(folderName).toLowerCase() ===
           folderLabel.toLowerCase(),
       );
+  }
+
+  /** Builds a keyed map for O(1) record lookup instead of O(n) linear scan per file. */
+  private buildImageRecordMap(
+    imageRecords: Image[],
+  ): Map<string, Image | 'duplicate'> {
+    const map = new Map<string, Image | 'duplicate'>();
+    for (const img of imageRecords) {
+      const key = `${img.folder.toLowerCase()}/${img.fileName.toLowerCase()}`;
+      map.set(key, map.has(key) ? 'duplicate' : img);
+    }
+    return map;
+  }
+
+  private mergeFileWithRecord(
+    file: ImageFile,
+    recordMap: Map<string, Image | 'duplicate'>,
+  ): ImageFile {
+    const key = `${file.folder.toLowerCase()}/${file.fileName.toLowerCase()}`;
+    const record = recordMap.get(key);
+
+    if (record === undefined) {
+      return { ...file, id: 0 };
+    }
+
+    if (record === 'duplicate') {
+      return { ...file, id: -1 };
+    }
+
+    return {
+      ...file,
+      ...(record.description ? { description: record.description } : {}),
+      id: record.id,
+      title: record.title ?? file.title,
+    };
   }
 }

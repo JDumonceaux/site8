@@ -44,15 +44,9 @@ const queryClient = new QueryClient({
       refetchOnReconnect: false,
       // Refetch on window focus for better UX
       refetchOnWindowFocus: true,
-      // Retry failed requests 3 times with exponential backoff
+      // Don't retry HTTP errors — they are deterministic; only retry network faults
       retry: (failureCount, error: unknown) => {
-        // Don't retry on 4xx errors (client errors)
-        if (isClientError(error)) {
-          const { status } = error;
-          if (status >= 400 && status < 500) {
-            return false;
-          }
-        }
+        if (isClientError(error)) return false;
         return failureCount < 3;
       },
       // Longer retry delay for better UX

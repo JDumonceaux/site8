@@ -1,3 +1,4 @@
+import { sanitizeUrl } from '@lib/utils/helpers-security';
 import parse, {
   type DOMNode,
   domToReact,
@@ -10,16 +11,32 @@ type RenderHtmlProps = {
   readonly text?: string;
 };
 
-// HTMLReactParser options
+// Tags that can execute code or load external resources — removed entirely.
+const BLOCKED_TAGS = new Set(['embed', 'iframe', 'object', 'script', 'style']);
+
 const options: HTMLReactParserOptions = {
   replace: (domNode: DOMNode) => {
-    if (domNode instanceof Element && domNode.tagName === 'pre') {
+    if (!(domNode instanceof Element)) return null;
+
+    if (BLOCKED_TAGS.has(domNode.tagName)) return false;
+
+    if (domNode.tagName === 'pre') {
       return (
         <RenderCode>
           {domToReact(domNode.children as DOMNode[], options)}
         </RenderCode>
       );
     }
+
+    // Sanitize href on anchor elements to block javascript: navigation.
+    if (domNode.tagName === 'a' && domNode.attribs.href != null) {
+      return (
+        <a href={sanitizeUrl(domNode.attribs.href)}>
+          {domToReact(domNode.children as DOMNode[], options)}
+        </a>
+      );
+    }
+
     return null;
   },
 };

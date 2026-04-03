@@ -35,25 +35,6 @@ export class ImagesService extends BaseDataService<Images> {
     }
   }
 
-  public async fixNames(): Promise<boolean> {
-    try {
-      const data = await this.readFile();
-
-      const fixedItems: Image[] = (data.items ?? []).map((x) => {
-        const fixed = { ...x };
-        return fixed;
-      });
-
-      await this.writeData({ ...data, items: fixedItems });
-      return true;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      Logger.error(`ImagesService: fixNames -> ${errorMessage}`, { error });
-      throw new Error(`Failed to fix names: ${errorMessage}`);
-    }
-  }
-
   public override async getItems(): Promise<Images> {
     const data = await this.readFile();
 

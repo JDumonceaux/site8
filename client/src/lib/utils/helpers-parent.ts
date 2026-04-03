@@ -26,8 +26,11 @@ export const splitParent = (
 
   const result: { id: number; seq: number }[] = [];
   for (let index = 0; index < parts.length; index += 2) {
-    const id = Number.parseInt(parts[index], 10);
-    const seq = Number.parseInt(parts[index + 1], 10);
+    const idStr = parts[index];
+    const seqStr = parts[index + 1];
+    if (idStr === undefined || seqStr === undefined) continue;
+    const id = Number.parseInt(idStr, 10);
+    const seq = Number.parseInt(seqStr, 10);
     if (!Number.isNaN(id) && !Number.isNaN(seq)) {
       result.push({ id, seq });
     }

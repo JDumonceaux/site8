@@ -2,15 +2,12 @@ import type { Request, Response } from 'express';
 
 import { readFile } from 'fs/promises';
 
-import { GoogleGenAI } from '@google/genai';
-import * as v from 'valibot';
-
 import {
   badRequest,
   internalError,
   ok,
 } from '../../lib/http/ResponseHelper.js';
-import { env } from '../../utils/env.js';
+import { identifyGeminiImage } from '../../services/ai/geminiTestService.js';
 import { Logger } from '../../utils/logger.js';
 import {
   GEMINI_PERMISSION_ERROR_MESSAGE,
@@ -34,54 +31,6 @@ type IdentifyItemResponse = {
   readonly title?: string;
 };
 
-type IdentifyImageResult = {
-  readonly description: string;
-  readonly title: string;
-};
-
-const IdentifyImageResultSchema = v.object({
-  description: v.pipe(v.string(), v.nonEmpty()),
-  title: v.pipe(v.string(), v.nonEmpty()),
-});
-
-const stripMarkdownCodeFences = (text: string): string => {
-  const match = /^```(?:json)?[\t ]*\n(?<content>.*?)\n```[\t ]*$/s.exec(text);
-  return match?.groups?.content?.trim() ?? text;
-};
-
-const parseIdentifyResult = (responseText: string): IdentifyImageResult => {
-  const normalizedText = stripMarkdownCodeFences(responseText.trim());
-
-  try {
-    const result = v.safeParse(
-      IdentifyImageResultSchema,
-      JSON.parse(normalizedText) as unknown,
-    );
-    if (result.success) {
-      return {
-        description: result.output.description.trim(),
-        title: result.output.title.trim(),
-      };
-    }
-  } catch {
-    // no-op
-  }
-
-  const titleMatch = /^title[\t ]*:[\t ]*(?<value>\S.*)$/im.exec(
-    normalizedText,
-  );
-  const descriptionMatch = /^description[\t ]*:[\t ]*(?<value>\S.*)$/im.exec(
-    normalizedText,
-  );
-
-  return {
-    description: descriptionMatch?.groups?.value?.trim() ?? normalizedText,
-    title: titleMatch?.groups?.value?.trim() ?? 'Untitled',
-  };
-};
-
-const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
-
 export const identifyItem = async (
   req: Request,
   res: Response<IdentifyItemResponse | { error: string }>,
@@ -102,17 +51,6 @@ export const identifyItem = async (
   if (!source) {
     Logger.debug('Identify validation failed: missing src');
     badRequest(res, 'src is required', 'Images:identifyItem');
-    return;
-  }
-
-  if (!env.GEMINI_API_KEY) {
-    Logger.debug('Identify validation failed: missing GEMINI_API_KEY');
-    internalError(
-      res,
-      'Images:identifyItem',
-      new Error('GEMINI_API_KEY is not configured'),
-      { error: 'Image identification is not configured' },
-    );
     return;
   }
 
@@ -155,35 +93,13 @@ export const identifyItem = async (
     const mimeType = getImageMimeType(parsed.fileName);
 
     Logger.debug('Identify: calling Gemini', { mimeType, src: source });
-    const response = await ai.models.generateContent({
-      contents: [
-        {
-          parts: [
-            {
-              text: 'Identify this image and return ONLY valid JSON with exactly two fields: {"title":"...","description":"..."}. Keep title concise and description to 1-3  sentences.',
-            },
-            {
-              inlineData: {
-                data: imageBase64,
-                mimeType,
-              },
-            },
-          ],
-          role: 'user',
-        },
-      ],
-      model: env.GEMINI_MODEL,
-    });
-
-    if (
-      typeof response.text !== 'string' ||
-      response.text.trim().length === 0
-    ) {
-      throw new Error('Gemini returned an empty response for image analysis');
-    }
+    const { description, title, rawText } = await identifyGeminiImage(
+      imageBase64,
+      mimeType,
+    );
 
     Logger.debug('Identify: Gemini responded', {
-      responseText: response.text,
+      responseText: rawText,
       src: source,
     });
 
@@ -191,14 +107,13 @@ export const identifyItem = async (
       return;
     }
 
-    const { description, title } = parseIdentifyResult(response.text);
     res.off('close', cancelGeminiRequest);
     ok(
       res,
       {
         description,
         ok: true,
-        result: response.text,
+        result: rawText,
         status: 'returned',
         title,
       },

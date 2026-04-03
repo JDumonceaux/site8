@@ -1,5 +1,5 @@
 import { apiClient } from '@lib/api';
-import { ServiceUrl } from '@lib/utils/constants';
+import { ServiceUrl, USEQUERY_DEFAULT_OPTIONS } from '@lib/utils/constants';
 import type { Collection, ImageFile } from '@site8/shared';
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
@@ -27,6 +27,7 @@ const useImages = ({
   const endpoint = `${ServiceUrl.ENDPOINT_IMAGES}?${params.toString()}`;
 
   const query: UseQueryResult<Collection<ImageFile>, unknown> = useQuery({
+    ...USEQUERY_DEFAULT_OPTIONS,
     queryFn: async ({ signal }): Promise<Collection<ImageFile>> => {
       return apiClient.get<Collection<ImageFile>>(endpoint, { signal });
     },

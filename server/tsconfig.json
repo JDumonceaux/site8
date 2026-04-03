@@ -48,7 +48,6 @@
     /* Path Mapping */
     "rootDir": "./src",
     "paths": {
-      "@/*": ["./src/*"],
       "#features/*": ["./src/features/*"],
       "#lib/*": ["./src/lib/*"],
       "#middleware/*": ["./src/middleware/*"],

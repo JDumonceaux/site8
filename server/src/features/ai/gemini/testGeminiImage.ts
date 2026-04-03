@@ -4,7 +4,6 @@ import { readFile } from 'fs/promises';
 
 import { internalError, ok } from '../../../lib/http/ResponseHelper.js';
 import { testGeminiImage } from '../../../services/ai/geminiTestService.js';
-import { env } from '../../../utils/env.js';
 import { isResponseClosed } from '../../../utils/httpUtils.js';
 import { Logger } from '../../../utils/logger.js';
 import {
@@ -40,16 +39,6 @@ export const runGeminiImageTest = async (
   res.setTimeout(GEMINI_IMAGE_TIMEOUT_MS);
 
   const source = TEST_IMAGE_SRC;
-
-  if (!env.GEMINI_API_KEY) {
-    internalError(
-      res,
-      'Gemini:runGeminiImageTest',
-      new Error('GEMINI_API_KEY is not configured'),
-      { error: 'Gemini image test is not configured' },
-    );
-    return;
-  }
 
   const parsedImageSource = parseImageSource(source);
   if (!parsedImageSource) {

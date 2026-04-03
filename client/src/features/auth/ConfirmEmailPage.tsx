@@ -1,13 +1,13 @@
 import type { JSX } from 'react';
-import { useActionState, useCallback } from 'react';
+import { useActionState, useCallback, useState } from 'react';
 
 import Button from '@components/button/Button';
 import Input from '@components/input/Input';
 import Meta from '@components/meta/Meta';
 import useAuth from '@features/auth/useAuth';
-import useForm from '@hooks/useForm';
 import { logError } from '@lib/utils/errorHandler';
-import { safeParse } from '@lib/utils/schemaHelper';
+import { getFieldErrors, safeParse } from '@lib/utils/schemaHelper';
+import type { BaseIssue } from 'valibot';
 import * as v from 'valibot';
 import AuthContainer from './AuthContainer';
 import styled from 'styled-components';
@@ -35,10 +35,14 @@ const ConfirmEmailPage = (): JSX.Element => {
     emailAddress: '',
   };
 
-  const { formValues, getDefaultProps, getFieldErrors, setErrors } =
-    useForm(initialFormValues);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [errors, setErrors] = useState<BaseIssue<unknown>[] | null>(null);
 
-  const validateForm = () => {
+  const setField = (fieldName: FormKeys, value: string): void => {
+    setFormValues((prev) => ({ ...prev, [fieldName]: value }));
+  };
+
+  const validateForm = (): boolean => {
     const result = safeParse(schema, formValues);
     setErrors(result.error ?? null);
     return result.success;
@@ -94,10 +98,6 @@ const ConfirmEmailPage = (): JSX.Element => {
     })();
   }, [authResendConfirmationCode, formValues.emailAddress]);
 
-  const getFormValue = (fieldName: FormKeys): string => {
-    return formValues[fieldName];
-  };
-
   const getStandardInputTextAttributes = (
     fieldName: FormKeys,
   ): {
@@ -105,9 +105,9 @@ const ConfirmEmailPage = (): JSX.Element => {
     id: string;
     value: string;
   } => ({
-    errorText: getFieldErrors(fieldName) ?? undefined,
+    errorText: getFieldErrors(errors, fieldName) ?? undefined,
     id: fieldName,
-    value: getFormValue(fieldName),
+    value: formValues[fieldName],
   });
 
   return (
@@ -140,7 +140,10 @@ const ConfirmEmailPage = (): JSX.Element => {
             placeholder="Enter Email Address"
             required
             spellCheck="false"
-            {...getDefaultProps('emailAddress')}
+            {...getStandardInputTextAttributes('emailAddress')}
+            onChange={(e) => {
+              setField('emailAddress', e.target.value);
+            }}
           />
           <Input.Number
             autoComplete="one-time-code"
@@ -150,6 +153,9 @@ const ConfirmEmailPage = (): JSX.Element => {
             placeholder="Enter Authentication Code"
             spellCheck="false"
             {...getStandardInputTextAttributes('authenticationCode')}
+            onChange={(e) => {
+              setField('authenticationCode', e.target.value);
+            }}
           />
           <Button
             id="login"

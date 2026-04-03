@@ -45,10 +45,12 @@ export const useCodeItemsManager = (
     setCodeItems((current) => {
       if (index === 0) return current;
       const newCodeItems = [...current];
-      [newCodeItems[index - 1], newCodeItems[index]] = [
-        newCodeItems[index],
-        newCodeItems[index - 1],
-      ];
+      const itemAtIndex = newCodeItems[index];
+      const itemBefore = newCodeItems[index - 1];
+      if (itemAtIndex !== undefined && itemBefore !== undefined) {
+        newCodeItems[index - 1] = itemAtIndex;
+        newCodeItems[index] = itemBefore;
+      }
       return newCodeItems;
     });
   }, []);
@@ -57,10 +59,12 @@ export const useCodeItemsManager = (
     setCodeItems((current) => {
       if (index === current.length - 1) return current;
       const newCodeItems = [...current];
-      [newCodeItems[index], newCodeItems[index + 1]] = [
-        newCodeItems[index + 1],
-        newCodeItems[index],
-      ];
+      const itemAtIndex = newCodeItems[index];
+      const itemAfter = newCodeItems[index + 1];
+      if (itemAtIndex !== undefined && itemAfter !== undefined) {
+        newCodeItems[index] = itemAfter;
+        newCodeItems[index + 1] = itemAtIndex;
+      }
       return newCodeItems;
     });
   }, []);
