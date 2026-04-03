@@ -12,8 +12,8 @@ type RouteConfig = {
 };
 
 type RouteModule = {
-  readonly routeConfig?: RouteConfig;
   readonly [key: string]: unknown;
+  readonly routeConfig?: RouteConfig;
 };
 
 const ROUTES_DIR = fileURLToPath(new URL('../app/routes/', import.meta.url));
@@ -34,7 +34,7 @@ export const registerRoutes = async (
 ): Promise<void> => {
   const routeFiles = readdirSync(ROUTES_DIR)
     .filter((fileName) => fileName.endsWith('Router.js'))
-    .toSorted();
+    .toSorted((a, b) => a.localeCompare(b));
 
   for (const fileName of routeFiles) {
     const moduleUrl = pathToFileURL(path.join(ROUTES_DIR, fileName));

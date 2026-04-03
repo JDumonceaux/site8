@@ -15,6 +15,8 @@
     "test": "npm --prefix client run test"
   },
   "devDependencies": {
-    "knip": "^6.0.1"
+    "knip": "^6.0.1",
+    "npm-package-json-lint": "^10.0.0",
+    "npm-package-json-lint-config-default": "^9.0.1"
   }
 }

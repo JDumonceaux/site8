@@ -34,7 +34,7 @@ export const getNewItems = (
   });
 
   const newItemsWithFlag = filteredItems.map((item) =>
-    cleanUpData<ImageFile>({ ...item }),
+    cleanUpData({ ...item }),
   );
 
   return newItemsWithFlag.toSorted((a, b) =>

@@ -26,7 +26,7 @@ import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
 import { TravelService } from '../features/travel/TravelService.js';
 import { FileService } from '../lib/filesystem/FileService.js';
 import { GenericService } from '../lib/generic/GenericService.js';
-import { PrettierService } from '../services/code-quality/PrettierService.js';
+import { PrettierService } from '../services/codeQuality/PrettierService.js';
 
 /**
  * Service container that manages singleton instances

@@ -53,7 +53,7 @@
     "start:prod": "node --env-file=.env.production dist/server.js"
   },
   "dependencies": {
-    "@google/genai": "^1.46.0",
+    "@google/genai": "^1.47.0",
     "@site8/shared": "file:../shared",
     "compression": "^1.8.1",
     "cors": "^2.8.6",
@@ -86,7 +86,7 @@
     "eslint-plugin-regexp": "^3.1.0",
     "eslint-plugin-security": "^4.0.0",
     "eslint-plugin-sonarjs": "^4.0.2",
-    "eslint-plugin-unicorn": "^63.0.0",
+    "eslint-plugin-unicorn": "^64.0.0",
     "eslint-plugin-vitest": "^0.5.4",
     "globals": "^17.4.0",
     "husky": "^9.1.7",
