@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useEffect } from 'react';
+import { Activity, useEffect, useLayoutEffect } from 'react';
 
 import styled, { keyframes } from 'styled-components';
 
@@ -32,7 +32,7 @@ const SlideoutDialog = ({
   onApply,
   onClose,
   title = 'Settings',
-}: SlideoutDialogProps): JSX.Element | null => {
+}: SlideoutDialogProps): JSX.Element => {
   // Handle ESC key
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent): void => {
@@ -52,8 +52,10 @@ const SlideoutDialog = ({
     return cleanup;
   }, [isOpen, onClose]);
 
-  // Lock body scroll when dialog is open
-  useEffect(() => {
+  // Lock body scroll when dialog is open.
+  // useLayoutEffect so the overflow reset runs synchronously when Activity hides
+  // the component, before the browser paints.
+  useLayoutEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
 
     const cleanup = (): void => {
@@ -63,16 +65,12 @@ const SlideoutDialog = ({
     return cleanup;
   }, [isOpen]);
 
-  if (!isOpen) {
-    return null;
-  }
-
   const handleOverlayClick = (): void => {
     onClose();
   };
 
   return (
-    <>
+    <Activity mode={isOpen ? 'visible' : 'hidden'}>
       <Overlay
         $isClosing={false}
         onClick={handleOverlayClick}
@@ -106,7 +104,7 @@ const SlideoutDialog = ({
           </ApplyButton>
         </Footer>
       </DialogContainer>
-    </>
+    </Activity>
   );
 };
 

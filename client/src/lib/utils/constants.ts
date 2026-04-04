@@ -49,7 +49,7 @@ export type {
 // dependency (env.ts itself imports from lib/).  Tracked for future consolidation.
 
 const API_ROOT: string =
-  (import.meta.env.VITE_API_URL as string | undefined) ??
+  (import.meta.env['VITE_API_URL'] as string | undefined) ??
   'http://localhost:3005/api';
 
 export const IMAGE_BASE = '/images';

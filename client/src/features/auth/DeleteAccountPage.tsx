@@ -53,8 +53,8 @@ const DeleteAccountPage = (): JSX.Element => {
           </div>
           <Input.Text
             required
-            {...(state.errors?.deleteCode && {
-              errors: [{ message: state.errors.deleteCode }],
+            {...(state.errors?.['deleteCode'] && {
+              errors: [{ message: state.errors['deleteCode'] }],
             })}
             autoComplete="off"
             inputMode="text"

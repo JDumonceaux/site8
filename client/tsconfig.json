@@ -49,7 +49,10 @@
     "noImplicitReturns": true,
     "erasableSyntaxOnly": true,
     "noUncheckedIndexedAccess": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noPropertyAccessFromIndexSignature": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "__tests__"],

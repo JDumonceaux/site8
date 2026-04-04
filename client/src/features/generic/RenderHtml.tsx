@@ -29,9 +29,9 @@ const options: HTMLReactParserOptions = {
     }
 
     // Sanitize href on anchor elements to block javascript: navigation.
-    if (domNode.tagName === 'a' && domNode.attribs.href != null) {
+    if (domNode.tagName === 'a' && domNode.attribs['href'] != null) {
       return (
-        <a href={sanitizeUrl(domNode.attribs.href)}>
+        <a href={sanitizeUrl(domNode.attribs['href'])}>
           {domToReact(domNode.children as DOMNode[], options)}
         </a>
       );

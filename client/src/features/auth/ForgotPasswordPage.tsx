@@ -52,8 +52,8 @@ const ForgotPasswordPage = (): JSX.Element => {
           {state.message ? <FormMessage message={state.message} /> : null}
           <Input.Email
             required
-            {...(state.errors?.email && {
-              errors: [{ message: state.errors.email }],
+            {...(state.errors?.['email'] && {
+              errors: [{ message: state.errors['email'] }],
             })}
             autoComplete="email"
             inputMode="email"

@@ -101,8 +101,8 @@ const SignupPage = (): JSX.Element => {
           {state.message ? <FormMessage message={state.message} /> : null}
           <Input.Email
             required
-            {...(state.errors?.emailAddress && {
-              errors: [{ message: state.errors.emailAddress }],
+            {...(state.errors?.['emailAddress'] && {
+              errors: [{ message: state.errors['emailAddress'] }],
             })}
             autoComplete="email"
             label="Email Address"
@@ -110,8 +110,8 @@ const SignupPage = (): JSX.Element => {
             spellCheck="false"
           />
           <Input.Password
-            {...(state.errors?.password && {
-              errors: [{ message: state.errors.password }],
+            {...(state.errors?.['password'] && {
+              errors: [{ message: state.errors['password'] }],
             })}
             autoComplete="new-password"
             label="Password"

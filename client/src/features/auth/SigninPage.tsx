@@ -46,8 +46,8 @@ const SigninPage = (): JSX.Element => {
           {state.message ? <FormMessage message={state.message} /> : null}
           <Input.Email
             required
-            {...(state.errors?.emailAddress && {
-              errors: [{ message: state.errors.emailAddress }],
+            {...(state.errors?.['emailAddress'] && {
+              errors: [{ message: state.errors['emailAddress'] }],
             })}
             autoComplete="email"
             id="emailAddress"
@@ -62,8 +62,8 @@ const SigninPage = (): JSX.Element => {
             value=""
           />
           <Input.Password
-            {...(state.errors?.password && {
-              errors: [{ message: state.errors.password }],
+            {...(state.errors?.['password'] && {
+              errors: [{ message: state.errors['password'] }],
             })}
             autoComplete="current-password"
             id="password"

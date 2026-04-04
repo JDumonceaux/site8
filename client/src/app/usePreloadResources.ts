@@ -17,7 +17,7 @@ export const usePreloadResources = () => {
     preconnect('https://fonts.gstatic.com', { crossOrigin: 'anonymous' });
 
     // API server (if different from app origin)
-    const apiUrl = import.meta.env.VITE_API_URL as string | undefined;
+    const apiUrl = import.meta.env['VITE_API_URL'] as string | undefined;
     if (apiUrl && !apiUrl.startsWith(globalThis.location.origin)) {
       preconnect(apiUrl);
     }

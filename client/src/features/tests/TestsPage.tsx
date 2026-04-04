@@ -1,3 +1,4 @@
+import { Activity } from 'react';
 import type { JSX } from 'react';
 
 import IconButton from '@components/button/icon-button/IconButton';
@@ -53,16 +54,16 @@ const TestsPage = (): JSX.Element => {
       <Meta title={pageTitle} />
       <Layout.TwoColumn>
         <Layout.Menu>
-          {isGrouped ? (
-            isSectionsLoading ? (
+          <Activity mode={isGrouped ? 'visible' : 'hidden'}>
+            {isSectionsLoading ? (
               <SectionsGroupsSkeleton />
             ) : (
               <SectionsGroupsList
                 onMoveItem={moveItem}
                 sections={allSections}
               />
-            )
-          ) : null}
+            )}
+          </Activity>
         </Layout.Menu>
         <Layout.Content>
           <Layout.Article>
@@ -84,7 +85,7 @@ const TestsPage = (): JSX.Element => {
               loadingText="Loading tests..."
             >
               <Layout.Section>
-                {isGrouped ? (
+                <Activity mode={isGrouped ? 'visible' : 'hidden'}>
                   <TestsSectionsList
                     error={activeError}
                     onAddItem={(groupId) => {
@@ -93,14 +94,15 @@ const TestsPage = (): JSX.Element => {
                     onEditItem={editItem}
                     sections={filteredSections}
                   />
-                ) : (
+                </Activity>
+                <Activity mode={isGrouped ? 'hidden' : 'visible'}>
                   <TestsList
                     error={activeError}
                     itemGroupIdMap={itemGroupIdMap}
                     items={listItems}
                     onEditItem={editItem}
                   />
-                )}
+                </Activity>
               </Layout.Section>
             </LoadingWrapper>
           </Layout.Article>
