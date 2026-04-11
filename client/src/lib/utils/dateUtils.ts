@@ -1,3 +1,4 @@
+/// <reference lib="es2025.regexp" />
 import { logError } from './errorHandler';
 
 /**
@@ -40,10 +41,7 @@ const parseDateTimeString = (
 ): null | RegExpExecArray => {
   let re = regexCache.get(delim);
   if (re == null) {
-    const escapedDelim = delim.replaceAll(
-      /[$()*+.?[\\\]^{|}]/g,
-      String.raw`\$&`,
-    );
+    const escapedDelim = RegExp.escape(delim);
     const pattern = String.raw`^(\d{1,2})${escapedDelim}(\d{1,2})${escapedDelim}(\d{4})\s+(\d{1,2}):(\d{2})(?:\s*([AaPp][Mm]))?$`;
     // eslint-disable-next-line security/detect-non-literal-regexp -- pattern is built from an escaped delimiter
     re = new RegExp(pattern, 'u');
