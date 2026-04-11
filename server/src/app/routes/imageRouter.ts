@@ -6,7 +6,7 @@ import { identifyItem } from '../../features/image/identifyItem.js';
 import { updateItem } from '../../features/image/updateItem.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
-export const routeConfig = { path: '/api/image', mutations: true } as const;
+export const routeConfig = { mutations: true, path: '/api/image' } as const;
 
 export const imageRouter = express.Router();
 

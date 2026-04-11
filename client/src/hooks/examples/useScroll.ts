@@ -35,9 +35,7 @@ const useScroll = ({
         bottomStatus =
           currentScrollTop >= document.documentElement.offsetHeight - threshold;
       } else {
-        // const currentScrollTop =
-        //   ref.current.offsetHeight + ref.current.scrollTop;
-        // isAtBottom = currentScrollTop >= ref.current.scrollHeight - threshold;
+        // TODO: implement element scroll detection
       }
       setIsAtBottom(bottomStatus);
     }

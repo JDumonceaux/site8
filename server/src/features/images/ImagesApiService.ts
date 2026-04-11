@@ -245,6 +245,18 @@ export class ImagesApiService {
     return updatedItem;
   }
 
+  /** Builds a keyed map for O(1) record lookup instead of O(n) linear scan per file. */
+  private buildImageRecordMap(
+    imageRecords: Image[],
+  ): Map<string, Image | 'duplicate'> {
+    const map = new Map<string, Image | 'duplicate'>();
+    for (const img of imageRecords) {
+      const key = `${img.folder.toLowerCase()}/${img.fileName.toLowerCase()}`;
+      map.set(key, map.has(key) ? 'duplicate' : img);
+    }
+    return map;
+  }
+
   private expandImageFile(items: ImageFile[]): ImageFile[] {
     return items.map((item, index) => ({
       ...item,
@@ -258,6 +270,29 @@ export class ImagesApiService {
     return (this.imagesFileService.getItemsFromBaseDirectory() ?? [])
       .filter((file) => !isSiteFolder(file.folder))
       .filter((file) => path.extname(file.fileName).toLowerCase() !== '.heic');
+  }
+
+  private mergeFileWithRecord(
+    file: ImageFile,
+    recordMap: Map<string, Image | 'duplicate'>,
+  ): ImageFile {
+    const key = `${file.folder.toLowerCase()}/${file.fileName.toLowerCase()}`;
+    const record = recordMap.get(key);
+
+    if (record === undefined) {
+      return { ...file, id: 0 };
+    }
+
+    if (record === 'duplicate') {
+      return { ...file, id: -1 };
+    }
+
+    return {
+      ...file,
+      ...(record.description ? { description: record.description } : {}),
+      id: record.id,
+      title: record.title ?? file.title,
+    };
   }
 
   private async readImageItems(): Promise<Image[]> {
@@ -289,40 +324,5 @@ export class ImagesApiService {
           toCapitalizedFolderName(folderName).toLowerCase() ===
           folderLabel.toLowerCase(),
       );
-  }
-
-  /** Builds a keyed map for O(1) record lookup instead of O(n) linear scan per file. */
-  private buildImageRecordMap(
-    imageRecords: Image[],
-  ): Map<string, Image | 'duplicate'> {
-    const map = new Map<string, Image | 'duplicate'>();
-    for (const img of imageRecords) {
-      const key = `${img.folder.toLowerCase()}/${img.fileName.toLowerCase()}`;
-      map.set(key, map.has(key) ? 'duplicate' : img);
-    }
-    return map;
-  }
-
-  private mergeFileWithRecord(
-    file: ImageFile,
-    recordMap: Map<string, Image | 'duplicate'>,
-  ): ImageFile {
-    const key = `${file.folder.toLowerCase()}/${file.fileName.toLowerCase()}`;
-    const record = recordMap.get(key);
-
-    if (record === undefined) {
-      return { ...file, id: 0 };
-    }
-
-    if (record === 'duplicate') {
-      return { ...file, id: -1 };
-    }
-
-    return {
-      ...file,
-      ...(record.description ? { description: record.description } : {}),
-      id: record.id,
-      title: record.title ?? file.title,
-    };
   }
 }

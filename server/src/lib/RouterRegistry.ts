@@ -1,6 +1,6 @@
 import type { Express, RequestHandler } from 'express';
 
-import { readdirSync } from 'node:fs';
+import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -32,7 +32,7 @@ export const registerRoutes = async (
   app: Express,
   mutationLimiter: RequestHandler,
 ): Promise<void> => {
-  const routeFiles = readdirSync(ROUTES_DIR)
+  const routeFiles = (await readdir(ROUTES_DIR))
     .filter((fileName) => fileName.endsWith('Router.js'))
     .toSorted((a, b) => a.localeCompare(b));
 

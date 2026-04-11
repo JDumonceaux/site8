@@ -93,7 +93,7 @@ export const identifyItem = async (
     const mimeType = getImageMimeType(parsed.fileName);
 
     Logger.debug('Identify: calling Gemini', { mimeType, src: source });
-    const { description, title, rawText } = await identifyGeminiImage(
+    const { description, rawText, title } = await identifyGeminiImage(
       imageBase64,
       mimeType,
     );

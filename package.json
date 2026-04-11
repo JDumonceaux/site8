@@ -9,9 +9,9 @@
     "build:client": "npm --prefix client run build",
     "build:shared": "npm --prefix shared run build",
     "knip": "knip",
-    "lint": "npm --prefix client run lint && npm --prefix server run lint && npm --prefix shared run lint",
-    "lint:fix": "npm --prefix client run lint:fix && npm --prefix server run lint:fix && npm --prefix shared run lint:fix",
-    "lint:config:fix": "npm --prefix client run lint:config:fix && npm --prefix server run lint:config:fix && npm --prefix shared run lint:config:fix",
+    "lint": "npm --prefix client run lint & npm --prefix server run lint & npm --prefix shared run lint",
+    "lint:fix": "npm --prefix client run lint:fix & npm --prefix server run lint:fix & npm --prefix shared run lint:fix",
+    "lint:config:fix": "npm --prefix client run lint:config:fix & npm --prefix server run lint:config:fix & npm --prefix shared run lint:config:fix",
     "test": "npm --prefix client run test"
   },
   "devDependencies": {

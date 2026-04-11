@@ -10,7 +10,7 @@ import { getSections } from '../../features/tests/getSections.js';
 import { getTests } from '../../features/tests/getTests.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
-export const routeConfig = { path: '/api/tests', mutations: true } as const;
+export const routeConfig = { mutations: true, path: '/api/tests' } as const;
 
 const testsRouter = Router();
 

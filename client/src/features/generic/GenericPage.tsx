@@ -51,8 +51,8 @@ const GenericPage = ({ title }: GenericPageProps): JSX.Element => {
     // Two segments: parent/page - look up in menu
     const menuItem = findMenuItemByPath(
       getRootMenuItems(),
-      pathParts[0]!,
-      pathParts[1]!,
+      pathParts[0] ?? '',
+      pathParts[1] ?? '',
     );
     pageId = menuItem?.id ? String(menuItem.id) : pathParts.join('/');
   } else {

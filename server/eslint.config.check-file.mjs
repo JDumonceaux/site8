@@ -17,7 +17,7 @@ const config = {
                 '**/*.{json}': 'FLAT_CASE',
                 '**/*.{jsx}': 'PASCAL_CASE',
                 '**/*.{md}': 'SCREAMING_SNAKE_CASE',
-                '**/*.{ts,tsx}': 'PASCAL_CASE',
+                // '**/*.{ts}': 'PASCAL_CASE', -- server mixes PascalCase (classes) and camelCase (routers/utils)
             },
             {
                 ignoreMiddleExtensions: true,
