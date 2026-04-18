@@ -7,23 +7,23 @@
 // NOTE: This file intentionally imports feature service implementations.
 // The service factory is the centralized instantiation point for all services,
 // and disabling import/no-restricted-paths here maintains architectural intent.
-/* eslint-disable import/no-restricted-paths */
+ 
 /* eslint-disable no-restricted-syntax */
 
-import { ImageService } from '../features/image/ImageService.js';
-import { ImagesApiService } from '../features/images/ImagesApiService.js';
+import { ImageService } from '../feature/image/ImageService.js';
+import { ImagesApiService } from '../feature/images/ImagesApiService.js';
 // NOTE: This is the correct format.  GPT 5.0 fixes are incorrect.
-import { ImagesFileService } from '../features/images/ImagesFileService.js';
-import { ImagesService } from '../features/images/ImagesService.js';
-import { MenuService } from '../features/menu/MenuService.js';
-import { PageFileService } from '../features/page/PageFileService.js';
-import { PagesService } from '../features/pages/PagesService.js';
-import { TestService } from '../features/test/TestService.js';
-import { TestsGroupsService } from '../features/tests/TestsGroupsService.js';
-import { TestsSectionsService } from '../features/tests/TestsSectionsService.js';
-import { TestsService } from '../features/tests/TestsService.js';
-import { PlacesMenuService } from '../features/travel/PlacesMenuService.js';
-import { TravelService } from '../features/travel/TravelService.js';
+import { ImagesFileService } from '../feature/images/ImagesFileService.js';
+import { ImagesService } from '../feature/images/ImagesService.js';
+import { MenuService } from '../feature/menu/MenuService.js';
+import { PageFileService } from '../feature/page/PageFileService.js';
+import { PagesService } from '../feature/pages/PagesService.js';
+import { TestService } from '../feature/test/TestService.js';
+import { TestsGroupsService } from '../feature/tests/TestsGroupsService.js';
+import { TestsSectionsService } from '../feature/tests/TestsSectionsService.js';
+import { TestsService } from '../feature/tests/TestsService.js';
+import { PlacesMenuService } from '../feature/travel/PlacesMenuService.js';
+import { TravelService } from '../feature/travel/TravelService.js';
 import { FileService } from '../lib/filesystem/FileService.js';
 import { GenericService } from '../lib/generic/GenericService.js';
 import { PrettierService } from '../services/codeQuality/PrettierService.js';

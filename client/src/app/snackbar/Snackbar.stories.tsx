@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import Button from '@components/button/Button';
+import Button from '@common/button/Button';
 import type { Meta, StoryObj } from '@storybook/react';
 import Snackbar from './Snackbar';
 import useSnackbar from './useSnackbar';

@@ -190,7 +190,7 @@ const MyComponent = () => {
 
 When a hook becomes feature-specific (like `useMenuAdd`), consider:
 
-1. Moving it closer to the feature (`features/menu/useMenuAdd.ts`)
+1. Moving it closer to the feature (`feature/menu/useMenuAdd.ts`)
 2. Or keeping it here if reused across features
 
 ## Adding New Hooks

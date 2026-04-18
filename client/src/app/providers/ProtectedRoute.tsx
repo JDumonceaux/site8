@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import useAuth from '@features/auth/useAuth';
+import useAuth from '@feature/auth/useAuth';
 import { env } from '@lib/env';
 
 /**

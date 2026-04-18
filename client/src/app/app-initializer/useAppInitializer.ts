@@ -1,4 +1,4 @@
-import useMenu from '@features/menu/useMenu';
+import useMenu from '@feature/menu/useMenu';
 
 const useAppInitializer = () => {
   const {} = useMenu();

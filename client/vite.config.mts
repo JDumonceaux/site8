@@ -18,9 +18,9 @@ export default defineConfig(({ mode }) => ({
     dedupe: ['react', 'react-dom', 'react-router-dom'],
     alias: {
       '@app': '/src/app',
-      '@components': '/src/components',
+      '@common': '/src/common',
       '@content': '/src/content',
-      '@features': '/src/features',
+      '@feature': '/src/feature',
       '@hooks': '/src/hooks',
       '@lib': '/src/lib',
       '@providers': '/src/app/providers',

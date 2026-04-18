@@ -13,8 +13,8 @@ import { publicRoutes } from './routes/publicRoutes';
 // ---------------------
 // Error Pages
 // ---------------------
-const NotFound = lazy(async () => import('../features/site/NotFoundPage'));
-const ErrorPage = lazy(async () => import('../features/site/ErrorPage'));
+const NotFound = lazy(async () => import('../feature/site/NotFoundPage'));
+const ErrorPage = lazy(async () => import('../feature/site/ErrorPage'));
 
 /**
  * Creates router configuration with proper route protection and organization

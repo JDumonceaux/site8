@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import RateLimit from 'express-rate-limit';
 
-import { runGeminiTest } from '../../features/ai/gemini/testGemini.js';
-import { runGeminiImageTest } from '../../features/ai/gemini/testGeminiImage.js';
+import { runGeminiTest } from '../../feature/ai/gemini/testGemini.js';
+import { runGeminiImageTest } from '../../feature/ai/gemini/testGeminiImage.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
 export const routeConfig = { path: '/api/gemini' } as const;

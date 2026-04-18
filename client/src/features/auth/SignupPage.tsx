@@ -1,12 +1,12 @@
 import { type JSX, useActionState, useCallback } from 'react';
 
-import Button from '@components/button/Button';
-import SubmitButton from '@components/button/SubmitButton';
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
-import Meta from '@components/meta/Meta';
-import { type SocialProvider, SocialProviders } from '@features/auth/types';
-import useAuth from '@features/auth/useAuth';
+import Button from '@common/button/Button';
+import SubmitButton from '@common/button/SubmitButton';
+import Input from '@common/input/Input';
+import StyledLink from '@common/link/styled-link/StyledLink';
+import Meta from '@common/meta/Meta';
+import { type SocialProvider, SocialProviders } from '@feature/auth/types';
+import useAuth from '@feature/auth/useAuth';
 import { logError } from '@lib/utils/errorHandler';
 import { emailAddress, password } from '@types';
 import * as v from 'valibot';
@@ -101,8 +101,8 @@ const SignupPage = (): JSX.Element => {
           {state.message ? <FormMessage message={state.message} /> : null}
           <Input.Email
             required
-            {...(state.errors?.['emailAddress'] && {
-              errors: [{ message: state.errors['emailAddress'] }],
+            {...(state.errors?.emailAddress && {
+              errors: [{ message: state.errors.emailAddress }],
             })}
             autoComplete="email"
             label="Email Address"
@@ -110,8 +110,8 @@ const SignupPage = (): JSX.Element => {
             spellCheck="false"
           />
           <Input.Password
-            {...(state.errors?.['password'] && {
-              errors: [{ message: state.errors['password'] }],
+            {...(state.errors?.password && {
+              errors: [{ message: state.errors.password }],
             })}
             autoComplete="new-password"
             label="Password"

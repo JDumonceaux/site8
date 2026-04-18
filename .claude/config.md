@@ -159,7 +159,7 @@ const Wrapper = styled.div`
 - **Accessibility** - Use semantic HTML and ARIA labels
 - **Performance** - Lazy load routes, memo expensive components
 - **Code splitting** - Use dynamic imports for large dependencies
-- **Consistent imports** - Use path aliases (`@components`, `@features`, etc.)
+- **Consistent imports** - Use path aliases (`@common`, `@feature`, etc.)
 
 ### ❌ Don't
 
@@ -178,8 +178,8 @@ const Wrapper = styled.div`
 
 ```typescript
 @app/*          → src/app/*
-@components/*   → src/components/*
-@features/*     → src/features/*
+@common/*   → src/common/*
+@feature/*     → src/feature/*
 @hooks/*        → src/hooks/*
 @lib/*          → src/lib/*
 @providers/*    → src/providers/*

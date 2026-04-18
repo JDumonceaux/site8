@@ -1,10 +1,10 @@
 import { type JSX, useActionState } from 'react';
 
-import SubmitButton from '@components/button/SubmitButton';
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
-import Meta from '@components/meta/Meta';
-import useAuth from '@features/auth/useAuth';
+import SubmitButton from '@common/button/SubmitButton';
+import Input from '@common/input/Input';
+import StyledLink from '@common/link/styled-link/StyledLink';
+import Meta from '@common/meta/Meta';
+import useAuth from '@feature/auth/useAuth';
 import { type SignIn, SignInSchema } from '@types';
 import AuthContainer from './AuthContainer';
 import { createFormAction } from './authFormHelpers';
@@ -46,8 +46,8 @@ const SigninPage = (): JSX.Element => {
           {state.message ? <FormMessage message={state.message} /> : null}
           <Input.Email
             required
-            {...(state.errors?.['emailAddress'] && {
-              errors: [{ message: state.errors['emailAddress'] }],
+            {...(state.errors?.emailAddress && {
+              errors: [{ message: state.errors.emailAddress }],
             })}
             autoComplete="email"
             id="emailAddress"
@@ -62,8 +62,8 @@ const SigninPage = (): JSX.Element => {
             value=""
           />
           <Input.Password
-            {...(state.errors?.['password'] && {
-              errors: [{ message: state.errors['password'] }],
+            {...(state.errors?.password && {
+              errors: [{ message: state.errors.password }],
             })}
             autoComplete="current-password"
             id="password"

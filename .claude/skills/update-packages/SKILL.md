@@ -13,15 +13,21 @@ The golden rule: **shared → build → client → install → server → instal
 
 ## Phase 1: Audit and Assess
 
-Run **one command per package** — each combines audit and outdated in a single pass. These use PowerShell syntax (`;` not `&&`):
+Run these three commands (all at once) to get a full picture before touching anything:
 
-```powershell
-Write-Host "=== SHARED ==="; cd shared; npm audit; npm outdated; cd ..
-Write-Host "=== SERVER ==="; cd server; npm audit; npm outdated; cd ..
-Write-Host "=== CLIENT ==="; cd client; npm audit; npm outdated; cd ..
+```bash
+cd shared && npm audit && cd ..
+cd server && npm audit && cd ..
+cd client && npm audit && cd ..
 ```
 
-> **Note:** `npm outdated` exits with code **1** whenever any package is outdated — this is expected and not an error.
+Then check what's outdated:
+
+```bash
+cd shared && npm outdated && cd ..
+cd server && npm outdated && cd ..
+cd client && npm outdated && cd ..
+```
 
 ### Reading the output
 
@@ -72,19 +78,20 @@ Summarize the strategy in bullet points:
 
 This visual analysis helps both prevent mistakes and gives the user confidence in the update plan before execution begins.
 
-**Auto-proceed rule:** If the plan contains only **Safe** updates (no Watch or Hold items requiring a decision), proceed directly to Phase 3 without asking for confirmation — the user can interrupt if needed. Only pause for explicit user input when there are Watch/Hold packages that need a go/no-go decision.
-
 ---
 
 ## Phase 2: Categorize and Plan
 
 Group updates into three buckets:
 
-| Bucket    | Criteria                                           | Strategy                             |
-| --------- | -------------------------------------------------- | ------------------------------------ |
-| **Safe**  | Patch and minor bumps within current major         | Update freely                        |
-| **Watch** | Major version bump for a well-understood package   | Read changelog, update one at a time |
-| **Hold**  | Major bump for native modules or foundational deps | Discuss with user first              |
+| Bucket          | Criteria                                           | Strategy                              |
+| --------------- | -------------------------------------------------- | ------------------------------------- |
+| **Safe**        | Patch and minor bumps within current major         | Update freely                         |
+| **Watch**       | Major version bump for a well-understood package   | Read changelog, update one at a time  |
+| **Hold**        | Major bump for native modules or foundational deps | Discuss with user first               |
+| **Plugin-Safe** | eslint-plugin-\* major/minor/patch bumps           | Update freely (independent of eslint) |
+
+> **Key rule**: ESLint plugins can be updated independently from the `eslint` core. Update plugins freely; hold `eslint` core itself unless doing a coordinated upgrade.
 
 ### Known high-attention packages in this repo
 
@@ -92,17 +99,12 @@ Group updates into three buckets:
 - **`better-sqlite3`** — native module. Major bumps may require `npm rebuild`. Watch for API surface changes (`Database`, `Statement` types).
 - **`react` / `react-dom`** — on `^19`. Only `@types/react` and `@types/react-dom` need to track the same major.
 - **`@tanstack/react-query`** — v5 API (hooks signature). Major bumps are breaking.
-- **`valibot`** — used in both **client and server**; always bump both in the same round and keep versions in sync.
+- **`valibot`** — used in both client and server; keep versions in sync across packages.
 - **`express`** — server is on Express 5. Check `@types/express` version matches.
-- **`eslint` / `@eslint/js`** — flat config format locked to v9+. Any major bump (e.g. v9→v10) is **Hold** level: the plugin API and rule names can change significantly across the whole flat-config surface spanning 14+ plugins.
-- **`@typescript-eslint/eslint-plugin` / `@typescript-eslint/parser` / `typescript-eslint`** — all three appear across shared/client/server and **must stay at identical versions**. `typescript-eslint` (the unified package) is server-only but must match the others. Update all occurrences in the same edit pass.
-- **`i18next` / `react-i18next`** — **Watch** on major bumps; API surface changes between majors (e.g. v25→v26 changes plugin/middleware signatures).
-- **`html-react-parser`** — **Watch** on major bumps (e.g. v5→v6 changed the options API).
+- **`eslint`** — flat config format (v9+). **Hold at current version** unless doing a coordinated ecosystem bump. Do not upgrade major versions without explicit user approval.
+- **`eslint-plugin-*`** (e.g., `eslint-plugin-unicorn`, `eslint-plugin-react`) — **Can be updated freely** (major, minor, patch) independent of eslint core. These are safe to bump and often receive breaking changes that improve rule quality.
+- **`@typescript-eslint/*`** — must stay in sync with each other and with `typescript` version. Can be updated together; do not intermix versions.
 - **`@roots/shared`** — the `file:../shared` local dependency. Never bump this entry; it's always the local build.
-
-### Known accepted vulnerabilities (do not attempt to auto-fix)
-
-- **`@aws-amplify/ui-react` → lodash** (high severity, transitive): `npm audit fix --force` would downgrade `@aws-amplify/ui-react` to v2.1.9 — a breaking change. There is no safe fix available until AWS Amplify removes the lodash dependency. Skip this finding; do not run `npm audit fix` in `client/`.
 
 ---
 
@@ -116,26 +118,36 @@ Always follow this exact sequence — do not skip steps or reorder:
 
 Edit `shared/package.json` directly — bump the version strings for all packages being updated. Then navigate into `shared/` and install once.
 
-```powershell
+```bash
 cd shared
 npm i --legacy-peer-deps
 ```
 
 **Step 2 — Build `shared/`** (must succeed before touching consumers)
 
-```powershell
+```bash
 npm run build
 ```
 
 Stop here if the build fails. Fix the issue before proceeding.
 
-**Steps 3 & 4 — Install `client/` and `server/` in parallel**
+**Step 3 — Update versions in `client/package.json`**
 
-Edit both `client/package.json` and `server/package.json` (already done with the shared edits above). Then kick off both installs simultaneously using background terminals — they are independent of each other and only depend on the shared build that just completed.
+Edit `client/package.json` directly — bump the version strings. Then navigate into `client/` and install once.
 
-- Start `client/` install as a **background terminal**: `cd client; npm i --legacy-peer-deps`
-- Start `server/` install as a **background terminal**: `cd server; npm i --legacy-peer-deps`
-- Wait for both to complete before proceeding to Phase 4.
+```bash
+cd ../client
+npm i --legacy-peer-deps
+```
+
+**Step 4 — Install `server/`**
+
+Edit `server/package.json` directly — bump the version strings. Then navigate into `server/` and install once.
+
+```bash
+cd ../server
+npm i --legacy-peer-deps
+```
 
 > **Why edit `package.json` first?** Bumping versions in the file then running a single `npm i --legacy-peer-deps` is faster than running individual `npm i <pkg>@latest` calls — one network pass resolves the whole tree at once.
 
@@ -160,14 +172,23 @@ After `shared/` build (Step 2 above):
 
 - Build output in `shared/dist/` should be fresh with no TypeScript errors
 
-After both installs complete, verify **client and server in parallel** using background terminals:
+After `client/` install (Step 4):
 
-- **client** (background): `cd client; npm run type-check; npm run build; npm run lint`
-- **server** (background): `cd server; npm run typecheck; npm run build; npm run lint`
+```bash
+cd client && npm run type-check
+cd client && npm run build
+cd client && npm run lint
+```
 
-Wait for both. If either fails, stop and fix that package before reporting success.
+After `server/` install (Step 6):
 
-> **Shortcut for patch-only rounds:** If every updated package is a patch bump and no `@types/*` packages changed, you can skip `npm run build` in client/server and run only `type-check` + `lint` — a full build is unlikely to catch anything new on a pure patch update.
+```bash
+cd server && npm run typecheck
+cd server && npm run build
+cd server && npm run lint
+```
+
+If any step fails, **stop and fix before moving on**. Do not cascade a broken state into the next package.
 
 ### What to look for in errors
 
@@ -180,28 +201,20 @@ Wait for both. If either fails, stop and fix that package before reporting succe
 
 ## Phase 5: Security Follow-up
 
-Only re-audit packages where vulnerabilities existed or new dependencies were added. In most rounds this means just `client/` (the lodash issue) and any package with a new dependency:
+After all updates, re-run audit and confirm the vulnerability count dropped:
 
-```powershell
-# Only run the packages that had audit findings in Phase 1
-cd client; npm audit; cd ..
-```
-
-If Phase 1 found issues in shared or server, re-audit those too:
-
-```powershell
-cd shared; npm audit; cd ..
-cd server; npm audit; cd ..
+```bash
+cd shared && npm audit && cd ..
+cd server && npm audit && cd ..
+cd client && npm audit && cd ..
 ```
 
 For vulnerabilities that can't be fixed by a version bump (e.g., transitive dependencies), use `npm audit fix` cautiously — prefer `--package-lock-only` first to preview changes:
 
-```powershell
+```bash
 npm audit fix --package-lock-only  # preview
 npm audit fix                       # apply
 ```
-
-> **Reminder:** Do NOT run `npm audit fix` in `client/` — the `@aws-amplify/ui-react` lodash vulnerability is an accepted risk (see Known Accepted Vulnerabilities above). Auto-fix would introduce a breaking downgrade.
 
 Avoid `npm audit fix --force` — it can introduce breaking major bumps silently.
 
@@ -220,16 +233,16 @@ Once all packages build and lint cleanly:
 
 ## Quick Reference
 
-```powershell
+```bash
 # Root-level build all
-npm run build:shared   # cd shared; tsc
-npm run build:server   # cd server; tsc
-npm run build:client   # cd client; tsc --noEmit + vite build
+npm run build:shared   # cd shared && tsc
+npm run build:server   # cd server && tsc
+npm run build:client   # cd client && tsc --noEmit + vite build
 
 # Per-package type check
-cd shared; npm run build
-cd server; npm run typecheck
-cd client; npm run type-check
+cd shared && npm run build
+cd server && npm run typecheck
+cd client && npm run type-check
 
 # Full workspace lint
 npm run lint           # runs client lint + server lint

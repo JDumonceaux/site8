@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { getItems } from '../../features/travel/getItems.js';
-import { getMenu } from '../../features/travel/getMenu.js';
+import { getItems } from '../../feature/travel/getItems.js';
+import { getMenu } from '../../feature/travel/getMenu.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
 export const routeConfig = { path: '/api/travel' } as const;

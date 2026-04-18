@@ -1,13 +1,13 @@
 import { Router } from 'express';
 
-import { addItem } from '../../features/test/addItem.js';
-import { deleteItem } from '../../features/test/deleteItem.js';
-import { getItem } from '../../features/test/getItem.js';
-import { updateItem } from '../../features/test/updateItem.js';
-import { getGroups } from '../../features/tests/getGroups.js';
-import { getTestsSorted } from '../../features/tests/getItems.js';
-import { getSections } from '../../features/tests/getSections.js';
-import { getTests } from '../../features/tests/getTests.js';
+import { addItem } from '../../feature/test/addItem.js';
+import { deleteItem } from '../../feature/test/deleteItem.js';
+import { getItem } from '../../feature/test/getItem.js';
+import { updateItem } from '../../feature/test/updateItem.js';
+import { getGroups } from '../../feature/tests/getGroups.js';
+import { getTestsSorted } from '../../feature/tests/getItems.js';
+import { getSections } from '../../feature/tests/getSections.js';
+import { getTests } from '../../feature/tests/getTests.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
 export const routeConfig = { mutations: true, path: '/api/tests' } as const;

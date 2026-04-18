@@ -1,10 +1,10 @@
 import { type JSX, useActionState } from 'react';
 
-import SubmitButton from '@components/button/SubmitButton';
-import Input from '@components/input/Input';
-import StyledLink from '@components/link/styled-link/StyledLink';
-import Meta from '@components/meta/Meta';
-import useAuth from '@features/auth/useAuth';
+import SubmitButton from '@common/button/SubmitButton';
+import Input from '@common/input/Input';
+import StyledLink from '@common/link/styled-link/StyledLink';
+import Meta from '@common/meta/Meta';
+import useAuth from '@feature/auth/useAuth';
 import { emailAddress } from '@types';
 import * as v from 'valibot';
 import AuthContainer from './AuthContainer';
@@ -52,8 +52,8 @@ const ForgotPasswordPage = (): JSX.Element => {
           {state.message ? <FormMessage message={state.message} /> : null}
           <Input.Email
             required
-            {...(state.errors?.['email'] && {
-              errors: [{ message: state.errors['email'] }],
+            {...(state.errors?.email && {
+              errors: [{ message: state.errors.email }],
             })}
             autoComplete="email"
             inputMode="email"

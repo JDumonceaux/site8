@@ -4,18 +4,18 @@ import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 
 const UnifiedLayout = lazy(
-  async () => import('../../features/layouts/unified-layout/UnifiedLayout'),
+  async () => import('../../feature/layouts/unified-layout/UnifiedLayout'),
 );
-const Home = lazy(async () => import('../../features/home/HomePage'));
-const Sitemap = lazy(async () => import('../../features/site/SitemapPage'));
+const Home = lazy(async () => import('../../feature/home/HomePage'));
+const Sitemap = lazy(async () => import('../../feature/site/SitemapPage'));
 const TermsOfUsePage = lazy(
-  async () => import('../../features/site/TermsOfUsePage'),
+  async () => import('../../feature/site/TermsOfUsePage'),
 );
 const CookiesUsePage = lazy(
-  async () => import('../../features/site/CookiesUsePage'),
+  async () => import('../../feature/site/CookiesUsePage'),
 );
 const PrivacyPolicyPage = lazy(
-  async () => import('../../features/site/PrivacyPolicyPage'),
+  async () => import('../../feature/site/PrivacyPolicyPage'),
 );
 
 /**

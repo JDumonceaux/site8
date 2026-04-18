@@ -9,19 +9,19 @@ import ProtectedRoute from '../providers/ProtectedRoute';
 // Layouts
 // ---------------------
 const UnifiedLayout = lazy(
-  async () => import('../../features/layouts/unified-layout/UnifiedLayout'),
+  async () => import('../../feature/layouts/unified-layout/UnifiedLayout'),
 );
 
 // ---------------------
 // Content Pages
 // ---------------------
-const TravelPage = lazy(async () => import('../../features/travel/TravelPage'));
-const ImagesPage = lazy(async () => import('../../features/images/ImagesPage'));
+const TravelPage = lazy(async () => import('../../feature/travel/TravelPage'));
+const ImagesPage = lazy(async () => import('../../feature/images/ImagesPage'));
 const GenericPage = lazy(
-  async () => import('../../features/generic/GenericPage'),
+  async () => import('../../feature/generic/GenericPage'),
 );
-const YachtsPage = lazy(async () => import('../../features/yatch/YachtsPage'));
-const TestsPage = lazy(async () => import('../../features/tests/TestsPage'));
+const YachtsPage = lazy(async () => import('../../feature/yatch/YachtsPage'));
+const TestsPage = lazy(async () => import('../../feature/tests/TestsPage'));
 
 const GENERIC_CONTENT_PATHS = [
   'accessibility',

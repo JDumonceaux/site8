@@ -1,4 +1,4 @@
-import { getItems } from '../../features/menu/getItems.js';
+import { getItems } from '../../feature/menu/getItems.js';
 
 import { createSimpleRouter } from './createSimpleRouter.js';
 
