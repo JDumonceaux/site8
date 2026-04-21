@@ -58,7 +58,7 @@ This monorepo contains three packages: `client/` (Vite + React 19), `server/` (E
 
 **Path aliases (client only — server uses `@/*` alias and `#`-prefixed subpath imports):**
 
-- `@app/*`, `@components/*`, `@features/*`, `@hooks/*`, `@lib/*`, `@providers/*`, `@store/*`, `@types`
+- `@app/*`, `@common/*`, `@feature/*`, `@hooks/*`, `@lib/*`, `@providers/*`, `@store/*`, `@types`
 - Server new code: prefer `#utils/logger.js`, `#features/...`, `#services/...` over `@/utils/...` (subpath imports via `package.json` `imports` field)
 
 **TypeScript:** All packages use `strict: true` and `erasableSyntaxOnly: true` (zero tolerance for non-erasable syntax — no enums, no namespaces, no parameter properties). Client targets ES2024 lib (`["DOM", "DOM.Iterable", "ES2024"]`), server targets ESNext/NodeNext, shared targets ES2024/NodeNext — all with `verbatimModuleSyntax: true`. Note: TypeScript 6.0.2 ships with ES2024 as the highest available lib; ES2025 lib files do not exist yet.

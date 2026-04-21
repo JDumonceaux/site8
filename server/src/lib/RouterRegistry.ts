@@ -32,7 +32,9 @@ export const registerRoutes = async (
   app: Express,
   mutationLimiter: RequestHandler,
 ): Promise<void> => {
-  const routeFiles = (await readdir(ROUTES_DIR))
+  // eslint-disable-next-line security/detect-non-literal-fs-filename
+  const files = await readdir(ROUTES_DIR);
+  const routeFiles = files
     .filter((fileName) => fileName.endsWith('Router.js'))
     .toSorted((a, b) => a.localeCompare(b));
 

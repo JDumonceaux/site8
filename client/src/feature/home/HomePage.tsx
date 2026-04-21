@@ -1,0 +1,21 @@
+import type { JSX } from 'react';
+
+import Meta from '@common/meta/Meta';
+import Layout from '@feature/layouts/layout/Layout';
+import { APP_NAME } from '@lib/utils/constants';
+import HomeScreen5 from './HomeScreen5';
+
+const HomePage = (): JSX.Element => {
+  const title = `${APP_NAME}: Home`;
+
+  return (
+    <>
+      <Meta title={title} />
+      <Layout.Main>
+        <HomeScreen5 />
+      </Layout.Main>
+    </>
+  );
+};
+
+export default HomePage;

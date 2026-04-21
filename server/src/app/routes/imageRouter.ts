@@ -1,9 +1,9 @@
 import express from 'express';
 
-import { addItem } from '../../features/image/addItem.js';
-import { deleteItem } from '../../features/image/deleteItem.js';
-import { identifyItem } from '../../features/image/identifyItem.js';
-import { updateItem } from '../../features/image/updateItem.js';
+import { addItem } from '../../feature/image/addItem.js';
+import { deleteItem } from '../../feature/image/deleteItem.js';
+import { identifyItem } from '../../feature/image/identifyItem.js';
+import { updateItem } from '../../feature/image/updateItem.js';
 import { asyncHandler } from '../../utils/routerUtils.js';
 
 export const routeConfig = { mutations: true, path: '/api/image' } as const;

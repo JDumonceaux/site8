@@ -7,26 +7,26 @@ import { Route } from 'react-router-dom';
 // Layout
 // ---------------------
 const UnifiedLayout = lazy(
-  async () => import('../../features/layouts/unified-layout/UnifiedLayout'),
+  async () => import('../../feature/layouts/unified-layout/UnifiedLayout'),
 );
 
 // ---------------------
 // Auth Pages
 // ---------------------
-const SigninPage = lazy(async () => import('../../features/auth/SigninPage'));
-const SignoutPage = lazy(async () => import('../../features/auth/SignoutPage'));
-const SignupPage = lazy(async () => import('../../features/auth/SignupPage'));
+const SigninPage = lazy(async () => import('../../feature/auth/SigninPage'));
+const SignoutPage = lazy(async () => import('../../feature/auth/SignoutPage'));
+const SignupPage = lazy(async () => import('../../feature/auth/SignupPage'));
 const ConfirmEmailPage = lazy(
-  async () => import('../../features/auth/ConfirmEmailPage'),
+  async () => import('../../feature/auth/ConfirmEmailPage'),
 );
 const ForgotPasswordPage = lazy(
-  async () => import('../../features/auth/ForgotPasswordPage'),
+  async () => import('../../feature/auth/ForgotPasswordPage'),
 );
 const ChangePasswordPage = lazy(
-  async () => import('../../features/auth/ChangePasswordPage'),
+  async () => import('../../feature/auth/ChangePasswordPage'),
 );
 const DeleteAccountPage = lazy(
-  async () => import('../../features/auth/DeleteAccountPage'),
+  async () => import('../../feature/auth/DeleteAccountPage'),
 );
 
 /**

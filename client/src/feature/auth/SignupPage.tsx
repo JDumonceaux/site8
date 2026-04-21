@@ -1,0 +1,158 @@
+import { type JSX, useActionState, useCallback } from 'react';
+
+import Button from '@common/button/Button';
+import SubmitButton from '@common/button/SubmitButton';
+import Input from '@common/input/Input';
+import StyledLink from '@common/link/styled-link/StyledLink';
+import Meta from '@common/meta/Meta';
+import { type SocialProvider, SocialProviders } from '@feature/auth/types';
+import useAuth from '@feature/auth/useAuth';
+import { logError } from '@lib/utils/errorHandler';
+import { emailAddress, password } from '@types';
+import * as v from 'valibot';
+import AuthContainer from './AuthContainer';
+import { createFormAction } from './authFormHelpers';
+import { InstDiv, StyledForm } from './AuthFormStyles';
+import FormMessage from './FormMessage';
+import styled from 'styled-components';
+
+const schema = v.object({
+  emailAddress,
+  password,
+});
+
+type FormValues = v.InferOutput<typeof schema>;
+
+const SignupPage = (): JSX.Element => {
+  const title = 'Sign-Up';
+
+  const { authSignInWithRedirect, authSignUp } = useAuth();
+
+  const signUpAction = createFormAction(schema, async (data: FormValues) => {
+    await authSignUp(data.emailAddress, data.password);
+  });
+
+  const [state, formAction] = useActionState(signUpAction, {});
+
+  const handleClick = useCallback(
+    (provider: SocialProvider) => {
+      void (async () => {
+        try {
+          await authSignInWithRedirect(provider);
+        } catch (error_) {
+          logError(error_, {
+            componentName: 'SignupPage',
+            operation: 'socialSignIn',
+            provider,
+          });
+          // Handle error appropriately, e.g., show a notification
+        }
+      })();
+    },
+    [authSignInWithRedirect],
+  );
+
+  const handleAmazonClick = useCallback(() => {
+    handleClick(SocialProviders.AMAZON);
+  }, [handleClick]);
+
+  const handleFacebookClick = useCallback(() => {
+    handleClick(SocialProviders.FACEBOOK);
+  }, [handleClick]);
+
+  const handleGoogleClick = useCallback(() => {
+    handleClick(SocialProviders.GOOGLE);
+  }, [handleClick]);
+
+  return (
+    <>
+      <Meta title={title} />
+      <AuthContainer
+        leftImage={
+          <img
+            alt=""
+            src="/images/face.png"
+          />
+        }
+        title="Sign Up"
+      >
+        <Button
+          id="login"
+          onClick={handleAmazonClick}
+        >
+          Sign up with Amazon
+        </Button>
+        <Button
+          id="login"
+          onClick={handleFacebookClick}
+        >
+          Sign up with Facebook
+        </Button>
+        <Button
+          id="login"
+          onClick={handleGoogleClick}
+        >
+          Sign up with Google
+        </Button>
+        <StyledForm
+          action={formAction}
+          noValidate
+        >
+          {state.message ? <FormMessage message={state.message} /> : null}
+          <Input.Email
+            required
+            {...(state.errors?.['emailAddress'] && {
+              errors: [{ message: state.errors['emailAddress'] }],
+            })}
+            autoComplete="email"
+            label="Email Address"
+            placeholder="Enter Email Address"
+            spellCheck="false"
+          />
+          <Input.Password
+            {...(state.errors?.['password'] && {
+              errors: [{ message: state.errors['password'] }],
+            })}
+            autoComplete="new-password"
+            label="Password"
+            placeholder="Enter your password"
+          />
+          <InstDiv>
+            You will be sent a validation code via email to confirm your
+            account.
+          </InstDiv>
+          <SubmitButton
+            id="login"
+            variant="secondary"
+          >
+            Submit
+          </SubmitButton>
+        </StyledForm>
+        <TermsDiv>
+          By clicking &quot;Submit&quot; you are agreeing to the{' '}
+          <StyledLink to="/terms-of-use">Terms of Use</StyledLink>,{' '}
+          <StyledLink to="/privacy-policy">Privacy Policy</StyledLink>, and{' '}
+          <StyledLink to="/cookie-use">Cookie Use Policy</StyledLink>of this
+          site.
+        </TermsDiv>
+        <StyledBottomMsgCenter>
+          Already have an account?
+          <StyledLink to="/signin">Sign in</StyledLink>
+        </StyledBottomMsgCenter>
+      </AuthContainer>
+    </>
+  );
+};
+
+SignupPage.displayName = 'SignupPage';
+export default SignupPage;
+
+const StyledBottomMsgCenter = styled.div`
+  padding: 20px 0;
+  text-align: center;
+`;
+
+const TermsDiv = styled.div`
+  padding: 16px 0;
+  font-size: 0.7rem;
+`;

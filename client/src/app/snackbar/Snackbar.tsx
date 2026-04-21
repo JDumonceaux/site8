@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useCallback, useEffect } from 'react';
 
-import Button from '@components/button/Button';
+import Button from '@common/button/Button';
 import { logError } from '@lib/utils/errorHandler';
 import useSnackbar, { SnackbarVariants } from './useSnackbar';
 import type { SnackbarVariant } from './useSnackbar';

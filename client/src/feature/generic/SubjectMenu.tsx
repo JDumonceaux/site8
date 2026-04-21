@@ -1,0 +1,140 @@
+import type { JSX, Ref } from 'react';
+import { useEffect, useState, useTransition } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import LoadingWrapper from '@common/loading/LoadingWrapper';
+import useMenu from '@feature/menu/useMenu';
+import { getURLPath } from '@lib/utils/helpers';
+import type { MenuItem } from '@site8/shared';
+import ItemRender from './ItemRender';
+import styled from 'styled-components';
+
+type SubjectMenuProps = {
+  readonly ref?: Ref<HTMLElement>;
+};
+
+const SubjectMenu = ({ ref }: SubjectMenuProps): JSX.Element => {
+  const { findMenuItem, getRootMenuItems, isError, isLoading } = useMenu();
+  const { pathname } = useLocation();
+  const [expandedItems, setExpandedItems] = useState(new Set());
+  const [, startExpansionTransition] = useTransition();
+
+  const [pn1] = getURLPath(pathname) ?? [];
+
+  const currentItem = pn1 ? findMenuItem(pn1) : undefined;
+  const rootItems = getRootMenuItems();
+
+  // Auto-expand the current item if it exists
+  useEffect(() => {
+    if (currentItem?.items && currentItem.items.length > 0) {
+      // Mark expansion as non-urgent to keep UI responsive
+      startExpansionTransition(() => {
+        setExpandedItems((prev) => {
+          const newSet = new Set(prev);
+          newSet.add(currentItem.id);
+          return newSet;
+        });
+      });
+    }
+  }, [currentItem]);
+
+  const toggleExpanded = (itemId: number): void => {
+    setExpandedItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      return newSet;
+    });
+  };
+
+  // Render menu items recursively
+  const renderMenuItems = (
+    items?: Iterable<MenuItem>,
+    level = 1,
+  ): JSX.Element[] => {
+    if (!items) return [];
+
+    return [...items].map((item) => {
+      const isExpanded = expandedItems.has(item.id);
+      const hasChildren = item.items && item.items.length > 0;
+
+      return (
+        <ItemRender
+          hasChildren={hasChildren}
+          isExpanded={isExpanded}
+          item={item}
+          key={item.id}
+          level={level}
+          onToggle={() => {
+            toggleExpanded(item.id);
+          }}
+        >
+          {hasChildren && isExpanded
+            ? renderMenuItems(item.items, level + 1)
+            : null}
+        </ItemRender>
+      );
+    });
+  };
+
+  return (
+    <StyledNav ref={ref}>
+      <StyledContent>
+        <LoadingWrapper
+          isError={isError}
+          isLoading={isLoading}
+        >
+          {currentItem ? (
+            <ItemRender
+              hasChildren={
+                currentItem.items === undefined
+                  ? undefined
+                  : currentItem.items.length > 0
+              }
+              isExpanded={expandedItems.has(currentItem.id)}
+              item={currentItem}
+              level={0}
+              onToggle={() => {
+                toggleExpanded(currentItem.id);
+              }}
+            >
+              {currentItem.items && expandedItems.has(currentItem.id)
+                ? renderMenuItems(currentItem.items, 1)
+                : null}
+            </ItemRender>
+          ) : (
+            <>{renderMenuItems(rootItems, 0)}</>
+          )}
+        </LoadingWrapper>
+      </StyledContent>
+    </StyledNav>
+  );
+};
+
+SubjectMenu.displayName = 'SubjectMenu';
+export default SubjectMenu;
+
+const StyledNav = styled.nav`
+  color: var(--navbar-text);
+  background: var(--navbar-dark-primary);
+  height: calc(100dvh - 2vh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+`;
+
+const StyledContent = styled.div`
+  margin: 16px 0;
+  padding: 16px 0;
+  position: relative;
+  flex: 1;
+  width: var(--navbar-width);
+  background: var(--navbar-dark-primary);
+  box-shadow: 0 0 0 16px var(--navbar-dark-primary);
+  overflow-x: hidden;
+  transition: width 0.2s;
+`;
