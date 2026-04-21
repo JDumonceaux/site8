@@ -14,3 +14,13 @@ Error: Server startup failed: listen EADDRINUSE: address already in use :::3005
     at Server.emit (node:events:520:35)
     at emitErrorNT (node:net:1976:8)
     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[2026/03/31 13:43:45] error: uncaughtException: The requested module '../../utils/ServiceFactory.js' does not provide an export named 'getArtistsService'
+file:///C:/Users/jdumo/Documents/0Projects/site8/server/dist/features/artists/getArtistsItems.js:2
+import { getArtistsService } from '../../utils/ServiceFactory.js';
+         ^^^^^^^^^^^^^^^^^
+SyntaxError: The requested module '../../utils/ServiceFactory.js' does not provide an export named 'getArtistsService'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async registerRoutes (file:///C:/Users/jdumo/Documents/0Projects/site8/server/dist/lib/RouterRegistry.js:18:30)
+    at async file:///C:/Users/jdumo/Documents/0Projects/site8/server/dist/server.js:85:1
