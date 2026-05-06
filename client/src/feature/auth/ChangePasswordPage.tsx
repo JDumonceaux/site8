@@ -24,8 +24,8 @@ const ChangePasswordPage = (): JSX.Element => {
     try {
       await authUpdatePassword(data.password, data.newPassword);
       return {
-        fieldData: data as unknown as ChangePassword,
-      } as FormState<ChangePassword>;
+        fieldData: data,
+      };
     } catch (error_) {
       return {
         fieldData: {},

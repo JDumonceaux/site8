@@ -46,7 +46,7 @@ export const useTravelItemFormState = ({
 
   useEffect(() => {
     if (isOpen) {
-      // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-data-to-parent, react-you-might-not-need-an-effect/no-derived-state
+      // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-data-to-parent, react-you-might-not-need-an-effect/no-derived-state, react-hooks/set-state-in-effect
       onSyncFormState();
     }
   }, [isOpen, item?.id]);

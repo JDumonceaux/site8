@@ -129,7 +129,7 @@ export const validateId = (
     };
   }
 
-  const { id } = body as { id: unknown };
+  const { id } = body;
 
   if (!id) {
     return {

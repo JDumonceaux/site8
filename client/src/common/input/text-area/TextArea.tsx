@@ -1,9 +1,4 @@
-import {
-  type ChangeEvent,
-  type JSX,
-  type TextareaHTMLAttributes,
-  useRef,
-} from 'react';
+import { type JSX, type TextareaHTMLAttributes, useRef } from 'react';
 
 import useGetId from '@hooks/useGetId';
 import FieldWrapper, {
@@ -84,7 +79,7 @@ export const TextArea = ({
       <StyledTextArea
         id={currentId}
         name={currentId}
-        onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
+        onChange={onChange}
         ref={localRef}
         rows={rows}
         {...textareaProps}
