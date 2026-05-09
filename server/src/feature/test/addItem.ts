@@ -1,4 +1,4 @@
-import type { Test } from '../../types/TestFile.js';
+import type { TestFile } from '@site8/shared';
 import type { Request, Response } from 'express';
 
 import {
@@ -9,9 +9,13 @@ import {
 import { Logger } from '../../utils/logger.js';
 import { getTestService } from '../../utils/ServiceFactory.js';
 
+type FileTestItem = Omit<TestFile['items'][number], 'groupId'> & {
+  readonly groupId: number;
+};
+
 type AddTestItemRequest = {
   readonly groupId: number;
-  readonly item: Omit<Test, 'id'>;
+  readonly item: Omit<FileTestItem, 'groupId' | 'id'>;
 };
 
 /**

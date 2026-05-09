@@ -1,10 +1,10 @@
 import type {
+  Test,
   TestFile,
-  TestGroup as TestFileGroup,
-  Test as TestFileItem,
-  TestSection as TestFileSection,
-} from '../../types/TestFile.js';
-import type { Test } from '@site8/shared';
+  TestFileGroup,
+  TestFileItem,
+  TestFileSection,
+} from '@site8/shared';
 
 export const mapTests = (fileItems: readonly TestFileItem[]): Test[] => {
   return fileItems.map((item) => ({

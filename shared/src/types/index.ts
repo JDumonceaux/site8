@@ -27,9 +27,14 @@ export {
 export type {
   Test,
   TestCode,
+  TestFile,
+  TestFileGroup,
+  TestFileItem,
+  TestFileSection,
   TestGroup,
   Tests,
   TestSection,
+  TestsFile,
   TestsSection,
   TestsSectionGroup,
 } from "./Tests.js";

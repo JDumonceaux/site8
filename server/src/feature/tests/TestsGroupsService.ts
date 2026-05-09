@@ -1,5 +1,4 @@
-import type { TestFile } from '../../types/TestFile.js';
-import type { TestGroup } from '@site8/shared';
+import type { TestFile, TestGroup } from '@site8/shared';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';

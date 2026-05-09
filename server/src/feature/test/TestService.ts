@@ -1,4 +1,4 @@
-import type { Test, TestFile } from '../../types/TestFile.js';
+import type { TestFile } from '@site8/shared';
 
 import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
@@ -15,6 +15,10 @@ import {
   removeItemFromFile,
   updateItemInFile,
 } from './testServiceHelpers.js';
+
+type FileTestItem = Omit<TestFile['items'][number], 'groupId'> & {
+  readonly groupId: number;
+};
 
 /**
  * Service for managing individual test items
@@ -36,7 +40,7 @@ export class TestService extends BaseDataService<TestFile> {
    * @returns Promise<number | null> - The new item ID or null if failed
    */
   public async addItem(
-    itemData: Omit<Test, 'id'>,
+    itemData: Omit<FileTestItem, 'groupId' | 'id'>,
     groupId: number,
   ): Promise<number | null> {
     try {
@@ -106,9 +110,9 @@ export class TestService extends BaseDataService<TestFile> {
    * Gets a single test item by ID
    *
    * @param itemId - The ID of the test item to retrieve
-   * @returns Promise<Test | null> - The test item or null if not found
+   * @returns Promise<FileTestItem | null> - The test item or null if not found
    */
-  public async getItem(itemId: number): Promise<Test | null> {
+  public async getItem(itemId: number): Promise<FileTestItem | null> {
     try {
       Logger.info(`TestService: getItem: Retrieving item ${itemId}`);
 
@@ -147,7 +151,7 @@ export class TestService extends BaseDataService<TestFile> {
    */
   public async updateItem(
     itemId: number,
-    updatedData: Partial<Test>,
+    updatedData: Partial<FileTestItem>,
     newGroupId: number,
   ): Promise<boolean> {
     try {
@@ -176,7 +180,9 @@ export class TestService extends BaseDataService<TestFile> {
         return false;
       }
 
-      const existingItem = testFile.items[itemIndex];
+      const existingItem = (testFile.items as readonly FileTestItem[])[
+        itemIndex
+      ];
       if (!existingItem) {
         Logger.error(
           `TestService: updateItem: Item at index ${itemIndex} is undefined`,

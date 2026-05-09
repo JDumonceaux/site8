@@ -87,7 +87,7 @@ export const getNextId = (
   }
 
   const sorted = items.toSorted((first, second) => first.id - second.id);
-  const firstItem = sorted[0];
+  const [firstItem] = sorted;
   if (firstItem == null) return undefined;
   const firstId = firstItem.id;
 

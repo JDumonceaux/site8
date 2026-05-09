@@ -1,6 +1,6 @@
-import type { Test, TestFile, TestGroup } from '../../types/TestFile.js';
 import type {
   Collection,
+  TestFile,
   TestsSection,
   TestsSectionGroup,
 } from '@site8/shared';
@@ -9,6 +9,14 @@ import FilePath from '../../lib/filesystem/FilePath.js';
 import { BaseDataService } from '../../services/BaseDataService.js';
 import { Logger } from '../../utils/logger.js';
 import { getFileService } from '../../utils/ServiceFactory.js';
+
+type FileTestItem = Omit<TestFile['items'][number], 'groupId'> & {
+  readonly groupId: number;
+};
+
+type FileTestGroup = Omit<TestFile['groups'][number], 'sectionId'> & {
+  readonly sectionId: number;
+};
 
 type SectionEntry = {
   description?: string;
@@ -43,7 +51,9 @@ export class TestsSectionsService extends BaseDataService<
         };
       }
 
-      const groupItemCounts = this.buildGroupItemCounts(testFile.items);
+      const groupItemCounts = this.buildGroupItemCounts(
+        testFile.items as readonly FileTestItem[],
+      );
 
       // Create a map of section IDs to section data
       const sectionMap = new Map<number, SectionEntry>();
@@ -57,7 +67,7 @@ export class TestsSectionsService extends BaseDataService<
       }
 
       const orphanedGroups = this.mapGroupsToSections(
-        testFile.groups,
+        testFile.groups as readonly FileTestGroup[],
         groupItemCounts,
         sectionMap,
       );
@@ -98,7 +108,9 @@ export class TestsSectionsService extends BaseDataService<
     }
   }
 
-  private buildGroupItemCounts(items: readonly Test[]): Map<number, number> {
+  private buildGroupItemCounts(
+    items: readonly FileTestItem[],
+  ): Map<number, number> {
     const counts = new Map<number, number>();
     for (const item of items) {
       counts.set(item.groupId, (counts.get(item.groupId) ?? 0) + 1);
@@ -107,7 +119,7 @@ export class TestsSectionsService extends BaseDataService<
   }
 
   private mapGroupsToSections(
-    groups: readonly TestGroup[],
+    groups: readonly FileTestGroup[],
     groupItemCounts: Map<number, number>,
     sectionMap: Map<number, SectionEntry>,
   ): TestsSectionGroup[] {
