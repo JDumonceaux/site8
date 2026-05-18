@@ -16,7 +16,7 @@ const WrapperSpan = styled.span`
   justify-content: center;
 `;
 const TitleSpan = styled.span`
-  color: var(--palette-white, #fff);
+  color: var(--color-white);
   font-size: 0.7rem;
   font-weight: 400;
   justify-content: center;
@@ -30,14 +30,14 @@ const TitleSpan = styled.span`
   &:before {
     content: '';
     display: block;
-    border-top: 1px solid var(--palette-white, #fff);
+    border-top: 1px solid var(--color-white);
     border-style: double;
     margin-bottom: 1px;
   }
   &:after {
     content: '';
     display: block;
-    border-top: 1px solid var(--palette-white, #fff);
+    border-top: 1px solid var(--color-white);
     border-style: double;
     margin-top: 1px;
   }

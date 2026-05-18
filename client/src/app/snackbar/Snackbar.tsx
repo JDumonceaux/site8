@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useCallback, useEffect } from 'react';
 
-import Button from '@common/button/Button';
+import IconButton from '@common/button/icon-button/IconButton';
 import { logError } from '@lib/utils/errorHandler';
 import useSnackbar, { SnackbarVariants } from './useSnackbar';
 import type { SnackbarVariant } from './useSnackbar';
@@ -67,8 +67,6 @@ const Snackbar = (): JSX.Element | null => {
     </StyledDialog>
   );
 };
-
-Snackbar.displayName = 'Snackbar';
 export default Snackbar;
 
 const StyledDialog = styled.dialog<{ readonly $variant: SnackbarVariant }>`
@@ -83,7 +81,7 @@ const StyledDialog = styled.dialog<{ readonly $variant: SnackbarVariant }>`
   color: ${({ $variant }) =>
     $variant === SnackbarVariants.INFO
       ? 'var(--snackbar-color)'
-      : 'var(--palette-error)'};
+      : 'var(--status-error)'};
   border-radius: ${SNACKBAR_BORDER_RADIUS} ${SNACKBAR_BORDER_RADIUS} 0 0;
   box-shadow: var(--shadow-elevated);
   z-index: 1000;
@@ -104,9 +102,7 @@ const Message = styled.div`
   white-space: nowrap;
 `;
 
-const CloseButton = styled(Button)`
-  min-width: auto;
-  padding: 0.25rem 0.5rem;
+const CloseButton = styled(IconButton)`
   font-size: 1.5rem;
   line-height: 1;
 `;
