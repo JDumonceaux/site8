@@ -94,7 +94,7 @@
     "pretty-quick": "^4.2.2",
     "tsx": "^4.22.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.2"
+    "typescript-eslint": "^8.59.4"
   },
   "keywords": [
     "api",
