@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import type { TestGroup, TestSection } from '@site8/shared';
+import type { TestSection } from '@site8/shared';
 
 type UseTestFiltersResult = {
   readonly allTags: readonly string[];
@@ -77,7 +77,7 @@ export const useTestFilters = (
               return {
                 ...group,
                 items: groupHasTag ? group.items : filteredItems,
-              } as TestGroup;
+              };
             }
             return null;
           })

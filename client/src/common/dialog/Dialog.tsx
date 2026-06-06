@@ -1,24 +1,32 @@
-import type { JSX } from 'react';
+import { type JSX, useId } from 'react';
 
 import * as RadixDialog from '@radix-ui/react-dialog';
 import type { Size, Variant } from './dialog-variants';
 import styled from 'styled-components';
 
 export type DialogProps = {
+  /** Right-side action buttons in the structured footer */
+  buttons?: React.ReactNode;
   /** Main body content */
   children: React.ReactNode;
   /** Props forwarded to the close button */
   closeButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   /** Props forwarded to the dialog container */
   contentProps?: React.HTMLAttributes<HTMLDivElement>;
-  /** Accessible description (visually hidden if omitted) */
-  description?: string;
-  /** Optional footer area */
+  /** Extra content below the button row (e.g. a confirm checkbox) */
+  extra?: React.ReactNode;
+  /** Optional freeform footer area (use structured props instead when possible) */
   footer?: React.ReactNode;
+  /** Message area above buttons in the structured footer (e.g. validation errors) */
+  footerMessage?: React.ReactNode;
+  /** Optional actions rendered in the header bar (e.g. prev/next navigation) */
+  headerActions?: React.ReactNode;
   /** Controls whether the dialog is open */
   isOpen: boolean;
   /** Accessible label text */
   label: string;
+  /** Left side of the button row in the structured footer (e.g. delete button) */
+  leftMenu?: React.ReactNode;
   /** Called when the open state should change (e.g. on close) */
   onOpenChange: (open: boolean) => void;
   /** Dialog max-width size */
@@ -37,20 +45,11 @@ const ICONS: Record<Variant, JSX.Element | null> = {
 
 const getIcon = (variant: Variant): JSX.Element | null => ICONS[variant];
 
-const BorderColor: Record<Variant, string> = {
-  default: 'var(--text-primary, #1f1f1f)',
-  error: 'var(--status-error,   #ef3934)',
-  info: 'var(--status-info,    #0052ff)',
-  success: 'var(--status-success, #21a67a)',
-  warning: 'var(--status-warning, #ff000f)',
-};
-
-const getBorderColor = (variant: Variant): string => BorderColor[variant];
-
 const MaxWidth: Record<Size, string> = {
-  lg: '640px',
-  md: '480px',
-  sm: '320px',
+  lg: '70dvw',
+  md: '50dvw',
+  sm: '30dvw',
+  xl: '90dvw',
 };
 
 const getMaxWidth = (size: Size): string => MaxWidth[size];
@@ -59,17 +58,49 @@ const getMaxWidth = (size: Size): string => MaxWidth[size];
  * A controlled, accessible dialog using Radix UI.
  */
 const Dialog = ({
+  buttons,
   children,
   closeButtonProps,
   contentProps,
-  description,
+  extra,
   footer,
+  footerMessage,
+  headerActions,
   isOpen,
   label,
+  leftMenu,
   onOpenChange,
   size = 'md',
   variant = 'default',
 }: DialogProps): JSX.Element => {
+  const titleId = useId();
+
+  const hasStructuredFooter =
+    buttons !== undefined ||
+    extra !== undefined ||
+    footerMessage !== undefined ||
+    leftMenu !== undefined;
+
+  let footerContent: JSX.Element | null = null;
+  if (hasStructuredFooter) {
+    footerContent = (
+      <Footer>
+        <FooterMessage aria-live="polite">{footerMessage}</FooterMessage>
+        <FooterButtonRow>
+          {leftMenu ? <FooterLeftMenu>{leftMenu}</FooterLeftMenu> : null}
+          {buttons}
+        </FooterButtonRow>
+        {extra ?? null}
+      </Footer>
+    );
+  } else if (footer !== undefined) {
+    footerContent = (
+      <Footer>
+        <FooterRow>{footer}</FooterRow>
+      </Footer>
+    );
+  }
+
   return (
     <RadixDialog.Root
       onOpenChange={onOpenChange}
@@ -78,18 +109,20 @@ const Dialog = ({
       <RadixDialog.Portal>
         <Overlay />
         <Content
+          aria-labelledby={titleId}
           aria-modal="true"
           data-size={size}
-          data-variant={variant}
           {...contentProps}
         >
           <Header>
             {getIcon(variant)}
-            <Title>{label}</Title>
+            <Title id={titleId}>{label}</Title>
+            {headerActions ? (
+              <HeaderActions>{headerActions}</HeaderActions>
+            ) : null}
           </Header>
-          <Description>{description ?? ''}</Description>
           <Body>{children}</Body>
-          {footer ? <Footer>{footer}</Footer> : null}
+          {footerContent}
           <RadixDialog.Close asChild>
             <CloseButton
               aria-label={closeButtonProps?.['aria-label'] ?? 'Close dialog'}
@@ -103,8 +136,6 @@ const Dialog = ({
     </RadixDialog.Root>
   );
 };
-
-Dialog.displayName = 'Dialog';
 export default Dialog;
 
 /* ---------------- Styled Components ---------------- */
@@ -118,7 +149,6 @@ const Overlay = styled(RadixDialog.Overlay)`
 
 const Content = styled(RadixDialog.Content)<{
   'data-size': Size;
-  'data-variant': Variant;
 }>`
   position: fixed;
   top: calc(10% - 20px);
@@ -127,15 +157,13 @@ const Content = styled(RadixDialog.Content)<{
   z-index: 1101;
   background: var(--surface-background-color);
   border-radius: 8px;
-  border-top: 6px solid ${({ 'data-variant': v }) => getBorderColor(v)};
   max-width: ${({ 'data-size': s }) => getMaxWidth(s)};
   max-height: 90dvh;
   width: calc(100% - 2rem);
-  box-shadow: var(--shadow-elevated);
   outline: none;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.75rem;
 `;
 
 const Header = styled.div`
@@ -144,49 +172,96 @@ const Header = styled.div`
   gap: 0.5rem;
 `;
 
-const Title = styled(RadixDialog.Title)`
+const HeaderActions = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 0.125rem;
+  margin-left: auto;
+  padding-right: 2rem;
+`;
+
+const Title = styled.h2`
   margin: 0;
   font-size: 1.25rem;
   font-weight: bold;
 `;
 
-const Description = styled(RadixDialog.Description)`
-  position: absolute;
-  border: 0;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  overflow-wrap: normal;
+// eslint-disable-next-line react-refresh/only-export-components
+export const DialogScrollableContent = styled.div`
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.375rem;
 `;
 
 const Body = styled.div`
   flex: 1;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   overflow-y: auto;
 `;
 
 const Footer = styled.footer`
-  margin-top: 0.5rem;
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  padding: 0 0.375rem;
+  width: 100%;
+`;
+
+const FooterRow = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const FooterMessage = styled.div`
+  color: var(--status-error);
+  font-size: 0.75rem;
+  min-height: 1.25rem;
+  padding: 0.375rem 0 0;
+`;
+
+const FooterButtonRow = styled.div`
+  display: flex;
+  gap: 0.5rem;
   justify-content: flex-end;
+  width: 100%;
+`;
+
+const FooterLeftMenu = styled.div`
+  margin-right: auto;
+`;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const DialogFooterLeft = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+`;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const DialogFooterRight = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
 `;
 
 const CloseButton = styled.button`
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  background: none;
-  border: none;
   font-size: 1.5rem;
   line-height: 1;
+  background: transparent;
+  border: none;
   cursor: pointer;
+  padding: 0.25rem;
+  color: var(--text-secondary-color);
 
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring, #2684ff);
-    outline-offset: 2px;
+  &:hover {
+    color: var(--text-primary-color);
   }
 `;

@@ -86,7 +86,7 @@ export class TravelService extends BaseDataService<Places> {
         return {
           ...place,
           images: enrichedImages,
-        } as Place;
+        };
       });
 
       const sortedItems = enrichedItems.toSorted((a: Place, b: Place) =>

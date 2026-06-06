@@ -60,7 +60,6 @@ const FooterRow = memo(
     );
   },
 );
-
 FooterRow.displayName = 'FooterRow';
 export default FooterRow;
 
@@ -81,7 +80,7 @@ const Row = styled.div`
 const MessageText = styled.div<{ $tone: 'error' | 'info' | 'warning' }>`
   color: ${({ $tone }) => {
     if ($tone === 'error') {
-      return 'var(--input-error-color, #b91c1c)';
+      return 'var(--status-error)';
     }
 
     if ($tone === 'warning') {

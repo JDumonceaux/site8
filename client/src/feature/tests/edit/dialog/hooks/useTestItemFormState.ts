@@ -60,7 +60,7 @@ export const useTestItemFormState = ({
     if (isOpen) {
       // Intentional: syncs form state to the latest item when the dialog opens.
       // useEffectEvent captures the latest values without adding them to the deps array.
-      // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-data-to-parent, react-you-might-not-need-an-effect/no-derived-state
+      // eslint-disable-next-line react-you-might-not-need-an-effect/no-pass-data-to-parent, react-you-might-not-need-an-effect/no-derived-state, react-hooks/set-state-in-effect
       onSyncFormState();
     }
   }, [defaultGroupId, groupId, isOpen, item?.id]);

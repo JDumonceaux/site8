@@ -87,7 +87,7 @@ export class GenericService {
       if (pageById) {
         const fileContent = await GenericService.getFile(pageById.id);
         if (fileContent) {
-          return { ...pageById, text: fileContent } as PageText;
+          return { ...pageById, text: fileContent };
         }
         return pageById;
       }
@@ -109,7 +109,7 @@ export class GenericService {
       const selectedPage = matchingPages[0] as PageMenu;
       const fileContent = await GenericService.getFile(selectedPage.id);
       if (fileContent) {
-        return { ...selectedPage, text: fileContent } as PageText;
+        return { ...selectedPage, text: fileContent };
       }
       return selectedPage;
     }
@@ -126,7 +126,7 @@ export class GenericService {
     // Try to get file content
     const fileContent = await GenericService.getFile(selectedPage.id);
     if (fileContent) {
-      return { ...selectedPage, text: fileContent } as PageText;
+      return { ...selectedPage, text: fileContent };
     }
 
     return selectedPage;

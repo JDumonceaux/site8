@@ -8,6 +8,10 @@ export type ButtonProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'type'
 > & {
+  /** Optional transient prop for active/selected styling */
+  $active?: boolean; // eslint-disable-line react/boolean-prop-naming
+  /** Optional transient prop for selected styling */
+  $selected?: boolean; // eslint-disable-line react/boolean-prop-naming
   /** Stretch to fill its parent container */
   isFullWidth?: boolean;
   /** Visual size of the button */
@@ -19,7 +23,9 @@ export type ButtonProps = Omit<
 
 /** Transient styling props (never forwarded to the DOM) */
 type StyledButtonProps = {
+  $active?: boolean;
   $fullWidth: boolean;
+  $selected?: boolean;
   $size: Size;
   $variant: Variant;
 };
@@ -46,7 +52,7 @@ const variantStyles: Record<Variant, ReturnType<typeof css>> = {
   `,
   primary: css`
     background: var(--palette-grey-20);
-    color: var(--color-black);
+    color: var(--palette-black);
   `,
   secondary: css`
     background: var(--surface-elevated-color);
@@ -126,6 +132,18 @@ const StyledButton = styled.button<StyledButtonProps>`
     css`
       width: 100%;
     `}
+  ${({ $selected }) =>
+    $selected &&
+    css`
+      filter: brightness(1.15);
+      font-weight: 600;
+    `}
+  ${({ $active }) =>
+    $active &&
+    css`
+      filter: brightness(1.1);
+      font-weight: 600;
+    `}
 
   &:hover:not(:disabled) {
     transform: translateY(0);
@@ -151,6 +169,8 @@ const StyledButton = styled.button<StyledButtonProps>`
  * - Prop → transient‐prop mapping keeps the DOM clean.
  */
 const Button = ({
+  $active,
+  $selected,
   children,
   isFullWidth = false,
   size = 'md',
@@ -160,7 +180,9 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   return (
     <StyledButton
+      $active={$active}
       $fullWidth={isFullWidth}
+      $selected={$selected}
       $size={size}
       $variant={variant}
       type={type}
@@ -170,6 +192,4 @@ const Button = ({
     </StyledButton>
   );
 };
-
-Button.displayName = 'Button';
 export default Button;

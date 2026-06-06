@@ -154,7 +154,7 @@ export class ImagesService extends BaseDataService<Images> {
       return {
         ...currentItem,
         ...item,
-      } as Image;
+      };
     });
   }
 

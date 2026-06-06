@@ -87,6 +87,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
       <ReduxProvider>
         <QueryClientProvider client={queryClient}>
           {children}
+          <Snackbar />
           {import.meta.env.DEV ? (
             <ReactQueryDevtools buttonPosition="bottom-left" />
           ) : null}

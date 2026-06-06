@@ -26,14 +26,12 @@ const Switch = ({ id, label, onCheckedChange, ref, ...rest }: SwitchProps) => (
     </StyledSwitchRoot>
   </StyledWrapper>
 );
-
-Switch.displayName = 'Switch';
 export default Switch;
 
 const COLOR_TRACK_OFF = 'var(--palette-grey-10)';
 const COLOR_TRACK_ON = 'var(--palette-black)';
 const COLOR_THUMB = 'var(--palette-main-color)';
-const COLOR_TEXT = 'var(--palette-text)';
+const COLOR_TEXT = 'var(--text-primary-color)';
 const OUTLINE_COLOR = 'var(--palette-black)';
 
 const StyledWrapper = styled.div`

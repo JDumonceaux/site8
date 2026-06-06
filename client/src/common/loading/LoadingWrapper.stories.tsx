@@ -83,7 +83,7 @@ export const ErrorInstance: Story = {
 
 export const UnknownError: Story = {
   render: () => (
-    <LoadingWrapper error={{ code: 500 } as unknown}>
+    <LoadingWrapper error={{ code: 500 }}>
       <div>Main content still shown</div>
     </LoadingWrapper>
   ),

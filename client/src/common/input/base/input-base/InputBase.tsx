@@ -10,6 +10,7 @@ import {
 
 import useGetId from '@hooks/useGetId';
 import type { KeyValue } from '@types';
+import ClearAdornment from '../adornments/ClearAdornment';
 import FieldWrapper, {
   type FieldWrapperProps,
 } from '../field-wrapper/FieldWrapper';
@@ -25,6 +26,7 @@ type InputAddProps = {
   readonly dataList?: { readonly data?: KeyValue[]; readonly id: string };
   readonly defaultValue?: number | string;
   readonly inputRef?: Ref<HTMLInputElement>;
+  readonly isClearable?: boolean;
   readonly isPathStyle?: boolean;
   readonly onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   readonly type: JSX.IntrinsicElements['input']['type'];
@@ -37,26 +39,18 @@ const InputBase = ({
   allowedCharacters,
   dataList,
   defaultValue = '',
-  // FieldWrapperProps — consumed by FieldWrapper, must NOT be spread onto <input>
   endAdornment,
-  endAdornmentProps,
   errors,
-  footerEndAdornment,
   id,
   inputRef,
+  isClearable = false,
   isPathStyle = false,
   isRequired,
-  isShowCounter,
-  label,
   labelProps,
-  maxLength,
-  messages,
   onChange,
-  startAdornment,
-  startAdornmentProps,
   type,
   value,
-  ...inputProps // only genuine HTML input attributes remain
+  ...footerProps
 }: InputBaseProps): JSX.Element => {
   const generatedId = useGetId(id);
   const [fieldLength, setFieldLength] = useState(
@@ -80,18 +74,28 @@ const InputBase = ({
     [allowedCharacters, onChange],
   );
 
+  const handleClear = useCallback(() => {
+    setFieldLength(0);
+    const element = document.querySelector<HTMLInputElement>(
+      `#${CSS.escape(generatedId)}`,
+    );
+    if (element) {
+      element.value = '';
+      element.focus();
+    }
+    onChange?.({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+  }, [generatedId, onChange]);
+
   const fieldWrapperProps: FieldWrapperProps = useMemo(
     () => ({
-      ...(endAdornment !== undefined && { endAdornment }),
-      ...(endAdornmentProps !== undefined && { endAdornmentProps }),
+      ...footerProps,
+      endAdornment:
+        isClearable && fieldLength > 0 ? (
+          <ClearAdornment onClick={handleClear} />
+        ) : (
+          endAdornment
+        ),
       ...(errors !== undefined && { errors }),
-      ...(footerEndAdornment !== undefined && { footerEndAdornment }),
-      ...(isShowCounter !== undefined && { isShowCounter }),
-      ...(label !== undefined && { label }),
-      ...(maxLength !== undefined && { maxLength }),
-      ...(messages !== undefined && { messages }),
-      ...(startAdornment !== undefined && { startAdornment }),
-      ...(startAdornmentProps !== undefined && { startAdornmentProps }),
       labelProps: {
         ...labelProps,
         htmlFor: generatedId,
@@ -100,17 +104,13 @@ const InputBase = ({
     }),
     [
       endAdornment,
-      endAdornmentProps,
       errors,
-      footerEndAdornment,
+      fieldLength,
+      footerProps,
       generatedId,
-      isShowCounter,
-      label,
+      handleClear,
+      isClearable,
       labelProps,
-      maxLength,
-      messages,
-      startAdornment,
-      startAdornmentProps,
     ],
   );
 
@@ -125,7 +125,7 @@ const InputBase = ({
         autoComplete="off"
         {...(value === undefined ? { defaultValue } : { value })}
         {...(dataList ? { list: dataList.id } : {})}
-        {...inputProps}
+        {...footerProps}
         id={generatedId}
         onChange={handleChange}
         ref={refToUse}
@@ -145,8 +145,6 @@ const InputBase = ({
     </FieldWrapper>
   );
 };
-
-InputBase.displayName = 'InputBase';
 export default InputBase;
 
 const StyledInput = styled.input<{ $isPathStyle: boolean }>`
@@ -169,7 +167,7 @@ const StyledInput = styled.input<{ $isPathStyle: boolean }>`
   }
 
   &:read-only:not(:disabled) {
-    color: var(--text-primary-color);
+    color: var(--input-color-readonly);
   }
 
   &:disabled {

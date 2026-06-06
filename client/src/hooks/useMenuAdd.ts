@@ -22,8 +22,6 @@ const pageSchema = v.object({
 
 type FormType = v.InferOutput<typeof pageSchema>;
 type FormKeys = keyof FormType;
-type SortByType = 'name' | 'seq';
-type MenuType = 'menu' | 'root';
 
 type FormState = {
   message?: string;
@@ -71,11 +69,11 @@ const useMenuAdd = () => {
       {
         id: Number.parseInt(formValues.parent, 10),
         seq: Number.parseInt(formValues.seq, 10),
-        sortby: formValues.sortby as SortByType,
+        sortby: formValues.sortby,
       },
     ],
     to: formValues.name.toLowerCase().replaceAll(' ', '-'),
-    type: formValues.type as MenuType,
+    type: formValues.type,
   });
 
   const submitForm = async (): Promise<boolean> => {
