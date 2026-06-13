@@ -66,7 +66,7 @@ const config = {
         // Allow empty functions for cases such as interface implementations or intentional stubs.
         // The 'any' type is permitted in rare cases where type safety cannot be guaranteed or for rapid prototyping.
         // Please document the reason for using 'any' in code comments when it is used.
-        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-explicit-any': 'warn',
         '@typescript-eslint/no-extraneous-class': 'error',
         '@typescript-eslint/no-floating-promises': 'error',
         '@typescript-eslint/no-import-type-side-effects': 'error',
@@ -74,15 +74,27 @@ const config = {
         '@typescript-eslint/no-invalid-this': 'error',
         '@typescript-eslint/no-invalid-void-type': 'error',
         '@typescript-eslint/no-meaningless-void-operator': 'error',
-        '@typescript-eslint/no-mixed-enums': 'error',
+        '@typescript-eslint/no-mixed-enums': 'off', // enums banned via no-restricted-syntax
         '@typescript-eslint/no-non-null-assertion': 'error',
         '@typescript-eslint/no-redeclare': 'error',
-        '@typescript-eslint/no-restricted-imports': 'error',
+        '@typescript-eslint/no-restricted-imports': [
+            'error',
+            {
+                paths: [
+                    {
+                        importNames: ['useLocation', 'useHistory', 'useParams', 'useRouteMatch', 'Link'],
+                        message: 'Import from react-router-dom instead of react-router.',
+                        name: 'react-router',
+                    },
+                ],
+            },
+        ],
         '@typescript-eslint/no-restricted-types': 'error',
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
         '@typescript-eslint/no-unnecessary-condition': 'error',
-        '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
+        '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'off', // parameter properties banned by erasableSyntaxOnly
+        '@typescript-eslint/no-unnecessary-template-expression': 'error',
         '@typescript-eslint/no-unnecessary-type-arguments': 'error',
         '@typescript-eslint/no-unnecessary-type-parameters': 'error',
         '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
@@ -106,7 +118,7 @@ const config = {
         '@typescript-eslint/strict-boolean-expressions': 'off',
         // old code
         '@typescript-eslint/unbound-method': 'off',
-        '@typescript-eslint/unified-signatures': 'off', //
+        '@typescript-eslint/unified-signatures': 'off',
         '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
     },
     settings: {

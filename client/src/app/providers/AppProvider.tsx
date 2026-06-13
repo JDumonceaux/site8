@@ -3,6 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import MainErrorFallback from '@common/error-boundary/FeatureErrorFallback';
 import { logError } from '@lib/utils/errorHandler';
+import Snackbar from '@app/snackbar/Snackbar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ReduxProvider from './ReduxProvider';

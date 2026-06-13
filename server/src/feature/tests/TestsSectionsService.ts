@@ -52,7 +52,7 @@ export class TestsSectionsService extends BaseDataService<
       }
 
       const groupItemCounts = this.buildGroupItemCounts(
-        testFile.items as readonly FileTestItem[],
+        testFile.items,
       );
 
       // Create a map of section IDs to section data
@@ -67,7 +67,7 @@ export class TestsSectionsService extends BaseDataService<
       }
 
       const orphanedGroups = this.mapGroupsToSections(
-        testFile.groups as readonly FileTestGroup[],
+        testFile.groups,
         groupItemCounts,
         sectionMap,
       );

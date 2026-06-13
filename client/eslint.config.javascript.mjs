@@ -3,7 +3,7 @@ import js from '@eslint/js';
 import globals from 'globals';
 
 export default {
-    files: ['**/*.{js,jsx,mjs}'],
+    files: ['**/*.{js,jsx,mjs,ts,tsx}'],
     ignores: ['dist/**', 'node_modules/**', 'build/**', 'public/**', 'coverage/**', 'stats.html'],
     languageOptions: {
         ecmaVersion: 'latest',
@@ -48,7 +48,7 @@ export default {
         'comma-dangle': 'off',
         'comma-spacing': 'off',
         'comma-style': 'off',
-        complexity: ['warn', 20],
+        complexity: ['warn', 8],
         'computed-property-spacing': 'off',
         'consistent-return': 'error',
         'consistent-this': 'error',
@@ -82,6 +82,7 @@ export default {
         'max-depth': ['error', 4],
         'max-len': 'off',
         'max-lines': ['warn', { max: 500, skipBlankLines: true, skipComments: true }],
+        'max-lines-per-function': ['warn', { max: 50, skipBlankLines: true, skipComments: true }],
         'max-lines-per-line': 'off',
         'max-nested-callbacks': ['error', 3],
         'multiline-ternary': 'off',
@@ -228,7 +229,7 @@ export default {
         'prefer-const': ['error', { destructuring: 'all' }],
         'prefer-destructuring': ['error', { array: false, object: true }],
         'prefer-exponentiation-operator': 'error',
-        'prefer-named-capture-group': 'error',
+        'prefer-named-capture-group': 'off', // handled by eslint-plugin-regexp with better accuracy
         'prefer-numeric-literals': 'error',
         'prefer-object-has-own': 'error',
         'prefer-object-spread': 'error',
@@ -258,7 +259,7 @@ export default {
         'template-curly-spacing': 'off',
         'template-tag-spacing': 'off',
         'unicode-bom': ['error', 'never'],
-        'vars-on-top': 'error',
+        'vars-on-top': 'off', // var is banned; rule is dead code
         'wrap-iife': 'off',
         'wrap-regex': 'off',
         'yield-star-spacing': 'off',

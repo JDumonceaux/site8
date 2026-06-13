@@ -29,8 +29,12 @@ const config = {
             {
                 replacements: {
                     args: false,
+                    ctx: false,
+                    doc: false,
                     "e": false,
+                    el: false,
                     env: false,
+                    err: false,
                     ext: false,
                     fn: false,
                     "i": false,
@@ -43,6 +47,7 @@ const config = {
                     props: false,
                     ref: false,
                     rel: false,
+                    req: false,
                     res: false,
                     src: false,
                     str: false,
