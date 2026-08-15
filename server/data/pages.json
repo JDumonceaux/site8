@@ -2051,6 +2051,19 @@
       "type": "page"
     },
     {
+      "id": 2005,
+      "file": true,
+      "title": "Optimization",
+      "parentItems": [
+        {
+          "id": 20,
+          "seq": 11
+        }
+      ],
+      "to": "use-code-splitting-and-lazy-loading",
+      "type": "page"
+    },
+    {
       "id": 71,
       "edit_date": "2024-06-19T07:00:00.000Z",
       "title": "Bundle Optimization",
