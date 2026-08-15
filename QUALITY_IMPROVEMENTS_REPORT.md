@@ -1,5 +1,15 @@
 # Quality Improvements Report - Tasks 4-9
 
+**Report Generated:** January 1, 2026 (historical baseline)  
+**Last Updated:** May 9, 2026  
+**Scope:** Historical findings plus May 2026 verification delta against current layout (server/src + client/src)
+
+## Historical Baseline Note
+
+- Core task sections below preserve historical analysis context.
+- Some references (for example `server1/*` paths and historical TypeScript error counts) may no longer represent current workspace state.
+- See "May 2026 Verification Delta (Missing/Vague Review)" for current-path validation and corrected interpretation guidance.
+
 ## Task 4: Custom Hooks for Code Reusability ✅
 
 ### Analysis
@@ -110,8 +120,8 @@ export const useFileUpload = () => {
     async (
       uploadFn: (
         file: File,
-        onProgress: (progress: number) => void
-      ) => Promise<void>
+        onProgress: (progress: number) => void,
+      ) => Promise<void>,
     ) => {
       if (!file) return;
 
@@ -126,7 +136,7 @@ export const useFileUpload = () => {
         setError(err as Error);
       }
     },
-    [file]
+    [file],
   );
 
   const reset = useCallback(() => {
@@ -144,22 +154,19 @@ export const useFileUpload = () => {
 
 ## Task 5: API Security Review 🔍
 
-### Current Security Measures (server1/src/server.ts)
+### Current Security Measures (historical baseline: server1/src/server.ts)
 
 #### ✅ Good Practices Implemented
 
 1. **Rate Limiting**: Express-rate-limit configured
-
    - 100 requests per 15 minutes
    - Properly applied to sensitive endpoints (/api/files, /api/tests, /api/page)
 
 2. **Security Headers**: Helmet configured
-
    - CSP with restricted script sources
    - HSTS enabled (24-hour max-age)
 
 3. **Input Size Limits**:
-
    - JSON payload limited to 10MB
    - URL-encoded data limited
 
@@ -172,12 +179,10 @@ export const useFileUpload = () => {
 #### ⚠️ Areas for Improvement
 
 1. **Rate Limiting Coverage**
-
    - ❌ Not all endpoints have rate limiting (photos, bookmarks, travel, etc.)
    - **Recommendation**: Apply rate limiting globally or add to all mutation endpoints
 
 2. **Input Sanitization**
-
    - ⚠️ No explicit sanitization layer for user inputs
    - **Recommendation**: Add sanitization middleware using DOMPurify or similar
 
@@ -201,7 +206,6 @@ export const useFileUpload = () => {
    ```
 
 3. **Error Information Exposure**
-
    - ⚠️ Need to review route handlers for detailed error messages
    - **Recommendation**: Implement error sanitization middleware
 
@@ -225,7 +229,6 @@ export const useFileUpload = () => {
    ```
 
 4. **CORS Configuration**
-
    - ⚠️ CORS is currently wide open: `app.use(cors())`
    - **Recommendation**: Restrict to specific origins
 
@@ -238,12 +241,11 @@ export const useFileUpload = () => {
        credentials: true,
        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
        allowedHeaders: ["Content-Type", "Authorization"],
-     })
+     }),
    );
    ```
 
 5. **Authentication/Authorization**
-
    - ❌ No visible authentication middleware
    - **Recommendation**: Implement JWT or session-based auth for write operations
 
@@ -346,8 +348,8 @@ export default defineConfig({
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+  },
 }
 ```
 
@@ -407,12 +409,10 @@ Current architecture looks good. No immediate refactoring needed for prop drilli
 #### Potential Issues Found
 
 1. **Runtime CSS Generation**
-
    - Styled-components generates CSS at runtime
    - Consider migrating to Tailwind CSS or CSS Modules for better performance
 
 2. **Theme Object Access**
-
    - Found error: `Property 'colors' does not exist on type 'DefaultTheme'`
    - Location: `features/auth/AuthFormStyles.ts:16`
    - **Issue**: Theme type definition doesn't match usage
@@ -488,23 +488,49 @@ StyledButton.displayName = "StyledButton";
 
 ---
 
+## May 2026 Verification Delta (Missing/Vague Review)
+
+This section clarifies what is currently verified versus what remains historical context.
+
+### Verified Current Findings
+
+- Active server entry is [server/src/server.ts](server/src/server.ts#L1) (current layout), not `server1/src/server.ts`.
+- CORS is currently allowlist-based with environment-aware origin checks in [server/src/server.ts](server/src/server.ts#L29).
+- Server error middleware already sanitizes production error responses in [server/src/server.ts](server/src/server.ts#L102).
+- Client TypeScript strict checks are actively enabled in [client/tsconfig.json](client/tsconfig.json#L5), including `noImplicitReturns`, `noUncheckedIndexedAccess`, and `noPropertyAccessFromIndexSignature`.
+- `MenuEdit` and `FormState` definitions exist in current client types:
+  - [client/src/types/MenuEdit.ts](client/src/types/MenuEdit.ts#L1)
+  - [client/src/types/FormState.ts](client/src/types/FormState.ts#L3)
+
+### Legacy/Unverified Claims Flagged
+
+- The historical statement "162 TypeScript errors across 51 files" is not validated in this update pass.
+- Historical import-path issue wording about `@types/` misuse is not confirmed in current `client/src`.
+- Security recommendations that imply "CORS is wide open" are outdated for current server configuration.
+
+### Interpretation Guidance
+
+- Treat task sections as directional historical guidance unless a claim is repeated under Verified Current Findings.
+- Re-run build/lint/type-check before using historical counts for prioritization.
+
+---
+
 ## Summary & Priority Actions
 
 ### Immediate Actions (P0)
 
-1. **Fix TypeScript Errors**: 162 errors blocking build
-   - Fix type import paths
-   - Add missing type definitions
-   - Resolve implicit any errors
+1. **Refresh Current Error Baseline**
+
+- Run current type-check and lint commands and record exact counts.
+- Replace historical error totals with timestamped evidence.
+- Preserve historical counts only in a dedicated baseline subsection.
 
 ### High Priority (P1)
 
-2. **API Security Improvements**:
+2. **API Security Gap Review**:
 
-   - Add global rate limiting
-   - Implement input sanitization
-   - Restrict CORS origins
-   - Add authentication middleware
+- Re-assess remaining gaps relative to the current server configuration.
+- Keep only recommendations not already implemented (for example, input sanitization policy and auth model decisions).
 
 3. **Create Custom Hooks**:
    - useToggle (reduce boolean state duplication)
@@ -514,7 +540,6 @@ StyledButton.displayName = "StyledButton";
 ### Medium Priority (P2)
 
 4. **Bundle Analysis**: Once build works
-
    - Add bundle analyzer
    - Identify large dependencies
    - Optimize icon imports
@@ -527,11 +552,10 @@ StyledButton.displayName = "StyledButton";
 
 ### Low Priority (P3)
 
-6. **TypeScript Strict Mode**: Already mostly strict
+6. **TypeScript Strict Mode**: Already enabled with additional strict checks
 
-   - Consider adding noUncheckedIndexedAccess
-   - Add noImplicitReturns
-   - Monitor for new violations
+- Keep monitoring for regressions.
+- Only propose new flags after validating compatibility impact.
 
 7. **Prop Drilling**: No issues found
    - Continue monitoring
@@ -539,7 +563,9 @@ StyledButton.displayName = "StyledButton";
 
 ---
 
-## Metrics
+## Historical Metrics Snapshot (January 2026)
+
+These counts are preserved from the baseline analysis and are not re-measured in this update pass.
 
 - **Files Analyzed**: ~150+ React/TypeScript files
 - **TypeScript Errors Found**: 162 errors in 51 files
@@ -557,3 +583,55 @@ StyledButton.displayName = "StyledButton";
 - Styled-components: 2-4 hours
 
 **Total**: ~22-33 hours of development work
+
+---
+
+## Evidence Appendix (May 9, 2026)
+
+### Historical Scope Note
+
+- This report reflects a point-in-time assessment from an earlier repository state.
+- References to server1 and older route/layout assumptions should be treated as historical context.
+- Use this document for directional priorities, not as current-file truth.
+
+### Verified Current Source Citations
+
+- Server entry and route/security configuration: [server/src/server.ts](server/src/server.ts#L1)
+- CORS allowlist configuration: [server/src/server.ts](server/src/server.ts#L29)
+- Sanitized production error middleware: [server/src/server.ts](server/src/server.ts#L102)
+- Current TypeScript strict configuration: [client/tsconfig.json](client/tsconfig.json#L5)
+- Existing `MenuEdit` and `FormState` type definitions:
+  - [client/src/types/MenuEdit.ts](client/src/types/MenuEdit.ts#L1)
+  - [client/src/types/FormState.ts](client/src/types/FormState.ts#L3)
+
+### Evidence Quality
+
+- Findings and estimates are summary-level and not fully audit-grade.
+- Raw command outputs, complete issue inventories, and reproducibility logs are not embedded.
+
+### Minimum Audit Standard for Future Updates
+
+- Include exact commands and package scope used for each finding set.
+- Include pass/fail output excerpts (or linked artifacts) for build, lint, and type-check claims.
+- Include execution date, environment (local/CI), and path mapping notes for legacy references.
+
+### Recommended Current Verification Commands
+
+- cd shared && npm run build
+- cd server && npm run typecheck
+- cd client && npm run type-check
+- cd server && npm run lint
+- cd client && npm run lint
+- rg "@types/" client/src
+- rg "MenuEdit|FormState|useAxios" client/src
+
+### Suggested Companion Artifacts
+
+- A machine-readable findings file (JSON/CSV) for smell categories and counts.
+- A markdown appendix with line-linked citations to representative issues.
+
+---
+
+**Report Generated:** January 1, 2026  
+**Last Updated:** May 9, 2026  
+**Update Method:** Historical report review + targeted source verification

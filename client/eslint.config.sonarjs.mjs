@@ -2,7 +2,7 @@ import pluginSonarjs from 'eslint-plugin-sonarjs';
 
 const config = {
     files: ['**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}'],
-    name: 'Roots-sonarjs',
+    name: 'Site8-sonarjs',
     plugins: {
         sonarjs: pluginSonarjs,
     },

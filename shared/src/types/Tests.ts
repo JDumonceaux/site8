@@ -38,6 +38,40 @@ export type TestGroup = v.InferOutput<typeof TestGroupSchema>;
 export type TestSection = v.InferOutput<typeof TestSectionSchema>;
 
 /**
+ * Test item shape in tests.json, which includes group linkage.
+ */
+export type TestFileItem = Test & {
+  readonly groupId: number;
+};
+
+/**
+ * Group shape in tests.json, where sectionId is required.
+ */
+export type TestFileGroup = TestGroup & {
+  readonly sectionId: number;
+};
+
+/**
+ * Section shape in tests.json.
+ */
+export type TestFileSection = TestSection;
+
+/**
+ * Raw tests data file structure persisted on disk.
+ */
+export type TestsFile = {
+  readonly groups: readonly TestFileGroup[];
+  readonly items: readonly TestFileItem[];
+  readonly metadata: Metadata;
+  readonly sections: readonly TestFileSection[];
+};
+
+/**
+ * Backward-compatible alias used in server services.
+ */
+export type TestFile = TestsFile;
+
+/**
  * Tests collection type with groups and sections
  */
 export type Tests = {

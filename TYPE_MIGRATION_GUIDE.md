@@ -1,192 +1,221 @@
 # Type Duplication Elimination - Migration Guide
 
+Date: May 9, 2026
+Completed On: May 9, 2026
+
 ## Overview
 
-This document tracks the migration from duplicate types in `client/src/types/` and `server1/src/types/` to the shared `@site8/shared` package.
+This guide covers migration from local package-specific type definitions to shared exports from @site8/shared.
+It reflects the current monorepo layout: client, server, and shared.
 
-## Status: Phase 1 Complete ✅
+## Current Status
 
-### What Was Done
+- Shared package setup is complete.
+- Client and server both depend on @site8/shared using a local file link.
+- Adoption is active and broad across both codebases.
+- Validation primitives in shared are Valibot-based.
 
-1. **Created Shared Package** (`/shared`)
+## Shared Package Reference
 
-   - Package structure with TypeScript configuration
-   - Core shared types: Artist, Bookmark, Image, Place, Photo, MenuItem, Test
-   - Generic types: Collection, RequiredCollection, Metadata
-   - Zod schemas: ArtistSchema, ImageEditSchema, MetadataSchema
+Package and linkage:
 
-2. **Linked to Client and Server**
-   - Added `@site8/shared` dependency to both `client/package.json` and `server1/package.json`
-   - Using `file:../shared` for local development
+- Package name: @site8/shared
+- Version: 1.0.0
+- Link method in runtime packages: file:../shared
 
-### Shared Types Available
+Primary exports:
 
-The following types are now available from `@site8/shared`:
+- shared/src/index.ts exports both types and utilities.
+- shared/src/types/index.ts exports shared domain types and runtime schemas.
 
-```typescript
-// Core types
-import type {
-  Artist,
-  Bookmark,
-  Collection,
-  RequiredCollection,
-  Image,
-  ImageEdit,
-  Metadata,
-  MenuItem,
-  Photo,
-  Place,
-  Test,
-} from "@site8/shared";
+Representative shared type modules:
 
-// Schemas (for server validation)
-import { ArtistSchema, ImageEditSchema, MetadataSchema } from "@site8/shared";
+- Collection
+- Common
+- ImageFiles
+- ImageItem
+- Images
+- Menus
+- Metadata
+- PageMenu
+- Pages
+- Places
+- Tests
+
+Notable tests file-level exports now available from shared:
+
+- TestFileItem
+- TestFileGroup
+- TestFileSection
+- TestsFile
+- TestFile
+
+Representative runtime schema exports:
+
+- ImageSchema
+- MetadataSchema
+- PageSchema
+- ParentSchema
+- PlaceSchema
+- PlaceImageSchema
+- PlaceUrlSchema
+- TestSchema
+- TestGroupSchema
+- TestSectionSchema
+- TestCodeSchema
+
+## Migration Patterns
+
+### Client Migration Pattern
+
+Before:
+
+```ts
+import type { SomeType } from "../types/SomeType";
 ```
 
-## Migration Instructions
+After:
 
-### For Client Files
-
-**Before:**
-
-```typescript
-import type { Artist } from "../types/Artist";
-import type { Collection } from "../types/Collection";
+```ts
+import type { SomeType } from "@site8/shared";
 ```
 
-**After:**
+### Server Migration Pattern
 
-```typescript
-import type { Artist, Collection } from "@site8/shared";
+Before:
+
+```ts
+import type { SomeType } from "../types/SomeType.js";
 ```
 
-### For Server Files
+After:
 
-**Before:**
-
-```typescript
-import type { Artist } from "../types/Artist.js";
-import { ArtistSchema } from "../types/Artist.js";
+```ts
+import type { SomeType } from "@site8/shared";
 ```
 
-**After:**
+### Schema Import Pattern
 
-```typescript
-import type { Artist } from "@site8/shared";
-import { ArtistSchema } from "@site8/shared";
+Before (local schema or package-local parser):
+
+```ts
+import { SomeSchema } from "../types/SomeType.js";
 ```
 
-## Next Steps (Phase 2)
+After (shared runtime schema):
 
-### High Priority Types to Migrate
+```ts
+import { SomeSchema } from "@site8/shared";
+```
 
-These types should be migrated next as they're heavily used:
+## Recommended Migration Workflow
 
-1. **Page/PageMenu types** - Used across routing and navigation
-2. **Item types** - Core content management types
-3. **MusicItem types** - Music feature types
-4. **Additional collection types** - Pages, Images, Bookmarks, Places, Photos, Items
+1. Rebuild shared first when changing shared types or schemas.
+2. Update imports in small batches by feature area.
+3. Run package checks after each batch.
+4. Remove obsolete local duplicate type files only after imports are fully migrated.
+5. Update this guide when shared exports change.
 
-### Files to Update
-
-#### Client (Example Files)
-
-- `client/src/features/artists/ArtistsPage.tsx`
-- `client/src/features/bookmarks/BookmarksPage.tsx`
-- `client/src/features/images/ImagesPage.tsx`
-- Any file importing from `../types/`
-
-#### Server (Example Files)
-
-- `server1/src/features/artists/ArtistsService.ts`
-- `server1/src/features/bookmarks/BookmarksService.ts`
-- `server1/src/features/images/ImagesService.ts`
-- Any file importing from `../types/`
-
-### Automated Migration Steps
-
-1. **Install shared package:**
-
-   ```bash
-   cd client && npm install
-   cd ../server1 && npm install
-   ```
-
-2. **Find all type imports:**
-
-   ```bash
-   # Client
-   grep -r "from.*types/" client/src
-
-   # Server
-   grep -r "from.*types/" server1/src
-   ```
-
-3. **Update imports incrementally:**
-   - Start with Artist, Bookmark, Image (already in shared)
-   - Add more types to shared as needed
-   - Update imports file by file
-   - Test after each batch
-
-### Types Not Yet Migrated
-
-Types that still need to be added to shared:
-
-- Page, PageMenu, Pages
-- Item, ItemEdit, Items
-- MusicItem, MusicItems
-- PhotoSet
-- And ~15 more domain types
-
-## Benefits Achieved
-
-✅ **Single Source of Truth** - Types defined once, used everywhere  
-✅ **Type Safety** - Consistent types between client and server  
-✅ **Maintainability** - Changes propagate automatically  
-✅ **Validation** - Zod schemas centralized for server validation  
-✅ **Reduced Duplication** - Eliminated 30+ duplicate type definitions
-
-## Installation
-
-After pulling these changes:
+Suggested commands:
 
 ```bash
-# Install shared package dependencies
-cd shared
-npm install
-npm run build
-
-# Link to client
-cd ../client
-npm install
-
-# Link to server
-cd ../server1
-npm install
+cd shared && npm run build
+cd client && npm run type-check
+cd server && npm run typecheck
 ```
 
-## Build Process
-
-The shared package must be built before client/server:
+Use ripgrep for discovery:
 
 ```bash
-# Development workflow
-cd shared && npm run watch  # Terminal 1 (watches for changes)
-cd client && npm run dev    # Terminal 2
-cd server1 && npm start     # Terminal 3
+rg "from ['\"]\.\./types/|from ['\"][.]{2}/types/" client/src
+rg "from ['\"]\.\./types/|from ['\"][.]{2}/types/" server/src
+rg "@site8/shared" client/src server/src
 ```
 
-## Notes
+## Current High-Value Cleanup Targets
 
-- The shared package uses TypeScript 5.7.2 and targets ES2022
-- Zod is included for schema validation (used by server)
-- All types are exported with proper module resolution
-- The package follows the same coding standards as client/server
+1. Reduce legacy re-export wrappers in client/src/types and server/src/types where direct shared imports are preferable.
+2. Migrate remaining cross-package domain types that are still duplicated outside shared.
+3. Keep runtime schema exports in shared synchronized with usage in both client and server.
 
-## Impact
+## Completed And Next Candidate Types
 
-- **Files Created:** 15 (shared package structure)
-- **Files Modified:** 2 (package.json files)
-- **Duplicate Types Identified:** 30+
-- **Types Migrated (Phase 1):** 8 core types
-- **Remaining Types:** ~22 (to be migrated in Phase 2)
+### Completed (May 9, 2026)
+
+1. Tests file container and aliases
+
+Implemented state:
+
+- Shared now exports file-level test container and aliases in [shared/src/types/Tests.ts](shared/src/types/Tests.ts#L62).
+- Shared re-exports these from [shared/src/types/index.ts](shared/src/types/index.ts#L30).
+- Server test-file shim now re-exports shared types from [server/src/types/TestFile.ts](server/src/types/TestFile.ts#L1).
+
+Result:
+
+- Duplicated local TestFile container definitions were removed from server and replaced with shared exports.
+
+### 1) Page text-enriched type (Medium)
+
+Current state:
+
+- Server defines PageText as PageMenu plus optional text in [server/src/types/PageText.ts](server/src/types/PageText.ts#L3).
+- Generic service logic consumes this shape in [server/src/lib/generic/GenericService.ts](server/src/lib/generic/GenericService.ts#L1).
+
+Recommendation:
+
+- Add a shared type representing PageMenu with optional text content.
+- Migrate server to import this type from shared.
+
+Why this is next:
+
+- It is a domain-level response shape built directly on existing shared types.
+
+### 2) Image file edit extension (Medium-Low)
+
+Current state:
+
+- Shared defines ImageFile in [shared/src/types/ImageFiles.ts](shared/src/types/ImageFiles.ts#L3).
+- Server keeps a local ImageFileEdit extension with originalFolder in [server/src/feature/images/Image.ts](server/src/feature/images/Image.ts#L12).
+
+Recommendation:
+
+- If this edit shape is likely to be reused, move ImageFileEdit to shared.
+- Otherwise keep it server-local but avoid redefining base ImageFile in server and always import the base from shared.
+
+Why this is next:
+
+- Removes a local duplicate concept and clarifies the boundary between shared base models and server-only edit metadata.
+
+## Verification Checklist
+
+- Shared build passes.
+- Client type-check passes.
+- Server typecheck passes.
+- No broken imports from removed local type files.
+- Updated docs reference server (not server1) and Valibot (not Zod).
+
+## Related Documentation
+
+- [TYPE_DUPLICATION_IMPLEMENTATION.md](TYPE_DUPLICATION_IMPLEMENTATION.md)
+- [shared/README.md](shared/README.md)
+
+## Evidence Appendix
+
+### Source Citations
+
+- Shared package identity and version: [shared/package.json](shared/package.json#L2), [shared/package.json](shared/package.json#L3)
+- Shared package uses Valibot: [shared/package.json](shared/package.json#L46), [shared/package.json](shared/package.json#L47)
+- Shared root entry exports types and utils: [shared/src/index.ts](shared/src/index.ts#L5), [shared/src/index.ts](shared/src/index.ts#L6)
+- Shared types and schemas export surface: [shared/src/types/index.ts](shared/src/types/index.ts#L6), [shared/src/types/index.ts](shared/src/types/index.ts#L10), [shared/src/types/index.ts](shared/src/types/index.ts#L17), [shared/src/types/index.ts](shared/src/types/index.ts#L19), [shared/src/types/index.ts](shared/src/types/index.ts#L22)
+- Client depends on @site8/shared: [client/package.json](client/package.json#L32)
+- Server depends on @site8/shared: [server/package.json](server/package.json#L57)
+
+### Point-In-Time Adoption Snapshot
+
+- @site8/shared imports in client/src: 55 matches
+- @site8/shared imports in server/src: 39 matches
+
+### Scope Note
+
+This guide provides migration guidance and evidence-backed state references.
+It does not assert fresh build/lint/type-check outcomes unless those commands are executed as part of the update.

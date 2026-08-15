@@ -12,7 +12,7 @@ const config = {
         // ============================================================================
         'perfectionist/sort-array-includes': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-classes': ['error', { order: 'asc', type: 'natural' }],
-        'perfectionist/sort-enums': ['error', { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-enums': 'off', // enums are banned
         'perfectionist/sort-exports': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-imports': [
             'warn',
@@ -67,7 +67,7 @@ const config = {
         'perfectionist/sort-object-types': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-objects': ['warn', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-sets': ['error', { order: 'asc', type: 'natural' }],
-        'perfectionist/sort-switch-case': ['error', { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-switch-case': 'off', // alphabetical case order obscures intent
         'perfectionist/sort-union-types': ['error', { order: 'asc', type: 'natural' }],
     },
 };

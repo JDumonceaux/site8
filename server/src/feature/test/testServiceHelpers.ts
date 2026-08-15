@@ -1,4 +1,8 @@
-import type { Test, TestFile } from '../../types/TestFile.js';
+import type { TestFile } from '@site8/shared';
+
+type FileTestItem = Omit<TestFile['items'][number], 'groupId'> & {
+  readonly groupId: number;
+};
 
 const getLastUpdated = (): string => {
   return new Date().toISOString().split('T')[0] ?? '';
@@ -39,12 +43,12 @@ export const withUpdatedMetadata = (testFile: TestFile): TestFile => {
 
 export const addItemToFile = (
   testFile: TestFile,
-  itemData: Omit<Test, 'id'>,
+  itemData: Omit<FileTestItem, 'groupId' | 'id'>,
   groupId: number,
 ): { file: TestFile; newId: number } => {
   const newId = getNewItemId(testFile);
 
-  const newItem: Test = {
+  const newItem: FileTestItem = {
     ...itemData,
     groupId,
     id: newId,
@@ -52,7 +56,7 @@ export const addItemToFile = (
 
   const file = withUpdatedMetadata({
     ...testFile,
-    items: [...(testFile.items ?? []), newItem],
+    items: [...(testFile.items as readonly FileTestItem[]), newItem],
   });
 
   return { file, newId };
@@ -84,10 +88,10 @@ export const findItemIndex = (testFile: TestFile, itemId: number): number => {
 };
 
 export const buildUpdatedItem = (
-  existingItem: Test,
-  updatedData: Partial<Test>,
+  existingItem: FileTestItem,
+  updatedData: Partial<FileTestItem>,
   newGroupId: number,
-): Test => {
+): FileTestItem => {
   return {
     ...existingItem,
     comments: updatedData.comments ?? existingItem.comments,
@@ -100,9 +104,9 @@ export const buildUpdatedItem = (
 export const updateItemInFile = (
   testFile: TestFile,
   itemIndex: number,
-  updatedItem: Test,
+  updatedItem: FileTestItem,
 ): TestFile => {
-  const items = [...(testFile.items ?? [])];
+  const items = [...(testFile.items as readonly FileTestItem[])];
   items[itemIndex] = updatedItem;
 
   return withUpdatedMetadata({

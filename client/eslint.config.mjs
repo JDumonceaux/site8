@@ -6,6 +6,7 @@ import perfectionistConfig from './eslint.config.perfectionist.mjs';
 import performanceConfig from './eslint.config.performance.mjs';
 import preferArrowConfig from './eslint.config.prefer-arrow-functions.mjs';
 import promiseConfig from './eslint.config.promise.mjs';
+import reactCompilerConfig from './eslint.config.react-compiler.mjs';
 import reactEffectConfig from './eslint.config.react-effect.mjs';
 import reactQueryConfig from './eslint.config.react-query.mjs';
 import reactRefreshConfig from './eslint.config.react-refresh.mjs';
@@ -13,8 +14,11 @@ import reactConfig from './eslint.config.react.mjs';
 import regexpConfig from './eslint.config.regexp.mjs';
 import securityConfig from './eslint.config.security.mjs';
 import sonarjsConfig from './eslint.config.sonarjs.mjs';
+import storybookConfig from './eslint.config.storybook.mjs';
+import testingLibraryConfig from './eslint.config.testing-library.mjs';
 import tsConfig from './eslint.config.typescript.mjs';
 import unicornConfig from './eslint.config.unicorn.mjs';
+import vitestConfig from './eslint.config.vitest.mjs';
 
 const config = [
     // Ignore generated/vendor files
@@ -31,10 +35,14 @@ const config = [
     jsxA11yConfig,
     perfectionistConfig,
     promiseConfig,
-    reactConfig,
+    reactCompilerConfig,
+    ...reactConfig,
     reactRefreshConfig,
     reactEffectConfig,
     performanceConfig,
+    ...storybookConfig,
+    testingLibraryConfig,
+    vitestConfig,
     tsConfig,
     sonarjsConfig,
     unicornConfig,

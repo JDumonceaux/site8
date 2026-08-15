@@ -1,8 +1,9 @@
 # Code Smells Analysis Report - Updated
 
-**Analysis Date:** January 1, 2026  
+**Report Generated:** January 1, 2026  
+**Last Updated:** May 9, 2026  
 **Previous Report:** January 1, 2026 (before refactoring)  
-**Scope:** Full codebase (server1/src + client/src)  
+**Scope:** Historical baseline from January 2026 plus May 2026 verification delta against current layout (server/src + client/src)  
 **Changes Since Previous Report:** Major refactoring completed (tasks 1, 2, 4)
 
 ---
@@ -45,9 +46,9 @@
 
 ---
 
-## Current Status
+## Historical Snapshot Status (January 2026)
 
-### Server Codebase (server1/src)
+### Server Codebase (historical label: server1/src)
 
 **Overall Score: 98/100** ⭐⭐⭐⭐⭐ (Improved from 96/100)
 
@@ -56,12 +57,12 @@
 - **Medium Priority:** 1 (Reduced from 2)
 - **Low Priority:** 1 (No change)
 
-**Remaining Issues:**
+**Remaining Issues (historical):**
 
 - 🟡 Medium: 1 TODO comment in putItem.ts (not actively used, returns 501)
 - 🟢 Low: 0 (any types eliminated ✅)
 
-### Client Codebase (client/src)
+### Client Codebase (client/src, historical counts)
 
 **Overall Score: 88/100** ⭐⭐⭐⭐ (Improved from 74/100)
 
@@ -77,7 +78,7 @@
 - ✅ Error logging standardized (was high priority issue)
 - ✅ Any types eliminated (was high priority issue)
 
-**Remaining Issues:**
+**Remaining Issues (historical):**
 
 - 🟡 Medium: 4 TODO comments (images-edit features, ProtectedRoute auth, error tracking)
 - 🟢 Low: 4 (Storybook autodocs tags in 3 files, todo list JSDoc examples)
@@ -85,6 +86,12 @@
 ---
 
 ## Detailed Analysis
+
+Historical baseline note:
+
+- Sections below preserve January 2026 findings for trend continuity.
+- Some file paths and TODO references are legacy and may not exist in the current workspace.
+- See "May 2026 Verification Delta" for current-path validation and corrected references.
 
 ### Server Codebase
 
@@ -228,6 +235,34 @@ export const putItem = async (req: Request, res: Response): Promise<void> => {
 
 ---
 
+## May 2026 Verification Delta (Missing/Vague Review)
+
+This section resolves ambiguity in the historical baseline by separating verified-current findings from legacy references.
+
+### Verified Current Findings
+
+- External error tracking TODO is present in [client/src/lib/utils/errorHandler.ts](client/src/lib/utils/errorHandler.ts#L41).
+- ProtectedRoute TODO is no longer present; current implementation uses `useAuth` gating in [client/src/app/providers/ProtectedRoute.tsx](client/src/app/providers/ProtectedRoute.tsx#L1).
+- A placeholder data-fetch TODO exists in [client/src/feature/generic/GenericImagePage.tsx](client/src/feature/generic/GenericImagePage.tsx#L13).
+- A hook example TODO exists in [client/src/hooks/examples/useScroll.ts](client/src/hooks/examples/useScroll.ts#L38).
+- Storybook autodocs tags are present under current paths:
+  - [client/src/common/footer/Footer.stories.tsx](client/src/common/footer/Footer.stories.tsx#L15)
+  - [client/src/common/header/Header.stories.tsx](client/src/common/header/Header.stories.tsx#L20)
+  - [client/src/common/fallback/Fallback.stories.tsx](client/src/common/fallback/Fallback.stories.tsx#L23)
+
+### Legacy References Flagged As Stale
+
+- `server1/src` path labels are historical and do not match the current workspace layout.
+- Images-edit TODO paths referenced in the January baseline are not present in current `client/src`.
+- The prior ProtectedRoute TODO reference is outdated and has been resolved in current code.
+
+### Interpretation Guidance
+
+- Keep trend percentages as historical context, not current-measurement truth.
+- Treat file-level issue ownership from this report as "needs re-validation" unless listed in Verified Current Findings.
+
+---
+
 ## Trend Analysis
 
 ### Before Refactoring (January 1, 2026 - Morning)
@@ -269,39 +304,33 @@ export const putItem = async (req: Request, res: Response): Promise<void> => {
 
 ## Recommendations by Priority
 
-### 🟡 MEDIUM Priority (Do Soon)
+### 🟡 MEDIUM Priority (Current Workspace)
 
-#### 1. Implement Images Edit Features (Est: 6-8 hours)
-
-- Implement save, refresh, and scan logic in images-edit feature
-- Remove TODO comments
-- Add tests for new functionality
-
-#### 2. Setup External Error Tracking (Est: 2-3 hours)
+#### 1. Setup External Error Tracking (Est: 2-3 hours)
 
 - ⭐ **High Impact** - Natural next step after error logging standardization
-- Set up Sentry or LogRocket account
-- Integrate with `logError` utility
-- Configure error filtering and sampling
-- Test error reporting in production
+- Integrate external reporting at [client/src/lib/utils/errorHandler.ts](client/src/lib/utils/errorHandler.ts#L41)
+- Add filtering/sampling and verify production behavior
 
-#### 3. Implement ProtectedRoute Authentication (Est: 2 hours)
+#### 2. Resolve Placeholder TODOs (Est: 2-4 hours)
 
-- Replace placeholder logic with real authentication
-- Use existing `useAuth` hook
-- Add proper route protection
-- Test authenticated vs. unauthenticated flows
+- Replace placeholder data source in [client/src/feature/generic/GenericImagePage.tsx](client/src/feature/generic/GenericImagePage.tsx#L13)
+- Implement or remove example TODO in [client/src/hooks/examples/useScroll.ts](client/src/hooks/examples/useScroll.ts#L38)
+- Add targeted tests for whichever behavior is selected
 
-#### 4. Resolve Page PUT Endpoint (Est: 4 hours or 1 hour)
+#### 3. Re-validate Route Protection Policy (Est: 30-60 minutes)
 
-- **Option A:** Implement full PUT handler (4 hours)
-- **Option B:** Remove endpoint and document decision (1 hour)
+- Current auth gate exists in [client/src/app/providers/ProtectedRoute.tsx](client/src/app/providers/ProtectedRoute.tsx#L1)
+- Confirm this behavior still matches product requirements before changing code
 
-### 🟢 LOW Priority (Nice to Have)
+### 🟢 LOW Priority
 
-5. **Review False Positives** (Est: 15 minutes)
-   - Document that Storybook tags and JSDoc examples are intentional
-   - Update linting rules to ignore these patterns
+4. Document intentional Storybook autodocs usage (Est: 15 minutes)
+
+- Record why these are not treated as smells:
+  - [client/src/common/footer/Footer.stories.tsx](client/src/common/footer/Footer.stories.tsx#L15)
+  - [client/src/common/header/Header.stories.tsx](client/src/common/header/Header.stories.tsx#L20)
+  - [client/src/common/fallback/Fallback.stories.tsx](client/src/common/fallback/Fallback.stories.tsx#L23)
 
 ---
 
@@ -426,25 +455,22 @@ export const putItem = async (req: Request, res: Response): Promise<void> => {
 ### Short Term (Next 2 Weeks)
 
 5. **Setup External Error Tracking** (2-3 hours)
-
    - Implement Sentry integration
    - Configure error filtering
    - Test in production
 
-6. **Implement Images Edit Features** (6-8 hours)
+6. **Resolve Placeholder Data-Fetch TODOs** (2-4 hours)
+   - Replace placeholder data source in GenericImagePage
+   - Implement or remove TODO in useScroll example hook
+   - Add focused tests for the selected behavior
 
-   - Add save, refresh, scan functionality
-   - Remove TODO comments
-   - Add tests
-
-7. **Implement ProtectedRoute Auth** (2 hours)
-   - Replace placeholder logic
-   - Use real authentication
+7. **ProtectedRoute Auth Review** (30-60 minutes)
+   - Confirm current useAuth gating behavior is still aligned with route policy
+   - Keep as verification-only unless new auth requirements are introduced
 
 ### Long Term (Next Month)
 
 8. **Resolve Page PUT Endpoint** (4 hours or 1 hour)
-
    - Decide: implement or remove
    - Document decision
 
@@ -490,13 +516,62 @@ Both client and server codebases are now in excellent condition:
 Continue momentum with these high-impact items:
 
 1. **External Error Tracking** (2-3 hours) - Natural next step after error logging standardization
-2. **Images Edit Features** (6-8 hours) - Complete unfinished functionality
-3. **ProtectedRoute Auth** (2 hours) - Replace placeholder authentication
+2. **Placeholder TODO Cleanup** (2-4 hours) - Replace or remove current placeholder TODOs
+3. **Route Protection Verification** (30-60 minutes) - Re-validate current auth route policy
 
 **Excellent work! The codebase is now in outstanding condition.** 🎉
 
 ---
 
+## Evidence Appendix (May 9, 2026)
+
+### Historical Scope Note
+
+- This report is a historical snapshot from January 2026.
+- Mentions of server1 paths reflect the repository layout at that time.
+- Treat server1 references as legacy labels, not current workspace paths.
+
+### Verified Current Source Citations
+
+- Current ProtectedRoute implementation: [client/src/app/providers/ProtectedRoute.tsx](client/src/app/providers/ProtectedRoute.tsx#L1)
+- Current external tracking TODO: [client/src/lib/utils/errorHandler.ts](client/src/lib/utils/errorHandler.ts#L41)
+- Current placeholder fetch TODO: [client/src/feature/generic/GenericImagePage.tsx](client/src/feature/generic/GenericImagePage.tsx#L13)
+- Current hook example TODO: [client/src/hooks/examples/useScroll.ts](client/src/hooks/examples/useScroll.ts#L38)
+- Current Storybook autodocs tags:
+  - [client/src/common/footer/Footer.stories.tsx](client/src/common/footer/Footer.stories.tsx#L15)
+  - [client/src/common/header/Header.stories.tsx](client/src/common/header/Header.stories.tsx#L20)
+  - [client/src/common/fallback/Fallback.stories.tsx](client/src/common/fallback/Fallback.stories.tsx#L23)
+
+### Evidence Quality
+
+- Trend and score claims are summary-level and not fully audit-grade.
+- Command outputs and raw issue inventories are not embedded in this document.
+- Use this report as directional quality history, not as a source of current-file truth.
+
+### Minimum Audit Standard for Future Updates
+
+- Include exact commands used for counting issues and smell categories.
+- Include command output excerpts or attached artifacts.
+- Include execution date, environment, and package scope.
+- Include current file-path mapping for any legacy references.
+
+### Recommended Verification Command Set (Current Layout)
+
+- cd server && npm run typecheck
+- cd client && npm run type-check
+- cd server && npm run lint
+- cd client && npm run lint
+- rg "TODO" server/src
+- rg "TODO" client/src
+
+### Suggested Companion Artifacts
+
+- One machine-readable issue inventory file (JSON or CSV).
+- One markdown appendix with path-level findings and line-linked citations.
+
+---
+
 **Report Generated:** January 1, 2026  
-**Analysis Tool:** Manual review + grep search + semantic analysis  
+**Last Updated:** May 9, 2026  
+**Update Method:** Manual review + grep search + semantic analysis  
 **Next Review:** Recommend in 2 weeks after implementing remaining medium-priority items

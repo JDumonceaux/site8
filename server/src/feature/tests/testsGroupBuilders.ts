@@ -1,9 +1,11 @@
 import type {
-  TestGroup as TestFileGroup,
-  Test as TestFileItem,
-  TestSection as TestFileSection,
-} from '../../types/TestFile.js';
-import type { Test, TestGroup, TestSection } from '@site8/shared';
+  Test,
+  TestFileGroup,
+  TestFileItem,
+  TestFileSection,
+  TestGroup,
+  TestSection,
+} from '@site8/shared';
 
 export const buildPopulatedGroups = (
   fileItems: readonly TestFileItem[],
