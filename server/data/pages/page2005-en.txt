@@ -1,0 +1,201 @@
+React state "living too high" (lifted too high in the component tree) causes unnecessary re-renders, prop drilling, and performance bottlenecks. To fix this, move state to the lowest common ancestor, use useReducer for complex logic, or utilize context/state libraries for truly global data. 
+
+Key Strategies to Lower React State:
+
+Move State Down: If a piece of state is only used by a small branch of the component tree, move it down into those specific components rather than keeping it in a parent component.
+Colocate State: Keep state as close to where it is used as possible. This limits the scope of re-renders.
+Use useReducer: For complex state logic involving multiple sub-values, replace useState with useReducer to simplify management and optimize updates.
+Use Refs (useRef): If data changes but does not need to trigger a re-render (like timer IDs or DOM references), use useRef instead of useState.
+Derive State: Do not store data that can be calculated from props or other state variables. Calculate it on the fly, optionally wrapping expensive calculations in useMemo.
+Context API: For truly global state (e.g., theme, user auth) that needs to be accessed by many distant components, use the Context API to avoid passing props through intermediate components. 
+Signs State is Too High:
+
+Prop Drilling: Passing props through intermediate components that do not need them.
+Unnecessary Re-renders: Large parts of the application re-render when only a small piece of data changes.
+Component Bloat: Parent components become hard to read and maintain due to excessive state logic. 
+Lifting State Up
+
+There should be a single “source of truth” for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. Instead of trying to sync the state between different components, you should rely on the top-down data flow.
+ 
+
+Bundle Size Investigation
+
+https://www.developerway.com/posts/bundle-size-investigation
+
+ 
+
+Flame Graphs
+
+https://www.developerway.com/posts/client-side-rendering-flame-graph
+
+ 
+
+Vite Configuration
+
+https://medium.com/@ignatovich.dm/optimizing-react-apps-with-code-splitting-and-lazy-loading-e8c8791006e3
+
+ 
+
+Analysis
+ 
+
+Since the project is on Vite, I can use a "Rollup Plugin Visualizer" library.
+
+Open the vite.config.ts file and find this code:
+
+visualizer({
+
+  filename: 'stats.html',
+
+  emitFile: true,
+
+  template: 'treemap',
+
+});
+
+Build the project yet, do it and take a look inside the src/dist/client folder. There should be a stats.html file there. Open it in your browser and wait until it fully loads (might take a while!). When it finishes loading, it should show a graph like this:
+
+ 
+
+The largest red-ish one is assets/vendor - this is our vendor chunk.
+The teal at the left is assets/index - this is our own code.
+ 
+
+visualizer({
+
+  filename: 'stats.html',
+
+  emitFile: true,
+
+  // different types of visualizations
+
+  template: 'flamegraph',
+
+});
+
+ 
+
+Step 1: Identify a Package to Eliminate
+
+Step 2: Understand the Package
+
+Step 3: Understand the Usage of the Package
+
+Step 4: Confirm That This is the Problem
+
+Comment out the import part for both of those libraries. Then rebuild the project. It won't start since we haven't fixed the usage of those libraries yet. But it will be enough to see whether the bundle size has reduced or not,
+
+Step 5: Tree Shaking and Dead Code Elimination
+
+              Can’t handle
+
+import * as Buttons from '@fe/components/button';
+
+* import in combination with renaming. *
+
+ 
+
+Change
+
+import * as Material from "@mui/icons-material";
+
+to
+
+import { Star } from "@mui/icons-material";
+
+ 
+
+ES Modules and Non-tree-shakable Libraries
+
+The problem here is that we have different module formats in JavaScript: ESM, CJS, AMD, UMD. "Module" is a single reusable piece of code that can be loaded into another piece of code.
+
+ 
+
+When you see import { bla } from "bla-bla" or export const bla or export { bla } - it's ESM format.
+
+Modern bundles can easily tree-shake ESM format, as we've seen already while experimenting with tree-shaking in our own code. Everything else that is not ESM is very hard to tree-shake.
+
+ 
+
+You can check whether a library is ESM or not with a tiny is-esm npm package. It's a CLI tool that gives you a Yes/No answer. If Yes, it's ESM and it will be tree-shaken.
+
+ 
+
+Solution:
+
+Replace file
+// Cherry-pick methods for smaller browserify/rollup/
+Check to see if While the "main" entry file is not ESM, they might provide additional entries for smaller pieces of the library that allow importing only what you need.
+Or you can import the icon directly from its own entry point and not live in fear of tree-shaking failing for some obscure reason:
+ 
+
+Common Sense and Repeating Libraries
+
+Multiple libraries performing same functions: dates, animations, resizing, infinite scrolling, forms, charts
+Choose a tree-shakeable library and remove others
+ 
+
+Transitive Dependencies
+
+not used in our project code directly, that means that it was used by some library, which in turn was used in the code
+npx npm-why @emotion/styled
+
+ 
+
+Solution: Remove parent library?
+ 
+
+Lazy Loading
+
+Lazy Loading Routes with React Router
+
+Lazy Loading a Component
+
+              Error items?
+
+ 
+
+Preloading with Dynamic Imports
+
+// Preload the component
+const preloadComponent = () => {
+  import("./LazyComponent");
+};
+
+function App() {
+  useEffect(() => {
+    preloadComponent(); // Preload the component on app load
+  }, []);
+
+ 
+
+Vite Configuration
+
+ 
+
+// vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"], // Separate React into its own chunk
+        },
+      },
+    },
+  },
+});
+
+ 
+
+This configuration ensures that commonly used libraries like React are grouped into a separate vendor chunk, optimizing caching.
+
+ 
+
+ 
+
+ 

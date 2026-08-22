@@ -53,7 +53,7 @@
     "start:prod": "node --env-file=.env.production dist/server.js"
   },
   "dependencies": {
-    "@google/genai": "^2.8.0",
+    "@google/genai": "^2.10.0",
     "@site8/shared": "file:../shared",
     "compression": "^1.8.1",
     "cors": "^2.8.6",
@@ -69,7 +69,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "5.0.6",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.1",
     "@types/validator": "^13.15.10",
     "@typescript-eslint/eslint-plugin": "^8.60.1",
     "@typescript-eslint/parser": "^8.60.1",
@@ -78,7 +78,7 @@
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-check-file": "^3.3.1",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^18.1.0",
+    "eslint-plugin-n": "^18.2.1",
     "eslint-plugin-no-secrets": "^2.3.3",
     "eslint-plugin-perfectionist": "^5.9.0",
     "eslint-plugin-prefer-arrow-functions": "^3.9.1",
@@ -90,11 +90,11 @@
     "eslint-plugin-vitest": "^0.5.4",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
-    "prettier": "^3.8.3",
+    "prettier": "^3.9.4",
     "pretty-quick": "^4.2.2",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.0"
+    "typescript-eslint": "^8.62.1"
   },
   "keywords": [
     "api",
