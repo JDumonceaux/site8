@@ -47,7 +47,7 @@
     "@tanstack/react-query": "^5.101.4",
     "@vitest/eslint-plugin": "^1.6.27",
     "aws-amplify": "^6.20.0",
-    "baseline-browser-mapping": "^2.11.18",
+    "baseline-browser-mapping": "^2.11.20",
     "brace-expansion": "^5.0.9",
     "caniuse-lite": "^1.0.30001809",
     "date-fns": "^4.4.0",
