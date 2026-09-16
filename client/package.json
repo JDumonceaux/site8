@@ -49,7 +49,7 @@
     "aws-amplify": "^6.20.0",
     "baseline-browser-mapping": "^2.11.20",
     "brace-expansion": "^5.0.9",
-    "caniuse-lite": "^1.0.30001809",
+    "caniuse-lite": "^1.0.30001810",
     "date-fns": "^4.4.0",
     "html-react-parser": "^6.1.7",
     "i18next": "^26.4.0",
